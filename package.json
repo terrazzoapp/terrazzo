@@ -1,0 +1,23 @@
+{
+  "name": "design-token-tools-monorepo",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "examples/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "cd packages/design-token-tools && npm run build",
+    "lint": "eslint \"packages/**/*\"",
+    "dev": "cd packages/design-token-tools && npm run dev"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1",
+    "typescript": "^4.4.4"
+  }
+}

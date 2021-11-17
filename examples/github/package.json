@@ -1,0 +1,12 @@
+{
+  "name": "@example/github",
+  "description": "https://github.com/primer/css",
+  "private": true,
+  "scripts": {
+    "build": "tokens build",
+    "validate": "tokens validate"
+  },
+  "dependencies": {
+    "design-token-tools": "^0.0.0"
+  }
+}

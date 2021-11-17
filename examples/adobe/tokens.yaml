@@ -1,0 +1,30 @@
+name: Adobe Spectrum
+version: 0.1
+tokens:
+  color:
+    type: group
+    tokens:
+      blue:
+        value:
+          default: '#1473e6'
+      gray:
+        value:
+          default: '#4b4b4b'
+      green:
+        value:
+          default: '#268e6c'
+      red:
+        value:
+          default: '#d7373f'
+      orange:
+        value:
+          default: '#da7b11'
+  text:
+    type: group
+    modes: [desktop, mobile]
+    tokens:
+      xs:
+        value:
+          default: 10px
+          desktop: 10px
+          mobile: 10px

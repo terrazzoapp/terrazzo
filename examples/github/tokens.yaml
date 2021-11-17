@@ -1,0 +1,95 @@
+name: GitHub Primer
+version: 0.1
+tokens:
+  color:
+    type: group
+    tokens:
+      blue:
+        type: token
+        value:
+          default: '#0969da'
+      green:
+        type: token
+        value:
+          default: '#2da44e'
+      magenta:
+        type: token
+        value:
+          default: '#f350b1'
+      purple:
+        type: token
+        value:
+          default: '#8250df'
+      red:
+        type: token
+        value:
+          default: '#cf222e'
+      yellow:
+        type: token
+        value:
+          default: '#ffc63e'
+  icons:
+    type: group
+    modes: ['16', '24']
+    tokens:
+      alert:
+        type: url
+        value:
+          default: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
+          16: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-16.svg
+          24: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
+  text:
+    type: group
+    modes: [desktop, mobile]
+    tokens:
+      size:
+        type: group
+        tokens:
+          f00:
+            type: token
+            value:
+              default: 48px
+              desktop: 40px
+              mobile: 32px
+          f0:
+            type: token
+            value:
+              default: 40px
+              desktop: 40px
+              mobile: 32px
+          f1:
+            type: token
+            value:
+              default: 32px
+              desktop: 32px
+              mobile: 26px
+          f2:
+            type: token
+            value:
+              default: 24px
+              desktop: 24px
+              mobile: 22px
+          f3:
+            type: token
+            value:
+              default: 20px
+              desktop: 20px
+              mobile: 16px
+          f4:
+            type: token
+            value:
+              default: 16px
+              desktop: 16px
+              mobile: 16px
+          f5:
+            type: token
+            value:
+              default: 14px
+              desktop: 14px
+              mobile: 14px
+          f6:
+            type: token
+            value:
+              default: 12px
+              desktop: 12px
+              mobile: 12px

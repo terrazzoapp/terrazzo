@@ -1,0 +1,26 @@
+{
+  "name": "design-token-tools",
+  "description": "Batteries-included management of design tokens",
+  "version": "0.0.0",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "type": "module",
+  "bin": {
+    "tokens": "./bin/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "kleur": "^4.1.4",
+    "zod": "^3.11.6"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.4",
+    "@types/node": "^16.11.7"
+  }
+}

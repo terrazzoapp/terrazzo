@@ -1,0 +1,12 @@
+{
+  "name": "@example/adobe",
+  "description": "https://github.com/adobe/spectrum-css",
+  "private": true,
+  "scripts": {
+    "build": "tokens build",
+    "validate": "tokens validate"
+  },
+  "dependencies": {
+    "design-token-tools": "^0.0.0"
+  }
+}
