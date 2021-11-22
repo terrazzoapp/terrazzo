@@ -2,11 +2,12 @@
   "name": "@example/adobe",
   "description": "https://github.com/adobe/spectrum-css",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "tokens build",
-    "validate": "tokens validate"
+    "build": "cobalt build",
+    "validate": "cobalt validate"
   },
   "dependencies": {
-    "design-token-tools": "^0.0.0"
+    "@cobalt-ui/cli": "^0.0.0-alpha.0"
   }
 }

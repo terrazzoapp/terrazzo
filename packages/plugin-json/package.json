@@ -1,0 +1,19 @@
+{
+  "name": "@cobalt-ui/plugin-json",
+  "description": "JSON builder for Cobalt UI design tokens",
+  "version": "0.0.0-alpha.0",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "@cobalt-ui/core": "^0.0.0-alpha.0"
+  }
+}

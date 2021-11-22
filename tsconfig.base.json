@@ -6,7 +6,6 @@
     "moduleResolution": "node",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "outDir": "dist",
     "strict": true,
     "target": "ES2020"
   }

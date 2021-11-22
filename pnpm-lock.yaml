@@ -22,30 +22,60 @@ importers:
 
   examples/adobe:
     specifiers:
-      design-token-tools: ^0.0.0
+      '@cobalt-ui/cli': ^0.0.0-alpha.0
     dependencies:
-      design-token-tools: link:../../packages/design-token-tools
+      '@cobalt-ui/cli': link:../../packages/cli
 
   examples/github:
     specifiers:
-      design-token-tools: ^0.0.0
+      '@cobalt-ui/cli': ^0.0.0-alpha.0
     dependencies:
-      design-token-tools: link:../../packages/design-token-tools
+      '@cobalt-ui/cli': link:../../packages/cli
 
-  packages/design-token-tools:
+  packages/cli:
     specifiers:
+      '@cobalt-ui/core': ^0.0.0-alpha.0
+      kleur: ^4.1.4
+    dependencies:
+      '@cobalt-ui/core': link:../core
+      kleur: 4.1.4
+
+  packages/core:
+    specifiers:
+      '@cobalt-ui/plugin-json': ^0.0.0-alpha.0
+      '@cobalt-ui/plugin-sass': ^0.0.0-alpha.0
+      '@cobalt-ui/plugin-ts': ^0.0.0-alpha.0
       '@types/js-yaml': ^4.0.4
       '@types/node': ^16.11.7
       js-yaml: ^4.1.0
       kleur: ^4.1.4
-      zod: ^3.11.6
     dependencies:
+      '@cobalt-ui/plugin-json': link:../plugin-json
+      '@cobalt-ui/plugin-sass': link:../plugin-sass
+      '@cobalt-ui/plugin-ts': link:../plugin-ts
       js-yaml: 4.1.0
       kleur: 4.1.4
-      zod: 3.11.6
     devDependencies:
       '@types/js-yaml': 4.0.4
       '@types/node': 16.11.7
+
+  packages/plugin-json:
+    specifiers:
+      '@cobalt-ui/core': ^0.0.0-alpha.0
+    devDependencies:
+      '@cobalt-ui/core': link:../core
+
+  packages/plugin-sass:
+    specifiers:
+      '@cobalt-ui/core': ^0.0.0-alpha.0
+    devDependencies:
+      '@cobalt-ui/core': link:../core
+
+  packages/plugin-ts:
+    specifiers:
+      '@cobalt-ui/core': ^0.0.0-alpha.0
+    devDependencies:
+      '@cobalt-ui/core': link:../core
 
 packages:
 
@@ -970,7 +1000,3 @@ packages:
   /yallist/4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
     dev: true
-
-  /zod/3.11.6:
-    resolution: {integrity: sha512-daZ80A81I3/9lIydI44motWe6n59kRBfNzTuS2bfzVh1nAXi667TOTWWtatxyG+fwgNUiagSj/CWZwRRbevJIg==}
-    dev: false

@@ -1,0 +1,27 @@
+{
+  "name": "@cobalt-ui/core",
+  "description": "Schemas and tools for managing design tokens",
+  "version": "0.0.0-alpha.0",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "@cobalt-ui/plugin-json": "^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-sass": "^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-ts": "^0.0.0-alpha.0",
+    "js-yaml": "^4.1.0",
+    "kleur": "^4.1.4"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.4",
+    "@types/node": "^16.11.7"
+  }
+}

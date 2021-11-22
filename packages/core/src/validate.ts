@@ -1,72 +1,8 @@
+import type { FileOrURL, Group, Token, TokenManifest, TokenType } from './parse';
+import fs from 'fs';
 import * as colors from 'kleur/colors';
 
-const VALID_TOP_LEVEL = new Set(['name', 'version', 'metadata', 'tokens']);
-
-export interface TokenManifest {
-  /** Manifest name */
-  name?: string;
-  /** Version. Only useful for the design system */
-  version?: number;
-  /** Tokens. Required */
-  tokens: {
-    [tokensOrGroup: string]: Group | Token | File | URL;
-  };
-}
-
-/** An arbitrary grouping of tokens. Groups can be nested infinitely to form namespaces. */
-export interface Group<T = string> {
-  type: 'group';
-  /** (optional) User-friendly name of the group */
-  name?: string;
-  /** (optional) Longer descripton of this group */
-  description?: string;
-  /** (optional) Enforce that all child tokens have values for all modes */
-  modes?: string[];
-  tokens: {
-    [tokensOrGroup: string]: Group<T> | Token<T> | File | URL;
-  };
-}
-
-/** A design token. */
-export interface Token<T = string> {
-  type: 'token';
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: TokenValue<T>;
-}
-
-export interface File {
-  type: 'file';
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: {
-    default: string;
-    [mode: string]: string;
-  };
-}
-
-export interface URL {
-  type: 'file';
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: {
-    default: string;
-    [mode: string]: string;
-  };
-}
-
-export interface TokenValue<T = string> {
-  /** Required */
-  default: T;
-  /** Additional modes */
-  [mode: string]: T;
-}
+const VALID_TOP_LEVEL = new Set<keyof TokenManifest>(['name', 'version', 'metadata', 'tokens']);
 
 /** Validate tokens.yaml file against Design Tokens 0.x schema */
 export default class Validator {
@@ -85,7 +21,7 @@ export default class Validator {
     }
 
     for (const k of Object.keys(this.manifest)) {
-      if (!VALID_TOP_LEVEL.has(k)) {
+      if (!VALID_TOP_LEVEL.has(k as keyof TokenManifest)) {
         this.errors.push(`${colors.bold('root')}: unknown key "${k}" (arbitrary information must be placed under "metadata")`);
       }
     }
@@ -164,31 +100,77 @@ export default class Validator {
   }
 
   private validateToken(token: Token, id: string, modes?: string[]): void {
-    if (token.value) {
-      if (typeof token.value === 'object' && !Array.isArray(token.value) && token.value.default !== undefined && token.value.default !== null) {
-        // validate modes
+    this.validateValue({ id, value: token.value, modes, type: 'token' });
+  }
+
+  private validateFile(file: FileOrURL, id: string, modes?: string[]): void {
+    if (this.validateValue({ id, value: file.value, modes, type: 'file' })) {
+      for (const [k, v] of Object.entries(file.value)) {
+        if (k == 'default' && typeof v !== 'string') this.errors.push(this.print(id, `default value must be string, received ${typeof v}`, 'file'));
+        else if (typeof v !== 'string') this.errors.push(this.print(id, `${k} mode must be string, received ${typeof v}`, 'file'));
+        let found = false;
+        for (const f of [v, new URL(v, `file://${process.cwd()}/`)]) {
+          if (fs.existsSync(f)) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) this.errors.push(this.print(id, `could not locate file ${v} (if this is a url, use "type": "url" instead)`, 'file'));
+      }
+    }
+  }
+
+  private validateURL(url: FileOrURL, id: string, modes?: string[]): void {
+    if (this.validateValue({ id, value: url.value, modes, type: 'url' })) {
+      for (const [k, v] of Object.entries(url.value)) {
+        if (k === 'default' && typeof v !== 'string') this.errors.push(this.print(id, `default value must be string, received ${typeof v}`, 'url'));
+        else if (typeof v !== 'string') this.errors.push(this.print(id, `${k} mode must be string, received ${typeof v}`, 'url'));
+        try {
+          new URL(v);
+        } catch {
+          this.errors.push(this.print(id, `value "${k}" has invalid URL: ${v} (if this is a file, use "type": "file" instead)`, 'url'));
+        }
+      }
+    }
+  }
+
+  private validateValue({ id, value, type, modes }: { id: string; value: { default: any } & Record<string, any>; type: TokenType; modes?: string[] }): boolean {
+    let hasValue = false; // return "true" if other functions can evaluate the value
+    if (value) {
+      if (typeof value === 'object' && !Array.isArray(value) && value.default !== undefined && value.default !== null) {
+        hasValue = true;
         if (modes && modes.length) {
           for (const mode of modes) {
-            if (token.value[mode] === undefined || token.value[mode] === null) this.errors.push(this.print(id, `missing ${mode} mode`));
+            if (value[mode] === undefined || value[mode] === null) this.errors.push(this.print(id, `missing ${mode} mode`, type));
           }
         }
       } else {
-        this.errors.push(this.print(id, 'missing default value'));
+        this.errors.push(this.print(id, 'missing default value', type));
       }
     } else {
-      this.errors.push(this.print(id, 'missing value'));
+      this.errors.push(this.print(id, 'missing value', type));
     }
+    return hasValue;
   }
 
-  private validateFile(file: File, id: string, modes?: string[]): void {
-    if (file.value) {
-    } else {
-      this.errors.push(this.print(id, 'missing value', 'file'));
+  private print(name: string, message: string, type?: TokenType): string {
+    let label: string | undefined;
+    if (type) {
+      let color: typeof colors.bold;
+      switch (type) {
+        case 'group':
+          color = colors.magenta;
+          break;
+        case 'token':
+          color = colors.cyan;
+          break;
+        case 'file':
+        case 'url':
+          color = colors.green;
+          break;
+      }
+      if (color as any) label = color(`[${type}]`);
     }
-  }
-
-  private print(name: string, message: string, type: 'group' | 'token' | 'file' | 'url' = 'token'): string {
-    const label = type === 'group' ? colors.magenta(`[group] ${name}`) : colors.cyan(`[token] ${name}`);
-    return `${colors.bold(label)}: ${message}`;
+    return `${label ? colors.bold(label) : ''} ${name}: ${message}`;
   }
 }
