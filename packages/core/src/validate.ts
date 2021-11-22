@@ -1,38 +1,40 @@
-import type { FileOrURL, Group, Token, TokenManifest, TokenType } from './parse';
+import type { RawFileNode, RawGroupNode, NodeType, RawTokenNode, RawTokenSchema, RawURLNode } from './parse';
+
 import fs from 'fs';
 import * as colors from 'kleur/colors';
 
-const VALID_TOP_LEVEL = new Set<keyof TokenManifest>(['name', 'version', 'metadata', 'tokens']);
+const VALID_TOP_LEVEL = new Set<keyof RawTokenSchema>(['name', 'version', 'metadata', 'tokens']);
 
 /** Validate tokens.yaml file against Design Tokens 0.x schema */
-export default class Validator {
-  public manifest: TokenManifest;
+export class Validator {
+  public schema: RawTokenSchema;
   private errors: string[] = [];
   private warnings: string[] = [];
 
-  constructor(manifest: TokenManifest) {
-    this.manifest = manifest;
+  constructor(schema: RawTokenSchema) {
+    this.schema = schema;
   }
 
   /** Run validator */
   public async validate(): Promise<{ errors: string[] | undefined; warnings: string[] | undefined }> {
-    if (!this.manifest.tokens) {
+    if (!this.schema.tokens) {
       this.errors.push(`top level "tokens" property required`);
     }
 
-    for (const k of Object.keys(this.manifest)) {
-      if (!VALID_TOP_LEVEL.has(k as keyof TokenManifest)) {
+    for (const k of Object.keys(this.schema)) {
+      if (!VALID_TOP_LEVEL.has(k as keyof RawTokenSchema)) {
         this.errors.push(`${colors.bold('root')}: unknown key "${k}" (arbitrary information must be placed under "metadata")`);
       }
     }
 
-    for (const [k, v] of Object.entries(this.manifest.tokens)) {
+    for (const [k, v] of Object.entries(this.schema.tokens)) {
       if (k.includes('.')) this.errors.push(`invalid name "${k}". Names cannot contain the "." character.`);
       switch (v.type) {
         case 'group':
           this.validateGroup(v, k);
           break;
         case 'token':
+        case undefined:
           this.validateToken(v, k);
           break;
         case 'file':
@@ -50,7 +52,7 @@ export default class Validator {
     };
   }
 
-  private validateGroup(group: Group, id: string, chain: string[] = [], modes?: string[]): void {
+  private validateGroup(group: RawGroupNode, id: string, chain: string[] = [], modes?: string[]): void {
     chain.push(id);
     const name = chain.join('.');
 
@@ -75,6 +77,7 @@ export default class Validator {
                 this.validateGroup(v, k, chain, modes);
                 break;
               case 'token':
+              case undefined:
                 this.validateToken(v, chain.concat(k).join('.'), modes);
                 break;
               case 'file':
@@ -99,11 +102,11 @@ export default class Validator {
     }
   }
 
-  private validateToken(token: Token, id: string, modes?: string[]): void {
+  private validateToken(token: RawTokenNode, id: string, modes?: string[]): void {
     this.validateValue({ id, value: token.value, modes, type: 'token' });
   }
 
-  private validateFile(file: FileOrURL, id: string, modes?: string[]): void {
+  private validateFile(file: RawFileNode, id: string, modes?: string[]): void {
     if (this.validateValue({ id, value: file.value, modes, type: 'file' })) {
       for (const [k, v] of Object.entries(file.value)) {
         if (k == 'default' && typeof v !== 'string') this.errors.push(this.print(id, `default value must be string, received ${typeof v}`, 'file'));
@@ -120,7 +123,7 @@ export default class Validator {
     }
   }
 
-  private validateURL(url: FileOrURL, id: string, modes?: string[]): void {
+  private validateURL(url: RawURLNode, id: string, modes?: string[]): void {
     if (this.validateValue({ id, value: url.value, modes, type: 'url' })) {
       for (const [k, v] of Object.entries(url.value)) {
         if (k === 'default' && typeof v !== 'string') this.errors.push(this.print(id, `default value must be string, received ${typeof v}`, 'url'));
@@ -134,7 +137,7 @@ export default class Validator {
     }
   }
 
-  private validateValue({ id, value, type, modes }: { id: string; value: { default: any } & Record<string, any>; type: TokenType; modes?: string[] }): boolean {
+  private validateValue({ id, value, type, modes }: { id: string; value: { default: any } & Record<string, any>; type: NodeType; modes?: string[] }): boolean {
     let hasValue = false; // return "true" if other functions can evaluate the value
     if (value) {
       if (typeof value === 'object' && !Array.isArray(value) && value.default !== undefined && value.default !== null) {
@@ -153,7 +156,7 @@ export default class Validator {
     return hasValue;
   }
 
-  private print(name: string, message: string, type?: TokenType): string {
+  private print(name: string, message: string, type?: NodeType): string {
     let label: string | undefined;
     if (type) {
       let color: typeof colors.bold;
@@ -162,6 +165,7 @@ export default class Validator {
           color = colors.magenta;
           break;
         case 'token':
+        case undefined:
           color = colors.cyan;
           break;
         case 'file':

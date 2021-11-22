@@ -6,6 +6,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "license": "BSD-3-Clause",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,6 +15,10 @@
     "dev": "tsc -w"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.0.0-alpha.0"
+    "@cobalt-ui/core": "^0.0.0-alpha.0",
+    "@types/mime": "^2.0.3"
+  },
+  "dependencies": {
+    "mime": "^3.0.0"
   }
 }

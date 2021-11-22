@@ -2,32 +2,517 @@ name: GitHub Primer
 version: 0.1
 tokens:
   color:
+    modes:
+      - light
+      - light_colorblind
+      #- light_high_contrast
+      #- dark_colorblind
+      #- dark_dimmed
+      #- dark_high_contrast
     type: group
     tokens:
-      blue:
-        type: token
+      black:
+        value:
+          default: '#1b1f24'
+          light: '#1b1f24'
+          light_colorblind: '#1b1f24'
+          light_high_contrast: '#010409'
+      blue_0:
+        value:
+          default: '#ddf4ff'
+          light: '#ddf4ff'
+          light_colorblind: '#ddf4ff'
+          light_high_contrast: '#dff7ff'
+      blue_1:
+        value:
+          default: '#b6e3ff'
+          light: '#b6e3ff'
+          light_colorblind: '#b6e3ff'
+          light_high_contrast: '#9cd7ff'
+      blue_2:
+        value:
+          default: '#80ccff'
+          light: '#80ccff'
+          light_colorblind: '#80ccff'
+          light_high_contrast: '#67b3fd'
+      blue_3:
+        value:
+          default: '#54aeff'
+          light: '#54aeff'
+          light_colorblind: '#54aeff'
+          light_high_contrast: '#368cf9'
+      blue_4:
+        value:
+          default: '#218bff'
+          light: '#218bff'
+          light_colorblind: '#218bff'
+          light_high_contrast: '#1168e3'
+      blue_5:
         value:
           default: '#0969da'
-      green:
-        type: token
+          light: '#0969da'
+          light_colorblind: '#0969da'
+          light_high_contrast: '#0349b4'
+      blue_6:
+        value:
+          default: '#0550ae'
+          light: '#0550ae'
+          light_colorblind: '#0550ae'
+          light_high_contrast: '#023b95'
+      blue_7:
+        value:
+          default: '#033d8b'
+          light: '#033d8b'
+          light_colorblind: '#033d8b'
+          light_high_contrast: '#022f7a'
+      blue_8:
+        value:
+          default: '#0a3069'
+          light: '#0a3069'
+          light_colorblind: '#0a3069'
+          light_high_contrast: '#032563'
+      blue_9:
+        value:
+          default: '#002155'
+          light: '#002155'
+          light_colorblind: '#002155'
+          light_high_contrast: '#021a4a'
+      coral_0:
+        value:
+          default: '#FFF0EB'
+          light: '#FFF0EB'
+          light_colorblind: '#FFF0EB'
+      coral_1:
+        value:
+          default: '#FFD6CC'
+          light: '#FFD6CC'
+          light_colorblind: '#FFD6CC'
+      coral_2:
+        value:
+          default: '#FFB4A1'
+          light: '#FFB4A1'
+          light_colorblind: '#FFB4A1'
+      coral_3:
+        value:
+          default: '#FD8C73'
+          light: '#FD8C73'
+          light_colorblind: '#FD8C73'
+      coral_4:
+        value:
+          default: '#EC6547'
+          light: '#EC6547'
+          light_colorblind: '#EC6547'
+      coral_5:
+        value:
+          default: '#C4432B'
+          light: '#C4432B'
+          light_colorblind: '#C4432B'
+      coral_6:
+        value:
+          default: '#9E2F1C'
+          light: '#9E2F1C'
+          light_colorblind: '#9E2F1C'
+      coral_7:
+        value:
+          default: '#801F0F'
+          light: '#801F0F'
+          light_colorblind: '#801F0F'
+      coral_8:
+        value:
+          default: '#691105'
+          light: '#691105'
+          light_colorblind: '#691105'
+      coral_9:
+        value:
+          default: '#510901'
+          light: '#510901'
+          light_colorblind: '#510901'
+      gray_0:
+        value:
+          default: '#f6f8fa'
+          light: '#f6f8fa'
+          light_colorblind: '#f6f8fa'
+          light_high_contrast: '#FFFFFF'
+      gray_1:
+        value:
+          default: '#eaeef2'
+          light: '#eaeef2'
+          light_colorblind: '#eaeef2'
+          light_high_contrast: '#E7ECF0'
+      gray_2:
+        value:
+          default: '#d0d7de'
+          light: '#d0d7de'
+          light_colorblind: '#d0d7de'
+          light_high_contrast: '#CED5DC'
+      gray_3:
+        value:
+          default: '#afb8c1'
+          light: '#afb8c1'
+          light_colorblind: '#afb8c1'
+          light_high_contrast: '#ACB6C0'
+      gray_4:
+        value:
+          default: '#8c959f'
+          light: '#8c959f'
+          light_colorblind: '#8c959f'
+          light_high_contrast: '#88929D'
+      gray_5:
+        value:
+          default: '#6e7781'
+          light: '#6e7781'
+          light_colorblind: '#6e7781'
+          light_high_contrast: '#67707A'
+      gray_6:
+        value:
+          default: '#57606a'
+          light: '#57606a'
+          light_colorblind: '#57606a'
+          light_high_contrast: '#4F5760'
+      gray_7:
+        value:
+          default: '#424a53'
+          light: '#424a53'
+          light_colorblind: '#424a53'
+          light_high_contrast: '#3D454E'
+      gray_8:
+        value:
+          default: '#32383f'
+          light: '#32383f'
+          light_colorblind: '#32383f'
+          light_high_contrast: '#30363D'
+      gray_9:
+        value:
+          default: '#24292f'
+          light: '#24292f'
+          light_colorblind: '#24292f'
+          light_high_contrast: '#24292F'
+      green_0:
+        value:
+          default: '#dafbe1'
+          light: '#dafbe1'
+          light_colorblind: '#c0f6ff'
+          light_high_contrast: '#d2fedb'
+      green_1:
+        value:
+          default: '#aceebb'
+          light: '#aceebb'
+          light_colorblind: '#96e5ff'
+          light_high_contrast: '#82e596'
+      green_2:
+        value:
+          default: '#6fdd8b'
+          light: '#6fdd8b'
+          light_colorblind: '#65ccff'
+          light_high_contrast: '#43c663'
+      green_3:
+        value:
+          default: '#4ac26b'
+          light: '#4ac26b'
+          light_colorblind: '#35adff'
+          light_high_contrast: '#26a148'
+      green_4:
         value:
           default: '#2da44e'
-      magenta:
-        type: token
+          light: '#2da44e'
+          light_colorblind: '#0088ff'
+          light_high_contrast: '#117f32'
+      green_5:
         value:
-          default: '#f350b1'
-      purple:
-        type: token
+          default: '#1a7f37'
+          light: '#1a7f37'
+          light_colorblind: '#0566d5'
+          light_high_contrast: '#055d20'
+      green_6:
+        value:
+          default: '#116329'
+          light: '#116329'
+          light_colorblind: '#054da9'
+          light_high_contrast: '#024c1a'
+      green_7:
+        value:
+          default: '#044f1e'
+          light: '#044f1e'
+          light_colorblind: '#033a86'
+          light_high_contrast: '#013d14'
+      green_8:
+        value:
+          default: '#003d16'
+          light: '#003d16'
+          light_colorblind: '#002d68'
+          light_high_contrast: '#003110'
+      green_9:
+        value:
+          default: '#002d11'
+          light: '#002d11'
+          light_colorblind: '#001f50'
+          light_high_contrast: '#00230b'
+      orange_0:
+        value:
+          default: '#fff1e5'
+          light: '#fff1e5'
+          light_colorblind: '#fff1e5'
+      orange_1:
+        value:
+          default: '#ffd8b5'
+          light: '#ffd8b5'
+          light_colorblind: '#ffd8b5'
+      orange_2:
+        value:
+          default: '#ffb77c'
+          light: '#ffb77c'
+          light_colorblind: '#ffb77c'
+      orange_3:
+        value:
+          default: '#fb8f44'
+          light: '#fb8f44'
+          light_colorblind: '#fb8f44'
+      orange_4:
+        value:
+          default: '#e16f24'
+          light: '#e16f24'
+          light_colorblind: '#e16f24'
+      orange_5:
+        value:
+          default: '#bc4c00'
+          light: '#bc4c00'
+          light_colorblind: '#bc4c00'
+      orange_6:
+        value:
+          default: '#953800'
+          light: '#953800'
+          light_colorblind: '#953800'
+      orange_7:
+        value:
+          default: '#762c00'
+          light: '#762c00'
+          light_colorblind: '#762c00'
+      orange_8:
+        value:
+          default: '#5c2200'
+          light: '#5c2200'
+          light_colorblind: '#5c2200'
+      orange_9:
+        value:
+          default: '#471700'
+          light: '#471700'
+          light_colorblind: '#471700'
+      pink_0:
+        value:
+          default: '#ffeff7'
+          light: '#ffeff7'
+          light_colorblind: '#ffeff7'
+      pink_1:
+        value:
+          default: '#ffd3eb'
+          light: '#ffd3eb'
+          light_colorblind: '#ffd3eb'
+      pink_2:
+        value:
+          default: '#ffadda'
+          light: '#ffadda'
+          light_colorblind: '#ffadda'
+      pink_3:
+        value:
+          default: '#ff80c8'
+          light: '#ff80c8'
+          light_colorblind: '#ff80c8'
+      pink_4:
+        value:
+          default: '#e85aad'
+          light: '#e85aad'
+          light_colorblind: '#e85aad'
+      pink_5:
+        value:
+          default: '#bf3989'
+          light: '#bf3989'
+          light_colorblind: '#bf3989'
+      pink_6:
+        value:
+          default: '#99286e'
+          light: '#99286e'
+          light_colorblind: '#99286e'
+      pink_7:
+        value:
+          default: '#772057'
+          light: '#772057'
+          light_colorblind: '#772057'
+      pink_8:
+        value:
+          default: '#611347'
+          light: '#611347'
+          light_colorblind: '#611347'
+      pink_9:
+        value:
+          default: '#4d0336'
+          light: '#4d0336'
+          light_colorblind: '#4d0336'
+      purple_0:
+        value:
+          default: '#fbefff'
+          light: '#fbefff'
+          light_colorblind: '#fbefff'
+      purple_1:
+        value:
+          default: '#ecd8ff'
+          light: '#ecd8ff'
+          light_colorblind: '#ecd8ff'
+      purple_2:
+        value:
+          default: '#d8b9ff'
+          light: '#d8b9ff'
+          light_colorblind: '#d8b9ff'
+      purple_3:
+        value:
+          default: '#c297ff'
+          light: '#c297ff'
+          light_colorblind: '#c297ff'
+      purple_4:
+        value:
+          default: '#a475f9'
+          light: '#a475f9'
+          light_colorblind: '#a475f9'
+      purple_5:
         value:
           default: '#8250df'
-      red:
-        type: token
+          light: '#8250df'
+          light_colorblind: '#8250df'
+      purple_6:
+        value:
+          default: '#6639ba'
+          light: '#6639ba'
+          light_colorblind: '#6639ba'
+      purple_7:
+        value:
+          default: '#512a97'
+          light: '#512a97'
+          light_colorblind: '#512a97'
+      purple_8:
+        value:
+          default: '#3e1f79'
+          light: '#3e1f79'
+          light_colorblind: '#3e1f79'
+      purple_9:
+        value:
+          default: '#2e1461'
+          light: '#2e1461'
+          light_colorblind: '#2e1461'
+      red_0:
+        value:
+          default: '#FFEBE9'
+          light: '#FFEBE9'
+          light_colorblind: '#fefe48'
+      red_1:
+        value:
+          default: '#ffcecb'
+          light: '#ffcecb'
+          light_colorblind: '#fee325'
+      red_2:
+        value:
+          default: '#ffaba8'
+          light: '#ffaba8'
+          light_colorblind: '#f8c200'
+      red_3:
+        value:
+          default: '#ff8182'
+          light: '#ff8182'
+          light_colorblind: '#e7a100'
+      red_4:
+        value:
+          default: '#fa4549'
+          light: '#fa4549'
+          light_colorblind: '#d08002'
+      red_5:
         value:
           default: '#cf222e'
-      yellow:
-        type: token
+          light: '#cf222e'
+          light_colorblind: '#ac5e00'
+      red_6:
         value:
-          default: '#ffc63e'
+          default: '#a40e26'
+          light: '#a40e26'
+          light_colorblind: '#8b4600'
+      red_7:
+        value:
+          default: '#82071e'
+          light: '#82071e'
+          light_colorblind: '#6c3900'
+      red_8:
+        value:
+          default: '#660018'
+          light: '#660018'
+          light_colorblind: '#4c3100'
+      red_9:
+        value:
+          default: '#4c0014'
+          light: '#4c0014'
+          light_colorblind: '#2f2900'
+      yellow_0:
+        value:
+          default: '#fff8c5'
+          light: '#fff8c5'
+          light_colorblind: '#fff8c5'
+          light_high_contrast: '#fcf7be'
+      yellow_1:
+        value:
+          default: '#fae17d'
+          light: '#fae17d'
+          light_colorblind: '#fae17d'
+          light_high_contrast: '#f0ce53'
+      yellow_2:
+        value:
+          default: '#eac54f'
+          light: '#eac54f'
+          light_colorblind: '#eac54f'
+          light_high_contrast: '#d5a824'
+      yellow_3:
+        value:
+          default: '#d4a72c'
+          light: '#d4a72c'
+          light_colorblind: '#d4a72c'
+          light_high_contrast: '#b58407'
+      yellow_4:
+        value:
+          default: '#bf8700'
+          light: '#bf8700'
+          light_colorblind: '#bf8700'
+          light_high_contrast: '#956400'
+      yellow_5:
+        value:
+          default: '#9a6700'
+          light: '#9a6700'
+          light_colorblind: '#9a6700'
+          light_high_contrast: '#744500'
+      yellow_6:
+        value:
+          default: '#7d4e00'
+          light: '#7d4e00'
+          light_colorblind: '#7d4e00'
+          light_high_contrast: '#603700'
+      yellow_7:
+        value:
+          default: '#633c01'
+          light: '#633c01'
+          light_colorblind: '#633c01'
+          light_high_contrast: '#4e2c00'
+      yellow_8:
+        value:
+          default: '#4d2d00'
+          light: '#4d2d00'
+          light_colorblind: '#4d2d00'
+          light_high_contrast: '#3f2200'
+      yellow_9:
+        value:
+          default: '#3b2300'
+          light: '#3b2300'
+          light_colorblind: '#3b2300'
+          light_high_contrast: '#2e1800'
+      white:
+        value:
+          default: '#ffffff'
+          light: '#ffffff'
+          light_colorblind: '#ffffff'
+          light_high_contrast: '#ffffff'
   icons:
     type: group
     modes: ['16', '24']
@@ -38,58 +523,86 @@ tokens:
           default: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
           16: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-16.svg
           24: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
+  spacing:
+    type: group
+    tokens:
+      spacer_0:
+        value:
+          default: '0'
+      spacer_1:
+        value:
+          default: 4px
+      spacer_2:
+        value:
+          default: 8px
+      spacer_3:
+        value:
+          default: 16px
+      spacer_4:
+        value:
+          default: 24px
+      spacer_5:
+        value:
+          default: 32px
+      spacer_6:
+        value:
+          default: 40px
   text:
     type: group
-    modes: [desktop, mobile]
     tokens:
       size:
         type: group
+        modes: [desktop, mobile]
         tokens:
           f00:
-            type: token
             value:
               default: 48px
               desktop: 40px
               mobile: 32px
           f0:
-            type: token
             value:
               default: 40px
               desktop: 40px
               mobile: 32px
           f1:
-            type: token
             value:
               default: 32px
               desktop: 32px
               mobile: 26px
           f2:
-            type: token
             value:
               default: 24px
               desktop: 24px
               mobile: 22px
           f3:
-            type: token
             value:
               default: 20px
               desktop: 20px
               mobile: 16px
           f4:
-            type: token
             value:
               default: 16px
               desktop: 16px
               mobile: 16px
           f5:
-            type: token
             value:
               default: 14px
               desktop: 14px
               mobile: 14px
           f6:
-            type: token
             value:
               default: 12px
               desktop: 12px
               mobile: 12px
+      line_height:
+        type: group
+        tokens:
+          default:
+            value:
+              default: 1.5
+          condensed:
+            value:
+              default: 1.25
+          condensed_ultra:
+            value:
+              default: 1

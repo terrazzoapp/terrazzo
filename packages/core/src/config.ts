@@ -19,7 +19,7 @@ export interface UserConfig {
 }
 
 /** Load and validate tokens.config.js */
-export default class ConfigLoader {
+export class ConfigLoader {
   public filePath: URL;
 
   constructor(basename?: string) {

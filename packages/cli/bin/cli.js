@@ -27,10 +27,10 @@ async function main() {
 
   // load tokens.yaml
   if (!fs.existsSync(config.tokens)) throw new Error(`Could not locate ${fileURLToPath(config.tokens)}`);
-  const manifest = parse(fs.readFileSync(config.tokens));
+  const schema = parse(fs.readFileSync(config.tokens));
 
   // validate config
-  const validator = new Validator(manifest);
+  const validator = new Validator(schema);
   const { errors, warnings } = await validator.validate();
 
   switch (cmd) {
@@ -40,7 +40,7 @@ async function main() {
         process.exit(1);
       }
 
-      const builder = new Builder({ config, manifest });
+      const builder = new Builder({ config, schema });
       await builder.build();
 
       printErrors({ errors, warnings });
