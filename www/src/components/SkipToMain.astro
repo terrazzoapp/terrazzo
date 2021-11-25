@@ -1,0 +1,17 @@
+<style lang="scss">
+  .skip {
+    left: -999px;
+    overflow: hidden;
+    position: absolute;
+    top: auto;
+    z-index: -999;
+
+    &:focus,
+    &:active {
+      left: 0.5rem;
+      top: 0.5rem;
+    }
+  }
+</style>
+
+<a class="btn skip" href="#main">Skip to main content</a>

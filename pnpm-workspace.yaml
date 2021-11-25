@@ -2,3 +2,4 @@ packages:
   - 'examples/**'
   - 'packages/**'
   - '!packages/**/test/**'
+  - 'www'

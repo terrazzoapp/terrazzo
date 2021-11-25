@@ -6,7 +6,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "type": "module",
   "bin": {
     "cobalt": "./bin/cli.js"
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@cobalt-ui/core": "^0.0.0-alpha.0",
+    "chokidar": "^3.5.2",
     "kleur": "^4.1.4"
   }
 }

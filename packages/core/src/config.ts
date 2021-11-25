@@ -18,7 +18,6 @@ export interface UserConfig {
   plugins: Plugin[];
 }
 
-/** Load and validate tokens.config.js */
 export class ConfigLoader {
   public filePath: URL;
 
@@ -43,9 +42,7 @@ export class ConfigLoader {
     }
   }
 
-  /** load config file */
   async load(): Promise<Config> {
-    /** Load default plugins */
     async function loadDefaultPlugins(): Promise<Plugin[]> {
       return await Promise.all(['@cobalt-ui/plugin-json', '@cobalt-ui/plugin-sass', '@cobalt-ui/plugin-ts'].map((spec) => import(spec).then((m) => m.default())));
     }

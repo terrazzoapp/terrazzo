@@ -1,0 +1,40 @@
+@use '../../tokens' as *;
+
+html,
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color__blue;
+  color: $color__white;
+  font-family: '#{$type__family__suisse-intl}', -system-ui, 'Helvetica', sans-serif;
+  line-height: 1;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+}
+
+p {
+  margin: 1.5em 0;
+}
+
+b,
+strong {
+  font-weight: 600;
+}
+
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}

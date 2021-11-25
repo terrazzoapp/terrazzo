@@ -1,0 +1,34 @@
+@use 'sass:map';
+@use '../../tokens/' as *;
+
+$files: (
+  $type__family__suisse_intl: '/fonts/SuisseIntl',
+);
+$weights: (
+  'Ultralight': 50,
+  'Light': 100,
+  'Thin': 200,
+  'Book': 300,
+  'Regular': 400,
+  'Medium': 500,
+  'SemiBold': 600,
+  'Bold': 700,
+  'Black': 800,
+);
+$styles: regular, italic;
+
+@each $name, $weight in $weights {
+  @font-face {
+    font-family: $type__family__suisse_intl;
+    font-style: normal;
+    font-weight: $weight;
+    src: url('#{map.get($files, $type__family__suisse_intl)}-#{$name}-WebTrial.woff2') format('woff2'), url('#{map.get($files, $type__family__suisse_intl)}-#{$name}-WebTrial.woff') format('woff');
+  }
+
+  @font-face {
+    font-family: $type__family__suisse_intl;
+    font-style: italic;
+    font-weight: $weight;
+    src: url('#{map.get($files, $type__family__suisse_intl)}Italic-#{$name}-WebTrial.woff2') format('woff2'), url('#{map.get($files, $type__family__suisse_intl)}Italic-#{$name}-WebTrial.woff') format('woff');
+  }
+}

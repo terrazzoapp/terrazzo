@@ -1,0 +1,20 @@
+---
+import CobaltSm from './CobaltSm.astro';
+---
+
+<style lang="scss">
+  @use "../../tokens" as *;
+
+ .footer {
+   border-top: 1px solid $color__white;
+   margin-top: 2rem;
+   margin-bottom: 6rem;
+   padding-top: 2rem;
+ }
+</style>
+
+<div class="wrapper">
+  <footer class="footer">
+    <CobaltSm />
+  </footer>
+</div>

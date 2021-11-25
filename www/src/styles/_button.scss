@@ -1,0 +1,11 @@
+@use '../../tokens' as *;
+
+.btn {
+  background-color: $color__white;
+  border-radius: 3px;
+  color: $color__blue;
+  display: inline-block;
+  font-size: inherit;
+  font-weight: 500;
+  padding: 0.5em 0.75em;
+}

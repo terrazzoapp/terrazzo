@@ -10,7 +10,6 @@ module.exports = {
     'prefer-const': 'off',
     'prefer-template': ['error'], // "+" is for math; templates are for strings
     'prettier/prettier': ['error'],
-    'require-jsdoc': ['error'],
   },
   overrides: [
     {

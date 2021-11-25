@@ -56,7 +56,7 @@ export interface RawTokenNode<T = string> {
   name?: string;
   /** (optional) Longer description of this token */
   description?: string;
-  value: TokenValue<T>;
+  value: T | T[] | TokenValue<T>;
 }
 
 /** A design token. */
@@ -67,6 +67,7 @@ export interface TokenNode<T = string> extends RawTokenNode<T> {
   localID: string;
   /** group reference */
   group?: GroupNode;
+  value: TokenValue<T>;
 }
 
 /** A local file on disk. */
@@ -76,7 +77,7 @@ export interface RawFileNode {
   name?: string;
   /** (optional) Longer description of this token */
   description?: string;
-  value: TokenValue<string>;
+  value: string | string[] | TokenValue<string>;
 }
 
 /** A local file on disk. */
@@ -87,6 +88,7 @@ export interface FileNode extends RawFileNode {
   localID: string;
   /** group reference */
   group?: GroupNode;
+  value: TokenValue<string>;
 }
 
 /** A URL reference */
@@ -96,7 +98,7 @@ export interface RawURLNode {
   name?: string;
   /** (optional) Longer description of this token */
   description?: string;
-  value: TokenValue<string>;
+  value: string | string[] | TokenValue<string>;
 }
 
 /** A URL reference */
@@ -107,20 +109,20 @@ export interface URLNode extends RawURLNode {
   localID: string;
   /** group reference */
   group?: GroupNode;
+  value: TokenValue<string>;
 }
 
 export type RawSchemaNode<T = string> = RawGroupNode<T> | RawTokenNode<T> | RawFileNode | RawURLNode;
 
 export type SchemaNode<T = string> = GroupNode<T> | TokenNode<T> | FileNode | URLNode;
 
-export interface TokenValue<T = string> {
+export type TokenValue<T = string> = {
   /** Required */
   default: T;
   /** Additional modes */
   [mode: string]: T;
-}
+};
 
-/** Parse tokens.yaml string */
 export function parse(source: string): RawTokenSchema {
   return yaml.load(source) as RawTokenSchema;
 }

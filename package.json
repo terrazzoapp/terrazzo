@@ -7,21 +7,28 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "npm run build:core && npm run build:plugin-json && npm run build:plugin-sass && npm run build:plugin-ts",
+    "build": "run-s build:*",
     "build:core": "cd packages/core && npm run build",
+    "build:plugin-css": "cd packages/plugin-css && npm run build",
     "build:plugin-json": "cd packages/plugin-json && npm run build",
     "build:plugin-sass": "cd packages/plugin-sass && npm run build",
     "build:plugin-ts": "cd packages/plugin-ts && npm run build",
-    "lint": "eslint \"packages/**/*\"",
-    "dev": "cd packages/cobalt-ui && npm run dev"
+    "dev": "run-p dev:*",
+    "dev:core": "cd packages/core && npm run dev",
+    "dev:plugin-css": "cd packages/plugin-css && npm run dev",
+    "dev:plugin-json": "cd packages/plugin-json && npm run dev",
+    "dev:plugin-sass": "cd packages/plugin-sass && npm run dev",
+    "dev:plugin-ts": "cd packages/plugin-ts && npm run dev",
+    "lint": "eslint \"packages/**/*.{js,ts}\""
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.4.1",
-    "typescript": "^4.4.4"
+    "typescript": "^4.5.2"
   }
 }

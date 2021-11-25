@@ -5,29 +5,25 @@ import * as colors from 'kleur/colors';
 
 const VALID_TOP_LEVEL = new Set<keyof RawTokenSchema>(['name', 'version', 'metadata', 'tokens']);
 
-/** Validate tokens.yaml file against Design Tokens 0.x schema */
 export class Validator {
-  public schema: RawTokenSchema;
   private errors: string[] = [];
   private warnings: string[] = [];
 
-  constructor(schema: RawTokenSchema) {
-    this.schema = schema;
-  }
+  public async validate(schema: RawTokenSchema): Promise<{ errors: string[] | undefined; warnings: string[] | undefined }> {
+    this.errors = [];
+    this.warnings = [];
 
-  /** Run validator */
-  public async validate(): Promise<{ errors: string[] | undefined; warnings: string[] | undefined }> {
-    if (!this.schema.tokens) {
+    if (!schema.tokens) {
       this.errors.push(`top level "tokens" property required`);
     }
 
-    for (const k of Object.keys(this.schema)) {
+    for (const k of Object.keys(schema)) {
       if (!VALID_TOP_LEVEL.has(k as keyof RawTokenSchema)) {
         this.errors.push(`${colors.bold('root')}: unknown key "${k}" (arbitrary information must be placed under "metadata")`);
       }
     }
 
-    for (const [k, v] of Object.entries(this.schema.tokens)) {
+    for (const [k, v] of Object.entries(schema.tokens)) {
       if (k.includes('.')) this.errors.push(`invalid name "${k}". Names cannot contain the "." character.`);
       switch (v.type) {
         case 'group':
@@ -56,7 +52,7 @@ export class Validator {
     chain.push(id);
     const name = chain.join('.');
 
-    // mode
+    // group.mode ?
     if (group.modes) {
       if (Array.isArray(group.modes) && group.modes.every((val) => typeof val === 'string')) {
         modes = group.modes;
@@ -65,12 +61,14 @@ export class Validator {
       }
     }
 
-    // tokens
+    // group.tokens ?
     if (group.tokens) {
       if (typeof group.tokens === 'object' && !Array.isArray(group.tokens)) {
         const entries = Object.entries(group.tokens);
+        // group.tokens not empty ?
         if (entries.length) {
           for (const [k, v] of entries) {
+            // token has bad name ?
             if (k.includes('.')) this.errors.push(this.print(name, `names cannot contain the "." character.`));
             switch (v.type) {
               case 'group':
@@ -91,15 +89,15 @@ export class Validator {
                 break;
             }
           }
-        } else {
-          this.warnings.push(this.print(name, 'group has no tokens', 'group'));
         }
-      } else {
-        this.errors.push(this.print(name, 'property "tokens" must be an object', 'group'));
+        // group.tokens empty (error)
+        else this.warnings.push(this.print(name, 'group has no tokens', 'group'));
       }
-    } else {
-      this.warnings.push(this.print(name, 'group has no tokens', 'group'));
+      // group.tokens bad format (error)
+      else this.errors.push(this.print(name, 'property "tokens" must be an object', 'group'));
     }
+    // empty group (error)
+    else this.warnings.push(this.print(name, 'group has no tokens', 'group'));
   }
 
   private validateToken(token: RawTokenNode, id: string, modes?: string[]): void {
@@ -137,22 +135,57 @@ export class Validator {
     }
   }
 
-  private validateValue({ id, value, type, modes }: { id: string; value: { default: any } & Record<string, any>; type: NodeType; modes?: string[] }): boolean {
+  private validateValue({ id, value, type, modes }: { id: string; value: RawTokenNode<string>['value']; type: NodeType; modes?: string[] }): boolean {
     let hasValue = false; // return "true" if other functions can evaluate the value
+    // value is truthy?
     if (value) {
-      if (typeof value === 'object' && !Array.isArray(value) && value.default !== undefined && value.default !== null) {
-        hasValue = true;
+      // value is array ?
+      if (Array.isArray(value)) {
+        // group.modes ?
         if (modes && modes.length) {
-          for (const mode of modes) {
-            if (value[mode] === undefined || value[mode] === null) this.errors.push(this.print(id, `missing ${mode} mode`, type));
+          // value array length is good (OK)
+          if (value.length === 1 || value.length === modes.length + 1) {
+            hasValue = true;
+          }
+          // value array has some modes but not others (error)
+          else {
+            this.errors.push(this.print(id, `value array length must be 1 (value is the same for all modes) or ${modes.length} (default followed by all modes in order), received ${value.length}`, type));
           }
         }
-      } else {
-        this.errors.push(this.print(id, 'missing default value', type));
+        // value can’t be array if no group.modes (error)
+        else {
+          this.errors.push(this.print(id, 'value array type can only be used if a parent group set modes', type));
+        }
       }
-    } else {
-      this.errors.push(this.print(id, 'missing value', type));
+      // value is object ?
+      else if (typeof value === 'object') {
+        // value.default?
+        if (value.default !== undefined && value.default !== null) {
+          // group.modes ?
+          if (modes && modes.length) {
+            // value.default exists, value.default is the same for all modes (OK)
+            if (Object.keys(value).length === 1) {
+              hasValue = true;
+            }
+            // verify all modes have values
+            else {
+              for (const mode of modes) {
+                if (value[mode] === undefined || value[mode] === null) this.errors.push(this.print(id, `missing ${mode} mode`, type));
+              }
+            }
+          }
+          // value.default exists, no modes (OK)
+          else hasValue = true;
+        }
+        // no value.default (error)
+        else this.errors.push(this.print(id, 'missing default value', type));
+      }
+      // value is ??? (OK?)
+      else hasValue = true;
     }
+    // value is falsy
+    else this.errors.push(this.print(id, 'missing value', type));
+
     return hasValue;
   }
 

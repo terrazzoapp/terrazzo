@@ -1,0 +1,22 @@
+{
+  "name": "cobalt-www",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "astro:build": "astro build",
+    "astro:dev": "astro dev",
+    "build": "npm-s *:build",
+    "cobalt:build": "cobalt build",
+    "cobalt:dev": "cobalt build -w",
+    "dev": "run-p *:dev"
+  },
+  "dependencies": {
+    "solid-js": "^1.2.5"
+  },
+  "devDependencies": {
+    "@astrojs/renderer-solid": "^0.2.0",
+    "@cobalt-ui/cli": "workspace:^0.0.0-alpha.0",
+    "astro": "^0.21.4"
+  }
+}

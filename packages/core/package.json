@@ -6,7 +6,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "license": "BSD-3-Clause",
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

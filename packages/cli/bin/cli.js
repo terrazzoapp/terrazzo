@@ -3,6 +3,7 @@
 /* eslint-disable no-console */
 
 import { Builder, ConfigLoader, parse, Validator } from '@cobalt-ui/core';
+import chokidar from 'chokidar';
 import fs from 'fs';
 import * as color from 'kleur/colors';
 import { performance } from 'perf_hooks';
@@ -27,11 +28,12 @@ async function main() {
 
   // load tokens.yaml
   if (!fs.existsSync(config.tokens)) throw new Error(`Could not locate ${fileURLToPath(config.tokens)}`);
-  const schema = parse(fs.readFileSync(config.tokens));
+  let rawSchema = fs.readFileSync(config.tokens, 'utf8');
+  let schema = parse(fs.readFileSync(config.tokens));
 
   // validate config
-  const validator = new Validator(schema);
-  const { errors, warnings } = await validator.validate();
+  const validator = new Validator();
+  const { errors, warnings } = await validator.validate(schema);
 
   switch (cmd) {
     case 'build': {
@@ -40,8 +42,37 @@ async function main() {
         process.exit(1);
       }
 
+      const dt = new Intl.DateTimeFormat('en-us', { hour: '2-digit', minute: '2-digit' });
+
+      let watch = args.includes('-w') || args.includes('--watch');
+
       const builder = new Builder({ config, schema });
       await builder.build();
+
+      if (watch) {
+        const watcher = chokidar.watch(fileURLToPath(config.tokens));
+        const tokensYAML = config.tokens.href.replace(new URL(`file://${process.cwd()}/`).href, '');
+        watcher.on('change', async (filePath) => {
+          try {
+            let newRawSchema = fs.readFileSync(filePath, 'utf8');
+            if (newRawSchema === rawSchema) return;
+            rawSchema = newRawSchema;
+            schema = parse(rawSchema);
+            const { errors: watchErrors, warnings: watchWarnings } = await validator.validate(schema);
+            if (watchErrors) {
+              printErrors({ errors: watchErrors, warnings: watchWarnings });
+              return;
+            }
+            await builder.build();
+            printErrors({ warnings: watchWarnings });
+            console.log(`${color.dim(dt.format(new Date()))} ${color.blue('Cobalt')} ${color.yellow(tokensYAML)} updated ${color.green('✔')}`);
+          } catch (err) {
+            console.error(err);
+          }
+        });
+        // keep process occupied
+        await new Promise(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+      }
 
       printErrors({ errors, warnings });
       break;

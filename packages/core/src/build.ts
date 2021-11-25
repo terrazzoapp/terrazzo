@@ -1,6 +1,6 @@
-import fs from 'fs';
 import type { Config } from './config';
-import type { GroupNode, TokenSchema, RawSchemaNode, RawTokenSchema, SchemaNode } from './parse';
+import type { GroupNode, TokenSchema, RawSchemaNode, RawTokenSchema, SchemaNode, TokenValue } from './parse';
+import fs from 'fs';
 
 export interface Plugin {
   name: string;
@@ -26,18 +26,37 @@ export class Builder {
     this.schema = schema;
   }
 
-  /** Build all the tokens */
   public async build(): Promise<void> {
-    /** add additional token properties */
     function formatNode({ group, id, localID, node }: { group?: GroupNode; id: string; localID: string; node: RawSchemaNode }): SchemaNode {
       const schemaNode: SchemaNode = { ...(node as any), id, localID };
       if (!schemaNode.type) schemaNode.type = 'token';
       if (group) schemaNode.group = group;
-      if (schemaNode.type === 'group') {
-        for (const k of Object.keys(schemaNode.tokens)) {
-          schemaNode.tokens[k] = formatNode({ id: [id, k].join('.'), localID: k, node: schemaNode.tokens[k], group: schemaNode });
+
+      switch (schemaNode.type) {
+        case 'group': {
+          for (const k of Object.keys(schemaNode.tokens)) {
+            schemaNode.tokens[k] = formatNode({ id: [id, k].join('.'), localID: k, node: schemaNode.tokens[k], group: schemaNode });
+          }
+          break;
+        }
+        default: {
+          if (Array.isArray(schemaNode.value)) {
+            const modeValues: TokenValue = { default: schemaNode.value[0] };
+            if (group && group.modes) {
+              let n = 1;
+              for (const mode of group.modes) {
+                modeValues[mode] = schemaNode.value[n] || schemaNode.value[0];
+                n++;
+              }
+            }
+            schemaNode.value = modeValues;
+          } else if (typeof schemaNode.value !== 'object') {
+            schemaNode.value = { default: schemaNode.value };
+          }
+          break;
         }
       }
+
       return schemaNode;
     }
 

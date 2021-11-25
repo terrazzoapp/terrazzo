@@ -1,4 +1,4 @@
-import type { BuildResult, GroupNode, Plugin } from '@cobalt-ui/core';
+import type { BuildResult, GroupNode, Plugin, SchemaNode, TokenSchema } from '@cobalt-ui/core';
 
 import { encode } from './util.js';
 
@@ -7,66 +7,59 @@ export interface Options {
   filename?: string;
   /** use indented syntax (.sass)? (default: false) */
   indentedSyntax?: boolean;
-  /** indentation character (default: 'space') */
-  indentType?: 'space' | 'tab';
-  /** number of spaces/tabs for indent (default: 2) */
-  indentWidth?: number;
+  /** modify values */
+  transformValue?: (value: any, token: SchemaNode) => any;
+  /** rename variables */
+  transformVariables?: (namespaces: string[]) => string;
 }
 
-/** Generate JSON from  */
 export default function sass(options?: Options): Plugin {
-  let index = (options && options.filename) || '';
+  let ext = options?.indentedSyntax ? '.sass' : '.scss';
+  let fileName = `${options?.filename?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
+  let transform = options?.transformValue || defaultTransformer;
+  let namer = options?.transformVariables || defaultNamer;
+
   return {
     name: '@cobalt-ui/plugin-sass',
-    async build({ schema }): Promise<BuildResult[]> {
-      const result: BuildResult[] = [];
+    async build({ schema }: { schema: TokenSchema }): Promise<BuildResult[]> {
+      let code: string[] = [];
 
-      /** convert GroupToken into .scss file */
-      function buildSass(fileName: string, group: GroupNode, isPartial = false): void {
-        let code: string[] = [];
+      function buildGroup(group: GroupNode): void {
         if (group.name || group.description) code.push(`// -----------------`);
         if (group.name) code.push(`//  ${group.name}`);
         if (group.description) code.push(`//  ${group.description}`);
         if (group.name || group.description) code.push(`// -----------------`, '');
 
-        // @use first
-        for (const [k, v] of Object.entries(group.tokens)) {
-          if (v.type !== 'group') continue;
-          const next = fileName ? `${fileName}/${k}` : k;
-          code.push(`@use "${next}";`);
-          buildSass(`${next}`, v, true);
-        }
-
-        // $variables second
-        for (const [k, v] of Object.entries(group.tokens)) {
+        for (const v of Object.values(group.tokens)) {
+          const id = namer(v.id.split('.'));
           switch (v.type) {
             case 'token':
-              code.push(`$${k}: ${v.value.default};`);
+              code.push(`$${id}: ${transform(v.value.default, v)};`);
               break;
             case 'file':
-              code.push(`$${k}: ${encode(v.value.default)};`);
+              code.push(`$${id}: ${encode(transform(v.value.default, v))};`);
               break;
             case 'url':
-              code.push(`$${k}: url('${v.value.default}');`);
+              code.push(`$${id}: url('${transform(v.value.default, v)}');`);
               break;
             case 'group':
-              // no-op
+              buildGroup(v);
               break;
           }
         }
-
-        let finalName = fileName ? `${fileName}.scss` : 'index.scss';
-        if (isPartial) {
-          const parts = finalName.split('/');
-          const basename = `_${parts.pop()}`;
-          finalName = parts.concat(basename).join('/');
-        }
-        result.push({ fileName: finalName, contents: code.join('\n') });
       }
 
-      buildSass(index, schema as any as GroupNode);
+      buildGroup(schema as any as GroupNode);
 
-      return result;
+      return [{ fileName, contents: code.join('\n') }];
     },
   };
+}
+
+function defaultTransformer(value: any): any {
+  return value;
+}
+
+function defaultNamer(namespaces: string[]): string {
+  return namespaces.join('__');
 }

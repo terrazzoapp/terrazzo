@@ -1,11 +1,14 @@
-name: GitHub Primer
+name: GitHub Primer Design System
 version: 0.1
+metadata:
+  description: GitHub’s design system
 tokens:
   color:
     modes:
       - light
       - light_colorblind
-      #- light_high_contrast
+      - light_high_contrast
+      #- dark
       #- dark_colorblind
       #- dark_dimmed
       #- dark_high_contrast
@@ -82,51 +85,61 @@ tokens:
           default: '#FFF0EB'
           light: '#FFF0EB'
           light_colorblind: '#FFF0EB'
+          light_high_contrast: '#fff0ed'
       coral_1:
         value:
           default: '#FFD6CC'
           light: '#FFD6CC'
           light_colorblind: '#FFD6CC'
+          light_high_contrast: '#ffc2b6'
       coral_2:
         value:
           default: '#FFB4A1'
           light: '#FFB4A1'
           light_colorblind: '#FFB4A1'
+          light_high_contrast: '#ff8f7e'
       coral_3:
         value:
           default: '#FD8C73'
           light: '#FD8C73'
           light_colorblind: '#FD8C73'
+          light_high_contrast: '#ef5b48'
       coral_4:
         value:
           default: '#EC6547'
           light: '#EC6547'
           light_colorblind: '#EC6547'
+          light_high_contrast: '#cd3425'
       coral_5:
         value:
           default: '#C4432B'
           light: '#C4432B'
           light_colorblind: '#C4432B'
+          light_high_contrast: '#9f1710'
       coral_6:
         value:
           default: '#9E2F1C'
           light: '#9E2F1C'
           light_colorblind: '#9E2F1C'
+          light_high_contrast: '#870706'
       coral_7:
         value:
           default: '#801F0F'
           light: '#801F0F'
           light_colorblind: '#801F0F'
+          light_high_contrast: '#6f0107'
       coral_8:
         value:
           default: '#691105'
           light: '#691105'
           light_colorblind: '#691105'
+          light_high_contrast: '#5b0002'
       coral_9:
         value:
           default: '#510901'
           light: '#510901'
           light_colorblind: '#510901'
+          light_high_contrast: '#430200'
       gray_0:
         value:
           default: '#f6f8fa'
@@ -252,201 +265,241 @@ tokens:
           default: '#fff1e5'
           light: '#fff1e5'
           light_colorblind: '#fff1e5'
+          light_high_contrast: '#fff2d5'
       orange_1:
         value:
           default: '#ffd8b5'
           light: '#ffd8b5'
           light_colorblind: '#ffd8b5'
+          light_high_contrast: '#ffc67b'
       orange_2:
         value:
           default: '#ffb77c'
           light: '#ffb77c'
           light_colorblind: '#ffb77c'
+          light_high_contrast: '#f99636'
       orange_3:
         value:
           default: '#fb8f44'
           light: '#fb8f44'
           light_colorblind: '#fb8f44'
+          light_high_contrast: '#dc6d1a'
       orange_4:
         value:
           default: '#e16f24'
           light: '#e16f24'
           light_colorblind: '#e16f24'
+          light_high_contrast: '#b45105'
       orange_5:
         value:
           default: '#bc4c00'
           light: '#bc4c00'
           light_colorblind: '#bc4c00'
+          light_high_contrast: '#873800'
       orange_6:
         value:
           default: '#953800'
           light: '#953800'
           light_colorblind: '#953800'
+          light_high_contrast: '#702c00'
       orange_7:
         value:
           default: '#762c00'
           light: '#762c00'
           light_colorblind: '#762c00'
+          light_high_contrast: '#5b2300'
       orange_8:
         value:
           default: '#5c2200'
           light: '#5c2200'
           light_colorblind: '#5c2200'
+          light_high_contrast: '#491b00'
       orange_9:
         value:
           default: '#471700'
           light: '#471700'
           light_colorblind: '#471700'
+          light_high_contrast: '#361200'
       pink_0:
         value:
           default: '#ffeff7'
           light: '#ffeff7'
           light_colorblind: '#ffeff7'
+          light_high_contrast: '#feeff7'
       pink_1:
         value:
           default: '#ffd3eb'
           light: '#ffd3eb'
           light_colorblind: '#ffd3eb'
+          light_high_contrast: '#ffbde0'
       pink_2:
         value:
           default: '#ffadda'
           light: '#ffadda'
           light_colorblind: '#ffadda'
+          light_high_contrast: '#fc87ca'
       pink_3:
         value:
           default: '#ff80c8'
           light: '#ff80c8'
           light_colorblind: '#ff80c8'
+          light_high_contrast: '#ed4baf'
       pink_4:
         value:
           default: '#e85aad'
           light: '#e85aad'
           light_colorblind: '#e85aad'
+          light_high_contrast: '#c9248e'
       pink_5:
         value:
           default: '#bf3989'
           light: '#bf3989'
           light_colorblind: '#bf3989'
+          light_high_contrast: '#971368'
       pink_6:
         value:
           default: '#99286e'
           light: '#99286e'
           light_colorblind: '#99286e'
+          light_high_contrast: '#7d0c57'
       pink_7:
         value:
           default: '#772057'
           light: '#772057'
           light_colorblind: '#772057'
+          light_high_contrast: '#660847'
       pink_8:
         value:
           default: '#611347'
           light: '#611347'
           light_colorblind: '#611347'
+          light_high_contrast: '#53043a'
       pink_9:
         value:
           default: '#4d0336'
           light: '#4d0336'
           light_colorblind: '#4d0336'
+          light_high_contrast: '#3e022b'
       purple_0:
         value:
           default: '#fbefff'
           light: '#fbefff'
           light_colorblind: '#fbefff'
+          light_high_contrast: '#faf0fe'
       purple_1:
         value:
           default: '#ecd8ff'
           light: '#ecd8ff'
           light_colorblind: '#ecd8ff'
+          light_high_contrast: '#e0c5ff'
       purple_2:
         value:
           default: '#d8b9ff'
           light: '#d8b9ff'
           light_colorblind: '#d8b9ff'
+          light_high_contrast: '#c49bff'
       purple_3:
         value:
           default: '#c297ff'
           light: '#c297ff'
           light_colorblind: '#c297ff'
+          light_high_contrast: '#a371f7'
       purple_4:
         value:
           default: '#a475f9'
           light: '#a475f9'
           light_colorblind: '#a475f9'
+          light_high_contrast: '#844ae7'
       purple_5:
         value:
           default: '#8250df'
           light: '#8250df'
           light_colorblind: '#8250df'
+          light_high_contrast: '#622cbc'
       purple_6:
         value:
           default: '#6639ba'
           light: '#6639ba'
           light_colorblind: '#6639ba'
+          light_high_contrast: '#512598'
       purple_7:
         value:
           default: '#512a97'
           light: '#512a97'
           light_colorblind: '#512a97'
+          light_high_contrast: '#411d7b'
       purple_8:
         value:
           default: '#3e1f79'
           light: '#3e1f79'
           light_colorblind: '#3e1f79'
+          light_high_contrast: '#341763'
       purple_9:
         value:
           default: '#2e1461'
           light: '#2e1461'
           light_colorblind: '#2e1461'
+          light_high_contrast: '#260f49'
       red_0:
         value:
           default: '#FFEBE9'
           light: '#FFEBE9'
           light_colorblind: '#fefe48'
+          light_high_contrast: '#fff0ee'
       red_1:
         value:
           default: '#ffcecb'
           light: '#ffcecb'
           light_colorblind: '#fee325'
+          light_high_contrast: '#ffc1bc'
       red_2:
         value:
           default: '#ffaba8'
           light: '#ffaba8'
           light_colorblind: '#f8c200'
+          light_high_contrast: '#ff8e8a'
       red_3:
         value:
           default: '#ff8182'
           light: '#ff8182'
           light_colorblind: '#e7a100'
+          light_high_contrast: '#ee5a5d'
       red_4:
         value:
           default: '#fa4549'
           light: '#fa4549'
           light_colorblind: '#d08002'
+          light_high_contrast: '#d5232c'
       red_5:
         value:
           default: '#cf222e'
           light: '#cf222e'
           light_colorblind: '#ac5e00'
+          light_high_contrast: '#a0111f'
       red_6:
         value:
           default: '#a40e26'
           light: '#a40e26'
           light_colorblind: '#8b4600'
+          light_high_contrast: '#86061d'
       red_7:
         value:
           default: '#82071e'
           light: '#82071e'
           light_colorblind: '#6c3900'
+          light_high_contrast: '#6e011a'
       red_8:
         value:
           default: '#660018'
           light: '#660018'
           light_colorblind: '#4c3100'
+          light_high_contrast: '#5a0016'
       red_9:
         value:
           default: '#4c0014'
           light: '#4c0014'
           light_colorblind: '#2f2900'
+          light_high_contrast: '#430011'
       yellow_0:
         value:
           default: '#fff8c5'
@@ -513,96 +566,72 @@ tokens:
           light: '#ffffff'
           light_colorblind: '#ffffff'
           light_high_contrast: '#ffffff'
-  icons:
+  icon:
     type: group
-    modes: ['16', '24']
     tokens:
-      alert:
-        type: url
-        value:
-          default: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
-          16: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-16.svg
-          24: https://raw.githubusercontent.com/primer/octicons/main/icons/alert-24.svg
+      alert-16:
+        type: token
+        value: alert-16
+      alert-16-fill:
+        type: token
+        value: alert-16-fill
+      alert-24:
+        type: token
+        value: alert-24
+      archive-16:
+        type: token
+        value: archive-16
+      archive-24:
+        type: token
+        value: archive-24
+      arrow-both-16:
+        type: token
+        value: arrow-both-16
   spacing:
     type: group
     tokens:
-      spacer_0:
-        value:
-          default: '0'
-      spacer_1:
-        value:
-          default: 4px
-      spacer_2:
-        value:
-          default: 8px
-      spacer_3:
-        value:
-          default: 16px
-      spacer_4:
-        value:
-          default: 24px
-      spacer_5:
-        value:
-          default: 32px
-      spacer_6:
-        value:
-          default: 40px
-  text:
+      spacer:
+        type: scale
+        value: [0, 4, 8, 16, 24, 32, 40]
+  type:
+    name: Typography
     type: group
     tokens:
+      family:
+        type: group
+        tokens:
+          system:
+            value: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"
+          monospace:
+            value: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace !default
+          display:
+            value: InterUI, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
       size:
         type: group
-        modes: [desktop, mobile]
+        modes: [mobile, desktop]
         tokens:
           f00:
-            value:
-              default: 48px
-              desktop: 40px
-              mobile: 32px
+            value: [32, 32, 48]
           f0:
-            value:
-              default: 40px
-              desktop: 40px
-              mobile: 32px
+            value: [32, 32, 40]
           f1:
-            value:
-              default: 32px
-              desktop: 32px
-              mobile: 26px
+            value: [26, 26, 32]
           f2:
-            value:
-              default: 24px
-              desktop: 24px
-              mobile: 22px
+            value: [22, 22, 24]
           f3:
-            value:
-              default: 20px
-              desktop: 20px
-              mobile: 16px
+            value: [16, 16, 20]
           f4:
-            value:
-              default: 16px
-              desktop: 16px
-              mobile: 16px
+            value: [16]
           f5:
-            value:
-              default: 14px
-              desktop: 14px
-              mobile: 14px
+            value: [14]
           f6:
-            value:
-              default: 12px
-              desktop: 12px
-              mobile: 12px
+            value: [12]
       line_height:
         type: group
         tokens:
           default:
-            value:
-              default: 1.5
+            value: 1.5
           condensed:
-            value:
-              default: 1.25
+            value: 1.25
           condensed_ultra:
-            value:
-              default: 1
+            value: 1

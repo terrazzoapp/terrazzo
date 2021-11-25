@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "build": "cobalt build",
+    "prestart": "npm run build",
+    "start": "start-storybook",
     "validate": "cobalt validate"
   },
-  "dependencies": {
-    "@cobalt-ui/cli": "^0.0.0-alpha.0"
+  "devDependencies": {
+    "@cobalt-ui/cli": "^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-css": "workspace:^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-sass": "workspace:^0.0.0-alpha.0",
+    "@storybook/html": "^6.3.12"
   }
 }

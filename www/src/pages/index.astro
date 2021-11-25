@@ -1,0 +1,121 @@
+---
+import Cobalt from '../components/Cobalt.astro';
+import Footer from '../components/Footer.astro';
+import Head from '../components/Head.astro';
+import Nav from '../components/Nav.astro';
+import SkipToMain from '../components/SkipToMain.astro'
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <Head title="Cobalt" />
+    <style lang="scss">
+      .header {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin: 8em 0;
+      }
+
+      .title {
+        margin: 4rem 0;
+      }
+
+      h2 {
+        font-size: 32pt;
+      }
+
+      section {
+        margin: 4rem 0;
+      }
+
+      p {
+        font-size: 16pt;
+        line-height: 1.7;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 2fr 3fr;
+        grid-gap: 1.5rem;
+
+        p:first-of-type {
+          margin-top: 0;
+        }
+      }
+
+      .visual {
+        align-self: start;
+        position: relative;
+      }
+
+      .visual-tokens {
+        height: auto;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 60%;
+      }
+    </style>
+  </head>
+  <body>
+    <SkipToMain />
+    <Nav />
+    <div class="wrapper">
+      <header class="header tac">
+        <Cobalt />
+        <h1 class="title">Automated design tokens</h1>
+      </header>
+      <main id="#main">
+        <section>
+          <h2>What is Cobalt?</h2>
+          <p>
+            <strong>Cobalt is not a design system.</strong> Cobalt has no
+            out-of-the-box colors, typography, or symbology. All that is for you
+            to define.
+          </p>
+          <p>
+            <strong>Cobalt is token management.</strong> It lets you organize
+            and categorize your tokens in a way that makes sense to you. But it
+            revolves around Cobalt Schema v1, a standard format for storage.
+            From your custom design tokens schema you can use plugins to
+            generate code from your design tokens, from CSS/Sass to
+            TypeScript/JavaScript to univeral JSON for backend code and APIs.
+          </p>
+          <div class="split">
+            <div>
+              <p>
+                Thinking about your product design in “layers,” Cobalt sits
+                below your design system, and beneath your UI. You still control
+                your tokens; Cobalt only provides “buckets“ to put them in.
+              </p>
+              <p>
+                In return you don’t have to build or manage custom software for
+                your design tokens like so many teams often do. And you still have
+                the flexibility to craft your design system in any way you’d like.
+                Cobalt just bridges the gap between your tokens, and your design
+                system/UI.
+              </p>
+            </div>
+            <figure class="visual">
+              <div class="visual-layers">
+                <div class="visual-layer">UI</div>
+                <div class="visual-layer">Platform</div>
+                <div class="visual-layer">Design System</div>
+                <div class="visual-layer"></div>
+              </div>
+              <img class="visual-tokens" src="/public/token-hex.svg">
+            </figure>
+          </div>
+        </section>
+      </main>
+    </div>
+    <Footer />
+  </body>
+</html>

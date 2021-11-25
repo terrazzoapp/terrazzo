@@ -1,0 +1,24 @@
+{
+  "name": "@cobalt-ui/plugin-css",
+  "description": "CSS builder for Cobalt UI design tokens",
+  "version": "0.0.0-alpha.0",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc -w"
+  },
+  "dependencies": {
+    "kleur": "^4.1.4"
+  },
+  "devDependencies": {
+    "@cobalt-ui/core": "workspace:^0.0.0-alpha.0",
+    "mime": "^3.0.0"
+  }
+}
