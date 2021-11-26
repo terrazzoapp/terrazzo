@@ -2,10 +2,30 @@
 
 .btn {
   background-color: $color__white;
-  border-radius: 3px;
+  border-radius: 0.5em;
+  border: 3px solid $color__blue;
   color: $color__blue;
   display: inline-block;
   font-size: inherit;
   font-weight: 500;
-  padding: 0.5em 0.75em;
+  outline: 2px solid rgba($color__white, 0);
+  padding: 0.875em 1.125em;
+  text-decoration: none;
+  transition: outline 150ms linear;
+
+  &:focus {
+    outline: 2px solid $color__white;
+  }
+
+  &--icon {
+    padding-right: 0.75em;
+
+    svg {
+      display: inline-block;
+      height: 0.875em;
+      margin-left: 0.375em;
+      vertical-align: -6.25%;
+      width: 0.875em;
+    }
+  }
 }

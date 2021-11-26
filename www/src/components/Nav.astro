@@ -1,5 +1,8 @@
 ---
 let currentPage = Astro.request.url.pathname;
+
+const stars = (await fetch('https://api.github.com/repos/drwpow/cobalt-ui')
+  .then((res) => res.json())).stargazers_count;
 ---
 
 <style lang="scss">
@@ -16,7 +19,10 @@ let currentPage = Astro.request.url.pathname;
 </style>
 
 <nav>
-  <a href="/" aria-current={currentPage === '/' ? 'page' : undefined}>What is Cobalt</a>
+  <a href="/" aria-current={currentPage === '/' ? 'page' : undefined}>Introduction</a>
   <a href="/editor" aria-current={currentPage === '/editor' ? 'page' : undefined}>Editor</a>
   <a href="/docs" aria-current={currentPage === '/docs' ? 'page' : undefined}>Documentation</a>
+  <a class="github-badge" href="https://github.com/drwpow/cobalt-ui">
+    {stars}
+  </a>
 </nav>

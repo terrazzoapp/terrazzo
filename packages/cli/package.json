@@ -1,11 +1,17 @@
 {
   "name": "@cobalt-ui/cli",
   "description": "Schemas and tools for managing design tokens",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/drwpow/cobalt-ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -16,7 +22,7 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.0.0-alpha.0",
+    "@cobalt-ui/core": "^0.0.0",
     "chokidar": "^3.5.2",
     "kleur": "^4.1.4"
   }

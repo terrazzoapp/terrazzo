@@ -1,6 +1,7 @@
 ---
 import Cobalt from '../components/Cobalt.astro';
 import Footer from '../components/Footer.astro';
+import Icons from '../components/Icons.astro';
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
 import SkipToMain from '../components/SkipToMain.astro'
@@ -21,6 +22,7 @@ import SkipToMain from '../components/SkipToMain.astro'
       }
 
       .title {
+        font-weight: 500;
         margin: 4rem 0;
       }
 
@@ -28,8 +30,8 @@ import SkipToMain from '../components/SkipToMain.astro'
         font-size: 32pt;
       }
 
-      section {
-        margin: 4rem 0;
+      section + section {
+        margin-top: 4rem;
       }
 
       p {
@@ -108,10 +110,49 @@ import SkipToMain from '../components/SkipToMain.astro'
         right: 0;
         width: 60%;
       }
+
+      .actions-title {
+        margin-bottom: 0;
+      }
+
+      .actions {
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        padding-left: 2.5rem;
+        position: relative;
+
+        &::after {
+          border-right: 1px dashed $color__white;
+          content: "";
+          display: block;
+          height: calc(100% - 2.5rem);
+          left: 0.5rem;
+          position: absolute;
+          top: 1rem;
+        }
+
+        a {
+          margin-top: 1em;
+          position: relative;
+
+          &::before {
+            border-top: 1px dashed $color__white;
+            content: "";
+            display: block;
+            position: absolute;
+            right: calc(100% + 4px);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.75rem;
+          }
+        }
+      }
     </style>
   </head>
   <body>
     <SkipToMain />
+    <Icons />
     <Nav />
     <div class="wrapper">
       <header class="header tac">
@@ -159,11 +200,21 @@ import SkipToMain from '../components/SkipToMain.astro'
                   <span class="visual-tokens">Tokens</span>
                   <div class="visual-line-c"></div>
                   <div class="visual-line-t"></div>
-                  <img class="visual-img" src="/public/token-hex.svg">
+                  <img class="visual-img" src="/token-hex.svg">
                 </div>
               </div>
             </figure>
           </div>
+        </section>
+        <section>
+          <h2>Try it out</h2>
+          <p>Cobalt is open source and free to use today!</p>
+          <h3 class="actions-title">Actions</h3>
+          <menu class="actions">
+            <a href="/editor" class="btn btn--icon">Try the online editor <svg><use xlink:href="#arrow-r"></use></svg></a>
+            <a href="/docs" class="btn btn--icon">Read documentation <svg><use xlink:href="#arrow-r"></use></svg></a>
+            <a href="https://github.com/drwpow/cobalt-ui/blob/main/examples/" class="btn btn--icon">See examples <svg><use xlink:href="#arrow-r"></use></svg></a>
+          </menu>
         </section>
       </main>
     </div>
