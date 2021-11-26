@@ -14,11 +14,12 @@
     "build": "rm -rf dist && tsc",
     "dev": "tsc -w"
   },
+  "dependencies": {
+    "@cobalt-ui/utils": "^0.0.0-alpha.0",
+    "mime": "^3.0.0"
+  },
   "devDependencies": {
     "@cobalt-ui/core": "^0.0.0-alpha.0",
     "@types/mime": "^2.0.3"
-  },
-  "dependencies": {
-    "mime": "^3.0.0"
   }
 }

@@ -12,11 +12,3 @@ export function encode(fileName: string): string {
 
   return `url(${type};base64,${fs.readFileSync(fileName).toString('base64')})`;
 }
-
-export function indent(text: string, level = 0): string {
-  const space = new Array(2 * level + 1).join(' ');
-  return text
-    .split('\n')
-    .map((ln) => `${space}${ln}`)
-    .join('\n');
-}

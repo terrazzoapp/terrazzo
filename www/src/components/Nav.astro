@@ -1,3 +1,7 @@
+---
+let currentPage = Astro.request.url.pathname;
+---
+
 <style lang="scss">
   nav {
     display: flex;
@@ -12,7 +16,7 @@
 </style>
 
 <nav>
-  <a href="/">What is Cobalt</a>
-  <a href="/">Editor</a>
-  <a href="/">Documentation</a>
+  <a href="/" aria-current={currentPage === '/' ? 'page' : undefined}>What is Cobalt</a>
+  <a href="/editor" aria-current={currentPage === '/editor' ? 'page' : undefined}>Editor</a>
+  <a href="/docs" aria-current={currentPage === '/docs' ? 'page' : undefined}>Documentation</a>
 </nav>

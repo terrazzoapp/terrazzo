@@ -71,6 +71,8 @@ users’ token systems.
 
 Understandably, though, YAML isn’t easy to edit for everyone! That’s why the [Cobalt Editor](https://cobalt.pages.dev/editor) exists to help peole get started.
 
+Further, YAML is preferred over JSON here because it supports comments and it’s easier to read.
+
 #### What does the name “Cobalt” mean?
 
 The name ”cobalt” has several meanings. Historically, the blue pigment cobalt (along with ultramarine) has been one of the most elusive and rare colors in painting. But with the commodification of pigments and advancements in paint storage, cobalt is now

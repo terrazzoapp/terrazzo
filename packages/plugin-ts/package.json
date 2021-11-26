@@ -14,6 +14,9 @@
     "build": "rm -rf dist && tsc",
     "dev": "tsc -w"
   },
+  "dependencies": {
+    "@cobalt-ui/utils": "^0.0.0-alpha.0"
+  },
   "devDependencies": {
     "@cobalt-ui/core": "^0.0.0-alpha.0"
   }

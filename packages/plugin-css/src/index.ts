@@ -1,6 +1,7 @@
 import * as color from 'kleur/colors';
 import { BuildResult, GroupNode, Plugin, SchemaNode, TokenSchema } from '@cobalt-ui/core';
-import { encode, indent } from './util.js';
+import { Indenter } from '@cobalt-ui/utils';
+import { encode } from './util.js';
 
 export interface Options {
   /** Generate wrapper selectors around token modes */
@@ -14,6 +15,8 @@ export interface Options {
 export default function css(options: Options): Plugin {
   let format = options?.transformVariableNames || defaultFormatter;
   let transform = options?.transformValue || defaultTransformer;
+
+  const i = new Indenter(); // TODO: allow config?
 
   return {
     name: '@cobalt-ui/plugin-css',
@@ -54,7 +57,7 @@ export default function css(options: Options): Plugin {
       let code: string[] = [];
       if (schema.name) code.push('/**', ` * ${schema.name}`, ' */', '');
       code.push(':root {');
-      code.push(indent(makeVars(schema.tokens, undefined), 1));
+      code.push(i.indent(makeVars(schema.tokens, undefined), 1));
       code.push('}\n');
 
       // modes
@@ -74,10 +77,10 @@ export default function css(options: Options): Plugin {
               code.push(`${selector.trim().replace(/\s*{/, '')} {`);
               if (selector.startsWith(`@media`)) {
                 indentLv++;
-                code.push(indent(':root {', indentLv));
+                code.push(i.indent(':root {', indentLv));
               }
-              code.push(indent(makeVars(group.tokens, mode), indentLv + 1));
-              if (selector.startsWith('@media')) code.push(indent('}', indentLv));
+              code.push(i.indent(makeVars(group.tokens, mode), indentLv + 1));
+              if (selector.startsWith('@media')) code.push(i.indent('}', indentLv));
               code.push('}\n');
             }
           }

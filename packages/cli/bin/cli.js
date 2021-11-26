@@ -118,12 +118,13 @@ function printErrors({ errors, warnings }) {
 function showHelp() {
   console.log(`cobalt
   [commands]
-    build       Build token artifacts from tokens.yaml
-    validate    Validate tokens.yaml
+    build           Build token artifacts from tokens.yaml
+      --watch, -w   Watch tokens.yaml for changes and recompile
+    validate        Validate tokens.yaml
 
   [options]
-    --help      Show this message
-    --config    Path to config (default: ./cobalt.config.js)
+    --help         Show this message
+    --config, -c   Path to config (default: ./cobalt.config.js)
 `);
 }
 

@@ -1,6 +1,6 @@
 {
-  "name": "@cobalt-ui/plugin-css",
-  "description": "CSS builder for Cobalt UI design tokens",
+  "name": "@cobalt-ui/utils",
+  "description": "Generic codegen utilities",
   "version": "0.0.0-alpha.0",
   "author": {
     "name": "Drew Powers",
@@ -13,13 +13,5 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "dev": "tsc -w"
-  },
-  "dependencies": {
-    "@cobalt-ui/utils": "^0.0.0-alpha.0",
-    "kleur": "^4.1.4"
-  },
-  "devDependencies": {
-    "@cobalt-ui/core": "^0.0.0-alpha.0",
-    "mime": "^3.0.0"
   }
 }

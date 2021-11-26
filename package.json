@@ -13,12 +13,14 @@
     "build:plugin-json": "cd packages/plugin-json && npm run build",
     "build:plugin-sass": "cd packages/plugin-sass && npm run build",
     "build:plugin-ts": "cd packages/plugin-ts && npm run build",
+    "build:utils": "cd packages/utils && npm run build",
     "dev": "run-p dev:*",
     "dev:core": "cd packages/core && npm run dev",
     "dev:plugin-css": "cd packages/plugin-css && npm run dev",
     "dev:plugin-json": "cd packages/plugin-json && npm run dev",
     "dev:plugin-sass": "cd packages/plugin-sass && npm run dev",
     "dev:plugin-ts": "cd packages/plugin-ts && npm run dev",
+    "dev:utils": "cd packages/utils && npm run dev",
     "lint": "eslint \"packages/**/*.{js,ts}\""
   },
   "devDependencies": {

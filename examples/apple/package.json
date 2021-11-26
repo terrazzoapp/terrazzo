@@ -11,8 +11,8 @@
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.0.0-alpha.0",
-    "@cobalt-ui/plugin-css": "workspace:^0.0.0-alpha.0",
-    "@cobalt-ui/plugin-sass": "workspace:^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-css": "^0.0.0-alpha.0",
+    "@cobalt-ui/plugin-sass": "^0.0.0-alpha.0",
     "@storybook/html": "^6.3.12"
   }
 }

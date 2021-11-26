@@ -11,6 +11,8 @@ import SkipToMain from '../components/SkipToMain.astro'
   <head>
     <Head title="Cobalt" />
     <style lang="scss">
+      @use "../../tokens" as *;
+
       .header {
         align-items: center;
         display: flex;
@@ -41,8 +43,8 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .split {
         display: grid;
-        grid-template-columns: 2fr 3fr;
-        grid-gap: 1.5rem;
+        grid-template-columns: 3fr 4fr;
+        grid-gap: 2.5rem;
 
         p:first-of-type {
           margin-top: 0;
@@ -51,15 +53,59 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .visual {
         align-self: start;
+        font-size: 18pt;
+        font-weight: 500;
         position: relative;
       }
 
+      .visual-layer {
+        border-bottom: 1px dashed $color__white;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      .visual-base {
+        height: 0;
+        padding-top: 36%;
+        position: relative;
+      }
+
+      .visual-cobalt,
       .visual-tokens {
+        transform: translateY(-50%);
+        position: absolute;
+      }
+
+      .visual-line-c,
+      .visual-line-t {
+        border-top: 1px dashed $color__white;
+        display: block;
+        left: 6.5rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(41% - 6.5rem);
+      }
+
+      .visual-line-t {
+        border-top: 3px solid $color__white;
+        top: 78%;
+        width: calc(49% - 6.5rem);
+      }
+
+      .visual-cobalt {
+        top: 50%;
+      }
+
+      .visual-tokens {
+        top: 78%;
+      }
+
+      .visual-img {
+        bottom: 0;
         height: auto;
         position: absolute;
         right: 0;
-        top: 50%;
-        transform: translateY(-50%);
         width: 60%;
       }
     </style>
@@ -108,9 +154,14 @@ import SkipToMain from '../components/SkipToMain.astro'
                 <div class="visual-layer">UI</div>
                 <div class="visual-layer">Platform</div>
                 <div class="visual-layer">Design System</div>
-                <div class="visual-layer"></div>
+                <div class="visual-base">
+                  <span class="visual-cobalt">Cobalt</span>
+                  <span class="visual-tokens">Tokens</span>
+                  <div class="visual-line-c"></div>
+                  <div class="visual-line-t"></div>
+                  <img class="visual-img" src="/public/token-hex.svg">
+                </div>
               </div>
-              <img class="visual-tokens" src="/public/token-hex.svg">
             </figure>
           </div>
         </section>

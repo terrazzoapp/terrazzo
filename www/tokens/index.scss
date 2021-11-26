@@ -1,3 +1,5 @@
+@use "sass:map";
+
 // -----------------
 //  Cobalt
 // -----------------
@@ -13,3 +15,16 @@ $color__white: #FFFFFF;
 // -----------------
 
 $type__family__suisse_intl: Suisse Intl;
+$-cobalt_token_modes: (
+  $color__blue: (
+    light: #2B3FAA,
+  ),
+  $color__white: (
+    light: #FFFFFF,
+  ),
+);
+
+@function mode($token, $modeName) {
+  $mode: map.get($-cobalt_token_modes, $token);
+  @return map.get($mode, $modeName);
+}

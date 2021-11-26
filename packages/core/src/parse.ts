@@ -50,7 +50,6 @@ export interface GroupNode<T = string> extends RawGroupNode<T> {
 
 /** A design token. */
 export interface RawTokenNode<T = string> {
-  /** type: token is optional in schemas (it’s implied) */
   type: 'token' | undefined;
   /** (optional) User-friendly name of this token */
   name?: string;
@@ -63,6 +62,7 @@ export interface RawTokenNode<T = string> {
 export interface TokenNode<T = string> extends RawTokenNode<T> {
   /** unique identifier (e.g. "color.gray") */
   id: string;
+  type: 'token';
   /** id within group (e.g. "gray") */
   localID: string;
   /** group reference */

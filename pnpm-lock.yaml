@@ -31,8 +31,8 @@ importers:
   examples/apple:
     specifiers:
       '@cobalt-ui/cli': ^0.0.0-alpha.0
-      '@cobalt-ui/plugin-css': workspace:^0.0.0-alpha.0
-      '@cobalt-ui/plugin-sass': workspace:^0.0.0-alpha.0
+      '@cobalt-ui/plugin-css': ^0.0.0-alpha.0
+      '@cobalt-ui/plugin-sass': ^0.0.0-alpha.0
       '@storybook/html': ^6.3.12
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -43,8 +43,8 @@ importers:
   examples/github:
     specifiers:
       '@cobalt-ui/cli': ^0.0.0-alpha.0
-      '@cobalt-ui/plugin-css': workspace:^0.0.0-alpha.0
-      '@cobalt-ui/plugin-sass': workspace:^0.0.0-alpha.0
+      '@cobalt-ui/plugin-css': ^0.0.0-alpha.0
+      '@cobalt-ui/plugin-sass': ^0.0.0-alpha.0
       '@storybook/html': ^6.3.12
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -83,10 +83,12 @@ importers:
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/core': workspace:^0.0.0-alpha.0
+      '@cobalt-ui/core': ^0.0.0-alpha.0
+      '@cobalt-ui/utils': ^0.0.0-alpha.0
       kleur: ^4.1.4
       mime: ^3.0.0
     dependencies:
+      '@cobalt-ui/utils': link:../utils
       kleur: 4.1.4
     devDependencies:
       '@cobalt-ui/core': link:../core
@@ -101,9 +103,11 @@ importers:
   packages/plugin-sass:
     specifiers:
       '@cobalt-ui/core': ^0.0.0-alpha.0
+      '@cobalt-ui/utils': ^0.0.0-alpha.0
       '@types/mime': ^2.0.3
       mime: ^3.0.0
     dependencies:
+      '@cobalt-ui/utils': link:../utils
       mime: 3.0.0
     devDependencies:
       '@cobalt-ui/core': link:../core
@@ -112,13 +116,19 @@ importers:
   packages/plugin-ts:
     specifiers:
       '@cobalt-ui/core': ^0.0.0-alpha.0
+      '@cobalt-ui/utils': ^0.0.0-alpha.0
+    dependencies:
+      '@cobalt-ui/utils': link:../utils
     devDependencies:
       '@cobalt-ui/core': link:../core
+
+  packages/utils:
+    specifiers: {}
 
   www:
     specifiers:
       '@astrojs/renderer-solid': ^0.2.0
-      '@cobalt-ui/cli': workspace:^0.0.0-alpha.0
+      '@cobalt-ui/cli': ^0.0.0-alpha.0
       astro: ^0.21.4
       solid-js: ^1.2.5
     dependencies:

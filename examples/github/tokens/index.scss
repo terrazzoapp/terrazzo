@@ -2,7 +2,618 @@
 //  GitHub Primer Design System
 // -----------------
 
-@use "color";
-@use "icons";
-@use "spacing";
-@use "text";
+$color__black: #1b1f24;
+$color__blue_0: #ddf4ff;
+$color__blue_1: #b6e3ff;
+$color__blue_2: #80ccff;
+$color__blue_3: #54aeff;
+$color__blue_4: #218bff;
+$color__blue_5: #0969da;
+$color__blue_6: #0550ae;
+$color__blue_7: #033d8b;
+$color__blue_8: #0a3069;
+$color__blue_9: #002155;
+$color__coral_0: #FFF0EB;
+$color__coral_1: #FFD6CC;
+$color__coral_2: #FFB4A1;
+$color__coral_3: #FD8C73;
+$color__coral_4: #EC6547;
+$color__coral_5: #C4432B;
+$color__coral_6: #9E2F1C;
+$color__coral_7: #801F0F;
+$color__coral_8: #691105;
+$color__coral_9: #510901;
+$color__gray_0: #f6f8fa;
+$color__gray_1: #eaeef2;
+$color__gray_2: #d0d7de;
+$color__gray_3: #afb8c1;
+$color__gray_4: #8c959f;
+$color__gray_5: #6e7781;
+$color__gray_6: #57606a;
+$color__gray_7: #424a53;
+$color__gray_8: #32383f;
+$color__gray_9: #24292f;
+$color__green_0: #dafbe1;
+$color__green_1: #aceebb;
+$color__green_2: #6fdd8b;
+$color__green_3: #4ac26b;
+$color__green_4: #2da44e;
+$color__green_5: #1a7f37;
+$color__green_6: #116329;
+$color__green_7: #044f1e;
+$color__green_8: #003d16;
+$color__green_9: #002d11;
+$color__orange_0: #fff1e5;
+$color__orange_1: #ffd8b5;
+$color__orange_2: #ffb77c;
+$color__orange_3: #fb8f44;
+$color__orange_4: #e16f24;
+$color__orange_5: #bc4c00;
+$color__orange_6: #953800;
+$color__orange_7: #762c00;
+$color__orange_8: #5c2200;
+$color__orange_9: #471700;
+$color__pink_0: #ffeff7;
+$color__pink_1: #ffd3eb;
+$color__pink_2: #ffadda;
+$color__pink_3: #ff80c8;
+$color__pink_4: #e85aad;
+$color__pink_5: #bf3989;
+$color__pink_6: #99286e;
+$color__pink_7: #772057;
+$color__pink_8: #611347;
+$color__pink_9: #4d0336;
+$color__purple_0: #fbefff;
+$color__purple_1: #ecd8ff;
+$color__purple_2: #d8b9ff;
+$color__purple_3: #c297ff;
+$color__purple_4: #a475f9;
+$color__purple_5: #8250df;
+$color__purple_6: #6639ba;
+$color__purple_7: #512a97;
+$color__purple_8: #3e1f79;
+$color__purple_9: #2e1461;
+$color__red_0: #FFEBE9;
+$color__red_1: #ffcecb;
+$color__red_2: #ffaba8;
+$color__red_3: #ff8182;
+$color__red_4: #fa4549;
+$color__red_5: #cf222e;
+$color__red_6: #a40e26;
+$color__red_7: #82071e;
+$color__red_8: #660018;
+$color__red_9: #4c0014;
+$color__yellow_0: #fff8c5;
+$color__yellow_1: #fae17d;
+$color__yellow_2: #eac54f;
+$color__yellow_3: #d4a72c;
+$color__yellow_4: #bf8700;
+$color__yellow_5: #9a6700;
+$color__yellow_6: #7d4e00;
+$color__yellow_7: #633c01;
+$color__yellow_8: #4d2d00;
+$color__yellow_9: #3b2300;
+$color__white: #ffffff;
+$icon__alert-16: alert-16;
+$icon__alert-16-fill: alert-16-fill;
+$icon__alert-24: alert-24;
+$icon__archive-16: archive-16;
+$icon__archive-24: archive-24;
+$icon__arrow-both-16: arrow-both-16;
+// -----------------
+//  Typography
+// -----------------
+
+$type__family__system: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$type__family__monospace: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+$type__family__display: InterUI, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+$type__size__f00: 32;
+$type__size__f0: 32;
+$type__size__f1: 26;
+$type__size__f2: 22;
+$type__size__f3: 16;
+$type__size__f4: 16;
+$type__size__f5: 14;
+$type__size__f6: 12;
+$type__line_height__default: 1.5;
+$type__line_height__condensed: 1.25;
+$type__line_height__condensed_ultra: 1;
+
+$-cobalt_token_modes: (
+  $color__black: (
+    light: #1b1f24,
+    light_colorblind: #1b1f24,
+    light_high_contrast: #010409,
+  ),
+  $color__blue_0: (
+    light: #ddf4ff,
+    light_colorblind: #ddf4ff,
+    light_high_contrast: #dff7ff,
+  ),
+  $color__blue_1: (
+    light: #b6e3ff,
+    light_colorblind: #b6e3ff,
+    light_high_contrast: #9cd7ff,
+  ),
+  $color__blue_2: (
+    light: #80ccff,
+    light_colorblind: #80ccff,
+    light_high_contrast: #67b3fd,
+  ),
+  $color__blue_3: (
+    light: #54aeff,
+    light_colorblind: #54aeff,
+    light_high_contrast: #368cf9,
+  ),
+  $color__blue_4: (
+    light: #218bff,
+    light_colorblind: #218bff,
+    light_high_contrast: #1168e3,
+  ),
+  $color__blue_5: (
+    light: #0969da,
+    light_colorblind: #0969da,
+    light_high_contrast: #0349b4,
+  ),
+  $color__blue_6: (
+    light: #0550ae,
+    light_colorblind: #0550ae,
+    light_high_contrast: #023b95,
+  ),
+  $color__blue_7: (
+    light: #033d8b,
+    light_colorblind: #033d8b,
+    light_high_contrast: #022f7a,
+  ),
+  $color__blue_8: (
+    light: #0a3069,
+    light_colorblind: #0a3069,
+    light_high_contrast: #032563,
+  ),
+  $color__blue_9: (
+    light: #002155,
+    light_colorblind: #002155,
+    light_high_contrast: #021a4a,
+  ),
+  $color__coral_0: (
+    light: #FFF0EB,
+    light_colorblind: #FFF0EB,
+    light_high_contrast: #fff0ed,
+  ),
+  $color__coral_1: (
+    light: #FFD6CC,
+    light_colorblind: #FFD6CC,
+    light_high_contrast: #ffc2b6,
+  ),
+  $color__coral_2: (
+    light: #FFB4A1,
+    light_colorblind: #FFB4A1,
+    light_high_contrast: #ff8f7e,
+  ),
+  $color__coral_3: (
+    light: #FD8C73,
+    light_colorblind: #FD8C73,
+    light_high_contrast: #ef5b48,
+  ),
+  $color__coral_4: (
+    light: #EC6547,
+    light_colorblind: #EC6547,
+    light_high_contrast: #cd3425,
+  ),
+  $color__coral_5: (
+    light: #C4432B,
+    light_colorblind: #C4432B,
+    light_high_contrast: #9f1710,
+  ),
+  $color__coral_6: (
+    light: #9E2F1C,
+    light_colorblind: #9E2F1C,
+    light_high_contrast: #870706,
+  ),
+  $color__coral_7: (
+    light: #801F0F,
+    light_colorblind: #801F0F,
+    light_high_contrast: #6f0107,
+  ),
+  $color__coral_8: (
+    light: #691105,
+    light_colorblind: #691105,
+    light_high_contrast: #5b0002,
+  ),
+  $color__coral_9: (
+    light: #510901,
+    light_colorblind: #510901,
+    light_high_contrast: #430200,
+  ),
+  $color__gray_0: (
+    light: #f6f8fa,
+    light_colorblind: #f6f8fa,
+    light_high_contrast: #FFFFFF,
+  ),
+  $color__gray_1: (
+    light: #eaeef2,
+    light_colorblind: #eaeef2,
+    light_high_contrast: #E7ECF0,
+  ),
+  $color__gray_2: (
+    light: #d0d7de,
+    light_colorblind: #d0d7de,
+    light_high_contrast: #CED5DC,
+  ),
+  $color__gray_3: (
+    light: #afb8c1,
+    light_colorblind: #afb8c1,
+    light_high_contrast: #ACB6C0,
+  ),
+  $color__gray_4: (
+    light: #8c959f,
+    light_colorblind: #8c959f,
+    light_high_contrast: #88929D,
+  ),
+  $color__gray_5: (
+    light: #6e7781,
+    light_colorblind: #6e7781,
+    light_high_contrast: #67707A,
+  ),
+  $color__gray_6: (
+    light: #57606a,
+    light_colorblind: #57606a,
+    light_high_contrast: #4F5760,
+  ),
+  $color__gray_7: (
+    light: #424a53,
+    light_colorblind: #424a53,
+    light_high_contrast: #3D454E,
+  ),
+  $color__gray_8: (
+    light: #32383f,
+    light_colorblind: #32383f,
+    light_high_contrast: #30363D,
+  ),
+  $color__gray_9: (
+    light: #24292f,
+    light_colorblind: #24292f,
+    light_high_contrast: #24292F,
+  ),
+  $color__green_0: (
+    light: #dafbe1,
+    light_colorblind: #c0f6ff,
+    light_high_contrast: #d2fedb,
+  ),
+  $color__green_1: (
+    light: #aceebb,
+    light_colorblind: #96e5ff,
+    light_high_contrast: #82e596,
+  ),
+  $color__green_2: (
+    light: #6fdd8b,
+    light_colorblind: #65ccff,
+    light_high_contrast: #43c663,
+  ),
+  $color__green_3: (
+    light: #4ac26b,
+    light_colorblind: #35adff,
+    light_high_contrast: #26a148,
+  ),
+  $color__green_4: (
+    light: #2da44e,
+    light_colorblind: #0088ff,
+    light_high_contrast: #117f32,
+  ),
+  $color__green_5: (
+    light: #1a7f37,
+    light_colorblind: #0566d5,
+    light_high_contrast: #055d20,
+  ),
+  $color__green_6: (
+    light: #116329,
+    light_colorblind: #054da9,
+    light_high_contrast: #024c1a,
+  ),
+  $color__green_7: (
+    light: #044f1e,
+    light_colorblind: #033a86,
+    light_high_contrast: #013d14,
+  ),
+  $color__green_8: (
+    light: #003d16,
+    light_colorblind: #002d68,
+    light_high_contrast: #003110,
+  ),
+  $color__green_9: (
+    light: #002d11,
+    light_colorblind: #001f50,
+    light_high_contrast: #00230b,
+  ),
+  $color__orange_0: (
+    light: #fff1e5,
+    light_colorblind: #fff1e5,
+    light_high_contrast: #fff2d5,
+  ),
+  $color__orange_1: (
+    light: #ffd8b5,
+    light_colorblind: #ffd8b5,
+    light_high_contrast: #ffc67b,
+  ),
+  $color__orange_2: (
+    light: #ffb77c,
+    light_colorblind: #ffb77c,
+    light_high_contrast: #f99636,
+  ),
+  $color__orange_3: (
+    light: #fb8f44,
+    light_colorblind: #fb8f44,
+    light_high_contrast: #dc6d1a,
+  ),
+  $color__orange_4: (
+    light: #e16f24,
+    light_colorblind: #e16f24,
+    light_high_contrast: #b45105,
+  ),
+  $color__orange_5: (
+    light: #bc4c00,
+    light_colorblind: #bc4c00,
+    light_high_contrast: #873800,
+  ),
+  $color__orange_6: (
+    light: #953800,
+    light_colorblind: #953800,
+    light_high_contrast: #702c00,
+  ),
+  $color__orange_7: (
+    light: #762c00,
+    light_colorblind: #762c00,
+    light_high_contrast: #5b2300,
+  ),
+  $color__orange_8: (
+    light: #5c2200,
+    light_colorblind: #5c2200,
+    light_high_contrast: #491b00,
+  ),
+  $color__orange_9: (
+    light: #471700,
+    light_colorblind: #471700,
+    light_high_contrast: #361200,
+  ),
+  $color__pink_0: (
+    light: #ffeff7,
+    light_colorblind: #ffeff7,
+    light_high_contrast: #feeff7,
+  ),
+  $color__pink_1: (
+    light: #ffd3eb,
+    light_colorblind: #ffd3eb,
+    light_high_contrast: #ffbde0,
+  ),
+  $color__pink_2: (
+    light: #ffadda,
+    light_colorblind: #ffadda,
+    light_high_contrast: #fc87ca,
+  ),
+  $color__pink_3: (
+    light: #ff80c8,
+    light_colorblind: #ff80c8,
+    light_high_contrast: #ed4baf,
+  ),
+  $color__pink_4: (
+    light: #e85aad,
+    light_colorblind: #e85aad,
+    light_high_contrast: #c9248e,
+  ),
+  $color__pink_5: (
+    light: #bf3989,
+    light_colorblind: #bf3989,
+    light_high_contrast: #971368,
+  ),
+  $color__pink_6: (
+    light: #99286e,
+    light_colorblind: #99286e,
+    light_high_contrast: #7d0c57,
+  ),
+  $color__pink_7: (
+    light: #772057,
+    light_colorblind: #772057,
+    light_high_contrast: #660847,
+  ),
+  $color__pink_8: (
+    light: #611347,
+    light_colorblind: #611347,
+    light_high_contrast: #53043a,
+  ),
+  $color__pink_9: (
+    light: #4d0336,
+    light_colorblind: #4d0336,
+    light_high_contrast: #3e022b,
+  ),
+  $color__purple_0: (
+    light: #fbefff,
+    light_colorblind: #fbefff,
+    light_high_contrast: #faf0fe,
+  ),
+  $color__purple_1: (
+    light: #ecd8ff,
+    light_colorblind: #ecd8ff,
+    light_high_contrast: #e0c5ff,
+  ),
+  $color__purple_2: (
+    light: #d8b9ff,
+    light_colorblind: #d8b9ff,
+    light_high_contrast: #c49bff,
+  ),
+  $color__purple_3: (
+    light: #c297ff,
+    light_colorblind: #c297ff,
+    light_high_contrast: #a371f7,
+  ),
+  $color__purple_4: (
+    light: #a475f9,
+    light_colorblind: #a475f9,
+    light_high_contrast: #844ae7,
+  ),
+  $color__purple_5: (
+    light: #8250df,
+    light_colorblind: #8250df,
+    light_high_contrast: #622cbc,
+  ),
+  $color__purple_6: (
+    light: #6639ba,
+    light_colorblind: #6639ba,
+    light_high_contrast: #512598,
+  ),
+  $color__purple_7: (
+    light: #512a97,
+    light_colorblind: #512a97,
+    light_high_contrast: #411d7b,
+  ),
+  $color__purple_8: (
+    light: #3e1f79,
+    light_colorblind: #3e1f79,
+    light_high_contrast: #341763,
+  ),
+  $color__purple_9: (
+    light: #2e1461,
+    light_colorblind: #2e1461,
+    light_high_contrast: #260f49,
+  ),
+  $color__red_0: (
+    light: #FFEBE9,
+    light_colorblind: #fefe48,
+    light_high_contrast: #fff0ee,
+  ),
+  $color__red_1: (
+    light: #ffcecb,
+    light_colorblind: #fee325,
+    light_high_contrast: #ffc1bc,
+  ),
+  $color__red_2: (
+    light: #ffaba8,
+    light_colorblind: #f8c200,
+    light_high_contrast: #ff8e8a,
+  ),
+  $color__red_3: (
+    light: #ff8182,
+    light_colorblind: #e7a100,
+    light_high_contrast: #ee5a5d,
+  ),
+  $color__red_4: (
+    light: #fa4549,
+    light_colorblind: #d08002,
+    light_high_contrast: #d5232c,
+  ),
+  $color__red_5: (
+    light: #cf222e,
+    light_colorblind: #ac5e00,
+    light_high_contrast: #a0111f,
+  ),
+  $color__red_6: (
+    light: #a40e26,
+    light_colorblind: #8b4600,
+    light_high_contrast: #86061d,
+  ),
+  $color__red_7: (
+    light: #82071e,
+    light_colorblind: #6c3900,
+    light_high_contrast: #6e011a,
+  ),
+  $color__red_8: (
+    light: #660018,
+    light_colorblind: #4c3100,
+    light_high_contrast: #5a0016,
+  ),
+  $color__red_9: (
+    light: #4c0014,
+    light_colorblind: #2f2900,
+    light_high_contrast: #430011,
+  ),
+  $color__yellow_0: (
+    light: #fff8c5,
+    light_colorblind: #fff8c5,
+    light_high_contrast: #fcf7be,
+  ),
+  $color__yellow_1: (
+    light: #fae17d,
+    light_colorblind: #fae17d,
+    light_high_contrast: #f0ce53,
+  ),
+  $color__yellow_2: (
+    light: #eac54f,
+    light_colorblind: #eac54f,
+    light_high_contrast: #d5a824,
+  ),
+  $color__yellow_3: (
+    light: #d4a72c,
+    light_colorblind: #d4a72c,
+    light_high_contrast: #b58407,
+  ),
+  $color__yellow_4: (
+    light: #bf8700,
+    light_colorblind: #bf8700,
+    light_high_contrast: #956400,
+  ),
+  $color__yellow_5: (
+    light: #9a6700,
+    light_colorblind: #9a6700,
+    light_high_contrast: #744500,
+  ),
+  $color__yellow_6: (
+    light: #7d4e00,
+    light_colorblind: #7d4e00,
+    light_high_contrast: #603700,
+  ),
+  $color__yellow_7: (
+    light: #633c01,
+    light_colorblind: #633c01,
+    light_high_contrast: #4e2c00,
+  ),
+  $color__yellow_8: (
+    light: #4d2d00,
+    light_colorblind: #4d2d00,
+    light_high_contrast: #3f2200,
+  ),
+  $color__yellow_9: (
+    light: #3b2300,
+    light_colorblind: #3b2300,
+    light_high_contrast: #2e1800,
+  ),
+  $color__white: (
+    light: #ffffff,
+    light_colorblind: #ffffff,
+    light_high_contrast: #ffffff,
+  ),
+  $type__size__f00: (
+    mobile: 32,
+    desktop: 48,
+  ),
+  $type__size__f0: (
+    mobile: 32,
+    desktop: 40,
+  ),
+  $type__size__f1: (
+    mobile: 26,
+    desktop: 32,
+  ),
+  $type__size__f2: (
+    mobile: 22,
+    desktop: 24,
+  ),
+  $type__size__f3: (
+    mobile: 16,
+    desktop: 20,
+  ),
+  $type__size__f4: (
+    mobile: 16,
+    desktop: 16,
+  ),
+  $type__size__f5: (
+    mobile: 14,
+    desktop: 14,
+  ),
+  $type__size__f6: (
+    mobile: 12,
+    desktop: 12,
+  ),
+);
+@function mode($token, $modeName) {
+  $mode: map.get($-cobalt_token_modes, $token);
+    @return map.get($mode, $modeName);
+}

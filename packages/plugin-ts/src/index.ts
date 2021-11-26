@@ -1,6 +1,7 @@
 import type { BuildResult, Plugin, SchemaNode, TokenNode, TokenSchema } from '@cobalt-ui/core';
 
-import { indent, prop } from './util.js';
+import { Indenter } from '@cobalt-ui/utils';
+import { prop } from './util.js';
 
 type Transformer = (value: any, token: SchemaNode) => any;
 
@@ -14,6 +15,7 @@ export interface Options {
 export default function ts(options?: Options): Plugin {
   let fileName = options?.filename || './index.ts';
   let transformer = options?.transformValue;
+  const i = new Indenter(); // TODO: allow config?
 
   interface PrintObjectOptions {
     tokens: Record<string, SchemaNode>;
@@ -29,15 +31,15 @@ export default function ts(options?: Options): Plugin {
       const comment: string[] = [];
       if (token.name) comment.push(token.name);
       if (token.description) comment.push(token.description);
-      if (comment.length) code.push(indent(`/** ${comment.join(': ')} */`, indentLv));
+      if (comment.length) code.push(i.indent(`/** ${comment.join(': ')} */`, indentLv));
 
       // group
       if (token.type === 'group') {
         const printedGroup = printObject({ indentLv: indentLv + 1, tokens: token.tokens, types, transform });
         if (printedGroup.trim()) {
-          code.push(indent(`${prop(token.localID)}: {`, indentLv));
+          code.push(i.indent(`${prop(token.localID)}: {`, indentLv));
           code.push(printedGroup);
-          code.push(indent(types ? '};' : '},', indentLv));
+          code.push(i.indent(types ? '};' : '},', indentLv));
         }
       }
 
@@ -52,7 +54,7 @@ export default function ts(options?: Options): Plugin {
           }
         }
         const printedVal = transform(value);
-        if (printedVal) code.push(indent(`${prop(localID)}: ${printedVal}${types ? ';' : ','}`, indentLv));
+        if (printedVal) code.push(i.indent(`${prop(localID)}: ${printedVal}${types ? ';' : ','}`, indentLv));
       }
     }
     return code.join('\n');

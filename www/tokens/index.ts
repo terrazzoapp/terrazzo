@@ -5,6 +5,7 @@ export interface TokensFlat {
 }
 
 export interface Modes {
+  color: 'light';
 }
 
 export const tokens = {
@@ -23,6 +24,10 @@ export const tokens = {
 
 export const modes = {
   /** Color */
+  color: {
+    blue: { light: '#2B3FAA' },
+    white: { light: '#FFFFFF' },
+  },
   /** Typography */
 };
 

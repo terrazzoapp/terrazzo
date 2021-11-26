@@ -29,7 +29,7 @@ export class Builder {
   public async build(): Promise<void> {
     function formatNode({ group, id, localID, node }: { group?: GroupNode; id: string; localID: string; node: RawSchemaNode }): SchemaNode {
       const schemaNode: SchemaNode = { ...(node as any), id, localID };
-      if (!schemaNode.type) schemaNode.type = 'token';
+      if (!schemaNode.type) (schemaNode as any).type = 'token';
       if (group) schemaNode.group = group;
 
       switch (schemaNode.type) {

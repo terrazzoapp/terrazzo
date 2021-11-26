@@ -1,4 +1,5 @@
 import css from '@cobalt-ui/plugin-css';
+import sass from '@cobalt-ui/plugin-sass';
 
 export default {
   plugins: [
@@ -9,10 +10,11 @@ export default {
           light_colorblind: ['.theme--light-colorblind'],
           light_low_contrast: ['.theme--light-low-contrast'],
         },
-        'text.size': {
+        'type.size': {
           desktop: ['@media (min-width: 600px)'],
         },
       },
     }),
+    sass(),
   ],
 };

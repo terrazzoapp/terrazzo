@@ -3,11 +3,16 @@ tokens:
   color:
     name: Color
     type: group
+    modes: ['light']
     tokens:
       blue:
-        value: '#2B3FAA'
+        value:
+          default: '#2B3FAA'
+          light: '#2B3FAA'
       white:
-        value: '#FFFFFF'
+        value:
+          default: '#FFFFFF'
+          light: '#FFFFFF'
   type:
     name: Typography
     type: group
