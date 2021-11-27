@@ -8,7 +8,10 @@
 //  Color
 // -----------------
 
+$color__black: #040404;
+$color__dark_gray: #282A37;
 $color__blue: #2B3FAA;
+$color__red: #D0323A;
 $color__white: #FFFFFF;
 // -----------------
 //  Typography
@@ -16,8 +19,17 @@ $color__white: #FFFFFF;
 
 $type__family__suisse_intl: Suisse Intl;
 $-cobalt_token_modes: (
+  $color__black: (
+    light: #040404,
+  ),
+  $color__dark_gray: (
+    light: #282A37,
+  ),
   $color__blue: (
     light: #2B3FAA,
+  ),
+  $color__red: (
+    light: #D0323A,
   ),
   $color__white: (
     light: #FFFFFF,

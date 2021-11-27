@@ -69,7 +69,7 @@ YAML is easy-to-read, and is a universal data format that almost every programmi
 By relying on YAML instead of JavaScript, Cobalt’s internals are replaceable. Although this library uses Node.js at the moment, it doesn’t have to stick to Node.js forever. Using YAML means Cobalt can be completely rewritten and improved without affecting
 users’ token systems.
 
-Understandably, though, YAML isn’t easy to edit for everyone! That’s why the [Cobalt Editor](https://cobalt.pages.dev/editor) exists to help peole get started.
+Understandably, though, YAML isn’t easy to edit for everyone! That’s why the [Cobalt Editor](https://cobalt-ui.pages.dev/editor) exists to help peole get started.
 
 Further, YAML is preferred over JSON here because it supports comments and it’s easier to read.
 

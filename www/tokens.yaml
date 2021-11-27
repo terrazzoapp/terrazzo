@@ -5,10 +5,22 @@ tokens:
     type: group
     modes: ['light']
     tokens:
+      black:
+        value:
+          default: '#040404'
+          light: '#040404'
+      dark_gray:
+        value:
+          default: '#282A37'
+          light: '#282A37'
       blue:
         value:
           default: '#2B3FAA'
           light: '#2B3FAA'
+      red:
+        value:
+          default: '#D0323A'
+          light: '#D0323A'
       white:
         value:
           default: '#FFFFFF'

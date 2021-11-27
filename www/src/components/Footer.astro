@@ -8,26 +8,17 @@ import CobaltSm from './CobaltSm.astro';
  .footer {
    border-top: 1px solid $color__white;
    display: grid;
-   grid-template-columns: min-content;
+   grid-template-columns: 2fr 1fr 1fr;
    grid-gap: 2rem;
    margin-top: 2rem;
    margin-bottom: 6rem;
    padding-top: 2rem;
  }
 
- .ensignia {
+ nav {
    display: grid;
-   grid-template-columns: min-content auto;
    grid-gap: 1.5rem;
-   font-size: 10pt;
-   line-height: 1.5;
-   white-space: nowrap;
-
-   h4 {
-     font-size: 14pt;
-     margin: 0 0 0.1em;
-     line-height: 1;
-   }
+   margin-left: auto;
  }
 </style>
 
@@ -35,11 +26,10 @@ import CobaltSm from './CobaltSm.astro';
   <footer class="footer">
     <div class="ensignia">
       <CobaltSm />
-      <div>
-        <h4>Cobalt</h4>
-        by Drew Powers<br>
-        <a href="https://github.com/drwpow/cobalt-ui">MIT Licensed</a>
-      </div>
     </div>
+    <nav>
+      <a href="/docs">Documentation</a>
+      <a href="https://github.com/drwpow/cobalt-ui">GitHub</a>
+    </nav>
   </footer>
 </div>

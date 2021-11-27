@@ -1,5 +1,8 @@
 export interface TokensFlat {
+  'color.black': string;
+  'color.dark_gray': string;
   'color.blue': string;
+  'color.red': string;
   'color.white': string;
   'type.family.suisse_intl': string;
 }
@@ -11,7 +14,10 @@ export interface Modes {
 export const tokens = {
   /** Color */
   color: {
+    black: '#040404',
+    dark_gray: '#282A37',
     blue: '#2B3FAA',
+    red: '#D0323A',
     white: '#FFFFFF',
   },
   /** Typography */
@@ -25,7 +31,10 @@ export const tokens = {
 export const modes = {
   /** Color */
   color: {
+    black: { light: '#040404' },
+    dark_gray: { light: '#282A37' },
     blue: { light: '#2B3FAA' },
+    red: { light: '#D0323A' },
     white: { light: '#FFFFFF' },
   },
   /** Typography */

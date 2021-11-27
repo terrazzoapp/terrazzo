@@ -1,3 +1,3 @@
 export default {
-  renderers: ['@astrojs/renderer-solid'],
+  renderers: ['@astrojs/renderer-vue'],
 };

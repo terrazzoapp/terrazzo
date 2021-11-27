@@ -1,4 +1,5 @@
 ---
+import Editor from '../components/Editor.vue';
 import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
@@ -9,14 +10,22 @@ import SkipToMain from '../components/SkipToMain.astro'
 <html>
   <head>
     <Head title="Editor" />
+    <style>
+      sup {
+        font-weight: 400;
+        font-size: 0.4em;
+        margin-left: 0.5em;
+      }
+    </style>
   </head>
   <body>
     <SkipToMain />
     <Nav />
     <main id="main">
       <div class="wrapper">
-        <h1>Coming Soon!</h1>
+        <h1 style="margin-bottom:0">Editor<sup>Beta</sup></h1>
       </div>
+      <Editor client:load />
     </main>
     <Footer />
   </body>

@@ -1,0 +1,11 @@
+@use '../../tokens' as *;
+
+.language-yaml {
+  .token {
+    text-shadow: 0 0 1px $color__blue;
+  }
+
+  .key {
+    color: #77ea6e;
+  }
+}
