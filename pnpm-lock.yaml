@@ -129,8 +129,9 @@ importers:
     specifiers:
       '@astrojs/renderer-vue': ^0.2.0
       '@cobalt-ui/cli': ^0.0.0
-      astro: ^0.21.4
+      astro: ^0.21.6
       js-yaml: ^4.1.0
+      node-fetch: ^3.1.0
       npm-run-all: ^4.1.5
       prismjs: ^1.25.0
       vue: ^3.2.23
@@ -141,7 +142,8 @@ importers:
       vue: 3.2.23
     devDependencies:
       '@cobalt-ui/cli': link:../packages/cli
-      astro: 0.21.4_typescript@4.5.2
+      astro: 0.21.6_typescript@4.5.2
+      node-fetch: 3.1.0
       npm-run-all: 4.1.5
 
 packages:
@@ -4371,8 +4373,8 @@ packages:
     hasBin: true
     dev: true
 
-  /astro/0.21.4_typescript@4.5.2:
-    resolution: {integrity: sha512-LDGPBbRDb54NZxRKzYEypphyoyVY5WwL3Lg/i9DiUlYmojfm5q/tw8kRgVj+nP0VNrJ/SrzIeVgtJmXMhwa3UQ==}
+  /astro/0.21.6_typescript@4.5.2:
+    resolution: {integrity: sha512-GDW79Lseomo0YmYAdvIhj6H1yKx4Ww/jY/r7ovjV3SmxjSpHqi5ZhDS5CuKLqdjmwlp7HnzekPsin7Ydanq2KQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:

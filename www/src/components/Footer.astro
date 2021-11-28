@@ -6,19 +6,26 @@ import CobaltSm from './CobaltSm.astro';
   @use "../../tokens" as *;
 
  .footer {
-   border-top: 1px solid $color__white;
+   border-top: 1px solid currentColor;
    display: grid;
-   grid-template-columns: 2fr 1fr 1fr;
+   grid-template-columns: auto auto;
    grid-gap: 2rem;
    margin-top: 2rem;
-   margin-bottom: 6rem;
-   padding-top: 2rem;
+   padding-bottom: 6rem;
+   padding-top: 1.5rem;
  }
 
  nav {
-   display: grid;
-   grid-gap: 1.5rem;
+   display: flex;
+   flex-direction: column;
    margin-left: auto;
+   width: 8rem;
+
+   a {
+     display: block;
+     margin: 0.25em 0;
+     text-decoration: none;
+   }
  }
 </style>
 
@@ -28,7 +35,8 @@ import CobaltSm from './CobaltSm.astro';
       <CobaltSm />
     </div>
     <nav>
-      <a href="/docs">Documentation</a>
+      <a href="/docs">Docs</a>
+      <a href="/editor">Editor</a>
       <a href="https://github.com/drwpow/cobalt-ui">GitHub</a>
     </nav>
   </footer>

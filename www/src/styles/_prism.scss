@@ -1,11 +1,22 @@
+@use 'sass:color';
 @use '../../tokens' as *;
 
-.language-yaml {
-  .token {
-    text-shadow: 0 0 1px $color__blue;
+.language-diff {
+  .deleted {
+    color: adjust-color($color: $color__red, $lightness: 10%);
   }
 
-  .key {
-    color: #77ea6e;
+  .inserted {
+    color: $color__green;
+  }
+}
+
+.language-yaml {
+  .atrule {
+    color: adjust-color($color: $color__blue, $lightness: 30%, $saturation: 100%);
+  }
+
+  .comment {
+    opacity: 0.5;
   }
 }

@@ -1,0 +1,56 @@
+{
+  "pages": [
+    {
+      "title": "Introduction",
+      "pathname": "/"
+    },
+    {
+      "title": "tokens.yaml",
+      "pathname": "/docs/schema"
+    },
+    {
+      "title": "Usage",
+      "pathname": "/docs/usage"
+    },
+    {
+      "title": "Concepts",
+      "pathname": "/docs/concepts"
+    },
+    {
+      "title": "Tokens",
+      "pathname": "/docs/concepts/tokens"
+    },
+    {
+      "title": "Modes",
+      "pathname": "/docs/concepts/modes"
+    },
+    {
+      "title": "Color",
+      "pathname": "/docs/concepts/color"
+    },
+    {
+      "title": "Config",
+      "pathname": "/docs/config"
+    },
+    {
+      "title": "Plugins",
+      "pathname": "/docs/plugins"
+    },
+    {
+      "title": "CSS",
+      "pathname": "/docs/plugins/css"
+    },
+    {
+      "title": "JSON",
+      "pathname": "/docs/plugins/json"
+    },
+    {
+      "title": "Sass",
+      "pathname": "/docs/plugins/sass"
+    },
+    {
+      "title": "TypeScript",
+      "pathname": "/docs/plugins/ts"
+    }
+  ]
+}

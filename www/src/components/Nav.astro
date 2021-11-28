@@ -1,38 +1,73 @@
 ---
+import CobaltSm from './CobaltSm.astro';
 import Icons from './Icons.astro';
 let currentPage = Astro.request.url.pathname;
+let { title = 'Cobalt' } = Astro.props;
 ---
 
 <style lang="scss">
-  nav {
+  .grid {
+    display: flex;
+    padding-left: 2rem;
+    padding-right: 1.5rem;
+  }
+
+  .title {
+    align-items: center;
+    color: currentColor;
+    display: grid;
+    grid-template-columns: min-content min-content;
+    grid-gap: 1rem;
+    padding-top: 2rem;
+    text-decoration: none;
+  }
+
+  h1 {
+    font-size: 18pt;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .nav {
     display: flex;
     justify-content: flex-end;
-    padding: 1rem 2rem;
+    margin-left: auto;
   }
 
-  a {
-    color: white;
-    padding: 1rem;
-  }
+  .a {
+    border-top: 3px solid transparent;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1.5rem 0;
+    text-decoration: none;
 
-  .github {
-    display: inline-block;
-    padding: 0.75rem 1rem;
+    &[aria-current] {
+      border-top-color: currentColor;
+    }
+
+    &--github {
+      display: inline-block;
+      padding: 1.375rem 0 0;
+    }
   }
 
   .github-icon {
-    height: 1.5em;
-    width: 1.5em;
-    vertical-align: 25%;
+    height: 1.25em;
+    width: 1.25em;
   }
 </style>
 
 <Icons />
-<nav>
-  <a href="/" aria-current={currentPage === '/' ? 'page' : undefined}>Introduction</a>
-  <a href="/editor" aria-current={currentPage === '/editor' ? 'page' : undefined}>Editor</a>
-  <a href="/docs" aria-current={currentPage === '/docs' ? 'page' : undefined}>Documentation</a>
-  <a class="github" href="https://github.com/drwpow/cobalt-ui">
-    <svg class="github-icon"><use xlink:href="#github"></use></svg>
+<header class="grid">
+  <a class="title" href="/">
+    <CobaltSm />
+    <h1>{title}</h1>
   </a>
-</nav>
+  <nav class="nav">
+    <a class="a" href="/" aria-current={currentPage === '/' || currentPage.startsWith('/docs') || undefined}>Docs</a>
+    <a class="a" href="/editor" aria-current={currentPage === '/editor' || undefined}>Editor</a>
+    <a class="a a--github" href="https://github.com/drwpow/cobalt-ui">
+      <svg class="github-icon"><use xlink:href="#github"></use></svg>
+    </a>
+  </nav>
+</header>

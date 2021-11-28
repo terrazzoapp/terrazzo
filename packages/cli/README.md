@@ -80,3 +80,5 @@ widely available to all, and in the process, revolutionized art. Blue pigment wa
 applications.
 
 Secondly, cobalt is an element on the periodic table. It’s reflective of how design tokens are in a sense the “elements“ of a design system.
+
+Thirdly, cobalt blue is a reference to a “blueprint”—the founding sketch of your design.

@@ -1,5 +1,7 @@
 ---
 import Cobalt from '../components/Cobalt.astro';
+import DocsNav from '../components/DocsNav.astro';
+import DocsPagination from '../components/DocsPagination.astro';
 import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
@@ -17,16 +19,7 @@ import SkipToMain from '../components/SkipToMain.astro'
         align-items: center;
         display: flex;
         flex-direction: column;
-        margin: 8em 0;
-      }
-
-      .title {
-        font-weight: 500;
-        margin: 4rem 0;
-      }
-
-      h2 {
-        font-size: 32pt;
+        margin: 4rem 0 6rem;
       }
 
       section + section {
@@ -44,8 +37,8 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .split {
         display: grid;
-        grid-template-columns: 3fr 4fr;
-        grid-gap: 2.5rem;
+        grid-template-columns: 6fr 7fr;
+        grid-gap: 4rem;
 
         p:first-of-type {
           margin-top: 0;
@@ -54,60 +47,64 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .visual {
         align-self: start;
+        background-color: $color__blue;
+        border-radius: 3rem;
+        color: $color__white;
         font-size: 18pt;
         font-weight: 500;
         position: relative;
-      }
+        padding: 3rem;
 
-      .visual-layer {
-        border-bottom: 1px dashed $color__white;
-        margin-bottom: 2rem;
-        padding-bottom: 2rem;
-      }
+        &-base {
+          height: 0;
+          padding-top: 41%;
+          position: relative;
+        }
 
-      .visual-base {
-        height: 0;
-        padding-top: 36%;
-        position: relative;
-      }
+        &-layer {
+          border-bottom: 1px dashed $color__white;
+          margin-bottom: 2rem;
+          padding-bottom: 2rem;
+        }
 
-      .visual-cobalt,
-      .visual-tokens {
-        transform: translateY(-50%);
-        position: absolute;
-      }
+        &-cobalt,
+        &-tokens {
+          transform: translateY(-50%);
+          position: absolute;
+        }
 
-      .visual-line-c,
-      .visual-line-t {
-        border-top: 1px dashed $color__white;
-        display: block;
-        left: 6.5rem;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: calc(41% - 6.5rem);
-      }
+        &-cobalt {
+          top: 50%;
+        }
 
-      .visual-line-t {
-        border-top: 3px solid $color__white;
-        top: 78%;
-        width: calc(49% - 6.5rem);
-      }
+        &-tokens {
+          top: 78%;
+        }
 
-      .visual-cobalt {
-        top: 50%;
-      }
+        &-line-c,
+        &-line-t {
+          border-top: 1px dashed currentColor;
+          display: block;
+          left: 6.5rem;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: calc(33.5% - 6.5rem);
+        }
 
-      .visual-tokens {
-        top: 78%;
-      }
+        &-line-t {
+          border-top: 3px solid currentColor;
+          top: 78%;
+          width: calc(45% - 6.5rem);
+        }
 
-      .visual-img {
-        bottom: 0;
-        height: auto;
-        position: absolute;
-        right: 0;
-        width: 60%;
+        &-img {
+          bottom: 0;
+          height: auto;
+          position: absolute;
+          right: 0;
+          width: 67.5%;
+        }
       }
 
       .actions-title {
@@ -147,74 +144,79 @@ import SkipToMain from '../components/SkipToMain.astro'
           }
         }
       }
+
+      .docs {
+        display: grid;
+        grid-template-columns: min-content auto;
+        padding-right: 8rem;
+      }
+
+      #main {
+        margin-top: -2.5rem;
+      }
     </style>
   </head>
   <body>
     <SkipToMain />
     <Nav />
-    <div class="wrapper">
-      <header class="header tac">
-        <Cobalt />
-        <h1 class="title">Automated design tokens</h1>
-      </header>
-      <main id="#main">
-        <section>
-          <h2>What is Cobalt?</h2>
-          <p>
-            <strong>Cobalt is not a design system.</strong> Cobalt has no
-            out-of-the-box colors, typography, or symbology. All that is for you
-            to define.
-          </p>
-          <p>
-            <strong>Cobalt is token management.</strong> It lets you organize
-            and categorize your tokens in a way that makes sense to you. But it
-            revolves around Cobalt Schema v1, a standard format for storage.
-            From your custom design tokens schema you can use plugins to
-            generate code from your design tokens, from CSS/Sass to
-            TypeScript/JavaScript to univeral JSON for backend code and APIs.
-          </p>
-          <div class="split">
-            <div>
-              <p>
-                Thinking about your product design in “layers,” Cobalt sits
-                below your design system, and beneath your UI. You still control
-                your tokens; Cobalt only provides “buckets“ to put them in.
-              </p>
-              <p>
-                In return you don’t have to build or manage custom software for
-                your design tokens like so many teams often do. And you still have
-                the flexibility to craft your design system in any way you’d like.
-                Cobalt just bridges the gap between your tokens, and your design
-                system/UI.
-              </p>
-            </div>
-            <figure class="visual">
-              <div class="visual-layers">
-                <div class="visual-layer">UI</div>
-                <div class="visual-layer">Platform</div>
-                <div class="visual-layer">Design System</div>
-                <div class="visual-base">
-                  <span class="visual-cobalt">Cobalt</span>
-                  <span class="visual-tokens">Tokens</span>
-                  <div class="visual-line-c"></div>
-                  <div class="visual-line-t"></div>
-                  <img class="visual-img" src="/token-hex.svg">
-                </div>
+    <div class="docs">
+      <DocsNav />
+      <div>
+        <header class="header tac">
+          <Cobalt />
+          <h1 class="title">Automated design tokens</h1>
+        </header>
+        <main class="wrapper" id="#main">
+          <section>
+            <h2>What is Cobalt?</h2>
+            <p>
+              <strong>Cobalt is not a design system.</strong> Cobalt has no
+              out-of-the-box colors, typography, or symbology. All that is for you
+              to define.
+            </p>
+            <p>
+              <strong>Cobalt is token management.</strong> It lets you organize
+              and categorize your tokens in a way that makes sense to you. It
+              starts with <a href="/docs/schema">tokens.yaml</a>, a standard
+              format for storage.  From your custom design tokens schema you can
+              use plugins to generate code from your design tokens, from
+              CSS/Sass to TypeScript/JavaScript to univeral JSON for backend
+              code and APIs.
+            </p>
+            <div class="split">
+              <div>
+                <p>
+                  Thinking about your product design in “layers,” Cobalt sits
+                  below your design system, and beneath your UI. You still control
+                  your tokens; Cobalt only provides “buckets“ to put them in.
+                </p>
+                <p>
+                  In return you don’t have to build or manage custom software for
+                  your design tokens like so many teams often do. And you still have
+                  the flexibility to craft your design system in any way you’d like.
+                  Cobalt just bridges the gap between your tokens, and your design
+                  system/UI.
+                </p>
               </div>
-            </figure>
-          </div>
-        </section>
-        <section>
-          <h2>Try it out</h2>
-          <p>Cobalt is open source and free to use today!</p>
-          <h3 class="actions-title">Actions</h3>
-          <menu class="actions">
-            <a href="/editor" class="btn btn--icon">Try the online editor <svg><use xlink:href="#arrow-r"></use></svg></a>
-            <a href="/docs" class="btn btn--icon">Read documentation <svg><use xlink:href="#arrow-r"></use></svg></a>
-            <a href="https://github.com/drwpow/cobalt-ui/blob/main/examples/" class="btn btn--icon">See examples <svg><use xlink:href="#arrow-r"></use></svg></a>
-          </menu>
-        </section>
-      </main>
+              <figure class="visual">
+                <div class="visual-layers">
+                  <div class="visual-layer">UI</div>
+                  <div class="visual-layer">Platform</div>
+                  <div class="visual-layer">Design System</div>
+                  <div class="visual-base">
+                    <span class="visual-cobalt">Cobalt</span>
+                    <span class="visual-tokens">Tokens</span>
+                    <div class="visual-line-c"></div>
+                    <div class="visual-line-t"></div>
+                    <img class="visual-img" src="/token-hex.svg">
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </section>
+          <DocsPagination />
+        </main>
+      </div>
     </div>
     <Footer />
   </body>

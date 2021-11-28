@@ -2,9 +2,10 @@ export interface TokensFlat {
   'color.black': string;
   'color.dark_gray': string;
   'color.blue': string;
+  'color.green': string;
   'color.red': string;
   'color.white': string;
-  'type.family.suisse_intl': string;
+  'type.family.neue_montreal': string;
 }
 
 export interface Modes {
@@ -14,16 +15,17 @@ export interface Modes {
 export const tokens = {
   /** Color */
   color: {
-    black: '#040404',
+    black: '#00193F',
     dark_gray: '#282A37',
     blue: '#2B3FAA',
+    green: '#77EA6E',
     red: '#D0323A',
     white: '#FFFFFF',
   },
   /** Typography */
   type: {
     family: {
-      suisse_intl: 'Suisse Intl',
+      neue_montreal: 'Neue Montreal',
     },
   },
 };
@@ -31,9 +33,10 @@ export const tokens = {
 export const modes = {
   /** Color */
   color: {
-    black: { light: '#040404' },
+    black: { light: '#00193F' },
     dark_gray: { light: '#282A37' },
     blue: { light: '#2B3FAA' },
+    green: { light: '#77EA6E' },
     red: { light: '#D0323A' },
     white: { light: '#FFFFFF' },
   },

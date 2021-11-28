@@ -43,10 +43,10 @@ export default {
     };
   },
   watch: {
-    schema(newSchema) {
+    schema(newSchema, oldSchema) {
+      if (JSON.stringify(newSchema) === JSON.stringify(oldSchema)) return;
       this.yamlError = '';
-      const newYAML = yaml.dump(newSchema);
-      if (this.yaml !== newYAML) this.yaml = newYAML;
+      this.yaml = yaml.dump(newSchema);
     },
     yaml(newYAML, oldYAML) {
       if (newYAML === oldYAML) return;
@@ -306,29 +306,18 @@ export default {
   grid-template-columns: auto 40rem;
 
   &-btn {
-    background: rgba($color__blue, 0);
+    background: rgba($color__white, 0);
     border: 1.5px solid currentColor;
     color: currentColor;
     font-size: inherit;
     padding: 0.5em 0.75em;
     transition: background-color 150ms linear;
-
-    &:focus,
-    &:hover {
-      background-color: adjust-color($color: $color__blue, $lightness: 10%);
-    }
   }
 
   &-field {
-    background: $color__blue;
     display: flex;
     transition: background-color 150ms linear;
     width: 100%;
-
-    &:focus-within,
-    &:hover {
-      background: adjust-color($color: $color__blue, $lightness: 10%);
-    }
 
     &-label {
       align-items: center;
@@ -440,7 +429,7 @@ export default {
     position: relative;
 
     &::after {
-      background-image: linear-gradient($color__blue, rgba($color__blue, 0));
+      background-image: linear-gradient($color__white, rgba($color__white, 0));
       content: '';
       display: block;
       width: 100%;
@@ -453,7 +442,7 @@ export default {
 
     &-code,
     &-highlighted {
-      color: $color__white;
+      color: inherit;
       font-family: 'SF Mono', 'Menlo', monospace;
       font-size: 10pt;
       font-weight: 400;
@@ -483,6 +472,8 @@ export default {
 
       code {
         font-family: 'SF Mono', 'Menlo', monospace;
+        font-size: 1em;
+        line-height: 1.2;
       }
     }
 
@@ -495,6 +486,7 @@ export default {
 
     &-error {
       background: $color__red;
+      color: $color__white;
       bottom: 0;
       font-family: 'SF Mono', 'Menlo', monospace;
       font-size: 9pt;

@@ -1,0 +1,80 @@
+---
+import manifest from '../docs-manifest.json';
+
+const subPageRE = /^\/docs\/[^/]+\//
+const docsSection = Astro.request.url.pathname.split('/').slice(0, 3).join('/');
+
+function showSubPage(url) {
+  if (subPageRE.test(url)) {
+    if (Astro.request.url.pathname === '/') return false;
+    return docsSection && url.startsWith(docsSection);
+  }
+  return true;
+}
+---
+<style lang="scss">
+@use "../../tokens" as *;
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  font-size: 11pt;
+  margin-top: 1.5rem;
+  max-height: calc(100vh - 2rem);
+  padding-left: 1rem;
+  position: sticky;
+  top: 1.5rem;
+  width: 8rem;
+}
+
+.a {
+  color: $color__black;
+  display: flex;
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-decoration: none;
+
+  &::before {
+    background-color: $color__black;
+    border-radius: 50%;
+    content: '';
+    display: none;
+    height: 5px;
+    position: absolute;
+    left: 0.125rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 5px;
+  }
+
+  &[aria-current=page] {
+    font-weight: 600;
+
+    &::before {
+      display: block;
+    }
+  }
+
+  &-icon {
+    margin-left: auto;
+    height: 1em;
+    width: 1em;
+  }
+
+  &--subpage {
+    margin-left: 1rem;
+
+    &::before {
+      left: -0.875rem;
+    }
+  }
+}
+</style>
+
+<nav class="nav">
+  {manifest.pages.map((page) => showSubPage(page.pathname) && (
+    <a class={`a${subPageRE.test(page.pathname) ? ' a--subpage' : ''}`} href={page.pathname} aria-current={Astro.request.url.pathname === page.pathname ? 'page' : undefined}>
+      {page.title}
+    </a>
+  ) || undefined)}
+</nav>

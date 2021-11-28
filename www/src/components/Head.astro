@@ -1,7 +1,13 @@
 ---
+import { tokens } from '../../tokens/index.ts';
+
 const { title = "Cobalt" } = Astro.props;
 ---
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1" name="viewport">
+<meta name="theme-color" content={tokens.color.blue}>
 <link rel="stylesheet" type="text/css" href={Astro.resolve('../styles/app.scss')}>
+<link rel="shortcut icon" type="image/png" href="/favicon-32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="128x128" href="/favicon-128.png">
+<link rel="apple-touch-icon" type="image/png" sizes="512x512" href="/favicon-512.png">
 <title>{title}</title>

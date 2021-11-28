@@ -44,7 +44,7 @@ export class ConfigLoader {
 
   async load(): Promise<Config> {
     async function loadDefaultPlugins(): Promise<Plugin[]> {
-      return await Promise.all(['@cobalt-ui/plugin-json', '@cobalt-ui/plugin-sass', '@cobalt-ui/plugin-ts'].map((spec) => import(spec).then((m) => m.default())));
+      return await Promise.all(['@cobalt-ui/plugin-json'].map((spec) => import(spec).then((m) => m.default())));
     }
 
     let m = await import(fileURLToPath(this.filePath));

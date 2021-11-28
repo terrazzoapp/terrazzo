@@ -1,3 +1,8 @@
+---
+title: TypeScript Plugin for Cobalt
+layout: ../../../layouts/docs.astro
+---
+
 # @cobalt-ui/plugin-ts
 
 Generate TypeScript output from design tokens.

@@ -7,8 +7,8 @@ tokens:
     tokens:
       black:
         value:
-          default: '#040404'
-          light: '#040404'
+          default: '#00193F'
+          light: '#00193F'
       dark_gray:
         value:
           default: '#282A37'
@@ -17,6 +17,10 @@ tokens:
         value:
           default: '#2B3FAA'
           light: '#2B3FAA'
+      green:
+        value:
+          default: '#77EA6E'
+          light: '#77EA6E'
       red:
         value:
           default: '#D0323A'
@@ -32,5 +36,5 @@ tokens:
       family:
         type: group
         tokens:
-          suisse_intl:
-            value: 'Suisse Intl'
+          neue_montreal:
+            value: 'Neue Montreal'

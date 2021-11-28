@@ -3,6 +3,11 @@
 html,
 body {
   margin: 0;
+  min-height: 100vh;
+}
+
+html {
+  background-color: $color__blue;
 }
 
 * {
@@ -10,27 +15,46 @@ body {
 }
 
 body {
-  background-color: $color__blue;
-  color: $color__white;
-  font-family: '#{$type__family__suisse-intl}', -system-ui, 'Helvetica', sans-serif;
+  background-color: $color__white;
+  color: $color__black;
+  font-family: '#{$type__family__neue_montreal}', -system-ui, 'Helvetica', sans-serif;
   line-height: 1;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1 {
+  font-size: 28pt;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 22pt;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 18pt;
+  font-weight: 525;
+}
+
+h4 {
+  font-size: 1.2em;
   font-weight: 600;
 }
 
+h5,
+h6 {
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
 a {
-  color: currentColor;
+  color: $color__blue;
 }
 
 p {
   margin: 1.5em 0;
+  max-width: 50em;
 }
 
 menu {
@@ -68,4 +92,10 @@ strong {
 figure {
   margin-left: 0;
   margin-right: 0;
+}
+
+pre,
+code {
+  font-family: 'SF Mono', 'Menlo', monospace;
+  line-height: 1.5;
 }

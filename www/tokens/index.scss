@@ -8,25 +8,29 @@
 //  Color
 // -----------------
 
-$color__black: #040404;
+$color__black: #00193F;
 $color__dark_gray: #282A37;
 $color__blue: #2B3FAA;
+$color__green: #77EA6E;
 $color__red: #D0323A;
 $color__white: #FFFFFF;
 // -----------------
 //  Typography
 // -----------------
 
-$type__family__suisse_intl: Suisse Intl;
+$type__family__neue_montreal: Neue Montreal;
 $-cobalt_token_modes: (
   $color__black: (
-    light: #040404,
+    light: #00193F,
   ),
   $color__dark_gray: (
     light: #282A37,
   ),
   $color__blue: (
     light: #2B3FAA,
+  ),
+  $color__green: (
+    light: #77EA6E,
   ),
   $color__red: (
     light: #D0323A,

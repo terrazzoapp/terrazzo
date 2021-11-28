@@ -1,3 +1,8 @@
+---
+title: CSS Plugin for Cobalt
+layout: ../../../layouts/docs.astro
+---
+
 # @cobalt-ui/plugin-css
 
 Generate CSS output for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.

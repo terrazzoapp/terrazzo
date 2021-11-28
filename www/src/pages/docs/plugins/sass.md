@@ -1,3 +1,8 @@
+---
+title: Sass Plugin for Cobalt
+layout: ../../../layouts/docs.astro
+---
+
 # @cobalt-ui/plugin-sass
 
 Generate Sass output for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
