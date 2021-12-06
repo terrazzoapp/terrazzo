@@ -48,6 +48,11 @@ h6 {
   margin-bottom: 2rem;
 }
 
+em,
+i {
+  font-variation-settings: 'ital' 900; // needed for variable font
+}
+
 a {
   color: $color__blue;
 }
@@ -92,6 +97,10 @@ strong {
 figure {
   margin-left: 0;
   margin-right: 0;
+}
+
+code {
+  text-decoration: inherit;
 }
 
 pre,

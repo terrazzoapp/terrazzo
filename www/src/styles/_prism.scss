@@ -1,9 +1,17 @@
 @use 'sass:color';
 @use '../../tokens' as *;
 
+.language-yaml,
+.language-js,
+.language-ts {
+  .comment {
+    color: color.scale($color: $color__blue, $lightness: 30%, $saturation: -50%);
+  }
+}
+
 .language-diff {
   .deleted {
-    color: adjust-color($color: $color__red, $lightness: 10%);
+    color: color.scale($color: $color__red, $lightness: 25%);
   }
 
   .inserted {
@@ -11,12 +19,14 @@
   }
 }
 
+.language-js {
+  .keyword {
+    color: color.scale($color: $color__blue, $lightness: 50%, $saturation: 100%);
+  }
+}
+
 .language-yaml {
   .atrule {
-    color: adjust-color($color: $color__blue, $lightness: 30%, $saturation: 100%);
-  }
-
-  .comment {
-    opacity: 0.5;
+    color: color.scale($color: $color__blue, $lightness: 50%, $saturation: 100%);
   }
 }

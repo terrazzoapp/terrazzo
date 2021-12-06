@@ -36,6 +36,13 @@
   li {
     margin-bottom: 0.125rem;
     margin-top: 0.125rem;
+
+    p:first-of-type {
+      margin-top: 0;
+    }
+    p:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
   > *:first-child {

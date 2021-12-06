@@ -2,12 +2,17 @@
 
 /* eslint-disable no-console */
 
+import dotenv from 'dotenv';
+dotenv.config();
+
 import { Builder, ConfigLoader, parse, Validator } from '@cobalt-ui/core';
 import chokidar from 'chokidar';
 import fs from 'fs';
 import * as color from 'kleur/colors';
 import { performance } from 'perf_hooks';
+import yaml from 'js-yaml';
 import { fileURLToPath } from 'url';
+import loadFigma from '../dist/figma/index.js';
 
 const [, , cmd, ...args] = process.argv;
 
@@ -15,9 +20,20 @@ const [, , cmd, ...args] = process.argv;
 async function main() {
   const start = performance.now();
 
+  // ---
+  // half-run commands: --help, --version, init
+
+  // --help
   if (args.includes('--help')) {
     showHelp();
-    return;
+    process.exit(0);
+  }
+
+  // --version
+  if (cmd === '--version' || cmd === '-v') {
+    const { version } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+    console.log(version);
+    process.exit(0);
   }
 
   // load config
@@ -26,8 +42,19 @@ async function main() {
   const configLoader = new ConfigLoader(configI > 0 ? args[configI + 1] : undefined);
   const config = await configLoader.load();
 
+  // init
+  if (cmd === 'init') {
+    if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
+    fs.writeFileSync(config.tokens, fs.readFileSync(new URL('../tokens-example.yaml', import.meta.env)));
+    console.log(`  ${color.green('✔')} ${config.tokens} created`);
+    process.exit(0);
+  }
+
+  // ---
+  // full-run commands: build, sync, validate
+
   // load tokens.yaml
-  if (!fs.existsSync(config.tokens)) throw new Error(`Could not locate ${fileURLToPath(config.tokens)}`);
+  if (!fs.existsSync(config.tokens)) throw new Error(`Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`cobalt init\`.`);
   let rawSchema = fs.readFileSync(config.tokens, 'utf8');
   let schema = parse(fs.readFileSync(config.tokens));
 
@@ -77,6 +104,47 @@ async function main() {
       printErrors({ errors, warnings });
       break;
     }
+    case 'sync': {
+      const tokens = await loadFigma(config);
+      for (const [k, v] of Object.entries(tokens)) {
+        let node = schema;
+        const parts = k.split('.');
+        while (parts.length) {
+          const next = parts.shift();
+          if (node.type === 'group' || node.tokens) {
+            const isFinalToken = parts.length === 0;
+            if (node.tokens[next]) {
+              if (isFinalToken) {
+                for (const [mode, value] of Object.entries(v)) {
+                  node.tokens[next].value[mode] = value;
+                }
+                break;
+              } else {
+                node = node.tokens[next];
+                continue;
+              }
+            } else {
+              if (isFinalToken) {
+                node.tokens[next] = { type: 'token', value: v };
+                break;
+              } else {
+                node.tokens[next] = { type: 'group', tokens: {} };
+              }
+              node = node.tokens[next];
+              continue;
+            }
+          }
+          if (parts.length > 1) throw new Error(`Cannot create group "${next}" inside a token (${k})`);
+          for (const [mode, value] of Object.entries(v)) {
+            node.value[mode] = value;
+          }
+        }
+      }
+
+      fs.writeFileSync(config.tokens, yaml.dump(schema));
+      console.log(`  ${color.green('✔')} Tokens updated from Figma`);
+      break;
+    }
     case 'validate': {
       console.log(color.underline(fileURLToPath(filePath)));
 
@@ -120,6 +188,8 @@ function showHelp() {
   [commands]
     build           Build token artifacts from tokens.yaml
       --watch, -w   Watch tokens.yaml for changes and recompile
+    sync            Sync tokens.yaml with Figma
+    init            Create a starter tokens.yaml file
     validate        Validate tokens.yaml
 
   [options]

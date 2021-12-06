@@ -3,10 +3,23 @@ import type { Plugin } from './build';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 
+export interface FigmaMapping {
+  [url: string]: {
+    [ComponentName: string]: {
+      fill?: string | string[];
+      fills?: string | string[];
+      stroke?: string | string[];
+      strokes?: string | string[];
+      text?: string | string[];
+    };
+  };
+}
+
 export interface Config {
   tokens: URL;
   outDir: URL;
   plugins: Plugin[];
+  figma?: FigmaMapping;
 }
 
 export interface UserConfig {
@@ -16,6 +29,8 @@ export interface UserConfig {
   outDir?: string;
   /** specify plugins (default: @cobalt-ui/plugin-json, @cobalt-ui/plugin-sass, @cobalt-ui/plugin-ts) */
   plugins: Plugin[];
+  /** add figma keys */
+  figma?: FigmaMapping;
 }
 
 export class ConfigLoader {

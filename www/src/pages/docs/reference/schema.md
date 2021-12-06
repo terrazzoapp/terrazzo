@@ -1,19 +1,11 @@
 ---
 title: tokens.yaml Specification
-layout: ../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 # Cobalt Schema Specification v1
 
-## Overview
-
-Cobalt is not a design system. It’s a system for managing _your_ design system! You’ll need to organize your colors, typography, and such into a **Cobalt schema**. If you’d like to try using Cobalt with an example design system, see [the
-examples][examples].
-
-A Cobalt schema (also referred to as `tokens.yaml`) is written in [YAML][yaml]. It’s inspired by the flexibility of [OpenAPI][openapi] and [JSON Schema][jsonschema], though you don’t have to know either. `tokens.yaml` is designed to be easy to edit and
-read.
-
-A `tokens.yaml` consists of 2 parts: the [Document root](#document-root) and [nested tokens](#tokens).
+`tokens.yaml` consists of 2 parts: the [Document root](#document-root) and [nested tokens](#tokens).
 
 ## Document root
 

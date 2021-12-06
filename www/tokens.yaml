@@ -3,32 +3,38 @@ tokens:
   color:
     name: Color
     type: group
-    modes: ['light']
+    modes:
+      - light
     tokens:
       black:
         value:
-          default: '#00193F'
+          default: '#00193f'
           light: '#00193F'
       dark_gray:
         value:
-          default: '#282A37'
+          default: '#282a37'
           light: '#282A37'
       blue:
         value:
-          default: '#2B3FAA'
+          default: '#2b3faa'
           light: '#2B3FAA'
       green:
         value:
-          default: '#77EA6E'
+          default: '#77ea6e'
           light: '#77EA6E'
       red:
         value:
           default: '#D0323A'
-          light: '#D0323A'
+          light: '#d0323a'
       white:
         value:
           default: '#FFFFFF'
           light: '#FFFFFF'
+      purple:
+        type: token
+        value:
+          light: '#6a35d9'
+          default: '#6a35d9'
   type:
     name: Typography
     type: group
@@ -37,4 +43,4 @@ tokens:
         type: group
         tokens:
           neue_montreal:
-            value: 'Neue Montreal'
+            value: Neue Montreal

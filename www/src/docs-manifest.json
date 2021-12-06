@@ -5,12 +5,16 @@
       "pathname": "/"
     },
     {
-      "title": "tokens.yaml",
-      "pathname": "/docs/schema"
+      "title": "Getting Started",
+      "pathname": "/docs/getting-started"
     },
     {
-      "title": "Usage",
-      "pathname": "/docs/usage"
+      "title": "Figma",
+      "pathname": "/docs/getting-started/figma"
+    },
+    {
+      "title": "Generation",
+      "pathname": "/docs/getting-started/generation"
     },
     {
       "title": "Concepts",
@@ -29,8 +33,8 @@
       "pathname": "/docs/concepts/color"
     },
     {
-      "title": "Config",
-      "pathname": "/docs/config"
+      "title": "Goals",
+      "pathname": "/docs/concepts/project-goals"
     },
     {
       "title": "Plugins",
@@ -51,6 +55,18 @@
     {
       "title": "TypeScript",
       "pathname": "/docs/plugins/ts"
+    },
+    {
+      "title": "Reference",
+      "pathname": "/docs/reference"
+    },
+    {
+      "title": "tokens.yaml",
+      "pathname": "/docs/reference/schema"
+    },
+    {
+      "title": "Config",
+      "pathname": "/docs/reference/config"
     }
   ]
 }

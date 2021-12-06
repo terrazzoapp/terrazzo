@@ -1,0 +1,37 @@
+name: My Tokens
+description: Automatically generated with `cobalt init`
+tokens:
+  color:
+    name: Colors
+    type: group
+    modes:
+      - standard
+      - colorblind
+    tokens:
+      blue:
+        type: token
+        value:
+          default: '#54aeff'
+          standard: '#54aeff'
+          colorblind: '#54aeff'
+      green:
+        type: token
+        value:
+          default: '#4ac26b'
+          standard: '#4ac26b'
+          colorblind: '#35adff'
+      red:
+        type: token
+        value:
+          default: '#fa4549'
+          standard: '#fa4549'
+          colorblind: '#d08002'
+  type:
+    name: Typography
+    type: group
+    tokens:
+      family:
+        ibm_plex:
+          type: token
+          value:
+            default: IBM Plex Sans

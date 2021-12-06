@@ -23,7 +23,14 @@
   },
   "dependencies": {
     "@cobalt-ui/core": "^0.0.0",
+    "better-color-tools": "^0.0.2",
     "chokidar": "^3.5.2",
-    "kleur": "^4.1.4"
+    "dotenv": "^10.0.0",
+    "js-yaml": "^4.1.0",
+    "kleur": "^4.1.4",
+    "node-fetch": "^3.1.0"
+  },
+  "devDependencies": {
+    "figma-js": "^1.14.0"
   }
 }
