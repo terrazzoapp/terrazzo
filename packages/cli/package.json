@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/cli",
   "description": "Schemas and tools for managing design tokens",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -22,7 +22,7 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.0.0",
+    "@cobalt-ui/core": "^0.0.1",
     "better-color-tools": "^0.0.2",
     "chokidar": "^3.5.2",
     "dotenv": "^10.0.0",

@@ -24,6 +24,6 @@
     "@cobalt-ui/utils": "^0.0.0"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.0.0"
+    "@cobalt-ui/core": "^0.0.1"
   }
 }

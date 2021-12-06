@@ -19,7 +19,7 @@
     "vue": "^3.2.23"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.0.0",
+    "@cobalt-ui/cli": "^0.0.1",
     "@cobalt-ui/plugin-json": "workspace:^0.0.0",
     "@cobalt-ui/plugin-sass": "workspace:^0.0.0",
     "@cobalt-ui/plugin-ts": "workspace:^0.0.0",
