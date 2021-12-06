@@ -24,7 +24,7 @@ tokens:
           light: '#77EA6E'
       red:
         value:
-          default: '#D0323A'
+          default: '#d0323a'
           light: '#d0323a'
       white:
         value:

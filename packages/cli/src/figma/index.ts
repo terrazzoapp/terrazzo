@@ -1,7 +1,7 @@
 import type { Config, TokenValue } from '@cobalt-ui/core';
 import type figma from 'figma-js';
 import fetch from 'node-fetch';
-import { colorToHex } from './rgb.js';
+import { colorToHex } from './paint.js';
 
 const FIGMA_API = `https://api.figma.com/`;
 

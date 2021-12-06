@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.0.1",
-    "@cobalt-ui/plugin-json": "workspace:^0.0.0",
-    "@cobalt-ui/plugin-sass": "workspace:^0.0.0",
-    "@cobalt-ui/plugin-ts": "workspace:^0.0.0",
+    "@cobalt-ui/plugin-json": "^0.0.0",
+    "@cobalt-ui/plugin-sass": "^0.0.0",
+    "@cobalt-ui/plugin-ts": "^0.0.0",
     "astro": "^0.21.10",
     "morphdom": "^2.6.1",
     "node-fetch": "^3.1.0",

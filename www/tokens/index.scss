@@ -8,12 +8,13 @@
 //  Color
 // -----------------
 
-$color__black: #00193F;
-$color__dark_gray: #282A37;
-$color__blue: #2B3FAA;
-$color__green: #77EA6E;
-$color__red: #D0323A;
+$color__black: #00193f;
+$color__dark_gray: #282a37;
+$color__blue: #2b3faa;
+$color__green: #77ea6e;
+$color__red: #d0323a;
 $color__white: #FFFFFF;
+$color__purple: #6a35d9;
 // -----------------
 //  Typography
 // -----------------
@@ -33,10 +34,13 @@ $-cobalt_token_modes: (
     light: #77EA6E,
   ),
   $color__red: (
-    light: #D0323A,
+    light: #d0323a,
   ),
   $color__white: (
     light: #FFFFFF,
+  ),
+  $color__purple: (
+    light: #6a35d9,
   ),
 );
 

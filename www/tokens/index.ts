@@ -5,6 +5,7 @@ export interface TokensFlat {
   'color.green': string;
   'color.red': string;
   'color.white': string;
+  'color.purple': string;
   'type.family.neue_montreal': string;
 }
 
@@ -15,12 +16,13 @@ export interface Modes {
 export const tokens = {
   /** Color */
   color: {
-    black: '#00193F',
-    dark_gray: '#282A37',
-    blue: '#2B3FAA',
-    green: '#77EA6E',
-    red: '#D0323A',
+    black: '#00193f',
+    dark_gray: '#282a37',
+    blue: '#2b3faa',
+    green: '#77ea6e',
+    red: '#d0323a',
     white: '#FFFFFF',
+    purple: '#6a35d9',
   },
   /** Typography */
   type: {
@@ -37,8 +39,9 @@ export const modes = {
     dark_gray: { light: '#282A37' },
     blue: { light: '#2B3FAA' },
     green: { light: '#77EA6E' },
-    red: { light: '#D0323A' },
+    red: { light: '#d0323a' },
     white: { light: '#FFFFFF' },
+    purple: { light: '#6a35d9' },
   },
   /** Typography */
 };

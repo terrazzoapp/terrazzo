@@ -13,8 +13,7 @@
   },
   "homepage": "https://cobalt-ui.pages.dev",
   "scripts": {
-    "build": "run-s build:*",
-    "build:utils": "cd packages/utils && npm run build",
+    "build": "npm run build:utils && run-p build:*",
     "build:core": "cd packages/core && npm run build",
     "build:cli": "cd packages/cli && npm run build",
     "build:plugin-css": "cd packages/plugin-css && npm run build",
@@ -24,7 +23,6 @@
     "cf:build": "cd www && npm install && npm run build",
     "changeset": "changeset",
     "dev": "run-p dev:*",
-    "dev:utils": "cd packages/utils && npm run dev",
     "dev:core": "cd packages/core && npm run dev",
     "dev:cli": "cd packages/cli && npm run dev",
     "dev:plugin-css": "cd packages/plugin-css && npm run dev",
@@ -32,15 +30,19 @@
     "dev:plugin-sass": "cd packages/plugin-sass && npm run dev",
     "dev:plugin-ts": "cd packages/plugin-ts && npm run dev",
     "lint": "eslint \"packages/**/*.{js,ts}\"",
+    "test": "run-p test:*",
+    "test:cli": "cd packages/cli && npm run test",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@changesets/cli": "^2.18.1",
     "@typescript-eslint/eslint-plugin": "^5.5.0",
     "@typescript-eslint/parser": "^5.5.0",
+    "chai": "^4.3.4",
     "eslint": "^8.4.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "mocha": "^9.1.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
     "typescript": "^4.5.2"

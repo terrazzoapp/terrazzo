@@ -19,7 +19,8 @@
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "test": "mocha --parallel \"test/**/*.test.js\""
   },
   "dependencies": {
     "@cobalt-ui/core": "^0.0.1",
@@ -28,7 +29,8 @@
     "dotenv": "^10.0.0",
     "js-yaml": "^4.1.0",
     "kleur": "^4.1.4",
-    "node-fetch": "^3.1.0"
+    "node-fetch": "^3.1.0",
+    "number-precision": "^1.5.1"
   },
   "devDependencies": {
     "figma-js": "^1.14.0"
