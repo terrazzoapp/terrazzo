@@ -1,7 +1,6 @@
 import type { Plugin } from './build';
 
 import fs from 'fs';
-import { fileURLToPath } from 'url';
 
 export interface FigmaMapping {
   [url: string]: {
@@ -62,7 +61,7 @@ export class ConfigLoader {
       return await Promise.all(['@cobalt-ui/plugin-json'].map((spec) => import(spec).then((m) => m.default())));
     }
 
-    let m = await import(fileURLToPath(this.filePath));
+    let m = await import(this.filePath.href);
     let config: any = (m && m.default) || {};
 
     // partial config: fill in defaults
