@@ -5,11 +5,26 @@ import fs from 'fs';
 export interface FigmaMapping {
   [url: string]: {
     [ComponentName: string]: {
-      fill?: string | string[];
-      fills?: string | string[];
-      stroke?: string | string[];
-      strokes?: string | string[];
-      text?: string | string[];
+      /** Place component within group */
+      group: string;
+      /** Rename component within tokens.yaml */
+      name?: string;
+
+      /** "Fill" -> modes */
+      fill?: string[];
+      /** "Stroke" -> modes */
+      stroke?: string[];
+      /** Font family -> modes */
+      fontFamily?: string[];
+      /** Font size -> modes */
+      fontSize?: string[];
+      /** Font style -> modes */
+      fontStyle?: string[];
+      /** Font weight -> modes */
+      fontWeight?: string[];
+
+      /* Save component as file? */
+      file?: string;
     };
   };
 }

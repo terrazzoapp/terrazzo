@@ -85,10 +85,13 @@ export default {
 <template>
   <div id="editor" class="editor-wrapper">
     <div class="editor">
+      <!--
       <div class="editor-yaml">
         <textarea class="editor-yaml-code" spellcheck="false" v-model="yaml"></textarea>
         <div v-if="yamlError" class="editor-yaml-error">{{ yamlError }}</div>
       </div>
+      -->
+      <p>Come back soon! I’m still playing around with what I want this to look like.</p>
     </div>
   </div>
 </template>
@@ -127,8 +130,8 @@ export default {
     }
 
     &-error {
-      background: $color__red;
-      color: $color__white;
+      background: $color__Red;
+      color: $color__White;
       bottom: 0;
       font-family: 'SF Mono', 'Menlo', monospace;
       font-size: 9pt;

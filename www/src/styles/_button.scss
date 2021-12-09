@@ -1,20 +1,20 @@
 @use '../../tokens' as *;
 
 .btn {
-  background-color: $color__white;
+  background-color: $color__White;
   border-radius: 0.5em;
-  border: 3px solid $color__blue;
-  color: $color__blue;
+  border: 3px solid $color__Blue;
+  color: $color__Blue;
   display: inline-block;
   font-size: inherit;
   font-weight: 500;
-  outline: 2px solid rgba($color__white, 0);
+  outline: 2px solid rgba($color__White, 0);
   padding: 0.875em 1.125em;
   text-decoration: none;
   transition: outline 150ms linear;
 
   &:focus {
-    outline: 2px solid $color__white;
+    outline: 2px solid $color__White;
   }
 
   &--icon {

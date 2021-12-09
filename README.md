@@ -1,1 +1,5 @@
-⚠️ This project is in development. Check back later!
+# Cobalt
+
+Automated design token management
+
+**[👉 Read Documentation](https://cobalt-ui.pages.dev)**

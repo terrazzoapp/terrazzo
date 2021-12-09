@@ -1,55 +1,137 @@
-import type { Config, TokenValue } from '@cobalt-ui/core';
-import type figma from 'figma-js';
-import fetch from 'node-fetch';
-import { colorToHex } from './paint.js';
+import type { Config, FileNode, TokenNode } from '@cobalt-ui/core';
+import fs from 'fs';
+import path from 'path';
+import { colorToHex, gradientToCSS } from './paint.js';
+import { collectComponents, collectFills, collectStrokes, fetchDoc, fetchImg } from './utils.js';
 
-const FIGMA_API = `https://api.figma.com/`;
-
-async function load(config: Config): Promise<Record<string, TokenValue>> {
+async function load(config: Config): Promise<Record<string, TokenNode | FileNode>> {
   if (!config.figma) throw new Error(`"figma" missing in cobalt.config.mjs (see https://cobalt-ui.pages.dev)`);
   if (!Object.keys(config.figma).length) throw new Error(`No Figma files found in cobalt.config.mjs`);
 
-  const tokenUpdates: Record<string, TokenValue> = {};
+  const tokenUpdates: Record<string, TokenNode | FileNode> = {};
+
+  let totalFiles = 0;
+  for (const doc of Object.values(config.figma)) {
+    for (const token of Object.values(doc)) {
+      if (token.file) totalFiles++;
+    }
+  }
+
+  let fileDone = 0;
 
   await Promise.all(
     Object.entries(config.figma).map(async ([shareURL, mappings]) => {
       const fileMatch = shareURL.match(/\/file\/([^/]+)/);
       if (!fileMatch) throw new Error(`Bad Figma URL: "${shareURL}". Please use URL from "Share" > "Copy Link"`);
-      const doc = await fetchFile(fileMatch[1]);
+      const docID = fileMatch[1];
+      const doc = await fetchDoc(docID);
+
+      // console.log(JSON.stringify(doc, undefined, 2));
 
       const components = collectComponents(doc.document);
-      for (const [name, properties] of Object.entries(mappings)) {
-        const component = components.get(name);
-        if (!component) {
-          console.warn(`Could not find component "${name}" in ${shareURL}`); // eslint-disable-line no-console
-          continue;
-        }
+      for (const [figmaName, tokenMeta] of Object.entries(mappings)) {
+        const component = components.get(figmaName);
+        if (!component) throw new Error(`Could not find component "${figmaName}". It must be named this exactly. If using shared components, please use the URL of the file that component is defined in.\n  "${shareURL}"`);
 
-        for (const [property, cobaltIDs] of Object.entries(properties)) {
-          switch (property) {
-            case 'fill':
-            case 'fills': {
-              const fills = collectFills(component);
-              const ids = Array.isArray(cobaltIDs) ? cobaltIDs : [cobaltIDs];
+        const { name, group, ...properties } = tokenMeta;
 
-              // TODO: add gradients
+        const id = [group, name || figmaName.replace(/\s+/g, '_')].join('.');
+        if (!tokenUpdates[id]) tokenUpdates[id] = { type: 'token', value: {} } as TokenNode;
 
-              if (!fills[0].color) break;
-              const hex = colorToHex(fills[0].color);
+        await Promise.all(
+          Object.entries(properties).map(async ([property, modes]) => {
+            switch (property) {
+              case 'fill': {
+                const [fill] = collectFills(component);
+                if (!fill) throw new Error(`Could not find fill on component "${figmaName}"`);
 
-              for (const key of ids) {
-                const parts = key.split('.');
-                const value = parts.pop() as string;
-                const id = parts.join('.');
-                tokenUpdates[id] = { ...(tokenUpdates[id] || {}), [value]: hex } as TokenValue;
+                let value: string | undefined;
+                // gradient
+                if (fill.type === 'GRADIENT_ANGULAR' || fill.type === 'GRADIENT_DIAMOND' || fill.type == 'GRADIENT_LINEAR' || fill.type == 'GRADIENT_RADIAL') {
+                  value = gradientToCSS(fill);
+                }
+                // color
+                else if (fill.color) {
+                  value = colorToHex(fill.color);
+                }
+                if (!value) throw new Error(`Could not read fill on component "${figmaName}"`);
+
+                if (Array.isArray(modes)) {
+                  for (const mode of modes) {
+                    tokenUpdates[id].value[mode] = value;
+                  }
+                } else if (typeof modes === 'string') {
+                  tokenUpdates[id].value[modes] = value;
+                } else {
+                  tokenUpdates[id].value.default = value;
+                }
+                break;
               }
-              break;
+              case 'file': {
+                if (typeof modes !== 'string') throw new Error(`Invalid filename: "${modes}"`);
+                const filePath = modes.replace(/^[/\\]/, '');
+                tokenUpdates[id].type = 'file';
+                const format = path.extname(filePath).replace(/^\./, '');
+
+                // show progress
+                if (fileDone == 0) console.log(''); // eslint-disable-line no-console
+                const progressBar = new Array(Math.floor(10 * (fileDone / totalFiles)) + 1).join('\u2588');
+                const progressBg = new Array(9 - Math.floor(10 * (fileDone / totalFiles))).join('\u2591');
+                process.stdout.write(`\r  Updating files…    ${progressBar}${progressBg}  [${padRight(`${fileDone}`, `${totalFiles}`.length)} / ${totalFiles}]   `);
+                const imgData = await fetchImg(docID, component.id, format);
+                fileDone++;
+                process.stdout.write(`\r  Updating files…    ${progressBar}${progressBg}   [${padRight(`${fileDone}`, `${totalFiles}`.length)} / ${totalFiles}]   `);
+                if (fileDone == totalFiles) process.stdout.write('\r                              \r');
+
+                // write file
+                const fileURL = new URL(filePath, `file://${process.cwd()}/`);
+                fs.mkdirSync(new URL('./', fileURL), { recursive: true });
+                fs.writeFileSync(fileURL, imgData);
+
+                // update tokens.yaml
+                tokenUpdates[id].value.default = filePath;
+                break;
+              }
+              case 'fontFamily': {
+                break;
+              }
+              case 'fontSize': {
+                break;
+              }
+              case 'fontStyle': {
+                break;
+              }
+              case 'fontWeight': {
+                break;
+              }
+              case 'stroke': {
+                const [stroke] = collectStrokes(component);
+                if (!stroke) throw new Error(`Could not find stroke on component "${figmaName}"`);
+
+                let value: string | undefined;
+                if (stroke.strokes[0] && stroke.strokes[0].color) {
+                  value = colorToHex(stroke.strokes[0].color);
+                }
+
+                if (!value) throw new Error(`Could not read stroke on component "${figmaName}"`);
+
+                if (Array.isArray(modes)) {
+                  for (const mode of modes) {
+                    tokenUpdates[id].value[mode] = value;
+                  }
+                } else if (typeof modes === 'string') {
+                  tokenUpdates[id].value[modes] = value;
+                } else {
+                  tokenUpdates[id].value.default = value;
+                }
+                break;
+              }
+              default: {
+                console.warn(`Unknown property "${property}" (it may not be implemented yet)`); // eslint-disable-line no-console
+              }
             }
-            default: {
-              console.warn(`Unknown property "${property}" (it may not be implemented yet)`); // eslint-disable-line no-console
-            }
-          }
-        }
+          })
+        );
       }
     })
   );
@@ -57,53 +139,12 @@ async function load(config: Config): Promise<Record<string, TokenValue>> {
   return tokenUpdates;
 }
 
-/** collect all components within document */
-function collectComponents(node: figma.Node, components: Map<string, figma.Component> = new Map()): Map<string, figma.Component> {
-  if (node.type === 'COMPONENT') {
-    if (components.has(node.name)) {
-      console.warn(`Duplicate component name found "${node.name}". Tokens may not generate as expected.`); // eslint-disable-line no-console
-    } else {
-      components.set(node.name, node);
-    }
-    return components;
-  }
-
-  const { children } = node as figma.Group;
-  if (!Array.isArray(children) || !children.length) return components;
-
-  for (const child of children) {
-    collectComponents(child, components);
-  }
-
-  return components;
-}
-
-/** get Figma document */
-async function fetchFile(id: string): Promise<figma.FileResponse> {
-  const { FIGMA_API_KEY } = process.env;
-  if (!FIGMA_API_KEY) throw new Error(`FIGMA_API_KEY not set`);
-  return fetch(new URL(`/v1/files/${id}`, FIGMA_API).href, {
-    method: 'GET',
-    headers: {
-      'X-Figma-Token': FIGMA_API_KEY,
-    },
-  }).then((res) => res.json()) as any;
-}
-
-/** collect fills from node */
-function collectFills(node: figma.Node, allFills: figma.Paint[] = []): figma.Paint[] {
-  const { fills, children } = node as figma.FrameBase;
-  if (Array.isArray(fills) && fills.length) {
-    for (const fill of fills) {
-      if (fill.visible !== false) allFills.push(fill);
-    }
-  }
-  if (Array.isArray(children) && children.length) {
-    for (const child of children) {
-      collectFills(child, allFills);
-    }
-  }
-  return allFills;
-}
-
 export default load;
+
+function padRight(input: string, width = 2): string {
+  let output = input;
+  while (output.length < width) {
+    output += ' ';
+  }
+  return output;
+}

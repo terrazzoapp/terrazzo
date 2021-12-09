@@ -1,14 +1,14 @@
-import type figma from 'figma-js';
+import type Figma from 'figma-js';
 import color from 'better-color-tools';
 import NP from 'number-precision';
 
 /** convert Figma Color to hex */
-export function colorToHex({ r, g, b, a }: figma.Color): string {
+export function colorToHex({ r, g, b, a }: Figma.Color): string {
   return color.from([Math.round(r * 255), Math.round(g * 255), Math.round(b * 255), a]).hex;
 }
 
 /** convert Figma Gradient to CSS */
-export function gradientToCSS(node: figma.Paint): string {
+export function gradientToCSS(node: Figma.Paint): string {
   switch (node.type) {
     case 'GRADIENT_ANGULAR':
       return angularGradient(node);
@@ -23,17 +23,17 @@ export function gradientToCSS(node: figma.Paint): string {
   }
 }
 
-function angularGradient(node: figma.Paint): string {
+function angularGradient(node: Figma.Paint): string {
   console.log(node);
   return 'linear-gradient()';
 }
 
-function diamondGradient(node: figma.Paint): string {
+function diamondGradient(node: Figma.Paint): string {
   console.log(node);
   return 'linear-gradient()';
 }
 
-function linearGradient(node: figma.Paint): string {
+function linearGradient(node: Figma.Paint): string {
   let deg = 0;
   if (node.gradientHandlePositions) {
     const [{ x: x1, y: y1 }, { x: x2, y: y2 }] = node.gradientHandlePositions;
@@ -43,7 +43,7 @@ function linearGradient(node: figma.Paint): string {
   return `linear-gradient(${deg}deg, ${colors.join(', ')})`;
 }
 
-function radialGradient(node: figma.Paint): string {
+function radialGradient(node: Figma.Paint): string {
   console.log(node);
   return 'radial-gradient()';
 }

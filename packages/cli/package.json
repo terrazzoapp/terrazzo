@@ -18,7 +18,7 @@
     "cobalt": "./bin/cli.js"
   },
   "scripts": {
-    "build": "tsc --build --clean",
+    "build": "rf -rf dist && tsc",
     "dev": "tsc -w",
     "test": "mocha --parallel \"test/**/*.test.js\""
   },

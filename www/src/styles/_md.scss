@@ -13,9 +13,18 @@
     margin-top: 4rem;
   }
 
+  > h1:first-of-type {
+    margin-bottom: 3rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
   p {
     line-height: 1.7;
-    margin-bottom: 1em;
+    margin-bottom: 1.5em;
     margin-top: 1.5em;
     max-width: 50em;
   }
@@ -50,17 +59,29 @@
   }
 
   code {
-    background: rgba($color__black, 0.05);
+    background: rgba($color__Black, 0.05);
     border-radius: 4px;
     display: inline-block;
     padding: 0.125em 0.375em;
     font-size: 0.8em;
   }
 
+  figure {
+    background: rgba($color__Black, 0.05);
+    margin: 2.5rem 0;
+    padding: 1.5rem;
+  }
+
+  figcaption {
+    font-size: 0.75em;
+    margin: 0;
+    padding: 1.5rem 0 0;
+  }
+
   pre {
-    background: $color__black;
+    background: $color__Black;
     border-radius: 0.5rem;
-    color: $color__white;
+    color: $color__White;
     font-size: 10pt;
     margin: 1.5rem 0;
     max-width: 100%;
@@ -83,7 +104,7 @@
 
   th,
   td {
-    border-color: adjust-color($color: $color__black, $saturation: -50%, $lightness: 75%);
+    border-color: adjust-color($color: $color__Black, $saturation: -50%, $lightness: 75%);
     border-style: solid;
     border-width: 1px 0 0 1px;
     padding: 0.5rem 0.75rem;
@@ -100,7 +121,7 @@
 
   tr {
     &:nth-of-type(even) {
-      background-color: adjust-color($color: $color__black, $saturation: -50%, $lightness: 86%);
+      background-color: adjust-color($color: $color__Black, $saturation: -50%, $lightness: 86%);
     }
 
     &:last-of-type td {

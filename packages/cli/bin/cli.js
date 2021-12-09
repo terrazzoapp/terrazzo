@@ -115,7 +115,8 @@ async function main() {
             const isFinalToken = parts.length === 0;
             if (node.tokens[next]) {
               if (isFinalToken) {
-                for (const [mode, value] of Object.entries(v)) {
+                node.tokens[next].type = v.type || 'token';
+                for (const [mode, value] of Object.entries(v.value)) {
                   node.tokens[next].value[mode] = value;
                 }
                 break;
@@ -125,7 +126,7 @@ async function main() {
               }
             } else {
               if (isFinalToken) {
-                node.tokens[next] = { type: 'token', value: v };
+                node.tokens[next] = { type: v.type || 'token', value: v.value };
                 break;
               } else {
                 node.tokens[next] = { type: 'group', tokens: {} };

@@ -6,35 +6,41 @@ tokens:
     modes:
       - light
     tokens:
-      black:
+      Black:
+        type: token
         value:
           default: '#00193f'
-          light: '#00193F'
-      dark_gray:
-        value:
-          default: '#282a37'
-          light: '#282A37'
-      blue:
+          light: '#00193f'
+      Blue:
+        type: token
         value:
           default: '#2b3faa'
-          light: '#2B3FAA'
-      green:
+          light: '#2b3faa'
+      Dark_Gray:
+        type: token
+        value:
+          default: '#282a37'
+          light: '#282a37'
+      Green:
+        type: token
         value:
           default: '#77ea6e'
-          light: '#77EA6E'
-      red:
+          light: '#77ea6e'
+      Red:
+        type: token
         value:
           default: '#d0323a'
           light: '#d0323a'
-      white:
-        value:
-          default: '#FFFFFF'
-          light: '#FFFFFF'
-      purple:
+      Purple:
         type: token
         value:
-          light: '#6a35d9'
           default: '#6a35d9'
+          light: '#6a35d9'
+      White:
+        type: token
+        value:
+          default: '#ffffff'
+          light: '#ffffff'
   type:
     name: Typography
     type: group
@@ -44,3 +50,94 @@ tokens:
         tokens:
           neue_montreal:
             value: Neue Montreal
+  icon:
+    type: group
+    tokens:
+      cloud--download:
+        type: file
+        value:
+          default: ./public/icons/cloud--download.svg
+      cloud--upload:
+        type: file
+        value:
+          default: ./public/icons/cloud--upload.svg
+      crop:
+        type: file
+        value:
+          default: ./public/icons/crop.svg
+      delete:
+        type: file
+        value:
+          default: ./public/icons/delete.svg
+      do-not:
+        type: file
+        value:
+          default: ./public/icons/do-not.svg
+      do-not--02:
+        type: file
+        value:
+          default: ./public/icons/do-not--02.svg
+      download--01:
+        type: file
+        value:
+          default: ./public/icons/download--01.svg
+      download--02:
+        type: file
+        value:
+          default: ./public/icons/download--02.svg
+      embed:
+        type: file
+        value:
+          default: ./public/icons/embed.svg
+      export--01:
+        type: file
+        value:
+          default: ./public/icons/export--01.svg
+      export--02:
+        type: file
+        value:
+          default: ./public/icons/export--02.svg
+      launch:
+        type: file
+        value:
+          default: ./public/icons/launch.svg
+      love:
+        type: file
+        value:
+          default: ./public/icons/love.svg
+      minimize:
+        type: file
+        value:
+          default: ./public/icons/minimize.svg
+      paperclip:
+        type: file
+        value:
+          default: ./public/icons/paperclip.svg
+      player--flow:
+        type: file
+        value:
+          default: ./public/icons/player--flow.svg
+      renew:
+        type: file
+        value:
+          default: ./public/icons/renew.svg
+      repeat:
+        type: file
+        value:
+          default: ./public/icons/repeat.svg
+      reset:
+        type: file
+        value:
+          default: ./public/icons/reset.svg
+      trash:
+        type: file
+        value:
+          default: ./public/icons/trash.svg
+      upload--01:
+        type: file
+        value:
+          default: ./public/icons/upload--01.svg
+      upload--02:
+        type: file
+        value:
+          default: ./public/icons/upload--02.svg
