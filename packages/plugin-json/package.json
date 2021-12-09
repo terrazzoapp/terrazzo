@@ -21,6 +21,6 @@
     "dev": "tsc -w"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.0.1"
+    "@cobalt-ui/core": "^0.0.2"
   }
 }

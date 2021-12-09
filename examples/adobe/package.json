@@ -8,6 +8,6 @@
     "validate": "cobalt validate"
   },
   "dependencies": {
-    "@cobalt-ui/cli": "^0.0.1"
+    "@cobalt-ui/cli": "^0.0.2"
   }
 }
