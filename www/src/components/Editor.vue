@@ -84,13 +84,15 @@ export default {
 
 <template>
   <div id="editor" class="editor-wrapper">
+    <!--
     <div class="editor">
-      <!--
       <div class="editor-yaml">
         <textarea class="editor-yaml-code" spellcheck="false" v-model="yaml"></textarea>
         <div v-if="yamlError" class="editor-yaml-error">{{ yamlError }}</div>
       </div>
-      -->
+    </div>
+    -->
+    <div class="wrapper">
       <p>Come back soon! I’m still playing around with what I want this to look like.</p>
     </div>
   </div>

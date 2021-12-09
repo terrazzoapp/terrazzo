@@ -17,9 +17,15 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .header {
         align-items: center;
+        color: $color__White;
         display: flex;
         flex-direction: column;
-        margin: 4rem 0 6rem;
+        padding: 4rem 0 12rem;
+
+        .title {
+          margin-top: 2em;
+          font-weight: 350;
+        }
       }
 
       section + section {
@@ -48,22 +54,29 @@ import SkipToMain from '../components/SkipToMain.astro'
       .visual {
         align-self: start;
         background-color: $color__Blue;
-        border-radius: 3rem;
         color: $color__White;
         font-size: 18pt;
         font-weight: 500;
+        margin-top: 4rem;
+        padding-bottom: 2rem;
         position: relative;
-        padding: 3rem;
+
+        &-inner {
+          margin-left: auto;
+          margin-right: auto;
+          width: 100%;
+          max-width: 60rem;
+        }
 
         &-base {
           height: 0;
-          padding-top: 41%;
+          margin-top: 2rem;
+          padding-top: 30%;
           position: relative;
         }
 
         &-layer {
-          border-bottom: 1px dashed $color__White;
-          margin-bottom: 2rem;
+          padding-top: 2rem;
           padding-bottom: 2rem;
         }
 
@@ -78,7 +91,7 @@ import SkipToMain from '../components/SkipToMain.astro'
         }
 
         &-tokens {
-          top: 78%;
+          top: 75%;
         }
 
         &-line-c,
@@ -89,13 +102,13 @@ import SkipToMain from '../components/SkipToMain.astro'
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          width: calc(33.5% - 6.5rem);
+          width: calc(51% - 6.5rem);
         }
 
         &-line-t {
           border-top: 3px solid currentColor;
           top: 78%;
-          width: calc(45% - 6.5rem);
+          width: calc(58% - 6.5rem);
         }
 
         &-img {
@@ -103,7 +116,7 @@ import SkipToMain from '../components/SkipToMain.astro'
           height: auto;
           position: absolute;
           right: 0;
-          width: 67.5%;
+          width: 50%;
         }
       }
 
@@ -151,71 +164,75 @@ import SkipToMain from '../components/SkipToMain.astro'
         padding-right: 9.5rem;
       }
 
+      .gradient {
+        background: linear-gradient(180deg, $color__Blue, $color__Blue 40em, $color__White 40em);
+      }
+
       #main {
         margin-top: -2.5rem;
       }
     </style>
   </head>
-  <body>
-    <SkipToMain />
-    <Nav />
-    <div class="docs">
-      <DocsNav />
-      <div>
-        <header class="header tac">
-          <Cobalt />
-          <h1 class="title">Automated design tokens</h1>
-        </header>
-        <main class="wrapper" id="#main">
-          <section>
-            <h2>What is Cobalt?</h2>
-            <p>
-              <strong>Cobalt is not a premade design system.</strong> If you’re
-              looking for a template, try <a href="https://material.io/design"
-              target="_blank">Material Design</a> or one of the dozens of
-              prebuilt libraries.
-            </p>
-            <p>
-              <strong>Cobalt is token management for <em>your</em> design
-              system.</strong> For teams that don’t want to reinvent the wheel
-              building tooling to manage their design system and tokens, Cobalt
-              can help. Cobalt is an organization system that not only lets your
-              tokens and assets easy-to-find; it can generate code for your
-              project, too.
-            </p>
-            <div class="split">
-              <div>
-                <p>
-                  Cobalt sits below your design system, and beneath your UI.
-                  You still control your tokens; Cobalt only provides “buckets“
-                  to put them in.
-                </p>
-                <p>
-                  In return you don’t have to build or manage custom software for
-                  your design tokens like so many teams often do. And you still have
-                  the flexibility to craft your design system in any way you’d like.
-                  Cobalt just bridges the gap between your tokens and your design
-                  system/UI.
-                </p>
-              </div>
-              <figure class="visual">
-                <div class="visual-layers">
-                  <div class="visual-layer">UI</div>
-                  <div class="visual-layer">Platform</div>
-                  <div class="visual-layer">Design System</div>
-                  <div class="visual-base">
-                    <span class="visual-cobalt">Cobalt</span>
-                    <span class="visual-tokens">Tokens</span>
-                    <div class="visual-line-c"></div>
-                    <div class="visual-line-t"></div>
-                    <img class="visual-img" src="/token-hex.svg">
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </section>
-          <DocsPagination />
-        </main>
+  <body class="top-blue">
+    <div class="gradient">
+      <SkipToMain />
+      <Nav />
+      <div class="docs">
+        <DocsNav />
+        <div>
+          <header class="header tac">
+            <Cobalt />
+            <h1 class="title">Automated design tokens</h1>
+          </header>
+          <main class="wrapper" id="#main">
+            <section>
+              <h2>What is Cobalt?</h2>
+              <p>
+                <strong>Cobalt is not a premade design system.</strong> If you’re
+                looking for a template, try <a href="https://material.io/design"
+                target="_blank">Material Design</a> or one of the dozens of
+                prebuilt libraries.
+              </p>
+              <p>
+                <strong>Cobalt is token management for <em>your</em> design
+                system.</strong> For teams that don’t want to reinvent the wheel
+                building tooling to manage their design system and tokens, Cobalt
+                can help. Cobalt is an organization system that not only lets your
+                tokens and assets easy-to-find; it can generate code for your
+                project, too.
+              </p>
+              <p>
+                Cobalt sits below your design system, and beneath your UI.
+                You still control your tokens; Cobalt only provides “buckets“
+                to put them in.
+              </p>
+              <p>
+                In return you don’t have to build or manage custom software for
+                your design tokens like so many teams often do. And you still have
+                the flexibility to craft your design system in any way you’d like.
+                Cobalt just bridges the gap between your tokens and your design
+                system/UI.
+              </p>
+            </section>
+          </main>
+        </div>
+      </div>
+      <figure class="visual">
+        <div class="visual-layer" style="background:#1c9fff"><div class="visual-inner">UI</div></div>
+        <div class="visual-layer" style="background:#1c89fd"><div class="visual-inner">Platform</div></div>
+        <div class="visual-layer" style="background:#2e5dce"><div class="visual-inner">Design System</div></div>
+        <div class="visual-inner">
+          <div class="visual-base">
+            <span class="visual-cobalt">Cobalt</span>
+            <span class="visual-tokens">Tokens</span>
+            <div class="visual-line-c"></div>
+            <div class="visual-line-t"></div>
+            <img class="visual-img" src="/token-hex.svg">
+          </div>
+        </div>
+      </figure>
+      <div class="wrapper">
+        <DocsPagination />
       </div>
     </div>
     <Footer />

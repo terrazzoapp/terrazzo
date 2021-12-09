@@ -35,7 +35,7 @@ function showSubPage(url) {
   text-decoration: none;
 
   &::before {
-    background-color: $color__Black;
+    background-color: currentColor;
     border-radius: 50%;
     content: '';
     display: none;
@@ -67,6 +67,12 @@ function showSubPage(url) {
     &::before {
       left: -0.875rem;
     }
+  }
+}
+
+body.top-blue {
+  .a {
+    color: $color__White;
   }
 }
 </style>

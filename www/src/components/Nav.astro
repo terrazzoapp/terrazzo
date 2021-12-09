@@ -6,6 +6,8 @@ let { title = 'Cobalt' } = Astro.props;
 ---
 
 <style lang="scss">
+  @use "../../tokens" as *;
+
   .grid {
     display: flex;
     padding-left: 2rem;
@@ -54,6 +56,13 @@ let { title = 'Cobalt' } = Astro.props;
   .github-icon {
     height: 1.25em;
     width: 1.25em;
+  }
+
+  body.top-blue {
+    .title,
+    .a {
+      color: $color__White;
+    }
   }
 </style>
 

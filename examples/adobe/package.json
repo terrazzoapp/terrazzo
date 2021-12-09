@@ -8,6 +8,9 @@
     "validate": "cobalt validate"
   },
   "dependencies": {
-    "@cobalt-ui/cli": "^0.0.2"
+    "@cobalt-ui/cli": "^0.0.2",
+    "@cobalt-ui/plugin-css": "^0.0.0",
+    "@cobalt-ui/plugin-sass": "^0.0.0",
+    "@storybook/html": "^6.3.12"
   }
 }

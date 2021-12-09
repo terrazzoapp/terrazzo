@@ -17,7 +17,7 @@ layout: ../../../layouts/docs.astro
    …or as an [environment variable in your system][env-system]
 
 1. In your Figma Doc, click **Share**, then **Copy link**
-1. In `cobalt.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mappings)):
+1. In `cobalt.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
 
    ```js
    export default {
