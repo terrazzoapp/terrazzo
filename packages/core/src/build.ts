@@ -1,6 +1,6 @@
-import type { Config } from './config';
-import type { GroupNode, TokenSchema, RawSchemaNode, RawTokenSchema, SchemaNode, TokenValue } from './parse';
-import fs from 'fs';
+import type { Config } from "./config";
+import type { GroupNode, TokenSchema, RawTokenSchema, RawTokenNode, SchemaNode } from "./parse";
+import fs from "fs";
 
 export interface Plugin {
   name: string;
@@ -27,33 +27,16 @@ export class Builder {
   }
 
   public async build(): Promise<void> {
-    function formatNode({ group, id, localID, node }: { group?: GroupNode; id: string; localID: string; node: RawSchemaNode }): SchemaNode {
+    function formatNode({ group, id, localID, node }: { group?: GroupNode; id: string; localID: string; node: RawTokenNode }): SchemaNode {
       const schemaNode: SchemaNode = { ...(node as any), id, localID };
-      if (!schemaNode.type) (schemaNode as any).type = 'token';
       if (group) schemaNode.group = group;
 
-      switch (schemaNode.type) {
-        case 'group': {
-          for (const k of Object.keys(schemaNode.tokens)) {
-            schemaNode.tokens[k] = formatNode({ id: [id, k].join('.'), localID: k, node: schemaNode.tokens[k], group: schemaNode });
-          }
-          break;
-        }
-        default: {
-          if (Array.isArray(schemaNode.value)) {
-            const modeValues: TokenValue = { default: schemaNode.value[0] };
-            if (group && group.modes) {
-              let n = 1;
-              for (const mode of group.modes) {
-                modeValues[mode] = schemaNode.value[n] || schemaNode.value[0];
-                n++;
-              }
-            }
-            schemaNode.value = modeValues;
-          } else if (typeof schemaNode.value !== 'object') {
-            schemaNode.value = { default: schemaNode.value };
-          }
-          break;
+      if (!(schemaNode as any).type || typeof (schemaNode as any).type != "string") {
+        const groupNode = schemaNode as GroupNode;
+        for (const k of Object.keys(groupNode)) {
+          if (k == "modes") continue;
+          if (!groupNode.tokens) groupNode.tokens = {};
+          groupNode.tokens[k] = formatNode({ id: [id, k].join("."), localID: k, node: (groupNode as any)[k], group: groupNode });
         }
       }
 
@@ -74,8 +57,8 @@ export class Builder {
         // build()
         const results = await plugin.build({ schema, rawSchema: this.schema });
         for (const { fileName, contents } of results) {
-          const filePath = new URL(fileName.replace(/^\//, '').replace(/^(\.\.\/)+/, ''), this.config.outDir);
-          fs.mkdirSync(new URL('./', filePath), { recursive: true });
+          const filePath = new URL(fileName.replace(/^\//, "").replace(/^(\.\.\/)+/, ""), this.config.outDir);
+          fs.mkdirSync(new URL("./", filePath), { recursive: true });
           fs.writeFileSync(filePath, contents);
         }
       } catch (err) {

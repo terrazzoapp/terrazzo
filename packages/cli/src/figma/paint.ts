@@ -34,10 +34,23 @@ function diamondGradient(node: Figma.Paint): string {
 }
 
 function linearGradient(node: Figma.Paint): string {
-  let deg = 0;
+  let deg: number | string = 0;
   if (node.gradientHandlePositions) {
     const [{ x: x1, y: y1 }, { x: x2, y: y2 }] = node.gradientHandlePositions;
-    deg = NP.round(radToDeg(Math.atan2(x2 - x1, -(y2 - y1))), 2); // linear-gradient angles is so dumb :(
+    // if x and y are close enough to corners, assume that intent
+    if (x1 < 0.05 && y1 < 0.05 && x2 > 0.95 && y2 > 0.95) {
+      deg = 'to right bottom';
+    } else if (x1 > 0.95 && y1 < 0.05 && x2 < 0.05 && y2 > 0.95) {
+      deg = 'to left bottom';
+    } else if (x1 > 0.95 && y1 > 0.95 && x2 < 0.05 && y2 < 0.05) {
+      deg = 'to left top';
+    } else if (x1 < 0.05 && y1 > 0.95 && x2 > 0.95 && y2 < 0.05) {
+      deg = 'to right top';
+    }
+    // otherwise, calculate degree (note: top, right, left, and bottom are equal to 0deg, 90deg, …)
+    else {
+      deg = NP.round(radToDeg(Math.atan2(x2 - x1, -(y2 - y1))), 2); // linear-gradient angles is so dumb :(
+    }
   }
   const colors = (node.gradientStops || []).map((stop) => `${colorToHex(stop.color)} ${NP.round(100 * stop.position, 2)}%`);
   return `linear-gradient(${deg}deg, ${colors.join(', ')})`;

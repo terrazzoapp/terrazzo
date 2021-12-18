@@ -96,12 +96,14 @@ importers:
       '@cobalt-ui/plugin-ts': ^0.0.0
       '@types/js-yaml': ^4.0.4
       '@types/node': ^16.11.7
+      better-color-tools: ^0.0.2
       js-yaml: ^4.1.0
       kleur: ^4.1.4
     dependencies:
       '@cobalt-ui/plugin-json': link:../plugin-json
       '@cobalt-ui/plugin-sass': link:../plugin-sass
       '@cobalt-ui/plugin-ts': link:../plugin-ts
+      better-color-tools: 0.0.2
       js-yaml: 4.1.0
       kleur: 4.1.4
     devDependencies:

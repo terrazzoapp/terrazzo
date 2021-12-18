@@ -24,7 +24,7 @@ layout: ../../../layouts/docs.astro
      figma: {
        // “Share” > Copy link
        'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-         'Blue':      {group: 'color', fill: ['default', 'light']},
+         Blue: { group: 'color', fill: ['default', 'light'] },
        },
      },
    };
@@ -34,10 +34,12 @@ layout: ../../../layouts/docs.astro
 
 ## Mapping
 
-Give Cobalt a list of every Figma file you want to sync, along with components
-and their properties, and Cobalt will do the rest! After the initial setup,
-you’ll only have to edit mappings when adding or removing components.
+Give Cobalt a list of every Figma file you want to sync, along with components and styles, and Cobalt will do the rest! After the initial setup, you’ll only have to edit mappings when adding or removing components.
 
+| Property | Description                                                               |
+| :------- | :------------------------------------------------------------------------ |
+| `type`   | The [type][types] of token such as `color` or `font` ([full list][types]) |
+| `id`     | Where you’d like the token to live in `tokens.yaml`.                      |
 
 ### Colors
 
@@ -47,46 +49,47 @@ Say we have the following Components: Black, Dark Gray, Blue, Red, Green, Purple
 
 Here’s how we’d map that inside `cobalt.config.mjs`:
 
+<!-- prettier-ignore -->
 ```js
 export default {
   figma: {
     // “Share” > Copy link
     'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      'Black':        {group: 'color', fill: ['default', 'light']},
-      'Dark Gray':    {group: 'color', fill: ['default', 'light']},
-      'Blue':         {group: 'color', fill: ['default', 'light']},
-      'Red':          {group: 'color', fill: ['default', 'light']},
-      'Green':        {group: 'color', fill: ['default', 'light']},
-      'Purple':       {group: 'color', fill: ['default', 'light']},
-      'Red Gradient': {group: 'color', fill: ['default', 'light']},
+      styles: {
+        Black:          { type: 'color',           id: 'color.black' },
+        'Dark Gray':    { type: 'color',           id: 'color.dark_gray' },
+        Blue:           { type: 'color',           id: 'color.blue'},
+        Red:            { type: 'color',           id: 'color.red' },
+        Green:          { type: 'color',           id: 'color.green' },
+        Purple:         { type: 'color',           id: 'color.purple' },
+        'Red Gradient': { type: 'linear-gradient', id: 'gradient.red' },
+      },
     },
   },
 };
 ```
 
-Take note of the following:
-
-- Underneath our share URL, we’ve kept the name of each component exactly (even with capitalization).
-- Each token has a group of `color`. So when these are saved, they’ll be saved as `color.Black`, `color.Dark_Gray`, `color.Blue`, etc.
-- For each component, we wanted to save the [`fill` property](figma-api).
-- Also for each component, we wanted to save that fill color to the `default` and `light` [modes]
-
 ### Typography
 
 ![](/images/figma-typography.png)
 
+<!-- prettier-ignore -->
 ```js
 export default {
   figma: {
     // “Share” > Copy link
     'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      'Brand Sans':             {group: 'type',      name: 'family', fontFamily: ['default']},
-      'Font / Body':            {group: 'type.size', name: 'body',   fontSize: ['default', 'm']},
-      'Font / Body (Larger)':   {group: 'type.size', name: 'body',   fontSize: ['l']},
-      'Font / Body (Largest)':  {group: 'type.size', name: 'body',   fontSize: ['xl']},
-      'Font / Heading 1':       {group: 'type.size', name: 'h1',     fontSize: ['default']},
-      'Font / Heading 2':       {group: 'type.size', name: 'h2',     fontSize: ['default']},
-      'Font / Heading 3':       {group: 'type.size', name: 'h3',     fontSize: ['default']},
+      styles: {
+        'Brand Sans': [
+                                 { type: 'font',      id: 'font.family.brand_sans' },
+                                 { type: 'dimension', id: 'font.size.body' },
+        ],
+        'Font / Body (Larger)':  { type: 'dimension', id: 'font.size.body_larger' },
+        'Font / Body (Largest)': { type: 'dimension', id: 'font.size.body_largest' },
+        'Font / Heading 1':      { type: 'dimension', id: 'font.size.h1' },
+        'Font / Heading 2':      { type: 'dimension', id: 'font.size.h2' },
+        'Font / Heading 3':      { type: 'dimension', id: 'font.size.h3' },
+      }
     },
   },
 };
@@ -94,40 +97,35 @@ export default {
 
 Here we’re doing a little more complex mapping for our typography, just as an example.
 
-You can see that we have a `Brand Sans` component that signifies the font
-family. And we have `Font / Size / *` components that help mapping.
+You can see that we have a `Brand Sans` component that signifies the font family. And we have `Font / Size / *` components that help mapping.
 
-Even though these are the names in the Figma file, say we want to shorten these
-a little for code. We can do that! Probably the clearest explanation is looking
-at what the final `tokens.yaml` will be:
+Even though these are the names in the Figma file, say we want to shorten these a little for code. We can do that! Probably the clearest explanation is looking at what the final `tokens.yaml` will be:
 
 ```yaml
 tokens:
-  type:
-    type: group
-    tokens:
-      family:
-        default: Neue Montreal
-      size:
-        type: group
-        modes:
-          - xs
-          - s
-          - m
-          - l
-          - xl
-        tokens:
-          body:
-            default: 16
-            m: 16
-            l: 18
-            xl: 20
-          heading1:
-            default: 24
-          heading2:
-            default: 28
-          heading3:
-            default: 36
+  font:
+    family:
+      type: font
+      default: Neue Montreal
+    size:
+      body:
+        type: dimension
+        value: 16px
+      body_larger:
+        type: dimension
+        value: 18px
+      body_largest:
+        type: dimension
+        value: 20px
+      heading1:
+        type: dimension
+        value: 24px
+      heading2:
+        type: dimension
+        value: 28px
+      heading3:
+        type: dimension
+        value: 36px
 ```
 
 That cleaned up nicely!
@@ -136,39 +134,49 @@ That cleaned up nicely!
 
 ![](/images/figma-icons.png)
 
-By adding a `file` key to each component, you can save the contents to a local
-file. This is great for icons or graphics.
+By adding a `file` key to each component, you can save the contents to a local file. This is great for icons or graphics.
 
+<!-- prettier-ignore -->
 ```js
 export default {
   figma: {
     // “Share” > Copy link
     'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      'download': {group: 'icon', file: './icons/download.svg'},
-      'error':    {group: 'icon', file: './icons/error.svg'},
-      'refresh':  {group: 'icon', file: './icons/refresh.svg'},
-      'share':    {group: 'icon', file: './icons/share.svg'},
-      'warning':  {group: 'icon', file: './icons/warning.svg'},
+      components: {
+        download: { type: 'file', id: 'icon.download', file: './icons/download.svg' },
+        error:    { type: 'file', id: 'icon.error',    file: './icons/error.svg' },
+        refresh:  { type: 'file', id: 'icon.refresh',  file: './icons/refresh.svg' },
+        share:    { type: 'file', id: 'icon.share',    file: './icons/share.svg' },
+        warning:  { type: 'file', id: 'icon.warning',  file: './icons/warning.svg' },
+      }
     },
   },
 };
 ```
 
-Note that the more icons you sync, the longer it may take to update your tokens.
-But even if this takes a few minutes, it still beats having to download them all
-manually.
+Note that the more icons you sync, the longer it may take to update your tokens. But even if this takes a few minutes, it still beats having to download them all manually.
 
-### Other components
+## Aliases
 
-In `tokens.yaml` there’s no such thing as a “color token” or a “typography
-token” or even an “icon token”—all that is for you to define! These are just
-practical examples to teach you how common types map from Figma to
-`tokens.yaml`. But because you can grab so many properties from components in
-Figma, you can create your own token types and organize your system in a way
-that best works for you.
+At some point you’ll want to reuse values, or give values aliases. Note that the Figma mapping is always 1:1 with values in `tokens.yaml` and you can’t reuse components or styles for other values. You can either create another component or style in Figma
+and map that, or you can use an [alias] like so ([see full documentation][alias]):
 
-If you’d like to see something supported within Figma that isn’t currently,
-[please open a suggestion][issues].
+```yaml
+tokens:
+  color:
+    red:
+      type: color
+      value: '#cf222e'
+    yellow:
+      type: color
+      value: '#eac54f'
+    error:
+      type: color
+      value: $color.red
+    yellow:
+      type: color
+      value: $color.yellow
+```
 
 ## Troubleshooting
 
@@ -178,10 +186,11 @@ If you’re having trouble syncing from Figma, here are some quick tips:
 - Every component should have a unique name within its own Figma doc (using the same name in different docs is OK)
 - Make sure `cobalt.config.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
 
-
+[alias]: /reference/schema#aliasing
 [dotenv]: https://github.com/motdotla/dotenv
 [env-system]: https://gist.github.com/iest/58692bf1001b0424c257
 [issues]: https://github.com/drwpow/cobalt-ui/issues
 [modes]: /concepts/modes
 [figma-api]: /reference/config#figma
 [figma-api-key]: https://www.figma.com/developers/api#access-tokens
+[types]: /reference/schema#types

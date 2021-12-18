@@ -34,7 +34,7 @@ describe('paint', () => {
           { color: { r: 0.2560001313686371, g: 0, b: 0.800000011920929, a: 1 }, position: 1 },
         ],
       })
-    ).to.equal('linear-gradient(135deg, #71e58b 0%, #0000ff 55.21%, #4100cc 100%)');
+    ).to.equal('linear-gradient(to right bottom, #71e58b 0%, #0000ff 55.21%, #4100cc 100%)');
   });
 
   // magenta -> blue (to bottom-left)

@@ -3,9 +3,9 @@ title: tokens.yaml Specification
 layout: ../../../layouts/docs.astro
 ---
 
-# Cobalt Schema Specification v1
+# Cobalt Schema Specification v0 Beta
 
-`tokens.yaml` consists of 2 parts: the [Document root](#document-root) and [nested tokens](#tokens).
+The Cobalt schema is a unique spec. Though it’s heavily inspired by [the W3C Design Tokens Community Group](https://github.com/design-tokens/community-group) spec, the
 
 ## Document root
 
@@ -15,7 +15,7 @@ The top level of `tokens.yaml` contains information about the file. It may conta
 | :--------- | :----------: | :-------------------------------------------------------------------------------------------------------------------------------- |
 | `name`     |              | The name of your tokens or design system                                                                                          |
 | `metadata` |              | Arbitrary user data. Metadata isn’t read or used by Cobalt. But you can store notes, links, or any other data in here you’d like. |
-| `tokens`   | **required** | An object of tokens (see [Tokens](#tokens-and-groups))                                                                            |
+| `tokens`   | **required** | An object of tokens (see [Tokens](#tokens))                                                                                       |
 
 #### Example
 
@@ -28,107 +28,330 @@ tokens:
   # …
 ```
 
-## Tokens and Groups
+## Tokens
 
-### Tokens
+[Tokens] are the fundamental building blocks of your design system, and typically include colors, typography, and other values.
 
-[Tokens][concepts-tokens] are the elemental building blocks of any design system. They encompass colors, typography, grid spacing, icons, and more. To declare a new token, you’ll need to create a unique ID under `tokens` in the document root, along with
-all necessary data for that token:
+#### Properties
 
-| Key           |   Required   | Description                                                                 |
-| :------------ | :----------: | :-------------------------------------------------------------------------- |
-| `name`        |              | A human-readable name for this token                                        |
-| `description` |              | A longer description about this token’s purpose, usage, etc.                |
-| `type`        | **required** | `token`, `url`, or `file`                                                   |
-| `value`       | **required** | The token’s default value along with any [mode values][concepts-modes] used |
+The following properties are shared among all token types
+
+| Key           | Description                                                             |
+| :------------ | :---------------------------------------------------------------------- |
+| `type`        | The type of token ([see “types” below](#types))                         |
+| `value`       | The token’s value. This differs based on `type`.                        |
+| `name`        | (optional) A human-readable name for this token                         |
+| `description` | (optional) A longer description about this token’s purpose, usage, etc. |
 
 #### Types
 
-Almost every token will use `type: token`. This allows the greatest flexibility for your design system, as a token can be a color, number, string—anything. The only times to use `file` or `url` are when you are either pointing to a local file on disk or a
-remote URL. `file` and `url` types can unlock special features for the [plugins][plugins] you have enabled (such as embedding SVG icons into CSS).
+| `type`            | Description                                                                                 | Origin                                                                                           |
+| :---------------- | :------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------- |
+| `color`           | A color represented in hexadecimal                                                          | [W3C Design Tokens CG][color]                                                                    |
+| `dimension`       | A size in UI (e.g. `8px` or `2.5rem`                                                        | [W3C Design Tokens CG][dimension]                                                                |
+| `font`            | A font name (e.g. `Vulf Mono`)                                                              | [W3C Design Tokens CG][font]                                                                     |
+| `cubic-bezier`    | An easing curve for animation                                                               | [W3C Design Tokens CG](https://design-tokens.github.io/community-group/format/#cubic-bezier)     |
+| `file`            | A local file on the file system (e.g. `./icons/alert.svg`)                                  | Cobalt                                                                                           |
+| `url`             | A remote URL (e.g. `https://mycdn.com/image.jpg`)                                           | Cobalt                                                                                           |
+| `shadow`          | A drop shadow, inner shadow, or text shadow to be applied on anything that accepts shadows. | Cobalt                                                                                           |
+| `linear-gradient` | A [linear-gradient]                                                                         | Cobalt                                                                                           |
+| `radial-gradient` | A [radial-gradient]                                                                         | Cobalt                                                                                           |
+| `conic-gradient`  | A [conic-gradient]                                                                          | Cobalt                                                                                           |
+| (other)           | Any other value is treated as a [custom type](#custom-type)                                 | [W3C Design Tokens CG](https://design-tokens.github.io/community-group/format/#additional-types) |
 
-#### Example
+### Color
 
-```yaml
-name: My Tokens
-tokens:
-  color_blue:
-    name: Brand Blue
-    type: token
-    value:
-      default: '#0969da'
-  color_green:
-    name: Brand Green
-    type: token
-    value:
-      default: '#1a7f37'
-  font_helvetica:
-    name: Helvetica
-    type: token
-    value:
-      default: Helvetica
-  icon_alert:
-    name: Alert
-    type: url
-    value:
-      default: https://cdn.icons.dev/alert_24.svg
-```
+A color represented in hexadecimal. For transparency, 8-digit hex codes are accepted as well ([docs][color])
 
-### Groups
-
-Groups keep tokens tidy and encourage good namespacing. To declare a group, provide the following keys:
-
-| Key           |   Required   | Description                                                  |
-| :------------ | :----------: | :----------------------------------------------------------- |
-| `name`        |              | A human-readable name for this group                         |
-| `description` |              | A longer description about this group’s purpose, usage, etc. |
-| `type`        | **required** | `"group"`                                                    |
-| `tokens`      | **required** | Key–value object of [Tokens](#tokens) underneath this group. |
-
-### Example
+**Example**
 
 ```yaml
-name: My Tokens
 tokens:
   color:
-    type: group
-    tokens:
-      blue:
-        name: Brand Blue
-        type: token
-        value:
-          default: '#0969da'
-      green:
-        name: Brand Green
-        type: token
-        value:
-          default: '#1a7f37'
-  type:
-    type: group
-    tokens:
-      family:
-        type: group
-        tokens:
-          helvetica:
-            name: Helvetica
-            type: token
-            value:
-              default: Helvetica
+    red:
+      type: color
+      value: "#fa4549"
+```
+
+### Dimension
+
+A unit of measurement expressed in either `px` or `rem` ([docs][dimension]).
+
+```yaml
+tokens:
+  space:
+    s:
+      type: dimension
+      value: 8px
+    m:
+      type: dimension
+      value: 16px
+    l:
+      type: dimension
+      value: 32px
+```
+
+### Font
+
+A font family name, expressed either as a string, or as an array from most- to least-preferred ([docs][font]).
+
+```yaml
+tokens:
+  font:
+    Graphik_Regular:
+      type: font
+      value: Graphik Regular
+    Graphik_Italic:
+      type: font
+      value: Graphik Italic
+    Graphik_Bold:
+      type: font
+      value: Graphik Bold
+    Graphik_Bold_Italic:
+      type: font
+      value: Graphik Bold Italic
+    body:
+      type: font
+      value:
+        - Graphik Regular
+        - system-ui
+        - sans-serif
+```
+
+### Cubic bézier
+
+An animation easing curve, expressed as [𝑥1, 𝑦1, 𝑥2, 𝑦2] ([docs][cubic-bezier]).
+
+```yaml
+tokens:
+  easing:
+    sine:
+      type: cubic-bezier
+      value: [0.5, 0, 0.5, 1]
+    ease_in:
+      type: cubic-bezier
+      value: [0.5, 0, 1, 0.5]
+    ease_out:
+      type: cubic-bezier
+      value: [0, 0.5, 0.5, 1]
+```
+
+### File
+
+A relative path to a file (could be on disk, or locally on the server).
+
+```yaml
+tokens:
   icon:
-    type: group
-    tokens:
-      alert:
-        name: Alert
-        type: url
-        value:
-          default: https://cdn.icons.dev/alert_24.svg
+    alert:
+      type: file
+      value: ./icons/alert.svg
+    arrow_right:
+      type: file
+      value: ./icons/arrow-right.svg
+    docs:
+      type: file
+      value: ./icons/docs.svg
+```
+
+### URL
+
+A link to a remote URL. Must begin with `http://` or `https://`.
+
+```yaml
+tokens:
+  img:
+    profile_pablo:
+      type: url
+      value: https://imagedelivery.net/ZWd9g1K7eljCn_KDTu_OWA/profile_pablo.jpg
+    profile_sarah:
+      type: url
+      value: https://imagedelivery.net/ZWd9g1K7eljCn_KDTu_OWA/profile_sarah.jpg
+```
+
+### Shadow
+
+An array of objects representing overlapping shadows. Could be used with [box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow), [text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow), or any other shadow. All
+properties are optional, as they all have defaults.
+
+**Properties**
+
+| Property   | Description                                |
+| :--------- | :----------------------------------------- |
+| `color`    | Color of the shadow (default: `#00000040`) |
+| `position` | Position of shadow (default: `center`)     |
+| `size`     | The size of the shadow (default: `0`)      |
+| `spread`   | The spread of the shadow (default: `0`)    |
+| `inset`    | Is this an inset shadow? (default: `false` |
+
+_Note: `spread` and `inset` will be ignored if generating a `text-shadow`_
+
+**Example**
+
+```yaml
+tokens:
+  shadow:
+    card_near:
+      type: shadow
+      value:
+        - position: 0 1px
+          size: 1px
+          spread: 0
+          color: "#0000000c"
+        - position: 0 2px
+          size: 2px
+          spread: 0
+          color: "#0000000c"
+        - position: 0 4px
+          size: 4px
+          spread: 0
+          color: "#0000000c"
+        - position: 0 8px
+          size: 8px
+          spread: 0
+          color: "#0000000c"
+```
+
+### Linear gradient
+
+An object representing a [linear gradient][linear-gradient].
+
+**Properties**
+
+| Property | Description                                                                                                             |
+| :------- | :---------------------------------------------------------------------------------------------------------------------- |
+| `stops`  | Array of strings representing a color + % stop, separated by a space                                                    |
+| `angle`  | (optional) Direction, expressed either in deg (`45deg`) or corners (`to right top`, `to bottom left`) (default: `0deg`) |
+
+_Note: the `rad` and `turn` units aren’t supported for `angle`; please use degrees_
+
+**Example**
+
+```yaml
+tokens:
+  gradient:
+    lighten:
+      type: linear-gradient
+      value:
+        direction: 135deg
+        stops:
+          - "#000000ff"
+          - "#00000000"
+    rainbow:
+      type: linear-gradient
+      value:
+        angle: to right top
+        stops:
+          - "#ff0000 0%"
+          - "#ffa500 14%"
+          - "#ffd700 29%"
+          - "#7cfc00 43%"
+          - "#00ffff 57%"
+          - "#4169e1 71%"
+          - "#9400d3 86%"
+          - "#ff00ff 100%"
+```
+
+### Radial gradient
+
+An object representing a [radial gradient][radial-gradient].
+
+**Properties**
+
+| Property   | Description                                                          |
+| :--------- | :------------------------------------------------------------------- |
+| `stops`    | Array of strings representing a color + % stop, separated by a space |
+| `shape`    | (optional) `circle` or `ellise` (default: `circle`)                  |
+| `position` | (optional) Position of gradient (default: `center center`)           |
+
+**Example**
+
+```yaml
+tokens:
+  gradient:
+    pink:
+      type: radial-gradient
+      value:
+        shape: ellipse
+        position: center
+        stops:
+          - "#fd5353"
+          - "#d04dd9"
+```
+
+### Conic gradient
+
+An object representing a [conic gradient][conic-gradient].
+
+**Properties**
+
+| Property   | Description                                                               |
+| :--------- | :------------------------------------------------------------------------ |
+| `stops`    | Array of strings representing a color + degree stop, separated by a space |
+| `angle`    | (optional) Start of gradient, expresed in deg (default: `0deg`)           |
+| `position` | (optional) Gradient position (default: `center`)                          |
+
+_Note: the `rad` and `turn` units aren’t supported for `angle`; please use degrees_
+
+**Example**
+
+```yaml
+tokens:
+  gradient:
+    pinwheel:
+      type: conic-gradient
+      value:
+        angle: 5deg
+        stops:
+          - "#ff0000 0deg"
+          - "#ffa500 72deg"
+          - "#ffff00 144deg"
+          - "#008000 216deg"
+          - "#0000ff 360deg"
+```
+
+### Custom types
+
+Any other `type` value will be treated as a custom type. It has no restrictions other than `type` and `value` being required. `value` may have any shape desired; it won’t be validated.
+
+```yaml
+tokens:
+```
+
+_Should a type be added? [Please open an issue!](https://github.com/drwpow/cobalt-ui/issues/new)_
+
+### Group
+
+A group is a way to collect similar tokens. A group is made by omitting `type:`. A group only has one reserved name: `modes`. Children can be named anything other than `modes`.
+
+| Property | Type       | Description                                          |
+| :------- | :--------- | :--------------------------------------------------- |
+| `modes`  | `string[]` | (optional) Array of [modes] that apply to all tokens |
+
+_Note: unlike tokens, Groups can’t have a `name` or `description`. Those will be treated as if they are tokens._
+
+**Example**
+
+In this example, both `color` and `font` are groups, as they don’t have a `type`. But `font` also has a subgroup: `family`. Groups can be nested infinitely, as long as they’re not inside tokens.
+
+```yaml
+tokens:
+  color:
+    red:
+      type: color
+      value: "#fa4549"
+  font:
+    family:
+      Graphik_Regular:
+        type: font
+        value: Graphik Regular
 ```
 
 ## Advanced Syntax
 
 ### Modes
 
-[Modes][concepts-modes] are alternate versions of your tokens. For example, say your design system has a **standard** palette and an alternate version optimized for **colorblind** users. Here’s one way you could declare that:
+[Modes] are alternate versions of your tokens. For example, say your design system has a **standard** palette and an alternate version optimized for **colorblind** users. Here’s one way you could declare that:
 
 ```yaml
 # ❌ Mixing "standard" and "colorblind" palettes
@@ -136,11 +359,11 @@ tokens:
   red:
     type: token
     value:
-      default: '#cf222e'
+      default: "#cf222e"
   red_colorblind:
     type: token
     value:
-      default: '#ac5e00'
+      default: "#ac5e00"
 ```
 
 This _works_ but has several problems:
@@ -163,9 +386,9 @@ tokens:
       red:
         type: token
         value:
-          default: '#cf222e'
-          standard: '#cf222e'
-          colorblind: '#ac5e00'
+          default: "#cf222e"
+          standard: "#cf222e"
+          colorblind: "#ac5e00"
 ```
 
 This is much better:
@@ -180,51 +403,24 @@ There’s a lot of flexibility you can unlock with modes. [Read more about using
 
 Adding all your tokens into `tokens.yaml` can result in a lot of noise. So if desired, you can take advantage of some optional space savers:
 
-#### Skip type
-
-Whenever `type` is omitted, `type: token` is assumed:
-
-```diff
-  tokens:
-    blue:
--     type: token
-      value:
-        default: '#0969da'
-```
-
-#### Skip default
-
-If a token only has one value–`default`—you can flatten it:
-
-```diff
-  tokens:
-    blue:
-      type: token
--     value:
--       default: '#0969da'
-+     value: '#0969da'
-```
-
-#### Flatten modes
+#### Ordered modes
 
 In cases where modes have a logical order (e.g. sizes), you can turn an object of values into an array (with `default` first, followed by modes:)
 
 ```diff
   tokens:
-    type:
-      type: group
+    font:
       modes: ['XS', 'S', 'M', 'L', 'XL', 'XXL']
-      tokens:
-        size:
-          type: token
--         value:
--           default: 16
--           XS: 10
--           S: 12
--           M: 16
--           L: 18
--           XXL: 22
-+         value: [16, 10, 12, 16, 18, 22]
+      size:
+        type: dimension
+-       value: 16px
+-       mode:
+-         XS: 10
+-         S: 12
+-         M: 16
+-         L: 18
+-         XXL: 22
++       mode: [16, 10, 12, 16, 18, 22]
 ```
 
 _Note: it’s best to avoid flattening modes when they don’t have a logical order, such as color modes._
@@ -233,10 +429,21 @@ _Note: it’s best to avoid flattening modes when they don’t have a logical or
 
 [View examples of `tokens.yaml` on GitHub][examples]
 
-[concepts-modes]: /docs/concepts/modes
+[box=shadow]: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
+[color]: https://design-tokens.github.io/community-group/format/#color
 [concepts-tokens]: /docs/concepts/tokens
+[conic-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient()
+[cubic-bezier]: https://design-tokens.github.io/community-group/format/#cubic-bezier
+[dimension]: https://design-tokens.github.io/community-group/format/#dimension
 [examples]: https://github.com/drwpow/cobalt-ui/blob/main/examples/
+[font]: https://design-tokens.github.io/community-group/format/#font
+[gradient]: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Gradients
 [jsonschema]: https://json-schema.org/
+[linear-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient()
+[modes]: /docs/concepts/modes
 [openapi]: https://swagger.io/specification/
 [plugins]: /docs/plugins
-[yaml]: https://yaml.org/
+[radial-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient()
+[repeating-linear-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-linear-gradient()
+[repeating-radial-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-radial-gradient()
+[text-shadow]: https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow

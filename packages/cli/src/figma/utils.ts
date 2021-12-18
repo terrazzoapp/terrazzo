@@ -1,13 +1,13 @@
-import type Figma from 'figma-js';
+import type Figma from "figma-js";
 
-import https from 'https';
-import fetch from 'node-fetch';
+import https from "https";
+import fetch from "node-fetch";
 
 const FIGMA_API = `https://api.figma.com/`;
 
 /** collect all components within document */
 export function collectComponents(node: Figma.Node, components: Map<string, Figma.Component> = new Map()): Map<string, Figma.Component> {
-  if (node.type === 'COMPONENT') {
+  if (node.type === "COMPONENT") {
     if (components.has(node.name)) {
       console.warn(`Duplicate component name found "${node.name}". Tokens may not generate as expected.`); // eslint-disable-line no-console
     } else {
@@ -43,9 +43,9 @@ export function collectFills(node: Figma.Node, allFills: Figma.Paint[] = []): Fi
 }
 
 export interface StrokeGroup {
-  strokes: Figma.FrameBase['strokes'];
-  strokeWeight: Figma.FrameBase['strokeWeight'];
-  strokeAlign: Figma.FrameBase['strokeAlign'];
+  strokes: Figma.FrameBase["strokes"];
+  strokeWeight: Figma.FrameBase["strokeWeight"];
+  strokeAlign: Figma.FrameBase["strokeAlign"];
 }
 
 /** collect fills from node */
@@ -67,9 +67,9 @@ export async function fetchDoc(id: string): Promise<Figma.FileResponse> {
   const { FIGMA_API_KEY } = process.env;
   if (!FIGMA_API_KEY) throw new Error(`FIGMA_API_KEY not set. See https://www.figma.com/developers/api#access-tokens for instructions.`);
   return fetch(new URL(`/v1/files/${id}`, FIGMA_API).href, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'X-Figma-Token': FIGMA_API_KEY,
+      "X-Figma-Token": FIGMA_API_KEY,
     },
   }).then((res) => res.json()) as any;
 }
@@ -86,9 +86,9 @@ export async function fetchImg(id: string, componentID: string, format: string):
   // First, get download link from Figma
   const imgUrl = (
     (await fetch(new URL(`/v1/images/${id}/?${search.toString()}`, FIGMA_API).href, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'X-Figma-Token': FIGMA_API_KEY,
+        "X-Figma-Token": FIGMA_API_KEY,
       },
     }).then((res) => res.json())) as Figma.FileImageResponse
   ).images[componentID];
@@ -96,21 +96,21 @@ export async function fetchImg(id: string, componentID: string, format: string):
 
   // Next, download data
   return new Promise<Buffer>((resolve, reject) => {
-    const req = https.request(imgUrl, { method: 'GET' }, (res) => {
+    const req = https.request(imgUrl, { method: "GET" }, (res) => {
       if (res.statusCode !== 200) {
         reject(`${res.statusCode}`);
         return;
       }
 
       let data: any[] = [];
-      res.on('data', (chunk) => {
+      res.on("data", (chunk) => {
         data.push(chunk);
       });
-      res.on('end', () => {
+      res.on("end", () => {
         resolve(Buffer.concat(data));
       });
     });
-    req.on('error', (err) => {
+    req.on("error", (err) => {
       reject(err);
     });
     req.end();

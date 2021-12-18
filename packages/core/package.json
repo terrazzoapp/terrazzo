@@ -24,6 +24,7 @@
     "@cobalt-ui/plugin-json": "^0.0.0",
     "@cobalt-ui/plugin-sass": "^0.0.0",
     "@cobalt-ui/plugin-ts": "^0.0.0",
+    "better-color-tools": "^0.0.2",
     "js-yaml": "^4.1.0",
     "kleur": "^4.1.4"
   },

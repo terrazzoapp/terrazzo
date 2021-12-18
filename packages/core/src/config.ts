@@ -1,32 +1,20 @@
-import type { Plugin } from './build';
+import type { TokenType } from "./parse";
+import type { Plugin } from "./build";
 
-import fs from 'fs';
+import fs from "fs";
 
 export interface FigmaMapping {
   [url: string]: {
-    [ComponentName: string]: {
-      /** Place component within group */
-      group: string;
-      /** Rename component within tokens.yaml */
-      name?: string;
-
-      /** "Fill" -> modes */
-      fill?: string[];
-      /** "Stroke" -> modes */
-      stroke?: string[];
-      /** Font family -> modes */
-      fontFamily?: string[];
-      /** Font size -> modes */
-      fontSize?: string[];
-      /** Font style -> modes */
-      fontStyle?: string[];
-      /** Font weight -> modes */
-      fontWeight?: string[];
-
-      /* Save component as file? */
-      file?: string;
-    };
+    styles: { [StyleName: string]: FigmaValue };
+    components: { [StyleName: string]: FigmaValue };
   };
+}
+
+export interface FigmaValue {
+  /** The type of token to extract */
+  type: TokenType;
+  /** tokens.yaml ID */
+  id: string;
 }
 
 export interface Config {
@@ -57,7 +45,7 @@ export class ConfigLoader {
       this.filePath = filePath;
     } else {
       let filePath: URL | undefined;
-      for (const f of ['cobalt.config.js', 'cobalt.config.mjs']) {
+      for (const f of ["cobalt.config.js", "cobalt.config.mjs"]) {
         if (fs.existsSync(f)) {
           filePath = new URL(f, `file://${process.cwd()}/`);
           break;
@@ -73,29 +61,29 @@ export class ConfigLoader {
 
   async load(): Promise<Config> {
     async function loadDefaultPlugins(): Promise<Plugin[]> {
-      return await Promise.all(['@cobalt-ui/plugin-json'].map((spec) => import(spec).then((m) => m.default())));
+      return await Promise.all(["@cobalt-ui/plugin-json"].map((spec) => import(spec).then((m) => m.default())));
     }
 
     let m = await import(this.filePath.href);
     let config: any = (m && m.default) || {};
 
     // partial config: fill in defaults
-    const configKeys: (keyof Config)[] = ['outDir', 'plugins', 'tokens'];
+    const configKeys: (keyof Config)[] = ["outDir", "plugins", "tokens"];
     for (const k of configKeys) {
       switch (k) {
-        case 'outDir': {
+        case "outDir": {
           // default
           if (config[k] === undefined) {
-            config[k] = new URL('./tokens/', `file://${process.cwd()}/`);
+            config[k] = new URL("./tokens/", `file://${process.cwd()}/`);
             break;
           }
           // validate
-          if (typeof config[k] !== 'string') throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
+          if (typeof config[k] !== "string") throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
           // normalize
           config[k] = new URL(config[k], `file://${process.cwd()}/`);
           break;
         }
-        case 'plugins': {
+        case "plugins": {
           // default
           if (config[k] === undefined) {
             config[k] = await loadDefaultPlugins();
@@ -105,23 +93,41 @@ export class ConfigLoader {
           if (!Array.isArray(config[k])) throw new Error(`[config] ${k} must be array, received ${typeof config[k]}`);
           if (!config[k].length) throw new Error(`[config] plugins are empty`);
           for (let n = 0; n < config[k].length; n++) {
-            if (typeof config[k][n] !== 'object') throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(config[k][n])}`);
+            if (typeof config[k][n] !== "object") throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(config[k][n])}`);
             if (!config[k][n].name) throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
-            if (typeof config[k][n].build !== 'function') throw new Error(`[${config[k][n].name}] missing "build" function`);
+            if (typeof config[k][n].build !== "function") throw new Error(`[${config[k][n].name}] missing "build" function`);
           }
           break;
         }
-        case 'tokens': {
+        case "tokens": {
           // default
           if (config[k] === undefined) {
-            config[k] = new URL('./tokens.yaml', `file://${process.cwd()}/`);
+            config[k] = new URL("./tokens.yaml", `file://${process.cwd()}/`);
             break;
           }
           // validate
-          if (typeof config[k] !== 'string') throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
+          if (typeof config[k] !== "string") throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
           // normalize
           config[k] = new URL(config[k], `file://${process.cwd()}/`);
           break;
+        }
+        case "figma": {
+          // default
+          if (config[k] == undefined) {
+            break;
+          }
+          // validate
+          for (const group of ["styles", "components"]) {
+            if (typeof config[k][group] == "object" && Object.keys(config[k][group]).length) {
+              for (const [name, val] of Object.entries(config[k][group])) {
+                if (typeof val != "object") throw new Error(`[config] Figma ${group}.${name} expected format \`"StyleName": { type: "color", id: "color.blue" }\`, received "${val}"`);
+                const { type, id } = val as any;
+                if (typeof type != "string") throw new Error(`[config] Figma ${group}.${name} expected \`{ type: "[string]" }\`, received "${type}"`);
+                if (typeof id != "string") throw new Error(`[config] Figma ${group}.${name} expected \`{ id: "[string]" }\`, received "${id}"`);
+              }
+            }
+            break;
+          }
         }
       }
     }

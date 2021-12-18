@@ -1,7 +1,36 @@
-import yaml from 'js-yaml';
+import yaml from "js-yaml";
 
-export type NodeType = 'token' | 'group' | 'file' | 'url';
+export type TokenType = "color" | "dimension" | "font" | "cubic-bezier" | "file" | "url" | "shadow" | "linear-gradient" | "radial-gradient" | "conic-gradient";
 
+export interface Shadow {
+  /** Shadow offset (default: center). Any valid CSS position such as "12px -12px", "0% 50%", or "bottom right" */
+  position?: string;
+  /** Shadow blur (default: 0). Any valid CSS size such as "4px" or "200%" */
+  size?: string | 0;
+  /** Shadow inner size (default: 0). Any valid CSS size such as "4px" or "200%" */
+  spread?: string | 0;
+  /** A valid hex color (default: #0000000c) */
+  color?: string;
+}
+
+export interface LinearGradient {
+  angle?: string;
+  stops: string[];
+}
+
+export interface RadialGradient {
+  shape?: "circle" | "ellipse";
+  position?: string;
+  stops: string[];
+}
+
+export interface ConicGradient {
+  angle?: string;
+  position?: string;
+  stops: string[];
+}
+
+/** tokens.yaml as-written, before parsing and before validation */
 export interface RawTokenSchema {
   /** Manifest name */
   name?: string;
@@ -11,117 +40,65 @@ export interface RawTokenSchema {
   version?: number;
   /** Tokens. Required */
   tokens: {
-    [tokensOrGroup: string]: RawSchemaNode;
+    [tokensOrGroup: string]: any; // note: can’t statically determine groups or tokens until parsing
   };
 }
 
+/** Initialized tokens.yaml that’s been parsed & validated (internal use only) */
 export interface TokenSchema extends RawTokenSchema {
+  tokens: {
+    [tokensOrGroup: string]: GroupNode | TokenNode;
+  };
+}
+
+/** An arbitrary grouping of tokens. Groups can be nested infinitely to form namespaces. */
+export interface GroupNode {
+  /** complete path (e.g. "color.gray") */
+  id: string;
+  /** short name within group (e.g. "gray") */
+  localID: string;
+  /** group reference (yes, groups can be nested!) */
+  group?: GroupNode;
   tokens: {
     [tokensOrGroup: string]: SchemaNode;
   };
 }
 
-/** An arbitrary grouping of tokens. Groups can be nested infinitely to form namespaces. */
-export interface RawGroupNode<T = string> {
-  type: 'group';
-  /** (optional) User-friendly name of the group */
+interface RawTokenBase {
+  /** (optional) human-readable name */
   name?: string;
-  /** (optional) Longer descripton of this group */
+  /** (optional) description of this token */
   description?: string;
-  /** (optional) Enforce that all child tokens have values for all modes */
-  modes?: string[];
-  tokens: {
-    [tokensOrGroup: string]: RawSchemaNode<T>;
-  };
+  /** (optional) declare alternate modes of this token */
+  mode?: { [modeName: string]: string };
 }
 
-/** An arbitrary grouping of tokens. Groups can be nested infinitely to form namespaces. */
-export interface GroupNode<T = string> extends RawGroupNode<T> {
-  /** unique identifier (e.g. "color.gray") */
-  id: string;
-  /** id within group (e.g. "gray") */
-  localID: string;
-  /** group reference (yes, groups can be nested!) */
-  group?: GroupNode;
-  tokens: {
-    [tokensOrGroup: string]: SchemaNode<T>;
-  };
-}
+export type RawColorToken = RawTokenBase & { type: "color"; value: string };
+export type RawDimensionToken = RawTokenBase & { type: "dimension"; value: string };
+export type RawFontToken = RawTokenBase & { type: "font"; value: string | string[] };
+export type RawCubicBezierToken = RawTokenBase & { type: "cubic-bezier"; value: [number, number, number, number] };
+export type RawFileToken = RawTokenBase & { type: "file"; value: string };
+export type RawURLToken = RawTokenBase & { type: "url"; value: string };
+export type RawShadowToken = RawTokenBase & { type: "shadow"; value: Shadow | Shadow[] };
+export type RawLinearGradientToken = RawTokenBase & { type: "linear-gradient"; value: LinearGradient };
+export type RawRadialGradientToken = RawTokenBase & { type: "radial-gradient"; value: RadialGradient };
+export type RawConicGradientToken = RawTokenBase & { type: "conic-gradient"; value: ConicGradient };
+export type RawTokenNode = RawColorToken | RawDimensionToken | RawFontToken | RawCubicBezierToken | RawFileToken | RawURLToken | RawShadowToken | RawLinearGradientToken | RawRadialGradientToken | RawConicGradientToken;
 
-/** A design token. */
-export interface RawTokenNode<T = string> {
-  type: 'token' | undefined;
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: T | T[] | TokenValue<T>;
-}
+export type TokenBase = RawTokenBase & { group?: GroupNode };
+export type ColorToken = TokenBase & RawColorToken;
+export type DimensionToken = TokenBase & RawDimensionToken;
+export type FontToken = TokenBase & RawFontToken;
+export type CubicBezierToken = TokenBase & RawCubicBezierToken;
+export type FileToken = TokenBase & RawFileToken;
+export type URLToken = TokenBase & RawURLToken;
+export type ShadowToken = TokenBase & RawShadowToken;
+export type LinearGradientToken = TokenBase & RawLinearGradientToken;
+export type RadialGradientToken = TokenBase & RawRadialGradientToken;
+export type ConicGradientToken = TokenBase & RawConicGradientToken;
+export type TokenNode = ColorToken | DimensionToken | FontToken | CubicBezierToken | FileToken | URLToken | ShadowToken | LinearGradientToken | RadialGradientToken | ConicGradientToken;
 
-/** A design token. */
-export interface TokenNode<T = string> extends RawTokenNode<T> {
-  /** unique identifier (e.g. "color.gray") */
-  id: string;
-  type: 'token';
-  /** id within group (e.g. "gray") */
-  localID: string;
-  /** group reference */
-  group?: GroupNode;
-  value: TokenValue<T>;
-}
-
-/** A local file on disk. */
-export interface RawFileNode {
-  type: 'file';
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: string | string[] | TokenValue<string>;
-}
-
-/** A local file on disk. */
-export interface FileNode extends RawFileNode {
-  /** unique identifier (e.g. "color.gray") */
-  id: string;
-  /** id within group (e.g. "gray") */
-  localID: string;
-  /** group reference */
-  group?: GroupNode;
-  value: TokenValue<string>;
-}
-
-/** A URL reference */
-export interface RawURLNode {
-  type: 'url';
-  /** (optional) User-friendly name of this token */
-  name?: string;
-  /** (optional) Longer description of this token */
-  description?: string;
-  value: string | string[] | TokenValue<string>;
-}
-
-/** A URL reference */
-export interface URLNode extends RawURLNode {
-  /** unique identifier (e.g. "color.gray") */
-  id: string;
-  /** id within group (e.g. "gray") */
-  localID: string;
-  /** group reference */
-  group?: GroupNode;
-  value: TokenValue<string>;
-}
-
-export type RawSchemaNode<T = string> = RawGroupNode<T> | RawTokenNode<T> | RawFileNode | RawURLNode;
-
-export type SchemaNode<T = string> = GroupNode<T> | TokenNode<T> | FileNode | URLNode;
-
-export type TokenValue<T = string> = {
-  /** Required */
-  default: T;
-  /** Additional modes */
-  [mode: string]: T;
-};
+export type SchemaNode = GroupNode | TokenNode;
 
 export function parse(source: string): RawTokenSchema {
   return yaml.load(source) as RawTokenSchema;

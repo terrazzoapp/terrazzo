@@ -12,626 +12,746 @@ tokens:
       #- dark_colorblind
       #- dark_dimmed
       #- dark_high_contrast
-    type: group
-    tokens:
-      black:
-        value:
-          default: '#1b1f24'
-          light: '#1b1f24'
-          light_colorblind: '#1b1f24'
-          light_high_contrast: '#010409'
-      blue_0:
-        value:
-          default: '#ddf4ff'
-          light: '#ddf4ff'
-          light_colorblind: '#ddf4ff'
-          light_high_contrast: '#dff7ff'
-      blue_1:
-        value:
-          default: '#b6e3ff'
-          light: '#b6e3ff'
-          light_colorblind: '#b6e3ff'
-          light_high_contrast: '#9cd7ff'
-      blue_2:
-        value:
-          default: '#80ccff'
-          light: '#80ccff'
-          light_colorblind: '#80ccff'
-          light_high_contrast: '#67b3fd'
-      blue_3:
-        value:
-          default: '#54aeff'
-          light: '#54aeff'
-          light_colorblind: '#54aeff'
-          light_high_contrast: '#368cf9'
-      blue_4:
-        value:
-          default: '#218bff'
-          light: '#218bff'
-          light_colorblind: '#218bff'
-          light_high_contrast: '#1168e3'
-      blue_5:
-        value:
-          default: '#0969da'
-          light: '#0969da'
-          light_colorblind: '#0969da'
-          light_high_contrast: '#0349b4'
-      blue_6:
-        value:
-          default: '#0550ae'
-          light: '#0550ae'
-          light_colorblind: '#0550ae'
-          light_high_contrast: '#023b95'
-      blue_7:
-        value:
-          default: '#033d8b'
-          light: '#033d8b'
-          light_colorblind: '#033d8b'
-          light_high_contrast: '#022f7a'
-      blue_8:
-        value:
-          default: '#0a3069'
-          light: '#0a3069'
-          light_colorblind: '#0a3069'
-          light_high_contrast: '#032563'
-      blue_9:
-        value:
-          default: '#002155'
-          light: '#002155'
-          light_colorblind: '#002155'
-          light_high_contrast: '#021a4a'
-      coral_0:
-        value:
-          default: '#FFF0EB'
-          light: '#FFF0EB'
-          light_colorblind: '#FFF0EB'
-          light_high_contrast: '#fff0ed'
-      coral_1:
-        value:
-          default: '#FFD6CC'
-          light: '#FFD6CC'
-          light_colorblind: '#FFD6CC'
-          light_high_contrast: '#ffc2b6'
-      coral_2:
-        value:
-          default: '#FFB4A1'
-          light: '#FFB4A1'
-          light_colorblind: '#FFB4A1'
-          light_high_contrast: '#ff8f7e'
-      coral_3:
-        value:
-          default: '#FD8C73'
-          light: '#FD8C73'
-          light_colorblind: '#FD8C73'
-          light_high_contrast: '#ef5b48'
-      coral_4:
-        value:
-          default: '#EC6547'
-          light: '#EC6547'
-          light_colorblind: '#EC6547'
-          light_high_contrast: '#cd3425'
-      coral_5:
-        value:
-          default: '#C4432B'
-          light: '#C4432B'
-          light_colorblind: '#C4432B'
-          light_high_contrast: '#9f1710'
-      coral_6:
-        value:
-          default: '#9E2F1C'
-          light: '#9E2F1C'
-          light_colorblind: '#9E2F1C'
-          light_high_contrast: '#870706'
-      coral_7:
-        value:
-          default: '#801F0F'
-          light: '#801F0F'
-          light_colorblind: '#801F0F'
-          light_high_contrast: '#6f0107'
-      coral_8:
-        value:
-          default: '#691105'
-          light: '#691105'
-          light_colorblind: '#691105'
-          light_high_contrast: '#5b0002'
-      coral_9:
-        value:
-          default: '#510901'
-          light: '#510901'
-          light_colorblind: '#510901'
-          light_high_contrast: '#430200'
-      gray_0:
-        value:
-          default: '#f6f8fa'
-          light: '#f6f8fa'
-          light_colorblind: '#f6f8fa'
-          light_high_contrast: '#FFFFFF'
-      gray_1:
-        value:
-          default: '#eaeef2'
-          light: '#eaeef2'
-          light_colorblind: '#eaeef2'
-          light_high_contrast: '#E7ECF0'
-      gray_2:
-        value:
-          default: '#d0d7de'
-          light: '#d0d7de'
-          light_colorblind: '#d0d7de'
-          light_high_contrast: '#CED5DC'
-      gray_3:
-        value:
-          default: '#afb8c1'
-          light: '#afb8c1'
-          light_colorblind: '#afb8c1'
-          light_high_contrast: '#ACB6C0'
-      gray_4:
-        value:
-          default: '#8c959f'
-          light: '#8c959f'
-          light_colorblind: '#8c959f'
-          light_high_contrast: '#88929D'
-      gray_5:
-        value:
-          default: '#6e7781'
-          light: '#6e7781'
-          light_colorblind: '#6e7781'
-          light_high_contrast: '#67707A'
-      gray_6:
-        value:
-          default: '#57606a'
-          light: '#57606a'
-          light_colorblind: '#57606a'
-          light_high_contrast: '#4F5760'
-      gray_7:
-        value:
-          default: '#424a53'
-          light: '#424a53'
-          light_colorblind: '#424a53'
-          light_high_contrast: '#3D454E'
-      gray_8:
-        value:
-          default: '#32383f'
-          light: '#32383f'
-          light_colorblind: '#32383f'
-          light_high_contrast: '#30363D'
-      gray_9:
-        value:
-          default: '#24292f'
-          light: '#24292f'
-          light_colorblind: '#24292f'
-          light_high_contrast: '#24292F'
-      green_0:
-        value:
-          default: '#dafbe1'
-          light: '#dafbe1'
-          light_colorblind: '#c0f6ff'
-          light_high_contrast: '#d2fedb'
-      green_1:
-        value:
-          default: '#aceebb'
-          light: '#aceebb'
-          light_colorblind: '#96e5ff'
-          light_high_contrast: '#82e596'
-      green_2:
-        value:
-          default: '#6fdd8b'
-          light: '#6fdd8b'
-          light_colorblind: '#65ccff'
-          light_high_contrast: '#43c663'
-      green_3:
-        value:
-          default: '#4ac26b'
-          light: '#4ac26b'
-          light_colorblind: '#35adff'
-          light_high_contrast: '#26a148'
-      green_4:
-        value:
-          default: '#2da44e'
-          light: '#2da44e'
-          light_colorblind: '#0088ff'
-          light_high_contrast: '#117f32'
-      green_5:
-        value:
-          default: '#1a7f37'
-          light: '#1a7f37'
-          light_colorblind: '#0566d5'
-          light_high_contrast: '#055d20'
-      green_6:
-        value:
-          default: '#116329'
-          light: '#116329'
-          light_colorblind: '#054da9'
-          light_high_contrast: '#024c1a'
-      green_7:
-        value:
-          default: '#044f1e'
-          light: '#044f1e'
-          light_colorblind: '#033a86'
-          light_high_contrast: '#013d14'
-      green_8:
-        value:
-          default: '#003d16'
-          light: '#003d16'
-          light_colorblind: '#002d68'
-          light_high_contrast: '#003110'
-      green_9:
-        value:
-          default: '#002d11'
-          light: '#002d11'
-          light_colorblind: '#001f50'
-          light_high_contrast: '#00230b'
-      orange_0:
-        value:
-          default: '#fff1e5'
-          light: '#fff1e5'
-          light_colorblind: '#fff1e5'
-          light_high_contrast: '#fff2d5'
-      orange_1:
-        value:
-          default: '#ffd8b5'
-          light: '#ffd8b5'
-          light_colorblind: '#ffd8b5'
-          light_high_contrast: '#ffc67b'
-      orange_2:
-        value:
-          default: '#ffb77c'
-          light: '#ffb77c'
-          light_colorblind: '#ffb77c'
-          light_high_contrast: '#f99636'
-      orange_3:
-        value:
-          default: '#fb8f44'
-          light: '#fb8f44'
-          light_colorblind: '#fb8f44'
-          light_high_contrast: '#dc6d1a'
-      orange_4:
-        value:
-          default: '#e16f24'
-          light: '#e16f24'
-          light_colorblind: '#e16f24'
-          light_high_contrast: '#b45105'
-      orange_5:
-        value:
-          default: '#bc4c00'
-          light: '#bc4c00'
-          light_colorblind: '#bc4c00'
-          light_high_contrast: '#873800'
-      orange_6:
-        value:
-          default: '#953800'
-          light: '#953800'
-          light_colorblind: '#953800'
-          light_high_contrast: '#702c00'
-      orange_7:
-        value:
-          default: '#762c00'
-          light: '#762c00'
-          light_colorblind: '#762c00'
-          light_high_contrast: '#5b2300'
-      orange_8:
-        value:
-          default: '#5c2200'
-          light: '#5c2200'
-          light_colorblind: '#5c2200'
-          light_high_contrast: '#491b00'
-      orange_9:
-        value:
-          default: '#471700'
-          light: '#471700'
-          light_colorblind: '#471700'
-          light_high_contrast: '#361200'
-      pink_0:
-        value:
-          default: '#ffeff7'
-          light: '#ffeff7'
-          light_colorblind: '#ffeff7'
-          light_high_contrast: '#feeff7'
-      pink_1:
-        value:
-          default: '#ffd3eb'
-          light: '#ffd3eb'
-          light_colorblind: '#ffd3eb'
-          light_high_contrast: '#ffbde0'
-      pink_2:
-        value:
-          default: '#ffadda'
-          light: '#ffadda'
-          light_colorblind: '#ffadda'
-          light_high_contrast: '#fc87ca'
-      pink_3:
-        value:
-          default: '#ff80c8'
-          light: '#ff80c8'
-          light_colorblind: '#ff80c8'
-          light_high_contrast: '#ed4baf'
-      pink_4:
-        value:
-          default: '#e85aad'
-          light: '#e85aad'
-          light_colorblind: '#e85aad'
-          light_high_contrast: '#c9248e'
-      pink_5:
-        value:
-          default: '#bf3989'
-          light: '#bf3989'
-          light_colorblind: '#bf3989'
-          light_high_contrast: '#971368'
-      pink_6:
-        value:
-          default: '#99286e'
-          light: '#99286e'
-          light_colorblind: '#99286e'
-          light_high_contrast: '#7d0c57'
-      pink_7:
-        value:
-          default: '#772057'
-          light: '#772057'
-          light_colorblind: '#772057'
-          light_high_contrast: '#660847'
-      pink_8:
-        value:
-          default: '#611347'
-          light: '#611347'
-          light_colorblind: '#611347'
-          light_high_contrast: '#53043a'
-      pink_9:
-        value:
-          default: '#4d0336'
-          light: '#4d0336'
-          light_colorblind: '#4d0336'
-          light_high_contrast: '#3e022b'
-      purple_0:
-        value:
-          default: '#fbefff'
-          light: '#fbefff'
-          light_colorblind: '#fbefff'
-          light_high_contrast: '#faf0fe'
-      purple_1:
-        value:
-          default: '#ecd8ff'
-          light: '#ecd8ff'
-          light_colorblind: '#ecd8ff'
-          light_high_contrast: '#e0c5ff'
-      purple_2:
-        value:
-          default: '#d8b9ff'
-          light: '#d8b9ff'
-          light_colorblind: '#d8b9ff'
-          light_high_contrast: '#c49bff'
-      purple_3:
-        value:
-          default: '#c297ff'
-          light: '#c297ff'
-          light_colorblind: '#c297ff'
-          light_high_contrast: '#a371f7'
-      purple_4:
-        value:
-          default: '#a475f9'
-          light: '#a475f9'
-          light_colorblind: '#a475f9'
-          light_high_contrast: '#844ae7'
-      purple_5:
-        value:
-          default: '#8250df'
-          light: '#8250df'
-          light_colorblind: '#8250df'
-          light_high_contrast: '#622cbc'
-      purple_6:
-        value:
-          default: '#6639ba'
-          light: '#6639ba'
-          light_colorblind: '#6639ba'
-          light_high_contrast: '#512598'
-      purple_7:
-        value:
-          default: '#512a97'
-          light: '#512a97'
-          light_colorblind: '#512a97'
-          light_high_contrast: '#411d7b'
-      purple_8:
-        value:
-          default: '#3e1f79'
-          light: '#3e1f79'
-          light_colorblind: '#3e1f79'
-          light_high_contrast: '#341763'
-      purple_9:
-        value:
-          default: '#2e1461'
-          light: '#2e1461'
-          light_colorblind: '#2e1461'
-          light_high_contrast: '#260f49'
-      red_0:
-        value:
-          default: '#FFEBE9'
-          light: '#FFEBE9'
-          light_colorblind: '#fefe48'
-          light_high_contrast: '#fff0ee'
-      red_1:
-        value:
-          default: '#ffcecb'
-          light: '#ffcecb'
-          light_colorblind: '#fee325'
-          light_high_contrast: '#ffc1bc'
-      red_2:
-        value:
-          default: '#ffaba8'
-          light: '#ffaba8'
-          light_colorblind: '#f8c200'
-          light_high_contrast: '#ff8e8a'
-      red_3:
-        value:
-          default: '#ff8182'
-          light: '#ff8182'
-          light_colorblind: '#e7a100'
-          light_high_contrast: '#ee5a5d'
-      red_4:
-        value:
-          default: '#fa4549'
-          light: '#fa4549'
-          light_colorblind: '#d08002'
-          light_high_contrast: '#d5232c'
-      red_5:
-        value:
-          default: '#cf222e'
-          light: '#cf222e'
-          light_colorblind: '#ac5e00'
-          light_high_contrast: '#a0111f'
-      red_6:
-        value:
-          default: '#a40e26'
-          light: '#a40e26'
-          light_colorblind: '#8b4600'
-          light_high_contrast: '#86061d'
-      red_7:
-        value:
-          default: '#82071e'
-          light: '#82071e'
-          light_colorblind: '#6c3900'
-          light_high_contrast: '#6e011a'
-      red_8:
-        value:
-          default: '#660018'
-          light: '#660018'
-          light_colorblind: '#4c3100'
-          light_high_contrast: '#5a0016'
-      red_9:
-        value:
-          default: '#4c0014'
-          light: '#4c0014'
-          light_colorblind: '#2f2900'
-          light_high_contrast: '#430011'
-      yellow_0:
-        value:
-          default: '#fff8c5'
-          light: '#fff8c5'
-          light_colorblind: '#fff8c5'
-          light_high_contrast: '#fcf7be'
-      yellow_1:
-        value:
-          default: '#fae17d'
-          light: '#fae17d'
-          light_colorblind: '#fae17d'
-          light_high_contrast: '#f0ce53'
-      yellow_2:
-        value:
-          default: '#eac54f'
-          light: '#eac54f'
-          light_colorblind: '#eac54f'
-          light_high_contrast: '#d5a824'
-      yellow_3:
-        value:
-          default: '#d4a72c'
-          light: '#d4a72c'
-          light_colorblind: '#d4a72c'
-          light_high_contrast: '#b58407'
-      yellow_4:
-        value:
-          default: '#bf8700'
-          light: '#bf8700'
-          light_colorblind: '#bf8700'
-          light_high_contrast: '#956400'
-      yellow_5:
-        value:
-          default: '#9a6700'
-          light: '#9a6700'
-          light_colorblind: '#9a6700'
-          light_high_contrast: '#744500'
-      yellow_6:
-        value:
-          default: '#7d4e00'
-          light: '#7d4e00'
-          light_colorblind: '#7d4e00'
-          light_high_contrast: '#603700'
-      yellow_7:
-        value:
-          default: '#633c01'
-          light: '#633c01'
-          light_colorblind: '#633c01'
-          light_high_contrast: '#4e2c00'
-      yellow_8:
-        value:
-          default: '#4d2d00'
-          light: '#4d2d00'
-          light_colorblind: '#4d2d00'
-          light_high_contrast: '#3f2200'
-      yellow_9:
-        value:
-          default: '#3b2300'
-          light: '#3b2300'
-          light_colorblind: '#3b2300'
-          light_high_contrast: '#2e1800'
-      white:
-        value:
-          default: '#ffffff'
-          light: '#ffffff'
-          light_colorblind: '#ffffff'
-          light_high_contrast: '#ffffff'
+    black:
+      type: color
+      value: "#1b1f24"
+      mode:
+        light: "#1b1f24"
+        light_colorblind: "#1b1f24"
+        light_high_contrast: "#010409"
+    blue_0:
+      type: color
+      value: "#ddf4ff"
+      mode:
+        light: "#ddf4ff"
+        light_colorblind: "#ddf4ff"
+        light_high_contrast: "#dff7ff"
+    blue_1:
+      type: color
+      value: "#b6e3ff"
+      mode:
+        light: "#b6e3ff"
+        light_colorblind: "#b6e3ff"
+        light_high_contrast: "#9cd7ff"
+    blue_2:
+      type: color
+      value: "#80ccff"
+      mode:
+        light: "#80ccff"
+        light_colorblind: "#80ccff"
+        light_high_contrast: "#67b3fd"
+    blue_3:
+      type: color
+      value: "#54aeff"
+      mode:
+        light: "#54aeff"
+        light_colorblind: "#54aeff"
+        light_high_contrast: "#368cf9"
+    blue_4:
+      type: color
+      value: "#218bff"
+      mode:
+        light: "#218bff"
+        light_colorblind: "#218bff"
+        light_high_contrast: "#1168e3"
+    blue_5:
+      type: color
+      value: "#0969da"
+      mode:
+        light: "#0969da"
+        light_colorblind: "#0969da"
+        light_high_contrast: "#0349b4"
+    blue_6:
+      type: color
+      value: "#0550ae"
+      mode:
+        light: "#0550ae"
+        light_colorblind: "#0550ae"
+        light_high_contrast: "#023b95"
+    blue_7:
+      type: color
+      value: "#033d8b"
+      mode:
+        light: "#033d8b"
+        light_colorblind: "#033d8b"
+        light_high_contrast: "#022f7a"
+    blue_8:
+      type: color
+      value: "#0a3069"
+      mode:
+        light: "#0a3069"
+        light_colorblind: "#0a3069"
+        light_high_contrast: "#032563"
+    blue_9:
+      type: color
+      value: "#002155"
+      mode:
+        light: "#002155"
+        light_colorblind: "#002155"
+        light_high_contrast: "#021a4a"
+    coral_0:
+      type: color
+      value: "#FFF0EB"
+      mode:
+        light: "#FFF0EB"
+        light_colorblind: "#FFF0EB"
+        light_high_contrast: "#fff0ed"
+    coral_1:
+      type: color
+      value: "#FFD6CC"
+      mode:
+        light: "#FFD6CC"
+        light_colorblind: "#FFD6CC"
+        light_high_contrast: "#ffc2b6"
+    coral_2:
+      type: color
+      value: "#FFB4A1"
+      mode:
+        light: "#FFB4A1"
+        light_colorblind: "#FFB4A1"
+        light_high_contrast: "#ff8f7e"
+    coral_3:
+      type: color
+      value: "#FD8C73"
+      mode:
+        light: "#FD8C73"
+        light_colorblind: "#FD8C73"
+        light_high_contrast: "#ef5b48"
+    coral_4:
+      type: color
+      value: "#EC6547"
+      mode:
+        light: "#EC6547"
+        light_colorblind: "#EC6547"
+        light_high_contrast: "#cd3425"
+    coral_5:
+      type: color
+      value: "#C4432B"
+      mode:
+        light: "#C4432B"
+        light_colorblind: "#C4432B"
+        light_high_contrast: "#9f1710"
+    coral_6:
+      type: color
+      value: "#9E2F1C"
+      mode:
+        light: "#9E2F1C"
+        light_colorblind: "#9E2F1C"
+        light_high_contrast: "#870706"
+    coral_7:
+      type: color
+      value: "#801F0F"
+      mode:
+        light: "#801F0F"
+        light_colorblind: "#801F0F"
+        light_high_contrast: "#6f0107"
+    coral_8:
+      type: color
+      value: "#691105"
+      mode:
+        light: "#691105"
+        light_colorblind: "#691105"
+        light_high_contrast: "#5b0002"
+    coral_9:
+      type: color
+      value: "#510901"
+      mode:
+        light: "#510901"
+        light_colorblind: "#510901"
+        light_high_contrast: "#430200"
+    gray_0:
+      type: color
+      value: "#f6f8fa"
+      mode:
+        light: "#f6f8fa"
+        light_colorblind: "#f6f8fa"
+        light_high_contrast: "#FFFFFF"
+    gray_1:
+      type: color
+      value: "#eaeef2"
+      mode:
+        light: "#eaeef2"
+        light_colorblind: "#eaeef2"
+        light_high_contrast: "#E7ECF0"
+    gray_2:
+      type: color
+      value: "#d0d7de"
+      mode:
+        light: "#d0d7de"
+        light_colorblind: "#d0d7de"
+        light_high_contrast: "#CED5DC"
+    gray_3:
+      type: color
+      value: "#afb8c1"
+      mode:
+        light: "#afb8c1"
+        light_colorblind: "#afb8c1"
+        light_high_contrast: "#ACB6C0"
+    gray_4:
+      type: color
+      value: "#8c959f"
+      mode:
+        light: "#8c959f"
+        light_colorblind: "#8c959f"
+        light_high_contrast: "#88929D"
+    gray_5:
+      type: color
+      value: "#6e7781"
+      mode:
+        light: "#6e7781"
+        light_colorblind: "#6e7781"
+        light_high_contrast: "#67707A"
+    gray_6:
+      type: color
+      value: "#57606a"
+      mode:
+        light: "#57606a"
+        light_colorblind: "#57606a"
+        light_high_contrast: "#4F5760"
+    gray_7:
+      type: color
+      value: "#424a53"
+      mode:
+        light: "#424a53"
+        light_colorblind: "#424a53"
+        light_high_contrast: "#3D454E"
+    gray_8:
+      type: color
+      value: "#32383f"
+      mode:
+        light: "#32383f"
+        light_colorblind: "#32383f"
+        light_high_contrast: "#30363D"
+    gray_9:
+      type: color
+      value: "#24292f"
+      mode:
+        light: "#24292f"
+        light_colorblind: "#24292f"
+        light_high_contrast: "#24292F"
+    green_0:
+      type: color
+      value: "#dafbe1"
+      mode:
+        light: "#dafbe1"
+        light_colorblind: "#c0f6ff"
+        light_high_contrast: "#d2fedb"
+    green_1:
+      type: color
+      value: "#aceebb"
+      mode:
+        light: "#aceebb"
+        light_colorblind: "#96e5ff"
+        light_high_contrast: "#82e596"
+    green_2:
+      type: color
+      value: "#6fdd8b"
+      mode:
+        light: "#6fdd8b"
+        light_colorblind: "#65ccff"
+        light_high_contrast: "#43c663"
+    green_3:
+      type: color
+      value: "#4ac26b"
+      mode:
+        light: "#4ac26b"
+        light_colorblind: "#35adff"
+        light_high_contrast: "#26a148"
+    green_4:
+      type: color
+      value: "#2da44e"
+      mode:
+        light: "#2da44e"
+        light_colorblind: "#0088ff"
+        light_high_contrast: "#117f32"
+    green_5:
+      type: color
+      value: "#1a7f37"
+      mode:
+        light: "#1a7f37"
+        light_colorblind: "#0566d5"
+        light_high_contrast: "#055d20"
+    green_6:
+      type: color
+      value: "#116329"
+      mode:
+        light: "#116329"
+        light_colorblind: "#054da9"
+        light_high_contrast: "#024c1a"
+    green_7:
+      type: color
+      value: "#044f1e"
+      mode:
+        light: "#044f1e"
+        light_colorblind: "#033a86"
+        light_high_contrast: "#013d14"
+    green_8:
+      type: color
+      value: "#003d16"
+      mode:
+        light: "#003d16"
+        light_colorblind: "#002d68"
+        light_high_contrast: "#003110"
+    green_9:
+      type: color
+      value: "#002d11"
+      mode:
+        light: "#002d11"
+        light_colorblind: "#001f50"
+        light_high_contrast: "#00230b"
+    orange_0:
+      type: color
+      value: "#fff1e5"
+      mode:
+        light: "#fff1e5"
+        light_colorblind: "#fff1e5"
+        light_high_contrast: "#fff2d5"
+    orange_1:
+      type: color
+      value: "#ffd8b5"
+      mode:
+        light: "#ffd8b5"
+        light_colorblind: "#ffd8b5"
+        light_high_contrast: "#ffc67b"
+    orange_2:
+      type: color
+      value: "#ffb77c"
+      mode:
+        light: "#ffb77c"
+        light_colorblind: "#ffb77c"
+        light_high_contrast: "#f99636"
+    orange_3:
+      type: color
+      value: "#fb8f44"
+      mode:
+        light: "#fb8f44"
+        light_colorblind: "#fb8f44"
+        light_high_contrast: "#dc6d1a"
+    orange_4:
+      type: color
+      value: "#e16f24"
+      mode:
+        light: "#e16f24"
+        light_colorblind: "#e16f24"
+        light_high_contrast: "#b45105"
+    orange_5:
+      type: color
+      value: "#bc4c00"
+      mode:
+        light: "#bc4c00"
+        light_colorblind: "#bc4c00"
+        light_high_contrast: "#873800"
+    orange_6:
+      type: color
+      value: "#953800"
+      mode:
+        light: "#953800"
+        light_colorblind: "#953800"
+        light_high_contrast: "#702c00"
+    orange_7:
+      type: color
+      value: "#762c00"
+      mode:
+        light: "#762c00"
+        light_colorblind: "#762c00"
+        light_high_contrast: "#5b2300"
+    orange_8:
+      type: color
+      value: "#5c2200"
+      mode:
+        light: "#5c2200"
+        light_colorblind: "#5c2200"
+        light_high_contrast: "#491b00"
+    orange_9:
+      type: color
+      value: "#471700"
+      mode:
+        light: "#471700"
+        light_colorblind: "#471700"
+        light_high_contrast: "#361200"
+    pink_0:
+      type: color
+      value: "#ffeff7"
+      mode:
+        light: "#ffeff7"
+        light_colorblind: "#ffeff7"
+        light_high_contrast: "#feeff7"
+    pink_1:
+      type: color
+      value: "#ffd3eb"
+      mode:
+        light: "#ffd3eb"
+        light_colorblind: "#ffd3eb"
+        light_high_contrast: "#ffbde0"
+    pink_2:
+      type: color
+      value: "#ffadda"
+      mode:
+        light: "#ffadda"
+        light_colorblind: "#ffadda"
+        light_high_contrast: "#fc87ca"
+    pink_3:
+      type: color
+      value: "#ff80c8"
+      mode:
+        light: "#ff80c8"
+        light_colorblind: "#ff80c8"
+        light_high_contrast: "#ed4baf"
+    pink_4:
+      type: color
+      value: "#e85aad"
+      mode:
+        light: "#e85aad"
+        light_colorblind: "#e85aad"
+        light_high_contrast: "#c9248e"
+    pink_5:
+      type: color
+      value: "#bf3989"
+      mode:
+        light: "#bf3989"
+        light_colorblind: "#bf3989"
+        light_high_contrast: "#971368"
+    pink_6:
+      type: color
+      value: "#99286e"
+      mode:
+        light: "#99286e"
+        light_colorblind: "#99286e"
+        light_high_contrast: "#7d0c57"
+    pink_7:
+      type: color
+      value: "#772057"
+      mode:
+        light: "#772057"
+        light_colorblind: "#772057"
+        light_high_contrast: "#660847"
+    pink_8:
+      type: color
+      value: "#611347"
+      mode:
+        light: "#611347"
+        light_colorblind: "#611347"
+        light_high_contrast: "#53043a"
+    pink_9:
+      type: color
+      value: "#4d0336"
+      mode:
+        light: "#4d0336"
+        light_colorblind: "#4d0336"
+        light_high_contrast: "#3e022b"
+    purple_0:
+      type: color
+      value: "#fbefff"
+      mode:
+        light: "#fbefff"
+        light_colorblind: "#fbefff"
+        light_high_contrast: "#faf0fe"
+    purple_1:
+      type: color
+      value: "#ecd8ff"
+      mode:
+        light: "#ecd8ff"
+        light_colorblind: "#ecd8ff"
+        light_high_contrast: "#e0c5ff"
+    purple_2:
+      type: color
+      value: "#d8b9ff"
+      mode:
+        light: "#d8b9ff"
+        light_colorblind: "#d8b9ff"
+        light_high_contrast: "#c49bff"
+    purple_3:
+      type: color
+      value: "#c297ff"
+      mode:
+        light: "#c297ff"
+        light_colorblind: "#c297ff"
+        light_high_contrast: "#a371f7"
+    purple_4:
+      type: color
+      value: "#a475f9"
+      mode:
+        light: "#a475f9"
+        light_colorblind: "#a475f9"
+        light_high_contrast: "#844ae7"
+    purple_5:
+      type: color
+      value: "#8250df"
+      mode:
+        light: "#8250df"
+        light_colorblind: "#8250df"
+        light_high_contrast: "#622cbc"
+    purple_6:
+      type: color
+      value: "#6639ba"
+      mode:
+        light: "#6639ba"
+        light_colorblind: "#6639ba"
+        light_high_contrast: "#512598"
+    purple_7:
+      type: color
+      value: "#512a97"
+      mode:
+        light: "#512a97"
+        light_colorblind: "#512a97"
+        light_high_contrast: "#411d7b"
+    purple_8:
+      type: color
+      value: "#3e1f79"
+      mode:
+        light: "#3e1f79"
+        light_colorblind: "#3e1f79"
+        light_high_contrast: "#341763"
+    purple_9:
+      type: color
+      value: "#2e1461"
+      mode:
+        light: "#2e1461"
+        light_colorblind: "#2e1461"
+        light_high_contrast: "#260f49"
+    red_0:
+      type: color
+      value: "#FFEBE9"
+      mode:
+        light: "#FFEBE9"
+        light_colorblind: "#fefe48"
+        light_high_contrast: "#fff0ee"
+    red_1:
+      type: color
+      value: "#ffcecb"
+      mode:
+        light: "#ffcecb"
+        light_colorblind: "#fee325"
+        light_high_contrast: "#ffc1bc"
+    red_2:
+      type: color
+      value: "#ffaba8"
+      mode:
+        light: "#ffaba8"
+        light_colorblind: "#f8c200"
+        light_high_contrast: "#ff8e8a"
+    red_3:
+      type: color
+      value: "#ff8182"
+      mode:
+        light: "#ff8182"
+        light_colorblind: "#e7a100"
+        light_high_contrast: "#ee5a5d"
+    red_4:
+      type: color
+      value: "#fa4549"
+      mode:
+        light: "#fa4549"
+        light_colorblind: "#d08002"
+        light_high_contrast: "#d5232c"
+    red_5:
+      type: color
+      value: "#cf222e"
+      mode:
+        light: "#cf222e"
+        light_colorblind: "#ac5e00"
+        light_high_contrast: "#a0111f"
+    red_6:
+      type: color
+      value: "#a40e26"
+      mode:
+        light: "#a40e26"
+        light_colorblind: "#8b4600"
+        light_high_contrast: "#86061d"
+    red_7:
+      type: color
+      value: "#82071e"
+      mode:
+        light: "#82071e"
+        light_colorblind: "#6c3900"
+        light_high_contrast: "#6e011a"
+    red_8:
+      type: color
+      value: "#660018"
+      mode:
+        light: "#660018"
+        light_colorblind: "#4c3100"
+        light_high_contrast: "#5a0016"
+    red_9:
+      type: color
+      value: "#4c0014"
+      mode:
+        light: "#4c0014"
+        light_colorblind: "#2f2900"
+        light_high_contrast: "#430011"
+    yellow_0:
+      type: color
+      value: "#fff8c5"
+      mode:
+        light: "#fff8c5"
+        light_colorblind: "#fff8c5"
+        light_high_contrast: "#fcf7be"
+    yellow_1:
+      type: color
+      value: "#fae17d"
+      mode:
+        light: "#fae17d"
+        light_colorblind: "#fae17d"
+        light_high_contrast: "#f0ce53"
+    yellow_2:
+      type: color
+      value: "#eac54f"
+      mode:
+        light: "#eac54f"
+        light_colorblind: "#eac54f"
+        light_high_contrast: "#d5a824"
+    yellow_3:
+      type: color
+      value: "#d4a72c"
+      mode:
+        light: "#d4a72c"
+        light_colorblind: "#d4a72c"
+        light_high_contrast: "#b58407"
+    yellow_4:
+      type: color
+      value: "#bf8700"
+      mode:
+        light: "#bf8700"
+        light_colorblind: "#bf8700"
+        light_high_contrast: "#956400"
+    yellow_5:
+      type: color
+      value: "#9a6700"
+      mode:
+        light: "#9a6700"
+        light_colorblind: "#9a6700"
+        light_high_contrast: "#744500"
+    yellow_6:
+      type: color
+      value: "#7d4e00"
+      mode:
+        light: "#7d4e00"
+        light_colorblind: "#7d4e00"
+        light_high_contrast: "#603700"
+    yellow_7:
+      type: color
+      value: "#633c01"
+      mode:
+        light: "#633c01"
+        light_colorblind: "#633c01"
+        light_high_contrast: "#4e2c00"
+    yellow_8:
+      type: color
+      value: "#4d2d00"
+      mode:
+        light: "#4d2d00"
+        light_colorblind: "#4d2d00"
+        light_high_contrast: "#3f2200"
+    yellow_9:
+      type: color
+      value: "#3b2300"
+      mode:
+        light: "#3b2300"
+        light_colorblind: "#3b2300"
+        light_high_contrast: "#2e1800"
+    white:
+      type: color
+      value: "#ffffff"
+      mode:
+        light: "#ffffff"
+        light_colorblind: "#ffffff"
+        light_high_contrast: "#ffffff"
   icon:
-    type: group
-    tokens:
-      alert-16:
-        type: token
-        value: alert-16
-      alert-16-fill:
-        type: token
-        value: alert-16-fill
-      alert-24:
-        type: token
-        value: alert-24
-      archive-16:
-        type: token
-        value: archive-16
-      archive-24:
-        type: token
-        value: archive-24
-      arrow-both-16:
-        type: token
-        value: arrow-both-16
-  # spacing:
-  #   type: group
-  #   tokens:
-  #     spacer:
-  #       type: scale
-  #       value: [0, 4, 8, 16, 24, 32, 40]
-  type:
-    name: Typography
-    type: group
-    tokens:
-      family:
-        type: group
-        tokens:
-          system:
-            value: '-apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"'
-          monospace:
-            value: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace'
-          display:
-            value: 'InterUI, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif'
+    alert-16:
+      type: file
+      value: ./icons/alert-16-fill.svg
+    alert-16-fill:
+      type: file
+      value: ./icons/alert-16-fill.svg
+    alert-24:
+      type: file
+      value: ./icons/alert-24.svg
+    archive-16:
+      type: file
+      value: ./icons/archive-16.svg
+    archive-24:
+      type: file
+      value: ./icons/archive-24.svg
+    arrow-both-16:
+      type: file
+      value: ./icons/arrow-both-16.svg
+  spacing:
+    spacer_0:
+      type: dimension
+      value: 0px
+    spacer_xs:
+      type: dimension
+      value: 4px
+    spacer_s:
+      type: dimension
+      value: 8px
+    spacer_m:
+      type: dimension
+      value: 16px
+    spacer_k:
+      type: dimension
+      value: 24px
+    spacer_xl:
+      type: dimension
+      value: 32px
+    spacer_xxl:
+      type: dimension
+      value: 40px
+  font:
+    family:
+      system:
+        type: font
+        value:
+          - -apple-system,
+          - BlinkMacSystemFont
+          - Segoe UI
+          - Helvetica
+          - Arial
+          - sans-serif
+          - Apple Color Emoji
+          - Segoe UI Emoji
+      monospace:
+        value:
+          - SFMono-Regular
+          - Consolas
+          - Liberation Mono
+          - Menlo
+          - Courier
+          - monospace
+      display:
+        value:
+          - InterUI
+          - -apple-system
+          - BlinkMacSystemFont
+          - Helvetica Neue
+          - Segoe UI
+          - Oxygen
+          - Ubuntu
+          - Cantarell
+          - Open Sans
+          - sans-serif
       size:
-        type: group
         modes: [mobile, desktop]
-        tokens:
-          f00:
-            value: [32, 32, 48]
-          f0:
-            value: [32, 32, 40]
-          f1:
-            value: [26, 26, 32]
-          f2:
-            value: [22, 22, 24]
-          f3:
-            value: [16, 16, 20]
-          f4:
-            value: [16]
-          f5:
-            value: [14]
-          f6:
-            value: [12]
+        f00:
+          value: [32, 32, 48]
+        f0:
+          value: [32, 32, 40]
+        f1:
+          value: [26, 26, 32]
+        f2:
+          value: [22, 22, 24]
+        f3:
+          value: [16, 16, 20]
+        f4:
+          value: [16]
+        f5:
+          value: [14]
+        f6:
+          value: [12]
       line_height:
-        type: group
-        tokens:
-          default:
-            value: 1.5
-          condensed:
-            value: 1.25
-          condensed_ultra:
-            value: 1
+        default:
+          value: 1.5
+        condensed:
+          value: 1.25
+        condensed_ultra:
+          value: 1
