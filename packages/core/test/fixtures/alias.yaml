@@ -1,0 +1,30 @@
+name: Aliased Tokens
+tokens:
+  color:
+    blue:
+      type: color
+      value: "#218bff"
+    active:
+      type: color
+      value: $color.blue
+    highlight:
+      type: color
+      value: $color.active
+    brand:
+      type: color
+      value: $color.blue
+  font:
+    family:
+      base:
+        type: font
+        value: Helvetica
+      button:
+        type: font
+        value: $font.family.base
+  size:
+    m:
+      type: dimension
+      value: 1rem
+    margin_m:
+      type: dimension
+      value: $size.m

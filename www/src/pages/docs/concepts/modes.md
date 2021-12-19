@@ -7,8 +7,9 @@ layout: ../../../layouts/docs.astro
 
 Modes are **alternate forms of a token.** Although this isn’t a concept unique to Cobalt, you may not be used to thinking of tokens in this way before.
 
-You’ve probably used **light mode** and **dark mode** for websites and apps. Those are modes—alternate versions of a cohesive palette. But they can do more than that, too. GitHub, for example, uses color modes to allow users to view the site using
-colorblind-friendly palettes in addition to the typical light and dark modes:
+Probably the most common form of modes are “themes,” for example if a website or app has a **light theme** and a **dark theme**. But while themes are modes, modes are also much broader and can be used in other ways as well. For example, on GitHub, enabling
+colorblind-friendly colors would constitute a mode. On iOS, adjusting the base text size, which cascades to the whole type scale, is also a form of a mode. Another way of thinking about modes is thinking about meta-collections of tokens that can be toggled
+together. Below are 2 examples of modes as they relatea to color and typography:
 
 ## Modes in Color
 
@@ -32,17 +33,19 @@ tokens:
   tokens:
     red_4:
       name: Red (4)
-      value: '#fa4549' # default red (light mode)
+      value: "#fa4549" # default red (light mode)
       mode:
-        light: '#fa4549' # light mode
-        light_colorblind: '#d08002' # colorblind theme
-        light_high_contrast: '#d5232c' # high contrast theme
-        dark: '#f85149' # dark mode
-        dark_colorblind: '#c38000' # dark mode (colorblind)
-        dark_high_contrast: '#ff6a69' # dark mode (high contrast)
+        light: "#fa4549" # light mode
+        light_colorblind: "#d08002" # colorblind theme
+        light_high_contrast: "#d5232c" # high contrast theme
+        dark: "#f85149" # dark mode
+        dark_colorblind: "#c38000" # dark mode (colorblind)
+        dark_high_contrast: "#ff6a69" # dark mode (high contrast)
 ```
 
 You can see that `color.red_4` still occupies the same place on the palette. But based on the mode, can take on different values to serve users better.
+
+Though not shown, this could also relate to icons as well—based on the color mode selected, icons may either get different colors, or different stroke/fill treatments to keep contrast and visibility consistent.
 
 ## Modes in Typography
 
@@ -83,11 +86,11 @@ tokens:
 
 This lets a type style be adaptive to user settings rather than managing dozens of values all over the place.
 
-## More examples
+## Additional thoughts
 
-Modes can be used for icons as well, adjusting the detail and relative proportions for different sizes. Any time a token has an alternate form, that’s a mode.
+These are just a few common examples of modes, but modes aren’t limited to these examples. Any time a user setting can cascade to multiple token values, you may consider using a mode.
 
-However, not everything is a mode. If any tokens should be used at the same time, those are separate tokens, not a mode. For example, `Heading 1`, `Heading 2`, and `Heading 3` are different tokens as they all may be used at the same time; they are not
-modes of one font size.
+However, it’s important not to go overboard on modes! If any tokens can be used next to one another, those are separate tokens, not a mode. For example, `Heading 1`, `Heading 2`, and `Heading 3` aren’t modes of “Heading;” they’re simply different tokens
+because they should all be used together. But a mode would be a user adjusting the base size, where `Heading 1` may be based off the user’s base size.
 
 The longer you work with modes and your design system, the clearer it will be. Until then, experiment! And see what works for you.

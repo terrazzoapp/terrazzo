@@ -1,0 +1,43 @@
+name: wasm
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    env:
+      RUST_BACKTRACE: 1
+    matrix:
+      include:
+        - target: wasm32-unknown-unkown
+          os: ubuntu-latest
+          rust: stable
+        - target: wasm32-unknown-unkown
+          os: ubuntu-latest
+          rust: beta
+        - target: wasm32-unknown-unkown
+          os: ubuntu-latest
+          rust: nightly
+    runs-on:
+      os: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust }}
+          target: ${{ matrix.target }}
+      - run: cd packages/core
+      - run: cargo generate --git . --name wasm-pack-test
+      - run: mv Cargo.toml Cargo.toml.tmpl
+      - run: cd wasm-pack-test
+      - run: cargo check
+      - run: cargo check --target wasm32-unknown-unknown
+      - run: cargo check                                 --no-default-features
+      - run: cargo check --target wasm32-unknown-unknown --no-default-features
+      - run: cargo check                                 --no-default-features --features console_error_panic_hook
+      - run: cargo check --target wasm32-unknown-unknown --no-default-features --features console_error_panic_hook
+      - run: cargo check                                 --no-default-features --features "console_error_panic_hook wee_alloc"
+      - run: cargo check --target wasm32-unknown-unknown --no-default-features --features "console_error_panic_hook wee_alloc"

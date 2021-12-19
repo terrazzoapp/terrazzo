@@ -1,32 +1,35 @@
-# 💎 Cobalt UI
+# co-tokens
 
-Schemas and tools for managing design tokens
+Generate code from your design tokens, and sync your design tokens with Figma. 🦀 Powered by Rust.
 
-## Getting Started
-
-```
-npm install @cobalt-ui/cli
-```
-
-Create a `tokens.yaml` file with your tokens (docs)
-
-Add to `package.json`:
+## Install
 
 ```
-"scripts": {
-  "tokens:build": "cobalt build",
-  "tokens:validate": "cobalt validate tokens.yaml"
-}
+npm install co-build
 ```
 
-### Building
+## CLI
+
+### Build
+
+Generate code from your `cobalt.config.mjs` file ([docs](https://cobalt-ui.pages.dev/reference/config))
 
 ```
-npm run tokens:build
+co build
 ```
 
-### Validating
+### Sync
 
-```
-npm run tokens:validate
+Sync `tokens.yaml` with Figma ([docs](https://cobalt-ui/pages.dev/guides/figma))
+
+## Node.js
+
+```js
+import cobalt from "co-build";
+import sass from "@cobalt-ui/sass";
+
+await cobalt.build({
+  outDir: "./tokens",
+  plugins: [sass()],
+});
 ```

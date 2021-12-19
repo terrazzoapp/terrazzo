@@ -1,9 +1,9 @@
-import type { BuildResult, Plugin, SchemaNode, TokenNode, TokenSchema } from '@cobalt-ui/core';
+import type { BuildResult, Plugin, TokenNode } from "@cobalt-ui/core";
 
-import { Indenter } from '@cobalt-ui/utils';
-import { prop } from './util.js';
+import { Indenter } from "@cobalt-ui/utils";
+import { prop } from "./util.js";
 
-type Transformer = (value: any, token: SchemaNode) => any;
+type Transformer = (value: any, token: TokenNode) => any;
 
 export interface Options {
   /** output file (default: "./tokens/index.ts") */
@@ -13,12 +13,12 @@ export interface Options {
 }
 
 export default function ts(options?: Options): Plugin {
-  let fileName = options?.filename || './index.ts';
+  let fileName = options?.filename || "./index.ts";
   let transformer = options?.transformValue;
   const i = new Indenter(); // TODO: allow config?
 
   interface PrintObjectOptions {
-    tokens: Record<string, SchemaNode>;
+    tokens: TokenNode[];
     transform(value: any): string | undefined;
     indentLv?: number;
     types?: boolean;
@@ -26,49 +26,38 @@ export default function ts(options?: Options): Plugin {
 
   function printObject({ indentLv = 0, tokens, types = false, transform }: PrintObjectOptions): string {
     const code: string[] = [];
-    for (const token of Object.values(tokens)) {
+    for (const token of tokens) {
       // comment
       const comment: string[] = [];
       if (token.name) comment.push(token.name);
       if (token.description) comment.push(token.description);
-      if (comment.length) code.push(i.indent(`/** ${comment.join(': ')} */`, indentLv));
-
-      // group
-      if (token.type === 'group') {
-        const printedGroup = printObject({ indentLv: indentLv + 1, tokens: token.tokens, types, transform });
-        if (printedGroup.trim()) {
-          code.push(i.indent(`${prop(token.localID)}: {`, indentLv));
-          code.push(printedGroup);
-          code.push(i.indent(types ? '};' : '},', indentLv));
-        }
-      }
+      if (comment.length) code.push(i.indent(`/** ${comment.join(": ")} */`, indentLv));
 
       // token
-      else {
-        const { localID, value } = token as TokenNode;
+      const value = token.value;
+      const parts = token.id;
 
-        // apply transformValue()
-        if (transformer) {
-          for (const k of Object.keys(value)) {
-            value[k] = transformer(value[k], token);
-          }
+      // apply transformValue()
+      if (transformer) {
+        for (const k of Object.keys(value)) {
+          value[k] = transformer(value[k], token);
         }
-        const printedVal = transform(value);
-        if (printedVal) code.push(i.indent(`${prop(localID)}: ${printedVal}${types ? ';' : ','}`, indentLv));
       }
+      const printedVal = transform(value);
+      if (printedVal) code.push(i.indent(`${prop(localID)}: ${printedVal}${types ? ";" : ","}`, indentLv));
     }
-    return code.join('\n');
+    return code.join("\n");
   }
 
   function printTokensExport(schema: TokenSchema): string {
-    const code = ['export const tokens = {'];
-    code.push(printObject({ indentLv: 1, tokens: schema.tokens, transform: (val) => (typeof val.default === 'string' ? `'${val.default}'` : val.default) }));
-    code.push('};');
-    return code.join('\n');
+    const code = ["export const tokens = {"];
+    code.push(printObject({ indentLv: 1, tokens: schema.tokens, transform: (val) => (typeof val.default === "string" ? `'${val.default}'` : val.default) }));
+    code.push("};");
+    return code.join("\n");
   }
 
   function printModesExport(schema: TokenSchema): string {
-    const code = ['export const modes = {'];
+    const code = ["export const modes = {"];
     code.push(
       printObject({
         indentLv: 1,
@@ -76,17 +65,17 @@ export default function ts(options?: Options): Plugin {
         transform: (val) => {
           const props: string[] = [];
           for (const [k, v] of Object.entries(val)) {
-            if (k === 'default') continue;
-            props.push(`${prop(k)}: ${typeof v === 'string' ? `'${v}'` : v}`);
+            if (k === "default") continue;
+            props.push(`${prop(k)}: ${typeof v === "string" ? `'${v}'` : v}`);
           }
           if (!props.length) return undefined;
-          return `{ ${props.join(', ')} }`;
+          return `{ ${props.join(", ")} }`;
         },
       })
     );
-    code.push('};');
+    code.push("};");
 
-    return code.join('\n');
+    return code.join("\n");
   }
 
   function printTokensFlatInterface(schema: TokenSchema): string {
@@ -94,7 +83,7 @@ export default function ts(options?: Options): Plugin {
 
     function flattenTokens(tokens: Record<string, SchemaNode>): void {
       for (const token of Object.values(tokens)) {
-        if (token.type === 'group') {
+        if (token.type === "group") {
           flattenTokens(token.tokens);
         } else {
           flatTokens[token.id] = typeof token.value.default;
@@ -104,13 +93,13 @@ export default function ts(options?: Options): Plugin {
 
     flattenTokens(schema.tokens);
 
-    const code = ['export interface TokensFlat {'];
+    const code = ["export interface TokensFlat {"];
     for (const [k, v] of Object.entries(flatTokens)) {
       code.push(`  ${prop(k)}: ${v};`);
     }
-    code.push('}');
+    code.push("}");
 
-    return code.join('\n');
+    return code.join("\n");
   }
 
   function printModesInterface(schema: TokenSchema): string {
@@ -118,7 +107,7 @@ export default function ts(options?: Options): Plugin {
 
     function flattenModes(tokens: Record<string, SchemaNode>): void {
       for (const token of Object.values(tokens)) {
-        if (token.type !== 'group') continue;
+        if (token.type !== "group") continue;
         if (token.modes && token.modes.length) flatModes[token.id] = `'${token.modes.join("' | '")}'`;
         if (token.tokens) flattenModes(token.tokens);
       }
@@ -126,13 +115,13 @@ export default function ts(options?: Options): Plugin {
 
     flattenModes(schema.tokens);
 
-    const code = ['export interface Modes {'];
+    const code = ["export interface Modes {"];
     for (const [k, v] of Object.entries(flatModes)) {
       code.push(`  ${prop(k)}: ${v};`);
     }
-    code.push('}');
+    code.push("}");
 
-    return code.join('\n');
+    return code.join("\n");
   }
 
   function printAltFunction(): string {
@@ -149,10 +138,10 @@ export function getAlt<T = string>(tokenID: keyof TokensFlat, mode: string): T {
   }
 
   return {
-    name: '@cobalt-ui/plugin-ts',
+    name: "@cobalt-ui/plugin-ts",
     async build({ schema }): Promise<BuildResult[]> {
       let code = [printTokensFlatInterface(schema), printModesInterface(schema), printTokensExport(schema), printModesExport(schema), printAltFunction()];
-      return [{ fileName, contents: code.join('\n\n') }];
+      return [{ fileName, contents: code.join("\n\n") }];
     },
   };
 }

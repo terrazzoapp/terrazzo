@@ -14,22 +14,12 @@
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "rm -rf dist && tsc",
-    "dev": "tsc -w"
-  },
-  "dependencies": {
-    "@cobalt-ui/plugin-json": "^0.0.0",
-    "@cobalt-ui/plugin-sass": "^0.0.0",
-    "@cobalt-ui/plugin-ts": "^0.0.0",
-    "better-color-tools": "^0.0.2",
-    "js-yaml": "^4.1.0",
-    "kleur": "^4.1.4"
+    "build": "wasm-pack build --target nodejs",
+    "test": "mocha --parallel"
   },
   "devDependencies": {
-    "@types/js-yaml": "^4.0.4",
-    "@types/node": "^16.11.7"
+    "chai": "^4.3.4",
+    "mocha": "^9.1.3"
   }
 }

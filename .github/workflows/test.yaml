@@ -22,7 +22,7 @@ jobs:
       - uses: actions/setup-node@v2
       - run: pnpm i
       - run: pnpm run lint
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -37,3 +37,4 @@ jobs:
       - uses: actions/setup-node@v2
       - run: pnpm i
       - run: pnpm run build
+      - run: pnpm run test

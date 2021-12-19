@@ -6,8 +6,8 @@ import fetch from "node-fetch";
 const FIGMA_API = `https://api.figma.com/`;
 
 /** collect all components within document */
-export function collectComponents(node: Figma.Node, components: Map<string, Figma.Component> = new Map()): Map<string, Figma.Component> {
-  if (node.type === "COMPONENT") {
+export function collectComponents(node: Figma.Node, components = new Map<string, Figma.Component>()):  Map<string, Figma.Component> {
+  if (node.type == "COMPONENT") {
     if (components.has(node.name)) {
       console.warn(`Duplicate component name found "${node.name}". Tokens may not generate as expected.`); // eslint-disable-line no-console
     } else {
@@ -24,6 +24,10 @@ export function collectComponents(node: Figma.Node, components: Map<string, Figm
   }
 
   return components;
+}
+
+/** collect all styles within document */
+export function collectStyles(node: Figma.Node, styles = new Map<string, Figma.()):  Map<string, Figma.Component> {
 }
 
 /** collect fills from node */
