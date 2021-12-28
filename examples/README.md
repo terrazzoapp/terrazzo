@@ -4,9 +4,9 @@ WIP: examples showing how Cobalt can work for any token system.
 
 ### Current examples:
 
+- [GitHub Primer](./github)
 - [Adobe Spectrum](./adobe)
 - [Apple Human Interface](./apple)
-- [GitHub Primer](./github)
-- IBM Carbon (coming soon)
-- Salesforce Lightning (coming soon)
-- Shopify Polaris (coming soon)
+- [IBM Carbon](./ibm)
+- [Salesforce Lightning](./salesforce)
+- [Shopify Polaris](./salesforce)

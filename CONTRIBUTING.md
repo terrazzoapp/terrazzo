@@ -7,13 +7,15 @@ All contributions of any nature are welcome.
 I’d love for this project to be your first contribution. If you are new to Open Source contributions, please see [https://github.com/firstcontributions/first-contributions] for a handy guide on how to get started. Nearly everything there will apply to
 contributing here.
 
-## Set up
+## Setup
 
 This repo requires [pnpm]. Once installed, run:
 
 ```
 pnpm i
 ```
+
+Some packages in this repo also require [Rust] and [wasm-pack][rust] to build. See the [guide on getting this set up][wasm-pack].
 
 ## Developing
 
@@ -28,3 +30,4 @@ pnpm run dev
 All PRs are welcome! When opening a PR, be sure to complete the checklist within the template to make it easier on me 🙂.
 
 [pnpm]: https://pnpm.io/
+[rust]: https://rustwasm.github.io/docs/wasm-pack/quickstart.html

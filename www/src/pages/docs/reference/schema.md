@@ -14,6 +14,7 @@ The top level of `tokens.yaml` contains information about the file. It may conta
 | Key        |   Required   | Description                                                                                                                       |
 | :--------- | :----------: | :-------------------------------------------------------------------------------------------------------------------------------- |
 | `name`     |              | The name of your tokens or design system                                                                                          |
+| `version`  |              | Cobalt version (currently `0.1`). Not required in beta, but will be for versions `1.0` and greater.                               |
 | `metadata` |              | Arbitrary user data. Metadata isn’t read or used by Cobalt. But you can store notes, links, or any other data in here you’d like. |
 | `tokens`   | **required** | An object of tokens (see [Tokens](#tokens))                                                                                       |
 
@@ -75,7 +76,7 @@ tokens:
 
 ### Dimension
 
-A unit of measurement expressed in either `px` or `rem` ([docs][dimension]).
+A unit of measurement ([docs][dimension]).
 
 ```yaml
 tokens:
@@ -90,6 +91,8 @@ tokens:
       type: dimension
       value: 32px
 ```
+
+_Note: the [Design Tokens Spec][dimension] currently restricts dimension to `px` or `rem`. Cobalt intentionally avoids this restriction._
 
 ### Font
 
@@ -171,20 +174,7 @@ tokens:
 
 ### Shadow
 
-An array of objects representing overlapping shadows. Could be used with [box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow), [text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow), or any other shadow. All
-properties are optional, as they all have defaults.
-
-**Properties**
-
-| Property   | Description                                |
-| :--------- | :----------------------------------------- |
-| `color`    | Color of the shadow (default: `#00000040`) |
-| `position` | Position of shadow (default: `center`)     |
-| `size`     | The size of the shadow (default: `0`)      |
-| `spread`   | The spread of the shadow (default: `0`)    |
-| `inset`    | Is this an inset shadow? (default: `false` |
-
-_Note: `spread` and `inset` will be ignored if generating a `text-shadow`_
+An array of CSS shadows. Could be used with [box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow), [text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow), or any other shadow.
 
 **Example**
 
@@ -194,36 +184,15 @@ tokens:
     card_near:
       type: shadow
       value:
-        - position: 0 1px
-          size: 1px
-          spread: 0
-          color: "#0000000c"
-        - position: 0 2px
-          size: 2px
-          spread: 0
-          color: "#0000000c"
-        - position: 0 4px
-          size: 4px
-          spread: 0
-          color: "#0000000c"
-        - position: 0 8px
-          size: 8px
-          spread: 0
-          color: "#0000000c"
+        - "0 1px 1px #0000000c"
+        - "0 2px 2px #0000000c"
+        - "0 4px 4px #0000000c"
+        - "0 8px 8px #0000000c"
 ```
 
 ### Linear gradient
 
-An object representing a [linear gradient][linear-gradient].
-
-**Properties**
-
-| Property | Description                                                                                                             |
-| :------- | :---------------------------------------------------------------------------------------------------------------------- |
-| `stops`  | Array of strings representing a color + % stop, separated by a space                                                    |
-| `angle`  | (optional) Direction, expressed either in deg (`45deg`) or corners (`to right top`, `to bottom left`) (default: `0deg`) |
-
-_Note: the `rad` and `turn` units aren’t supported for `angle`; please use degrees_
+A CSS [linear gradient][linear-gradient].
 
 **Example**
 
@@ -232,37 +201,15 @@ tokens:
   gradient:
     lighten:
       type: linear-gradient
-      value:
-        direction: 135deg
-        stops:
-          - "#000000ff"
-          - "#00000000"
+      value: "135deg, #000000ff, #00000000"
     rainbow:
       type: linear-gradient
-      value:
-        angle: to right top
-        stops:
-          - "#ff0000 0%"
-          - "#ffa500 14%"
-          - "#ffd700 29%"
-          - "#7cfc00 43%"
-          - "#00ffff 57%"
-          - "#4169e1 71%"
-          - "#9400d3 86%"
-          - "#ff00ff 100%"
+      value: "to right top, #ff0000 0%, #ffa500 14%, #ffd700 29%, #7cfc00 43%, #00ffff 57%, #4169e1 71%, #9400d3 86%, #ff00ff 100%"
 ```
 
 ### Radial gradient
 
-An object representing a [radial gradient][radial-gradient].
-
-**Properties**
-
-| Property   | Description                                                          |
-| :--------- | :------------------------------------------------------------------- |
-| `stops`    | Array of strings representing a color + % stop, separated by a space |
-| `shape`    | (optional) `circle` or `ellise` (default: `circle`)                  |
-| `position` | (optional) Position of gradient (default: `center center`)           |
+A CSS [radial gradient][radial-gradient].
 
 **Example**
 
@@ -271,27 +218,12 @@ tokens:
   gradient:
     pink:
       type: radial-gradient
-      value:
-        shape: ellipse
-        position: center
-        stops:
-          - "#fd5353"
-          - "#d04dd9"
+      value: "ellipse at center center, #fd5353, #d04dd9"
 ```
 
 ### Conic gradient
 
-An object representing a [conic gradient][conic-gradient].
-
-**Properties**
-
-| Property   | Description                                                               |
-| :--------- | :------------------------------------------------------------------------ |
-| `stops`    | Array of strings representing a color + degree stop, separated by a space |
-| `angle`    | (optional) Start of gradient, expresed in deg (default: `0deg`)           |
-| `position` | (optional) Gradient position (default: `center`)                          |
-
-_Note: the `rad` and `turn` units aren’t supported for `angle`; please use degrees_
+A CSS [conic gradient][conic-gradient].
 
 **Example**
 
@@ -300,14 +232,7 @@ tokens:
   gradient:
     pinwheel:
       type: conic-gradient
-      value:
-        angle: 5deg
-        stops:
-          - "#ff0000 0deg"
-          - "#ffa500 72deg"
-          - "#ffff00 144deg"
-          - "#008000 216deg"
-          - "#0000ff 360deg"
+      value: "from 5deg, #ff0000 0deg, #ffa500 72deg, #ffff00 144deg, #008000 216deg, #0000ff 360deg"
 ```
 
 ### Custom types
@@ -347,9 +272,28 @@ tokens:
         value: Graphik Regular
 ```
 
-## Advanced Syntax
+## Reusing values (aliasing)
 
-### Modes
+Reusing another value can be done by declaring another ID for `value`, prefixed with `$`:
+
+```yaml
+tokens:
+  space:
+    l:
+      type: dimension
+      value: 32px
+  text:
+    heading:
+      padding-top:
+        type: dimension
+        value: $space.l
+```
+
+Here, `text.heading.padding-top` reuses the value from `space.l`. When the base value updates, so will the alias.
+
+Note that **tokens must be of the same type to reuse values.** Reusing values may also be done for [Modes](#modes), too, but all modes must be redeclared (otherwise they may cause conflicts or unpredictable behavior).
+
+## Modes
 
 [Modes] are alternate versions of your tokens. For example, say your design system has a **standard** palette and an alternate version optimized for **colorblind** users. Here’s one way you could declare that:
 

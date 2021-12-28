@@ -1,0 +1,35 @@
+name: Basic Tokens
+tokens:
+  color:
+    blue:
+      type: color
+      value: "#218bff"
+  font:
+    family:
+      type: font
+      value: IBM Plex Sans
+  space:
+    s:
+      type: dimension
+      value: 4px
+  easing:
+    sine:
+      type: cubic-bezier
+      value: [0.5, 0, 0.5, 1]
+  icon:
+    local:
+      type: file
+      value: ./icons/alert.svg
+    remote:
+      type: url
+      value: https://my-cdn.com/github.svg
+  gradient:
+    linear:
+      type: linear-gradient
+      value: "to right top, #000000 15%, #00000000 92%"
+    radial:
+      type: radial-gradient
+      value: "ellipse at 75% 25%, #ff0000, #0000ff"
+    conic:
+      type: conic-gradient
+      value: "from -225deg at 50% 50%, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff"

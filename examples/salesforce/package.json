@@ -1,0 +1,18 @@
+{
+  "name": "@example/salesforce",
+  "description": "https://github.com/salesforce-ux/design-system",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:tokens": "co build",
+    "update": "node scripts/update"
+  },
+  "devDependencies": {
+    "@cobalt-ui/cli": "^0.0.2",
+    "@cobalt-ui/plugin-css": "^0.0.0",
+    "@cobalt-ui/plugin-sass": "^0.0.0",
+    "@salesforce-ux/design-system": "^2.16.2",
+    "better-color-tools": "^0.0.2",
+    "js-yaml": "^4.1.0"
+  }
+}

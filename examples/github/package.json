@@ -4,15 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cobalt build",
-    "prestart": "npm run build",
-    "start": "start-storybook",
-    "validate": "cobalt validate"
+    "build:tokens": "co build",
+    "update": "node scripts/update"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.0.2",
     "@cobalt-ui/plugin-css": "^0.0.0",
     "@cobalt-ui/plugin-sass": "^0.0.0",
-    "@storybook/html": "^6.3.12"
+    "@primer/octicons": "^16.2.0",
+    "@primer/primitives": "^7.4.0",
+    "js-yaml": "^4.1.0"
   }
 }
