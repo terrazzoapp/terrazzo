@@ -1,39 +1,66 @@
 <script>
-import yaml from 'js-yaml';
-import { Validator } from '@cobalt-ui/core';
-
-const validator = new Validator();
+import yaml from "js-yaml";
 
 export default {
   data() {
     return {
-      copyLabel: 'Copy',
-      yaml: '',
-      yamlError: '',
+      copyLabel: "Copy",
+      yaml: "",
+      yamlError: "",
       schema: {
-        name: 'My Tokens',
+        name: "My Tokens",
         tokens: {
           color: {
-            name: 'Color',
-            type: 'group',
-            modes: ['light', 'dark'],
+            name: "Color",
+            type: "group",
+            modes: ["light", "dark"],
             tokens: {
-              charcoal: { value: { default: '#36454F', light: '#36454F', dark: '#FFFAFA' } },
-              erin: { value: { default: '#00FF40', light: '#00FF40', dark: '#1AB958' } },
-              snow: { value: { default: '#FFFAFA', light: '#FFFAFA', dark: '#36454F' } },
-              ultramarine: { value: { default: '#120A8F', light: '#120A8F', dark: '#1F29B5' } },
-              vermilion: { value: { default: '#E34234', light: '#E34234', dark: '#BB3F34' } },
+              charcoal: {
+                value: {
+                  default: "#36454F",
+                  light: "#36454F",
+                  dark: "#FFFAFA",
+                },
+              },
+              erin: {
+                value: {
+                  default: "#00FF40",
+                  light: "#00FF40",
+                  dark: "#1AB958",
+                },
+              },
+              snow: {
+                value: {
+                  default: "#FFFAFA",
+                  light: "#FFFAFA",
+                  dark: "#36454F",
+                },
+              },
+              ultramarine: {
+                value: {
+                  default: "#120A8F",
+                  light: "#120A8F",
+                  dark: "#1F29B5",
+                },
+              },
+              vermilion: {
+                value: {
+                  default: "#E34234",
+                  light: "#E34234",
+                  dark: "#BB3F34",
+                },
+              },
             },
           },
           type: {
-            name: 'Typography',
-            type: 'group',
+            name: "Typography",
+            type: "group",
             tokens: {
               family: {
-                type: 'group',
+                type: "group",
                 tokens: {
-                  founders_grotesk: { value: { default: 'Founders Grotesk' } },
-                  founders_mono: { value: { default: 'Founders Mono' } },
+                  founders_grotesk: { value: { default: "Founders Grotesk" } },
+                  founders_mono: { value: { default: "Founders Mono" } },
                 },
               },
             },
@@ -45,23 +72,8 @@ export default {
   watch: {
     schema(newSchema, oldSchema) {
       if (JSON.stringify(newSchema) === JSON.stringify(oldSchema)) return;
-      this.yamlError = '';
+      this.yamlError = "";
       this.yaml = yaml.dump(newSchema);
-    },
-    yaml(newYAML, oldYAML) {
-      if (newYAML === oldYAML) return;
-      try {
-        const parsed = yaml.load(newYAML);
-        this.yamlError = '';
-        this.schema = parsed;
-        const { errors, warnings } = validator.validate(newYAML);
-        console.log({ errors });
-        if (errors) {
-          this.yamlError = errors[0];
-        }
-      } catch (err) {
-        this.yamlError = String(err);
-      }
     },
   },
   created() {
@@ -73,9 +85,9 @@ export default {
   methods: {
     copy() {
       navigator.clipboard.writeText(yaml.dump(this.schema));
-      this.copyLabel = 'Copied';
+      this.copyLabel = "Copied";
       setTimeout(() => {
-        this.copyLabel = 'Copy';
+        this.copyLabel = "Copy";
       }, 3000);
     },
   },
@@ -93,13 +105,16 @@ export default {
     </div>
     -->
     <div class="wrapper">
-      <p>Come back soon! I’m still playing around with what I want this to look like.</p>
+      <p>
+        Come back soon! I’m still playing around with what I want this to look
+        like.
+      </p>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@use '../../tokens' as *;
+@use "../../tokens" as *;
 
 .editor {
   border: 1.5px solid currentColor;
@@ -113,7 +128,7 @@ export default {
       background: transparent;
       border: none;
       color: inherit;
-      font-family: 'SF Mono', 'Menlo', monospace;
+      font-family: "SF Mono", "Menlo", monospace;
       font-size: 10pt;
       font-weight: 400;
       line-height: 1.2;
@@ -135,7 +150,7 @@ export default {
       background: $color__Red;
       color: $color__White;
       bottom: 0;
-      font-family: 'SF Mono', 'Menlo', monospace;
+      font-family: "SF Mono", "Menlo", monospace;
       font-size: 9pt;
       left: 0;
       padding: 0.5rem;
@@ -182,7 +197,7 @@ export default {
     background: none;
     border: none;
     color: inherit;
-    font-family: 'SF Mono', monospace;
+    font-family: "SF Mono", monospace;
     font-weight: 400;
     outline: none;
   }

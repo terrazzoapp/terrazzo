@@ -7,6 +7,8 @@ export interface IndentOptions {
   includeEmptyLines?: boolean;
 }
 
+const TRAILING_SPACE_RE = /\s*$/;
+
 /**
  * Indent
  * The main difference between this and the "indent-string" package
@@ -35,7 +37,7 @@ export class Indenter {
         if (isEmptyLine) return includeEmptyLines ? prefix : "";
 
         // indent
-        return `${prefix}${ln.replace(/\s*$/, "")}`;
+        return `${prefix}${ln.replace(TRAILING_SPACE_RE, "")}`;
       })
       .join("\n");
   }

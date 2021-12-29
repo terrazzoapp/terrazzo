@@ -1,3 +1,5 @@
 Cargo.lock
 Cargo.toml
+pkg/
 target/
+test/

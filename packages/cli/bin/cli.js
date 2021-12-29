@@ -1,20 +1,17 @@
 #!/usr/bin/env node
 
-/* eslint-disable no-console */
-
 import dotenv from "dotenv";
 dotenv.config();
 
-import { Builder, ConfigLoader, parse, Validator } from "@cobalt-ui/core";
+import co from "@cobalt-ui/core";
+import { DIM, FG_BLUE, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from "@cobalt-ui/utils";
 import chokidar from "chokidar";
 import fs from "fs";
-import * as color from "kleur/colors";
 import { performance } from "perf_hooks";
-import yaml from "js-yaml";
 import { fileURLToPath } from "url";
-import loadFigma from "../dist/figma/index.js";
 
 const [, , cmd, ...args] = process.argv;
+const SLASH_PREFIX_RE = /^\/?/;
 
 /** `tokens` CLI command */
 async function main() {
@@ -37,126 +34,95 @@ async function main() {
   }
 
   // load config
+  let cwd = `file://${process.cwd()}/`;
   const configI = args.findIndex((arg) => arg.toLowerCase() === "-c" || arg.toLowerCase() === "--config");
-  if (configI !== -1 && !args[configI + 1]) throw new Error(`Missing path after --config flag`);
-  const configLoader = new ConfigLoader(configI > 0 ? args[configI + 1] : undefined);
-  const config = await configLoader.load();
+  if (configI != -1 && !args[configI + 1]) throw new Error(`  ${FG_RED}✘  Missing path after --config flag${RESET}`);
+  let userConfig = {};
+  // --config flag
+  if (configI > 0 && args[configI + 1]) {
+    try {
+      configPath = new URL(args[configI + 1], cwd);
+      cwd = new URL(".", configPath); // resolve filepaths relative to config
+      userConfig = (await import(fileURLToPath(configPath))).default;
+    } catch {
+      throw new Error(`  ${FG_RED}✘  Could not locate ${args[configI + 1]}${RESET}`);
+    }
+  }
+  // default (cobalt.config.js)
+  else {
+    let configPath = new URL("./cobalt.config.js", cwd);
+    if (!fs.existsSync(configPath)) configPath = new URL("./cobalt.config.mjs", cwd);
+    if (!fs.existsSync(configPath)) throw new Error(`  ${FG_RED}✘  Could not find cobalt.config.js${RESET}`);
+    if (fs.existsSync(configPath)) userConfig = (await import(fileURLToPath(configPath))).default;
+  }
+  const config = await co.loadConfig(userConfig);
 
   // init
   if (cmd === "init") {
     if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
-    fs.writeFileSync(config.tokens, fs.readFileSync(new URL("../tokens-example.yaml", import.meta.env)));
-    console.log(`  ${color.green("✔")} ${config.tokens} created`);
+    fs.cpSync(new URL("../tokens-example.yaml", import.meta.url), new URL(config.tokens, cwd));
+    console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created`);
     process.exit(0);
   }
 
   // ---
-  // full-run commands: build, sync, validate
+  // full-run commands: build, sync, check
 
   // load tokens.yaml
-  if (!fs.existsSync(config.tokens)) throw new Error(`Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`cobalt init\`.`);
+  if (!fs.existsSync(config.tokens)) throw new Error(`  ${FG_RED}✘  Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`cobalt init\`.${RESET}`);
   let rawSchema = fs.readFileSync(config.tokens, "utf8");
-  let schema = parse(fs.readFileSync(config.tokens));
-
-  // validate config
-  const validator = new Validator();
-  const { errors, warnings } = await validator.validate(schema);
 
   switch (cmd) {
     case "build": {
-      if (errors) {
-        printErrors({ errors, warnings });
-        process.exit(1);
-      }
-
       const dt = new Intl.DateTimeFormat("en-us", { hour: "2-digit", minute: "2-digit" });
-
       let watch = args.includes("-w") || args.includes("--watch");
+      const outDir = new URL(config.outDir.replace(SLASH_PREFIX_RE, ""), cwd);
 
-      const builder = new Builder({ config, schema });
-      await builder.build();
+      let tokens = co.parse(rawSchema);
+      await co.build(tokens, config)
+        .then((updates) =>
+          Promise.all(updates.map(({ fileName, contents }) =>
+            fs.promises.writeFile(new URL(fileName.replace(SLASH_PREFIX_RE, ""), outDir), contents)
+          ))
+        );
 
       if (watch) {
         const watcher = chokidar.watch(fileURLToPath(config.tokens));
-        const tokensYAML = config.tokens.href.replace(new URL(`file://${process.cwd()}/`).href, "");
+        const tokensYAML = config.tokens.href.replace(cwd.href, "");
         watcher.on("change", async (filePath) => {
           try {
-            let newRawSchema = fs.readFileSync(filePath, "utf8");
-            if (newRawSchema === rawSchema) return;
-            rawSchema = newRawSchema;
-            schema = parse(rawSchema);
-            const { errors: watchErrors, warnings: watchWarnings } = await validator.validate(schema);
-            if (watchErrors) {
-              printErrors({ errors: watchErrors, warnings: watchWarnings });
-              return;
-            }
-            await builder.build();
-            printErrors({ warnings: watchWarnings });
-            console.log(`${color.dim(dt.format(new Date()))} ${color.blue("Cobalt")} ${color.yellow(tokensYAML)} updated ${color.green("✔")}`);
+            rawSchema = fs.readFileSync(filePath, "utf8");
+
+            await co.build(co.parse(rawSchema), config)
+              .then((updates) =>
+                Promise.all(updates.map(({ fileName, contents }) =>
+                  fs.promises.writeFile(new URL(fileName.replace(SLASH_PREFIX_RE, ""), outDir), contents)
+                ))
+              );
+
+            console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${tokensYAML}${RESET} updated ${FG_GREEN}✔${RESET}`);
           } catch (err) {
             console.error(err);
           }
         });
         // keep process occupied
-        await new Promise(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+        await new Promise(() => { }); // eslint-disable-line @typescript-eslint/no-empty-function
+      } else {
+        console.log(`  ${FG_GREEN}✔${RESET}  ${tokens.length} token${tokens.length != 1 ? "s" : ""} built`);
       }
 
-      printErrors({ errors, warnings });
       break;
     }
     case "sync": {
-      const tokens = await loadFigma(config);
-      for (const [k, v] of Object.entries(tokens)) {
-        let node = schema;
-        const parts = k.split(".");
-        while (parts.length) {
-          const next = parts.shift();
-          if (node.type === "group" || node.tokens) {
-            const isFinalToken = parts.length === 0;
-            if (node.tokens[next]) {
-              if (isFinalToken) {
-                node.tokens[next].type = v.type || "token";
-                for (const [mode, value] of Object.entries(v.value)) {
-                  node.tokens[next].value[mode] = value;
-                }
-                break;
-              } else {
-                node = node.tokens[next];
-                continue;
-              }
-            } else {
-              if (isFinalToken) {
-                node.tokens[next] = { type: v.type || "token", value: v.value };
-                break;
-              } else {
-                node.tokens[next] = { type: "group", tokens: {} };
-              }
-              node = node.tokens[next];
-              continue;
-            }
-          }
-          if (parts.length > 1) throw new Error(`Cannot create group "${next}" inside a token (${k})`);
-          for (const [mode, value] of Object.entries(v)) {
-            node.value[mode] = value;
-          }
-        }
-      }
-
-      fs.writeFileSync(config.tokens, yaml.dump(schema));
-      console.log(`  ${color.green("✔")} Tokens updated from Figma`);
+      const updates = await co.sync(config);
+      console.log(`  ${FG_GREEN}✔${RESET}  Tokens updated from Figma`);
       break;
     }
-    case "validate": {
-      console.log(color.underline(fileURLToPath(filePath)));
-
-      if (!errors && !warnings) {
-        console.log(`  ${color.green("✔")}  no errors`);
-      }
-      printErrors({ errors, warnings });
-
-      if (errors) {
-        process.exit(1);
-      }
+    case "check": {
+      console.log(`${UNDERLINE}${fileURLToPath(filePath)}${RESET}`);
+      co.parse(rawSchema); // will throw if errors
+      console.log(`  ${FG_GREEN}✔${RESET}  no errors`);
+      process.exit(0);
       break;
     }
     default:
@@ -168,21 +134,6 @@ async function main() {
 
 main();
 
-/** Print errors & warnings */
-function printErrors({ errors, warnings }) {
-  if (errors) {
-    for (const error of errors) {
-      console.error(`  ${error}`);
-    }
-  }
-
-  if (warnings) {
-    for (const warning of warnings) {
-      console.warn(`  ${warning}`);
-    }
-  }
-}
-
 /** Show help */
 function showHelp() {
   console.log(`cobalt
@@ -191,7 +142,7 @@ function showHelp() {
       --watch, -w   Watch tokens.yaml for changes and recompile
     sync            Sync tokens.yaml with Figma
     init            Create a starter tokens.yaml file
-    validate        Validate tokens.yaml
+    check           Check tokens.yaml for errors
 
   [options]
     --help         Show this message
@@ -202,5 +153,5 @@ function showHelp() {
 /** Print time elapsed */
 function time(start) {
   const diff = performance.now() - start;
-  return color.dim(`${diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`}`);
+  return `${DIM}${diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`}${RESET}`;
 }

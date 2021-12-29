@@ -41,93 +41,72 @@ tokens:
   font:
     family:
       neue_montreal:
+        type: font
         value: Neue Montreal
   icon:
     cloud--download:
       type: file
-      value:
-        default: ./public/icons/cloud--download.svg
+      value: ./public/icons/cloud--download.svg
     cloud--upload:
       type: file
-      value:
-        default: ./public/icons/cloud--upload.svg
+      value: ./public/icons/cloud--upload.svg
     crop:
       type: file
-      value:
-        default: ./public/icons/crop.svg
+      value: ./public/icons/crop.svg
     delete:
       type: file
-      value:
-        default: ./public/icons/delete.svg
+      value: ./public/icons/delete.svg
     do-not:
       type: file
-      value:
-        default: ./public/icons/do-not.svg
+      value: ./public/icons/do-not.svg
     do-not--02:
       type: file
-      value:
-        default: ./public/icons/do-not--02.svg
+      value: ./public/icons/do-not--02.svg
     download--01:
       type: file
-      value:
-        default: ./public/icons/download--01.svg
+      value: ./public/icons/download--01.svg
     download--02:
       type: file
-      value:
-        default: ./public/icons/download--02.svg
+      value: ./public/icons/download--02.svg
     embed:
       type: file
-      value:
-        default: ./public/icons/embed.svg
+      value: ./public/icons/embed.svg
     export--01:
       type: file
-      value:
-        default: ./public/icons/export--01.svg
+      value: ./public/icons/export--01.svg
     export--02:
       type: file
-      value:
-        default: ./public/icons/export--02.svg
+      value: ./public/icons/export--02.svg
     launch:
       type: file
-      value:
-        default: ./public/icons/launch.svg
+      value: ./public/icons/launch.svg
     love:
       type: file
-      value:
-        default: ./public/icons/love.svg
+      value: ./public/icons/love.svg
     minimize:
       type: file
-      value:
-        default: ./public/icons/minimize.svg
+      value: ./public/icons/minimize.svg
     paperclip:
       type: file
-      value:
-        default: ./public/icons/paperclip.svg
+      value: ./public/icons/paperclip.svg
     player--flow:
       type: file
-      value:
-        default: ./public/icons/player--flow.svg
+      value: ./public/icons/player--flow.svg
     renew:
       type: file
-      value:
-        default: ./public/icons/renew.svg
+      value: ./public/icons/renew.svg
     repeat:
       type: file
-      value:
-        default: ./public/icons/repeat.svg
+      value: ./public/icons/repeat.svg
     reset:
       type: file
-      value:
-        default: ./public/icons/reset.svg
+      value: ./public/icons/reset.svg
     trash:
       type: file
-      value:
-        default: ./public/icons/trash.svg
+      value: ./public/icons/trash.svg
     upload--01:
       type: file
-      value:
-        default: ./public/icons/upload--01.svg
+      value: ./public/icons/upload--01.svg
     upload--02:
       type: file
-      value:
-        default: ./public/icons/upload--02.svg
+      value: ./public/icons/upload--02.svg

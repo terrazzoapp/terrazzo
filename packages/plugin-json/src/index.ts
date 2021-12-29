@@ -1,4 +1,4 @@
-import type { BuildResult, Plugin, SchemaNode } from '@cobalt-ui/core';
+import type { BuildResult, Plugin, Token } from "@cobalt-ui/core";
 
 export interface JSONOutput {
   name?: string;
@@ -19,38 +19,32 @@ export interface Options {
   /** output file (default: "./tokens/tokens.json") */
   filename?: string;
   /** modify values */
-  transformValue?: (value: any, token: SchemaNode) => any;
+  transformValue?: (token: Token, mode?: string) => any;
 }
 
 export default function json(options?: Options): Plugin {
-  let fileName = options?.filename || './tokens.json';
+  let fileName = options?.filename || "./tokens.json";
   let transform = options?.transformValue;
 
   return {
-    name: '@cobalt-ui/plugin-json',
-    async build({ schema }): Promise<BuildResult[]> {
+    name: "@cobalt-ui/plugin-json",
+    async build(schema): Promise<BuildResult[]> {
       return [
         {
           fileName,
           contents: JSON.stringify(
             schema,
-            (_, v) => {
-              // prevent circular refs for JSON
-              if (v.group) delete v.group;
-
+            (_, token) => {
               // apply transformValue()
-              if (transform && (v.type === 'token' || v.type === 'url' || v.type === 'file') && typeof v.value === 'object') {
-                if (Array.isArray(v.value)) {
-                  for (let n = 0; n < v.value.length; n++) {
-                    v.value[n] = transform(v.value[n], v);
-                  }
-                } else {
-                  for (const k of Object.keys(v.value)) {
-                    v.value[k] = transform(v.value[k], v);
+              if (transform && typeof token.type == "string") {
+                token.value = transform(token);
+                if (token.mode) {
+                  for (const mode of Object.keys(token.mode)) {
+                    token.mode[mode] = transform(token, mode);
                   }
                 }
               }
-              return v;
+              return token;
             },
             2
           ),

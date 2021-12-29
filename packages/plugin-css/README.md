@@ -10,24 +10,24 @@ npm i -D @cobalt-ui/plugin-css
 
 ```js
 // cobalt.config.mjs
-import css from '@cobalt-ui/plugin-css';
+import css from "@cobalt-ui/plugin-css";
 
 export default {
   plugins: [
     css({
       /** set the filename inside outDir */
-      fileName: './tokens.css',
+      fileName: "./tokens.css",
       /** create selector wrappers around modes */
       modeSelectors: {
         // …
       },
-      /** modify values */
-      transformValue(value, token) {
-        return value.default;
+      /** modify values (overwrite default CSS transform) */
+      transformValue(token, mode) {
+        return mode ? token.mode[mode] : token.value;
       },
       /** don’t like the name of CSS variables? change ’em! */
       transformVariableNames(name, group) {
-        return `--${name.replace(/[._]/g, '-')}`;
+        return `--${name.replace(/[._]/g, "-")}`;
       },
     }),
   ],
@@ -92,14 +92,14 @@ But more than just classes can be used (that’s why it’s called `modeSelector
 
 ```js
 // cobalt.config.mjs
-import css from '@cobalt-ui/plugin-css';
+import css from "@cobalt-ui/plugin-css";
 
 export default {
   plugins: [
     css({
       modeSelectors: {
-        'type.size': {
-          desktop: ['@media (min-width: 600px)'],
+        "type.size": {
+          desktop: ["@media (min-width: 600px)"],
         },
       },
     }),

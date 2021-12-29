@@ -1,23 +1,27 @@
 import { expect } from "chai";
 import fs from "fs";
-import co from "../pkg/cobalt_ui.js";
+import co from "../index.js";
 
 describe("tokens.yaml", () => {
   it("basic", () => {
+    let schema = {};
     const yaml = fs.readFileSync("./test/fixtures/basic.yaml", "utf8");
-    const { result, errors } = JSON.parse(co.parse(yaml));
 
     // no errors
-    expect(errors, "errors found while parsing").to.have.lengthOf(0);
+    expect(() => {
+      schema = co.parse(yaml);
+    }, "errors found while parsing").not.to.throw();
 
     // tokens parsed correctly
-    expect(result.tokens, "error parsing tokens.yaml").to.deep.equal([
+    expect(schema.tokens, "error parsing tokens.yaml").to.deep.equal([
       { id: "color.blue", type: "color", value: "#218bff" },
       { id: "font.family", type: "font", value: ["IBM Plex Sans"] },
       { id: "space.s", type: "dimension", value: "4px" },
       { id: "easing.sine", type: "cubic-bezier", value: [0.5, 0, 0.5, 1] },
       { id: "icon.local", type: "file", value: "./icons/alert.svg" },
       { id: "icon.remote", type: "url", value: "https://my-cdn.com/github.svg" },
+      { id: "shadow.near", type: "shadow", value: ["0 2px #00000040"] },
+      { id: "shadow.far", type: "shadow", value: ["0 1px 1px #0000000c", "0 2px 2px #0000000c", "0 4px 4px #0000000c", "0 8px 8px #0000000c"] },
       { id: "gradient.linear", type: "linear-gradient", value: "to right top, #000000 15%, #00000000 92%" },
       { id: "gradient.radial", type: "radial-gradient", value: "ellipse at 75% 25%, #ff0000, #0000ff" },
       { id: "gradient.conic", type: "conic-gradient", value: "from -225deg at 50% 50%, #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff" },
@@ -25,14 +29,16 @@ describe("tokens.yaml", () => {
   });
 
   it("modes", () => {
+    let schema = {};
     const yaml = fs.readFileSync("./test/fixtures/modes.yaml", "utf8");
-    const { result, errors } = JSON.parse(co.parse(yaml));
 
     // no errors
-    expect(errors, "errors found while parsing").to.have.lengthOf(0);
+    expect(() => {
+      schema = co.parse(yaml);
+    }, "errors found while parsing").not.to.throw();
 
     // tokens parsed correctly
-    expect(result.tokens, "error parsing tokens.yaml").to.deep.equal([
+    expect(schema.tokens, "error parsing tokens.yaml").to.deep.equal([
       {
         id: "color.blue",
         mode: {
@@ -51,15 +57,16 @@ describe("tokens.yaml", () => {
   });
 
   it("alias", () => {
+    let schema = {};
     const yaml = fs.readFileSync("./test/fixtures/alias.yaml", "utf8");
 
-    const { result, errors } = JSON.parse(co.parse(yaml));
-
     // no errors
-    expect(errors, "errors found while parsing").to.have.lengthOf(0);
+    expect(() => {
+      schema = co.parse(yaml);
+    }, "errors found while parsing").not.to.throw();
 
     // tokens parsed correctly
-    expect(result.tokens, "error parsing tokens.yaml").to.deep.equal([
+    expect(schema.tokens, "error parsing tokens.yaml").to.deep.equal([
       { id: "color.blue", type: "color", value: "#218bff" },
       { id: "color.active", type: "color", value: "$color.blue" },
       { id: "color.highlight", type: "color", value: "$color.active" },
@@ -80,8 +87,9 @@ tokens:
       type: color:
       value: #0000ff`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(["YAML parse error: mapping values are not allowed in this context at line 5 column 18"]);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  YAML parse error: mapping values are not allowed in this context at line 5 column 18");
     });
 
     it("unknown top-level property", () => {
@@ -92,15 +100,17 @@ tokens:
     type: color
     value: #0000ff`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(['Invalid top-level name "foo". Place arbitrary data inside "metadata"']);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw('  ✘  Invalid top-level name "foo". Place arbitrary data inside "metadata"');
     });
 
     it("missing tokens", () => {
-      const yaml = `name: My Tokens`;
+      const yaml = "name: My Tokens";
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(['"tokens" is empty!']);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw('  ✘  "tokens" is empty!');
     });
 
     it("missing value", () => {
@@ -110,8 +120,24 @@ tokens:
     sine:
       type: cubic-bezier`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(["easing.sine: missing value"]);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  easing.sine: bad or missing value");
+    });
+
+    it("bad value", () => {
+      const yaml = `name: My Tokens
+tokens:
+  font:
+    family:
+      base:
+        type: font
+        value:
+          helvetica: true`;
+
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  font.family.base: bad or missing value");
     });
 
     it("alias mismatch", () => {
@@ -127,8 +153,9 @@ tokens:
         type: dimension
         value: $font.family.text`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(["font.size.text: can’t use font value for dimension"]);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  font.size.text: can’t use font value for dimension");
     });
 
     it("alias missing", () => {
@@ -139,8 +166,9 @@ tokens:
       type: color
       value: $fake`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(["color.green: $fake not found"]);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  color.green: $fake not found");
     });
 
     it("circular alias", () => {
@@ -156,8 +184,28 @@ tokens:
     type: dimension
     value: $a`;
 
-      const { errors } = JSON.parse(co.parse(yaml));
-      expect(errors).to.deep.equal(["a: can’t reference circular alias $b"]);
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw("  ✘  a: can’t reference circular alias $b");
+    });
+
+    it("missing modes", () => {
+      const yaml = `name: My Tokens
+tokens:
+  font:
+    size:
+      modes:
+        - desktop
+        - mobile
+      text:
+        type: font
+        value: 16px
+        mode:
+          desktop: 16px`;
+
+      expect(() => {
+        co.parse(yaml);
+      }).to.throw('  ✘  font.size.text: missing mode "mobile"');
     });
   });
 });

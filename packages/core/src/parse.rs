@@ -5,8 +5,6 @@ use regex::Regex;
 use std::collections::{HashMap, HashSet};
 use yaml_rust::{Yaml, YamlLoader};
 
-// TODO: validate modes
-
 lazy_static! {
     static ref HEX_RE: Regex = Regex::new(r"^#[0-9A-Fa-f]{3,8}$").unwrap();
     static ref URL_RE: Regex = Regex::new(r"^(http://|https://|//)").unwrap();
@@ -68,13 +66,35 @@ pub fn parse_and_validate(raw_schema: &String) -> String {
     }
 
     // 2. iterate through tokens
-    fn walk(node: &Yaml, id: &String, obj: &mut json::JsonValue) {
+    fn walk(node: &Yaml, id: &String, obj: &mut json::JsonValue, parent_modes: &Vec<String>) {
         // group
         if is_empty(&node["type"]) || node["type"].as_str().is_none() {
             if node.as_hash().is_some() {
+                let mut modes: Vec<String> = Vec::new();
+                for mode in parent_modes {
+                    modes.push(mode.to_owned());
+                }
                 for (k, v) in node.as_hash().unwrap() {
-                    let next_id = format!("{}.{}", id, k.as_str().unwrap());
-                    walk(v, &next_id, obj);
+                    // if group has "modes" array, overwrite parent_modes
+                    if k.as_str().unwrap() == "modes" && v.as_vec().is_some() {
+                        let mut new_modes: Vec<String> = Vec::new();
+                        for mode in v.as_vec().unwrap() {
+                            new_modes.push(mode.as_str().unwrap().to_owned());
+                        }
+                        modes = new_modes;
+                    }
+                    // treat anything other than "modes" as tokens or sub-group
+                    else {
+                        let local_id = k.as_str().unwrap();
+                        if local_id.contains('.') || local_id.contains('#') {
+                            obj["errors"].push(json::from(format!(
+                                "Invalid name \"{}\", names can’t contain \".\" or \"#\"",
+                                local_id
+                            )));
+                        }
+                        let next_id = format!("{}.{}", id, local_id);
+                        walk(v, &next_id, obj, &modes);
+                    }
                 }
             } else {
                 obj["errors"].push(json::from(format!("syntax error on group \"{}\"", id)));
@@ -83,17 +103,17 @@ pub fn parse_and_validate(raw_schema: &String) -> String {
         // token
         else {
             let token = match node["type"].as_str().unwrap() {
-                "color" => parse_color(node, id),
-                "dimension" => parse_dimension(node, id),
-                "font" => parse_font(node, id),
-                "cubic-bezier" => parse_cubic_bezier(node, id),
-                "file" => parse_str(node, id),
-                "url" => parse_url(node, id),
-                "shadow" => parse_shadow(node, id),
-                "linear-gradient" => parse_str(node, id),
-                "radial-gradient" => parse_str(node, id),
-                "conic-gradient" => parse_str(node, id),
-                _ => parse_str(node, id),
+                "color" => parse_color(node, id, parent_modes),
+                "dimension" => parse_dimension(node, id, parent_modes),
+                "font" => parse_font(node, id, parent_modes),
+                "cubic-bezier" => parse_cubic_bezier(node, id, parent_modes),
+                "file" => parse_str(node, id, parent_modes),
+                "url" => parse_url(node, id, parent_modes),
+                "shadow" => parse_shadow(node, id, parent_modes),
+                "linear-gradient" => parse_str(node, id, parent_modes),
+                "radial-gradient" => parse_str(node, id, parent_modes),
+                "conic-gradient" => parse_str(node, id, parent_modes),
+                _ => parse_str(node, id, parent_modes),
             };
             match token {
                 Err(msgs) => {
@@ -109,7 +129,8 @@ pub fn parse_and_validate(raw_schema: &String) -> String {
     }
 
     for (k, v) in yaml["tokens"].as_hash().unwrap() {
-        walk(v, &k.as_str().unwrap().to_owned(), &mut schema);
+        let modes: Vec<String> = Vec::new();
+        walk(v, &k.as_str().unwrap().to_owned(), &mut schema, &modes);
     }
 
     if schema["errors"].len() > 0 {
@@ -246,7 +267,11 @@ pub fn json_serialize(node: &Yaml) -> json::JsonValue {
     return json::from("JSON ERROR"); // shouldn’t ever see this
 }
 
-pub fn parse_color(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_color(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -254,7 +279,7 @@ pub fn parse_color(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Stri
     };
     if is_alias(&data["value"]) {
         token["value"] = json_serialize(&data["value"]);
-    } else if !is_empty(&data["value"]) {
+    } else if !is_empty(&data["value"]) && data["value"].as_str().is_some() {
         let c = data["value"].as_str().unwrap();
         if HEX_RE.is_match(&c) {
             token["value"] = json_serialize(&data["value"]);
@@ -262,16 +287,29 @@ pub fn parse_color(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Stri
             errors.push(format!("{}: invalid hex \"{}\"", id, &c));
         }
     } else {
-        errors.push(format!("{}: missing value", id));
+        errors.push(format!("{}: bad or missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            let c = v.as_str().unwrap().trim().to_owned();
-            if !HEX_RE.is_match(&c) {
-                errors.push(format!("{}: invalid hex \"{}\"", id, &c));
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                let c = v.as_str().unwrap().trim().to_owned();
+                if !HEX_RE.is_match(&c) {
+                    errors.push(format!("{}: invalid hex \"{}\"", id, &c));
+                }
+                token["mode"][k.as_str().unwrap().to_owned()] = json_serialize(v);
             }
-            token["mode"][k.as_str().unwrap().to_owned()] = json_serialize(v);
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -281,7 +319,11 @@ pub fn parse_color(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Stri
     };
 }
 
-pub fn parse_dimension(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_dimension(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -289,15 +331,30 @@ pub fn parse_dimension(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<
     };
     if is_alias(&data["value"]) {
         token["value"] = json_serialize(&data["value"])
-    } else if !is_empty(&data["value"]) {
+    } else if !is_empty(&data["value"])
+        && (data["value"].as_str().is_some() || data["value"].as_i64().is_some())
+    {
         token["value"] = json_serialize(&data["value"]);
     } else {
-        errors.push(format!("{}: missing value", id));
+        errors.push(format!("{}: bad or missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            token["mode"][k.as_str().unwrap()] = json_serialize(v);
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                token["mode"][k.as_str().unwrap()] = json_serialize(v);
+            }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -307,7 +364,11 @@ pub fn parse_dimension(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<
     };
 }
 
-pub fn parse_font(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_font(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -316,7 +377,7 @@ pub fn parse_font(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Strin
     };
     if is_alias(&data["value"]) {
         token["value"] = json_serialize(&data["value"]);
-    } else if !is_empty(&data["value"]) {
+    } else if !is_empty(&data["value"]) && data["value"].as_str().is_some() {
         // make sure token["value"] is always an array (data doesn’t have to be)
         if data["value"].is_array() {
             token["value"] = json_serialize(&data["value"]);
@@ -324,16 +385,29 @@ pub fn parse_font(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Strin
             token["value"].push(json_serialize(&data["value"]));
         }
     } else {
-        errors.push(format!("{}: missing value", id));
+        errors.push(format!("{}: bad or missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            if v.is_array() {
-                token["mode"][k.as_str().unwrap()] = json_serialize(v);
-            } else {
-                token["mode"][k.as_str().unwrap()].push(json_serialize(v));
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                if v.is_array() {
+                    token["mode"][k.as_str().unwrap()] = json_serialize(v);
+                } else {
+                    token["mode"][k.as_str().unwrap()].push(json_serialize(v));
+                }
             }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -343,7 +417,11 @@ pub fn parse_font(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Strin
     };
 }
 
-fn parse_cubic_bezier(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+fn parse_cubic_bezier(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -362,19 +440,32 @@ fn parse_cubic_bezier(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<S
             Ok(v) => token["value"] = v,
         }
     } else {
-        errors.push(format!("{}: missing value", id));
+        errors.push(format!("{}: bad or missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            match parse_cubic_bezier_item(v, id) {
-                Err(msgs) => {
-                    for e in msgs {
-                        errors.push(e);
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                match parse_cubic_bezier_item(v, id) {
+                    Err(msgs) => {
+                        for e in msgs {
+                            errors.push(e);
+                        }
                     }
+                    Ok(b) => token["mode"][k.as_str().unwrap()] = b,
                 }
-                Ok(b) => token["mode"][k.as_str().unwrap()] = b,
             }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -418,7 +509,11 @@ fn parse_cubic_bezier_item(value: &Yaml, id: &String) -> Result<json::JsonValue,
     };
 }
 
-pub fn parse_str(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_str(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -426,15 +521,28 @@ pub fn parse_str(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String
     };
     if is_alias(&data["value"]) {
         token["value"] = json_serialize(&data["value"]);
-    } else if !is_empty(&data["value"]) {
+    } else if !is_empty(&data["value"]) && data["value"].as_str().is_some() {
         token["value"] = json_serialize(&data["value"]);
     } else {
-        errors.push(format!("{}: missing value", id));
+        errors.push(format!("{}: bad or missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            token["mode"][k.as_str().unwrap()] = json_serialize(v);
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                token["mode"][k.as_str().unwrap()] = json_serialize(v);
+            }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -444,7 +552,11 @@ pub fn parse_str(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String
     };
 }
 
-pub fn parse_url(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_url(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -464,17 +576,30 @@ pub fn parse_url(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String
         }
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            let url = v.as_str().unwrap();
-            if URL_RE.is_match(url) {
-                token["mode"][k.as_str().unwrap()] = json_serialize(v);
-            } else {
-                errors.push(format!(
-                    "{}: invalid URL: \"{}\" (for relative files, use \"type: file\" instead)",
-                    id, url,
-                ));
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                let url = v.as_str().unwrap();
+                if URL_RE.is_match(url) {
+                    token["mode"][k.as_str().unwrap()] = json_serialize(v);
+                } else {
+                    errors.push(format!(
+                        "{}: invalid URL: \"{}\" (for relative files, use \"type: file\" instead)",
+                        id, url,
+                    ));
+                }
             }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {
@@ -484,7 +609,11 @@ pub fn parse_url(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String
     };
 }
 
-pub fn parse_shadow(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<String>> {
+pub fn parse_shadow(
+    data: &Yaml,
+    id: &String,
+    modes: &Vec<String>,
+) -> Result<json::JsonValue, Vec<String>> {
     let mut errors: Vec<String> = Vec::new();
     let mut token = json::object! {
         id: id.to_owned(),
@@ -506,17 +635,30 @@ pub fn parse_shadow(data: &Yaml, id: &String) -> Result<json::JsonValue, Vec<Str
         errors.push(format!("{}: missing value", id));
     }
     if !is_empty(&data["mode"]) {
-        token["mode"] = json::JsonValue::new_object();
-        for (k, v) in data["mode"].as_hash().unwrap() {
-            if v.is_array() {
-                token["mode"][k.as_str().unwrap()] = json_serialize(v)
-            } else {
-                errors.push(format!(
-                    "{}: value must be array, received \"{}\"",
-                    id,
-                    json_serialize(v)
-                ));
+        if data["mode"].as_hash().is_some() {
+            let mut mode_keys: Vec<String> = Vec::new();
+            token["mode"] = json::JsonValue::new_object();
+            for (k, v) in data["mode"].as_hash().unwrap() {
+                mode_keys.push(k.as_str().unwrap().to_owned());
+                if v.is_array() {
+                    token["mode"][k.as_str().unwrap()] = json_serialize(v)
+                } else {
+                    errors.push(format!(
+                        "{}: value must be array, received \"{}\"",
+                        id,
+                        json_serialize(v)
+                    ));
+                }
             }
+
+            // ensure all modes are present
+            for k in modes {
+                if !mode_keys.contains(k) {
+                    errors.push(format!("{}: missing mode \"{}\"", id, k));
+                }
+            }
+        } else {
+            errors.push(format!("{}: expected \"mode\" to be an object", &id));
         }
     }
     return if errors.len() > 0 {

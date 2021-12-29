@@ -1,15 +1,18 @@
-import * as color from 'kleur/colors';
-import { BuildResult, GroupNode, Plugin, SchemaNode, TokenSchema } from '@cobalt-ui/core';
-import { Indenter } from '@cobalt-ui/utils';
-import { encode } from './util.js';
+import type { BuildResult, Token, Plugin } from "@cobalt-ui/core";
+import { Indenter, FG_YELLOW, RESET } from "@cobalt-ui/utils";
+import { encode } from "./util.js";
+
+const DASH_PREFIX_RE = /^(-*)?/;
+const DOT_UNDER_GLOB_RE = /[._]/g;
+const SELECTOR_BRACKET_RE = /\s*{/;
 
 export interface Options {
   /** Generate wrapper selectors around token modes */
   modeSelectors?: Record<string, Record<string, string | string[]>>;
   /** Modify values */
-  transformValue(value: any, token: SchemaNode): any;
+  transformValue(token: Token, mode?: string): any;
   /** Don’t like CSS variable names? Change it! */
-  transformVariableNames?(id: string, group?: GroupNode): string;
+  transformVariableNames?(id: string): string;
 }
 
 export default function css(options: Options): Plugin {
@@ -19,83 +22,91 @@ export default function css(options: Options): Plugin {
   const i = new Indenter(); // TODO: allow config?
 
   return {
-    name: '@cobalt-ui/plugin-css',
-    async build({ schema }: { schema: TokenSchema }): Promise<BuildResult[]> {
-      const groups = new Map<string, GroupNode>();
-
-      function makeVars(tokens: Record<string, SchemaNode>, mode?: string): string {
-        let code = '';
-        for (const v of Object.values(tokens)) {
-          const varName = format(v.id, v.group)
+    name: "@cobalt-ui/plugin-css",
+    async build(schema): Promise<BuildResult[]> {
+      function makeVars(tokens: Token[], mode?: string): string {
+        let code = "";
+        for (const token of tokens) {
+          const varName = format(token.id)
             .trim()
-            .replace(/^(-*)?/, '--');
-          switch (v.type) {
-            case 'group': {
-              if (!groups.has(v.id)) groups.set(v.id, v);
-              if (v.name) code += `\n/* ${v.name} */\n`;
-              code += `\n${makeVars(v.tokens, mode)}`;
-              break;
-            }
-            case 'token': {
-              code += `\n${varName}: ${transform(mode ? v.value[mode] : v.value.default, v)};`;
-              break;
-            }
-            case 'url': {
-              code += `\n${varName}: url('${transform(mode ? v.value[mode] : v.value.default, v)}');`;
-              break;
-            }
-            case 'file': {
-              code += `\n${varName}: ${encode(transform(mode ? v.value[mode] : v.value.default, v))};`;
-              break;
-            }
-          }
+            .replace(DASH_PREFIX_RE, "--");
+          `\n${varName}: ${transform(token, mode)};`;
         }
         return code.trim();
       }
 
       // :root vars
       let code: string[] = [];
-      if (schema.name) code.push('/**', ` * ${schema.name}`, ' */', '');
-      code.push(':root {');
+      if (schema.metadata.name) code.push("/**", ` * ${schema.metadata.name}`, " */", "");
+      code.push(":root {");
       code.push(i.indent(makeVars(schema.tokens, undefined), 1));
-      code.push('}\n');
+      code.push("}\n");
 
       // modes
       if (options.modeSelectors) {
         for (const [k, modes] of Object.entries(options.modeSelectors)) {
-          const group = groups.get(k);
-          if (!group) {
+          const group = schema.tokens.filter((t) => t.id.startsWith(k));
+          if (!group.length) {
             // eslint-disable-next-line no-console
-            console.warn(`${color.yellow('@cobalt-ui/plugin-css')} can’t find group "${k}" in modeSelectors`);
+            console.warn(`${FG_YELLOW}@cobalt-ui/plugin-css${RESET} can’t find any tokens in group "${k}"`);
             continue;
           }
 
           for (const [mode, sel] of Object.entries(modes)) {
-            const selectors = typeof sel === 'string' ? [sel] : sel;
+            const selectors = typeof sel === "string" ? [sel] : sel;
             for (const selector of selectors) {
               let indentLv = 0;
-              code.push(`${selector.trim().replace(/\s*{/, '')} {`);
-              if (selector.startsWith(`@media`)) {
+              code.push(`${selector.trim().replace(SELECTOR_BRACKET_RE, "")} {`);
+              if (selector.startsWith("@media")) {
                 indentLv++;
-                code.push(i.indent(':root {', indentLv));
+                code.push(i.indent(":root {", indentLv));
               }
-              code.push(i.indent(makeVars(group.tokens, mode), indentLv + 1));
-              if (selector.startsWith('@media')) code.push(i.indent('}', indentLv));
-              code.push('}\n');
+              code.push(i.indent(makeVars(group, mode), indentLv + 1));
+              if (selector.startsWith("@media")) code.push(i.indent("}", indentLv));
+              code.push("}\n");
             }
           }
         }
       }
 
-      return [{ fileName: 'tokens.css', contents: code.join('\n') }];
+      return [
+        {
+          fileName: "tokens.css",
+          contents: code.join("\n"),
+        },
+      ];
     },
   };
 }
 
-function defaultTransformer(value: any): any {
-  return value;
+function defaultTransformer(token: Token, mode?: string): string {
+  switch (token.type) {
+    case "font": {
+      let value = mode && token.mode ? token.mode[mode] : token.value;
+      return value.map((fontName) => (fontName.includes(" ") ? `"${fontName}"` : fontName)).join(",");
+    }
+    case "cubic-bezier": {
+      let value = mode && token.mode ? token.mode[mode] : token.value;
+      return `cubic-bezier(${value.join(",")})`;
+    }
+    case "file": {
+      let value = mode && token.mode ? token.mode[mode] : token.value;
+      return encode(value);
+    }
+    case "url": {
+      let value = mode && token.mode ? token.mode[mode] : token.value;
+      return `url('${value}')`;
+    }
+    case "shadow": {
+      let value = mode && token.mode ? token.mode[mode] : token.value;
+      return value.join(",");
+    }
+    default: {
+      return mode && token.mode ? token.mode[mode] : token.value;
+    }
+  }
 }
 
 function defaultFormatter(id: string): string {
-  return `--${id.replace(/[._]/g, '-')}`;
+  return `--${id.replace(DOT_UNDER_GLOB_RE, "-")}`;
 }

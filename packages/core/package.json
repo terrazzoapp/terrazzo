@@ -14,9 +14,21 @@
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
+  "main": "./index.js",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "exports": {
+    ".": "./index.js",
+    "./*": "./*"
+  },
   "scripts": {
     "build": "wasm-pack build --target nodejs",
+    "postbuild": "mkdir -p dist && cp pkg/cobalt_ui_bg.wasm dist && cp pkg/cobalt_ui.js dist/cobalt_ui.cjs",
     "test": "mocha --parallel"
+  },
+  "dependencies": {
+    "@cobalt-ui/utils": "^0.0.0",
+    "undici": "^4.12.1"
   },
   "devDependencies": {
     "chai": "^4.3.4",

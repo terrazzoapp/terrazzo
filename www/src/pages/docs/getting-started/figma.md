@@ -23,9 +23,10 @@ layout: ../../../layouts/docs.astro
    export default {
      figma: {
        // “Share” > Copy link
-       'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-         Blue: { group: 'color', fill: ['default', 'light'] },
-       },
+       "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
+         { style: "Blue",           token: "color.blue", type: "color" },
+         { component: "Icon.Alert", token: "icon.alert", type: "file" },
+       ],
      },
    };
    ```
@@ -34,37 +35,42 @@ layout: ../../../layouts/docs.astro
 
 ## Mapping
 
-Give Cobalt a list of every Figma file you want to sync, along with components and styles, and Cobalt will do the rest! After the initial setup, you’ll only have to edit mappings when adding or removing components.
+Give Cobalt a list of every Figma file you want to sync, along with components
+and styles, and Cobalt will do the rest! After the initial setup, you’ll only
+have to edit mappings when adding or removing components.
 
-| Property | Description                                                               |
-| :------- | :------------------------------------------------------------------------ |
-| `type`   | The [type][types] of token such as `color` or `font` ([full list][types]) |
-| `id`     | Where you’d like the token to live in `tokens.yaml`.                      |
+| Property               | Description                                                               |
+| :--------------------- | :------------------------------------------------------------------------ |
+| `style` \| `component` | Specify the name of a Figma style or component (must be one or the other) |
+| `type`                 | The [type][types] of token such as `color` or `font` ([full list][types]) |
+| `token`                | Where you’d like the token to live in `tokens.yaml`.                      |
+
+The `type` is the most important part to understand; it’s what pulls the values
+out of Figma. For example, `type: "color"` and `type: "linear-gradient"` extract
+**Fill**. `type: "font"` will extract **Text Properties.**
 
 ### Colors
 
 ![](/images/figma-colors.png)
 
-Say we have the following Components: Black, Dark Gray, Blue, Red, Green, Purple, and we even have a brand gradient called “Red Gradient.”
-
-Here’s how we’d map that inside `cobalt.config.mjs`:
+Say you have colors saved as styles: a few colors such as Black and Dark Gray,
+and a brand gradient called “Red Gradient.” Here’s how we’d map that inside
+`cobalt.config.mjs`:
 
 <!-- prettier-ignore -->
 ```js
 export default {
   figma: {
     // “Share” > Copy link
-    'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      styles: {
-        Black:          { type: 'color',           id: 'color.black' },
-        'Dark Gray':    { type: 'color',           id: 'color.dark_gray' },
-        Blue:           { type: 'color',           id: 'color.blue'},
-        Red:            { type: 'color',           id: 'color.red' },
-        Green:          { type: 'color',           id: 'color.green' },
-        Purple:         { type: 'color',           id: 'color.purple' },
-        'Red Gradient': { type: 'linear-gradient', id: 'gradient.red' },
-      },
-    },
+    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
+      { style: "Black",        token: "color.black",     type: "color" },
+      { style: "Dark Gray",    token: "color.dark_gray", type: "color" },
+      { style: "Blue",         token: "color.blue",      type: "color" },
+      { style: "Red",          token: "color.red",       type: "color" },
+      { style: "Green",        token: "color.green",     type: "color" },
+      { style: "Purple",       token: "color.purple",    type: "color" },
+      { style: "Red Gradient", token: "gradient.red",    type: "linear-gradient" },
+    ],
   },
 };
 ```
@@ -73,24 +79,22 @@ export default {
 
 ![](/images/figma-typography.png)
 
+You can also extract multiple values from the same style or component. Simply specify it again with a different `"type"`:
+
 <!-- prettier-ignore -->
 ```js
 export default {
   figma: {
     // “Share” > Copy link
-    'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      styles: {
-        'Brand Sans': [
-                                 { type: 'font',      id: 'font.family.brand_sans' },
-                                 { type: 'dimension', id: 'font.size.body' },
-        ],
-        'Font / Body (Larger)':  { type: 'dimension', id: 'font.size.body_larger' },
-        'Font / Body (Largest)': { type: 'dimension', id: 'font.size.body_largest' },
-        'Font / Heading 1':      { type: 'dimension', id: 'font.size.h1' },
-        'Font / Heading 2':      { type: 'dimension', id: 'font.size.h2' },
-        'Font / Heading 3':      { type: 'dimension', id: 'font.size.h3' },
-      }
-    },
+    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
+      { style: "Brand Sans",            token: "font.family.brand_sans", type: "font" },
+      { style: "Brand Sans",            token: "font.size.body",         type: "dimension" },
+      { style: "Font / Body (Larger)",  token: "font.size.body_larger",  type: "dimension" },
+      { style: "Font / Body (Largest)", token: "font.size.body_largest", type: "dimension" },
+      { style: "Font / Heading 1",      token: "font.size.h1",           type: "dimension" },
+      { style: "Font / Heading 2",      token: "font.size.h2",           type: "dimension" },
+      { style: "Font / Heading 3",      token: "font.size.h3",           type: "dimension" },
+    ]
   },
 };
 ```
@@ -141,15 +145,13 @@ By adding a `file` key to each component, you can save the contents to a local f
 export default {
   figma: {
     // “Share” > Copy link
-    'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': {
-      components: {
-        download: { type: 'file', id: 'icon.download', file: './icons/download.svg' },
-        error:    { type: 'file', id: 'icon.error',    file: './icons/error.svg' },
-        refresh:  { type: 'file', id: 'icon.refresh',  file: './icons/refresh.svg' },
-        share:    { type: 'file', id: 'icon.share',    file: './icons/share.svg' },
-        warning:  { type: 'file', id: 'icon.warning',  file: './icons/warning.svg' },
-      }
-    },
+    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
+      { component: "download", token: "icon.download", type: "file", file: "./icons/download.svg" },
+      { component: "error",    token: "icon.error",    type: "file", file: "./icons/error.svg" },
+      { component: "refresh",  token: "icon.refresh",  type: "file", file: "./icons/refresh.svg" },
+      { component: "share",    token: "icon.share",    type: "file", file: "./icons/share.svg" },
+      { component: "warning",  token: "icon.warning",  type: "file", file: "./icons/warning.svg" },
+    ],
   },
 };
 ```
@@ -166,10 +168,10 @@ tokens:
   color:
     red:
       type: color
-      value: '#cf222e'
+      value: "#cf222e"
     yellow:
       type: color
-      value: '#eac54f'
+      value: "#eac54f"
     error:
       type: color
       value: $color.red

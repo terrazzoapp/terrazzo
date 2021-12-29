@@ -15,22 +15,15 @@
   "license": "MIT",
   "type": "module",
   "bin": {
+    "co": "./bin/cli.js",
     "cobalt": "./bin/cli.js"
   },
-  "scripts": {
-    "build": "rf -rf dist && tsc",
-    "dev": "tsc -w",
-    "test": "mocha --parallel \"test/**/*.test.js\""
-  },
+  "scripts": {},
   "dependencies": {
     "@cobalt-ui/core": "^0.0.2",
-    "better-color-tools": "^0.0.2",
+    "@cobalt-ui/utils": "^0.0.0",
     "chokidar": "^3.5.2",
-    "dotenv": "^10.0.0",
-    "js-yaml": "^4.1.0",
-    "kleur": "^4.1.4",
-    "node-fetch": "^3.1.0",
-    "number-precision": "^1.5.1"
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "figma-js": "^1.14.0"

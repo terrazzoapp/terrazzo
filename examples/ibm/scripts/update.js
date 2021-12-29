@@ -5,6 +5,8 @@ import fs from "fs";
 import yaml from "js-yaml";
 
 const TEXT_RE = /^[A-Z]+/i;
+const SQ_PREFIX_RE = /^'/;
+const SQ_SUFFIX_RE = /'$/;
 const tokensPath = new URL("../tokens.yaml", import.meta.url);
 const schema = yaml.load(fs.readFileSync(tokensPath));
 
@@ -40,7 +42,10 @@ for (const [fontName, value] of Object.entries(typography)) {
   // family
   if (fontName == "fontFamilies") {
     for (const [familyName, fontStack] of Object.entries(value)) {
-      schema.tokens.font.family[familyName] = { type: "font", value: fontStack.split(",").map((v) => v.trim().replace(/^'/, "").replace(/'$/, "")) };
+      schema.tokens.font.family[familyName] = {
+        type: "font",
+        value: fontStack.split(",").map((v) => v.trim().replace(SQ_PREFIX_RE, "").replace(SQ_SUFFIX_RE, ""))
+      };
     }
     continue;
   }

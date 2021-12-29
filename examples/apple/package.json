@@ -1,7 +1,7 @@
 {
   "name": "@example/apple",
   "description": "https://developer.apple.com/design/human-interface-guidelines",
-  "private": "true",
+  "private": true,
   "type": "module",
   "scripts": {
     "build": "cobalt build",

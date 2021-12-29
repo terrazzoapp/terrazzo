@@ -293,6 +293,25 @@ Here, `text.heading.padding-top` reuses the value from `space.l`. When the base 
 
 Note that **tokens must be of the same type to reuse values.** Reusing values may also be done for [Modes](#modes), too, but all modes must be redeclared (otherwise they may cause conflicts or unpredictable behavior).
 
+To alias modes, use the `#` character followed by the mode:
+
+```yaml
+tokens:
+  color:
+    blue:
+      type: color
+      value: '#218bff'
+      mode:
+        light: '#218bff'
+        dark: '#388bfd'
+    action:
+      type: color
+      value: $color.blue
+      mode:
+        light: $color.blue#light
+        dark: $color.blue#dark
+```
+
 ## Modes
 
 [Modes] are alternate versions of your tokens. For example, say your design system has a **standard** palette and an alternate version optimized for **colorblind** users. Here’s one way you could declare that:

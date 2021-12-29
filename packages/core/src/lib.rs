@@ -1,4 +1,5 @@
 mod parse;
+mod sync;
 mod utils;
 
 use wasm_bindgen::prelude::*;
@@ -10,21 +11,13 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-pub fn build() {
-    utils::set_panic_hook();
-
-    println!("WIP")
-}
-
-#[wasm_bindgen]
 pub fn parse(code: String) -> String {
     utils::set_panic_hook();
     return parse::parse_and_validate(&code);
 }
 
 #[wasm_bindgen]
-pub fn sync() {
+pub fn sync(figma_json: String, mappings_json: String) -> String {
     utils::set_panic_hook();
-
-    println!("WIP")
+    return sync::sync_from_figma(&figma_json, &mappings_json);
 }
