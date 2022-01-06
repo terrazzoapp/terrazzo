@@ -1,5 +1,5 @@
+mod figma;
 mod parse;
-mod sync;
 mod utils;
 
 use wasm_bindgen::prelude::*;
@@ -17,7 +17,7 @@ pub fn parse(code: String) -> String {
 }
 
 #[wasm_bindgen]
-pub fn sync(figma_json: String, mappings_json: String) -> String {
+pub fn build_figma(figma_json: String, mappings_json: String) -> String {
     utils::set_panic_hook();
-    return sync::sync_from_figma(&figma_json, &mappings_json);
+    return figma::build_from_figma(&figma_json, &mappings_json);
 }
