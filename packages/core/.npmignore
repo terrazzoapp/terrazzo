@@ -1,5 +1,2 @@
-Cargo.lock
-Cargo.toml
-pkg/
-target/
 test/
+tsconfig.json

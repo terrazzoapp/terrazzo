@@ -1,4 +1,4 @@
-import type { BuildResult, Plugin, Token } from "@cobalt-ui/core";
+import type { BuildResult, Plugin, Token } from '@cobalt-ui/core';
 
 export interface JSONOutput {
   name?: string;
@@ -23,12 +23,12 @@ export interface Options {
 }
 
 export default function json(options?: Options): Plugin {
-  let fileName = options?.filename || "./tokens.json";
+  let fileName = options?.filename || './tokens.json';
   let transform = options?.transformValue;
 
   return {
-    name: "@cobalt-ui/plugin-json",
-    async build(schema): Promise<BuildResult[]> {
+    name: '@cobalt-ui/plugin-json',
+    async build({ schema }): Promise<BuildResult[]> {
       return [
         {
           fileName,
@@ -36,7 +36,7 @@ export default function json(options?: Options): Plugin {
             schema,
             (_, token) => {
               // apply transformValue()
-              if (transform && typeof token.type == "string") {
+              if (transform && typeof token.type == 'string') {
                 token.value = transform(token);
                 if (token.mode) {
                   for (const mode of Object.keys(token.mode)) {

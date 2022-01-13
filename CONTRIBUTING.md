@@ -15,8 +15,6 @@ This repo requires [pnpm]. Once installed, run:
 pnpm i
 ```
 
-Some packages in this repo also require [Rust] and [wasm-pack][rust] to build. See the [guide on getting this set up][wasm-pack].
-
 ## Developing
 
 To build TypeScript as you work, run:
@@ -30,4 +28,3 @@ pnpm run dev
 All PRs are welcome! When opening a PR, be sure to complete the checklist within the template to make it easier on me 🙂.
 
 [pnpm]: https://pnpm.io/
-[rust]: https://rustwasm.github.io/docs/wasm-pack/quickstart.html

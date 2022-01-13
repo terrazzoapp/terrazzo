@@ -14,12 +14,13 @@
   "homepage": "https://cobalt-ui.pages.dev",
   "scripts": {
     "prebuild": "del-cli \"**/dist\"",
-    "build": "run-p build:*",
+    "build": "npm run build:core && npm run build:packages",
     "build:core": "cd packages/core && npm run build",
-    "build:ts": "tsc -b packages/utils packages/plugin-css packages/plugin-json packages/plugin-sass packages/plugin-ts",
+    "build:packages": "tsc -b packages/utils packages/cli packages/plugin-css packages/plugin-json packages/plugin-sass packages/plugin-ts",
     "cf:build": "cd www && npm install && npm run build",
     "changeset": "changeset",
     "dev": "run-p dev:*",
+    "dev:core": "cd packages/core && npm run dev",
     "dev:utils": "cd packages/utils && npm run dev",
     "dev:plugin-css": "cd packages/plugin-css && npm run dev",
     "dev:plugin-json": "cd packages/plugin-json && npm run dev",
@@ -28,15 +29,20 @@
     "lint": "eslint \"packages/**/*.{ts,js,cjs,mjs}\"",
     "test": "run-p test:*",
     "test:core": "cd packages/core && npm run test",
+    "test:cli": "cd packages/cli && npm run test",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
-    "@typescript-eslint/eslint-plugin": "^5.8.1",
-    "@typescript-eslint/parser": "^5.8.1",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
     "del-cli": "^4.0.1",
-    "eslint": "^8.5.0",
+    "esbuild": "^0.14.11",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
     "typescript": "^4.5.4"
   }
 }

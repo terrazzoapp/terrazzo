@@ -18,14 +18,23 @@
     "co": "./bin/cli.js",
     "cobalt": "./bin/cli.js"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "tsc",
+    "test": "mocha --parallel"
+  },
   "dependencies": {
     "@cobalt-ui/core": "^0.0.2",
     "@cobalt-ui/utils": "^0.0.0",
+    "better-color-tools": "^0.2.0",
     "chokidar": "^3.5.2",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "number-precision": "^1.5.1",
+    "undici": "^4.12.1"
   },
   "devDependencies": {
-    "figma-js": "^1.14.0"
+    "chai": "^4.3.4",
+    "figma-api": "^1.9.1",
+    "figma-js": "^1.14.0",
+    "mocha": "^9.1.3"
   }
 }

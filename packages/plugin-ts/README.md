@@ -7,7 +7,7 @@ npm i -D @cobalt-ui/plugin-ts
 ```
 
 ```js
-// cobalt.config.mjs
+// tokens.config.mjs
 import ts from "@cobalt-ui/plugin-ts";
 
 export default {

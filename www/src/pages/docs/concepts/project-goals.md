@@ -5,20 +5,12 @@ layout: ../../../layouts/docs.astro
 
 # Project Goals
 
-TODO
+As of the time of writing (early 2022), this project’s goals are to hold 2 competing ideas in tension:
 
-## FAQ
+- Provide tooling compatible with the [Design Tokens W3C spec](https://design-tokens.github.io/community-group/format/)
+- Take liberties to expand the Design Tokens spec and not be bound to the in-progress spec
 
-#### Why YAML?
-
-YAML is easy-to-read, and is a universal data format that almost every programming language can understand. Many design token systems are stored in JavaScript, which can be incredibly-limiting and can have impacts on tooling.
-
-By relying on YAML instead of JavaScript, Cobalt’s internals are replaceable. Although this library uses Node.js at the moment, it doesn’t have to stick to Node.js forever. Using YAML means Cobalt can be completely rewritten and improved without affecting
-users’ token systems.
-
-Understandably, though, YAML isn’t easy to edit for everyone! That’s why the [Cobalt Editor](https://cobalt-ui.pages.dev/editor) exists to help peole get started.
-
-Further, YAML is preferred over JSON here because it supports comments and it’s easier to read.
+For the most part, there’s more overlap with this project and the Design Tokens spec than without. But that may be subject to change as the API evolves.
 
 #### What does the name “Cobalt” mean?
 

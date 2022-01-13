@@ -14,20 +14,20 @@
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
-  "main": "./index.js",
-  "module": "./index.js",
-  "types": "./index.d.ts",
-  "exports": {
-    ".": "./index.js",
-    "./*": "./*"
-  },
+  "main": "./dist/index.min.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "wasm-pack build --target nodejs",
-    "postbuild": "mkdir -p dist && cp pkg/cobalt_ui_bg.wasm dist && cp pkg/cobalt_ui.js dist/cobalt_ui.cjs",
+    "build": "tsc && npm run bundle",
+    "dev": "run-p dev:*",
+    "dev:ts": "tsc --watch",
+    "dev:bundle": "npm run bundle -- --watch",
+    "bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap",
     "test": "mocha --parallel"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^0.0.0",
+    "@cobalt-ui/utils": "workspace:^0.0.0",
+    "better-color-tools": "^0.2.0",
     "undici": "^4.12.1"
   },
   "devDependencies": {

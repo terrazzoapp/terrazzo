@@ -1,0 +1,20 @@
+{
+  "name": "Token Modes",
+  "tokens": {
+    "color": {
+      "blue": {
+        "type": "color",
+        "value": "#218bff",
+        "mode": {
+          "light": "#218bff",
+          "light_colorblind": "#218bff",
+          "light_high_contrast": "#1168e3",
+          "dark": "#388bfd",
+          "dark_dimmed": "#4184e4",
+          "dark_high_contrast": "#409eff",
+          "dark_colorblind": "#388bfd"
+        }
+      }
+    }
+  }
+}

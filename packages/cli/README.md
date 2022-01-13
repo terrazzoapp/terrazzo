@@ -14,11 +14,11 @@ npm i -D @cobalt-ui/cli
 
 | Command                | Description                                               |
 | :--------------------- | :-------------------------------------------------------- |
-| `cobalt build`         | Generate code from `tokens.yaml`                          |
-| `cobalt build --watch` | Watch `tokens.yaml` for changes and rebuild on every save |
-| `cobalt sync`          | Sync `tokens.yaml` with Figma                             |
-| `cobalt init`          | Create a stub `tokens.yaml` file                          |
-| `cobalt validate`      | Check `tokens.yaml` for errors                            |
+| `cobalt build`         | Generate code from `tokens.json`                          |
+| `cobalt build --watch` | Watch `tokens.json` for changes and rebuild on every save |
+| `cobalt sync`          | Sync `tokens.json` with Figma                             |
+| `cobalt init`          | Create a stub `tokens.json` file                          |
+| `cobalt validate`      | Check `tokens.json` for errors                            |
 
 ## Documentation
 

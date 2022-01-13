@@ -18,29 +18,40 @@ together. Below are 2 examples of modes as they relatea to color and typography:
   <figcaption>GitHub’s settings allow not only light and dark modes, but alternate color themes for color blindness.</figcaption>
 </figure>
 
-Here’s one example of how `color.red_4` may be represented in `tokens.yaml`
+Here’s one example of how `color.red_4` may be represented in `tokens.json`
 
-```yaml
-tokens:
-  color:
-  modes:
-    - light
-    - light_colorblind
-    - light_high_contrast
-    - dark
-    - dark_colorblind
-    - dark_high_contrast
-  tokens:
-    red_4:
-      name: Red (4)
-      value: "#fa4549" # default red (light mode)
-      mode:
-        light: "#fa4549" # light mode
-        light_colorblind: "#d08002" # colorblind theme
-        light_high_contrast: "#d5232c" # high contrast theme
-        dark: "#f85149" # dark mode
-        dark_colorblind: "#c38000" # dark mode (colorblind)
-        dark_high_contrast: "#ff6a69" # dark mode (high contrast)
+```json
+{
+  "tokens": {
+    "color": {
+      "metadata": {
+        "modes": [
+          "light",
+          "light_colorblind",
+          "light_high_contrast",
+          "dark",
+          "dark_colorblind",
+          "dark_high_contrast"
+        ]
+      }
+    },
+    "tokens": {
+      "red_4": {
+        "name": "Red (4)",
+        "type": "color",
+        "value": "#fa4549",
+        "mode": {
+          "light": "#fa4549",
+          "light_colorblind": "#d08002",
+          "light_high_contrast": "#d5232c",
+          "dark": "#f85149",
+          "dark_colorblind": "#c38000",
+          "dark_high_contrast": "#ff6a69"
+        }
+      }
+    }
+  }
+}
 ```
 
 You can see that `color.red_4` still occupies the same place on the palette. But based on the mode, can take on different values to serve users better.
@@ -57,31 +68,40 @@ their default sizes, but have alternate modes based on the user’s base font si
   <figcaption>Apple’s dynamic text sizes use modes to control multiple type scales</figcaption>
 </figure>
 
-Here’s how `type.size.title_1` could be represented in `tokens.yaml`:
+Here’s how `type.size.title_1` could be represented in `tokens.json`:
 
-```yaml
-tokens:
-  font:
-    modes:
-      - xSmall
-      - Small
-      - Medium
-      - Large
-      - xLarge
-      - xxLarge
-      - xxxLarge
-    size:
-      title_1:
-        name: Title 1
-        value: 28px
-        mode:
-          xSmall: 25px
-          Small: 26px
-          Medium: 27px
-          Large: 28px
-          xLarge: 30px
-          xxLarge: 32px
-          xxxLarge: 32px
+```json
+{
+  "tokens": {
+    "font": {
+      "modes": [
+        "xSmall",
+        "Small",
+        "Medium",
+        "Large",
+        "xLarge",
+        "xxLarge",
+        "xxxLarge"
+      ]
+    }
+  },
+  "size": {
+    "title_1": {
+      "name": "Title 1",
+      "type": "dimension",
+      "value": "28px",
+      "mode": {
+        "xSmall": "25px",
+        "Small": "26px",
+        "Medium": "27px",
+        "Large": "28px",
+        "xLarge": "30px",
+        "xxLarge": "32px",
+        "xxxLarge": "32px"
+      }
+    }
+  }
+}
 ```
 
 This lets a type style be adaptive to user settings rather than managing dozens of values all over the place.

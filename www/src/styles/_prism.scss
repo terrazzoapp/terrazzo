@@ -25,6 +25,15 @@
   }
 }
 
+.language-json {
+  .property {
+    color: color.scale($color: $color__Blue, $lightness: 65%, $saturation: 100%);
+  }
+  .string {
+    color: color.scale($color: $color__Green, $lightness: 65%, $saturation: 100%);
+  }
+}
+
 .language-yaml {
   .atrule {
     color: color.scale($color: $color__Blue, $lightness: 50%, $saturation: 100%);

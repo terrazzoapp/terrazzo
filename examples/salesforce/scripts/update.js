@@ -1,13 +1,14 @@
 import color from "better-color-tools";
 import themeOne from "@salesforce-ux/design-system/design-tokens/dist/theme-one-salesforce.common.js";
 import fs from "fs";
-import yaml from "js-yaml";
 
-const tokensPath = new URL("../tokens.yaml", import.meta.url);
-const schema = yaml.load(fs.readFileSync(tokensPath));
+const tokensPath = new URL("../tokens.json", import.meta.url);
+const schema = JSON.parse(fs.readFileSync(tokensPath));
 
 // color
-const palette = Object.entries(themeOne).filter(([k]) => k.startsWith("palette"));
+const palette = Object.entries(themeOne).filter(([k]) =>
+  k.startsWith("palette")
+);
 palette.sort((a, b) => a[0].localeCompare(b[0], "en-us", { numeric: true }));
 for (const [colorName, value] of palette) {
   schema.tokens.palette[
@@ -23,4 +24,4 @@ for (const [colorName, value] of palette) {
 }
 
 // FINISH
-fs.writeFileSync(tokensPath, yaml.dump(schema));
+fs.writeFileSync(tokensPath, JSON.stringify(schema));

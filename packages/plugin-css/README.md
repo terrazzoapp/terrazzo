@@ -9,7 +9,7 @@ npm i -D @cobalt-ui/plugin-css
 ```
 
 ```js
-// cobalt.config.mjs
+// tokens.config.mjs
 import css from "@cobalt-ui/plugin-css";
 
 export default {
@@ -43,7 +43,7 @@ To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and 
 For example, if your `color` group has `light` and `dark` modes, and want to generate `theme--light` and `theme--dark` classes:
 
 ```js
-// cobalt.config.mjs
+// tokens.config.mjs
 import css from '@cobalt-ui/plugin-css';
 
 export default [
@@ -63,7 +63,7 @@ export default [
 This will generate the following CSS:
 
 ```css
-/* default theme set by tokens.yaml (same as "light") */
+/* default theme set by tokens.json (same as "light") */
 :root {
   --color-blue: #0969da;
   --color-green: #2da44e;
@@ -91,7 +91,7 @@ This will generate the following CSS:
 But more than just classes can be used (that’s why it’s called `modeSelectors` and not `modeClasses`)! You could also generate CSS if your `type.size` group had `desktop` and `mobile` sizes:
 
 ```js
-// cobalt.config.mjs
+// tokens.config.mjs
 import css from "@cobalt-ui/plugin-css";
 
 export default {

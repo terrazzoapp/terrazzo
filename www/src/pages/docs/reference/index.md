@@ -5,5 +5,5 @@ layout: ../../../layouts/docs.astro
 
 # Reference
 
-- [tokens.yaml](/docs/reference/schema)
+- [tokens.json](/docs/reference/schema)
 - [config](/docs/reference/config)

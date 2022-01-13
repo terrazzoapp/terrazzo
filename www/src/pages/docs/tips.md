@@ -1,5 +1,5 @@
 ---
-title: tokens.yaml
+title: tokens.json
 layout: ../../layouts/docs.astro
 ---
 

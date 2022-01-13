@@ -8,26 +8,24 @@
     "astro:dev": "astro dev",
     "build": "run-s *:build",
     "build:tokens": "co build",
-    "predev": "npm run cobalt:build",
-    "sync": "cobalt sync",
+    "predev": "npm run build:tokens",
+    "sync": "co sync",
     "dev": "run-p *:dev",
     "dev:tokens": "co build -w"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "prismjs": "^1.25.0",
+    "@astrojs/renderer-vue": "^0.3.0",
+    "prismjs": "^1.26.0",
     "vue": "^3.2.23"
   },
   "devDependencies": {
-    "@astrojs/renderer-vue": "^0.2.0",
     "@cobalt-ui/cli": "^0.0.2",
     "@cobalt-ui/core": "^0.0.2",
     "@cobalt-ui/plugin-json": "^0.0.0",
     "@cobalt-ui/plugin-sass": "^0.0.0",
     "@cobalt-ui/plugin-ts": "^0.0.0",
-    "astro": "^0.22.1",
+    "astro": "^0.22.10",
     "morphdom": "^2.6.1",
-    "node-fetch": "^3.1.0",
     "npm-run-all": "^4.1.5"
   }
 }

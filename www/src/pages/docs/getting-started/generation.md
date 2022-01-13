@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Generation
 
-With your [tokens.yaml] populated, you’re now ready to start generating code from your tokens.
+With your [tokens.json] populated, you’re now ready to start generating code from your tokens.
 
 ## Prerequisites
 
@@ -15,7 +15,7 @@ Setup requires the following:
 
 ## Installing
 
-Open your favorite terminal app and navigate to your project where `tokens.yaml` lives:
+Open your favorite terminal app and navigate to your project where `tokens.json` lives:
 
 ```
 cd ~/path/to/my/tokens
@@ -49,7 +49,7 @@ That will generate a new `/tokens/` folder along with `tokens.json` inside it.
 ```diff
 + ├──── tokens/
 + │     └──── tokens.json
-  ├──── tokens.yaml
+  ├──── tokens.json
   └──── package.json
 ```
 
@@ -62,7 +62,7 @@ JSON is just the default output, and you will likely require more than that. For
 - **Sass**: [@cobalt-ui/plugin-sass][plugin-sass]
 - **TypeScript**: [@cobalt-ui/plugin-ts][plugin-ts]
 
-[tokens.yaml]: /docs/getting/started
+[tokens.json]: /docs/getting/started
 [plugins]: /docs/plugins
 [plugin-css]: /docs/plugins/css
 [plugin-json]: /docs/plugins/json

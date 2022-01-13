@@ -12,7 +12,6 @@
     "@cobalt-ui/plugin-css": "^0.0.0",
     "@cobalt-ui/plugin-sass": "^0.0.0",
     "@primer/octicons": "^16.2.0",
-    "@primer/primitives": "^7.4.0",
-    "js-yaml": "^4.1.0"
+    "@primer/primitives": "^7.4.0"
   }
 }

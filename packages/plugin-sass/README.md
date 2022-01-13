@@ -9,7 +9,7 @@ npm i -D @cobalt-ui/plugin-sass
 ```
 
 ```js
-// cobalt.config.mjs
+// tokens.config.mjs
 import pluginSass from "@cobalt-ui/plugin-sass";
 
 export default {

@@ -10,7 +10,7 @@ export default {
           light_colorblind: ['.theme--light-colorblind'],
           light_low_contrast: ['.theme--light-low-contrast'],
         },
-        'type.size': {
+        'font.size': {
           desktop: ['@media (min-width: 600px)'],
         },
       },

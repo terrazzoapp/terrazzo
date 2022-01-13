@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Plugins
 
-Plugins let you **generate code** from `tokens.yaml`. Here are all current plugins available:
+Plugins let you **generate code** from `tokens.json`. Here are all current plugins available:
 
 - [@cobalt-ui/plugin-css](/docs/plugins/css): Generate `.css`
 - @cobalt-ui/plugin-js: Generate JavaScript (coming soon!)

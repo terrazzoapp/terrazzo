@@ -1,23 +1,23 @@
-import type { BuildResult, Plugin, Schema, Token } from "@cobalt-ui/core";
+import type { BuildResult, ParsedToken, Plugin } from '@cobalt-ui/core';
 
 export interface Options {
   /** output file (default: "./tokens/index.ts") */
   filename?: string;
   /** modify values */
-  transformValue?: (token: Token) => string;
+  transformValue?: (token: ParsedToken) => string;
 }
 
 export default function ts(options?: Options): Plugin {
-  let fileName = options?.filename || "./index.ts";
+  let fileName = options?.filename || './index.ts';
   let transformer = options?.transformValue;
 
-  function printTokensExport(schema: Schema): string {
-    let code = "export const tokens = ";
+  function printTokensExport(schemaTokens: ParsedToken[]): string {
+    let code = 'export const tokens = ';
 
     // objectify
-    let tokens: Record<string, any> = {};
-    for (const token of schema.tokens) {
-      const groups = token.id.split(".");
+    const tokens: Record<string, any> = {};
+    for (const token of schemaTokens) {
+      const groups = token.id.split('.');
       const localID = groups.pop() as string;
       let lastToken = tokens;
       for (const group of groups) {
@@ -28,18 +28,18 @@ export default function ts(options?: Options): Plugin {
     }
 
     code += JSON.stringify(tokens, undefined, 2);
-    code += ";\n";
+    code += ';\n';
     return code;
   }
 
-  function printModesExport(schema: Schema): string {
-    let code = "export const modes = ";
+  function printModesExport(schemaTokens: ParsedToken[]): string {
+    let code = 'export const modes = ';
 
     // objectify
     let tokens: Record<string, any> = {};
-    for (const token of schema.tokens) {
+    for (const token of schemaTokens) {
       if (!token.mode) continue;
-      const groups = token.id.split(".");
+      const groups = token.id.split('.');
       const localID = groups.pop() as string;
       let lastToken = tokens;
       for (const group of groups) {
@@ -53,7 +53,7 @@ export default function ts(options?: Options): Plugin {
     }
 
     code += JSON.stringify(tokens, undefined, 2);
-    code += ";\n";
+    code += ';\n';
     return code;
   }
 
@@ -71,13 +71,13 @@ export function getAlt<T = string>(tokenID: keyof TokensFlat, mode: string): T {
   }
 
   return {
-    name: "@cobalt-ui/plugin-ts",
-    async build(schema): Promise<BuildResult[]> {
-      let code = [printTokensExport(schema), printModesExport(schema), printAltFunction()];
+    name: '@cobalt-ui/plugin-ts',
+    async build({ schema }): Promise<BuildResult[]> {
+      let code = [printTokensExport(schema.tokens), printModesExport(schema.tokens), printAltFunction()];
       return [
         {
           fileName,
-          contents: code.join("\n\n"),
+          contents: code.join('\n\n'),
         },
       ];
     },

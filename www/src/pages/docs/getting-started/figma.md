@@ -17,21 +17,22 @@ layout: ../../../layouts/docs.astro
    …or as an [environment variable in your system][env-system]
 
 1. In your Figma Doc, click **Share**, then **Copy link**
-1. In `cobalt.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
+1. In `tokens.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
 
    ```js
    export default {
      figma: {
        // “Share” > Copy link
-       "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
-         { style: "Blue",           token: "color.blue", type: "color" },
-         { component: "Icon.Alert", token: "icon.alert", type: "file" },
-       ],
+       "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2":
+         [
+           { style: "Blue", token: "color.blue", type: "color" },
+           { component: "Icon.Alert", token: "icon.alert", type: "file" },
+         ],
      },
    };
    ```
 
-1. Run `npx cobalt sync` to update `tokens.yaml` with the new values
+1. Run `npx co sync` to update `tokens.json` with the new values
 
 ## Mapping
 
@@ -43,7 +44,7 @@ have to edit mappings when adding or removing components.
 | :--------------------- | :------------------------------------------------------------------------ |
 | `style` \| `component` | Specify the name of a Figma style or component (must be one or the other) |
 | `type`                 | The [type][types] of token such as `color` or `font` ([full list][types]) |
-| `token`                | Where you’d like the token to live in `tokens.yaml`.                      |
+| `token`                | Where you’d like the token to live in `tokens.json`.                      |
 
 The `type` is the most important part to understand; it’s what pulls the values
 out of Figma. For example, `type: "color"` and `type: "linear-gradient"` extract
@@ -55,7 +56,7 @@ out of Figma. For example, `type: "color"` and `type: "linear-gradient"` extract
 
 Say you have colors saved as styles: a few colors such as Black and Dark Gray,
 and a brand gradient called “Red Gradient.” Here’s how we’d map that inside
-`cobalt.config.mjs`:
+`tokens.config.mjs`:
 
 <!-- prettier-ignore -->
 ```js
@@ -103,33 +104,44 @@ Here we’re doing a little more complex mapping for our typography, just as an 
 
 You can see that we have a `Brand Sans` component that signifies the font family. And we have `Font / Size / *` components that help mapping.
 
-Even though these are the names in the Figma file, say we want to shorten these a little for code. We can do that! Probably the clearest explanation is looking at what the final `tokens.yaml` will be:
+Even though these are the names in the Figma file, say we want to shorten these a little for code. We can do that! Probably the clearest explanation is looking at what the final `tokens.json` will be:
 
-```yaml
-tokens:
-  font:
-    family:
-      type: font
-      default: Neue Montreal
-    size:
-      body:
-        type: dimension
-        value: 16px
-      body_larger:
-        type: dimension
-        value: 18px
-      body_largest:
-        type: dimension
-        value: 20px
-      heading1:
-        type: dimension
-        value: 24px
-      heading2:
-        type: dimension
-        value: 28px
-      heading3:
-        type: dimension
-        value: 36px
+```json
+{
+  "tokens": {
+  "font": {
+    "family": {
+      "type": "font",
+      "value": "Neue Montreal"
+    },
+    "size": {
+      "body": {
+        "type": "dimension",
+        "value": "16px"
+      },
+      "body_larger": {
+        "type": "dimension"
+        "value": "18px"
+      },
+      "body_largest": {
+        "type": "dimension"
+        "value": "20px"
+      },
+      "heading1": {
+        "type": "dimension",
+        "value": "24px"
+      },
+      "heading2": {
+        "type": "dimension",
+        "value": "28px"
+      },
+      "heading3": {
+        "type": "dimension"
+        "value": "36px"
+      }
+    }
+  }
+}
 ```
 
 That cleaned up nicely!
@@ -160,24 +172,32 @@ Note that the more icons you sync, the longer it may take to update your tokens.
 
 ## Aliases
 
-At some point you’ll want to reuse values, or give values aliases. Note that the Figma mapping is always 1:1 with values in `tokens.yaml` and you can’t reuse components or styles for other values. You can either create another component or style in Figma
+At some point you’ll want to reuse values, or give values aliases. Note that the Figma mapping is always 1:1 with values in `tokens.json` and you can’t reuse components or styles for other values. You can either create another component or style in Figma
 and map that, or you can use an [alias] like so ([see full documentation][alias]):
 
-```yaml
-tokens:
-  color:
-    red:
-      type: color
-      value: "#cf222e"
-    yellow:
-      type: color
-      value: "#eac54f"
-    error:
-      type: color
-      value: $color.red
-    yellow:
-      type: color
-      value: $color.yellow
+```json
+{
+  "tokens": {
+    "color": {
+      "red": {
+        "type": "color",
+        "value": "#cf222e"
+      },
+      "yellow": {
+        "type": "color",
+        "value": "#eac54f"
+      },
+      "error": {
+        "type": "alias",
+        "value": "color.red"
+      },
+      "yellow": {
+        "type": "color",
+        "value": "color.yellow"
+      }
+    }
+  }
+}
 ```
 
 ## Troubleshooting
@@ -186,7 +206,7 @@ If you’re having trouble syncing from Figma, here are some quick tips:
 
 - Every component must be located within the share link specified (if using shared components, **use the file they are defined in**, not a file that uses them).
 - Every component should have a unique name within its own Figma doc (using the same name in different docs is OK)
-- Make sure `cobalt.config.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
+- Make sure `cobalt.tokens.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
 
 [alias]: /reference/schema#aliasing
 [dotenv]: https://github.com/motdotla/dotenv
