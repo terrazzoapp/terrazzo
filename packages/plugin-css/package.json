@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-css",
   "description": "CSS builder for Cobalt UI design tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -21,8 +21,8 @@
     "dev": "tsc -w"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.0.2",
-    "@cobalt-ui/utils": "^0.0.0",
+    "@cobalt-ui/core": "^0.1.0",
+    "@cobalt-ui/utils": "^0.1.0",
     "mime": "^3.0.0"
   }
 }

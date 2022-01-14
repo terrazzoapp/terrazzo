@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/core",
   "description": "Schemas and tools for managing design tokens",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -26,7 +26,7 @@
     "test": "mocha --parallel"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "workspace:^0.0.0",
+    "@cobalt-ui/utils": "^0.1.0",
     "better-color-tools": "^0.2.0",
     "undici": "^4.12.1"
   },

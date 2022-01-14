@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-ts",
   "description": "TypeScript builder for Cobalt UI design tokens",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -21,9 +21,9 @@
     "dev": "tsc -w"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^0.0.0"
+    "@cobalt-ui/utils": "^0.1.0"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.0.2"
+    "@cobalt-ui/core": "^0.1.0"
   }
 }
