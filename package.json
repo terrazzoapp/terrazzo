@@ -29,7 +29,6 @@
     "lint": "eslint \"packages/**/*.{ts,js,cjs,mjs}\"",
     "test": "run-p test:*",
     "test:core": "cd packages/core && npm run test",
-    "test:cli": "cd packages/cli && npm run test",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {

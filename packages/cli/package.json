@@ -19,8 +19,7 @@
     "cobalt": "./bin/cli.js"
   },
   "scripts": {
-    "build": "tsc",
-    "test": "mocha --parallel"
+    "build": "tsc"
   },
   "dependencies": {
     "@cobalt-ui/core": "^0.1.0",
