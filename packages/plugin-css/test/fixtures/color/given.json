@@ -1,0 +1,20 @@
+{
+  "color": {
+    "metadata": { "type": "color" },
+    "blue": {
+      "value": "#218bff",
+      "mode": {
+        "light": "#218bff",
+        "light-colorblind": "#218bff",
+        "light-high-contrast": "#1168e3",
+        "dark": "#388bfd",
+        "dark-dimmed": "#4184e4",
+        "dark-high-contrast": "#409eff",
+        "dark-colorblind": "#388bfd"
+      }
+    },
+    "action": {
+      "value": "{color.blue}"
+    }
+  }
+}

@@ -1,11 +1,11 @@
-import type { Config, Plugin, UserConfig } from '@cobalt-ui/core';
+import type { ResolvedConfig, Plugin, Config } from '@cobalt-ui/core';
 
-export async function init(userConfig: UserConfig): Promise<Config> {
+export async function init(userConfig: Config): Promise<ResolvedConfig> {
   async function loadDefaultPlugins(): Promise<Plugin[]> {
     return await Promise.all(['@cobalt-ui/plugin-json'].map((spec) => import(spec).then((m) => m.default())));
   }
 
-  let config = { ...(userConfig as any) } as Config;
+  let config = { ...(userConfig as any) } as ResolvedConfig;
 
   // partial config: fill in defaults
   for (const k of ['outDir', 'plugins', 'tokens']) {

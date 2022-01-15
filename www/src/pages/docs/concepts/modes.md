@@ -22,33 +22,22 @@ Here’s one example of how `color.red_4` may be represented in `tokens.json`
 
 ```json
 {
-  "tokens": {
-    "color": {
-      "metadata": {
-        "modes": [
-          "light",
-          "light_colorblind",
-          "light_high_contrast",
-          "dark",
-          "dark_colorblind",
-          "dark_high_contrast"
-        ]
-      }
-    },
-    "tokens": {
-      "red_4": {
-        "name": "Red (4)",
-        "type": "color",
-        "value": "#fa4549",
-        "mode": {
-          "light": "#fa4549",
-          "light_colorblind": "#d08002",
-          "light_high_contrast": "#d5232c",
-          "dark": "#f85149",
-          "dark_colorblind": "#c38000",
-          "dark_high_contrast": "#ff6a69"
-        }
-      }
+  "color": {
+    "metadata": {
+      "requiredModes": ["light", "light_colorblind", "light_high_contrast", "dark", "dark_colorblind", "dark_high_contrast"]
+    }
+  },
+  "red_4": {
+    "name": "Red (4)",
+    "type": "color",
+    "value": "#fa4549",
+    "mode": {
+      "light": "#fa4549",
+      "light_colorblind": "#d08002",
+      "light_high_contrast": "#d5232c",
+      "dark": "#f85149",
+      "dark_colorblind": "#c38000",
+      "dark_high_contrast": "#ff6a69"
     }
   }
 }
@@ -72,18 +61,8 @@ Here’s how `type.size.title_1` could be represented in `tokens.json`:
 
 ```json
 {
-  "tokens": {
-    "font": {
-      "modes": [
-        "xSmall",
-        "Small",
-        "Medium",
-        "Large",
-        "xLarge",
-        "xxLarge",
-        "xxxLarge"
-      ]
-    }
+  "metadata": {
+    "requiredModes": ["xSmall", "Small", "Medium", "Large", "xLarge", "xxLarge", "xxxLarge"]
   },
   "size": {
     "title_1": {

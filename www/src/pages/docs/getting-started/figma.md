@@ -23,11 +23,10 @@ layout: ../../../layouts/docs.astro
    export default {
      figma: {
        // “Share” > Copy link
-       "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2":
-         [
-           { style: "Blue", token: "color.blue", type: "color" },
-           { component: "Icon.Alert", token: "icon.alert", type: "file" },
-         ],
+       'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': [
+         { style: 'Blue', token: 'color.blue', type: 'color' },
+         { component: 'Icon.Alert', token: 'icon.alert', type: 'file' },
+       ],
      },
    };
    ```
@@ -70,7 +69,7 @@ export default {
       { style: "Red",          token: "color.red",       type: "color" },
       { style: "Green",        token: "color.green",     type: "color" },
       { style: "Purple",       token: "color.purple",    type: "color" },
-      { style: "Red Gradient", token: "gradient.red",    type: "linear-gradient" },
+      { style: "Red Gradient", token: "gradient.red",    type: "gradient" },
     ],
   },
 };
@@ -80,7 +79,7 @@ export default {
 
 ![](/images/figma-typography.png)
 
-You can also extract multiple values from the same style or component. Simply specify it again with a different `"type"`:
+You can also extract multiple values from the same style or component. Simply specify it again with a different `"type"` (also be sure to save it to a new `token` so it doesn’t overwrite the previous one):
 
 <!-- prettier-ignore -->
 ```js
@@ -88,13 +87,13 @@ export default {
   figma: {
     // “Share” > Copy link
     "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
-      { style: "Brand Sans",            token: "font.family.brand_sans", type: "font" },
-      { style: "Brand Sans",            token: "font.size.body",         type: "dimension" },
-      { style: "Font / Body (Larger)",  token: "font.size.body_larger",  type: "dimension" },
-      { style: "Font / Body (Largest)", token: "font.size.body_largest", type: "dimension" },
-      { style: "Font / Heading 1",      token: "font.size.h1",           type: "dimension" },
-      { style: "Font / Heading 2",      token: "font.size.h2",           type: "dimension" },
-      { style: "Font / Heading 3",      token: "font.size.h3",           type: "dimension" },
+      { style: "Brand Sans",            token: "typography.family.brand_sans", type: "font" },
+      { style: "Brand Sans",            token: "typography.body",              type: "typography" },
+      { style: "Font / Body (Larger)",  token: "typography.body-larger",       type: "typography" },
+      { style: "Font / Body (Largest)", token: "typography.body-largest",      type: "typography" },
+      { style: "Font / Heading 1",      token: "typography.heading-1",         type: "typography" },
+      { style: "Font / Heading 2",      token: "typography.heading-2",         type: "typography" },
+      { style: "Font / Heading 3",      token: "typography.heading-3",         type: "typography" },
     ]
   },
 };
@@ -108,7 +107,6 @@ Even though these are the names in the Figma file, say we want to shorten these 
 
 ```json
 {
-  "tokens": {
   "font": {
     "family": {
       "type": "font",
@@ -120,11 +118,11 @@ Even though these are the names in the Figma file, say we want to shorten these 
         "value": "16px"
       },
       "body_larger": {
-        "type": "dimension"
+        "type": "dimension",
         "value": "18px"
       },
       "body_largest": {
-        "type": "dimension"
+        "type": "dimension",
         "value": "20px"
       },
       "heading1": {
@@ -136,7 +134,7 @@ Even though these are the names in the Figma file, say we want to shorten these 
         "value": "28px"
       },
       "heading3": {
-        "type": "dimension"
+        "type": "dimension",
         "value": "36px"
       }
     }
@@ -177,24 +175,22 @@ and map that, or you can use an [alias] like so ([see full documentation][alias]
 
 ```json
 {
-  "tokens": {
-    "color": {
-      "red": {
-        "type": "color",
-        "value": "#cf222e"
-      },
-      "yellow": {
-        "type": "color",
-        "value": "#eac54f"
-      },
-      "error": {
-        "type": "alias",
-        "value": "color.red"
-      },
-      "yellow": {
-        "type": "color",
-        "value": "color.yellow"
-      }
+  "color": {
+    "red": {
+      "type": "color",
+      "value": "#cf222e"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "#eac54f"
+    },
+    "error": {
+      "type": "alias",
+      "value": "color.red"
+    },
+    "yellow": {
+      "type": "color",
+      "value": "color.yellow"
     }
   }
 }

@@ -3,169 +3,138 @@ title: tokens.json Specification
 layout: ../../../layouts/docs.astro
 ---
 
-# Cobalt Schema Specification v0 Beta
+# Specification
 
-The Cobalt schema is a unique spec. Though it’s heavily inspired by [the W3C Design Tokens Community Group](https://github.com/design-tokens/community-group) spec, the
+The types outlined here come straight from the [the W3C Design Tokens Community
+Group](https://github.com/design-tokens/community-group) schema, but with a few
+additions. Things marked with a 🔹 are Cobalt additions on top of the base
+schema.
 
-## Document root
+## Group
 
-The top level of `tokens.json` contains information about the file. It may contain the following keys:
+A group is a way to collect similar tokens. A group is made by omitting `type:`.
+A group only has one reserved name: `metadata`. All other properties will be
+treated either as tokens or other sub-groups.
 
-| Key        |   Required   | Description                                                                                                                       |
-| :--------- | :----------: | :-------------------------------------------------------------------------------------------------------------------------------- |
-| `name`     |              | The name of your tokens or design system                                                                                          |
-| `version`  |              | Cobalt version (currently `0.1`). Not required in beta, but will be for versions `1.0` and greater.                               |
-| `metadata` |              | Arbitrary user data. Metadata isn’t read or used by Cobalt. But you can store notes, links, or any other data in here you’d like. |
-| `tokens`   | **required** | An object of tokens (see [Tokens](#tokens))                                                                                       |
+| Property                    | Type       | Description                                                          |
+| :-------------------------- | :--------- | :------------------------------------------------------------------- |
+| `metadata`                  | `object`   | (optional) Place arbitrary metadata on the group                     |
+| `metadata.type`             | `string`   | (optional) Set a default type for all child tokens                   |
+| `metadata.requiredModes` 🔹 | `string[]` | (optional) Array of [modes] that must be present on all child tokens |
 
-#### Example
+**Example**
+
+In this example, both `color` and `typography` are groups, as they don’t have a
+`type`. But `typography` also has a subgroup: `family`. Groups can be nested
+infinitely, as long as they’re not inside tokens.
 
 ```json
 {
-  "name": "My Tokens",
-  "metadata": {
-    "documentation_url": "https://tokens.dev/docs",
-    "foo": 123
+  "color": {
+    "metadata": {
+      "description": "color palette"
+    },
+    "red": {
+      "type": "color",
+      "value": "#fa4549"
+    }
   },
-  "tokens": {
-    "...": "..."
+  "typography": {
+    "metadata": {
+      "description": "Typographic styles"
+    },
+    "family": {
+      "Graphik_Regular": {
+        "type": "font",
+        "value": "Graphik Regular"
+      }
+    }
   }
 }
 ```
 
 ## Tokens
 
-[Tokens] are the fundamental building blocks of your design system, and typically include colors, typography, and other values.
-
-#### Properties
-
-The following properties are shared among all token types
+The following properties are shared among all token types:
 
 | Key           | Description                                                             |
 | :------------ | :---------------------------------------------------------------------- |
 | `type`        | The type of token ([see “types” below](#types))                         |
 | `value`       | The token’s value. This differs based on `type`.                        |
-| `name`        | (optional) A human-readable name for this token                         |
 | `description` | (optional) A longer description about this token’s purpose, usage, etc. |
+| `name` 🔹     | (optional) A human-readable name for this token                         |
 
-#### Types
+And the following types are all valid:
 
-| `type`            | Description                                                                                 | Origin                                                                                           |
-| :---------------- | :------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------- |
-| `color`           | A color represented in hexadecimal                                                          | [W3C Design Tokens CG][color]                                                                    |
-| `dimension`       | A size in UI (e.g. `8px` or `2.5rem`                                                        | [W3C Design Tokens CG][dimension]                                                                |
-| `font`            | A font name (e.g. `Vulf Mono`)                                                              | [W3C Design Tokens CG][font]                                                                     |
-| `cubic-bezier`    | An easing curve for animation                                                               | [W3C Design Tokens CG][cubic-bezier]                                                             |
-| `file`            | A local file on the file system (e.g. `./icons/alert.svg`)                                  | Cobalt                                                                                           |
-| `url`             | A remote URL (e.g. `https://mycdn.com/image.jpg`)                                           | Cobalt                                                                                           |
-| `shadow`          | A drop shadow, inner shadow, or text shadow to be applied on anything that accepts shadows. | Cobalt                                                                                           |
-| `linear-gradient` | A [linear-gradient]                                                                         | Cobalt                                                                                           |
-| `radial-gradient` | A [radial-gradient]                                                                         | Cobalt                                                                                           |
-| `conic-gradient`  | A [conic-gradient]                                                                          | Cobalt                                                                                           |
-| `alias`           | A reference to another type                                                                 | W3C Design Tokens CG (proposed)                                                                  |
-| (other)           | Any other value is treated as a [custom type](#custom-type)                                 | [W3C Design Tokens CG](https://design-tokens.github.io/community-group/format/#additional-types) |
+| `type`                         | Description                                                                                 |
+| :----------------------------- | :------------------------------------------------------------------------------------------ |
+| [`color`][color]               | A CSS-valid color                                                                           |
+| [`dimension`][dimension]       | A size in UI (e.g. `8px` or `2.5rem`)                                                       |
+| [`font`][font]                 | A font name (e.g. `Vulf Mono`)                                                              |
+| [`duration`][duration]         | A measurement of time                                                                       |
+| [`cubic-bezier`][cubic-bezier] | An easing curve for animation                                                               |
+| `file`                         | A local file on the file system (e.g. `./icons/alert.svg`)                                  |
+| `url` 🔹                       | A remote URL (e.g. `https://mycdn.com/image.jpg`)                                           |
+| `shadow`                       | A drop shadow, inner shadow, or text shadow to be applied on anything that accepts shadows. |
+| `gradient`                     | An array of colors with positions                                                           |
+| `typography`                   | A collection of type styles (font size, font weight, leading, tracking, etc.)               |
+| `transition`                   | A collection of durations and easing curves for a complete transition.                      |
+| (other)                        | Any other value is treated as a [custom type](#custom-type)                                 |
 
 ### Color
 
-A color represented in hexadecimal. For transparency, 8-digit hex codes are accepted as well ([docs][color])
+A CSS-valid color as defined as [`8.1` of the Design Tokens spec][color]. The original definition limits colors to hexadecimal, but Cobalt allows any valid CSS color.
 
 **Example**
 
 ```json
 {
-  "tokens": {
-    "color": {
-      "red": {
-        "type": "color",
-        "value": "#fa4549"
-      }
-    }
-  }
+  "type": "color",
+  "value": "#fa4549"
+}
+```
+
+### Font
+
+A font name as defined as [`8.2` of the Design Tokens spec][font]. Value may be a string or an array of strings from most- to least-preferred.
+
+```json
+{
+  "type": "font",
+  "value": "Graphik Regular"
 }
 ```
 
 ### Dimension
 
-A unit of measurement ([docs][dimension]).
+A unit of distance as defined as [`8.3` of the Design Tokens spec][dimension]. The original definition limits units to `em` and `px` but Cobalt does not have this restriction.
 
 ```json
 {
-  "tokens": {
-    "space": {
-      "s": {
-        "type": "dimension",
-        "value": "8px"
-      },
-      "m": {
-        "type": "dimension",
-        "value": "16px"
-      },
-      "l": {
-        "type": "dimension",
-        "value": "32px"
-      }
-    }
-  }
+  "type": "dimension",
+  "value": "8px"
 }
 ```
 
-_Note: the [Design Tokens Spec][dimension] currently restricts dimension to `px` or `rem`. Cobalt intentionally avoids this restriction._
+### Duration
 
-### Font
-
-A font family name, expressed either as a string, or as an array from most- to least-preferred ([docs][font]).
+A unit of time as defined as [`8.4` of the Design Tokens spec][duration].
 
 ```json
 {
-  "tokens": {
-    "font": {
-      "Graphik_Regular": {
-        "type": "font",
-        "value": "Graphik Regular"
-      },
-      "Graphik_Italic": {
-        "type": "font",
-        "value": "Graphik Italic"
-      },
-      "Graphik_Bold": {
-        "type": "font",
-        "value": "Graphik Bold"
-      },
-      "Graphik_Bold_Italic": {
-        "type": "font",
-        "value": "Graphik Bold Italic"
-      },
-      "body": {
-        "type": "font",
-        "value": ["Graphik Regular", "system-ui", "sans-serif"]
-      }
-    }
-  }
+  "type": "duration",
+  "value": "100ms"
 }
 ```
 
 ### Cubic bézier
 
-An animation easing curve, expressed as [𝑥1, 𝑦1, 𝑥2, 𝑦2] ([docs][cubic-bezier]).
+An animation easing curve as defined as [`8.5` in the Design Tokens spec][cubic-bezier]. Value is an array of four numbers [𝑥1, 𝑦1, 𝑥2, 𝑦2] that behaves the same as the CSS `cubic-bezier()` function.
 
 ```json
 {
-  "tokens": {
-    "easing": {
-      "sine": {
-        "type": "cubic-bezier",
-        "value": [0.5, 0, 0.5, 1]
-      },
-      "ease_in": {
-        "type": "cubic-bezier",
-        "value": [0.5, 0, 1, 0.5]
-      },
-      "ease_out": {
-        "type": "cubic-bezier",
-        "value": [0, 0.5, 0.5, 1]
-      }
-    }
-  }
+  "type": "cubic-bezier",
+  "value": [0.5, 0, 0.5, 1]
 }
 ```
 
@@ -175,229 +144,138 @@ A relative path to a file (could be on disk, or locally on the server).
 
 ```json
 {
-  "tokens": {
-    "icon": {
-      "alert": {
-        "type": "file",
-        "value": "./icons/alert.svg"
-      },
-      "arrow_right": {
-        "type": "file",
-        "value": "./icons/arrow-right.svg"
-      },
-      "docs": {
-        "type": "file",
-        "value": "./icons/docs.svg"
-      }
-    }
-  }
+  "type": "file",
+  "value": "./icons/alert.svg"
 }
 ```
 
-### URL
+### URL 🔹
 
-A link to a remote URL. Must begin with `http://` or `https://`.
+A link to a remote URL. Must begin with `http://` or `https://` otherwise an error will be thrown.
 
 ```json
 {
-  "tokens": {
-    "img": {
-      "profile_pablo": {
-        "type": "url",
-        "value": "https://imagedelivery.net/ZWd9g1K7eljCn_KDTu_OWA/profile_pablo.jpg"
-      },
-      "profile_sarah": {
-        "type": "url",
-        "value": "https://imagedelivery.net/ZWd9g1K7eljCn_KDTu_OWA/profile_sarah.jpg"
-      }
-    }
+  "type": "url",
+  "value": "https://imagedelivery.net/ZWd9g1K7eljCn_KDTu_OWA/profile_pablo.jpg"
+}
+```
+
+### Transition
+
+A composite type combining `duration` and `cubic-bezier` types to form a CSS transition.
+
+_Note: this is under review in the Design Tokens schema_
+
+```json
+{
+  "type": "transition",
+  "value": {
+    "duration": "150ms",
+    "delay": "0ms",
+    "timing-function": [0.5, 0, 0.5, 1]
   }
 }
 ```
 
 ### Shadow
 
-An array of CSS shadows. Could be used with [box-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow), [text-shadow](https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow), or any other shadow.
+A composite type combining `dimension`s with a `color` to form a CSS `box-shadow`.
 
-**Example**
+_Note: this is under review in the Design Tokens schema_
 
 ```json
 {
-  "tokens": {
-    "shadow": {
-      "card_near": {
-        "type": "shadow",
-        "value": [
-          "0 1px 1px #0000000c",
-          "0 2px 2px #0000000c",
-          "0 4px 4px #0000000c",
-          "0 8px 8px #0000000c"
-        ]
-      }
-    }
+  "type": "shadow",
+  "value": {
+    "offset-x": "0px",
+    "offset-y": "4px",
+    "blur": "8px",
+    "spread": 0,
+    "color": "rgb(0, 0, 0, 0.15)"
   }
 }
 ```
 
-### Linear gradient
+### Gradient
 
-A CSS [linear gradient][linear-gradient].
+A composite type combining `color` and a position from `0–1` to form the stops of a CSS gradient.
 
-**Example**
+_Note: this is under review in the Design Tokens schema_
 
-```json
-{
-  "tokens": {
-    "gradient": {
-      "lighten": {
-        "type": "linear-gradient",
-        "value": "135deg, #000000ff, #00000000"
-      },
-      "rainbow": {
-        "type": "linear-gradient",
-        "value": "to right top, #ff0000 0%, #ffa500 14%, #ffd700 29%, #7cfc00 43%, #00ffff 57%, #4169e1 71%, #9400d3 86%, #ff00ff 100%"
-      }
-    }
-  }
-}
-```
-
-### Radial gradient
-
-A CSS [radial gradient][radial-gradient].
-
-**Example**
+_Note: you’ll notice that there’s information missing on whether this is a `linear-gradient()`, `radial-gradient()`, `conic-gradient()`_
 
 ```json
 {
-  "tokens": {
-    "gradient": {
-      "pink": {
-        "type": "radial-gradient",
-        "value": "ellipse at center center, #fd5353, #d04dd9"
-      }
-    }
-  }
+  "type": "gradient",
+  "value": [
+    { "color": "red", "position": 0 },
+    { "color": "orange", "position": 0.175 },
+    { "color": "yellow", "position": 0.325 },
+    { "color": "lawngreen", "position": 0.5 },
+    { "color": "blue", "position": 0.675 },
+    { "color": "indigo", "position": 0.825 },
+    { "color": "violet", "position": 1 }
+  ]
 }
 ```
 
-### Conic gradient
+### Typography
 
-A CSS [conic gradient][conic-gradient].
+A composite type combining `font` and `dimension` to form a complete typographic style.
 
-**Example**
+_Note: this is under review in the Design Tokens schema_
 
 ```json
 {
-  "tokens": {
-    "gradient": {
-      "pinwheel": {
-        "type": "conic-gradient",
-        "value": "from 5deg, #ff0000 0deg, #ffa500 72deg, #ffff00 144deg, #008000 216deg, #0000ff 360deg"
-      }
-    }
+  "type": "typography",
+  "value": {
+    "fontName": ["Helvetica", "-system-ui", "sans-serif"],
+    "fontSize": "24px",
+    "fontStyle": "normal",
+    "fontWeight": 400,
+    "lineHeight": 1.5,
+    "letterSpacing": 0
   }
 }
 ```
-
-### Alias
-
-Reusing another value can be done with the `alias` type. It will inherit the referenced type.
-
-```json
-{
-  "tokens": {
-    "space": {
-      "l": {
-        "type": "dimension",
-        "value": "32px"
-      }
-    },
-    "text": {
-      "heading": {
-        "padding-top": {
-          "type": "alias",
-          "value": "space.l"
-        }
-      }
-    }
-  }
-}
-```
-
-### Alias
-
-Alias tokens reference another token, like so:
-
-```json
-{
-  "tokens": {
-    "color": {
-      "blue": {
-        "type": "color",
-        "value": "#218bff",
-        "mode": {
-          "light": "#218bff",
-          "dark": "#388bfd"
-        }
-      },
-      "action": {
-        "type": "alias",
-        "value": "color.blue",
-        "mode": {
-          "light": "color.blue#light",
-          "dark": "color.blue#dark"
-        }
-      }
-    }
-  }
-}
-```
-
-Note that an alias **must inherit the type of the original token.** You can’t translate between token types, or reference aliases within non-aliases (e.g. you can’t alias a `color` within a `linear-gradient`).
 
 ### Custom types
 
 Any other `type` value will be treated as a custom type. It has no restrictions other than `type` and `value` being required. `value` may have any shape desired; it won’t be validated.
 
+⚠️ Note that custom types may break existing plugins; extensive use of custom types may require writing your own plugins.
+
 _Should a type be added? [Please open an issue!](https://github.com/drwpow/cobalt-ui/issues/new)_
 
-### Group
+## Aliasing
 
-A group is a way to collect similar tokens. A group is made by omitting `type:`. A group only has one reserved name: `modes`. Children can be named anything other than `modes`.
-
-| Property | Type       | Description                                          |
-| :------- | :--------- | :--------------------------------------------------- |
-| `modes`  | `string[]` | (optional) Array of [modes] that apply to all tokens |
-
-_Note: unlike tokens, Groups can’t have a `name` or `description`. Those will be treated as if they are tokens._
-
-**Example**
-
-In this example, both `color` and `font` are groups, as they don’t have a `type`. But `font` also has a subgroup: `family`. Groups can be nested infinitely, as long as they’re not inside tokens.
+Types can be aliased [as defined in the Design Tokens spec](https://design-tokens.github.io/community-group/format/#aliases-references) by using the JSON pointer syntax:
 
 ```json
 {
-  "tokens": {
-    "color": {
-      "red": {
-        "type": "color",
-        "value": "#fa4549"
-      }
+  "color": {
+    "blue": {
+      "type": "color",
+      "value": "#218bff"
     },
-    "font": {
-      "family": {
-        "Graphik_Regular": {
-          "type": "font",
-          "value": "Graphik Regular"
-        }
-      }
+    "green": {
+      "type": "color",
+      "value": "#6fdd8b"
+    },
+    "action": {
+      "type": "color",
+      "value": "{color.blue}"
     }
+  },
+  "gradient": {
+    "type": "gradient",
+    "value": [
+      { "color": "{color.blue}", "position": 0 },
+      { "color": "{color.green}", "position": 1 }
+    ]
   }
 }
 ```
-
-Here, `text.heading.padding-top` reuses the value from `space.l`. When the base value updates, so will the alias.
 
 ## Modes
 
@@ -405,15 +283,13 @@ Here, `text.heading.padding-top` reuses the value from `space.l`. When the base 
 
 ```json
 {
-  "tokens": {
-    "red": {
-      "type": "color",
-      "value": "#cf222e"
-    },
-    "red_colorblind": {
-      "type": "color",
-      "value": "#ac5e00"
-    }
+  "red": {
+    "type": "color",
+    "value": "#cf222e"
+  },
+  "red_colorblind": {
+    "type": "color",
+    "value": "#ac5e00"
   }
 }
 ```
@@ -428,22 +304,12 @@ To address all these, let’s use modes instead:
 
 ```json
 {
-  "tokens": {
-    "group": {
-      "metadata": {
-        "type": "color",
-        "modes": ["standard", "colorblind"]
-      }
-    },
-    "tokens": {
-      "red": {
-        "type": "token",
-        "value": "#cf222e",
-        "mode": {
-          "standard": "#cf222e",
-          "colorblind": "#ac5e00"
-        }
-      }
+  "red": {
+    "type": "token",
+    "value": "#cf222e",
+    "mode": {
+      "standard": "#cf222e",
+      "colorblind": "#ac5e00"
     }
   }
 }
@@ -457,12 +323,6 @@ This is much better:
 
 There’s a lot of flexibility you can unlock with modes. [Read more about using modes][concepts-modes]
 
-### Optional syntax
-
-Adding all your tokens into `tokens.json` can result in a lot of noise. So if desired, you can take advantage of some optional space savers:
-
-#### Inherited `type`
-
 ## Examples
 
 [View examples of `tokens.json` on GitHub][examples]
@@ -473,6 +333,7 @@ Adding all your tokens into `tokens.json` can result in a lot of noise. So if de
 [conic-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient()
 [cubic-bezier]: https://design-tokens.github.io/community-group/format/#cubic-bezier
 [dimension]: https://design-tokens.github.io/community-group/format/#dimension
+[duration]: https://design-tokens.github.io/community-group/format/#ducration
 [examples]: https://github.com/drwpow/cobalt-ui/blob/main/examples/
 [font]: https://design-tokens.github.io/community-group/format/#font
 [gradient]: https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Gradients
@@ -485,3 +346,4 @@ Adding all your tokens into `tokens.json` can result in a lot of noise. So if de
 [repeating-linear-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-linear-gradient()
 [repeating-radial-gradient]: https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/repeating-radial-gradient()
 [text-shadow]: https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow
+[tokens]: /docs/concepts/tokens

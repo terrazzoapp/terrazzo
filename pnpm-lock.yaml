@@ -9,7 +9,7 @@ importers:
       '@typescript-eslint/parser': ^5.9.1
       del-cli: ^4.0.1
       esbuild: ^0.14.11
-      eslint: ^8.6.0
+      eslint: ^8.7.0
       eslint-config-prettier: ^8.3.0
       eslint-plugin-prettier: ^4.0.0
       npm-run-all: ^4.1.5
@@ -17,22 +17,22 @@ importers:
       typescript: ^4.5.4
     devDependencies:
       '@changesets/cli': 2.19.0
-      '@typescript-eslint/eslint-plugin': 5.9.1_b7b2e42b32ee097737cd3e626b10847b
-      '@typescript-eslint/parser': 5.9.1_eslint@8.6.0+typescript@4.5.4
+      '@typescript-eslint/eslint-plugin': 5.9.1_bbe74534e31a8c21f1b3522447c55341
+      '@typescript-eslint/parser': 5.9.1_eslint@8.7.0+typescript@4.5.4
       del-cli: 4.0.1
       esbuild: 0.14.11
-      eslint: 8.6.0
-      eslint-config-prettier: 8.3.0_eslint@8.6.0
-      eslint-plugin-prettier: 4.0.0_1c588f61426b1faf18812943f1678311
+      eslint: 8.7.0
+      eslint-config-prettier: 8.3.0_eslint@8.7.0
+      eslint-plugin-prettier: 4.0.0_4660519532e4c3b0a9e5bb6623cfedf6
       npm-run-all: 4.1.5
       prettier: 2.5.1
       typescript: 4.5.4
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -40,9 +40,9 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -50,9 +50,9 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
     devDependencies:
@@ -67,9 +67,9 @@ importers:
       '@carbon/colors': ^10.34.0
       '@carbon/icons': ^10.44.0
       '@carbon/type': ^10.39.0
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
     devDependencies:
       '@carbon/colors': 10.34.0
       '@carbon/icons': 10.44.0
@@ -80,23 +80,23 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
       '@salesforce-ux/design-system': ^2.16.2
-      better-color-tools: ^0.2.0
+      better-color-tools: ^0.3.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
       '@salesforce-ux/design-system': 2.16.2
-      better-color-tools: 0.2.0
+      better-color-tools: 0.3.0
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/plugin-css': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/plugin-css': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -104,9 +104,9 @@ importers:
 
   packages/cli:
     specifiers:
-      '@cobalt-ui/core': ^0.1.0
-      '@cobalt-ui/utils': ^0.1.0
-      better-color-tools: ^0.2.0
+      '@cobalt-ui/core': ^0.2.0
+      '@cobalt-ui/utils': ^0.2.0
+      better-color-tools: ^0.3.0
       chai: ^4.3.4
       chokidar: ^3.5.2
       dotenv: ^10.0.0
@@ -118,7 +118,7 @@ importers:
     dependencies:
       '@cobalt-ui/core': link:../core
       '@cobalt-ui/utils': link:../utils
-      better-color-tools: 0.2.0
+      better-color-tools: 0.3.0
       chokidar: 3.5.2
       dotenv: 10.0.0
       number-precision: 1.5.1
@@ -131,52 +131,71 @@ importers:
 
   packages/core:
     specifiers:
-      '@cobalt-ui/utils': ^0.1.0
-      better-color-tools: ^0.2.0
+      '@cobalt-ui/utils': ^0.2.0
+      '@types/node': ^17.0.8
+      better-color-tools: ^0.3.0
       chai: ^4.3.4
       mocha: ^9.1.3
       undici: ^4.12.1
     dependencies:
       '@cobalt-ui/utils': link:../utils
-      better-color-tools: 0.2.0
+      better-color-tools: 0.3.0
       undici: 4.12.1
     devDependencies:
+      '@types/node': 17.0.8
       chai: 4.3.4
       mocha: 9.1.3
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/core': ^0.1.0
-      '@cobalt-ui/utils': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/core': ^0.2.0
+      '@cobalt-ui/utils': ^0.2.0
+      '@types/mime': ^2.0.3
+      better-color-tools: ^0.3.0
+      chai: ^4.3.4
       mime: ^3.0.0
-    devDependencies:
-      '@cobalt-ui/core': link:../core
+      mocha: ^9.1.3
+    dependencies:
       '@cobalt-ui/utils': link:../utils
+      better-color-tools: 0.3.0
       mime: 3.0.0
+    devDependencies:
+      '@cobalt-ui/cli': link:../cli
+      '@cobalt-ui/core': link:../core
+      '@types/mime': 2.0.3
+      chai: 4.3.4
+      mocha: 9.1.3
 
   packages/plugin-json:
     specifiers:
-      '@cobalt-ui/core': ^0.1.0
+      '@cobalt-ui/core': ^0.2.0
     devDependencies:
       '@cobalt-ui/core': link:../core
 
   packages/plugin-sass:
     specifiers:
-      '@cobalt-ui/core': ^0.1.0
-      '@cobalt-ui/utils': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/core': ^0.2.0
+      '@cobalt-ui/utils': ^0.2.0
       '@types/mime': ^2.0.3
+      chai: ^4.3.4
       mime: ^3.0.0
+      mocha: ^9.1.3
     dependencies:
       '@cobalt-ui/utils': link:../utils
       mime: 3.0.0
     devDependencies:
+      '@cobalt-ui/cli': link:../cli
       '@cobalt-ui/core': link:../core
       '@types/mime': 2.0.3
+      chai: 4.3.4
+      mocha: 9.1.3
 
   packages/plugin-ts:
     specifiers:
-      '@cobalt-ui/core': ^0.1.0
-      '@cobalt-ui/utils': ^0.1.0
+      '@cobalt-ui/core': ^0.2.0
+      '@cobalt-ui/utils': ^0.2.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
     devDependencies:
@@ -188,11 +207,11 @@ importers:
   www:
     specifiers:
       '@astrojs/renderer-vue': ^0.3.0
-      '@cobalt-ui/cli': ^0.1.0
-      '@cobalt-ui/core': ^0.1.0
-      '@cobalt-ui/plugin-json': ^0.1.0
-      '@cobalt-ui/plugin-sass': ^0.1.0
-      '@cobalt-ui/plugin-ts': ^0.1.0
+      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/core': ^0.2.0
+      '@cobalt-ui/plugin-json': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/plugin-ts': ^0.2.0
       astro: ^0.22.10
       morphdom: ^2.6.1
       npm-run-all: ^4.1.5
@@ -1066,6 +1085,10 @@ packages:
     resolution: {integrity: sha512-QB5D2sqfSjCmTuWcBWyJ+/44bcjO7VbjSbOE0ucoVbAsSNQc4Lt6QkgkVXkTDwkL4z/beecZNDvVX15D4P8Jbw==}
     dev: true
 
+  /@types/node/17.0.8:
+    resolution: {integrity: sha512-YofkM6fGv4gDJq78g4j0mMuGMkZVxZDgtU0JRdx6FgiJDG+0fY0GKVolOV8WqVmEhLCXkQRjwDdKyPxJp/uucg==}
+    dev: true
+
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -1096,7 +1119,7 @@ packages:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: true
 
-  /@typescript-eslint/eslint-plugin/5.9.1_b7b2e42b32ee097737cd3e626b10847b:
+  /@typescript-eslint/eslint-plugin/5.9.1_bbe74534e31a8c21f1b3522447c55341:
     resolution: {integrity: sha512-Xv9tkFlyD4MQGpJgTo6wqDqGvHIRmRgah/2Sjz1PUnJTawjHWIwBivUE9x0QtU2WVii9baYgavo/bHjrZJkqTw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1107,12 +1130,12 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/experimental-utils': 5.9.1_eslint@8.6.0+typescript@4.5.4
-      '@typescript-eslint/parser': 5.9.1_eslint@8.6.0+typescript@4.5.4
+      '@typescript-eslint/experimental-utils': 5.9.1_eslint@8.7.0+typescript@4.5.4
+      '@typescript-eslint/parser': 5.9.1_eslint@8.7.0+typescript@4.5.4
       '@typescript-eslint/scope-manager': 5.9.1
-      '@typescript-eslint/type-utils': 5.9.1_eslint@8.6.0+typescript@4.5.4
+      '@typescript-eslint/type-utils': 5.9.1_eslint@8.7.0+typescript@4.5.4
       debug: 4.3.3
-      eslint: 8.6.0
+      eslint: 8.7.0
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
@@ -1123,7 +1146,7 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/experimental-utils/5.9.1_eslint@8.6.0+typescript@4.5.4:
+  /@typescript-eslint/experimental-utils/5.9.1_eslint@8.7.0+typescript@4.5.4:
     resolution: {integrity: sha512-cb1Njyss0mLL9kLXgS/eEY53SZQ9sT519wpX3i+U457l2UXRDuo87hgKfgRazmu9/tQb0x2sr3Y0yrU+Zz0y+w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1133,15 +1156,15 @@ packages:
       '@typescript-eslint/scope-manager': 5.9.1
       '@typescript-eslint/types': 5.9.1
       '@typescript-eslint/typescript-estree': 5.9.1_typescript@4.5.4
-      eslint: 8.6.0
+      eslint: 8.7.0
       eslint-scope: 5.1.1
-      eslint-utils: 3.0.0_eslint@8.6.0
+      eslint-utils: 3.0.0_eslint@8.7.0
     transitivePeerDependencies:
       - supports-color
       - typescript
     dev: true
 
-  /@typescript-eslint/parser/5.9.1_eslint@8.6.0+typescript@4.5.4:
+  /@typescript-eslint/parser/5.9.1_eslint@8.7.0+typescript@4.5.4:
     resolution: {integrity: sha512-PLYO0AmwD6s6n0ZQB5kqPgfvh73p0+VqopQQLuNfi7Lm0EpfKyDalchpVwkE+81k5HeiRrTV/9w1aNHzjD7C4g==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1155,7 +1178,7 @@ packages:
       '@typescript-eslint/types': 5.9.1
       '@typescript-eslint/typescript-estree': 5.9.1_typescript@4.5.4
       debug: 4.3.3
-      eslint: 8.6.0
+      eslint: 8.7.0
       typescript: 4.5.4
     transitivePeerDependencies:
       - supports-color
@@ -1169,7 +1192,7 @@ packages:
       '@typescript-eslint/visitor-keys': 5.9.1
     dev: true
 
-  /@typescript-eslint/type-utils/5.9.1_eslint@8.6.0+typescript@4.5.4:
+  /@typescript-eslint/type-utils/5.9.1_eslint@8.7.0+typescript@4.5.4:
     resolution: {integrity: sha512-tRSpdBnPRssjlUh35rE9ug5HrUvaB9ntREy7gPXXKwmIx61TNN7+l5YKgi1hMKxo5NvqZCfYhA5FvyuJG6X6vg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
@@ -1179,9 +1202,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/experimental-utils': 5.9.1_eslint@8.6.0+typescript@4.5.4
+      '@typescript-eslint/experimental-utils': 5.9.1_eslint@8.7.0+typescript@4.5.4
       debug: 4.3.3
-      eslint: 8.6.0
+      eslint: 8.7.0
       tsutils: 3.21.0_typescript@4.5.4
       typescript: 4.5.4
     transitivePeerDependencies:
@@ -1219,7 +1242,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       '@typescript-eslint/types': 5.9.1
-      eslint-visitor-keys: 3.1.0
+      eslint-visitor-keys: 3.2.0
     dev: true
 
   /@ungap/promise-all-settled/1.1.2:
@@ -1537,8 +1560,8 @@ packages:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
 
-  /better-color-tools/0.2.0:
-    resolution: {integrity: sha512-wTRhIbyprVQKZ3lfUA894xHlo7Mmp1ePLfcQH4ahoLsyYrns5TubtQpa4go+adXDRPiFUtjC/jnbd2mEAQGjCQ==}
+  /better-color-tools/0.3.0:
+    resolution: {integrity: sha512-JU91tVBa043Ywm3LVsQfopNfsPFWKvYOnZfkVjWYsVxmj7mPnKme0CG4yGruBxvoRQ4MBlXn5DN5mC/wuVnMCQ==}
 
   /better-path-resolve/1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
@@ -2522,16 +2545,16 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /eslint-config-prettier/8.3.0_eslint@8.6.0:
+  /eslint-config-prettier/8.3.0_eslint@8.7.0:
     resolution: {integrity: sha512-BgZuLUSeKzvlL/VUjx/Yb787VQ26RU3gGjA3iiFvdsp/2bMfVIWUVP7tjxtjS0e+HP409cPlPvNkQloz8C91ew==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      eslint: 8.6.0
+      eslint: 8.7.0
     dev: true
 
-  /eslint-plugin-prettier/4.0.0_1c588f61426b1faf18812943f1678311:
+  /eslint-plugin-prettier/4.0.0_4660519532e4c3b0a9e5bb6623cfedf6:
     resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
@@ -2542,8 +2565,8 @@ packages:
       eslint-config-prettier:
         optional: true
     dependencies:
-      eslint: 8.6.0
-      eslint-config-prettier: 8.3.0_eslint@8.6.0
+      eslint: 8.7.0
+      eslint-config-prettier: 8.3.0_eslint@8.7.0
       prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -2564,13 +2587,13 @@ packages:
       estraverse: 5.3.0
     dev: true
 
-  /eslint-utils/3.0.0_eslint@8.6.0:
+  /eslint-utils/3.0.0_eslint@8.7.0:
     resolution: {integrity: sha512-uuQC43IGctw68pJA1RgbQS8/NP7rch6Cwd4j3ZBtgo4/8Flj4eGE7ZYSZRN3iq5pVUv6GPdW5Z1RFleo84uLDA==}
     engines: {node: ^10.0.0 || ^12.0.0 || >= 14.0.0}
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.6.0
+      eslint: 8.7.0
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -2579,13 +2602,13 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /eslint-visitor-keys/3.1.0:
-    resolution: {integrity: sha512-yWJFpu4DtjsWKkt5GeNBBuZMlNcYVs6vRCLoCVEJrTjaSB6LC98gFipNK/erM2Heg/E8mIK+hXG/pJMLK+eRZA==}
+  /eslint-visitor-keys/3.2.0:
+    resolution: {integrity: sha512-IOzT0X126zn7ALX0dwFiUQEdsfzrm4+ISsQS8nukaJXwEyYKRSnEIIDULYg1mCtGp7UUXgfGl7BIolXREQK+XQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /eslint/8.6.0:
-    resolution: {integrity: sha512-UvxdOJ7mXFlw7iuHZA4jmzPaUqIw54mZrv+XPYKNbKdLR0et4rf60lIZUU9kiNtnzzMzGWxMV+tQ7uG7JG8DPw==}
+  /eslint/8.7.0:
+    resolution: {integrity: sha512-ifHYzkBGrzS2iDU7KjhCAVMGCvF6M3Xfs8X8b37cgrUlDt6bWRTpRh6T/gtSXv1HJ/BUGgmjvNvOEGu85Iif7w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -2596,11 +2619,10 @@ packages:
       cross-spawn: 7.0.3
       debug: 4.3.3
       doctrine: 3.0.0
-      enquirer: 2.3.6
       escape-string-regexp: 4.0.0
       eslint-scope: 7.1.0
-      eslint-utils: 3.0.0_eslint@8.6.0
-      eslint-visitor-keys: 3.1.0
+      eslint-utils: 3.0.0_eslint@8.7.0
+      eslint-visitor-keys: 3.2.0
       espree: 9.3.0
       esquery: 1.4.0
       esutils: 2.0.3
@@ -2609,7 +2631,7 @@ packages:
       functional-red-black-tree: 1.0.1
       glob-parent: 6.0.2
       globals: 13.12.0
-      ignore: 4.0.6
+      ignore: 5.2.0
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.3
@@ -2620,9 +2642,7 @@ packages:
       minimatch: 3.0.4
       natural-compare: 1.4.0
       optionator: 0.9.1
-      progress: 2.0.3
       regexpp: 3.2.0
-      semver: 7.3.5
       strip-ansi: 6.0.1
       strip-json-comments: 3.1.1
       text-table: 0.2.0
@@ -2637,7 +2657,7 @@ packages:
     dependencies:
       acorn: 8.7.0
       acorn-jsx: 5.3.2_acorn@8.7.0
-      eslint-visitor-keys: 3.1.0
+      eslint-visitor-keys: 3.2.0
     dev: true
 
   /esprima/4.0.1:
@@ -2756,6 +2776,17 @@ packages:
 
   /fast-glob/3.2.10:
     resolution: {integrity: sha512-s9nFhFnvR63wls6/kM88kQqDhMu0AfdjqouE2l5GVQPbqLgyFjjU5ry/r2yKsJxpb9Py1EYNqieFrmMaX4v++A==}
+    engines: {node: '>=8.6.0'}
+    dependencies:
+      '@nodelib/fs.stat': 2.0.5
+      '@nodelib/fs.walk': 1.2.8
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.4
+    dev: true
+
+  /fast-glob/3.2.11:
+    resolution: {integrity: sha512-xrO3+1bxSo3ZVHAnqzyuewYT6aMFHRAd4Kcs92MAonjwQZLsK9d0SF1IyQ3k5PoirxTW0Oe/RqFgMQ6TcNE5Ew==}
     engines: {node: '>=8.6.0'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -3037,7 +3068,7 @@ packages:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.10
+      fast-glob: 3.2.11
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
@@ -4832,11 +4863,6 @@ packages:
   /prismjs/1.26.0:
     resolution: {integrity: sha512-HUoH9C5Z3jKkl3UunCyiD5jwk0+Hz0fIgQ2nbwU2Oo/ceuTAQAg+pPVnfdt2TJWRVLcxKh9iuoYDUSc8clb5UQ==}
     engines: {node: '>=6'}
-
-  /progress/2.0.3:
-    resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
-    engines: {node: '>=0.4.0'}
-    dev: true
 
   /property-information/6.1.1:
     resolution: {integrity: sha512-hrzC564QIl0r0vy4l6MvRLhafmUowhO/O3KgVSoXIbbA2Sz4j8HGpJc6T2cubRVwMwpdiG/vKGfhT4IixmKN9w==}

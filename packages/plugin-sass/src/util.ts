@@ -12,3 +12,8 @@ export function encode(fileName: string): string {
 
   return `url(${type};base64,${fs.readFileSync(fileName).toString('base64')})`;
 }
+
+/** format font stack */
+export function formatFontNames(fontNames: string[]): string {
+  return fontNames.map((n) => (n.includes(' ') ? `"${n}"` : n)).join(', ');
+}

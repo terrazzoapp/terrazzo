@@ -85,30 +85,29 @@ async function main() {
         minute: '2-digit',
       });
       let watch = args.includes('-w') || args.includes('--watch');
-      let result = parse(rawSchema);
-      if (result.errors || result.warnings) {
-        printErrors(result.errors);
-        printWarnings(result.warnings);
-        process.exit(1);
-      }
-      await build(config, result.result, rawSchema);
+
+      let result = await build(rawSchema, config);
+      printErrors(result.errors);
+      printWarnings(result.warnings);
+      if (errors) process.exit(1);
 
       if (watch) {
         const watcher = chokidar.watch(fileURLToPath(config.tokens));
         const tokensYAML = config.tokens.href.replace(cwd.href, '');
         watcher.on('change', async (filePath) => {
           try {
-            rawSchema = fs.readFileSync(filePath, 'utf8');
-            result = parse(rawSchema);
-            await build(config, result.result, rawSchema);
+            rawSchema = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+            result = await build(rawSchema, config);
+
             if (result.errors || result.warnings) {
-              printErrors(result.errors);
-              printWarnings(result.warnings);
+              printErrors(errors);
+              printWarnings(warnings);
             } else {
               console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${tokensYAML}${RESET} updated ${FG_GREEN}✔${RESET}`);
             }
           } catch (err) {
-            console.error(err);
+            printErrors([err.message || err]);
           }
         });
         // keep process occupied
@@ -161,20 +160,20 @@ function showHelp() {
 `);
 }
 
+/** Print time elapsed */
+function time(start) {
+  const diff = performance.now() - start;
+  return `${DIM}${diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`}${RESET}`;
+}
+
 /** Print errors */
-function printErrors(errors) {
+export function printErrors(errors) {
   if (!errors || !Array.isArray(errors)) return;
   errors.forEach((e) => console.error(`  ${FG_RED}✘  ${e}${RESET}`));
 }
 
 /** Print warnings */
-function printWarnings(warnings) {
+export function printWarnings(warnings) {
   if (!warnings || !Array.isArray(warnings)) return;
-  warnings.forEach((w) => console.warn(`  ${YELLOW}!  ${w}${RESET}`));
-}
-
-/** Print time elapsed */
-function time(start) {
-  const diff = performance.now() - start;
-  return `${DIM}${diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`}${RESET}`;
+  warnings.forEach((w) => console.warn(`  ${FG_YELLOW}!  ${w}${RESET}`));
 }

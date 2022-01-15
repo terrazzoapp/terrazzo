@@ -2,13 +2,13 @@ import type { BuildResult, ParsedToken, Plugin } from '@cobalt-ui/core';
 
 export interface Options {
   /** output file (default: "./tokens/index.ts") */
-  filename?: string;
+  fileName?: string;
   /** modify values */
   transformValue?: (token: ParsedToken) => string;
 }
 
 export default function ts(options?: Options): Plugin {
-  let fileName = options?.filename || './index.ts';
+  let fileName = options?.fileName || './index.ts';
   let transformer = options?.transformValue;
 
   function printTokensExport(schemaTokens: ParsedToken[]): string {
@@ -58,22 +58,22 @@ export default function ts(options?: Options): Plugin {
   }
 
   function printAltFunction(): string {
-    return `/** Get alternate values */
-export function getAlt<T = string>(tokenID: keyof TokensFlat, mode: string): T {
+    return `/** Get mode value */
+export function getMode<T = string>(tokenID: keyof TokensFlat, mode: string): T {
   let defaultVal = tokens;
-  let altVal = modes;
+  let modeVal = modes;
   for (const next of tokenID.split('.')) {
     defaultVal = defaultVal[next];
-    if (altVal[next] !== undefined) altVal = altVal[next];
+    if (modeVal[next] !== undefined) modeVal = modeVal[next];
   }
-  return (altVal && altVal[mode]) || defaultVal;
+  return (modeVal && modeVal[mode]) || defaultVal;
 }`;
   }
 
   return {
     name: '@cobalt-ui/plugin-ts',
-    async build({ schema }): Promise<BuildResult[]> {
-      let code = [printTokensExport(schema.tokens), printModesExport(schema.tokens), printAltFunction()];
+    async build({ tokens }): Promise<BuildResult[]> {
+      let code = [printTokensExport(tokens), printModesExport(tokens), printAltFunction()];
       return [
         {
           fileName,

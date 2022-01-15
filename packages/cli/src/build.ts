@@ -1,7 +1,11 @@
-import type { Config, ParseResult, Schema } from '@cobalt-ui/core';
+import type { ParseResult, ResolvedConfig, Group } from '@cobalt-ui/core';
+import co from '@cobalt-ui/core';
 import fs from 'fs';
 
-export async function build(config: Config, schema: ParseResult['result'], rawSchema: Schema): Promise<void> {
+export async function build(rawSchema: Group, config: ResolvedConfig): Promise<ParseResult> {
+  const { errors, warnings, result } = co.parse(rawSchema);
+  if (errors) return { errors, warnings, result };
+
   await Promise.all(
     config.plugins.map(async (plugin) => {
       try {
@@ -9,7 +13,7 @@ export async function build(config: Config, schema: ParseResult['result'], rawSc
         if (plugin.config) plugin.config(config);
 
         // build()
-        const results = await plugin.build({ schema, rawSchema });
+        const results = await plugin.build({ tokens: result.tokens, metadata: result.metadata, rawSchema });
         if (!results) return;
         if (!Array.isArray(results) || !results.every((r) => r.fileName && r.contents)) {
           throw new Error(`[${plugin.name}] invalid build results`);
@@ -26,4 +30,6 @@ export async function build(config: Config, schema: ParseResult['result'], rawSc
       }
     })
   );
+
+  return { errors, warnings, result };
 }

@@ -1,0 +1,15 @@
+@use "sass:map";
+
+$color__green: #00ff00;
+$gradient__g-b: #00ff00, #0000ff 100%;
+$-cobalt_token_modes: (
+  $color__green: (
+    "light": #6fdd8b,
+    "dark": #56d364,
+  ),
+);
+
+@function mode($token, $modeName) {
+  $mode: map.get($-cobalt_token_modes, $token);
+  @return map.get($mode, $modeName);
+}

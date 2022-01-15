@@ -1,27 +1,41 @@
-import type { TokenType, ParseResult, Schema } from './parse.js';
+import type { Group, ParsedToken, TokenType } from './@types/token';
 export type {
   ColorToken,
-  ConicGradientToken,
   CubicBezierToken,
   DimensionToken,
+  DurationToken,
   FileToken,
   FontToken,
+  FontWeightName,
+  GradientStop,
+  GradientToken,
   Group,
-  LinearGradientToken,
   Mode,
-  ParsedMetadata,
+  ParsedColorToken,
+  ParsedCubicBezierToken,
+  ParsedDimensionToken,
+  ParsedDurationToken,
+  ParsedFileToken,
+  ParsedFontToken,
+  ParsedGradientToken,
+  ParsedShadowToken,
   ParsedToken,
-  ParseResult,
-  RadialGradientToken,
-  Schema,
+  ParsedTransitionToken,
+  ParsedTypographyToken,
+  ParsedTypographyValue,
+  ParsedURLToken,
   ShadowToken,
+  ShadowValue,
   Token,
   TokenBase,
   TokenOrGroup,
   TokenType,
-} from './parse.js';
-import { parse } from './parse.js';
-export { parse } from './parse.js';
+  TransitionToken,
+  URLToken,
+} from './@types/token';
+
+import { parse } from './parse/index.js';
+export { parse, ParseResult } from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
@@ -48,7 +62,7 @@ export interface FigmaMapping {
   [url: string]: (FigmaStyle | FigmaComponent)[];
 }
 
-export interface Config {
+export interface ResolvedConfig {
   tokens: URL;
   outDir: URL;
   plugins: Plugin[];
@@ -58,12 +72,12 @@ export interface Config {
 export interface Plugin {
   name: string;
   /** (optional) load config */
-  config?: (config: Config) => void;
+  config?: (config: ResolvedConfig) => void;
   /** main build fn */
-  build(options: { schema: ParseResult['result']; rawSchema: Schema }): Promise<BuildResult[]>;
+  build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
 }
 
-export interface UserConfig {
+export interface Config {
   /** path to tokens.json (default: "./tokens.json") */
   tokens?: string;
   /** output directory (default: "./tokens/") */

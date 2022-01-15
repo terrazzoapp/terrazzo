@@ -5,12 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Project Goals
 
-As of the time of writing (early 2022), this project’s goals are to hold 2 competing ideas in tension:
-
-- Provide tooling compatible with the [Design Tokens W3C spec](https://design-tokens.github.io/community-group/format/)
-- Take liberties to expand the Design Tokens spec and not be bound to the in-progress spec
-
-For the most part, there’s more overlap with this project and the Design Tokens spec than without. But that may be subject to change as the API evolves.
+This project is designed to be a parser and builder for the [W3C Design Tokens CG spec](https://design-tokens.github.io/community-group/format). Using Cobalt you should be able to parse any valid schema file, validate it for errors, and generate code with it.
 
 #### What does the name “Cobalt” mean?
 

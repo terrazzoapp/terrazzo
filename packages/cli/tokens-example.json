@@ -1,41 +1,41 @@
 {
-  "name": "My Tokens",
-  "description": "Automatically generated with `cobalt init`",
-  "tokens": {
-    "color": {
-      "modes": ["standard", "colorblind"],
-      "blue": {
-        "type": "color",
-        "value": "#54aeff",
-        "mode": {
-          "standard": "#54aeff",
-          "colorblind": "#54aeff"
-        }
-      },
-      "green": {
-        "type": "color",
-        "value": "#4ac26b",
-        "mode": {
-          "standard": "#4ac26b",
-          "colorblind": "#35adff"
-        }
-      },
-      "red": {
-        "type": "color",
-        "value": "#fa4549",
-        "mode": {
-          "standard": "#fa4549",
-          "colorblind": "#d08002"
-        }
+  "metadata": {
+    "name": "My Tokens",
+    "description": "Automatically generated with `cobalt init`"
+  },
+  "color": {
+    "modes": ["standard", "colorblind"],
+    "blue": {
+      "type": "color",
+      "value": "#54aeff",
+      "mode": {
+        "standard": "#54aeff",
+        "colorblind": "#54aeff"
       }
     },
-    "font": {
-      "family": {
-        "ibm_plex": {
-          "type": "font",
-          "value": {
-            "default": "IBM Plex Sans"
-          }
+    "green": {
+      "type": "color",
+      "value": "#4ac26b",
+      "mode": {
+        "standard": "#4ac26b",
+        "colorblind": "#35adff"
+      }
+    },
+    "red": {
+      "type": "color",
+      "value": "#fa4549",
+      "mode": {
+        "standard": "#fa4549",
+        "colorblind": "#d08002"
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "ibm_plex": {
+        "type": "font",
+        "value": {
+          "default": "IBM Plex Sans"
         }
       }
     }

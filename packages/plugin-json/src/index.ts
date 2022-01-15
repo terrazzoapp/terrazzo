@@ -17,23 +17,23 @@ export interface JSONGroup {
 
 export interface Options {
   /** output file (default: "./tokens/tokens.json") */
-  filename?: string;
+  fileName?: string;
   /** modify values */
   transformValue?: (token: Token, mode?: string) => any;
 }
 
 export default function json(options?: Options): Plugin {
-  let fileName = options?.filename || './tokens.json';
+  let fileName = options?.fileName || './tokens.json';
   let transform = options?.transformValue;
 
   return {
     name: '@cobalt-ui/plugin-json',
-    async build({ schema }): Promise<BuildResult[]> {
+    async build({ tokens }): Promise<BuildResult[]> {
       return [
         {
           fileName,
           contents: JSON.stringify(
-            schema,
+            tokens,
             (_, token) => {
               // apply transformValue()
               if (transform && typeof token.type == 'string') {
