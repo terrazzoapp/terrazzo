@@ -30,9 +30,9 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -40,9 +40,9 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -50,9 +50,9 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
     devDependencies:
@@ -67,9 +67,9 @@ importers:
       '@carbon/colors': ^10.34.0
       '@carbon/icons': ^10.44.0
       '@carbon/type': ^10.39.0
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
     devDependencies:
       '@carbon/colors': 10.34.0
       '@carbon/icons': 10.44.0
@@ -80,9 +80,9 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
       '@salesforce-ux/design-system': ^2.16.2
       better-color-tools: ^0.3.0
     devDependencies:
@@ -94,9 +94,9 @@ importers:
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
-      '@cobalt-ui/plugin-css': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
+      '@cobalt-ui/plugin-css': ^0.2.1
+      '@cobalt-ui/plugin-sass': ^0.2.1
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -148,22 +148,26 @@ importers:
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
       '@cobalt-ui/core': ^0.2.0
       '@cobalt-ui/utils': ^0.2.0
       '@types/mime': ^2.0.3
+      '@types/svgo': ^2.6.1
       better-color-tools: ^0.3.0
       chai: ^4.3.4
       mime: ^3.0.0
       mocha: ^9.1.3
+      svgo: ^2.8.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
       better-color-tools: 0.3.0
       mime: 3.0.0
+      svgo: 2.8.0
     devDependencies:
       '@cobalt-ui/cli': link:../cli
       '@cobalt-ui/core': link:../core
       '@types/mime': 2.0.3
+      '@types/svgo': 2.6.1
       chai: 4.3.4
       mocha: 9.1.3
 
@@ -175,20 +179,24 @@ importers:
 
   packages/plugin-sass:
     specifiers:
-      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
       '@cobalt-ui/core': ^0.2.0
       '@cobalt-ui/utils': ^0.2.0
       '@types/mime': ^2.0.3
+      '@types/svgo': ^2.6.1
       chai: ^4.3.4
       mime: ^3.0.0
       mocha: ^9.1.3
+      svgo: ^2.8.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
       mime: 3.0.0
+      svgo: 2.8.0
     devDependencies:
       '@cobalt-ui/cli': link:../cli
       '@cobalt-ui/core': link:../core
       '@types/mime': 2.0.3
+      '@types/svgo': 2.6.1
       chai: 4.3.4
       mocha: 9.1.3
 
@@ -207,10 +215,10 @@ importers:
   www:
     specifiers:
       '@astrojs/renderer-vue': ^0.3.0
-      '@cobalt-ui/cli': ^0.2.0
+      '@cobalt-ui/cli': ^0.2.1
       '@cobalt-ui/core': ^0.2.0
       '@cobalt-ui/plugin-json': ^0.2.0
-      '@cobalt-ui/plugin-sass': ^0.2.0
+      '@cobalt-ui/plugin-sass': ^0.2.1
       '@cobalt-ui/plugin-ts': ^0.2.0
       astro: ^0.22.10
       morphdom: ^2.6.1
@@ -965,6 +973,11 @@ packages:
       - supports-color
     dev: true
 
+  /@trysound/sax/0.2.0:
+    resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
+    engines: {node: '>=10.13.0'}
+    dev: false
+
   /@ts-morph/common/0.11.1:
     resolution: {integrity: sha512-7hWZS0NRpEsNV8vWJzg7FEz6V8MaLNeJOmwmghqUXTpzk16V1LLZhdo+4QvE/+zv4cVci0OviuJFnqhEfoV3+g==}
     dependencies:
@@ -1113,6 +1126,12 @@ packages:
 
   /@types/semver/6.2.3:
     resolution: {integrity: sha512-KQf+QAMWKMrtBMsB8/24w53tEsxllMj6TuA80TT/5igJalLI/zm0L3oXRbIAl4Ohfc85gyHX/jhMwsVkmhLU4A==}
+    dev: true
+
+  /@types/svgo/2.6.1:
+    resolution: {integrity: sha512-4BfUnd19L25BD2iRyZTNuG4pfL9HBs+rvF7zp5maKhbX42uOpc5prGdBXXmCdHlVZfTWq8pNP/vxQt9v8ACxqQ==}
+    dependencies:
+      '@types/node': 17.0.8
     dev: true
 
   /@types/unist/2.0.6:
@@ -1574,6 +1593,10 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
 
+  /boolbase/1.0.0:
+    resolution: {integrity: sha1-aN/1++YMUes3cl6p4+0xDcwed24=}
+    dev: false
+
   /boxen/1.3.0:
     resolution: {integrity: sha512-TNPjfTr432qx7yOjQyaXm3dSR0MH9vXp7eT1BFSl/C51g+EFnOR9hTg1IreahGBmDNCehscshe45f+C1TBZbLw==}
     engines: {node: '>=4'}
@@ -1819,6 +1842,11 @@ packages:
     resolution: {integrity: sha512-G5yTt3KQN4Yn7Yk4ed73hlZ1evrFKXeUW3086p3PRFNp7m2vIjI6Pg+Kgb+oyzhd9F2qdcoj67+y3SdxL5XWsg==}
     dev: true
 
+  /commander/7.2.0:
+    resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
+    engines: {node: '>= 10'}
+    dev: false
+
   /common-ancestor-path/1.0.1:
     resolution: {integrity: sha512-L3sHRo1pXXEqX8VU28kfgUY+YGsk09hPqZiZmLacNib6XNTCM8ubYeT7ryXQw8asB1sKgcU5lkB7ONug08aB8w==}
     dev: true
@@ -1870,6 +1898,36 @@ packages:
       shebang-command: 2.0.0
       which: 2.0.2
     dev: true
+
+  /css-select/4.2.1:
+    resolution: {integrity: sha512-/aUslKhzkTNCQUB2qTX84lVmfia9NyjP3WpDGtj/WxhwBzWBYUV3DgUpurHTme8UTPcPlAD1DJ+b0nN/t50zDQ==}
+    dependencies:
+      boolbase: 1.0.0
+      css-what: 5.1.0
+      domhandler: 4.3.0
+      domutils: 2.8.0
+      nth-check: 2.0.1
+    dev: false
+
+  /css-tree/1.1.3:
+    resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      mdn-data: 2.0.14
+      source-map: 0.6.1
+    dev: false
+
+  /css-what/5.1.0:
+    resolution: {integrity: sha512-arSMRWIIFY0hV8pIxZMEfmMI47Wj3R/aWpZDDxWYCPEiOMv6tfOrnpDtgxBYPEQD4V0Y/958+1TdC3iWTFcUPw==}
+    engines: {node: '>= 6'}
+    dev: false
+
+  /csso/4.2.0:
+    resolution: {integrity: sha512-wvlcdIbf6pwKEk7vHj8/Bkc0B4ylXZruLvOgs9doS5eOsOpuodOV2zJChSpkp+pRpYQLQMeF04nr3Z68Sta9jA==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      css-tree: 1.1.3
+    dev: false
 
   /csstype/2.6.19:
     resolution: {integrity: sha512-ZVxXaNy28/k3kJg0Fou5MiYpp88j7H9hLZp8PDC3jV0WFjfH5E9xHb56L0W59cPbKbcHXeP4qyT8PrHp8t6LcQ==}
@@ -2063,13 +2121,11 @@ packages:
     resolution: {integrity: sha512-5c54Bk5Dw4qAxNOI1pFEizPSjVsx5+bpJKmL2kPn8JhBUq2q09tTCa3mjijun2NfK78NMouDYNMBkOrPZiS+ig==}
     dependencies:
       domelementtype: 2.2.0
-      domhandler: 4.2.2
+      domhandler: 4.3.0
       entities: 2.2.0
-    dev: true
 
   /domelementtype/2.2.0:
     resolution: {integrity: sha512-DtBMo82pv1dFtUmHyr48beiuq792Sxohr+8Hm9zoxklYPfa6n0Z3Byjj2IV7bmr2IyqClnqEQhfgHJJ5QF0R5A==}
-    dev: true
 
   /domhandler/4.2.2:
     resolution: {integrity: sha512-PzE9aBMsdZO8TK4BnuJwH0QT41wgMbRzuZrHUcpYncEjmQazq8QEaBWgLG7ZyC/DAZKEgglpIA6j4Qn/HmxS3w==}
@@ -2078,13 +2134,18 @@ packages:
       domelementtype: 2.2.0
     dev: true
 
+  /domhandler/4.3.0:
+    resolution: {integrity: sha512-fC0aXNQXqKSFTr2wDNZDhsEYjCiYsDWl3D01kwt25hm1YIPyDGHvvi3rw+PLqHAl/m71MaiF7d5zvBr0p5UB2g==}
+    engines: {node: '>= 4'}
+    dependencies:
+      domelementtype: 2.2.0
+
   /domutils/2.8.0:
     resolution: {integrity: sha512-w96Cjofp72M5IIhpjgobBimYEfoPjx1Vx0BSX9P30WBdZW2WIKU0T1Bd0kz2eNZ9ikjKgHbEyKx8BB6H1L3h3A==}
     dependencies:
       dom-serializer: 1.3.2
       domelementtype: 2.2.0
-      domhandler: 4.2.2
-    dev: true
+      domhandler: 4.3.0
 
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
@@ -2128,7 +2189,6 @@ packages:
 
   /entities/2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
-    dev: true
 
   /entities/3.0.1:
     resolution: {integrity: sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q==}
@@ -3975,6 +4035,10 @@ packages:
     resolution: {integrity: sha512-n4Vypz/DZgwo0iMHLQL49dJzlp7YtAJP+N07MZHpjPf/5XJuHUWstviF4Mn2jEiR/GNmtnRRqnwsXExk3igfFA==}
     dev: true
 
+  /mdn-data/2.0.14:
+    resolution: {integrity: sha512-dn6wd0uw5GsdswPFfsgMp5NSB0/aDe6fK94YJV/AJDYXL6HVLWBsxeq7js7Ad+mU2K9LAlwpk6kN2D5mwCPVow==}
+    dev: false
+
   /mdurl/1.0.1:
     resolution: {integrity: sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=}
     dev: true
@@ -4526,6 +4590,12 @@ packages:
     dependencies:
       path-key: 2.0.1
     dev: true
+
+  /nth-check/2.0.1:
+    resolution: {integrity: sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==}
+    dependencies:
+      boolbase: 1.0.0
+    dev: false
 
   /number-precision/1.5.1:
     resolution: {integrity: sha512-JdTfhUHd1aUL4svSaJXlv3CKNz92js2z0+HS/9AX8euw+akompBz/QEZ7e3y7eTuJxvRqXBZP6mapUlTtLoTsA==}
@@ -5427,6 +5497,10 @@ packages:
     resolution: {integrity: sha512-JWp4cG2eybkvKA1QUHGoNK6JDEYcOnSuhzNGjZuYUPqXreDl/VkkvP2sZW7Rmh+icuCttrR9ccb2WPIazyM/Cw==}
     dev: true
 
+  /stable/0.1.8:
+    resolution: {integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==}
+    dev: false
+
   /statuses/1.5.0:
     resolution: {integrity: sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=}
     engines: {node: '>= 0.6'}
@@ -5662,6 +5736,20 @@ packages:
     resolution: {integrity: sha512-Ue8ivq+G45AfZZL4Z93xNFiC352wPkyGiY9QSuWjxXh6jiaZMrpthinjc1rz0OSTceuST7Pxr1HDBj2KioliZg==}
     engines: {node: '>= 8'}
     dev: true
+
+  /svgo/2.8.0:
+    resolution: {integrity: sha512-+N/Q9kV1+F+UeWYoSiULYo4xYSDQlTgb+ayMobAXPwMnLvop7oxKMo9OzIrX5x3eS4L4f2UHhc9axXwY8DpChg==}
+    engines: {node: '>=10.13.0'}
+    hasBin: true
+    dependencies:
+      '@trysound/sax': 0.2.0
+      commander: 7.2.0
+      css-select: 4.2.1
+      css-tree: 1.1.3
+      csso: 4.2.0
+      picocolors: 1.0.0
+      stable: 0.1.8
+    dev: false
 
   /svgson/5.2.1:
     resolution: {integrity: sha512-nbM6QuyZiKzQ0Uo51VDta93YJAr96ikyT40PsgJRrzynOGsOlnmJ6zAK5hUFyE5gnxcg7yuOPUWbUlmV9K0+Dg==}

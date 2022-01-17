@@ -64,45 +64,17 @@ export const modes = {
     "White": {
       "light": "#ffffff"
     }
-  },
-  "font": {},
-  "family": {
-    "neue_montreal": {}
-  },
-  "icon": {
-    "cloud--download": {},
-    "cloud--upload": {},
-    "crop": {},
-    "delete": {},
-    "do-not": {},
-    "do-not--02": {},
-    "download--01": {},
-    "download--02": {},
-    "embed": {},
-    "export--01": {},
-    "export--02": {},
-    "launch": {},
-    "love": {},
-    "minimize": {},
-    "paperclip": {},
-    "player--flow": {},
-    "renew": {},
-    "repeat": {},
-    "reset": {},
-    "trash": {},
-    "upload--01": {},
-    "upload--02": {}
   }
 };
 
 
-/** Get alternate values */
-export function getAlt<T = string>(tokenID: keyof TokensFlat, mode: string): T {
+/** Get mode value */
+export function getMode<T = string>(tokenID: keyof TokensFlat, mode: string): T {
   let defaultVal = tokens;
-  let altVal = modes;
+  let modeVal = modes;
   for (const next of tokenID.split('.')) {
     defaultVal = defaultVal[next];
-    if (altVal[next] !== undefined) altVal = altVal[next];
+    if (modeVal[next] !== undefined) modeVal = modeVal[next];
   }
-  return (altVal && altVal[mode]) || defaultVal;
+  return (modeVal && modeVal[mode]) || defaultVal;
 }

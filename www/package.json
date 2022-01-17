@@ -19,10 +19,10 @@
     "vue": "^3.2.23"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.2.0",
+    "@cobalt-ui/cli": "^0.2.1",
     "@cobalt-ui/core": "^0.2.0",
     "@cobalt-ui/plugin-json": "^0.2.0",
-    "@cobalt-ui/plugin-sass": "^0.2.0",
+    "@cobalt-ui/plugin-sass": "^0.2.1",
     "@cobalt-ui/plugin-ts": "^0.2.0",
     "astro": "^0.22.10",
     "morphdom": "^2.6.1",

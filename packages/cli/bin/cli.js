@@ -89,7 +89,7 @@ async function main() {
       let result = await build(rawSchema, config);
       printErrors(result.errors);
       printWarnings(result.warnings);
-      if (errors) process.exit(1);
+      if (result.errors) process.exit(1);
 
       if (watch) {
         const watcher = chokidar.watch(fileURLToPath(config.tokens));

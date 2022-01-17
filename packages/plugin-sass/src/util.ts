@@ -1,5 +1,6 @@
 import fs from 'fs';
 import mime from 'mime';
+import svgo from 'svgo';
 
 /** encode file for CSS */
 export function encode(fileName: string): string {
@@ -7,10 +8,13 @@ export function encode(fileName: string): string {
 
   // https://css-tricks.com/probably-dont-base64-svg/
   if (type === 'image/svg+xml') {
-    return `url(${type};utf8,${fs.readFileSync(fileName, 'utf8')})`;
+    const svg = svgo.optimize(fs.readFileSync(fileName));
+    if ((svg as any).data) {
+      return `url('${type};utf8,${(svg as any).data}')`;
+    }
   }
 
-  return `url(${type};base64,${fs.readFileSync(fileName).toString('base64')})`;
+  return `url('${type};base64,${fs.readFileSync(fileName).toString('base64')}')`;
 }
 
 /** format font stack */
