@@ -15,11 +15,11 @@ export async function build(rawSchema: Group, config: ResolvedConfig): Promise<P
         // build()
         const results = await plugin.build({ tokens: result.tokens, metadata: result.metadata, rawSchema });
         if (!results) return;
-        if (!Array.isArray(results) || !results.every((r) => r.fileName && r.contents)) {
+        if (!Array.isArray(results) || !results.every((r) => r.filename && r.contents)) {
           throw new Error(`[${plugin.name}] invalid build results`);
         }
-        for (const { fileName, contents } of results) {
-          const filePath = new URL(fileName.replace(/^\//, '').replace(/^(\.\.\/)+/, ''), config.outDir);
+        for (const { filename, contents } of results) {
+          const filePath = new URL(filename.replace(/^\//, '').replace(/^(\.\.\/)+/, ''), config.outDir);
           fs.mkdirSync(new URL('./', filePath), { recursive: true });
           fs.writeFileSync(filePath, contents);
         }

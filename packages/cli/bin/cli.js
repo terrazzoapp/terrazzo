@@ -120,6 +120,18 @@ async function main() {
     }
     case 'sync': {
       const updates = await figma(config);
+      for (const [id, token] of Object.entries(updates)) {
+        let namespaces = id.split('.');
+        let node = rawSchema;
+        for (const namespace of namespaces) {
+          if (!node[namespace]) node[namespace] = {};
+          node = node[namespace];
+        }
+        for (const [k, v] of Object.entries(token)) {
+          node[k] = v; //
+        }
+      }
+      fs.writeFileSync(config.tokens, JSON.stringify(rawSchema, undefined, 2), 'utf8');
       console.log(`  ${FG_GREEN}✔${RESET}  Tokens updated from Figma`);
       break;
     }

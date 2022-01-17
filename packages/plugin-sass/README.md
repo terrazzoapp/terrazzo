@@ -16,7 +16,7 @@ export default {
   plugins: [
     pluginSass({
       /** set the filename inside outDir */
-      fileName: './index.scss',
+      filename: './index.scss',
       /** use indented syntax? (.sass format) */
       indentedSyntax: false,
       /** modify values */

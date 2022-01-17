@@ -1,4 +1,5 @@
-import type { Group, ParsedToken, TokenType } from './@types/token';
+import type SVGO from 'svgo';
+import type { Group, ParsedToken } from './@types/token';
 export type {
   ColorToken,
   CubicBezierToken,
@@ -39,40 +40,49 @@ export { parse, ParseResult } from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
-  fileName: string;
+  filename: string;
   /** File contents */
   contents: string | Buffer;
 }
 
-export interface FigmaComponent {
-  component: string;
-  token: string;
-  type: TokenType;
-  file?: string;
+export interface FigmaDoc {
+  url: string;
+  tokens: FigmaToken[];
 }
 
-export interface FigmaStyle {
-  style: string;
+export interface FigmaToken {
+  style?: string;
+  component?: string;
   token: string;
-  type: TokenType;
-  file?: string;
+  type: string;
+  filename?: string;
+  /** optional: override default optimization settings for this instance */
+  optimize?: FigmaOptimizationSettings | boolean;
 }
 
-export interface FigmaMapping {
-  [url: string]: (FigmaStyle | FigmaComponent)[];
+export interface FigmaOptimizationSettings {
+  /** Default SVGO settings */
+  svgo?: SVGO.OptimizeOptions | boolean;
+}
+
+export interface FigmaSettings {
+  /** Figma docs to sync (required if "figma" is specified) */
+  docs: FigmaDoc[];
+  /** set default optimizations */
+  optimize?: FigmaOptimizationSettings | boolean;
 }
 
 export interface ResolvedConfig {
   tokens: URL;
   outDir: URL;
   plugins: Plugin[];
-  figma?: FigmaMapping;
+  figma?: FigmaSettings;
 }
 
 export interface Plugin {
   name: string;
   /** (optional) load config */
-  config?: (config: ResolvedConfig) => void;
+  config?(config: ResolvedConfig): void;
   /** main build fn */
   build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
 }
@@ -84,8 +94,8 @@ export interface Config {
   outDir?: string;
   /** specify plugins (default: @cobalt-ui/plugin-json, @cobalt-ui/plugin-sass, @cobalt-ui/plugin-ts) */
   plugins: Plugin[];
-  /** add figma keys */
-  figma?: FigmaMapping;
+  /** map Figma styles & components to tokens.json */
+  figma?: FigmaSettings;
 }
 
 export default {

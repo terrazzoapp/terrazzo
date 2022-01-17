@@ -19,17 +19,22 @@ layout: ../../../layouts/docs.astro
 1. In your Figma Doc, click **Share**, then **Copy link**
 1. In `tokens.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
 
-   ```js
-   export default {
-     figma: {
-       // “Share” > Copy link
-       'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2': [
-         { style: 'Blue', token: 'color.blue', type: 'color' },
-         { component: 'Icon.Alert', token: 'icon.alert', type: 'file' },
-       ],
-     },
-   };
-   ```
+```js
+export default {
+  figma: {
+    /** docs to sync */
+    docs: [
+      {
+        url: 'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2', // “Share” > Copy link
+        tokens: [
+          { style: 'Blue', token: 'color.blue', type: 'color' },
+          { component: 'Icon.Alert', token: 'icon.alert', type: 'file' },
+        ],
+      },
+    ],
+  },
+};
+```
 
 1. Run `npx co sync` to update `tokens.json` with the new values
 
@@ -39,37 +44,121 @@ Give Cobalt a list of every Figma file you want to sync, along with components
 and styles, and Cobalt will do the rest! After the initial setup, you’ll only
 have to edit mappings when adding or removing components.
 
-| Property               | Description                                                               |
-| :--------------------- | :------------------------------------------------------------------------ |
-| `style` \| `component` | Specify the name of a Figma style or component (must be one or the other) |
-| `type`                 | The [type][types] of token such as `color` or `font` ([full list][types]) |
-| `token`                | Where you’d like the token to live in `tokens.json`.                      |
+| Property               | Description                                                                    |
+| :--------------------- | :----------------------------------------------------------------------------- |
+| `style` \| `component` | Specify the name of a Figma style or component (must be one or the other)      |
+| `type`                 | The [type][types] of token. Only a few types are supported (documented below). |
+| `token`                | Where you’d like the token to live in `tokens.json`.                           |
 
-The `type` is the most important part to understand; it’s what pulls the values
-out of Figma. For example, `type: "color"` and `type: "linear-gradient"` extract
-**Fill**. `type: "font"` will extract **Text Properties.**
-
-### Colors
+### Colors / Gradient
 
 ![](/images/figma-colors.png)
 
-Say you have colors saved as styles: a few colors such as Black and Dark Gray,
-and a brand gradient called “Red Gradient.” Here’s how we’d map that inside
-`tokens.config.mjs`:
+| Type       | Effect                                                    |
+| :--------- | :-------------------------------------------------------- |
+| `color`    | Extract any **solid fills** from a style or component.    |
+| `gradient` | Extract any **gradient fills** from a style or component. |
+
+Use `type: "color"` or `type: "gradient"` to extract fills from a Figma style or component.
 
 <!-- prettier-ignore -->
 ```js
 export default {
   figma: {
-    // “Share” > Copy link
-    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
-      { style: "Black",        token: "color.black",     type: "color" },
-      { style: "Dark Gray",    token: "color.dark_gray", type: "color" },
-      { style: "Blue",         token: "color.blue",      type: "color" },
-      { style: "Red",          token: "color.red",       type: "color" },
-      { style: "Green",        token: "color.green",     type: "color" },
-      { style: "Purple",       token: "color.purple",    type: "color" },
-      { style: "Red Gradient", token: "gradient.red",    type: "gradient" },
+    docs: [
+      {
+        url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
+        tokens: [
+          { style: "Black",        token: "color.black",     type: "color" },
+          { style: "Dark Gray",    token: "color.dark-gray", type: "color" },
+          { style: "Blue",         token: "color.blue",      type: "color" },
+          { style: "Red",          token: "color.red",       type: "color" },
+          { style: "Green",        token: "color.green",     type: "color" },
+          { style: "Purple",       token: "color.purple",    type: "color" },
+          { style: "Red Gradient", token: "gradient.red",    type: "gradient" },
+        ],
+      },
+    ],
+  },
+};
+```
+
+### File
+
+![](/images/figma-icons.png)
+
+By using `type: "file"` along with a `filename` path you can save a component locally or to a Git repo. This is great for icons.
+
+<!-- prettier-ignore -->
+```js
+export default {
+  figma: {
+    docs: [
+      {
+        url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
+        tokens: [
+          { component: "alert",    token: "icon.alert",    type: "file", filename: "./icons/alert.svg" },
+          { component: "download", token: "icon.download", type: "file", filename: "./icons/download.svg" },
+          { component: "refresh",  token: "icon.refresh",  type: "file", filename: "./icons/refresh.svg" },
+        ],
+      },
+    ],
+  },
+};
+```
+
+Note that the more icons you sync, the longer it may take to update your tokens. But even if this takes a few minutes, it still beats having to download them all manually.
+
+#### Optimization
+
+Sometimes you’ll find Figma exports needing a little cleanup. By adding the `figma.optimize` option, you can run optimizers over the downloaded files:
+
+```js
+export default {
+  figma: {
+    docs: [
+      {
+        url: 'https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2',
+        tokens: [{ component: 'alert', token: 'icon.alert', type: 'file', filename: './icons/alert.svg' }],
+      },
+    ],
+    optimize: {
+      svgo: {
+        // SVGO options (to use defaults, leave object empty or set svgo: true)
+        removeTitle: false,
+      },
+    },
+  },
+};
+```
+
+To disable optimizers, either omit them from the config, or set them to `false`.
+
+##### Supported optimizers
+
+- [SVGO](https://github.com/svg/svgo)
+- Images coming soon?
+
+##### Token overrides
+
+If the default optimization settings are messing up a few tokens, you can override them by adding the same `optimize` settings on an individual token itself. This will override any defaults. Or, you may disable optimization by setting `optimize: false` or `optimize.svgo: false` on an individual token to skip optimization just for that token.
+
+### Shadow
+
+To pull a **Drop Shadow** from Figma, use the `shadow` type.
+
+<!-- prettier-ignore -->
+```js
+export default {
+  figma: {
+    docs: [
+      {
+        url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
+        tokens: [
+          { style: 'Distance / Medium', token: 'shadow.distance-medium', type: 'shadow' },
+          { style: 'Distance / Far',    token: 'shadow.distance-far',    type: 'shadow' },
+        ],
+      },
     ],
   },
 };
@@ -79,130 +168,40 @@ export default {
 
 ![](/images/figma-typography.png)
 
-You can also extract multiple values from the same style or component. Simply specify it again with a different `"type"` (also be sure to save it to a new `token` so it doesn’t overwrite the previous one):
+To extract a **Text Style** from Figma, use the `font` or `typography` type.
+
+| Type         | Effect                                                       |
+| :----------- | :----------------------------------------------------------- |
+| `font`       | Extract only the font family name from a style or component. |
+| `typography` | Extract all text styles from a style or component.           |
 
 <!-- prettier-ignore -->
 ```js
 export default {
   figma: {
-    // “Share” > Copy link
-    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
-      { style: "Brand Sans",            token: "typography.family.brand_sans", type: "font" },
-      { style: "Brand Sans",            token: "typography.body",              type: "typography" },
-      { style: "Font / Body (Larger)",  token: "typography.body-larger",       type: "typography" },
-      { style: "Font / Body (Largest)", token: "typography.body-largest",      type: "typography" },
-      { style: "Font / Heading 1",      token: "typography.heading-1",         type: "typography" },
-      { style: "Font / Heading 2",      token: "typography.heading-2",         type: "typography" },
-      { style: "Font / Heading 3",      token: "typography.heading-3",         type: "typography" },
-    ]
-  },
-};
-```
-
-Here we’re doing a little more complex mapping for our typography, just as an example.
-
-You can see that we have a `Brand Sans` component that signifies the font family. And we have `Font / Size / *` components that help mapping.
-
-Even though these are the names in the Figma file, say we want to shorten these a little for code. We can do that! Probably the clearest explanation is looking at what the final `tokens.json` will be:
-
-```json
-{
-  "font": {
-    "family": {
-      "type": "font",
-      "value": "Neue Montreal"
-    },
-    "size": {
-      "body": {
-        "type": "dimension",
-        "value": "16px"
+    docs: [
+      {
+        url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
+        tokens: [
+          { style: "Brand Sans",                  token: "typography.family.brand-sans", type: "font" },
+          { style: "Typography / Body",           token: "typography.body",              type: "typography" },
+          { style: "Typography / Heading 1",      token: "typography.heading-1",         type: "typography" },
+          { style: "Typography / Heading 2",      token: "typography.heading-2",         type: "typography" },
+        ],
       },
-      "body_larger": {
-        "type": "dimension",
-        "value": "18px"
-      },
-      "body_largest": {
-        "type": "dimension",
-        "value": "20px"
-      },
-      "heading1": {
-        "type": "dimension",
-        "value": "24px"
-      },
-      "heading2": {
-        "type": "dimension",
-        "value": "28px"
-      },
-      "heading3": {
-        "type": "dimension",
-        "value": "36px"
-      }
-    }
-  }
-}
-```
-
-That cleaned up nicely!
-
-### Icons
-
-![](/images/figma-icons.png)
-
-By adding a `file` key to each component, you can save the contents to a local file. This is great for icons or graphics.
-
-<!-- prettier-ignore -->
-```js
-export default {
-  figma: {
-    // “Share” > Copy link
-    "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2": [
-      { component: "download", token: "icon.download", type: "file", file: "./icons/download.svg" },
-      { component: "error",    token: "icon.error",    type: "file", file: "./icons/error.svg" },
-      { component: "refresh",  token: "icon.refresh",  type: "file", file: "./icons/refresh.svg" },
-      { component: "share",    token: "icon.share",    type: "file", file: "./icons/share.svg" },
-      { component: "warning",  token: "icon.warning",  type: "file", file: "./icons/warning.svg" },
     ],
   },
 };
-```
-
-Note that the more icons you sync, the longer it may take to update your tokens. But even if this takes a few minutes, it still beats having to download them all manually.
-
-## Aliases
-
-At some point you’ll want to reuse values, or give values aliases. Note that the Figma mapping is always 1:1 with values in `tokens.json` and you can’t reuse components or styles for other values. You can either create another component or style in Figma
-and map that, or you can use an [alias] like so ([see full documentation][alias]):
-
-```json
-{
-  "color": {
-    "red": {
-      "type": "color",
-      "value": "#cf222e"
-    },
-    "yellow": {
-      "type": "color",
-      "value": "#eac54f"
-    },
-    "error": {
-      "type": "alias",
-      "value": "color.red"
-    },
-    "yellow": {
-      "type": "color",
-      "value": "color.yellow"
-    }
-  }
-}
 ```
 
 ## Troubleshooting
 
 If you’re having trouble syncing from Figma, here are some quick tips:
 
-- Every component must be located within the share link specified (if using shared components, **use the file they are defined in**, not a file that uses them).
-- Every component should have a unique name within its own Figma doc (using the same name in different docs is OK)
-- Make sure `cobalt.tokens.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
+- Make sure you are trying to extract a **style** or **component**. Normal layers aren’t supported for extraction.
+- Every style/component must be located within the share link specified (if using shared components, **use the file they are defined in**, not _a_ file that uses them).
+- Every style/component should have a unique name within its own Figma doc (using the same name in different docs is OK)
+- Make sure `tokens.config.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
 
 [alias]: /reference/schema#aliasing
 [dotenv]: https://github.com/motdotla/dotenv

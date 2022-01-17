@@ -1,71 +1,120 @@
 export const tokens = {
   "color": {
-    "Black": "#00193f",
-    "Blue": "#2b3faa",
-    "Dark_Gray": "#282a37",
-    "Green": "#77ea6e",
-    "Red": "#d0323a",
-    "Purple": "#6a35d9",
-    "White": "#ffffff"
+    "black": "#00193f",
+    "blue": "#2b3faa",
+    "dark-gray": "#282a37",
+    "green": "#77cd8f",
+    "purple": "#6a35d9",
+    "red": "#f6566a",
+    "white": "#ffffff"
   },
-  "font": {},
-  "family": {
-    "neue_montreal": [
-      "Neue Montreal"
+  "gradient": {
+    "red": [
+      {
+        "color": "#d0323a",
+        "position": 0
+      },
+      {
+        "color": "#fd8d4e",
+        "position": 1
+      }
     ]
   },
+  "typography": {
+    "heading-1": {
+      "fontName": [
+        "PP Neue Montreal"
+      ],
+      "fontSize": "36px",
+      "fontStyle": "regular",
+      "fontWeight": 500,
+      "letterSpacing": "0em",
+      "lineHeight": 1
+    },
+    "heading-2": {
+      "fontName": [
+        "PP Neue Montreal"
+      ],
+      "fontSize": "28px",
+      "fontStyle": "regular",
+      "fontWeight": 500,
+      "letterSpacing": "0em",
+      "lineHeight": 1
+    },
+    "heading-3": {
+      "fontName": [
+        "PP Neue Montreal"
+      ],
+      "fontSize": "24px",
+      "fontStyle": "regular",
+      "fontWeight": 500,
+      "letterSpacing": "0em",
+      "lineHeight": 1
+    },
+    "body": {
+      "fontName": [
+        "PP Neue Montreal"
+      ],
+      "fontSize": "16px",
+      "fontStyle": "regular",
+      "fontWeight": 400,
+      "letterSpacing": "0em",
+      "lineHeight": 1
+    }
+  },
   "icon": {
-    "cloud--download": "./public/icons/cloud--download.svg",
-    "cloud--upload": "./public/icons/cloud--upload.svg",
-    "crop": "./public/icons/crop.svg",
-    "delete": "./public/icons/delete.svg",
-    "do-not": "./public/icons/do-not.svg",
-    "do-not--02": "./public/icons/do-not--02.svg",
-    "download--01": "./public/icons/download--01.svg",
-    "download--02": "./public/icons/download--02.svg",
-    "embed": "./public/icons/embed.svg",
-    "export--01": "./public/icons/export--01.svg",
-    "export--02": "./public/icons/export--02.svg",
-    "launch": "./public/icons/launch.svg",
-    "love": "./public/icons/love.svg",
-    "minimize": "./public/icons/minimize.svg",
-    "paperclip": "./public/icons/paperclip.svg",
-    "player--flow": "./public/icons/player--flow.svg",
-    "renew": "./public/icons/renew.svg",
-    "repeat": "./public/icons/repeat.svg",
-    "reset": "./public/icons/reset.svg",
-    "trash": "./public/icons/trash.svg",
-    "upload--01": "./public/icons/upload--01.svg",
-    "upload--02": "./public/icons/upload--02.svg"
-  }
-};
-
-
-export const modes = {
-  "color": {
-    "Black": {
-      "light": "#00193f"
+    "crop": "./icon/crop.svg",
+    "cloud-upload": "./icon/cloud-upload.svg",
+    "cloud-download": "./icon/cloud-download.svg",
+    "delete": "./icon/delete.svg",
+    "do-not-2": "./icon/do-not-2.svg",
+    "download-1": "./icon/download-1.svg",
+    "export-2": "./icon/export-2.svg",
+    "export-1": "./icon/export-1.svg",
+    "embed": "./icon/embed.svg",
+    "download-2": "./icon/download-2.svg",
+    "do-not": "./icon/do-not.svg",
+    "minimize": "./icon/minimize.svg",
+    "launch": "./icon/launch.svg",
+    "maximize": "./icon/maximize.svg",
+    "love": "./icon/love.svg",
+    "paperclip": "./icon/paperclip.svg",
+    "upload-2": "./icon/upload-2.svg",
+    "player-flow": "./icon/player-flow.svg",
+    "reset": "./icon/reset.svg",
+    "upload-1": "./icon/upload-1.svg",
+    "trash": "./icon/trash.svg",
+    "refresh": "./icon/refresh.svg",
+    "renew": "./icon/renew.svg",
+    "repeat": "./icon/repeat.svg"
+  },
+  "distance": {
+    "near": {
+      "offset-x": "0",
+      "offset-y": "8px",
+      "blur": "16px",
+      "spread": "0",
+      "color": "#00001a"
     },
-    "Blue": {
-      "light": "#2b3faa"
+    "med": {
+      "offset-x": "0",
+      "offset-y": "16px",
+      "blur": "32px",
+      "spread": "0",
+      "color": "#000026"
     },
-    "Dark_Gray": {
-      "light": "#282a37"
-    },
-    "Green": {
-      "light": "#77ea6e"
-    },
-    "Red": {
-      "light": "#d0323a"
-    },
-    "Purple": {
-      "light": "#6a35d9"
-    },
-    "White": {
-      "light": "#ffffff"
+    "far": {
+      "offset-x": "0",
+      "offset-y": "32px",
+      "blur": "64px",
+      "spread": "0",
+      "color": "#000026"
     }
   }
 };
+
+
+export const modes = {};
 
 
 /** Get mode value */

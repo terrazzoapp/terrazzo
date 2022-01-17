@@ -1,14 +1,16 @@
-import type { BuildResult, GradientStop, ParsedToken, ParsedTypographyValue, Plugin } from '@cobalt-ui/core';
+import type { BuildResult, GradientStop, ParsedToken, ParsedTypographyValue, Plugin, ResolvedConfig } from '@cobalt-ui/core';
 
 import { Indenter } from '@cobalt-ui/utils';
+import { fileURLToPath } from 'url';
 import { encode, formatFontNames } from './util.js';
 
 const MODE_MAP = '-cobalt_token_modes';
 const ANY_DOT_RE = /\./g;
+const LEADING_SLASH_RE = /^\//;
 
 export interface Options {
   /** output file (default: "./tokens/index.sass") */
-  fileName?: string;
+  filename?: string;
   /** use indented syntax (.sass)? (default: false) */
   indentedSyntax?: boolean;
   /** modify values */
@@ -19,13 +21,15 @@ export interface Options {
 
 export default function sass(options?: Options): Plugin {
   let ext = options?.indentedSyntax ? '.sass' : '.scss';
-  let fileName = `${options?.fileName?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
+  let filename = `${options?.filename?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
   let transform = options?.transformValue || defaultTransformer;
   let namer = options?.transformVariables || defaultNamer;
   const semi = options?.indentedSyntax ? '' : ';';
   const cbOpen = options?.indentedSyntax ? '' : ' {';
   const cbClose = options?.indentedSyntax ? '' : '}';
   const i = new Indenter();
+
+  let config: ResolvedConfig;
 
   function generateModeFn(): string {
     return `@function mode($token, $modeName) {
@@ -52,7 +56,7 @@ export default function sass(options?: Options): Plugin {
       }
       case 'file': {
         const value = (mode && token.mode && token.mode[mode]) || token.value;
-        return encode(value);
+        return encode(fileURLToPath(new URL(value.replace(LEADING_SLASH_RE, ''), config.outDir)));
       }
       case 'url': {
         const value = (mode && token.mode && token.mode[mode]) || token.value;
@@ -103,6 +107,9 @@ export default function sass(options?: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-sass',
+    config(c): void {
+      config = c;
+    },
     async build({ tokens }): Promise<BuildResult[]> {
       // 1. gather default values and modes
       let imports = [`@use "sass:map"${semi}`];
@@ -139,7 +146,7 @@ export default function sass(options?: Options): Plugin {
 
       // 4. finish
       let code = [...imports, '', ...defaults, ...modeOutput, ...compositeOutput, '', generateModeFn()].join('\n');
-      return [{ fileName, contents: code }];
+      return [{ filename, contents: code }];
     },
   };
 }

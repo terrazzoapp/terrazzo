@@ -2,13 +2,13 @@ import type { BuildResult, ParsedToken, Plugin } from '@cobalt-ui/core';
 
 export interface Options {
   /** output file (default: "./tokens/index.ts") */
-  fileName?: string;
+  filename?: string;
   /** modify values */
   transformValue?: (token: ParsedToken) => string;
 }
 
 export default function ts(options?: Options): Plugin {
-  let fileName = options?.fileName || './index.ts';
+  let filename = options?.filename || './index.ts';
   let transformer = options?.transformValue;
 
   function printTokensExport(schemaTokens: ParsedToken[]): string {
@@ -76,7 +76,7 @@ export function getMode<T = string>(tokenID: keyof TokensFlat, mode: string): T 
       let code = [printTokensExport(tokens), printModesExport(tokens), printAltFunction()];
       return [
         {
-          fileName,
+          filename,
           contents: code.join('\n\n'),
         },
       ];

@@ -1,155 +1,139 @@
-import type { Config, FigmaStyle, FigmaComponent, Token } from '@cobalt-ui/core';
+import type { FigmaToken, ResolvedConfig, Token } from '@cobalt-ui/core';
 import type * as Figma from 'figma-api';
-import color from 'better-color-tools';
-import fs from 'fs';
-import path from 'path';
-import { collectComponents, collectFills, collectStrokes, fetchDoc, fetchImg } from './utils.js';
-import { gradientToCSS } from './paint.js';
+import Piscina from 'piscina';
+import { fileURLToPath } from 'url';
+import { collectChildren, collectStylesAndComponents, fetchDoc, padRight } from './util.js';
+import { colorToHex } from './paint.js';
 
-async function load(config: Config): Promise<Record<string, Token>> {
+const LEADING_SLASH_RE = /^\//;
+
+async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
+  // validate config
   if (!config.figma) throw new Error(`"figma" missing in tokens.config.mjs (see https://cobalt-ui.pages.dev)`);
-  if (!Object.keys(config.figma).length) throw new Error(`No Figma files found in tokens.config.mjs`);
+  const { optimize: defaultOptimize = false } = config.figma;
 
+  // create a workerpool for every file downloaded
+  const fileQueue = new Piscina({
+    filename: new URL('./file-worker.js', import.meta.url).href,
+    maxQueue: 'auto',
+  });
+
+  // save final updates
   const tokenUpdates: Record<string, Token> = {};
 
+  // optimization: make sure duplicate URLs are fetched together
+  const docs: Record<string, FigmaToken[]> = {};
+  let downloadCount = 0;
+  let totalFiles = 0;
+  for (const { url, tokens } of config.figma.docs) {
+    totalFiles += tokens.reduce((count, token) => count + (token.type === 'file' ? 1 : 0), 0);
+    docs[url] = [...(docs[url] || []), ...tokens];
+  }
+  let countWidth = String(totalFiles).length;
+
+  // load all URLs
   await Promise.all(
-    Object.entries(config.figma).map(async ([shareURL, figmaRefs]) => {
-      const fileMatch = shareURL.match(/\/file\/([^/]+)/);
-      if (!fileMatch) throw new Error(`Bad Figma URL: "${shareURL}". Please use URL from "Share" > "Copy Link"`);
-      const docID = fileMatch[1];
-      const doc = await fetchDoc(docID);
+    Object.entries(docs).map(async ([url, tokens]) => {
+      const doc = await fetchDoc(url);
+      const { styles, components } = collectStylesAndComponents(doc);
 
-      // console.log(JSON.stringify(doc, undefined, 2));
+      await Promise.all(
+        tokens.map(async ({ type: nodeType, token: id, style: styleName, component: componentName, filename, optimize: tokenOptimize }) => {
+          const figmaName = styleName || componentName;
+          const figmaNode = (styleName && styles.get(styleName)) || (componentName && components.get(componentName));
+          if (!figmaNode) throw new Error(`could not locate "${figmaName}"`);
 
-      const components = collectComponents(doc.document);
-      const styles = new Map<string, Figma.FRAME>();
-      for (const ref of figmaRefs) {
-        const isComponent = !!(ref as any).component;
-        const id = isComponent ? (ref as any).component : (ref as any).style;
-        const node = isComponent ? components.get(id) : styles.get(id);
-        if (!node)
-          throw new Error(
-            `Could not find ${
-              isComponent ? 'component' : 'style'
-            } "${id}". It must be named this exactly. If using shared components, please use the URL of the file that component is defined in.\n  "${shareURL}"`
-          );
-        if (!tokenUpdates[id]) tokenUpdates[id] = { type: 'color', value: '' } as Token;
-
-        // switch (type) {
-        //   case "color": {
-        //     const [fill] = collectFills(node);
-        //     if (!fill)
-        //       throw new Error(`Could not find fill on component "${id}"`);
-
-        //     let value: string | undefined;
-        //     // gradient
-        //     if (
-        //       fill.type === "GRADIENT_ANGULAR" ||
-        //       fill.type === "GRADIENT_DIAMOND" ||
-        //       fill.type == "GRADIENT_LINEAR" ||
-        //       fill.type == "GRADIENT_RADIAL"
-        //     ) {
-        //       value = gradientToCSS(fill);
-        //     }
-        //     // color
-        //     else if (fill.color) {
-        //       value = color.from(fill.color).hex;
-        //     }
-        //     if (!value)
-        //       throw new Error(
-        //         `Could not read fill on component "${figmaName}"`
-        //       );
-        //     tokenUpdates[id].value = value;
-        //     break;
-        //   }
-        //   case "file": {
-        //     if (typeof modes !== "string")
-        //       throw new Error(`Invalid filename: "${modes}"`);
-        //     const filePath = modes.replace(/^[/\\]/, "");
-        //     tokenUpdates[id].type = "file";
-        //     const format = path.extname(filePath).replace(/^\./, "");
-
-        //     // show progress
-        //     if (fileDone == 0) console.log(""); // eslint-disable-line no-console
-        //     const progressBar = new Array(
-        //       Math.floor(10 * (fileDone / totalFiles)) + 1
-        //     ).join("\u2588");
-        //     const progressBg = new Array(
-        //       9 - Math.floor(10 * (fileDone / totalFiles))
-        //     ).join("\u2591");
-        //     process.stdout.write(
-        //       `\r  Updating files…    ${progressBar}${progressBg}  [${padRight(
-        //         `${fileDone}`,
-        //         `${totalFiles}`.length
-        //       )} / ${totalFiles}]   `
-        //     );
-        //     const imgData = await fetchImg(docID, component.id, format);
-        //     fileDone++;
-        //     process.stdout.write(
-        //       `\r  Updating files…    ${progressBar}${progressBg}   [${padRight(
-        //         `${fileDone}`,
-        //         `${totalFiles}`.length
-        //       )} / ${totalFiles}]   `
-        //     );
-        //     if (fileDone == totalFiles)
-        //       process.stdout.write("\r                              \r");
-
-        //     // write file
-        //     const fileURL = new URL(filePath, `file://${process.cwd()}/`);
-        //     fs.mkdirSync(new URL("./", fileURL), { recursive: true });
-        //     fs.writeFileSync(fileURL, imgData);
-
-        //     // update tokens.json
-        //     tokenUpdates[id].value.default = filePath;
-        //     break;
-        //   }
-        //   case "fontFamily": {
-        //     break;
-        //   }
-        //   case "fontSize": {
-        //     break;
-        //   }
-        //   case "fontStyle": {
-        //     break;
-        //   }
-        //   case "fontWeight": {
-        //     break;
-        //   }
-        //   case "stroke": {
-        //     const [stroke] = collectStrokes(component);
-        //     if (!stroke)
-        //       throw new Error(
-        //         `Could not find stroke on component "${figmaName}"`
-        //       );
-
-        //     let value: string | undefined;
-        //     if (stroke.strokes[0] && stroke.strokes[0].color) {
-        //       value = color.from(stroke.strokes[0].color).hex;
-        //     }
-
-        //     if (!value)
-        //       throw new Error(
-        //         `Could not read stroke on component "${figmaName}"`
-        //       );
-
-        //     if (Array.isArray(modes)) {
-        //       for (const mode of modes) {
-        //         tokenUpdates[id].value[mode] = value;
-        //       }
-        //     } else if (typeof modes === "string") {
-        //       tokenUpdates[id].value[modes] = value;
-        //     } else {
-        //       tokenUpdates[id].value.default = value;
-        //     }
-        //     break;
-        //   }
-        //   default: {
-        //     console.warn(
-        //       `Unknown property "${property}" (it may not be implemented yet)`
-        //     ); // eslint-disable-line no-console
-        //   }
-        // }
-      }
+          switch (nodeType) {
+            case 'color': {
+              let node = figmaNode as any;
+              if (!Array.isArray(node.fills) || !node.fills.length) {
+                const children = collectChildren(node);
+                node = children.find((n) => Array.isArray((n as any).fills) && (n as any).fills.length);
+                if (!node) throw new Error(`${id}: could not find fills on "${figmaName}"`);
+              }
+              const solidFill = (node as Figma.VECTOR).fills.find((p) => p.type === 'SOLID' && !!p.color);
+              if (!solidFill) throw new Error(`${id}: could not find solid fill on "${figmaName}"`);
+              tokenUpdates[id] = {
+                type: 'color',
+                value: colorToHex(solidFill.color as Figma.Color),
+              };
+              break;
+            }
+            case 'file': {
+              await fileQueue.run({
+                url,
+                componentID: figmaNode.id,
+                filename: fileURLToPath(new URL((filename as string).replace(LEADING_SLASH_RE, './'), config.outDir)),
+                optimize: tokenOptimize || defaultOptimize || false,
+              });
+              downloadCount += 1;
+              console.log(`  ✔  Downloaded file ${padRight(String(downloadCount), countWidth)}/${totalFiles}`); // eslint-disable-line no-console
+              tokenUpdates[id] = {
+                type: 'file',
+                value: filename as string,
+              };
+              break;
+            }
+            case 'gradient': {
+              let node = figmaNode as any;
+              if (!Array.isArray(node.fills) || !node.fills.length) {
+                const children = collectChildren(node);
+                node = children.find((n) => Array.isArray((n as any).fills) && (n as any).fills.length);
+                if (!node) throw new Error(`${id}: could not find fills on "${figmaName}"`);
+              }
+              const gradientFill = (node as Figma.VECTOR).fills.find((p) => p.type.startsWith('GRADIENT_') && !!p.gradientStops && !!p.gradientStops.length);
+              if (!gradientFill) throw new Error(`${id}: could not find gradient fill on "${figmaName}"`);
+              const { gradientStops = [] } = gradientFill;
+              tokenUpdates[id] = {
+                type: 'gradient',
+                value: gradientStops.map((stop) => ({ color: colorToHex(stop.color), position: stop.position })),
+              };
+              break;
+            }
+            case 'shadow': {
+              let node = figmaNode as any;
+              if (!node.effects || !node.effects.some((e: Figma.Effect) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW')) {
+                const children = collectChildren(node);
+                node = children.find((n: any) => n.effects && n.effects.some((e: Figma.Effect) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW'));
+              }
+              if (!node) throw new Error(`${id}: could not find shadow effect on "${figmaName}"`);
+              const shadowEffect = node.effects.find((e: Figma.Effect) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW') as Figma.EffectShadow;
+              tokenUpdates[id] = {
+                type: 'shadow',
+                value: {
+                  'offset-x': shadowEffect.offset.x ? `${shadowEffect.offset.x}px` : '0',
+                  'offset-y': shadowEffect.offset.y ? `${shadowEffect.offset.y}px` : '0',
+                  blur: shadowEffect.radius ? `${shadowEffect.radius}px` : '0',
+                  spread: '0',
+                  color: colorToHex(shadowEffect.color),
+                },
+              };
+              break;
+            }
+            case 'typography': {
+              let node = figmaNode as any;
+              if (node.type !== 'TEXT') {
+                const children = collectChildren(node);
+                node = children.find((n) => n.type === 'TEXT');
+                if (!node) throw new Error(`${id}: could not find text style on "${figmaName}"`);
+              }
+              const { fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize } = node.style as Figma.TypeStyle;
+              tokenUpdates[id] = {
+                type: 'typography',
+                value: {
+                  fontName: [fontFamily],
+                  fontSize: `${fontSize}px`,
+                  fontStyle: italic ? 'italic' : 'regular',
+                  fontWeight: fontWeight,
+                  letterSpacing: `${letterSpacing / fontSize}em`,
+                  lineHeight: (lineHeightPercentFontSize || 100) / 100,
+                },
+              };
+              break;
+            }
+          }
+        })
+      );
     })
   );
 
@@ -157,11 +141,3 @@ async function load(config: Config): Promise<Record<string, Token>> {
 }
 
 export default load;
-
-function padRight(input: string, width = 2): string {
-  let output = input;
-  while (output.length < width) {
-    output += ' ';
-  }
-  return output;
-}

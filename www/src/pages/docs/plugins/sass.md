@@ -15,13 +15,13 @@ npm i -D @cobalt-ui/plugin-sass
 
 ```js
 // tokens.config.mjs
-import sass from "@cobalt-ui/plugin-sass";
+import sass from '@cobalt-ui/plugin-sass';
 
 export default {
   plugins: [
     sass({
       /** set the filename inside outDir */
-      fileName: "./index.scss",
+      filename: './index.scss',
       /** use indented syntax? (.sass format) */
       indentedSyntax: false,
       /** modify values */
@@ -30,7 +30,7 @@ export default {
       },
       /** rename variables */
       transformVariables(namespaces) {
-        return namespaces.join("__");
+        return namespaces.join('__');
       },
     }),
   ],
@@ -42,7 +42,7 @@ export default {
 After Cobalt has built your Sass tokens, import it into any file with:
 
 ```scss
-@use "../tokens" as *; // update '../tokens' to match your location of tokens/index.scss
+@use '../tokens' as *; // update '../tokens' to match your location of tokens/index.scss
 
 .heading {
   color: $color__blue;
@@ -57,7 +57,7 @@ If some token variables conflict with local variables, you can always [namespace
 To use modes, use `mode()` function that was generated with your tokens:
 
 ```scss
-@use "../tokens" as *;
+@use '../tokens' as *;
 
 // "default" mode
 .heading {

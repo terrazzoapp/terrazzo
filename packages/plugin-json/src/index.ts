@@ -17,13 +17,13 @@ export interface JSONGroup {
 
 export interface Options {
   /** output file (default: "./tokens/tokens.json") */
-  fileName?: string;
+  filename?: string;
   /** modify values */
   transformValue?: (token: Token, mode?: string) => any;
 }
 
 export default function json(options?: Options): Plugin {
-  let fileName = options?.fileName || './tokens.json';
+  let filename = options?.filename || './tokens.json';
   let transform = options?.transformValue;
 
   return {
@@ -31,7 +31,7 @@ export default function json(options?: Options): Plugin {
     async build({ tokens }): Promise<BuildResult[]> {
       return [
         {
-          fileName,
+          filename,
           contents: JSON.stringify(
             tokens,
             (_, token) => {

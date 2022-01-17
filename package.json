@@ -21,6 +21,7 @@
     "changeset": "changeset",
     "dev": "run-p dev:*",
     "dev:core": "cd packages/core && npm run dev",
+    "dev:cli": "cd packages/cli && npm run dev",
     "dev:utils": "cd packages/utils && npm run dev",
     "dev:plugin-css": "cd packages/plugin-css && npm run dev",
     "dev:plugin-json": "cd packages/plugin-json && npm run dev",
