@@ -58,10 +58,14 @@ let { title = 'Cobalt' } = Astro.props;
     width: 1.25em;
   }
 
-  body.top-blue {
+  body.page--home {
+    .grid {
+      background: $color__blue;
+    }
+
     .title,
     .a {
-      color: $color__White;
+      color: $color__white;
     }
   }
 </style>

@@ -7,7 +7,7 @@ body {
 }
 
 html {
-  background-color: $color__Blue;
+  background-color: $color__blue;
 }
 
 * {
@@ -15,35 +15,36 @@ html {
 }
 
 body {
-  background-color: $color__White;
-  color: $color__Black;
-  font-family: '#{$font__family__neue_montreal}', -system-ui, 'Helvetica', sans-serif;
+  background-color: $color__white;
+  color: $color__black;
+  font-family: 'Neue Montreal', -system-ui, 'Helvetica', sans-serif;
   line-height: 1;
 }
 
 h1 {
   font-size: 26pt;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 h2 {
   font-size: 22pt;
-  font-weight: 500;
+  font-weight: 550;
 }
 
 h3 {
   font-size: 18pt;
-  font-weight: 525;
+  font-weight: 550;
 }
 
 h4 {
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 550;
 }
 
 h5,
 h6 {
-  font-weight: 500;
+  font-size: 1.1em;
+  font-weight: 600;
   margin-top: 0;
   margin-bottom: 2rem;
 }
@@ -55,7 +56,7 @@ i {
 }
 
 a {
-  color: $color__Blue;
+  color: $color__blue;
 }
 
 p {

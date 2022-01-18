@@ -4,7 +4,9 @@
     "description": "Automatically generated with `cobalt init`"
   },
   "color": {
-    "modes": ["standard", "colorblind"],
+    "metadata": {
+      "requiredModes": ["standard", "colorblind"]
+    },
     "blue": {
       "type": "color",
       "value": "#54aeff",
@@ -30,13 +32,31 @@
       }
     }
   },
-  "font": {
+  "typography": {
     "family": {
-      "ibm_plex": {
+      "ibm-plex": {
         "type": "font",
-        "value": {
-          "default": "IBM Plex Sans"
-        }
+        "value": ["IBM Plex Sans", "-system-ui", "sans-serif"]
+      }
+    },
+    "heading": {
+      "type": "typography",
+      "value": {
+        "fontName": "{typography.family.ibm-plex}",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.25,
+        "letterSpacing": "-0.035em"
+      }
+    },
+    "body": {
+      "type": "typography",
+      "value": {
+        "fontName": "{typography.family.ibm-plex}",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
       }
     }
   }

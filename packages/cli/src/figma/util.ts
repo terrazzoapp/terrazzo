@@ -54,7 +54,7 @@ export async function fetchDoc(shareURL: string): Promise<GetFileResult> {
     );
   if (!SHARE_URL_RE.test(shareURL)) throw new Error(`  ${FG_RED}✘  Share URL must match ${UNDERLINE}https://www.figma.com/file/[id]${RESET}`);
   const id = (shareURL.match(SHARE_URL_RE) as RegExpMatchArray)[1];
-  const res = await undici.request(`${FIGMA.FILES}${id}`, {
+  const res = await undici.request(new URL(id, FIGMA.FILES), {
     method: 'GET',
     headers: {
       'X-Figma-Token': process.env.FIGMA_API_KEY,
@@ -78,7 +78,7 @@ export async function fetchFile(shareURL: string, componentID: string, filename:
   });
 
   // First, get download link from Figma
-  const fileRes = await undici.request(`${FIGMA.IMAGES}${id}/?${search.toString()}`, {
+  const fileRes = await undici.request(new URL(`${id}/?${search.toString()}`, FIGMA.IMAGES), {
     method: 'GET',
     headers: {
       'X-Figma-Token': process.env.FIGMA_API_KEY,

@@ -82,7 +82,7 @@ export default function css(options: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-css',
-    config(c) {
+    config(c): void {
       config = c;
     },
     async build({ tokens, metadata }): Promise<BuildResult[]> {

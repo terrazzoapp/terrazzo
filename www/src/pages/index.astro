@@ -17,10 +17,12 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .header {
         align-items: center;
-        color: $color__White;
+        background: $color__blue;
+        color: $color__white;
         display: flex;
         flex-direction: column;
-        padding: 4rem 0 12rem;
+        height: calc(100vh - 4.5rem);
+        justify-content: center;
 
         .title {
           margin-top: 2em;
@@ -53,8 +55,8 @@ import SkipToMain from '../components/SkipToMain.astro'
 
       .visual {
         align-self: start;
-        background-color: $color__Blue;
-        color: $color__White;
+        background-color: $color__blue;
+        color: $color__white;
         font-size: 18pt;
         font-weight: 500;
         margin-top: 4rem;
@@ -128,7 +130,7 @@ import SkipToMain from '../components/SkipToMain.astro'
         position: relative;
 
         &::after {
-          border-right: 1px dashed $color__White;
+          border-right: 1px dashed $color__white;
           content: "";
           display: block;
           height: calc(100% - 2.5rem);
@@ -142,7 +144,7 @@ import SkipToMain from '../components/SkipToMain.astro'
           position: relative;
 
           &::before {
-            border-top: 1px dashed $color__White;
+            border-top: 1px dashed $color__white;
             content: "";
             display: block;
             position: absolute;
@@ -164,76 +166,74 @@ import SkipToMain from '../components/SkipToMain.astro'
         padding-right: 9.5rem;
       }
 
-      .gradient {
-        background: linear-gradient(180deg, $color__Blue, $color__Blue 40em, $color__White 40em);
-      }
-
       #main {
         margin-top: -2.5rem;
       }
     </style>
   </head>
-  <body class="top-blue">
-    <div class="gradient">
-      <SkipToMain />
-      <Nav />
-      <div class="docs">
-        <DocsNav />
-        <div>
-          <header class="header tac">
-            <Cobalt />
-            <h1 class="title">Automated design tokens</h1>
-          </header>
-          <main class="wrapper" id="#main">
-            <section>
-              <h2>What is Cobalt?</h2>
-              <p>
-                <strong>Cobalt is not a premade design system.</strong> If you’re
-                looking for a template, try <a href="https://material.io/design"
-                target="_blank">Material Design</a> or one of the dozens of
-                prebuilt libraries.
-              </p>
-              <p>
-                <strong>Cobalt is token management for <em>your</em> design
-                system.</strong> For teams that don’t want to reinvent the wheel
-                building tooling to manage their design system and tokens, Cobalt
-                can help. Cobalt is an organization system that not only lets your
-                tokens and assets easy-to-find; it can generate code for your
-                project, too.
-              </p>
-              <p>
-                Cobalt sits below your design system, and beneath your UI.
-                You still control your tokens; Cobalt only provides “buckets“
-                to put them in.
-              </p>
-              <p>
-                In return you don’t have to build or manage custom software for
-                your design tokens like so many teams often do. And you still have
-                the flexibility to craft your design system in any way you’d like.
-                Cobalt just bridges the gap between your tokens and your design
-                system/UI.
-              </p>
-            </section>
-          </main>
+  <body class="page--home">
+    <SkipToMain />
+    <Nav />
+    <div>
+      <header class="header tac">
+        <Cobalt />
+        <h1 class="title">Design Token tooling</h1>
+      </header>
+      <main class="wrapper" id="#main">
+        <section class="py10">
+          <h2>Start using the official Design Tokens Schema today.</h2>
+          <p>
+            The new <a
+            href="https://design-tokens.github.io/community-group/format/">Design
+            Tokens schema</a> is a project to unify storage of design tokens
+            into a standard format. With a standard format comes standard
+            tooling to manage it, update it automatically from Figma, and
+            generate code for your project such as Sass, CSS, and TypeScript.
+            Cobalt is that standard tool.
+          </p>
+          <p>
+            Cobalt is built to be easy-to-use, follows a standard format, and
+            has plugins that make it easy to generate code from your design
+            tokens. You can even write your own Cobalt plugin to generate
+            special code from your design tokens. Spend less time
+            building/managing design tooling, and more time putting your design
+            tokens to work!
+          </p>
+          <h2 class="mt12">Manage <em>your</em> design tokens—not someone else’s</h2>
+          <p>
+            Working with design tokens doesn’t mean you have to follow a
+            template, or have to be restricted in your design system. Cobalt is
+            a universal tool because it’s so low-level. It’s a tool to organize
+            & manage your tokens, which are lower-level than your UI or design
+            system.
+          </p>
+          <p>
+            Using Cobalt won’t automate away building your UI, but it can keep
+            your tokens—colors, gradients, typography, iconography, borders,
+            strokes, shadows, and more—in sync with Figma and keep your CSS in
+            sync with your design system. It’s generic enough that it will work
+            for any build system, and low-level enough it can work with any
+            design system.
+          </p>
+        </section>
+      </main>
+    </div>
+    <figure class="visual">
+      <div class="visual-layer" style="background:#1c9fff"><div class="visual-inner">UI</div></div>
+      <div class="visual-layer" style="background:#1c89fd"><div class="visual-inner">Platform</div></div>
+      <div class="visual-layer" style="background:#2e5dce"><div class="visual-inner">Design System</div></div>
+      <div class="visual-inner">
+        <div class="visual-base">
+          <span class="visual-cobalt">Cobalt</span>
+          <span class="visual-tokens">Tokens</span>
+          <div class="visual-line-c"></div>
+          <div class="visual-line-t"></div>
+          <img class="visual-img" src="/token-hex.svg">
         </div>
       </div>
-      <figure class="visual">
-        <div class="visual-layer" style="background:#1c9fff"><div class="visual-inner">UI</div></div>
-        <div class="visual-layer" style="background:#1c89fd"><div class="visual-inner">Platform</div></div>
-        <div class="visual-layer" style="background:#2e5dce"><div class="visual-inner">Design System</div></div>
-        <div class="visual-inner">
-          <div class="visual-base">
-            <span class="visual-cobalt">Cobalt</span>
-            <span class="visual-tokens">Tokens</span>
-            <div class="visual-line-c"></div>
-            <div class="visual-line-t"></div>
-            <img class="visual-img" src="/token-hex.svg">
-          </div>
-        </div>
-      </figure>
-      <div class="wrapper">
-        <DocsPagination />
-      </div>
+    </figure>
+    <div class="wrapper">
+      <DocsPagination />
     </div>
     <Footer />
   </body>

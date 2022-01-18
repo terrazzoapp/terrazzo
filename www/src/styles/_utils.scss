@@ -10,6 +10,39 @@
 .tac { text-align: center; }
 .tar { text-align: right; }
 
+// ----------
+//  (M)argin
+// ----------
+@for $i from 0 to 16 {
+  .ma#{$i} { margin: #{$i * 0.5}rem; }
+  .my#{$i} { margin-top: #{$i * 0.5}rem; margin-bottom: #{$i * 0.5}rem; }
+  .mx#{$i} { margin-right: #{$i * 0.5}rem; margin-left: #{$i * 0.5}rem; }
+  .mt#{$i} { margin-top: #{$i * 0.5}rem; }
+  .mr#{$i} { margin-right: #{$i * 0.5}rem; }
+  .mb#{$i} { margin-bottom: #{$i * 0.5}rem; }
+  .ml#{$i} { margin-left: #{$i * 0.5}rem; }
+}
+.ma-auto { margin: auto }
+.my-auto { margin-top: auto; margin-bottom: auto; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.mt-auto { margin-top: auto; }
+.mr-auto { margin-right: auto; }
+.mb-auto { margin-bottom: auto; }
+.ml-auto { margin-left: auto; }
+
+// ----------
+//  (P)adding
+// ----------
+@for $i from 0 to 16 {
+  .pa#{$i} { padding: #{$i * 0.5}rem; }
+  .py#{$i} { padding-top: #{$i * 0.5}rem; padding-bottom: #{$i * 0.5}rem; }
+  .px#{$i} { padding-right: #{$i * 0.5}rem; padding-left: #{$i * 0.5}rem; }
+  .pt#{$i} { padding-top: #{$i * 0.5}rem; }
+  .pr#{$i} { padding-right: #{$i * 0.5}rem; }
+  .pb#{$i} { padding-bottom: #{$i * 0.5}rem; }
+  .pl#{$i} { padding-left: #{$i * 0.5}rem; }
+}
+
 .yt-embed {
   height: 0;
   padding-top: 56.25%;

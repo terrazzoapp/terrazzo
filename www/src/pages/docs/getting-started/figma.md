@@ -7,8 +7,9 @@ layout: ../../../layouts/docs.astro
 
 ## Setup
 
-1. Generate a [new Figma API Key][figma-api-key]
-1. Save this key as `FIGMA_API_KEY` in a [`.env` file][dotenv] …
+1. Start a new project with `npx co init`
+2. Generate a [new Figma API Key][figma-api-key].
+3. Save this key as `FIGMA_API_KEY` in a [`.env` file][dotenv].
 
    ```
    FIGMA_API_KEY=285541-dd09c1b4-c1d3-41a2-802b-f3866f0dadc1
@@ -16,8 +17,8 @@ layout: ../../../layouts/docs.astro
 
    …or as an [environment variable in your system][env-system]
 
-1. In your Figma Doc, click **Share**, then **Copy link**
-1. In `tokens.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
+4. In your Figma Doc, click **Share**, then **Copy link**.
+5. In `tokens.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
 
 ```js
 export default {
@@ -36,7 +37,7 @@ export default {
 };
 ```
 
-1. Run `npx co sync` to update `tokens.json` with the new values
+6. Run `npx co sync` to update `tokens.json` with the new values
 
 ## Mapping
 
