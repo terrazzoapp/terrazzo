@@ -10,8 +10,8 @@
     "validate": "cobalt validate"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.2.1",
-    "@cobalt-ui/plugin-css": "^0.2.1",
-    "@cobalt-ui/plugin-sass": "^0.2.1"
+    "@cobalt-ui/cli": "^0.3.0",
+    "@cobalt-ui/plugin-css": "^0.3.0",
+    "@cobalt-ui/plugin-sass": "^0.3.0"
   }
 }

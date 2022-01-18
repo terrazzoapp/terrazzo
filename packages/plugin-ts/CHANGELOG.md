@@ -1,5 +1,16 @@
 # @cobalt-ui/plugin-ts
 
+## 0.3.0
+
+### Minor Changes
+
+- 8d05fe8: Add Figma sync, make some breaking API changes
+
+### Patch Changes
+
+- Updated dependencies [8d05fe8]
+  - @cobalt-ui/utils@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes

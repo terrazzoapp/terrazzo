@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 0.3.0
+
+### Minor Changes
+
+- 8d05fe8: Add Figma sync, make some breaking API changes
+
 ## 0.2.0
 
 ### Minor Changes
