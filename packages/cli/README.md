@@ -37,13 +37,13 @@ export default {
 
 ## Commands
 
-| Command                | Description                                               |
-| :--------------------- | :-------------------------------------------------------- |
-| `cobalt build`         | Generate code from `tokens.json`                          |
-| `cobalt build --watch` | Watch `tokens.json` for changes and rebuild on every save |
-| `cobalt sync`          | Sync `tokens.json` with Figma                             |
-| `cobalt init`          | Create a stub `tokens.json` file                          |
-| `cobalt validate`      | Check `tokens.json` for errors                            |
+| Command            | Description                                               |
+| :----------------- | :-------------------------------------------------------- |
+| `co build`         | Generate code from `tokens.json`                          |
+| `co build --watch` | Watch `tokens.json` for changes and rebuild on every save |
+| `co sync`          | Sync `tokens.json` with Figma                             |
+| `co init`          | Create a stub `tokens.json` file                          |
+| `co validate`      | Check `tokens.json` for errors                            |
 
 ## Plugins
 

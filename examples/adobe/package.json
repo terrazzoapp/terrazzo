@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cobalt build",
-    "validate": "cobalt validate"
+    "build": "co build",
+    "validate": "co validate"
   },
   "dependencies": {
     "@cobalt-ui/cli": "^0.3.1",

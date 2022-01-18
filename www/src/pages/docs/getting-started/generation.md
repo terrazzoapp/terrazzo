@@ -30,10 +30,22 @@ If there’s a `package.json` file in the root of your project already, you can 
 }
 ```
 
-Next, install the Cobalt CLI:
+Next, install the Cobalt CLI and a few plugins:
 
 ```
-npm install --save-dev @cobalt-ui/cli
+npm install --save-dev @cobalt-ui/cli @cobalt-ui/plugin-css @cobalt-ui/plugin-ts @cobalt-ui/plugin-json
+```
+
+And lastly, create a `tokens.config.mjs` file in the root of your project, initializing these plugins:
+
+```js
+import pluginTS from '@cobalt-ui/plugin-ts';
+import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginJSON from '@cobalt-ui/plugin-json';
+
+export default {
+  plugins: [pluginTS(), pluginCSS(), pluginJSON()],
+};
 ```
 
 ## Running
@@ -41,21 +53,23 @@ npm install --save-dev @cobalt-ui/cli
 To generate your tokens, run:
 
 ```
-npx cobalt build
+npx co build
 ```
 
-That will generate a new `/tokens/` folder along with `tokens.json` inside it.
+That will generate a new `/tokens/` folder along with one output per plugin:
 
 ```diff
 + ├──── tokens/
-+ │     └──── tokens.json
++ │     ├──── tokens.css
++ │     ├──── tokens.json
++ │     └──── tokens.ts
   ├──── tokens.json
   └──── package.json
 ```
 
 ## Next steps
 
-JSON is just the default output, and you will likely require more than that. Fortunately, Cobalt can generate anything your project needs with [plugins][plugins]:
+Learn more about the existing plugins and [view documentation][plugins]:
 
 - **CSS**: [@cobalt-ui/plugin-css][plugin-css]
 - **JSON**: [@cobalt-ui/plugin-json][plugin-json]

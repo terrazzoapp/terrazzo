@@ -75,7 +75,7 @@ async function main() {
 
   // load tokens.json
   if (!fs.existsSync(config.tokens))
-    throw new Error(`  ${FG_RED}✘  Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`cobalt init\`.${RESET}`);
+    throw new Error(`  ${FG_RED}✘  Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`npx co init\`.${RESET}`);
   let rawSchema = JSON.parse(fs.readFileSync(config.tokens, 'utf8'));
 
   switch (cmd) {

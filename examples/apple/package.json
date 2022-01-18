@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "cobalt build",
+    "build": "co build",
     "prestart": "npm run build",
     "start": "start-storybook",
-    "validate": "cobalt validate"
+    "validate": "co validate"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.3.1",
