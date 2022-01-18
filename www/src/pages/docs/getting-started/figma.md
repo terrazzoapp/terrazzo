@@ -51,7 +51,7 @@ have to edit mappings when adding or removing components.
 | `type`                 | The [type][types] of token. Only a few types are supported (documented below). |
 | `token`                | Where you’d like the token to live in `tokens.json`.                           |
 
-### Colors / Gradient
+### Colors / Gradients
 
 ![](/images/figma-colors.png)
 
@@ -84,7 +84,7 @@ export default {
 };
 ```
 
-### File
+### Files / Icons
 
 ![](/images/figma-icons.png)
 

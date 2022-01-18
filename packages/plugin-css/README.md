@@ -129,11 +129,3 @@ To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/
 
 - `type: file`: base64 encodes the file into the CSS
 - `type: url`: converts to a plain `url()`
-
-## Tools
-
-When you import your generated TypeScript, you’ll find more than just your tokens—you’ll find some handy utilities in there as well.
-
-### Color
-
-TODO

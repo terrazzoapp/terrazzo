@@ -13,7 +13,7 @@ Plugins let you **generate code** from `tokens.json`. Here are all current plugi
 - [@cobalt-ui/plugin-sass](/docs/plugins/sass): Generate `.scss` or `.sass`
 - [@cobalt-ui/plugin-ts](/docs/plugins/ts): Generate `.ts`
 
-# Creating Plugins
+## Creating Plugins
 
 If you’re a developer, please create new plugins for Cobalt! Though there aren’t instructions currently on how to make a plugin, looking at [existing plugins on GitHub](https://github.com/drwpow/cobalt-ui/blob/main/packages) should help with the basic
 structure and idea.

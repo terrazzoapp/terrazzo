@@ -21,30 +21,40 @@ body {
   line-height: 1;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
 h1 {
-  font-size: 26pt;
+  font-size: 48pt;
   font-weight: 600;
 }
 
 h2 {
-  font-size: 22pt;
-  font-weight: 550;
+  font-size: 32pt;
+  font-weight: 500;
 }
 
 h3 {
-  font-size: 18pt;
-  font-weight: 550;
+  font-size: 28pt;
+  font-weight: 575;
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: 1.5em;
   font-weight: 550;
 }
 
 h5,
 h6 {
-  font-size: 1.1em;
-  font-weight: 600;
+  font-size: 1.25em;
+  font-weight: 550;
   margin-top: 0;
   margin-bottom: 2rem;
 }

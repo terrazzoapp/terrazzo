@@ -7,37 +7,42 @@ layout: ../../../layouts/docs.astro
 
 Modes are **alternate forms of a token.** Although this isn’t a concept unique to Cobalt, you may not be used to thinking of tokens in this way before.
 
-Probably the most common form of modes are “themes,” for example if a website or app has a **light theme** and a **dark theme**. But while themes are modes, modes are also much broader and can be used in other ways as well. For example, on GitHub, enabling
-colorblind-friendly colors would constitute a mode. On iOS, adjusting the base text size, which cascades to the whole type scale, is also a form of a mode. Another way of thinking about modes is thinking about meta-collections of tokens that can be toggled
-together. Below are 2 examples of modes as they relatea to color and typography:
+Modes are somewhat related to “themes” in that as an application may have a **light theme** and a **dark theme**, your color pallette could have a **light mode** and **dark mode** for every color. But modes and theming differ in their scope. Themes are huge, and creating a theme often involves _duplicating all your tokens and modifying almost every one._ Conversely, modes only apply to small groups of tokens, and are easy to add, remove, or modify.
+
+Two examples of modes can be found below: in the first example, with GitHub’s **color modes**, and further down, with Apple’s Human Interface **typography size modes**.
 
 ## Modes in Color
+
+Using modes for your color tokens, you can create multiple themes for your site without having to affect anything else. GitHub’s Primer design system has 6 modes:
+
+- light (default)
+- dark
+- light (colorblind)
+- light (high contrast)
+- dark (colorblind)
+- dark (high contrast)
 
 <figure>
   <img src="/images/mode-github.png" width="2034" height="1162">
   <figcaption>GitHub’s settings allow not only light and dark modes, but alternate color themes for color blindness.</figcaption>
 </figure>
 
-Here’s one example of how `color.red_4` may be represented in `tokens.json`
+Here’s how that translates into `tokens.json`:
 
 ```json
 {
   "color": {
-    "metadata": {
-      "requiredModes": ["light", "light_colorblind", "light_high_contrast", "dark", "dark_colorblind", "dark_high_contrast"]
-    }
-  },
-  "red_4": {
-    "name": "Red (4)",
-    "type": "color",
-    "value": "#fa4549",
-    "mode": {
-      "light": "#fa4549",
-      "light_colorblind": "#d08002",
-      "light_high_contrast": "#d5232c",
-      "dark": "#f85149",
-      "dark_colorblind": "#c38000",
-      "dark_high_contrast": "#ff6a69"
+    "red-4": {
+      "type": "color",
+      "value": "#fa4549",
+      "mode": {
+        "light": "#fa4549",
+        "light-colorblind": "#d08002",
+        "light-high-contrast": "#d5232c",
+        "dark": "#f85149",
+        "dark-colorblind": "#c38000",
+        "dark-high-contrast": "#ff6a69"
+      }
     }
   }
 }
@@ -49,8 +54,7 @@ Though not shown, this could also relate to icons as well—based on the color m
 
 ## Modes in Typography
 
-Modes aren’t just used for color; they can be used for typography, too. Apple lets users set the base text size, which then cascades to all typography for apps. In this sense, each font size (e.g. Heading, Body, Title 1, Title 2, Title 3), not only have
-their default sizes, but have alternate modes based on the user’s base font size.
+Apple’s Human Interface guidelines outline a user size preference. If users need to make the text bigger or smaller, they can adjust to their taste. But how does that apply to the existing typographic stack (e.g. Heading, Body, Title 1, Title 2 … )?
 
 <figure>
   <img src="/images/mode-apple.png" width="1562" height="898">
@@ -61,11 +65,8 @@ Here’s how `type.size.title_1` could be represented in `tokens.json`:
 
 ```json
 {
-  "metadata": {
-    "requiredModes": ["xSmall", "Small", "Medium", "Large", "xLarge", "xxLarge", "xxxLarge"]
-  },
   "size": {
-    "title_1": {
+    "title-1": {
       "name": "Title 1",
       "type": "dimension",
       "value": "28px",
@@ -83,13 +84,39 @@ Here’s how `type.size.title_1` could be represented in `tokens.json`:
 }
 ```
 
-This lets a type style be adaptive to user settings rather than managing dozens of values all over the place.
+Using modes, it’s much easier to preserve typographic hierarchy through a wide range of base text sizes (and you could even make individual adjustments as well).
+
+## Checking modes
+
+Sometimes you may want to check that all modes exist for a group. You can assert type checking with `metadata.requiredModes`:
+
+```json
+{
+  "color": {
+    "metadata": {
+      "requiredModes": ["light", "light-colorblind", "light-high-contrast", "dark", "dark-colorblind", "dark-high-contrast"]
+    },
+    "red-4": {
+      "type": "color",
+      "value": "#fa4549",
+      "mode": {
+        "light": "#fa4549",
+        "light-colorblind": "#d08002",
+        "light-high-contrast": "#d5232c",
+        "dark": "#f85149",
+        "dark-colorblind": "#c38000"
+      }
+    }
+  }
+}
+```
+
+In the above example, we’d have an error on our `red-4` color because the `dark-high-contrast` mode is missing.
 
 ## Additional thoughts
 
-These are just a few common examples of modes, but modes aren’t limited to these examples. Any time a user setting can cascade to multiple token values, you may consider using a mode.
+These are just a few common examples of modes, but modes aren’t limited to these examples. Any time a user setting should produce alternate versions of a token, consider using a mode.
 
-However, it’s important not to go overboard on modes! If any tokens can be used next to one another, those are separate tokens, not a mode. For example, `Heading 1`, `Heading 2`, and `Heading 3` aren’t modes of “Heading;” they’re simply different tokens
-because they should all be used together. But a mode would be a user adjusting the base size, where `Heading 1` may be based off the user’s base size.
+You want to use a mode when **2 versions should never be used together.** Back to GitHub’s color modes example, we never want to use a non-colorblind-friendly green while in colorblind mode. We want to _only_ use colorblind-friendly modes in colorblind mode. Modes help us isolate those values (keeping in mind, though, that we can simply omit certain modes if we’d like to use their defaults).
 
-The longer you work with modes and your design system, the clearer it will be. Until then, experiment! And see what works for you.
+Though using modes may be a new concept, the more you experiment with them and find what works, the more you can unlock the flexibility of your design system without having to manage multiple complete versions of it.

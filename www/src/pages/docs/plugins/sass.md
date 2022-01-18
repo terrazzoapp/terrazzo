@@ -86,11 +86,3 @@ To learn more about modes, [see the documentation](https://cobalt-ui.pages.dev/d
 
 - `type: file`: base64 encodes the file
 - `type: url`: converts to a plain `url()`
-
-## Tools
-
-When you import your generated Sass, you’ll find more than just your tokens—you’ll find some handy utilities in there as well.
-
-### Color
-
-TODO

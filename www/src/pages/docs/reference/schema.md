@@ -321,7 +321,7 @@ This is much better:
 - ✅ when `colorblind` mode is enabled, it prevents standard red from being used
 - ✅ in code, switching from `standard` to `colorblind` mode automatically creates the palette
 
-There’s a lot of flexibility you can unlock with modes. [Read more about using modes][concepts-modes]
+There’s a lot of flexibility you can unlock with modes. [Read more about using modes][modes]
 
 ## Examples
 
