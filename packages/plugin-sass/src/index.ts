@@ -82,8 +82,7 @@ export default function sass(options?: Options): Plugin {
         return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
       }
       default: {
-        const value = (mode && (token as any).mode && (token as any).mode[mode]) || (token as any).value;
-        return `$${namer((token as any).id)}: ${value}${semi}`;
+        return (mode && (token as any).mode && (token as any).mode[mode]) || (token as any).value;
       }
     }
   }
