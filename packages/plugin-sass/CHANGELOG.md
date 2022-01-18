@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.3.1
+
+### Patch Changes
+
+- 44452f7: Fix default token handling
+
 ## 0.3.0
 
 ### Minor Changes
