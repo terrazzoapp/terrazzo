@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.1
+
+### Patch Changes
+
+- 4b9da94: Fix co init
+
 ## 0.3.0
 
 ### Minor Changes
