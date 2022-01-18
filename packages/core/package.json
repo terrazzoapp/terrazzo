@@ -28,8 +28,7 @@
   "dependencies": {
     "@cobalt-ui/utils": "^0.3.0",
     "@types/svgo": "^2.6.1",
-    "better-color-tools": "^0.3.0",
-    "undici": "^4.12.1"
+    "better-color-tools": "^0.3.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.8",
