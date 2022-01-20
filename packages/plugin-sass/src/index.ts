@@ -122,7 +122,7 @@ export default function sass(options?: Options): Plugin {
       for (const token of tokens) {
         if (!token.mode || !Object.keys(token.mode).length) continue;
 
-        modeOutput.push(i.indent(`$${namer(token.id)}: (`, 1));
+        modeOutput.push(i.indent(`${namer(token.id)}: (`, 1));
         for (const mode of Object.keys(token.mode)) {
           modeOutput.push(i.indent(`${JSON.stringify(mode)}: ${transform(token, mode)},`, 2));
         }

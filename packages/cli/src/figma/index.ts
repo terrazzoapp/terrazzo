@@ -123,7 +123,7 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
                 value: {
                   fontName: [fontFamily],
                   fontSize: `${fontSize}px`,
-                  fontStyle: italic ? 'italic' : 'regular',
+                  ...(italic ? { fontStyle: 'italic' } : {}),
                   fontWeight: fontWeight,
                   letterSpacing: `${letterSpacing / fontSize}em`,
                   lineHeight: (lineHeightPercentFontSize || 100) / 100,
