@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.3.2
+
+### Patch Changes
+
+- 395e388: Fix mode map keys
+
 ## 0.3.1
 
 ### Patch Changes

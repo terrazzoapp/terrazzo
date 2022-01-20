@@ -30,9 +30,9 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -40,9 +40,9 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -50,9 +50,9 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
     devDependencies:
@@ -67,9 +67,9 @@ importers:
       '@carbon/colors': ^10.34.0
       '@carbon/icons': ^10.44.0
       '@carbon/type': ^10.39.0
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
     devDependencies:
       '@carbon/colors': 10.34.0
       '@carbon/icons': 10.44.0
@@ -80,9 +80,9 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
       '@salesforce-ux/design-system': ^2.16.2
       better-color-tools: ^0.3.0
     devDependencies:
@@ -94,9 +94,9 @@ importers:
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/plugin-css': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -181,7 +181,7 @@ importers:
 
   packages/plugin-sass:
     specifiers:
-      '@cobalt-ui/cli': ^0.3.0
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/core': ^0.3.0
       '@cobalt-ui/utils': ^0.3.0
       '@types/mime': ^2.0.3
@@ -217,10 +217,10 @@ importers:
   www:
     specifiers:
       '@astrojs/renderer-vue': ^0.3.0
-      '@cobalt-ui/cli': ^0.3.1
+      '@cobalt-ui/cli': ^0.3.2
       '@cobalt-ui/core': ^0.3.0
       '@cobalt-ui/plugin-json': ^0.3.0
-      '@cobalt-ui/plugin-sass': ^0.3.1
+      '@cobalt-ui/plugin-sass': ^0.3.2
       '@cobalt-ui/plugin-ts': ^0.3.0
       astro: ^0.22.10
       morphdom: ^2.6.1

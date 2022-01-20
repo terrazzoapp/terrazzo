@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- 395e388: Fix figma font style
+
 ## 0.3.1
 
 ### Patch Changes
