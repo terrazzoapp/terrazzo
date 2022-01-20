@@ -29,7 +29,8 @@ export default function css(options: Options): Plugin {
 
   const i = new Indenter();
 
-  function defaultTransformer(token: ParsedToken, mode?: string): string {
+  function defaultTransformer(token: ParsedToken, mode?: string): string | undefined {
+    if (mode && (!token.mode || !token.mode[mode])) return undefined;
     switch (token.type) {
       case 'color':
       case 'dimension':
@@ -91,6 +92,7 @@ export default function css(options: Options): Plugin {
         for (const token of t) {
           const varName = format(token.id).replace(DASH_PREFIX_RE, '--');
           const value = transform(token, mode);
+          if (!value) continue;
           code += `\n${varName}: ${value};`;
 
           // generate P3 color for color & gradient

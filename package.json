@@ -36,8 +36,8 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.19.0",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "del-cli": "^4.0.1",
     "esbuild": "^0.14.11",
     "eslint": "^8.7.0",

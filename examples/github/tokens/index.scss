@@ -583,7 +583,7 @@ $font__family__line_height__default: 1.5;
 $font__family__line_height__condensed: 1.25;
 $font__family__line_height__condensed_ultra: 1;
 $-cobalt_token_modes: (
-  $color__black: (
+  color__black: (
     "light": #1b1f24,
     "light-colorblind": #1b1f24,
     "light-high-contrast": #010409,
@@ -593,7 +593,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #010409,
     "dark-colorblind": #010409,
   ),
-  $color__blue_0: (
+  color__blue_0: (
     "light": #ddf4ff,
     "light-colorblind": #ddf4ff,
     "light-high-contrast": #dff7ff,
@@ -602,7 +602,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #caeaff,
     "dark-colorblind": #cae8ff,
   ),
-  $color__blue_1: (
+  color__blue_1: (
     "light": #b6e3ff,
     "light-colorblind": #b6e3ff,
     "light-high-contrast": #9cd7ff,
@@ -611,7 +611,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #addcff,
     "dark-colorblind": #a5d6ff,
   ),
-  $color__blue_2: (
+  color__blue_2: (
     "light": #80ccff,
     "light-colorblind": #80ccff,
     "light-high-contrast": #67b3fd,
@@ -620,7 +620,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #91cbff,
     "dark-colorblind": #79c0ff,
   ),
-  $color__blue_3: (
+  color__blue_3: (
     "light": #54aeff,
     "light-colorblind": #54aeff,
     "light-high-contrast": #368cf9,
@@ -629,7 +629,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #71b7ff,
     "dark-colorblind": #58a6ff,
   ),
-  $color__blue_4: (
+  color__blue_4: (
     "light": #218bff,
     "light-colorblind": #218bff,
     "light-high-contrast": #1168e3,
@@ -638,7 +638,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #409eff,
     "dark-colorblind": #388bfd,
   ),
-  $color__blue_5: (
+  color__blue_5: (
     "light": #0969da,
     "light-colorblind": #0969da,
     "light-high-contrast": #0349b4,
@@ -647,7 +647,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #409eff,
     "dark-colorblind": #1f6feb,
   ),
-  $color__blue_6: (
+  color__blue_6: (
     "light": #0550ae,
     "light-colorblind": #0550ae,
     "light-high-contrast": #023b95,
@@ -656,7 +656,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #318bf8,
     "dark-colorblind": #1158c7,
   ),
-  $color__blue_7: (
+  color__blue_7: (
     "light": #033d8b,
     "light-colorblind": #033d8b,
     "light-high-contrast": #022f7a,
@@ -665,7 +665,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #2672f3,
     "dark-colorblind": #0d419d,
   ),
-  $color__blue_8: (
+  color__blue_8: (
     "light": #0a3069,
     "light-colorblind": #0a3069,
     "light-high-contrast": #032563,
@@ -674,7 +674,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #1e60d5,
     "dark-colorblind": #0c2d6b,
   ),
-  $color__blue_9: (
+  color__blue_9: (
     "light": #002155,
     "light-colorblind": #002155,
     "light-high-contrast": #021a4a,
@@ -683,7 +683,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #194fb1,
     "dark-colorblind": #051d4d,
   ),
-  $color__coral_0: (
+  color__coral_0: (
     "light": #fff0eb,
     "light-colorblind": #fff0eb,
     "light-high-contrast": #fff0ed,
@@ -692,7 +692,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffded4,
     "dark-colorblind": #ffddd2,
   ),
-  $color__coral_1: (
+  color__coral_1: (
     "light": #ffd6cc,
     "light-colorblind": #ffd6cc,
     "light-high-contrast": #ffc2b6,
@@ -701,7 +701,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffcbb9,
     "dark-colorblind": #ffc2b2,
   ),
-  $color__coral_2: (
+  color__coral_2: (
     "light": #ffb4a1,
     "light-colorblind": #ffb4a1,
     "light-high-contrast": #ff8f7e,
@@ -710,7 +710,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffb39b,
     "dark-colorblind": #ffa28b,
   ),
-  $color__coral_3: (
+  color__coral_3: (
     "light": #fd8c73,
     "light-colorblind": #fd8c73,
     "light-high-contrast": #ef5b48,
@@ -719,7 +719,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff967d,
     "dark-colorblind": #f78166,
   ),
-  $color__coral_4: (
+  color__coral_4: (
     "light": #ec6547,
     "light-colorblind": #ec6547,
     "light-high-contrast": #cd3425,
@@ -728,7 +728,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #fc704f,
     "dark-colorblind": #ea6045,
   ),
-  $color__coral_5: (
+  color__coral_5: (
     "light": #c4432b,
     "light-colorblind": #c4432b,
     "light-high-contrast": #9f1710,
@@ -737,7 +737,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #fc704f,
     "dark-colorblind": #cf462d,
   ),
-  $color__coral_6: (
+  color__coral_6: (
     "light": #9e2f1c,
     "light-colorblind": #9e2f1c,
     "light-high-contrast": #870706,
@@ -746,7 +746,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #f75133,
     "dark-colorblind": #ac3220,
   ),
-  $color__coral_7: (
+  color__coral_7: (
     "light": #801f0f,
     "light-colorblind": #801f0f,
     "light-high-contrast": #6f0107,
@@ -755,7 +755,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e03b21,
     "dark-colorblind": #872012,
   ),
-  $color__coral_8: (
+  color__coral_8: (
     "light": #691105,
     "light-colorblind": #691105,
     "light-high-contrast": #5b0002,
@@ -764,7 +764,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #c62612,
     "dark-colorblind": #640d04,
   ),
-  $color__coral_9: (
+  color__coral_9: (
     "light": #510901,
     "light-colorblind": #510901,
     "light-high-contrast": #430200,
@@ -773,7 +773,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #a91500,
     "dark-colorblind": #460701,
   ),
-  $color__gray_0: (
+  color__gray_0: (
     "light": #f6f8fa,
     "light-colorblind": #f6f8fa,
     "light-high-contrast": #ffffff,
@@ -782,7 +782,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffffff,
     "dark-colorblind": #f0f6fc,
   ),
-  $color__gray_1: (
+  color__gray_1: (
     "light": #eaeef2,
     "light-colorblind": #eaeef2,
     "light-high-contrast": #e7ecf0,
@@ -791,7 +791,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #f0f3f6,
     "dark-colorblind": #c9d1d9,
   ),
-  $color__gray_2: (
+  color__gray_2: (
     "light": #d0d7de,
     "light-colorblind": #d0d7de,
     "light-high-contrast": #ced5dc,
@@ -800,7 +800,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #d9dee3,
     "dark-colorblind": #b1bac4,
   ),
-  $color__gray_3: (
+  color__gray_3: (
     "light": #afb8c1,
     "light-colorblind": #afb8c1,
     "light-high-contrast": #acb6c0,
@@ -809,7 +809,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #bdc4cc,
     "dark-colorblind": #8b949e,
   ),
-  $color__gray_4: (
+  color__gray_4: (
     "light": #8c959f,
     "light-colorblind": #8c959f,
     "light-high-contrast": #88929d,
@@ -818,7 +818,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #9ea7b3,
     "dark-colorblind": #6e7681,
   ),
-  $color__gray_5: (
+  color__gray_5: (
     "light": #6e7781,
     "light-colorblind": #6e7781,
     "light-high-contrast": #66707b,
@@ -827,7 +827,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #7a828e,
     "dark-colorblind": #484f58,
   ),
-  $color__gray_6: (
+  color__gray_6: (
     "light": #57606a,
     "light-colorblind": #57606a,
     "light-high-contrast": #4b535d,
@@ -836,7 +836,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #525964,
     "dark-colorblind": #30363d,
   ),
-  $color__gray_7: (
+  color__gray_7: (
     "light": #424a53,
     "light-colorblind": #424a53,
     "light-high-contrast": #343b43,
@@ -845,7 +845,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #272b33,
     "dark-colorblind": #21262d,
   ),
-  $color__gray_8: (
+  color__gray_8: (
     "light": #32383f,
     "light-colorblind": #32383f,
     "light-high-contrast": #20252c,
@@ -854,7 +854,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #272b33,
     "dark-colorblind": #161b22,
   ),
-  $color__gray_9: (
+  color__gray_9: (
     "light": #24292f,
     "light-colorblind": #24292f,
     "light-high-contrast": #0e1116,
@@ -863,7 +863,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #0a0c10,
     "dark-colorblind": #0d1117,
   ),
-  $color__green_0: (
+  color__green_0: (
     "light": #dafbe1,
     "light-colorblind": #c0f6ff,
     "light-high-contrast": #d2fedb,
@@ -872,7 +872,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #acf7b6,
     "dark-colorblind": #a0e8ff,
   ),
-  $color__green_1: (
+  color__green_1: (
     "light": #aceebb,
     "light-colorblind": #96e5ff,
     "light-high-contrast": #82e596,
@@ -881,7 +881,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #72f088,
     "dark-colorblind": #83d4ff,
   ),
-  $color__green_2: (
+  color__green_2: (
     "light": #6fdd8b,
     "light-colorblind": #65ccff,
     "light-high-contrast": #43c663,
@@ -890,7 +890,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #4ae168,
     "dark-colorblind": #66baff,
   ),
-  $color__green_3: (
+  color__green_3: (
     "light": #4ac26b,
     "light-colorblind": #35adff,
     "light-high-contrast": #26a148,
@@ -899,7 +899,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #26cd4d,
     "dark-colorblind": #42a0ff,
   ),
-  $color__green_4: (
+  color__green_4: (
     "light": #2da44e,
     "light-colorblind": #0088ff,
     "light-high-contrast": #117f32,
@@ -908,7 +908,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #09b43a,
     "dark-colorblind": #1585fd,
   ),
-  $color__green_5: (
+  color__green_5: (
     "light": #1a7f37,
     "light-colorblind": #0566d5,
     "light-high-contrast": #055d20,
@@ -917,7 +917,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #09b43a,
     "dark-colorblind": #1d69e0,
   ),
-  $color__green_6: (
+  color__green_6: (
     "light": #116329,
     "light-colorblind": #054da9,
     "light-high-contrast": #024c1a,
@@ -926,7 +926,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #02a232,
     "dark-colorblind": #0f53bc,
   ),
-  $color__green_7: (
+  color__green_7: (
     "light": #044f1e,
     "light-colorblind": #033a86,
     "light-high-contrast": #013d14,
@@ -935,7 +935,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #008c2c,
     "dark-colorblind": #0b3c92,
   ),
-  $color__green_8: (
+  color__green_8: (
     "light": #003d16,
     "light-colorblind": #002d68,
     "light-high-contrast": #003110,
@@ -944,7 +944,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #007728,
     "dark-colorblind": #0a2861,
   ),
-  $color__green_9: (
+  color__green_9: (
     "light": #002d11,
     "light-colorblind": #001f50,
     "light-high-contrast": #00230b,
@@ -953,7 +953,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #006222,
     "dark-colorblind": #041843,
   ),
-  $color__orange_0: (
+  color__orange_0: (
     "light": #fff1e5,
     "light-colorblind": #fff1e5,
     "light-high-contrast": #fff2d5,
@@ -962,7 +962,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffe1b4,
     "dark-colorblind": #ffdfb6,
   ),
-  $color__orange_1: (
+  color__orange_1: (
     "light": #ffd8b5,
     "light-colorblind": #ffd8b5,
     "light-high-contrast": #ffc67b,
@@ -971,7 +971,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffcf86,
     "dark-colorblind": #ffc680,
   ),
-  $color__orange_2: (
+  color__orange_2: (
     "light": #ffb77c,
     "light-colorblind": #ffb77c,
     "light-high-contrast": #f99636,
@@ -980,7 +980,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffb757,
     "dark-colorblind": #ffa657,
   ),
-  $color__orange_3: (
+  color__orange_3: (
     "light": #fb8f44,
     "light-colorblind": #fb8f44,
     "light-high-contrast": #dc6d1a,
@@ -989,7 +989,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #fe9a2d,
     "dark-colorblind": #f0883e,
   ),
-  $color__orange_4: (
+  color__orange_4: (
     "light": #e16f24,
     "light-colorblind": #e16f24,
     "light-high-contrast": #b45105,
@@ -998,7 +998,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e7811d,
     "dark-colorblind": #db6d28,
   ),
-  $color__orange_5: (
+  color__orange_5: (
     "light": #bc4c00,
     "light-colorblind": #bc4c00,
     "light-high-contrast": #873800,
@@ -1007,7 +1007,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e7811d,
     "dark-colorblind": #bd561d,
   ),
-  $color__orange_6: (
+  color__orange_6: (
     "light": #953800,
     "light-colorblind": #953800,
     "light-high-contrast": #702c00,
@@ -1016,7 +1016,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #d57014,
     "dark-colorblind": #9b4215,
   ),
-  $color__orange_7: (
+  color__orange_7: (
     "light": #762c00,
     "light-colorblind": #762c00,
     "light-high-contrast": #5b2300,
@@ -1025,7 +1025,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #bf5e0a,
     "dark-colorblind": #762d0a,
   ),
-  $color__orange_8: (
+  color__orange_8: (
     "light": #5c2200,
     "light-colorblind": #5c2200,
     "light-high-contrast": #491b00,
@@ -1034,7 +1034,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #a74c00,
     "dark-colorblind": #5a1e02,
   ),
-  $color__orange_9: (
+  color__orange_9: (
     "light": #471700,
     "light-colorblind": #471700,
     "light-high-contrast": #361200,
@@ -1043,7 +1043,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #8f3c00,
     "dark-colorblind": #3d1300,
   ),
-  $color__pink_0: (
+  color__pink_0: (
     "light": #ffeff7,
     "light-colorblind": #ffeff7,
     "light-high-contrast": #feeff7,
@@ -1052,7 +1052,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffdceb,
     "dark-colorblind": #ffdaec,
   ),
-  $color__pink_1: (
+  color__pink_1: (
     "light": #ffd3eb,
     "light-colorblind": #ffd3eb,
     "light-high-contrast": #ffbde0,
@@ -1061,7 +1061,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffc7e1,
     "dark-colorblind": #ffbedd,
   ),
-  $color__pink_2: (
+  color__pink_2: (
     "light": #ffadda,
     "light-colorblind": #ffadda,
     "light-high-contrast": #fc87ca,
@@ -1070,7 +1070,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffadd4,
     "dark-colorblind": #ff9bce,
   ),
-  $color__pink_3: (
+  color__pink_3: (
     "light": #ff80c8,
     "light-colorblind": #ff80c8,
     "light-high-contrast": #ed4baf,
@@ -1079,7 +1079,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff8dc7,
     "dark-colorblind": #f778ba,
   ),
-  $color__pink_4: (
+  color__pink_4: (
     "light": #e85aad,
     "light-colorblind": #e85aad,
     "light-high-contrast": #c9248e,
@@ -1088,7 +1088,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ef6eb1,
     "dark-colorblind": #db61a2,
   ),
-  $color__pink_5: (
+  color__pink_5: (
     "light": #bf3989,
     "light-colorblind": #bf3989,
     "light-high-contrast": #971368,
@@ -1097,7 +1097,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ef6eb1,
     "dark-colorblind": #bf4b8a,
   ),
-  $color__pink_6: (
+  color__pink_6: (
     "light": #99286e,
     "light-colorblind": #99286e,
     "light-high-contrast": #7d0c57,
@@ -1106,7 +1106,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e456a3,
     "dark-colorblind": #9e3670,
   ),
-  $color__pink_7: (
+  color__pink_7: (
     "light": #772057,
     "light-colorblind": #772057,
     "light-high-contrast": #660847,
@@ -1115,7 +1115,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #d23d91,
     "dark-colorblind": #7d2457,
   ),
-  $color__pink_8: (
+  color__pink_8: (
     "light": #611347,
     "light-colorblind": #611347,
     "light-high-contrast": #53043a,
@@ -1124,7 +1124,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #b72c7d,
     "dark-colorblind": #5e103e,
   ),
-  $color__pink_9: (
+  color__pink_9: (
     "light": #4d0336,
     "light-colorblind": #4d0336,
     "light-high-contrast": #3e022b,
@@ -1133,7 +1133,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #9c1d6a,
     "dark-colorblind": #42062a,
   ),
-  $color__purple_0: (
+  color__purple_0: (
     "light": #fbefff,
     "light-colorblind": #fbefff,
     "light-high-contrast": #faf0fe,
@@ -1142,7 +1142,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #f0dfff,
     "dark-colorblind": #eddeff,
   ),
-  $color__purple_1: (
+  color__purple_1: (
     "light": #ecd8ff,
     "light-colorblind": #ecd8ff,
     "light-high-contrast": #e0c5ff,
@@ -1151,7 +1151,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e6ccff,
     "dark-colorblind": #e2c5ff,
   ),
-  $color__purple_2: (
+  color__purple_2: (
     "light": #d8b9ff,
     "light-colorblind": #d8b9ff,
     "light-high-contrast": #c49bff,
@@ -1160,7 +1160,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #dbb7ff,
     "dark-colorblind": #d2a8ff,
   ),
-  $color__purple_3: (
+  color__purple_3: (
     "light": #c297ff,
     "light-colorblind": #c297ff,
     "light-high-contrast": #a371f7,
@@ -1169,7 +1169,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #cb9eff,
     "dark-colorblind": #bc8cff,
   ),
-  $color__purple_4: (
+  color__purple_4: (
     "light": #a475f9,
     "light-colorblind": #a475f9,
     "light-high-contrast": #844ae7,
@@ -1178,7 +1178,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #b780ff,
     "dark-colorblind": #a371f7,
   ),
-  $color__purple_5: (
+  color__purple_5: (
     "light": #8250df,
     "light-colorblind": #8250df,
     "light-high-contrast": #622cbc,
@@ -1187,7 +1187,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #b87fff,
     "dark-colorblind": #8957e5,
   ),
-  $color__purple_6: (
+  color__purple_6: (
     "light": #6639ba,
     "light-colorblind": #6639ba,
     "light-high-contrast": #512598,
@@ -1196,7 +1196,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #a66bff,
     "dark-colorblind": #6e40c9,
   ),
-  $color__purple_7: (
+  color__purple_7: (
     "light": #512a97,
     "light-colorblind": #512a97,
     "light-high-contrast": #411d7b,
@@ -1205,7 +1205,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #954ffd,
     "dark-colorblind": #553098,
   ),
-  $color__purple_8: (
+  color__purple_8: (
     "light": #3e1f79,
     "light-colorblind": #3e1f79,
     "light-high-contrast": #341763,
@@ -1214,7 +1214,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #8031f7,
     "dark-colorblind": #3c1e70,
   ),
-  $color__purple_9: (
+  color__purple_9: (
     "light": #2e1461,
     "light-colorblind": #2e1461,
     "light-high-contrast": #260f49,
@@ -1223,7 +1223,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #6921d7,
     "dark-colorblind": #271052,
   ),
-  $color__red_0: (
+  color__red_0: (
     "light": #ffebe9,
     "light-colorblind": #fefe48,
     "light-high-contrast": #fff0ee,
@@ -1232,7 +1232,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffdedb,
     "dark-colorblind": #f0ec59,
   ),
-  $color__red_1: (
+  color__red_1: (
     "light": #ffcecb,
     "light-colorblind": #fee325,
     "light-high-contrast": #ffc1bc,
@@ -1241,7 +1241,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffc9c7,
     "dark-colorblind": #ecd334,
   ),
-  $color__red_2: (
+  color__red_2: (
     "light": #ffaba8,
     "light-colorblind": #f8c200,
     "light-high-contrast": #ff8e8a,
@@ -1250,7 +1250,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffb1af,
     "dark-colorblind": #e6b716,
   ),
-  $color__red_3: (
+  color__red_3: (
     "light": #ff8182,
     "light-colorblind": #e7a100,
     "light-high-contrast": #ee5a5d,
@@ -1259,7 +1259,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff9492,
     "dark-colorblind": #d69a00,
   ),
-  $color__red_4: (
+  color__red_4: (
     "light": #fa4549,
     "light-colorblind": #d08002,
     "light-high-contrast": #d5232c,
@@ -1268,7 +1268,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff6a69,
     "dark-colorblind": #c38000,
   ),
-  $color__red_5: (
+  color__red_5: (
     "light": #cf222e,
     "light-colorblind": #ac5e00,
     "light-high-contrast": #a0111f,
@@ -1277,7 +1277,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff6a69,
     "dark-colorblind": #a66900,
   ),
-  $color__red_6: (
+  color__red_6: (
     "light": #a40e26,
     "light-colorblind": #8b4600,
     "light-high-contrast": #86061d,
@@ -1286,7 +1286,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ff4445,
     "dark-colorblind": #865401,
   ),
-  $color__red_7: (
+  color__red_7: (
     "light": #82071e,
     "light-colorblind": #6c3900,
     "light-high-contrast": #6e011a,
@@ -1295,7 +1295,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e82a2f,
     "dark-colorblind": #633e00,
   ),
-  $color__red_8: (
+  color__red_8: (
     "light": #660018,
     "light-colorblind": #4c3100,
     "light-high-contrast": #5a0016,
@@ -1304,7 +1304,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #cc1421,
     "dark-colorblind": #452f00,
   ),
-  $color__red_9: (
+  color__red_9: (
     "light": #4c0014,
     "light-colorblind": #2f2900,
     "light-high-contrast": #430011,
@@ -1313,7 +1313,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ad0116,
     "dark-colorblind": #292100,
   ),
-  $color__yellow_0: (
+  color__yellow_0: (
     "light": #fff8c5,
     "light-colorblind": #fff8c5,
     "light-high-contrast": #fcf7be,
@@ -1322,7 +1322,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #fbe59e,
     "dark-colorblind": #f8e3a1,
   ),
-  $color__yellow_1: (
+  color__yellow_1: (
     "light": #fae17d,
     "light-colorblind": #fae17d,
     "light-high-contrast": #f0ce53,
@@ -1331,7 +1331,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #fbd669,
     "dark-colorblind": #f2cc60,
   ),
-  $color__yellow_2: (
+  color__yellow_2: (
     "light": #eac54f,
     "light-colorblind": #eac54f,
     "light-high-contrast": #d5a824,
@@ -1340,7 +1340,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #f7c843,
     "dark-colorblind": #e3b341,
   ),
-  $color__yellow_3: (
+  color__yellow_3: (
     "light": #d4a72c,
     "light-colorblind": #d4a72c,
     "light-high-contrast": #b58407,
@@ -1349,7 +1349,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #f0b72f,
     "dark-colorblind": #d29922,
   ),
-  $color__yellow_4: (
+  color__yellow_4: (
     "light": #bf8700,
     "light-colorblind": #bf8700,
     "light-high-contrast": #956400,
@@ -1358,7 +1358,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e09b13,
     "dark-colorblind": #bb8009,
   ),
-  $color__yellow_5: (
+  color__yellow_5: (
     "light": #9a6700,
     "light-colorblind": #9a6700,
     "light-high-contrast": #744500,
@@ -1367,7 +1367,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #e09b13,
     "dark-colorblind": #9e6a03,
   ),
-  $color__yellow_6: (
+  color__yellow_6: (
     "light": #7d4e00,
     "light-colorblind": #7d4e00,
     "light-high-contrast": #603700,
@@ -1376,7 +1376,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #c88508,
     "dark-colorblind": #845306,
   ),
-  $color__yellow_7: (
+  color__yellow_7: (
     "light": #633c01,
     "light-colorblind": #633c01,
     "light-high-contrast": #4e2c00,
@@ -1385,7 +1385,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ae7104,
     "dark-colorblind": #693e00,
   ),
-  $color__yellow_8: (
+  color__yellow_8: (
     "light": #4d2d00,
     "light-colorblind": #4d2d00,
     "light-high-contrast": #3f2200,
@@ -1394,7 +1394,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #945d02,
     "dark-colorblind": #4b2900,
   ),
-  $color__yellow_9: (
+  color__yellow_9: (
     "light": #3b2300,
     "light-colorblind": #3b2300,
     "light-high-contrast": #2e1800,
@@ -1403,7 +1403,7 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #7b4900,
     "dark-colorblind": #341a00,
   ),
-  $color__white: (
+  color__white: (
     "light": #ffffff,
     "light-colorblind": #ffffff,
     "light-high-contrast": #ffffff,
@@ -1412,35 +1412,35 @@ $-cobalt_token_modes: (
     "dark-high-contrast": #ffffff,
     "dark-colorblind": #f0f6fc,
   ),
-  $font__family__size__f00: (
+  font__family__size__f00: (
     "mobile": 32px,
     "desktop": 48px,
   ),
-  $font__family__size__f0: (
+  font__family__size__f0: (
     "mobile": 32px,
     "desktop": 40px,
   ),
-  $font__family__size__f1: (
+  font__family__size__f1: (
     "mobile": 26px,
     "desktop": 32px,
   ),
-  $font__family__size__f2: (
+  font__family__size__f2: (
     "mobile": 22px,
     "desktop": 24px,
   ),
-  $font__family__size__f3: (
+  font__family__size__f3: (
     "mobile": 16px,
     "desktop": 20px,
   ),
-  $font__family__size__f4: (
+  font__family__size__f4: (
     "mobile": 16px,
     "desktop": 16px,
   ),
-  $font__family__size__f5: (
+  font__family__size__f5: (
     "mobile": 14px,
     "desktop": 14px,
   ),
-  $font__family__size__f6: (
+  font__family__size__f6: (
     "mobile": 12px,
     "desktop": 12px,
   ),
