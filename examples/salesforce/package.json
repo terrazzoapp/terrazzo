@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.3.2",
-    "@cobalt-ui/plugin-css": "^0.3.0",
+    "@cobalt-ui/plugin-css": "^0.3.1",
     "@cobalt-ui/plugin-sass": "^0.3.2",
     "@salesforce-ux/design-system": "^2.16.2",
     "better-color-tools": "^0.3.0"

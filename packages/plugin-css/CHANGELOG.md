@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.3.1
+
+### Patch Changes
+
+- e935d23: Improve mode-selector
+
 ## 0.3.0
 
 ### Minor Changes

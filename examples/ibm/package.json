@@ -12,7 +12,7 @@
     "@carbon/icons": "^10.44.0",
     "@carbon/type": "^10.39.0",
     "@cobalt-ui/cli": "^0.3.2",
-    "@cobalt-ui/plugin-css": "^0.3.0",
+    "@cobalt-ui/plugin-css": "^0.3.1",
     "@cobalt-ui/plugin-sass": "^0.3.2"
   }
 }
