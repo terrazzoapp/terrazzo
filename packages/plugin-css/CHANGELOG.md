@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.3.2
+
+### Patch Changes
+
+- 7883444: Fix font name quoting in typography type
+
 ## 0.3.1
 
 ### Patch Changes
