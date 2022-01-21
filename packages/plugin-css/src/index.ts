@@ -2,7 +2,7 @@ import type { BuildResult, ParsedToken, Plugin, ResolvedConfig } from '@cobalt-u
 import { Indenter, FG_YELLOW, RESET } from '@cobalt-ui/utils';
 import color from 'better-color-tools';
 import { fileURLToPath } from 'url';
-import { encode } from './util.js';
+import { encode, formatFontNames } from './util.js';
 
 const DASH_PREFIX_RE = /^(-*)?/;
 const DOT_UNDER_GLOB_RE = /[._]/g;
@@ -39,7 +39,7 @@ export default function css(options: Options): Plugin {
       }
       case 'font': {
         let value = (mode && token.mode && token.mode[mode]) || token.value;
-        return value.map((fontName) => (fontName.includes(' ') ? `"${fontName}"` : fontName)).join(',');
+        return value ? formatFontNames(value) : value;
       }
       case 'cubic-bezier': {
         let value = (mode && token.mode && token.mode[mode]) || token.value;
@@ -63,9 +63,10 @@ export default function css(options: Options): Plugin {
       }
       case 'typography': {
         let value = (mode && token.mode && token.mode[mode]) || token.value;
+        let fontName = value && value.fontName ? formatFontNames(value.fontName) : value;
         const hasLineHeight = typeof value.lineHeight === 'number' || typeof value.lineHeight === 'string';
         let size = value.fontSize || hasLineHeight ? `${value.fontSize}${hasLineHeight ? `/${value.lineHeight}` : ''}` : '';
-        return [value.fontStyle, value.fontWeight, size, value.fontName].filter((v) => !!v).join(' ');
+        return [value.fontStyle, value.fontWeight, size, fontName].filter((v) => !!v).join(' ');
       }
       case 'transition': {
         let value = (mode && token.mode && token.mode[mode]) || token.value;
