@@ -136,7 +136,7 @@ async function main() {
       break;
     }
     case 'check': {
-      console.log(`${UNDERLINE}${fileURLToPath(filePath)}${RESET}`);
+      console.log(`${UNDERLINE}${fileURLToPath(config.tokens)}${RESET}`);
       const { errors, warnings } = parse(rawSchema); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
