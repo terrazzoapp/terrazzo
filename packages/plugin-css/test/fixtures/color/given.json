@@ -14,7 +14,16 @@
       }
     },
     "action": {
-      "value": "{color.blue}"
+      "value": "{color.blue}",
+      "mode": {
+        "light": "{color.blue#light}",
+        "light-colorblind": "{color.blue#light-colorblind}",
+        "light-high-contrast": "{color.blue#light-high-contrast}",
+        "dark": "{color.blue#dark}",
+        "dark-dimmed": "{color.blue#dark-dimmed}",
+        "dark-high-contrast": "{color.blue#dark-high-contrast}",
+        "dark-colorblind": "{color.blue#dark-colorblind}"
+      }
     }
   }
 }

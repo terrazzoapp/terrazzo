@@ -15,8 +15,8 @@
 .theme--dark {
   --color-blue: #388bfd;
   --color-blue-p3: color(display-p3 0.21961 0.5451 0.99216);
-  --color-action: #218bff;
-  --color-action-p3: color(display-p3 0.12941 0.5451 1);
+  --color-action: #388bfd;
+  --color-action-p3: color(display-p3 0.21961 0.5451 0.99216);
 }
 
 .theme--light-colorblind {
@@ -29,27 +29,27 @@
 .theme--light-high-contrast {
   --color-blue: #1168e3;
   --color-blue-p3: color(display-p3 0.06667 0.40784 0.8902);
-  --color-action: #218bff;
-  --color-action-p3: color(display-p3 0.12941 0.5451 1);
+  --color-action: #1168e3;
+  --color-action-p3: color(display-p3 0.06667 0.40784 0.8902);
 }
 
 .theme--dark-dimmed {
   --color-blue: #4184e4;
   --color-blue-p3: color(display-p3 0.2549 0.51765 0.89412);
-  --color-action: #218bff;
-  --color-action-p3: color(display-p3 0.12941 0.5451 1);
+  --color-action: #4184e4;
+  --color-action-p3: color(display-p3 0.2549 0.51765 0.89412);
 }
 
 .theme--high-contrast {
   --color-blue: #409eff;
   --color-blue-p3: color(display-p3 0.25098 0.61961 1);
-  --color-action: #218bff;
-  --color-action-p3: color(display-p3 0.12941 0.5451 1);
+  --color-action: #409eff;
+  --color-action-p3: color(display-p3 0.25098 0.61961 1);
 }
 
 .theme--dark-colorblind {
   --color-blue: #388bfd;
   --color-blue-p3: color(display-p3 0.21961 0.5451 0.99216);
-  --color-action: #218bff;
-  --color-action-p3: color(display-p3 0.12941 0.5451 1);
+  --color-action: #388bfd;
+  --color-action-p3: color(display-p3 0.21961 0.5451 0.99216);
 }
