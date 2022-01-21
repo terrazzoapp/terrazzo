@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.3
+
+### Patch Changes
+
+- d5ffc09: Fix co check command
+
 ## 0.3.2
 
 ### Patch Changes

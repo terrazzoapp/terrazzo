@@ -7,7 +7,7 @@
     "build:tokens": "co build"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.3.2",
+    "@cobalt-ui/cli": "^0.3.3",
     "@cobalt-ui/plugin-css": "^0.3.2",
     "@cobalt-ui/plugin-sass": "^0.3.2"
   }
