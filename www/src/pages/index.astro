@@ -1,11 +1,13 @@
 ---
-import Cobalt from '../components/Cobalt.astro';
-import DocsNav from '../components/DocsNav.astro';
 import DocsPagination from '../components/DocsPagination.astro';
 import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
-import SkipToMain from '../components/SkipToMain.astro'
+import SkipToMain from '../components/SkipToMain.astro';
+
+import packageJSON from '../../../packages/cli/package.json';
+
+const version = packageJSON.version;
 ---
 
 <!DOCTYPE html>
@@ -21,13 +23,50 @@ import SkipToMain from '../components/SkipToMain.astro'
         color: $color__white;
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 4.5rem);
         justify-content: center;
+        padding-bottom: 8rem;
+        padding-top: 10rem;
+      }
 
-        .title {
-          margin-top: 2em;
-          font-weight: 350;
+      .title {
+        font-size: 64pt;
+        font-weight: 550;
+        margin: 0 0 4rem;
+      }
+
+      .install {
+        display: flex;
+        align-items: center;
+      }
+
+      .meta {
+        display: flex;
+        font-size: 18pt;
+        list-style: none;
+        padding: 0;
+
+        a {
+          color: currentColor;
+          text-decoration: none;
+          opacity: 0.7;
+          transition: opacity 100ms linear;
+
+          &:focus,
+          &:hover {
+            opacity: 1;
+          }
         }
+
+        li {
+          margin: 0 0 0 3rem;
+        }
+      }
+
+      .code {
+        font-size: 18pt;
+        border: 1px solid currentColor;
+        border-radius: 0.5em;
+        padding: 0.5em 1em;
       }
 
       section + section {
@@ -176,28 +215,33 @@ import SkipToMain from '../components/SkipToMain.astro'
     <Nav />
     <div>
       <header class="header tac">
-        <Cobalt />
-        <h1 class="title">Design Token tooling</h1>
+        <h1 class="title">Design Tokens, codified</h1>
+        <div class="install">
+          <code class="code">npm i @cobalt-ui/cli</code>
+          <ul class="meta">
+            <li><a href="https://github.com/drwpow/cobalt-ui" target="_blank">GitHub</a></li>
+            <li><a href="https://npmjs.com/@cobalt-ui/cli" taget="_blank">v{version}</a></li>
+          </ul>
+        </div>
       </header>
       <main class="wrapper" id="#main">
         <section class="py10">
-          <h2>Start using the official Design Tokens Schema today.</h2>
+          <h2>Cobalt is tooling for the official Design Tokens Schema</h2>
           <p>
             The new <a
             href="https://design-tokens.github.io/community-group/format/">Design
-            Tokens schema</a> is a project to unify storage of design tokens
-            into a standard format. With a standard format comes standard
-            tooling to manage it, update it automatically from Figma, and
-            generate code for your project such as Sass, CSS, and TypeScript.
-            Cobalt is that standard tool.
+            Tokens schema</a> is the largest community effort to standardize
+            design tokens in code. But it lacks tooling to use it, and that’s
+            where Cobalt comes in. Using Cobalt, you can not only sync your
+            design tokens with Figma, but you can also generate code for your
+            project such as Sass, CSS, and TypeScript.
           </p>
           <p>
-            Cobalt is built to be easy-to-use, follows a standard format, and
-            has plugins that make it easy to generate code from your design
-            tokens. You can even write your own Cobalt plugin to generate
-            special code from your design tokens. Spend less time
-            building/managing design tooling, and more time putting your design
-            tokens to work!
+            Cobalt uses plugins to generate code from your design tokens. If you
+            want to generate code for another language, or even change what’s
+            generated, you can easily write your own Cobalt plugin. Spend less
+            time building/managing design tooling, and more time putting your
+            design tokens to work!
           </p>
           <h2 class="mt12">Manage <em>your</em> design tokens—not someone else’s</h2>
           <p>
