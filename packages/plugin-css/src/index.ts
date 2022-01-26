@@ -108,7 +108,12 @@ export default function css(options: Options): Plugin {
 
       // :root vars
       let code: string[] = [];
-      if (metadata.name) code.push('/**', ` * ${metadata.name}`, ' */', '');
+      code.push('/**');
+      if (metadata.name) code.push(` * ${metadata.name}`);
+      code.push(' * This file was auto-generated from tokens.json.');
+      code.push(' * DO NOT EDIT!');
+      code.push(' */');
+      code.push('');
       code.push(':root {');
       code.push(i.indent(makeVars(tokens, undefined), 1));
       code.push('}\n');

@@ -94,7 +94,10 @@ export default function sass(options?: Options): Plugin {
     async build({ tokens }): Promise<BuildResult[]> {
       // 1. gather default values and modes
       let output: string[] = [];
-      output.push(i.indent(`@use "sass:map"${semi}`, 0));
+      output.push('// This file was auto-generated from tokens.json.');
+      output.push('// DO NOT EDIT!');
+      output.push('');
+      output.push(`@use "sass:map"${semi}`);
       output.push('');
       output.push(i.indent(`$${TOKEN_VALUES}: (`, 0));
       for (const token of tokens) {
