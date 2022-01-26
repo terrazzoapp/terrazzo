@@ -54,7 +54,7 @@ Use the provided `token()` function to get a token by its ID (separated by dots)
 
 Note that a function has a few advantages over plain Sass variables:
 
-- ✅ The name perfectly matches yor schema (no guessing!)
+- ✅ The name perfectly matches your schema (no guessing!)
 - ✅ You can dynamically pull values (which you can’t do with Sass variables)
 - ✅ Use the same function to access [modes](#modes)
 
