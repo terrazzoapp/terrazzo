@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.0
+
+### Minor Changes
+
+- 55e82ca: Breaking change: use token() function instead of Sass variables
+
 ## 0.3.2
 
 ### Patch Changes
