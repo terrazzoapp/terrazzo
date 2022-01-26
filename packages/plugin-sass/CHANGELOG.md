@@ -1,5 +1,12 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.2
+
+### Patch Changes
+
+- 1170d8b: Add metadata.name to comment
+- 1170d8b: Fix bug where shadow type tokens had commas in the wrong places
+
 ## 0.4.1
 
 ### Patch Changes

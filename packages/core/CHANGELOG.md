@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.3.1
+
+### Patch Changes
+
+- 1170d8b: Improve value normalization for duration, dimension, and transition token types
+
 ## 0.3.0
 
 ### Minor Changes

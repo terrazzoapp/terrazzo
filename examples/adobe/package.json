@@ -10,6 +10,6 @@
   "dependencies": {
     "@cobalt-ui/cli": "^0.3.3",
     "@cobalt-ui/plugin-css": "^0.3.3",
-    "@cobalt-ui/plugin-sass": "^0.4.1"
+    "@cobalt-ui/plugin-sass": "^0.4.2"
   }
 }
