@@ -91,9 +91,10 @@ export default function sass(options?: Options): Plugin {
     config(c): void {
       config = c;
     },
-    async build({ tokens }): Promise<BuildResult[]> {
+    async build({ tokens, metadata }): Promise<BuildResult[]> {
       // 1. gather default values and modes
       let output: string[] = [];
+      if (metadata.name) output.push(`// ${metadata.name}`);
       output.push('// This file was auto-generated from tokens.json.');
       output.push('// DO NOT EDIT!');
       output.push('');
