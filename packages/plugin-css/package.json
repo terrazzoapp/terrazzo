@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/plugin-css",
-  "description": "CSS builder for Cobalt UI design tokens",
+  "description": "Generate CSS from your design tokens schema (requires @cobalt-ui/cli)",
   "version": "0.3.4",
   "author": {
     "name": "Drew Powers",

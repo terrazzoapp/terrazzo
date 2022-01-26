@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/core",
-  "description": "Schemas and tools for managing design tokens",
+  "description": "CLI for using the W3C design token format",
   "version": "0.3.2",
   "author": {
     "name": "Drew Powers",

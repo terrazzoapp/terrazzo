@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/plugin-json",
-  "description": "JSON builder for Cobalt UI design tokens",
+  "description": "Generate JSON from your design tokens schema (requires @cobalt-ui/cli)",
   "version": "0.3.1",
   "author": {
     "name": "Drew Powers",

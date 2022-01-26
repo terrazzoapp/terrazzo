@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/plugin-ts",
-  "description": "TypeScript builder for Cobalt UI design tokens",
+  "description": "Generate TypeScript from your design tokens schema (requires @cobalt-ui/cli)",
   "version": "0.3.1",
   "author": {
     "name": "Drew Powers",
