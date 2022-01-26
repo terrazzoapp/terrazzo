@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/cli",
   "description": "Schemas and tools for managing design tokens",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
