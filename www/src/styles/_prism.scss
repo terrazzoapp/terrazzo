@@ -34,6 +34,23 @@
   }
 }
 
+.language-scss {
+  .comment {
+    color: color.scale($color: token('color.blue'), $lightness: 30%, $saturation: -50%);
+  }
+
+  .selector,
+  .function,
+  .string,
+  .url {
+    color: color.scale($color: token('color.green'), $lightness: 65%, $saturation: 100%);
+  }
+  .property,
+  .punctuation {
+    color: color.scale($color: token('color.blue'), $lightness: 65%, $saturation: 100%);
+  }
+}
+
 .language-yaml {
   .atrule {
     color: color.scale($color: token('color.blue'), $lightness: 50%, $saturation: 100%);
