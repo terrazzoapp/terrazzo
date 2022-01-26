@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-json
 
+## 0.3.1
+
+### Patch Changes
+
+- Bump deps
+
 ## 0.3.0
 
 ### Minor Changes

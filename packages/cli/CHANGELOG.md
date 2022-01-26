@@ -1,5 +1,13 @@
 # @cobalt-ui/cli
 
+## 0.3.5
+
+### Patch Changes
+
+- Bump deps
+- Updated dependencies
+  - @cobalt-ui/core@0.3.2
+
 ## 0.3.4
 
 ### Patch Changes

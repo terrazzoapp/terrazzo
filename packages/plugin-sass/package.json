@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-sass",
   "description": "Sass builder for Cobalt UI design tokens",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -27,11 +27,11 @@
     "svgo": "^2.8.0"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.3.2",
-    "@cobalt-ui/core": "^0.3.1",
+    "@cobalt-ui/cli": "^0.3.5",
+    "@cobalt-ui/core": "^0.3.2",
     "@types/mime": "^2.0.3",
     "@types/svgo": "^2.6.1",
-    "chai": "^4.3.4",
-    "mocha": "^9.1.3"
+    "chai": "^4.3.6",
+    "mocha": "^9.2.0"
   }
 }

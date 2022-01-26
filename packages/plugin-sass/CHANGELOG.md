@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.3
+
+### Patch Changes
+
+- Bump deps
+
 ## 0.4.2
 
 ### Patch Changes
