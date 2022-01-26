@@ -1,0 +1,62 @@
+{
+  "color": {
+    "green": {
+      "type": "color",
+      "value": "#00ff00",
+      "mode": {
+        "light": "#6fdd8b",
+        "dark": "#56d364"
+      }
+    }
+  },
+  "gradient": {
+    "g-b": {
+      "type": "gradient",
+      "value": [
+        { "color": "#00ff00", "position": 0 },
+        { "color": "#0000ff", "position": 1 }
+      ]
+    }
+  },
+  "typography": {
+    "family": {
+      "body": { "type": "font", "value": ["IBM Plex Sans", "-system-ui", "sans-serif"] },
+      "heading": { "type": "font", "value": "Helvetica" }
+    },
+    "page-title": {
+      "type": "typography",
+      "value": {
+        "fontName": "{typography.family.heading}",
+        "fontSize": "48px",
+        "fontWeight": 600,
+        "lineHeight": 1.25
+      }
+    },
+    "body": {
+      "type": "typography",
+      "value": {
+        "fontName": "{typography.family.body}",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5
+      }
+    }
+  },
+  "shadow": {
+    "type": "shadow",
+    "value": {
+      "offset-y": "4px",
+      "offset-x": "0px",
+      "blur": "8px",
+      "spread": "0px",
+      "color": "rgba(0, 0, 0, 0.1)"
+    }
+  },
+  "transition": {
+    "type": "transition",
+    "value": {
+      "timing-function": [0.4, 0, 0.6, 1],
+      "duration": "0"
+    }
+  }
+}

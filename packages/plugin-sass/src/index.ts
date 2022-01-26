@@ -160,7 +160,7 @@ function transformURL(value: ParsedURLToken['value']): string {
 }
 /** transform shadow */
 function transformShadow(value: ParsedShadowToken['value']): string {
-  return [value['offset-x'], value['offset-y'], value.blur, value.spread, value.color].filter((v) => v !== undefined).join(', ');
+  return [value['offset-x'], value['offset-y'], value.blur, value.spread, value.color].join(' ');
 }
 /** transform gradient */
 function transformGradient(value: ParsedGradientToken['value']): string {

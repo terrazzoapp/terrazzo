@@ -20,14 +20,16 @@ export function normalizeShadowValue(value: unknown): ShadowValue {
   if (typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid shadow');
   const v = value as any;
   ['offset-x', 'offset-y', 'blur', 'spread', 'color'].forEach((k) => {
-    if ((k === 'offset-x' || k === 'offset-y') && typeof v[k] !== 'string' && v[k] !== 0) throw new Error(`missing ${k}`);
-    if (v[k] > 0) throw new Error(`${k} missing units`);
+    if (typeof v[k] === 'number' && v[k] > 0) throw new Error(`${k} missing units`);
+    if (k === 'offset-x' || k === 'offset-y') {
+      if (typeof v[k] !== 'string' && v[k] !== 0) throw new Error(`missing ${k}`);
+    }
   });
   return {
-    'offset-x': normalizeDimensionValue(v['offset-x']),
-    'offset-y': normalizeDimensionValue(v['offset-y']),
-    blur: v.blur,
-    spread: v.spread,
+    'offset-x': normalizeDimensionValue(v['offset-x'] || '0'),
+    'offset-y': normalizeDimensionValue(v['offset-y'] || '0'),
+    blur: normalizeDimensionValue(v.blur || '0'),
+    spread: normalizeDimensionValue(v.spread || '0'),
     color: normalizeColorValue(v.color),
     // extra values are discarded rather than throwing an error
   };

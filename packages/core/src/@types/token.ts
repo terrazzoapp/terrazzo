@@ -144,8 +144,8 @@ export interface ParsedTransitionToken extends ParsedTokenBase<Partial<Transitio
 export interface ShadowValue {
   'offset-x': DimensionToken['value'];
   'offset-y': DimensionToken['value'];
-  blur?: DimensionToken['value'];
-  spread?: DimensionToken['value'];
+  blur: DimensionToken['value'];
+  spread: DimensionToken['value'];
   color: ColorToken['value'];
 }
 export interface ShadowToken extends TokenBase<Partial<ShadowValue>> {

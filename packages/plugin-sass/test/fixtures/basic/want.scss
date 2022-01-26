@@ -12,6 +12,24 @@ $__token-values: (
   "gradient.g-b": (
     default: (#00ff00, #0000ff 100%),
   ),
+  "typography.family.body": (
+    default: ("IBM Plex Sans", -system-ui, sans-serif),
+  ),
+  "typography.family.heading": (
+    default: (Helvetica),
+  ),
+  "typography.page-title": (
+    default: (600 48px/1.25 Helvetica),
+  ),
+  "typography.body": (
+    default: (400 16px/1.5 "IBM Plex Sans", -system-ui, sans-serif),
+  ),
+  "shadow": (
+    default: (0 4px 8px 0 #0000001a),
+  ),
+  "transition": (
+    default: (0ms 0ms cubic-bezier(0.4,0,0.6,1)),
+  ),
 );
 
 @function token($tokenName, $modeName: default) {

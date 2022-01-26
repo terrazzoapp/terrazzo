@@ -129,6 +129,14 @@ describe('8. Type', () => {
       expect(tokens.find((t) => t.id === 'space.m').value).to.equal('1rem');
     });
 
+    it('normalizes zero', () => {
+      const json = {
+        'line-height': { type: 'dimension', value: '0px' },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'line-height').value).to.equal('0');
+    });
+
     it('alias', () => {
       const json = {
         space: {
@@ -237,7 +245,7 @@ describe('9. Composite Type', () => {
         'offset-x': '0',
         'offset-y': '4px',
         blur: '8px',
-        spread: 0,
+        spread: '0',
         color: '#00000026',
       });
     });
