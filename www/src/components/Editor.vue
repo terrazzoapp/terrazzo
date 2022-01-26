@@ -43,8 +43,8 @@
     }
 
     &-error {
-      background: $color__red;
-      color: $color__white;
+      background: token("color.red");
+      color: token("color.white");
       bottom: 0;
       font-family: "SF Mono", "Menlo", monospace;
       font-size: 9pt;

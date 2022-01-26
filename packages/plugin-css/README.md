@@ -40,7 +40,7 @@ export default {
 
 To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and specify `mode: [selector1, selector2, …]`.
 
-For example, if your `color` group has `light` and `dark` modes, and want to generate `theme--light` and `theme--dark` classes:
+For example, if your `color` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
 
 ```js
 // tokens.config.mjs
@@ -51,8 +51,8 @@ export default [
     css({
       modeSelectors: {
         color: {
-          light: ['.theme--light'],
-          dark: ['.theme--dark'],
+          light: ['body[data-color-mode="light"]'],
+          dark: ['body[data-color-mode="dark"]'],
         },
       },
     }),
@@ -72,7 +72,7 @@ This will generate the following CSS:
 }
 
 /* light theme colors */
-.theme--light {
+body[data-color-mode='light'] {
   --color-blue: #0969da;
   --color-green: #2da44e;
   --color-red: #cf222e;
@@ -80,7 +80,7 @@ This will generate the following CSS:
 }
 
 /* dark theme colors */
-.theme--dark {
+body[data-color-mode='dark'] {
   --color-blue: #1f6feb;
   --color-green: #2ea043;
   --color-red: #da3633;
@@ -123,7 +123,7 @@ That will generate the following:
 }
 ```
 
-To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/modes)
+To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/concepts/modes/)
 
 ## Features
 

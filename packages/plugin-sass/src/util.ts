@@ -1,9 +1,15 @@
 import fs from 'fs';
 import mime from 'mime';
+import { fileURLToPath } from 'url';
 import svgo from 'svgo';
 
+const LEADING_SLASH_RE = /^\//;
+const URL_PREFIX = /^\s*url\(['"]?/;
+const URL_SUFFIX = /['"]?\)\s*$/;
+
 /** encode file for CSS */
-export function encode(filename: string): string {
+export function encode(cssURL: string, cwd: URL): string {
+  const filename = fileURLToPath(new URL(cssURL.replace(URL_PREFIX, '').replace(URL_SUFFIX, '').replace(LEADING_SLASH_RE, ''), cwd));
   const type = mime.getType(filename);
 
   // https://css-tricks.com/probably-dont-base64-svg/

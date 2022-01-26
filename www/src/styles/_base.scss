@@ -7,7 +7,7 @@ body {
 }
 
 html {
-  background-color: $color__blue;
+  background-color: token('color.blue');
 }
 
 * {
@@ -15,8 +15,8 @@ html {
 }
 
 body {
-  background-color: $color__white;
-  color: $color__black;
+  background-color: token('color.white');
+  color: token('color.black');
   font-family: 'Neue Montreal', -system-ui, 'Helvetica', sans-serif;
   line-height: 1;
 }
@@ -66,7 +66,7 @@ i {
 }
 
 a {
-  color: $color__blue;
+  color: token('color.blue');
 }
 
 p {

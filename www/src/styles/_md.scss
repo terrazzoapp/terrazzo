@@ -63,7 +63,7 @@
   }
 
   code {
-    background: rgba($color__black, 0.05);
+    background: rgba(token('color.black'), 0.05);
     border-radius: 4px;
     display: inline-block;
     padding: 0.125em 0.375em;
@@ -71,7 +71,7 @@
   }
 
   figure {
-    background: rgba($color__black, 0.05);
+    background: rgba(token('color.black'), 0.05);
     margin: 2.5rem 0;
     padding: 1.5rem;
   }
@@ -83,9 +83,9 @@
   }
 
   pre {
-    background: $color__black;
+    background: token('color.black');
     border-radius: 0.5rem;
-    color: $color__white;
+    color: token('color.white');
     font-size: 10pt;
     margin: 1.5rem 0;
     max-width: 100%;
@@ -108,7 +108,7 @@
 
   th,
   td {
-    border-color: adjust-color($color: $color__black, $saturation: -50%, $lightness: 75%);
+    border-color: adjust-color($color: token('color.black'), $saturation: -50%, $lightness: 75%);
     border-style: solid;
     border-width: 1px 0 0 1px;
     padding: 0.5rem 0.75rem;
@@ -125,7 +125,7 @@
 
   tr {
     &:nth-of-type(even) {
-      background-color: adjust-color($color: $color__black, $saturation: -50%, $lightness: 86%);
+      background-color: adjust-color($color: token('color.black'), $saturation: -50%, $lightness: 86%);
     }
 
     &:last-of-type td {

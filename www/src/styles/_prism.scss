@@ -5,37 +5,37 @@
 .language-js,
 .language-ts {
   .comment {
-    color: color.scale($color: $color__blue, $lightness: 30%, $saturation: -50%);
+    color: color.scale($color: token('color.blue'), $lightness: 30%, $saturation: -50%);
   }
 }
 
 .language-diff {
   .deleted {
-    color: color.scale($color: $color__red, $lightness: 25%);
+    color: color.scale($color: token('color.red'), $lightness: 25%);
   }
 
   .inserted {
-    color: $color__green;
+    color: token('color.green');
   }
 }
 
 .language-js {
   .keyword {
-    color: color.scale($color: $color__blue, $lightness: 50%, $saturation: 100%);
+    color: color.scale($color: token('color.blue'), $lightness: 50%, $saturation: 100%);
   }
 }
 
 .language-json {
   .property {
-    color: color.scale($color: $color__blue, $lightness: 65%, $saturation: 100%);
+    color: color.scale($color: token('color.blue'), $lightness: 65%, $saturation: 100%);
   }
   .string {
-    color: color.scale($color: $color__green, $lightness: 65%, $saturation: 100%);
+    color: color.scale($color: token('color.green'), $lightness: 65%, $saturation: 100%);
   }
 }
 
 .language-yaml {
   .atrule {
-    color: color.scale($color: $color__blue, $lightness: 50%, $saturation: 100%);
+    color: color.scale($color: token('color.blue'), $lightness: 50%, $saturation: 100%);
   }
 }

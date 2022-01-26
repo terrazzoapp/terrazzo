@@ -1,15 +1,24 @@
 @use "sass:map";
 
-$color__green: #00ff00;
-$gradient__g-b: #00ff00, #0000ff 100%;
-$-cobalt_token_modes: (
-  color__green: (
-    "light": #6fdd8b,
-    "dark": #56d364,
+$__token-values: (
+  "color.green": (
+    default: (#00ff00),
+    "light": (#6fdd8b),
+    "dark": (#56d364),
+  ),
+  "gradient.g-b": (
+    default: (#00ff00, #0000ff 100%),
   ),
 );
 
-@function mode($token, $modeName) {
-  $mode: map.get($-cobalt_token_modes, $token);
-  @return map.get($mode, $modeName);
+@function token($tokenName, $modeName: default) {
+  @if map.has-key($__token-values, $tokenName) == false {
+    @error "No token named \"#{$tokenName}\"";
+  }
+  $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, $modeName) {
+    @return map.get($_token, $modeName);
+  } @else {
+    @return map.get($_token, default);
+  }
 }

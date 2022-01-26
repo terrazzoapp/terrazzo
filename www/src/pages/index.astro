@@ -19,8 +19,8 @@ const version = packageJSON.version;
 
       .header {
         align-items: center;
-        background: $color__blue;
-        color: $color__white;
+        background: token("color.blue");
+        color: token("color.white");
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -94,8 +94,8 @@ const version = packageJSON.version;
 
       .visual {
         align-self: start;
-        background-color: $color__blue;
-        color: $color__white;
+        background-color: token("color.blue");
+        color: token("color.white");
         font-size: 18pt;
         font-weight: 500;
         margin-top: 4rem;
@@ -169,7 +169,7 @@ const version = packageJSON.version;
         position: relative;
 
         &::after {
-          border-right: 1px dashed $color__white;
+          border-right: 1px dashed token("color.white");
           content: "";
           display: block;
           height: calc(100% - 2.5rem);
@@ -183,7 +183,7 @@ const version = packageJSON.version;
           position: relative;
 
           &::before {
-            border-top: 1px dashed $color__white;
+            border-top: 1px dashed token("color.white");
             content: "";
             display: block;
             position: absolute;

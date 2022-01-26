@@ -1,25 +1,28 @@
 @use "sass:map";
 
-$typography__family__body: "IBM Plex Sans", -system-ui, sans-serif;
-$typography__family__heading: Helvetica;
-$typography__page-title: 600 48px/1.25 Helvetica;
-$typography__body: 400 16px/1.5 "IBM Plex Sans", -system-ui, sans-serif;
-$-cobalt_token_modes: (
+$__token-values: (
+  "typography.family.body": (
+    default: ("IBM Plex Sans", -system-ui, sans-serif),
+  ),
+  "typography.family.heading": (
+    default: (Helvetica),
+  ),
+  "typography.page-title": (
+    default: (600 48px/1.25 Helvetica),
+  ),
+  "typography.body": (
+    default: (400 16px/1.5 "IBM Plex Sans", -system-ui, sans-serif),
+  ),
 );
-@mixin typography__page-title {
-  font-family: Helvetica;
-  font-size: 48px;
-  font-weight: 600;
-  line-height: 1.25;
-}
-@mixin typography__body {
-  font-family: "IBM Plex Sans", -system-ui, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.5;
-}
 
-@function mode($token, $modeName) {
-  $mode: map.get($-cobalt_token_modes, $token);
-  @return map.get($mode, $modeName);
+@function token($tokenName, $modeName: default) {
+  @if map.has-key($__token-values, $tokenName) == false {
+    @error "No token named \"#{$tokenName}\"";
+  }
+  $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, $modeName) {
+    @return map.get($_token, $modeName);
+  } @else {
+    @return map.get($_token, default);
+  }
 }
