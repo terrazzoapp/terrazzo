@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.4.1
+
+### Patch Changes
+
+- f8f0e20: Fix unnecessary token duplication inside P3 query
+
 ## 0.4.0
 
 ### Minor Changes

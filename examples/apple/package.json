@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.3.6",
-    "@cobalt-ui/plugin-css": "^0.4.0",
+    "@cobalt-ui/plugin-css": "^0.4.1",
     "@cobalt-ui/plugin-sass": "^0.4.4"
   }
 }

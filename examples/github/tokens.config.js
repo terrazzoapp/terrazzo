@@ -5,14 +5,10 @@ export default {
   plugins: [
     css({
       modeSelectors: {
-        color: {
-          light: ['.theme--light'],
-          light_colorblind: ['.theme--light-colorblind'],
-          light_low_contrast: ['.theme--light-low-contrast'],
-        },
-        'font.size': {
-          desktop: ['@media (min-width: 600px)'],
-        },
+        'color#light': ['[data-color-theme="light"]'],
+        'color#light_colorblind': ['[data-color-theme="light-colorblind"]'],
+        'color#light_low_contrast': ['[data-color-theme="light-low-contrast"]'],
+        'font.size#desktop': ['@media (min-width: 600px)'],
       },
     }),
     sass(),
