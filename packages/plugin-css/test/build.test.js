@@ -15,15 +15,13 @@ for (const test of fs.readdirSync(FIXTURES_DIR)) {
       plugins: [
         pluginCSS({
           modeSelectors: {
-            color: {
-              light: ['.theme--light'],
-              dark: ['.theme--dark'],
-              'light-colorblind': ['.theme--light-colorblind'],
-              'light-high-contrast': ['.theme--light-high-contrast'],
-              'dark-dimmed': ['.theme--dark-dimmed'],
-              'dark-high-contrast': ['.theme--high-contrast'],
-              'dark-colorblind': ['.theme--dark-colorblind'],
-            },
+            'color#light': ['[data-color-theme="light"]'],
+            'color#dark': ['[data-color-theme="dark"]'],
+            'color#light-colorblind': ['[data-color-theme="light-colorblind"]'],
+            'color#light-high-contrast': ['[data-color-theme="light-high-contrast"]'],
+            'color#dark-dimmed': ['[data-color-theme="dark-dimmed"]'],
+            'color#dark-high-contrast': ['[data-color-theme="high-contrast"]'],
+            'color#dark-colorblind': ['[data-color-theme="dark-colorblind"]'],
           },
         }),
       ],

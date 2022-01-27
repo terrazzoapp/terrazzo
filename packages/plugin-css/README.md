@@ -2,6 +2,8 @@
 
 Generate CSS output for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
 
+Automatically generates 🌈 [**P3 colors**](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) for more vibrant colors on displays that support it.
+
 ## Setup
 
 ```
@@ -21,9 +23,13 @@ export default {
       modeSelectors: {
         // …
       },
-      /** modify values (overwrite default CSS transform) */
-      transformValue(token, mode) {
-        return mode ? token.mode[mode] : token.value;
+      /** embed file tokens? */
+      embedFiles: false,
+      /** handle specific token types */
+      transform: {
+        color: (value, token) => {
+          return value;
+        },
       },
       /** don’t like the name of CSS variables? change ’em! */
       transformVariableNames(name, group) {
@@ -36,11 +42,60 @@ export default {
 
 ## Usage
 
-### Modes
+Running `npx co build` with the plugin set up will generate a `tokens/tokens.css` file. Simply inspect that, and import where desired and use the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) as desired ([docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)).
+
+## Config
+
+### Embed Files
+
+Say you have `file` tokens in your `tokens.json`:
+
+```json
+{
+  "icon": {
+    "alert": {
+      "type": "file",
+      "value": "./icon/alert.svg"
+    }
+  }
+}
+```
+
+By default, consuming those will simply print values as-is:
+
+```css
+.icon-alert {
+  background-image: var(--icon-alert);
+}
+
+/* Becomes … */
+.icon-alert {
+  background-image: url('./icon/alert.svg');
+}
+```
+
+In some scenarios this is preferable, but in others, this may result in too many requests and may result in degraded performance. You can set `embedFiles: true` to generate the following instead:
+
+```css
+.icon-alert {
+  background-image: var(--icon-alert);
+}
+
+/* Becomes … */
+.icon-alert {
+  background-image: url('image/svg+xml;utf8,<svg …></svg>');
+}
+```
+
+[Read more](https://css-tricks.com/data-uris/)
+
+### Mode Selectors
+
+#### Example
 
 To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and specify `mode: [selector1, selector2, …]`.
 
-For example, if your `color` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
+For example, if your `color.base` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
 
 ```js
 // tokens.config.mjs
@@ -50,10 +105,8 @@ export default [
   plugins: [
     css({
       modeSelectors: {
-        color: {
-          light: ['body[data-color-mode="light"]'],
-          dark: ['body[data-color-mode="dark"]'],
-        },
+        'color.base#light': ['body[data-color-mode="light"]'],
+        'color.base#dark': ['body[data-color-mode="dark"]'],
       },
     }),
   ],
@@ -98,9 +151,7 @@ export default {
   plugins: [
     css({
       modeSelectors: {
-        'type.size': {
-          desktop: ['@media (min-width: 600px)'],
-        },
+        'type.size#desktop': ['@media (min-width: 600px)'],
       },
     }),
   ],
@@ -123,9 +174,82 @@ That will generate the following:
 }
 ```
 
+#### Syntax
+
+The `#` character designates the mode. **You must have a `#` somewhere in the selector.**
+
+- `#light`: match _any_ token that has a `light` mode
+- `color#light`: deeply match any token inside the `color` group, that has a `light` mode
+- `color.base#light`: deeply match any token inside the `color.base` group with a `light` mode, but ignore any other tokens inside `color`
+
+#### Further Reading
+
 To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/concepts/modes/)
 
-## Features
+### Transform
 
-- `type: file`: base64 encodes the file into the CSS
-- `type: url`: converts to a plain `url()`
+Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
+
+```js
+export default {
+  plugins: [
+    pluginCSS({
+      transform: {
+        color: (value, token) => {
+          return value;
+        },
+        dimension: (value, token) => {
+          return value;
+        },
+        font: (value, token) => {
+          return value;
+        },
+        duration: (value, token) => {
+          return value;
+        },
+        'cubic-bezier': (value, token) => {
+          return value;
+        },
+        file: (value, token) => {
+          return value;
+        },
+        url: (value, token) => {
+          return value;
+        },
+        shadow: (value, token) => {
+          return value;
+        },
+        gradient: (value, token) => {
+          return value;
+        },
+        typography: (value, token) => {
+          return value;
+        },
+        transition: (value, token) => {
+          return value;
+        },
+      },
+    }),
+  ],
+};
+```
+
+⚠️ Whenever you override a transformer for a token type, it’s now up to you to handle everything! You may also need the help of utilities like [better-color-tools](https://github.com/drwpow/better-color-tools)
+
+#### Custom tokens
+
+If you have your own custom token type, e.g. `my-custom-type`, you can add more keys to `transform` to handle it, like so:
+
+```js
+export default {
+  plugins: [
+    pluginCSS({
+      transform: {
+        'my-custom-type': (value, token) => {
+          return String(value);
+        },
+      },
+    }),
+  ],
+};
+```

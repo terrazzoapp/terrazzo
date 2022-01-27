@@ -23,7 +23,7 @@ export default {
       embedFiles: false,
       /** handle specific token types */
       transform: {
-        color: (value) => {
+        color: (value, token) => {
           return value;
         },
       },
@@ -183,8 +183,3 @@ export default {
   ],
 };
 ```
-
-## Features
-
-- `type: file`: base64 encodes the file
-- `type: url`: converts to a plain `url()`
