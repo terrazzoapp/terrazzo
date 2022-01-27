@@ -122,11 +122,15 @@ describe('8. Type', () => {
     it('basic', () => {
       const json = {
         space: {
-          m: { type: 'dimension', value: '1rem' },
+          metadata: { type: 'dimension' },
+          component: {
+            xs: { value: '0.5rem' },
+            s: { value: '1rem' },
+          },
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'space.m').value).to.equal('1rem');
+      expect(tokens.find((t) => t.id === 'space.component.xs').value).to.equal('0.5rem');
     });
 
     it('normalizes zero', () => {

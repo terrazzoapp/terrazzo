@@ -18,7 +18,7 @@ export function normalizeDimensionValue(value: unknown): ParsedDimensionToken['v
     throw new Error('missing units');
   }
   if (typeof value === 'string') {
-    if (parseInt(value, 10) === 0) return '0';
+    if (parseFloat(value) === 0) return '0';
     return value;
   }
   throw new Error(`expected string, received ${typeof value}`);

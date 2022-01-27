@@ -54,6 +54,9 @@ export function parse(schema: Group): ParseResult {
         errors.push(`${k}: invalid name. Names can’t include "." or "#".`);
         continue;
       }
+      if (!Object.keys(v).length) {
+        errors.push(`${k}: groups can’t be empty`);
+      }
 
       // token
       const token = {
@@ -66,7 +69,7 @@ export function parse(schema: Group): ParseResult {
         type: v.type || group.type,
         ...v,
       } as ParsedToken;
-      const isToken = !!token.type;
+      const isToken = !!token.value;
       if (isToken) {
         if (isEmpty(token.value)) {
           errors.push(`${token.id}: missing value`);
