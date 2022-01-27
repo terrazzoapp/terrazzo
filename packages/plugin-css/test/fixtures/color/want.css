@@ -6,6 +6,7 @@
 :root {
   --color-blue: #218bff;
   --color-action: #218bff;
+  --gradient: #218bff 0%, #e85aad 100%;
 }
 
 [data-color-theme="light"] {
@@ -41,6 +42,7 @@
   :root {
     --color-blue: color(display-p3 0.12941 0.5451 1);
     --color-action: color(display-p3 0.12941 0.5451 1);
+    --gradient: color(display-p3 0.12941 0.5451 1) 0%, color(display-p3 0.9098 0.35294 0.67843) 100%;
   }
 
   [data-color-theme="light"] {

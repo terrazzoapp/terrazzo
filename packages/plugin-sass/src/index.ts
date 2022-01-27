@@ -164,7 +164,7 @@ function transformShadow(value: ParsedShadowToken['value']): string {
 }
 /** transform gradient */
 function transformGradient(value: ParsedGradientToken['value']): string {
-  return value.map(({ color, position }: GradientStop) => `${color}${position ? ` ${position * 100}%` : ''}`).join(', ');
+  return value.map((g: GradientStop) => `${g.color} ${g.position * 100}%`).join(', ');
 }
 /** transform typography */
 function transformTypography(value: ParsedTypographyToken['value']): string {

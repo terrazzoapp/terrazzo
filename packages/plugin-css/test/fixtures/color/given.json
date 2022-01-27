@@ -25,5 +25,12 @@
         "dark-colorblind": "{color.blue#dark-colorblind}"
       }
     }
+  },
+  "gradient": {
+    "type": "gradient",
+    "value": [
+      { "color": "#218bff", "position": 0 },
+      { "color": "#e85aad", "position": 1 }
+    ]
   }
 }
