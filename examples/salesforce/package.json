@@ -8,9 +8,9 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.3.5",
-    "@cobalt-ui/plugin-css": "^0.3.4",
-    "@cobalt-ui/plugin-sass": "^0.4.3",
+    "@cobalt-ui/cli": "^0.3.6",
+    "@cobalt-ui/plugin-css": "^0.4.0",
+    "@cobalt-ui/plugin-sass": "^0.4.4",
     "@salesforce-ux/design-system": "^2.16.2",
     "better-color-tools": "^0.3.0"
   }

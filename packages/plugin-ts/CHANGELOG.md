@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-ts
 
+## 0.3.2
+
+### Patch Changes
+
+- 8f5025d: Update package description
+
 ## 0.3.1
 
 ### Patch Changes

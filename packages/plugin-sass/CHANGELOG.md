@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.4
+
+### Patch Changes
+
+- 8f5025d: Update package description
+
 ## 0.4.3
 
 ### Patch Changes

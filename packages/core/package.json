@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/core",
   "description": "CLI for using the W3C design token format",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"

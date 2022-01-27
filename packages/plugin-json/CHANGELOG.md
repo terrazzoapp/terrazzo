@@ -1,5 +1,12 @@
 # @cobalt-ui/plugin-json
 
+## 0.3.2
+
+### Patch Changes
+
+- 67d271e: Update README
+- 8f5025d: Update package description
+
 ## 0.3.1
 
 ### Patch Changes

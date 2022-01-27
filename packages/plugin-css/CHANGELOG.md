@@ -1,5 +1,15 @@
 # @cobalt-ui/plugin-css
 
+## 0.4.0
+
+### Minor Changes
+
+- 19eb0ac: Add P3 support, (breaking) improve plugin options
+
+### Patch Changes
+
+- 8f5025d: Update package description
+
 ## 0.3.4
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.3.3
+
+### Patch Changes
+
+- 8f5025d: Update package description
+
 ## 0.3.2
 
 ### Patch Changes

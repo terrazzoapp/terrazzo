@@ -1,5 +1,13 @@
 # @cobalt-ui/cli
 
+## 0.3.6
+
+### Patch Changes
+
+- 8f5025d: Update package description
+- Updated dependencies [8f5025d]
+  - @cobalt-ui/core@0.3.3
+
 ## 0.3.5
 
 ### Patch Changes
