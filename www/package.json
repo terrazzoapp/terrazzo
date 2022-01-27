@@ -22,7 +22,7 @@
     "@cobalt-ui/cli": "^0.3.6",
     "@cobalt-ui/core": "^0.3.3",
     "@cobalt-ui/plugin-json": "^0.3.2",
-    "@cobalt-ui/plugin-sass": "^0.4.4",
+    "@cobalt-ui/plugin-sass": "^0.4.5",
     "@cobalt-ui/plugin-ts": "^0.3.2",
     "astro": "^0.22.18",
     "morphdom": "^2.6.1",

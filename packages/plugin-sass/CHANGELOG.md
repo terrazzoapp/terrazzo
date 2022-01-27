@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.5
+
+### Patch Changes
+
+- 93668b9: Fix gradient generation
+
 ## 0.4.4
 
 ### Patch Changes

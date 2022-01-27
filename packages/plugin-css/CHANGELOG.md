@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.4.2
+
+### Patch Changes
+
+- 93668b9: Fix gradient generation
+
 ## 0.4.1
 
 ### Patch Changes
