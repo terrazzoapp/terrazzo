@@ -87,15 +87,21 @@ export default function css(options?: Options): Plugin {
   }
 
   function makeP3(input: string[]): string[] {
-    return input.map((value) => {
-      const matches = value.match(HEX_RE);
-      if (!matches || !matches.length) return value;
-      let newVal = value;
+    const output: string[] = [];
+    for (const line of input) {
+      if (line.includes('{') || line.includes('}')) {
+        output.push(line);
+        continue;
+      }
+      const matches = line.match(HEX_RE);
+      if (!matches || !matches.length) continue;
+      let newVal = line;
       for (const c of matches) {
         newVal = newVal.replace(c, color.from(c).p3);
       }
-      return newVal;
-    });
+      output.push(newVal);
+    }
+    return output;
   }
 
   return {
@@ -162,24 +168,26 @@ export default function css(options?: Options): Plugin {
           code.push(...makeVars(modeVals[selector], wrapper));
         }
       }
+      code.push('');
 
       // P3
-      code.push('');
-      code.push(i.indent(`@media (color-gamut: p3) {`, 0));
-      code.push(...makeP3(makeVars(tokenVals, ':root', 1)));
-      code.push('');
-      for (const selector of selectors) {
-        const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-        if (selector.startsWith('@')) {
-          code.push(i.indent(`${wrapper} {`, 1));
-          code.push(...makeP3(makeVars(modeVals[selector], ':root', 2)));
-          code.push(i.indent('}', 1));
-        } else {
-          code.push(...makeP3(makeVars(modeVals[selector], wrapper, 1)));
+      if (tokens.some((t) => t.type === 'color' || t.type === 'gradient' || t.type === 'shadow')) {
+        code.push(i.indent(`@media (color-gamut: p3) {`, 0));
+        code.push(...makeP3(makeVars(tokenVals, ':root', 1)));
+        code.push('');
+        for (const selector of selectors) {
+          const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
+          if (selector.startsWith('@')) {
+            code.push(i.indent(`${wrapper} {`, 1));
+            code.push(...makeP3(makeVars(modeVals[selector], ':root', 2)));
+            code.push(i.indent('}', 1));
+          } else {
+            code.push(...makeP3(makeVars(modeVals[selector], wrapper, 1)));
+          }
         }
+        code.push(i.indent('}', 0));
+        code.push('');
       }
-      code.push(i.indent('}', 0));
-      code.push('');
 
       return [
         {
@@ -225,7 +233,7 @@ function transformShadow(value: ParsedShadowToken['value']): string {
 }
 /** transform gradient */
 function transformGradient(value: ParsedGradientToken['value']): string {
-  return value.map(({ color, position }: GradientStop) => `${color}${position ? ` ${position * 100}%` : ''}`).join(', ');
+  return value.map((g: GradientStop) => `${color} ${g.position * 100}`).join(', ');
 }
 /** transform typography */
 function transformTypography(value: ParsedTypographyToken['value']): string {
