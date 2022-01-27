@@ -11,8 +11,8 @@
     "@carbon/colors": "^10.34.0",
     "@carbon/icons": "^10.44.0",
     "@carbon/type": "^10.39.0",
-    "@cobalt-ui/cli": "^0.3.6",
-    "@cobalt-ui/plugin-css": "^0.4.2",
-    "@cobalt-ui/plugin-sass": "^0.4.5"
+    "@cobalt-ui/cli": "^0.3.7",
+    "@cobalt-ui/plugin-css": "^0.4.3",
+    "@cobalt-ui/plugin-sass": "^0.4.6"
   }
 }

@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-ts
 
+## 0.3.3
+
+### Patch Changes
+
+- @cobalt-ui/core@0.3.4
+
 ## 0.3.2
 
 ### Patch Changes

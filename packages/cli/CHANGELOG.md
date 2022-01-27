@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.7
+
+### Patch Changes
+
+- @cobalt-ui/core@0.3.4
+
 ## 0.3.6
 
 ### Patch Changes

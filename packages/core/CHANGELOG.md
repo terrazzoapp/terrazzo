@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.3.4
+
+### Patch Changes
+
+- c69a62e: Fix nested group bug
+
 ## 0.3.3
 
 ### Patch Changes

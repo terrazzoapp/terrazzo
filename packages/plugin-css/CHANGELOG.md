@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.4.3
+
+### Patch Changes
+
+- @cobalt-ui/core@0.3.4
+
 ## 0.4.2
 
 ### Patch Changes
