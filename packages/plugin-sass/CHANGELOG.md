@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.9
+
+### Patch Changes
+
+- Bugfix: typography mixin
+
 ## 0.4.8
 
 ### Patch Changes

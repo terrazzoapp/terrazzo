@@ -33,7 +33,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -47,7 +47,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -61,7 +61,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
@@ -82,7 +82,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
     devDependencies:
       '@carbon/colors': 10.34.0
@@ -99,7 +99,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
       '@salesforce-ux/design-system': ^2.16.2
       better-color-tools: ^0.3.0
@@ -117,7 +117,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/plugin-css': ^0.5.1
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -244,7 +244,7 @@ importers:
       '@cobalt-ui/cli': ^0.3.8
       '@cobalt-ui/core': ^0.4.0
       '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.7
+      '@cobalt-ui/plugin-sass': ^0.4.9
       '@cobalt-ui/plugin-ts': ^0.3.4
       astro: ^0.22.18
       morphdom: ^2.6.1
