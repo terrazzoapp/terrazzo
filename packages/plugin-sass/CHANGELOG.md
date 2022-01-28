@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.8
+
+### Patch Changes
+
+- c263337: Fix typography map
+
 ## 0.4.7
 
 ### Patch Changes
