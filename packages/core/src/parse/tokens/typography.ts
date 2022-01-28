@@ -2,6 +2,7 @@ import type { ParsedTypographyValue, FontWeightName } from '../../@types/token';
 import { normalizeFontValue } from './font.js';
 import { normalizeDimensionValue } from './dimension.js';
 
+const CAMELCASE_RE = /([a-z])([A-Z])/g;
 const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
   ['thin', 100],
   ['hairline', 100],
@@ -28,37 +29,46 @@ const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
  * {
  *   "type": "typography",
  *   "value": {
- *     "fontName": "Roboto",
- *     "fontSize": "42px",
- *     "fontWeight": "700",
- *     "letterSpacing": "0.1px",
- *     "lineHeight": "1.2"
+ *     "font-family": "Roboto",
+ *     "font-size": "42px",
+ *     "font-weight": "700",
+ *     "letter-spacing": "0.1px",
+ *     "line-height": "1.2",
+ *     "text-transform": "none"
  *  }
  */
 export function normalizeTypographyValue(value: unknown): Partial<ParsedTypographyValue> {
   if (!value) throw new Error('missing value');
   if (typeof value !== 'object' || Array.isArray(value)) throw new Error(`expected object, received ${Array.isArray(value) ? 'array' : typeof value}`);
   if (!Object.keys(value).length) throw new Error('must specify at least 1 font property');
-  const v = value as any;
-  let fontWeight: number | undefined;
-  if (typeof v.fontWeight === 'string') {
-    const wgt = VALID_WEIGHT_NAMES.get(v.fontWeight);
-    if (wgt) {
-      fontWeight = wgt;
-    } else {
-      throw new Error(
-        `invalid font weight "${v.fontWeight}", use number (1-999) or any of the following names: ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`
-      );
-    }
-  } else if (typeof v.fontWeight === 'number') {
-    fontWeight = Math.max(0, Math.min(999, v.fontWeight));
-  }
+
   const normalized = {} as ParsedTypographyValue;
-  if (v.fontName) normalized.fontName = normalizeFontValue(v.fontName);
-  if (v.fontSize) normalized.fontSize = normalizeDimensionValue(v.fontSize);
-  if (v.fontStyle) normalized.fontStyle = v.fontStyle;
-  if (fontWeight) normalized.fontWeight = fontWeight;
-  if (v.letterSpacing) normalized.letterSpacing = v.letterSpacing;
-  if (v.lineHeight) normalized.lineHeight = v.lineHeight;
+  for (const [k, v] of Object.entries(value)) {
+    const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
+    switch (property) {
+      case 'font-name':
+      case 'font-family': {
+        normalized['font-family'] = normalizeFontValue(v);
+        break;
+      }
+      case 'font-weight': {
+        if (typeof v === 'string') {
+          const wgt = VALID_WEIGHT_NAMES.get(v as any);
+          if (wgt) {
+            normalized['font-weight'] = wgt;
+          } else {
+            throw new Error(`invalid font weight "${v}", use number (1-999) or any of the following names: ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`);
+          }
+        } else if (typeof v === 'number') {
+          normalized['font-weight'] = Math.max(1, Math.min(999, v));
+        }
+        break;
+      }
+      default: {
+        (normalized as any)[property] = typeof v === 'string' && parseFloat(v) >= 0 ? normalizeDimensionValue(v) : v;
+        break;
+      }
+    }
+  }
   return normalized;
 }

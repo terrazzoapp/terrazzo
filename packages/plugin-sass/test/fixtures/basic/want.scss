@@ -19,10 +19,16 @@ $__token-values: (
     default: (Helvetica),
   ),
   "typography.page-title": (
-    default: (600 48px/1.25 Helvetica),
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.page-title\")` instead.",
+  ),
+  "typography.subheading": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.subheading\")` instead.",
+  ),
+  "typography.callout": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.callout\")` instead.",
   ),
   "typography.body": (
-    default: (400 16px/1.5 "IBM Plex Sans", -system-ui, sans-serif),
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.body\")` instead.",
   ),
   "shadow": (
     default: (0 4px 8px 0 #0000001a),
@@ -32,14 +38,70 @@ $__token-values: (
   ),
 );
 
+$__token-typography-mixins: (
+  "typography.page-title": (
+    default: (
+      "font-family": (Helvetica),
+      "font-size": (48px),
+      "font-weight": (600),
+      "letter-spacing": (0.125em),
+      "line-height": (1.25),
+    ),
+  ),
+  "typography.subheading": (
+    default: (
+      "font-family": (Helvetica),
+      "font-size": (18px),
+      "font-weight": (500),
+      "letter-spacing": (0.25em),
+      "line-height": (1.375),
+      "text-transform": (uppercase),
+    ),
+  ),
+  "typography.callout": (
+    default: (
+      "font-family": ("IBM Plex Sans", -system-ui, sans-serif),
+      "font-size": (18px),
+      "font-style": (italic),
+      "font-weight": (300),
+      "line-height": (1.5),
+    ),
+  ),
+  "typography.body": (
+    default: (
+      "font-family": ("IBM Plex Sans", -system-ui, sans-serif),
+      "font-size": (16px),
+      "font-weight": (400),
+      "line-height": (1.5),
+    ),
+  ),
+);
+
 @function token($tokenName, $modeName: default) {
   @if map.has-key($__token-values, $tokenName) == false {
     @error "No token named \"#{$tokenName}\"";
   }
   $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, "__cobalt-error") {
+    @error map.get($_token, "__cobalt-error");
+  }
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
     @return map.get($_token, default);
+  }
+}
+
+@mixin typography($tokenName, $modeName: default) {
+  @if map.has-key($__token-typography-mixins, $tokenName) == false {
+    @error "No typography mixin named \"#{$tokenName}\"";
+  }
+  $_mixin: map.get($__token-typography-mixins, $tokenName);
+  $_properties: map.get($_token, default);
+  @if map.has-key($_token, $modeName) {
+    $_properties: map.get($_token, $modeName);
+  }
+  @each $_property, $_value in $_properties {
+    #{$_property}: #{$_value};
   }
 }

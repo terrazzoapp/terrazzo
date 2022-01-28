@@ -331,7 +331,10 @@ describe('9. Composite Type', () => {
     it('basic', () => {
       const json = {
         typography: {
-          'page-title': { type: 'typography', value: { fontName: ['Helvetica', '-system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25 } },
+          'page-title': {
+            type: 'typography',
+            value: { 'font-family': ['Helvetica', '-system-ui'], 'font-size': '64px', 'letter-spacing': '-0.01em', 'line-height': 1.25 },
+          },
         },
       };
       const tokens = getTokens(json);
@@ -344,18 +347,21 @@ describe('9. Composite Type', () => {
           family: { heading: { type: 'font', value: ['Helvetica', '-system-ui'] } },
           'page-title': {
             type: 'typography',
-            value: { fontName: '{typography.family.heading}', fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25 },
+            value: { 'font-family': '{typography.family.heading}', 'font-size': '64px', 'letter-spacing': '-0.01em', 'line-height': 1.25 },
           },
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.page-title').value.fontName).to.deep.equal(json.typography.family.heading.value);
+      expect(tokens.find((t) => t.id === 'typography.page-title').value['font-family']).to.deep.equal(json.typography.family.heading.value);
     });
 
     it('alias: whole type', () => {
       const json = {
         typography: {
-          'page-title': { type: 'typography', value: { fontName: ['Helvetica', '-system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25 } },
+          'page-title': {
+            type: 'typography',
+            value: { 'font-family': ['Helvetica', '-system-ui'], 'font-size': '64px', 'letter-spacing': '-0.01em', 'line-height': 1.25 },
+          },
           'lg-title': { type: 'typography', value: '{typography.page-title}' },
         },
       };

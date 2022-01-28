@@ -192,15 +192,16 @@ export type FontWeightName =
   | 'extra-black'
   | 'ultra-black';
 export interface TypographyValue {
-  fontName: FontToken['value'];
-  fontSize: DimensionToken['value'];
-  fontStyle: string;
-  fontWeight: number | FontWeightName;
-  letterSpacing: DimensionToken['value'];
-  lineHeight: string | number;
+  'font-family': FontToken['value'];
+  'font-size': DimensionToken['value'];
+  'font-style': string;
+  'font-weight': number | FontWeightName;
+  'letter-spacing': DimensionToken['value'];
+  'line-height': string | number;
+  'text-transform': string;
 }
 export interface ParsedTypographyValue extends TypographyValue {
-  fontName: ParsedFontToken['value'];
+  'font-family': ParsedFontToken['value'];
 }
 export interface TypographyToken extends TokenBase<Partial<TypographyValue>> {
   type: 'typography';

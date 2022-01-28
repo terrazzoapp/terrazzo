@@ -1,0 +1,41 @@
+/**
+ * This file was auto-generated from tokens.json.
+ * DO NOT EDIT!
+ */
+
+:root {
+  --typography-family-body: "IBM Plex Sans", -system-ui, sans-serif;
+  --typography-family-heading: Helvetica;
+}
+
+.typography-page-title {
+  font-family: Helvetica;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.125em;
+}
+
+.typography-subheading {
+  font-family: Helvetica;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.375;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.typography-callout {
+  font-family: "IBM Plex Sans", -system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.typography-body {
+  font-family: "IBM Plex Sans", -system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}

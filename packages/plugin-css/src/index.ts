@@ -11,6 +11,7 @@ import type {
   ParsedShadowToken,
   ParsedTransitionToken,
   ParsedTypographyToken,
+  ParsedTypographyValue,
   ParsedURLToken,
   Plugin,
   ResolvedConfig,
@@ -47,14 +48,14 @@ export interface Options {
   modeSelectors?: Record<string, string | string[]>;
   /** handle different token types */
   transform?: Partial<TokenTransformer>;
-  /** don’t like CSS variable names? Change it! */
-  transformVariableNames?(id: string): string;
+  /** prefix variable names */
+  prefix?: string;
 }
 
 export default function css(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
-  let format = options?.transformVariableNames || defaultFormatter;
+  let prefix = options?.prefix || '';
   let transform = {
     ...(options?.transform || {}),
   } as TokenTransformer;
@@ -67,22 +68,30 @@ export default function css(options?: Options): Plugin {
   if (!transform.url) transform.url = transformURL;
   if (!transform.shadow) transform.shadow = transformShadow;
   if (!transform.gradient) transform.gradient = transformGradient;
-  if (!transform.typography) transform.typography = transformTypography;
   if (!transform.transition) transform.transition = transformTransition;
 
   const i = new Indenter();
 
-  function defaultFormatter(id: string): string {
-    return id.replace(DOT_UNDER_GLOB_RE, '-');
+  function makeVars(tokens: Record<string, any>, indentLv = 0, generateRoot = false): string[] {
+    const output: string[] = [];
+    if (generateRoot) output.push(i.indent(':root {', indentLv));
+    for (const [id, value] of Object.entries(tokens)) {
+      output.push(i.indent(`${id.replace(DASH_PREFIX_RE, `--${prefix}`).replace(DOT_UNDER_GLOB_RE, '-')}: ${value};`, indentLv + (generateRoot ? 1 : 0)));
+    }
+    if (generateRoot) output.push(i.indent('}', indentLv));
+    return output;
   }
 
-  function makeVars(tokens: Record<string, any>, wrapper = ':root', indentLv = 0): string[] {
+  function makeTypography(tokens: Record<string, ParsedTypographyValue>, indentLv = 0): string[] {
     const output: string[] = [];
-    output.push(i.indent(`${wrapper} {`, indentLv));
-    for (const [id, value] of Object.entries(tokens)) {
-      output.push(i.indent(`${format(id).replace(DASH_PREFIX_RE, '--')}: ${value};`, indentLv + 1));
+    for (const [id, properties] of Object.entries(tokens)) {
+      output.push('');
+      output.push(i.indent(`.${id.replace(DOT_UNDER_GLOB_RE, '-')} {`, indentLv));
+      for (const [property, value] of Object.entries(properties)) {
+        output.push(i.indent(`${property}: ${Array.isArray(value) ? formatFontNames(value) : value};`, indentLv + 1));
+      }
+      output.push(i.indent('}', indentLv));
     }
-    output.push(i.indent('}', indentLv));
     return output;
   }
 
@@ -111,11 +120,32 @@ export default function css(options?: Options): Plugin {
     },
     async build({ tokens, metadata }): Promise<BuildResult[]> {
       const tokenVals: { [id: string]: any } = {};
+      const typographyVals: { [id: string]: ParsedTypographyValue } = {};
       const modeVals: { [selector: string]: { [id: string]: any } } = {};
+      const typographyModeVals: { [selector: string]: { [id: string]: ParsedTypographyValue } } = {};
       const selectors: string[] = [];
 
       // transformation (1 pass through all tokens + modes)
       for (const token of tokens) {
+        // exception: typography tokens require CSS classes
+        if (token.type === 'typography') {
+          typographyVals[token.id] = token.value as ParsedTypographyValue;
+          if (token.mode && options?.modeSelectors) {
+            for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
+              const [groupRoot, modeName] = parseModeSelector(modeID);
+              if ((groupRoot && !token.id.startsWith(groupRoot)) || !token.mode[modeName]) continue;
+
+              if (!Array.isArray(selectors)) modeSelectors = [selectors];
+              for (const selector of modeSelectors) {
+                if (!selectors.includes(selector)) selectors.push(selector);
+                if (!modeVals[selector]) modeVals[selector] = {};
+                typographyModeVals[selector][token.id] = token.mode[modeName] as ParsedTypographyValue;
+              }
+            }
+          }
+          continue;
+        }
+
         const transformer = transform[token.type];
         if (!transformer) throw new Error(`No transformer found for token type "${token.type}"`);
 
@@ -149,45 +179,40 @@ export default function css(options?: Options): Plugin {
       code.push(' * DO NOT EDIT!');
       code.push(' */');
       code.push('');
-      code.push(...makeVars(tokenVals));
-      code.push('');
+      code.push(...makeVars(tokenVals, 0, true));
+      code.push(...makeTypography(typographyVals));
 
       // modes
       for (const selector of selectors) {
-        if (!Object.keys(modeVals[selector]).length) {
+        code.push('');
+        if (!Object.keys(modeVals[selector]).length && !Object.keys(typographyModeVals[selector]).length) {
           // eslint-disable-next-line no-console
           console.warn(`${FG_YELLOW}@cobalt-ui/plugin-css${RESET} can’t find any tokens for "${selector}"`);
           continue;
         }
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-        if (selector.startsWith('@')) {
-          code.push(i.indent(`${wrapper} {`, 0));
-          code.push(...makeVars(modeVals[selector], ':root', 1));
-          code.push(i.indent('}', 0));
-        } else {
-          code.push(...makeVars(modeVals[selector], wrapper));
-        }
+        code.push(`${wrapper} {`);
+        if (modeVals[selector]) code.push(...makeVars(modeVals[selector], 1, wrapper.startsWith('@')));
+        if (typographyModeVals[selector]) code.push(...makeTypography(typographyModeVals[selector], 1));
+        code.push('}');
       }
-      code.push('');
 
       // P3
       if (tokens.some((t) => t.type === 'color' || t.type === 'gradient' || t.type === 'shadow')) {
-        code.push(i.indent(`@media (color-gamut: p3) {`, 0));
-        code.push(...makeP3(makeVars(tokenVals, ':root', 1)));
         code.push('');
+        code.push(i.indent(`@media (color-gamut: p3) {`, 0));
+        code.push(...makeP3(makeVars(tokenVals, 1, true)));
         for (const selector of selectors) {
+          code.push('');
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-          if (selector.startsWith('@')) {
-            code.push(i.indent(`${wrapper} {`, 1));
-            code.push(...makeP3(makeVars(modeVals[selector], ':root', 2)));
-            code.push(i.indent('}', 1));
-          } else {
-            code.push(...makeP3(makeVars(modeVals[selector], wrapper, 1)));
-          }
+          code.push(i.indent(`${wrapper} {`, 1));
+          code.push(...makeP3(makeVars(modeVals[selector], 2, wrapper.startsWith('@'))));
+          code.push(i.indent('}', 1));
         }
         code.push(i.indent('}', 0));
-        code.push('');
       }
+
+      code.push('');
 
       return [
         {
@@ -234,12 +259,6 @@ function transformShadow(value: ParsedShadowToken['value']): string {
 /** transform gradient */
 function transformGradient(value: ParsedGradientToken['value']): string {
   return value.map((g: GradientStop) => `${g.color} ${g.position * 100}%`).join(', ');
-}
-/** transform typography */
-function transformTypography(value: ParsedTypographyToken['value']): string {
-  const hasLineHeight = typeof value.lineHeight === 'number' || typeof value.lineHeight === 'string';
-  let size = value.fontSize || hasLineHeight ? `${value.fontSize}${hasLineHeight ? `/${value.lineHeight}` : ''}` : '';
-  return [value.fontStyle, value.fontWeight, size, formatFontNames((value.fontName as any) || [])].filter((v) => !!v).join(' ');
 }
 /** transform transition */
 function transformTransition(value: ParsedTransitionToken['value']): string {

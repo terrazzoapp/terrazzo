@@ -14,6 +14,9 @@ for (const test of fs.readdirSync(FIXTURES_DIR)) {
 
     const got = fs.readFileSync(new URL('./index.scss', outDir), 'utf8');
     const want = fs.readFileSync(new URL('./want.scss', base), 'utf8');
+
+    const lines1 = got.split('\n');
+    const lines2 = want.split('\n');
     expect(got).to.equal(want);
   });
 }

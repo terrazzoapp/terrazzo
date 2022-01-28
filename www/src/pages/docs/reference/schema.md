@@ -229,12 +229,13 @@ _Note: this is under review in the Design Tokens schema_
 {
   "type": "typography",
   "value": {
-    "fontName": ["Helvetica", "-system-ui", "sans-serif"],
-    "fontSize": "24px",
-    "fontStyle": "normal",
-    "fontWeight": 400,
-    "lineHeight": 1.5,
-    "letterSpacing": 0
+    "font-family": ["Helvetica", "-system-ui", "sans-serif"],
+    "font-size": "24px",
+    "font-style": "normal",
+    "font-weight": 400,
+    "letter-spacing": 0,
+    "line-height": 1.5,
+    "text-transform": "none"
   }
 }
 ```

@@ -6,6 +6,14 @@ import { collectChildren, collectStylesAndComponents, fetchDoc, padRight } from 
 import { colorToHex } from './paint.js';
 
 const LEADING_SLASH_RE = /^\//;
+const TEXT_CASE: Record<Figma.TextCase, string | undefined> = {
+  UPPER: 'uppercase',
+  LOWER: 'lowercase',
+  TITLE: 'capitalize',
+  ORIGINAL: undefined,
+  SMALL_CAPS: undefined,
+  SMALL_CAPS_FORCED: undefined,
+};
 
 async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
   // validate config
@@ -117,16 +125,17 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
                 node = children.find((n) => n.type === 'TEXT');
                 if (!node) throw new Error(`${id}: could not find text style on "${figmaName}"`);
               }
-              const { fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize } = node.style as Figma.TypeStyle;
+              const { fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize, textCase } = node.style as Figma.TypeStyle;
               tokenUpdates[id] = {
                 type: 'typography',
                 value: {
-                  fontName: [fontFamily],
-                  fontSize: `${fontSize}px`,
-                  ...(italic ? { fontStyle: 'italic' } : {}),
-                  fontWeight: fontWeight,
-                  letterSpacing: `${letterSpacing / fontSize}em`,
-                  lineHeight: (lineHeightPercentFontSize || 100) / 100,
+                  'font-family': [fontFamily],
+                  'font-size': `${fontSize}px`,
+                  ...(italic ? { 'font-style': 'italic' } : {}),
+                  'font-weight': fontWeight,
+                  'letter-spacing': `${letterSpacing / fontSize}em`,
+                  'line-height': (lineHeightPercentFontSize || 100) / 100,
+                  ...(textCase && TEXT_CASE[textCase] ? { 'text-transform': TEXT_CASE[textCase] } : {}),
                 },
               };
               break;
