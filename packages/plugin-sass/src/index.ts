@@ -94,9 +94,9 @@ ${cbClose}`
     @error "No typography mixin named \\"#{$tokenName}\\""${semi}
   ${cbClose}
   $_mixin: map.get($${VAR_TYPOGRAPHY}, $tokenName)${semi}
-  $_properties: map.get($_token, default)${semi}
-  @if map.has-key($_token, $modeName)${cbOpen}
-    $_properties: map.get($_token, $modeName)${semi}
+  $_properties: map.get($_mixin, default)${semi}
+  @if map.has-key($_mixin, $modeName)${cbOpen}
+    $_properties: map.get($_mixin, $modeName)${semi}
   ${cbClose}
   @each $_property, $_value in $_properties${cbOpen}
     #{$_property}: #{$_value}${semi}
