@@ -359,7 +359,7 @@
   --space-xx-large: 3rem;
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --palette-blue-10: color(display-p3 0 0.08627 0.22353);
     --palette-blue-15: color(display-p3 0.01176 0.13725 0.30196);

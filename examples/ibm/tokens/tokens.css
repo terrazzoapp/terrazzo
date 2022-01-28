@@ -2240,7 +2240,7 @@
   --easing-exit--expressive: cubic-bezier(0.4, 0.14, 1, 1);
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --color-black: color(display-p3 0 0 0);
     --color-black100: color(display-p3 0 0 0);

@@ -96,7 +96,7 @@
   line-height: 13px;
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --color-systemBlue: color(display-p3 0 0.47843 1);
     --color-systemBrown: color(display-p3 0.63529 0.51765 0.36863);

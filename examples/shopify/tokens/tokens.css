@@ -74,7 +74,7 @@
   --space-extra-loose: 32px;
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --color-black: color(display-p3 0 0 0);
     --color-blue-lighter: color(display-p3 0.92157 0.96078 0.98039);

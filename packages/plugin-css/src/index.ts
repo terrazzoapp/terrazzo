@@ -200,7 +200,7 @@ export default function css(options?: Options): Plugin {
       // P3
       if (tokens.some((t) => t.type === 'color' || t.type === 'gradient' || t.type === 'shadow')) {
         code.push('');
-        code.push(i.indent(`@media (color-gamut: p3) {`, 0));
+        code.push(i.indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
         code.push(...makeP3(makeVars(tokenVals, 1, true)));
         for (const selector of selectors) {
           code.push('');

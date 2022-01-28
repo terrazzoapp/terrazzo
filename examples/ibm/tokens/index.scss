@@ -6729,9 +6729,9 @@ $__token-typography-mixins: (
     @error "No typography mixin named \"#{$tokenName}\"";
   }
   $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_token, default);
-  @if map.has-key($_token, $modeName) {
-    $_properties: map.get($_token, $modeName);
+  $_properties: map.get($_mixin, default);
+  @if map.has-key($_mixin, $modeName) {
+    $_properties: map.get($_mixin, $modeName);
   }
   @each $_property, $_value in $_properties {
     #{$_property}: #{$_value};

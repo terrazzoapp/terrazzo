@@ -684,7 +684,7 @@
   --color-white: #ffffff;
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --color-black: color(display-p3 0.10588 0.12157 0.14118);
     --color-blue-0: color(display-p3 0.86667 0.95686 1);

@@ -44,7 +44,7 @@
   --color-action: #388bfd;
 }
 
-@media (color-gamut: p3) {
+@supports (color: color(display-p3 1 1 1)) {
   :root {
     --color-blue: color(display-p3 0.12941 0.5451 1);
     --color-action: color(display-p3 0.12941 0.5451 1);
