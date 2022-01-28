@@ -1,5 +1,15 @@
 # @cobalt-ui/core
 
+## 0.4.0
+
+### Minor Changes
+
+- 8845084: Use kebab-case properties for typography tokens, allow all CSS properties
+
+### Patch Changes
+
+- Fix token value 0
+
 ## 0.3.4
 
 ### Patch Changes

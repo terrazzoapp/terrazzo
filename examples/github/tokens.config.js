@@ -1,9 +1,11 @@
-import css from '@cobalt-ui/plugin-css';
-import sass from '@cobalt-ui/plugin-sass';
+import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginSass from '@cobalt-ui/plugin-sass';
+import pluginJSON from '@cobalt-ui/plugin-json';
+import pluginTS from '@cobalt-ui/plugin-ts';
 
 export default {
   plugins: [
-    css({
+    pluginCSS({
       modeSelectors: {
         'color#light': ['[data-color-theme="light"]'],
         'color#light_colorblind': ['[data-color-theme="light-colorblind"]'],
@@ -11,6 +13,8 @@ export default {
         'font.size#desktop': ['@media (min-width: 600px)'],
       },
     }),
-    sass(),
+    pluginSass(),
+    pluginJSON(),
+    pluginTS(),
   ],
 };

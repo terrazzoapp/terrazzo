@@ -1,0 +1,6739 @@
+// IBM Carbon
+// This file was auto-generated from tokens.json.
+// DO NOT EDIT!
+
+@use "sass:map";
+
+$__token-values: (
+  "color.black": (
+    default: (#000000),
+  ),
+  "color.black100": (
+    default: (#000000),
+  ),
+  "color.blackHover": (
+    default: (#212121),
+  ),
+  "color.blue10": (
+    default: (#edf5ff),
+  ),
+  "color.blue20": (
+    default: (#d0e2ff),
+  ),
+  "color.blue30": (
+    default: (#a6c8ff),
+  ),
+  "color.blue40": (
+    default: (#78a9ff),
+  ),
+  "color.blue50": (
+    default: (#4589ff),
+  ),
+  "color.blue60": (
+    default: (#0f62fe),
+  ),
+  "color.blue70": (
+    default: (#0043ce),
+  ),
+  "color.blue80": (
+    default: (#002d9c),
+  ),
+  "color.blue90": (
+    default: (#001d6c),
+  ),
+  "color.blue100": (
+    default: (#001141),
+  ),
+  "color.blue10Hover": (
+    default: (#dbebff),
+  ),
+  "color.blue20Hover": (
+    default: (#b8d3ff),
+  ),
+  "color.blue30Hover": (
+    default: (#8ab6ff),
+  ),
+  "color.blue40Hover": (
+    default: (#5c97ff),
+  ),
+  "color.blue50Hover": (
+    default: (#1f70ff),
+  ),
+  "color.blue60Hover": (
+    default: (#0050e6),
+  ),
+  "color.blue70Hover": (
+    default: (#0053ff),
+  ),
+  "color.blue80Hover": (
+    default: (#0039c7),
+  ),
+  "color.blue90Hover": (
+    default: (#00258a),
+  ),
+  "color.blue100Hover": (
+    default: (#001f75),
+  ),
+  "color.coolGray10": (
+    default: (#f2f4f8),
+  ),
+  "color.coolGray20": (
+    default: (#dde1e6),
+  ),
+  "color.coolGray30": (
+    default: (#c1c7cd),
+  ),
+  "color.coolGray40": (
+    default: (#a2a9b0),
+  ),
+  "color.coolGray50": (
+    default: (#878d96),
+  ),
+  "color.coolGray60": (
+    default: (#697077),
+  ),
+  "color.coolGray70": (
+    default: (#4d5358),
+  ),
+  "color.coolGray80": (
+    default: (#343a3f),
+  ),
+  "color.coolGray90": (
+    default: (#21272a),
+  ),
+  "color.coolGray100": (
+    default: (#121619),
+  ),
+  "color.coolGray10Hover": (
+    default: (#e4e9f1),
+  ),
+  "color.coolGray20Hover": (
+    default: (#cdd3da),
+  ),
+  "color.coolGray30Hover": (
+    default: (#adb5bd),
+  ),
+  "color.coolGray40Hover": (
+    default: (#9199a1),
+  ),
+  "color.coolGray50Hover": (
+    default: (#757b85),
+  ),
+  "color.coolGray60Hover": (
+    default: (#585e64),
+  ),
+  "color.coolGray70Hover": (
+    default: (#5d646a),
+  ),
+  "color.coolGray80Hover": (
+    default: (#434a51),
+  ),
+  "color.coolGray90Hover": (
+    default: (#2b3236),
+  ),
+  "color.coolGray100Hover": (
+    default: (#222a2f),
+  ),
+  "color.cyan10": (
+    default: (#e5f6ff),
+  ),
+  "color.cyan20": (
+    default: (#bae6ff),
+  ),
+  "color.cyan30": (
+    default: (#82cfff),
+  ),
+  "color.cyan40": (
+    default: (#33b1ff),
+  ),
+  "color.cyan50": (
+    default: (#1192e8),
+  ),
+  "color.cyan60": (
+    default: (#0072c3),
+  ),
+  "color.cyan70": (
+    default: (#00539a),
+  ),
+  "color.cyan80": (
+    default: (#003a6d),
+  ),
+  "color.cyan90": (
+    default: (#012749),
+  ),
+  "color.cyan100": (
+    default: (#061727),
+  ),
+  "color.cyan10Hover": (
+    default: (#cceeff),
+  ),
+  "color.cyan20Hover": (
+    default: (#99daff),
+  ),
+  "color.cyan30Hover": (
+    default: (#57beff),
+  ),
+  "color.cyan40Hover": (
+    default: (#059fff),
+  ),
+  "color.cyan50Hover": (
+    default: (#0f7ec8),
+  ),
+  "color.cyan60Hover": (
+    default: (#005fa3),
+  ),
+  "color.cyan70Hover": (
+    default: (#0066bd),
+  ),
+  "color.cyan80Hover": (
+    default: (#00498a),
+  ),
+  "color.cyan90Hover": (
+    default: (#013360),
+  ),
+  "color.cyan100Hover": (
+    default: (#0b2947),
+  ),
+  "color.gray10": (
+    default: (#f4f4f4),
+  ),
+  "color.gray20": (
+    default: (#e0e0e0),
+  ),
+  "color.gray30": (
+    default: (#c6c6c6),
+  ),
+  "color.gray40": (
+    default: (#a8a8a8),
+  ),
+  "color.gray50": (
+    default: (#8d8d8d),
+  ),
+  "color.gray60": (
+    default: (#6f6f6f),
+  ),
+  "color.gray70": (
+    default: (#525252),
+  ),
+  "color.gray80": (
+    default: (#393939),
+  ),
+  "color.gray90": (
+    default: (#262626),
+  ),
+  "color.gray100": (
+    default: (#161616),
+  ),
+  "color.gray10Hover": (
+    default: (#e8e8e8),
+  ),
+  "color.gray20Hover": (
+    default: (#d1d1d1),
+  ),
+  "color.gray30Hover": (
+    default: (#b5b5b5),
+  ),
+  "color.gray40Hover": (
+    default: (#999999),
+  ),
+  "color.gray50Hover": (
+    default: (#7a7a7a),
+  ),
+  "color.gray60Hover": (
+    default: (#5e5e5e),
+  ),
+  "color.gray70Hover": (
+    default: (#636363),
+  ),
+  "color.gray80Hover": (
+    default: (#474747),
+  ),
+  "color.gray90Hover": (
+    default: (#333333),
+  ),
+  "color.gray100Hover": (
+    default: (#292929),
+  ),
+  "color.green10": (
+    default: (#defbe6),
+  ),
+  "color.green20": (
+    default: (#a7f0ba),
+  ),
+  "color.green30": (
+    default: (#6fdc8c),
+  ),
+  "color.green40": (
+    default: (#42be65),
+  ),
+  "color.green50": (
+    default: (#24a148),
+  ),
+  "color.green60": (
+    default: (#198038),
+  ),
+  "color.green70": (
+    default: (#0e6027),
+  ),
+  "color.green80": (
+    default: (#044317),
+  ),
+  "color.green90": (
+    default: (#022d0d),
+  ),
+  "color.green100": (
+    default: (#071908),
+  ),
+  "color.green10Hover": (
+    default: (#b6f6c8),
+  ),
+  "color.green20Hover": (
+    default: (#74e792),
+  ),
+  "color.green30Hover": (
+    default: (#36ce5e),
+  ),
+  "color.green40Hover": (
+    default: (#3bab5a),
+  ),
+  "color.green50Hover": (
+    default: (#208e3f),
+  ),
+  "color.green60Hover": (
+    default: (#166f31),
+  ),
+  "color.green70Hover": (
+    default: (#11742f),
+  ),
+  "color.green80Hover": (
+    default: (#05521c),
+  ),
+  "color.green90Hover": (
+    default: (#033b11),
+  ),
+  "color.green100Hover": (
+    default: (#0d300f),
+  ),
+  "color.magenta10": (
+    default: (#fff0f7),
+  ),
+  "color.magenta20": (
+    default: (#ffd6e8),
+  ),
+  "color.magenta30": (
+    default: (#ffafd2),
+  ),
+  "color.magenta40": (
+    default: (#ff7eb6),
+  ),
+  "color.magenta50": (
+    default: (#ee5396),
+  ),
+  "color.magenta60": (
+    default: (#d02670),
+  ),
+  "color.magenta70": (
+    default: (#9f1853),
+  ),
+  "color.magenta80": (
+    default: (#740937),
+  ),
+  "color.magenta90": (
+    default: (#510224),
+  ),
+  "color.magenta100": (
+    default: (#2a0a18),
+  ),
+  "color.magenta10Hover": (
+    default: (#ffe0ef),
+  ),
+  "color.magenta20Hover": (
+    default: (#ffbdda),
+  ),
+  "color.magenta30Hover": (
+    default: (#ff94c3),
+  ),
+  "color.magenta40Hover": (
+    default: (#ff57a0),
+  ),
+  "color.magenta50Hover": (
+    default: (#e3176f),
+  ),
+  "color.magenta60Hover": (
+    default: (#b0215f),
+  ),
+  "color.magenta70Hover": (
+    default: (#bf1d63),
+  ),
+  "color.magenta80Hover": (
+    default: (#8e0b43),
+  ),
+  "color.magenta90Hover": (
+    default: (#68032e),
+  ),
+  "color.magenta100Hover": (
+    default: (#53142f),
+  ),
+  "color.orange": (
+    default: (#ff832b),
+  ),
+  "color.orange10": (
+    default: (#fff2e8),
+  ),
+  "color.orange20": (
+    default: (#ffd9be),
+  ),
+  "color.orange30": (
+    default: (#ffb784),
+  ),
+  "color.orange40": (
+    default: (#ff832b),
+  ),
+  "color.orange50": (
+    default: (#eb6200),
+  ),
+  "color.orange60": (
+    default: (#ba4e00),
+  ),
+  "color.orange70": (
+    default: (#8a3800),
+  ),
+  "color.orange80": (
+    default: (#5e2900),
+  ),
+  "color.orange90": (
+    default: (#3e1a00),
+  ),
+  "color.orange100": (
+    default: (#231000),
+  ),
+  "color.orange10Hover": (
+    default: (#ffe2cc),
+  ),
+  "color.orange20Hover": (
+    default: (#ffc69e),
+  ),
+  "color.orange30Hover": (
+    default: (#ff9d57),
+  ),
+  "color.orange40Hover": (
+    default: (#fa6800),
+  ),
+  "color.orange50Hover": (
+    default: (#cc5500),
+  ),
+  "color.orange60Hover": (
+    default: (#9e4200),
+  ),
+  "color.orange70Hover": (
+    default: (#a84400),
+  ),
+  "color.orange80Hover": (
+    default: (#753300),
+  ),
+  "color.orange90Hover": (
+    default: (#522200),
+  ),
+  "color.orange100Hover": (
+    default: (#421e00),
+  ),
+  "color.purple10": (
+    default: (#f6f2ff),
+  ),
+  "color.purple20": (
+    default: (#e8daff),
+  ),
+  "color.purple30": (
+    default: (#d4bbff),
+  ),
+  "color.purple40": (
+    default: (#be95ff),
+  ),
+  "color.purple50": (
+    default: (#a56eff),
+  ),
+  "color.purple60": (
+    default: (#8a3ffc),
+  ),
+  "color.purple70": (
+    default: (#6929c4),
+  ),
+  "color.purple80": (
+    default: (#491d8b),
+  ),
+  "color.purple90": (
+    default: (#31135e),
+  ),
+  "color.purple100": (
+    default: (#1c0f30),
+  ),
+  "color.purple10Hover": (
+    default: (#ede5ff),
+  ),
+  "color.purple20Hover": (
+    default: (#dcc7ff),
+  ),
+  "color.purple30Hover": (
+    default: (#c5a3ff),
+  ),
+  "color.purple40Hover": (
+    default: (#ae7aff),
+  ),
+  "color.purple50Hover": (
+    default: (#9352ff),
+  ),
+  "color.purple60Hover": (
+    default: (#7822fb),
+  ),
+  "color.purple70Hover": (
+    default: (#7c3dd6),
+  ),
+  "color.purple80Hover": (
+    default: (#5b24ad),
+  ),
+  "color.purple90Hover": (
+    default: (#40197b),
+  ),
+  "color.purple100Hover": (
+    default: (#341c59),
+  ),
+  "color.red10": (
+    default: (#fff1f1),
+  ),
+  "color.red20": (
+    default: (#ffd7d9),
+  ),
+  "color.red30": (
+    default: (#ffb3b8),
+  ),
+  "color.red40": (
+    default: (#ff8389),
+  ),
+  "color.red50": (
+    default: (#fa4d56),
+  ),
+  "color.red60": (
+    default: (#da1e28),
+  ),
+  "color.red70": (
+    default: (#a2191f),
+  ),
+  "color.red80": (
+    default: (#750e13),
+  ),
+  "color.red90": (
+    default: (#520408),
+  ),
+  "color.red100": (
+    default: (#2d0709),
+  ),
+  "color.red10Hover": (
+    default: (#ffe0e0),
+  ),
+  "color.red20Hover": (
+    default: (#ffc2c5),
+  ),
+  "color.red30Hover": (
+    default: (#ff99a0),
+  ),
+  "color.red40Hover": (
+    default: (#ff6168),
+  ),
+  "color.red50Hover": (
+    default: (#ee0713),
+  ),
+  "color.red60Hover": (
+    default: (#b81922),
+  ),
+  "color.red70Hover": (
+    default: (#c21e25),
+  ),
+  "color.red80Hover": (
+    default: (#921118),
+  ),
+  "color.red90Hover": (
+    default: (#66050a),
+  ),
+  "color.red100Hover": (
+    default: (#540d11),
+  ),
+  "color.teal10": (
+    default: (#d9fbfb),
+  ),
+  "color.teal20": (
+    default: (#9ef0f0),
+  ),
+  "color.teal30": (
+    default: (#3ddbd9),
+  ),
+  "color.teal40": (
+    default: (#08bdba),
+  ),
+  "color.teal50": (
+    default: (#009d9a),
+  ),
+  "color.teal60": (
+    default: (#007d79),
+  ),
+  "color.teal70": (
+    default: (#005d5d),
+  ),
+  "color.teal80": (
+    default: (#004144),
+  ),
+  "color.teal90": (
+    default: (#022b30),
+  ),
+  "color.teal100": (
+    default: (#081a1c),
+  ),
+  "color.teal10Hover": (
+    default: (#acf6f6),
+  ),
+  "color.teal20Hover": (
+    default: (#57e5e5),
+  ),
+  "color.teal30Hover": (
+    default: (#25cac8),
+  ),
+  "color.teal40Hover": (
+    default: (#07aba9),
+  ),
+  "color.teal50Hover": (
+    default: (#008a87),
+  ),
+  "color.teal60Hover": (
+    default: (#006b68),
+  ),
+  "color.teal70Hover": (
+    default: (#007070),
+  ),
+  "color.teal80Hover": (
+    default: (#005357),
+  ),
+  "color.teal90Hover": (
+    default: (#033940),
+  ),
+  "color.teal100Hover": (
+    default: (#0f3034),
+  ),
+  "color.warmGray10": (
+    default: (#f7f3f2),
+  ),
+  "color.warmGray20": (
+    default: (#e5e0df),
+  ),
+  "color.warmGray30": (
+    default: (#cac5c4),
+  ),
+  "color.warmGray40": (
+    default: (#ada8a8),
+  ),
+  "color.warmGray50": (
+    default: (#8f8b8b),
+  ),
+  "color.warmGray60": (
+    default: (#726e6e),
+  ),
+  "color.warmGray70": (
+    default: (#565151),
+  ),
+  "color.warmGray80": (
+    default: (#3c3838),
+  ),
+  "color.warmGray90": (
+    default: (#272525),
+  ),
+  "color.warmGray100": (
+    default: (#171414),
+  ),
+  "color.warmGray10Hover": (
+    default: (#f0e8e6),
+  ),
+  "color.warmGray20Hover": (
+    default: (#d8d0cf),
+  ),
+  "color.warmGray30Hover": (
+    default: (#b9b3b1),
+  ),
+  "color.warmGray40Hover": (
+    default: (#9c9696),
+  ),
+  "color.warmGray50Hover": (
+    default: (#7f7b7b),
+  ),
+  "color.warmGray60Hover": (
+    default: (#605d5d),
+  ),
+  "color.warmGray70Hover": (
+    default: (#696363),
+  ),
+  "color.warmGray80Hover": (
+    default: (#4c4848),
+  ),
+  "color.warmGray90Hover": (
+    default: (#343232),
+  ),
+  "color.warmGray100Hover": (
+    default: (#2c2626),
+  ),
+  "color.white": (
+    default: (#ffffff),
+  ),
+  "color.white0": (
+    default: (#ffffff),
+  ),
+  "color.whiteHover": (
+    default: (#e8e8e8),
+  ),
+  "color.yellow": (
+    default: (#f1c21b),
+  ),
+  "color.yellow10": (
+    default: (#fcf4d6),
+  ),
+  "color.yellow20": (
+    default: (#fddc69),
+  ),
+  "color.yellow30": (
+    default: (#f1c21b),
+  ),
+  "color.yellow40": (
+    default: (#d2a106),
+  ),
+  "color.yellow50": (
+    default: (#b28600),
+  ),
+  "color.yellow60": (
+    default: (#8e6a00),
+  ),
+  "color.yellow70": (
+    default: (#684e00),
+  ),
+  "color.yellow80": (
+    default: (#483700),
+  ),
+  "color.yellow90": (
+    default: (#302400),
+  ),
+  "color.yellow100": (
+    default: (#1c1500),
+  ),
+  "color.yellow10Hover": (
+    default: (#f8e6a0),
+  ),
+  "color.yellow20Hover": (
+    default: (#fccd27),
+  ),
+  "color.yellow30Hover": (
+    default: (#ddb00e),
+  ),
+  "color.yellow40Hover": (
+    default: (#bc9005),
+  ),
+  "color.yellow50Hover": (
+    default: (#9e7700),
+  ),
+  "color.yellow60Hover": (
+    default: (#755800),
+  ),
+  "color.yellow70Hover": (
+    default: (#806000),
+  ),
+  "color.yellow80Hover": (
+    default: (#5c4600),
+  ),
+  "color.yellow90Hover": (
+    default: (#3d2e00),
+  ),
+  "color.yellow100Hover": (
+    default: (#332600),
+  ),
+  "icon.3D-Cursor": (
+    default: (url('./icon/3D-Cursor.svg')),
+  ),
+  "icon.3D-cursor--alt": (
+    default: (url('./icon/3D-cursor--alt.svg')),
+  ),
+  "icon.3D-curve--auto-colon": (
+    default: (url('./icon/3D-curve--auto-colon.svg')),
+  ),
+  "icon.3D-curve--auto-vessels": (
+    default: (url('./icon/3D-curve--auto-vessels.svg')),
+  ),
+  "icon.3D-curve--manual": (
+    default: (url('./icon/3D-curve--manual.svg')),
+  ),
+  "icon.3D-iCa": (
+    default: (url('./icon/3D-iCa.svg')),
+  ),
+  "icon.3D-MPR-Toggle": (
+    default: (url('./icon/3D-MPR-Toggle.svg')),
+  ),
+  "icon.3D-print-mesh": (
+    default: (url('./icon/3D-print-mesh.svg')),
+  ),
+  "icon.3D-software": (
+    default: (url('./icon/3D-software.svg')),
+  ),
+  "icon.3rd-party-connected": (
+    default: (url('./icon/3rd-party-connected.svg')),
+  ),
+  "icon.4K": (
+    default: (url('./icon/4K.svg')),
+  ),
+  "icon.4K--filled": (
+    default: (url('./icon/4K--filled.svg')),
+  ),
+  "icon.accessibility": (
+    default: (url('./icon/accessibility.svg')),
+  ),
+  "icon.accessibility--alt": (
+    default: (url('./icon/accessibility--alt.svg')),
+  ),
+  "icon.accessibility--color": (
+    default: (url('./icon/accessibility--color.svg')),
+  ),
+  "icon.accessibility--color--filled": (
+    default: (url('./icon/accessibility--color--filled.svg')),
+  ),
+  "icon.account": (
+    default: (url('./icon/account.svg')),
+  ),
+  "icon.accumulation--ice": (
+    default: (url('./icon/accumulation--ice.svg')),
+  ),
+  "icon.accumulation--precipitation": (
+    default: (url('./icon/accumulation--precipitation.svg')),
+  ),
+  "icon.accumulation--rain": (
+    default: (url('./icon/accumulation--rain.svg')),
+  ),
+  "icon.accumulation--snow": (
+    default: (url('./icon/accumulation--snow.svg')),
+  ),
+  "icon.activity": (
+    default: (url('./icon/activity.svg')),
+  ),
+  "icon.add": (
+    default: (url('./icon/add.svg')),
+  ),
+  "icon.add--alt": (
+    default: (url('./icon/add--alt.svg')),
+  ),
+  "icon.add--filled": (
+    default: (url('./icon/add--filled.svg')),
+  ),
+  "icon.add-comment": (
+    default: (url('./icon/add-comment.svg')),
+  ),
+  "icon.agriculture-analytics": (
+    default: (url('./icon/agriculture-analytics.svg')),
+  ),
+  "icon.ai-results": (
+    default: (url('./icon/ai-results.svg')),
+  ),
+  "icon.ai-results--high": (
+    default: (url('./icon/ai-results--high.svg')),
+  ),
+  "icon.ai-results--low": (
+    default: (url('./icon/ai-results--low.svg')),
+  ),
+  "icon.ai-results--medium": (
+    default: (url('./icon/ai-results--medium.svg')),
+  ),
+  "icon.ai-results--urgent": (
+    default: (url('./icon/ai-results--urgent.svg')),
+  ),
+  "icon.ai-results--very-high": (
+    default: (url('./icon/ai-results--very-high.svg')),
+  ),
+  "icon.ai-status": (
+    default: (url('./icon/ai-status.svg')),
+  ),
+  "icon.ai-status--complete": (
+    default: (url('./icon/ai-status--complete.svg')),
+  ),
+  "icon.ai-status--failed": (
+    default: (url('./icon/ai-status--failed.svg')),
+  ),
+  "icon.ai-status--in-progress": (
+    default: (url('./icon/ai-status--in-progress.svg')),
+  ),
+  "icon.ai-status--queued": (
+    default: (url('./icon/ai-status--queued.svg')),
+  ),
+  "icon.ai-status--rejected": (
+    default: (url('./icon/ai-status--rejected.svg')),
+  ),
+  "icon.airline--digital-gate": (
+    default: (url('./icon/airline--digital-gate.svg')),
+  ),
+  "icon.airline--manage-gates": (
+    default: (url('./icon/airline--manage-gates.svg')),
+  ),
+  "icon.airline--passenger-care": (
+    default: (url('./icon/airline--passenger-care.svg')),
+  ),
+  "icon.airline--rapid-board": (
+    default: (url('./icon/airline--rapid-board.svg')),
+  ),
+  "icon.airplay": (
+    default: (url('./icon/airplay.svg')),
+  ),
+  "icon.airplay--filled": (
+    default: (url('./icon/airplay--filled.svg')),
+  ),
+  "icon.airport--01": (
+    default: (url('./icon/airport--01.svg')),
+  ),
+  "icon.airport--02": (
+    default: (url('./icon/airport--02.svg')),
+  ),
+  "icon.airport-location": (
+    default: (url('./icon/airport-location.svg')),
+  ),
+  "icon.alarm": (
+    default: (url('./icon/alarm.svg')),
+  ),
+  "icon.alarm--add": (
+    default: (url('./icon/alarm--add.svg')),
+  ),
+  "icon.alarm--subtract": (
+    default: (url('./icon/alarm--subtract.svg')),
+  ),
+  "icon.align--horizontal-center": (
+    default: (url('./icon/align--horizontal-center.svg')),
+  ),
+  "icon.align--horizontal-left": (
+    default: (url('./icon/align--horizontal-left.svg')),
+  ),
+  "icon.align--horizontal-right": (
+    default: (url('./icon/align--horizontal-right.svg')),
+  ),
+  "icon.align--vertical-bottom": (
+    default: (url('./icon/align--vertical-bottom.svg')),
+  ),
+  "icon.align--vertical-center": (
+    default: (url('./icon/align--vertical-center.svg')),
+  ),
+  "icon.align--vertical-top": (
+    default: (url('./icon/align--vertical-top.svg')),
+  ),
+  "icon.align-box--bottom-center": (
+    default: (url('./icon/align-box--bottom-center.svg')),
+  ),
+  "icon.align-box--bottom-left": (
+    default: (url('./icon/align-box--bottom-left.svg')),
+  ),
+  "icon.align-box--bottom-right": (
+    default: (url('./icon/align-box--bottom-right.svg')),
+  ),
+  "icon.align-box--middle-center": (
+    default: (url('./icon/align-box--middle-center.svg')),
+  ),
+  "icon.align-box--middle-left": (
+    default: (url('./icon/align-box--middle-left.svg')),
+  ),
+  "icon.align-box--middle-right": (
+    default: (url('./icon/align-box--middle-right.svg')),
+  ),
+  "icon.align-box--top-center": (
+    default: (url('./icon/align-box--top-center.svg')),
+  ),
+  "icon.align-box--top-left": (
+    default: (url('./icon/align-box--top-left.svg')),
+  ),
+  "icon.align-box--top-right": (
+    default: (url('./icon/align-box--top-right.svg')),
+  ),
+  "icon.analytics": (
+    default: (url('./icon/analytics.svg')),
+  ),
+  "icon.analytics--reference": (
+    default: (url('./icon/analytics--reference.svg')),
+  ),
+  "icon.angle": (
+    default: (url('./icon/angle.svg')),
+  ),
+  "icon.annotation-visibility": (
+    default: (url('./icon/annotation-visibility.svg')),
+  ),
+  "icon.aperture": (
+    default: (url('./icon/aperture.svg')),
+  ),
+  "icon.api": (
+    default: (url('./icon/api.svg')),
+  ),
+  "icon.API--1": (
+    default: (url('./icon/API--1.svg')),
+  ),
+  "icon.app": (
+    default: (url('./icon/app.svg')),
+  ),
+  "icon.app-connectivity": (
+    default: (url('./icon/app-connectivity.svg')),
+  ),
+  "icon.app-switcher": (
+    default: (url('./icon/app-switcher.svg')),
+  ),
+  "icon.apple": (
+    default: (url('./icon/apple.svg')),
+  ),
+  "icon.application": (
+    default: (url('./icon/application.svg')),
+  ),
+  "icon.application--mobile": (
+    default: (url('./icon/application--mobile.svg')),
+  ),
+  "icon.application--virtual": (
+    default: (url('./icon/application--virtual.svg')),
+  ),
+  "icon.application--web": (
+    default: (url('./icon/application--web.svg')),
+  ),
+  "icon.apps": (
+    default: (url('./icon/apps.svg')),
+  ),
+  "icon.archive": (
+    default: (url('./icon/archive.svg')),
+  ),
+  "icon.area": (
+    default: (url('./icon/area.svg')),
+  ),
+  "icon.area--custom": (
+    default: (url('./icon/area--custom.svg')),
+  ),
+  "icon.arrival": (
+    default: (url('./icon/arrival.svg')),
+  ),
+  "icon.arrow--annotation": (
+    default: (url('./icon/arrow--annotation.svg')),
+  ),
+  "icon.arrow--down": (
+    default: (url('./icon/arrow--down.svg')),
+  ),
+  "icon.arrow--down-left": (
+    default: (url('./icon/arrow--down-left.svg')),
+  ),
+  "icon.arrow--down-right": (
+    default: (url('./icon/arrow--down-right.svg')),
+  ),
+  "icon.arrow--left": (
+    default: (url('./icon/arrow--left.svg')),
+  ),
+  "icon.arrow--right": (
+    default: (url('./icon/arrow--right.svg')),
+  ),
+  "icon.arrow--up": (
+    default: (url('./icon/arrow--up.svg')),
+  ),
+  "icon.arrow--up-left": (
+    default: (url('./icon/arrow--up-left.svg')),
+  ),
+  "icon.arrow--up-right": (
+    default: (url('./icon/arrow--up-right.svg')),
+  ),
+  "icon.arrow-shift-down": (
+    default: (url('./icon/arrow-shift-down.svg')),
+  ),
+  "icon.arrows": (
+    default: (url('./icon/arrows.svg')),
+  ),
+  "icon.arrows--horizontal": (
+    default: (url('./icon/arrows--horizontal.svg')),
+  ),
+  "icon.arrows--vertical": (
+    default: (url('./icon/arrows--vertical.svg')),
+  ),
+  "icon.asleep": (
+    default: (url('./icon/asleep.svg')),
+  ),
+  "icon.asleep--filled": (
+    default: (url('./icon/asleep--filled.svg')),
+  ),
+  "icon.asset": (
+    default: (url('./icon/asset.svg')),
+  ),
+  "icon.asset--confirm": (
+    default: (url('./icon/asset--confirm.svg')),
+  ),
+  "icon.asset--digital-twin": (
+    default: (url('./icon/asset--digital-twin.svg')),
+  ),
+  "icon.asset--view": (
+    default: (url('./icon/asset--view.svg')),
+  ),
+  "icon.asterisk": (
+    default: (url('./icon/asterisk.svg')),
+  ),
+  "icon.at": (
+    default: (url('./icon/at.svg')),
+  ),
+  "icon.attachment": (
+    default: (url('./icon/attachment.svg')),
+  ),
+  "icon.audio-console": (
+    default: (url('./icon/audio-console.svg')),
+  ),
+  "icon.augmented-reality": (
+    default: (url('./icon/augmented-reality.svg')),
+  ),
+  "icon.auto-scroll": (
+    default: (url('./icon/auto-scroll.svg')),
+  ),
+  "icon.automatic": (
+    default: (url('./icon/automatic.svg')),
+  ),
+  "icon.autoscaling": (
+    default: (url('./icon/autoscaling.svg')),
+  ),
+  "icon.awake": (
+    default: (url('./icon/awake.svg')),
+  ),
+  "icon.back-to-top": (
+    default: (url('./icon/back-to-top.svg')),
+  ),
+  "icon.badge": (
+    default: (url('./icon/badge.svg')),
+  ),
+  "icon.baggage-claim": (
+    default: (url('./icon/baggage-claim.svg')),
+  ),
+  "icon.bar": (
+    default: (url('./icon/bar.svg')),
+  ),
+  "icon.barcode": (
+    default: (url('./icon/barcode.svg')),
+  ),
+  "icon.bare-metal-server": (
+    default: (url('./icon/bare-metal-server.svg')),
+  ),
+  "icon.bare-metal-server--01": (
+    default: (url('./icon/bare-metal-server--01.svg')),
+  ),
+  "icon.bare-metal-server--02": (
+    default: (url('./icon/bare-metal-server--02.svg')),
+  ),
+  "icon.barrier": (
+    default: (url('./icon/barrier.svg')),
+  ),
+  "icon.basketball": (
+    default: (url('./icon/basketball.svg')),
+  ),
+  "icon.bastion-host": (
+    default: (url('./icon/bastion-host.svg')),
+  ),
+  "icon.bat": (
+    default: (url('./icon/bat.svg')),
+  ),
+  "icon.battery--charging": (
+    default: (url('./icon/battery--charging.svg')),
+  ),
+  "icon.battery--empty": (
+    default: (url('./icon/battery--empty.svg')),
+  ),
+  "icon.battery--full": (
+    default: (url('./icon/battery--full.svg')),
+  ),
+  "icon.battery--half": (
+    default: (url('./icon/battery--half.svg')),
+  ),
+  "icon.battery--low": (
+    default: (url('./icon/battery--low.svg')),
+  ),
+  "icon.battery--quarter": (
+    default: (url('./icon/battery--quarter.svg')),
+  ),
+  "icon.bee": (
+    default: (url('./icon/bee.svg')),
+  ),
+  "icon.bee-bat": (
+    default: (url('./icon/bee-bat.svg')),
+  ),
+  "icon.beta": (
+    default: (url('./icon/beta.svg')),
+  ),
+  "icon.bicycle": (
+    default: (url('./icon/bicycle.svg')),
+  ),
+  "icon.binoculars": (
+    default: (url('./icon/binoculars.svg')),
+  ),
+  "icon.bloch-sphere": (
+    default: (url('./icon/bloch-sphere.svg')),
+  ),
+  "icon.block-storage": (
+    default: (url('./icon/block-storage.svg')),
+  ),
+  "icon.block-storage--alt": (
+    default: (url('./icon/block-storage--alt.svg')),
+  ),
+  "icon.blockchain": (
+    default: (url('./icon/blockchain.svg')),
+  ),
+  "icon.blog": (
+    default: (url('./icon/blog.svg')),
+  ),
+  "icon.bluetooth": (
+    default: (url('./icon/bluetooth.svg')),
+  ),
+  "icon.bluetooth--off": (
+    default: (url('./icon/bluetooth--off.svg')),
+  ),
+  "icon.book": (
+    default: (url('./icon/book.svg')),
+  ),
+  "icon.bookmark": (
+    default: (url('./icon/bookmark.svg')),
+  ),
+  "icon.bookmark--add": (
+    default: (url('./icon/bookmark--add.svg')),
+  ),
+  "icon.bookmark--filled": (
+    default: (url('./icon/bookmark--filled.svg')),
+  ),
+  "icon.boolean": (
+    default: (url('./icon/boolean.svg')),
+  ),
+  "icon.boot": (
+    default: (url('./icon/boot.svg')),
+  ),
+  "icon.border--bottom": (
+    default: (url('./icon/border--bottom.svg')),
+  ),
+  "icon.border--full": (
+    default: (url('./icon/border--full.svg')),
+  ),
+  "icon.border--left": (
+    default: (url('./icon/border--left.svg')),
+  ),
+  "icon.border--none": (
+    default: (url('./icon/border--none.svg')),
+  ),
+  "icon.border--right": (
+    default: (url('./icon/border--right.svg')),
+  ),
+  "icon.border--top": (
+    default: (url('./icon/border--top.svg')),
+  ),
+  "icon.bot": (
+    default: (url('./icon/bot.svg')),
+  ),
+  "icon.box": (
+    default: (url('./icon/box.svg')),
+  ),
+  "icon.box--extra-large": (
+    default: (url('./icon/box--extra-large.svg')),
+  ),
+  "icon.box--large": (
+    default: (url('./icon/box--large.svg')),
+  ),
+  "icon.box--medium": (
+    default: (url('./icon/box--medium.svg')),
+  ),
+  "icon.box--small": (
+    default: (url('./icon/box--small.svg')),
+  ),
+  "icon.box-plot": (
+    default: (url('./icon/box-plot.svg')),
+  ),
+  "icon.branch": (
+    default: (url('./icon/branch.svg')),
+  ),
+  "icon.breaking-change": (
+    default: (url('./icon/breaking-change.svg')),
+  ),
+  "icon.brightness-contrast": (
+    default: (url('./icon/brightness-contrast.svg')),
+  ),
+  "icon.bring-forward": (
+    default: (url('./icon/bring-forward.svg')),
+  ),
+  "icon.bring-to-front": (
+    default: (url('./icon/bring-to-front.svg')),
+  ),
+  "icon.brush-freehand": (
+    default: (url('./icon/brush-freehand.svg')),
+  ),
+  "icon.brush-polygon": (
+    default: (url('./icon/brush-polygon.svg')),
+  ),
+  "icon.building": (
+    default: (url('./icon/building.svg')),
+  ),
+  "icon.building--insights-1": (
+    default: (url('./icon/building--insights-1.svg')),
+  ),
+  "icon.building--insights-2": (
+    default: (url('./icon/building--insights-2.svg')),
+  ),
+  "icon.building--insights-3": (
+    default: (url('./icon/building--insights-3.svg')),
+  ),
+  "icon.bullhorn": (
+    default: (url('./icon/bullhorn.svg')),
+  ),
+  "icon.buoy": (
+    default: (url('./icon/buoy.svg')),
+  ),
+  "icon.bus": (
+    default: (url('./icon/bus.svg')),
+  ),
+  "icon.cabin-care": (
+    default: (url('./icon/cabin-care.svg')),
+  ),
+  "icon.cabin-care--alert": (
+    default: (url('./icon/cabin-care--alert.svg')),
+  ),
+  "icon.cabin-care--alt": (
+    default: (url('./icon/cabin-care--alt.svg')),
+  ),
+  "icon.CAD": (
+    default: (url('./icon/CAD.svg')),
+  ),
+  "icon.cafe": (
+    default: (url('./icon/cafe.svg')),
+  ),
+  "icon.calculation": (
+    default: (url('./icon/calculation.svg')),
+  ),
+  "icon.calculation--alt": (
+    default: (url('./icon/calculation--alt.svg')),
+  ),
+  "icon.calculator": (
+    default: (url('./icon/calculator.svg')),
+  ),
+  "icon.calculator--check": (
+    default: (url('./icon/calculator--check.svg')),
+  ),
+  "icon.calendar": (
+    default: (url('./icon/calendar.svg')),
+  ),
+  "icon.calendar--heat-map": (
+    default: (url('./icon/calendar--heat-map.svg')),
+  ),
+  "icon.calendar--settings": (
+    default: (url('./icon/calendar--settings.svg')),
+  ),
+  "icon.calendar--tools": (
+    default: (url('./icon/calendar--tools.svg')),
+  ),
+  "icon.calibrate": (
+    default: (url('./icon/calibrate.svg')),
+  ),
+  "icon.camera": (
+    default: (url('./icon/camera.svg')),
+  ),
+  "icon.camera--action": (
+    default: (url('./icon/camera--action.svg')),
+  ),
+  "icon.campsite": (
+    default: (url('./icon/campsite.svg')),
+  ),
+  "icon.car": (
+    default: (url('./icon/car.svg')),
+  ),
+  "icon.car--front": (
+    default: (url('./icon/car--front.svg')),
+  ),
+  "icon.carbon": (
+    default: (url('./icon/carbon.svg')),
+  ),
+  "icon.carbon-accounting": (
+    default: (url('./icon/carbon-accounting.svg')),
+  ),
+  "icon.caret--down": (
+    default: (url('./icon/caret--down.svg')),
+  ),
+  "icon.caret--left": (
+    default: (url('./icon/caret--left.svg')),
+  ),
+  "icon.caret--right": (
+    default: (url('./icon/caret--right.svg')),
+  ),
+  "icon.caret--sort": (
+    default: (url('./icon/caret--sort.svg')),
+  ),
+  "icon.caret--sort--down": (
+    default: (url('./icon/caret--sort--down.svg')),
+  ),
+  "icon.caret--sort--up": (
+    default: (url('./icon/caret--sort--up.svg')),
+  ),
+  "icon.caret--up": (
+    default: (url('./icon/caret--up.svg')),
+  ),
+  "icon.carousel--horizontal": (
+    default: (url('./icon/carousel--horizontal.svg')),
+  ),
+  "icon.carousel--vertical": (
+    default: (url('./icon/carousel--vertical.svg')),
+  ),
+  "icon.catalog": (
+    default: (url('./icon/catalog.svg')),
+  ),
+  "icon.categories": (
+    default: (url('./icon/categories.svg')),
+  ),
+  "icon.category": (
+    default: (url('./icon/category.svg')),
+  ),
+  "icon.category--add": (
+    default: (url('./icon/category--add.svg')),
+  ),
+  "icon.category--and": (
+    default: (url('./icon/category--and.svg')),
+  ),
+  "icon.category--new": (
+    default: (url('./icon/category--new.svg')),
+  ),
+  "icon.category--new-each": (
+    default: (url('./icon/category--new-each.svg')),
+  ),
+  "icon.caution": (
+    default: (url('./icon/caution.svg')),
+  ),
+  "icon.caution-inverted": (
+    default: (url('./icon/caution-inverted.svg')),
+  ),
+  "icon.ccX": (
+    default: (url('./icon/ccX.svg')),
+  ),
+  "icon.cd--archive": (
+    default: (url('./icon/cd--archive.svg')),
+  ),
+  "icon.cd--create-archive": (
+    default: (url('./icon/cd--create-archive.svg')),
+  ),
+  "icon.cd--create-exchange": (
+    default: (url('./icon/cd--create-exchange.svg')),
+  ),
+  "icon.CDA": (
+    default: (url('./icon/CDA.svg')),
+  ),
+  "icon.cell-tower": (
+    default: (url('./icon/cell-tower.svg')),
+  ),
+  "icon.center--circle": (
+    default: (url('./icon/center--circle.svg')),
+  ),
+  "icon.center--square": (
+    default: (url('./icon/center--square.svg')),
+  ),
+  "icon.center-to-fit": (
+    default: (url('./icon/center-to-fit.svg')),
+  ),
+  "icon.certificate": (
+    default: (url('./icon/certificate.svg')),
+  ),
+  "icon.certificate--check": (
+    default: (url('./icon/certificate--check.svg')),
+  ),
+  "icon.change-catalog": (
+    default: (url('./icon/change-catalog.svg')),
+  ),
+  "icon.character-patterns": (
+    default: (url('./icon/character-patterns.svg')),
+  ),
+  "icon.charging-station": (
+    default: (url('./icon/charging-station.svg')),
+  ),
+  "icon.charging-station--filled": (
+    default: (url('./icon/charging-station--filled.svg')),
+  ),
+  "icon.chart--3D": (
+    default: (url('./icon/chart--3D.svg')),
+  ),
+  "icon.chart--area": (
+    default: (url('./icon/chart--area.svg')),
+  ),
+  "icon.chart--area-smooth": (
+    default: (url('./icon/chart--area-smooth.svg')),
+  ),
+  "icon.chart--area-stepper": (
+    default: (url('./icon/chart--area-stepper.svg')),
+  ),
+  "icon.chart--average": (
+    default: (url('./icon/chart--average.svg')),
+  ),
+  "icon.chart--bar": (
+    default: (url('./icon/chart--bar.svg')),
+  ),
+  "icon.chart--bar-floating": (
+    default: (url('./icon/chart--bar-floating.svg')),
+  ),
+  "icon.chart--bar-overlay": (
+    default: (url('./icon/chart--bar-overlay.svg')),
+  ),
+  "icon.chart--bar-stacked": (
+    default: (url('./icon/chart--bar-stacked.svg')),
+  ),
+  "icon.chart--bar-target": (
+    default: (url('./icon/chart--bar-target.svg')),
+  ),
+  "icon.chart--bubble": (
+    default: (url('./icon/chart--bubble.svg')),
+  ),
+  "icon.chart--bubble-packed": (
+    default: (url('./icon/chart--bubble-packed.svg')),
+  ),
+  "icon.chart--bullet": (
+    default: (url('./icon/chart--bullet.svg')),
+  ),
+  "icon.chart--candlestick": (
+    default: (url('./icon/chart--candlestick.svg')),
+  ),
+  "icon.chart--cluster-bar": (
+    default: (url('./icon/chart--cluster-bar.svg')),
+  ),
+  "icon.chart--column": (
+    default: (url('./icon/chart--column.svg')),
+  ),
+  "icon.chart--column-floating": (
+    default: (url('./icon/chart--column-floating.svg')),
+  ),
+  "icon.chart--column-target": (
+    default: (url('./icon/chart--column-target.svg')),
+  ),
+  "icon.chart--combo": (
+    default: (url('./icon/chart--combo.svg')),
+  ),
+  "icon.chart--combo-stacked": (
+    default: (url('./icon/chart--combo-stacked.svg')),
+  ),
+  "icon.chart--custom": (
+    default: (url('./icon/chart--custom.svg')),
+  ),
+  "icon.chart--error-bar": (
+    default: (url('./icon/chart--error-bar.svg')),
+  ),
+  "icon.chart--error-bar--alt": (
+    default: (url('./icon/chart--error-bar--alt.svg')),
+  ),
+  "icon.chart--evaluation": (
+    default: (url('./icon/chart--evaluation.svg')),
+  ),
+  "icon.chart--high-low": (
+    default: (url('./icon/chart--high-low.svg')),
+  ),
+  "icon.chart--histogram": (
+    default: (url('./icon/chart--histogram.svg')),
+  ),
+  "icon.chart--line": (
+    default: (url('./icon/chart--line.svg')),
+  ),
+  "icon.chart--line--data": (
+    default: (url('./icon/chart--line--data.svg')),
+  ),
+  "icon.chart--line-smooth": (
+    default: (url('./icon/chart--line-smooth.svg')),
+  ),
+  "icon.chart--marimekko": (
+    default: (url('./icon/chart--marimekko.svg')),
+  ),
+  "icon.chart--maximum": (
+    default: (url('./icon/chart--maximum.svg')),
+  ),
+  "icon.chart--median": (
+    default: (url('./icon/chart--median.svg')),
+  ),
+  "icon.chart--minimum": (
+    default: (url('./icon/chart--minimum.svg')),
+  ),
+  "icon.chart--multi-line": (
+    default: (url('./icon/chart--multi-line.svg')),
+  ),
+  "icon.chart--multitype": (
+    default: (url('./icon/chart--multitype.svg')),
+  ),
+  "icon.chart--network": (
+    default: (url('./icon/chart--network.svg')),
+  ),
+  "icon.chart--parallel": (
+    default: (url('./icon/chart--parallel.svg')),
+  ),
+  "icon.chart--pie": (
+    default: (url('./icon/chart--pie.svg')),
+  ),
+  "icon.chart--point": (
+    default: (url('./icon/chart--point.svg')),
+  ),
+  "icon.chart--population": (
+    default: (url('./icon/chart--population.svg')),
+  ),
+  "icon.chart--radar": (
+    default: (url('./icon/chart--radar.svg')),
+  ),
+  "icon.chart--radial": (
+    default: (url('./icon/chart--radial.svg')),
+  ),
+  "icon.chart--relationship": (
+    default: (url('./icon/chart--relationship.svg')),
+  ),
+  "icon.chart--ring": (
+    default: (url('./icon/chart--ring.svg')),
+  ),
+  "icon.chart--river": (
+    default: (url('./icon/chart--river.svg')),
+  ),
+  "icon.chart--rose": (
+    default: (url('./icon/chart--rose.svg')),
+  ),
+  "icon.chart--scatter": (
+    default: (url('./icon/chart--scatter.svg')),
+  ),
+  "icon.chart--spiral": (
+    default: (url('./icon/chart--spiral.svg')),
+  ),
+  "icon.chart--stacked": (
+    default: (url('./icon/chart--stacked.svg')),
+  ),
+  "icon.chart--stepper": (
+    default: (url('./icon/chart--stepper.svg')),
+  ),
+  "icon.chart--sunburst": (
+    default: (url('./icon/chart--sunburst.svg')),
+  ),
+  "icon.chart--t-sne": (
+    default: (url('./icon/chart--t-sne.svg')),
+  ),
+  "icon.chart--treemap": (
+    default: (url('./icon/chart--treemap.svg')),
+  ),
+  "icon.chart--venn-diagram": (
+    default: (url('./icon/chart--venn-diagram.svg')),
+  ),
+  "icon.chart--violin-plot": (
+    default: (url('./icon/chart--violin-plot.svg')),
+  ),
+  "icon.chart--waterfall": (
+    default: (url('./icon/chart--waterfall.svg')),
+  ),
+  "icon.chart--win-loss": (
+    default: (url('./icon/chart--win-loss.svg')),
+  ),
+  "icon.chat": (
+    default: (url('./icon/chat.svg')),
+  ),
+  "icon.chat--launch": (
+    default: (url('./icon/chat--launch.svg')),
+  ),
+  "icon.chat--off": (
+    default: (url('./icon/chat--off.svg')),
+  ),
+  "icon.chat--operational": (
+    default: (url('./icon/chat--operational.svg')),
+  ),
+  "icon.chat-bot": (
+    default: (url('./icon/chat-bot.svg')),
+  ),
+  "icon.checkbox": (
+    default: (url('./icon/checkbox.svg')),
+  ),
+  "icon.checkbox--checked": (
+    default: (url('./icon/checkbox--checked.svg')),
+  ),
+  "icon.checkbox--checked--filled": (
+    default: (url('./icon/checkbox--checked--filled.svg')),
+  ),
+  "icon.checkbox--indeterminate": (
+    default: (url('./icon/checkbox--indeterminate.svg')),
+  ),
+  "icon.checkbox--indeterminate--filled": (
+    default: (url('./icon/checkbox--indeterminate--filled.svg')),
+  ),
+  "icon.checkbox--undeterminate": (
+    default: (url('./icon/checkbox--undeterminate.svg')),
+  ),
+  "icon.checkbox--undeterminate--filled": (
+    default: (url('./icon/checkbox--undeterminate--filled.svg')),
+  ),
+  "icon.checkmark": (
+    default: (url('./icon/checkmark.svg')),
+  ),
+  "icon.checkmark--filled": (
+    default: (url('./icon/checkmark--filled.svg')),
+  ),
+  "icon.checkmark--filled--error": (
+    default: (url('./icon/checkmark--filled--error.svg')),
+  ),
+  "icon.checkmark--filled--warning": (
+    default: (url('./icon/checkmark--filled--warning.svg')),
+  ),
+  "icon.checkmark--outline": (
+    default: (url('./icon/checkmark--outline.svg')),
+  ),
+  "icon.checkmark--outline--error": (
+    default: (url('./icon/checkmark--outline--error.svg')),
+  ),
+  "icon.checkmark--outline--warning": (
+    default: (url('./icon/checkmark--outline--warning.svg')),
+  ),
+  "icon.chemistry": (
+    default: (url('./icon/chemistry.svg')),
+  ),
+  "icon.chemistry--reference": (
+    default: (url('./icon/chemistry--reference.svg')),
+  ),
+  "icon.chevron--down": (
+    default: (url('./icon/chevron--down.svg')),
+  ),
+  "icon.chevron--left": (
+    default: (url('./icon/chevron--left.svg')),
+  ),
+  "icon.chevron--mini": (
+    default: (url('./icon/chevron--mini.svg')),
+  ),
+  "icon.chevron--right": (
+    default: (url('./icon/chevron--right.svg')),
+  ),
+  "icon.chevron--sort": (
+    default: (url('./icon/chevron--sort.svg')),
+  ),
+  "icon.chevron--sort--down": (
+    default: (url('./icon/chevron--sort--down.svg')),
+  ),
+  "icon.chevron--sort--up": (
+    default: (url('./icon/chevron--sort--up.svg')),
+  ),
+  "icon.chevron--up": (
+    default: (url('./icon/chevron--up.svg')),
+  ),
+  "icon.chip": (
+    default: (url('./icon/chip.svg')),
+  ),
+  "icon.choices": (
+    default: (url('./icon/choices.svg')),
+  ),
+  "icon.choose-item": (
+    default: (url('./icon/choose-item.svg')),
+  ),
+  "icon.choropleth-map": (
+    default: (url('./icon/choropleth-map.svg')),
+  ),
+  "icon.cics--cmas": (
+    default: (url('./icon/cics--cmas.svg')),
+  ),
+  "icon.cics--explorer": (
+    default: (url('./icon/cics--explorer.svg')),
+  ),
+  "icon.cics--system-group": (
+    default: (url('./icon/cics--system-group.svg')),
+  ),
+  "icon.cics--wui-region": (
+    default: (url('./icon/cics--wui-region.svg')),
+  ),
+  "icon.cics-region": (
+    default: (url('./icon/cics-region.svg')),
+  ),
+  "icon.cics-region--routing": (
+    default: (url('./icon/cics-region--routing.svg')),
+  ),
+  "icon.cics-region--target": (
+    default: (url('./icon/cics-region--target.svg')),
+  ),
+  "icon.cicsplex": (
+    default: (url('./icon/cicsplex.svg')),
+  ),
+  "icon.circle--filled": (
+    default: (url('./icon/circle--filled.svg')),
+  ),
+  "icon.circle--solid": (
+    default: (url('./icon/circle--solid.svg')),
+  ),
+  "icon.circle-dash": (
+    default: (url('./icon/circle-dash.svg')),
+  ),
+  "icon.circle-fill": (
+    default: (url('./icon/circle-fill.svg')),
+  ),
+  "icon.circle-measurement": (
+    default: (url('./icon/circle-measurement.svg')),
+  ),
+  "icon.circle-packing": (
+    default: (url('./icon/circle-packing.svg')),
+  ),
+  "icon.circle-stroke": (
+    default: (url('./icon/circle-stroke.svg')),
+  ),
+  "icon.circuit-composer": (
+    default: (url('./icon/circuit-composer.svg')),
+  ),
+  "icon.classification": (
+    default: (url('./icon/classification.svg')),
+  ),
+  "icon.classifier--language": (
+    default: (url('./icon/classifier--language.svg')),
+  ),
+  "icon.clean": (
+    default: (url('./icon/clean.svg')),
+  ),
+  "icon.close": (
+    default: (url('./icon/close.svg')),
+  ),
+  "icon.close--filled": (
+    default: (url('./icon/close--filled.svg')),
+  ),
+  "icon.close--outline": (
+    default: (url('./icon/close--outline.svg')),
+  ),
+  "icon.closed-caption": (
+    default: (url('./icon/closed-caption.svg')),
+  ),
+  "icon.closed-caption--alt": (
+    default: (url('./icon/closed-caption--alt.svg')),
+  ),
+  "icon.closed-caption--filled": (
+    default: (url('./icon/closed-caption--filled.svg')),
+  ),
+  "icon.cloud": (
+    default: (url('./icon/cloud.svg')),
+  ),
+  "icon.cloud--alerting": (
+    default: (url('./icon/cloud--alerting.svg')),
+  ),
+  "icon.cloud--auditing": (
+    default: (url('./icon/cloud--auditing.svg')),
+  ),
+  "icon.cloud--data-ops": (
+    default: (url('./icon/cloud--data-ops.svg')),
+  ),
+  "icon.cloud--download": (
+    default: (url('./icon/cloud--download.svg')),
+  ),
+  "icon.cloud--lightning": (
+    default: (url('./icon/cloud--lightning.svg')),
+  ),
+  "icon.cloud--logging": (
+    default: (url('./icon/cloud--logging.svg')),
+  ),
+  "icon.cloud--monitoring": (
+    default: (url('./icon/cloud--monitoring.svg')),
+  ),
+  "icon.cloud--offline": (
+    default: (url('./icon/cloud--offline.svg')),
+  ),
+  "icon.cloud--rain": (
+    default: (url('./icon/cloud--rain.svg')),
+  ),
+  "icon.cloud--service-management": (
+    default: (url('./icon/cloud--service-management.svg')),
+  ),
+  "icon.cloud--snow": (
+    default: (url('./icon/cloud--snow.svg')),
+  ),
+  "icon.cloud--upload": (
+    default: (url('./icon/cloud--upload.svg')),
+  ),
+  "icon.cloud-app": (
+    default: (url('./icon/cloud-app.svg')),
+  ),
+  "icon.cloud-ceiling": (
+    default: (url('./icon/cloud-ceiling.svg')),
+  ),
+  "icon.cloud-foundry--1": (
+    default: (url('./icon/cloud-foundry--1.svg')),
+  ),
+  "icon.cloud-foundry--2": (
+    default: (url('./icon/cloud-foundry--2.svg')),
+  ),
+  "icon.cloud-registry": (
+    default: (url('./icon/cloud-registry.svg')),
+  ),
+  "icon.cloud-satellite": (
+    default: (url('./icon/cloud-satellite.svg')),
+  ),
+  "icon.cloud-satellite--config": (
+    default: (url('./icon/cloud-satellite--config.svg')),
+  ),
+  "icon.cloud-satellite--link": (
+    default: (url('./icon/cloud-satellite--link.svg')),
+  ),
+  "icon.cloud-satellite--services": (
+    default: (url('./icon/cloud-satellite--services.svg')),
+  ),
+  "icon.cloud-services": (
+    default: (url('./icon/cloud-services.svg')),
+  ),
+  "icon.cloudy": (
+    default: (url('./icon/cloudy.svg')),
+  ),
+  "icon.cobb-angle": (
+    default: (url('./icon/cobb-angle.svg')),
+  ),
+  "icon.code": (
+    default: (url('./icon/code.svg')),
+  ),
+  "icon.code--hide": (
+    default: (url('./icon/code--hide.svg')),
+  ),
+  "icon.code--reference": (
+    default: (url('./icon/code--reference.svg')),
+  ),
+  "icon.code-signing-service": (
+    default: (url('./icon/code-signing-service.svg')),
+  ),
+  "icon.cognitive": (
+    default: (url('./icon/cognitive.svg')),
+  ),
+  "icon.collaborate": (
+    default: (url('./icon/collaborate.svg')),
+  ),
+  "icon.collapse-all": (
+    default: (url('./icon/collapse-all.svg')),
+  ),
+  "icon.collapse-categories": (
+    default: (url('./icon/collapse-categories.svg')),
+  ),
+  "icon.color-palette": (
+    default: (url('./icon/color-palette.svg')),
+  ),
+  "icon.color-switch": (
+    default: (url('./icon/color-switch.svg')),
+  ),
+  "icon.column": (
+    default: (url('./icon/column.svg')),
+  ),
+  "icon.column--delete": (
+    default: (url('./icon/column--delete.svg')),
+  ),
+  "icon.column--insert": (
+    default: (url('./icon/column--insert.svg')),
+  ),
+  "icon.column-dependency": (
+    default: (url('./icon/column-dependency.svg')),
+  ),
+  "icon.commit": (
+    default: (url('./icon/commit.svg')),
+  ),
+  "icon.communication--unified": (
+    default: (url('./icon/communication--unified.svg')),
+  ),
+  "icon.compare": (
+    default: (url('./icon/compare.svg')),
+  ),
+  "icon.compass": (
+    default: (url('./icon/compass.svg')),
+  ),
+  "icon.composer-edit": (
+    default: (url('./icon/composer-edit.svg')),
+  ),
+  "icon.concept": (
+    default: (url('./icon/concept.svg')),
+  ),
+  "icon.condition--point": (
+    default: (url('./icon/condition--point.svg')),
+  ),
+  "icon.condition--wait-point": (
+    default: (url('./icon/condition--wait-point.svg')),
+  ),
+  "icon.connect": (
+    default: (url('./icon/connect.svg')),
+  ),
+  "icon.connect--recursive": (
+    default: (url('./icon/connect--recursive.svg')),
+  ),
+  "icon.connect--source": (
+    default: (url('./icon/connect--source.svg')),
+  ),
+  "icon.connect--target": (
+    default: (url('./icon/connect--target.svg')),
+  ),
+  "icon.connection--receive": (
+    default: (url('./icon/connection--receive.svg')),
+  ),
+  "icon.connection--send": (
+    default: (url('./icon/connection--send.svg')),
+  ),
+  "icon.connection--two-way": (
+    default: (url('./icon/connection--two-way.svg')),
+  ),
+  "icon.connection-signal": (
+    default: (url('./icon/connection-signal.svg')),
+  ),
+  "icon.connection-signal--off": (
+    default: (url('./icon/connection-signal--off.svg')),
+  ),
+  "icon.construction": (
+    default: (url('./icon/construction.svg')),
+  ),
+  "icon.container-registry": (
+    default: (url('./icon/container-registry.svg')),
+  ),
+  "icon.container-services": (
+    default: (url('./icon/container-services.svg')),
+  ),
+  "icon.container-software": (
+    default: (url('./icon/container-software.svg')),
+  ),
+  "icon.content-delivery-network": (
+    default: (url('./icon/content-delivery-network.svg')),
+  ),
+  "icon.content-view": (
+    default: (url('./icon/content-view.svg')),
+  ),
+  "icon.continue": (
+    default: (url('./icon/continue.svg')),
+  ),
+  "icon.continue--filled": (
+    default: (url('./icon/continue--filled.svg')),
+  ),
+  "icon.contour--draw": (
+    default: (url('./icon/contour--draw.svg')),
+  ),
+  "icon.contour--edit": (
+    default: (url('./icon/contour--edit.svg')),
+  ),
+  "icon.contour-finding": (
+    default: (url('./icon/contour-finding.svg')),
+  ),
+  "icon.contrast": (
+    default: (url('./icon/contrast.svg')),
+  ),
+  "icon.convert-to-cloud": (
+    default: (url('./icon/convert-to-cloud.svg')),
+  ),
+  "icon.copy": (
+    default: (url('./icon/copy.svg')),
+  ),
+  "icon.copy--file": (
+    default: (url('./icon/copy--file.svg')),
+  ),
+  "icon.copy--link": (
+    default: (url('./icon/copy--link.svg')),
+  ),
+  "icon.corn": (
+    default: (url('./icon/corn.svg')),
+  ),
+  "icon.corner": (
+    default: (url('./icon/corner.svg')),
+  ),
+  "icon.coronavirus": (
+    default: (url('./icon/coronavirus.svg')),
+  ),
+  "icon.cost": (
+    default: (url('./icon/cost.svg')),
+  ),
+  "icon.cost--total": (
+    default: (url('./icon/cost--total.svg')),
+  ),
+  "icon.cough": (
+    default: (url('./icon/cough.svg')),
+  ),
+  "icon.course": (
+    default: (url('./icon/course.svg')),
+  ),
+  "icon.covariate": (
+    default: (url('./icon/covariate.svg')),
+  ),
+  "icon.credentials": (
+    default: (url('./icon/credentials.svg')),
+  ),
+  "icon.critical": (
+    default: (url('./icon/critical.svg')),
+  ),
+  "icon.critical-severity": (
+    default: (url('./icon/critical-severity.svg')),
+  ),
+  "icon.crop": (
+    default: (url('./icon/crop.svg')),
+  ),
+  "icon.crop-growth": (
+    default: (url('./icon/crop-growth.svg')),
+  ),
+  "icon.crop-health": (
+    default: (url('./icon/crop-health.svg')),
+  ),
+  "icon.cross-reference": (
+    default: (url('./icon/cross-reference.svg')),
+  ),
+  "icon.cross-tab": (
+    default: (url('./icon/cross-tab.svg')),
+  ),
+  "icon.crossroads": (
+    default: (url('./icon/crossroads.svg')),
+  ),
+  "icon.crowd-report": (
+    default: (url('./icon/crowd-report.svg')),
+  ),
+  "icon.crowd-report--filled": (
+    default: (url('./icon/crowd-report--filled.svg')),
+  ),
+  "icon.CSV": (
+    default: (url('./icon/CSV.svg')),
+  ),
+  "icon.cU1": (
+    default: (url('./icon/cU1.svg')),
+  ),
+  "icon.cU3": (
+    default: (url('./icon/cU3.svg')),
+  ),
+  "icon.cube": (
+    default: (url('./icon/cube.svg')),
+  ),
+  "icon.cube-view": (
+    default: (url('./icon/cube-view.svg')),
+  ),
+  "icon.currency": (
+    default: (url('./icon/currency.svg')),
+  ),
+  "icon.currency--baht": (
+    default: (url('./icon/currency--baht.svg')),
+  ),
+  "icon.currency--dollar": (
+    default: (url('./icon/currency--dollar.svg')),
+  ),
+  "icon.currency--euro": (
+    default: (url('./icon/currency--euro.svg')),
+  ),
+  "icon.currency--lira": (
+    default: (url('./icon/currency--lira.svg')),
+  ),
+  "icon.currency--pound": (
+    default: (url('./icon/currency--pound.svg')),
+  ),
+  "icon.currency--ruble": (
+    default: (url('./icon/currency--ruble.svg')),
+  ),
+  "icon.currency--rupee": (
+    default: (url('./icon/currency--rupee.svg')),
+  ),
+  "icon.currency--shekel": (
+    default: (url('./icon/currency--shekel.svg')),
+  ),
+  "icon.currency--won": (
+    default: (url('./icon/currency--won.svg')),
+  ),
+  "icon.currency--yen": (
+    default: (url('./icon/currency--yen.svg')),
+  ),
+  "icon.cursor--1": (
+    default: (url('./icon/cursor--1.svg')),
+  ),
+  "icon.cursor--2": (
+    default: (url('./icon/cursor--2.svg')),
+  ),
+  "icon.cut": (
+    default: (url('./icon/cut.svg')),
+  ),
+  "icon.cut-in-half": (
+    default: (url('./icon/cut-in-half.svg')),
+  ),
+  "icon.cut-out": (
+    default: (url('./icon/cut-out.svg')),
+  ),
+  "icon.cY": (
+    default: (url('./icon/cY.svg')),
+  ),
+  "icon.cyclist": (
+    default: (url('./icon/cyclist.svg')),
+  ),
+  "icon.cZ": (
+    default: (url('./icon/cZ.svg')),
+  ),
+  "icon.dashboard": (
+    default: (url('./icon/dashboard.svg')),
+  ),
+  "icon.dashboard--reference": (
+    default: (url('./icon/dashboard--reference.svg')),
+  ),
+  "icon.data--1": (
+    default: (url('./icon/data--1.svg')),
+  ),
+  "icon.data--2": (
+    default: (url('./icon/data--2.svg')),
+  ),
+  "icon.data--base": (
+    default: (url('./icon/data--base.svg')),
+  ),
+  "icon.data--base--alt": (
+    default: (url('./icon/data--base--alt.svg')),
+  ),
+  "icon.data--center": (
+    default: (url('./icon/data--center.svg')),
+  ),
+  "icon.data--check": (
+    default: (url('./icon/data--check.svg')),
+  ),
+  "icon.data--connected": (
+    default: (url('./icon/data--connected.svg')),
+  ),
+  "icon.data--error": (
+    default: (url('./icon/data--error.svg')),
+  ),
+  "icon.data--format": (
+    default: (url('./icon/data--format.svg')),
+  ),
+  "icon.data--reference": (
+    default: (url('./icon/data--reference.svg')),
+  ),
+  "icon.data--set": (
+    default: (url('./icon/data--set.svg')),
+  ),
+  "icon.data--structured": (
+    default: (url('./icon/data--structured.svg')),
+  ),
+  "icon.data--unstructured": (
+    default: (url('./icon/data--unstructured.svg')),
+  ),
+  "icon.data--view": (
+    default: (url('./icon/data--view.svg')),
+  ),
+  "icon.data--view--alt": (
+    default: (url('./icon/data--view--alt.svg')),
+  ),
+  "icon.data-accessor": (
+    default: (url('./icon/data-accessor.svg')),
+  ),
+  "icon.data-backup": (
+    default: (url('./icon/data-backup.svg')),
+  ),
+  "icon.data-bin": (
+    default: (url('./icon/data-bin.svg')),
+  ),
+  "icon.data-blob": (
+    default: (url('./icon/data-blob.svg')),
+  ),
+  "icon.data-class": (
+    default: (url('./icon/data-class.svg')),
+  ),
+  "icon.data-collection": (
+    default: (url('./icon/data-collection.svg')),
+  ),
+  "icon.data-definition": (
+    default: (url('./icon/data-definition.svg')),
+  ),
+  "icon.data-diode": (
+    default: (url('./icon/data-diode.svg')),
+  ),
+  "icon.data-player": (
+    default: (url('./icon/data-player.svg')),
+  ),
+  "icon.data-refinery": (
+    default: (url('./icon/data-refinery.svg')),
+  ),
+  "icon.data-refinery--reference": (
+    default: (url('./icon/data-refinery--reference.svg')),
+  ),
+  "icon.data-share": (
+    default: (url('./icon/data-share.svg')),
+  ),
+  "icon.data-table": (
+    default: (url('./icon/data-table.svg')),
+  ),
+  "icon.data-table--reference": (
+    default: (url('./icon/data-table--reference.svg')),
+  ),
+  "icon.data-vis--1": (
+    default: (url('./icon/data-vis--1.svg')),
+  ),
+  "icon.data-vis--2": (
+    default: (url('./icon/data-vis--2.svg')),
+  ),
+  "icon.data-vis--3": (
+    default: (url('./icon/data-vis--3.svg')),
+  ),
+  "icon.data-vis--4": (
+    default: (url('./icon/data-vis--4.svg')),
+  ),
+  "icon.database--datastax": (
+    default: (url('./icon/database--datastax.svg')),
+  ),
+  "icon.database--elastic": (
+    default: (url('./icon/database--elastic.svg')),
+  ),
+  "icon.database--enterprise-db2": (
+    default: (url('./icon/database--enterprise-db2.svg')),
+  ),
+  "icon.database--etcd": (
+    default: (url('./icon/database--etcd.svg')),
+  ),
+  "icon.database--mongodb": (
+    default: (url('./icon/database--mongodb.svg')),
+  ),
+  "icon.database--postgreSQL": (
+    default: (url('./icon/database--postgreSQL.svg')),
+  ),
+  "icon.database--rabbit": (
+    default: (url('./icon/database--rabbit.svg')),
+  ),
+  "icon.database--redis": (
+    default: (url('./icon/database--redis.svg')),
+  ),
+  "icon.datastore": (
+    default: (url('./icon/datastore.svg')),
+  ),
+  "icon.debug": (
+    default: (url('./icon/debug.svg')),
+  ),
+  "icon.decision-tree": (
+    default: (url('./icon/decision-tree.svg')),
+  ),
+  "icon.delete": (
+    default: (url('./icon/delete.svg')),
+  ),
+  "icon.delivery": (
+    default: (url('./icon/delivery.svg')),
+  ),
+  "icon.delivery--add": (
+    default: (url('./icon/delivery--add.svg')),
+  ),
+  "icon.delivery--parcel": (
+    default: (url('./icon/delivery--parcel.svg')),
+  ),
+  "icon.delivery-truck": (
+    default: (url('./icon/delivery-truck.svg')),
+  ),
+  "icon.denominate": (
+    default: (url('./icon/denominate.svg')),
+  ),
+  "icon.departure": (
+    default: (url('./icon/departure.svg')),
+  ),
+  "icon.deploy": (
+    default: (url('./icon/deploy.svg')),
+  ),
+  "icon.deploy-rules": (
+    default: (url('./icon/deploy-rules.svg')),
+  ),
+  "icon.deployment-pattern": (
+    default: (url('./icon/deployment-pattern.svg')),
+  ),
+  "icon.deployment-policy": (
+    default: (url('./icon/deployment-policy.svg')),
+  ),
+  "icon.deployment-unit--data": (
+    default: (url('./icon/deployment-unit--data.svg')),
+  ),
+  "icon.deployment-unit--execution": (
+    default: (url('./icon/deployment-unit--execution.svg')),
+  ),
+  "icon.deployment-unit--installation": (
+    default: (url('./icon/deployment-unit--installation.svg')),
+  ),
+  "icon.deployment-unit--presentation": (
+    default: (url('./icon/deployment-unit--presentation.svg')),
+  ),
+  "icon.deployment-unit--technical--data": (
+    default: (url('./icon/deployment-unit--technical--data.svg')),
+  ),
+  "icon.deployment-unit--technical--execution": (
+    default: (url('./icon/deployment-unit--technical--execution.svg')),
+  ),
+  "icon.deployment-unit--technical--installation": (
+    default: (url('./icon/deployment-unit--technical--installation.svg')),
+  ),
+  "icon.deployment-unit--technical--presentation": (
+    default: (url('./icon/deployment-unit--technical--presentation.svg')),
+  ),
+  "icon.desk--adjustable": (
+    default: (url('./icon/desk--adjustable.svg')),
+  ),
+  "icon.development": (
+    default: (url('./icon/development.svg')),
+  ),
+  "icon.devices": (
+    default: (url('./icon/devices.svg')),
+  ),
+  "icon.dew-point": (
+    default: (url('./icon/dew-point.svg')),
+  ),
+  "icon.dew-point--filled": (
+    default: (url('./icon/dew-point--filled.svg')),
+  ),
+  "icon.diagram": (
+    default: (url('./icon/diagram.svg')),
+  ),
+  "icon.diagram--reference": (
+    default: (url('./icon/diagram--reference.svg')),
+  ),
+  "icon.dicom--6000": (
+    default: (url('./icon/dicom--6000.svg')),
+  ),
+  "icon.dicom--overlay": (
+    default: (url('./icon/dicom--overlay.svg')),
+  ),
+  "icon.direct-link": (
+    default: (url('./icon/direct-link.svg')),
+  ),
+  "icon.direction--bear-right--01": (
+    default: (url('./icon/direction--bear-right--01.svg')),
+  ),
+  "icon.direction--bear-right--01--filled": (
+    default: (url('./icon/direction--bear-right--01--filled.svg')),
+  ),
+  "icon.direction--bear-right--02": (
+    default: (url('./icon/direction--bear-right--02.svg')),
+  ),
+  "icon.direction--bear-right--02--filled": (
+    default: (url('./icon/direction--bear-right--02--filled.svg')),
+  ),
+  "icon.direction--curve": (
+    default: (url('./icon/direction--curve.svg')),
+  ),
+  "icon.direction--curve--filled": (
+    default: (url('./icon/direction--curve--filled.svg')),
+  ),
+  "icon.direction--fork": (
+    default: (url('./icon/direction--fork.svg')),
+  ),
+  "icon.direction--fork--filled": (
+    default: (url('./icon/direction--fork--filled.svg')),
+  ),
+  "icon.direction--loop-left": (
+    default: (url('./icon/direction--loop-left.svg')),
+  ),
+  "icon.direction--loop-left--filled": (
+    default: (url('./icon/direction--loop-left--filled.svg')),
+  ),
+  "icon.direction--loop-right": (
+    default: (url('./icon/direction--loop-right.svg')),
+  ),
+  "icon.direction--loop-right--filled": (
+    default: (url('./icon/direction--loop-right--filled.svg')),
+  ),
+  "icon.direction--merge": (
+    default: (url('./icon/direction--merge.svg')),
+  ),
+  "icon.direction--merge--filled": (
+    default: (url('./icon/direction--merge--filled.svg')),
+  ),
+  "icon.direction--right--01": (
+    default: (url('./icon/direction--right--01.svg')),
+  ),
+  "icon.direction--right--01--filled": (
+    default: (url('./icon/direction--right--01--filled.svg')),
+  ),
+  "icon.direction--right--02": (
+    default: (url('./icon/direction--right--02.svg')),
+  ),
+  "icon.direction--right--02--filled": (
+    default: (url('./icon/direction--right--02--filled.svg')),
+  ),
+  "icon.direction--rotary--first-right": (
+    default: (url('./icon/direction--rotary--first-right.svg')),
+  ),
+  "icon.direction--rotary--first-right--filled": (
+    default: (url('./icon/direction--rotary--first-right--filled.svg')),
+  ),
+  "icon.direction--rotary--right": (
+    default: (url('./icon/direction--rotary--right.svg')),
+  ),
+  "icon.direction--rotary--right--filled": (
+    default: (url('./icon/direction--rotary--right--filled.svg')),
+  ),
+  "icon.direction--rotary--straight": (
+    default: (url('./icon/direction--rotary--straight.svg')),
+  ),
+  "icon.direction--rotary--straight--filled": (
+    default: (url('./icon/direction--rotary--straight--filled.svg')),
+  ),
+  "icon.direction--sharp-turn": (
+    default: (url('./icon/direction--sharp-turn.svg')),
+  ),
+  "icon.direction--sharp-turn--filled": (
+    default: (url('./icon/direction--sharp-turn--filled.svg')),
+  ),
+  "icon.direction--straight": (
+    default: (url('./icon/direction--straight.svg')),
+  ),
+  "icon.direction--straight--filled": (
+    default: (url('./icon/direction--straight--filled.svg')),
+  ),
+  "icon.direction--straight--right": (
+    default: (url('./icon/direction--straight--right.svg')),
+  ),
+  "icon.direction--straight--right--filled": (
+    default: (url('./icon/direction--straight--right--filled.svg')),
+  ),
+  "icon.direction--u-turn": (
+    default: (url('./icon/direction--u-turn.svg')),
+  ),
+  "icon.direction--u-turn--filled": (
+    default: (url('./icon/direction--u-turn--filled.svg')),
+  ),
+  "icon.directory-domain": (
+    default: (url('./icon/directory-domain.svg')),
+  ),
+  "icon.distribute--horizontal-center": (
+    default: (url('./icon/distribute--horizontal-center.svg')),
+  ),
+  "icon.distribute--horizontal-left": (
+    default: (url('./icon/distribute--horizontal-left.svg')),
+  ),
+  "icon.distribute--horizontal-right": (
+    default: (url('./icon/distribute--horizontal-right.svg')),
+  ),
+  "icon.distribute--vertical-bottom": (
+    default: (url('./icon/distribute--vertical-bottom.svg')),
+  ),
+  "icon.distribute--vertical-center": (
+    default: (url('./icon/distribute--vertical-center.svg')),
+  ),
+  "icon.distribute--vertical-top": (
+    default: (url('./icon/distribute--vertical-top.svg')),
+  ),
+  "icon.dna": (
+    default: (url('./icon/dna.svg')),
+  ),
+  "icon.dns-services": (
+    default: (url('./icon/dns-services.svg')),
+  ),
+  "icon.DOC": (
+    default: (url('./icon/DOC.svg')),
+  ),
+  "icon.document": (
+    default: (url('./icon/document.svg')),
+  ),
+  "icon.document--add": (
+    default: (url('./icon/document--add.svg')),
+  ),
+  "icon.document--attachment": (
+    default: (url('./icon/document--attachment.svg')),
+  ),
+  "icon.document--audio": (
+    default: (url('./icon/document--audio.svg')),
+  ),
+  "icon.document--blank": (
+    default: (url('./icon/document--blank.svg')),
+  ),
+  "icon.document--download": (
+    default: (url('./icon/document--download.svg')),
+  ),
+  "icon.document--epdf": (
+    default: (url('./icon/document--epdf.svg')),
+  ),
+  "icon.document--export": (
+    default: (url('./icon/document--export.svg')),
+  ),
+  "icon.document--horizontal": (
+    default: (url('./icon/document--horizontal.svg')),
+  ),
+  "icon.document--import": (
+    default: (url('./icon/document--import.svg')),
+  ),
+  "icon.document--pdf": (
+    default: (url('./icon/document--pdf.svg')),
+  ),
+  "icon.document--preliminary": (
+    default: (url('./icon/document--preliminary.svg')),
+  ),
+  "icon.document--protected": (
+    default: (url('./icon/document--protected.svg')),
+  ),
+  "icon.document--security": (
+    default: (url('./icon/document--security.svg')),
+  ),
+  "icon.document--signed": (
+    default: (url('./icon/document--signed.svg')),
+  ),
+  "icon.document--sketch": (
+    default: (url('./icon/document--sketch.svg')),
+  ),
+  "icon.document--subtract": (
+    default: (url('./icon/document--subtract.svg')),
+  ),
+  "icon.document--tasks": (
+    default: (url('./icon/document--tasks.svg')),
+  ),
+  "icon.document--unknown": (
+    default: (url('./icon/document--unknown.svg')),
+  ),
+  "icon.document--unprotected": (
+    default: (url('./icon/document--unprotected.svg')),
+  ),
+  "icon.document--vertical": (
+    default: (url('./icon/document--vertical.svg')),
+  ),
+  "icon.document--video": (
+    default: (url('./icon/document--video.svg')),
+  ),
+  "icon.document--view": (
+    default: (url('./icon/document--view.svg')),
+  ),
+  "icon.document--word-processor": (
+    default: (url('./icon/document--word-processor.svg')),
+  ),
+  "icon.document--word-processor--reference": (
+    default: (url('./icon/document--word-processor--reference.svg')),
+  ),
+  "icon.document-sentiment": (
+    default: (url('./icon/document-sentiment.svg')),
+  ),
+  "icon.dog-walker": (
+    default: (url('./icon/dog-walker.svg')),
+  ),
+  "icon.dot-mark": (
+    default: (url('./icon/dot-mark.svg')),
+  ),
+  "icon.double-integer": (
+    default: (url('./icon/double-integer.svg')),
+  ),
+  "icon.down-to-bottom": (
+    default: (url('./icon/down-to-bottom.svg')),
+  ),
+  "icon.download": (
+    default: (url('./icon/download.svg')),
+  ),
+  "icon.download-study": (
+    default: (url('./icon/download-study.svg')),
+  ),
+  "icon.drag--horizontal": (
+    default: (url('./icon/drag--horizontal.svg')),
+  ),
+  "icon.drag--vertical": (
+    default: (url('./icon/drag--vertical.svg')),
+  ),
+  "icon.draggable": (
+    default: (url('./icon/draggable.svg')),
+  ),
+  "icon.draw": (
+    default: (url('./icon/draw.svg')),
+  ),
+  "icon.drill-back": (
+    default: (url('./icon/drill-back.svg')),
+  ),
+  "icon.drill-down": (
+    default: (url('./icon/drill-down.svg')),
+  ),
+  "icon.drill-through": (
+    default: (url('./icon/drill-through.svg')),
+  ),
+  "icon.driver-analysis": (
+    default: (url('./icon/driver-analysis.svg')),
+  ),
+  "icon.drone": (
+    default: (url('./icon/drone.svg')),
+  ),
+  "icon.drone--delivery": (
+    default: (url('./icon/drone--delivery.svg')),
+  ),
+  "icon.drone--front": (
+    default: (url('./icon/drone--front.svg')),
+  ),
+  "icon.drone--video": (
+    default: (url('./icon/drone--video.svg')),
+  ),
+  "icon.drop-photo": (
+    default: (url('./icon/drop-photo.svg')),
+  ),
+  "icon.drop-photo--filled": (
+    default: (url('./icon/drop-photo--filled.svg')),
+  ),
+  "icon.drought": (
+    default: (url('./icon/drought.svg')),
+  ),
+  "icon.DVR": (
+    default: (url('./icon/DVR.svg')),
+  ),
+  "icon.earth": (
+    default: (url('./icon/earth.svg')),
+  ),
+  "icon.earth--americas": (
+    default: (url('./icon/earth--americas.svg')),
+  ),
+  "icon.earth--americas--filled": (
+    default: (url('./icon/earth--americas--filled.svg')),
+  ),
+  "icon.earth--europe-africa": (
+    default: (url('./icon/earth--europe-africa.svg')),
+  ),
+  "icon.earth--europe-africa--filled": (
+    default: (url('./icon/earth--europe-africa--filled.svg')),
+  ),
+  "icon.earth--filled": (
+    default: (url('./icon/earth--filled.svg')),
+  ),
+  "icon.earth--southeast-asia": (
+    default: (url('./icon/earth--southeast-asia.svg')),
+  ),
+  "icon.earth--southeast-asia--filled": (
+    default: (url('./icon/earth--southeast-asia--filled.svg')),
+  ),
+  "icon.earthquake": (
+    default: (url('./icon/earthquake.svg')),
+  ),
+  "icon.edge-cluster": (
+    default: (url('./icon/edge-cluster.svg')),
+  ),
+  "icon.edge-device": (
+    default: (url('./icon/edge-device.svg')),
+  ),
+  "icon.edge-enhancement": (
+    default: (url('./icon/edge-enhancement.svg')),
+  ),
+  "icon.edge-enhancement--01": (
+    default: (url('./icon/edge-enhancement--01.svg')),
+  ),
+  "icon.edge-enhancement--02": (
+    default: (url('./icon/edge-enhancement--02.svg')),
+  ),
+  "icon.edge-enhancement--03": (
+    default: (url('./icon/edge-enhancement--03.svg')),
+  ),
+  "icon.edge-node": (
+    default: (url('./icon/edge-node.svg')),
+  ),
+  "icon.edge-node--alt": (
+    default: (url('./icon/edge-node--alt.svg')),
+  ),
+  "icon.edge-service": (
+    default: (url('./icon/edge-service.svg')),
+  ),
+  "icon.edit": (
+    default: (url('./icon/edit.svg')),
+  ),
+  "icon.edit--off": (
+    default: (url('./icon/edit--off.svg')),
+  ),
+  "icon.edit-filter": (
+    default: (url('./icon/edit-filter.svg')),
+  ),
+  "icon.edt-loop": (
+    default: (url('./icon/edt-loop.svg')),
+  ),
+  "icon.education": (
+    default: (url('./icon/education.svg')),
+  ),
+  "icon.email": (
+    default: (url('./icon/email.svg')),
+  ),
+  "icon.email--new": (
+    default: (url('./icon/email--new.svg')),
+  ),
+  "icon.encryption": (
+    default: (url('./icon/encryption.svg')),
+  ),
+  "icon.energy--renewable": (
+    default: (url('./icon/energy--renewable.svg')),
+  ),
+  "icon.enterprise": (
+    default: (url('./icon/enterprise.svg')),
+  ),
+  "icon.equalizer": (
+    default: (url('./icon/equalizer.svg')),
+  ),
+  "icon.erase": (
+    default: (url('./icon/erase.svg')),
+  ),
+  "icon.erase--3D": (
+    default: (url('./icon/erase--3D.svg')),
+  ),
+  "icon.error": (
+    default: (url('./icon/error.svg')),
+  ),
+  "icon.error--filled": (
+    default: (url('./icon/error--filled.svg')),
+  ),
+  "icon.error--outline": (
+    default: (url('./icon/error--outline.svg')),
+  ),
+  "icon.event": (
+    default: (url('./icon/event.svg')),
+  ),
+  "icon.event--schedule": (
+    default: (url('./icon/event--schedule.svg')),
+  ),
+  "icon.events": (
+    default: (url('./icon/events.svg')),
+  ),
+  "icon.events--alt": (
+    default: (url('./icon/events--alt.svg')),
+  ),
+  "icon.exam-mode": (
+    default: (url('./icon/exam-mode.svg')),
+  ),
+  "icon.exit": (
+    default: (url('./icon/exit.svg')),
+  ),
+  "icon.expand-all": (
+    default: (url('./icon/expand-all.svg')),
+  ),
+  "icon.expand-categories": (
+    default: (url('./icon/expand-categories.svg')),
+  ),
+  "icon.explore": (
+    default: (url('./icon/explore.svg')),
+  ),
+  "icon.export": (
+    default: (url('./icon/export.svg')),
+  ),
+  "icon.eyedropper": (
+    default: (url('./icon/eyedropper.svg')),
+  ),
+  "icon.face--activated": (
+    default: (url('./icon/face--activated.svg')),
+  ),
+  "icon.face--activated--add": (
+    default: (url('./icon/face--activated--add.svg')),
+  ),
+  "icon.face--activated--filled": (
+    default: (url('./icon/face--activated--filled.svg')),
+  ),
+  "icon.face--add": (
+    default: (url('./icon/face--add.svg')),
+  ),
+  "icon.face--cool": (
+    default: (url('./icon/face--cool.svg')),
+  ),
+  "icon.face--dissatisfied": (
+    default: (url('./icon/face--dissatisfied.svg')),
+  ),
+  "icon.face--dissatisfied--filled": (
+    default: (url('./icon/face--dissatisfied--filled.svg')),
+  ),
+  "icon.face--dizzy": (
+    default: (url('./icon/face--dizzy.svg')),
+  ),
+  "icon.face--dizzy--filled": (
+    default: (url('./icon/face--dizzy--filled.svg')),
+  ),
+  "icon.face--mask": (
+    default: (url('./icon/face--mask.svg')),
+  ),
+  "icon.face--neutral": (
+    default: (url('./icon/face--neutral.svg')),
+  ),
+  "icon.face--neutral--filled": (
+    default: (url('./icon/face--neutral--filled.svg')),
+  ),
+  "icon.face--pending": (
+    default: (url('./icon/face--pending.svg')),
+  ),
+  "icon.face--pending--filled": (
+    default: (url('./icon/face--pending--filled.svg')),
+  ),
+  "icon.face--satisfied": (
+    default: (url('./icon/face--satisfied.svg')),
+  ),
+  "icon.face--satisfied--filled": (
+    default: (url('./icon/face--satisfied--filled.svg')),
+  ),
+  "icon.face--wink": (
+    default: (url('./icon/face--wink.svg')),
+  ),
+  "icon.face--wink--filled": (
+    default: (url('./icon/face--wink--filled.svg')),
+  ),
+  "icon.factor": (
+    default: (url('./icon/factor.svg')),
+  ),
+  "icon.fade": (
+    default: (url('./icon/fade.svg')),
+  ),
+  "icon.favorite": (
+    default: (url('./icon/favorite.svg')),
+  ),
+  "icon.favorite--filled": (
+    default: (url('./icon/favorite--filled.svg')),
+  ),
+  "icon.favorite--half": (
+    default: (url('./icon/favorite--half.svg')),
+  ),
+  "icon.fetch-upload": (
+    default: (url('./icon/fetch-upload.svg')),
+  ),
+  "icon.fetch-upload--cloud": (
+    default: (url('./icon/fetch-upload--cloud.svg')),
+  ),
+  "icon.file-storage": (
+    default: (url('./icon/file-storage.svg')),
+  ),
+  "icon.filter": (
+    default: (url('./icon/filter.svg')),
+  ),
+  "icon.filter--edit": (
+    default: (url('./icon/filter--edit.svg')),
+  ),
+  "icon.filter--remove": (
+    default: (url('./icon/filter--remove.svg')),
+  ),
+  "icon.filter--reset": (
+    default: (url('./icon/filter--reset.svg')),
+  ),
+  "icon.finance": (
+    default: (url('./icon/finance.svg')),
+  ),
+  "icon.fingerprint-recognition": (
+    default: (url('./icon/fingerprint-recognition.svg')),
+  ),
+  "icon.fire": (
+    default: (url('./icon/fire.svg')),
+  ),
+  "icon.firewall": (
+    default: (url('./icon/firewall.svg')),
+  ),
+  "icon.firewall--classic": (
+    default: (url('./icon/firewall--classic.svg')),
+  ),
+  "icon.fish": (
+    default: (url('./icon/fish.svg')),
+  ),
+  "icon.fish--multiple": (
+    default: (url('./icon/fish--multiple.svg')),
+  ),
+  "icon.fit-to-height": (
+    default: (url('./icon/fit-to-height.svg')),
+  ),
+  "icon.fit-to-screen": (
+    default: (url('./icon/fit-to-screen.svg')),
+  ),
+  "icon.fit-to-width": (
+    default: (url('./icon/fit-to-width.svg')),
+  ),
+  "icon.flag": (
+    default: (url('./icon/flag.svg')),
+  ),
+  "icon.flag--filled": (
+    default: (url('./icon/flag--filled.svg')),
+  ),
+  "icon.flagging-taxi": (
+    default: (url('./icon/flagging-taxi.svg')),
+  ),
+  "icon.flash": (
+    default: (url('./icon/flash.svg')),
+  ),
+  "icon.flash--filled": (
+    default: (url('./icon/flash--filled.svg')),
+  ),
+  "icon.flash--off": (
+    default: (url('./icon/flash--off.svg')),
+  ),
+  "icon.flash--off--filled": (
+    default: (url('./icon/flash--off--filled.svg')),
+  ),
+  "icon.flight--international": (
+    default: (url('./icon/flight--international.svg')),
+  ),
+  "icon.flight--roster": (
+    default: (url('./icon/flight--roster.svg')),
+  ),
+  "icon.flight--schedule": (
+    default: (url('./icon/flight--schedule.svg')),
+  ),
+  "icon.floating-ip": (
+    default: (url('./icon/floating-ip.svg')),
+  ),
+  "icon.flood": (
+    default: (url('./icon/flood.svg')),
+  ),
+  "icon.flood--warning": (
+    default: (url('./icon/flood--warning.svg')),
+  ),
+  "icon.flow": (
+    default: (url('./icon/flow.svg')),
+  ),
+  "icon.flow--connection": (
+    default: (url('./icon/flow--connection.svg')),
+  ),
+  "icon.flow--data": (
+    default: (url('./icon/flow--data.svg')),
+  ),
+  "icon.flow--modeler": (
+    default: (url('./icon/flow--modeler.svg')),
+  ),
+  "icon.flow--modeler--reference": (
+    default: (url('./icon/flow--modeler--reference.svg')),
+  ),
+  "icon.flow--stream": (
+    default: (url('./icon/flow--stream.svg')),
+  ),
+  "icon.flow--stream--reference": (
+    default: (url('./icon/flow--stream--reference.svg')),
+  ),
+  "icon.flow-logs-vpc": (
+    default: (url('./icon/flow-logs-vpc.svg')),
+  ),
+  "icon.fog": (
+    default: (url('./icon/fog.svg')),
+  ),
+  "icon.folder": (
+    default: (url('./icon/folder.svg')),
+  ),
+  "icon.folder--add": (
+    default: (url('./icon/folder--add.svg')),
+  ),
+  "icon.folder--details": (
+    default: (url('./icon/folder--details.svg')),
+  ),
+  "icon.folder--details--reference": (
+    default: (url('./icon/folder--details--reference.svg')),
+  ),
+  "icon.folder--move-to": (
+    default: (url('./icon/folder--move-to.svg')),
+  ),
+  "icon.folder--off": (
+    default: (url('./icon/folder--off.svg')),
+  ),
+  "icon.folder--open": (
+    default: (url('./icon/folder--open.svg')),
+  ),
+  "icon.folder--parent": (
+    default: (url('./icon/folder--parent.svg')),
+  ),
+  "icon.folder--shared": (
+    default: (url('./icon/folder--shared.svg')),
+  ),
+  "icon.folders": (
+    default: (url('./icon/folders.svg')),
+  ),
+  "icon.forecast--hail": (
+    default: (url('./icon/forecast--hail.svg')),
+  ),
+  "icon.forecast--hail-30": (
+    default: (url('./icon/forecast--hail-30.svg')),
+  ),
+  "icon.forecast--lightning": (
+    default: (url('./icon/forecast--lightning.svg')),
+  ),
+  "icon.forecast--lightning-30": (
+    default: (url('./icon/forecast--lightning-30.svg')),
+  ),
+  "icon.fork": (
+    default: (url('./icon/fork.svg')),
+  ),
+  "icon.forum": (
+    default: (url('./icon/forum.svg')),
+  ),
+  "icon.forward--10": (
+    default: (url('./icon/forward--10.svg')),
+  ),
+  "icon.forward--30": (
+    default: (url('./icon/forward--30.svg')),
+  ),
+  "icon.forward--5": (
+    default: (url('./icon/forward--5.svg')),
+  ),
+  "icon.fragile": (
+    default: (url('./icon/fragile.svg')),
+  ),
+  "icon.friendship": (
+    default: (url('./icon/friendship.svg')),
+  ),
+  "icon.fruit-bowl": (
+    default: (url('./icon/fruit-bowl.svg')),
+  ),
+  "icon.function": (
+    default: (url('./icon/function.svg')),
+  ),
+  "icon.function-math": (
+    default: (url('./icon/function-math.svg')),
+  ),
+  "icon.fusion-blender": (
+    default: (url('./icon/fusion-blender.svg')),
+  ),
+  "icon.game--console": (
+    default: (url('./icon/game--console.svg')),
+  ),
+  "icon.game--wireless": (
+    default: (url('./icon/game--wireless.svg')),
+  ),
+  "icon.gamification": (
+    default: (url('./icon/gamification.svg')),
+  ),
+  "icon.gas-station": (
+    default: (url('./icon/gas-station.svg')),
+  ),
+  "icon.gas-station--filled": (
+    default: (url('./icon/gas-station--filled.svg')),
+  ),
+  "icon.gateway": (
+    default: (url('./icon/gateway.svg')),
+  ),
+  "icon.gateway--api": (
+    default: (url('./icon/gateway--api.svg')),
+  ),
+  "icon.gateway--mail": (
+    default: (url('./icon/gateway--mail.svg')),
+  ),
+  "icon.gateway--public": (
+    default: (url('./icon/gateway--public.svg')),
+  ),
+  "icon.gateway--security": (
+    default: (url('./icon/gateway--security.svg')),
+  ),
+  "icon.gateway--user-access": (
+    default: (url('./icon/gateway--user-access.svg')),
+  ),
+  "icon.gateway--vpn": (
+    default: (url('./icon/gateway--vpn.svg')),
+  ),
+  "icon.gender--female": (
+    default: (url('./icon/gender--female.svg')),
+  ),
+  "icon.gender--male": (
+    default: (url('./icon/gender--male.svg')),
+  ),
+  "icon.generate-pdf": (
+    default: (url('./icon/generate-pdf.svg')),
+  ),
+  "icon.GIF": (
+    default: (url('./icon/GIF.svg')),
+  ),
+  "icon.gift": (
+    default: (url('./icon/gift.svg')),
+  ),
+  "icon.globe": (
+    default: (url('./icon/globe.svg')),
+  ),
+  "icon.glyph--caution": (
+    default: (url('./icon/glyph--caution.svg')),
+  ),
+  "icon.glyph--caution-inverted": (
+    default: (url('./icon/glyph--caution-inverted.svg')),
+  ),
+  "icon.glyph--circle-fill": (
+    default: (url('./icon/glyph--circle-fill.svg')),
+  ),
+  "icon.glyph--circle-stroke": (
+    default: (url('./icon/glyph--circle-stroke.svg')),
+  ),
+  "icon.glyph--critical": (
+    default: (url('./icon/glyph--critical.svg')),
+  ),
+  "icon.glyph--incomplete": (
+    default: (url('./icon/glyph--incomplete.svg')),
+  ),
+  "icon.glyph--square-fill": (
+    default: (url('./icon/glyph--square-fill.svg')),
+  ),
+  "icon.glyph--undefined": (
+    default: (url('./icon/glyph--undefined.svg')),
+  ),
+  "icon.gradient": (
+    default: (url('./icon/gradient.svg')),
+  ),
+  "icon.graphical-data-flow": (
+    default: (url('./icon/graphical-data-flow.svg')),
+  ),
+  "icon.grid": (
+    default: (url('./icon/grid.svg')),
+  ),
+  "icon.group": (
+    default: (url('./icon/group.svg')),
+  ),
+  "icon.group--access": (
+    default: (url('./icon/group--access.svg')),
+  ),
+  "icon.group--account": (
+    default: (url('./icon/group--account.svg')),
+  ),
+  "icon.group--presentation": (
+    default: (url('./icon/group--presentation.svg')),
+  ),
+  "icon.group--resource": (
+    default: (url('./icon/group--resource.svg')),
+  ),
+  "icon.group--security": (
+    default: (url('./icon/group--security.svg')),
+  ),
+  "icon.group-objects": (
+    default: (url('./icon/group-objects.svg')),
+  ),
+  "icon.group-objects--new": (
+    default: (url('./icon/group-objects--new.svg')),
+  ),
+  "icon.group-objects--save": (
+    default: (url('./icon/group-objects--save.svg')),
+  ),
+  "icon.growth": (
+    default: (url('./icon/growth.svg')),
+  ),
+  "icon.gui": (
+    default: (url('./icon/gui.svg')),
+  ),
+  "icon.gui--management": (
+    default: (url('./icon/gui--management.svg')),
+  ),
+  "icon.H": (
+    default: (url('./icon/H.svg')),
+  ),
+  "icon.hail": (
+    default: (url('./icon/hail.svg')),
+  ),
+  "icon.hanging-protocol": (
+    default: (url('./icon/hanging-protocol.svg')),
+  ),
+  "icon.harbor": (
+    default: (url('./icon/harbor.svg')),
+  ),
+  "icon.hardware-security-module": (
+    default: (url('./icon/hardware-security-module.svg')),
+  ),
+  "icon.hashtag": (
+    default: (url('./icon/hashtag.svg')),
+  ),
+  "icon.haze": (
+    default: (url('./icon/haze.svg')),
+  ),
+  "icon.haze--night": (
+    default: (url('./icon/haze--night.svg')),
+  ),
+  "icon.HD": (
+    default: (url('./icon/HD.svg')),
+  ),
+  "icon.HD--filled": (
+    default: (url('./icon/HD--filled.svg')),
+  ),
+  "icon.HDR": (
+    default: (url('./icon/HDR.svg')),
+  ),
+  "icon.headphones": (
+    default: (url('./icon/headphones.svg')),
+  ),
+  "icon.headset": (
+    default: (url('./icon/headset.svg')),
+  ),
+  "icon.health-cross": (
+    default: (url('./icon/health-cross.svg')),
+  ),
+  "icon.hearing": (
+    default: (url('./icon/hearing.svg')),
+  ),
+  "icon.heat-map": (
+    default: (url('./icon/heat-map.svg')),
+  ),
+  "icon.heat-map--02": (
+    default: (url('./icon/heat-map--02.svg')),
+  ),
+  "icon.heat-map--03": (
+    default: (url('./icon/heat-map--03.svg')),
+  ),
+  "icon.heat-map--stocks": (
+    default: (url('./icon/heat-map--stocks.svg')),
+  ),
+  "icon.helicopter": (
+    default: (url('./icon/helicopter.svg')),
+  ),
+  "icon.help": (
+    default: (url('./icon/help.svg')),
+  ),
+  "icon.help--filled": (
+    default: (url('./icon/help--filled.svg')),
+  ),
+  "icon.help-desk": (
+    default: (url('./icon/help-desk.svg')),
+  ),
+  "icon.hinton-plot": (
+    default: (url('./icon/hinton-plot.svg')),
+  ),
+  "icon.HL7-attributes": (
+    default: (url('./icon/HL7-attributes.svg')),
+  ),
+  "icon.hole-filling": (
+    default: (url('./icon/hole-filling.svg')),
+  ),
+  "icon.hole-filling--cursor": (
+    default: (url('./icon/hole-filling--cursor.svg')),
+  ),
+  "icon.home": (
+    default: (url('./icon/home.svg')),
+  ),
+  "icon.horizontal-view": (
+    default: (url('./icon/horizontal-view.svg')),
+  ),
+  "icon.hospital": (
+    default: (url('./icon/hospital.svg')),
+  ),
+  "icon.hospital-bed": (
+    default: (url('./icon/hospital-bed.svg')),
+  ),
+  "icon.hotel": (
+    default: (url('./icon/hotel.svg')),
+  ),
+  "icon.hourglass": (
+    default: (url('./icon/hourglass.svg')),
+  ),
+  "icon.HTML": (
+    default: (url('./icon/HTML.svg')),
+  ),
+  "icon.HTML--reference": (
+    default: (url('./icon/HTML--reference.svg')),
+  ),
+  "icon.HTTP": (
+    default: (url('./icon/HTTP.svg')),
+  ),
+  "icon.humidity": (
+    default: (url('./icon/humidity.svg')),
+  ),
+  "icon.humidity--alt": (
+    default: (url('./icon/humidity--alt.svg')),
+  ),
+  "icon.hurricane": (
+    default: (url('./icon/hurricane.svg')),
+  ),
+  "icon.hybrid-networking": (
+    default: (url('./icon/hybrid-networking.svg')),
+  ),
+  "icon.hybrid-networking--alt": (
+    default: (url('./icon/hybrid-networking--alt.svg')),
+  ),
+  "icon.ibm--data-replication": (
+    default: (url('./icon/ibm--data-replication.svg')),
+  ),
+  "icon.ibm--match-360": (
+    default: (url('./icon/ibm--match-360.svg')),
+  ),
+  "icon.ibm-cloud": (
+    default: (url('./icon/ibm-cloud.svg')),
+  ),
+  "icon.ibm-cloud--dedicated-host": (
+    default: (url('./icon/ibm-cloud--dedicated-host.svg')),
+  ),
+  "icon.ibm-cloud--internet-services": (
+    default: (url('./icon/ibm-cloud--internet-services.svg')),
+  ),
+  "icon.ibm-cloud--subnets": (
+    default: (url('./icon/ibm-cloud--subnets.svg')),
+  ),
+  "icon.ibm-cloud--transit-gateway": (
+    default: (url('./icon/ibm-cloud--transit-gateway.svg')),
+  ),
+  "icon.ibm-cloud--vpc-endpoints": (
+    default: (url('./icon/ibm-cloud--vpc-endpoints.svg')),
+  ),
+  "icon.ibm-cloud-pak--applications": (
+    default: (url('./icon/ibm-cloud-pak--applications.svg')),
+  ),
+  "icon.ibm-cloud-pak--data": (
+    default: (url('./icon/ibm-cloud-pak--data.svg')),
+  ),
+  "icon.ibm-cloud-pak--integration": (
+    default: (url('./icon/ibm-cloud-pak--integration.svg')),
+  ),
+  "icon.ibm-cloud-pak--multicloud-mgmt": (
+    default: (url('./icon/ibm-cloud-pak--multicloud-mgmt.svg')),
+  ),
+  "icon.ibm-cloud-pak--network-automation": (
+    default: (url('./icon/ibm-cloud-pak--network-automation.svg')),
+  ),
+  "icon.ibm-cloud-pak--security": (
+    default: (url('./icon/ibm-cloud-pak--security.svg')),
+  ),
+  "icon.ibm-cloud-pak--system": (
+    default: (url('./icon/ibm-cloud-pak--system.svg')),
+  ),
+  "icon.ibm-cloud-pak--watson-aiops": (
+    default: (url('./icon/ibm-cloud-pak--watson-aiops.svg')),
+  ),
+  "icon.ibm-security": (
+    default: (url('./icon/ibm-security.svg')),
+  ),
+  "icon.ibm-security--services": (
+    default: (url('./icon/ibm-security--services.svg')),
+  ),
+  "icon.iCA-2D": (
+    default: (url('./icon/iCA-2D.svg')),
+  ),
+  "icon.ice--accretion": (
+    default: (url('./icon/ice--accretion.svg')),
+  ),
+  "icon.ice--vision": (
+    default: (url('./icon/ice--vision.svg')),
+  ),
+  "icon.iD": (
+    default: (url('./icon/iD.svg')),
+  ),
+  "icon.id-management": (
+    default: (url('./icon/id-management.svg')),
+  ),
+  "icon.idea": (
+    default: (url('./icon/idea.svg')),
+  ),
+  "icon.identification": (
+    default: (url('./icon/identification.svg')),
+  ),
+  "icon.image": (
+    default: (url('./icon/image.svg')),
+  ),
+  "icon.image--copy": (
+    default: (url('./icon/image--copy.svg')),
+  ),
+  "icon.image--medical": (
+    default: (url('./icon/image--medical.svg')),
+  ),
+  "icon.image--reference": (
+    default: (url('./icon/image--reference.svg')),
+  ),
+  "icon.image--search": (
+    default: (url('./icon/image--search.svg')),
+  ),
+  "icon.image--search--alt": (
+    default: (url('./icon/image--search--alt.svg')),
+  ),
+  "icon.image-service": (
+    default: (url('./icon/image-service.svg')),
+  ),
+  "icon.import-export": (
+    default: (url('./icon/import-export.svg')),
+  ),
+  "icon.improve-relevance": (
+    default: (url('./icon/improve-relevance.svg')),
+  ),
+  "icon.in-progress": (
+    default: (url('./icon/in-progress.svg')),
+  ),
+  "icon.in-progress--error": (
+    default: (url('./icon/in-progress--error.svg')),
+  ),
+  "icon.in-progress--warning": (
+    default: (url('./icon/in-progress--warning.svg')),
+  ),
+  "icon.incomplete": (
+    default: (url('./icon/incomplete.svg')),
+  ),
+  "icon.incomplete--cancel": (
+    default: (url('./icon/incomplete--cancel.svg')),
+  ),
+  "icon.incomplete--error": (
+    default: (url('./icon/incomplete--error.svg')),
+  ),
+  "icon.incomplete--warning": (
+    default: (url('./icon/incomplete--warning.svg')),
+  ),
+  "icon.increase-level": (
+    default: (url('./icon/increase-level.svg')),
+  ),
+  "icon.industry": (
+    default: (url('./icon/industry.svg')),
+  ),
+  "icon.information": (
+    default: (url('./icon/information.svg')),
+  ),
+  "icon.information--disabled": (
+    default: (url('./icon/information--disabled.svg')),
+  ),
+  "icon.information--filled": (
+    default: (url('./icon/information--filled.svg')),
+  ),
+  "icon.information--square": (
+    default: (url('./icon/information--square.svg')),
+  ),
+  "icon.information--square--filled": (
+    default: (url('./icon/information--square--filled.svg')),
+  ),
+  "icon.infrastructure--classic": (
+    default: (url('./icon/infrastructure--classic.svg')),
+  ),
+  "icon.insert": (
+    default: (url('./icon/insert.svg')),
+  ),
+  "icon.insert--page": (
+    default: (url('./icon/insert--page.svg')),
+  ),
+  "icon.insert-syntax": (
+    default: (url('./icon/insert-syntax.svg')),
+  ),
+  "icon.inspection": (
+    default: (url('./icon/inspection.svg')),
+  ),
+  "icon.instance--bx": (
+    default: (url('./icon/instance--bx.svg')),
+  ),
+  "icon.instance--classic": (
+    default: (url('./icon/instance--classic.svg')),
+  ),
+  "icon.instance--cx": (
+    default: (url('./icon/instance--cx.svg')),
+  ),
+  "icon.instance--mx": (
+    default: (url('./icon/instance--mx.svg')),
+  ),
+  "icon.instance--virtual": (
+    default: (url('./icon/instance--virtual.svg')),
+  ),
+  "icon.integration": (
+    default: (url('./icon/integration.svg')),
+  ),
+  "icon.interactions": (
+    default: (url('./icon/interactions.svg')),
+  ),
+  "icon.interactive-segmentation-cursor": (
+    default: (url('./icon/interactive-segmentation-cursor.svg')),
+  ),
+  "icon.intersect": (
+    default: (url('./icon/intersect.svg')),
+  ),
+  "icon.intrusion-prevention": (
+    default: (url('./icon/intrusion-prevention.svg')),
+  ),
+  "icon.inventory-management": (
+    default: (url('./icon/inventory-management.svg')),
+  ),
+  "icon.iot--connect": (
+    default: (url('./icon/iot--connect.svg')),
+  ),
+  "icon.iot--platform": (
+    default: (url('./icon/iot--platform.svg')),
+  ),
+  "icon.ISO": (
+    default: (url('./icon/ISO.svg')),
+  ),
+  "icon.ISO--filled": (
+    default: (url('./icon/ISO--filled.svg')),
+  ),
+  "icon.ISO--outline": (
+    default: (url('./icon/ISO--outline.svg')),
+  ),
+  "icon.join--full": (
+    default: (url('./icon/join--full.svg')),
+  ),
+  "icon.join--inner": (
+    default: (url('./icon/join--inner.svg')),
+  ),
+  "icon.join--left": (
+    default: (url('./icon/join--left.svg')),
+  ),
+  "icon.join--outer": (
+    default: (url('./icon/join--outer.svg')),
+  ),
+  "icon.join--right": (
+    default: (url('./icon/join--right.svg')),
+  ),
+  "icon.JPG": (
+    default: (url('./icon/JPG.svg')),
+  ),
+  "icon.JSON": (
+    default: (url('./icon/JSON.svg')),
+  ),
+  "icon.JSON--reference": (
+    default: (url('./icon/JSON--reference.svg')),
+  ),
+  "icon.jump-link": (
+    default: (url('./icon/jump-link.svg')),
+  ),
+  "icon.keep-dry": (
+    default: (url('./icon/keep-dry.svg')),
+  ),
+  "icon.keyboard": (
+    default: (url('./icon/keyboard.svg')),
+  ),
+  "icon.kubernetes": (
+    default: (url('./icon/kubernetes.svg')),
+  ),
+  "icon.label": (
+    default: (url('./icon/label.svg')),
+  ),
+  "icon.language": (
+    default: (url('./icon/language.svg')),
+  ),
+  "icon.laptop": (
+    default: (url('./icon/laptop.svg')),
+  ),
+  "icon.lasso": (
+    default: (url('./icon/lasso.svg')),
+  ),
+  "icon.lasso--polygon": (
+    default: (url('./icon/lasso--polygon.svg')),
+  ),
+  "icon.launch": (
+    default: (url('./icon/launch.svg')),
+  ),
+  "icon.launch-study--1": (
+    default: (url('./icon/launch-study--1.svg')),
+  ),
+  "icon.launch-study--2": (
+    default: (url('./icon/launch-study--2.svg')),
+  ),
+  "icon.launch-study--3": (
+    default: (url('./icon/launch-study--3.svg')),
+  ),
+  "icon.layers": (
+    default: (url('./icon/layers.svg')),
+  ),
+  "icon.legend": (
+    default: (url('./icon/legend.svg')),
+  ),
+  "icon.letter--Aa": (
+    default: (url('./icon/letter--Aa.svg')),
+  ),
+  "icon.letter--Aa--large": (
+    default: (url('./icon/letter--Aa--large.svg')),
+  ),
+  "icon.letter--Bb": (
+    default: (url('./icon/letter--Bb.svg')),
+  ),
+  "icon.letter--Cc": (
+    default: (url('./icon/letter--Cc.svg')),
+  ),
+  "icon.letter--Dd": (
+    default: (url('./icon/letter--Dd.svg')),
+  ),
+  "icon.letter--Ee": (
+    default: (url('./icon/letter--Ee.svg')),
+  ),
+  "icon.letter--Ff": (
+    default: (url('./icon/letter--Ff.svg')),
+  ),
+  "icon.letter--Gg": (
+    default: (url('./icon/letter--Gg.svg')),
+  ),
+  "icon.letter--Hh": (
+    default: (url('./icon/letter--Hh.svg')),
+  ),
+  "icon.letter--Ii": (
+    default: (url('./icon/letter--Ii.svg')),
+  ),
+  "icon.letter--Jj": (
+    default: (url('./icon/letter--Jj.svg')),
+  ),
+  "icon.letter--Kk": (
+    default: (url('./icon/letter--Kk.svg')),
+  ),
+  "icon.letter--Ll": (
+    default: (url('./icon/letter--Ll.svg')),
+  ),
+  "icon.letter--Mm": (
+    default: (url('./icon/letter--Mm.svg')),
+  ),
+  "icon.letter--Nn": (
+    default: (url('./icon/letter--Nn.svg')),
+  ),
+  "icon.letter--Oo": (
+    default: (url('./icon/letter--Oo.svg')),
+  ),
+  "icon.letter--Pp": (
+    default: (url('./icon/letter--Pp.svg')),
+  ),
+  "icon.letter--Qq": (
+    default: (url('./icon/letter--Qq.svg')),
+  ),
+  "icon.letter--Rr": (
+    default: (url('./icon/letter--Rr.svg')),
+  ),
+  "icon.letter--Ss": (
+    default: (url('./icon/letter--Ss.svg')),
+  ),
+  "icon.letter--Tt": (
+    default: (url('./icon/letter--Tt.svg')),
+  ),
+  "icon.letter--Uu": (
+    default: (url('./icon/letter--Uu.svg')),
+  ),
+  "icon.letter--Vv": (
+    default: (url('./icon/letter--Vv.svg')),
+  ),
+  "icon.letter--Ww": (
+    default: (url('./icon/letter--Ww.svg')),
+  ),
+  "icon.letter--Xx": (
+    default: (url('./icon/letter--Xx.svg')),
+  ),
+  "icon.letter--Yy": (
+    default: (url('./icon/letter--Yy.svg')),
+  ),
+  "icon.letter--Zz": (
+    default: (url('./icon/letter--Zz.svg')),
+  ),
+  "icon.license": (
+    default: (url('./icon/license.svg')),
+  ),
+  "icon.license--draft": (
+    default: (url('./icon/license--draft.svg')),
+  ),
+  "icon.license--global": (
+    default: (url('./icon/license--global.svg')),
+  ),
+  "icon.license--maintenance": (
+    default: (url('./icon/license--maintenance.svg')),
+  ),
+  "icon.license--maintenance-draft": (
+    default: (url('./icon/license--maintenance-draft.svg')),
+  ),
+  "icon.license--third-party": (
+    default: (url('./icon/license--third-party.svg')),
+  ),
+  "icon.license--third-party-draft": (
+    default: (url('./icon/license--third-party-draft.svg')),
+  ),
+  "icon.lifesaver": (
+    default: (url('./icon/lifesaver.svg')),
+  ),
+  "icon.light": (
+    default: (url('./icon/light.svg')),
+  ),
+  "icon.light--filled": (
+    default: (url('./icon/light--filled.svg')),
+  ),
+  "icon.lightning": (
+    default: (url('./icon/lightning.svg')),
+  ),
+  "icon.link": (
+    default: (url('./icon/link.svg')),
+  ),
+  "icon.linux": (
+    default: (url('./icon/linux.svg')),
+  ),
+  "icon.linux--alt": (
+    default: (url('./icon/linux--alt.svg')),
+  ),
+  "icon.list": (
+    default: (url('./icon/list.svg')),
+  ),
+  "icon.list--boxes": (
+    default: (url('./icon/list--boxes.svg')),
+  ),
+  "icon.list--bulleted": (
+    default: (url('./icon/list--bulleted.svg')),
+  ),
+  "icon.list--checked": (
+    default: (url('./icon/list--checked.svg')),
+  ),
+  "icon.list--dropdown": (
+    default: (url('./icon/list--dropdown.svg')),
+  ),
+  "icon.list--numbered": (
+    default: (url('./icon/list--numbered.svg')),
+  ),
+  "icon.load-balancer--application": (
+    default: (url('./icon/load-balancer--application.svg')),
+  ),
+  "icon.load-balancer--classic": (
+    default: (url('./icon/load-balancer--classic.svg')),
+  ),
+  "icon.load-balancer--global": (
+    default: (url('./icon/load-balancer--global.svg')),
+  ),
+  "icon.load-balancer--listener": (
+    default: (url('./icon/load-balancer--listener.svg')),
+  ),
+  "icon.load-balancer--local": (
+    default: (url('./icon/load-balancer--local.svg')),
+  ),
+  "icon.load-balancer--network": (
+    default: (url('./icon/load-balancer--network.svg')),
+  ),
+  "icon.load-balancer--pool": (
+    default: (url('./icon/load-balancer--pool.svg')),
+  ),
+  "icon.load-balancer--vpc": (
+    default: (url('./icon/load-balancer--vpc.svg')),
+  ),
+  "icon.location": (
+    default: (url('./icon/location.svg')),
+  ),
+  "icon.location--company": (
+    default: (url('./icon/location--company.svg')),
+  ),
+  "icon.location--company--filled": (
+    default: (url('./icon/location--company--filled.svg')),
+  ),
+  "icon.location--current": (
+    default: (url('./icon/location--current.svg')),
+  ),
+  "icon.location--filled": (
+    default: (url('./icon/location--filled.svg')),
+  ),
+  "icon.location--hazard": (
+    default: (url('./icon/location--hazard.svg')),
+  ),
+  "icon.location--hazard--filled": (
+    default: (url('./icon/location--hazard--filled.svg')),
+  ),
+  "icon.location--heart": (
+    default: (url('./icon/location--heart.svg')),
+  ),
+  "icon.location--heart--filled": (
+    default: (url('./icon/location--heart--filled.svg')),
+  ),
+  "icon.location--person": (
+    default: (url('./icon/location--person.svg')),
+  ),
+  "icon.location--person--filled": (
+    default: (url('./icon/location--person--filled.svg')),
+  ),
+  "icon.location--save": (
+    default: (url('./icon/location--save.svg')),
+  ),
+  "icon.location--star": (
+    default: (url('./icon/location--star.svg')),
+  ),
+  "icon.location--star--filled": (
+    default: (url('./icon/location--star--filled.svg')),
+  ),
+  "icon.locked": (
+    default: (url('./icon/locked.svg')),
+  ),
+  "icon.logical-partition": (
+    default: (url('./icon/logical-partition.svg')),
+  ),
+  "icon.login": (
+    default: (url('./icon/login.svg')),
+  ),
+  "icon.logo--delicious": (
+    default: (url('./icon/logo--delicious.svg')),
+  ),
+  "icon.logo--digg": (
+    default: (url('./icon/logo--digg.svg')),
+  ),
+  "icon.logo--discord": (
+    default: (url('./icon/logo--discord.svg')),
+  ),
+  "icon.logo--facebook": (
+    default: (url('./icon/logo--facebook.svg')),
+  ),
+  "icon.logo--flickr": (
+    default: (url('./icon/logo--flickr.svg')),
+  ),
+  "icon.logo--github": (
+    default: (url('./icon/logo--github.svg')),
+  ),
+  "icon.logo--glassdoor": (
+    default: (url('./icon/logo--glassdoor.svg')),
+  ),
+  "icon.logo--google": (
+    default: (url('./icon/logo--google.svg')),
+  ),
+  "icon.logo--instagram": (
+    default: (url('./icon/logo--instagram.svg')),
+  ),
+  "icon.logo--jupyter": (
+    default: (url('./icon/logo--jupyter.svg')),
+  ),
+  "icon.logo--keybase": (
+    default: (url('./icon/logo--keybase.svg')),
+  ),
+  "icon.logo--linkedin": (
+    default: (url('./icon/logo--linkedin.svg')),
+  ),
+  "icon.logo--livestream": (
+    default: (url('./icon/logo--livestream.svg')),
+  ),
+  "icon.logo--medium": (
+    default: (url('./icon/logo--medium.svg')),
+  ),
+  "icon.logo--openshift": (
+    default: (url('./icon/logo--openshift.svg')),
+  ),
+  "icon.logo--pinterest": (
+    default: (url('./icon/logo--pinterest.svg')),
+  ),
+  "icon.logo--python": (
+    default: (url('./icon/logo--python.svg')),
+  ),
+  "icon.logo--quora": (
+    default: (url('./icon/logo--quora.svg')),
+  ),
+  "icon.logo--r-script": (
+    default: (url('./icon/logo--r-script.svg')),
+  ),
+  "icon.logo--skype": (
+    default: (url('./icon/logo--skype.svg')),
+  ),
+  "icon.logo--slack": (
+    default: (url('./icon/logo--slack.svg')),
+  ),
+  "icon.logo--snapchat": (
+    default: (url('./icon/logo--snapchat.svg')),
+  ),
+  "icon.logo--stumbleupon": (
+    default: (url('./icon/logo--stumbleupon.svg')),
+  ),
+  "icon.logo--tumblr": (
+    default: (url('./icon/logo--tumblr.svg')),
+  ),
+  "icon.logo--twitter": (
+    default: (url('./icon/logo--twitter.svg')),
+  ),
+  "icon.logo--vmware": (
+    default: (url('./icon/logo--vmware.svg')),
+  ),
+  "icon.logo--wechat": (
+    default: (url('./icon/logo--wechat.svg')),
+  ),
+  "icon.logo--xing": (
+    default: (url('./icon/logo--xing.svg')),
+  ),
+  "icon.logo--yelp": (
+    default: (url('./icon/logo--yelp.svg')),
+  ),
+  "icon.logo--youtube": (
+    default: (url('./icon/logo--youtube.svg')),
+  ),
+  "icon.logout": (
+    default: (url('./icon/logout.svg')),
+  ),
+  "icon.loop": (
+    default: (url('./icon/loop.svg')),
+  ),
+  "icon.low-severity": (
+    default: (url('./icon/low-severity.svg')),
+  ),
+  "icon.mac--command": (
+    default: (url('./icon/mac--command.svg')),
+  ),
+  "icon.mac--option": (
+    default: (url('./icon/mac--option.svg')),
+  ),
+  "icon.mac--shift": (
+    default: (url('./icon/mac--shift.svg')),
+  ),
+  "icon.machine-learning": (
+    default: (url('./icon/machine-learning.svg')),
+  ),
+  "icon.machine-learning-model": (
+    default: (url('./icon/machine-learning-model.svg')),
+  ),
+  "icon.magic-wand": (
+    default: (url('./icon/magic-wand.svg')),
+  ),
+  "icon.magic-wand--filled": (
+    default: (url('./icon/magic-wand--filled.svg')),
+  ),
+  "icon.magnify": (
+    default: (url('./icon/magnify.svg')),
+  ),
+  "icon.mail--all": (
+    default: (url('./icon/mail--all.svg')),
+  ),
+  "icon.mail--reply": (
+    default: (url('./icon/mail--reply.svg')),
+  ),
+  "icon.mammogram": (
+    default: (url('./icon/mammogram.svg')),
+  ),
+  "icon.mammogram--stacked": (
+    default: (url('./icon/mammogram--stacked.svg')),
+  ),
+  "icon.manage-protection": (
+    default: (url('./icon/manage-protection.svg')),
+  ),
+  "icon.managed-solutions": (
+    default: (url('./icon/managed-solutions.svg')),
+  ),
+  "icon.map": (
+    default: (url('./icon/map.svg')),
+  ),
+  "icon.map--center": (
+    default: (url('./icon/map--center.svg')),
+  ),
+  "icon.map--identify": (
+    default: (url('./icon/map--identify.svg')),
+  ),
+  "icon.map-boundary": (
+    default: (url('./icon/map-boundary.svg')),
+  ),
+  "icon.map-boundary--vegetation": (
+    default: (url('./icon/map-boundary--vegetation.svg')),
+  ),
+  "icon.marine-warning": (
+    default: (url('./icon/marine-warning.svg')),
+  ),
+  "icon.math-curve": (
+    default: (url('./icon/math-curve.svg')),
+  ),
+  "icon.matrix": (
+    default: (url('./icon/matrix.svg')),
+  ),
+  "icon.maximize": (
+    default: (url('./icon/maximize.svg')),
+  ),
+  "icon.media--library": (
+    default: (url('./icon/media--library.svg')),
+  ),
+  "icon.media--library--filled": (
+    default: (url('./icon/media--library--filled.svg')),
+  ),
+  "icon.media-cast": (
+    default: (url('./icon/media-cast.svg')),
+  ),
+  "icon.medication": (
+    default: (url('./icon/medication.svg')),
+  ),
+  "icon.medication--alert": (
+    default: (url('./icon/medication--alert.svg')),
+  ),
+  "icon.medication--reminder": (
+    default: (url('./icon/medication--reminder.svg')),
+  ),
+  "icon.menu": (
+    default: (url('./icon/menu.svg')),
+  ),
+  "icon.message-queue": (
+    default: (url('./icon/message-queue.svg')),
+  ),
+  "icon.meter": (
+    default: (url('./icon/meter.svg')),
+  ),
+  "icon.meter--alt": (
+    default: (url('./icon/meter--alt.svg')),
+  ),
+  "icon.microphone": (
+    default: (url('./icon/microphone.svg')),
+  ),
+  "icon.microphone--filled": (
+    default: (url('./icon/microphone--filled.svg')),
+  ),
+  "icon.microphone--off": (
+    default: (url('./icon/microphone--off.svg')),
+  ),
+  "icon.microphone--off--filled": (
+    default: (url('./icon/microphone--off--filled.svg')),
+  ),
+  "icon.microscope": (
+    default: (url('./icon/microscope.svg')),
+  ),
+  "icon.migrate": (
+    default: (url('./icon/migrate.svg')),
+  ),
+  "icon.migrate--alt": (
+    default: (url('./icon/migrate--alt.svg')),
+  ),
+  "icon.milestone": (
+    default: (url('./icon/milestone.svg')),
+  ),
+  "icon.military-camp": (
+    default: (url('./icon/military-camp.svg')),
+  ),
+  "icon.minimize": (
+    default: (url('./icon/minimize.svg')),
+  ),
+  "icon.misuse": (
+    default: (url('./icon/misuse.svg')),
+  ),
+  "icon.misuse--alt": (
+    default: (url('./icon/misuse--alt.svg')),
+  ),
+  "icon.misuse--outline": (
+    default: (url('./icon/misuse--outline.svg')),
+  ),
+  "icon.mixed-rain-hail": (
+    default: (url('./icon/mixed-rain-hail.svg')),
+  ),
+  "icon.mobile": (
+    default: (url('./icon/mobile.svg')),
+  ),
+  "icon.mobile--add": (
+    default: (url('./icon/mobile--add.svg')),
+  ),
+  "icon.mobile--audio": (
+    default: (url('./icon/mobile--audio.svg')),
+  ),
+  "icon.mobile--check": (
+    default: (url('./icon/mobile--check.svg')),
+  ),
+  "icon.mobile--download": (
+    default: (url('./icon/mobile--download.svg')),
+  ),
+  "icon.mobile--landscape": (
+    default: (url('./icon/mobile--landscape.svg')),
+  ),
+  "icon.mobility--services": (
+    default: (url('./icon/mobility--services.svg')),
+  ),
+  "icon.model": (
+    default: (url('./icon/model.svg')),
+  ),
+  "icon.model--alt": (
+    default: (url('./icon/model--alt.svg')),
+  ),
+  "icon.model--reference": (
+    default: (url('./icon/model--reference.svg')),
+  ),
+  "icon.model-builder": (
+    default: (url('./icon/model-builder.svg')),
+  ),
+  "icon.model-builder--reference": (
+    default: (url('./icon/model-builder--reference.svg')),
+  ),
+  "icon.money": (
+    default: (url('./icon/money.svg')),
+  ),
+  "icon.monster": (
+    default: (url('./icon/monster.svg')),
+  ),
+  "icon.monument": (
+    default: (url('./icon/monument.svg')),
+  ),
+  "icon.moon": (
+    default: (url('./icon/moon.svg')),
+  ),
+  "icon.moonrise": (
+    default: (url('./icon/moonrise.svg')),
+  ),
+  "icon.moonset": (
+    default: (url('./icon/moonset.svg')),
+  ),
+  "icon.mostly-cloudy": (
+    default: (url('./icon/mostly-cloudy.svg')),
+  ),
+  "icon.mostly-cloudy--night": (
+    default: (url('./icon/mostly-cloudy--night.svg')),
+  ),
+  "icon.mountain": (
+    default: (url('./icon/mountain.svg')),
+  ),
+  "icon.MOV": (
+    default: (url('./icon/MOV.svg')),
+  ),
+  "icon.move": (
+    default: (url('./icon/move.svg')),
+  ),
+  "icon.movement": (
+    default: (url('./icon/movement.svg')),
+  ),
+  "icon.MP3": (
+    default: (url('./icon/MP3.svg')),
+  ),
+  "icon.MP4": (
+    default: (url('./icon/MP4.svg')),
+  ),
+  "icon.MPEG": (
+    default: (url('./icon/MPEG.svg')),
+  ),
+  "icon.MPG2": (
+    default: (url('./icon/MPG2.svg')),
+  ),
+  "icon.music": (
+    default: (url('./icon/music.svg')),
+  ),
+  "icon.music--add": (
+    default: (url('./icon/music--add.svg')),
+  ),
+  "icon.music--remove": (
+    default: (url('./icon/music--remove.svg')),
+  ),
+  "icon.name-space": (
+    default: (url('./icon/name-space.svg')),
+  ),
+  "icon.navaid--civil": (
+    default: (url('./icon/navaid--civil.svg')),
+  ),
+  "icon.navaid--dme": (
+    default: (url('./icon/navaid--dme.svg')),
+  ),
+  "icon.navaid--helipad": (
+    default: (url('./icon/navaid--helipad.svg')),
+  ),
+  "icon.navaid--military": (
+    default: (url('./icon/navaid--military.svg')),
+  ),
+  "icon.navaid--military-civil": (
+    default: (url('./icon/navaid--military-civil.svg')),
+  ),
+  "icon.navaid--ndb": (
+    default: (url('./icon/navaid--ndb.svg')),
+  ),
+  "icon.navaid--ndb-dme": (
+    default: (url('./icon/navaid--ndb-dme.svg')),
+  ),
+  "icon.navaid--private": (
+    default: (url('./icon/navaid--private.svg')),
+  ),
+  "icon.navaid--seaplane": (
+    default: (url('./icon/navaid--seaplane.svg')),
+  ),
+  "icon.navaid--tacan": (
+    default: (url('./icon/navaid--tacan.svg')),
+  ),
+  "icon.navaid--vhfor": (
+    default: (url('./icon/navaid--vhfor.svg')),
+  ),
+  "icon.navaid--vor": (
+    default: (url('./icon/navaid--vor.svg')),
+  ),
+  "icon.navaid--vordme": (
+    default: (url('./icon/navaid--vordme.svg')),
+  ),
+  "icon.navaid--vortac": (
+    default: (url('./icon/navaid--vortac.svg')),
+  ),
+  "icon.need": (
+    default: (url('./icon/need.svg')),
+  ),
+  "icon.network--1": (
+    default: (url('./icon/network--1.svg')),
+  ),
+  "icon.network--2": (
+    default: (url('./icon/network--2.svg')),
+  ),
+  "icon.network--3": (
+    default: (url('./icon/network--3.svg')),
+  ),
+  "icon.network--3--reference": (
+    default: (url('./icon/network--3--reference.svg')),
+  ),
+  "icon.network--4": (
+    default: (url('./icon/network--4.svg')),
+  ),
+  "icon.network--4--reference": (
+    default: (url('./icon/network--4--reference.svg')),
+  ),
+  "icon.network--admin-control": (
+    default: (url('./icon/network--admin-control.svg')),
+  ),
+  "icon.network--enterprise": (
+    default: (url('./icon/network--enterprise.svg')),
+  ),
+  "icon.network--overlay": (
+    default: (url('./icon/network--overlay.svg')),
+  ),
+  "icon.network--public": (
+    default: (url('./icon/network--public.svg')),
+  ),
+  "icon.new-tab": (
+    default: (url('./icon/new-tab.svg')),
+  ),
+  "icon.next--filled": (
+    default: (url('./icon/next--filled.svg')),
+  ),
+  "icon.next--outline": (
+    default: (url('./icon/next--outline.svg')),
+  ),
+  "icon.no-image": (
+    default: (url('./icon/no-image.svg')),
+  ),
+  "icon.no-ticket": (
+    default: (url('./icon/no-ticket.svg')),
+  ),
+  "icon.nominal": (
+    default: (url('./icon/nominal.svg')),
+  ),
+  "icon.nominate": (
+    default: (url('./icon/nominate.svg')),
+  ),
+  "icon.non-certified": (
+    default: (url('./icon/non-certified.svg')),
+  ),
+  "icon.noodle-bowl": (
+    default: (url('./icon/noodle-bowl.svg')),
+  ),
+  "icon.not-available": (
+    default: (url('./icon/not-available.svg')),
+  ),
+  "icon.not-sent": (
+    default: (url('./icon/not-sent.svg')),
+  ),
+  "icon.not-sent--filled": (
+    default: (url('./icon/not-sent--filled.svg')),
+  ),
+  "icon.notebook": (
+    default: (url('./icon/notebook.svg')),
+  ),
+  "icon.notebook--reference": (
+    default: (url('./icon/notebook--reference.svg')),
+  ),
+  "icon.notification": (
+    default: (url('./icon/notification.svg')),
+  ),
+  "icon.notification--filled": (
+    default: (url('./icon/notification--filled.svg')),
+  ),
+  "icon.notification--new": (
+    default: (url('./icon/notification--new.svg')),
+  ),
+  "icon.notification--off": (
+    default: (url('./icon/notification--off.svg')),
+  ),
+  "icon.notification--off--filled": (
+    default: (url('./icon/notification--off--filled.svg')),
+  ),
+  "icon.number--0": (
+    default: (url('./icon/number--0.svg')),
+  ),
+  "icon.number--1": (
+    default: (url('./icon/number--1.svg')),
+  ),
+  "icon.number--2": (
+    default: (url('./icon/number--2.svg')),
+  ),
+  "icon.number--3": (
+    default: (url('./icon/number--3.svg')),
+  ),
+  "icon.number--4": (
+    default: (url('./icon/number--4.svg')),
+  ),
+  "icon.number--5": (
+    default: (url('./icon/number--5.svg')),
+  ),
+  "icon.number--6": (
+    default: (url('./icon/number--6.svg')),
+  ),
+  "icon.number--7": (
+    default: (url('./icon/number--7.svg')),
+  ),
+  "icon.number--8": (
+    default: (url('./icon/number--8.svg')),
+  ),
+  "icon.number--9": (
+    default: (url('./icon/number--9.svg')),
+  ),
+  "icon.number--small--0": (
+    default: (url('./icon/number--small--0.svg')),
+  ),
+  "icon.number--small--1": (
+    default: (url('./icon/number--small--1.svg')),
+  ),
+  "icon.number--small--2": (
+    default: (url('./icon/number--small--2.svg')),
+  ),
+  "icon.number--small--3": (
+    default: (url('./icon/number--small--3.svg')),
+  ),
+  "icon.number--small--4": (
+    default: (url('./icon/number--small--4.svg')),
+  ),
+  "icon.number--small--5": (
+    default: (url('./icon/number--small--5.svg')),
+  ),
+  "icon.number--small--6": (
+    default: (url('./icon/number--small--6.svg')),
+  ),
+  "icon.number--small--7": (
+    default: (url('./icon/number--small--7.svg')),
+  ),
+  "icon.number--small--8": (
+    default: (url('./icon/number--small--8.svg')),
+  ),
+  "icon.number--small--9": (
+    default: (url('./icon/number--small--9.svg')),
+  ),
+  "icon.object-storage": (
+    default: (url('./icon/object-storage.svg')),
+  ),
+  "icon.object-storage--alt": (
+    default: (url('./icon/object-storage--alt.svg')),
+  ),
+  "icon.observed--hail": (
+    default: (url('./icon/observed--hail.svg')),
+  ),
+  "icon.observed--lightning": (
+    default: (url('./icon/observed--lightning.svg')),
+  ),
+  "icon.omega": (
+    default: (url('./icon/omega.svg')),
+  ),
+  "icon.opacity": (
+    default: (url('./icon/opacity.svg')),
+  ),
+  "icon.open-panel--bottom": (
+    default: (url('./icon/open-panel--bottom.svg')),
+  ),
+  "icon.open-panel--filled--bottom": (
+    default: (url('./icon/open-panel--filled--bottom.svg')),
+  ),
+  "icon.open-panel--filled--left": (
+    default: (url('./icon/open-panel--filled--left.svg')),
+  ),
+  "icon.open-panel--filled--right": (
+    default: (url('./icon/open-panel--filled--right.svg')),
+  ),
+  "icon.open-panel--filled--top": (
+    default: (url('./icon/open-panel--filled--top.svg')),
+  ),
+  "icon.open-panel--left": (
+    default: (url('./icon/open-panel--left.svg')),
+  ),
+  "icon.open-panel--right": (
+    default: (url('./icon/open-panel--right.svg')),
+  ),
+  "icon.open-panel--top": (
+    default: (url('./icon/open-panel--top.svg')),
+  ),
+  "icon.operation": (
+    default: (url('./icon/operation.svg')),
+  ),
+  "icon.operation--gauge": (
+    default: (url('./icon/operation--gauge.svg')),
+  ),
+  "icon.operation--if": (
+    default: (url('./icon/operation--if.svg')),
+  ),
+  "icon.operations--field": (
+    default: (url('./icon/operations--field.svg')),
+  ),
+  "icon.operations--record": (
+    default: (url('./icon/operations--record.svg')),
+  ),
+  "icon.order-details": (
+    default: (url('./icon/order-details.svg')),
+  ),
+  "icon.ordinal": (
+    default: (url('./icon/ordinal.svg')),
+  ),
+  "icon.outage": (
+    default: (url('./icon/outage.svg')),
+  ),
+  "icon.outlook-severe": (
+    default: (url('./icon/outlook-severe.svg')),
+  ),
+  "icon.overflow-menu--horizontal": (
+    default: (url('./icon/overflow-menu--horizontal.svg')),
+  ),
+  "icon.overflow-menu--vertical": (
+    default: (url('./icon/overflow-menu--vertical.svg')),
+  ),
+  "icon.overlay": (
+    default: (url('./icon/overlay.svg')),
+  ),
+  "icon.package": (
+    default: (url('./icon/package.svg')),
+  ),
+  "icon.page--first": (
+    default: (url('./icon/page--first.svg')),
+  ),
+  "icon.page--last": (
+    default: (url('./icon/page--last.svg')),
+  ),
+  "icon.page-break": (
+    default: (url('./icon/page-break.svg')),
+  ),
+  "icon.page-number": (
+    default: (url('./icon/page-number.svg')),
+  ),
+  "icon.page-scroll": (
+    default: (url('./icon/page-scroll.svg')),
+  ),
+  "icon.paint-brush": (
+    default: (url('./icon/paint-brush.svg')),
+  ),
+  "icon.paint-brush--alt": (
+    default: (url('./icon/paint-brush--alt.svg')),
+  ),
+  "icon.palm-tree": (
+    default: (url('./icon/palm-tree.svg')),
+  ),
+  "icon.pan--horizontal": (
+    default: (url('./icon/pan--horizontal.svg')),
+  ),
+  "icon.pan--vertical": (
+    default: (url('./icon/pan--vertical.svg')),
+  ),
+  "icon.panel-expansion": (
+    default: (url('./icon/panel-expansion.svg')),
+  ),
+  "icon.paragraph": (
+    default: (url('./icon/paragraph.svg')),
+  ),
+  "icon.parameter": (
+    default: (url('./icon/parameter.svg')),
+  ),
+  "icon.parent-child": (
+    default: (url('./icon/parent-child.svg')),
+  ),
+  "icon.partly-cloudy": (
+    default: (url('./icon/partly-cloudy.svg')),
+  ),
+  "icon.partly-cloudy--night": (
+    default: (url('./icon/partly-cloudy--night.svg')),
+  ),
+  "icon.partnership": (
+    default: (url('./icon/partnership.svg')),
+  ),
+  "icon.passenger--drinks": (
+    default: (url('./icon/passenger--drinks.svg')),
+  ),
+  "icon.passenger--plus": (
+    default: (url('./icon/passenger--plus.svg')),
+  ),
+  "icon.password": (
+    default: (url('./icon/password.svg')),
+  ),
+  "icon.paste": (
+    default: (url('./icon/paste.svg')),
+  ),
+  "icon.pause": (
+    default: (url('./icon/pause.svg')),
+  ),
+  "icon.pause--filled": (
+    default: (url('./icon/pause--filled.svg')),
+  ),
+  "icon.pause--outline": (
+    default: (url('./icon/pause--outline.svg')),
+  ),
+  "icon.pause--outline--filled": (
+    default: (url('./icon/pause--outline--filled.svg')),
+  ),
+  "icon.pause-future": (
+    default: (url('./icon/pause-future.svg')),
+  ),
+  "icon.pause-past": (
+    default: (url('./icon/pause-past.svg')),
+  ),
+  "icon.pcn--e-node": (
+    default: (url('./icon/pcn--e-node.svg')),
+  ),
+  "icon.pcn--military": (
+    default: (url('./icon/pcn--military.svg')),
+  ),
+  "icon.pcn--p-node": (
+    default: (url('./icon/pcn--p-node.svg')),
+  ),
+  "icon.pcn--z-node": (
+    default: (url('./icon/pcn--z-node.svg')),
+  ),
+  "icon.PDF": (
+    default: (url('./icon/PDF.svg')),
+  ),
+  "icon.PDF--reference": (
+    default: (url('./icon/PDF--reference.svg')),
+  ),
+  "icon.pedestrian": (
+    default: (url('./icon/pedestrian.svg')),
+  ),
+  "icon.pedestrian--family": (
+    default: (url('./icon/pedestrian--family.svg')),
+  ),
+  "icon.pedestrian-child": (
+    default: (url('./icon/pedestrian-child.svg')),
+  ),
+  "icon.pen": (
+    default: (url('./icon/pen.svg')),
+  ),
+  "icon.pen--fountain": (
+    default: (url('./icon/pen--fountain.svg')),
+  ),
+  "icon.pending": (
+    default: (url('./icon/pending.svg')),
+  ),
+  "icon.pending--filled": (
+    default: (url('./icon/pending--filled.svg')),
+  ),
+  "icon.percentage": (
+    default: (url('./icon/percentage.svg')),
+  ),
+  "icon.percentage--filled": (
+    default: (url('./icon/percentage--filled.svg')),
+  ),
+  "icon.person": (
+    default: (url('./icon/person.svg')),
+  ),
+  "icon.person--favorite": (
+    default: (url('./icon/person--favorite.svg')),
+  ),
+  "icon.pest": (
+    default: (url('./icon/pest.svg')),
+  ),
+  "icon.pet-image--B": (
+    default: (url('./icon/pet-image--B.svg')),
+  ),
+  "icon.pet-image--O": (
+    default: (url('./icon/pet-image--O.svg')),
+  ),
+  "icon.phone": (
+    default: (url('./icon/phone.svg')),
+  ),
+  "icon.phone--application": (
+    default: (url('./icon/phone--application.svg')),
+  ),
+  "icon.phone--block": (
+    default: (url('./icon/phone--block.svg')),
+  ),
+  "icon.phone--block--filled": (
+    default: (url('./icon/phone--block--filled.svg')),
+  ),
+  "icon.phone--filled": (
+    default: (url('./icon/phone--filled.svg')),
+  ),
+  "icon.phone--incoming": (
+    default: (url('./icon/phone--incoming.svg')),
+  ),
+  "icon.phone--incoming--filled": (
+    default: (url('./icon/phone--incoming--filled.svg')),
+  ),
+  "icon.phone--ip": (
+    default: (url('./icon/phone--ip.svg')),
+  ),
+  "icon.phone--off": (
+    default: (url('./icon/phone--off.svg')),
+  ),
+  "icon.phone--off--filled": (
+    default: (url('./icon/phone--off--filled.svg')),
+  ),
+  "icon.phone--outgoing": (
+    default: (url('./icon/phone--outgoing.svg')),
+  ),
+  "icon.phone--outgoing--filled": (
+    default: (url('./icon/phone--outgoing--filled.svg')),
+  ),
+  "icon.phone--settings": (
+    default: (url('./icon/phone--settings.svg')),
+  ),
+  "icon.phone--voice": (
+    default: (url('./icon/phone--voice.svg')),
+  ),
+  "icon.phone--voice--filled": (
+    default: (url('./icon/phone--voice--filled.svg')),
+  ),
+  "icon.phrase-sentiment": (
+    default: (url('./icon/phrase-sentiment.svg')),
+  ),
+  "icon.picnic-area": (
+    default: (url('./icon/picnic-area.svg')),
+  ),
+  "icon.piggy-bank": (
+    default: (url('./icon/piggy-bank.svg')),
+  ),
+  "icon.piggy-bank--slot": (
+    default: (url('./icon/piggy-bank--slot.svg')),
+  ),
+  "icon.pills": (
+    default: (url('./icon/pills.svg')),
+  ),
+  "icon.pills--add": (
+    default: (url('./icon/pills--add.svg')),
+  ),
+  "icon.pills--subtract": (
+    default: (url('./icon/pills--subtract.svg')),
+  ),
+  "icon.pin": (
+    default: (url('./icon/pin.svg')),
+  ),
+  "icon.pin--filled": (
+    default: (url('./icon/pin--filled.svg')),
+  ),
+  "icon.plane": (
+    default: (url('./icon/plane.svg')),
+  ),
+  "icon.plane--private": (
+    default: (url('./icon/plane--private.svg')),
+  ),
+  "icon.plane--sea": (
+    default: (url('./icon/plane--sea.svg')),
+  ),
+  "icon.play": (
+    default: (url('./icon/play.svg')),
+  ),
+  "icon.play--filled": (
+    default: (url('./icon/play--filled.svg')),
+  ),
+  "icon.play--filled--alt": (
+    default: (url('./icon/play--filled--alt.svg')),
+  ),
+  "icon.play--outline": (
+    default: (url('./icon/play--outline.svg')),
+  ),
+  "icon.play--outline--filled": (
+    default: (url('./icon/play--outline--filled.svg')),
+  ),
+  "icon.playlist": (
+    default: (url('./icon/playlist.svg')),
+  ),
+  "icon.plug": (
+    default: (url('./icon/plug.svg')),
+  ),
+  "icon.plug--filled": (
+    default: (url('./icon/plug--filled.svg')),
+  ),
+  "icon.PNG": (
+    default: (url('./icon/PNG.svg')),
+  ),
+  "icon.point-of-presence": (
+    default: (url('./icon/point-of-presence.svg')),
+  ),
+  "icon.pointer-text": (
+    default: (url('./icon/pointer-text.svg')),
+  ),
+  "icon.police": (
+    default: (url('./icon/police.svg')),
+  ),
+  "icon.policy": (
+    default: (url('./icon/policy.svg')),
+  ),
+  "icon.popup": (
+    default: (url('./icon/popup.svg')),
+  ),
+  "icon.portfolio": (
+    default: (url('./icon/portfolio.svg')),
+  ),
+  "icon.power": (
+    default: (url('./icon/power.svg')),
+  ),
+  "icon.PPT": (
+    default: (url('./icon/PPT.svg')),
+  ),
+  "icon.presentation-file": (
+    default: (url('./icon/presentation-file.svg')),
+  ),
+  "icon.pressure": (
+    default: (url('./icon/pressure.svg')),
+  ),
+  "icon.pressure--filled": (
+    default: (url('./icon/pressure--filled.svg')),
+  ),
+  "icon.previous--filled": (
+    default: (url('./icon/previous--filled.svg')),
+  ),
+  "icon.previous--outline": (
+    default: (url('./icon/previous--outline.svg')),
+  ),
+  "icon.printer": (
+    default: (url('./icon/printer.svg')),
+  ),
+  "icon.product": (
+    default: (url('./icon/product.svg')),
+  ),
+  "icon.progress-bar": (
+    default: (url('./icon/progress-bar.svg')),
+  ),
+  "icon.progress-bar--round": (
+    default: (url('./icon/progress-bar--round.svg')),
+  ),
+  "icon.purchase": (
+    default: (url('./icon/purchase.svg')),
+  ),
+  "icon.QC-launch": (
+    default: (url('./icon/QC-launch.svg')),
+  ),
+  "icon.qq-plot": (
+    default: (url('./icon/qq-plot.svg')),
+  ),
+  "icon.qr-code": (
+    default: (url('./icon/qr-code.svg')),
+  ),
+  "icon.quadrant-plot": (
+    default: (url('./icon/quadrant-plot.svg')),
+  ),
+  "icon.query": (
+    default: (url('./icon/query.svg')),
+  ),
+  "icon.query-queue": (
+    default: (url('./icon/query-queue.svg')),
+  ),
+  "icon.queued": (
+    default: (url('./icon/queued.svg')),
+  ),
+  "icon.quotes": (
+    default: (url('./icon/quotes.svg')),
+  ),
+  "icon.radar": (
+    default: (url('./icon/radar.svg')),
+  ),
+  "icon.radar--enhanced": (
+    default: (url('./icon/radar--enhanced.svg')),
+  ),
+  "icon.radar--weather": (
+    default: (url('./icon/radar--weather.svg')),
+  ),
+  "icon.radio": (
+    default: (url('./icon/radio.svg')),
+  ),
+  "icon.radio--combat": (
+    default: (url('./icon/radio--combat.svg')),
+  ),
+  "icon.radio--push-to-talk": (
+    default: (url('./icon/radio--push-to-talk.svg')),
+  ),
+  "icon.radio-button": (
+    default: (url('./icon/radio-button.svg')),
+  ),
+  "icon.radio-button--checked": (
+    default: (url('./icon/radio-button--checked.svg')),
+  ),
+  "icon.rain": (
+    default: (url('./icon/rain.svg')),
+  ),
+  "icon.rain--drizzle": (
+    default: (url('./icon/rain--drizzle.svg')),
+  ),
+  "icon.rain--heavy": (
+    default: (url('./icon/rain--heavy.svg')),
+  ),
+  "icon.rain--scattered": (
+    default: (url('./icon/rain--scattered.svg')),
+  ),
+  "icon.rain--scattered--night": (
+    default: (url('./icon/rain--scattered--night.svg')),
+  ),
+  "icon.rain-drop": (
+    default: (url('./icon/rain-drop.svg')),
+  ),
+  "icon.RAW": (
+    default: (url('./icon/RAW.svg')),
+  ),
+  "icon.receipt": (
+    default: (url('./icon/receipt.svg')),
+  ),
+  "icon.recently-viewed": (
+    default: (url('./icon/recently-viewed.svg')),
+  ),
+  "icon.recommend": (
+    default: (url('./icon/recommend.svg')),
+  ),
+  "icon.recording": (
+    default: (url('./icon/recording.svg')),
+  ),
+  "icon.recording--filled": (
+    default: (url('./icon/recording--filled.svg')),
+  ),
+  "icon.recording--filled--alt": (
+    default: (url('./icon/recording--filled--alt.svg')),
+  ),
+  "icon.redo": (
+    default: (url('./icon/redo.svg')),
+  ),
+  "icon.ref-evapotranspiration": (
+    default: (url('./icon/ref-evapotranspiration.svg')),
+  ),
+  "icon.reflect--horizontal": (
+    default: (url('./icon/reflect--horizontal.svg')),
+  ),
+  "icon.reflect--vertical": (
+    default: (url('./icon/reflect--vertical.svg')),
+  ),
+  "icon.region-analysis--area": (
+    default: (url('./icon/region-analysis--area.svg')),
+  ),
+  "icon.region-analysis--volume": (
+    default: (url('./icon/region-analysis--volume.svg')),
+  ),
+  "icon.registration": (
+    default: (url('./icon/registration.svg')),
+  ),
+  "icon.reminder": (
+    default: (url('./icon/reminder.svg')),
+  ),
+  "icon.reminder--medical": (
+    default: (url('./icon/reminder--medical.svg')),
+  ),
+  "icon.renew": (
+    default: (url('./icon/renew.svg')),
+  ),
+  "icon.repeat": (
+    default: (url('./icon/repeat.svg')),
+  ),
+  "icon.repeat--one": (
+    default: (url('./icon/repeat--one.svg')),
+  ),
+  "icon.replicate": (
+    default: (url('./icon/replicate.svg')),
+  ),
+  "icon.reply": (
+    default: (url('./icon/reply.svg')),
+  ),
+  "icon.reply--all": (
+    default: (url('./icon/reply--all.svg')),
+  ),
+  "icon.report": (
+    default: (url('./icon/report.svg')),
+  ),
+  "icon.report--data": (
+    default: (url('./icon/report--data.svg')),
+  ),
+  "icon.request-quote": (
+    default: (url('./icon/request-quote.svg')),
+  ),
+  "icon.research--bloch-sphere": (
+    default: (url('./icon/research--bloch-sphere.svg')),
+  ),
+  "icon.research--hinton-plot": (
+    default: (url('./icon/research--hinton-plot.svg')),
+  ),
+  "icon.research--matrix": (
+    default: (url('./icon/research--matrix.svg')),
+  ),
+  "icon.reset": (
+    default: (url('./icon/reset.svg')),
+  ),
+  "icon.reset--alt": (
+    default: (url('./icon/reset--alt.svg')),
+  ),
+  "icon.restart": (
+    default: (url('./icon/restart.svg')),
+  ),
+  "icon.restaurant": (
+    default: (url('./icon/restaurant.svg')),
+  ),
+  "icon.restaurant--fine": (
+    default: (url('./icon/restaurant--fine.svg')),
+  ),
+  "icon.result": (
+    default: (url('./icon/result.svg')),
+  ),
+  "icon.result--new": (
+    default: (url('./icon/result--new.svg')),
+  ),
+  "icon.result--old": (
+    default: (url('./icon/result--old.svg')),
+  ),
+  "icon.retry--failed": (
+    default: (url('./icon/retry--failed.svg')),
+  ),
+  "icon.review": (
+    default: (url('./icon/review.svg')),
+  ),
+  "icon.rewind--10": (
+    default: (url('./icon/rewind--10.svg')),
+  ),
+  "icon.rewind--30": (
+    default: (url('./icon/rewind--30.svg')),
+  ),
+  "icon.rewind--5": (
+    default: (url('./icon/rewind--5.svg')),
+  ),
+  "icon.road": (
+    default: (url('./icon/road.svg')),
+  ),
+  "icon.road--weather": (
+    default: (url('./icon/road--weather.svg')),
+  ),
+  "icon.roadmap": (
+    default: (url('./icon/roadmap.svg')),
+  ),
+  "icon.rocket": (
+    default: (url('./icon/rocket.svg')),
+  ),
+  "icon.rotate": (
+    default: (url('./icon/rotate.svg')),
+  ),
+  "icon.rotate--180": (
+    default: (url('./icon/rotate--180.svg')),
+  ),
+  "icon.rotate--360": (
+    default: (url('./icon/rotate--360.svg')),
+  ),
+  "icon.rotate--clockwise": (
+    default: (url('./icon/rotate--clockwise.svg')),
+  ),
+  "icon.rotate--clockwise--alt": (
+    default: (url('./icon/rotate--clockwise--alt.svg')),
+  ),
+  "icon.rotate--clockwise--alt--filled": (
+    default: (url('./icon/rotate--clockwise--alt--filled.svg')),
+  ),
+  "icon.rotate--clockwise--filled": (
+    default: (url('./icon/rotate--clockwise--filled.svg')),
+  ),
+  "icon.rotate--counterclockwise": (
+    default: (url('./icon/rotate--counterclockwise.svg')),
+  ),
+  "icon.rotate--counterclockwise--alt": (
+    default: (url('./icon/rotate--counterclockwise--alt.svg')),
+  ),
+  "icon.rotate--counterclockwise--alt--filled": (
+    default: (url('./icon/rotate--counterclockwise--alt--filled.svg')),
+  ),
+  "icon.rotate--counterclockwise--filled": (
+    default: (url('./icon/rotate--counterclockwise--filled.svg')),
+  ),
+  "icon.router": (
+    default: (url('./icon/router.svg')),
+  ),
+  "icon.router--voice": (
+    default: (url('./icon/router--voice.svg')),
+  ),
+  "icon.router--wifi": (
+    default: (url('./icon/router--wifi.svg')),
+  ),
+  "icon.row": (
+    default: (url('./icon/row.svg')),
+  ),
+  "icon.row--collapse": (
+    default: (url('./icon/row--collapse.svg')),
+  ),
+  "icon.row--delete": (
+    default: (url('./icon/row--delete.svg')),
+  ),
+  "icon.row--expand": (
+    default: (url('./icon/row--expand.svg')),
+  ),
+  "icon.row--insert": (
+    default: (url('./icon/row--insert.svg')),
+  ),
+  "icon.rss": (
+    default: (url('./icon/rss.svg')),
+  ),
+  "icon.rule": (
+    default: (url('./icon/rule.svg')),
+  ),
+  "icon.rule--cancelled": (
+    default: (url('./icon/rule--cancelled.svg')),
+  ),
+  "icon.rule--draft": (
+    default: (url('./icon/rule--draft.svg')),
+  ),
+  "icon.rule--filled": (
+    default: (url('./icon/rule--filled.svg')),
+  ),
+  "icon.rule--test": (
+    default: (url('./icon/rule--test.svg')),
+  ),
+  "icon.ruler": (
+    default: (url('./icon/ruler.svg')),
+  ),
+  "icon.ruler--alt": (
+    default: (url('./icon/ruler--alt.svg')),
+  ),
+  "icon.run": (
+    default: (url('./icon/run.svg')),
+  ),
+  "icon.S": (
+    default: (url('./icon/S.svg')),
+  ),
+  "icon.S--alt": (
+    default: (url('./icon/S--alt.svg')),
+  ),
+  "icon.sailboat--coastal": (
+    default: (url('./icon/sailboat--coastal.svg')),
+  ),
+  "icon.sailboat--offshore": (
+    default: (url('./icon/sailboat--offshore.svg')),
+  ),
+  "icon.sankey-diagram": (
+    default: (url('./icon/sankey-diagram.svg')),
+  ),
+  "icon.sankey-diagram--alt": (
+    default: (url('./icon/sankey-diagram--alt.svg')),
+  ),
+  "icon.satellite": (
+    default: (url('./icon/satellite.svg')),
+  ),
+  "icon.satellite--radar": (
+    default: (url('./icon/satellite--radar.svg')),
+  ),
+  "icon.satellite--weather": (
+    default: (url('./icon/satellite--weather.svg')),
+  ),
+  "icon.save": (
+    default: (url('./icon/save.svg')),
+  ),
+  "icon.save--annotation": (
+    default: (url('./icon/save--annotation.svg')),
+  ),
+  "icon.save--image": (
+    default: (url('./icon/save--image.svg')),
+  ),
+  "icon.save--model": (
+    default: (url('./icon/save--model.svg')),
+  ),
+  "icon.save--series": (
+    default: (url('./icon/save--series.svg')),
+  ),
+  "icon.scale": (
+    default: (url('./icon/scale.svg')),
+  ),
+  "icon.scales": (
+    default: (url('./icon/scales.svg')),
+  ),
+  "icon.scales--tipped": (
+    default: (url('./icon/scales--tipped.svg')),
+  ),
+  "icon.scalpel": (
+    default: (url('./icon/scalpel.svg')),
+  ),
+  "icon.scalpel--cursor": (
+    default: (url('./icon/scalpel--cursor.svg')),
+  ),
+  "icon.scalpel--lasso": (
+    default: (url('./icon/scalpel--lasso.svg')),
+  ),
+  "icon.scalpel--select": (
+    default: (url('./icon/scalpel--select.svg')),
+  ),
+  "icon.scan": (
+    default: (url('./icon/scan.svg')),
+  ),
+  "icon.scan--alt": (
+    default: (url('./icon/scan--alt.svg')),
+  ),
+  "icon.scan--disabled": (
+    default: (url('./icon/scan--disabled.svg')),
+  ),
+  "icon.scatter-matrix": (
+    default: (url('./icon/scatter-matrix.svg')),
+  ),
+  "icon.schematics": (
+    default: (url('./icon/schematics.svg')),
+  ),
+  "icon.scooter": (
+    default: (url('./icon/scooter.svg')),
+  ),
+  "icon.scooter--front": (
+    default: (url('./icon/scooter--front.svg')),
+  ),
+  "icon.screen": (
+    default: (url('./icon/screen.svg')),
+  ),
+  "icon.screen--off": (
+    default: (url('./icon/screen--off.svg')),
+  ),
+  "icon.script": (
+    default: (url('./icon/script.svg')),
+  ),
+  "icon.script--reference": (
+    default: (url('./icon/script--reference.svg')),
+  ),
+  "icon.SDK": (
+    default: (url('./icon/SDK.svg')),
+  ),
+  "icon.search": (
+    default: (url('./icon/search.svg')),
+  ),
+  "icon.search--advanced": (
+    default: (url('./icon/search--advanced.svg')),
+  ),
+  "icon.search--locate": (
+    default: (url('./icon/search--locate.svg')),
+  ),
+  "icon.security": (
+    default: (url('./icon/security.svg')),
+  ),
+  "icon.security-services": (
+    default: (url('./icon/security-services.svg')),
+  ),
+  "icon.select--01": (
+    default: (url('./icon/select--01.svg')),
+  ),
+  "icon.select--02": (
+    default: (url('./icon/select--02.svg')),
+  ),
+  "icon.select--window": (
+    default: (url('./icon/select--window.svg')),
+  ),
+  "icon.send": (
+    default: (url('./icon/send.svg')),
+  ),
+  "icon.send--alt": (
+    default: (url('./icon/send--alt.svg')),
+  ),
+  "icon.send--alt--filled": (
+    default: (url('./icon/send--alt--filled.svg')),
+  ),
+  "icon.send--filled": (
+    default: (url('./icon/send--filled.svg')),
+  ),
+  "icon.send-backward": (
+    default: (url('./icon/send-backward.svg')),
+  ),
+  "icon.send-to-back": (
+    default: (url('./icon/send-to-back.svg')),
+  ),
+  "icon.server--dns": (
+    default: (url('./icon/server--dns.svg')),
+  ),
+  "icon.server--proxy": (
+    default: (url('./icon/server--proxy.svg')),
+  ),
+  "icon.server--time": (
+    default: (url('./icon/server--time.svg')),
+  ),
+  "icon.service-desk": (
+    default: (url('./icon/service-desk.svg')),
+  ),
+  "icon.session-border-control": (
+    default: (url('./icon/session-border-control.svg')),
+  ),
+  "icon.settings": (
+    default: (url('./icon/settings.svg')),
+  ),
+  "icon.settings--adjust": (
+    default: (url('./icon/settings--adjust.svg')),
+  ),
+  "icon.settings--check": (
+    default: (url('./icon/settings--check.svg')),
+  ),
+  "icon.settings--services": (
+    default: (url('./icon/settings--services.svg')),
+  ),
+  "icon.settings--view": (
+    default: (url('./icon/settings--view.svg')),
+  ),
+  "icon.shape--except": (
+    default: (url('./icon/shape--except.svg')),
+  ),
+  "icon.shape--exclude": (
+    default: (url('./icon/shape--exclude.svg')),
+  ),
+  "icon.shape--intersect": (
+    default: (url('./icon/shape--intersect.svg')),
+  ),
+  "icon.shape--join": (
+    default: (url('./icon/shape--join.svg')),
+  ),
+  "icon.shape--unite": (
+    default: (url('./icon/shape--unite.svg')),
+  ),
+  "icon.share": (
+    default: (url('./icon/share.svg')),
+  ),
+  "icon.share-knowledge": (
+    default: (url('./icon/share-knowledge.svg')),
+  ),
+  "icon.shopping--bag": (
+    default: (url('./icon/shopping--bag.svg')),
+  ),
+  "icon.shopping--cart": (
+    default: (url('./icon/shopping--cart.svg')),
+  ),
+  "icon.shopping--cart--arrow-down": (
+    default: (url('./icon/shopping--cart--arrow-down.svg')),
+  ),
+  "icon.shopping--cart--arrow-up": (
+    default: (url('./icon/shopping--cart--arrow-up.svg')),
+  ),
+  "icon.shopping--cart--clear": (
+    default: (url('./icon/shopping--cart--clear.svg')),
+  ),
+  "icon.shopping--cart--error": (
+    default: (url('./icon/shopping--cart--error.svg')),
+  ),
+  "icon.shopping--cart--minus": (
+    default: (url('./icon/shopping--cart--minus.svg')),
+  ),
+  "icon.shopping--cart--plus": (
+    default: (url('./icon/shopping--cart--plus.svg')),
+  ),
+  "icon.shopping--catalog": (
+    default: (url('./icon/shopping--catalog.svg')),
+  ),
+  "icon.show-data--cards": (
+    default: (url('./icon/show-data--cards.svg')),
+  ),
+  "icon.shrink-screen": (
+    default: (url('./icon/shrink-screen.svg')),
+  ),
+  "icon.shrink-screen--filled": (
+    default: (url('./icon/shrink-screen--filled.svg')),
+  ),
+  "icon.shuffle": (
+    default: (url('./icon/shuffle.svg')),
+  ),
+  "icon.shuttle": (
+    default: (url('./icon/shuttle.svg')),
+  ),
+  "icon.sight": (
+    default: (url('./icon/sight.svg')),
+  ),
+  "icon.sigma": (
+    default: (url('./icon/sigma.svg')),
+  ),
+  "icon.signal-strength": (
+    default: (url('./icon/signal-strength.svg')),
+  ),
+  "icon.sim-card": (
+    default: (url('./icon/sim-card.svg')),
+  ),
+  "icon.skill-level": (
+    default: (url('./icon/skill-level.svg')),
+  ),
+  "icon.skill-level--advanced": (
+    default: (url('./icon/skill-level--advanced.svg')),
+  ),
+  "icon.skill-level--basic": (
+    default: (url('./icon/skill-level--basic.svg')),
+  ),
+  "icon.skill-level--intermediate": (
+    default: (url('./icon/skill-level--intermediate.svg')),
+  ),
+  "icon.skip--back": (
+    default: (url('./icon/skip--back.svg')),
+  ),
+  "icon.skip--back--filled": (
+    default: (url('./icon/skip--back--filled.svg')),
+  ),
+  "icon.skip--back--outline": (
+    default: (url('./icon/skip--back--outline.svg')),
+  ),
+  "icon.skip--back--outline--filled": (
+    default: (url('./icon/skip--back--outline--filled.svg')),
+  ),
+  "icon.skip--back--outline--solid": (
+    default: (url('./icon/skip--back--outline--solid.svg')),
+  ),
+  "icon.skip--back--solid--filled": (
+    default: (url('./icon/skip--back--solid--filled.svg')),
+  ),
+  "icon.skip--forward": (
+    default: (url('./icon/skip--forward.svg')),
+  ),
+  "icon.skip--forward--filled": (
+    default: (url('./icon/skip--forward--filled.svg')),
+  ),
+  "icon.skip--forward--outline": (
+    default: (url('./icon/skip--forward--outline.svg')),
+  ),
+  "icon.skip--forward--outline--filled": (
+    default: (url('./icon/skip--forward--outline--filled.svg')),
+  ),
+  "icon.skip--forward--outline--solid": (
+    default: (url('./icon/skip--forward--outline--solid.svg')),
+  ),
+  "icon.skip--forward--solid--filled": (
+    default: (url('./icon/skip--forward--solid--filled.svg')),
+  ),
+  "icon.sleet": (
+    default: (url('./icon/sleet.svg')),
+  ),
+  "icon.slisor": (
+    default: (url('./icon/slisor.svg')),
+  ),
+  "icon.smell": (
+    default: (url('./icon/smell.svg')),
+  ),
+  "icon.smoke": (
+    default: (url('./icon/smoke.svg')),
+  ),
+  "icon.smoothing": (
+    default: (url('./icon/smoothing.svg')),
+  ),
+  "icon.smoothing--cursor": (
+    default: (url('./icon/smoothing--cursor.svg')),
+  ),
+  "icon.snooze": (
+    default: (url('./icon/snooze.svg')),
+  ),
+  "icon.snow": (
+    default: (url('./icon/snow.svg')),
+  ),
+  "icon.snow--blizzard": (
+    default: (url('./icon/snow--blizzard.svg')),
+  ),
+  "icon.snow--heavy": (
+    default: (url('./icon/snow--heavy.svg')),
+  ),
+  "icon.snow--scattered": (
+    default: (url('./icon/snow--scattered.svg')),
+  ),
+  "icon.snow--scattered--night": (
+    default: (url('./icon/snow--scattered--night.svg')),
+  ),
+  "icon.snow-density": (
+    default: (url('./icon/snow-density.svg')),
+  ),
+  "icon.snowflake": (
+    default: (url('./icon/snowflake.svg')),
+  ),
+  "icon.soccer": (
+    default: (url('./icon/soccer.svg')),
+  ),
+  "icon.soil-moisture": (
+    default: (url('./icon/soil-moisture.svg')),
+  ),
+  "icon.soil-moisture--field": (
+    default: (url('./icon/soil-moisture--field.svg')),
+  ),
+  "icon.soil-moisture--global": (
+    default: (url('./icon/soil-moisture--global.svg')),
+  ),
+  "icon.soil-temperature": (
+    default: (url('./icon/soil-temperature.svg')),
+  ),
+  "icon.soil-temperature--field": (
+    default: (url('./icon/soil-temperature--field.svg')),
+  ),
+  "icon.soil-temperature--global": (
+    default: (url('./icon/soil-temperature--global.svg')),
+  ),
+  "icon.solar-panel": (
+    default: (url('./icon/solar-panel.svg')),
+  ),
+  "icon.sort--ascending": (
+    default: (url('./icon/sort--ascending.svg')),
+  ),
+  "icon.sort--descending": (
+    default: (url('./icon/sort--descending.svg')),
+  ),
+  "icon.spell-check": (
+    default: (url('./icon/spell-check.svg')),
+  ),
+  "icon.spine-label": (
+    default: (url('./icon/spine-label.svg')),
+  ),
+  "icon.split": (
+    default: (url('./icon/split.svg')),
+  ),
+  "icon.split--discard": (
+    default: (url('./icon/split--discard.svg')),
+  ),
+  "icon.split-screen": (
+    default: (url('./icon/split-screen.svg')),
+  ),
+  "icon.spray-paint": (
+    default: (url('./icon/spray-paint.svg')),
+  ),
+  "icon.sprout": (
+    default: (url('./icon/sprout.svg')),
+  ),
+  "icon.SQL": (
+    default: (url('./icon/SQL.svg')),
+  ),
+  "icon.square-fill": (
+    default: (url('./icon/square-fill.svg')),
+  ),
+  "icon.stack-limitation": (
+    default: (url('./icon/stack-limitation.svg')),
+  ),
+  "icon.stacked-move": (
+    default: (url('./icon/stacked-move.svg')),
+  ),
+  "icon.stacked-scrolling--1": (
+    default: (url('./icon/stacked-scrolling--1.svg')),
+  ),
+  "icon.stacked-scrolling--2": (
+    default: (url('./icon/stacked-scrolling--2.svg')),
+  ),
+  "icon.stamp": (
+    default: (url('./icon/stamp.svg')),
+  ),
+  "icon.star": (
+    default: (url('./icon/star.svg')),
+  ),
+  "icon.star--filled": (
+    default: (url('./icon/star--filled.svg')),
+  ),
+  "icon.star--half": (
+    default: (url('./icon/star--half.svg')),
+  ),
+  "icon.star--review": (
+    default: (url('./icon/star--review.svg')),
+  ),
+  "icon.status--acknowledge": (
+    default: (url('./icon/status--acknowledge.svg')),
+  ),
+  "icon.status--change": (
+    default: (url('./icon/status--change.svg')),
+  ),
+  "icon.status--partial-fail": (
+    default: (url('./icon/status--partial-fail.svg')),
+  ),
+  "icon.status--resolved": (
+    default: (url('./icon/status--resolved.svg')),
+  ),
+  "icon.stay-inside": (
+    default: (url('./icon/stay-inside.svg')),
+  ),
+  "icon.stem-leaf-plot": (
+    default: (url('./icon/stem-leaf-plot.svg')),
+  ),
+  "icon.stethoscope": (
+    default: (url('./icon/stethoscope.svg')),
+  ),
+  "icon.stop": (
+    default: (url('./icon/stop.svg')),
+  ),
+  "icon.stop--filled": (
+    default: (url('./icon/stop--filled.svg')),
+  ),
+  "icon.stop--filled--alt": (
+    default: (url('./icon/stop--filled--alt.svg')),
+  ),
+  "icon.stop--outline": (
+    default: (url('./icon/stop--outline.svg')),
+  ),
+  "icon.stop--outline--filled": (
+    default: (url('./icon/stop--outline--filled.svg')),
+  ),
+  "icon.stop-sign": (
+    default: (url('./icon/stop-sign.svg')),
+  ),
+  "icon.stop-sign--filled": (
+    default: (url('./icon/stop-sign--filled.svg')),
+  ),
+  "icon.storage-pool": (
+    default: (url('./icon/storage-pool.svg')),
+  ),
+  "icon.storage-request": (
+    default: (url('./icon/storage-request.svg')),
+  ),
+  "icon.store": (
+    default: (url('./icon/store.svg')),
+  ),
+  "icon.storm-tracker": (
+    default: (url('./icon/storm-tracker.svg')),
+  ),
+  "icon.strawberry": (
+    default: (url('./icon/strawberry.svg')),
+  ),
+  "icon.stress-breath-editor": (
+    default: (url('./icon/stress-breath-editor.svg')),
+  ),
+  "icon.string-integer": (
+    default: (url('./icon/string-integer.svg')),
+  ),
+  "icon.string-text": (
+    default: (url('./icon/string-text.svg')),
+  ),
+  "icon.study--next": (
+    default: (url('./icon/study--next.svg')),
+  ),
+  "icon.study--previous": (
+    default: (url('./icon/study--previous.svg')),
+  ),
+  "icon.study--read": (
+    default: (url('./icon/study--read.svg')),
+  ),
+  "icon.study--skip": (
+    default: (url('./icon/study--skip.svg')),
+  ),
+  "icon.study--transfer": (
+    default: (url('./icon/study--transfer.svg')),
+  ),
+  "icon.study--unread": (
+    default: (url('./icon/study--unread.svg')),
+  ),
+  "icon.study--view": (
+    default: (url('./icon/study--view.svg')),
+  ),
+  "icon.sub-volume": (
+    default: (url('./icon/sub-volume.svg')),
+  ),
+  "icon.subflow": (
+    default: (url('./icon/subflow.svg')),
+  ),
+  "icon.subflow--local": (
+    default: (url('./icon/subflow--local.svg')),
+  ),
+  "icon.subnet-acl-rules": (
+    default: (url('./icon/subnet-acl-rules.svg')),
+  ),
+  "icon.subtract": (
+    default: (url('./icon/subtract.svg')),
+  ),
+  "icon.subtract--alt": (
+    default: (url('./icon/subtract--alt.svg')),
+  ),
+  "icon.summary--KPI": (
+    default: (url('./icon/summary--KPI.svg')),
+  ),
+  "icon.sun": (
+    default: (url('./icon/sun.svg')),
+  ),
+  "icon.sunny": (
+    default: (url('./icon/sunny.svg')),
+  ),
+  "icon.sunrise": (
+    default: (url('./icon/sunrise.svg')),
+  ),
+  "icon.sunset": (
+    default: (url('./icon/sunset.svg')),
+  ),
+  "icon.SVG": (
+    default: (url('./icon/SVG.svg')),
+  ),
+  "icon.swim": (
+    default: (url('./icon/swim.svg')),
+  ),
+  "icon.switch-layer-2": (
+    default: (url('./icon/switch-layer-2.svg')),
+  ),
+  "icon.switch-layer-3": (
+    default: (url('./icon/switch-layer-3.svg')),
+  ),
+  "icon.switcher": (
+    default: (url('./icon/switcher.svg')),
+  ),
+  "icon.sys-provision": (
+    default: (url('./icon/sys-provision.svg')),
+  ),
+  "icon.T": (
+    default: (url('./icon/T.svg')),
+  ),
+  "icon.T--alt": (
+    default: (url('./icon/T--alt.svg')),
+  ),
+  "icon.table": (
+    default: (url('./icon/table.svg')),
+  ),
+  "icon.table--alias": (
+    default: (url('./icon/table--alias.svg')),
+  ),
+  "icon.table--built": (
+    default: (url('./icon/table--built.svg')),
+  ),
+  "icon.table--shortcut": (
+    default: (url('./icon/table--shortcut.svg')),
+  ),
+  "icon.table--split": (
+    default: (url('./icon/table--split.svg')),
+  ),
+  "icon.table-of-contents": (
+    default: (url('./icon/table-of-contents.svg')),
+  ),
+  "icon.tablet": (
+    default: (url('./icon/tablet.svg')),
+  ),
+  "icon.tablet--landscape": (
+    default: (url('./icon/tablet--landscape.svg')),
+  ),
+  "icon.tag": (
+    default: (url('./icon/tag.svg')),
+  ),
+  "icon.tag--edit": (
+    default: (url('./icon/tag--edit.svg')),
+  ),
+  "icon.tag--export": (
+    default: (url('./icon/tag--export.svg')),
+  ),
+  "icon.tag--group": (
+    default: (url('./icon/tag--group.svg')),
+  ),
+  "icon.tag--import": (
+    default: (url('./icon/tag--import.svg')),
+  ),
+  "icon.tag--none": (
+    default: (url('./icon/tag--none.svg')),
+  ),
+  "icon.tank": (
+    default: (url('./icon/tank.svg')),
+  ),
+  "icon.task": (
+    default: (url('./icon/task.svg')),
+  ),
+  "icon.task--add": (
+    default: (url('./icon/task--add.svg')),
+  ),
+  "icon.task--approved": (
+    default: (url('./icon/task--approved.svg')),
+  ),
+  "icon.task--asset-view": (
+    default: (url('./icon/task--asset-view.svg')),
+  ),
+  "icon.task--complete": (
+    default: (url('./icon/task--complete.svg')),
+  ),
+  "icon.task--location": (
+    default: (url('./icon/task--location.svg')),
+  ),
+  "icon.task--remove": (
+    default: (url('./icon/task--remove.svg')),
+  ),
+  "icon.task--settings": (
+    default: (url('./icon/task--settings.svg')),
+  ),
+  "icon.task--star": (
+    default: (url('./icon/task--star.svg')),
+  ),
+  "icon.task--tools": (
+    default: (url('./icon/task--tools.svg')),
+  ),
+  "icon.task--view": (
+    default: (url('./icon/task--view.svg')),
+  ),
+  "icon.taste": (
+    default: (url('./icon/taste.svg')),
+  ),
+  "icon.taxi": (
+    default: (url('./icon/taxi.svg')),
+  ),
+  "icon.temperature": (
+    default: (url('./icon/temperature.svg')),
+  ),
+  "icon.temperature--celsius": (
+    default: (url('./icon/temperature--celsius.svg')),
+  ),
+  "icon.temperature--celsius--alt": (
+    default: (url('./icon/temperature--celsius--alt.svg')),
+  ),
+  "icon.temperature--fahrenheit": (
+    default: (url('./icon/temperature--fahrenheit.svg')),
+  ),
+  "icon.temperature--fahrenheit--alt": (
+    default: (url('./icon/temperature--fahrenheit--alt.svg')),
+  ),
+  "icon.temperature--feels-like": (
+    default: (url('./icon/temperature--feels-like.svg')),
+  ),
+  "icon.temperature--frigid": (
+    default: (url('./icon/temperature--frigid.svg')),
+  ),
+  "icon.temperature--hot": (
+    default: (url('./icon/temperature--hot.svg')),
+  ),
+  "icon.temperature--inversion": (
+    default: (url('./icon/temperature--inversion.svg')),
+  ),
+  "icon.temperature--max": (
+    default: (url('./icon/temperature--max.svg')),
+  ),
+  "icon.temperature--min": (
+    default: (url('./icon/temperature--min.svg')),
+  ),
+  "icon.temperature--water": (
+    default: (url('./icon/temperature--water.svg')),
+  ),
+  "icon.template": (
+    default: (url('./icon/template.svg')),
+  ),
+  "icon.tennis": (
+    default: (url('./icon/tennis.svg')),
+  ),
+  "icon.tennis-ball": (
+    default: (url('./icon/tennis-ball.svg')),
+  ),
+  "icon.term": (
+    default: (url('./icon/term.svg')),
+  ),
+  "icon.terminal": (
+    default: (url('./icon/terminal.svg')),
+  ),
+  "icon.terminal--3270": (
+    default: (url('./icon/terminal--3270.svg')),
+  ),
+  "icon.text--align--center": (
+    default: (url('./icon/text--align--center.svg')),
+  ),
+  "icon.text--align--justify": (
+    default: (url('./icon/text--align--justify.svg')),
+  ),
+  "icon.text--align--left": (
+    default: (url('./icon/text--align--left.svg')),
+  ),
+  "icon.text--align--mixed": (
+    default: (url('./icon/text--align--mixed.svg')),
+  ),
+  "icon.text--align--right": (
+    default: (url('./icon/text--align--right.svg')),
+  ),
+  "icon.text--all-caps": (
+    default: (url('./icon/text--all-caps.svg')),
+  ),
+  "icon.text--bold": (
+    default: (url('./icon/text--bold.svg')),
+  ),
+  "icon.text--clear-format": (
+    default: (url('./icon/text--clear-format.svg')),
+  ),
+  "icon.text--color": (
+    default: (url('./icon/text--color.svg')),
+  ),
+  "icon.text--creation": (
+    default: (url('./icon/text--creation.svg')),
+  ),
+  "icon.text--fill": (
+    default: (url('./icon/text--fill.svg')),
+  ),
+  "icon.text--font": (
+    default: (url('./icon/text--font.svg')),
+  ),
+  "icon.text--footnote": (
+    default: (url('./icon/text--footnote.svg')),
+  ),
+  "icon.text--highlight": (
+    default: (url('./icon/text--highlight.svg')),
+  ),
+  "icon.text--indent": (
+    default: (url('./icon/text--indent.svg')),
+  ),
+  "icon.text--indent--less": (
+    default: (url('./icon/text--indent--less.svg')),
+  ),
+  "icon.text--indent--more": (
+    default: (url('./icon/text--indent--more.svg')),
+  ),
+  "icon.text--italic": (
+    default: (url('./icon/text--italic.svg')),
+  ),
+  "icon.text--kerning": (
+    default: (url('./icon/text--kerning.svg')),
+  ),
+  "icon.text--leading": (
+    default: (url('./icon/text--leading.svg')),
+  ),
+  "icon.text--line-spacing": (
+    default: (url('./icon/text--line-spacing.svg')),
+  ),
+  "icon.text--new-line": (
+    default: (url('./icon/text--new-line.svg')),
+  ),
+  "icon.text--scale": (
+    default: (url('./icon/text--scale.svg')),
+  ),
+  "icon.text--selection": (
+    default: (url('./icon/text--selection.svg')),
+  ),
+  "icon.text--small-caps": (
+    default: (url('./icon/text--small-caps.svg')),
+  ),
+  "icon.text--strikethrough": (
+    default: (url('./icon/text--strikethrough.svg')),
+  ),
+  "icon.text--subscript": (
+    default: (url('./icon/text--subscript.svg')),
+  ),
+  "icon.text--superscript": (
+    default: (url('./icon/text--superscript.svg')),
+  ),
+  "icon.text--tracking": (
+    default: (url('./icon/text--tracking.svg')),
+  ),
+  "icon.text--underline": (
+    default: (url('./icon/text--underline.svg')),
+  ),
+  "icon.text--vertical-alignment": (
+    default: (url('./icon/text--vertical-alignment.svg')),
+  ),
+  "icon.text--wrap": (
+    default: (url('./icon/text--wrap.svg')),
+  ),
+  "icon.text-annotation-toggle": (
+    default: (url('./icon/text-annotation-toggle.svg')),
+  ),
+  "icon.text-link": (
+    default: (url('./icon/text-link.svg')),
+  ),
+  "icon.text-link--analysis": (
+    default: (url('./icon/text-link--analysis.svg')),
+  ),
+  "icon.text-mining": (
+    default: (url('./icon/text-mining.svg')),
+  ),
+  "icon.text-mining--applier": (
+    default: (url('./icon/text-mining--applier.svg')),
+  ),
+  "icon.theater": (
+    default: (url('./icon/theater.svg')),
+  ),
+  "icon.this-side-up": (
+    default: (url('./icon/this-side-up.svg')),
+  ),
+  "icon.threshold": (
+    default: (url('./icon/threshold.svg')),
+  ),
+  "icon.thumbnail--1": (
+    default: (url('./icon/thumbnail--1.svg')),
+  ),
+  "icon.thumbnail--2": (
+    default: (url('./icon/thumbnail--2.svg')),
+  ),
+  "icon.thumbnail-preview": (
+    default: (url('./icon/thumbnail-preview.svg')),
+  ),
+  "icon.thumbs-down": (
+    default: (url('./icon/thumbs-down.svg')),
+  ),
+  "icon.thumbs-down--filled": (
+    default: (url('./icon/thumbs-down--filled.svg')),
+  ),
+  "icon.thumbs-up": (
+    default: (url('./icon/thumbs-up.svg')),
+  ),
+  "icon.thumbs-up--filled": (
+    default: (url('./icon/thumbs-up--filled.svg')),
+  ),
+  "icon.thunderstorm": (
+    default: (url('./icon/thunderstorm.svg')),
+  ),
+  "icon.thunderstorm--scattered": (
+    default: (url('./icon/thunderstorm--scattered.svg')),
+  ),
+  "icon.thunderstorm--scattered--night": (
+    default: (url('./icon/thunderstorm--scattered--night.svg')),
+  ),
+  "icon.thunderstorm--severe": (
+    default: (url('./icon/thunderstorm--severe.svg')),
+  ),
+  "icon.thunderstorm--strong": (
+    default: (url('./icon/thunderstorm--strong.svg')),
+  ),
+  "icon.ticket": (
+    default: (url('./icon/ticket.svg')),
+  ),
+  "icon.tides": (
+    default: (url('./icon/tides.svg')),
+  ),
+  "icon.TIF": (
+    default: (url('./icon/TIF.svg')),
+  ),
+  "icon.time": (
+    default: (url('./icon/time.svg')),
+  ),
+  "icon.time-plot": (
+    default: (url('./icon/time-plot.svg')),
+  ),
+  "icon.timer": (
+    default: (url('./icon/timer.svg')),
+  ),
+  "icon.tool-box": (
+    default: (url('./icon/tool-box.svg')),
+  ),
+  "icon.tool-kit": (
+    default: (url('./icon/tool-kit.svg')),
+  ),
+  "icon.tools": (
+    default: (url('./icon/tools.svg')),
+  ),
+  "icon.tools--alt": (
+    default: (url('./icon/tools--alt.svg')),
+  ),
+  "icon.tornado": (
+    default: (url('./icon/tornado.svg')),
+  ),
+  "icon.tornado-warning": (
+    default: (url('./icon/tornado-warning.svg')),
+  ),
+  "icon.touch--1": (
+    default: (url('./icon/touch--1.svg')),
+  ),
+  "icon.touch--1--filled": (
+    default: (url('./icon/touch--1--filled.svg')),
+  ),
+  "icon.touch--1-down": (
+    default: (url('./icon/touch--1-down.svg')),
+  ),
+  "icon.touch--1-down--filled": (
+    default: (url('./icon/touch--1-down--filled.svg')),
+  ),
+  "icon.touch--2": (
+    default: (url('./icon/touch--2.svg')),
+  ),
+  "icon.touch--2--filled": (
+    default: (url('./icon/touch--2--filled.svg')),
+  ),
+  "icon.touch--interaction": (
+    default: (url('./icon/touch--interaction.svg')),
+  ),
+  "icon.traffic--event": (
+    default: (url('./icon/traffic--event.svg')),
+  ),
+  "icon.traffic--flow": (
+    default: (url('./icon/traffic--flow.svg')),
+  ),
+  "icon.traffic--flow-incident": (
+    default: (url('./icon/traffic--flow-incident.svg')),
+  ),
+  "icon.traffic--incident": (
+    default: (url('./icon/traffic--incident.svg')),
+  ),
+  "icon.traffic--weather-incident": (
+    default: (url('./icon/traffic--weather-incident.svg')),
+  ),
+  "icon.traffic-cone": (
+    default: (url('./icon/traffic-cone.svg')),
+  ),
+  "icon.train": (
+    default: (url('./icon/train.svg')),
+  ),
+  "icon.train--heart": (
+    default: (url('./icon/train--heart.svg')),
+  ),
+  "icon.train--profile": (
+    default: (url('./icon/train--profile.svg')),
+  ),
+  "icon.train--speed": (
+    default: (url('./icon/train--speed.svg')),
+  ),
+  "icon.train--ticket": (
+    default: (url('./icon/train--ticket.svg')),
+  ),
+  "icon.train--time": (
+    default: (url('./icon/train--time.svg')),
+  ),
+  "icon.tram": (
+    default: (url('./icon/tram.svg')),
+  ),
+  "icon.transgender": (
+    default: (url('./icon/transgender.svg')),
+  ),
+  "icon.translate": (
+    default: (url('./icon/translate.svg')),
+  ),
+  "icon.transmission-lte": (
+    default: (url('./icon/transmission-lte.svg')),
+  ),
+  "icon.transpose": (
+    default: (url('./icon/transpose.svg')),
+  ),
+  "icon.trash-can": (
+    default: (url('./icon/trash-can.svg')),
+  ),
+  "icon.tree": (
+    default: (url('./icon/tree.svg')),
+  ),
+  "icon.tree--fall-risk": (
+    default: (url('./icon/tree--fall-risk.svg')),
+  ),
+  "icon.tree-view": (
+    default: (url('./icon/tree-view.svg')),
+  ),
+  "icon.tree-view--alt": (
+    default: (url('./icon/tree-view--alt.svg')),
+  ),
+  "icon.trophy": (
+    default: (url('./icon/trophy.svg')),
+  ),
+  "icon.trophy--filled": (
+    default: (url('./icon/trophy--filled.svg')),
+  ),
+  "icon.tropical-storm": (
+    default: (url('./icon/tropical-storm.svg')),
+  ),
+  "icon.tropical-storm--model-tracks": (
+    default: (url('./icon/tropical-storm--model-tracks.svg')),
+  ),
+  "icon.tropical-storm--tracks": (
+    default: (url('./icon/tropical-storm--tracks.svg')),
+  ),
+  "icon.tropical-warning": (
+    default: (url('./icon/tropical-warning.svg')),
+  ),
+  "icon.tsunami": (
+    default: (url('./icon/tsunami.svg')),
+  ),
+  "icon.TSV": (
+    default: (url('./icon/TSV.svg')),
+  ),
+  "icon.two-factor-authentication": (
+    default: (url('./icon/two-factor-authentication.svg')),
+  ),
+  "icon.two-person-lift": (
+    default: (url('./icon/two-person-lift.svg')),
+  ),
+  "icon.TXT": (
+    default: (url('./icon/TXT.svg')),
+  ),
+  "icon.TXT--reference": (
+    default: (url('./icon/TXT--reference.svg')),
+  ),
+  "icon.type-pattern": (
+    default: (url('./icon/type-pattern.svg')),
+  ),
+  "icon.types": (
+    default: (url('./icon/types.svg')),
+  ),
+  "icon.U1": (
+    default: (url('./icon/U1.svg')),
+  ),
+  "icon.U2": (
+    default: (url('./icon/U2.svg')),
+  ),
+  "icon.U3": (
+    default: (url('./icon/U3.svg')),
+  ),
+  "icon.umbrella": (
+    default: (url('./icon/umbrella.svg')),
+  ),
+  "icon.undefined": (
+    default: (url('./icon/undefined.svg')),
+  ),
+  "icon.undefined--filled": (
+    default: (url('./icon/undefined--filled.svg')),
+  ),
+  "icon.undo": (
+    default: (url('./icon/undo.svg')),
+  ),
+  "icon.ungroup-objects": (
+    default: (url('./icon/ungroup-objects.svg')),
+  ),
+  "icon.unknown": (
+    default: (url('./icon/unknown.svg')),
+  ),
+  "icon.unknown--filled": (
+    default: (url('./icon/unknown--filled.svg')),
+  ),
+  "icon.unlink": (
+    default: (url('./icon/unlink.svg')),
+  ),
+  "icon.unlocked": (
+    default: (url('./icon/unlocked.svg')),
+  ),
+  "icon.up-to-top": (
+    default: (url('./icon/up-to-top.svg')),
+  ),
+  "icon.update-now": (
+    default: (url('./icon/update-now.svg')),
+  ),
+  "icon.upgrade": (
+    default: (url('./icon/upgrade.svg')),
+  ),
+  "icon.upload": (
+    default: (url('./icon/upload.svg')),
+  ),
+  "icon.USB": (
+    default: (url('./icon/USB.svg')),
+  ),
+  "icon.user": (
+    default: (url('./icon/user.svg')),
+  ),
+  "icon.user--access": (
+    default: (url('./icon/user--access.svg')),
+  ),
+  "icon.user--activity": (
+    default: (url('./icon/user--activity.svg')),
+  ),
+  "icon.user--admin": (
+    default: (url('./icon/user--admin.svg')),
+  ),
+  "icon.user--avatar": (
+    default: (url('./icon/user--avatar.svg')),
+  ),
+  "icon.user--avatar--filled": (
+    default: (url('./icon/user--avatar--filled.svg')),
+  ),
+  "icon.user--avatar--filled--alt": (
+    default: (url('./icon/user--avatar--filled--alt.svg')),
+  ),
+  "icon.user--certification": (
+    default: (url('./icon/user--certification.svg')),
+  ),
+  "icon.user--data": (
+    default: (url('./icon/user--data.svg')),
+  ),
+  "icon.user--favorite": (
+    default: (url('./icon/user--favorite.svg')),
+  ),
+  "icon.user--favorite--alt": (
+    default: (url('./icon/user--favorite--alt.svg')),
+  ),
+  "icon.user--favorite--alt--filled": (
+    default: (url('./icon/user--favorite--alt--filled.svg')),
+  ),
+  "icon.user--filled": (
+    default: (url('./icon/user--filled.svg')),
+  ),
+  "icon.user--follow": (
+    default: (url('./icon/user--follow.svg')),
+  ),
+  "icon.user--identification": (
+    default: (url('./icon/user--identification.svg')),
+  ),
+  "icon.user--military": (
+    default: (url('./icon/user--military.svg')),
+  ),
+  "icon.user--multiple": (
+    default: (url('./icon/user--multiple.svg')),
+  ),
+  "icon.user--online": (
+    default: (url('./icon/user--online.svg')),
+  ),
+  "icon.user--profile": (
+    default: (url('./icon/user--profile.svg')),
+  ),
+  "icon.user--role": (
+    default: (url('./icon/user--role.svg')),
+  ),
+  "icon.user--service-desk": (
+    default: (url('./icon/user--service-desk.svg')),
+  ),
+  "icon.user--settings": (
+    default: (url('./icon/user--settings.svg')),
+  ),
+  "icon.user--simulation": (
+    default: (url('./icon/user--simulation.svg')),
+  ),
+  "icon.user--speaker": (
+    default: (url('./icon/user--speaker.svg')),
+  ),
+  "icon.user--x-ray": (
+    default: (url('./icon/user--x-ray.svg')),
+  ),
+  "icon.user-profile--alt": (
+    default: (url('./icon/user-profile--alt.svg')),
+  ),
+  "icon.uv-index": (
+    default: (url('./icon/uv-index.svg')),
+  ),
+  "icon.uv-index--alt": (
+    default: (url('./icon/uv-index--alt.svg')),
+  ),
+  "icon.uv-index--filled": (
+    default: (url('./icon/uv-index--filled.svg')),
+  ),
+  "icon.value--variable": (
+    default: (url('./icon/value--variable.svg')),
+  ),
+  "icon.van": (
+    default: (url('./icon/van.svg')),
+  ),
+  "icon.vegetation--asset": (
+    default: (url('./icon/vegetation--asset.svg')),
+  ),
+  "icon.vehicle--api": (
+    default: (url('./icon/vehicle--api.svg')),
+  ),
+  "icon.vehicle--connected": (
+    default: (url('./icon/vehicle--connected.svg')),
+  ),
+  "icon.vehicle--insights": (
+    default: (url('./icon/vehicle--insights.svg')),
+  ),
+  "icon.vehicle--services": (
+    default: (url('./icon/vehicle--services.svg')),
+  ),
+  "icon.version": (
+    default: (url('./icon/version.svg')),
+  ),
+  "icon.vertical-view": (
+    default: (url('./icon/vertical-view.svg')),
+  ),
+  "icon.video": (
+    default: (url('./icon/video.svg')),
+  ),
+  "icon.video--add": (
+    default: (url('./icon/video--add.svg')),
+  ),
+  "icon.video--chat": (
+    default: (url('./icon/video--chat.svg')),
+  ),
+  "icon.video--filled": (
+    default: (url('./icon/video--filled.svg')),
+  ),
+  "icon.video--off": (
+    default: (url('./icon/video--off.svg')),
+  ),
+  "icon.video--off--filled": (
+    default: (url('./icon/video--off--filled.svg')),
+  ),
+  "icon.view": (
+    default: (url('./icon/view.svg')),
+  ),
+  "icon.view--filled": (
+    default: (url('./icon/view--filled.svg')),
+  ),
+  "icon.view--mode-1": (
+    default: (url('./icon/view--mode-1.svg')),
+  ),
+  "icon.view--mode-2": (
+    default: (url('./icon/view--mode-2.svg')),
+  ),
+  "icon.view--off": (
+    default: (url('./icon/view--off.svg')),
+  ),
+  "icon.view--off--filled": (
+    default: (url('./icon/view--off--filled.svg')),
+  ),
+  "icon.view-next": (
+    default: (url('./icon/view-next.svg')),
+  ),
+  "icon.virtual-column": (
+    default: (url('./icon/virtual-column.svg')),
+  ),
+  "icon.virtual-column--key": (
+    default: (url('./icon/virtual-column--key.svg')),
+  ),
+  "icon.virtual-desktop": (
+    default: (url('./icon/virtual-desktop.svg')),
+  ),
+  "icon.virtual-machine": (
+    default: (url('./icon/virtual-machine.svg')),
+  ),
+  "icon.virtual-private-cloud": (
+    default: (url('./icon/virtual-private-cloud.svg')),
+  ),
+  "icon.virtual-private-cloud--alt": (
+    default: (url('./icon/virtual-private-cloud--alt.svg')),
+  ),
+  "icon.visual-recognition": (
+    default: (url('./icon/visual-recognition.svg')),
+  ),
+  "icon.vlan": (
+    default: (url('./icon/vlan.svg')),
+  ),
+  "icon.vlan--ibm": (
+    default: (url('./icon/vlan--ibm.svg')),
+  ),
+  "icon.vmdk-disk": (
+    default: (url('./icon/vmdk-disk.svg')),
+  ),
+  "icon.voice-activate": (
+    default: (url('./icon/voice-activate.svg')),
+  ),
+  "icon.voicemail": (
+    default: (url('./icon/voicemail.svg')),
+  ),
+  "icon.volume--block-storage": (
+    default: (url('./icon/volume--block-storage.svg')),
+  ),
+  "icon.volume--down": (
+    default: (url('./icon/volume--down.svg')),
+  ),
+  "icon.volume--down--alt": (
+    default: (url('./icon/volume--down--alt.svg')),
+  ),
+  "icon.volume--down--filled": (
+    default: (url('./icon/volume--down--filled.svg')),
+  ),
+  "icon.volume--down--filled--alt": (
+    default: (url('./icon/volume--down--filled--alt.svg')),
+  ),
+  "icon.volume--file-storage": (
+    default: (url('./icon/volume--file-storage.svg')),
+  ),
+  "icon.volume--mute": (
+    default: (url('./icon/volume--mute.svg')),
+  ),
+  "icon.volume--mute--filled": (
+    default: (url('./icon/volume--mute--filled.svg')),
+  ),
+  "icon.volume--object-storage": (
+    default: (url('./icon/volume--object-storage.svg')),
+  ),
+  "icon.volume--up": (
+    default: (url('./icon/volume--up.svg')),
+  ),
+  "icon.volume--up--alt": (
+    default: (url('./icon/volume--up--alt.svg')),
+  ),
+  "icon.volume--up--filled": (
+    default: (url('./icon/volume--up--filled.svg')),
+  ),
+  "icon.volume--up--filled--alt": (
+    default: (url('./icon/volume--up--filled--alt.svg')),
+  ),
+  "icon.VPN": (
+    default: (url('./icon/VPN.svg')),
+  ),
+  "icon.vpn--connection": (
+    default: (url('./icon/vpn--connection.svg')),
+  ),
+  "icon.vpn--policy": (
+    default: (url('./icon/vpn--policy.svg')),
+  ),
+  "icon.wallet": (
+    default: (url('./icon/wallet.svg')),
+  ),
+  "icon.warning": (
+    default: (url('./icon/warning.svg')),
+  ),
+  "icon.warning--alt": (
+    default: (url('./icon/warning--alt.svg')),
+  ),
+  "icon.warning--alt--filled": (
+    default: (url('./icon/warning--alt--filled.svg')),
+  ),
+  "icon.warning--alt-inverted": (
+    default: (url('./icon/warning--alt-inverted.svg')),
+  ),
+  "icon.warning--alt-inverted--filled": (
+    default: (url('./icon/warning--alt-inverted--filled.svg')),
+  ),
+  "icon.warning--filled": (
+    default: (url('./icon/warning--filled.svg')),
+  ),
+  "icon.warning--hex": (
+    default: (url('./icon/warning--hex.svg')),
+  ),
+  "icon.warning--hex--filled": (
+    default: (url('./icon/warning--hex--filled.svg')),
+  ),
+  "icon.warning--other": (
+    default: (url('./icon/warning--other.svg')),
+  ),
+  "icon.warning-square": (
+    default: (url('./icon/warning-square.svg')),
+  ),
+  "icon.warning-square--filled": (
+    default: (url('./icon/warning-square--filled.svg')),
+  ),
+  "icon.watch": (
+    default: (url('./icon/watch.svg')),
+  ),
+  "icon.watson": (
+    default: (url('./icon/watson.svg')),
+  ),
+  "icon.watson--machine-learning": (
+    default: (url('./icon/watson--machine-learning.svg')),
+  ),
+  "icon.wave-direction": (
+    default: (url('./icon/wave-direction.svg')),
+  ),
+  "icon.wave-height": (
+    default: (url('./icon/wave-height.svg')),
+  ),
+  "icon.wave-period": (
+    default: (url('./icon/wave-period.svg')),
+  ),
+  "icon.weather-front--cold": (
+    default: (url('./icon/weather-front--cold.svg')),
+  ),
+  "icon.weather-front--stationary": (
+    default: (url('./icon/weather-front--stationary.svg')),
+  ),
+  "icon.weather-front--warm": (
+    default: (url('./icon/weather-front--warm.svg')),
+  ),
+  "icon.weather-station": (
+    default: (url('./icon/weather-station.svg')),
+  ),
+  "icon.webhook": (
+    default: (url('./icon/webhook.svg')),
+  ),
+  "icon.websheet": (
+    default: (url('./icon/websheet.svg')),
+  ),
+  "icon.wheat": (
+    default: (url('./icon/wheat.svg')),
+  ),
+  "icon.wifi": (
+    default: (url('./icon/wifi.svg')),
+  ),
+  "icon.wifi--controller": (
+    default: (url('./icon/wifi--controller.svg')),
+  ),
+  "icon.wifi--not-secure": (
+    default: (url('./icon/wifi--not-secure.svg')),
+  ),
+  "icon.wifi--off": (
+    default: (url('./icon/wifi--off.svg')),
+  ),
+  "icon.wifi--secure": (
+    default: (url('./icon/wifi--secure.svg')),
+  ),
+  "icon.wifi-bridge": (
+    default: (url('./icon/wifi-bridge.svg')),
+  ),
+  "icon.wifi-bridge--alt": (
+    default: (url('./icon/wifi-bridge--alt.svg')),
+  ),
+  "icon.wikis": (
+    default: (url('./icon/wikis.svg')),
+  ),
+  "icon.wind-gusts": (
+    default: (url('./icon/wind-gusts.svg')),
+  ),
+  "icon.wind-power": (
+    default: (url('./icon/wind-power.svg')),
+  ),
+  "icon.wind-stream": (
+    default: (url('./icon/wind-stream.svg')),
+  ),
+  "icon.window--auto": (
+    default: (url('./icon/window--auto.svg')),
+  ),
+  "icon.window--base": (
+    default: (url('./icon/window--base.svg')),
+  ),
+  "icon.window--black-saturation": (
+    default: (url('./icon/window--black-saturation.svg')),
+  ),
+  "icon.window--overlay": (
+    default: (url('./icon/window--overlay.svg')),
+  ),
+  "icon.window--preset": (
+    default: (url('./icon/window--preset.svg')),
+  ),
+  "icon.windy": (
+    default: (url('./icon/windy.svg')),
+  ),
+  "icon.windy--dust": (
+    default: (url('./icon/windy--dust.svg')),
+  ),
+  "icon.windy--snow": (
+    default: (url('./icon/windy--snow.svg')),
+  ),
+  "icon.windy--strong": (
+    default: (url('./icon/windy--strong.svg')),
+  ),
+  "icon.winter-warning": (
+    default: (url('./icon/winter-warning.svg')),
+  ),
+  "icon.wintry-mix": (
+    default: (url('./icon/wintry-mix.svg')),
+  ),
+  "icon.wireless-checkout": (
+    default: (url('./icon/wireless-checkout.svg')),
+  ),
+  "icon.WMV": (
+    default: (url('./icon/WMV.svg')),
+  ),
+  "icon.word-cloud": (
+    default: (url('./icon/word-cloud.svg')),
+  ),
+  "icon.workspace": (
+    default: (url('./icon/workspace.svg')),
+  ),
+  "icon.workspace--import": (
+    default: (url('./icon/workspace--import.svg')),
+  ),
+  "icon.worship": (
+    default: (url('./icon/worship.svg')),
+  ),
+  "icon.worship--christian": (
+    default: (url('./icon/worship--christian.svg')),
+  ),
+  "icon.worship--jewish": (
+    default: (url('./icon/worship--jewish.svg')),
+  ),
+  "icon.worship--muslim": (
+    default: (url('./icon/worship--muslim.svg')),
+  ),
+  "icon.X": (
+    default: (url('./icon/X.svg')),
+  ),
+  "icon.x-axis": (
+    default: (url('./icon/x-axis.svg')),
+  ),
+  "icon.XLS": (
+    default: (url('./icon/XLS.svg')),
+  ),
+  "icon.XML": (
+    default: (url('./icon/XML.svg')),
+  ),
+  "icon.Y": (
+    default: (url('./icon/Y.svg')),
+  ),
+  "icon.y-axis": (
+    default: (url('./icon/y-axis.svg')),
+  ),
+  "icon.Z": (
+    default: (url('./icon/Z.svg')),
+  ),
+  "icon.z-axis": (
+    default: (url('./icon/z-axis.svg')),
+  ),
+  "icon.ZIP": (
+    default: (url('./icon/ZIP.svg')),
+  ),
+  "icon.ZIP--reference": (
+    default: (url('./icon/ZIP--reference.svg')),
+  ),
+  "icon.zoom--area": (
+    default: (url('./icon/zoom--area.svg')),
+  ),
+  "icon.zoom--fit": (
+    default: (url('./icon/zoom--fit.svg')),
+  ),
+  "icon.zoom--in": (
+    default: (url('./icon/zoom--in.svg')),
+  ),
+  "icon.zoom--in-area": (
+    default: (url('./icon/zoom--in-area.svg')),
+  ),
+  "icon.zoom--out": (
+    default: (url('./icon/zoom--out.svg')),
+  ),
+  "icon.zoom--out-area": (
+    default: (url('./icon/zoom--out-area.svg')),
+  ),
+  "icon.zoom--reset": (
+    default: (url('./icon/zoom--reset.svg')),
+  ),
+  "icon.zoom-pan": (
+    default: (url('./icon/zoom-pan.svg')),
+  ),
+  "font.family.mono": (
+    default: ("IBM Plex Mono", Menlo, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace),
+  ),
+  "font.family.sans": (
+    default: ("IBM Plex Sans", "Helvetica Neue", Arial, sans-serif),
+  ),
+  "font.family.sansCondensed": (
+    default: ("IBM Plex Sans Condensed", "Helvetica Neue", Arial, sans-serif),
+  ),
+  "font.family.sansHebrew": (
+    default: ("IBM Plex Sans Hebrew", "Helvetica Hebrew", "Arial Hebrew", sans-serif),
+  ),
+  "font.family.serif": (
+    default: ("IBM Plex Serif", Georgia, Times, serif),
+  ),
+  "font.size.body01": (
+    default: (0.875rem),
+  ),
+  "font.size.body02": (
+    default: (1rem),
+  ),
+  "font.size.bodyCompact01": (
+    default: (0.875rem),
+  ),
+  "font.size.bodyCompact02": (
+    default: (1rem),
+  ),
+  "font.size.bodyLong01": (
+    default: (0.875rem),
+  ),
+  "font.size.bodyLong02": (
+    default: (1rem),
+  ),
+  "font.size.bodyShort01": (
+    default: (0.875rem),
+  ),
+  "font.size.bodyShort02": (
+    default: (1rem),
+  ),
+  "font.size.caption01": (
+    default: (0.75rem),
+  ),
+  "font.size.caption02": (
+    default: (0.875rem),
+  ),
+  "font.size.code01": (
+    default: (0.75rem),
+  ),
+  "font.size.code02": (
+    default: (0.875rem),
+  ),
+  "font.size.display01": (
+    default: (2.625rem),
+  ),
+  "font.size.display02": (
+    default: (2.625rem),
+  ),
+  "font.size.display03": (
+    default: (2.625rem),
+  ),
+  "font.size.display04": (
+    default: (2.625rem),
+  ),
+  "font.size.expressiveHeading01": (
+    default: (0.875rem),
+  ),
+  "font.size.expressiveHeading02": (
+    default: (1rem),
+  ),
+  "font.size.expressiveHeading03": (
+    default: (1.25rem),
+  ),
+  "font.size.expressiveHeading04": (
+    default: (1.75rem),
+  ),
+  "font.size.expressiveHeading05": (
+    default: (2rem),
+  ),
+  "font.size.expressiveHeading06": (
+    default: (2rem),
+  ),
+  "font.size.expressiveParagraph01": (
+    default: (1.5rem),
+  ),
+  "font.size.fluidDisplay01": (
+    default: (2.625rem),
+  ),
+  "font.size.fluidDisplay02": (
+    default: (2.625rem),
+  ),
+  "font.size.fluidDisplay03": (
+    default: (2.625rem),
+  ),
+  "font.size.fluidDisplay04": (
+    default: (2.625rem),
+  ),
+  "font.size.fluidHeading03": (
+    default: (1.25rem),
+  ),
+  "font.size.fluidHeading04": (
+    default: (1.75rem),
+  ),
+  "font.size.fluidHeading05": (
+    default: (2rem),
+  ),
+  "font.size.fluidHeading06": (
+    default: (2rem),
+  ),
+  "font.size.fluidParagraph01": (
+    default: (1.5rem),
+  ),
+  "font.size.fluidQuotation01": (
+    default: (1.25rem),
+  ),
+  "font.size.fluidQuotation02": (
+    default: (2rem),
+  ),
+  "font.size.heading01": (
+    default: (0.875rem),
+  ),
+  "font.size.heading02": (
+    default: (1rem),
+  ),
+  "font.size.heading03": (
+    default: (1.25rem),
+  ),
+  "font.size.heading04": (
+    default: (1.75rem),
+  ),
+  "font.size.heading05": (
+    default: (2rem),
+  ),
+  "font.size.heading06": (
+    default: (2.625rem),
+  ),
+  "font.size.heading07": (
+    default: (3.375rem),
+  ),
+  "font.size.headingCompact01": (
+    default: (0.875rem),
+  ),
+  "font.size.headingCompact02": (
+    default: (1rem),
+  ),
+  "font.size.helperText01": (
+    default: (0.75rem),
+  ),
+  "font.size.helperText02": (
+    default: (0.875rem),
+  ),
+  "font.size.label01": (
+    default: (0.75rem),
+  ),
+  "font.size.label02": (
+    default: (0.875rem),
+  ),
+  "font.size.legal01": (
+    default: (0.75rem),
+  ),
+  "font.size.legal02": (
+    default: (0.875rem),
+  ),
+  "font.size.productiveHeading01": (
+    default: (0.875rem),
+  ),
+  "font.size.productiveHeading02": (
+    default: (1rem),
+  ),
+  "font.size.productiveHeading03": (
+    default: (1.25rem),
+  ),
+  "font.size.productiveHeading04": (
+    default: (1.75rem),
+  ),
+  "font.size.productiveHeading05": (
+    default: (2rem),
+  ),
+  "font.size.productiveHeading06": (
+    default: (2.625rem),
+  ),
+  "font.size.productiveHeading07": (
+    default: (3.375rem),
+  ),
+  "font.size.quotation01": (
+    default: (1.25rem),
+  ),
+  "font.size.quotation02": (
+    default: (2rem),
+  ),
+  "spacing.icon.01": (
+    default: (1rem),
+  ),
+  "spacing.icon.02": (
+    default: (1.25rem),
+  ),
+  "easing.standard": (
+    default: (cubic-bezier(0.2, 0, 0.38, 0.9)),
+  ),
+  "easing.standard--expressive": (
+    default: (cubic-bezier(0.4, 0.14, 0.3, 1)),
+  ),
+  "easing.entrance": (
+    default: (cubic-bezier(0, 0, 0.38, 0.9)),
+  ),
+  "easing.entrance--expressive": (
+    default: (cubic-bezier(0, 0, 0.3, 1)),
+  ),
+  "easing.exit": (
+    default: (cubic-bezier(0.2, 0, 1, 0.9)),
+  ),
+  "easing.exit--expressive": (
+    default: (cubic-bezier(0.4, 0.14, 1, 1)),
+  ),
+);
+
+$__token-typography-mixins: (
+);
+
+@function token($tokenName, $modeName: default) {
+  @if map.has-key($__token-values, $tokenName) == false {
+    @error "No token named \"#{$tokenName}\"";
+  }
+  $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, "__cobalt-error") {
+    @error map.get($_token, "__cobalt-error");
+  }
+  @if map.has-key($_token, $modeName) {
+    @return map.get($_token, $modeName);
+  } @else {
+    @return map.get($_token, default);
+  }
+}
+
+@mixin typography($tokenName, $modeName: default) {
+  @if map.has-key($__token-typography-mixins, $tokenName) == false {
+    @error "No typography mixin named \"#{$tokenName}\"";
+  }
+  $_mixin: map.get($__token-typography-mixins, $tokenName);
+  $_properties: map.get($_token, default);
+  @if map.has-key($_token, $modeName) {
+    $_properties: map.get($_token, $modeName);
+  }
+  @each $_property, $_value in $_properties {
+    #{$_property}: #{$_value};
+  }
+}

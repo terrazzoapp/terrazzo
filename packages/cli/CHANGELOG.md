@@ -1,5 +1,12 @@
 # @cobalt-ui/cli
 
+## 0.3.8
+
+### Patch Changes
+
+- Updated dependencies [8845084]
+  - @cobalt-ui/core@0.4.0
+
 ## 0.3.7
 
 ### Patch Changes

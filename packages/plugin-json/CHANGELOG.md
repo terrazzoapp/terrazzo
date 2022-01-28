@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-json
 
+## 0.3.4
+
+### Patch Changes
+
+- Update core
+
 ## 0.3.3
 
 ### Patch Changes

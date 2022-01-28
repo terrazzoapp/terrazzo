@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.4.7
+
+### Patch Changes
+
+- Update core
+
 ## 0.4.6
 
 ### Patch Changes

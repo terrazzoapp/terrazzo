@@ -133,6 +133,14 @@ describe('8. Type', () => {
       expect(tokens.find((t) => t.id === 'space.component.xs').value).to.equal('0.5rem');
     });
 
+    it('allows zero', () => {
+      const json = {
+        'line-height': { type: 'dimension', value: 0 },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'line-height').value).to.equal('0');
+    });
+
     it('normalizes zero', () => {
       const json = {
         'line-height': { type: 'dimension', value: '0px' },

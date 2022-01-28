@@ -1,5 +1,17 @@
 # @cobalt-ui/plugin-css
 
+## 0.5.1
+
+### Patch Changes
+
+- Update core
+
+## 0.5.0
+
+### Minor Changes
+
+- 8845084: Add typography class support
+
 ## 0.4.3
 
 ### Patch Changes

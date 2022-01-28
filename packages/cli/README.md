@@ -43,7 +43,7 @@ export default {
 | `co build --watch` | Watch `tokens.json` for changes and rebuild on every save |
 | `co sync`          | Sync `tokens.json` with Figma                             |
 | `co init`          | Create a stub `tokens.json` file                          |
-| `co validate`      | Check `tokens.json` for errors                            |
+| `co check`         | Check `tokens.json` for errors                            |
 
 ## Plugins
 

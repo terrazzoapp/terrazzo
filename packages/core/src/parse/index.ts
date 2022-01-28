@@ -69,7 +69,7 @@ export function parse(schema: Group): ParseResult {
         type: v.type || group.type,
         ...v,
       } as ParsedToken;
-      const isToken = !!token.value;
+      const isToken = token.hasOwnProperty('value');
       if (isToken) {
         if (isEmpty(token.value)) {
           errors.push(`${token.id}: missing value`);

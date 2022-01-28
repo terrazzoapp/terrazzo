@@ -1,0 +1,138 @@
+/**
+ * Shopify Polaris
+ * This file was auto-generated from tokens.json.
+ * DO NOT EDIT!
+ */
+
+:root {
+  --color-black: #000000;
+  --color-blue-lighter: #ebf5fa;
+  --color-blue-light: #b4e1fa;
+  --color-blue: #006fbb;
+  --color-blue-dark: #084e8a;
+  --color-blue-darker: #001429;
+  --color-blue-text: #3e4e57;
+  --color-green-lighter: #e3f1df;
+  --color-green-light: #bbe5b3;
+  --color-green: #50b83c;
+  --color-green-dark: #108043;
+  --color-green-darker: #173630;
+  --color-green-text: #414f3e;
+  --color-indigo-lighter: #f4f5fa;
+  --color-indigo-light: #b3bcf5;
+  --color-indigo: #5c6ac4;
+  --color-indigo-dark: #202e78;
+  --color-indigo-darker: #000639;
+  --color-indigo-text: #3e4155;
+  --color-ink-lightest: #919eab;
+  --color-ink-lighter: #637381;
+  --color-ink-light: #454f5b;
+  --color-ink: #212b36;
+  --color-orange-lighter: #fcebdb;
+  --color-orange-light: #ffc58b;
+  --color-orange: #f49342;
+  --color-orange-dark: #c05717;
+  --color-orange-darker: #4a1504;
+  --color-orange-text: #594430;
+  --color-purple-lighter: #f6f0fd;
+  --color-purple-light: #e3d0ff;
+  --color-purple: #9c6ade;
+  --color-purple-dark: #50248f;
+  --color-purple-darker: #230051;
+  --color-purple-text: #50495a;
+  --color-red-lighter: #fbeae5;
+  --color-red-light: #fead9a;
+  --color-red: #de3618;
+  --color-red-dark: #bf0711;
+  --color-red-darker: #330101;
+  --color-red-text: #583c35;
+  --color-sky-lighter: #f9fafb;
+  --color-sky-light: #f4f6f8;
+  --color-sky: #dfe3e8;
+  --color-sky-dark: #c4cdd5;
+  --color-teal-lighter: #e0f5f5;
+  --color-teal-light: #b7ecec;
+  --color-teal: #47c1bf;
+  --color-teal-dark: #00848e;
+  --color-teal-darker: #003135;
+  --color-teal-text: #405352;
+  --color-white: #ffffff;
+  --color-yellow-lighter: #fcf1cd;
+  --color-yellow-light: #ffea8a;
+  --color-yellow: #eec200;
+  --color-yellow-dark: #8a6116;
+  --color-yellow-darker: #573b00;
+  --color-yellow-text: #595130;
+  --font-family-base: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-family-mono: Monaco, Consolas, "Lucida Console", monospace;
+  --space-none: 0;
+  --space-extra-tight: 4px;
+  --space-tight: 8px;
+  --space-base-tight: 12px;
+  --space-base: 16px;
+  --space-loose: 20px;
+  --space-extra-loose: 32px;
+}
+
+@media (color-gamut: p3) {
+  :root {
+    --color-black: color(display-p3 0 0 0);
+    --color-blue-lighter: color(display-p3 0.92157 0.96078 0.98039);
+    --color-blue-light: color(display-p3 0.70588 0.88235 0.98039);
+    --color-blue: color(display-p3 0 0.43529 0.73333);
+    --color-blue-dark: color(display-p3 0.03137 0.30588 0.54118);
+    --color-blue-darker: color(display-p3 0 0.07843 0.16078);
+    --color-blue-text: color(display-p3 0.24314 0.30588 0.34118);
+    --color-green-lighter: color(display-p3 0.8902 0.9451 0.87451);
+    --color-green-light: color(display-p3 0.73333 0.89804 0.70196);
+    --color-green: color(display-p3 0.31373 0.72157 0.23529);
+    --color-green-dark: color(display-p3 0.06275 0.50196 0.26275);
+    --color-green-darker: color(display-p3 0.0902 0.21176 0.18824);
+    --color-green-text: color(display-p3 0.2549 0.3098 0.24314);
+    --color-indigo-lighter: color(display-p3 0.95686 0.96078 0.98039);
+    --color-indigo-light: color(display-p3 0.70196 0.73725 0.96078);
+    --color-indigo: color(display-p3 0.36078 0.41569 0.76863);
+    --color-indigo-dark: color(display-p3 0.12549 0.18039 0.47059);
+    --color-indigo-darker: color(display-p3 0 0.02353 0.22353);
+    --color-indigo-text: color(display-p3 0.24314 0.2549 0.33333);
+    --color-ink-lightest: color(display-p3 0.56863 0.61961 0.67059);
+    --color-ink-lighter: color(display-p3 0.38824 0.45098 0.50588);
+    --color-ink-light: color(display-p3 0.27059 0.3098 0.35686);
+    --color-ink: color(display-p3 0.12941 0.16863 0.21176);
+    --color-orange-lighter: color(display-p3 0.98824 0.92157 0.85882);
+    --color-orange-light: color(display-p3 1 0.77255 0.5451);
+    --color-orange: color(display-p3 0.95686 0.57647 0.25882);
+    --color-orange-dark: color(display-p3 0.75294 0.34118 0.0902);
+    --color-orange-darker: color(display-p3 0.2902 0.08235 0.01569);
+    --color-orange-text: color(display-p3 0.34902 0.26667 0.18824);
+    --color-purple-lighter: color(display-p3 0.96471 0.94118 0.99216);
+    --color-purple-light: color(display-p3 0.8902 0.81569 1);
+    --color-purple: color(display-p3 0.61176 0.41569 0.87059);
+    --color-purple-dark: color(display-p3 0.31373 0.14118 0.56078);
+    --color-purple-darker: color(display-p3 0.13725 0 0.31765);
+    --color-purple-text: color(display-p3 0.31373 0.28627 0.35294);
+    --color-red-lighter: color(display-p3 0.98431 0.91765 0.89804);
+    --color-red-light: color(display-p3 0.99608 0.67843 0.60392);
+    --color-red: color(display-p3 0.87059 0.21176 0.09412);
+    --color-red-dark: color(display-p3 0.74902 0.02745 0.06667);
+    --color-red-darker: color(display-p3 0.2 0.00392 0.00392);
+    --color-red-text: color(display-p3 0.3451 0.23529 0.20784);
+    --color-sky-lighter: color(display-p3 0.97647 0.98039 0.98431);
+    --color-sky-light: color(display-p3 0.95686 0.96471 0.97255);
+    --color-sky: color(display-p3 0.87451 0.8902 0.9098);
+    --color-sky-dark: color(display-p3 0.76863 0.80392 0.83529);
+    --color-teal-lighter: color(display-p3 0.87843 0.96078 0.96078);
+    --color-teal-light: color(display-p3 0.71765 0.92549 0.92549);
+    --color-teal: color(display-p3 0.27843 0.75686 0.74902);
+    --color-teal-dark: color(display-p3 0 0.51765 0.55686);
+    --color-teal-darker: color(display-p3 0 0.19216 0.20784);
+    --color-teal-text: color(display-p3 0.25098 0.32549 0.32157);
+    --color-white: color(display-p3 1 1 1);
+    --color-yellow-lighter: color(display-p3 0.98824 0.9451 0.80392);
+    --color-yellow-light: color(display-p3 1 0.91765 0.54118);
+    --color-yellow: color(display-p3 0.93333 0.76078 0);
+    --color-yellow-dark: color(display-p3 0.54118 0.38039 0.08627);
+    --color-yellow-darker: color(display-p3 0.34118 0.23137 0);
+    --color-yellow-text: color(display-p3 0.34902 0.31765 0.18824);
+  }
+}

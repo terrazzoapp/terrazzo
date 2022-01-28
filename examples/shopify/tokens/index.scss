@@ -1,0 +1,241 @@
+// Shopify Polaris
+// This file was auto-generated from tokens.json.
+// DO NOT EDIT!
+
+@use "sass:map";
+
+$__token-values: (
+  "color.black": (
+    default: (#000000),
+  ),
+  "color.blue_lighter": (
+    default: (#ebf5fa),
+  ),
+  "color.blue_light": (
+    default: (#b4e1fa),
+  ),
+  "color.blue": (
+    default: (#006fbb),
+  ),
+  "color.blue_dark": (
+    default: (#084e8a),
+  ),
+  "color.blue_darker": (
+    default: (#001429),
+  ),
+  "color.blue_text": (
+    default: (#3e4e57),
+  ),
+  "color.green_lighter": (
+    default: (#e3f1df),
+  ),
+  "color.green_light": (
+    default: (#bbe5b3),
+  ),
+  "color.green": (
+    default: (#50b83c),
+  ),
+  "color.green_dark": (
+    default: (#108043),
+  ),
+  "color.green_darker": (
+    default: (#173630),
+  ),
+  "color.green_text": (
+    default: (#414f3e),
+  ),
+  "color.indigo_lighter": (
+    default: (#f4f5fa),
+  ),
+  "color.indigo_light": (
+    default: (#b3bcf5),
+  ),
+  "color.indigo": (
+    default: (#5c6ac4),
+  ),
+  "color.indigo_dark": (
+    default: (#202e78),
+  ),
+  "color.indigo_darker": (
+    default: (#000639),
+  ),
+  "color.indigo_text": (
+    default: (#3e4155),
+  ),
+  "color.ink_lightest": (
+    default: (#919eab),
+  ),
+  "color.ink_lighter": (
+    default: (#637381),
+  ),
+  "color.ink_light": (
+    default: (#454f5b),
+  ),
+  "color.ink": (
+    default: (#212b36),
+  ),
+  "color.orange_lighter": (
+    default: (#fcebdb),
+  ),
+  "color.orange_light": (
+    default: (#ffc58b),
+  ),
+  "color.orange": (
+    default: (#f49342),
+  ),
+  "color.orange_dark": (
+    default: (#c05717),
+  ),
+  "color.orange_darker": (
+    default: (#4a1504),
+  ),
+  "color.orange_text": (
+    default: (#594430),
+  ),
+  "color.purple_lighter": (
+    default: (#f6f0fd),
+  ),
+  "color.purple_light": (
+    default: (#e3d0ff),
+  ),
+  "color.purple": (
+    default: (#9c6ade),
+  ),
+  "color.purple_dark": (
+    default: (#50248f),
+  ),
+  "color.purple_darker": (
+    default: (#230051),
+  ),
+  "color.purple_text": (
+    default: (#50495a),
+  ),
+  "color.red_lighter": (
+    default: (#fbeae5),
+  ),
+  "color.red_light": (
+    default: (#fead9a),
+  ),
+  "color.red": (
+    default: (#de3618),
+  ),
+  "color.red_dark": (
+    default: (#bf0711),
+  ),
+  "color.red_darker": (
+    default: (#330101),
+  ),
+  "color.red_text": (
+    default: (#583c35),
+  ),
+  "color.sky_lighter": (
+    default: (#f9fafb),
+  ),
+  "color.sky_light": (
+    default: (#f4f6f8),
+  ),
+  "color.sky": (
+    default: (#dfe3e8),
+  ),
+  "color.sky_dark": (
+    default: (#c4cdd5),
+  ),
+  "color.teal_lighter": (
+    default: (#e0f5f5),
+  ),
+  "color.teal_light": (
+    default: (#b7ecec),
+  ),
+  "color.teal": (
+    default: (#47c1bf),
+  ),
+  "color.teal_dark": (
+    default: (#00848e),
+  ),
+  "color.teal_darker": (
+    default: (#003135),
+  ),
+  "color.teal_text": (
+    default: (#405352),
+  ),
+  "color.white": (
+    default: (#ffffff),
+  ),
+  "color.yellow_lighter": (
+    default: (#fcf1cd),
+  ),
+  "color.yellow_light": (
+    default: (#ffea8a),
+  ),
+  "color.yellow": (
+    default: (#eec200),
+  ),
+  "color.yellow_dark": (
+    default: (#8a6116),
+  ),
+  "color.yellow_darker": (
+    default: (#573b00),
+  ),
+  "color.yellow_text": (
+    default: (#595130),
+  ),
+  "font.family.base": (
+    default: (-apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif),
+  ),
+  "font.family.mono": (
+    default: (Monaco, Consolas, "Lucida Console", monospace),
+  ),
+  "space.none": (
+    default: (0),
+  ),
+  "space.extra_tight": (
+    default: (4px),
+  ),
+  "space.tight": (
+    default: (8px),
+  ),
+  "space.base_tight": (
+    default: (12px),
+  ),
+  "space.base": (
+    default: (16px),
+  ),
+  "space.loose": (
+    default: (20px),
+  ),
+  "space.extra_loose": (
+    default: (32px),
+  ),
+);
+
+$__token-typography-mixins: (
+);
+
+@function token($tokenName, $modeName: default) {
+  @if map.has-key($__token-values, $tokenName) == false {
+    @error "No token named \"#{$tokenName}\"";
+  }
+  $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, "__cobalt-error") {
+    @error map.get($_token, "__cobalt-error");
+  }
+  @if map.has-key($_token, $modeName) {
+    @return map.get($_token, $modeName);
+  } @else {
+    @return map.get($_token, default);
+  }
+}
+
+@mixin typography($tokenName, $modeName: default) {
+  @if map.has-key($__token-typography-mixins, $tokenName) == false {
+    @error "No typography mixin named \"#{$tokenName}\"";
+  }
+  $_mixin: map.get($__token-typography-mixins, $tokenName);
+  $_properties: map.get($_token, default);
+  @if map.has-key($_token, $modeName) {
+    $_properties: map.get($_token, $modeName);
+  }
+  @each $_property, $_value in $_properties {
+    #{$_property}: #{$_value};
+  }
+}
