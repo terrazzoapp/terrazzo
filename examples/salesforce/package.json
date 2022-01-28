@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.3.8",
-    "@cobalt-ui/plugin-css": "^0.5.1",
+    "@cobalt-ui/plugin-css": "^0.5.2",
     "@cobalt-ui/plugin-json": "^0.3.4",
     "@cobalt-ui/plugin-sass": "^0.4.9",
     "@cobalt-ui/plugin-ts": "^0.3.4",

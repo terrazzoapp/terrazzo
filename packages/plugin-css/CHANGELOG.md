@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 0.5.2
+
+### Patch Changes
+
+- 35426a0: Fix P3 media query
+
 ## 0.5.1
 
 ### Patch Changes
