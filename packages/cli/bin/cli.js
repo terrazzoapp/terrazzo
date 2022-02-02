@@ -97,12 +97,10 @@ async function main() {
         watcher.on('change', async (filePath) => {
           try {
             rawSchema = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-
             result = await build(rawSchema, config);
-
             if (result.errors || result.warnings) {
-              printErrors(errors);
-              printWarnings(warnings);
+              printErrors(result.errors);
+              printWarnings(result.warnings);
             } else {
               console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${tokensYAML}${RESET} updated ${FG_GREEN}✔${RESET}`);
             }
