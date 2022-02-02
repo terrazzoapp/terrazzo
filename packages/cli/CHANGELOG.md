@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.9
+
+### Patch Changes
+
+- 6d70a16: Fix build --watch error
+
 ## 0.3.8
 
 ### Patch Changes
