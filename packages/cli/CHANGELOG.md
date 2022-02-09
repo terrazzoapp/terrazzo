@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.10
+
+### Patch Changes
+
+- 6ca4403: Fix cobalt check requiring config
+
 ## 0.3.9
 
 ### Patch Changes
