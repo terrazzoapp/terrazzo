@@ -1,10 +1,6 @@
-import type { ResolvedConfig, Plugin, Config } from '@cobalt-ui/core';
+import type { ResolvedConfig, Config } from '@cobalt-ui/core';
 
 export async function init(userConfig: Config): Promise<ResolvedConfig> {
-  async function loadDefaultPlugins(): Promise<Plugin[]> {
-    return await Promise.all(['@cobalt-ui/plugin-json'].map((spec) => import(spec).then((m) => m.default())));
-  }
-
   let config = { ...(userConfig as any) } as ResolvedConfig;
 
   // partial config: fill in defaults
@@ -25,7 +21,6 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
       case 'plugins': {
         // default
         if (config[k] === undefined) {
-          config[k] = await loadDefaultPlugins();
           break;
         }
         // validate
@@ -39,15 +34,13 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
         break;
       }
       case 'tokens': {
-        // default
         if (config[k] === undefined) {
           config[k] = new URL('./tokens.json', `file://${process.cwd()}/`);
-          break;
+        } else if (typeof config[k] === 'string') {
+          config[k] = new URL(config[k], `file://${process.cwd()}/`);
+        } else {
+          throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
         }
-        // validate
-        if (typeof config[k] !== 'string') throw new Error(`[config] ${k} must be string, received ${typeof config[k]}`);
-        // normalize
-        config[k] = new URL(config[k], `file://${process.cwd()}/`);
         break;
       }
       case 'figma': {

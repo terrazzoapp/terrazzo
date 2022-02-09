@@ -25,7 +25,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "test": "mocha --parallel"
   },
   "dependencies": {
     "@cobalt-ui/core": "^0.4.0",

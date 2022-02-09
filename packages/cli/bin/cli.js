@@ -16,6 +16,7 @@ import { build } from '../dist/build.js';
 import figma from '../dist/figma/index.js';
 
 const [, , cmd, ...args] = process.argv;
+const cwd = new URL(`file://${process.cwd()}/`);
 
 /** `tokens` CLI command */
 async function main() {
@@ -25,7 +26,7 @@ async function main() {
   // half-run commands: --help, --version, init
 
   // --help
-  if (args.includes('--help')) {
+  if (args.includes('--help') || !cmd) {
     showHelp();
     process.exit(0);
   }
@@ -37,49 +38,42 @@ async function main() {
     process.exit(0);
   }
 
-  // load config
-  let cwd = `file://${process.cwd()}/`;
-  const configI = args.findIndex((arg) => arg.toLowerCase() === '-c' || arg.toLowerCase() === '--config');
-  if (configI != -1 && !args[configI + 1]) throw new Error(`  ${FG_RED}✘  Missing path after --config flag${RESET}`);
-  let userConfig = {};
-  // --config flag
-  if (configI > 0 && args[configI + 1]) {
-    try {
-      configPath = new URL(args[configI + 1], cwd);
-      cwd = new URL('.', configPath); // resolve filepaths relative to config
-      userConfig = (await import(fileURLToPath(configPath))).default;
-    } catch {
-      throw new Error(`  ${FG_RED}✘  Could not locate ${args[configI + 1]}${RESET}`);
-    }
-  }
-  // default (tokens.config.js)
-  else {
-    let configPath = new URL('./tokens.config.js', cwd);
-    if (!fs.existsSync(configPath)) configPath = new URL('./tokens.config.mjs', cwd);
-    if (!fs.existsSync(configPath))
-      throw new Error(`  ${FG_RED}✘  Could not find tokens.config.js\n      See ${UNDERLINE}https://cobalt-ui.pages.dev/docs/reference/config/${RESET}`);
-    if (fs.existsSync(configPath)) userConfig = (await import(fileURLToPath(configPath))).default;
-  }
-  const config = await initConfig(userConfig);
-
-  // init
-  if (cmd === 'init') {
-    if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
-    fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
-    console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created`);
-    process.exit(0);
-  }
-
   // ---
   // full-run commands: build, sync, check
 
-  // load tokens.json
-  if (!fs.existsSync(config.tokens))
-    throw new Error(`  ${FG_RED}✘  Could not locate ${fileURLToPath(config.tokens)}. To create one, run \`npx co init\`.${RESET}`);
-  let rawSchema = JSON.parse(fs.readFileSync(config.tokens, 'utf8'));
+  // setup: load tokens.config.js and tokens.config.json
+  let configPath;
+  const configI = args.findIndex((arg) => arg.toLowerCase() === '-c' || arg.toLowerCase() === '--config');
+  if (configI !== -1) {
+    if (args[configI + 1]) {
+      configPath = resolveConfig(args[configI + 1]);
+    } else {
+      console.error(`  ${FG_RED}✘  Missing path after --config flag${RESET}`);
+      process.exit(1);
+    }
+  }
+  let config;
+  try {
+    config = await loadConfig(resolveConfig(configPath));
+  } catch (err) {
+    console.error(`  ${FG_RED}✘  ${err.message || err}${RESET}`);
+    process.exit(1);
+  }
 
   switch (cmd) {
     case 'build': {
+      if (!fs.existsSync(config.tokens)) {
+        console.error(`  ${FG_RED}✘  Could not locate ${config.tokens}. To create one, run \`npx cobalt init\`.${RESET}`);
+        process.exit(1);
+      }
+
+      if (!Array.isArray(config.plugins) || !config.plugins.length) {
+        console.error(`  ${FG_RED}✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}${RESET}`);
+        process.exit(1);
+      }
+
+      let rawSchema = JSON.parse(fs.readFileSync(config.tokens), 'utf8');
+
       const dt = new Intl.DateTimeFormat('en-us', {
         hour: '2-digit',
         minute: '2-digit',
@@ -113,10 +107,16 @@ async function main() {
       } else {
         console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built`);
       }
-
       break;
     }
     case 'sync': {
+      if (!fs.existsSync(config.tokens)) {
+        console.error(`  ${FG_RED}✘  Could not locate ${config.tokens}. To create one, run \`npx cobalt init\`.${RESET}`);
+        process.exit(1);
+      }
+
+      let rawSchema = JSON.parse(fs.readFileSync(config.tokens), 'utf8');
+
       const updates = await figma(config);
       for (const [id, token] of Object.entries(updates)) {
         let namespaces = id.split('.');
@@ -134,7 +134,22 @@ async function main() {
       break;
     }
     case 'check': {
-      console.log(`${UNDERLINE}${fileURLToPath(config.tokens)}${RESET}`);
+      let tokensPath = config.tokens;
+      if (args[0]) {
+        tokensPath = new URL(args[0], cwd);
+        if (!fs.existsSync(tokensPath)) {
+          console.error(`Expected format: cobalt check ./path/to/tokens.json. Could not locate ${args[0]}.`);
+          process.exit(1);
+        }
+      }
+
+      if (!fs.existsSync(tokensPath)) {
+        console.error(`  ${FG_RED}✘  Could not locate ${tokensPath}. To create one, run \`npx cobalt init\`.${RESET}`);
+        process.exit(1);
+      }
+
+      let rawSchema = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
+      console.log(`${UNDERLINE}${fileURLToPath(tokensPath)}${RESET}`);
       const { errors, warnings } = parse(rawSchema); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
@@ -142,7 +157,12 @@ async function main() {
         process.exit(1);
       }
       console.log(`  ${FG_GREEN}✔${RESET}  no errors`);
-      process.exit(0);
+      break;
+    }
+    case 'init': {
+      if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
+      fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
+      console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created`);
       break;
     }
     default:
@@ -150,6 +170,7 @@ async function main() {
   }
 
   console.info(`  Done  ${time(start)}`);
+  process.exit(0);
 }
 
 main();
@@ -162,12 +183,39 @@ function showHelp() {
       --watch, -w   Watch tokens.json for changes and recompile
     sync            Sync tokens.json with Figma
     init            Create a starter tokens.json file
-    check           Check tokens.json for errors
+    check [path]    Check tokens.json for errors
 
   [options]
     --help         Show this message
     --config, -c   Path to config (default: ./tokens.config.js)
 `);
+}
+
+/** resolve config */
+function resolveConfig(filename) {
+  // --config [configpath]
+  if (filename) {
+    const configPath = new URL(args[configI + 1], cwd);
+    if (fs.existsSync(configPath)) {
+      return configPath;
+    }
+    return undefined;
+  }
+
+  // default: tokens.config.js
+  for (const defaultFilename of ['./tokens.config.js', './tokens.config.mjs']) {
+    const configPath = new URL(defaultFilename, cwd);
+    if (fs.existsSync(configPath)) return configPath;
+  }
+}
+
+/** load config */
+async function loadConfig(configPath) {
+  let userConfig = {};
+  if (configPath) {
+    userConfig = (await import(configPath instanceof URL ? fileURLToPath(configPath) : configPath)).default;
+  }
+  return await initConfig(userConfig);
 }
 
 /** Print time elapsed */
