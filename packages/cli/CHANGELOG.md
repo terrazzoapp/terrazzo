@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.3.11
+
+### Patch Changes
+
+- 7b04356: Allow free placement of plugin output files
+
 ## 0.3.10
 
 ### Patch Changes
