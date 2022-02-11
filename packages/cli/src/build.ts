@@ -19,7 +19,7 @@ export async function build(rawSchema: Group, config: ResolvedConfig): Promise<P
           throw new Error(`[${plugin.name}] invalid build results`);
         }
         for (const { filename, contents } of results) {
-          const filePath = new URL(filename.replace(/^\//, '').replace(/^(\.\.\/)+/, ''), config.outDir);
+          const filePath = new URL(filename.replace(/^\//, ''), config.outDir);
           fs.mkdirSync(new URL('./', filePath), { recursive: true });
           fs.writeFileSync(filePath, contents);
         }
