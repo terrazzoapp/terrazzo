@@ -81,8 +81,8 @@ export interface ResolvedConfig {
 
 export interface Plugin {
   name: string;
-  /** (optional) load config */
-  config?(config: ResolvedConfig): void;
+  /** (optional) read config, and optionally modify */
+  config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
   /** main build fn */
   build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
 }
