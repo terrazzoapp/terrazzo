@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.5.0
+
+### Minor Changes
+
+- 61a7892: Add ability to load JSON from npm package
+
 ## 0.4.0
 
 ### Minor Changes
