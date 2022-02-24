@@ -5,12 +5,12 @@ import type { ParsedFileToken } from '../../@types/token';
  *
  * {
  *   "icon-alert": {
- *     "type": "file",
- *     "value": "./icon/alert.svg"
+ *     "$type": "file",
+ *     "$value": "./icon/alert.svg"
  *   }
  * }
  */
-export function normalizeFileValue(value: unknown): ParsedFileToken['value'] {
+export function normalizeFileValue(value: unknown): ParsedFileToken['$value'] {
   if (!value) throw new Error('missing value');
   if (typeof value === 'string') {
     return value;

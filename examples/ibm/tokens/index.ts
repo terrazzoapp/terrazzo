@@ -2163,9 +2163,7 @@ export const tokens = {
     "zoom--out": "./icon/zoom--out.svg",
     "zoom--out-area": "./icon/zoom--out-area.svg",
     "zoom--reset": "./icon/zoom--reset.svg",
-    "zoom-pan": "./icon/zoom-pan.svg",
-    "01": "1rem",
-    "02": "1.25rem"
+    "zoom-pan": "./icon/zoom-pan.svg"
   },
   "font": {},
   "family": {
@@ -2262,13 +2260,45 @@ export const tokens = {
     "quotation01": "1.25rem",
     "quotation02": "2rem"
   },
-  "spacing": {},
+  "spacing": {
+    "4xs": "1px",
+    "3xs": "2px",
+    "2xs": "4px",
+    "xs": "8px",
+    "sm": "12px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "2xl": "40px",
+    "3xl": "48px"
+  },
+  "layout": {
+    "2xs": "16px",
+    "xs": "24px",
+    "sm": "32px",
+    "md": "48px",
+    "lg": "64px",
+    "xl": "96px",
+    "2xl": "160px"
+  },
   "easing": {
-    "standard": [
-      0.2,
+    "easeIn": [
+      0.25,
       0,
-      0.38,
-      0.9
+      1,
+      1
+    ],
+    "easeOut": [
+      0,
+      0,
+      0.25,
+      1
+    ],
+    "standard": [
+      0.5,
+      0,
+      0.1,
+      1
     ],
     "standard--expressive": [
       0.4,
@@ -2300,6 +2330,16 @@ export const tokens = {
       1,
       1
     ]
+  },
+  "transition": {
+    "base": "250ms",
+    "expansion": "300ms",
+    "fast01": "70ms",
+    "fast02": "110ms",
+    "moderate01": "150ms",
+    "moderate02": "240ms",
+    "slow01": "400ms",
+    "slow02": "720ms"
   }
 };
 

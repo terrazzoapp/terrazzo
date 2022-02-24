@@ -9,11 +9,11 @@ To start, you’ll need to gather all your tokens before you can use them in cod
 
 ```json
 {
-  "metadata": { "name": "My Tokens" },
+  "$name": "My Tokens",
   "color": {
     "black": {
-      "type": "color",
-      "value": "#000000"
+      "$type": "color",
+      "$value": "#000000"
     }
   }
 }
@@ -27,22 +27,22 @@ If your tokens are scattered about and live in different sources, you’ll need 
 
 ```diff
   {
-    "metadata": { "name": "My Tokens" },
+    "$name": "My Tokens",
     "color": {
       "black": {
-        "type": "color",
-        "value": "#000000"
+        "$type": "color",
+        "$value": "#000000"
       },
 +     "blue": {
-+       "type": "color",
-+       "value": "#0969da"
++       "$type": "color",
++       "$value": "#0969da"
 +     }
 +   },
 +   "typography": {
 +     "family": {
 +       "body": {
-+         "type": "font",
-+         "value": "GT America"
++         "$type": "font",
++         "$value": "GT America"
 +       }
 +     }
 +   }

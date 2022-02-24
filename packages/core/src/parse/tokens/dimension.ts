@@ -6,12 +6,12 @@ import type { ParsedDimensionToken } from '../../@types/token';
  *
  * {
  *   "spacingStack1X": {
- *     "type": "dimension",
- *     "value": "0.25rem"
+ *     "$type": "dimension",
+ *     "$value": "0.25rem"
  *   }
  * }
  */
-export function normalizeDimensionValue(value: unknown): ParsedDimensionToken['value'] {
+export function normalizeDimensionValue(value: unknown): ParsedDimensionToken['$value'] {
   // number not technically allowed, but it can be easily coerced into a string
   if (typeof value === 'number') {
     if (value === 0) return '0';

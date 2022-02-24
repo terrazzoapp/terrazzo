@@ -1,96 +1,96 @@
 export const tokens = {
   "color": {
     "black": "#1b1f24",
-    "blue_0": "#ddf4ff",
-    "blue_1": "#b6e3ff",
-    "blue_2": "#80ccff",
-    "blue_3": "#54aeff",
-    "blue_4": "#218bff",
-    "blue_5": "#0969da",
-    "blue_6": "#0550ae",
-    "blue_7": "#033d8b",
-    "blue_8": "#0a3069",
-    "blue_9": "#002155",
-    "coral_0": "#fff0eb",
-    "coral_1": "#ffd6cc",
-    "coral_2": "#ffb4a1",
-    "coral_3": "#fd8c73",
-    "coral_4": "#ec6547",
-    "coral_5": "#c4432b",
-    "coral_6": "#9e2f1c",
-    "coral_7": "#801f0f",
-    "coral_8": "#691105",
-    "coral_9": "#510901",
-    "gray_0": "#f6f8fa",
-    "gray_1": "#eaeef2",
-    "gray_2": "#d0d7de",
-    "gray_3": "#afb8c1",
-    "gray_4": "#8c959f",
-    "gray_5": "#6e7781",
-    "gray_6": "#57606a",
-    "gray_7": "#424a53",
-    "gray_8": "#32383f",
-    "gray_9": "#24292f",
-    "green_0": "#dafbe1",
-    "green_1": "#aceebb",
-    "green_2": "#6fdd8b",
-    "green_3": "#4ac26b",
-    "green_4": "#2da44e",
-    "green_5": "#1a7f37",
-    "green_6": "#116329",
-    "green_7": "#044f1e",
-    "green_8": "#003d16",
-    "green_9": "#002d11",
-    "orange_0": "#fff1e5",
-    "orange_1": "#ffd8b5",
-    "orange_2": "#ffb77c",
-    "orange_3": "#fb8f44",
-    "orange_4": "#e16f24",
-    "orange_5": "#bc4c00",
-    "orange_6": "#953800",
-    "orange_7": "#762c00",
-    "orange_8": "#5c2200",
-    "orange_9": "#471700",
-    "pink_0": "#ffeff7",
-    "pink_1": "#ffd3eb",
-    "pink_2": "#ffadda",
-    "pink_3": "#ff80c8",
-    "pink_4": "#e85aad",
-    "pink_5": "#bf3989",
-    "pink_6": "#99286e",
-    "pink_7": "#772057",
-    "pink_8": "#611347",
-    "pink_9": "#4d0336",
-    "purple_0": "#fbefff",
-    "purple_1": "#ecd8ff",
-    "purple_2": "#d8b9ff",
-    "purple_3": "#c297ff",
-    "purple_4": "#a475f9",
-    "purple_5": "#8250df",
-    "purple_6": "#6639ba",
-    "purple_7": "#512a97",
-    "purple_8": "#3e1f79",
-    "purple_9": "#2e1461",
-    "red_0": "#ffebe9",
-    "red_1": "#ffcecb",
-    "red_2": "#ffaba8",
-    "red_3": "#ff8182",
-    "red_4": "#fa4549",
-    "red_5": "#cf222e",
-    "red_6": "#a40e26",
-    "red_7": "#82071e",
-    "red_8": "#660018",
-    "red_9": "#4c0014",
-    "yellow_0": "#fff8c5",
-    "yellow_1": "#fae17d",
-    "yellow_2": "#eac54f",
-    "yellow_3": "#d4a72c",
-    "yellow_4": "#bf8700",
-    "yellow_5": "#9a6700",
-    "yellow_6": "#7d4e00",
-    "yellow_7": "#633c01",
-    "yellow_8": "#4d2d00",
-    "yellow_9": "#3b2300",
+    "blue0": "#ddf4ff",
+    "blue1": "#b6e3ff",
+    "blue2": "#80ccff",
+    "blue3": "#54aeff",
+    "blue4": "#218bff",
+    "blue5": "#0969da",
+    "blue6": "#0550ae",
+    "blue7": "#033d8b",
+    "blue8": "#0a3069",
+    "blue9": "#002155",
+    "coral0": "#fff0eb",
+    "coral1": "#ffd6cc",
+    "coral2": "#ffb4a1",
+    "coral3": "#fd8c73",
+    "coral4": "#ec6547",
+    "coral5": "#c4432b",
+    "coral6": "#9e2f1c",
+    "coral7": "#801f0f",
+    "coral8": "#691105",
+    "coral9": "#510901",
+    "gray0": "#f6f8fa",
+    "gray1": "#eaeef2",
+    "gray2": "#d0d7de",
+    "gray3": "#afb8c1",
+    "gray4": "#8c959f",
+    "gray5": "#6e7781",
+    "gray6": "#57606a",
+    "gray7": "#424a53",
+    "gray8": "#32383f",
+    "gray9": "#24292f",
+    "green0": "#dafbe1",
+    "green1": "#aceebb",
+    "green2": "#6fdd8b",
+    "green3": "#4ac26b",
+    "green4": "#2da44e",
+    "green5": "#1a7f37",
+    "green6": "#116329",
+    "green7": "#044f1e",
+    "green8": "#003d16",
+    "green9": "#002d11",
+    "orange0": "#fff1e5",
+    "orange1": "#ffd8b5",
+    "orange2": "#ffb77c",
+    "orange3": "#fb8f44",
+    "orange4": "#e16f24",
+    "orange5": "#bc4c00",
+    "orange6": "#953800",
+    "orange7": "#762c00",
+    "orange8": "#5c2200",
+    "orange9": "#471700",
+    "pink0": "#ffeff7",
+    "pink1": "#ffd3eb",
+    "pink2": "#ffadda",
+    "pink3": "#ff80c8",
+    "pink4": "#e85aad",
+    "pink5": "#bf3989",
+    "pink6": "#99286e",
+    "pink7": "#772057",
+    "pink8": "#611347",
+    "pink9": "#4d0336",
+    "purple0": "#fbefff",
+    "purple1": "#ecd8ff",
+    "purple2": "#d8b9ff",
+    "purple3": "#c297ff",
+    "purple4": "#a475f9",
+    "purple5": "#8250df",
+    "purple6": "#6639ba",
+    "purple7": "#512a97",
+    "purple8": "#3e1f79",
+    "purple9": "#2e1461",
+    "red0": "#ffebe9",
+    "red1": "#ffcecb",
+    "red2": "#ffaba8",
+    "red3": "#ff8182",
+    "red4": "#fa4549",
+    "red5": "#cf222e",
+    "red6": "#a40e26",
+    "red7": "#82071e",
+    "red8": "#660018",
+    "red9": "#4c0014",
+    "yellow0": "#fff8c5",
+    "yellow1": "#fae17d",
+    "yellow2": "#eac54f",
+    "yellow3": "#d4a72c",
+    "yellow4": "#bf8700",
+    "yellow5": "#9a6700",
+    "yellow6": "#7d4e00",
+    "yellow7": "#633c01",
+    "yellow8": "#4d2d00",
+    "yellow9": "#3b2300",
     "white": "#ffffff"
   },
   "icon": {
@@ -565,13 +565,13 @@ export const tokens = {
     "zap-24": "../icon/zap-24.svg"
   },
   "spacing": {
-    "spacer_0": "0",
-    "spacer_xs": "4px",
-    "spacer_s": "8px",
-    "spacer_m": "16px",
-    "spacer_k": "24px",
-    "spacer_xl": "32px",
-    "spacer_xxl": "40px"
+    "spacer0": "0",
+    "spacerXs": "4px",
+    "spacerS": "8px",
+    "spacerM": "16px",
+    "spacerX": "24px",
+    "spacerXl": "32px",
+    "spacerXxl": "40px"
   },
   "font": {},
   "family": {
@@ -616,10 +616,10 @@ export const tokens = {
     "f5": "14px",
     "f6": "12px"
   },
-  "line_height": {
+  "lineHeight": {
     "default": "1.5",
     "condensed": "1.25",
-    "condensed_ultra": "1"
+    "condensedUltra": "1"
   }
 };
 
@@ -636,7 +636,7 @@ export const modes = {
       "dark-high-contrast": "#010409",
       "dark-colorblind": "#010409"
     },
-    "blue_0": {
+    "blue0": {
       "light": "#ddf4ff",
       "light-colorblind": "#ddf4ff",
       "light-high-contrast": "#dff7ff",
@@ -645,7 +645,7 @@ export const modes = {
       "dark-high-contrast": "#caeaff",
       "dark-colorblind": "#cae8ff"
     },
-    "blue_1": {
+    "blue1": {
       "light": "#b6e3ff",
       "light-colorblind": "#b6e3ff",
       "light-high-contrast": "#9cd7ff",
@@ -654,7 +654,7 @@ export const modes = {
       "dark-high-contrast": "#addcff",
       "dark-colorblind": "#a5d6ff"
     },
-    "blue_2": {
+    "blue2": {
       "light": "#80ccff",
       "light-colorblind": "#80ccff",
       "light-high-contrast": "#67b3fd",
@@ -663,7 +663,7 @@ export const modes = {
       "dark-high-contrast": "#91cbff",
       "dark-colorblind": "#79c0ff"
     },
-    "blue_3": {
+    "blue3": {
       "light": "#54aeff",
       "light-colorblind": "#54aeff",
       "light-high-contrast": "#368cf9",
@@ -672,7 +672,7 @@ export const modes = {
       "dark-high-contrast": "#71b7ff",
       "dark-colorblind": "#58a6ff"
     },
-    "blue_4": {
+    "blue4": {
       "light": "#218bff",
       "light-colorblind": "#218bff",
       "light-high-contrast": "#1168e3",
@@ -681,7 +681,7 @@ export const modes = {
       "dark-high-contrast": "#409eff",
       "dark-colorblind": "#388bfd"
     },
-    "blue_5": {
+    "blue5": {
       "light": "#0969da",
       "light-colorblind": "#0969da",
       "light-high-contrast": "#0349b4",
@@ -690,7 +690,7 @@ export const modes = {
       "dark-high-contrast": "#409eff",
       "dark-colorblind": "#1f6feb"
     },
-    "blue_6": {
+    "blue6": {
       "light": "#0550ae",
       "light-colorblind": "#0550ae",
       "light-high-contrast": "#023b95",
@@ -699,7 +699,7 @@ export const modes = {
       "dark-high-contrast": "#318bf8",
       "dark-colorblind": "#1158c7"
     },
-    "blue_7": {
+    "blue7": {
       "light": "#033d8b",
       "light-colorblind": "#033d8b",
       "light-high-contrast": "#022f7a",
@@ -708,7 +708,7 @@ export const modes = {
       "dark-high-contrast": "#2672f3",
       "dark-colorblind": "#0d419d"
     },
-    "blue_8": {
+    "blue8": {
       "light": "#0a3069",
       "light-colorblind": "#0a3069",
       "light-high-contrast": "#032563",
@@ -717,7 +717,7 @@ export const modes = {
       "dark-high-contrast": "#1e60d5",
       "dark-colorblind": "#0c2d6b"
     },
-    "blue_9": {
+    "blue9": {
       "light": "#002155",
       "light-colorblind": "#002155",
       "light-high-contrast": "#021a4a",
@@ -726,7 +726,7 @@ export const modes = {
       "dark-high-contrast": "#194fb1",
       "dark-colorblind": "#051d4d"
     },
-    "coral_0": {
+    "coral0": {
       "light": "#fff0eb",
       "light-colorblind": "#fff0eb",
       "light-high-contrast": "#fff0ed",
@@ -735,7 +735,7 @@ export const modes = {
       "dark-high-contrast": "#ffded4",
       "dark-colorblind": "#ffddd2"
     },
-    "coral_1": {
+    "coral1": {
       "light": "#ffd6cc",
       "light-colorblind": "#ffd6cc",
       "light-high-contrast": "#ffc2b6",
@@ -744,7 +744,7 @@ export const modes = {
       "dark-high-contrast": "#ffcbb9",
       "dark-colorblind": "#ffc2b2"
     },
-    "coral_2": {
+    "coral2": {
       "light": "#ffb4a1",
       "light-colorblind": "#ffb4a1",
       "light-high-contrast": "#ff8f7e",
@@ -753,7 +753,7 @@ export const modes = {
       "dark-high-contrast": "#ffb39b",
       "dark-colorblind": "#ffa28b"
     },
-    "coral_3": {
+    "coral3": {
       "light": "#fd8c73",
       "light-colorblind": "#fd8c73",
       "light-high-contrast": "#ef5b48",
@@ -762,7 +762,7 @@ export const modes = {
       "dark-high-contrast": "#ff967d",
       "dark-colorblind": "#f78166"
     },
-    "coral_4": {
+    "coral4": {
       "light": "#ec6547",
       "light-colorblind": "#ec6547",
       "light-high-contrast": "#cd3425",
@@ -771,7 +771,7 @@ export const modes = {
       "dark-high-contrast": "#fc704f",
       "dark-colorblind": "#ea6045"
     },
-    "coral_5": {
+    "coral5": {
       "light": "#c4432b",
       "light-colorblind": "#c4432b",
       "light-high-contrast": "#9f1710",
@@ -780,7 +780,7 @@ export const modes = {
       "dark-high-contrast": "#fc704f",
       "dark-colorblind": "#cf462d"
     },
-    "coral_6": {
+    "coral6": {
       "light": "#9e2f1c",
       "light-colorblind": "#9e2f1c",
       "light-high-contrast": "#870706",
@@ -789,7 +789,7 @@ export const modes = {
       "dark-high-contrast": "#f75133",
       "dark-colorblind": "#ac3220"
     },
-    "coral_7": {
+    "coral7": {
       "light": "#801f0f",
       "light-colorblind": "#801f0f",
       "light-high-contrast": "#6f0107",
@@ -798,7 +798,7 @@ export const modes = {
       "dark-high-contrast": "#e03b21",
       "dark-colorblind": "#872012"
     },
-    "coral_8": {
+    "coral8": {
       "light": "#691105",
       "light-colorblind": "#691105",
       "light-high-contrast": "#5b0002",
@@ -807,7 +807,7 @@ export const modes = {
       "dark-high-contrast": "#c62612",
       "dark-colorblind": "#640d04"
     },
-    "coral_9": {
+    "coral9": {
       "light": "#510901",
       "light-colorblind": "#510901",
       "light-high-contrast": "#430200",
@@ -816,7 +816,7 @@ export const modes = {
       "dark-high-contrast": "#a91500",
       "dark-colorblind": "#460701"
     },
-    "gray_0": {
+    "gray0": {
       "light": "#f6f8fa",
       "light-colorblind": "#f6f8fa",
       "light-high-contrast": "#ffffff",
@@ -825,7 +825,7 @@ export const modes = {
       "dark-high-contrast": "#ffffff",
       "dark-colorblind": "#f0f6fc"
     },
-    "gray_1": {
+    "gray1": {
       "light": "#eaeef2",
       "light-colorblind": "#eaeef2",
       "light-high-contrast": "#e7ecf0",
@@ -834,7 +834,7 @@ export const modes = {
       "dark-high-contrast": "#f0f3f6",
       "dark-colorblind": "#c9d1d9"
     },
-    "gray_2": {
+    "gray2": {
       "light": "#d0d7de",
       "light-colorblind": "#d0d7de",
       "light-high-contrast": "#ced5dc",
@@ -843,7 +843,7 @@ export const modes = {
       "dark-high-contrast": "#d9dee3",
       "dark-colorblind": "#b1bac4"
     },
-    "gray_3": {
+    "gray3": {
       "light": "#afb8c1",
       "light-colorblind": "#afb8c1",
       "light-high-contrast": "#acb6c0",
@@ -852,7 +852,7 @@ export const modes = {
       "dark-high-contrast": "#bdc4cc",
       "dark-colorblind": "#8b949e"
     },
-    "gray_4": {
+    "gray4": {
       "light": "#8c959f",
       "light-colorblind": "#8c959f",
       "light-high-contrast": "#88929d",
@@ -861,7 +861,7 @@ export const modes = {
       "dark-high-contrast": "#9ea7b3",
       "dark-colorblind": "#6e7681"
     },
-    "gray_5": {
+    "gray5": {
       "light": "#6e7781",
       "light-colorblind": "#6e7781",
       "light-high-contrast": "#66707b",
@@ -870,7 +870,7 @@ export const modes = {
       "dark-high-contrast": "#7a828e",
       "dark-colorblind": "#484f58"
     },
-    "gray_6": {
+    "gray6": {
       "light": "#57606a",
       "light-colorblind": "#57606a",
       "light-high-contrast": "#4b535d",
@@ -879,7 +879,7 @@ export const modes = {
       "dark-high-contrast": "#525964",
       "dark-colorblind": "#30363d"
     },
-    "gray_7": {
+    "gray7": {
       "light": "#424a53",
       "light-colorblind": "#424a53",
       "light-high-contrast": "#343b43",
@@ -888,7 +888,7 @@ export const modes = {
       "dark-high-contrast": "#272b33",
       "dark-colorblind": "#21262d"
     },
-    "gray_8": {
+    "gray8": {
       "light": "#32383f",
       "light-colorblind": "#32383f",
       "light-high-contrast": "#20252c",
@@ -897,7 +897,7 @@ export const modes = {
       "dark-high-contrast": "#272b33",
       "dark-colorblind": "#161b22"
     },
-    "gray_9": {
+    "gray9": {
       "light": "#24292f",
       "light-colorblind": "#24292f",
       "light-high-contrast": "#0e1116",
@@ -906,7 +906,7 @@ export const modes = {
       "dark-high-contrast": "#0a0c10",
       "dark-colorblind": "#0d1117"
     },
-    "green_0": {
+    "green0": {
       "light": "#dafbe1",
       "light-colorblind": "#c0f6ff",
       "light-high-contrast": "#d2fedb",
@@ -915,7 +915,7 @@ export const modes = {
       "dark-high-contrast": "#acf7b6",
       "dark-colorblind": "#a0e8ff"
     },
-    "green_1": {
+    "green1": {
       "light": "#aceebb",
       "light-colorblind": "#96e5ff",
       "light-high-contrast": "#82e596",
@@ -924,7 +924,7 @@ export const modes = {
       "dark-high-contrast": "#72f088",
       "dark-colorblind": "#83d4ff"
     },
-    "green_2": {
+    "green2": {
       "light": "#6fdd8b",
       "light-colorblind": "#65ccff",
       "light-high-contrast": "#43c663",
@@ -933,7 +933,7 @@ export const modes = {
       "dark-high-contrast": "#4ae168",
       "dark-colorblind": "#66baff"
     },
-    "green_3": {
+    "green3": {
       "light": "#4ac26b",
       "light-colorblind": "#35adff",
       "light-high-contrast": "#26a148",
@@ -942,7 +942,7 @@ export const modes = {
       "dark-high-contrast": "#26cd4d",
       "dark-colorblind": "#42a0ff"
     },
-    "green_4": {
+    "green4": {
       "light": "#2da44e",
       "light-colorblind": "#0088ff",
       "light-high-contrast": "#117f32",
@@ -951,7 +951,7 @@ export const modes = {
       "dark-high-contrast": "#09b43a",
       "dark-colorblind": "#1585fd"
     },
-    "green_5": {
+    "green5": {
       "light": "#1a7f37",
       "light-colorblind": "#0566d5",
       "light-high-contrast": "#055d20",
@@ -960,7 +960,7 @@ export const modes = {
       "dark-high-contrast": "#09b43a",
       "dark-colorblind": "#1d69e0"
     },
-    "green_6": {
+    "green6": {
       "light": "#116329",
       "light-colorblind": "#054da9",
       "light-high-contrast": "#024c1a",
@@ -969,7 +969,7 @@ export const modes = {
       "dark-high-contrast": "#02a232",
       "dark-colorblind": "#0f53bc"
     },
-    "green_7": {
+    "green7": {
       "light": "#044f1e",
       "light-colorblind": "#033a86",
       "light-high-contrast": "#013d14",
@@ -978,7 +978,7 @@ export const modes = {
       "dark-high-contrast": "#008c2c",
       "dark-colorblind": "#0b3c92"
     },
-    "green_8": {
+    "green8": {
       "light": "#003d16",
       "light-colorblind": "#002d68",
       "light-high-contrast": "#003110",
@@ -987,7 +987,7 @@ export const modes = {
       "dark-high-contrast": "#007728",
       "dark-colorblind": "#0a2861"
     },
-    "green_9": {
+    "green9": {
       "light": "#002d11",
       "light-colorblind": "#001f50",
       "light-high-contrast": "#00230b",
@@ -996,7 +996,7 @@ export const modes = {
       "dark-high-contrast": "#006222",
       "dark-colorblind": "#041843"
     },
-    "orange_0": {
+    "orange0": {
       "light": "#fff1e5",
       "light-colorblind": "#fff1e5",
       "light-high-contrast": "#fff2d5",
@@ -1005,7 +1005,7 @@ export const modes = {
       "dark-high-contrast": "#ffe1b4",
       "dark-colorblind": "#ffdfb6"
     },
-    "orange_1": {
+    "orange1": {
       "light": "#ffd8b5",
       "light-colorblind": "#ffd8b5",
       "light-high-contrast": "#ffc67b",
@@ -1014,7 +1014,7 @@ export const modes = {
       "dark-high-contrast": "#ffcf86",
       "dark-colorblind": "#ffc680"
     },
-    "orange_2": {
+    "orange2": {
       "light": "#ffb77c",
       "light-colorblind": "#ffb77c",
       "light-high-contrast": "#f99636",
@@ -1023,7 +1023,7 @@ export const modes = {
       "dark-high-contrast": "#ffb757",
       "dark-colorblind": "#ffa657"
     },
-    "orange_3": {
+    "orange3": {
       "light": "#fb8f44",
       "light-colorblind": "#fb8f44",
       "light-high-contrast": "#dc6d1a",
@@ -1032,7 +1032,7 @@ export const modes = {
       "dark-high-contrast": "#fe9a2d",
       "dark-colorblind": "#f0883e"
     },
-    "orange_4": {
+    "orange4": {
       "light": "#e16f24",
       "light-colorblind": "#e16f24",
       "light-high-contrast": "#b45105",
@@ -1041,7 +1041,7 @@ export const modes = {
       "dark-high-contrast": "#e7811d",
       "dark-colorblind": "#db6d28"
     },
-    "orange_5": {
+    "orange5": {
       "light": "#bc4c00",
       "light-colorblind": "#bc4c00",
       "light-high-contrast": "#873800",
@@ -1050,7 +1050,7 @@ export const modes = {
       "dark-high-contrast": "#e7811d",
       "dark-colorblind": "#bd561d"
     },
-    "orange_6": {
+    "orange6": {
       "light": "#953800",
       "light-colorblind": "#953800",
       "light-high-contrast": "#702c00",
@@ -1059,7 +1059,7 @@ export const modes = {
       "dark-high-contrast": "#d57014",
       "dark-colorblind": "#9b4215"
     },
-    "orange_7": {
+    "orange7": {
       "light": "#762c00",
       "light-colorblind": "#762c00",
       "light-high-contrast": "#5b2300",
@@ -1068,7 +1068,7 @@ export const modes = {
       "dark-high-contrast": "#bf5e0a",
       "dark-colorblind": "#762d0a"
     },
-    "orange_8": {
+    "orange8": {
       "light": "#5c2200",
       "light-colorblind": "#5c2200",
       "light-high-contrast": "#491b00",
@@ -1077,7 +1077,7 @@ export const modes = {
       "dark-high-contrast": "#a74c00",
       "dark-colorblind": "#5a1e02"
     },
-    "orange_9": {
+    "orange9": {
       "light": "#471700",
       "light-colorblind": "#471700",
       "light-high-contrast": "#361200",
@@ -1086,7 +1086,7 @@ export const modes = {
       "dark-high-contrast": "#8f3c00",
       "dark-colorblind": "#3d1300"
     },
-    "pink_0": {
+    "pink0": {
       "light": "#ffeff7",
       "light-colorblind": "#ffeff7",
       "light-high-contrast": "#feeff7",
@@ -1095,7 +1095,7 @@ export const modes = {
       "dark-high-contrast": "#ffdceb",
       "dark-colorblind": "#ffdaec"
     },
-    "pink_1": {
+    "pink1": {
       "light": "#ffd3eb",
       "light-colorblind": "#ffd3eb",
       "light-high-contrast": "#ffbde0",
@@ -1104,7 +1104,7 @@ export const modes = {
       "dark-high-contrast": "#ffc7e1",
       "dark-colorblind": "#ffbedd"
     },
-    "pink_2": {
+    "pink2": {
       "light": "#ffadda",
       "light-colorblind": "#ffadda",
       "light-high-contrast": "#fc87ca",
@@ -1113,7 +1113,7 @@ export const modes = {
       "dark-high-contrast": "#ffadd4",
       "dark-colorblind": "#ff9bce"
     },
-    "pink_3": {
+    "pink3": {
       "light": "#ff80c8",
       "light-colorblind": "#ff80c8",
       "light-high-contrast": "#ed4baf",
@@ -1122,7 +1122,7 @@ export const modes = {
       "dark-high-contrast": "#ff8dc7",
       "dark-colorblind": "#f778ba"
     },
-    "pink_4": {
+    "pink4": {
       "light": "#e85aad",
       "light-colorblind": "#e85aad",
       "light-high-contrast": "#c9248e",
@@ -1131,7 +1131,7 @@ export const modes = {
       "dark-high-contrast": "#ef6eb1",
       "dark-colorblind": "#db61a2"
     },
-    "pink_5": {
+    "pink5": {
       "light": "#bf3989",
       "light-colorblind": "#bf3989",
       "light-high-contrast": "#971368",
@@ -1140,7 +1140,7 @@ export const modes = {
       "dark-high-contrast": "#ef6eb1",
       "dark-colorblind": "#bf4b8a"
     },
-    "pink_6": {
+    "pink6": {
       "light": "#99286e",
       "light-colorblind": "#99286e",
       "light-high-contrast": "#7d0c57",
@@ -1149,7 +1149,7 @@ export const modes = {
       "dark-high-contrast": "#e456a3",
       "dark-colorblind": "#9e3670"
     },
-    "pink_7": {
+    "pink7": {
       "light": "#772057",
       "light-colorblind": "#772057",
       "light-high-contrast": "#660847",
@@ -1158,7 +1158,7 @@ export const modes = {
       "dark-high-contrast": "#d23d91",
       "dark-colorblind": "#7d2457"
     },
-    "pink_8": {
+    "pink8": {
       "light": "#611347",
       "light-colorblind": "#611347",
       "light-high-contrast": "#53043a",
@@ -1167,7 +1167,7 @@ export const modes = {
       "dark-high-contrast": "#b72c7d",
       "dark-colorblind": "#5e103e"
     },
-    "pink_9": {
+    "pink9": {
       "light": "#4d0336",
       "light-colorblind": "#4d0336",
       "light-high-contrast": "#3e022b",
@@ -1176,7 +1176,7 @@ export const modes = {
       "dark-high-contrast": "#9c1d6a",
       "dark-colorblind": "#42062a"
     },
-    "purple_0": {
+    "purple0": {
       "light": "#fbefff",
       "light-colorblind": "#fbefff",
       "light-high-contrast": "#faf0fe",
@@ -1185,7 +1185,7 @@ export const modes = {
       "dark-high-contrast": "#f0dfff",
       "dark-colorblind": "#eddeff"
     },
-    "purple_1": {
+    "purple1": {
       "light": "#ecd8ff",
       "light-colorblind": "#ecd8ff",
       "light-high-contrast": "#e0c5ff",
@@ -1194,7 +1194,7 @@ export const modes = {
       "dark-high-contrast": "#e6ccff",
       "dark-colorblind": "#e2c5ff"
     },
-    "purple_2": {
+    "purple2": {
       "light": "#d8b9ff",
       "light-colorblind": "#d8b9ff",
       "light-high-contrast": "#c49bff",
@@ -1203,7 +1203,7 @@ export const modes = {
       "dark-high-contrast": "#dbb7ff",
       "dark-colorblind": "#d2a8ff"
     },
-    "purple_3": {
+    "purple3": {
       "light": "#c297ff",
       "light-colorblind": "#c297ff",
       "light-high-contrast": "#a371f7",
@@ -1212,7 +1212,7 @@ export const modes = {
       "dark-high-contrast": "#cb9eff",
       "dark-colorblind": "#bc8cff"
     },
-    "purple_4": {
+    "purple4": {
       "light": "#a475f9",
       "light-colorblind": "#a475f9",
       "light-high-contrast": "#844ae7",
@@ -1221,7 +1221,7 @@ export const modes = {
       "dark-high-contrast": "#b780ff",
       "dark-colorblind": "#a371f7"
     },
-    "purple_5": {
+    "purple5": {
       "light": "#8250df",
       "light-colorblind": "#8250df",
       "light-high-contrast": "#622cbc",
@@ -1230,7 +1230,7 @@ export const modes = {
       "dark-high-contrast": "#b87fff",
       "dark-colorblind": "#8957e5"
     },
-    "purple_6": {
+    "purple6": {
       "light": "#6639ba",
       "light-colorblind": "#6639ba",
       "light-high-contrast": "#512598",
@@ -1239,7 +1239,7 @@ export const modes = {
       "dark-high-contrast": "#a66bff",
       "dark-colorblind": "#6e40c9"
     },
-    "purple_7": {
+    "purple7": {
       "light": "#512a97",
       "light-colorblind": "#512a97",
       "light-high-contrast": "#411d7b",
@@ -1248,7 +1248,7 @@ export const modes = {
       "dark-high-contrast": "#954ffd",
       "dark-colorblind": "#553098"
     },
-    "purple_8": {
+    "purple8": {
       "light": "#3e1f79",
       "light-colorblind": "#3e1f79",
       "light-high-contrast": "#341763",
@@ -1257,7 +1257,7 @@ export const modes = {
       "dark-high-contrast": "#8031f7",
       "dark-colorblind": "#3c1e70"
     },
-    "purple_9": {
+    "purple9": {
       "light": "#2e1461",
       "light-colorblind": "#2e1461",
       "light-high-contrast": "#260f49",
@@ -1266,7 +1266,7 @@ export const modes = {
       "dark-high-contrast": "#6921d7",
       "dark-colorblind": "#271052"
     },
-    "red_0": {
+    "red0": {
       "light": "#ffebe9",
       "light-colorblind": "#fefe48",
       "light-high-contrast": "#fff0ee",
@@ -1275,7 +1275,7 @@ export const modes = {
       "dark-high-contrast": "#ffdedb",
       "dark-colorblind": "#f0ec59"
     },
-    "red_1": {
+    "red1": {
       "light": "#ffcecb",
       "light-colorblind": "#fee325",
       "light-high-contrast": "#ffc1bc",
@@ -1284,7 +1284,7 @@ export const modes = {
       "dark-high-contrast": "#ffc9c7",
       "dark-colorblind": "#ecd334"
     },
-    "red_2": {
+    "red2": {
       "light": "#ffaba8",
       "light-colorblind": "#f8c200",
       "light-high-contrast": "#ff8e8a",
@@ -1293,7 +1293,7 @@ export const modes = {
       "dark-high-contrast": "#ffb1af",
       "dark-colorblind": "#e6b716"
     },
-    "red_3": {
+    "red3": {
       "light": "#ff8182",
       "light-colorblind": "#e7a100",
       "light-high-contrast": "#ee5a5d",
@@ -1302,7 +1302,7 @@ export const modes = {
       "dark-high-contrast": "#ff9492",
       "dark-colorblind": "#d69a00"
     },
-    "red_4": {
+    "red4": {
       "light": "#fa4549",
       "light-colorblind": "#d08002",
       "light-high-contrast": "#d5232c",
@@ -1311,7 +1311,7 @@ export const modes = {
       "dark-high-contrast": "#ff6a69",
       "dark-colorblind": "#c38000"
     },
-    "red_5": {
+    "red5": {
       "light": "#cf222e",
       "light-colorblind": "#ac5e00",
       "light-high-contrast": "#a0111f",
@@ -1320,7 +1320,7 @@ export const modes = {
       "dark-high-contrast": "#ff6a69",
       "dark-colorblind": "#a66900"
     },
-    "red_6": {
+    "red6": {
       "light": "#a40e26",
       "light-colorblind": "#8b4600",
       "light-high-contrast": "#86061d",
@@ -1329,7 +1329,7 @@ export const modes = {
       "dark-high-contrast": "#ff4445",
       "dark-colorblind": "#865401"
     },
-    "red_7": {
+    "red7": {
       "light": "#82071e",
       "light-colorblind": "#6c3900",
       "light-high-contrast": "#6e011a",
@@ -1338,7 +1338,7 @@ export const modes = {
       "dark-high-contrast": "#e82a2f",
       "dark-colorblind": "#633e00"
     },
-    "red_8": {
+    "red8": {
       "light": "#660018",
       "light-colorblind": "#4c3100",
       "light-high-contrast": "#5a0016",
@@ -1347,7 +1347,7 @@ export const modes = {
       "dark-high-contrast": "#cc1421",
       "dark-colorblind": "#452f00"
     },
-    "red_9": {
+    "red9": {
       "light": "#4c0014",
       "light-colorblind": "#2f2900",
       "light-high-contrast": "#430011",
@@ -1356,7 +1356,7 @@ export const modes = {
       "dark-high-contrast": "#ad0116",
       "dark-colorblind": "#292100"
     },
-    "yellow_0": {
+    "yellow0": {
       "light": "#fff8c5",
       "light-colorblind": "#fff8c5",
       "light-high-contrast": "#fcf7be",
@@ -1365,7 +1365,7 @@ export const modes = {
       "dark-high-contrast": "#fbe59e",
       "dark-colorblind": "#f8e3a1"
     },
-    "yellow_1": {
+    "yellow1": {
       "light": "#fae17d",
       "light-colorblind": "#fae17d",
       "light-high-contrast": "#f0ce53",
@@ -1374,7 +1374,7 @@ export const modes = {
       "dark-high-contrast": "#fbd669",
       "dark-colorblind": "#f2cc60"
     },
-    "yellow_2": {
+    "yellow2": {
       "light": "#eac54f",
       "light-colorblind": "#eac54f",
       "light-high-contrast": "#d5a824",
@@ -1383,7 +1383,7 @@ export const modes = {
       "dark-high-contrast": "#f7c843",
       "dark-colorblind": "#e3b341"
     },
-    "yellow_3": {
+    "yellow3": {
       "light": "#d4a72c",
       "light-colorblind": "#d4a72c",
       "light-high-contrast": "#b58407",
@@ -1392,7 +1392,7 @@ export const modes = {
       "dark-high-contrast": "#f0b72f",
       "dark-colorblind": "#d29922"
     },
-    "yellow_4": {
+    "yellow4": {
       "light": "#bf8700",
       "light-colorblind": "#bf8700",
       "light-high-contrast": "#956400",
@@ -1401,7 +1401,7 @@ export const modes = {
       "dark-high-contrast": "#e09b13",
       "dark-colorblind": "#bb8009"
     },
-    "yellow_5": {
+    "yellow5": {
       "light": "#9a6700",
       "light-colorblind": "#9a6700",
       "light-high-contrast": "#744500",
@@ -1410,7 +1410,7 @@ export const modes = {
       "dark-high-contrast": "#e09b13",
       "dark-colorblind": "#9e6a03"
     },
-    "yellow_6": {
+    "yellow6": {
       "light": "#7d4e00",
       "light-colorblind": "#7d4e00",
       "light-high-contrast": "#603700",
@@ -1419,7 +1419,7 @@ export const modes = {
       "dark-high-contrast": "#c88508",
       "dark-colorblind": "#845306"
     },
-    "yellow_7": {
+    "yellow7": {
       "light": "#633c01",
       "light-colorblind": "#633c01",
       "light-high-contrast": "#4e2c00",
@@ -1428,7 +1428,7 @@ export const modes = {
       "dark-high-contrast": "#ae7104",
       "dark-colorblind": "#693e00"
     },
-    "yellow_8": {
+    "yellow8": {
       "light": "#4d2d00",
       "light-colorblind": "#4d2d00",
       "light-high-contrast": "#3f2200",
@@ -1437,7 +1437,7 @@ export const modes = {
       "dark-high-contrast": "#945d02",
       "dark-colorblind": "#4b2900"
     },
-    "yellow_9": {
+    "yellow9": {
       "light": "#3b2300",
       "light-colorblind": "#3b2300",
       "light-high-contrast": "#2e1800",

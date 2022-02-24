@@ -6,11 +6,11 @@ import color from 'better-color-tools';
  * https://design-tokens.github.io/community-group/format/#color
  *
  * {
- *   "type": "color",
- *   "value": "#ff00ff"
+ *   "$type": "color",
+ *   "$value": "#ff00ff"
  * }
  */
-export function normalizeColorValue(value: unknown): ParsedColorToken['value'] {
+export function normalizeColorValue(value: unknown): ParsedColorToken['$value'] {
   if (!value) throw new Error('missing value');
   if (typeof value === 'string' || typeof value === 'number') {
     try {

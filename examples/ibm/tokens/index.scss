@@ -1,4 +1,3 @@
-// IBM Carbon
 // This file was auto-generated from tokens.json.
 // DO NOT EDIT!
 
@@ -6680,14 +6679,65 @@ $__token-values: (
   "font.size.quotation02": (
     default: (2rem),
   ),
-  "spacing.icon.01": (
-    default: (1rem),
+  "spacing.4xs": (
+    default: (1px),
   ),
-  "spacing.icon.02": (
-    default: (1.25rem),
+  "spacing.3xs": (
+    default: (2px),
+  ),
+  "spacing.2xs": (
+    default: (4px),
+  ),
+  "spacing.xs": (
+    default: (8px),
+  ),
+  "spacing.sm": (
+    default: (12px),
+  ),
+  "spacing.md": (
+    default: (16px),
+  ),
+  "spacing.lg": (
+    default: (24px),
+  ),
+  "spacing.xl": (
+    default: (32px),
+  ),
+  "spacing.2xl": (
+    default: (40px),
+  ),
+  "spacing.3xl": (
+    default: (48px),
+  ),
+  "spacing.layout.2xs": (
+    default: (16px),
+  ),
+  "spacing.layout.xs": (
+    default: (24px),
+  ),
+  "spacing.layout.sm": (
+    default: (32px),
+  ),
+  "spacing.layout.md": (
+    default: (48px),
+  ),
+  "spacing.layout.lg": (
+    default: (64px),
+  ),
+  "spacing.layout.xl": (
+    default: (96px),
+  ),
+  "spacing.layout.2xl": (
+    default: (160px),
+  ),
+  "easing.easeIn": (
+    default: (cubic-bezier(0.25, 0, 1, 1)),
+  ),
+  "easing.easeOut": (
+    default: (cubic-bezier(0, 0, 0.25, 1)),
   ),
   "easing.standard": (
-    default: (cubic-bezier(0.2, 0, 0.38, 0.9)),
+    default: (cubic-bezier(0.5, 0, 0.1, 1)),
   ),
   "easing.standard--expressive": (
     default: (cubic-bezier(0.4, 0.14, 0.3, 1)),
@@ -6703,6 +6753,30 @@ $__token-values: (
   ),
   "easing.exit--expressive": (
     default: (cubic-bezier(0.4, 0.14, 1, 1)),
+  ),
+  "transition.base": (
+    default: (250ms),
+  ),
+  "transition.expansion": (
+    default: (300ms),
+  ),
+  "transition.fast01": (
+    default: (70ms),
+  ),
+  "transition.fast02": (
+    default: (110ms),
+  ),
+  "transition.moderate01": (
+    default: (150ms),
+  ),
+  "transition.moderate02": (
+    default: (240ms),
+  ),
+  "transition.slow01": (
+    default: (400ms),
+  ),
+  "transition.slow02": (
+    default: (720ms),
   ),
 );
 

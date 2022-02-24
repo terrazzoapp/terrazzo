@@ -32,16 +32,18 @@ Here’s how that translates into `tokens.json`:
 ```json
 {
   "color": {
-    "red-4": {
-      "type": "color",
-      "value": "#fa4549",
-      "mode": {
-        "light": "#fa4549",
-        "light-colorblind": "#d08002",
-        "light-high-contrast": "#d5232c",
-        "dark": "#f85149",
-        "dark-colorblind": "#c38000",
-        "dark-high-contrast": "#ff6a69"
+    "red4": {
+      "$type": "color",
+      "$value": "#fa4549",
+      "$extensions": {
+        "mode": {
+          "light": "#fa4549",
+          "lightColorblind": "#d08002",
+          "lightHighContrast": "#d5232c",
+          "dark": "#f85149",
+          "darkColorblind": "#c38000",
+          "darkHighContrast": "#ff6a69"
+        }
       }
     }
   }
@@ -61,23 +63,25 @@ Apple’s Human Interface guidelines outline a user size preference. If users ne
   <figcaption>Apple’s dynamic text sizes use modes to control multiple type scales</figcaption>
 </figure>
 
-Here’s how `type.size.title_1` could be represented in `tokens.json`:
+Here’s how `type.size.title1` could be represented in `tokens.json`:
 
 ```json
 {
   "size": {
-    "title-1": {
-      "name": "Title 1",
-      "type": "dimension",
-      "value": "28px",
-      "mode": {
-        "xSmall": "25px",
-        "Small": "26px",
-        "Medium": "27px",
-        "Large": "28px",
-        "xLarge": "30px",
-        "xxLarge": "32px",
-        "xxxLarge": "32px"
+    "title1": {
+      "$name": "Title 1",
+      "$type": "dimension",
+      "$value": "28px",
+      "$extensions": {
+        "mode": {
+          "xSmall": "25px",
+          "Small": "26px",
+          "Medium": "27px",
+          "Large": "28px",
+          "xLarge": "30px",
+          "xxLarge": "32px",
+          "xxxLarge": "32px"
+        }
       }
     }
   }
@@ -93,18 +97,20 @@ Sometimes you may want to check that all modes exist for a group. You can assert
 ```json
 {
   "color": {
-    "metadata": {
-      "requiredModes": ["light", "light-colorblind", "light-high-contrast", "dark", "dark-colorblind", "dark-high-contrast"]
+    "$extensions": {
+      "requiredModes": ["light", "lightColorblind", "lightHighContrast", "dark", "darkColorblind", "darkHighContrast"]
     },
     "red-4": {
-      "type": "color",
-      "value": "#fa4549",
-      "mode": {
-        "light": "#fa4549",
-        "light-colorblind": "#d08002",
-        "light-high-contrast": "#d5232c",
-        "dark": "#f85149",
-        "dark-colorblind": "#c38000"
+      "$type": "color",
+      "$value": "#fa4549",
+      "$extensions": {
+        "mode": {
+          "light": "#fa4549",
+          "lightColorblind": "#d08002",
+          "lightHighContrast": "#d5232c",
+          "dark": "#f85149",
+          "darkColorblind": "#c38000"
+        }
       }
     }
   }

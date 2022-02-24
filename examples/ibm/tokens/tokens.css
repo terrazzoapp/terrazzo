@@ -1,5 +1,4 @@
 /**
- * IBM Carbon
  * This file was auto-generated from tokens.json.
  * DO NOT EDIT!
  */
@@ -2230,14 +2229,39 @@
   --font-size-productiveHeading07: 3.375rem;
   --font-size-quotation01: 1.25rem;
   --font-size-quotation02: 2rem;
-  --spacing-icon-01: 1rem;
-  --spacing-icon-02: 1.25rem;
-  --easing-standard: cubic-bezier(0.2, 0, 0.38, 0.9);
+  --spacing-4xs: 1px;
+  --spacing-3xs: 2px;
+  --spacing-2xs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 48px;
+  --spacing-layout-2xs: 16px;
+  --spacing-layout-xs: 24px;
+  --spacing-layout-sm: 32px;
+  --spacing-layout-md: 48px;
+  --spacing-layout-lg: 64px;
+  --spacing-layout-xl: 96px;
+  --spacing-layout-2xl: 160px;
+  --easing-easeIn: cubic-bezier(0.25, 0, 1, 1);
+  --easing-easeOut: cubic-bezier(0, 0, 0.25, 1);
+  --easing-standard: cubic-bezier(0.5, 0, 0.1, 1);
   --easing-standard--expressive: cubic-bezier(0.4, 0.14, 0.3, 1);
   --easing-entrance: cubic-bezier(0, 0, 0.38, 0.9);
   --easing-entrance--expressive: cubic-bezier(0, 0, 0.3, 1);
   --easing-exit: cubic-bezier(0.2, 0, 1, 0.9);
   --easing-exit--expressive: cubic-bezier(0.4, 0.14, 1, 1);
+  --transition-base: 250ms;
+  --transition-expansion: 300ms;
+  --transition-fast01: 70ms;
+  --transition-fast02: 110ms;
+  --transition-moderate01: 150ms;
+  --transition-moderate02: 240ms;
+  --transition-slow01: 400ms;
+  --transition-slow02: 720ms;
 }
 
 @supports (color: color(display-p3 1 1 1)) {

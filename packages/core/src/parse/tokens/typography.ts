@@ -2,7 +2,7 @@ import type { ParsedTypographyValue, FontWeightName } from '../../@types/token';
 import { normalizeFontValue } from './font.js';
 import { normalizeDimensionValue } from './dimension.js';
 
-const CAMELCASE_RE = /([a-z])([A-Z])/g;
+const KEBAB_CASE_RE = /[-_]+[^-_]/g;
 const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
   ['thin', 100],
   ['hairline', 100],
@@ -25,16 +25,17 @@ const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
 ]);
 
 /**
- * 9.? Typography
+ * 9.7 Typography
+ * https://design-tokens.github.io/community-group/format/#typography
  * {
- *   "type": "typography",
- *   "value": {
- *     "font-family": "Roboto",
- *     "font-size": "42px",
- *     "font-weight": "700",
- *     "letter-spacing": "0.1px",
- *     "line-height": "1.2",
- *     "text-transform": "none"
+ *   "$type": "typography",
+ *   "$value": {
+ *     "fontFamily": "Roboto",
+ *     "fontSize": "42px",
+ *     "fontWeight": "700",
+ *     "letterSpacing": "0.1px",
+ *     "lineHeight": "1.2",
+ *     "textTransform": "none"
  *  }
  */
 export function normalizeTypographyValue(value: unknown): Partial<ParsedTypographyValue> {
@@ -44,23 +45,23 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
 
   const normalized = {} as ParsedTypographyValue;
   for (const [k, v] of Object.entries(value)) {
-    const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
+    const property = k.replace(KEBAB_CASE_RE, (letter) => letter.charAt(letter.length - 1).toUpperCase());
     switch (property) {
-      case 'font-name':
-      case 'font-family': {
-        normalized['font-family'] = normalizeFontValue(v);
+      case 'fontName':
+      case 'fontFamily': {
+        normalized.fontFamily = normalizeFontValue(v);
         break;
       }
-      case 'font-weight': {
+      case 'fontWeight': {
         if (typeof v === 'string') {
           const wgt = VALID_WEIGHT_NAMES.get(v as any);
           if (wgt) {
-            normalized['font-weight'] = wgt;
+            normalized.fontWeight = wgt;
           } else {
             throw new Error(`invalid font weight "${v}", use number (1-999) or any of the following names: ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`);
           }
         } else if (typeof v === 'number') {
-          normalized['font-weight'] = Math.max(1, Math.min(999, v));
+          normalized.fontWeight = Math.max(1, Math.min(999, v));
         }
         break;
       }

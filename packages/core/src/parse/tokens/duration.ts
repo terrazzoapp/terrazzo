@@ -8,12 +8,12 @@ const DURATION_RE = /^\d+(\.\d+)?(ms|s)$/;
  *
  * {
  *   "duration-100": {
- *     "type": "duration",
- *     "value": "100ms"
+ *     "$type": "duration",
+ *     "$value": "100ms"
  *   }
  * }
  */
-export function normalizeDurationValue(value: unknown): ParsedDurationToken['value'] {
+export function normalizeDurationValue(value: unknown): ParsedDurationToken['$value'] {
   // number not technically allowed, but coerce to milliseconds
   if (typeof value === 'number') {
     return `${value}ms`;

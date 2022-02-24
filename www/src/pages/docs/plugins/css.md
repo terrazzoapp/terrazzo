@@ -59,8 +59,8 @@ Say you have `file` tokens in your `tokens.json`:
 {
   "icon": {
     "alert": {
-      "type": "file",
-      "value": "./icon/alert.svg"
+      "$type": "file",
+      "$value": "./icon/alert.svg"
     }
   }
 }

@@ -24,7 +24,7 @@ export default function ts(options?: Options): Plugin {
         if (!tokens[group]) tokens[group] = {};
         lastToken = tokens[group];
       }
-      lastToken[localID] = transformer ? transformer(token) : token.value;
+      lastToken[localID] = transformer ? transformer(token) : token.$value;
     }
 
     code += JSON.stringify(tokens, undefined, 2);
@@ -38,7 +38,7 @@ export default function ts(options?: Options): Plugin {
     // objectify
     let tokens: Record<string, any> = {};
     for (const token of schemaTokens) {
-      if (!token.mode) continue;
+      if (!token.$extensions || !token.$extensions.mode) continue;
       const groups = token.id.split('.');
       const localID = groups.pop() as string;
       let lastToken = tokens;
@@ -47,7 +47,7 @@ export default function ts(options?: Options): Plugin {
         lastToken = tokens[group];
       }
       lastToken[localID] = {};
-      for (const [k, v] of Object.entries(token.mode)) {
+      for (const [k, v] of Object.entries(token.$extensions.mode)) {
         lastToken[localID][k] = transformer ? transformer(token) : v;
       }
     }

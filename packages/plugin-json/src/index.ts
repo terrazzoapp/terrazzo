@@ -36,12 +36,10 @@ export default function json(options?: Options): Plugin {
             tokens,
             (_, token) => {
               // apply transformValue()
-              if (transform && typeof token.type == 'string') {
-                token.value = transform(token);
-                if (token.mode) {
-                  for (const mode of Object.keys(token.mode)) {
-                    token.mode[mode] = transform(token, mode);
-                  }
+              if (transform && typeof token.$type == 'string') {
+                token.$value = transform(token);
+                for (const mode of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
+                  token.$extensions.mode[mode] = transform(token, mode);
                 }
               }
               return token;
