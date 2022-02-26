@@ -2,114 +2,65 @@ export const tokens = {
   "color": {
     "black": "#00193f",
     "blue": "#2b3faa",
-    "dark-gray": "#282a37",
+    "darkGray": "#282a37",
     "green": "#77cd8f",
     "purple": "#6a35d9",
     "red": "#f6566a",
     "white": "#ffffff"
   },
-  "gradient": {
-    "red": [
-      {
-        "color": "#d0323a",
-        "position": 0
-      },
-      {
-        "color": "#fd8d4e",
-        "position": 1
-      }
+  "font": {},
+  "family": {
+    "ppNeue": [
+      "PP Neue Montreal",
+      "system-ui",
+      "ui-sans-serif",
+      "-apple-system",
+      "Helvetica Neue",
+      "Helvetica",
+      "Arial",
+      "sans-serif"
+    ],
+    "mono": [
+      "IBM Plex Mono",
+      "ui-monospace",
+      "SF Mono",
+      "Monaco",
+      "Cascadia Mono",
+      "Cascadia Code",
+      "Consolas",
+      "monospace"
     ]
   },
-  "typography": {
-    "heading-1": {
-      "fontName": [
-        "PP Neue Montreal"
-      ],
-      "fontSize": "36px",
-      "fontStyle": "regular",
-      "fontWeight": 500,
-      "letterSpacing": "0em",
-      "lineHeight": 1
-    },
-    "heading-2": {
-      "fontName": [
-        "PP Neue Montreal"
-      ],
-      "fontSize": "28px",
-      "fontStyle": "regular",
-      "fontWeight": 500,
-      "letterSpacing": "0em",
-      "lineHeight": 1
-    },
-    "heading-3": {
-      "fontName": [
-        "PP Neue Montreal"
-      ],
-      "fontSize": "24px",
-      "fontStyle": "regular",
-      "fontWeight": 500,
-      "letterSpacing": "0em",
-      "lineHeight": 1
-    },
-    "body": {
-      "fontName": [
-        "PP Neue Montreal"
-      ],
-      "fontSize": "16px",
-      "fontStyle": "regular",
-      "fontWeight": 400,
-      "letterSpacing": "0em",
-      "lineHeight": 1
-    }
+  "size": {
+    "01": "8px",
+    "02": "9px",
+    "03": "12px",
+    "04": "14px",
+    "05": "18px",
+    "06": "24px",
+    "07": "36px",
+    "08": "56px"
   },
-  "icon": {
-    "crop": "./icon/crop.svg",
-    "cloud-upload": "./icon/cloud-upload.svg",
-    "cloud-download": "./icon/cloud-download.svg",
-    "delete": "./icon/delete.svg",
-    "do-not-2": "./icon/do-not-2.svg",
-    "download-1": "./icon/download-1.svg",
-    "export-2": "./icon/export-2.svg",
-    "export-1": "./icon/export-1.svg",
-    "embed": "./icon/embed.svg",
-    "download-2": "./icon/download-2.svg",
-    "do-not": "./icon/do-not.svg",
-    "minimize": "./icon/minimize.svg",
-    "launch": "./icon/launch.svg",
-    "maximize": "./icon/maximize.svg",
-    "love": "./icon/love.svg",
-    "paperclip": "./icon/paperclip.svg",
-    "upload-2": "./icon/upload-2.svg",
-    "player-flow": "./icon/player-flow.svg",
-    "reset": "./icon/reset.svg",
-    "upload-1": "./icon/upload-1.svg",
-    "trash": "./icon/trash.svg",
-    "refresh": "./icon/refresh.svg",
-    "renew": "./icon/renew.svg",
-    "repeat": "./icon/repeat.svg"
+  "space": {
+    "4xs": "1px",
+    "3xs": "2px",
+    "2xs": "4px",
+    "xs": "8px",
+    "sm": "12px",
+    "md": "16px",
+    "lg": "24px",
+    "xl": "32px",
+    "2xl": "40px",
+    "3xl": "48px"
   },
-  "distance": {
-    "near": {
-      "offset-x": "0",
-      "offset-y": "8px",
-      "blur": "16px",
-      "spread": "0",
-      "color": "#00001a"
-    },
-    "med": {
-      "offset-x": "0",
-      "offset-y": "16px",
-      "blur": "32px",
-      "spread": "0",
-      "color": "#000026"
-    },
-    "far": {
-      "offset-x": "0",
-      "offset-y": "32px",
-      "blur": "64px",
-      "spread": "0",
-      "color": "#000026"
-    }
+  "layout": {
+    "2xs": "16px",
+    "xs": "24px",
+    "sm": "32px",
+    "md": "48px",
+    "lg": "64px",
+    "xl": "96px",
+    "2xl": "160px"
   }
 };
 

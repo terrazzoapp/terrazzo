@@ -2,11 +2,11 @@
   "$name": "My Tokens",
   "$description": "Automatically generated with `co init`",
   "color": {
+    "$type": "color",
     "$extensions": {
       "requiredModes": ["standard", "colorblind"]
     },
     "blue": {
-      "$type": "color",
       "$value": "#54aeff",
       "$extensions": {
         "mode": {
@@ -16,7 +16,6 @@
       }
     },
     "green": {
-      "$type": "color",
       "$value": "#4ac26b",
       "$extensions": {
         "mode": {
@@ -26,7 +25,6 @@
       }
     },
     "red": {
-      "$type": "color",
       "$value": "#fa4549",
       "$extensions": {
         "mode": {
@@ -38,15 +36,18 @@
   },
   "typography": {
     "family": {
-      "ibmPlex": {
-        "$type": "font",
-        "$value": ["IBM Plex Sans", "-system-ui", "sans-serif"]
+      "$type": "font",
+      "sans": {
+        "$value": ["system-ui", "ui-sans-serif", "-apple-system", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"]
+      },
+      "monospace": {
+        "$value": ["ui-monospace", "SF Mono", "Monaco", "Cascadia Mono", "Cascadia Code", "Consolas", "monospace"]
       }
     },
     "heading": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{typography.family.ibmPlex}",
+        "fontFamily": "{typography.family.sans}",
         "fontSize": "36px",
         "fontWeight": 700,
         "lineHeight": 1.25,
@@ -56,8 +57,18 @@
     "body": {
       "$type": "typography",
       "$value": {
-        "fontFamily": "{typography.family.ibmPlex}",
+        "fontFamily": "{typography.family.sans}",
         "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
+      }
+    },
+    "code": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.family.monospace}",
+        "fontSize": "14px",
         "fontWeight": 400,
         "lineHeight": 1.5,
         "letterSpacing": 0

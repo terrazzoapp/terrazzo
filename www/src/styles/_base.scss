@@ -32,8 +32,8 @@ h6 {
 }
 
 h1 {
-  font-size: 48pt;
-  font-weight: 600;
+  font-size: token('font.size.08');
+  font-weight: 550;
 }
 
 h2 {
@@ -117,6 +117,11 @@ code {
 
 pre,
 code {
-  font-family: 'SF Mono', 'Menlo', ui-monospace, 'Cascadia Mono', 'Cascadia Code', monospace;
-  line-height: 1.5;
+  font-family: token('font.family.mono');
+  font-size: token('font.size.03');
+  line-height: 1.6;
+}
+
+a code {
+  text-decoration: none;
 }

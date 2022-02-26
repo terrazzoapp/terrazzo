@@ -18,41 +18,24 @@ function showSubPage(url) {
 .nav {
   display: flex;
   flex-direction: column;
-  font-size: 12pt;
-  margin-top: 1.5rem;
-  max-height: calc(100vh - 2rem);
-  padding-left: 1rem;
+  font-size: token('font.size.04');
+  max-height: calc(100vh - #{token('space.layout.sm')});
   position: sticky;
-  top: 1.5rem;
-  width: 12rem;
+  top: token('space.md');
+  width: token('space.layout.2xl');
 }
 
 .a {
+  align-items: center;
   color: token("color.black");
   display: flex;
-  padding: 0.5rem 1rem;
+  height: token('space.lg');
+  padding-left: token('space.lg');
   position: relative;
   text-decoration: none;
 
-  &::before {
-    background-color: currentColor;
-    border-radius: 50%;
-    content: '';
-    display: none;
-    height: 5px;
-    position: absolute;
-    left: 0.125rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-  }
-
   &[aria-current=page] {
-    font-weight: 600;
-
-    &::before {
-      display: block;
-    }
+    color: token('color.blue');
   }
 
   &-icon {

@@ -2,7 +2,7 @@
 @use '../../tokens' as *;
 
 .md-content {
-  font-size: 14pt;
+  font-size: token('font.size.05');
 
   * + h1,
   * + h2,
@@ -14,11 +14,11 @@
   }
 
   > h1:first-of-type {
-    margin-bottom: 3rem;
+    margin-bottom: token('space.layout.md');
   }
 
   h2 {
-    margin-top: 6rem;
+    margin-top: token('space.layout.lg');
   }
 
   img {
@@ -28,27 +28,27 @@
 
   p {
     line-height: 1.7;
-    margin-bottom: 1.5em;
-    margin-top: 1.5em;
+    margin-bottom: token('space.layout.md');
+    margin-top: token('space.layout.md');
     max-width: 50em;
   }
 
   ul,
   ol {
     line-height: 1.5;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    margin-bottom: token('space.layout.md');
+    margin-top: token('space.layout.md');
     padding-left: 0;
 
     ul {
       margin: 0;
-      padding-left: 1.5rem;
+      padding-left: token('space.layout.md');
     }
   }
 
   li {
-    margin-bottom: 0.125rem;
-    margin-top: 0.125rem;
+    margin-bottom: token('space.sm');
+    margin-top: token('space.sm');
 
     p:first-of-type {
       margin-top: 0;
@@ -66,8 +66,8 @@
     background: rgba(token('color.black'), 0.05);
     border-radius: 4px;
     display: inline-block;
-    padding: 0.125em 0.375em;
-    font-size: 0.8em;
+    padding: token('space.2xs') token('space.sm');
+    font-size: token('font.size.03');
   }
 
   figure {
@@ -84,13 +84,13 @@
 
   pre {
     background: token('color.black');
-    border-radius: 0.5rem;
+    border-radius: token('space.3xs');
     color: token('color.white');
-    font-size: 10pt;
-    margin: 1.5rem 0;
+    font-size: token('font.size.03');
+    margin: token('space.md') 0;
     max-width: 100%;
     overflow-x: scroll;
-    padding: 2rem;
+    padding: token('space.lg');
     width: 100%;
 
     code {
@@ -102,7 +102,7 @@
 
   table {
     border-collapse: collapse;
-    font-size: 12pt;
+    font-size: token('font.size.03');
     width: 100%;
   }
 
@@ -111,7 +111,7 @@
     border-color: adjust-color($color: token('color.black'), $saturation: -50%, $lightness: 75%);
     border-style: solid;
     border-width: 1px 0 0 1px;
-    padding: 0.5rem 0.75rem;
+    padding: token('space.xs') token('space.md');
 
     &:last-of-type {
       border-right-width: 1px;
@@ -120,7 +120,7 @@
 
   th {
     font-weight: 600;
-    padding: 0.625rem 0.75rem;
+    padding: token('space.xs') token('space.md');
   }
 
   tr {
