@@ -5,8 +5,7 @@ import { normalizeFontValue } from './tokens/font.js';
 import { normalizeDurationValue } from './tokens/duration.js';
 import { normalizeDimensionValue } from './tokens/dimension.js';
 import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
-import { normalizeFileValue } from './tokens/file.js';
-import { normalizeURLValue } from './tokens/url.js';
+import { normalizeLinkValue } from './tokens/link.js';
 import { normalizeShadowValue } from './tokens/shadow.js';
 import { normalizeGradientValue } from './tokens/gradient.js';
 import { normalizeTypographyValue } from './tokens/typography.js';
@@ -239,19 +238,14 @@ export function parse(schema: Group): ParseResult {
           normalizeModes(id, normalizeDurationValue);
           break;
         // 8.5 Cubic Bezier
-        case 'cubic-bezier':
+        case 'cubicBezier':
           tokens[id].$value = normalizeCubicBezierValue(values[id]);
           normalizeModes(id, normalizeCubicBezierValue);
           break;
-        // 8.? File
-        case 'file':
-          tokens[id].$value = normalizeFileValue(values[id]);
-          normalizeModes(id, normalizeFileValue);
-          break;
-        // 8.? URL
-        case 'url':
-          tokens[id].$value = normalizeURLValue(values[id]);
-          normalizeModes(id, normalizeURLValue);
+        // 8.? Link
+        case 'link':
+          tokens[id].$value = normalizeLinkValue(values[id]);
+          normalizeModes(id, normalizeLinkValue);
           break;
         // 9.? Transition
         case 'transition':

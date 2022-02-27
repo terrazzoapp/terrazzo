@@ -15,6 +15,21 @@ import CobaltSm from './CobaltSm.astro';
    padding-top: 1.5rem;
  }
 
+ .ensignia {
+   align-items: center;
+   align-self: flex-start;
+   display: grid;
+   font-size: token('font.size.05');
+   font-weight: 500;
+   grid-gap: token('space.sm');
+   grid-template-columns: min-content min-content;
+ }
+
+ .license {
+   font-size: token('font.size.04');
+   margin-top: token('space.sm');
+ }
+
  nav {
    display: flex;
    flex-direction: column;
@@ -31,13 +46,14 @@ import CobaltSm from './CobaltSm.astro';
 
 <div class="wrapper">
   <footer class="footer">
-    <div class="ensignia">
-      <CobaltSm />
+    <div class="info">
+      <div class="ensignia">
+        <CobaltSm />
+        Cobalt
+      </div>
+      <div class="license">
+        Cobalt is open source and is <a href="https://github.com/drwpow/cobalt-ui">MIT-Licensed</a>.
+      </div>
     </div>
-    <nav>
-      <a href="/docs">Docs</a>
-      <a href="/editor">Editor</a>
-      <a href="https://github.com/drwpow/cobalt-ui">GitHub</a>
-    </nav>
   </footer>
 </div>

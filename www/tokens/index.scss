@@ -7,8 +7,17 @@ $__token-values: (
   "color.black": (
     default: (#00193f),
   ),
-  "color.blue": (
+  "color.blue.03": (
+    default: (#1a2354),
+  ),
+  "color.blue.04": (
+    default: (#001585),
+  ),
+  "color.blue.05": (
     default: (#2b3faa),
+  ),
+  "color.blue.06": (
+    default: (#1346bd),
   ),
   "color.darkGray": (
     default: (#282a37),
@@ -25,11 +34,32 @@ $__token-values: (
   "color.white": (
     default: (#ffffff),
   ),
+  "color.code.bg.greenShift": (
+    default: (#2b5eaa),
+  ),
+  "color.code.gold": (
+    default: (#ffdc2b),
+  ),
+  "color.code.green": (
+    default: (#79ff6a),
+  ),
+  "color.code.orange": (
+    default: (#ff6418),
+  ),
+  "color.code.red": (
+    default: (#f56d65),
+  ),
+  "color.code.pink": (
+    default: (#ff5ae2),
+  ),
+  "color.code.skyBlue": (
+    default: (#59c1ff),
+  ),
   "font.family.ppNeue": (
     default: ("PP Neue Montreal", system-ui, ui-sans-serif, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif),
   ),
   "font.family.mono": (
-    default: ("IBM Plex Mono", ui-monospace, "SF Mono", Monaco, "Cascadia Mono", "Cascadia Code", Consolas, monospace),
+    default: ("Red Hat Mono", ui-monospace, "SF Mono", Monaco, "Cascadia Mono", "Cascadia Code", Consolas, monospace),
   ),
   "font.size.01": (
     default: (8px),
@@ -47,13 +77,13 @@ $__token-values: (
     default: (18px),
   ),
   "font.size.06": (
-    default: (24px),
+    default: (22px),
   ),
   "font.size.07": (
-    default: (36px),
+    default: (28px),
   ),
   "font.size.08": (
-    default: (56px),
+    default: (32px),
   ),
   "space.4xs": (
     default: (1px),

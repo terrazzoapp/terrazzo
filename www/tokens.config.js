@@ -1,9 +1,7 @@
 import pluginSass from '@cobalt-ui/plugin-sass';
-import pluginTs from '@cobalt-ui/plugin-ts';
-import pluginJson from '@cobalt-ui/plugin-json';
 
 export default {
-  plugins: [pluginSass(), pluginTs(), pluginJson()],
+  plugins: [pluginSass()],
   figma: {
     docs: [
       {

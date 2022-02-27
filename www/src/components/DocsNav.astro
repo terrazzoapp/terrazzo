@@ -29,13 +29,14 @@ function showSubPage(url) {
   align-items: center;
   color: token("color.black");
   display: flex;
-  height: token('space.lg');
+  min-height: token('space.lg');
   padding-left: token('space.lg');
   position: relative;
   text-decoration: none;
 
   &[aria-current=page] {
-    color: token('color.blue');
+    color: token('color.blue.06');
+    font-weight: 550;
   }
 
   &-icon {
@@ -45,7 +46,7 @@ function showSubPage(url) {
   }
 
   &--subpage {
-    margin-left: 1rem;
+    margin-left: token('space.md');
 
     &::before {
       left: -0.875rem;

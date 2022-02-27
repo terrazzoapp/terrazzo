@@ -74,8 +74,8 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
         if (token.style && token.component) throw new Error(`Figma doc [${n}]: ${token.token}: cannot reference both "style" AND "component" (choose one)`);
 
         // file token
-        if (token.type === 'file' && token.style) throw new Error(`Figma doc [${n}]: ${token.token}: file must be a component`);
-        if (token.type === 'file' && !token.filename) throw new Error(`Figma doc [${n}]: ${token.token}: file tokens must specify "filename"`);
+        if (token.type === 'link' && token.style) throw new Error(`Figma doc [${n}]: ${token.token}: link must be a component`);
+        if (token.type === 'link' && !token.filename) throw new Error(`Figma doc [${n}]: ${token.token}: link tokens must specify "filename"`);
       }
     }
   }

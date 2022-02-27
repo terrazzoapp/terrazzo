@@ -28,8 +28,9 @@ export type Token =
   | DimensionToken
   | DurationToken
   | CubicBezierToken
-  | FileToken
-  | URLToken
+  | LinkToken
+  | StrokeStyleToken
+  | BorderToken
   | TransitionToken
   | ShadowToken
   | GradientToken
@@ -49,10 +50,11 @@ export type ParsedToken =
   | ParsedDimensionToken
   | ParsedDurationToken
   | ParsedCubicBezierToken
-  | ParsedFileToken
-  | ParsedURLToken
-  | ParsedShadowToken
+  | ParsedLinkToken
+  | ParsedStrokeStyleToken
+  | ParsedBorderToken
   | ParsedTransitionToken
+  | ParsedShadowToken
   | ParsedShadowToken
   | ParsedGradientToken
   | ParsedTypographyToken;
@@ -100,34 +102,57 @@ export interface ParsedDurationToken extends ParsedTokenBase<string> {
 // 8.5 Cubic Bezier
 
 export interface CubicBezierToken extends TokenBase<[number, number, number, number]> {
-  $type: 'cubic-bezier';
+  $type: 'cubicBezier';
 }
 export interface ParsedCubicBezierToken extends ParsedTokenBase<[number, number, number, number]> {
-  $type: 'cubic-bezier';
+  $type: 'cubicBezier';
   _original: CubicBezierToken;
 }
 
-// 8.? File
+// 8.? Link
 
-export interface FileToken extends TokenBase<string> {
-  $type: 'file';
+export interface LinkToken extends TokenBase<string> {
+  $type: 'link';
 }
-export interface ParsedFileToken extends ParsedTokenBase<string> {
-  $type: 'file';
-  _original: FileToken;
-}
-
-// 8.? URL
-
-export interface URLToken extends TokenBase<string> {
-  $type: 'url';
-}
-export interface ParsedURLToken extends ParsedTokenBase<string> {
-  $type: 'url';
-  _original: URLToken;
+export interface ParsedLinkToken extends ParsedTokenBase<string> {
+  $type: 'link';
+  _original: LinkToken;
 }
 
-// 9.? Transition
+// 9.2 Stroke style
+
+export interface StrokeStyleValue {
+  dashArray: string;
+  lineCap: string;
+}
+
+export interface StrokeStyleToken extends TokenBase<string | Partial<StrokeStyleValue>> {
+  $type: 'strokeStyle';
+}
+
+export interface ParsedStrokeStyleToken extends ParsedTokenBase<StrokeStyleValue> {
+  $type: 'strokeStyle';
+  _original: StrokeStyleToken;
+}
+
+// 9.3 Border
+
+export interface BorderTokenValue {
+  color: ColorToken['$value'];
+  width: DimensionToken['$value'];
+  style: StrokeStyleValue;
+}
+
+export interface BorderToken extends TokenBase<Partial<BorderTokenValue>> {
+  $type: 'border';
+}
+
+export interface ParsedBorderToken extends ParsedTokenBase<BorderTokenValue> {
+  $type: 'border';
+  _original: BorderToken;
+}
+
+// 9.4 Transition
 
 export interface TransitionValue {
   duration: DurationToken['$value'];
@@ -137,12 +162,12 @@ export interface TransitionValue {
 export interface TransitionToken extends TokenBase<Partial<TransitionValue>> {
   $type: 'transition';
 }
-export interface ParsedTransitionToken extends ParsedTokenBase<Partial<TransitionValue>> {
+export interface ParsedTransitionToken extends ParsedTokenBase<TransitionValue> {
   $type: 'transition';
   _original: TransitionToken;
 }
 
-// 9.? Shadow
+// 9.5 Shadow
 
 export interface ShadowValue {
   offsetX: DimensionToken['$value'];
@@ -159,7 +184,7 @@ export interface ParsedShadowToken extends ParsedTokenBase<ShadowValue> {
   _original: ShadowToken;
 }
 
-// 9.? Gradient
+// 9.6 Gradient
 
 export interface GradientStop {
   color: ColorToken['$value'];
@@ -173,7 +198,7 @@ export interface ParsedGradientToken extends ParsedTokenBase<GradientStop[]> {
   _original: GradientToken;
 }
 
-// 9.? Typography
+// 9.7 Typography
 
 export type FontWeightName =
   | 'thin'

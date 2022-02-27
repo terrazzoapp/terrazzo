@@ -60,7 +60,7 @@ Note that a function has a few advantages over plain Sass variables:
 
 ### Modes
 
-If you take advantage of [modes](https://cobalt-ui.pages.dev/docs/concepts/modes) in your tokens, you can pass a 2nd param into `tokens()` with a mode name:
+If you take advantage of [modes](https://cobalt-ui.pages.dev/docs/guides/modes) in your tokens, you can pass a 2nd param into `tokens()` with a mode name:
 
 ```scss
 @use '../tokens' as *; // update '../tokens' to match your location of tokens/index.scss
@@ -80,14 +80,14 @@ If you take advantage of [modes](https://cobalt-ui.pages.dev/docs/concepts/modes
 
 ### Embed Files
 
-Say you have `file` tokens in your `tokens.json`:
+Say you have `link` tokens in your `tokens.json`:
 
 ```json
 {
   "icon": {
     "alert": {
-      "$type": "file",
-      "$value": "./icon/alert.svg"
+      "$type": "link",
+      "$value": "/icon/alert.svg"
     }
   }
 }
@@ -142,13 +142,13 @@ export default {
         duration: (value, token) => {
           return value;
         },
-        'cubic-bezier': (value, token) => {
+        cubicBezier: (value, token) => {
           return value;
         },
-        file: (value, token) => {
+        link: (value, token) => {
           return value;
         },
-        url: (value, token) => {
+        transition: (value, token) => {
           return value;
         },
         shadow: (value, token) => {
@@ -158,9 +158,6 @@ export default {
           return value;
         },
         typography: (value, token) => {
-          return value;
-        },
-        transition: (value, token) => {
           return value;
         },
       },

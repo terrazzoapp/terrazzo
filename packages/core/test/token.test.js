@@ -206,11 +206,11 @@ describe('8. Type', () => {
     });
   });
 
-  describe('8.5: Cubic Bezier', () => {
+  describe('8.5: Cubic Bézier', () => {
     it('basic', () => {
       const json = {
         easing: {
-          sine: { $type: 'cubic-bezier', $value: [0.4, 0, 0.6, 1] },
+          sine: { $type: 'cubicBezier', $value: [0.4, 0, 0.6, 1] },
         },
       };
       const tokens = getTokens(json);
@@ -234,7 +234,7 @@ describe('9. Composite Type', () => {
     it('alias', () => {
       const json = {
         easing: {
-          sine: { $type: 'cubic-bezier', $value: [0.4, 0, 0.6, 1] },
+          sine: { $type: 'cubicBezier', $value: [0.4, 0, 0.6, 1] },
         },
         transition: {
           sine: { $type: 'transition', $value: { duration: '100ms', delay: 0, timingFunction: '{easing.sine}' } },

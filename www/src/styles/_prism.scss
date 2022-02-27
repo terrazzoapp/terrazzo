@@ -1,58 +1,50 @@
 @use 'sass:color';
 @use '../../tokens' as *;
 
-.language-yaml,
+// global
 .language-js,
-.language-ts {
+.language-scss,
+.language-css,
+.language-json {
   .comment {
-    color: color.scale($color: token('color.blue'), $lightness: 30%, $saturation: -50%);
+    color: rgba(white, 0.5);
+  }
+  .function {
+    color: token('color.code.gold');
+  }
+  .keyword {
+    color: token('color.code.skyBlue');
+  }
+  .string {
+    color: token('color.code.orange');
+  }
+  .punctuation,
+  .operator {
+    color: token('color.code.skyBlue');
   }
 }
 
 .language-diff {
+  color: token('color.code.skyBlue');
+
   .deleted {
-    color: color.scale($color: token('color.red'), $lightness: 25%);
+    color: token('color.code.red');
   }
 
   .inserted {
-    color: token('color.green');
-  }
-}
-
-.language-js {
-  .keyword {
-    color: color.scale($color: token('color.blue'), $lightness: 50%, $saturation: 100%);
-  }
-}
-
-.language-json {
-  .property {
-    color: color.scale($color: token('color.blue'), $lightness: 65%, $saturation: 100%);
-  }
-  .string {
-    color: color.scale($color: token('color.green'), $lightness: 65%, $saturation: 100%);
+    color: token('color.code.green');
   }
 }
 
 .language-scss {
-  .comment {
-    color: color.scale($color: token('color.blue'), $lightness: 30%, $saturation: -50%);
-  }
-
   .selector,
   .function,
   .string,
   .url {
-    color: color.scale($color: token('color.green'), $lightness: 65%, $saturation: 100%);
+    color: token('color.green');
   }
   .property,
   .punctuation {
-    color: color.scale($color: token('color.blue'), $lightness: 65%, $saturation: 100%);
-  }
-}
-
-.language-yaml {
-  .atrule {
-    color: color.scale($color: token('color.blue'), $lightness: 50%, $saturation: 100%);
+    color: token('color.blue.05');
   }
 }

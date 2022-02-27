@@ -5,64 +5,65 @@ layout: ../../../layouts/docs.astro
 
 # Getting Started
 
-To start, you’ll need to gather all your tokens before you can use them in code. This is known as a `tokens.json` file. You can copy and paste the following into a `tokens.json` file in the root of your project. Colors are a good place to start:
+Cobalt turns your [design tokens](/docs/tokens) into code. Cobalt is configurable and pluggable, and can generate the following via [plugins](/docs/plugins):
 
-```json
-{
-  "$name": "My Tokens",
-  "color": {
-    "black": {
-      "$type": "color",
-      "$value": "#000000"
-    }
-  }
-}
+- [Sass](/docs/plugins/sass)
+- [CSS](/docs/plugins/css)
+- [TypeScript](/docs/plugins/ts)
+- [JSON](/docs/plugins/json)
+- You can also make a [custom plugin](/docs/plugins/custom) to generate more!
+
+## Introduction
+
+Cobalt is tooling for the [W3C Community Group Design Tokens format][dt] which is **currently under development and rapidly changing**. The general approach is similar to [Style Dictionary](https://amzn.github.io/style-dictionary/) or [Universal Design Tokens](https://github.com/universal-design-tokens/udt/blob/master/packages/spec/docs/README.md) to solve the problem of creating a single source of truth for design tokens that is platform-agnostic and easy to build tooling for.
+
+The W3C Community Group’s approach differs in being the [largest collaborative format](https://github.com/design-tokens/community-group#companies-and-open-source-projects-represented-on-the-dtcg) to-date and seeks to improve on the existing prior art which were usually products of single entities. JSON is the chosen language of the token format because it’s ubiquitous, cross-platform, and is already at the heart of most APIs today.
+
+## Requirements
+
+- [Node.js](https://nodejs.org) v14 or higher (newer is always recommended).
+
+## Install
+
+Install the CLI:
+
+```
+npm i -D @cobalt-ui/cli
 ```
 
-After creating a starter `tokens.json` file, you can fill in the remaining values manually yourself, or automatically by connecting it to Figma.
+Install any plugins you’d like to use (_note: you must install at least one plugin to generate code_):
 
-## Method 1: Manual
-
-If your tokens are scattered about and live in different sources, you’ll need to consolidate them yourself into `tokens.json`:
-
-```diff
-  {
-    "$name": "My Tokens",
-    "color": {
-      "black": {
-        "$type": "color",
-        "$value": "#000000"
-      },
-+     "blue": {
-+       "$type": "color",
-+       "$value": "#0969da"
-+     }
-+   },
-+   "typography": {
-+     "family": {
-+       "body": {
-+         "$type": "font",
-+         "$value": "GT America"
-+       }
-+     }
-+   }
-  }
+```
+npm i -D @cobalt-ui/plugin-css @cobalt-ui/plugin-sass @cobalt-ui/plugin-ts @cobalt-ui/plugin-json
 ```
 
-You can add as many tokens as you’d like, organize them into groups, and even add user-friendly names and descriptions.
+## Building
 
-👉 **[View `tokens.json` guide][tokens.json]**
+Place your [tokens](/docs/tokens/) in a **tokens.json** file in the root of your project.
 
-## Method 2: Figma
+Create a **tokens.config.mjs** file also in the root of your project:
 
-[Figma] is a cloud-based design tool that’s taking digital design by storm. Because it’s cloud-based, that means `tokens.json` can be updated using Figma at any time.
+```js
+import pluginCSS from '@cobalt-ui/plugin-css';
 
-Unlike tools like [Diez] that require you to start from an existing template and require you stay within very specific formats, Cobalt places no such restrictions on you. You can organize your Figma files as you please, and even use pre-existing Figma
-files without changes. However, this flexibility comes at a trade-off: you’ll have to tell Cobalt where your tokens live in your Figma files.
+export default {
+  plugins: [pluginCSS()],
+};
+```
 
-👉 **[View Figma setup guide][figma-guide]**
+Run the following command (**co** being short for “Cobalt”):
 
-[diez]: https://diez.org/
-[figma]: https://figma.com
-[figma-guide]: /docs/getting-started/figma
-[tokens.json]: /docs/reference/schema
+```
+npx co build
+```
+
+This will generate a **tokens/tokens.css** file in your project for you to use.
+
+## Next steps
+
+- [Learn about tokens](/docs/tokens)
+- [Sync with Figma](/docs/figma)
+- [Learn how to configure Cobalt](/docs/reference/config)
+- [Add plugins](/docs/plugins)
+
+[dt]: https://design-tokens.github.io/community-group/format/

@@ -19,194 +19,24 @@ const version = packageJSON.version;
 
       .header {
         align-items: center;
-        background: token("color.blue");
+        background: token("color.blue.05");
         color: token("color.white");
         display: flex;
         flex-direction: column;
+        height: calc(100vh - #{token('space.layout.lg')});
         justify-content: center;
-        padding-bottom: 8rem;
-        padding-top: 10rem;
+      }
+
+      .features {
+        font-size: token('font.size.05');
+        margin-bottom: token('space.layout.sm');
+        margin-top: token('space.layout.sm');
       }
 
       .title {
         font-size: 64pt;
         font-weight: 550;
-        margin: 0 0 4rem;
-      }
-
-      .install {
-        display: flex;
-        align-items: center;
-      }
-
-      .meta {
-        display: flex;
-        font-size: 18pt;
-        list-style: none;
-        padding: 0;
-
-        a {
-          color: currentColor;
-          text-decoration: none;
-          opacity: 0.7;
-          transition: opacity 100ms linear;
-
-          &:focus,
-          &:hover {
-            opacity: 1;
-          }
-        }
-
-        li {
-          margin: 0 0 0 3rem;
-        }
-      }
-
-      .code {
-        font-size: 18pt;
-        border: 1px solid currentColor;
-        border-radius: 0.5em;
-        padding: 0.5em 1em;
-      }
-
-      section + section {
-        margin-top: 4rem;
-      }
-
-      p {
-        font-size: 16pt;
-        line-height: 1.7;
-      }
-
-      figure {
         margin: 0;
-      }
-
-      .split {
-        display: grid;
-        grid-template-columns: 6fr 7fr;
-        grid-gap: 4rem;
-
-        p:first-of-type {
-          margin-top: 0;
-        }
-      }
-
-      .visual {
-        align-self: start;
-        background-color: token("color.blue");
-        color: token("color.white");
-        font-size: 18pt;
-        font-weight: 500;
-        margin-top: 4rem;
-        padding-bottom: 2rem;
-        position: relative;
-
-        &-inner {
-          margin-left: auto;
-          margin-right: auto;
-          width: 100%;
-          max-width: 60rem;
-        }
-
-        &-base {
-          height: 0;
-          margin-top: 2rem;
-          padding-top: 30%;
-          position: relative;
-        }
-
-        &-layer {
-          padding-top: 2rem;
-          padding-bottom: 2rem;
-        }
-
-        &-cobalt,
-        &-tokens {
-          transform: translateY(-50%);
-          position: absolute;
-        }
-
-        &-cobalt {
-          top: 50%;
-        }
-
-        &-tokens {
-          top: 75%;
-        }
-
-        &-line-c,
-        &-line-t {
-          border-top: 1px dashed currentColor;
-          display: block;
-          left: 6.5rem;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: calc(51% - 6.5rem);
-        }
-
-        &-line-t {
-          border-top: 3px solid currentColor;
-          top: 78%;
-          width: calc(58% - 6.5rem);
-        }
-
-        &-img {
-          bottom: 0;
-          height: auto;
-          position: absolute;
-          right: 0;
-          width: 50%;
-        }
-      }
-
-      .actions {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        padding-left: 2.5rem;
-        position: relative;
-
-        &::after {
-          border-right: 1px dashed token("color.white");
-          content: "";
-          display: block;
-          height: calc(100% - 2.5rem);
-          left: 0.5rem;
-          position: absolute;
-          top: 1rem;
-        }
-
-        a {
-          margin-top: 1em;
-          position: relative;
-
-          &::before {
-            border-top: 1px dashed token("color.white");
-            content: "";
-            display: block;
-            position: absolute;
-            right: calc(100% + 4px);
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1.75rem;
-          }
-        }
-
-        &-title {
-          margin-bottom: 0;
-        }
-      }
-
-      .docs {
-        display: grid;
-        grid-template-columns: min-content auto;
-        padding-right: token("space.layout.2xl");
-      }
-
-      #main {
-        margin-top: -2.5rem;
       }
     </style>
   </head>
@@ -215,67 +45,11 @@ const version = packageJSON.version;
     <Nav />
     <div>
       <header class="header tac">
-        <h1 class="title">Design Tokens, codified</h1>
-        <div class="install">
-          <code class="code">npm i @cobalt-ui/cli</code>
-          <ul class="meta">
-            <li><a href="https://github.com/drwpow/cobalt-ui" target="_blank">GitHub</a></li>
-            <li><a href="https://npmjs.com/@cobalt-ui/cli" taget="_blank">v{version}</a></li>
-          </ul>
-        </div>
+        <h1 class="title">Design Tokens, anywhere</h1>
+        <div class="features">Use your design tokens • Generate code • Sync with Figma • Use in CI</div>
+        <a class="btn" href="/docs/getting-started">Read Documentation</a>
       </header>
-      <main class="wrapper" id="#main">
-        <section class="py10">
-          <h2>Cobalt is tooling for the official Design Tokens Schema</h2>
-          <p>
-            The new <a
-            href="https://design-tokens.github.io/community-group/format/">Design
-            Tokens schema</a> is the largest community effort to standardize
-            design tokens in code. But it lacks tooling to use it, and that’s
-            where Cobalt comes in. Using Cobalt, you can not only sync your
-            design tokens with Figma, but you can also generate code for your
-            project such as Sass, CSS, and TypeScript.
-          </p>
-          <p>
-            Cobalt uses plugins to generate code from your design tokens. If you
-            want to generate code for another language, or even change what’s
-            generated, you can easily write your own Cobalt plugin. Spend less
-            time building/managing design tooling, and more time putting your
-            design tokens to work!
-          </p>
-          <h2 class="mt12">Manage <em>your</em> design tokens—not someone else’s</h2>
-          <p>
-            Working with design tokens doesn’t mean you have to follow a
-            template, or have to be restricted in your design system. Cobalt is
-            a universal tool because it’s so low-level. It’s a tool to organize
-            & manage your tokens, which are lower-level than your UI or design
-            system.
-          </p>
-          <p>
-            Using Cobalt won’t automate away building your UI, but it can keep
-            your tokens—colors, gradients, typography, iconography, borders,
-            strokes, shadows, and more—in sync with Figma and keep your CSS in
-            sync with your design system. It’s generic enough that it will work
-            for any build system, and low-level enough it can work with any
-            design system.
-          </p>
-        </section>
-      </main>
     </div>
-    <figure class="visual">
-      <div class="visual-layer" style="background:#1c9fff"><div class="visual-inner">UI</div></div>
-      <div class="visual-layer" style="background:#1c89fd"><div class="visual-inner">Platform</div></div>
-      <div class="visual-layer" style="background:#2e5dce"><div class="visual-inner">Design System</div></div>
-      <div class="visual-inner">
-        <div class="visual-base">
-          <span class="visual-cobalt">Cobalt</span>
-          <span class="visual-tokens">Tokens</span>
-          <div class="visual-line-c"></div>
-          <div class="visual-line-t"></div>
-          <img class="visual-img" src="/token-hex.svg">
-        </div>
-      </div>
-    </figure>
     <div class="wrapper">
       <DocsPagination />
     </div>

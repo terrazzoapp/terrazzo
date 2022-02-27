@@ -13,7 +13,9 @@ const { content = {} } = Astro.props;
 <html>
   <head>
     <Head title={content.title || 'Docs'} />
-    <style>
+    <style lang="scss">
+      @use "../../tokens" as *;
+
       .docs {
         display: flex;
         padding-right: token('space.layout.2xl');
@@ -27,7 +29,6 @@ const { content = {} } = Astro.props;
       <DocsNav />
       <main class="wrapper content md-content" id="#main">
         <slot />
-        <DocsPagination />
       </main>
     </div>
     <Footer />

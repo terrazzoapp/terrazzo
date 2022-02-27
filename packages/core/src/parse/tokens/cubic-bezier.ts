@@ -5,7 +5,7 @@ import type { ParsedCubicBezierToken } from '../../@types/token';
  * https://design-tokens.github.io/community-group/format/#cubic-bezier
  *
  * {
- *   "$type": "cubic-bezier",
+ *   "$type": "cubicBezier",
  *   "$value": [0.4, 0, 0.6, 1]
  * }
  */

@@ -3,16 +3,17 @@ import type {
   GradientStop,
   ParsedColorToken,
   ParsedCubicBezierToken,
+  ParsedBorderToken,
   ParsedDimensionToken,
   ParsedDurationToken,
-  ParsedFileToken,
   ParsedFontToken,
   ParsedGradientToken,
+  ParsedLinkToken,
   ParsedShadowToken,
+  ParsedStrokeStyleToken,
   ParsedTransitionToken,
   ParsedTypographyToken,
   ParsedTypographyValue,
-  ParsedURLToken,
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
@@ -31,13 +32,14 @@ type TokenTransformer = {
   dimension: (value: ParsedDimensionToken['$value'], token: ParsedDimensionToken) => string;
   duration: (value: ParsedDurationToken['$value'], token: ParsedDurationToken) => string;
   font: (value: ParsedFontToken['$value'], token: ParsedFontToken) => string;
-  'cubic-bezier': (value: ParsedCubicBezierToken['$value'], token: ParsedCubicBezierToken) => string;
-  file: (value: ParsedFileToken['$value'], token: ParsedFileToken) => string;
-  url: (value: ParsedURLToken['$value'], token: ParsedURLToken) => string;
+  cubicBezier: (value: ParsedCubicBezierToken['$value'], token: ParsedCubicBezierToken) => string;
+  link: (value: ParsedLinkToken['$value'], token: ParsedLinkToken) => string;
+  strokeStyle: (value: ParsedStrokeStyleToken['$value'], token: ParsedStrokeStyleToken) => string;
+  border: (value: ParsedBorderToken['$value'], token: ParsedBorderToken) => string;
+  transition: (value: ParsedTransitionToken['$value'], token: ParsedTransitionToken) => string;
   shadow: (value: ParsedShadowToken['$value'], token: ParsedShadowToken) => string;
   gradient: (value: ParsedGradientToken['$value'], token: ParsedGradientToken) => string;
   typography: (value: ParsedTypographyToken['$value'], token: ParsedTypographyToken) => string;
-  transition: (value: ParsedTransitionToken['$value'], token: ParsedTransitionToken) => string;
 } & { [key: string]: (value: any, token: any) => string };
 
 export interface Options {
@@ -64,9 +66,8 @@ export default function css(options?: Options): Plugin {
   if (!transform.dimension) transform.dimension = transformDimension;
   if (!transform.duration) transform.duration = transformDuration;
   if (!transform.font) transform.font = transformFont;
-  if (!transform['cubic-bezier']) transform['cubic-bezier'] = transformCubicBezier;
-  if (!transform.file) transform.file = transformFile;
-  if (!transform.url) transform.url = transformURL;
+  if (!transform.cubicBezier) transform.cubicBezier = transformCubicBezier;
+  if (!transform.link) transform.link = transformLink;
   if (!transform.shadow) transform.shadow = transformShadow;
   if (!transform.gradient) transform.gradient = transformGradient;
   if (!transform.transition) transform.transition = transformTransition;
@@ -153,7 +154,7 @@ export default function css(options?: Options): Plugin {
 
         tokenVals[token.id] = {};
         let value = transformer(token.$value as any, token as any);
-        if (token.$type === 'file' && options?.embedFiles) value = encode(value, config.outDir);
+        if (token.$type === 'link' && options?.embedFiles) value = encode(value, config.outDir);
         tokenVals[token.id] = value;
 
         if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
@@ -166,7 +167,7 @@ export default function css(options?: Options): Plugin {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
               let modeVal = transformer(token.$extensions.mode[modeName] as any, token as any);
-              if (token.$type === 'file' && options?.embedFiles) modeVal = encode(modeVal, config.outDir);
+              if (token.$type === 'link' && options?.embedFiles) modeVal = encode(modeVal, config.outDir);
               modeVals[selector][token.id] = modeVal;
             }
           }
@@ -247,11 +248,7 @@ function transformCubicBezier(value: ParsedCubicBezierToken['$value']): string {
   return `cubic-bezier(${value.join(', ')})`;
 }
 /** transform file */
-function transformFile(value: ParsedFileToken['$value']): string {
-  return `url('${value}')`;
-}
-/** transform file */
-function transformURL(value: ParsedURLToken['$value']): string {
+function transformLink(value: ParsedLinkToken['$value']): string {
   return `url('${value}')`;
 }
 /** transform shadow */

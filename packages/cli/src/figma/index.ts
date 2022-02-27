@@ -67,7 +67,7 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               };
               break;
             }
-            case 'file': {
+            case 'link': {
               await fileQueue.run({
                 url,
                 componentID: figmaNode.id,
@@ -77,7 +77,7 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               downloadCount += 1;
               console.log(`  ✔  Downloaded file ${padRight(String(downloadCount), countWidth)}/${totalFiles}`); // eslint-disable-line no-console
               tokenUpdates[id] = {
-                $type: 'file',
+                $type: 'link',
                 $value: filename as string,
               };
               break;

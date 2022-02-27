@@ -26,15 +26,15 @@ for (let n = 0; n < pages.pages.length; n++) {
 
 .prev,
 .next {
-  border: 1px solid token("color.blue");
+  border: 1px solid token('color.blue.05');
   position: relative;
   text-decoration: none;
-  padding: 1.25rem;
+  padding: token('space.sm');
 }
 
 .next {
   .icon {
-    right: 1.25rem;
+    right: token('space.sm');
   }
 
   &:hover .icon {
@@ -67,16 +67,15 @@ for (let n = 0; n < pages.pages.length; n++) {
 
 .label {
   display: block;
-  font-size: 10pt;
-  letter-spacing: 0.05em;
+  font-size: token('font.size.03');
   font-weight: 550;
-  margin-bottom: 0.5rem;
+  margin-bottom: token('space.2xs');
   text-transform: uppercase;
 }
 
 .title {
   display: block;
-  font-size: 18pt;
+  font-size: token('font.size.06');
 }
 </style>
 

@@ -241,11 +241,9 @@ importers:
   www:
     specifiers:
       '@astrojs/renderer-vue': ^0.4.0
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/core': ^0.5.0
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': file:../packages/cli/
+      '@cobalt-ui/core': file:../packages/core/
+      '@cobalt-ui/plugin-sass': file:../packages/plugin-sass/
       astro: ^0.23.2
       npm-run-all: ^4.1.5
       prismjs: ^1.27.0
@@ -258,9 +256,7 @@ importers:
     devDependencies:
       '@cobalt-ui/cli': link:../packages/cli
       '@cobalt-ui/core': link:../packages/core
-      '@cobalt-ui/plugin-json': link:../packages/plugin-json
       '@cobalt-ui/plugin-sass': link:../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': link:../packages/plugin-ts
       astro: 0.23.2_sass@1.49.9+typescript@4.5.5
       npm-run-all: 4.1.5
       sass: 1.49.9

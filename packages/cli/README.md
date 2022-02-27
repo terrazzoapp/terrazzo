@@ -51,7 +51,7 @@ Plugins are the entire purpose of using Cobalt! See the [plugin documentation](h
 
 ## Figma
 
-For instructions on setting up figma, see the [Figma documentation](https://cobalt-ui.pages.dev/docs/getting-started/figma/)
+For instructions on setting up figma, see the [Figma documentation](https://cobalt-ui.pages.dev/docs/guides/figma/)
 
 ## Documentation
 
