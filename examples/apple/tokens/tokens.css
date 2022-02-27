@@ -1,5 +1,4 @@
 /**
- * Apple Human Interface Guidelines
  * This file was auto-generated from tokens.json.
  * DO NOT EDIT!
  */
@@ -23,32 +22,32 @@
   --color-systemRed: #ff3b30;
   --color-systemTeal: #30b0c7;
   --color-systemYellow: #ffcc00;
-  --font-family-sf-pro: "SF Pro";
-  --font-family-sf-pro-rounded: "SF Pro Rounded";
-  --font-family-sf-compact: "SF Compact";
-  --font-family-sf-mono: "SF Mono";
-  --font-family-new-york: "New York";
+  --font-family-sfPro: "SF Pro";
+  --font-family-sfProRounded: "SF Pro Rounded";
+  --font-family-sfCompact: "SF Compact";
+  --font-family-sfMono: "SF Mono";
+  --font-family-newYork: "New York";
 }
 
-.font-style-large-title {
+.font-style-largeTitle {
   font-size: 34px;
   font-weight: 400;
   line-height: 41px;
 }
 
-.font-style-title-1 {
+.font-style-title1 {
   font-size: 28px;
   font-weight: 400;
   line-height: 34px;
 }
 
-.font-style-title-2 {
+.font-style-title2 {
   font-size: 22px;
   font-weight: 400;
   line-height: 25px;
 }
 
-.font-style-title-3 {
+.font-style-title3 {
   font-size: 20px;
   font-weight: 400;
   line-height: 25px;
@@ -84,7 +83,7 @@
   line-height: 18px;
 }
 
-.font-style-caption-1 {
+.font-style-caption1 {
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;

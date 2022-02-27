@@ -6,16 +6,16 @@ import type { ParsedFontToken } from '../../@types/token';
  *
  * {
  *   "Primary font": {
- *     "type": "font",
- *     "value": "Comic Sans MS"
+ *     "$type": "font",
+ *     "$value": "Comic Sans MS"
  *   },
  *   "Body font": {
- *     "type": "font",
- *     "value": ["Helvetica", "Arial"]
+ *     "$type": "font",
+ *     "$value": ["Helvetica", "Arial"]
  *   }
  * }
  */
-export function normalizeFontValue(value: unknown): ParsedFontToken['value'] {
+export function normalizeFontValue(value: unknown): ParsedFontToken['$value'] {
   if (!value) throw new Error('missing value');
   if (typeof value === 'string') return [value];
   if (Array.isArray(value)) {

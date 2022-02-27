@@ -1,417 +1,416 @@
-// Adobe Spectrum
 // This file was auto-generated from tokens.json.
 // DO NOT EDIT!
 
 @use "sass:map";
 
 $__token-values: (
-  "color.blue_400": (
+  "color.blue400": (
     default: (#2680eb),
     "lightest": (#378ef0),
     "light": (#2680eb),
     "dark": (#2680eb),
     "darkest": (#1473e6),
   ),
-  "color.blue_500": (
+  "color.blue500": (
     default: (#1473e6),
     "lightest": (#2680eb),
     "light": (#1473e6),
     "dark": (#378ef0),
     "darkest": (#2680eb),
   ),
-  "color.blue_600": (
+  "color.blue600": (
     default: (#0d66d0),
     "lightest": (#1473e6),
     "light": (#0d66d0),
     "dark": (#4b9cf5),
     "darkest": (#378ef0),
   ),
-  "color.blue_700": (
+  "color.blue700": (
     default: (#095aba),
     "lightest": (#0d66d0),
     "light": (#095aba),
     "dark": (#5aa9fa),
     "darkest": (#4b9cf5),
   ),
-  "color.gray_50": (
+  "color.gray50": (
     default: (#ffffff),
     "lightest": (#ffffff),
     "light": (#ffffff),
     "dark": (#252525),
     "darkest": (#080808),
   ),
-  "color.gray_75": (
+  "color.gray75": (
     default: (#fafafa),
     "lightest": (#ffffff),
     "light": (#fafafa),
     "dark": (#2f2f2f),
     "darkest": (#1a1a1a),
   ),
-  "color.gray_100": (
+  "color.gray100": (
     default: (#f5f5f5),
     "lightest": (#ffffff),
     "light": (#f5f5f5),
     "dark": (#323232),
     "darkest": (#1e1e1e),
   ),
-  "color.gray_200": (
+  "color.gray200": (
     default: (#eaeaea),
     "lightest": (#f4f4f4),
     "light": (#eaeaea),
     "dark": (#3e3e3e),
     "darkest": (#2c2c2c),
   ),
-  "color.gray_300": (
+  "color.gray300": (
     default: (#e1e1e1),
     "lightest": (#eaeaea),
     "light": (#e1e1e1),
     "dark": (#4a4a4a),
     "darkest": (#393939),
   ),
-  "color.gray_400": (
+  "color.gray400": (
     default: (#cacaca),
     "lightest": (#d3d3d3),
     "light": (#cacaca),
     "dark": (#5a5a5a),
     "darkest": (#494949),
   ),
-  "color.gray_500": (
+  "color.gray500": (
     default: (#b3b3b3),
     "lightest": (#bcbcbc),
     "light": (#b3b3b3),
     "dark": (#6e6e6e),
     "darkest": (#5c5c5c),
   ),
-  "color.gray_600": (
+  "color.gray600": (
     default: (#8e8e8e),
     "lightest": (#959595),
     "light": (#8e8e8e),
     "dark": (#909090),
     "darkest": (#7c7c7c),
   ),
-  "color.gray_700": (
+  "color.gray700": (
     default: (#6e6e6e),
     "lightest": (#747474),
     "light": (#6e6e6e),
     "dark": (#b9b9b9),
     "darkest": (#a2a2a2),
   ),
-  "color.gray_800": (
+  "color.gray800": (
     default: (#4b4b4b),
     "lightest": (#505050),
     "light": (#4b4b4b),
     "dark": (#e3e3e3),
     "darkest": (#c8c8c8),
   ),
-  "color.gray_900": (
+  "color.gray900": (
     default: (#2c2c2c),
     "lightest": (#323232),
     "light": (#2c2c2c),
     "dark": (#ffffff),
     "darkest": (#efefef),
   ),
-  "color.green_400": (
+  "color.green400": (
     default: (#2d9d78),
     "lightest": (#33ab84),
     "light": (#2d9d78),
     "dark": (#2d9d78),
     "darkest": (#268e6c),
   ),
-  "color.green_500": (
+  "color.green500": (
     default: (#268e6c),
     "lightest": (#2d9d78),
     "light": (#268e6c),
     "dark": (#33ab84),
     "darkest": (#2d9d78),
   ),
-  "color.green_600": (
+  "color.green600": (
     default: (#12805c),
     "lightest": (#268e6c),
     "light": (#12805c),
     "dark": (#39b990),
     "darkest": (#33ab84),
   ),
-  "color.green_700": (
+  "color.green700": (
     default: (#107154),
     "lightest": (#12805c),
     "light": (#107154),
     "dark": (#3fc89c),
     "darkest": (#39b990),
   ),
-  "color.red_400": (
+  "color.red400": (
     default: (#e34850),
     "lightest": (#ec5b62),
     "light": (#e34850),
     "dark": (#e34850),
     "darkest": (#d7373f),
   ),
-  "color.red_500": (
+  "color.red500": (
     default: (#d7373f),
     "lightest": (#e34850),
     "light": (#d7373f),
     "dark": (#ec5b62),
     "darkest": (#e34850),
   ),
-  "color.red_600": (
+  "color.red600": (
     default: (#c9252d),
     "lightest": (#d7373f),
     "light": (#c9252d),
     "dark": (#f76d74),
     "darkest": (#ec5b62),
   ),
-  "color.red_700": (
+  "color.red700": (
     default: (#bb121a),
     "lightest": (#c9252d),
     "light": (#bb121a),
     "dark": (#ff7b82),
     "darkest": (#f76d74),
   ),
-  "color.orange_400": (
+  "color.orange400": (
     default: (#e68619),
     "lightest": (#f29423),
     "light": (#e68619),
     "dark": (#e68619),
     "darkest": (#da7b11),
   ),
-  "color.orange_500": (
+  "color.orange500": (
     default: (#da7b11),
     "lightest": (#e68619),
     "light": (#da7b11),
     "dark": (#f29423),
     "darkest": (#e68619),
   ),
-  "color.orange_600": (
+  "color.orange600": (
     default: (#cb6f10),
     "lightest": (#da7b11),
     "light": (#cb6f10),
     "dark": (#f9a43f),
     "darkest": (#f29423),
   ),
-  "color.orange_700": (
+  "color.orange700": (
     default: (#bd640d),
     "lightest": (#cb6f10),
     "light": (#bd640d),
     "dark": (#ffb55b),
     "darkest": (#f9a43f),
   ),
-  "color.label.celery_400": (
+  "color.label.celery400": (
     default: (#44b556),
     "lightest": (#4bc35f),
     "light": (#44b556),
     "dark": (#44b556),
     "darkest": (#3da74e),
   ),
-  "color.label.celery_500": (
+  "color.label.celery500": (
     default: (#3da74e),
     "lightest": (#44b556),
     "light": (#3da74e),
     "dark": (#4bc35f),
     "darkest": (#44b556),
   ),
-  "color.label.celery_600": (
+  "color.label.celery600": (
     default: (#3da74e),
     "lightest": (#3da74e),
     "light": (#3da74e),
     "dark": (#51d267),
     "darkest": (#4bc35f),
   ),
-  "color.label.celery_700": (
+  "color.label.celery700": (
     default: (#3da74e),
     "lightest": (#379947),
     "light": (#3da74e),
     "dark": (#58e06f),
     "darkest": (#51d267),
   ),
-  "color.label.chartreuse_400": (
+  "color.label.chartreuse400": (
     default: (#85d044),
     "lightest": (#8ede49),
     "light": (#85d044),
     "dark": (#85d044),
     "darkest": (#7cc33f),
   ),
-  "color.label.chartreuse_500": (
+  "color.label.chartreuse500": (
     default: (#7cc33f),
     "lightest": (#85d044),
     "light": (#7cc33f),
     "dark": (#8ede49),
     "darkest": (#85d044),
   ),
-  "color.label.chartreuse_600": (
+  "color.label.chartreuse600": (
     default: (#73b53a),
     "lightest": (#7cc33f),
     "light": (#73b53a),
     "dark": (#9bec54),
     "darkest": (#8ede49),
   ),
-  "color.label.chartreuse_700": (
+  "color.label.chartreuse700": (
     default: (#6aa834),
     "lightest": (#73b53a),
     "light": (#6aa834),
     "dark": (#a3f858),
     "darkest": (#9bec54),
   ),
-  "color.label.fuchsia_400": (
+  "color.label.fuchsia400": (
     default: (#c038cc),
     "lightest": (#cf3edc),
     "light": (#c038cc),
     "dark": (#c038cc),
     "darkest": (#b130bd),
   ),
-  "color.label.fuchsia_500": (
+  "color.label.fuchsia500": (
     default: (#b130bd),
     "lightest": (#c038cc),
     "light": (#b130bd),
     "dark": (#cf3edc),
     "darkest": (#c038cc),
   ),
-  "color.label.fuchsia_600": (
+  "color.label.fuchsia600": (
     default: (#a228ad),
     "lightest": (#b130bd),
     "light": (#a228ad),
     "dark": (#d951e5),
     "darkest": (#cf3edc),
   ),
-  "color.label.fuchsia_700": (
+  "color.label.fuchsia700": (
     default: (#93219e),
     "lightest": (#a228ad),
     "light": (#93219e),
     "dark": (#e366ef),
     "darkest": (#d951e5),
   ),
-  "color.label.indigo_400": (
+  "color.label.indigo400": (
     default: (#6767ec),
     "lightest": (#7575f1),
     "light": (#6767ec),
     "dark": (#6767ec),
     "darkest": (#5c5ce0),
   ),
-  "color.label.indigo_500": (
+  "color.label.indigo500": (
     default: (#5c5ce0),
     "lightest": (#6767ec),
     "light": (#5c5ce0),
     "dark": (#7575f1),
     "darkest": (#6767ec),
   ),
-  "color.label.indigo_600": (
+  "color.label.indigo600": (
     default: (#5151d3),
     "lightest": (#5c5ce0),
     "light": (#5151d3),
     "dark": (#8282f6),
     "darkest": (#7575f1),
   ),
-  "color.label.indigo_700": (
+  "color.label.indigo700": (
     default: (#4646c6),
     "lightest": (#5151d3),
     "light": (#4646c6),
     "dark": (#9090fa),
     "darkest": (#8282f6),
   ),
-  "color.label.magenta_400": (
+  "color.label.magenta400": (
     default: (#d83790),
     "lightest": (#e2499d),
     "light": (#d83790),
     "dark": (#d83790),
     "darkest": (#ca2996),
   ),
-  "color.label.magenta_500": (
+  "color.label.magenta500": (
     default: (#ce2783),
     "lightest": (#d83790),
     "light": (#ce2783),
     "dark": (#e2499d),
     "darkest": (#d83790),
   ),
-  "color.label.magenta_600": (
+  "color.label.magenta600": (
     default: (#bc1c74),
     "lightest": (#ca2982),
     "light": (#bc1c74),
     "dark": (#ec5aaa),
     "darkest": (#e2499d),
   ),
-  "color.label.magenta_700": (
+  "color.label.magenta700": (
     default: (#ae0e66),
     "lightest": (#bc1c74),
     "light": (#ae0e66),
     "dark": (#f56bb7),
     "darkest": (#ec5aaa),
   ),
-  "color.label.purple_400": (
+  "color.label.purple400": (
     default: (#9256d9),
     "lightest": (#9d64e1),
     "light": (#9256d9),
     "dark": (#9256d9),
     "darkest": (#864ccc),
   ),
-  "color.label.purple_500": (
+  "color.label.purple500": (
     default: (#864ccc),
     "lightest": (#9256d9),
     "light": (#864ccc),
     "dark": (#9d64e1),
     "darkest": (#9256d9),
   ),
-  "color.label.purple_600": (
+  "color.label.purple600": (
     default: (#7a42bf),
     "lightest": (#864ccc),
     "light": (#7a42bf),
     "dark": (#a873e9),
     "darkest": (#9d64e1),
   ),
-  "color.label.purple_700": (
+  "color.label.purple700": (
     default: (#6f38b1),
     "lightest": (#7a42bf),
     "light": (#6f38b1),
     "dark": (#b483f0),
     "darkest": (#a873df),
   ),
-  "color.label.seafoam_400": (
+  "color.label.seafoam400": (
     default: (#1b959a),
     "lightest": (#20a3a8),
     "light": (#1b959a),
     "dark": (#1b959a),
     "darkest": (#16878c),
   ),
-  "color.label.seafoam_500": (
+  "color.label.seafoam500": (
     default: (#16878c),
     "lightest": (#1b959a),
     "light": (#16878c),
     "dark": (#20a3a8),
     "darkest": (#1b959a),
   ),
-  "color.label.seafoam_600": (
+  "color.label.seafoam600": (
     default: (#0f797d),
     "lightest": (#16878c),
     "light": (#0f797d),
     "dark": (#23b2b8),
     "darkest": (#20a3a8),
   ),
-  "color.label.seafoam_700": (
+  "color.label.seafoam700": (
     default: (#096c6f),
     "lightest": (#0f797d),
     "light": (#096c6f),
     "dark": (#26c0c7),
     "darkest": (#23b2b8),
   ),
-  "color.label.yellow_400": (
+  "color.label.yellow400": (
     default: (#dfbf00),
     "lightest": (#edcc00),
     "light": (#dfbf00),
     "dark": (#dfbf00),
     "darkest": (#d2b200),
   ),
-  "color.label.yellow_500": (
+  "color.label.yellow500": (
     default: (#d2b200),
     "lightest": (#dfbf00),
     "light": (#d2b200),
     "dark": (#edcc00),
     "darkest": (#dfbf00),
   ),
-  "color.label.yellow_600": (
+  "color.label.yellow600": (
     default: (#c4a600),
     "lightest": (#d2b200),
     "light": (#c4a600),
     "dark": (#fad900),
     "darkest": (#edcc00),
   ),
-  "color.label.yellow_700": (
+  "color.label.yellow700": (
     default: (#b79900),
     "lightest": (#c4a600),
     "light": (#b79900),
@@ -421,13 +420,13 @@ $__token-values: (
   "font.family.clean": (
     default: ("Adobe Clean"),
   ),
-  "font.family.clean_serif": (
+  "font.family.cleanSerif": (
     default: ("Adobe Clean Serif"),
   ),
-  "font.family.clean_han": (
+  "font.family.cleanHan": (
     default: ("Adobe Clean Han"),
   ),
-  "font.family.source_code": (
+  "font.family.sourceCode": (
     default: ("Source Code Pro"),
   ),
   "font.size.50": (

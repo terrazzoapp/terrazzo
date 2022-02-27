@@ -1,13 +1,25 @@
+// This file was auto-generated from tokens.json.
+// DO NOT EDIT!
+
 @use "sass:map";
 
 $__token-values: (
   "color.black": (
     default: (#00193f),
   ),
-  "color.blue": (
+  "color.blue.03": (
+    default: (#1a2354),
+  ),
+  "color.blue.04": (
+    default: (#001585),
+  ),
+  "color.blue.05": (
     default: (#2b3faa),
   ),
-  "color.dark-gray": (
+  "color.blue.06": (
+    default: (#1346bd),
+  ),
+  "color.darkGray": (
     default: (#282a37),
   ),
   "color.green": (
@@ -22,102 +34,111 @@ $__token-values: (
   "color.white": (
     default: (#ffffff),
   ),
-  "gradient.red": (
-    default: (#d0323a, #fd8d4e 100%),
+  "color.code.bg.greenShift": (
+    default: (#2b5eaa),
   ),
-  "typography.heading-1": (
-    default: (regular 500 36px/1 "PP Neue Montreal"),
+  "color.code.gold": (
+    default: (#ffdc2b),
   ),
-  "typography.heading-2": (
-    default: (regular 500 28px/1 "PP Neue Montreal"),
+  "color.code.green": (
+    default: (#79ff6a),
   ),
-  "typography.heading-3": (
-    default: (regular 500 24px/1 "PP Neue Montreal"),
+  "color.code.orange": (
+    default: (#ff6418),
   ),
-  "typography.body": (
-    default: (regular 400 16px/1 "PP Neue Montreal"),
+  "color.code.red": (
+    default: (#f56d65),
   ),
-  "icon.crop": (
-    default: (url('./icon/crop.svg')),
+  "color.code.pink": (
+    default: (#ff5ae2),
   ),
-  "icon.cloud-upload": (
-    default: (url('./icon/cloud-upload.svg')),
+  "color.code.skyBlue": (
+    default: (#59c1ff),
   ),
-  "icon.cloud-download": (
-    default: (url('./icon/cloud-download.svg')),
+  "font.family.ppNeue": (
+    default: ("PP Neue Montreal", system-ui, ui-sans-serif, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif),
   ),
-  "icon.delete": (
-    default: (url('./icon/delete.svg')),
+  "font.family.mono": (
+    default: ("Red Hat Mono", ui-monospace, "SF Mono", Monaco, "Cascadia Mono", "Cascadia Code", Consolas, monospace),
   ),
-  "icon.do-not-2": (
-    default: (url('./icon/do-not-2.svg')),
+  "font.size.01": (
+    default: (8px),
   ),
-  "icon.download-1": (
-    default: (url('./icon/download-1.svg')),
+  "font.size.02": (
+    default: (9px),
   ),
-  "icon.export-2": (
-    default: (url('./icon/export-2.svg')),
+  "font.size.03": (
+    default: (12px),
   ),
-  "icon.export-1": (
-    default: (url('./icon/export-1.svg')),
+  "font.size.04": (
+    default: (14px),
   ),
-  "icon.embed": (
-    default: (url('./icon/embed.svg')),
+  "font.size.05": (
+    default: (18px),
   ),
-  "icon.download-2": (
-    default: (url('./icon/download-2.svg')),
+  "font.size.06": (
+    default: (22px),
   ),
-  "icon.do-not": (
-    default: (url('./icon/do-not.svg')),
+  "font.size.07": (
+    default: (28px),
   ),
-  "icon.minimize": (
-    default: (url('./icon/minimize.svg')),
+  "font.size.08": (
+    default: (32px),
   ),
-  "icon.launch": (
-    default: (url('./icon/launch.svg')),
+  "space.4xs": (
+    default: (1px),
   ),
-  "icon.maximize": (
-    default: (url('./icon/maximize.svg')),
+  "space.3xs": (
+    default: (2px),
   ),
-  "icon.love": (
-    default: (url('./icon/love.svg')),
+  "space.2xs": (
+    default: (4px),
   ),
-  "icon.paperclip": (
-    default: (url('./icon/paperclip.svg')),
+  "space.xs": (
+    default: (8px),
   ),
-  "icon.upload-2": (
-    default: (url('./icon/upload-2.svg')),
+  "space.sm": (
+    default: (12px),
   ),
-  "icon.player-flow": (
-    default: (url('./icon/player-flow.svg')),
+  "space.md": (
+    default: (16px),
   ),
-  "icon.reset": (
-    default: (url('./icon/reset.svg')),
+  "space.lg": (
+    default: (24px),
   ),
-  "icon.upload-1": (
-    default: (url('./icon/upload-1.svg')),
+  "space.xl": (
+    default: (32px),
   ),
-  "icon.trash": (
-    default: (url('./icon/trash.svg')),
+  "space.2xl": (
+    default: (40px),
   ),
-  "icon.refresh": (
-    default: (url('./icon/refresh.svg')),
+  "space.3xl": (
+    default: (48px),
   ),
-  "icon.renew": (
-    default: (url('./icon/renew.svg')),
+  "space.layout.2xs": (
+    default: (16px),
   ),
-  "icon.repeat": (
-    default: (url('./icon/repeat.svg')),
+  "space.layout.xs": (
+    default: (24px),
   ),
-  "distance.near": (
-    default: (0, 8px, 16px, 0, #00001a),
+  "space.layout.sm": (
+    default: (32px),
   ),
-  "distance.med": (
-    default: (0, 16px, 32px, 0, #000026),
+  "space.layout.md": (
+    default: (48px),
   ),
-  "distance.far": (
-    default: (0, 32px, 64px, 0, #000026),
+  "space.layout.lg": (
+    default: (64px),
   ),
+  "space.layout.xl": (
+    default: (96px),
+  ),
+  "space.layout.2xl": (
+    default: (160px),
+  ),
+);
+
+$__token-typography-mixins: (
 );
 
 @function token($tokenName, $modeName: default) {
@@ -125,9 +146,26 @@ $__token-values: (
     @error "No token named \"#{$tokenName}\"";
   }
   $_token: map.get($__token-values, $tokenName);
+  @if map.has-key($_token, "__cobalt-error") {
+    @error map.get($_token, "__cobalt-error");
+  }
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
     @return map.get($_token, default);
+  }
+}
+
+@mixin typography($tokenName, $modeName: default) {
+  @if map.has-key($__token-typography-mixins, $tokenName) == false {
+    @error "No typography mixin named \"#{$tokenName}\"";
+  }
+  $_mixin: map.get($__token-typography-mixins, $tokenName);
+  $_properties: map.get($_mixin, default);
+  @if map.has-key($_mixin, $modeName) {
+    $_properties: map.get($_mixin, $modeName);
+  }
+  @each $_property, $_value in $_properties {
+    #{$_property}: #{$_value};
   }
 }

@@ -5,11 +5,11 @@ import type { ParsedCubicBezierToken } from '../../@types/token';
  * https://design-tokens.github.io/community-group/format/#cubic-bezier
  *
  * {
- *   "type": "cubic-bezier",
- *   "value": [0.4, 0, 0.6, 1]
+ *   "$type": "cubicBezier",
+ *   "$value": [0.4, 0, 0.6, 1]
  * }
  */
-export function normalizeCubicBezierValue(value: unknown): ParsedCubicBezierToken['value'] {
+export function normalizeCubicBezierValue(value: unknown): ParsedCubicBezierToken['$value'] {
   if (!value) throw new Error('missing value');
   if (!Array.isArray(value) || value.length !== 4 || value.some((v) => typeof v !== 'number')) throw new Error(`expected [𝑥1, 𝑦1, 𝑥2, 𝑦2], received ${value}`);
   return [

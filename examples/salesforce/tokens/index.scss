@@ -1,971 +1,970 @@
-// Salesforce Lightning
 // This file was auto-generated from tokens.json.
 // DO NOT EDIT!
 
 @use "sass:map";
 
 $__token-values: (
-  "palette.blue_10": (
+  "palette.blue10": (
     default: (#001639),
   ),
-  "palette.blue_15": (
+  "palette.blue15": (
     default: (#03234d),
   ),
-  "palette.blue_20": (
+  "palette.blue20": (
     default: (#032d60),
   ),
-  "palette.blue_30": (
+  "palette.blue30": (
     default: (#014486),
   ),
-  "palette.blue_40": (
+  "palette.blue40": (
     default: (#0b5cab),
   ),
-  "palette.blue_50": (
+  "palette.blue50": (
     default: (#0176d3),
   ),
-  "palette.blue_60": (
+  "palette.blue60": (
     default: (#1b96ff),
   ),
-  "palette.blue_65": (
+  "palette.blue65": (
     default: (#57a3fd),
   ),
-  "palette.blue_70": (
+  "palette.blue70": (
     default: (#78b0fd),
   ),
-  "palette.blue_80": (
+  "palette.blue80": (
     default: (#aacbff),
   ),
-  "palette.blue_90": (
+  "palette.blue90": (
     default: (#d8e6fe),
   ),
-  "palette.blue_95": (
+  "palette.blue95": (
     default: (#eef4ff),
   ),
-  "palette.cloud_blue_10": (
+  "palette.cloudBlue10": (
     default: (#001a28),
   ),
-  "palette.cloud_blue_15": (
+  "palette.cloudBlue15": (
     default: (#0a2636),
   ),
-  "palette.cloud_blue_20": (
+  "palette.cloudBlue20": (
     default: (#023248),
   ),
-  "palette.cloud_blue_30": (
+  "palette.cloudBlue30": (
     default: (#084968),
   ),
-  "palette.cloud_blue_40": (
+  "palette.cloudBlue40": (
     default: (#05628a),
   ),
-  "palette.cloud_blue_50": (
+  "palette.cloudBlue50": (
     default: (#107cad),
   ),
-  "palette.cloud_blue_60": (
+  "palette.cloudBlue60": (
     default: (#0d9dda),
   ),
-  "palette.cloud_blue_65": (
+  "palette.cloudBlue65": (
     default: (#08abed),
   ),
-  "palette.cloud_blue_70": (
+  "palette.cloudBlue70": (
     default: (#1ab9ff),
   ),
-  "palette.cloud_blue_80": (
+  "palette.cloudBlue80": (
     default: (#90d0fe),
   ),
-  "palette.cloud_blue_90": (
+  "palette.cloudBlue90": (
     default: (#cfe9fe),
   ),
-  "palette.cloud_blue_95": (
+  "palette.cloudBlue95": (
     default: (#eaf5fe),
   ),
-  "palette.green_10": (
+  "palette.green10": (
     default: (#071b12),
   ),
-  "palette.green_15": (
+  "palette.green15": (
     default: (#0c2912),
   ),
-  "palette.green_20": (
+  "palette.green20": (
     default: (#0e3522),
   ),
-  "palette.green_30": (
+  "palette.green30": (
     default: (#194e31),
   ),
-  "palette.green_40": (
+  "palette.green40": (
     default: (#22683e),
   ),
-  "palette.green_50": (
+  "palette.green50": (
     default: (#2e844a),
   ),
-  "palette.green_60": (
+  "palette.green60": (
     default: (#3ba755),
   ),
-  "palette.green_65": (
+  "palette.green65": (
     default: (#41b658),
   ),
-  "palette.green_70": (
+  "palette.green70": (
     default: (#45c65a),
   ),
-  "palette.green_80": (
+  "palette.green80": (
     default: (#91db8b),
   ),
-  "palette.green_90": (
+  "palette.green90": (
     default: (#cdefc4),
   ),
-  "palette.green_95": (
+  "palette.green95": (
     default: (#ebf7e6),
   ),
-  "palette.hot_orange_10": (
+  "palette.hotOrange10": (
     default: (#281202),
   ),
-  "palette.hot_orange_15": (
+  "palette.hotOrange15": (
     default: (#421604),
   ),
-  "palette.hot_orange_20": (
+  "palette.hotOrange20": (
     default: (#541d01),
   ),
-  "palette.hot_orange_30": (
+  "palette.hotOrange30": (
     default: (#7e2600),
   ),
-  "palette.hot_orange_40": (
+  "palette.hotOrange40": (
     default: (#aa3001),
   ),
-  "palette.hot_orange_50": (
+  "palette.hotOrange50": (
     default: (#d83a00),
   ),
-  "palette.hot_orange_60": (
+  "palette.hotOrange60": (
     default: (#ff5d2d),
   ),
-  "palette.hot_orange_65": (
+  "palette.hotOrange65": (
     default: (#ff784f),
   ),
-  "palette.hot_orange_70": (
+  "palette.hotOrange70": (
     default: (#ff906e),
   ),
-  "palette.hot_orange_80": (
+  "palette.hotOrange80": (
     default: (#feb9a5),
   ),
-  "palette.hot_orange_90": (
+  "palette.hotOrange90": (
     default: (#ffded5),
   ),
-  "palette.hot_orange_95": (
+  "palette.hotOrange95": (
     default: (#fef1ed),
   ),
-  "palette.indigo_10": (
+  "palette.indigo10": (
     default: (#200647),
   ),
-  "palette.indigo_15": (
+  "palette.indigo15": (
     default: (#1f0974),
   ),
-  "palette.indigo_20": (
+  "palette.indigo20": (
     default: (#260f8f),
   ),
-  "palette.indigo_30": (
+  "palette.indigo30": (
     default: (#2f2cb7),
   ),
-  "palette.indigo_40": (
+  "palette.indigo40": (
     default: (#3a49da),
   ),
-  "palette.indigo_50": (
+  "palette.indigo50": (
     default: (#5867e8),
   ),
-  "palette.indigo_60": (
+  "palette.indigo60": (
     default: (#7f8ced),
   ),
-  "palette.indigo_65": (
+  "palette.indigo65": (
     default: (#8e9bef),
   ),
-  "palette.indigo_70": (
+  "palette.indigo70": (
     default: (#9ea9f1),
   ),
-  "palette.indigo_80": (
+  "palette.indigo80": (
     default: (#bec7f6),
   ),
-  "palette.indigo_90": (
+  "palette.indigo90": (
     default: (#e0e5f8),
   ),
-  "palette.indigo_95": (
+  "palette.indigo95": (
     default: (#f1f3fb),
   ),
-  "palette.neutral_10": (
+  "palette.neutral10": (
     default: (#181818),
   ),
-  "palette.neutral_20": (
+  "palette.neutral20": (
     default: (#2e2e2e),
   ),
-  "palette.neutral_30": (
+  "palette.neutral30": (
     default: (#444444),
   ),
-  "palette.neutral_40": (
+  "palette.neutral40": (
     default: (#5c5c5c),
   ),
-  "palette.neutral_50": (
+  "palette.neutral50": (
     default: (#747474),
   ),
-  "palette.neutral_60": (
+  "palette.neutral60": (
     default: (#939393),
   ),
-  "palette.neutral_70": (
+  "palette.neutral70": (
     default: (#aeaeae),
   ),
-  "palette.neutral_80": (
+  "palette.neutral80": (
     default: (#c9c9c9),
   ),
-  "palette.neutral_90": (
+  "palette.neutral90": (
     default: (#e5e5e5),
   ),
-  "palette.neutral_95": (
+  "palette.neutral95": (
     default: (#f3f3f3),
   ),
-  "palette.neutral_100": (
+  "palette.neutral100": (
     default: (#ffffff),
   ),
-  "palette.orange_10": (
+  "palette.orange10": (
     default: (#201600),
   ),
-  "palette.orange_15": (
+  "palette.orange15": (
     default: (#371e03),
   ),
-  "palette.orange_20": (
+  "palette.orange20": (
     default: (#3e2b02),
   ),
-  "palette.orange_30": (
+  "palette.orange30": (
     default: (#5f3e02),
   ),
-  "palette.orange_40": (
+  "palette.orange40": (
     default: (#825101),
   ),
-  "palette.orange_50": (
+  "palette.orange50": (
     default: (#a96404),
   ),
-  "palette.orange_60": (
+  "palette.orange60": (
     default: (#dd7a01),
   ),
-  "palette.orange_65": (
+  "palette.orange65": (
     default: (#f38303),
   ),
-  "palette.orange_70": (
+  "palette.orange70": (
     default: (#fe9339),
   ),
-  "palette.orange_80": (
+  "palette.orange80": (
     default: (#ffba90),
   ),
-  "palette.orange_90": (
+  "palette.orange90": (
     default: (#fedfd0),
   ),
-  "palette.orange_95": (
+  "palette.orange95": (
     default: (#fff1ea),
   ),
-  "palette.pink_10": (
+  "palette.pink10": (
     default: (#370114),
   ),
-  "palette.pink_15": (
+  "palette.pink15": (
     default: (#4b0620),
   ),
-  "palette.pink_20": (
+  "palette.pink20": (
     default: (#61022a),
   ),
-  "palette.pink_30": (
+  "palette.pink30": (
     default: (#8a033e),
   ),
-  "palette.pink_40": (
+  "palette.pink40": (
     default: (#b60554),
   ),
-  "palette.pink_50": (
+  "palette.pink50": (
     default: (#e3066a),
   ),
-  "palette.pink_60": (
+  "palette.pink60": (
     default: (#ff538a),
   ),
-  "palette.pink_65": (
+  "palette.pink65": (
     default: (#fe7298),
   ),
-  "palette.pink_70": (
+  "palette.pink70": (
     default: (#fe8aa7),
   ),
-  "palette.pink_80": (
+  "palette.pink80": (
     default: (#fdb6c5),
   ),
-  "palette.pink_90": (
+  "palette.pink90": (
     default: (#fddde3),
   ),
-  "palette.pink_95": (
+  "palette.pink95": (
     default: (#fef0f3),
   ),
-  "palette.purple_10": (
+  "palette.purple10": (
     default: (#240643),
   ),
-  "palette.purple_15": (
+  "palette.purple15": (
     default: (#300b60),
   ),
-  "palette.purple_20": (
+  "palette.purple20": (
     default: (#401075),
   ),
-  "palette.purple_30": (
+  "palette.purple30": (
     default: (#5a1ba9),
   ),
-  "palette.purple_40": (
+  "palette.purple40": (
     default: (#7526e3),
   ),
-  "palette.purple_50": (
+  "palette.purple50": (
     default: (#9050e9),
   ),
-  "palette.purple_60": (
+  "palette.purple60": (
     default: (#ad7bee),
   ),
-  "palette.purple_65": (
+  "palette.purple65": (
     default: (#b78def),
   ),
-  "palette.purple_70": (
+  "palette.purple70": (
     default: (#c29ef1),
   ),
-  "palette.purple_80": (
+  "palette.purple80": (
     default: (#d78ff5),
   ),
-  "palette.purple_90": (
+  "palette.purple90": (
     default: (#ece1f9),
   ),
-  "palette.purple_95": (
+  "palette.purple95": (
     default: (#f6f2fb),
   ),
-  "palette.red_10": (
+  "palette.red10": (
     default: (#300c01),
   ),
-  "palette.red_15": (
+  "palette.red15": (
     default: (#4a0c04),
   ),
-  "palette.red_20": (
+  "palette.red20": (
     default: (#640103),
   ),
-  "palette.red_30": (
+  "palette.red30": (
     default: (#8e030f),
   ),
-  "palette.red_40": (
+  "palette.red40": (
     default: (#ba0517),
   ),
-  "palette.red_50": (
+  "palette.red50": (
     default: (#ea001e),
   ),
-  "palette.red_60": (
+  "palette.red60": (
     default: (#fe5c4c),
   ),
-  "palette.red_65": (
+  "palette.red65": (
     default: (#fe7765),
   ),
-  "palette.red_70": (
+  "palette.red70": (
     default: (#fe8f7d),
   ),
-  "palette.red_80": (
+  "palette.red80": (
     default: (#feb8ab),
   ),
-  "palette.red_90": (
+  "palette.red90": (
     default: (#feded8),
   ),
-  "palette.red_95": (
+  "palette.red95": (
     default: (#fef1ee),
   ),
-  "palette.teal_10": (
+  "palette.teal10": (
     default: (#071b12),
   ),
-  "palette.teal_15": (
+  "palette.teal15": (
     default: (#072825),
   ),
-  "palette.teal_20": (
+  "palette.teal20": (
     default: (#023434),
   ),
-  "palette.teal_30": (
+  "palette.teal30": (
     default: (#024d4c),
   ),
-  "palette.teal_40": (
+  "palette.teal40": (
     default: (#056764),
   ),
-  "palette.teal_50": (
+  "palette.teal50": (
     default: (#0b827c),
   ),
-  "palette.teal_60": (
+  "palette.teal60": (
     default: (#06a59a),
   ),
-  "palette.teal_65": (
+  "palette.teal65": (
     default: (#03b4a7),
   ),
-  "palette.teal_70": (
+  "palette.teal70": (
     default: (#01c3b3),
   ),
-  "palette.teal_80": (
+  "palette.teal80": (
     default: (#04e1cb),
   ),
-  "palette.teal_90": (
+  "palette.teal90": (
     default: (#acf3e4),
   ),
-  "palette.teal_95": (
+  "palette.teal95": (
     default: (#def9f3),
   ),
-  "palette.violet_10": (
+  "palette.violet10": (
     default: (#2e0039),
   ),
-  "palette.violet_15": (
+  "palette.violet15": (
     default: (#3d0157),
   ),
-  "palette.violet_20": (
+  "palette.violet20": (
     default: (#520066),
   ),
-  "palette.violet_30": (
+  "palette.violet30": (
     default: (#730394),
   ),
-  "palette.violet_40": (
+  "palette.violet40": (
     default: (#9602c7),
   ),
-  "palette.violet_50": (
+  "palette.violet50": (
     default: (#ba01ff),
   ),
-  "palette.violet_60": (
+  "palette.violet60": (
     default: (#cb65ff),
   ),
-  "palette.violet_65": (
+  "palette.violet65": (
     default: (#d17dfe),
   ),
-  "palette.violet_70": (
+  "palette.violet70": (
     default: (#d892fe),
   ),
-  "palette.violet_80": (
+  "palette.violet80": (
     default: (#e5b9fe),
   ),
-  "palette.violet_90": (
+  "palette.violet90": (
     default: (#f2defe),
   ),
-  "palette.violet_95": (
+  "palette.violet95": (
     default: (#f9f0ff),
   ),
-  "palette.yellow_10": (
+  "palette.yellow10": (
     default: (#281202),
   ),
-  "palette.yellow_15": (
+  "palette.yellow15": (
     default: (#2e2204),
   ),
-  "palette.yellow_20": (
+  "palette.yellow20": (
     default: (#4f2100),
   ),
-  "palette.yellow_30": (
+  "palette.yellow30": (
     default: (#6f3400),
   ),
-  "palette.yellow_40": (
+  "palette.yellow40": (
     default: (#8c4b02),
   ),
-  "palette.yellow_50": (
+  "palette.yellow50": (
     default: (#a86403),
   ),
-  "palette.yellow_60": (
+  "palette.yellow60": (
     default: (#ca8501),
   ),
-  "palette.yellow_65": (
+  "palette.yellow65": (
     default: (#d79304),
   ),
-  "palette.yellow_70": (
+  "palette.yellow70": (
     default: (#e4a201),
   ),
-  "palette.yellow_80": (
+  "palette.yellow80": (
     default: (#fcc003),
   ),
-  "palette.yellow_90": (
+  "palette.yellow90": (
     default: (#f9e3b6),
   ),
-  "palette.yellow_95": (
+  "palette.yellow95": (
     default: (#fbf3e0),
   ),
   "color.background": (
     default: (#f3f2f2),
   ),
-  "color.background_actionbar_icon_utility": (
+  "color.backgroundActionbarIconUtility": (
     default: (#706e6b),
   ),
-  "color.background_alt": (
+  "color.backgroundAlt": (
     default: (#ffffff),
   ),
-  "color.background_alt_2": (
+  "color.backgroundAlt2": (
     default: (#f3f2f2),
   ),
-  "color.background_alt_inverse": (
+  "color.backgroundAltInverse": (
     default: (#032d60),
   ),
-  "color.background_anchor": (
+  "color.backgroundAnchor": (
     default: (#f3f2f2),
   ),
-  "color.background_backdrop": (
+  "color.backgroundBackdrop": (
     default: (#ffffffbf),
   ),
-  "color.background_backdrop_tint": (
+  "color.backgroundBackdropTint": (
     default: (#fafaf9),
   ),
-  "color.background_browser": (
+  "color.backgroundBrowser": (
     default: (#706e6b),
   ),
-  "color.background_customer": (
+  "color.backgroundCustomer": (
     default: (#fe9339),
   ),
-  "color.background_dark": (
+  "color.backgroundDark": (
     default: (#ecebea),
   ),
-  "color.background_destructive": (
+  "color.backgroundDestructive": (
     default: (#ba0517),
   ),
-  "color.background_destructive_active": (
+  "color.backgroundDestructiveActive": (
     default: (#8e030f),
   ),
-  "color.background_destructive_hover": (
+  "color.backgroundDestructiveHover": (
     default: (#ba0517),
   ),
-  "color.background_error": (
+  "color.backgroundError": (
     default: (#fe5c4c),
   ),
-  "color.background_error_dark": (
+  "color.backgroundErrorDark": (
     default: (#ba0517),
   ),
-  "color.background_highlight": (
+  "color.backgroundHighlight": (
     default: (#faffbd),
   ),
-  "color.background_highlight_search": (
+  "color.backgroundHighlightSearch": (
     default: (#fff03f),
   ),
-  "color.background_image_overlay": (
+  "color.backgroundImageOverlay": (
     default: (#000099),
   ),
-  "color.background_info": (
+  "color.backgroundInfo": (
     default: (#706e6b),
   ),
-  "color.background_input_checkbox_disabled": (
+  "color.backgroundInputCheckboxDisabled": (
     default: (#dddbda),
   ),
-  "color.background_input_disabled": (
+  "color.backgroundInputDisabled": (
     default: (#ecebea),
   ),
-  "color.background_inverse": (
+  "color.backgroundInverse": (
     default: (#001639),
   ),
-  "color.background_inverse_light": (
+  "color.backgroundInverseLight": (
     default: (#032d60),
   ),
-  "color.background_light": (
+  "color.backgroundLight": (
     default: (#ffffff),
   ),
-  "color.background_notification_new": (
+  "color.backgroundNotificationNew": (
     default: (#f3f2f2),
   ),
-  "color.background_offline": (
+  "color.backgroundOffline": (
     default: (#514f4d),
   ),
-  "color.background_payload": (
+  "color.backgroundPayload": (
     default: (#fafaf9),
   ),
-  "color.background_post": (
+  "color.backgroundPost": (
     default: (#f3f2f2),
   ),
-  "color.background_primary": (
+  "color.backgroundPrimary": (
     default: (#f3f2f2),
   ),
-  "color.background_row_active": (
+  "color.backgroundRowActive": (
     default: (#ecebea),
   ),
-  "color.background_row_hover": (
+  "color.backgroundRowHover": (
     default: (#f3f2f2),
   ),
-  "color.background_row_new": (
+  "color.backgroundRowNew": (
     default: (#cdefc4),
   ),
-  "color.background_row_selected": (
+  "color.backgroundRowSelected": (
     default: (#ecebea),
   ),
-  "color.background_scrollbar": (
+  "color.backgroundScrollbar": (
     default: (#ecebea),
   ),
-  "color.background_scrollbar_track": (
+  "color.backgroundScrollbarTrack": (
     default: (#c9c7c5),
   ),
-  "color.background_secondary": (
+  "color.backgroundSecondary": (
     default: (#ffffff),
   ),
-  "color.background_selection": (
+  "color.backgroundSelection": (
     default: (#d8e6fe),
   ),
-  "color.background_shade": (
+  "color.backgroundShade": (
     default: (#ecebea),
   ),
-  "color.background_shade_dark": (
+  "color.backgroundShadeDark": (
     default: (#dddbda),
   ),
-  "color.background_spinner_dot": (
+  "color.backgroundSpinnerDot": (
     default: (#b0adab),
   ),
-  "color.background_stencil": (
+  "color.backgroundStencil": (
     default: (#f3f2f2),
   ),
-  "color.background_stencil_alt": (
+  "color.backgroundStencilAlt": (
     default: (#ecebea),
   ),
-  "color.background_success": (
+  "color.backgroundSuccess": (
     default: (#45c65a),
   ),
-  "color.background_success_dark": (
+  "color.backgroundSuccessDark": (
     default: (#2e844a),
   ),
-  "color.background_success_darker": (
+  "color.backgroundSuccessDarker": (
     default: (#194e31),
   ),
-  "color.background_temp_modal": (
+  "color.backgroundTempModal": (
     default: (#969492),
   ),
-  "color.background_temp_modal_tint": (
+  "color.backgroundTempModalTint": (
     default: (#8070799),
   ),
-  "color.background_toast": (
+  "color.backgroundToast": (
     default: (#706e6b),
   ),
-  "color.background_toggle": (
+  "color.backgroundToggle": (
     default: (#b0adab),
   ),
-  "color.background_toggle_disabled": (
+  "color.backgroundToggleDisabled": (
     default: (#b0adab),
   ),
-  "color.background_toggle_hover": (
+  "color.backgroundToggleHover": (
     default: (#969492),
   ),
-  "color.background_utility_bar_hover": (
+  "color.backgroundUtilityBarHover": (
     default: (#ecebea),
   ),
-  "color.background_warning": (
+  "color.backgroundWarning": (
     default: (#fe9339),
   ),
-  "color.background_warning_dark": (
+  "color.backgroundWarningDark": (
     default: (#fe9339),
   ),
   "color.border": (
     default: (#dddbda),
   ),
-  "color.border_brand": (
+  "color.borderBrand": (
     default: (#1b96ff),
   ),
-  "color.border_brand_dark": (
+  "color.borderBrandDark": (
     default: (#014486),
   ),
-  "color.border_button_default": (
+  "color.borderButtonDefault": (
     default: (#dddbda),
   ),
-  "color.border_button_focus_inverse": (
+  "color.borderButtonFocusInverse": (
     default: (#ecebea),
   ),
-  "color.border_customer": (
+  "color.borderCustomer": (
     default: (#fe9339),
   ),
-  "color.border_destructive": (
+  "color.borderDestructive": (
     default: (#ea001e),
   ),
-  "color.border_destructive_active": (
+  "color.borderDestructiveActive": (
     default: (#8e030f),
   ),
-  "color.border_destructive_hover": (
+  "color.borderDestructiveHover": (
     default: (#ba0517),
   ),
-  "color.border_error": (
+  "color.borderError": (
     default: (#ea001e),
   ),
-  "color.border_error_alt": (
+  "color.borderErrorAlt": (
     default: (#fe8f7d),
   ),
-  "color.border_error_dark": (
+  "color.borderErrorDark": (
     default: (#fe8f7d),
   ),
-  "color.border_info": (
+  "color.borderInfo": (
     default: (#706e6b),
   ),
-  "color.border_input": (
+  "color.borderInput": (
     default: (#dddbda),
   ),
-  "color.border_input_disabled": (
+  "color.borderInputDisabled": (
     default: (#c9c7c5),
   ),
-  "color.border_inverse": (
+  "color.borderInverse": (
     default: (#001639),
   ),
-  "color.border_link_focus_inverse": (
+  "color.borderLinkFocusInverse": (
     default: (#ecebea),
   ),
-  "color.border_offline": (
+  "color.borderOffline": (
     default: (#514f4d),
   ),
-  "color.border_primary": (
+  "color.borderPrimary": (
     default: (#dddbda),
   ),
-  "color.border_reminder": (
+  "color.borderReminder": (
     default: (#ecebea),
   ),
-  "color.border_row_selected": (
+  "color.borderRowSelected": (
     default: (#0176d3),
   ),
-  "color.border_row_selected_hover": (
+  "color.borderRowSelectedHover": (
     default: (#1b96ff),
   ),
-  "color.border_selection": (
+  "color.borderSelection": (
     default: (#0176d3),
   ),
-  "color.border_selection_active": (
+  "color.borderSelectionActive": (
     default: (#fafaf9),
   ),
-  "color.border_selection_hover": (
+  "color.borderSelectionHover": (
     default: (#1b96ff),
   ),
-  "color.border_separator": (
+  "color.borderSeparator": (
     default: (#fafaf9),
   ),
-  "color.border_separator_alt": (
+  "color.borderSeparatorAlt": (
     default: (#dddbda),
   ),
-  "color.border_separator_alt_2": (
+  "color.borderSeparatorAlt2": (
     default: (#c9c7c5),
   ),
-  "color.border_separator_inverse": (
+  "color.borderSeparatorInverse": (
     default: (#032d60),
   ),
-  "color.border_success": (
+  "color.borderSuccess": (
     default: (#91db8b),
   ),
-  "color.border_success_dark": (
+  "color.borderSuccessDark": (
     default: (#2e844a),
   ),
-  "color.border_warning": (
+  "color.borderWarning": (
     default: (#fe9339),
   ),
   "color.brand": (
     default: (#1b96ff),
   ),
-  "color.brand_dark": (
+  "color.brandDark": (
     default: (#0176d3),
   ),
-  "color.brand_darker": (
+  "color.brandDarker": (
     default: (#014486),
   ),
-  "color.contrast_primary": (
+  "color.contrastPrimary": (
     default: (#f3f2f2),
   ),
-  "color.contrast_secondary": (
+  "color.contrastSecondary": (
     default: (#f3f2f2),
   ),
-  "color.gray_1": (
+  "color.gray1": (
     default: (#ffffff),
   ),
-  "color.gray_2": (
+  "color.gray2": (
     default: (#fafaf9),
   ),
-  "color.gray_3": (
+  "color.gray3": (
     default: (#f3f2f2),
   ),
-  "color.gray_4": (
+  "color.gray4": (
     default: (#ecebea),
   ),
-  "color.gray_5": (
+  "color.gray5": (
     default: (#dddbda),
   ),
-  "color.gray_6": (
+  "color.gray6": (
     default: (#c9c7c5),
   ),
-  "color.gray_7": (
+  "color.gray7": (
     default: (#b0adab),
   ),
-  "color.gray_8": (
+  "color.gray8": (
     default: (#969492),
   ),
-  "color.gray_9": (
+  "color.gray9": (
     default: (#706e6b),
   ),
-  "color.gray_10": (
+  "color.gray10": (
     default: (#514f4d),
   ),
-  "color.gray_11": (
+  "color.gray11": (
     default: (#3e3e3c),
   ),
-  "color.gray_12": (
+  "color.gray12": (
     default: (#2b2826),
   ),
-  "color.gray_13": (
+  "color.gray13": (
     default: (#080707),
   ),
-  "color.picker_slider_thumb_color_background": (
+  "color.pickerSliderThumbColorBackground": (
     default: (#f3f2f2),
   ),
-  "color.stroke_brand": (
+  "color.strokeBrand": (
     default: (#0176d3),
   ),
-  "color.stroke_brand_active": (
+  "color.strokeBrandActive": (
     default: (#032d60),
   ),
-  "color.stroke_brand_hover": (
+  "color.strokeBrandHover": (
     default: (#0176d3),
   ),
-  "color.stroke_disabled": (
+  "color.strokeDisabled": (
     default: (#ecebea),
   ),
-  "color.stroke_header_button": (
+  "color.strokeHeaderButton": (
     default: (#b0adab),
   ),
-  "color.text_action_label": (
+  "color.textActionLabel": (
     default: (#514f4d),
   ),
-  "color.text_action_label_active": (
+  "color.textActionLabelActive": (
     default: (#080707),
   ),
-  "color.text_brand": (
+  "color.textBrand": (
     default: (#1b96ff),
   ),
-  "color.text_brand_primary": (
+  "color.textBrandPrimary": (
     default: (#ffffff),
   ),
-  "color.text_button_default_disabled": (
+  "color.textButtonDefaultDisabled": (
     default: (#dddbda),
   ),
-  "color.text_button_default_hint": (
+  "color.textButtonDefaultHint": (
     default: (#b0adab),
   ),
-  "color.text_button_inverse": (
+  "color.textButtonInverse": (
     default: (#ecebea),
   ),
-  "color.text_customer": (
+  "color.textCustomer": (
     default: (#fe9339),
   ),
-  "color.text_default": (
+  "color.textDefault": (
     default: (#080707),
   ),
-  "color.text_destructive": (
+  "color.textDestructive": (
     default: (#ea001e),
   ),
-  "color.text_destructive_hover": (
+  "color.textDestructiveHover": (
     default: (#ba0517),
   ),
-  "color.text_error": (
+  "color.textError": (
     default: (#ea001e),
   ),
-  "color.text_icon_default": (
+  "color.textIconDefault": (
     default: (#706e6b),
   ),
-  "color.text_icon_default_disabled": (
+  "color.textIconDefaultDisabled": (
     default: (#dddbda),
   ),
-  "color.text_icon_default_hint": (
+  "color.textIconDefaultHint": (
     default: (#b0adab),
   ),
-  "color.text_icon_default_hint_borderless": (
+  "color.textIconDefaultHintBorderless": (
     default: (#ecebea),
   ),
-  "color.text_icon_inverse": (
+  "color.textIconInverse": (
     default: (#ffffff),
   ),
-  "color.text_icon_inverse_active": (
+  "color.textIconInverseActive": (
     default: (#ffffff),
   ),
-  "color.text_icon_inverse_hover": (
+  "color.textIconInverseHover": (
     default: (#ffffff),
   ),
-  "color.text_icon_utility": (
+  "color.textIconUtility": (
     default: (#b0adab),
   ),
-  "color.text_input_disabled": (
+  "color.textInputDisabled": (
     default: (#514f4d),
   ),
-  "color.text_input_icon": (
+  "color.textInputIcon": (
     default: (#b0adab),
   ),
-  "color.text_inverse": (
+  "color.textInverse": (
     default: (#ffffff),
   ),
-  "color.text_inverse_active": (
+  "color.textInverseActive": (
     default: (#1b96ff),
   ),
-  "color.text_inverse_hover": (
+  "color.textInverseHover": (
     default: (#b0adab),
   ),
-  "color.text_inverse_weak": (
+  "color.textInverseWeak": (
     default: (#b0adab),
   ),
-  "color.text_label": (
+  "color.textLabel": (
     default: (#514f4d),
   ),
-  "color.text_link": (
+  "color.textLink": (
     default: (#0176d3),
   ),
-  "color.text_link_active": (
+  "color.textLinkActive": (
     default: (#032d60),
   ),
-  "color.text_link_disabled": (
+  "color.textLinkDisabled": (
     default: (#032d60),
   ),
-  "color.text_link_focus": (
+  "color.textLinkFocus": (
     default: (#014486),
   ),
-  "color.text_link_hover": (
+  "color.textLinkHover": (
     default: (#014486),
   ),
-  "color.text_link_inverse": (
+  "color.textLinkInverse": (
     default: (#ffffff),
   ),
-  "color.text_link_inverse_active": (
+  "color.textLinkInverseActive": (
     default: (#ffffff80),
   ),
-  "color.text_link_inverse_disabled": (
+  "color.textLinkInverseDisabled": (
     default: (#ffffff26),
   ),
-  "color.text_link_inverse_hover": (
+  "color.textLinkInverseHover": (
     default: (#ffffffbf),
   ),
-  "color.text_modal_button": (
+  "color.textModalButton": (
     default: (#514f4d),
   ),
-  "color.text_placeholder": (
+  "color.textPlaceholder": (
     default: (#706e6b),
   ),
-  "color.text_placeholder_inverse": (
+  "color.textPlaceholderInverse": (
     default: (#ecebea),
   ),
-  "color.text_required": (
+  "color.textRequired": (
     default: (#ea001e),
   ),
-  "color.text_secondary": (
+  "color.textSecondary": (
     default: (#514f4d),
   ),
-  "color.text_stage_left": (
+  "color.textStageLeft": (
     default: (#ecebea),
   ),
-  "color.text_success": (
+  "color.textSuccess": (
     default: (#2e844a),
   ),
-  "color.text_success_inverse": (
+  "color.textSuccessInverse": (
     default: (#45c65a),
   ),
-  "color.text_tab_label": (
+  "color.textTabLabel": (
     default: (#2b2826),
   ),
-  "color.text_tab_label_disabled": (
+  "color.textTabLabelDisabled": (
     default: (#ecebea),
   ),
-  "color.text_tertiary": (
+  "color.textTertiary": (
     default: (#969492),
   ),
-  "color.text_toast": (
+  "color.textToast": (
     default: (#ecebea),
   ),
-  "color.text_toggle_disabled": (
+  "color.textToggleDisabled": (
     default: (#dddbda),
   ),
-  "color.text_warning": (
+  "color.textWarning": (
     default: (#fe9339),
   ),
-  "color.text_warning_alt": (
+  "color.textWarningAlt": (
     default: (#8c4b02),
   ),
-  "color.text_weak": (
+  "color.textWeak": (
     default: (#514f4d),
   ),
-  "icon.size.xxx_small": (
+  "icon.size.xxxSmall": (
     default: (3rem),
   ),
-  "icon.size.xx_small": (
+  "icon.size.xxSmall": (
     default: (6rem),
   ),
-  "icon.size.x_small": (
+  "icon.size.xSmall": (
     default: (12rem),
   ),
   "icon.size.small": (
@@ -977,10 +976,10 @@ $__token-values: (
   "icon.size.large": (
     default: (25rem),
   ),
-  "icon.size.x_large": (
+  "icon.size.xLarge": (
     default: (40rem),
   ),
-  "icon.size.xx_large": (
+  "icon.size.xxLarge": (
     default: (60rem),
   ),
   "font.family.base": (
@@ -1025,25 +1024,25 @@ $__token-values: (
   "font.size.11": (
     default: (2.625rem),
   ),
-  "font.line_height.heading": (
+  "font.lineHeight.heading": (
     default: (1.25em),
   ),
-  "font.line_height.text": (
+  "font.lineHeight.text": (
     default: (1.5em),
   ),
-  "font.line_height.reset": (
+  "font.lineHeight.reset": (
     default: (1em),
   ),
   "space.none": (
     default: (0),
   ),
-  "space.xxx_small": (
+  "space.xxxSmall": (
     default: (0.125rem),
   ),
-  "space.xx_small": (
+  "space.xxSmall": (
     default: (0.25rem),
   ),
-  "space.x_small": (
+  "space.xSmall": (
     default: (0.5rem),
   ),
   "space.small": (
@@ -1055,10 +1054,10 @@ $__token-values: (
   "space.large": (
     default: (1.5rem),
   ),
-  "space.x_large": (
+  "space.xLarge": (
     default: (2rem),
   ),
-  "space.xx_large": (
+  "space.xxLarge": (
     default: (3rem),
   ),
 );

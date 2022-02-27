@@ -5,8 +5,7 @@ import { normalizeFontValue } from './tokens/font.js';
 import { normalizeDurationValue } from './tokens/duration.js';
 import { normalizeDimensionValue } from './tokens/dimension.js';
 import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
-import { normalizeFileValue } from './tokens/file.js';
-import { normalizeURLValue } from './tokens/url.js';
+import { normalizeLinkValue } from './tokens/link.js';
 import { normalizeShadowValue } from './tokens/shadow.js';
 import { normalizeGradientValue } from './tokens/gradient.js';
 import { normalizeTypographyValue } from './tokens/typography.js';
@@ -23,6 +22,8 @@ export interface ParseResult {
 
 const ALIAS_RE = /^\{([^}]+)\}$/;
 
+const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$extensions']);
+
 export function parse(schema: Group): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
@@ -34,24 +35,23 @@ export function parse(schema: Group): ParseResult {
   }
 
   interface InheritedGroup {
-    type?: TokenType;
-    requiredModes: string[];
+    $type?: TokenType;
+    $extensions: {
+      requiredModes: string[];
+    };
   }
 
   // 1. collect tokens
-  if (schema.metadata && isObj(schema.metadata)) {
-    result.result.metadata = schema.metadata;
-  }
   const tokens: Record<string, ParsedToken> = {};
-  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = { requiredModes: [] }): void {
+  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = { $extensions: { requiredModes: [] } }): void {
     if (!node || !isObj(node)) return;
     for (const [k, v] of Object.entries(node)) {
       if (!v || !isObj(v)) {
         errors.push(`${k}: unexpected token format "${v}"`);
         continue;
       }
-      if (k.includes('.') || k.includes('#')) {
-        errors.push(`${k}: invalid name. Names can’t include "." or "#".`);
+      if (k.includes('.') || k.includes('{') || k.includes('}') || k.includes('#')) {
+        errors.push(`${k}: IDs can’t include any of the following: .{}#`);
         continue;
       }
       if (!Object.keys(v).length) {
@@ -66,45 +66,80 @@ export function parse(schema: Group): ParseResult {
           ...(group || {}),
         },
         id: chain.concat(k).join('.'),
-        type: v.type || group.type,
+        $type: v.$type || group.$type,
         ...v,
       } as ParsedToken;
-      const isToken = token.hasOwnProperty('value');
+      const isToken = token.hasOwnProperty('$value'); // token MUST have $value, per the sepc
       if (isToken) {
-        if (isEmpty(token.value)) {
-          errors.push(`${token.id}: missing value`);
+        if (k.startsWith('$')) {
+          errors.push(`${k}: token ID can’t start with the $ character`);
           continue;
         }
-        if (!!token.mode && !isObj(token.mode)) {
+        if (isEmpty(token.$value)) {
+          errors.push(`${token.id}: missing "$value"`);
+          continue;
+        }
+        if (!!token.$extensions && token.$extensions.mode && !isObj(token.$extensions.mode)) {
           errors.push(`${token.id}: "mode" must be an object`);
         }
-        if (group.requiredModes.length) {
-          for (const modeID of group.requiredModes) {
-            if (!(token.mode || {})[modeID]) errors.push(`${token.id}: missing mode "${modeID}" required from parent group`);
+        if (group.$extensions.requiredModes.length) {
+          for (const modeID of group.$extensions.requiredModes) {
+            if (!token.$extensions || !token.$extensions.mode || !token.$extensions.mode[modeID])
+              errors.push(`${token.id}: missing mode "${modeID}" required from parent group`);
           }
         }
         tokens[token.id] = token;
       }
       // group
       else {
-        const { metadata, ...groupTokens } = v; // "metadata" only reserved word on group
-        const nextGroup = { ...group, ...(metadata || {}) };
-        if (!!metadata && !isObj(metadata)) {
-          errors.push(`${k}: "metadata" must be an object, received ${Array.isArray(metadata) ? 'array' : typeof metadata}`);
+        const nextGroup = { ...group };
+
+        const groupTokens: Record<string, TokenOrGroup> = {};
+        for (const propertyKey of Object.keys(v)) {
+          // move all "$" properties to group
+          if (propertyKey.startsWith('$')) {
+            // merge $extensions; don’t overwrite them
+            if (propertyKey === '$extensions') nextGroup.$extensions = { ...nextGroup.$extensions, ...v.$extensions };
+            else (nextGroup as any)[propertyKey] = v[propertyKey];
+            if (!RESERVED_KEYS.has(propertyKey)) {
+              if (!result.warnings) result.warnings = [];
+              result.warnings.push(`Unknown property "${propertyKey}"`);
+            }
+          }
+          // everything else is a token or subgroup needing to be scanned
+          else {
+            groupTokens[propertyKey] = v[propertyKey];
+          }
         }
+
         // continue walking if all children look like tokens or groups (all objects)
         if (Object.values(groupTokens).every((t: any) => isObj(t))) {
           walk(groupTokens, [...chain, k], nextGroup);
-          continue;
         }
         // otherwise, this is probably a token with missing properties
-        throw new Error(`${k}: missing type`);
+        else {
+          throw new Error(`${k}: missing $type`);
+        }
       }
     }
   }
 
-  const { metadata, ...topNodes } = schema;
-  walk(topNodes, [], { requiredModes: [], ...(metadata || []) });
+  const group: InheritedGroup = { $extensions: { requiredModes: [] } };
+  const topNodes: Record<string, TokenOrGroup> = {};
+  for (const k of Object.keys(schema)) {
+    if (k.startsWith('$')) {
+      if (k === '$extensions') group.$extensions = { ...group.$extensions, ...schema.$extensions };
+      else (group as any)[k] = schema[k];
+      if (!RESERVED_KEYS.has(k)) {
+        if (!result.warnings) result.warnings = [];
+        result.warnings.push(`Unknown property "${k}"`);
+      }
+      result.result.metadata[k] = schema[k];
+    } else {
+      topNodes[k] = schema[k];
+    }
+  }
+  walk(topNodes, [], group);
   if (errors.length) {
     result.errors = errors;
     return result;
@@ -115,9 +150,11 @@ export function parse(schema: Group): ParseResult {
 
   // 2a. pass 1: gather all IDs & values
   for (const token of Object.values(tokens)) {
-    values[token.id] = token.value;
-    for (const [k, v] of Object.entries(token.mode || {})) {
-      values[`${token.id}#${k}`] = v;
+    values[token.id] = token.$value;
+    if (token.$extensions && token.$extensions.mode) {
+      for (const [k, v] of Object.entries(token.$extensions.mode || {})) {
+        values[`${token.id}#${k}`] = v;
+      }
     }
   }
 
@@ -170,68 +207,64 @@ export function parse(schema: Group): ParseResult {
 
   // 3. validate values & replace aliases
   function normalizeModes(id: string, validate: (value: unknown) => any): void {
-    if (!tokens[id].mode) return;
-    for (const k of Object.keys(tokens[id].mode || {})) {
-      (tokens[id] as any).mode[k] = validate(values[`${id}#${k}`]);
+    const token = tokens[id];
+    if (!token.$extensions || !token.$extensions.mode) return;
+    for (const k of Object.keys(token.$extensions.mode || {})) {
+      (tokens[id] as any).$extensions.mode[k] = validate(values[`${id}#${k}`]);
     }
   }
 
   for (const [id, token] of Object.entries(tokens)) {
     try {
-      switch (token.type) {
+      switch (token.$type) {
         // 8.1 Color
         case 'color':
-          tokens[id].value = normalizeColorValue(values[id]);
+          tokens[id].$value = normalizeColorValue(values[id]);
           normalizeModes(id, normalizeColorValue);
           break;
         // 8.2 Dimension
         case 'dimension':
-          tokens[id].value = normalizeDimensionValue(values[id]);
+          tokens[id].$value = normalizeDimensionValue(values[id]);
           normalizeModes(id, normalizeDimensionValue);
           break;
         // 8.3 Font
         case 'font':
-          tokens[id].value = normalizeFontValue(values[id]);
+          tokens[id].$value = normalizeFontValue(values[id]);
           normalizeModes(id, normalizeFontValue);
           break;
         // 8.4 Duration
         case 'duration':
-          tokens[id].value = normalizeDurationValue(values[id]);
+          tokens[id].$value = normalizeDurationValue(values[id]);
           normalizeModes(id, normalizeDurationValue);
           break;
         // 8.5 Cubic Bezier
-        case 'cubic-bezier':
-          tokens[id].value = normalizeCubicBezierValue(values[id]);
+        case 'cubicBezier':
+          tokens[id].$value = normalizeCubicBezierValue(values[id]);
           normalizeModes(id, normalizeCubicBezierValue);
           break;
-        // 8.? File
-        case 'file':
-          tokens[id].value = normalizeFileValue(values[id]);
-          normalizeModes(id, normalizeFileValue);
-          break;
-        // 8.? URL
-        case 'url':
-          tokens[id].value = normalizeURLValue(values[id]);
-          normalizeModes(id, normalizeURLValue);
+        // 8.? Link
+        case 'link':
+          tokens[id].$value = normalizeLinkValue(values[id]);
+          normalizeModes(id, normalizeLinkValue);
           break;
         // 9.? Transition
         case 'transition':
-          tokens[id].value = normalizeTransitionValue(values[id]);
+          tokens[id].$value = normalizeTransitionValue(values[id]);
           normalizeModes(id, normalizeTransitionValue);
           break;
         // 9.? Shadow
         case 'shadow':
-          tokens[id].value = normalizeShadowValue(values[id]);
+          tokens[id].$value = normalizeShadowValue(values[id]);
           normalizeModes(id, normalizeShadowValue);
           break;
         // 9.? Gradient
         case 'gradient':
-          tokens[id].value = normalizeGradientValue(values[id]);
+          tokens[id].$value = normalizeGradientValue(values[id]);
           normalizeModes(id, normalizeGradientValue);
           break;
         // 9.? Typography
         case 'typography':
-          tokens[id].value = normalizeTypographyValue(values[id]);
+          tokens[id].$value = normalizeTypographyValue(values[id]);
           normalizeModes(id, normalizeTypographyValue);
           break;
         // custom/other

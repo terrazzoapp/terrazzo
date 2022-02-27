@@ -1,4 +1,3 @@
-// Apple Human Interface Guidelines
 // This file was auto-generated from tokens.json.
 // DO NOT EDIT!
 
@@ -131,32 +130,32 @@ $__token-values: (
     "light_ax": (#b25000),
     "dark_ax": (#ffd426),
   ),
-  "font.family.sf_pro": (
+  "font.family.sfPro": (
     default: ("SF Pro"),
   ),
-  "font.family.sf_pro_rounded": (
+  "font.family.sfProRounded": (
     default: ("SF Pro Rounded"),
   ),
-  "font.family.sf_compact": (
+  "font.family.sfCompact": (
     default: ("SF Compact"),
   ),
-  "font.family.sf_mono": (
+  "font.family.sfMono": (
     default: ("SF Mono"),
   ),
-  "font.family.new_york": (
+  "font.family.newYork": (
     default: ("New York"),
   ),
-  "font.style.large_title": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.large_title\")` instead.",
+  "font.style.largeTitle": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.largeTitle\")` instead.",
   ),
-  "font.style.title_1": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title_1\")` instead.",
+  "font.style.title1": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title1\")` instead.",
   ),
-  "font.style.title_2": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title_2\")` instead.",
+  "font.style.title2": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title2\")` instead.",
   ),
-  "font.style.title_3": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title_3\")` instead.",
+  "font.style.title3": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title3\")` instead.",
   ),
   "font.style.headline": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.headline\")` instead.",
@@ -173,8 +172,8 @@ $__token-values: (
   "font.style.footnote": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.footnote\")` instead.",
   ),
-  "font.style.caption_1": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption_1\")` instead.",
+  "font.style.caption1": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption1\")` instead.",
   ),
   "font.style.caption_2": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption_2\")` instead.",
@@ -182,7 +181,7 @@ $__token-values: (
 );
 
 $__token-typography-mixins: (
-  "font.style.large_title": (
+  "font.style.largeTitle": (
     default: (
       "font-size": (34px),
       "font-weight": (400),
@@ -217,7 +216,7 @@ $__token-typography-mixins: (
       "line-height": (48px),
     ),
   ),
-  "font.style.title_1": (
+  "font.style.title1": (
     default: (
       "font-size": (28px),
       "font-weight": (400),
@@ -252,7 +251,7 @@ $__token-typography-mixins: (
       "line-height": (41px),
     ),
   ),
-  "font.style.title_2": (
+  "font.style.title2": (
     default: (
       "font-size": (22px),
       "font-weight": (400),
@@ -287,7 +286,7 @@ $__token-typography-mixins: (
       "line-height": (34px),
     ),
   ),
-  "font.style.title_3": (
+  "font.style.title3": (
     default: (
       "font-size": (20px),
       "font-weight": (400),
@@ -497,7 +496,7 @@ $__token-typography-mixins: (
       "line-height": (24px),
     ),
   ),
-  "font.style.caption_1": (
+  "font.style.caption1": (
     default: (
       "font-size": (12px),
       "font-weight": (400),

@@ -32,7 +32,7 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 
 ## Figma
 
-[View Figma docs](/docs/getting-started/figma)
+[View Figma docs](/docs/guides/figma)
 
 ## Plugins
 

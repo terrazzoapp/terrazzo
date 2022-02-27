@@ -62,12 +62,12 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               const solidFill = (node as Figma.VECTOR).fills.find((p) => p.type === 'SOLID' && !!p.color);
               if (!solidFill) throw new Error(`${id}: could not find solid fill on "${figmaName}"`);
               tokenUpdates[id] = {
-                type: 'color',
-                value: colorToHex(solidFill.color as Figma.Color),
+                $type: 'color',
+                $value: colorToHex(solidFill.color as Figma.Color),
               };
               break;
             }
-            case 'file': {
+            case 'link': {
               await fileQueue.run({
                 url,
                 componentID: figmaNode.id,
@@ -77,8 +77,8 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               downloadCount += 1;
               console.log(`  ✔  Downloaded file ${padRight(String(downloadCount), countWidth)}/${totalFiles}`); // eslint-disable-line no-console
               tokenUpdates[id] = {
-                type: 'file',
-                value: filename as string,
+                $type: 'link',
+                $value: filename as string,
               };
               break;
             }
@@ -93,8 +93,8 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               if (!gradientFill) throw new Error(`${id}: could not find gradient fill on "${figmaName}"`);
               const { gradientStops = [] } = gradientFill;
               tokenUpdates[id] = {
-                type: 'gradient',
-                value: gradientStops.map((stop) => ({ color: colorToHex(stop.color), position: stop.position })),
+                $type: 'gradient',
+                $value: gradientStops.map((stop) => ({ color: colorToHex(stop.color), position: stop.position })),
               };
               break;
             }
@@ -107,10 +107,10 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               if (!node) throw new Error(`${id}: could not find shadow effect on "${figmaName}"`);
               const shadowEffect = node.effects.find((e: Figma.Effect) => e.type === 'DROP_SHADOW' || e.type === 'INNER_SHADOW') as Figma.EffectShadow;
               tokenUpdates[id] = {
-                type: 'shadow',
-                value: {
-                  'offset-x': shadowEffect.offset.x ? `${shadowEffect.offset.x}px` : '0',
-                  'offset-y': shadowEffect.offset.y ? `${shadowEffect.offset.y}px` : '0',
+                $type: 'shadow',
+                $value: {
+                  offsetX: shadowEffect.offset.x ? `${shadowEffect.offset.x}px` : '0',
+                  offsetY: shadowEffect.offset.y ? `${shadowEffect.offset.y}px` : '0',
                   blur: shadowEffect.radius ? `${shadowEffect.radius}px` : '0',
                   spread: '0',
                   color: colorToHex(shadowEffect.color),
@@ -127,14 +127,14 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               }
               const { fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize, textCase } = node.style as Figma.TypeStyle;
               tokenUpdates[id] = {
-                type: 'typography',
-                value: {
-                  'font-family': [fontFamily],
-                  'font-size': `${fontSize}px`,
+                $type: 'typography',
+                $value: {
+                  fontFamily: [fontFamily],
+                  fontSize: `${fontSize}px`,
                   ...(italic ? { 'font-style': 'italic' } : {}),
-                  'font-weight': fontWeight,
-                  'letter-spacing': `${letterSpacing / fontSize}em`,
-                  'line-height': (lineHeightPercentFontSize || 100) / 100,
+                  fontWeight: fontWeight,
+                  letterSpacing: `${letterSpacing / fontSize}em`,
+                  lineHeight: (lineHeightPercentFontSize || 100) / 100,
                   ...(textCase && TEXT_CASE[textCase] ? { 'text-transform': TEXT_CASE[textCase] } : {}),
                 },
               };

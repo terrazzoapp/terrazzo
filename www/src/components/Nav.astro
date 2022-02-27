@@ -10,17 +10,17 @@ let { title = 'Cobalt' } = Astro.props;
 
   .grid {
     display: flex;
-    padding-left: 2rem;
-    padding-right: 1.5rem;
+    height: token('space.layout.lg');
+    padding-left: token('space.lg');
   }
 
   .title {
     align-items: center;
+    align-self: center;
     color: currentColor;
     display: grid;
     grid-template-columns: min-content min-content;
     grid-gap: 0.75rem;
-    padding-top: 2rem;
     text-decoration: none;
   }
 
@@ -37,19 +37,21 @@ let { title = 'Cobalt' } = Astro.props;
   }
 
   .a {
+    align-items: center;
     border-top: 3px solid transparent;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    padding: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    margin-left: token('space.2xs');
+    margin-right: token('space.2xs');
     text-decoration: none;
+    width: token('space.layout.md');
 
     &[aria-current] {
       border-top-color: currentColor;
     }
 
     &--github {
-      display: inline-block;
-      padding: 1.375rem 0 0;
+      border: none;
     }
   }
 
@@ -60,7 +62,7 @@ let { title = 'Cobalt' } = Astro.props;
 
   body.page--home {
     .grid {
-      background: token("color.blue");
+      background: token("color.blue.05");
     }
 
     .title,
@@ -77,7 +79,7 @@ let { title = 'Cobalt' } = Astro.props;
     <h1>{title}</h1>
   </a>
   <nav class="nav">
-    <a class="a" href="/" aria-current={currentPage === '/' || currentPage.startsWith('/docs') || undefined}>Docs</a>
+    <a class="a" href="/docs/getting-started" aria-current={currentPage === '/' || currentPage.startsWith('/docs') || undefined}>Docs</a>
     <a class="a" href="/editor" aria-current={currentPage === '/editor' || undefined}>Editor</a>
     <a class="a a--github" href="https://github.com/drwpow/cobalt-ui">
       <svg class="github-icon"><use xlink:href="#github"></use></svg>

@@ -7,7 +7,7 @@ body {
 }
 
 html {
-  background-color: token('color.blue');
+  background-color: token('color.blue.05');
 }
 
 * {
@@ -27,36 +27,44 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 2em;
-  margin-bottom: 1em;
+  margin-top: token('space.layout.md');
+  margin-bottom: token('space.layout.sm');
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+h4,
+h5,
+h6 {
+  margin-top: token('space.layout.sm');
 }
 
 h1 {
-  font-size: 48pt;
+  font-size: token('font.size.08');
   font-weight: 600;
 }
 
 h2 {
-  font-size: 32pt;
+  font-size: token('font.size.07');
   font-weight: 500;
 }
 
 h3 {
-  font-size: 28pt;
+  font-size: token('font.size.06');
   font-weight: 575;
 }
 
 h4 {
-  font-size: 1.5em;
+  font-size: token('font.size.05');
   font-weight: 550;
 }
 
 h5,
 h6 {
-  font-size: 1.25em;
+  font-size: token('font.size.04');
   font-weight: 550;
-  margin-top: 0;
-  margin-bottom: 2rem;
 }
 
 em,
@@ -66,12 +74,14 @@ i {
 }
 
 a {
-  color: token('color.blue');
+  color: token('color.blue.06');
 }
 
 p {
-  margin: 1.5em 0;
-  max-width: 50em;
+  line-height: 1.8;
+  margin-bottom: token('space.md');
+  margin-top: token('space.md');
+  max-width: 48em;
 }
 
 menu {
@@ -117,6 +127,11 @@ code {
 
 pre,
 code {
-  font-family: 'SF Mono', 'Menlo', ui-monospace, 'Cascadia Mono', 'Cascadia Code', monospace;
-  line-height: 1.5;
+  font-family: token('font.family.mono');
+  font-size: token('font.size.03');
+  font-variant: tabular-nums lining-nums;
+}
+
+a code {
+  text-decoration: none;
 }

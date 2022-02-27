@@ -48,14 +48,14 @@ Running `npx co build` with the plugin set up will generate a `tokens/tokens.css
 
 ### Embed Files
 
-Say you have `file` tokens in your `tokens.json`:
+Say you have `link` tokens in your `tokens.json`:
 
 ```json
 {
   "icon": {
     "alert": {
-      "type": "file",
-      "value": "./icon/alert.svg"
+      "$type": "link",
+      "$value": "./icon/alert.svg"
     }
   }
 }
@@ -184,7 +184,7 @@ The `#` character designates the mode. **You must have a `#` somewhere in the se
 
 #### Further Reading
 
-To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/concepts/modes/)
+To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/guides/modes/)
 
 ### Transform
 
@@ -207,13 +207,13 @@ export default {
         duration: (value, token) => {
           return value;
         },
-        'cubic-bezier': (value, token) => {
+        cubicBezier: (value, token) => {
           return value;
         },
-        file: (value, token) => {
+        link: (value, token) => {
           return value;
         },
-        url: (value, token) => {
+        transition: (value, token) => {
           return value;
         },
         shadow: (value, token) => {
@@ -223,9 +223,6 @@ export default {
           return value;
         },
         typography: (value, token) => {
-          return value;
-        },
-        transition: (value, token) => {
           return value;
         },
       },

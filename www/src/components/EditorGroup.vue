@@ -59,7 +59,7 @@ export default {
       const values = [];
       for (const [k, v] of Object.entries(this.idMap)) {
         if (!k.startsWith(this.id)) continue;
-        if (v.type === 'group') continue;
+        if (v.$type === 'group') continue;
         const parts = k.split('.');
         const localID = parts.pop();
 
@@ -114,7 +114,12 @@ export default {
       </label>
       <label class="editor-field editor-field__group">
         <span class="editor-field-label">Modes</span>
-        <input class="editor-field-input" type="text" :value="(node.modes || []).join(', ')" @keyup="(evt) => update('updateModes', { id, val: evt.target.value })" />
+        <input
+          class="editor-field-input"
+          type="text"
+          :value="(node.modes || []).join(', ')"
+          @keyup="(evt) => update('updateModes', { id, val: evt.target.value })"
+        />
       </label>
       <button type="button" class="editor-group-delete" @click="() => deleteGroup(id)">✕</button>
     </div>
@@ -122,7 +127,12 @@ export default {
       <span v-for="label of tokenLabels" class="editor-token-col">{{ label }}</span>
       <label v-for="{ cb, value } of tokenValues" class="editor-field editor-field__token">
         <div v-if="isColor(value)" class="editor-token-color" :style="`background-color:${value}`"></div>
-        <input :class="`editor-field-input editor-token-value${isColor(value) ? ' has-color' : ''}`" type="text" @keyup="(evt) => cb(evt.target.value)" :value="value" />
+        <input
+          :class="`editor-field-input editor-token-value${isColor(value) ? ' has-color' : ''}`"
+          type="text"
+          @keyup="(evt) => cb(evt.target.value)"
+          :value="value"
+        />
       </label>
       <label v-for="{ label, cb, disabled } of newFields" class="editor-field editor-field__token">
         <input class="editor-field-input editor-token-value" :placeholder="label" :disabled="disabled" type="text" @keyup="(evt) => cb(evt.target.value)" />

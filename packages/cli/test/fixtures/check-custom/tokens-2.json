@@ -1,62 +1,66 @@
 {
-  "metadata": {
-    "name": "My Tokens",
-    "description": "Automatically generated with `co init`"
-  },
+  "$name": "My Tokens",
+  "$description": "Automatically generated with `co init`",
   "color": {
-    "metadata": {
+    "$extensions": {
       "requiredModes": ["standard", "colorblind"]
     },
     "blue": {
-      "type": "color",
-      "value": "#54aeff",
-      "mode": {
-        "standard": "#54aeff",
-        "colorblind": "#54aeff"
+      "$type": "color",
+      "$value": "#54aeff",
+      "$extensions": {
+        "mode": {
+          "standard": "#54aeff",
+          "colorblind": "#54aeff"
+        }
       }
     },
     "green": {
-      "type": "color",
-      "value": "#4ac26b",
-      "mode": {
-        "standard": "#4ac26b",
-        "colorblind": "#35adff"
+      "$type": "color",
+      "$value": "#4ac26b",
+      "$extensions": {
+        "mode": {
+          "standard": "#4ac26b",
+          "colorblind": "#35adff"
+        }
       }
     },
     "red": {
-      "type": "color",
-      "value": "#fa4549",
-      "mode": {
-        "standard": "#fa4549",
-        "colorblind": "#d08002"
+      "$type": "color",
+      "$value": "#fa4549",
+      "$extensions": {
+        "mode": {
+          "standard": "#fa4549",
+          "colorblind": "#d08002"
+        }
       }
     }
   },
   "typography": {
     "family": {
-      "ibm-plex": {
-        "type": "font",
-        "value": ["IBM Plex Sans", "-system-ui", "sans-serif"]
+      "$type": "font",
+      "ibmPlex": {
+        "$value": ["IBM Plex Sans", "-system-ui", "sans-serif"]
       }
     },
     "heading": {
-      "type": "typography",
-      "value": {
-        "font-family": "{typography.family.ibm-plex}",
-        "font-size": "36px",
-        "font-weight": 700,
-        "line-height": 1.25,
-        "letter-spacing": "-0.035em"
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.family.ibmPlex}",
+        "fontSize": "36px",
+        "fontWeight": 700,
+        "lineHeight": 1.25,
+        "letterSpacing": "-0.035em"
       }
     },
     "body": {
-      "type": "typography",
-      "value": {
-        "font-family": "{typography.family.ibm-plex}",
-        "font-size": "16px",
-        "font-weight": 400,
-        "line-height": 1.5,
-        "letter-spacing": 0
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "{typography.family.ibmPlex}",
+        "fontSize": "16px",
+        "fontWeight": 400,
+        "lineHeight": 1.5,
+        "letterSpacing": 0
       }
     }
   }

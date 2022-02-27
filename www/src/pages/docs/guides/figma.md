@@ -88,7 +88,7 @@ export default {
 
 ![](/images/figma-icons.png)
 
-By using `type: "file"` along with a `filename` path you can save a component locally or to a Git repo. This is great for icons.
+By using `type: "link"` along with a `filename` path you can save a component locally or to a Git repo. This is great for icons.
 
 <!-- prettier-ignore -->
 ```js
@@ -98,9 +98,9 @@ export default {
       {
         url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
         tokens: [
-          { component: "alert",    token: "icon.alert",    type: "file", filename: "./icons/alert.svg" },
-          { component: "download", token: "icon.download", type: "file", filename: "./icons/download.svg" },
-          { component: "refresh",  token: "icon.refresh",  type: "file", filename: "./icons/refresh.svg" },
+          { component: "alert",    token: "icon.alert",    type: "link", filename: "./icons/alert.svg" },
+          { component: "download", token: "icon.download", type: "link", filename: "./icons/download.svg" },
+          { component: "refresh",  token: "icon.refresh",  type: "link", filename: "./icons/refresh.svg" },
         ],
       },
     ],
@@ -208,7 +208,7 @@ If you’re having trouble syncing from Figma, here are some quick tips:
 [dotenv]: https://github.com/motdotla/dotenv
 [env-system]: https://gist.github.com/iest/58692bf1001b0424c257
 [issues]: https://github.com/drwpow/cobalt-ui/issues
-[modes]: /concepts/modes
+[modes]: /guides/modes
 [figma-api]: /reference/config#figma
 [figma-api-key]: https://www.figma.com/developers/api#access-tokens
 [types]: /reference/schema#types

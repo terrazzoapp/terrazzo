@@ -4,28 +4,25 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "astro:build": "astro build",
-    "astro:dev": "astro dev",
-    "build": "run-s *:build",
+    "build": "run-s build:*",
     "build:tokens": "co build",
-    "predev": "npm run build:tokens",
+    "build:static": "astro build",
     "sync": "co sync",
-    "dev": "run-p *:dev",
-    "dev:tokens": "co build -w"
+    "dev": "run-p dev:*",
+    "dev:tokens": "co build -w",
+    "dev:serve": "astro dev"
   },
   "dependencies": {
-    "@astrojs/renderer-vue": "^0.3.0",
+    "@astrojs/renderer-vue": "^0.4.0",
     "prismjs": "^1.27.0",
     "vue": "^3.2.31"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.4.0",
-    "@cobalt-ui/core": "^0.5.0",
-    "@cobalt-ui/plugin-json": "^0.3.4",
-    "@cobalt-ui/plugin-sass": "^0.4.9",
-    "@cobalt-ui/plugin-ts": "^0.3.4",
-    "astro": "^0.23.0",
-    "morphdom": "^2.6.1",
-    "npm-run-all": "^4.1.5"
+    "@cobalt-ui/cli": "file:../packages/cli/",
+    "@cobalt-ui/core": "file:../packages/core/",
+    "@cobalt-ui/plugin-sass": "file:../packages/plugin-sass/",
+    "astro": "^0.23.2",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.49.9"
   }
 }

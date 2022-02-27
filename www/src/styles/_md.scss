@@ -2,23 +2,17 @@
 @use '../../tokens' as *;
 
 .md-content {
-  font-size: 14pt;
-
-  * + h1,
-  * + h2,
-  * + h3,
-  * + h4,
-  * + h5,
-  * + h6 {
-    margin-top: 4rem;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    position: relative;
   }
 
-  > h1:first-of-type {
-    margin-bottom: 3rem;
-  }
-
-  h2 {
-    margin-top: 6rem;
+  h1 {
+    letter-spacing: -0.0125em;
   }
 
   img {
@@ -27,28 +21,34 @@
   }
 
   p {
-    line-height: 1.7;
-    margin-bottom: 1.5em;
-    margin-top: 1.5em;
-    max-width: 50em;
+    line-height: 1.8;
+    margin-bottom: token('space.md');
+    margin-top: token('space.md');
+    max-width: 48em;
   }
 
   ul,
   ol {
     line-height: 1.5;
-    margin-bottom: 1em;
-    margin-top: 1em;
+    margin-bottom: token('space.md');
+    margin-top: token('space.md');
     padding-left: 0;
 
     ul {
       margin: 0;
-      padding-left: 1.5rem;
+      padding-left: token('space.md');
     }
   }
 
+  ul li {
+    list-style: square;
+    margin-left: -#{token('space.xs')};
+    padding-left: token('space.xs');
+  }
+
   li {
-    margin-bottom: 0.125rem;
-    margin-top: 0.125rem;
+    margin-bottom: token('space.2xs');
+    margin-top: token('space.2xs');
 
     p:first-of-type {
       margin-top: 0;
@@ -63,11 +63,10 @@
   }
 
   code {
-    background: rgba(token('color.black'), 0.05);
-    border-radius: 4px;
+    border-radius: token('space.3xs');
     display: inline-block;
-    padding: 0.125em 0.375em;
-    font-size: 0.8em;
+    position: relative;
+    z-index: 2;
   }
 
   figure {
@@ -83,14 +82,14 @@
   }
 
   pre {
-    background: token('color.black');
-    border-radius: 0.5rem;
+    background: token('color.blue.03');
+    border-radius: token('space.3xs');
     color: token('color.white');
-    font-size: 10pt;
-    margin: 1.5rem 0;
+    line-height: 1.4;
+    margin: token('space.md') 0;
     max-width: 100%;
     overflow-x: scroll;
-    padding: 2rem;
+    padding: token('space.lg');
     width: 100%;
 
     code {
@@ -102,16 +101,19 @@
 
   table {
     border-collapse: collapse;
-    font-size: 12pt;
+    font-size: token('font.size.04');
     width: 100%;
+
+    code {
+      font-weight: 500;
+    }
   }
 
   th,
   td {
-    border-color: adjust-color($color: token('color.black'), $saturation: -50%, $lightness: 75%);
-    border-style: solid;
-    border-width: 1px 0 0 1px;
-    padding: 0.5rem 0.75rem;
+    padding: token('space.xs') token('space.sm');
+    line-height: 1.5;
+    vertical-align: top;
 
     &:last-of-type {
       border-right-width: 1px;
@@ -119,17 +121,23 @@
   }
 
   th {
+    font-size: token('font.size.04');
     font-weight: 600;
-    padding: 0.625rem 0.75rem;
+    border-bottom: 2px solid currentColor;
+  }
+
+  td {
+    border-bottom: 1px solid rgba(black, 0.2);
   }
 
   tr {
-    &:nth-of-type(even) {
-      background-color: adjust-color($color: token('color.black'), $saturation: -50%, $lightness: 86%);
+    &:last-child td {
+      border-bottom: none;
     }
 
-    &:last-of-type td {
-      border-bottom-width: 1px;
+    td:first-child,
+    th:first-child {
+      padding-left: 0;
     }
   }
 }

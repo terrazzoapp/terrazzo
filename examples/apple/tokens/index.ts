@@ -21,77 +21,77 @@ export const tokens = {
   },
   "font": {},
   "family": {
-    "sf_pro": [
+    "sfPro": [
       "SF Pro"
     ],
-    "sf_pro_rounded": [
+    "sfProRounded": [
       "SF Pro Rounded"
     ],
-    "sf_compact": [
+    "sfCompact": [
       "SF Compact"
     ],
-    "sf_mono": [
+    "sfMono": [
       "SF Mono"
     ],
-    "new_york": [
+    "newYork": [
       "New York"
     ]
   },
   "style": {
-    "large_title": {
-      "font-size": "34px",
-      "font-weight": 400,
-      "line-height": "41px"
+    "largeTitle": {
+      "fontSize": "34px",
+      "fontWeight": 400,
+      "lineHeight": "41px"
     },
-    "title_1": {
-      "font-size": "28px",
-      "font-weight": 400,
-      "line-height": "34px"
+    "title1": {
+      "fontSize": "28px",
+      "fontWeight": 400,
+      "lineHeight": "34px"
     },
-    "title_2": {
-      "font-size": "22px",
-      "font-weight": 400,
-      "line-height": "25px"
+    "title2": {
+      "fontSize": "22px",
+      "fontWeight": 400,
+      "lineHeight": "25px"
     },
-    "title_3": {
-      "font-size": "20px",
-      "font-weight": 400,
-      "line-height": "25px"
+    "title3": {
+      "fontSize": "20px",
+      "fontWeight": 400,
+      "lineHeight": "25px"
     },
     "headline": {
-      "font-size": "17px",
-      "font-weight": 600,
-      "line-height": "22px"
+      "fontSize": "17px",
+      "fontWeight": 600,
+      "lineHeight": "22px"
     },
     "body": {
-      "font-size": "17px",
-      "font-weight": 400,
-      "line-height": "22px"
+      "fontSize": "17px",
+      "fontWeight": 400,
+      "lineHeight": "22px"
     },
     "callout": {
-      "font-size": "16px",
-      "font-weight": 400,
-      "line-height": "21px"
+      "fontSize": "16px",
+      "fontWeight": 400,
+      "lineHeight": "21px"
     },
     "subhead": {
-      "font-size": "15px",
-      "font-weight": 400,
-      "line-height": "20px"
+      "fontSize": "15px",
+      "fontWeight": 400,
+      "lineHeight": "20px"
     },
     "footnote": {
-      "font-size": "13px",
-      "font-weight": 400,
-      "line-height": "18px"
+      "fontSize": "13px",
+      "fontWeight": 400,
+      "lineHeight": "18px"
     },
-    "caption_1": {
-      "font-size": "12px",
-      "font-weight": 400,
-      "line-height": "16px"
+    "caption1": {
+      "fontSize": "12px",
+      "fontWeight": 400,
+      "lineHeight": "16px"
     },
     "caption_2": {
-      "font-size": "11px",
-      "font-weight": 400,
-      "line-height": "13px"
+      "fontSize": "11px",
+      "fontWeight": 400,
+      "lineHeight": "13px"
     }
   }
 };
@@ -210,334 +210,334 @@ export const modes = {
   },
   "font": {},
   "style": {
-    "large_title": {
+    "largeTitle": {
       "xSmall": {
-        "font-size": "31px",
-        "line-height": "38px"
+        "fontSize": "31px",
+        "lineHeight": "38px"
       },
       "Small": {
-        "font-size": "32px",
-        "line-height": "39px"
+        "fontSize": "32px",
+        "lineHeight": "39px"
       },
       "Medium": {
-        "font-size": "33px",
-        "line-height": "40px"
+        "fontSize": "33px",
+        "lineHeight": "40px"
       },
       "Large": {
-        "font-size": "34px",
-        "line-height": "41px"
+        "fontSize": "34px",
+        "lineHeight": "41px"
       },
       "xLarge": {
-        "font-size": "36px",
-        "line-height": "43px"
+        "fontSize": "36px",
+        "lineHeight": "43px"
       },
       "xxLarge": {
-        "font-size": "38px",
-        "line-height": "46px"
+        "fontSize": "38px",
+        "lineHeight": "46px"
       },
       "xxxLarge": {
-        "font-size": "40px",
-        "line-height": "48px"
+        "fontSize": "40px",
+        "lineHeight": "48px"
       }
     },
-    "title_1": {
+    "title1": {
       "xSmall": {
-        "font-size": "25px",
-        "line-height": "31px"
+        "fontSize": "25px",
+        "lineHeight": "31px"
       },
       "Small": {
-        "font-size": "26px",
-        "line-height": "32px"
+        "fontSize": "26px",
+        "lineHeight": "32px"
       },
       "Medium": {
-        "font-size": "27px",
-        "line-height": "33px"
+        "fontSize": "27px",
+        "lineHeight": "33px"
       },
       "Large": {
-        "font-size": "28px",
-        "line-height": "34px"
+        "fontSize": "28px",
+        "lineHeight": "34px"
       },
       "xLarge": {
-        "font-size": "30px",
-        "line-height": "37px"
+        "fontSize": "30px",
+        "lineHeight": "37px"
       },
       "xxLarge": {
-        "font-size": "32px",
-        "line-height": "39px"
+        "fontSize": "32px",
+        "lineHeight": "39px"
       },
       "xxxLarge": {
-        "font-size": "32px",
-        "line-height": "41px"
+        "fontSize": "32px",
+        "lineHeight": "41px"
       }
     },
-    "title_2": {
+    "title2": {
       "xSmall": {
-        "font-size": "19px",
-        "line-height": "24px"
+        "fontSize": "19px",
+        "lineHeight": "24px"
       },
       "Small": {
-        "font-size": "20px",
-        "line-height": "25px"
+        "fontSize": "20px",
+        "lineHeight": "25px"
       },
       "Medium": {
-        "font-size": "21px",
-        "line-height": "26px"
+        "fontSize": "21px",
+        "lineHeight": "26px"
       },
       "Large": {
-        "font-size": "22px",
-        "line-height": "28px"
+        "fontSize": "22px",
+        "lineHeight": "28px"
       },
       "xLarge": {
-        "font-size": "24px",
-        "line-height": "30px"
+        "fontSize": "24px",
+        "lineHeight": "30px"
       },
       "xxLarge": {
-        "font-size": "26px",
-        "line-height": "32px"
+        "fontSize": "26px",
+        "lineHeight": "32px"
       },
       "xxxLarge": {
-        "font-size": "28px",
-        "line-height": "34px"
+        "fontSize": "28px",
+        "lineHeight": "34px"
       }
     },
-    "title_3": {
+    "title3": {
       "xSmall": {
-        "font-size": "25px",
-        "line-height": "22px"
+        "fontSize": "25px",
+        "lineHeight": "22px"
       },
       "Small": {
-        "font-size": "26px",
-        "line-height": "23px"
+        "fontSize": "26px",
+        "lineHeight": "23px"
       },
       "Medium": {
-        "font-size": "27px",
-        "line-height": "24px"
+        "fontSize": "27px",
+        "lineHeight": "24px"
       },
       "Large": {
-        "font-size": "28px",
-        "line-height": "25px"
+        "fontSize": "28px",
+        "lineHeight": "25px"
       },
       "xLarge": {
-        "font-size": "30px",
-        "line-height": "28px"
+        "fontSize": "30px",
+        "lineHeight": "28px"
       },
       "xxLarge": {
-        "font-size": "32px",
-        "line-height": "30px"
+        "fontSize": "32px",
+        "lineHeight": "30px"
       },
       "xxxLarge": {
-        "font-size": "32px",
-        "line-height": "32px"
+        "fontSize": "32px",
+        "lineHeight": "32px"
       }
     },
     "headline": {
       "xSmall": {
-        "font-size": "14px",
-        "line-height": "19px"
+        "fontSize": "14px",
+        "lineHeight": "19px"
       },
       "Small": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "Medium": {
-        "font-size": "16px",
-        "line-height": "21px"
+        "fontSize": "16px",
+        "lineHeight": "21px"
       },
       "Large": {
-        "font-size": "17px",
-        "line-height": "22px"
+        "fontSize": "17px",
+        "lineHeight": "22px"
       },
       "xLarge": {
-        "font-size": "19px",
-        "line-height": "24px"
+        "fontSize": "19px",
+        "lineHeight": "24px"
       },
       "xxLarge": {
-        "font-size": "21px",
-        "line-height": "26px"
+        "fontSize": "21px",
+        "lineHeight": "26px"
       },
       "xxxLarge": {
-        "font-size": "23px",
-        "line-height": "29px"
+        "fontSize": "23px",
+        "lineHeight": "29px"
       }
     },
     "body": {
       "xSmall": {
-        "font-size": "14px",
-        "line-height": "19px"
+        "fontSize": "14px",
+        "lineHeight": "19px"
       },
       "Small": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "Medium": {
-        "font-size": "16px",
-        "line-height": "21px"
+        "fontSize": "16px",
+        "lineHeight": "21px"
       },
       "Large": {
-        "font-size": "17px",
-        "line-height": "22px"
+        "fontSize": "17px",
+        "lineHeight": "22px"
       },
       "xLarge": {
-        "font-size": "19px",
-        "line-height": "24px"
+        "fontSize": "19px",
+        "lineHeight": "24px"
       },
       "xxLarge": {
-        "font-size": "21px",
-        "line-height": "26px"
+        "fontSize": "21px",
+        "lineHeight": "26px"
       },
       "xxxLarge": {
-        "font-size": "23px",
-        "line-height": "29px"
+        "fontSize": "23px",
+        "lineHeight": "29px"
       }
     },
     "callout": {
       "xSmall": {
-        "font-size": "13px",
-        "line-height": "18px"
+        "fontSize": "13px",
+        "lineHeight": "18px"
       },
       "Small": {
-        "font-size": "14px",
-        "line-height": "19px"
+        "fontSize": "14px",
+        "lineHeight": "19px"
       },
       "Medium": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "Large": {
-        "font-size": "16px",
-        "line-height": "21px"
+        "fontSize": "16px",
+        "lineHeight": "21px"
       },
       "xLarge": {
-        "font-size": "18px",
-        "line-height": "23px"
+        "fontSize": "18px",
+        "lineHeight": "23px"
       },
       "xxLarge": {
-        "font-size": "20px",
-        "line-height": "25px"
+        "fontSize": "20px",
+        "lineHeight": "25px"
       },
       "xxxLarge": {
-        "font-size": "22px",
-        "line-height": "28px"
+        "fontSize": "22px",
+        "lineHeight": "28px"
       }
     },
     "subhead": {
       "xSmall": {
-        "font-size": "12px",
-        "line-height": "16px"
+        "fontSize": "12px",
+        "lineHeight": "16px"
       },
       "Small": {
-        "font-size": "13px",
-        "line-height": "18px"
+        "fontSize": "13px",
+        "lineHeight": "18px"
       },
       "Medium": {
-        "font-size": "14px",
-        "line-height": "19px"
+        "fontSize": "14px",
+        "lineHeight": "19px"
       },
       "Large": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "xLarge": {
-        "font-size": "17px",
-        "line-height": "22px"
+        "fontSize": "17px",
+        "lineHeight": "22px"
       },
       "xxLarge": {
-        "font-size": "19px",
-        "line-height": "24px"
+        "fontSize": "19px",
+        "lineHeight": "24px"
       },
       "xxxLarge": {
-        "font-size": "21px",
-        "line-height": "28px"
+        "fontSize": "21px",
+        "lineHeight": "28px"
       }
     },
     "footnote": {
       "xSmall": {
-        "font-size": "12px",
-        "line-height": "16px"
+        "fontSize": "12px",
+        "lineHeight": "16px"
       },
       "Small": {
-        "font-size": "12px",
-        "line-height": "16px"
+        "fontSize": "12px",
+        "lineHeight": "16px"
       },
       "Medium": {
-        "font-size": "12px",
-        "line-height": "16px"
+        "fontSize": "12px",
+        "lineHeight": "16px"
       },
       "Large": {
-        "font-size": "13px",
-        "line-height": "18px"
+        "fontSize": "13px",
+        "lineHeight": "18px"
       },
       "xLarge": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "xxLarge": {
-        "font-size": "17px",
-        "line-height": "22px"
+        "fontSize": "17px",
+        "lineHeight": "22px"
       },
       "xxxLarge": {
-        "font-size": "19px",
-        "line-height": "24px"
+        "fontSize": "19px",
+        "lineHeight": "24px"
       }
     },
-    "caption_1": {
+    "caption1": {
       "xSmall": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Small": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Medium": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Large": {
-        "font-size": "12px",
-        "line-height": "16px"
+        "fontSize": "12px",
+        "lineHeight": "16px"
       },
       "xLarge": {
-        "font-size": "14px",
-        "line-height": "19px"
+        "fontSize": "14px",
+        "lineHeight": "19px"
       },
       "xxLarge": {
-        "font-size": "16px",
-        "line-height": "18px"
+        "fontSize": "16px",
+        "lineHeight": "18px"
       },
       "xxxLarge": {
-        "font-size": "23px",
-        "line-height": "21px"
+        "fontSize": "23px",
+        "lineHeight": "21px"
       }
     },
     "caption_2": {
       "xSmall": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Small": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Medium": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "Large": {
-        "font-size": "11px",
-        "line-height": "13px"
+        "fontSize": "11px",
+        "lineHeight": "13px"
       },
       "xLarge": {
-        "font-size": "13px",
-        "line-height": "18px"
+        "fontSize": "13px",
+        "lineHeight": "18px"
       },
       "xxLarge": {
-        "font-size": "15px",
-        "line-height": "20px"
+        "fontSize": "15px",
+        "lineHeight": "20px"
       },
       "xxxLarge": {
-        "font-size": "17px",
-        "line-height": "22px"
+        "fontSize": "17px",
+        "lineHeight": "22px"
       }
     }
   }
