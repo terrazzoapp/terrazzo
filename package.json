@@ -24,11 +24,7 @@
     "build:examples:salesforce": "cd examples/salesforce && npm run build:tokens",
     "build:examples:shopify": "cd examples/shopify && npm run build:tokens",
     "build:packages": "tsc -b packages/utils packages/cli packages/plugin-css packages/plugin-json packages/plugin-sass packages/plugin-ts",
-    "cf:build": "npm -s cf:*",
-    "cf:build:core": "cd packages/core && npm i && npm run build",
-    "cf:build:cli": "cd packages/cli && npm i && npm run build",
-    "cf:build:plugin-sass": "cd packages/plugin-sass && npm i && npm run build",
-    "cf:build:www": "cd www && npm i && npm run build",
+    "cf:build": "pnpm i && npm run build && cd www && npm run build",
     "changeset": "changeset",
     "dev": "run-p dev:*",
     "dev:core": "cd packages/core && npm run dev",
@@ -56,6 +52,7 @@
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "npm-run-all": "^4.1.5",
+    "pnpm": "^6.32.2",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
   }

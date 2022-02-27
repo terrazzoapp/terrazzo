@@ -375,11 +375,9 @@ In this example, both `color` and `typography` are groups, as neither have a `$v
 
 ## Custom types
 
-Any other `type` value will be treated as a custom type. It has no restrictions other than `type` and `value` being required. `value` may have any shape desired; it won’t be validated.
+Any other **$type** will be treated as a custom type. **$value** may have any shape desired. But note that custom types will likely break existing plugins unless you configure them (the CSS and Sass plugins have a **transformer** option), or unless you write your own plugin for Cobalt (which is easier than some may think!).
 
-⚠️ Note that custom types may break existing plugins; extensive use of custom types may require writing your own plugins.
-
-_Should a type be added? [Please open an issue!](https://github.com/drwpow/cobalt-ui/issues/new)_
+_Should a type be added? [Suggest it be added!](https://github.com/design-tokens/community-group)_
 
 ## Aliasing
 
@@ -461,7 +459,16 @@ There’s a lot of flexibility you can unlock with modes. [Read more about using
 
 ## Examples
 
-[View examples of `tokens.json` on GitHub][examples]
+Some examples of open design systems using the W3C Design Tokens Community format
+
+_Note: all examples are unofficial and for demonstration purposes only; all companies referenced retain full ownership over their respective systems, and are unaffiliated with this project:_
+
+- [GitHub Primer](https://github.com/drwpow/cobalt-ui/tree/main/examples/github)
+- [IBM Carbon](https://github.com/drwpow/cobalt-ui/tree/main/examples/ibm)
+- [Adobe Spectrum](https://github.com/drwpow/cobalt-ui/tree/main/examples/adobe)
+- [Salesforce Lightning](https://github.com/drwpow/cobalt-ui/tree/main/examples/salesforce)
+- [Shopify Polaris](https://github.com/drwpow/cobalt-ui/tree/main/examples/shopify)
+- [Apple Human Interface Guidelines](https://github.com/drwpow/cobalt-ui/tree/main/examples/apple)
 
 [box-shadow]: https://developer.mozilla.org/en-US/docs/Web/CSS/box-shadow
 [border]: https://design-tokens.github.io/community-group/format/#border
