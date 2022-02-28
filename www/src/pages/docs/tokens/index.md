@@ -136,7 +136,7 @@ An animation easing curve as defined in [**8.5**][cubic-bezier].
 | Property | Type                               | Description                                                                                             |
 | :------- | :--------------------------------- | :------------------------------------------------------------------------------------------------------ |
 | `$type`  | `string`                           | **cubicBezier**                                                                                         |
-| `$value` | `[string, string, string, string]` | An array of four numbers [𝑥1, 𝑦1, 𝑥2, 𝑦2] that behaves the same as the CSS **cubic-bezier()** function. |
+| `$value` | `[number, number, number, number]` | An array of four numbers [𝑥1, 𝑦1, 𝑥2, 𝑦2] that behaves the same as the CSS **cubic-bezier()** function. |
 
 ```json
 {
@@ -191,12 +191,23 @@ An animation easing curve as defined in [**8.5**][cubic-bezier].
   Stroke style
 </h2>
 
-| Property | Type     | Description     |
-| :------- | :------- | :-------------- |
-| `$type`  | `string` | **strokeStyle** |
-| `$value` | `object` |                 |
+| Property | Type     | Description                                                                                |
+| :------- | :------- | :----------------------------------------------------------------------------------------- |
+| `$type`  | `string` | **strokeStyle**                                                                            |
+| `$value` | `string` | Must be one of `solid`, `dashed`, `dotted`, `double`, `groove`, `ridge`, `outset`, `inset` |
 
 A type of stroke as defined in [**9.2**][stroke-style].
+
+_Note: only string values are accepted for now_
+
+```json
+{
+  "focus-ring-style": {
+    "$type": "strokeStyle",
+    "$value": "dashed"
+  }
+}
+```
 
 <h2 id="stroke-border">
   <div class="symbol symbol--border">
@@ -206,12 +217,25 @@ A type of stroke as defined in [**9.2**][stroke-style].
   Border
 </h2>
 
-A border as defined in [**9.3**][border].
+A border as defined in [**9.3**][border] consisting of a `color` ([color](#color)), `width` ([dimension](#dimension)), and `style` ([strokeStyle](#stroke-style)).
 
-| Property | Type     | Description |
-| :------- | :------- | :---------- |
-| `$type`  | `string` | **border**  |
-| `$value` | `object` |             |
+| Property | Type     | Description                                                            |
+| :------- | :------- | :--------------------------------------------------------------------- |
+| `$type`  | `string` | **border**                                                             |
+| `$value` | `object` | Specify a `color`, `width`, and `style` for this token (all required). |
+
+```json
+{
+  "heavy": {
+    "$type": "border",
+    "$value": {
+      "color": "#36363600",
+      "width": "3px",
+      "style": "solid"
+    }
+  }
+}
+```
 
 <h2 id="transition">
   <div class="symbol symbol--transition">
@@ -274,7 +298,7 @@ A composite type combining **dimension** with a **color** to form a CSS `box-sha
 <h2 id="gradient">
   <div class="symbol symbol--gradient">
     <svg class="symbol-bg"><use xlink:href="#hex"></svg>
-    <div class="symbol-fg"></div>
+    <svg class="symbol-fg"><use xlink:href="#hex"></svg>
   </div>
   Gradient
 </h2>
@@ -308,7 +332,7 @@ _Note: you’ll notice that there’s information missing on whether this is a `
 <h2 id="typography">
   <div class="symbol symbol--typography">
     <svg class="symbol-bg"><use xlink:href="#hex"></svg>
-    <div class="symbol-fg"></div>
+    <div class="symbol-fg">Aa</div>
   </div>
   Typography
 </h2>

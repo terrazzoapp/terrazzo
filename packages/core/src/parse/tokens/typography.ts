@@ -58,7 +58,7 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
           if (wgt) {
             normalized.fontWeight = wgt;
           } else {
-            throw new Error(`invalid font weight "${v}", use number (1-999) or any of the following names: ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`);
+            throw new Error(`invalid font weight "${v}", use number (1-999) or any of: \n  - ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`);
           }
         } else if (typeof v === 'number') {
           normalized.fontWeight = Math.max(1, Math.min(999, v));

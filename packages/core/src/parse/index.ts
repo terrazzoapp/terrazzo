@@ -6,10 +6,12 @@ import { normalizeDurationValue } from './tokens/duration.js';
 import { normalizeDimensionValue } from './tokens/dimension.js';
 import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
 import { normalizeLinkValue } from './tokens/link.js';
+import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
+import { normalizeBorderValue } from './tokens/border.js';
+import { normalizeTransitionValue } from './tokens/transition.js';
 import { normalizeShadowValue } from './tokens/shadow.js';
 import { normalizeGradientValue } from './tokens/gradient.js';
 import { normalizeTypographyValue } from './tokens/typography.js';
-import { normalizeTransitionValue } from './tokens/transition.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -247,22 +249,32 @@ export function parse(schema: Group): ParseResult {
           tokens[id].$value = normalizeLinkValue(values[id]);
           normalizeModes(id, normalizeLinkValue);
           break;
-        // 9.? Transition
+        // 9.2 Stroke Style
+        case 'strokeStyle':
+          tokens[id].$value = normalizeStrokeStyleValue(values[id]);
+          normalizeModes(id, normalizeStrokeStyleValue);
+          break;
+        // 9.3 Border
+        case 'border':
+          tokens[id].$value = normalizeBorderValue(values[id]);
+          normalizeModes(id, normalizeBorderValue);
+          break;
+        // 9.4 Transition
         case 'transition':
           tokens[id].$value = normalizeTransitionValue(values[id]);
           normalizeModes(id, normalizeTransitionValue);
           break;
-        // 9.? Shadow
+        // 9.5 Shadow
         case 'shadow':
           tokens[id].$value = normalizeShadowValue(values[id]);
           normalizeModes(id, normalizeShadowValue);
           break;
-        // 9.? Gradient
+        // 9.6 Gradient
         case 'gradient':
           tokens[id].$value = normalizeGradientValue(values[id]);
           normalizeModes(id, normalizeGradientValue);
           break;
-        // 9.? Typography
+        // 9.7 Typography
         case 'typography':
           tokens[id].$value = normalizeTypographyValue(values[id]);
           normalizeModes(id, normalizeTypographyValue);

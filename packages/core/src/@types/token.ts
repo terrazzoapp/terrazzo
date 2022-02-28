@@ -121,16 +121,11 @@ export interface ParsedLinkToken extends ParsedTokenBase<string> {
 
 // 9.2 Stroke style
 
-export interface StrokeStyleValue {
-  dashArray: string;
-  lineCap: string;
-}
-
-export interface StrokeStyleToken extends TokenBase<string | Partial<StrokeStyleValue>> {
+export interface StrokeStyleToken extends TokenBase<string | Partial<string>> {
   $type: 'strokeStyle';
 }
 
-export interface ParsedStrokeStyleToken extends ParsedTokenBase<StrokeStyleValue> {
+export interface ParsedStrokeStyleToken extends ParsedTokenBase<string> {
   $type: 'strokeStyle';
   _original: StrokeStyleToken;
 }
@@ -140,7 +135,7 @@ export interface ParsedStrokeStyleToken extends ParsedTokenBase<StrokeStyleValue
 export interface BorderTokenValue {
   color: ColorToken['$value'];
   width: DimensionToken['$value'];
-  style: StrokeStyleValue;
+  style: StrokeStyleToken['$value'];
 }
 
 export interface BorderToken extends TokenBase<Partial<BorderTokenValue>> {

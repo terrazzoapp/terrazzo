@@ -220,6 +220,37 @@ describe('8. Type', () => {
 });
 
 describe('9. Composite Type', () => {
+  describe('9.2: Stroke Style', () => {
+    it('basic', () => {
+      const json = {
+        stroke: { $type: 'strokeStyle', $value: 'solid' },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'stroke').$value).to.equal('solid');
+    });
+
+    it('validates', () => {
+      const json = {
+        stroke: { $type: 'strokeStyle', $value: 'foo' },
+      };
+      const { errors } = parse(json);
+      expect(errors.length).to.equal(1);
+    });
+  });
+
+  describe('9.3: Border', () => {
+    it('basic', () => {
+      const json = {
+        heavy: {
+          $type: 'border',
+          $value: { color: '#363636', width: '3px', style: 'solid' },
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'heavy').$value).to.deep.equal({ color: '#363636', width: '3px', style: 'solid' });
+    });
+  });
+
   describe('9.4: Transition', () => {
     it('basic', () => {
       const json = {
@@ -228,7 +259,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens[0].$value.timingFunction).to.deep.equal(json.transition.cubic.$value.timingFunction);
+      expect(tokens.find((t) => t.id === 'transition.cubic').$value.timingFunction).to.deep.equal(json.transition.cubic.$value.timingFunction);
     });
 
     it('alias', () => {
@@ -349,6 +380,21 @@ describe('9. Composite Type', () => {
       };
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'typography.pageTitle').$value).to.deep.equal(json.typography['pageTitle'].$value);
+    });
+
+    it('fontWeight: string', () => {
+      const json = {
+        typography: {
+          heading: {
+            $type: 'typography',
+            $value: {
+              fontWeight: 'black',
+            },
+          },
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'typography.heading').$value.fontWeight).to.equal(900);
     });
 
     it('alias: property', () => {

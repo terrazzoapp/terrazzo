@@ -30,7 +30,6 @@ export type {
   ShadowToken,
   ShadowValue,
   StrokeStyleToken,
-  StrokeStyleValue,
   Token,
   TokenBase,
   TokenOrGroup,

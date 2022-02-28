@@ -1,3 +1,4 @@
+@use 'sass:math';
 @use '../../tokens' as *;
 
 .symbol {
@@ -35,7 +36,8 @@
     z-index: 2;
   }
 
-  &--color {
+  &--color,
+  &--gradient {
     .symbol-bg {
       animation: kaleidoscope linear infinite 15s;
       fill: none !important;
@@ -46,7 +48,8 @@
     }
   }
 
-  &--font {
+  &--font,
+  &--typography {
     .symbol-fg {
       font-size: 19px;
       font-weight: 600;
@@ -56,7 +59,7 @@
 
   &--dimension {
     .symbol-fg {
-      animation: piston cubic-bezier(0, 0.5, 0.5, 1) infinite 1.5s;
+      animation: piston token('easing.easeOutCubic') infinite 2s;
       background: token('color.black');
       height: 2px;
       width: token('space.md');
@@ -80,16 +83,27 @@
     }
   }
 
+  &--duration {
+    $l: 0.75 * token('space.md'); // hex is space.md; base it off that but take away a little
+
+    .symbol-fg {
+      animation: tickTock token('easing.easeOutCubic') infinite 4s;
+      background-color: token('color.black');
+      transform-origin: 50% 100%;
+      top: calc(50% - #{$l});
+      left: calc(50% - 1px);
+      height: $l;
+      width: 2px;
+    }
+  }
+
   // TODO
-  &--duration,
   &--cubic-bezier,
   &--link,
   &--stroke-style,
   &--border,
   &--transition,
-  &--shadow,
-  &--gradient,
-  &--typography {
+  &--shadow {
     .symbol-fg {
       background-color: token('color.black');
       border-radius: 50%;
@@ -154,13 +168,35 @@
 
 @keyframes piston {
   0%,
-  25%,
+  40%,
   100% {
     width: 0;
   }
 
   50%,
-  75% {
+  90% {
     width: 18px;
+  }
+}
+
+@keyframes tickTock {
+  0%,
+  20% {
+    transform: rotate(0deg);
+  }
+  25%,
+  45% {
+    transform: rotate(90deg);
+  }
+  50%,
+  70% {
+    transform: rotate(180deg);
+  }
+  75%,
+  95% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

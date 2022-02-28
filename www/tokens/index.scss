@@ -136,6 +136,18 @@ $__token-values: (
   "space.layout.2xl": (
     default: (160px),
   ),
+  "easing.linear": (
+    default: (cubic-bezier(0, 0, 1, 1)),
+  ),
+  "easing.easeOutCubic": (
+    default: (cubic-bezier(0.33, 1, 0.68, 1)),
+  ),
+  "easing.easeInCubic": (
+    default: (cubic-bezier(0.32, 0, 0.67, 1)),
+  ),
+  "easing.easeInOutCubic": (
+    default: (cubic-bezier(0.65, 0, 0.35, 1)),
+  ),
 );
 
 $__token-typography-mixins: (
