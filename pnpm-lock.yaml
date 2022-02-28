@@ -32,11 +32,11 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -46,11 +46,11 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -60,11 +60,11 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
     devDependencies:
@@ -81,11 +81,11 @@ importers:
       '@carbon/colors': ^10.34.0
       '@carbon/icons': ^10.44.0
       '@carbon/type': ^10.39.0
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@carbon/colors': 10.34.0
       '@carbon/icons': 10.44.0
@@ -98,13 +98,13 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
       '@salesforce-ux/design-system': ^2.16.2
-      better-color-tools: ^0.3.0
+      better-color-tools: ^0.6.1
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -112,15 +112,15 @@ importers:
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
       '@cobalt-ui/plugin-ts': link:../../packages/plugin-ts
       '@salesforce-ux/design-system': 2.16.2
-      better-color-tools: 0.3.0
+      better-color-tools: 0.6.1
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/plugin-css': ^0.5.2
-      '@cobalt-ui/plugin-json': ^0.3.4
-      '@cobalt-ui/plugin-sass': ^0.4.9
-      '@cobalt-ui/plugin-ts': ^0.3.4
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/plugin-css': ^0.6.0
+      '@cobalt-ui/plugin-json': ^0.4.0
+      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
@@ -130,9 +130,9 @@ importers:
 
   packages/cli:
     specifiers:
-      '@cobalt-ui/core': ^0.5.0
+      '@cobalt-ui/core': ^0.6.0
       '@cobalt-ui/utils': ^0.3.0
-      better-color-tools: ^0.3.1
+      better-color-tools: ^0.6.1
       chai: ^4.3.6
       chokidar: ^3.5.3
       dotenv: ^10.0.0
@@ -145,7 +145,7 @@ importers:
     dependencies:
       '@cobalt-ui/core': link:../core
       '@cobalt-ui/utils': link:../utils
-      better-color-tools: 0.3.1
+      better-color-tools: 0.6.1
       chokidar: 3.5.3
       dotenv: 10.0.0
       number-precision: 1.5.1
@@ -162,13 +162,13 @@ importers:
       '@cobalt-ui/utils': ^0.3.0
       '@types/node': ^17.0.12
       '@types/svgo': ^2.6.1
-      better-color-tools: ^0.3.1
+      better-color-tools: ^0.6.1
       chai: ^4.3.6
       mocha: ^9.2.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
       '@types/svgo': 2.6.1
-      better-color-tools: 0.3.1
+      better-color-tools: 0.6.1
     devDependencies:
       '@types/node': 17.0.12
       chai: 4.3.6
@@ -176,19 +176,19 @@ importers:
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/core': ^0.5.0
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/core': ^0.6.0
       '@cobalt-ui/utils': ^0.3.0
       '@types/mime': ^2.0.3
       '@types/svgo': ^2.6.1
-      better-color-tools: ^0.3.1
+      better-color-tools: ^0.6.1
       chai: ^4.3.6
       mime: ^3.0.0
       mocha: ^9.2.0
       svgo: ^2.8.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
-      better-color-tools: 0.3.1
+      better-color-tools: 0.6.1
       mime: 3.0.0
       svgo: 2.8.0
     devDependencies:
@@ -201,14 +201,14 @@ importers:
 
   packages/plugin-json:
     specifiers:
-      '@cobalt-ui/core': ^0.5.0
+      '@cobalt-ui/core': ^0.6.0
     devDependencies:
       '@cobalt-ui/core': link:../core
 
   packages/plugin-sass:
     specifiers:
-      '@cobalt-ui/cli': ^0.4.0
-      '@cobalt-ui/core': ^0.5.0
+      '@cobalt-ui/cli': ^0.5.0
+      '@cobalt-ui/core': ^0.6.0
       '@cobalt-ui/utils': ^0.3.0
       '@types/mime': ^2.0.3
       '@types/svgo': ^2.6.1
@@ -230,7 +230,7 @@ importers:
 
   packages/plugin-ts:
     specifiers:
-      '@cobalt-ui/core': ^0.5.0
+      '@cobalt-ui/core': ^0.6.0
       '@cobalt-ui/utils': ^0.3.0
     dependencies:
       '@cobalt-ui/utils': link:../utils
@@ -1613,13 +1613,8 @@ packages:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
     dev: false
 
-  /better-color-tools/0.3.0:
-    resolution: {integrity: sha512-JU91tVBa043Ywm3LVsQfopNfsPFWKvYOnZfkVjWYsVxmj7mPnKme0CG4yGruBxvoRQ4MBlXn5DN5mC/wuVnMCQ==}
-    dev: true
-
-  /better-color-tools/0.3.1:
-    resolution: {integrity: sha512-F6YA0YLVsRFRfNWGyFXG3vYU5WQE/8y/EQSqtddMJ5veD1WDPHc9Rqlgg5KJCoLfEMtc65XAW2vJNvD0g8lEKw==}
-    dev: false
+  /better-color-tools/0.6.1:
+    resolution: {integrity: sha512-asYexepMCaD11swDakdM50ErVwcIc9X9f81pyxzaeEJv1ciCtlWwVoy4qqQZ2uwW6Eq70S79gpOVAqg/n7Iymg==}
 
   /better-path-resolve/1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}

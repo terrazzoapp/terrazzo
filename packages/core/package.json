@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/core",
   "description": "CLI for using the W3C design token format",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -28,7 +28,7 @@
   "dependencies": {
     "@cobalt-ui/utils": "^0.3.0",
     "@types/svgo": "^2.6.1",
-    "better-color-tools": "^0.3.1"
+    "better-color-tools": "^0.6.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.12",

@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.6.0
+
+### Minor Changes
+
+- 07bc365: Update to Feb 2022 version of the Design Tokens format
+
 ## 0.5.0
 
 ### Minor Changes

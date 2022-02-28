@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-ts
 
+## 0.4.0
+
+### Minor Changes
+
+- 07bc365: Update to Feb 2022 version of the Design Tokens format
+
 ## 0.3.4
 
 ### Patch Changes

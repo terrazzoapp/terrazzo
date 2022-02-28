@@ -8,10 +8,10 @@
     "check": "co check"
   },
   "dependencies": {
-    "@cobalt-ui/cli": "^0.4.0",
-    "@cobalt-ui/plugin-css": "^0.5.2",
-    "@cobalt-ui/plugin-json": "^0.3.4",
-    "@cobalt-ui/plugin-sass": "^0.4.9",
-    "@cobalt-ui/plugin-ts": "^0.3.4"
+    "@cobalt-ui/cli": "^0.5.0",
+    "@cobalt-ui/plugin-css": "^0.6.0",
+    "@cobalt-ui/plugin-json": "^0.4.0",
+    "@cobalt-ui/plugin-sass": "^0.5.0",
+    "@cobalt-ui/plugin-ts": "^0.4.0"
   }
 }

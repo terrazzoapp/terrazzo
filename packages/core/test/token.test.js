@@ -280,7 +280,10 @@ describe('9. Composite Type', () => {
     it('basic', () => {
       const json = {
         shadow: {
-          simple: { $type: 'shadow', $value: { offsetX: 0, offsetY: '4px', blur: '8px', spread: 0, color: 'rgb(0, 0, 0, 0.15)' } },
+          simple: {
+            $type: 'shadow',
+            $value: { offsetX: 0, offsetY: '4px', blur: '8px', spread: 0, color: 'rgb(0, 0, 0, 0.15)' },
+          },
         },
       };
       const tokens = getTokens(json);
