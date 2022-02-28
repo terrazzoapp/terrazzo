@@ -88,7 +88,7 @@ Say you have `link` tokens in your `tokens.json`:
 }
 ```
 
-By default, consuming those will simply print values as-is:
+By default, consuming those will print values as-is:
 
 ```scss
 .icon-alert {

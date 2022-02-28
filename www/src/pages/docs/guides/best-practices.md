@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Best practices
 
-Best practices are simply community conventions, meant to fill in opinions when you have none. Disregard any information in here if it doesn’t work with your organization, or if there is a conflict between this information and your configuration.
+Best practices are only community conventions meant to fill in opinions when you have none. Disregard any information in here if it doesn’t work with your organization, or if there is a conflict between this information and your configuration.
 
 ## Casing
 

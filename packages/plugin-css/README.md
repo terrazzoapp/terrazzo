@@ -42,7 +42,7 @@ export default {
 
 ## Usage
 
-Running `npx co build` with the plugin set up will generate a `tokens/tokens.css` file. Simply inspect that, and import where desired and use the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) as desired ([docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)).
+Running `npx co build` with the plugin set up will generate a `tokens/tokens.css` file. Inspect that, and import where desired and use the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) as desired ([docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)).
 
 ## Config
 
@@ -61,7 +61,7 @@ Say you have `link` tokens in your `tokens.json`:
 }
 ```
 
-By default, consuming those will simply print values as-is:
+By default, consuming those will print values as-is:
 
 ```css
 .icon-alert {

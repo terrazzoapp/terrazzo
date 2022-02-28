@@ -128,10 +128,19 @@ code {
 pre,
 code {
   font-family: token('font.family.mono');
-  font-size: token('font.size.03');
   font-variant: tabular-nums lining-nums;
 }
 
-a code {
-  text-decoration: none;
+pre {
+  font-size: token('font.size.04');
+}
+
+code {
+  p & {
+    font-weight: 500;
+  }
+
+  a & {
+    text-decoration: none;
+  }
 }

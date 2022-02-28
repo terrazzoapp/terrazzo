@@ -22,13 +22,14 @@
     { "title": "Best Practices",  "pathname": "/docs/guides/best-practices" },
     { "title": "Modes",           "pathname": "/docs/guides/modes" },
     { "title": "Figma",           "pathname": "/docs/guides/figma" },
-    { "title": "Goals",           "pathname": "/docs/guides/project-goals" },
+    { "title": "Create Plugins",  "pathname": "/docs/guides/creating-plugins" },
     { "title": "Plugins",         "pathname": "/docs/plugins" },
     { "title": "CSS",             "pathname": "/docs/plugins/css" },
     { "title": "JSON",            "pathname": "/docs/plugins/json" },
     { "title": "Sass",            "pathname": "/docs/plugins/sass" },
     { "title": "TypeScript",      "pathname": "/docs/plugins/ts" },
     { "title": "Reference",       "pathname": "/docs/reference" },
-    { "title": "Config",          "pathname": "/docs/reference/config" }
+    { "title": "Config",          "pathname": "/docs/reference/config" },
+    { "title": "Goals",           "pathname": "/docs/reference/about" }
   ]
 }

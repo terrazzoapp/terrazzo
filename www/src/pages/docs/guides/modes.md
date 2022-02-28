@@ -123,6 +123,6 @@ In the above example, we’d have an error on our `red-4` color because the `dar
 
 These are just a few common examples of modes, but modes aren’t limited to these examples. Any time a user setting should produce alternate versions of a token, consider using a mode.
 
-You want to use a mode when **2 versions should never be used together.** Back to GitHub’s color modes example, we never want to use a non-colorblind-friendly green while in colorblind mode. We want to _only_ use colorblind-friendly modes in colorblind mode. Modes help us isolate those values (keeping in mind, though, that we can simply omit certain modes if we’d like to use their defaults).
+You want to use a mode when **2 versions should never be used together.** Back to GitHub’s color modes example, we never want to use a non-colorblind-friendly green while in colorblind mode. We want to _only_ use colorblind-friendly modes in colorblind mode. Modes help us isolate those values (keeping in mind, though, that we can omit certain modes if we’d like to use their defaults).
 
 Though using modes may be a new concept, the more you experiment with them and find what works, the more you can unlock the flexibility of your design system without having to manage multiple complete versions of it.

@@ -29,23 +29,20 @@ export default function json(options?: Options): Plugin {
   return {
     name: '@cobalt-ui/plugin-json',
     async build({ tokens }): Promise<BuildResult[]> {
+      const transformedTokens = tokens.map((token) => {
+        if (transform) {
+          token.$value = transform(token);
+          const $extensions = token.$extensions;
+          for (const mode of Object.keys(($extensions && $extensions.mode) || {})) {
+            (token.$extensions as any).mode[mode] = transform(token, mode);
+          }
+        }
+        return token;
+      });
       return [
         {
           filename,
-          contents: JSON.stringify(
-            tokens,
-            (_, token) => {
-              // apply transformValue()
-              if (transform && typeof token.$type == 'string') {
-                token.$value = transform(token);
-                for (const mode of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-                  token.$extensions.mode[mode] = transform(token, mode);
-                }
-              }
-              return token;
-            },
-            2
-          ),
+          contents: JSON.stringify(transformedTokens, undefined, 2),
         },
       ];
     },
