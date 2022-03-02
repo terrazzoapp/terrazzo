@@ -49,9 +49,9 @@ export default function myPlugin(): Plugin {
 
 `tokens` is that array of tokens that have been validated, normalized, aliased, and all the other actions outlined above.
 
-The return signature of `build` is an array. This means you can output one, or multiple files with your plugin. Since `tokens/` is the default folder where everything gets generated, this means in our example we’d be generating a `tokens/my-filename.json` file when our plugin is done. `filename` is how we set the filename (and it accepts subfolders); `contents` is a string of code that will be written to disk (it can also accept a `Buffer` if needed).
+The return signature of `build` is an array. This means you can output one, or multiple files with your plugin. Since `tokens/` is the default folder where everything gets generated ([configurable](/docs/reference/config/)), in our example we’d be generating a `tokens/my-filename.json` file when our plugin is done. `filename` is how we set the filename (and it accepts subfolders); `contents` is a string of code that will be written to disk (it can also accept a `Buffer` if needed).
 
-**Tip:** for many plugins, an output of one file will suffice. But say you were writing a plugin that grabs icon files from `link` tokens and saves them all locally. All you would need to do is fetch their contents, and return an array of filenames and file contents. The plugin can focus more on the tokens and less on the file system.
+For many plugins, an output of one file will suffice (i.e. an array of one). But say you were generating multiple icons from tokens. You’d need to populate the array with one filename & content entry per icon. The array is meant to handle this case, rather than requiring a plugin that generates multiple files to deal with the file system directly and make sure all the user settings were respected.
 
 ## Testing
 
@@ -67,9 +67,54 @@ export default {
 
 Now when you run `co build`, your plugin will run and you can see its output.
 
-## Config
+## Options
 
-Plugins may also provide an optional `config()` function to either read the config, or modify it:
+Your plugin can accept any options desired as parameters to your main function. What your options are is entirely up to you and what makes sense of your plugin. Here’s an example of letting a user configure the `filename`:
+
+```ts
+import type { Plugin } from '@cobalt-ui/core';
+
+export interface MyPluginOptions {
+  /** set the output filename */
+  filename?: string;
+  // add more options here!
+}
+
+export default function myPlugin(options: MyPluginOptions = {}): Plugin {
+  const filename = options.filename || 'default-filename.json'; // be sure to always set a default!
+  return {
+    name: 'my-plugin',
+    async build({ tokens }) {
+      return [
+        {
+          filename,
+          contents: tokens,
+        },
+      ];
+    },
+  };
+}
+```
+
+You’d then pass any options into `tokens.config.mjs`:
+
+```js
+import myPlugin from './my-plugin.js';
+
+export default {
+  plugins: [
+    myPlugin({
+      filename: 'custom.json',
+    }),
+  ],
+};
+```
+
+You can then expand `options` to be whatever shape you need it to be.
+
+## User Config
+
+Plugins may also provide an optional `config()` function to either read the user config, or modify it:
 
 ```ts
 import type { Plugin } from '@cobalt-ui/core';
@@ -96,6 +141,8 @@ export default function myPlugin(): Plugin {
 }
 ```
 
+`config()` will be fired after the user’s config has been fully loaded and all plugins are instantiated, but before any build happens.
+
 ## Cobalt token structure
 
 Cobalt gives you more context when dealing with tokens. Inspecting each individual token will yield the following:
@@ -109,7 +156,7 @@ Cobalt gives you more context when dealing with tokens. Inspecting each individu
     mode: {…} // normalized modes
   },
   _group: {…} // metadata about the token’s parent group
-  _original: {…} // the original node exactly untouched from tokens.json (including unresolved aliases, etc.)
+  _original: {…} // the original node untouched from tokens.json (including unresolved aliases, etc.)
 }
 ```
 

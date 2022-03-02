@@ -11,7 +11,7 @@ Cobalt turns your [design tokens](/docs/tokens) into code. Cobalt is configurabl
 - [CSS](/docs/plugins/css)
 - [TypeScript](/docs/plugins/ts)
 - [JSON](/docs/plugins/json)
-- You can also make a [custom plugin](/docs/plugins/custom) to generate more!
+- You can also make a [custom plugin](/docs/guides/plugins) to generate more!
 
 ## Introduction
 

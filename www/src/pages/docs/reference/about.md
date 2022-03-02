@@ -15,10 +15,8 @@ The project goals are subject to change, but currently are encompassed by 3 poin
 
 ## What does “Cobalt” mean?
 
-The name ”cobalt” has several meanings. Historically, the blue pigment cobalt (along with ultramarine) has been one of the most elusive and rare colors in painting. But with the commodification of pigments and advancements in paint storage, cobalt is now
-widely available to all, and in the process, revolutionized art. Blue pigment was the last “missing piece“ in paint colors. In a similar sense, having an easy-to-use system to manage tokens aims to be the “missing piece” to design management for
-applications.
+The name **Cobalt** has three meanings:
 
-Secondly, cobalt is an element on the periodic table. It’s reflective of how design tokens are in a sense the “elements“ of a design system.
-
-Thirdly, cobalt blue is a reference to a “blueprint”—the founding sketch of your design.
+1. Cobalt is an [element on the periodic table](https://en.wikipedia.org/wiki/Cobalt) in reference to design tokens being the “atoms” of design systems.
+2. Just as blue pigment (cobalt or ultramarine) was [the last “missing piece“ in paint colors](https://artuk.org/discover/stories/colour-in-art-a-brief-history-of-blue-pigment), having an easy-to-use system to manage design tokens aims to be the “missing piece” to design management.
+3. Blue is also a reference to a [blueprint](https://en.wikipedia.org/wiki/Blueprint) that acts as the reference for a design system.

@@ -22,7 +22,7 @@
     { "title": "Best Practices",  "pathname": "/docs/guides/best-practices" },
     { "title": "Modes",           "pathname": "/docs/guides/modes" },
     { "title": "Figma",           "pathname": "/docs/guides/figma" },
-    { "title": "Create Plugins",  "pathname": "/docs/guides/creating-plugins" },
+    { "title": "Create Plugins",  "pathname": "/docs/guides/plugins" },
     { "title": "Plugins",         "pathname": "/docs/plugins" },
     { "title": "CSS",             "pathname": "/docs/plugins/css" },
     { "title": "JSON",            "pathname": "/docs/plugins/json" },
