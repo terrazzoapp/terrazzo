@@ -25,6 +25,7 @@ const VAR_TOKENS = '__token-values';
 const VAR_TYPOGRAPHY = '__token-typography-mixins';
 const VAR_ERROR = '__cobalt-error';
 const TRAILING_WS_RE = /\s+$/gm;
+const DEPENDENCIES = ['sass:list', 'sass:map'];
 
 type TokenTransformer = {
   color: (value: ParsedColorToken['$value'], token: ParsedColorToken) => string;
@@ -91,6 +92,21 @@ ${cbClose}`
     .trim()
     .replace(TRAILING_WS_RE, '');
 
+  const LIST_MODES_FN = `@function listModes($tokenName)${cbOpen}
+  @if map.has-key($${VAR_TOKENS}, $tokenName) == false${cbOpen}
+    @error "No token named \\"#{$tokenName}\\""${semi}
+  ${cbClose}
+  $_modes: ();
+  @each $k in map.get($${VAR_TOKENS})${cbOpen}
+    @if $k != "default"${cbOpen}
+      $_modes: list.append($_modes, $k);
+    ${cbClose}
+  ${cbClose}
+  @return $_modes;
+${cbClose}`
+    .trim()
+    .replace(TRAILING_WS_RE, '');
+
   const TYPOGRAPHY_MIXIN = `@mixin typography($tokenName, $modeName: default)${cbOpen}
   @if map.has-key($${VAR_TYPOGRAPHY}, $tokenName) == false${cbOpen}
     @error "No typography mixin named \\"#{$tokenName}\\""${semi}
@@ -116,14 +132,16 @@ ${cbClose}`
       let output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
 
-      // metadata
-      if (metadata.name) output.push(`// ${metadata.name}`);
-      output.push('// This file was auto-generated from tokens.json.');
-      output.push('// DO NOT EDIT!');
+      // metadata (SassDoc)
+      output.push('////');
+      output.push(`/// ${metadata.name || 'Design Tokens'}`);
+      output.push('/// Auto-generated from tokens.json.');
+      output.push('/// DO NOT EDIT!');
+      output.push('////');
       output.push('');
 
       // basic tokens
-      output.push(`@use "sass:map"${semi}`);
+      output.push(...DEPENDENCIES.map((name) => `@use "${name}"${semi}`));
       output.push('');
       output.push(i.indent(`$${VAR_TOKENS}: (`, 0));
       for (const token of tokens) {
@@ -185,6 +203,8 @@ ${cbClose}`
 
       // utilities
       output.push(TOKEN_FN);
+      output.push('');
+      output.push(LIST_MODES_FN);
       output.push('');
       output.push(TYPOGRAPHY_MIXIN);
       output.push('');
