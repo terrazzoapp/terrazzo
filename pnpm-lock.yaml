@@ -35,7 +35,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -49,7 +49,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -63,7 +63,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
@@ -84,7 +84,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@carbon/colors': 10.34.0
@@ -101,7 +101,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
       '@salesforce-ux/design-system': ^2.16.2
       better-color-tools: ^0.6.1
@@ -119,7 +119,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.5.0
+      '@cobalt-ui/plugin-sass': ^0.6.0
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -259,7 +259,7 @@ importers:
       '@cobalt-ui/cli': link:../packages/cli
       '@cobalt-ui/core': link:../packages/core
       '@cobalt-ui/plugin-sass': link:../packages/plugin-sass
-      astro: 0.23.2_sass@1.49.9+typescript@4.5.5
+      astro: 0.23.2_sass@1.49.9+typescript@4.6.3
       npm-run-all: 4.1.5
       sass: 1.49.9
 
@@ -354,14 +354,14 @@ packages:
       - '@babel/core'
     dev: true
 
-  /@astrojs/renderer-svelte/0.4.0_083b6655da0eff7d18040e168afb0094:
+  /@astrojs/renderer-svelte/0.4.0_dbc49f3454993521e0ed2d70dc81dafe:
     resolution: {integrity: sha512-YP6e6qPMEx5Pr6tCiD+GTyT7Bl+aA1biTX9Yg8Sd7bjXHOiqfMH28d8Bo0CXHiqUXli/CTp6pRtR0WN44a4gUg==}
     engines: {node: ^14.15.0 || >=16.0.0}
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.37_svelte@3.46.4+vite@2.8.4
       postcss-load-config: 3.1.3
       svelte: 3.46.4
-      svelte-preprocess: 4.10.4_b7271f2ed782f08978c4d0e2d2ea2757
+      svelte-preprocess: 4.10.4_6d633a474103a6fd3b282f6b82631a09
     transitivePeerDependencies:
       - '@babel/core'
       - coffeescript
@@ -1521,7 +1521,7 @@ packages:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
     dev: true
 
-  /astro/0.23.2_sass@1.49.9+typescript@4.5.5:
+  /astro/0.23.2_sass@1.49.9+typescript@4.6.3:
     resolution: {integrity: sha512-NoVZxRXDW/PLSsEQLdsiBub+AeVq8EAzc2Lg+XdHegvoeQnGsYrvrzLIxbztRHZIeOuY+lbgf8MlwgVnOrQY4g==}
     engines: {node: ^14.15.0 || >=16.0.0, npm: '>=6.14.0'}
     hasBin: true
@@ -1532,7 +1532,7 @@ packages:
       '@astrojs/prism': 0.4.0
       '@astrojs/renderer-preact': 0.5.0_@babel+core@7.17.5
       '@astrojs/renderer-react': 0.5.0_@babel+core@7.17.5
-      '@astrojs/renderer-svelte': 0.4.0_083b6655da0eff7d18040e168afb0094
+      '@astrojs/renderer-svelte': 0.4.0_dbc49f3454993521e0ed2d70dc81dafe
       '@astrojs/renderer-vue': 0.4.0_vite@2.8.4
       '@astropub/webapi': 0.10.14
       '@babel/core': 7.17.5
@@ -5838,7 +5838,7 @@ packages:
       svelte: 3.46.4
     dev: true
 
-  /svelte-preprocess/4.10.4_b7271f2ed782f08978c4d0e2d2ea2757:
+  /svelte-preprocess/4.10.4_6d633a474103a6fd3b282f6b82631a09:
     resolution: {integrity: sha512-fuwol0N4UoHsNQolLFbMqWivqcJ9N0vfWO9IuPAiX/5okfoGXURyJ6nECbuEIv0nU3M8Xe2I1ONNje2buk7l6A==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -5890,7 +5890,7 @@ packages:
       sorcery: 0.10.0
       strip-indent: 3.0.0
       svelte: 3.46.4
-      typescript: 4.5.5
+      typescript: 4.6.3
     dev: true
 
   /svelte/3.46.4:

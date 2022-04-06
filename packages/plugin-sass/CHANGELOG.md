@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.6.0
+
+### Minor Changes
+
+- 6bd3b9b: Add listModes() function
+
 ## 0.5.0
 
 ### Minor Changes
