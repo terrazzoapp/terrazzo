@@ -1,6 +1,10 @@
-// This file was auto-generated from tokens.json.
-// DO NOT EDIT!
+////
+/// Design Tokens
+/// Auto-generated from tokens.json.
+/// DO NOT EDIT!
+////
 
+@use "sass:list";
 @use "sass:map";
 
 $__token-values: (
@@ -90,6 +94,19 @@ $__token-typography-mixins: (
   } @else {
     @return map.get($_token, default);
   }
+}
+
+@function listModes($tokenName) {
+  @if map.has-key($__token-values, $tokenName) == false {
+    @error "No token named \"#{$tokenName}\"";
+  }
+  $_modes: ();
+  @each $k in map.get($__token-values) {
+    @if $k != "default" {
+      $_modes: list.append($_modes, $k);
+    }
+  }
+  @return $_modes;
 }
 
 @mixin typography($tokenName, $modeName: default) {
