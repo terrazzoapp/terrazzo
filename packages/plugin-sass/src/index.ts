@@ -97,7 +97,7 @@ ${cbClose}`
     @error "No token named \\"#{$tokenName}\\""${semi}
   ${cbClose}
   $_modes: ();
-  @each $k in map.get($${VAR_TOKENS})${cbOpen}
+  @each $k in map.get($${VAR_TOKENS}, $tokenName)${cbOpen}
     @if $k != "default"${cbOpen}
       $_modes: list.append($_modes, $k);
     ${cbClose}

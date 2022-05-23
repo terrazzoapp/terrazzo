@@ -101,7 +101,7 @@ $__token-typography-mixins: (
     @error "No token named \"#{$tokenName}\"";
   }
   $_modes: ();
-  @each $k in map.get($__token-values) {
+  @each $k in map.get($__token-values, $tokenName) {
     @if $k != "default" {
       $_modes: list.append($_modes, $k);
     }
