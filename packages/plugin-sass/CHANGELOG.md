@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-sass
 
+## 0.6.1
+
+### Patch Changes
+
+- cd82302: Fix listModes bug
+
 ## 0.6.0
 
 ### Minor Changes

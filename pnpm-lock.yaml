@@ -35,7 +35,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
     dependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -49,7 +49,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -63,7 +63,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
       '@primer/octicons': ^16.2.0
       '@primer/primitives': ^7.4.0
@@ -84,7 +84,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@carbon/colors': 10.34.0
@@ -101,7 +101,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
       '@salesforce-ux/design-system': ^2.16.2
       better-color-tools: ^0.6.1
@@ -119,7 +119,7 @@ importers:
       '@cobalt-ui/cli': ^0.5.0
       '@cobalt-ui/plugin-css': ^0.6.0
       '@cobalt-ui/plugin-json': ^0.4.0
-      '@cobalt-ui/plugin-sass': ^0.6.0
+      '@cobalt-ui/plugin-sass': ^0.6.1
       '@cobalt-ui/plugin-ts': ^0.4.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
@@ -6743,7 +6743,7 @@ packages:
   file:packages/plugin-sass:
     resolution: {directory: packages/plugin-sass, type: directory}
     name: '@cobalt-ui/plugin-sass'
-    version: 0.6.0
+    version: 0.6.1
     dependencies:
       '@cobalt-ui/utils': 0.3.0
       mime: 3.0.0
