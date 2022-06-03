@@ -62,7 +62,7 @@ This will generate a **tokens/tokens.css** file in your project for you to use.
 ## Next steps
 
 - [Learn about tokens](/docs/tokens)
-- [Sync with Figma](/docs/figma)
+- [Sync with Figma](/docs/guides/figma)
 - [Learn how to configure Cobalt](/docs/reference/config)
 - [Add plugins](/docs/plugins)
 
