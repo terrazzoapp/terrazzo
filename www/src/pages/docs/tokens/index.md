@@ -405,7 +405,7 @@ _Should a type be added? [Suggest it be added!](https://github.com/design-tokens
 
 ## Aliasing
 
-Types can be aliased [as defined in the Design Tokens spec](https://design-tokens.github.io/community-group/format/#aliases-references) by using the JSON pointer syntax:
+Types can be aliased [as defined in the Design Tokens spec](https://design-tokens.github.io/community-group/format/#aliases-references) by using dot-delimited path syntax, wrapped in curly braces (e.g., `{groupA.groupB.token}`):
 
 ```json
 {
