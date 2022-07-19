@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@astrojs/renderer-vue": "^0.4.0",
-    "prismjs": "^1.27.0",
-    "vue": "^3.2.31"
+    "prismjs": "^1.28.0",
+    "vue": "^3.2.37"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "file:../packages/cli/",
@@ -23,6 +23,6 @@
     "@cobalt-ui/plugin-sass": "file:../packages/plugin-sass/",
     "astro": "^0.23.2",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.49.9"
+    "sass": "^1.53.0"
   }
 }
