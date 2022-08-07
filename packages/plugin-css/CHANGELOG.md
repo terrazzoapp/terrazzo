@@ -1,5 +1,18 @@
 # @cobalt-ui/plugin-css
 
+## 0.7.0
+
+### Minor Changes
+
+- a2a9d62: Changed typography tokens to generate multiple variables rather than classes
+
+### Patch Changes
+
+- ed21d56: Bump deps, add config type to docs
+- Updated dependencies [a2a9d62]
+- Updated dependencies [ed21d56]
+  - @cobalt-ui/utils@0.4.0
+
 ## 0.6.0
 
 ### Minor Changes

@@ -1,5 +1,15 @@
 # @cobalt-ui/utils
 
+## 0.4.0
+
+### Minor Changes
+
+- a2a9d62: Add kebabinate() and camelize() utils
+
+### Patch Changes
+
+- ed21d56: Bump deps, add config type to docs
+
 ## 0.3.0
 
 ### Minor Changes

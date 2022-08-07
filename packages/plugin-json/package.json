@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-json",
   "description": "Generate JSON from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -22,6 +22,6 @@
     "dev": "tsc -w"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "^0.6.0"
+    "@cobalt-ui/core": "^0.6.1"
   }
 }

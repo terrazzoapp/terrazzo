@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-json
 
+## 0.4.1
+
+### Patch Changes
+
+- ed21d56: Bump deps, add config type to docs
+
 ## 0.4.0
 
 ### Minor Changes

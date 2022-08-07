@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-sass
 
+## 0.6.2
+
+### Patch Changes
+
+- ed21d56: Bump deps, add config type to docs
+- Updated dependencies [a2a9d62]
+- Updated dependencies [ed21d56]
+  - @cobalt-ui/utils@0.4.0
+
 ## 0.6.1
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @cobalt-ui/cli
 
+## 0.5.1
+
+### Patch Changes
+
+- ed21d56: Bump deps, add config type to docs
+- Updated dependencies [a2a9d62]
+- Updated dependencies [ed21d56]
+  - @cobalt-ui/utils@0.4.0
+  - @cobalt-ui/core@0.6.1
+
 ## 0.5.0
 
 ### Minor Changes
