@@ -13,16 +13,14 @@ import type {
   ParsedStrokeStyleToken,
   ParsedTransitionToken,
   ParsedTypographyToken,
-  ParsedTypographyValue,
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
 import color from 'better-color-tools';
-import { Indenter, FG_YELLOW, RESET } from '@cobalt-ui/utils';
+import { Indenter, kebabinate, FG_YELLOW, RESET } from '@cobalt-ui/utils';
 import { encode, formatFontNames } from './util.js';
 
 const DASH_PREFIX_RE = /^(-*)?/;
-const CAMELCASE_RE = /([^A-Z])([A-Z])/g;
 const DOT_UNDER_GLOB_RE = /[._]/g;
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
@@ -39,7 +37,7 @@ type TokenTransformer = {
   transition: (value: ParsedTransitionToken['$value'], token: ParsedTransitionToken) => string;
   shadow: (value: ParsedShadowToken['$value'], token: ParsedShadowToken) => string;
   gradient: (value: ParsedGradientToken['$value'], token: ParsedGradientToken) => string;
-  typography: (value: ParsedTypographyToken['$value'], token: ParsedTypographyToken) => string;
+  typography: (value: ParsedTypographyToken['$value'], token: ParsedTypographyToken) => Record<string, string | number | string[]>;
 } & { [key: string]: (value: any, token: any) => string };
 
 export interface Options {
@@ -71,6 +69,7 @@ export default function css(options?: Options): Plugin {
   if (!transform.shadow) transform.shadow = transformShadow;
   if (!transform.gradient) transform.gradient = transformGradient;
   if (!transform.transition) transform.transition = transformTransition;
+  if (!transform.typography) transform.typography = transformTypography;
 
   const i = new Indenter();
 
@@ -81,20 +80,6 @@ export default function css(options?: Options): Plugin {
       output.push(i.indent(`${id.replace(DASH_PREFIX_RE, `--${prefix}`).replace(DOT_UNDER_GLOB_RE, '-')}: ${value};`, indentLv + (generateRoot ? 1 : 0)));
     }
     if (generateRoot) output.push(i.indent('}', indentLv));
-    return output;
-  }
-
-  function makeTypography(tokens: Record<string, ParsedTypographyValue>, indentLv = 0): string[] {
-    const output: string[] = [];
-    for (const [id, properties] of Object.entries(tokens)) {
-      output.push('');
-      output.push(i.indent(`.${id.replace(DOT_UNDER_GLOB_RE, '-')} {`, indentLv));
-      for (const [k, value] of Object.entries(properties)) {
-        const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
-        output.push(i.indent(`${property}: ${Array.isArray(value) ? formatFontNames(value) : value};`, indentLv + 1));
-      }
-      output.push(i.indent('}', indentLv));
-    }
     return output;
   }
 
@@ -123,39 +108,32 @@ export default function css(options?: Options): Plugin {
     },
     async build({ tokens, metadata }): Promise<BuildResult[]> {
       const tokenVals: { [id: string]: any } = {};
-      const typographyVals: { [id: string]: ParsedTypographyValue } = {};
       const modeVals: { [selector: string]: { [id: string]: any } } = {};
-      const typographyModeVals: { [selector: string]: { [id: string]: ParsedTypographyValue } } = {};
       const selectors: string[] = [];
 
       // transformation (1 pass through all tokens + modes)
       for (const token of tokens) {
-        // exception: typography tokens require CSS classes
-        if (token.$type === 'typography') {
-          typographyVals[token.id] = token.$value as ParsedTypographyValue;
-          if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
-            for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
-              const [groupRoot, modeName] = parseModeSelector(modeID);
-              if ((groupRoot && !token.id.startsWith(groupRoot)) || !token.$extensions.mode[modeName]) continue;
-
-              if (!Array.isArray(selectors)) modeSelectors = [selectors];
-              for (const selector of modeSelectors) {
-                if (!selectors.includes(selector)) selectors.push(selector);
-                if (!modeVals[selector]) modeVals[selector] = {};
-                typographyModeVals[selector][token.id] = token.$extensions.mode[modeName] as ParsedTypographyValue;
-              }
-            }
-          }
-          continue;
-        }
-
         const transformer = transform[token.$type];
         if (!transformer) throw new Error(`No transformer found for token type "${token.$type}"`);
 
-        tokenVals[token.id] = {};
         let value = transformer(token.$value as any, token as any);
-        if (token.$type === 'link' && options?.embedFiles) value = encode(value, config.outDir);
-        tokenVals[token.id] = value;
+        switch (token.$type) {
+          case 'link': {
+            if (options?.embedFiles) value = encode(value as string, config.outDir);
+            tokenVals[token.id] = value;
+            break;
+          }
+          case 'typography': {
+            for (const [k, v] of Object.entries(value)) {
+              tokenVals[`${token.id}-${k}`] = v;
+            }
+            break;
+          }
+          default: {
+            tokenVals[token.id] = value;
+            break;
+          }
+        }
 
         if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
           for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
@@ -167,8 +145,23 @@ export default function css(options?: Options): Plugin {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
               let modeVal = transformer(token.$extensions.mode[modeName] as any, token as any);
-              if (token.$type === 'link' && options?.embedFiles) modeVal = encode(modeVal, config.outDir);
-              modeVals[selector][token.id] = modeVal;
+              switch (token.$type) {
+                case 'link': {
+                  if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
+                  modeVals[selector][token.id] = modeVal;
+                  break;
+                }
+                case 'typography': {
+                  for (const [k, v] of Object.entries(modeVal)) {
+                    modeVals[selector][`${token.id}-${k}`] = v;
+                  }
+                  break;
+                }
+                default: {
+                  modeVals[selector][token.id] = modeVal;
+                  break;
+                }
+              }
             }
           }
         }
@@ -183,12 +176,11 @@ export default function css(options?: Options): Plugin {
       code.push(' */');
       code.push('');
       code.push(...makeVars(tokenVals, 0, true));
-      code.push(...makeTypography(typographyVals));
 
       // modes
       for (const selector of selectors) {
         code.push('');
-        if (!Object.keys(modeVals[selector]).length && !Object.keys(typographyModeVals[selector]).length) {
+        if (!Object.keys(modeVals[selector]).length) {
           // eslint-disable-next-line no-console
           console.warn(`${FG_YELLOW}@cobalt-ui/plugin-css${RESET} can’t find any tokens for "${selector}"`);
           continue;
@@ -196,7 +188,6 @@ export default function css(options?: Options): Plugin {
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
         code.push(`${wrapper} {`);
         if (modeVals[selector]) code.push(...makeVars(modeVals[selector], 1, wrapper.startsWith('@')));
-        if (typographyModeVals[selector]) code.push(...makeTypography(typographyModeVals[selector], 1));
         code.push('}');
       }
 
@@ -263,6 +254,14 @@ function transformGradient(value: ParsedGradientToken['$value']): string {
 function transformTransition(value: ParsedTransitionToken['$value']): string {
   const timingFunction = value.timingFunction ? `cubic-bezier(${value.timingFunction.join(',')})` : undefined;
   return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
+}
+/** transform typography */
+function transformTypography(value: ParsedTypographyToken['$value']): Record<string, string | number | string[]> {
+  const values: Record<string, string | number | string[]> = {};
+  for (const [k, v] of Object.entries(value)) {
+    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : v;
+  }
+  return values;
 }
 
 /** parse modeSelector */

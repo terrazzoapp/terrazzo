@@ -1,8 +1,8 @@
 import type { ParsedTypographyValue, FontWeightName } from '../../@types/token';
+import { camelize } from '@cobalt-ui/utils';
 import { normalizeFontValue } from './font.js';
 import { normalizeDimensionValue } from './dimension.js';
 
-const KEBAB_CASE_RE = /[-_]+[^-_]/g;
 const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
   ['thin', 100],
   ['hairline', 100],
@@ -45,7 +45,7 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
 
   const normalized = {} as ParsedTypographyValue;
   for (const [k, v] of Object.entries(value)) {
-    const property = k.replace(KEBAB_CASE_RE, (letter) => letter.charAt(letter.length - 1).toUpperCase());
+    const property = camelize(k);
     switch (property) {
       case 'fontName':
       case 'fontFamily': {
