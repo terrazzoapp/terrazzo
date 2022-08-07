@@ -10,6 +10,7 @@ npm i -D @cobalt-ui/plugin-ts
 // tokens.config.mjs
 import ts from '@cobalt-ui/plugin-ts';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     ts({

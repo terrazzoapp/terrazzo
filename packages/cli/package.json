@@ -37,9 +37,10 @@
     "number-precision": "^1.5.2",
     "piscina": "^3.2.0",
     "svgo": "^2.8.0",
-    "undici": "^5.8.0"
+    "undici": "^5.8.1"
   },
   "devDependencies": {
+    "@types/svgo": "^2.6.3",
     "chai": "^4.3.6",
     "figma-api": "^1.10.1",
     "mocha": "^10.0.0"

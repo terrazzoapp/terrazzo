@@ -46,6 +46,7 @@ Create a **tokens.config.mjs** file also in the root of your project:
 ```js
 import pluginCSS from '@cobalt-ui/plugin-css';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [pluginCSS()],
 };

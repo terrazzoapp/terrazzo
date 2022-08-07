@@ -17,6 +17,7 @@ npm i -D @cobalt-ui/plugin-sass
 // tokens.config.mjs
 import pluginSass from '@cobalt-ui/plugin-sass';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginSass({
@@ -156,6 +157,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginSass({
@@ -203,6 +205,7 @@ export default {
 If you have your own custom token type, e.g. `my-custom-type`, you can add more keys to `transform` to handle it, like so:
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginSass({

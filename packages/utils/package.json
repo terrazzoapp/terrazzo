@@ -13,5 +13,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.45"
   }
 }

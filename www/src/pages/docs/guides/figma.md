@@ -21,6 +21,7 @@ layout: ../../../layouts/docs.astro
 5. In `tokens.config.mjs`, under `figma`, paste your share link, and specify component names and properties within each link ([instructions](#mapping)):
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     /** docs to sync */
@@ -64,6 +65,7 @@ Use `type: "color"` or `type: "gradient"` to extract fills from a Figma style or
 
 <!-- prettier-ignore -->
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     docs: [
@@ -92,6 +94,7 @@ By using `type: "link"` along with a `filename` path you can save a component lo
 
 <!-- prettier-ignore -->
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     docs: [
@@ -115,6 +118,7 @@ Note that the more icons you sync, the longer it may take to update your tokens.
 Sometimes you’ll find Figma exports needing a little cleanup. By adding the `figma.optimize` option, you can run optimizers over the downloaded files:
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     docs: [
@@ -150,6 +154,7 @@ To pull a **Drop Shadow** from Figma, use the `shadow` type.
 
 <!-- prettier-ignore -->
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     docs: [
@@ -178,6 +183,7 @@ To extract a **Text Style** from Figma, use the `font` or `typography` type.
 
 <!-- prettier-ignore -->
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   figma: {
     docs: [

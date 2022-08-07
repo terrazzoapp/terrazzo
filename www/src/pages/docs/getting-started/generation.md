@@ -43,6 +43,7 @@ import pluginTS from '@cobalt-ui/plugin-ts';
 import pluginCSS from '@cobalt-ui/plugin-css';
 import pluginJSON from '@cobalt-ui/plugin-json';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [pluginTS(), pluginCSS(), pluginJSON()],
 };

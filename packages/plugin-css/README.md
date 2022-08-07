@@ -14,6 +14,7 @@ npm i -D @cobalt-ui/plugin-css
 // tokens.config.mjs
 import css from '@cobalt-ui/plugin-css';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     css({
@@ -101,7 +102,8 @@ For example, if your `color.base` group has `light` and `dark` modes, and you wa
 // tokens.config.mjs
 import css from '@cobalt-ui/plugin-css';
 
-export default [
+/** @type import('@cobalt-ui/core').Config */
+export default {
   plugins: [
     css({
       modeSelectors: {
@@ -110,7 +112,7 @@ export default [
       },
     }),
   ],
-]
+};
 ```
 
 This will generate the following CSS:
@@ -147,6 +149,7 @@ But more than just classes can be used (that’s why it’s called `modeSelector
 // tokens.config.mjs
 import css from '@cobalt-ui/plugin-css';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     css({
@@ -191,6 +194,7 @@ To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/
 Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginCSS({
@@ -238,6 +242,7 @@ export default {
 If you have your own custom token type, e.g. `my-custom-type`, you can add more keys to `transform` to handle it, like so:
 
 ```js
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginCSS({

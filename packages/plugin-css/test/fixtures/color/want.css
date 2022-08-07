@@ -46,43 +46,43 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   :root {
-    --color-blue: color(display-p3 0.12941 0.5451 1);
-    --color-action: color(display-p3 0.12941 0.5451 1);
-    --gradient: color(display-p3 0.12941 0.5451 1) 0%, color(display-p3 0.9098 0.35294 0.67843) 100%;
+    --color-blue: color(display-p3 0.129412 0.545098 1);
+    --color-action: color(display-p3 0.129412 0.545098 1);
+    --gradient: color(display-p3 0.129412 0.545098 1) 0%, color(display-p3 0.909804 0.352941 0.678431) 100%;
   }
 
   [data-color-theme="light"] {
-    --color-blue: color(display-p3 0.12941 0.5451 1);
-    --color-action: color(display-p3 0.12941 0.5451 1);
+    --color-blue: color(display-p3 0.129412 0.545098 1);
+    --color-action: color(display-p3 0.129412 0.545098 1);
   }
 
   [data-color-theme="dark"] {
-    --color-blue: color(display-p3 0.21961 0.5451 0.99216);
-    --color-action: color(display-p3 0.21961 0.5451 0.99216);
+    --color-blue: color(display-p3 0.219608 0.545098 0.992157);
+    --color-action: color(display-p3 0.219608 0.545098 0.992157);
   }
 
   [data-color-theme="light-colorblind"] {
-    --color-blue: color(display-p3 0.12941 0.5451 1);
-    --color-action: color(display-p3 0.12941 0.5451 1);
+    --color-blue: color(display-p3 0.129412 0.545098 1);
+    --color-action: color(display-p3 0.129412 0.545098 1);
   }
 
   [data-color-theme="light-high-contrast"] {
-    --color-blue: color(display-p3 0.06667 0.40784 0.8902);
-    --color-action: color(display-p3 0.06667 0.40784 0.8902);
+    --color-blue: color(display-p3 0.066667 0.407843 0.890196);
+    --color-action: color(display-p3 0.066667 0.407843 0.890196);
   }
 
   [data-color-theme="dark-dimmed"] {
-    --color-blue: color(display-p3 0.2549 0.51765 0.89412);
-    --color-action: color(display-p3 0.2549 0.51765 0.89412);
+    --color-blue: color(display-p3 0.254902 0.517647 0.894118);
+    --color-action: color(display-p3 0.254902 0.517647 0.894118);
   }
 
   [data-color-theme="high-contrast"] {
-    --color-blue: color(display-p3 0.25098 0.61961 1);
-    --color-action: color(display-p3 0.25098 0.61961 1);
+    --color-blue: color(display-p3 0.25098 0.619608 1);
+    --color-action: color(display-p3 0.25098 0.619608 1);
   }
 
   [data-color-theme="dark-colorblind"] {
-    --color-blue: color(display-p3 0.21961 0.5451 0.99216);
-    --color-action: color(display-p3 0.21961 0.5451 0.99216);
+    --color-blue: color(display-p3 0.219608 0.545098 0.992157);
+    --color-action: color(display-p3 0.219608 0.545098 0.992157);
   }
 }

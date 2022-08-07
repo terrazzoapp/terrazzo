@@ -15,6 +15,7 @@ npm i -D @cobalt-ui/plugin-json
 // tokens.config.mjs
 import json from '@cobalt-ui/plugin-json';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     json({

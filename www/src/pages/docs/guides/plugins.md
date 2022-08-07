@@ -60,6 +60,7 @@ To test your plugin working on your design tokens, add it to your `tokens.config
 ```js
 import myPlugin from './my-plugin.js';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [myPlugin()],
 };
@@ -101,6 +102,7 @@ You’d then pass any options into `tokens.config.mjs`:
 ```js
 import myPlugin from './my-plugin.js';
 
+/** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     myPlugin({
