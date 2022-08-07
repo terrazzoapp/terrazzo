@@ -25,7 +25,7 @@
     "build:examples:shopify": "cd examples/shopify && npm run build:tokens",
     "build:packages": "tsc -b packages/cli packages/plugin-css packages/plugin-json packages/plugin-sass packages/plugin-ts",
     "build:utils": "tsc -b packages/utils",
-    "cf:build": "pnpm i && npm run build && cd www && npm run build",
+    "cf:build": "pnpm i --no-frozen-lockfile && npm run build && cd www && npm run build",
     "changeset": "changeset",
     "dev": "run-p dev:*",
     "dev:core": "cd packages/core && npm run dev",

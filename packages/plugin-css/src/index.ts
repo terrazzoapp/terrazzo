@@ -20,7 +20,8 @@ import color from 'better-color-tools';
 import { Indenter, kebabinate, FG_YELLOW, RESET } from '@cobalt-ui/utils';
 import { encode, formatFontNames } from './util.js';
 
-const DASH_PREFIX_RE = /^(-*)?/;
+const DASH_PREFIX_RE = /^-+/;
+const DASH_SUFFIX_RE = /-+$/;
 const DOT_UNDER_GLOB_RE = /[._]/g;
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
@@ -56,7 +57,7 @@ export interface Options {
 export default function css(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
-  let prefix = options?.prefix || '';
+  let prefix = options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
   let transform = {
     ...(options?.transform || {}),
   } as TokenTransformer;
@@ -77,7 +78,7 @@ export default function css(options?: Options): Plugin {
     const output: string[] = [];
     if (generateRoot) output.push(i.indent(':root {', indentLv));
     for (const [id, value] of Object.entries(tokens)) {
-      output.push(i.indent(`${id.replace(DASH_PREFIX_RE, `--${prefix}`).replace(DOT_UNDER_GLOB_RE, '-')}: ${value};`, indentLv + (generateRoot ? 1 : 0)));
+      output.push(i.indent(`--${prefix}${id.replace(DOT_UNDER_GLOB_RE, '-')}: ${value};`, indentLv + (generateRoot ? 1 : 0)));
     }
     if (generateRoot) output.push(i.indent('}', indentLv));
     return output;

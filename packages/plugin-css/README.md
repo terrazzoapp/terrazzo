@@ -32,10 +32,8 @@ export default {
           return value;
         },
       },
-      /** don’t like the name of CSS variables? change ’em! */
-      transformVariableNames(name, group) {
-        return `--my-prefix-${name}`;
-      },
+      /** (optional) prefix variable names */
+      prefix: '--my-prefix',
     }),
   ],
 };
