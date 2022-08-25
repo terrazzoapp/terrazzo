@@ -29,18 +29,18 @@
     "test": "mocha --parallel"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.6.1",
-    "@cobalt-ui/utils": "^0.4.0",
+    "@cobalt-ui/core": "workspace:^0.6.1",
+    "@cobalt-ui/utils": "workspace:^0.4.0",
     "better-color-tools": "^0.6.3",
     "chokidar": "^3.5.3",
     "dotenv": "^10.0.0",
     "number-precision": "^1.5.2",
     "piscina": "^3.2.0",
     "svgo": "^2.8.0",
-    "undici": "^5.8.1"
+    "undici": "^5.10.0"
   },
   "devDependencies": {
-    "@types/svgo": "^2.6.3",
+    "@types/svgo": "^2.6.4",
     "chai": "^4.3.6",
     "figma-api": "^1.10.1",
     "mocha": "^10.0.0"

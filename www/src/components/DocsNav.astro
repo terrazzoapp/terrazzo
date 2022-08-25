@@ -1,70 +1,81 @@
 ---
 import manifest from '../docs-manifest.json';
 
-const subPageRE = /^\/docs\/[^/]+\//
-const docsSection = Astro.request.url.pathname.split('/').slice(0, 3).join('/');
+const subPageRE = /^\/docs\/[^/]+\//;
+const docsSection = Astro.url.pathname.split('/').slice(0, 3).join('/');
 
 function showSubPage(url) {
   if (subPageRE.test(url)) {
-    if (Astro.request.url.pathname === '/') return false;
+    if (Astro.url.pathname === '/') return false;
     return docsSection && url.startsWith(docsSection);
   }
   return true;
 }
 ---
+
 <style lang="scss">
-@use "../../tokens" as *;
+  @use '../../tokens' as *;
 
-.nav {
-  display: flex;
-  flex-direction: column;
-  font-size: token('font.size.04');
-  max-height: calc(100vh - #{token('space.layout.sm')});
-  min-width: token('space.layout.2xl');
-  position: sticky;
-  top: token('space.md');
-}
-
-.a {
-  align-items: center;
-  color: token("color.black");
-  display: flex;
-  min-height: token('space.lg');
-  padding-left: token('space.lg');
-  position: relative;
-  text-decoration: none;
-
-  &[aria-current=page] {
-    color: token('color.blue.06');
-    font-weight: 550;
+  .nav {
+    display: flex;
+    flex-direction: column;
+    font-size: token('font.size.04');
+    max-height: calc(100vh - #{token('space.layout.sm')});
+    min-width: token('space.layout.2xl');
+    position: sticky;
+    top: token('space.md');
   }
 
-  &-icon {
-    margin-left: auto;
-    height: 1em;
-    width: 1em;
-  }
+  .a {
+    align-items: center;
+    color: token('color.black');
+    display: flex;
+    min-height: token('space.lg');
+    padding-left: token('space.lg');
+    position: relative;
+    text-decoration: none;
 
-  &--subpage {
-    margin-left: token('space.md');
+    &[aria-current='page'] {
+      color: token('color.blue.06');
+      font-weight: 550;
+    }
 
-    &::before {
-      left: -0.875rem;
+    &-icon {
+      margin-left: auto;
+      height: 1em;
+      width: 1em;
+    }
+
+    &--subpage {
+      margin-left: token('space.md');
+
+      &::before {
+        left: -0.875rem;
+      }
     }
   }
-}
 
-body.top-blue {
-  .a {
-    color: token("color.white");
+  body.top-blue {
+    .a {
+      color: token('color.white');
+    }
   }
-}
 </style>
 
 <nav class="nav">
-  {manifest.pages.map((page) => showSubPage(page.pathname) && (
-    <a class={`a${subPageRE.test(page.pathname) ? ' a--subpage' : ''}`} href={page.pathname} aria-current={Astro.request.url.pathname === page.pathname ? 'page' : undefined}>
-      {page.title}
-    </a>
-  ) || undefined)}
+  {
+    manifest.pages.map(
+      (page) =>
+        (showSubPage(page.pathname) && (
+          <a
+            class={`a${subPageRE.test(page.pathname) ? ' a--subpage' : ''}`}
+            href={page.pathname}
+            aria-current={Astro.url.pathname === page.pathname ? 'page' : undefined}
+          >
+            {page.title}
+          </a>
+        )) ||
+        undefined
+    )
+  }
 </nav>

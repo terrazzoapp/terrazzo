@@ -13,16 +13,17 @@
     "dev:serve": "astro dev"
   },
   "dependencies": {
-    "@astrojs/renderer-vue": "^0.4.0",
-    "prismjs": "^1.28.0",
+    "@astrojs/vue": "^1.0.0",
+    "prismjs": "^1.29.0",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "file:../packages/cli/",
     "@cobalt-ui/core": "file:../packages/core/",
     "@cobalt-ui/plugin-sass": "file:../packages/plugin-sass/",
-    "astro": "^0.23.2",
+    "astro": "^1.0.8",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.53.0"
+    "sass": "^1.54.5",
+    "vite": "^3.0.9"
   }
 }

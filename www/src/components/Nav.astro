@@ -1,7 +1,7 @@
 ---
 import CobaltSm from './CobaltSm.astro';
 import Icons from './Icons.astro';
-let currentPage = Astro.request.url.pathname;
+let currentPage = Astro.url.pathname;
 let { title = 'Cobalt' } = Astro.props;
 ---
 

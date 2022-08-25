@@ -14,6 +14,7 @@
     "@cobalt-ui/plugin-sass": "^0.6.2",
     "@cobalt-ui/plugin-ts": "^0.4.1",
     "@salesforce-ux/design-system": "^2.16.2",
-    "better-color-tools": "^0.6.1"
+    "better-color-tools": "^0.6.1",
+    "postcss": "^8.4.16"
   }
 }
