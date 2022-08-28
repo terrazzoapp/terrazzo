@@ -77,7 +77,7 @@ Learn more about the existing plugins and [view documentation][plugins]:
 - **Sass**: [@cobalt-ui/plugin-sass][plugin-sass]
 - **TypeScript**: [@cobalt-ui/plugin-ts][plugin-ts]
 
-[tokens.json]: /docs/getting/started
+[tokens.json]: /docs/tokens
 [plugins]: /docs/plugins
 [plugin-css]: /docs/plugins/css
 [plugin-json]: /docs/plugins/json

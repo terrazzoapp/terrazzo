@@ -210,11 +210,11 @@ If you’re having trouble syncing from Figma, here are some quick tips:
 - Every style/component should have a unique name within its own Figma doc (using the same name in different docs is OK)
 - Make sure `tokens.config.mjs` _perfectly_ matches your component name in Figma (watch for typos!)
 
-[alias]: /reference/schema#aliasing
+[alias]: /docs/tokens#aliasing
 [dotenv]: https://github.com/motdotla/dotenv
 [env-system]: https://gist.github.com/iest/58692bf1001b0424c257
 [issues]: https://github.com/drwpow/cobalt-ui/issues
-[modes]: /guides/modes
-[figma-api]: /reference/config#figma
+[modes]: /docs/guides/modes
+[figma-api]: /docs/reference/config#figma
 [figma-api-key]: https://www.figma.com/developers/api#access-tokens
-[types]: /reference/schema#types
+[types]: /docs/tokens#types

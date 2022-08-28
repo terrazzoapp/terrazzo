@@ -77,7 +77,7 @@ Note that you can override any individual property so long as it comes _after_ t
 
 ### Modes
 
-If you take advantage of [modes](https://cobalt-ui.pages.dev/docs/guides/modes) in your tokens, you can pass a 2nd param into `tokens()` with a mode name:
+If you take advantage of [modes](../guides/modes) in your tokens, you can pass a 2nd param into `tokens()` with a mode name:
 
 ```scss
 @use '../tokens' as *;
@@ -154,7 +154,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 ### Transform
 
-Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
+Inside plugin options, you can specify transforms [per-type](../reference/schema):
 
 ```js
 /** @type import('@cobalt-ui/core').Config */

@@ -34,10 +34,10 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 
 ## Figma
 
-[View Figma docs](/docs/guides/figma)
+[View Figma docs](../guides/figma)
 
 ## Plugins
 
 Each plugin comes with its own rules and setup. Follow the corresponding plugin guide to enable code generation:
 
-👉 **[View plugins](/docs/plugins)**
+👉 **[View plugins](../plugins)**

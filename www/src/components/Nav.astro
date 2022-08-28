@@ -6,7 +6,7 @@ let { title = 'Cobalt' } = Astro.props;
 ---
 
 <style lang="scss">
-  @use "../../tokens" as *;
+  @use '../../tokens' as *;
 
   .grid {
     display: flex;
@@ -62,24 +62,24 @@ let { title = 'Cobalt' } = Astro.props;
 
   body.page--home {
     .grid {
-      background: token("color.blue.05");
+      background: token('color.blue.05');
     }
 
     .title,
     .a {
-      color: token("color.white");
+      color: token('color.white');
     }
   }
 </style>
 
 <Icons />
 <header class="grid">
-  <a class="title" href="/">
+  <a class="title" href="/cobalt-ui">
     <CobaltSm />
     <h1>{title}</h1>
   </a>
   <nav class="nav">
-    <a class="a" href="/docs/getting-started" aria-current={currentPage === '/' || currentPage.startsWith('/docs') || undefined}>Docs</a>
+    <a class="a" href="/docs/getting-started" aria-current={currentPage === '/docs/getting-started' || currentPage.startsWith('/docs') || undefined}> Docs</a>
     <a class="a" href="/editor" aria-current={currentPage === '/editor' || undefined}>Editor</a>
     <a class="a a--github" href="https://github.com/drwpow/cobalt-ui">
       <svg class="github-icon"><use xlink:href="#github"></use></svg>

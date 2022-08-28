@@ -189,7 +189,7 @@ To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/
 
 ### Transform
 
-Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
+Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/docs/tokens):
 
 ```js
 /** @type import('@cobalt-ui/core').Config */

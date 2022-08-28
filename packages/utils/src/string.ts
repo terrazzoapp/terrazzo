@@ -1,6 +1,6 @@
 export const CASECHANGE_RE = /[a-zâ-ž][A-ZÀ-Ž]/g;
-export const KEBAB_COVERT_RE = /[_\.]/g;
-export const CAMEL_CONVERT_RE = /[^-_\.\s][-_\.\s]+[^-_\.\s]/g;
+export const KEBAB_COVERT_RE = /[_.]/g;
+export const CAMEL_CONVERT_RE = /[^-_.\s][-_.\s]+[^-_.\s]/g;
 
 /** convert string to kebab-case */
 export function kebabinate(input: string): string {

@@ -149,7 +149,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 ### Transform
 
-Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/reference/schema):
+Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/docs/tokens):
 
 ```js
 /** @type import('@cobalt-ui/core').Config */

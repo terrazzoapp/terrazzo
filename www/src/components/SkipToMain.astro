@@ -1,15 +1,17 @@
 <style lang="scss">
   .skip {
+    display: block;
     left: -999px;
     overflow: hidden;
     position: absolute;
-    top: auto;
+    top: 0;
     z-index: -999;
 
     &:focus,
     &:active {
-      left: 0.5rem;
-      top: 0.5rem;
+      left: 8rem;
+      top: 0;
+      z-index: 100;
     }
   }
 </style>

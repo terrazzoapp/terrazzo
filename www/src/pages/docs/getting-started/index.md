@@ -62,9 +62,9 @@ This will generate a **tokens/tokens.css** file in your project for you to use.
 
 ## Next steps
 
-- [Learn about tokens](/docs/tokens)
-- [Sync with Figma](/docs/guides/figma)
-- [Learn how to configure Cobalt](/docs/reference/config)
-- [Add plugins](/docs/plugins)
+- [Learn about tokens](./tokens)
+- [Sync with Figma](./guides/figma)
+- [Learn how to configure Cobalt](./reference/config)
+- [Add plugins](./plugins)
 
 [dt]: https://design-tokens.github.io/community-group/format/

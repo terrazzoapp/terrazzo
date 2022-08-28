@@ -1,16 +1,13 @@
 <template>
   <div id="editor" class="editor-wrapper">
     <div class="wrapper">
-      <p>
-        Come back soon! I’m still playing around with what I want this to look
-        like.
-      </p>
+      <p>Come back soon! I’m still playing around with what I want this to look like.</p>
     </div>
   </div>
 </template>
 
 <style lang="scss">
-@use "../../tokens" as *;
+@use '../../tokens' as *;
 
 .editor {
   border: 1.5px solid currentColor;
@@ -24,7 +21,7 @@
       background: transparent;
       border: none;
       color: inherit;
-      font-family: "SF Mono", "Menlo", monospace;
+      font-family: 'SF Mono', 'Menlo', monospace;
       font-size: 10pt;
       font-weight: 400;
       line-height: 1.2;
@@ -43,10 +40,10 @@
     }
 
     &-error {
-      background: token("color.red");
-      color: token("color.white");
+      background: token('color.red');
+      color: token('color.white');
       bottom: 0;
-      font-family: "SF Mono", "Menlo", monospace;
+      font-family: 'SF Mono', 'Menlo', monospace;
       font-size: 9pt;
       left: 0;
       padding: 0.5rem;
@@ -93,7 +90,7 @@
     background: none;
     border: none;
     color: inherit;
-    font-family: "SF Mono", monospace;
+    font-family: 'SF Mono', monospace;
     font-weight: 400;
     outline: none;
   }

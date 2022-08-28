@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Create your own plugins
 
-Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript. This guide is for creating a custom plugin yourself; if you’re looking for instructions on how to use existing plugins, [see the plugins directory](/docs/plugins).
+Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript. This guide is for creating a custom plugin yourself; if you’re looking for instructions on how to use existing plugins, [see the plugins directory](./plugins).
 
 ## Why use Cobalt?
 
@@ -15,7 +15,7 @@ Does writing a Cobalt plugin make more sense for your project vs writing a custo
 2. **Normalization.** `tokens.json`’s flexibility allows polymorphism, and there are several types that can take either `string | string[]`, or `string | object`, etc. Cobalt expands all token values into their maximum values for consistency.
 3. **Aliasing.** Aliasing is an essential part of any tokens schema, and it can be tricky when an alias is **an alias of an alias!** Cobalt flattens all aliases automatically and even detects circular references.
 4. **Traversal.** `tokens.json` is a deeply-nested object, and those can be tricky to crawl if you’re not used to working with abstract syntax trees (ASTs). Cobalt flattens tokens into an array so that when you write a plugin, you only have to loop over an array once to get every token.
-5. **Modes.** Cobalt extends the design tokens format with [modes](/tokens#modes). This includes being able to alias modes with “#”, e.g. `{color.blue#dark}`.
+5. **Modes.** Cobalt extends the design tokens format with [modes](/docs/tokens#modes). This includes being able to alias modes with “#”, e.g. `{color.blue#dark}`.
 6. **Figma syncing.** Cobalt allows for easy syncing between Figma and your design tokens by providing an API key.
 
 If writing a plugin for Cobalt would save time, read on!
