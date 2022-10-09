@@ -5,35 +5,53 @@ layout: ../../../layouts/docs.astro
 
 # Modes
 
-Modes are **alternate forms of a token.** Although this isn’t a concept unique to Cobalt, you may not be used to thinking of tokens in this way before.
+Modes are **alternate forms of a token.** They allow your design system to account for different states or contexts that allow some values to change while others remain the same.
 
-Modes are somewhat related to “themes” in that as an application may have a **light theme** and a **dark theme**, your color pallette could have a **light mode** and **dark mode** for every color. But modes and theming differ in their scope. Themes are huge, and creating a theme often involves _duplicating all your tokens and modifying almost every one._ Conversely, modes only apply to small groups of tokens, and are easy to add, remove, or modify.
+To explain this concept, we’ll explore 2 common usages: <b>color</b> and <b>typography</b>.
 
-Two examples of modes can be found below: in the first example, with GitHub’s **color modes**, and further down, with Apple’s Human Interface **typography size modes**.
-
-## Modes in Color
-
-Using modes for your color tokens, you can create multiple themes for your site without having to affect anything else. GitHub’s Primer design system has 6 modes:
-
-- light (default)
-- dark
-- light (colorblind)
-- light (high contrast)
-- dark (colorblind)
-- dark (high contrast)
+## Example: color modes
 
 <figure>
   <img src="/images/mode-github.png" width="2034" height="1162">
   <figcaption>GitHub’s settings allow not only light and dark modes, but alternate color themes for color blindness.</figcaption>
 </figure>
 
-Here’s how that translates into `tokens.json`:
+GitHub’s Primer design system has 5 color themes: _Light default_, _Light high contrast_, _Dark default_, _Dark high contrast_, and _Dark dimmed_ (shown above). How might that be represented in tokens?
+
+Consider the `red` and `white` colors in the system. Whereas `red` has a different value for each mode, `white` is an absolute value that doesn’t change. One way to represent that may be:
 
 ```json
 {
   "color": {
-    "red4": {
-      "$type": "color",
+    "$type": "color",
+    "red": {"$value": "#fa4549"},
+    "red-light": {"$value": "#fa4549"},
+    "red-lightHighContrast": {"$value": "#d5232c"},
+    "red-dark": {"$value": "#f85149"},
+    "red-darkHighContrast": {"$value": "#ff6a69"},
+    "red-darkDimmed": {"$value": "#f47067"},
+    "white": {"$value": "#ffffff"}
+  }
+}
+```
+
+But off the bat we have some problems:
+
+- Color themes are scattered between our original colors
+- Token names now carry implicit context
+- There’s not a clear abstraction of color themes
+- It’s unclear when `[color]-[mode]` exists, and when it doesn’t
+- Strict naming guidelines must be enforced for this to work long-term
+- Updating/managing color modes can become a precarious game of find-and-replace
+- What if “`red-darker`” was added in the future—do we now have `red-darker`, `red-darker-dark`, and `red-darker-light`?
+
+<b>Modes</b> exist to solve these problems by decoupling token names from context and state. This is how it can be represented with modes (using the “$extensions” property from the token syntax):
+
+```json
+{
+  "color": {
+    "$type": "color",
+    "red": {
       "$value": "#fa4549",
       "$extensions": {
         "mode": {
@@ -45,42 +63,63 @@ Here’s how that translates into `tokens.json`:
           "darkHighContrast": "#ff6a69"
         }
       }
-    }
+    },
+    "white": {"$value": "#ffffff"}
   }
 }
 ```
 
-You can see that `color.red_4` still occupies the same place on the palette. But based on the mode, can take on different values to serve users better.
+Our tokens are vastly improved by having clear colors, and clear color modes. And color modes can be easily modified without affecting any names. Colors can optionally have mode variations, or not. And best of all, application-specific context isn’t affecting your token names.
 
-Though not shown, this could also relate to icons as well—based on the color mode selected, icons may either get different colors, or different stroke/fill treatments to keep contrast and visibility consistent.
+This simplifies your application code, too, as, you can simply refer to `red` or `white` and the mode can be inferred based on the global context (see the [Examples in code](#examples-in-code) section below to see the “how”).
 
-## Modes in Typography
-
-Apple’s Human Interface guidelines outline a user size preference. If users need to make the text bigger or smaller, they can adjust to their taste. But how does that apply to the existing typographic stack (e.g. Heading, Body, Title 1, Title 2 … )?
+## Example: typographic modes
 
 <figure>
   <img src="/images/mode-apple.png" width="1562" height="898">
   <figcaption>Apple’s dynamic text sizes use modes to control multiple type scales</figcaption>
 </figure>
 
-Here’s how `type.size.title1` could be represented in `tokens.json`:
+Another common example is **text size**. If users need to make the text bigger or smaller, they can adjust to their taste. But trying to have this context exist in the token names can result in pretty long values:
 
 ```json
 {
-  "size": {
-    "title1": {
-      "$name": "Title 1",
-      "$type": "dimension",
-      "$value": "28px",
-      "$extensions": {
-        "mode": {
-          "xSmall": "25px",
-          "Small": "26px",
-          "Medium": "27px",
-          "Large": "28px",
-          "xLarge": "30px",
-          "xxLarge": "32px",
-          "xxxLarge": "32px"
+  "typography": {
+    "size": {
+      "title1-xSmall": {"$value": "25px"},
+      "title1-Small": {"$value": "26px"},
+      "title1-Medium": {"$value": "27px"},
+      "title1-Large": {"$value": "28px"},
+      "title1-xLarge": {"$value": "30px"},
+      "title1-xxLarge": {"$value": "32px"},
+      "title1-xxxLarge": {"$value": "32px"}
+    }
+  }
+}
+```
+
+Referring to a font size as `typography.size.title1-Medium` or `typography.size.title2-Medium` is a bad idea, because then every level of your application must be aware of the user’s current preference settings. And if values ever change, now your entire application must be updated everywhere.
+
+Instead, by declaring font sizes as modes, the value becomes much more portable: `typography.size.title1`.
+
+```json
+{
+  "typography": {
+    "size": {
+      "title1": {
+        "$name": "Title 1",
+        "$type": "dimension",
+        "$value": "28px",
+        "$extensions": {
+          "mode": {
+            "xSmall": "25px",
+            "Small": "26px",
+            "Medium": "27px",
+            "Large": "28px",
+            "xLarge": "30px",
+            "xxLarge": "32px",
+            "xxxLarge": "32px"
+          }
         }
       }
     }
@@ -88,11 +127,47 @@ Here’s how `type.size.title1` could be represented in `tokens.json`:
 }
 ```
 
-Using modes, it’s much easier to preserve typographic hierarchy through a wide range of base text sizes (and you could even make individual adjustments as well).
+Now the user preferences only have to be dealt with in the global context, and the rest of your code will adapt.
 
-## Checking modes
+## Best practices
 
-Sometimes you may want to check that all modes exist for a group. You can assert type checking with `metadata.requiredModes`:
+A mode is best used for **2 variations that are never used together.**
+
+Back to the color example, if a user has requested colorblind-friendly colors, we’d never want to show them the colorblind-friendly green in some areas, and the colorblind-unfriendly green in the same view. We’d always want to respect their preferences. And thus, color modes are a great use of this.
+
+So following that, here are some common scenarios for when modes should—or shouldn’t—be used.
+
+### ✅ Good usecases for modes
+
+Modes work best when a user can’t be in 2 contexts at once:
+
+- User preferences (e.g. text size, reduced motion, colorblind mode)
+- Device (e.g. mobile or desktop)
+- Region/language
+- Product/application area (e.g. different typographic settings in a dashboard UI vs longform content in marketing pages and documentation)
+
+### ❌ Bad usecases for modes
+
+However, when 2 or more things are frequently used side-by-side, modes should be avoided:
+
+- Semantic color (e.g _success_ or _error_)
+- Localized state (e.g. _disabled_ or _active_)
+- Color shades/hues
+- Components (e.g. _card_ or _button_)
+
+## Examples in code
+
+The examples above were generic concepts that applied to all languages. To see how to use modes in specific languages, see the following plugin docs:
+
+- [@cobalt-ui/plugin-css](/docs/plugins/css#mode-selectors)
+- [@cobalt-ui/plugin-sass](/docs/plugins/sass#modes)
+- [@cobalt-ui/plugin-ts](/docs/plugins/ts#usage)
+
+## Advanced
+
+### Validation
+
+To enforce all modes exist for a group. You can assert type checking with `metadata.requiredModes`:
 
 ```json
 {
@@ -119,10 +194,4 @@ Sometimes you may want to check that all modes exist for a group. You can assert
 
 In the above example, we’d have an error on our `red-4` color because the `dark-high-contrast` mode is missing.
 
-## Additional thoughts
-
-These are just a few common examples of modes, but modes aren’t limited to these examples. Any time a user setting should produce alternate versions of a token, consider using a mode.
-
-You want to use a mode when **2 versions should never be used together.** Back to GitHub’s color modes example, we never want to use a non-colorblind-friendly green while in colorblind mode. We want to _only_ use colorblind-friendly modes in colorblind mode. Modes help us isolate those values (keeping in mind, though, that we can omit certain modes if we’d like to use their defaults).
-
-Though using modes may be a new concept, the more you experiment with them and find what works, the more you can unlock the flexibility of your design system without having to manage multiple complete versions of it.
+`requiredModes` can be enforced at any level. And it will require any and all siblings and children to have every mode present.
