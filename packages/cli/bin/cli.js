@@ -5,14 +5,14 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { parse } from '@cobalt-ui/core';
-import { DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from '@cobalt-ui/utils';
+import {parse} from '@cobalt-ui/core';
+import {DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET} from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
 import fs from 'fs';
-import { performance } from 'perf_hooks';
-import { fileURLToPath } from 'url';
-import { init as initConfig } from '../dist/config.js';
-import { build } from '../dist/build.js';
+import {performance} from 'perf_hooks';
+import {fileURLToPath} from 'url';
+import {init as initConfig} from '../dist/config.js';
+import {build} from '../dist/build.js';
 import figma from '../dist/figma/index.js';
 
 const [, , cmd, ...args] = process.argv;
@@ -33,7 +33,7 @@ async function main() {
 
   // --version
   if (cmd === '--version' || cmd === '-v') {
-    const { version } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+    const {version} = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
     console.log(version);
     process.exit(0);
   }
@@ -150,7 +150,7 @@ async function main() {
 
       let rawSchema = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
       console.log(`${UNDERLINE}${fileURLToPath(tokensPath)}${RESET}`);
-      const { errors, warnings } = parse(rawSchema); // will throw if errors
+      const {errors, warnings} = parse(rawSchema); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
         printWarnings(warnings);

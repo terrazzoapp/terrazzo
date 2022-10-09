@@ -1,17 +1,17 @@
-import type { Group, ParsedToken, TokenType, TokenOrGroup } from '../@types/token';
-import { isEmpty, isObj, splitType } from '../util.js';
-import { normalizeColorValue } from './tokens/color.js';
-import { normalizeFontValue } from './tokens/font.js';
-import { normalizeDurationValue } from './tokens/duration.js';
-import { normalizeDimensionValue } from './tokens/dimension.js';
-import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
-import { normalizeLinkValue } from './tokens/link.js';
-import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
-import { normalizeBorderValue } from './tokens/border.js';
-import { normalizeTransitionValue } from './tokens/transition.js';
-import { normalizeShadowValue } from './tokens/shadow.js';
-import { normalizeGradientValue } from './tokens/gradient.js';
-import { normalizeTypographyValue } from './tokens/typography.js';
+import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../@types/token';
+import {isEmpty, isObj, splitType} from '../util.js';
+import {normalizeColorValue} from './tokens/color.js';
+import {normalizeFontValue} from './tokens/font.js';
+import {normalizeDurationValue} from './tokens/duration.js';
+import {normalizeDimensionValue} from './tokens/dimension.js';
+import {normalizeCubicBezierValue} from './tokens/cubic-bezier.js';
+import {normalizeLinkValue} from './tokens/link.js';
+import {normalizeStrokeStyleValue} from './tokens/stroke-style.js';
+import {normalizeBorderValue} from './tokens/border.js';
+import {normalizeTransitionValue} from './tokens/transition.js';
+import {normalizeShadowValue} from './tokens/shadow.js';
+import {normalizeGradientValue} from './tokens/gradient.js';
+import {normalizeTypographyValue} from './tokens/typography.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -29,7 +29,7 @@ const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$ext
 export function parse(schema: Group): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
-  const result: ParseResult = { result: { metadata: {}, tokens: [] } };
+  const result: ParseResult = {result: {metadata: {}, tokens: []}};
   if (!schema || typeof schema !== 'object' || Array.isArray(schema)) {
     errors.push(`Invalid schema type. Expected object, received "${Array.isArray(schema) ? 'Array' : typeof schema}"`);
     result.errors = errors;
@@ -45,7 +45,7 @@ export function parse(schema: Group): ParseResult {
 
   // 1. collect tokens
   const tokens: Record<string, ParsedToken> = {};
-  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = { $extensions: { requiredModes: [] } }): void {
+  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = {$extensions: {requiredModes: []}}): void {
     if (!node || !isObj(node)) return;
     for (const [k, v] of Object.entries(node)) {
       if (!v || !isObj(v)) {
@@ -62,7 +62,7 @@ export function parse(schema: Group): ParseResult {
 
       // token
       const token = {
-        _original: { ...v },
+        _original: {...v},
         _group: {
           id: chain.join('.') || '.',
           ...(group || {}),
@@ -86,22 +86,21 @@ export function parse(schema: Group): ParseResult {
         }
         if (group.$extensions.requiredModes.length) {
           for (const modeID of group.$extensions.requiredModes) {
-            if (!token.$extensions || !token.$extensions.mode || !token.$extensions.mode[modeID])
-              errors.push(`${token.id}: missing mode "${modeID}" required from parent group`);
+            if (!token.$extensions || !token.$extensions.mode || !token.$extensions.mode[modeID]) errors.push(`${token.id}: missing mode "${modeID}" required from parent group`);
           }
         }
         tokens[token.id] = token;
       }
       // group
       else {
-        const nextGroup = { ...group };
+        const nextGroup = {...group};
 
         const groupTokens: Record<string, TokenOrGroup> = {};
         for (const propertyKey of Object.keys(v)) {
           // move all "$" properties to group
           if (propertyKey.startsWith('$')) {
             // merge $extensions; don’t overwrite them
-            if (propertyKey === '$extensions') nextGroup.$extensions = { ...nextGroup.$extensions, ...v.$extensions };
+            if (propertyKey === '$extensions') nextGroup.$extensions = {...nextGroup.$extensions, ...v.$extensions};
             else (nextGroup as any)[propertyKey] = v[propertyKey];
             if (!RESERVED_KEYS.has(propertyKey)) {
               if (!result.warnings) result.warnings = [];
@@ -126,11 +125,11 @@ export function parse(schema: Group): ParseResult {
     }
   }
 
-  const group: InheritedGroup = { $extensions: { requiredModes: [] } };
+  const group: InheritedGroup = {$extensions: {requiredModes: []}};
   const topNodes: Record<string, TokenOrGroup> = {};
   for (const k of Object.keys(schema)) {
     if (k.startsWith('$')) {
-      if (k === '$extensions') group.$extensions = { ...group.$extensions, ...schema.$extensions };
+      if (k === '$extensions') group.$extensions = {...group.$extensions, ...schema.$extensions};
       else (group as any)[k] = schema[k];
       if (!RESERVED_KEYS.has(k)) {
         if (!result.warnings) result.warnings = [];
@@ -336,7 +335,7 @@ function unaliasedValues(values: Record<string, unknown>): boolean {
           return false;
         }),
       object: (value) => unaliasedValues(value as Record<string, unknown>),
-    })
+    }),
   );
 }
 

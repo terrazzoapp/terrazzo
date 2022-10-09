@@ -189,65 +189,42 @@ To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/
 
 ### Transform
 
-Inside plugin options, you can specify transforms [per-type](https://cobalt-ui.pages.dev/docs/tokens):
+Inside plugin options, you can specify an optional `transform()` function:
 
 ```js
 /** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginCSS({
-      transform: {
-        color: (value, token) => {
-          return value;
-        },
-        dimension: (value, token) => {
-          return value;
-        },
-        font: (value, token) => {
-          return value;
-        },
-        duration: (value, token) => {
-          return value;
-        },
-        cubicBezier: (value, token) => {
-          return value;
-        },
-        link: (value, token) => {
-          return value;
-        },
-        transition: (value, token) => {
-          return value;
-        },
-        shadow: (value, token) => {
-          return value;
-        },
-        gradient: (value, token) => {
-          return value;
-        },
-        typography: (value, token) => {
-          return value;
-        },
+      transform(token, mode) {
+        // Replace "sans-serif" with "Brand Sans" for font tokens
+        if (token.$type === 'font') {
+          return token.$value.replace('sans-serif', 'Brand Sans');
+        }
       },
     }),
   ],
 };
 ```
 
-⚠️ Whenever you override a transformer for a token type, it’s now up to you to handle everything! You may also need the help of utilities like [better-color-tools](https://github.com/drwpow/better-color-tools)
+Your transform will only take place if you return a string; otherwise the default transformer will take place.
 
 #### Custom tokens
 
-If you have your own custom token type, e.g. `my-custom-type`, you can add more keys to `transform` to handle it, like so:
+If you have your own custom token type, e.g. `my-custom-type`, you’ll have to handle it within `transform()`:
 
 ```js
 /** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
     pluginCSS({
-      transform: {
-        'my-custom-type': (value, token) => {
-          return String(value);
-        },
+      transform(token, mode) {
+        switch (token.$type) {
+          case 'my-custom-type': {
+            return String(token.$value);
+            break;
+          }
+        }
       },
     }),
   ],

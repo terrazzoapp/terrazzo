@@ -1,9 +1,9 @@
-import type { FigmaSettings } from '@cobalt-ui/core';
-import type { OptimizeOptions } from 'svgo';
+import type {FigmaSettings} from '@cobalt-ui/core';
+import type {OptimizeOptions} from 'svgo';
 import fs from 'fs';
 import path from 'path';
 import svgo from 'svgo';
-import { fetchFile } from './util.js';
+import {fetchFile} from './util.js';
 
 interface SaveAndOptimizeOptions {
   url: string;
@@ -12,7 +12,7 @@ interface SaveAndOptimizeOptions {
   optimize?: FigmaSettings['optimize'];
 }
 
-export default async function saveAndOptimize({ url, componentID, filename, optimize }: SaveAndOptimizeOptions): Promise<void> {
+export default async function saveAndOptimize({url, componentID, filename, optimize}: SaveAndOptimizeOptions): Promise<void> {
   const ext = path.extname(filename);
   let data = await fetchFile(url, componentID, filename);
   if (optimize) {
@@ -21,6 +21,6 @@ export default async function saveAndOptimize({ url, componentID, filename, opti
       data = (svgo.optimize(data, svgoOpts) as any).data;
     }
   }
-  fs.mkdirSync(path.dirname(filename), { recursive: true });
+  fs.mkdirSync(path.dirname(filename), {recursive: true});
   fs.writeFileSync(filename, data);
 }

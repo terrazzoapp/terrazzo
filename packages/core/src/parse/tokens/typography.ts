@@ -1,7 +1,7 @@
-import type { ParsedTypographyValue, FontWeightName } from '../../@types/token';
-import { camelize } from '@cobalt-ui/utils';
-import { normalizeFontValue } from './font.js';
-import { normalizeDimensionValue } from './dimension.js';
+import type {ParsedTypographyValue, FontWeightName} from '../../@types/token';
+import {camelize} from '@cobalt-ui/utils';
+import {normalizeFontValue} from './font.js';
+import {normalizeDimensionValue} from './dimension.js';
 
 const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
   ['thin', 100],

@@ -1,6 +1,6 @@
-import type { ShadowValue } from '../../@types/token';
-import { normalizeColorValue } from './color.js';
-import { normalizeDimensionValue } from './dimension.js';
+import type {ShadowValue} from '../../@types/token';
+import {normalizeColorValue} from './color.js';
+import {normalizeDimensionValue} from './dimension.js';
 
 /**
  * 9.5 Shadow

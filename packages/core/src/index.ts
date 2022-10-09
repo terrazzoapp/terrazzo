@@ -1,5 +1,5 @@
 import type SVGO from 'svgo';
-import type { Group, ParsedToken } from './@types/token';
+import type {Group, ParsedToken} from './@types/token';
 export type {
   BorderToken,
   ColorToken,
@@ -37,8 +37,8 @@ export type {
   TransitionToken,
 } from './@types/token';
 
-import { parse } from './parse/index.js';
-export { parse, ParseResult } from './parse/index.js';
+import {parse} from './parse/index.js';
+export {parse, ParseResult} from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
@@ -86,7 +86,7 @@ export interface Plugin {
   /** (optional) read config, and optionally modify */
   config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
   /** main build fn */
-  build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
+  build(options: {tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group}): Promise<BuildResult[]>;
 }
 
 export interface Config {

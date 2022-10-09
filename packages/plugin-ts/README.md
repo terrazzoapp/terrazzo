@@ -9,6 +9,7 @@ npm i -D @cobalt-ui/plugin-ts
 ```js
 // tokens.config.mjs
 import ts from '@cobalt-ui/plugin-ts';
+import better from 'better-color-tools';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
@@ -17,18 +18,15 @@ export default {
       /** set the filename inside outDir */
       filename: './index.ts',
       /** modify values */
-      transformValue(value, token) {
-        return value;
+      transform(token, mode) {
+        // convert colors to P3
+        switch (token.$type) {
+          case 'color': {
+            return better.from(token.$value).p3;
+          }
+        }
       },
     }),
   ],
 };
 ```
-
-## Tools
-
-When you import your generated TypeScript, you’ll find more than just your tokens—you’ll find some handy utilities in there as well.
-
-### Color
-
-TODO

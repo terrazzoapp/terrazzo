@@ -7,7 +7,7 @@ const schema = JSON.parse(fs.readFileSync(tokensPath));
 
 // color
 const palette = Object.entries(themeOne).filter(([k]) => k.startsWith('palette'));
-palette.sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
+palette.sort((a, b) => a[0].localeCompare(b[0], 'en-us', {numeric: true}));
 for (const [colorName, value] of palette) {
   schema.tokens.palette[
     colorName

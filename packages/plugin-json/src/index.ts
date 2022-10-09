@@ -1,4 +1,4 @@
-import type { BuildResult, Plugin, Token } from '@cobalt-ui/core';
+import type {BuildResult, Plugin, Token} from '@cobalt-ui/core';
 
 export interface JSONOutput {
   name?: string;
@@ -19,22 +19,20 @@ export interface Options {
   /** output file (default: "./tokens/tokens.json") */
   filename?: string;
   /** modify values */
-  transformValue?: (token: Token, mode?: string) => any;
+  transform?: (token: Token, mode?: string) => string;
 }
 
 export default function json(options?: Options): Plugin {
   let filename = options?.filename || './tokens.json';
-  let transform = options?.transformValue;
-
   return {
     name: '@cobalt-ui/plugin-json',
-    async build({ tokens }): Promise<BuildResult[]> {
+    async build({tokens}): Promise<BuildResult[]> {
       const transformedTokens = tokens.map((token) => {
-        if (transform) {
-          token.$value = transform(token);
+        if (typeof options?.transform === 'function') {
+          token.$value = options.transform(token) || token.$value;
           const $extensions = token.$extensions;
           for (const mode of Object.keys(($extensions && $extensions.mode) || {})) {
-            (token.$extensions as any).mode[mode] = transform(token, mode);
+            (token.$extensions as any).mode[mode] = options.transform(token, mode) || (token.$extensions as any).mode[mode];
           }
         }
         return token;

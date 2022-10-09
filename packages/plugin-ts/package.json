@@ -18,12 +18,17 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "workspace:^0.4.0"
+    "@cobalt-ui/utils": "^0.4.0"
   },
   "devDependencies": {
-    "@cobalt-ui/core": "workspace:^0.6.1"
+    "@cobalt-ui/cli": "^0.5.1",
+    "@cobalt-ui/core": "^0.6.1",
+    "execa": "^6.1.0",
+    "typescript": "^4.8.4",
+    "vitest": "^0.24.0"
   }
 }

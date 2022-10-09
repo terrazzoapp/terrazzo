@@ -1,8 +1,8 @@
-import type { ParsedBorderToken } from '../../@types/token';
-import { isObj } from '../../util.js';
-import { normalizeColorValue } from './color.js';
-import { normalizeDimensionValue } from './dimension.js';
-import { normalizeStrokeStyleValue } from './stroke-style.js';
+import type {ParsedBorderToken} from '../../@types/token';
+import {isObj} from '../../util.js';
+import {normalizeColorValue} from './color.js';
+import {normalizeDimensionValue} from './dimension.js';
+import {normalizeStrokeStyleValue} from './stroke-style.js';
 
 /**
  * 9.Border

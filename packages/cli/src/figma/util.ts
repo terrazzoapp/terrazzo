@@ -1,6 +1,6 @@
 import type * as Figma from 'figma-api';
-import { GetFileResult } from 'figma-api/lib/api-types';
-import { FG_RED, RESET, UNDERLINE } from '@cobalt-ui/utils';
+import {GetFileResult} from 'figma-api/lib/api-types';
+import {FG_RED, RESET, UNDERLINE} from '@cobalt-ui/utils';
 import path from 'path';
 import undici from 'undici';
 
@@ -16,7 +16,7 @@ interface Collection {
 }
 
 /** collect all components within document */
-export function collectStylesAndComponents(doc: GetFileResult, collection: Collection = { components: new Map(), styles: new Map() }): Collection {
+export function collectStylesAndComponents(doc: GetFileResult, collection: Collection = {components: new Map(), styles: new Map()}): Collection {
   JSON.stringify(doc.document.children, (_, v) => {
     if (!v) return v;
 
@@ -48,10 +48,7 @@ export function collectChildren(node: Figma.Node, children: Figma.Node[] = []): 
 
 /** Get Figma document */
 export async function fetchDoc(shareURL: string): Promise<GetFileResult> {
-  if (!process.env.FIGMA_API_KEY)
-    throw new Error(
-      `  ${FG_RED}✘  FIGMA_API_KEY not set. See ${UNDERLINE}https://www.figma.com/developers/api#access-tokens${RESET}${FG_RED} for instructions.${RESET}`
-    );
+  if (!process.env.FIGMA_API_KEY) throw new Error(`  ${FG_RED}✘  FIGMA_API_KEY not set. See ${UNDERLINE}https://www.figma.com/developers/api#access-tokens${RESET}${FG_RED} for instructions.${RESET}`);
   if (!SHARE_URL_RE.test(shareURL)) throw new Error(`  ${FG_RED}✘  Share URL must match ${UNDERLINE}https://www.figma.com/file/[id]${RESET}`);
   const id = (shareURL.match(SHARE_URL_RE) as RegExpMatchArray)[1];
   const res = await undici.request(new URL(id, FIGMA.FILES), {
@@ -66,10 +63,7 @@ export async function fetchDoc(shareURL: string): Promise<GetFileResult> {
 
 /** export file from Figma */
 export async function fetchFile(shareURL: string, componentID: string, filename: string): Promise<Buffer> {
-  if (!process.env.FIGMA_API_KEY)
-    throw new Error(
-      `  ${FG_RED}✘  FIGMA_API_KEY not set. See ${UNDERLINE}https://www.figma.com/developers/api#access-tokens${RESET}${FG_RED} for instructions.${RESET}`
-    );
+  if (!process.env.FIGMA_API_KEY) throw new Error(`  ${FG_RED}✘  FIGMA_API_KEY not set. See ${UNDERLINE}https://www.figma.com/developers/api#access-tokens${RESET}${FG_RED} for instructions.${RESET}`);
   if (!SHARE_URL_RE.test(shareURL)) throw new Error(`  ${FG_RED}✘  Share URL must match ${UNDERLINE}https://www.figma.com/file/[id]${RESET}`);
   const id = (shareURL.match(SHARE_URL_RE) as RegExpMatchArray)[1];
   const search = new URLSearchParams({
@@ -89,7 +83,7 @@ export async function fetchFile(shareURL: string, componentID: string, filename:
   if (!fileUrl) throw new Error(`Could not fetch image for component ${componentID}"`);
 
   // Next, download data (don’t bother streaming to file because we may need to optimize)
-  const fileData = await undici.request(fileUrl, { method: 'GET' });
+  const fileData = await undici.request(fileUrl, {method: 'GET'});
   if (fileData.statusCode !== 200) throw new Error(await fileData.body.text());
   return new Buffer(Buffer.from(await fileData.body.arrayBuffer()));
 }

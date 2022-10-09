@@ -40,7 +40,7 @@ import tokens from './tokens/tokens.json';
 const colors = [];
 for (const [id, token] of Object.entries(tokens)) {
   console.log(id); // "color.brand.blue"
-  console.log(token); // { '$type': [type], '$value': [value], _original: [original node], ... }
+  console.log(token); // {'$type': [type], '$value': [value], _original: [original node], ...}
 
   if (token.$type === 'color') {
     colors.push(v);
@@ -53,3 +53,47 @@ This expands all values, so every token in a `color` group will have `$value` ex
 All other properties, such as `$name`, `$description`, and `$extensions`, are all preserved intact.
 
 If you needed to reference anything from the original node, this plugin adds an `_original` key to each node. This is useful if you wanted to see what the original alias was for.
+
+### Transform
+
+Inside plugin options, you can specify an optional `transform()` function:
+
+```js
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJSON({
+      transform(token, mode) {
+        // Replace "sans-serif" with "Brand Sans" for font tokens
+        if (token.$type === 'font') {
+          return token.$value.replace('sans-serif', 'Brand Sans');
+        }
+      },
+    }),
+  ],
+};
+```
+
+Your transform will only take place if you return a string; otherwise the default transformer will take place.
+
+#### Custom tokens
+
+If you have your own custom token type, e.g. `my-custom-type`, you’ll have to handle it within `transform()`:
+
+```js
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJSON({
+      transform(token, mode) {
+        switch (token.$type) {
+          case 'my-custom-type': {
+            return String(token.$value);
+            break;
+          }
+        }
+      },
+    }),
+  ],
+};
+```

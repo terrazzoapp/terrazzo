@@ -1,9 +1,9 @@
-import type { FigmaToken, ResolvedConfig, Token } from '@cobalt-ui/core';
+import type {FigmaToken, ResolvedConfig, Token} from '@cobalt-ui/core';
 import type * as Figma from 'figma-api';
 import Piscina from 'piscina';
-import { fileURLToPath } from 'url';
-import { collectChildren, collectStylesAndComponents, fetchDoc, padRight } from './util.js';
-import { colorToHex } from './paint.js';
+import {fileURLToPath} from 'url';
+import {collectChildren, collectStylesAndComponents, fetchDoc, padRight} from './util.js';
+import {colorToHex} from './paint.js';
 
 const LEADING_SLASH_RE = /^\//;
 const TEXT_CASE: Record<Figma.TextCase, string | undefined> = {
@@ -18,7 +18,7 @@ const TEXT_CASE: Record<Figma.TextCase, string | undefined> = {
 async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
   // validate config
   if (!config.figma) throw new Error(`"figma" missing in tokens.config.mjs (see https://cobalt-ui.pages.dev)`);
-  const { optimize: defaultOptimize = false } = config.figma;
+  const {optimize: defaultOptimize = false} = config.figma;
 
   // create a workerpool for every file downloaded
   const fileQueue = new Piscina({
@@ -33,7 +33,7 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
   const docs: Record<string, FigmaToken[]> = {};
   let downloadCount = 0;
   let totalFiles = 0;
-  for (const { url, tokens } of config.figma.docs) {
+  for (const {url, tokens} of config.figma.docs) {
     totalFiles += tokens.reduce((count, token) => count + (token.type === 'file' ? 1 : 0), 0);
     docs[url] = [...(docs[url] || []), ...tokens];
   }
@@ -43,10 +43,10 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
   await Promise.all(
     Object.entries(docs).map(async ([url, tokens]) => {
       const doc = await fetchDoc(url);
-      const { styles, components } = collectStylesAndComponents(doc);
+      const {styles, components} = collectStylesAndComponents(doc);
 
       await Promise.all(
-        tokens.map(async ({ type: nodeType, token: id, style: styleName, component: componentName, filename, optimize: tokenOptimize }) => {
+        tokens.map(async ({type: nodeType, token: id, style: styleName, component: componentName, filename, optimize: tokenOptimize}) => {
           const figmaName = styleName || componentName;
           const figmaNode = (styleName && styles.get(styleName)) || (componentName && components.get(componentName));
           if (!figmaNode) throw new Error(`could not locate "${figmaName}"`);
@@ -91,10 +91,10 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
               }
               const gradientFill = (node as Figma.VECTOR).fills.find((p) => p.type.startsWith('GRADIENT_') && !!p.gradientStops && !!p.gradientStops.length);
               if (!gradientFill) throw new Error(`${id}: could not find gradient fill on "${figmaName}"`);
-              const { gradientStops = [] } = gradientFill;
+              const {gradientStops = []} = gradientFill;
               tokenUpdates[id] = {
                 $type: 'gradient',
-                $value: gradientStops.map((stop) => ({ color: colorToHex(stop.color), position: stop.position })),
+                $value: gradientStops.map((stop) => ({color: colorToHex(stop.color), position: stop.position})),
               };
               break;
             }
@@ -125,25 +125,25 @@ async function load(config: ResolvedConfig): Promise<Record<string, Token>> {
                 node = children.find((n) => n.type === 'TEXT');
                 if (!node) throw new Error(`${id}: could not find text style on "${figmaName}"`);
               }
-              const { fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize, textCase } = node.style as Figma.TypeStyle;
+              const {fontFamily, fontWeight, fontSize, italic, letterSpacing, lineHeightPercentFontSize, textCase} = node.style as Figma.TypeStyle;
               tokenUpdates[id] = {
                 $type: 'typography',
                 $value: {
                   fontFamily: [fontFamily],
                   fontSize: `${fontSize}px`,
-                  ...(italic ? { 'font-style': 'italic' } : {}),
+                  ...(italic ? {'font-style': 'italic'} : {}),
                   fontWeight: fontWeight,
                   letterSpacing: `${letterSpacing / fontSize}em`,
                   lineHeight: (lineHeightPercentFontSize || 100) / 100,
-                  ...(textCase && TEXT_CASE[textCase] ? { 'text-transform': TEXT_CASE[textCase] } : {}),
+                  ...(textCase && TEXT_CASE[textCase] ? {'text-transform': TEXT_CASE[textCase]} : {}),
                 },
               };
               break;
             }
           }
-        })
+        }),
       );
-    })
+    }),
   );
 
   return tokenUpdates;

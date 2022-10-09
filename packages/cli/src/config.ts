@@ -1,11 +1,11 @@
-import type { ResolvedConfig, Config } from '@cobalt-ui/core';
+import type {ResolvedConfig, Config} from '@cobalt-ui/core';
 import fs from 'fs';
 import mod from 'module';
 
 const require = mod.createRequire(`file://${process.cwd()}`);
 
 export async function init(userConfig: Config): Promise<ResolvedConfig> {
-  let config = { ...(userConfig as any) } as ResolvedConfig;
+  let config = {...(userConfig as any)} as ResolvedConfig;
 
   // config.tokens
   // default
@@ -24,7 +24,7 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
     }
     // otherwise, try Node resolution
     else {
-      const nodeResolved = require.resolve(userConfig.tokens, { paths: [process.cwd(), import.meta.url] });
+      const nodeResolved = require.resolve(userConfig.tokens, {paths: [process.cwd(), import.meta.url]});
       if (!fs.existsSync(nodeResolved)) throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
       config.tokens = new URL(`file://${nodeResolved}`);
     }
@@ -50,8 +50,7 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
     if (!Array.isArray(userConfig.plugins)) throw new Error(`[config] plugins must be array, received ${typeof userConfig.plugins}`);
     if (!userConfig.plugins.length) throw new Error(`[config] plugins are empty`);
     for (let n = 0; n < userConfig.plugins.length; n++) {
-      if (typeof userConfig.plugins[n] !== 'object')
-        throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(userConfig.plugins[n])}`);
+      if (typeof userConfig.plugins[n] !== 'object') throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(userConfig.plugins[n])}`);
       if (!userConfig.plugins[n].name) throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
       if (typeof userConfig.plugins[n].build !== 'function') throw new Error(`[${userConfig.plugins[n].name}] missing "build" function`);
     }
@@ -60,8 +59,7 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
   // config.figma
   // validate & nromalize
   if (userConfig.figma !== undefined) {
-    if (!userConfig.figma.docs || !Array.isArray(userConfig.figma.docs) || !userConfig.figma.docs.length)
-      throw new Error(`No Figma docs found in config (nothing to sync)`);
+    if (!userConfig.figma.docs || !Array.isArray(userConfig.figma.docs) || !userConfig.figma.docs.length) throw new Error(`No Figma docs found in config (nothing to sync)`);
     for (let n = 0; n < userConfig.figma.docs.length; n++) {
       const doc = userConfig.figma.docs[n];
       if (!doc.url) throw new Error(`Figma doc [${n}] missing url`);
