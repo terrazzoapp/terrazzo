@@ -1,5 +1,16 @@
 # @cobalt-ui/plugin-sass
 
+## 0.7.0
+
+### Minor Changes
+
+- 9e80004: Breaking change: improve and normalize transform API
+
+### Patch Changes
+
+- Updated dependencies [9e80004]
+  - @cobalt-ui/utils@0.5.0
+
 ## 0.6.2
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @cobalt-ui/plugin-ts
 
+## 0.5.0
+
+### Minor Changes
+
+- 9e80004: Breaking change: improve and normalize transform API
+- 9e80004: Fix bugs, improve plugin
+
+### Patch Changes
+
+- Updated dependencies [9e80004]
+  - @cobalt-ui/utils@0.5.0
+
 ## 0.4.1
 
 ### Patch Changes

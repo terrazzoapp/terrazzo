@@ -1,5 +1,17 @@
 # @cobalt-ui/plugin-css
 
+## 0.8.0
+
+### Minor Changes
+
+- 9e80004: Breaking change: improve and normalize transform API
+
+### Patch Changes
+
+- 06927a6: Fix preset config option, fix docs
+- Updated dependencies [9e80004]
+  - @cobalt-ui/utils@0.5.0
+
 ## 0.7.0
 
 ### Minor Changes

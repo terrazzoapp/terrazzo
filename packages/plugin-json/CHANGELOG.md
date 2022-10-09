@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-json
 
+## 0.5.0
+
+### Minor Changes
+
+- 9e80004: Breaking change: improve and normalize transform API
+
 ## 0.4.1
 
 ### Patch Changes

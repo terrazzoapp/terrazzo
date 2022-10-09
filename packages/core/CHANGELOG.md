@@ -1,5 +1,12 @@
 # @cobalt-ui/core
 
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies [9e80004]
+  - @cobalt-ui/utils@0.5.0
+
 ## 0.6.1
 
 ### Patch Changes

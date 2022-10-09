@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 0.5.0
+
+### Minor Changes
+
+- 9e80004: Add objKey utility
+
 ## 0.4.0
 
 ### Minor Changes
