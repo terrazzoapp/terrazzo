@@ -23,6 +23,15 @@ To build TypeScript as you work, run:
 pnpm run dev
 ```
 
+## Testing
+
+Tests are written in [Vitest](https://vitest.dev), a modern replacement for Jest. To run tests:
+
+```
+pnpm run build
+pnpm test
+```
+
 ## Opening a PR
 
 All PRs are welcome! When opening a PR, be sure to complete the checklist within the template to make it easier on me 🙂.

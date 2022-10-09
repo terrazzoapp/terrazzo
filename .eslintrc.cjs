@@ -9,7 +9,6 @@ module.exports = {
     'no-undef': 'off', // handled by TS
     'prefer-const': 'off',
     'prefer-template': ['error'], // "+" is for math; templates are for strings
-    'prettier/prettier': 'error',
     semi: 'error',
   },
   overrides: [

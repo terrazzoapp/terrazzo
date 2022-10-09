@@ -26,7 +26,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "mocha --parallel"
+    "test": "vitest run"
   },
   "dependencies": {
     "@cobalt-ui/core": "workspace:^0.6.1",
@@ -34,15 +34,14 @@
     "better-color-tools": "^0.6.3",
     "chokidar": "^3.5.3",
     "dotenv": "^10.0.0",
-    "number-precision": "^1.5.2",
+    "number-precision": "^1.6.0",
     "piscina": "^3.2.0",
     "svgo": "^2.8.0",
-    "undici": "^5.10.0"
+    "undici": "^5.11.0"
   },
   "devDependencies": {
     "@types/svgo": "^2.6.4",
-    "chai": "^4.3.6",
     "figma-api": "^1.10.1",
-    "mocha": "^10.0.0"
+    "vitest": "^0.24.0"
   }
 }

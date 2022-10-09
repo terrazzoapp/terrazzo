@@ -1,6 +1,6 @@
-import type { CubicBezierToken, ParsedTransitionToken } from '../../@types/token';
-import { normalizeDurationValue } from './duration.js';
-import { normalizeCubicBezierValue } from './cubic-bezier.js';
+import type {CubicBezierToken, ParsedTransitionToken} from '../../@types/token';
+import {normalizeDurationValue} from './duration.js';
+import {normalizeCubicBezierValue} from './cubic-bezier.js';
 
 const EASE: CubicBezierToken['$value'] = [0.25, 0.1, 0.25, 1];
 

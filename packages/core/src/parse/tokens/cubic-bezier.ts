@@ -1,4 +1,4 @@
-import type { ParsedCubicBezierToken } from '../../@types/token';
+import type {ParsedCubicBezierToken} from '../../@types/token';
 
 /**
  * 8.5 Cubic Bezier

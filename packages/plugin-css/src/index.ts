@@ -3,22 +3,21 @@ import type {
   GradientStop,
   ParsedColorToken,
   ParsedCubicBezierToken,
-  ParsedBorderToken,
   ParsedDimensionToken,
   ParsedDurationToken,
   ParsedFontToken,
   ParsedGradientToken,
   ParsedLinkToken,
   ParsedShadowToken,
-  ParsedStrokeStyleToken,
+  ParsedToken,
   ParsedTransitionToken,
   ParsedTypographyToken,
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
 import color from 'better-color-tools';
-import { Indenter, kebabinate, FG_YELLOW, RESET } from '@cobalt-ui/utils';
-import { encode, formatFontNames } from './util.js';
+import {Indenter, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
+import {encode, formatFontNames} from './util.js';
 
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
@@ -26,30 +25,15 @@ const DOT_UNDER_GLOB_RE = /[._]/g;
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
 
-type TokenTransformer = {
-  color: (value: ParsedColorToken['$value'], token: ParsedColorToken) => string;
-  dimension: (value: ParsedDimensionToken['$value'], token: ParsedDimensionToken) => string;
-  duration: (value: ParsedDurationToken['$value'], token: ParsedDurationToken) => string;
-  font: (value: ParsedFontToken['$value'], token: ParsedFontToken) => string;
-  cubicBezier: (value: ParsedCubicBezierToken['$value'], token: ParsedCubicBezierToken) => string;
-  link: (value: ParsedLinkToken['$value'], token: ParsedLinkToken) => string;
-  strokeStyle: (value: ParsedStrokeStyleToken['$value'], token: ParsedStrokeStyleToken) => string;
-  border: (value: ParsedBorderToken['$value'], token: ParsedBorderToken) => string;
-  transition: (value: ParsedTransitionToken['$value'], token: ParsedTransitionToken) => string;
-  shadow: (value: ParsedShadowToken['$value'], token: ParsedShadowToken) => string;
-  gradient: (value: ParsedGradientToken['$value'], token: ParsedGradientToken) => string;
-  typography: (value: ParsedTypographyToken['$value'], token: ParsedTypographyToken) => Record<string, string | number | string[]>;
-} & { [key: string]: (value: any, token: any) => string };
-
 export interface Options {
-  /** set the filename inside outDir */
+  /** output file (default: "./tokens/tokens.css") */
   filename?: string;
-  /** embed files? */
+  /** embed files in CSS? */
   embedFiles?: boolean;
   /** generate wrapper selectors around token modes */
   modeSelectors?: Record<string, string | string[]>;
   /** handle different token types */
-  transform?: Partial<TokenTransformer>;
+  transform?: (token: ParsedToken, mode?: string) => string;
   /** prefix variable names */
   prefix?: string;
 }
@@ -58,19 +42,6 @@ export default function css(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
   let prefix = options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
-  let transform = {
-    ...(options?.transform || {}),
-  } as TokenTransformer;
-  if (!transform.color) transform.color = transformColor;
-  if (!transform.dimension) transform.dimension = transformDimension;
-  if (!transform.duration) transform.duration = transformDuration;
-  if (!transform.font) transform.font = transformFont;
-  if (!transform.cubicBezier) transform.cubicBezier = transformCubicBezier;
-  if (!transform.link) transform.link = transformLink;
-  if (!transform.shadow) transform.shadow = transformShadow;
-  if (!transform.gradient) transform.gradient = transformGradient;
-  if (!transform.transition) transform.transition = transformTransition;
-  if (!transform.typography) transform.typography = transformTypography;
 
   const i = new Indenter();
 
@@ -107,17 +78,14 @@ export default function css(options?: Options): Plugin {
     config(c): void {
       config = c;
     },
-    async build({ tokens, metadata }): Promise<BuildResult[]> {
-      const tokenVals: { [id: string]: any } = {};
-      const modeVals: { [selector: string]: { [id: string]: any } } = {};
+    async build({tokens, metadata}): Promise<BuildResult[]> {
+      const tokenVals: {[id: string]: any} = {};
+      const modeVals: {[selector: string]: {[id: string]: any}} = {};
       const selectors: string[] = [];
 
       // transformation (1 pass through all tokens + modes)
       for (const token of tokens) {
-        const transformer = transform[token.$type];
-        if (!transformer) throw new Error(`No transformer found for token type "${token.$type}"`);
-
-        let value = transformer(token.$value as any, token as any);
+        let value = (typeof options?.transform === 'function' && options.transform(token)) || defaultTransformer(token);
         switch (token.$type) {
           case 'link': {
             if (options?.embedFiles) value = encode(value as string, config.outDir);
@@ -140,12 +108,11 @@ export default function css(options?: Options): Plugin {
           for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
             const [groupRoot, modeName] = parseModeSelector(modeID);
             if ((groupRoot && !token.id.startsWith(groupRoot)) || !token.$extensions.mode[modeName]) continue;
-
             if (!Array.isArray(selectors)) modeSelectors = [selectors];
             for (const selector of modeSelectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal = transformer(token.$extensions.mode[modeName] as any, token as any);
+              let modeVal = (typeof options?.transform === 'function' && options.transform(token, modeName)) || defaultTransformer(token, modeName);
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
@@ -220,49 +187,77 @@ export default function css(options?: Options): Plugin {
 }
 
 /** transform color */
-function transformColor(value: ParsedColorToken['$value']): string {
+export function transformColor(value: ParsedColorToken['$value']): string {
   return String(value);
 }
 /** transform dimension */
-function transformDimension(value: ParsedDimensionToken['$value']): string {
+export function transformDimension(value: ParsedDimensionToken['$value']): string {
   return String(value);
 }
 /** transform duration */
-function transformDuration(value: ParsedDurationToken['$value']): string {
+export function transformDuration(value: ParsedDurationToken['$value']): string {
   return String(value);
 }
 /** transform font */
-function transformFont(value: ParsedFontToken['$value']): string {
+export function transformFont(value: ParsedFontToken['$value']): string {
   return formatFontNames(value);
 }
 /** transform cubic beziér */
-function transformCubicBezier(value: ParsedCubicBezierToken['$value']): string {
+export function transformCubicBezier(value: ParsedCubicBezierToken['$value']): string {
   return `cubic-bezier(${value.join(', ')})`;
 }
 /** transform file */
-function transformLink(value: ParsedLinkToken['$value']): string {
+export function transformLink(value: ParsedLinkToken['$value']): string {
   return `url('${value}')`;
 }
 /** transform shadow */
-function transformShadow(value: ParsedShadowToken['$value']): string {
+export function transformShadow(value: ParsedShadowToken['$value']): string {
   return [value.offsetX, value.offsetY, value.blur, value.spread, value.color].join(' ');
 }
 /** transform gradient */
-function transformGradient(value: ParsedGradientToken['$value']): string {
+export function transformGradient(value: ParsedGradientToken['$value']): string {
   return value.map((g: GradientStop) => `${g.color} ${g.position * 100}%`).join(', ');
 }
 /** transform transition */
-function transformTransition(value: ParsedTransitionToken['$value']): string {
+export function transformTransition(value: ParsedTransitionToken['$value']): string {
   const timingFunction = value.timingFunction ? `cubic-bezier(${value.timingFunction.join(',')})` : undefined;
   return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
 }
 /** transform typography */
-function transformTypography(value: ParsedTypographyToken['$value']): Record<string, string | number | string[]> {
+export function transformTypography(value: ParsedTypographyToken['$value']): Record<string, string | number | string[]> {
   const values: Record<string, string | number | string[]> = {};
   for (const [k, v] of Object.entries(value)) {
-    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : v;
+    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : (v as ParsedTypographyToken['$value']);
   }
   return values;
+}
+
+export function defaultTransformer(token: ParsedToken, mode?: string): string | ReturnType<typeof transformTypography> {
+  if (mode && (!token.$extensions?.mode || !token.$extensions.mode[mode])) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
+  switch (token.$type) {
+    case 'color':
+      return transformColor(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'dimension':
+      return transformDimension(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'duration':
+      return transformDuration(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'font':
+      return transformFont(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'cubicBezier':
+      return transformCubicBezier(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'link':
+      return transformLink(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'shadow':
+      return transformShadow(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'gradient':
+      return transformGradient(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'transition':
+      return transformTransition(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'typography':
+      return transformTypography(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    default:
+      throw new Error(`No transformer defined for $type: ${token.$type} tokens`);
+  }
 }
 
 /** parse modeSelector */

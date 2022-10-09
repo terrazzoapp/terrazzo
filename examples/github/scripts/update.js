@@ -2,7 +2,7 @@ import primer from '@primer/primitives';
 import octicons from '@primer/octicons';
 import fs from 'fs';
 
-const { colors, spacing, typography } = primer.default;
+const {colors, spacing, typography} = primer.default;
 
 const tokensPath = new URL('../tokens.json', import.meta.url);
 const schema = JSON.parse(fs.readFileSync(tokensPath));
@@ -39,9 +39,9 @@ for (const icon of Object.values(octicons)) {
       new URL(`../icon/${id}.svg`, import.meta.url),
       icon.toSVG({
         height: parseInt(h, 10),
-      })
+      }),
     );
-    if (!schema.tokens.icon[id]) schema.tokens.icon[id] = { type: 'file', value: '' };
+    if (!schema.tokens.icon[id]) schema.tokens.icon[id] = {type: 'file', value: ''};
     schema.tokens.icon[id].value = `./icon/${id}.svg`;
   }
 }

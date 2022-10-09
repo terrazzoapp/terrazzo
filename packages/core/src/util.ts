@@ -21,7 +21,7 @@ export function splitType(
     number?: (value: number) => any;
     object?: (value: Record<string, unknown>) => any;
     array?: (value: Array<unknown>) => any;
-  }
+  },
 ): any {
   if ((input === undefined || input === null) && ops.undefined) {
     return ops.undefined(input as any);

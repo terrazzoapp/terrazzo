@@ -1,5 +1,5 @@
-import type { GradientStop, ParsedGradientToken } from '../../@types/token';
-import { normalizeColorValue } from './color.js';
+import type {GradientStop, ParsedGradientToken} from '../../@types/token';
+import {normalizeColorValue} from './color.js';
 
 /**
  * 9.6 Gradient
@@ -7,8 +7,8 @@ import { normalizeColorValue } from './color.js';
  * {
  *   "$type": "gradient",
  *   "$value": [
- *     { "color": "blue", "position": 0 },
- *     { "color": "lime", "position": 1 }
+ *     {"color": "blue", "position": 0},
+ *     {"color": "lime", "position": 1}
  *   ]
  * }
  */

@@ -27,7 +27,7 @@ export class Indenter {
   }
 
   indent(str: string, level: number): string {
-    const { char, count, includeEmptyLines } = this;
+    const {char, count, includeEmptyLines} = this;
     const prefix = new Array(count * level + 1).join(char);
     return str
       .split('\n')

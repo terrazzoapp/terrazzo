@@ -1,4 +1,4 @@
-import type { ParsedDimensionToken } from '../../@types/token';
+import type {ParsedDimensionToken} from '../../@types/token';
 
 /**
  * 8.2 Dimension

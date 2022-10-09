@@ -17,18 +17,19 @@ npm install @cobalt-ui/core
 
 Parse a `tokens.json` file into a JS object
 
+<!-- prettier-ignore -->
 ```js
 import co from '@cobalt-ui/core';
 
 const designTokens = {
   color: {
-    red: { type: 'color', value: '#e34850' },
-    green: { type: 'color', value: '#2d9d78' },
-    blue: { type: 'color', value: '#2680eb' },
+    red:   {type: 'color', value: '#e34850'},
+    green: {type: 'color', value: '#2d9d78'},
+    blue:  {type: 'color', value: '#2680eb'},
   },
 };
 
-const { errors, warnings, result } = co.parse(designTokens);
+const {errors, warnings, result} = co.parse(designTokens);
 ```
 
 | Name       | Type                      | Description                                                                                                                                 |

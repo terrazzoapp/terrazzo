@@ -19,20 +19,19 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
-    "test": "mocha --parallel"
+    "test": "vitest run"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "workspace:^0.4.0",
+    "@cobalt-ui/utils": "^0.4.0",
     "better-color-tools": "^0.9.1",
     "mime": "^3.0.0",
     "svgo": "^2.8.0"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:^0.5.1",
-    "@cobalt-ui/core": "workspace:^0.6.1",
+    "@cobalt-ui/cli": "^0.5.1",
+    "@cobalt-ui/core": "^0.6.1",
     "@types/mime": "^2.0.3",
     "@types/svgo": "^2.6.4",
-    "chai": "^4.3.6",
-    "mocha": "^10.0.0"
+    "vitest": "^0.24.0"
   }
 }

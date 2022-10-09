@@ -1,0 +1,89 @@
+{
+  "color": {
+    "$type": "color",
+    "black-120": {
+      "$value": "#0d0300",
+      "$extensions": {
+        "mode": {"light": "#0d0300", "dark": "{color.black-00#light}"}
+      }
+    },
+    "black-110": {
+      "$value": "#1d1008",
+      "$extensions": {
+        "mode": {"light": "#1d1008", "dark": "{color.black-05#light}"}
+      }
+    },
+    "black-100": {
+      "$value": "#2e2119",
+      "$extensions": {
+        "mode": {"light": "#2e2119", "dark": "{color.black-10#light}"}
+      }
+    },
+    "black-90": {
+      "$value": "#41342c",
+      "$extensions": {
+        "mode": {"light": "#41342c", "dark": "{color.black-20#light}"}
+      }
+    },
+    "black-80": {
+      "$value": "#544741",
+      "$extensions": {
+        "mode": {"light": "#544741", "dark": "{color.black-30#light}"}
+      }
+    },
+    "black-70": {
+      "$value": "#675c56",
+      "$extensions": {
+        "mode": {"light": "#675c56", "dark": "{color.black-40#light}"}
+      }
+    },
+    "black-60": {
+      "$value": "#7b716c",
+      "$extensions": {
+        "mode": {"light": "#7b716c", "dark": "{color.black-50#light}"}
+      }
+    },
+    "black-50": {
+      "$value": "#908783",
+      "$extensions": {
+        "mode": {"light": "#908783", "dark": "908783"}
+      }
+    },
+    "black-40": {
+      "$value": "#a59e9a",
+      "$extensions": {
+        "mode": {"light": "#a59e9a", "dark": "{color.black-70#light}"}
+      }
+    },
+    "black-30": {
+      "$value": "#bbb6b3",
+      "$extensions": {
+        "mode": {"light": "#bbb6b3", "dark": "{color.black-80#light}"}
+      }
+    },
+    "black-20": {
+      "$value": "#d1cecc",
+      "$extensions": {
+        "mode": {"light": "#d1cecc", "dark": "{color.black-90#light}"}
+      }
+    },
+    "black-10": {
+      "$value": "#e8e6e5",
+      "$extensions": {
+        "mode": {"light": "#e8e6e5", "dark": "{color.black-100#light}"}
+      }
+    },
+    "black-05": {
+      "$value": "#f3f2f2",
+      "$extensions": {
+        "mode": {"light": "#f3f2f2", "dark": "{color.black-110#light}"}
+      }
+    },
+    "black-00": {
+      "$value": "#ffffff",
+      "$extensions": {
+        "mode": {"light": "#ffffff", "dark": "{color.black-120#light}"}
+      }
+    }
+  }
+}

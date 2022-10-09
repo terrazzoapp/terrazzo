@@ -1,13 +1,13 @@
-import { build } from '@cobalt-ui/cli/dist/build.js';
-import { expect } from 'chai';
-import pluginCSS from '../dist/index.js';
+import {build} from '@cobalt-ui/cli/dist/build.js';
 import fs from 'fs';
+import {expect, test} from 'vitest';
+import pluginCSS from '../dist/index.js';
 
 const FIXTURES_DIR = new URL('./fixtures/', import.meta.url);
 
-for (const test of fs.readdirSync(FIXTURES_DIR)) {
-  it(test, async () => {
-    const base = new URL(`./${test}/`, FIXTURES_DIR);
+for (const name of fs.readdirSync(FIXTURES_DIR)) {
+  test(name, async () => {
+    const base = new URL(`./${name}/`, FIXTURES_DIR);
     const outDir = new URL('./dist/', base);
     const given = JSON.parse(fs.readFileSync(new URL('./given.json', base)));
     await build(given, {
