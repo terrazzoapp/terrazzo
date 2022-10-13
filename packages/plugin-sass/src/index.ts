@@ -158,7 +158,7 @@ ${cbClose}`
         output.push(i.indent(`),`, 2));
         for (const [mode, modeValue] of Object.entries((token.$extensions && token.$extensions.mode) || {})) {
           output.push(i.indent(`"${mode}": (`, 2));
-          const modeProperties = Object.entries(modeValue as typeof ParsedTypographyToken['$value']);
+          const modeProperties = Object.entries(modeValue);
           modeProperties.sort(([a], [b]) => a.localeCompare(b));
           for (const [k, value] of modeProperties) {
             const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
