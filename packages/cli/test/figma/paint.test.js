@@ -71,6 +71,6 @@ describe('paint', () => {
         {color: {r: 0.875, g: 0.40833336114883423, b: 0.14583337306976318, a: 1}, position: 0.7677738070487976},
       ],
     }),
-  ).to.equal('linear-gradient(-58.32deg, #f2e03a 21.02%, #df6825 76.44%)');
+  ).to.equal('linear-gradient(-58.32deg, #f2e03a 11.87%, #df6825 76.78%)');
   // TODO: calculate to corners
 });
