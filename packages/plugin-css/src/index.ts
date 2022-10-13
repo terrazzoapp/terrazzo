@@ -227,7 +227,7 @@ export function transformTransition(value: ParsedTransitionToken['$value']): str
 export function transformTypography(value: ParsedTypographyToken['$value']): Record<string, string | number | string[]> {
   const values: Record<string, string | number | string[]> = {};
   for (const [k, v] of Object.entries(value)) {
-    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : (v as ParsedTypographyToken['$value']);
+    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : (v as any);
   }
   return values;
 }

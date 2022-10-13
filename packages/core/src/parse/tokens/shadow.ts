@@ -1,4 +1,4 @@
-import type {ShadowValue} from '../../@types/token';
+import type {ShadowValue} from '../../token.js';
 import {normalizeColorValue} from './color.js';
 import {normalizeDimensionValue} from './dimension.js';
 

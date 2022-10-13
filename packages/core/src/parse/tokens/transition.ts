@@ -1,4 +1,4 @@
-import type {CubicBezierToken, ParsedTransitionToken} from '../../@types/token';
+import type {CubicBezierToken, ParsedTransitionToken} from '../../token.js';
 import {normalizeDurationValue} from './duration.js';
 import {normalizeCubicBezierValue} from './cubic-bezier.js';
 

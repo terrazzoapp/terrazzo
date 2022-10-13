@@ -1,4 +1,4 @@
-import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../@types/token';
+import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue} from './tokens/color.js';
 import {normalizeFontValue} from './tokens/font.js';

@@ -1,5 +1,5 @@
 import type SVGO from 'svgo';
-import type {Group, ParsedToken} from './@types/token';
+import type {Group, ParsedToken} from './token.js';
 export type {
   BorderToken,
   ColorToken,
@@ -35,7 +35,7 @@ export type {
   TokenOrGroup,
   TokenType,
   TransitionToken,
-} from './@types/token';
+} from './token.js';
 
 import {parse} from './parse/index.js';
 export {parse, ParseResult} from './parse/index.js';
