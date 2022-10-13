@@ -1,4 +1,4 @@
-import type {ParsedColorToken} from '../../@types/token';
+import type {ParsedColorToken} from '../../token.js';
 import color from 'better-color-tools';
 
 /**

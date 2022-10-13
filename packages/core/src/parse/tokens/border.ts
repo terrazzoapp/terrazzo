@@ -1,4 +1,4 @@
-import type {ParsedBorderToken} from '../../@types/token';
+import type {ParsedBorderToken} from '../../token.js';
 import {isObj} from '../../util.js';
 import {normalizeColorValue} from './color.js';
 import {normalizeDimensionValue} from './dimension.js';

@@ -1,4 +1,4 @@
-import type {ParsedTypographyValue, FontWeightName} from '../../@types/token';
+import type {ParsedTypographyValue, FontWeightName} from '../../token.js';
 import {camelize} from '@cobalt-ui/utils';
 import {normalizeFontValue} from './font.js';
 import {normalizeDimensionValue} from './dimension.js';

@@ -1,4 +1,4 @@
-import type {ParsedStrokeStyleToken} from '../../@types/token';
+import type {ParsedStrokeStyleToken} from '../../token.js';
 
 const VALID_STROKE_STYLES = new Set(['solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'outset', 'inset']);
 

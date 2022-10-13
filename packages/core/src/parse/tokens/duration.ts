@@ -1,4 +1,4 @@
-import type {ParsedDurationToken} from '../../@types/token';
+import type {ParsedDurationToken} from '../../token.js';
 
 const DURATION_RE = /^\d+(\.\d+)?(ms|s)$/;
 

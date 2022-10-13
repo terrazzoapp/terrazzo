@@ -1,4 +1,4 @@
-import type {GradientStop, ParsedGradientToken} from '../../@types/token';
+import type {GradientStop, ParsedGradientToken} from '../../token.js';
 import {normalizeColorValue} from './color.js';
 
 /**
