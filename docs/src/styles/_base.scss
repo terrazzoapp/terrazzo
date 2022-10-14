@@ -1,4 +1,5 @@
 @use '../../tokens' as *;
+@use '../../tokens/tokens.css';
 
 html,
 body {
@@ -7,7 +8,7 @@ body {
 }
 
 html {
-  background-color: token('color.blue.05');
+  background-color: token('color.blue.50');
 }
 
 * {
@@ -15,8 +16,8 @@ html {
 }
 
 body {
-  background-color: token('color.white');
-  color: token('color.black');
+  background-color: var(--ui-bg);
+  color: var(--ui-fg);
   font-family: 'Neue Montreal', -system-ui, 'Helvetica', sans-serif;
   line-height: 1;
 }
@@ -74,7 +75,7 @@ i {
 }
 
 a {
-  color: token('color.blue.06');
+  color: var(--ui-action);
 }
 
 p {

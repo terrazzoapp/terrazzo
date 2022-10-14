@@ -1,0 +1,420 @@
+---
+const {type: tokenType} = Astro.props;
+---
+
+<div class={`token token--${tokenType}`}>
+  {
+    ['color', 'border', 'transition', 'shadow'].includes(tokenType) && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <svg class="token-fg">
+        <use xlink:href="#hex" />
+      </svg>,
+    ]
+  }
+  {
+    tokenType === 'font' && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <div class="token-fg">Aa</div>,
+    ]
+  }
+  {
+    ['dimension', 'duration', 'link'].includes(tokenType) && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <div class="token-fg" />,
+    ]
+  }
+  {
+    tokenType === 'cubic-bezier' && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <svg class="token-fg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <path d="M32,256c0-192,224-192,224,0s224,224,224,0" />
+      </svg>,
+    ]
+  }
+  {
+    tokenType === 'stroke-style' && (
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>
+    )
+  }
+</div>
+
+<style lang="scss">
+  @use 'sass:math';
+  @use '../../tokens' as *;
+
+  .token {
+    color: var(--ui-fg);
+    display: block;
+    font-weight: 400;
+    height: token('space.2xl');
+    position: relative;
+    transform: translate3d(0, -50%, 0);
+    width: token('space.2xl');
+
+    &-bg {
+      height: 100%;
+      fill: none;
+      left: 50%;
+      position: absolute;
+      stroke: var(--ui-fg);
+      stroke-width: 5;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      z-index: 1;
+    }
+
+    &-fg {
+      align-items: center;
+      display: flex;
+      fill: var(--ui-fg);
+      height: token('space.2xl') - 12px;
+      justify-content: center;
+      left: 50%;
+      position: absolute;
+      stroke-width: 0;
+      top: 50%;
+      transform: translate3d(-50%, -50%, 0);
+      width: token('space.2xl') - 12px;
+      z-index: 2;
+    }
+
+    &--color,
+    &--gradient {
+      .token-bg {
+        animation: kaleidoscope linear infinite 15s;
+        fill: none !important;
+      }
+
+      .token-fg {
+        animation: kaleidoscope linear infinite 15s;
+      }
+    }
+
+    &--font,
+    &--typography {
+      .token-fg {
+        font-size: 19px;
+        font-weight: 600;
+        letter-spacing: -0.0125em;
+      }
+    }
+
+    &--dimension {
+      .token-fg {
+        animation: piston token('ease.outCubic') infinite 2s;
+        background: var(--ui-fg);
+        height: 2px;
+        width: token('space.md');
+
+        &::before,
+        &::after {
+          background: var(--ui-fg);
+          content: '';
+          display: block;
+          position: absolute;
+          transform: rotate(90deg);
+          left: -6px;
+          height: 2px;
+          width: 12px;
+        }
+
+        &::after {
+          left: auto;
+          right: -6px;
+        }
+      }
+    }
+
+    &--duration {
+      $l: 0.75 * token('space.md'); // hex is space.md; base it off that but take away a little
+
+      .token-fg {
+        animation: tickTock token('ease.outCubic') infinite 4s;
+        background-color: var(--ui-fg);
+        transform-origin: 50% 100%;
+        top: calc(50% - #{$l});
+        left: calc(50% - 1px);
+        height: $l;
+        width: 2px;
+      }
+    }
+
+    &--cubic-bezier {
+      .token-fg {
+        animation: flip token('ease.inOutCirc') infinite 2s;
+        fill: none;
+        height: token('space.lg');
+        stroke-width: 32;
+        stroke: var(--ui-fg);
+        width: token('space.lg');
+      }
+    }
+
+    &--link {
+      .token-fg {
+        animation: spin token('ease.inOutCubic') infinite 2s;
+        background: conic-gradient(var(--ui-bg), var(--ui-bg) 120deg, var(--ui-fg));
+        border-radius: 50%;
+        height: 50%;
+        width: 50%;
+
+        &::before {
+          background: var(--ui-fg);
+          border-radius: 50%;
+          content: '';
+          height: 18.75%;
+          left: 50%;
+          position: absolute;
+          top: 0;
+          transform: translate3d(-50%, 0, 0);
+          width: 18.75%;
+        }
+
+        &::after {
+          background: var(--ui-bg);
+          border-radius: 50%;
+          content: '';
+          height: 62.5%;
+          left: 50%;
+          position: absolute;
+          top: 50%;
+          transform: translate3d(-50%, -50%, 0);
+          width: 62.5%;
+        }
+      }
+    }
+
+    &--stroke-style {
+      .token-bg {
+        animation: dashify token('ease.inOutCubic') infinite 2s;
+      }
+    }
+
+    &--border {
+      .token-fg {
+        animation: ping token('ease.outCubic') infinite 1s;
+        fill: none;
+        height: token('space.2xl');
+        stroke: var(--ui-fg);
+        stroke-width: 8;
+        transform: translate3d(-50%, -50%, 0);
+        width: token('space.2xl');
+      }
+    }
+
+    &--transition {
+      .token-fg {
+        animation: morph token('ease.outCubic') infinite 2s;
+      }
+    }
+
+    &--shadow {
+      &::after {
+        animation: hoverShadow token('ease.inOutCirc') infinite 2s;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        content: '';
+        display: block;
+        filter: blur(12px);
+        height: token('space.xl');
+        left: 50%;
+        pointer-events: none;
+        position: absolute !important;
+        top: 50%;
+        transform: translate3d(0, -50%, 0);
+        width: token('space.xl');
+      }
+
+      .token-bg {
+        display: none;
+      }
+
+      .token-fg {
+        animation: hoverItem token('ease.inOutCirc') infinite 2s;
+        fill: var(--ui-fg);
+        position: relative;
+        z-index: 10;
+      }
+    }
+  }
+
+  // lch: lightness 65%, chroma 100%
+  @keyframes kaleidoscope {
+    0%,
+    100% {
+      fill: rgb(100% 40.23% 63.07%);
+      stroke: rgb(100% 40.23% 63.07%);
+    }
+    8.3333% {
+      fill: rgb(100% 42.75% 40.59%);
+      stroke: rgb(100% 42.75% 40.59%);
+    }
+    16.6666% {
+      fill: rgb(94.33% 48.8% 0%);
+      stroke: rgb(94.33% 48.8% 0%);
+    }
+    25% {
+      fill: rgb(70.79% 61.17% 0%);
+      stroke: rgb(70.79% 61.17% 0%);
+    }
+    33.3333% {
+      fill: rgb(43.78% 68.36% 0%);
+      stroke: rgb(43.78% 68.36% 0%);
+    }
+    41.6666% {
+      fill: rgb(0% 71.18% 37.75%);
+      stroke: rgb(0% 71.18% 37.75%);
+    }
+    50% {
+      fill: rgb(0% 69.92% 61.19%);
+      stroke: rgb(0% 69.92% 61.19%);
+    }
+    58.3333% {
+      fill: rgb(0% 68.75% 75.24%);
+      stroke: rgb(0% 68.75% 75.24%);
+    }
+    66.6666% {
+      fill: rgb(0% 67.23% 89.25%);
+      stroke: rgb(0% 67.23% 89.25%);
+    }
+    75% {
+      fill: rgb(36.59% 63.12% 100%);
+      stroke: rgb(36.59% 63.12% 100%);
+    }
+    83.3333% {
+      fill: rgb(67.39% 54.94% 100%);
+      stroke: rgb(67.39% 54.94% 100%);
+    }
+    91.6666% {
+      fill: rgb(100% 33.43% 93.85%);
+      stroke: rgb(100% 33.43% 93.85%);
+    }
+  }
+
+  @keyframes piston {
+    0%,
+    40%,
+    100% {
+      width: 0;
+    }
+
+    50%,
+    90% {
+      width: 18px;
+    }
+  }
+
+  @keyframes tickTock {
+    0%,
+    20% {
+      transform: rotate(0deg);
+    }
+    25%,
+    45% {
+      transform: rotate(90deg);
+    }
+    50%,
+    70% {
+      transform: rotate(180deg);
+    }
+    75%,
+    95% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes hoverItem {
+    0%,
+    100% {
+      transform: translate3d(-50%, -50%, 0);
+    }
+    50% {
+      transform: translate3d(-50%, -150%, 0);
+    }
+  }
+
+  @keyframes flip {
+    0% {
+      transform: translate3d(-50%, -50%, 0) rotateX(0deg);
+    }
+    50% {
+      transform: translate3d(-50%, -50%, 0) rotateX(180deg);
+    }
+    100% {
+      transform: translate3d(-50%, -50%, 0) rotateX(360deg);
+    }
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      transform: translate3d(-50%, -50%, 0) rotate(0deg) scale(0.375);
+    }
+    50% {
+      transform: translate3d(-50%, -50%, 0) rotate(360deg) scale(1);
+    }
+  }
+
+  @keyframes hoverShadow {
+    0%,
+    100% {
+      filter: blur(5px);
+      transform: translate3d(-50%, -37.5%, 0);
+    }
+    50% {
+      filter: blur(16px);
+      transform: translate3d(-50%, -25%, 0);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+    }
+    100% {
+      transform: translate3d(-50%, -50%, 0) rotate(1080deg);
+    }
+  }
+
+  @keyframes ping {
+    0% {
+      opacity: 1;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+    // note: ending the animation a few frames early at 95% prevents a Firefox animation bug
+    95% {
+      opacity: 0;
+      transform: translate3d(-50%, -50%, 0) scale(2);
+    }
+    100% {
+      opacity: 0;
+      transform: translate3d(-50%, -50%, 0) scale(1);
+    }
+  }
+
+  @keyframes dashify {
+    0%,
+    100% {
+      stroke-dasharray: 28;
+      stroke-dashoffset: 28;
+    }
+    50% {
+      stroke-dasharray: 6;
+      stroke-dashoffset: 5;
+    }
+  }
+</style>

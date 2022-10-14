@@ -28,7 +28,7 @@ function showSubPage(url) {
 
   .a {
     align-items: center;
-    color: token('color.black');
+    color: var(--color-fg);
     display: flex;
     min-height: token('space.lg');
     padding-left: token('space.lg');
@@ -36,7 +36,7 @@ function showSubPage(url) {
     text-decoration: none;
 
     &[aria-current='page'] {
-      color: token('color.blue.06');
+      color: var(--ui-action);
       font-weight: 550;
     }
 
@@ -67,15 +67,11 @@ function showSubPage(url) {
     manifest.pages.map(
       (page) =>
         (showSubPage(page.pathname) && (
-          <a
-            class={`a${subPageRE.test(page.pathname) ? ' a--subpage' : ''}`}
-            href={page.pathname}
-            aria-current={Astro.url.pathname === page.pathname ? 'page' : undefined}
-          >
+          <a class={`a${subPageRE.test(page.pathname) ? ' a--subpage' : ''}`} href={page.pathname} aria-current={Astro.url.pathname === page.pathname ? 'page' : undefined}>
             {page.title}
           </a>
         )) ||
-        undefined
+        undefined,
     )
   }
 </nav>

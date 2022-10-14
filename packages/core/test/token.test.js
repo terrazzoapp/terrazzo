@@ -209,12 +209,12 @@ describe('8. Type', () => {
   describe('8.5: Cubic Bézier', () => {
     test('basic', () => {
       const json = {
-        easing: {
+        ease: {
           sine: {$type: 'cubicBezier', $value: [0.4, 0, 0.6, 1]},
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'easing.sine').$value).to.deep.equal(json.easing.sine.$value);
+      expect(tokens.find((t) => t.id === 'ease.sine').$value).to.deep.equal(json.ease.sine.$value);
     });
   });
 });

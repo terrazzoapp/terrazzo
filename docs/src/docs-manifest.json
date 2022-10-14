@@ -30,6 +30,6 @@
     {"title": "TypeScript",      "pathname": "/docs/plugins/ts"},
     {"title": "Reference",       "pathname": "/docs/reference"},
     {"title": "Config",          "pathname": "/docs/reference/config"},
-    {"title": "Goals",           "pathname": "/docs/reference/about"}
+    {"title": "About",           "pathname": "/docs/reference/about"}
   ]
 }

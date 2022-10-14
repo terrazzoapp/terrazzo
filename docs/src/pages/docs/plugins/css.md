@@ -111,7 +111,8 @@ export default {
     css({
       modeSelectors: {
         'color.base#light': ['body[data-color-mode="light"]'],
-        'color.base#dark': ['body[data-color-mode="dark"]'],
+        'color.base#dark': ['body[data-color-mode="dark"]', '@media (prefers-color-scheme:dark)'],
+        'transition#reduced': ['@media (prefers-reduced-motion)'],
       },
     }),
   ],

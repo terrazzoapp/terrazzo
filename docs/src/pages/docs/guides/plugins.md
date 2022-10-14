@@ -9,16 +9,14 @@ Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript
 
 ## Why use Cobalt?
 
-Does writing a Cobalt plugin make more sense for your project vs writing a custom script? This is what Cobalt does for you:
+Cobalt was created to deal with the following difficulties of the W3C Design Tokens spec:
 
-1. **Validation.** Cobalt will throw an error on any schema error so no unintended styling breaks through.
-2. **Normalization.** `tokens.json`’s flexibility allows polymorphism, and there are several types that can take either `string | string[]`, or `string | object`, etc. Cobalt expands all token values into their maximum values for consistency.
-3. **Aliasing.** Aliasing is an essential part of any tokens schema, and it can be tricky when an alias is **an alias of an alias!** Cobalt flattens all aliases automatically and even detects circular references.
-4. **Traversal.** `tokens.json` is a deeply-nested object, and those can be tricky to crawl if you’re not used to working with abstract syntax trees (ASTs). Cobalt flattens tokens into an array so that when you write a plugin, you only have to loop over an array once to get every token.
-5. **Modes.** Cobalt extends the design tokens format with [modes](/docs/tokens#modes). This includes being able to alias modes with “#”, e.g. `{color.blue#dark}`.
-6. **Figma syncing.** Cobalt allows for easy syncing between Figma and your design tokens by providing an API key.
-
-If writing a plugin for Cobalt would save time, read on!
+1. **Validation**: Cobalt errs on schema violations
+2. **Normalization**: The W3C Design Tokens spec allows for much flexibility, which means many unexpected values
+3. **Aliasing**: Cobalt resolves aliases (including _aliases of aliases of aliases!_) for you
+4. **Traversal**: A deeply-nested object is converted into a flat array for easy iteration
+5. **Modes** Cobalt extends the design tokens format with powerful [modes](/docs/tokens#modes)
+6. **Figma syncing** Update your design tokens with Figma easily
 
 ## Basic structure
 

@@ -13,8 +13,9 @@ describe('plugin-ts', () => {
       fs.readdirSync(FIXTURES_DIR).map(async (dir) => {
         const base = new URL(`${dir}/`, FIXTURES_DIR);
         if (!fs.statSync(fileURLToPath(base).replace(/\/$/, '')).isDirectory()) return;
-        const given = JSON.parse(fs.readFileSync(new URL('./given.json', base), 'utf8'));
-        await build(given, {outDir: base, plugins: [pluginTS({filename: 'given.ts'})]});
+        const tokens = new URL('./given.json', base);
+        const given = JSON.parse(fs.readFileSync(tokens, 'utf8'));
+        await build(given, {tokens, outDir: base, plugins: [pluginTS({filename: 'given.ts'})]});
       }),
     );
   });

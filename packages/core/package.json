@@ -32,6 +32,6 @@
   "devDependencies": {
     "@types/node": "^17.0.45",
     "@types/svgo": "^2.6.4",
-    "vitest": "^0.24.0"
+    "vitest": "^0.24.3"
   }
 }

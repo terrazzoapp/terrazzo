@@ -11,17 +11,38 @@ $__token-values: (
   "color.black": (
     default: (#00193f),
   ),
-  "color.blue.03": (
-    default: (#1a2354),
+  "color.blue.10": (
+    default: (#062053),
   ),
-  "color.blue.04": (
-    default: (#001585),
+  "color.blue.20": (
+    default: (#0f2868),
   ),
-  "color.blue.05": (
+  "color.blue.30": (
+    default: (#192f7d),
+  ),
+  "color.blue.40": (
+    default: (#223793),
+  ),
+  "color.blue.50": (
     default: (#2b3faa),
   ),
-  "color.blue.06": (
-    default: (#1346bd),
+  "color.blue.60": (
+    default: (#3764ba),
+  ),
+  "color.blue.70": (
+    default: (#4887c9),
+  ),
+  "color.blue.80": (
+    default: (#5ca9d7),
+  ),
+  "color.blue.90": (
+    default: (#72cce5),
+  ),
+  "color.blue.100": (
+    default: (#89eff1),
+  ),
+  "color.blue.00": (
+    default: (#00193f),
   ),
   "color.darkGray": (
     default: (#282a37),
@@ -58,6 +79,21 @@ $__token-values: (
   ),
   "color.code.skyBlue": (
     default: (#59c1ff),
+  ),
+  "ui.bg": (
+    default: (#ffffff),
+    "light": (#ffffff),
+    "dark": (#00193f),
+  ),
+  "ui.fg": (
+    default: (#00193f),
+    "light": (#00193f),
+    "dark": (#ffffff),
+  ),
+  "ui.action": (
+    default: (#2b3faa),
+    "light": (#2b3faa),
+    "dark": (#4887c9),
   ),
   "font.family.ppNeue": (
     default: ("PP Neue Montreal", system-ui, ui-sans-serif, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif),
@@ -140,16 +176,25 @@ $__token-values: (
   "space.layout.2xl": (
     default: (160px),
   ),
-  "easing.linear": (
+  "ease.linear": (
     default: (cubic-bezier(0, 0, 1, 1)),
   ),
-  "easing.easeOutCubic": (
+  "ease.inCirc": (
+    default: (cubic-bezier(0.55, 0, 1, 0.45)),
+  ),
+  "ease.outCirc": (
+    default: (cubic-bezier(0, 0.55, 0.45, 1)),
+  ),
+  "ease.inOutCirc": (
+    default: (cubic-bezier(0.85, 0, 0.15, 1)),
+  ),
+  "ease.outCubic": (
     default: (cubic-bezier(0.33, 1, 0.68, 1)),
   ),
-  "easing.easeInCubic": (
+  "ease.inCubic": (
     default: (cubic-bezier(0.32, 0, 0.67, 1)),
   ),
-  "easing.easeInOutCubic": (
+  "ease.inOutCubic": (
     default: (cubic-bezier(0.65, 0, 0.35, 1)),
   ),
 );

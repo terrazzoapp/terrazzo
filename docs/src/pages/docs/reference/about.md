@@ -13,7 +13,7 @@ The project goals are subject to change, but currently are encompassed by 3 poin
 2. Maintain a pluggable interface, where users can write their own plugins or the community can contribute plugins
 3. Make syncing from Figma easy and automatable
 
-## What does “Cobalt” mean?
+## Why the name “Cobalt”?
 
 The name **Cobalt** has three meanings:
 

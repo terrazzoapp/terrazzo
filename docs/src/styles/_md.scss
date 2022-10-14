@@ -82,7 +82,7 @@
   }
 
   pre {
-    background: token('color.blue.03');
+    background: token('color.blue.30');
     border-radius: token('space.3xs');
     color: token('color.white');
     line-height: 1.4;
@@ -111,8 +111,9 @@
 
   th,
   td {
-    padding: token('space.xs') token('space.sm');
     line-height: 1.5;
+    padding: token('space.xs') token('space.sm');
+    text-align: left;
     vertical-align: top;
 
     &:last-of-type {

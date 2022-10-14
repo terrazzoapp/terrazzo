@@ -4,10 +4,12 @@ import Footer from '../components/Footer.astro';
 import Head from '../components/Head.astro';
 import Nav from '../components/Nav.astro';
 import SkipToMain from '../components/SkipToMain.astro';
+import Token from '../components/Token.astro';
 
 import packageJSON from '../../../packages/cli/package.json';
 
 const version = packageJSON.version;
+const tokenTypes = ['color', 'color', 'font', 'font', 'dimension', 'duration', 'link', 'cubic-bezier', 'shadow', 'border', 'stroke-style', 'transition', 'empty', 'empty', 'empty', 'empty', 'empty'];
 ---
 
 <!DOCTYPE html>
@@ -18,13 +20,24 @@ const version = packageJSON.version;
       @use '../../tokens' as *;
 
       .header {
+        --ui-bg: #{token('color.blue.50')};
+
         align-items: center;
-        background: token('color.blue.05');
+        background: token('color.blue.50');
+        box-sizing: border-box;
         color: token('color.white');
         display: flex;
         flex-direction: column;
         height: calc(100vh - #{token('space.layout.lg')});
-        justify-content: center;
+        justify-content: flex-end;
+        padding-bottom: 12.5%;
+        max-height: 60em;
+        transform: translateZ(0);
+      }
+
+      .header-text {
+        position: relative;
+        z-index: 10;
       }
 
       .features {
@@ -40,6 +53,33 @@ const version = packageJSON.version;
         font-weight: 550;
         margin: 0;
       }
+
+      .tokens {
+        align-items: flex-start;
+        display: flex;
+        flex-wrap: wrap;
+        height: 50%;
+        justify-content: flex-start;
+        left: 0;
+        overflow: hidden;
+        padding-top: 1.25rem;
+        pointer-events: none;
+        position: absolute;
+        transform: translateZ(0);
+        top: 0;
+        width: 100%;
+
+        &::after {
+          background: linear-gradient(transparent, #{token('color.blue.50')});
+          content: '';
+          height: 100%;
+          left: 0;
+          bottom: 0;
+          pointer-events: none;
+          position: absolute;
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body class="page--home">
@@ -47,9 +87,14 @@ const version = packageJSON.version;
     <Nav />
     <div>
       <header class="header tac">
-        <h1 class="title">W3C Design Tokens, Anywhere</h1>
-        <div class="features">• Generate TypeScript, Sass, JSON, CSS, and more<br />• Sync with Figma<br />• Use in CI</div>
-        <a class="btn" href="/docs/getting-started">Get Started</a>
+        <div class="tokens">
+          {[...new Array(1200)].map(() => <Token type={tokenTypes[Math.floor(Math.random() * tokenTypes.length)]} />)}
+        </div>
+        <div class="header-text">
+          <h1 class="title">W3C Design Tokens, Anywhere</h1>
+          <div class="features">• Generate TypeScript, Sass, JSON, CSS, and more<br />• Sync with Figma<br />• Use in CI</div>
+          <a class="btn" href="/docs/getting-started">Get Started</a>
+        </div>
       </header>
     </div>
     <div class="wrapper">
