@@ -12,12 +12,32 @@ npm i -D @cobalt-ui/plugin-css
 
 ```js
 // tokens.config.mjs
-import css from '@cobalt-ui/plugin-css';
+import pluginCSS from '@cobalt-ui/plugin-css';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [pluginCSS()],
+};
+```
+
+## Usage
+
+Running `npx co build` with the plugin set up will generate a `tokens/tokens.css` file. Inspect that, and import where desired and use the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) as desired ([docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)).
+
+## Options
+
+### All Options
+
+Here are all plugin options, along with their default values
+
+```js
+// tokens.config.mjs
+import pluginCSS from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
   plugins: [
-    css({
+    pluginCSS({
       /** set the filename inside outDir */
       filename: './tokens.css',
       /** create selector wrappers around modes */
@@ -26,24 +46,14 @@ export default {
       },
       /** embed file tokens? */
       embedFiles: false,
-      /** handle specific token types */
-      transform: {
-        color: (value, token) => {
-          return value;
-        },
-      },
+      /** (optional) transform specific token values */
+      transform: () => null,
       /** (optional) prefix variable names */
       prefix: '--my-prefix',
     }),
   ],
 };
 ```
-
-## Usage
-
-Running `npx co build` with the plugin set up will generate a `tokens/tokens.css` file. Inspect that, and import where desired and use the [CSS Custom Properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) as desired ([docs](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)).
-
-## Config
 
 ### Embed Files
 
@@ -190,7 +200,7 @@ To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/
 
 ### Transform
 
-Inside plugin options, you can specify an optional `transform()` function:
+Inside plugin options, you can specify an optional `transform()` function.
 
 ```js
 /** @type import('@cobalt-ui/core').Config */
@@ -198,9 +208,10 @@ export default {
   plugins: [
     pluginCSS({
       transform(token, mode) {
-        // Replace "sans-serif" with "Brand Sans" for font tokens
+        const oldFont = 'sans-serif';
+        const newFont = 'Custom Sans';
         if (token.$type === 'font') {
-          return token.$value.replace('sans-serif', 'Brand Sans');
+          return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },
     }),
@@ -208,7 +219,7 @@ export default {
 };
 ```
 
-Your transform will only take place if you return a string; otherwise the default transformer will take place.
+Your transform will only take place if you return a truthy value, otherwise the default transformer will take place.
 
 #### Custom tokens
 

@@ -160,8 +160,8 @@ However, when 2 or more things are frequently used side-by-side, modes should be
 The examples above were generic concepts that applied to all languages. To see how to use modes in specific languages, see the following plugin docs:
 
 - [@cobalt-ui/plugin-css](/docs/plugins/css#mode-selectors)
+- [@cobalt-ui/plugin-js](/docs/plugins/js#usage)
 - [@cobalt-ui/plugin-sass](/docs/plugins/sass#modes)
-- [@cobalt-ui/plugin-ts](/docs/plugins/ts#usage)
 
 ## Advanced
 

@@ -33,19 +33,18 @@ If there’s a `package.json` file in the root of your project already, you can 
 Next, install the Cobalt CLI and a few plugins:
 
 ```
-npm install --save-dev @cobalt-ui/cli @cobalt-ui/plugin-css @cobalt-ui/plugin-ts @cobalt-ui/plugin-json
+npm install --save-dev @cobalt-ui/cli @cobalt-ui/plugin-css @cobalt-ui/plugin-js
 ```
 
 And lastly, create a `tokens.config.mjs` file in the root of your project, initializing these plugins:
 
 ```js
-import pluginTS from '@cobalt-ui/plugin-ts';
 import pluginCSS from '@cobalt-ui/plugin-css';
-import pluginJSON from '@cobalt-ui/plugin-json';
+import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
-  plugins: [pluginTS(), pluginCSS(), pluginJSON()],
+  plugins: [pluginCSS(), pluginJS()],
 };
 ```
 
@@ -70,16 +69,8 @@ That will generate a new `/tokens/` folder along with one output per plugin:
 
 ## Next steps
 
-Learn more about the existing plugins and [view documentation][plugins]:
+Learn more about the existing plugins and [view documentation](docs/plugins)
 
-- **CSS**: [@cobalt-ui/plugin-css][plugin-css]
-- **JSON**: [@cobalt-ui/plugin-json][plugin-json]
-- **Sass**: [@cobalt-ui/plugin-sass][plugin-sass]
-- **TypeScript**: [@cobalt-ui/plugin-ts][plugin-ts]
-
-[tokens.json]: /docs/tokens
-[plugins]: /docs/plugins
-[plugin-css]: /docs/plugins/css
-[plugin-json]: /docs/plugins/json
-[plugin-sass]: /docs/plugins/sass
-[plugin-ts]: /docs/plugins/ts
+- **CSS**: [@cobalt-ui/plugin-css](/docs/plugins/css)
+- **JS/TS/JSON**: [@cobalt-ui/plugin-js](/docs/plugins/js)
+- **Sass**: [@cobalt-ui/plugin-sass](/docs/plugins/sass)

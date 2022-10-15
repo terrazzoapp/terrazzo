@@ -1,7 +1,7 @@
 {
-  "name": "@cobalt-ui/plugin-sass",
-  "description": "Generate scss/sass from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "0.7.0",
+  "name": "@cobalt-ui/plugin-js",
+  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @cobalt-ui/cli)",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -9,13 +9,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/drwpow/cobalt-ui.git",
-    "directory": "packages/plugin-sass"
+    "directory": "packages/plugin-js"
   },
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
@@ -25,15 +23,13 @@
     "@cobalt-ui/cli": "*"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^0.5.0",
-    "mime": "^3.0.0",
-    "svgo": "^2.8.0"
+    "@cobalt-ui/utils": "^0.5.0"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.5.2",
-    "@cobalt-ui/core": "^0.6.2",
-    "@types/mime": "^2.0.3",
-    "@types/svgo": "^2.6.4",
-    "vitest": "^0.24.0"
+    "@cobalt-ui/core": "^0.6.3",
+    "fast-glob": "^3.2.12",
+    "typescript": "^4.8.4",
+    "vitest": "^0.24.3"
   }
 }

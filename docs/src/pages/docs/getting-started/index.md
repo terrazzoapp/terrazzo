@@ -34,7 +34,7 @@ npm i -D @cobalt-ui/cli
 Install any plugins you’d like to use (_note: you must install at least one plugin to generate code_):
 
 ```
-npm i -D @cobalt-ui/plugin-css @cobalt-ui/plugin-sass @cobalt-ui/plugin-ts @cobalt-ui/plugin-json
+npm i -D @cobalt-ui/plugin-css @cobalt-ui/plugin-js @cobalt-ui/plugin-sass
 ```
 
 ## Building

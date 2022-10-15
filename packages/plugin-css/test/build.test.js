@@ -1,19 +1,17 @@
 import {build} from '@cobalt-ui/cli/dist/build.js';
 import fs from 'fs';
-import {expect, test} from 'vitest';
+import {describe, expect, test} from 'vitest';
 import pluginCSS from '../dist/index.js';
 
-const FIXTURES_DIR = new URL('./fixtures/', import.meta.url);
-
-for (const name of fs.readdirSync(FIXTURES_DIR)) {
-  test(name, async () => {
-    const base = new URL(`./${name}/`, FIXTURES_DIR);
-    const outDir = new URL('./dist/', base);
-    const given = JSON.parse(fs.readFileSync(new URL('./given.json', base)));
-    await build(given, {
-      outDir,
+describe('@cobalt-ui/plugin-css', () => {
+  test.each(['color', 'typography'])('%', async (dir) => {
+    const cwd = new URL(`./${dir}/`, import.meta.url);
+    const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
+    await build(tokens, {
+      outDir: cwd,
       plugins: [
         pluginCSS({
+          filename: 'actual.css',
           modeSelectors: {
             'color#light': ['[data-color-theme="light"]'],
             'color#dark': ['[data-color-theme="dark"]'],
@@ -27,8 +25,6 @@ for (const name of fs.readdirSync(FIXTURES_DIR)) {
       ],
     });
 
-    const got = fs.readFileSync(new URL('./tokens.css', outDir), 'utf8');
-    const want = fs.readFileSync(new URL('./want.css', base), 'utf8');
-    expect(got).to.equal(want);
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
   });
-}
+});

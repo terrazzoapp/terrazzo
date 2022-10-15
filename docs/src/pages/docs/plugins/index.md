@@ -11,7 +11,7 @@ Plugins let you **generate code** from `tokens.json`. Here are all current plugi
 - [@cobalt-ui/plugin-js](/docs/plugins/js): Generate `.js`, `.ts`, and `.json`
 - [@cobalt-ui/plugin-sass](/docs/plugins/sass): Generate `.scss` or `.sass`
 
-_Note: @cobalt-ui/plugin-ts and @cobalt-ui/plugin-json were both merged into @cobalt-ui/plugin-js_
+_Note: @cobalt-ui/plugin-ts and @cobalt-ui/plugin-json were merged into @cobalt-ui/plugin-js_
 
 ## Creating Plugins
 

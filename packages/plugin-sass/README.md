@@ -158,9 +158,10 @@ export default {
   plugins: [
     pluginSass({
       transform(token, mode) {
-        // Replace "sans-serif" with "Brand Sans" for font tokens
+        const oldFont = 'sans-serif';
+        const newFont = 'Custom Sans';
         if (token.$type === 'font') {
-          return token.$value.replace('sans-serif', 'Brand Sans');
+          return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },
     }),
@@ -168,7 +169,7 @@ export default {
 };
 ```
 
-Your transform will only take place if you return a string; otherwise the default transformer will take place.
+Your transform will only take place if you return a truthy value, otherwise the default transformer will take place.
 
 #### Custom tokens
 

@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run build:tokens && npm run build:static",
+    "build": "npm run build:tokens && npm run build:readme && npm run build:static",
     "build:tokens": "co build",
+    "build:readme": "node ./scripts/update-readmes.js",
     "build:static": "astro build",
     "sync": "co sync",
     "dev": "run-p dev:*",
@@ -13,7 +14,6 @@
     "dev:serve": "astro dev"
   },
   "dependencies": {
-    "@astrojs/vue": "^1.0.0",
     "prismjs": "^1.29.0",
     "vue": "^3.2.37"
   },
