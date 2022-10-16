@@ -4,5 +4,5 @@ import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
-  plugins: [pluginCSS(), pluginSass(), pluginJS(), pluginTS()],
+  plugins: [pluginCSS(), pluginSass(), pluginJS()],
 };

@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 0.0.2
+
+### Patch Changes
+
+- 0d993c8: Fix main entry
+
 ## 0.0.1
 
 ### Minor Changes

@@ -13,7 +13,7 @@
     "@carbon/type": "^11.10.0",
     "@cobalt-ui/cli": "^0.6.0",
     "@cobalt-ui/plugin-css": "^0.8.1",
-    "@cobalt-ui/plugin-js": "^0.0.1",
+    "@cobalt-ui/plugin-js": "^0.0.2",
     "@cobalt-ui/plugin-sass": "^0.7.1"
   }
 }
