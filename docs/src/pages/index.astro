@@ -28,11 +28,17 @@ const tokenTypes = ['color', 'color', 'font', 'font', 'dimension', 'duration', '
         color: token('color.white');
         display: flex;
         flex-direction: column;
-        height: calc(100vh - #{token('space.layout.lg')});
-        justify-content: flex-end;
-        padding-bottom: 12.5%;
-        max-height: 60em;
+        padding: 4rem 2rem;
         transform: translateZ(0);
+
+        @media (min-width: 600px) {
+          height: calc(100vh - #{token('space.layout.lg')});
+          justify-content: flex-end;
+          max-height: 60em;
+          padding-bottom: 0;
+          padding-bottom: 12.5%;
+          padding-top: 0;
+        }
       }
 
       .header-text {
@@ -49,9 +55,13 @@ const tokenTypes = ['color', 'color', 'font', 'font', 'dimension', 'duration', '
       }
 
       .title {
-        font-size: 64pt;
+        font-size: 36px;
         font-weight: 550;
         margin: 0;
+
+        @media (min-width: 600px) {
+          font-size: 64pt;
+        }
       }
 
       .tokens {
@@ -92,7 +102,7 @@ const tokenTypes = ['color', 'color', 'font', 'font', 'dimension', 'duration', '
         </div>
         <div class="header-text">
           <h1 class="title">W3C Design Tokens, Anywhere</h1>
-          <div class="features">• Generate TypeScript, Sass, JSON, CSS, and more<br />• Sync with Figma<br />• Use in CI</div>
+          <div class="features">• Generate JS, TS, Sass, CSS, and more<br />• Sync with Figma<br />• Use in CI</div>
           <a class="btn" href="/docs/getting-started">Get Started</a>
         </div>
       </header>

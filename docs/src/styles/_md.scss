@@ -32,7 +32,11 @@
     line-height: 1.5;
     margin-bottom: token('space.md');
     margin-top: token('space.md');
-    padding-left: 0;
+    padding-left: token('space.md');
+
+    @media (min-width: 600px) {
+      padding-left: 0;
+    }
 
     ul {
       margin: 0;
@@ -42,8 +46,11 @@
 
   ul li {
     list-style: square;
-    margin-left: -#{token('space.xs')};
-    padding-left: token('space.xs');
+
+    @media (min-width: 600px) {
+      margin-left: -#{token('space.xs')};
+      padding-left: token('space.xs');
+    }
   }
 
   li {
@@ -101,6 +108,7 @@
 
   table {
     border-collapse: collapse;
+    box-sizing: border-box;
     font-size: token('font.size.04');
     width: 100%;
 

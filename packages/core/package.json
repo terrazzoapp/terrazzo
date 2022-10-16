@@ -19,7 +19,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && npm run bundle",
-    "dev": "run-p dev:*",
+    "dev": "run-p -s dev:*",
     "dev:ts": "tsc --watch",
     "dev:bundle": "npm run bundle -- --watch",
     "bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap",

@@ -17,13 +17,22 @@ function showSubPage(url) {
   @use '../../tokens' as *;
 
   .nav {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     font-size: token('font.size.04');
+    margin-bottom: token('space.md');
     max-height: calc(100vh - #{token('space.layout.sm')});
     min-width: token('space.layout.2xl');
-    position: sticky;
-    top: token('space.md');
+    padding-bottom: token('space.md');
+
+    @media (min-width: 600px) {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      position: sticky;
+      top: token('space.md');
+    }
   }
 
   .a {
