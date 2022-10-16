@@ -34,43 +34,131 @@ _Note: the default plugin exports a `.d.ts` file alongside the `.js`, which mean
 
 ### JS
 
-```ts
-import {tokens} from './tokens/index.js';
-
-const red = tokens.color.red.10 // #f44c26
-```
-
-You can alternately reference a single-depth object with the full ID, if you prefer. This is useful for getting all tokens of a specific name, e.g.:
+To use a token, import the `token()` function and reference it by its full ID:
 
 ```ts
-import {tokensList} from './tokens/index.js';
+import {token} from './tokens/index.js';
 
-const colorTokens = tokensList.filter((token) => token.$type === 'color');
+// get default token
+const red = token('color.red.10');
+
+// get token for mode: dark
+const redDark = token('color.red.10', 'dark');
 ```
 
-To use [modes](https://cobalt-ui.pages.dev/docs/guides/modes/), import the `mode()` function and use the full ID:
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, this will be fully typed and will throw a type error if a bad token ID is passed.
+
+In addition, you’ll also find the following exports:
+
+| Name     | Type                                 | Description                                                                                                                    |
+| :------- | :----------------------------------- | :---------------------------------------------------------------------------------------------------------------------------
+
+# @cobalt-ui/plugin-js
+
+Generate JS, TS, and JSON output from design tokens.
+
+```
+npm i -D @cobalt-ui/plugin-js
+```
+
+```js
+// tokens.config.mjs
+import pluginJS from '@cobalt-ui/plugin-js';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJS({
+      /** output JS (with TS types)? boolean or filename (default: true) */
+      js: true,
+      /** output JSON? boolean or filename (default: false) */
+      json: false,
+    }),
+  ],
+};
+```
+
+_Note: the default plugin exports a `.d.ts` file alongside the `.js`, which means the same file can either be used in JS or TS._
+
+## Usage
+
+### JS
+
+To use a token, import the `token()` function and reference it by its full ID:
 
 ```ts
-import {mode} from './tokens/index.js';
+import {token} from './tokens/index.js';
 
-const redDark = mode('color.red.10', 'dark'); // #f44c26"
-const redFoo = mode('color.red.10', 'foo'); // Argument of type '"foo"' is not assignable to parameter of type …
+// get default token
+const red = token('color.red.10');
+
+// get token for mode: dark
+const redDark = token('color.red.10', 'dark');
 ```
 
-The TypeScript version of the `mode()` function is fully type-checked, and it won’t let you reference a mode that doesn’t exist for that specific token.
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, this will be fully typed and will throw a type error if a bad token ID is passed.
+
+In addition, you’ll also find the following exports:
+
+| Name     | Type     | Description                                                                                         |
+| :------- | :------- | :------------------------------------------------------------------------------------------------
+
+# @cobalt-ui/plugin-js
+
+Generate JS, TS, and JSON output from design tokens.
+
+```
+npm i -D @cobalt-ui/plugin-js
+```
+
+```js
+// tokens.config.mjs
+import pluginJS from '@cobalt-ui/plugin-js';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJS({
+      /** output JS (with TS types)? boolean or filename (default: true) */
+      js: true,
+      /** output JSON? boolean or filename (default: false) */
+      json: false,
+    }),
+  ],
+};
+```
+
+_Note: the default plugin exports a `.d.ts` file alongside the `.js`, which means the same file can either be used in JS or TS._
+
+## Usage
+
+### JS
+
+To use a token, import the `token()` function and reference it by its full ID:
+
+```ts
+import {token} from './tokens/index.js';
+
+// get default token
+const red = token('color.red.10');
+
+// get token for mode: dark
+const redDark = token('color.red.10', 'dark');
+```
+
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, `token()` is statically typed as it‘s only a thin wrapper around the `tokens` and `modes` exports.
+
+In addition, you’ll also find the following exports:
+
+| Name     | Type     | Description                                                                                         |
+| :------- | :------- | :-------------------------------------------------------------------------------------------------- |
+| `tokens` | `object` | Object of token ID → value (all aliases resolved & all transformations applied)                     |
+| `meta`   | `object` | Object of token ID → metadata (`$type`, `$description`, etc.)                                       |
+| `modes`  | `object` | Object of token ID → mode → values (note: tokens without any modes will be missing from the object) |
 
 ### JSON
 
-It’s worth noting that your _original_ tokens were in JSON! So, how is this different?
-
-- This is the same format as JS, but in a JSON-serializable format
-- You can use both the original deeply-nested structure, or a flattened structure (if you wanted to iterate over all tokens easily without having to “crawl”)
-- All aliases are resolved
-
-Consuming JSON will differ based on your purposes and where you’re using it. But loading this won’t be any different than any other JSON file.
-
-- [JSON in Vite](https://vitejs.dev/guide/features.html#json)
-- [JSON in webpack](https://webpack.js.org/loaders/#json)
+This plugin’s JSON output has the same shape as the JS output. This format may be preferable if you’re preparing the tokens for an API or some other non-JS runtime.
 
 ## Options
 
@@ -87,7 +175,7 @@ export default {
   plugins: [
     pluginJS({
       /** output JS? boolean or filename */
-      js: true,
+      js: './index.js',
       /** output JSON? boolean or filename */
       json: false,
       /** (optional) transform specific token values */

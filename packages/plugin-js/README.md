@@ -41,30 +41,19 @@ const red = token('color.red.10');
 const redDark = token('color.red.10', 'dark');
 ```
 
-You’ll also be able to see any `$description`s specified in your IDE. If using TypeScript, this will be fully typed and will throw a type error if a bad token ID is passed.
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, `token()` is statically typed as it‘s only a thin wrapper around the `tokens` and `modes` exports.
 
-#### Metadata
+In addition, you’ll also find the following exports:
 
-The `meta` object can be used to gather additional info about a token:
-
-```ts
-import {meta} from './tokens/index.js';
-
-console.log(meta['color.red.10']); // { $type: 'color', $value: '#f44c26' }
-```
+| Name     | Type     | Description                                                                                         |
+| :------- | :------- | :-------------------------------------------------------------------------------------------------- |
+| `tokens` | `object` | Object of token ID → value (all aliases resolved & all transformations applied)                     |
+| `meta`   | `object` | Object of token ID → metadata (`$type`, `$description`, etc.)                                       |
+| `modes`  | `object` | Object of token ID → mode → values (note: tokens without any modes will be missing from the object) |
 
 ### JSON
 
-It’s worth noting that your _original_ tokens were in JSON! So, how is this different?
-
-- This is the same format as JS, but in a JSON-serializable format
-- You can use both the original deeply-nested structure, or a flattened structure (if you wanted to iterate over all tokens easily without having to “crawl”)
-- All aliases are resolved
-
-Consuming JSON will differ based on your purposes and where you’re using it. But loading this won’t be any different than any other JSON file.
-
-- [JSON in Vite](https://vitejs.dev/guide/features.html#json)
-- [JSON in webpack](https://webpack.js.org/loaders/#json)
+This plugin’s JSON output has the same shape as the JS output. This format may be preferable if you’re preparing the tokens for an API or some other non-JS runtime.
 
 ## Options
 
