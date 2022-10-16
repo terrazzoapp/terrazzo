@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.6.1
+
+### Patch Changes
+
+- 6511100: Fix watch bug
+
 ## 0.6.0
 
 ### Minor Changes

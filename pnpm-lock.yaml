@@ -32,7 +32,7 @@ importers:
 
   docs:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/core': ^0.6.3
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -59,7 +59,7 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -71,7 +71,7 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -83,7 +83,7 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -102,7 +102,7 @@ importers:
       '@carbon/colors': ^11.6.0
       '@carbon/icons': ^11.10.0
       '@carbon/type': ^11.10.0
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -117,7 +117,7 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
@@ -135,7 +135,7 @@ importers:
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/cli': ^0.6.1
       '@cobalt-ui/plugin-css': ^0.8.1
       '@cobalt-ui/plugin-js': ^0.0.2
       '@cobalt-ui/plugin-sass': ^0.7.1
