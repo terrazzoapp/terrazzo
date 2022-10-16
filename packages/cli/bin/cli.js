@@ -102,12 +102,12 @@ async function main() {
             printErrors([err.message || err]);
           }
         });
-        const configWatcher = chokidar.watch(fileURLToPath(configPath));
-        configWatcher.on('change', async () => {
+        const configWatcher = chokidar.watch(fileURLToPath(resolveConfig(configPath)));
+        configWatcher.on('change', async (filePath) => {
           try {
             console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`);
-            config = await loadConfig(configPath);
-            rawSchema = JSON.parse(fs.readFileSync(filePath, config.tokens), 'utf8');
+            config = await loadConfig(filePath);
+            rawSchema = JSON.parse(fs.readFileSync(config.tokens, 'utf8'));
             result = await build(rawSchema, config);
           } catch (err) {
             printErrors([err.message || err]);
