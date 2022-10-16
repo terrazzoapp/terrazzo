@@ -86,9 +86,9 @@ async function main() {
       if (result.errors) process.exit(1);
 
       if (watch) {
-        const watcher = chokidar.watch(fileURLToPath(config.tokens));
+        const tokenWatcher = chokidar.watch(fileURLToPath(config.tokens));
         const tokensYAML = config.tokens.href.replace(cwd.href, '');
-        watcher.on('change', async (filePath) => {
+        tokenWatcher.on('change', async (filePath) => {
           try {
             rawSchema = JSON.parse(fs.readFileSync(filePath, 'utf8'));
             result = await build(rawSchema, config);
@@ -102,6 +102,18 @@ async function main() {
             printErrors([err.message || err]);
           }
         });
+        const configWatcher = chokidar.watch(fileURLToPath(configPath));
+        configWatcher.on('change', async () => {
+          try {
+            console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`);
+            config = await loadConfig(configPath);
+            rawSchema = JSON.parse(fs.readFileSync(filePath, config.tokens), 'utf8');
+            result = await build(rawSchema, config);
+          } catch (err) {
+            printErrors([err.message || err]);
+          }
+        });
+
         // keep process occupied
         await new Promise(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
       } else {

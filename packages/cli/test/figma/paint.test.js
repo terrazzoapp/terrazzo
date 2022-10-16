@@ -18,7 +18,7 @@ describe('paint', () => {
           {color: {r: 0, g: 0, b: 1, a: 1}, position: 1},
         ],
       }),
-    ).to.equal('linear-gradient(90deg, #ff0000 0%, #0000ff 100%)');
+    ).toBe('linear-gradient(90deg, #ff0000 0%, #0000ff 100%)');
 
     // teal -> blue -> violet (to bottom-right)
     expect(
@@ -35,7 +35,7 @@ describe('paint', () => {
           {color: {r: 0.2560001313686371, g: 0, b: 0.800000011920929, a: 1}, position: 1},
         ],
       }),
-    ).to.equal('linear-gradient(to right bottom, #71e58b 0%, #0000ff 55.21%, #4100cc 100%)');
+    ).toBe('linear-gradient(to right bottom, #71e58b 0%, #0000ff 55.21%, #4100cc 100%)');
   });
 
   // magenta -> blue (to bottom-left)
@@ -53,7 +53,7 @@ describe('paint', () => {
         {color: {r: 0.3791668117046356, g: 0.14583337306976318, b: 0.875, a: 1}, position: 1},
       ],
     }),
-  ).to.equal('linear-gradient(-150.27deg, #f23aca 0%, #6125df 100%)');
+  ).toBe('linear-gradient(-150.27deg, #f23aca 0%, #6125df 100%)');
   // TODO: calculate overshot gradients, e.g.:
   // linear-gradient(-150.27deg, #f23aca -4.9%, #6125df 113.47%)
 
@@ -71,6 +71,6 @@ describe('paint', () => {
         {color: {r: 0.875, g: 0.40833336114883423, b: 0.14583337306976318, a: 1}, position: 0.7677738070487976},
       ],
     }),
-  ).to.equal('linear-gradient(-58.32deg, #f2e03a 11.87%, #df6825 76.78%)');
+  ).toBe('linear-gradient(-58.32deg, #f2e03a 11.87%, #df6825 76.78%)');
   // TODO: calculate to corners
 });

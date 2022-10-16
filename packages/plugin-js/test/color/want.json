@@ -1,0 +1,91 @@
+{
+  "tokens": {
+    "color.black": "#00193f",
+    "color.blue.10": "#062053",
+    "color.blue.20": "#0f2868",
+    "color.blue.30": "#192f7d",
+    "color.blue.40": "#223793",
+    "color.blue.50": "#2b3faa",
+    "color.blue.60": "#3764ba",
+    "color.blue.70": "#4887c9",
+    "color.blue.80": "#5ca9d7",
+    "color.blue.90": "#72cce5",
+    "color.blue.100": "#89eff1",
+    "color.blue.00": "#00193f",
+    "color.white": "#ffffff",
+    "ui.fg": "#00193f",
+    "ui.bg": "#ffffff"
+  },
+  "meta": {
+    "color.black": {
+      "$value": "#00193f"
+    },
+    "color.blue.10": {
+      "$value": "#062053"
+    },
+    "color.blue.20": {
+      "$value": "#0f2868"
+    },
+    "color.blue.30": {
+      "$value": "#192f7d"
+    },
+    "color.blue.40": {
+      "$value": "#223793"
+    },
+    "color.blue.50": {
+      "$description": "Medium blue",
+      "$value": "#2b3faa"
+    },
+    "color.blue.60": {
+      "$value": "#3764ba"
+    },
+    "color.blue.70": {
+      "$value": "#4887c9"
+    },
+    "color.blue.80": {
+      "$value": "#5ca9d7"
+    },
+    "color.blue.90": {
+      "$value": "#72cce5"
+    },
+    "color.blue.100": {
+      "$value": "#89eff1"
+    },
+    "color.blue.00": {
+      "$value": "{color.black}"
+    },
+    "color.white": {
+      "$value": "#ffffff"
+    },
+    "ui.fg": {
+      "$type": "color",
+      "$value": "{color.black}",
+      "$extensions": {
+        "mode": {
+          "light": "#00193f",
+          "dark": "#ffffff"
+        }
+      }
+    },
+    "ui.bg": {
+      "$type": "color",
+      "$value": "{color.white}",
+      "$extensions": {
+        "mode": {
+          "light": "#ffffff",
+          "dark": "#00193f"
+        }
+      }
+    }
+  },
+  "modes": {
+    "ui.fg": {
+      "light": "#00193f",
+      "dark": "#ffffff"
+    },
+    "ui.bg": {
+      "light": "#ffffff",
+      "dark": "#00193f"
+    }
+  }
+}

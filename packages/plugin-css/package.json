@@ -21,6 +21,9 @@
     "dev": "tsc -w",
     "test": "vitest run"
   },
+  "peerDependencies": {
+    "@cobalt-ui/cli": "*"
+  },
   "dependencies": {
     "@cobalt-ui/utils": "^0.5.0",
     "better-color-tools": "^0.9.1",

@@ -24,7 +24,7 @@ describe('5. Group', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.blue')._group.$name).to.equal(json.$name);
+    expect(tokens.find((t) => t.id === 'color.blue')._group.$name).toBe(json.$name);
   });
 
   test('inheritance', () => {
@@ -35,7 +35,7 @@ describe('5. Group', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.blue').$type).to.equal('color');
+    expect(tokens.find((t) => t.id === 'color.blue').$type).toBe('color');
   });
 });
 
@@ -48,7 +48,7 @@ describe('7. Alias', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.darkBlue').$value).to.equal(json.color.blue.$extensions.mode.dark);
+    expect(tokens.find((t) => t.id === 'color.darkBlue').$value).toBe(json.color.blue.$extensions.mode.dark);
   });
 
   test('missing', () => {
@@ -81,7 +81,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'color.red').$value).to.equal(json.color.red.$value);
+      expect(tokens.find((t) => t.id === 'color.red').$value).toBe(json.color.red.$value);
     });
 
     test('CSS name', () => {
@@ -90,7 +90,7 @@ describe('8. Type', () => {
           purple: {$type: 'color', $value: 'rebeccapurple'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.purple').$value).to.equal('#663399');
+      expect(tokens.find((t) => t.id === 'color.purple').$value).toBe('#663399');
     });
 
     test('P3', () => {
@@ -99,7 +99,7 @@ describe('8. Type', () => {
           green: {$type: 'color', $value: 'color(display-p3 0 1 0)'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.green').$value).to.equal('#00ff00');
+      expect(tokens.find((t) => t.id === 'color.green').$value).toBe('#00ff00');
     });
 
     test('alias', () => {
@@ -109,12 +109,12 @@ describe('8. Type', () => {
           active: {$type: 'color', $value: '{color.blue}'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.active').$value).to.equal('#218bff');
+      expect(tokens.find((t) => t.id === 'color.active').$value).toBe('#218bff');
     });
 
     test('invalid', () => {
       const {errors} = parse({red: {$type: 'color', $value: 'NOT_A_COLOR'}});
-      expect(errors).to.deep.equal(['red: invalid color "NOT_A_COLOR"']);
+      expect(errors).toEqual(['red: invalid color "NOT_A_COLOR"']);
     });
   });
 
@@ -130,7 +130,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'space.component.xs').$value).to.equal('0.5rem');
+      expect(tokens.find((t) => t.id === 'space.component.xs').$value).toBe('0.5rem');
     });
 
     test('allows zero', () => {
@@ -138,7 +138,7 @@ describe('8. Type', () => {
         lineHeight: {$type: 'dimension', $value: 0},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'lineHeight').$value).to.equal('0');
+      expect(tokens.find((t) => t.id === 'lineHeight').$value).toBe('0');
     });
 
     test('normalizes zero', () => {
@@ -146,7 +146,7 @@ describe('8. Type', () => {
         lineHeight: {$type: 'dimension', $value: '0px'},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'lineHeight').$value).to.equal('0');
+      expect(tokens.find((t) => t.id === 'lineHeight').$value).toBe('0');
     });
 
     test('alias', () => {
@@ -159,7 +159,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'layout.m').$value).to.equal('1rem');
+      expect(tokens.find((t) => t.id === 'layout.m').$value).toBe('1rem');
     });
   });
 
@@ -171,13 +171,13 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).to.deep.equal([json.typography.body.$value]);
+      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual([json.typography.body.$value]);
     });
 
     test('array', () => {
       const json = {typography: {body: {$type: 'font', $value: ['-system-ui', 'Helvetica']}}};
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).to.deep.equal(json.typography.body.$value);
+      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual(json.typography.body.$value);
     });
   });
 
@@ -189,7 +189,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'duration.short').$value).to.equal('100ms');
+      expect(tokens.find((t) => t.id === 'duration.short').$value).toBe('100ms');
     });
 
     test('alias', () => {
@@ -202,7 +202,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'animation.card').$value).to.equal('100ms');
+      expect(tokens.find((t) => t.id === 'animation.card').$value).toBe('100ms');
     });
   });
 
@@ -214,7 +214,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'ease.sine').$value).to.deep.equal(json.ease.sine.$value);
+      expect(tokens.find((t) => t.id === 'ease.sine').$value).toEqual(json.ease.sine.$value);
     });
   });
 });
@@ -226,7 +226,7 @@ describe('9. Composite Type', () => {
         stroke: {$type: 'strokeStyle', $value: 'solid'},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'stroke').$value).to.equal('solid');
+      expect(tokens.find((t) => t.id === 'stroke').$value).toBe('solid');
     });
 
     test('validates', () => {
@@ -234,7 +234,7 @@ describe('9. Composite Type', () => {
         stroke: {$type: 'strokeStyle', $value: 'foo'},
       };
       const {errors} = parse(json);
-      expect(errors.length).to.equal(1);
+      expect(errors.length).toBe(1);
     });
   });
 
@@ -397,7 +397,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.heading').$value.fontWeight).to.equal(900);
+      expect(tokens.find((t) => t.id === 'typography.heading').$value.fontWeight).toBe(900);
     });
 
     test('alias: property', () => {
