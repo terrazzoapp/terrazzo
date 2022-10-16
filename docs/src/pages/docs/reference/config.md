@@ -8,16 +8,15 @@ layout: ../../../layouts/docs.astro
 Customizing Cobalt and managing plugins requires you to add a `tokens.config.mjs` file in the root of your project. Here’s an example configuration with all settings and defaults:
 
 ```js
-import json from '@cobalt-ui/plugin-json';
+import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
-  tokens: './tokens.json',
   outDir: './tokens/',
   figma: {
     // figma settings
   },
-  plugins: [json()],
+  plugins: [pluginJS()],
 };
 ```
 

@@ -1,5 +1,12 @@
 # @cobalt-ui/plugin-css
 
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [160200f]
+  - @cobalt-ui/cli@0.6.0
+
 ## 0.8.0
 
 ### Minor Changes

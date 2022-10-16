@@ -1,9 +1,8 @@
 import pluginCSS from '@cobalt-ui/plugin-css';
 import pluginSass from '@cobalt-ui/plugin-sass';
-import pluginJSON from '@cobalt-ui/plugin-json';
-import pluginTS from '@cobalt-ui/plugin-ts';
+import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
-  plugins: [pluginCSS(), pluginSass(), pluginJSON(), pluginTS()],
+  plugins: [pluginCSS(), pluginSass(), pluginJS(), pluginTS()],
 };

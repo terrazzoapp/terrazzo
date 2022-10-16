@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.6.0
+
+### Minor Changes
+
+- 160200f: `co build --watch` now detects config changes
+
 ## 0.5.2
 
 ### Patch Changes

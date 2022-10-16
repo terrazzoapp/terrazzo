@@ -6,7 +6,7 @@
     "W3C",
     "JSON"
   ],
-  "version": "0.5.2",
+  "version": "0.6.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -29,11 +29,11 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.6.3",
-    "@cobalt-ui/utils": "^0.5.0",
-    "better-color-tools": "^0.6.3",
+    "@cobalt-ui/core": "workspace:^0.6.3",
+    "@cobalt-ui/utils": "workspace:^0.5.0",
+    "better-color-tools": "^0.9.1",
     "chokidar": "^3.5.3",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.3",
     "number-precision": "^1.6.0",
     "piscina": "^3.2.0",
     "svgo": "^2.8.0",

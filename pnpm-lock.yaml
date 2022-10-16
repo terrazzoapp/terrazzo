@@ -32,10 +32,10 @@ importers:
 
   docs:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
+      '@cobalt-ui/cli': ^0.6.0
       '@cobalt-ui/core': ^0.6.3
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
       astro: ^1.1.1
       npm-run-all: ^4.1.5
       prismjs: ^1.29.0
@@ -59,112 +59,100 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
-    dependencies:
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
+    devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
-      '@primer/octicons': ^16.2.0
-      '@primer/primitives': ^7.4.0
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
+      '@primer/octicons': ^16.3.1
+      '@primer/primitives': ^7.9.0
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
-      '@primer/octicons': 16.2.0
-      '@primer/primitives': 7.4.0
+      '@primer/octicons': 16.3.1
+      '@primer/primitives': 7.9.0
 
   examples/ibm:
     specifiers:
-      '@carbon/colors': ^10.34.0
-      '@carbon/icons': ^10.44.0
-      '@carbon/type': ^10.39.0
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
+      '@carbon/colors': ^11.6.0
+      '@carbon/icons': ^11.10.0
+      '@carbon/type': ^11.10.0
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
     devDependencies:
-      '@carbon/colors': 10.34.0
-      '@carbon/icons': 10.44.0
-      '@carbon/type': 10.39.0
+      '@carbon/colors': 11.6.0
+      '@carbon/icons': 11.10.0
+      '@carbon/type': 11.10.0
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
       '@salesforce-ux/design-system': ^2.16.2
-      better-color-tools: ^0.6.1
+      better-color-tools: ^0.9.1
       postcss: ^8.4.16
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
-      '@salesforce-ux/design-system': 2.16.2_postcss@8.4.16
-      better-color-tools: 0.6.1
-      postcss: 8.4.16
+      '@salesforce-ux/design-system': 2.16.2_postcss@8.4.18
+      better-color-tools: 0.9.1
+      postcss: 8.4.18
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/plugin-css': ^0.8.0
-      '@cobalt-ui/plugin-json': ^0.5.0
-      '@cobalt-ui/plugin-sass': ^0.7.0
-      '@cobalt-ui/plugin-ts': ^0.5.0
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/plugin-css': ^0.8.1
+      '@cobalt-ui/plugin-js': ^0.0.1
+      '@cobalt-ui/plugin-sass': ^0.7.1
     devDependencies:
       '@cobalt-ui/cli': link:../../packages/cli
       '@cobalt-ui/plugin-css': link:../../packages/plugin-css
-      '@cobalt-ui/plugin-json': 0.5.0
+      '@cobalt-ui/plugin-js': link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass': link:../../packages/plugin-sass
-      '@cobalt-ui/plugin-ts': 0.5.0
 
   packages/cli:
     specifiers:
-      '@cobalt-ui/core': ^0.6.3
-      '@cobalt-ui/utils': ^0.5.0
+      '@cobalt-ui/core': workspace:^0.6.3
+      '@cobalt-ui/utils': workspace:^0.5.0
       '@types/svgo': ^2.6.4
-      better-color-tools: ^0.6.3
+      better-color-tools: ^0.9.1
       chokidar: ^3.5.3
-      dotenv: ^10.0.0
+      dotenv: ^16.0.3
       figma-api: ^1.10.1
       number-precision: ^1.6.0
       piscina: ^3.2.0
@@ -174,9 +162,9 @@ importers:
     dependencies:
       '@cobalt-ui/core': link:../core
       '@cobalt-ui/utils': link:../utils
-      better-color-tools: 0.6.3
+      better-color-tools: 0.9.1
       chokidar: 3.5.3
-      dotenv: 10.0.0
+      dotenv: 16.0.3
       number-precision: 1.6.0
       piscina: 3.2.0
       svgo: 2.8.0
@@ -203,7 +191,7 @@ importers:
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
+      '@cobalt-ui/cli': ^0.6.0
       '@cobalt-ui/core': ^0.6.3
       '@cobalt-ui/utils': ^0.5.0
       '@types/mime': ^2.0.3
@@ -226,7 +214,7 @@ importers:
 
   packages/plugin-js:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
+      '@cobalt-ui/cli': ^0.6.0
       '@cobalt-ui/core': ^0.6.3
       '@cobalt-ui/utils': ^0.5.0
       fast-glob: ^3.2.12
@@ -243,8 +231,8 @@ importers:
 
   packages/plugin-sass:
     specifiers:
-      '@cobalt-ui/cli': ^0.5.2
-      '@cobalt-ui/core': ^0.6.2
+      '@cobalt-ui/cli': ^0.6.0
+      '@cobalt-ui/core': ^0.6.3
       '@cobalt-ui/utils': ^0.5.0
       '@types/mime': ^2.0.3
       '@types/svgo': ^2.6.4
@@ -286,8 +274,8 @@ packages:
     resolution: {integrity: sha512-vBMPy9ok4iLapSyCCT1qsZ9dK7LkVFl9mObtLEmWiec9myGHS9h2kQY2xzPeFNJiWXUf9O6tSyQpQTy5As/p3g==}
     dev: true
 
-  /@astrojs/compiler/0.27.1:
-    resolution: {integrity: sha512-jdbnULQkafKuSBa9yL7amQ5Ee7WIiQSAkCCGSgWhpt7t1HvtlbviNYuNIw5ob9Ax+rA08jNQ896rHqaPB31XjA==}
+  /@astrojs/compiler/0.27.2:
+    resolution: {integrity: sha512-VG4X87cUkcmT40HqEwShQzUgl0VSnVTszobbmnhAOkHzdoWMxhwAm61A2o5fEsv6eEK8M0lW/fGwkSofYM5GcQ==}
     dev: true
 
   /@astrojs/language-server/0.26.2:
@@ -615,29 +603,29 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@carbon/colors/10.34.0:
-    resolution: {integrity: sha512-Tq7ZF6zdlT1V2VliqjeSVKVOK6ixy3CknifZAd3oxq4BYJC/jwsYwRHJAbSM/KFJrZ2ZUvQCrOsves6f7hndLg==}
+  /@carbon/colors/11.6.0:
+    resolution: {integrity: sha512-LE3aaQvRVR9zI2ao4+SHP8vfEaXtfffq4wXHvbPwoTK+I3Db745XuNWeWxC3Rte2uNPS9sjeEyCid2Q0wY/tSw==}
     dev: true
 
-  /@carbon/icons/10.44.0:
-    resolution: {integrity: sha512-nAWRXZ1sXVk+jBhRn2edY94Tz1ISqCg6dygwWDLNQVG0jIvILcwA9lCGwBhYfYQdRglUpj7pmAa1ScDYU4SC4g==}
+  /@carbon/grid/11.7.0:
+    resolution: {integrity: sha512-OCDXQNSPVOoBQN08Qn5wo2WpKRGRm/kEBo6ZTl2NoDCl21mcYJZ0IDbKPTukixJB1sUNDUlnrpwMoaznPj48dw==}
     dependencies:
-      svgson: 5.2.1
+      '@carbon/layout': 11.7.0
     dev: true
 
-  /@carbon/import-once/10.6.0:
-    resolution: {integrity: sha512-vi0lnmZot9J5uW2p9chtyLBwe3nCTY4HrDWuglLOZVOHu7dbLQiRjD/r3uOjB4lr5qduRwk2hblBXKBhpVDBpg==}
+  /@carbon/icons/11.10.0:
+    resolution: {integrity: sha512-NUKXGZ5Yi184mvAs9q1sPt0ns2qXOF6dK4DG4mMHq5RgJRjq5diLHIm1t49SIwjF4X8b3KSehmrK7N9H6bf1Zg==}
     dev: true
 
-  /@carbon/layout/10.34.0:
-    resolution: {integrity: sha512-+PAQfV/bEXM9zRcjDWtuCjl/62mqdN6vpaal+6wnFi0FADr+uHYhNi+9W6QUpa29nbUqgIla+jlr59gAYidGLw==}
+  /@carbon/layout/11.7.0:
+    resolution: {integrity: sha512-p4YQvW8U5Go0Tz1PZZgllGSPmoq8xBB5PHByuHiAjzwGclxPsBmY6Ea7tftINFW8VlcjDcampyT8VfZXhP2lFg==}
     dev: true
 
-  /@carbon/type/10.39.0:
-    resolution: {integrity: sha512-1Js2kJv79Y8zvpAs5qdkZUB0lE4j59+Mk73x19+L3Bla7n6TZ8IsafPyLg7aIDkqZSCYatGt7gw8bB8NOg/VQA==}
+  /@carbon/type/11.10.0:
+    resolution: {integrity: sha512-LjhhJchI0Vpnmq2IkNtHy7HIW/WjiOEVXH+bDKf0Laay0EQtwxagQSI41W2+0dNtcK4zJBKjfm1uorsxmR5/Qw==}
     dependencies:
-      '@carbon/import-once': 10.6.0
-      '@carbon/layout': 10.34.0
+      '@carbon/grid': 11.7.0
+      '@carbon/layout': 11.7.0
     dev: true
 
   /@changesets/apply-release-plan/6.1.1:
@@ -822,17 +810,6 @@ packages:
       human-id: 1.0.2
       prettier: 2.7.1
     dev: true
-
-  /@cobalt-ui/plugin-json/0.5.0:
-    resolution: {integrity: sha512-k+utGBeloLtzITT1aUioianBEThCiw0oT1UP+3vuR6vcZsPdMfA9pKJ4WZlAtVMHh8f/16BMaB8zlIA5jB4DaQ==}
-
-  /@cobalt-ui/plugin-ts/0.5.0:
-    resolution: {integrity: sha512-ria6HlnIwZFzw5qUMnBH9Jz7mV7C0y1TcpUFlHoF0FOQ+5roHQhMBd5D7frdm9C595tXVtMfWvpfW2i5eIYefQ==}
-    dependencies:
-      '@cobalt-ui/utils': 0.5.0
-
-  /@cobalt-ui/utils/0.5.0:
-    resolution: {integrity: sha512-xUE615qZfYwDQd7axzh6Ko0tm2452mdX6482/VJk2HfwEvG4v0Q5BCNvfrqELXvXKKdXEfMgjX8h6uXBpIgJ/g==}
 
   /@emmetio/abbreviation/2.2.3:
     resolution: {integrity: sha512-87pltuCPt99aL+y9xS6GPZ+Wmmyhll2WXH73gG/xpGcQ84DRnptBsI2r0BeIQ0EB/SQTOe2ANPqFqj3Rj5FOGA==}
@@ -1031,14 +1008,14 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@primer/octicons/16.2.0:
-    resolution: {integrity: sha512-GMwiKSRuYOCPJpRBtiY+Myfp2DWSjnjaettrl9y4TsWfMk42osYhxEOFZkU2QZT2hAULaVvCqH2zFd+3Ybg4cg==}
+  /@primer/octicons/16.3.1:
+    resolution: {integrity: sha512-J3IlK0Ok88RQZVB//af7Lnl1Vw2buyyr5G3oEvK1wRSYTJi/E/HBm5JZUihmDAtm/unr85FC534DwA5e+4LR2w==}
     dependencies:
       object-assign: 4.1.1
     dev: true
 
-  /@primer/primitives/7.4.0:
-    resolution: {integrity: sha512-gD6yHXN7YKox/bdUNgxhoSS/WXZVaORK1r4dOAyTrdoPrLV/ucIfRInPyVcTF+Mqr0zcTFJtiMtuA5Y8CSyOEg==}
+  /@primer/primitives/7.9.0:
+    resolution: {integrity: sha512-ZHHfwB0z0z6nDJp263gyGIClYDy+rl0nwqyi4qhcv3Cxhkmtf+If2KVjr6FQqBBFfi1wQwUzaax2FBvfEMFBnw==}
     dev: true
 
   /@proload/core/0.3.3:
@@ -1057,12 +1034,12 @@ packages:
       tsm: 2.2.2
     dev: true
 
-  /@salesforce-ux/design-system/2.16.2_postcss@8.4.16:
+  /@salesforce-ux/design-system/2.16.2_postcss@8.4.18:
     resolution: {integrity: sha512-8qG5wdR3+5s4zcszMZs9Z4HocPV6uWhisHSeUyxl6Idb5m99yER3HwyKtyIUViPB/8ukDwptLBvJWH+qwA6EOg==}
     peerDependencies:
       postcss: ^8.3.5
     dependencies:
-      postcss: 8.4.16
+      postcss: 8.4.18
     dev: true
 
   /@trysound/sax/0.2.0:
@@ -1197,6 +1174,10 @@ packages:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
     dev: true
 
+  /@types/node/18.11.0:
+    resolution: {integrity: sha512-IOXCvVRToe7e0ny7HpT/X9Rb2RYtElG1a+VshjwT00HxrM2dWBApHQoqsI6WiY7Q03vdf2bCrIGzVrkF/5t10w==}
+    dev: true
+
   /@types/node/18.8.3:
     resolution: {integrity: sha512-0os9vz6BpGwxGe9LOhgP/ncvYN5Tx1fNcd2TM3rD/aCGBkysb+ZWpXEocG24h6ZzOi13+VB8HndAQFezsSOw1w==}
     dev: true
@@ -1220,7 +1201,7 @@ packages:
   /@types/svgo/2.6.4:
     resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
     dependencies:
-      '@types/node': 17.0.45
+      '@types/node': 18.11.0
     dev: true
 
   /@types/unist/2.0.6:
@@ -1580,7 +1561,7 @@ packages:
     engines: {node: ^14.18.0 || >=16.12.0, npm: '>=6.14.0'}
     hasBin: true
     dependencies:
-      '@astrojs/compiler': 0.27.1
+      '@astrojs/compiler': 0.27.2
       '@astrojs/language-server': 0.26.2
       '@astrojs/markdown-remark': 1.1.3
       '@astrojs/telemetry': 1.0.1
@@ -1669,17 +1650,8 @@ packages:
   /base64-js/1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  /better-color-tools/0.6.1:
-    resolution: {integrity: sha512-asYexepMCaD11swDakdM50ErVwcIc9X9f81pyxzaeEJv1ciCtlWwVoy4qqQZ2uwW6Eq70S79gpOVAqg/n7Iymg==}
-    dev: true
-
-  /better-color-tools/0.6.3:
-    resolution: {integrity: sha512-xybilFdxSMH+6gOZCQ3U7UQTio6FxK8iekXRGAKeM0EEGDH1XS8Abc+pCLPp/gVl2ptLucmni80gBbi3x5bsew==}
-    dev: false
-
   /better-color-tools/0.9.1:
     resolution: {integrity: sha512-fpwBbI/Tl0/vMGq89KO37xz6TWm92nVoIu8f5Iqc70GWFebPc/F59DtGrA03TtW/0wv99lFDD29z8TyrUg/vjA==}
-    dev: false
 
   /better-path-resolve/1.0.0:
     resolution: {integrity: sha512-pbnl5XzGBdrFU/wT4jqmJVPn2B6UHPBOhzMQkY/SPUPB6QtUXtmBHBIwCbXJol93mOpGMnQyP/+BB19q04xj7g==}
@@ -1746,8 +1718,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001419
-      electron-to-chromium: 1.4.282
+      caniuse-lite: 1.0.30001420
+      electron-to-chromium: 1.4.283
       node-releases: 2.0.6
       update-browserslist-db: 1.0.10_browserslist@4.21.4
     dev: true
@@ -1807,8 +1779,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite/1.0.30001419:
-    resolution: {integrity: sha512-aFO1r+g6R7TW+PNQxKzjITwLOyDhVRLjW0LcwS/HCZGUUKTGNp9+IwLC4xyDSZBygVL/mxaFR3HIV6wEKQuSzw==}
+  /caniuse-lite/1.0.30001420:
+    resolution: {integrity: sha512-OnyeJ9ascFA9roEj72ok2Ikp7PHJTKubtEJIQ/VK3fdsS50q4KWy+Z5X0A1/GswEItKX0ctAp8n4SYDE7wTu6A==}
     dev: true
 
   /ccount/2.0.1:
@@ -2119,14 +2091,6 @@ packages:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
 
-  /deep-rename-keys/0.2.1:
-    resolution: {integrity: sha1-7eeFN9emaivmFRfir5Vtf1ij8dg=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      kind-of: 3.2.2
-      rename-keys: 1.2.0
-    dev: true
-
   /deepmerge-ts/4.2.2:
     resolution: {integrity: sha512-Ka3Kb21tiWjvQvS9U+1Dx+aqFAHsdTnMdYptLTmC2VAmDFMugWMY1e15aTODstipmCun8iNuqeSfcx6rsUUk0Q==}
     engines: {node: '>=12.4.0'}
@@ -2243,9 +2207,9 @@ packages:
       domhandler: 4.3.1
     dev: false
 
-  /dotenv/10.0.0:
-    resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
-    engines: {node: '>=10'}
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
     dev: false
 
   /dset/3.1.2:
@@ -2257,8 +2221,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /electron-to-chromium/1.4.282:
-    resolution: {integrity: sha512-Dki0WhHNh/br/Xi1vAkueU5mtIc9XLHcMKB6tNfQKk+kPG0TEUjRh5QEMAUbRp30/rYNMFD1zKKvbVzwq/4wmg==}
+  /electron-to-chromium/1.4.283:
+    resolution: {integrity: sha512-g6RQ9zCOV+U5QVHW9OpFR7rdk/V7xfopNXnyAamdpFgCHgZ1sjI8VuR1+zG2YG/TZk+tQ8mpNkug4P8FU0fuOA==}
     dev: true
 
   /emmet/2.3.6:
@@ -3171,10 +3135,6 @@ packages:
     resolution: {integrity: sha512-39F7TBIV0G7gTelxwbEqnwhp90eqCPON1k0NwNfwhgKn4Co4ybUbj2pECcXT0B3ztRKZ7Pw1JujUUgmQJHcVAQ==}
     dev: false
 
-  /eventemitter3/2.0.3:
-    resolution: {integrity: sha1-teEHm1n7XhuidxwKmTvgYKWMmbo=}
-    dev: true
-
   /events/3.3.0:
     resolution: {integrity: sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==}
     engines: {node: '>=0.8.x'}
@@ -3416,11 +3376,6 @@ packages:
       get-intrinsic: 1.1.3
     dev: true
 
-  /get-value/2.0.6:
-    resolution: {integrity: sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=}
-    engines: {node: '>=0.10.0'}
-    dev: true
-
   /github-slugger/1.4.0:
     resolution: {integrity: sha512-w0dzqw/nt51xMVmlaV1+JRzN+oCa1KfcgGEWhxUG16wbdA+Xnt/yoFO8Z8x/V82ZcZ0wy6ln9QDup5avbhiDhQ==}
     dev: true
@@ -3559,20 +3514,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       has-symbols: 1.0.3
-    dev: true
-
-  /has-value/0.3.1:
-    resolution: {integrity: sha1-ex9YutpiyoJ+wKIHgCVlSEWZXh8=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      get-value: 2.0.6
-      has-values: 0.1.4
-      isobject: 2.1.0
-    dev: true
-
-  /has-values/0.1.4:
-    resolution: {integrity: sha1-bWHeldkd/Km5oCCJrThL/49it3E=}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /has/1.0.3:
@@ -3826,10 +3767,6 @@ packages:
       has-tostringtag: 1.0.0
     dev: true
 
-  /is-buffer/1.1.6:
-    resolution: {integrity: sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==}
-    dev: true
-
   /is-buffer/2.0.5:
     resolution: {integrity: sha512-i2R6zNFDwgEHJyQUtJEk0XFi1i0dPFn/oqjK3/vPCcDeJvW5NQ83V8QbicfF1SupOaB0h8ntgBC2YiE7dfyctQ==}
     engines: {node: '>=4'}
@@ -3941,13 +3878,6 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /is-plain-object/2.0.4:
-    resolution: {integrity: sha512-h5PpgXkWitc38BBMYawTYMWJHFZJVnBquFE57xFpjB8pJFiF6gZ+bU+WyI/yqXiFR5mdLsgYNaPe8uao6Uv9Og==}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      isobject: 3.0.1
-    dev: true
-
   /is-regex/1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
     engines: {node: '>= 0.4'}
@@ -4011,24 +3941,8 @@ packages:
       is-docker: 2.2.1
     dev: true
 
-  /isarray/1.0.0:
-    resolution: {integrity: sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=}
-    dev: true
-
   /isexe/2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-    dev: true
-
-  /isobject/2.1.0:
-    resolution: {integrity: sha1-8GVWEJaj8dou9GJy+BXIQNh+DIk=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      isarray: 1.0.0
-    dev: true
-
-  /isobject/3.0.1:
-    resolution: {integrity: sha1-TkMekrEalzFjaqH5yNHMvP2reN8=}
-    engines: {node: '>=0.10.0'}
     dev: true
 
   /js-sdsl/4.1.5:
@@ -4098,13 +4012,6 @@ packages:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
       graceful-fs: 4.2.10
-    dev: true
-
-  /kind-of/3.2.2:
-    resolution: {integrity: sha1-MeohpzS6ubuw8yRm2JOupR5KPGQ=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      is-buffer: 1.1.6
     dev: true
 
   /kind-of/6.0.3:
@@ -4939,14 +4846,6 @@ packages:
       object-keys: 1.1.1
     dev: true
 
-  /omit-deep/0.3.0:
-    resolution: {integrity: sha1-IcivNJm8rdKWUaIyy8rLxSRF6+w=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      is-plain-object: 2.0.4
-      unset-value: 0.1.2
-    dev: true
-
   /once/1.4.0:
     resolution: {integrity: sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w==}
     dependencies:
@@ -5234,15 +5133,6 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /postcss/8.4.16:
-    resolution: {integrity: sha512-ipHE1XBvKzm5xI7hiHCZJCSugxvsdq2mPnsq5+UF+VHCjiBvtDrlxJfMBToWaP9D5XlgNmcFGqoHmUn0EYEaRQ==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
   /postcss/8.4.17:
     resolution: {integrity: sha512-UNxNOLQydcOFi41yHNMcKRZ39NeXlr8AxGuZJsdub8vIb12fHzcq37DTU/QtbI6WLxNg2gF9Z+8qtRwTj1UI1Q==}
     engines: {node: ^10 || ^12 || >=14}
@@ -5524,11 +5414,6 @@ packages:
       retext: 8.1.0
       retext-smartypants: 5.2.0
       unist-util-visit: 4.1.1
-    dev: true
-
-  /rename-keys/1.2.0:
-    resolution: {integrity: sha512-U7XpAktpbSgHTRSNRrjKSrjYkZKuhUukfoBlXWXUExCAqhzh1TU3BDRAfJmarcl5voKS+pbKU9MvyLWKZ4UEEg==}
-    engines: {node: '>= 0.8.0'}
     dev: true
 
   /require-directory/2.1.1:
@@ -6047,14 +5932,6 @@ packages:
       stable: 0.1.8
     dev: false
 
-  /svgson/5.2.1:
-    resolution: {integrity: sha512-nbM6QuyZiKzQ0Uo51VDta93YJAr96ikyT40PsgJRrzynOGsOlnmJ6zAK5hUFyE5gnxcg7yuOPUWbUlmV9K0+Dg==}
-    dependencies:
-      deep-rename-keys: 0.2.1
-      omit-deep: 0.3.0
-      xml-reader: 2.4.3
-    dev: true
-
   /synckit/0.7.3:
     resolution: {integrity: sha512-jNroMv7Juy+mJ/CHW5H6TzsLWpa1qck6sCHbkv8YTur+irSq2PjbvmGnm2gy14BUQ6jF33vyR4DPssHqmqsDQw==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
@@ -6339,14 +6216,6 @@ packages:
     engines: {node: '>= 4.0.0'}
     dev: true
 
-  /unset-value/0.1.2:
-    resolution: {integrity: sha1-UGgQuGfyfCpabpsEgzYx9t5Y0xA=}
-    engines: {node: '>=0.10.0'}
-    dependencies:
-      has-value: 0.3.1
-      isobject: 3.0.1
-    dev: true
-
   /update-browserslist-db/1.0.10_browserslist@4.21.4:
     resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}
     hasBin: true
@@ -6556,7 +6425,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.3
       '@types/chai-subset': 1.3.3
-      '@types/node': 17.0.45
+      '@types/node': 18.11.0
       chai: 4.3.6
       debug: 4.3.4
       local-pkg: 0.4.2
@@ -6746,19 +6615,6 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-    dev: true
-
-  /xml-lexer/0.2.2:
-    resolution: {integrity: sha1-UYGTpKozTVj8fSSLVJB5uJkH4EY=}
-    dependencies:
-      eventemitter3: 2.0.3
-    dev: true
-
-  /xml-reader/2.4.3:
-    resolution: {integrity: sha1-n4EMr3xCWlqvuEixxFEDyecddTA=}
-    dependencies:
-      eventemitter3: 2.0.3
-      xml-lexer: 0.2.2
     dev: true
 
   /y18n/4.0.3:

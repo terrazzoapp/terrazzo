@@ -94,7 +94,7 @@ export interface Config {
   tokens?: string;
   /** output directory (default: "./tokens/") */
   outDir?: string;
-  /** specify plugins (default: @cobalt-ui/plugin-json, @cobalt-ui/plugin-sass, @cobalt-ui/plugin-ts) */
+  /** specify plugins */
   plugins: Plugin[];
   /** map Figma styles & components to tokens.json */
   figma?: FigmaSettings;
