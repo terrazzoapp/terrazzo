@@ -7,10 +7,9 @@ layout: ../../../layouts/docs.astro
 
 Cobalt turns your [W3C design tokens](/docs/tokens) into code. Cobalt is configurable and pluggable, and can generate the following via [plugins](/docs/plugins):
 
-- [Sass](/docs/plugins/sass)
 - [CSS](/docs/plugins/css)
-- [TypeScript](/docs/plugins/ts)
-- [JSON](/docs/plugins/json)
+- [Sass](/docs/plugins/sass)
+- [JS/TS/JSON](/docs/plugins/js)
 - You can also make a [custom plugin](/docs/guides/plugins) to generate more!
 
 ## Introduction
@@ -62,9 +61,9 @@ This will generate a **tokens/tokens.css** file in your project for you to use.
 
 ## Next steps
 
-- [Learn about tokens](./tokens)
-- [Sync with Figma](./guides/figma)
-- [Learn how to configure Cobalt](./reference/config)
-- [Add plugins](./plugins)
+- [Learn about tokens](/docs/tokens)
+- [Sync with Figma](/docs/guides/figma)
+- [Learn how to configure Cobalt](/docs/reference/config)
+- [Add plugins](/docs/plugins)
 
 [dt]: https://design-tokens.github.io/community-group/format/

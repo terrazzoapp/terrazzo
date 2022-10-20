@@ -5,5 +5,5 @@ layout: ../../../layouts/docs.astro
 
 # Reference
 
-- [config](./config)
-- [about](./about)
+- [config](/docs/reference/config)
+- [about](/docs/reference/about)

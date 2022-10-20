@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Create your own plugins
 
-Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript. This guide is for creating a custom plugin yourself; if you’re looking for instructions on how to use existing plugins, [see the plugins directory](./plugins).
+Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript. This guide is for creating a custom plugin yourself; if you’re looking for instructions on how to use existing plugins, [see the plugins directory](/docs/plugins).
 
 ## Why use Cobalt?
 

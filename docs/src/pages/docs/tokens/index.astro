@@ -83,7 +83,7 @@ const tokenDef = {
     Font
   </h2>
 
-  <p>A font name as defined as <a href={tokenDef.font} target="_blank"><b>8.2</b></a>.</p>
+  <p>A font name as defined in <a href={tokenDef.font} target="_blank"><b>8.2</b></a>.</p>
 
   <table>
     <thead>
@@ -124,7 +124,7 @@ const tokenDef = {
     Dimension
   </h2>
 
-  <p>A unit of distance as defined as <a href={tokenDef.dimension} target="_blank"><b>8.3</b></a>.</p>
+  <p>A unit of distance as defined in <a href={tokenDef.dimension} target="_blank"><b>8.3</b></a>.</p>
 
   <table>
     <thead>
@@ -167,7 +167,7 @@ const tokenDef = {
     Duration
   </h2>
 
-  <p>A length of time as defined as <a href={tokenDef.duration} target="_blank"><b>8.4</b></a>.</p>
+  <p>A length of time as defined in <a href={tokenDef.duration} target="_blank"><b>8.4</b></a>.</p>
 
   <table>
     <thead>
@@ -683,7 +683,7 @@ const tokenDef = {
     "$type": "color",
     "$value": "#cf222e"
   },
-  "redClorblind": {
+  "redColorblind": {
     "$type": "color",
     "$value": "#ac5e00"
   }
@@ -698,7 +698,7 @@ const tokenDef = {
     <li>❌ it’s unclear what the purpose of <b>redColorblind</b> is, and will likely be avoided by engineers</li>
   </ul>
 
-  <p>To address all these, let’s use modes instead by adding an <b>$extensions.modes</b> property:</p>
+  <p>To address all these, let’s use modes instead by adding an <b>$extensions.mode</b> property:</p>
 
   <Code
     lang="json"
@@ -724,7 +724,7 @@ const tokenDef = {
     <li>✅ in code, switching from <b>standard</b> to <b>colorblind</b> mode automatically creates the palette</li>
   </ul>
 
-  <p>There’s a lot of flexibility you can unlock with modes. <a href="./guides/modes">Read more about using modes</a></p>
+  <p>There’s a lot of flexibility you can unlock with modes. <a href="/docs/guides/modes">Read more about using modes</a></p>
 
   <h2>Examples</h2>
 
