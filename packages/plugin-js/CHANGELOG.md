@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-js
 
+## 0.0.3
+
+### Patch Changes
+
+- Bump @cobalt-ui/utils version
+- Updated dependencies
+  - @cobalt-ui/cli@0.6.2
+
 ## 0.0.2
 
 ### Patch Changes

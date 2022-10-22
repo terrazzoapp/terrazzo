@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 0.5.1
+
+### Patch Changes
+
+- ea165fd: Minor improvement to indent util
+
 ## 0.5.0
 
 ### Minor Changes

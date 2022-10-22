@@ -249,6 +249,14 @@ describe('9. Composite Type', () => {
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'heavy').$value).to.deep.equal({color: '#363636', width: '3px', style: 'solid'});
     });
+
+    test('validates', () => {
+      const json = {
+        border: {$type: 'border', $value: {color: '#363636'}},
+      };
+      const {errors} = parse(json);
+      expect(errors.length).toBe(1);
+    });
   });
 
   describe('9.4: Transition', () => {

@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.6.4
+
+### Patch Changes
+
+- Bump @cobalt-ui/utils version
+
 ## 0.6.3
 
 ### Patch Changes

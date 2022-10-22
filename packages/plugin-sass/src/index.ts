@@ -1,6 +1,7 @@
 import type {
   BuildResult,
   GradientStop,
+  ParsedBorderToken,
   ParsedColorToken,
   ParsedCubicBezierToken,
   ParsedDimensionToken,
@@ -9,6 +10,7 @@ import type {
   ParsedGradientToken,
   ParsedLinkToken,
   ParsedShadowToken,
+  ParsedStrokeStyleToken,
   ParsedToken,
   ParsedTransitionToken,
   ParsedTypographyToken,
@@ -207,13 +209,21 @@ export function transformCubicBezier(value: ParsedCubicBezierToken['$value']): s
 export function transformLink(value: ParsedLinkToken['$value']): string {
   return `url('${value}')`;
 }
+/** transform strokeStyle */
+export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): string {
+  return String(value);
+}
+/** transform border */
+export function transformBorder(value: ParsedBorderToken['$value']): string {
+  return [transformDimension(value.width), transformStrokeStyle(value.style), transformColor(value.color)].join(' ');
+}
 /** transform shadow */
 export function transformShadow(value: ParsedShadowToken['$value']): string {
-  return [value.offsetX, value.offsetY, value.blur, value.spread, value.color].join(' ');
+  return [transformDimension(value.offsetX), transformDimension(value.offsetY), transformDimension(value.blur), transformDimension(value.spread), transformDimension(value.color)].join(' ');
 }
 /** transform gradient */
 export function transformGradient(value: ParsedGradientToken['$value']): string {
-  return value.map((g: GradientStop) => `${g.color} ${g.position * 100}%`).join(', ');
+  return value.map((g: GradientStop) => `${transformColor(g.color)} ${g.position * 100}%`).join(', ');
 }
 /** transform transition */
 export function transformTransition(value: ParsedTransitionToken['$value']): string {
@@ -236,12 +246,16 @@ export function defaultTransformer(token: ParsedToken, mode?: string): string {
       return transformCubicBezier(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
     case 'link':
       return transformLink(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'strokeStyle':
+      return transformStrokeStyle(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'border':
+      return transformBorder(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
     case 'shadow':
-      return transformShadow(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformShadow(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
     case 'gradient':
-      return transformGradient(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformGradient(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
     case 'transition':
-      return transformTransition(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformTransition(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
     default:
       throw new Error(`No transformer defined for $type: ${token.$type} tokens`);
   }

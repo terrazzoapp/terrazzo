@@ -8,6 +8,11 @@
 @use "sass:map";
 
 $__token-values: (
+  "border.std": (
+    default: (1px solid #0d0300),
+    "light": (1px solid #0d0300),
+    "dark": (1px solid #ffffff),
+  ),
   "color.green": (
     default: (#00ff00),
     "light": (#6fdd8b),

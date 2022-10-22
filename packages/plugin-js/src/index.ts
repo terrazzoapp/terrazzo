@@ -57,7 +57,10 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
 }
 
 function defaultTransform(token: ParsedToken, mode?: string): typeof token['$value'] {
-  return (mode && token.$extensions?.mode && mode in token.$extensions.mode && token.$extensions.mode[mode]) || token.$value;
+  if (!mode || !token.$extensions?.mode || !(mode in token.$extensions.mode) || !token.$extensions.mode[mode]) return token.$value;
+  const modeVal = token.$extensions.mode[mode];
+  if (typeof modeVal === 'string' || Array.isArray(modeVal)) return modeVal;
+  return {...(token.$value as typeof modeVal), ...modeVal};
 }
 
 export default function pluginJS(options?: Options): Plugin {

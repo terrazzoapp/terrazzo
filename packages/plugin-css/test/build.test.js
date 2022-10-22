@@ -4,7 +4,7 @@ import {describe, expect, test} from 'vitest';
 import pluginCSS from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
-  test.each(['color', 'typography'])('%', async (dir) => {
+  test.each(['border', 'color', 'typography'])('%s', async (dir) => {
     const cwd = new URL(`./${dir}/`, import.meta.url);
     const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
     await build(tokens, {
@@ -13,6 +13,8 @@ describe('@cobalt-ui/plugin-css', () => {
         pluginCSS({
           filename: 'actual.css',
           modeSelectors: {
+            'border#light': ['[data-color-theme="light"]'],
+            'border#dark': ['[data-color-theme="dark"]'],
             'color#light': ['[data-color-theme="light"]'],
             'color#dark': ['[data-color-theme="dark"]'],
             'color#light-colorblind': ['[data-color-theme="light-colorblind"]'],

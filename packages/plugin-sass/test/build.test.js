@@ -8,27 +8,11 @@ describe('@cobalt-ui/plugin-sass', () => {
     test.each(['basic'])('%s', async (dir) => {
       const cwd = new URL(`./${dir}/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
-      await build(tokens, {
+      const result = await build(tokens, {
         outDir: cwd,
-        plugins: [
-          pluginSass({
-            filename: 'actual.scss',
-          }),
-        ],
+        plugins: [pluginSass({filename: 'actual.scss'})],
       });
       expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.scss', cwd), 'utf8'));
-
-      // indented
-      await build(tokens, {
-        outDir: cwd,
-        plugins: [
-          pluginSass({
-            filename: 'actual.sass',
-            indentedSyntax: true,
-          }),
-        ],
-      });
-      expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.sass', cwd), 'utf8'));
     });
   });
 });

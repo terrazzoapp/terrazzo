@@ -1,0 +1,47 @@
+{
+  "tokens": {
+    "border": {
+      "color": "#0d0300",
+      "width": "1px",
+      "style": "solid"
+    }
+  },
+  "meta": {
+    "border": {
+      "$type": "border",
+      "$value": {
+        "color": "#0d0300",
+        "width": "1px",
+        "style": "solid"
+      },
+      "$extensions": {
+        "mode": {
+          "light": {
+            "color": "#0d0300",
+            "width": "1px",
+            "style": "solid"
+          },
+          "dark": {
+            "color": "#ffffff",
+            "width": "1px",
+            "style": "solid"
+          }
+        }
+      }
+    }
+  },
+  "modes": {
+    "border": {
+      "light": {
+        "color": "#0d0300",
+        "width": "1px",
+        "style": "solid"
+      },
+      "dark": {
+        "color": "#ffffff",
+        "width": "1px",
+        "style": "solid"
+      }
+    }
+  }
+}

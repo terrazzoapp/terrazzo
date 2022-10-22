@@ -81,6 +81,7 @@ async function main() {
       let watch = args.includes('-w') || args.includes('--watch');
 
       let result = await build(rawSchema, config);
+
       printErrors(result.errors);
       printWarnings(result.warnings);
       if (result.errors) process.exit(1);

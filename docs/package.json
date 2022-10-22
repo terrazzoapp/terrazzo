@@ -18,10 +18,10 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.6.1",
-    "@cobalt-ui/core": "^0.6.3",
-    "@cobalt-ui/plugin-css": "^0.8.1",
-    "@cobalt-ui/plugin-sass": "^0.7.1",
+    "@cobalt-ui/cli": "^0.6.2",
+    "@cobalt-ui/core": "^0.6.4",
+    "@cobalt-ui/plugin-css": "^0.8.2",
+    "@cobalt-ui/plugin-sass": "^0.7.2",
     "astro": "^1.1.1",
     "npm-run-all": "^4.1.5",
     "sass": "^1.54.5",
