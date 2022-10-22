@@ -1,5 +1,16 @@
 # @cobalt-ui/cli
 
+## 0.7.0
+
+### Minor Changes
+
+- e50c864: Add strokeStyle and border support in plugins, improve validation in core
+
+### Patch Changes
+
+- Updated dependencies [e50c864]
+  - @cobalt-ui/core@0.7.0
+
 ## 0.6.2
 
 ### Patch Changes

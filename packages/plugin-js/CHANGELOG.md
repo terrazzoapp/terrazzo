@@ -1,5 +1,16 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.0
+
+### Minor Changes
+
+- e50c864: Add strokeStyle and border support in plugins, improve validation in core
+
+### Patch Changes
+
+- Updated dependencies [e50c864]
+  - @cobalt-ui/cli@0.7.0
+
 ## 0.0.3
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-css",
   "description": "Generate CSS from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "0.8.2",
+  "version": "1.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -31,8 +31,8 @@
     "svgo": "^2.8.0"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.6.2",
-    "@cobalt-ui/core": "^0.6.4",
+    "@cobalt-ui/cli": "^0.7.0",
+    "@cobalt-ui/core": "^0.7.0",
     "@types/mime": "^2.0.3",
     "@types/svgo": "^2.6.4",
     "vitest": "^0.24.3"
