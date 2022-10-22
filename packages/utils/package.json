@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/utils",
   "description": "Generic codegen utilities",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
