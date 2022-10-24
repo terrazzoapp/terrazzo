@@ -18,43 +18,56 @@
   },
   "meta": {
     "color.black": {
+      "$type": "color",
       "$value": "#00193f"
     },
     "color.blue.10": {
+      "$type": "color",
       "$value": "#062053"
     },
     "color.blue.20": {
+      "$type": "color",
       "$value": "#0f2868"
     },
     "color.blue.30": {
+      "$type": "color",
       "$value": "#192f7d"
     },
     "color.blue.40": {
+      "$type": "color",
       "$value": "#223793"
     },
     "color.blue.50": {
+      "$type": "color",
       "$description": "Medium blue",
       "$value": "#2b3faa"
     },
     "color.blue.60": {
+      "$type": "color",
       "$value": "#3764ba"
     },
     "color.blue.70": {
+      "$type": "color",
       "$value": "#4887c9"
     },
     "color.blue.80": {
+      "$type": "color",
       "$value": "#5ca9d7"
     },
     "color.blue.90": {
+      "$type": "color",
       "$value": "#72cce5"
     },
     "color.blue.100": {
+      "$type": "color",
       "$value": "#89eff1"
     },
     "color.blue.00": {
+      "$type": "color",
       "$value": "{color.black}"
     },
     "color.white": {
+      "$type": "color",
       "$value": "#ffffff"
     },
     "ui.fg": {

@@ -95,7 +95,10 @@ export default function pluginJS(options?: Options): Plugin {
       for (const token of tokens) {
         js.tokens[token.id] = await transform(token);
         if (buildTS) ts.tokens.push(indent(`${objKey(token.id)}: ${tokenTypes[token.$type]}['$value'];`, 1));
-        js.meta[token.id] = token._original;
+        js.meta[token.id] = {
+          $type: token.$type,
+          ...(token._original as any),
+        };
         if (buildTS) ts.meta.push(indent(`${objKey(token.id)}: ${tokenTypes[token.$type]}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
         if (token.$extensions?.mode) {
           js.modes[token.id] = {};
