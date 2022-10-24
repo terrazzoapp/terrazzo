@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.1
+
+### Patch Changes
+
+- 51647a3: Add missing $type from meta info
+
 ## 1.0.0
 
 ### Minor Changes
