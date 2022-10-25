@@ -1,5 +1,16 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.0
+
+### Minor Changes
+
+- 9edc9d9: Maintain aliases in CSS vars to improve mode support
+
+### Patch Changes
+
+- Updated dependencies [9edc9d9]
+  - @cobalt-ui/utils@0.5.2
+
 ## 1.0.0
 
 ### Minor Changes

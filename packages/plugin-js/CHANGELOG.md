@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.2
+
+### Patch Changes
+
+- 9edc9d9: Fix token.\_original.$extensions.modes shallow clone bug
+- Updated dependencies [9edc9d9]
+  - @cobalt-ui/utils@0.5.2
+
 ## 1.0.1
 
 ### Patch Changes

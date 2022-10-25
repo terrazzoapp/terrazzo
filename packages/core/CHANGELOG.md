@@ -1,5 +1,13 @@
 # @cobalt-ui/core
 
+## 0.7.1
+
+### Patch Changes
+
+- 9edc9d9: Fix token.\_original.$extensions.modes shallow clone bug
+- Updated dependencies [9edc9d9]
+  - @cobalt-ui/utils@0.5.2
+
 ## 0.7.0
 
 ### Minor Changes
