@@ -16,7 +16,7 @@
   --color-blue-80: #5ca9d7;
   --color-blue-90: #72cce5;
   --color-blue-100: #89eff1;
-  --color-blue-00: #00193f;
+  --color-blue-00: var(--color-black);
   --color-darkGray: #282a37;
   --color-green: #77cd8f;
   --color-purple: #6a35d9;
@@ -29,9 +29,9 @@
   --color-code-red: #f56d65;
   --color-code-pink: #ff5ae2;
   --color-code-skyBlue: #59c1ff;
-  --ui-bg: #ffffff;
-  --ui-fg: #00193f;
-  --ui-action: #2b3faa;
+  --ui-bg: var(--color-white);
+  --ui-fg: var(--color-black);
+  --ui-action: var(--color-blue-50);
   --font-family-ppNeue: "PP Neue Montreal", system-ui, ui-sans-serif, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-family-mono: "Red Hat Mono", ui-monospace, "SF Mono", Monaco, "Cascadia Mono", "Cascadia Code", Consolas, monospace;
   --font-size-01: 8px;
@@ -69,22 +69,22 @@
 }
 
 body[data-color-mode="light"] {
-  --ui-bg: #ffffff;
-  --ui-fg: #00193f;
-  --ui-action: #2b3faa;
+  --ui-bg: var(--color-white);
+  --ui-fg: var(--color-black);
+  --ui-action: var(--color-blue-50);
 }
 
 body[data-color-mode="dark"] {
-  --ui-bg: #00193f;
-  --ui-fg: #ffffff;
-  --ui-action: #4887c9;
+  --ui-bg: var(--color-black);
+  --ui-fg: var(--color-white);
+  --ui-action: var(--color-blue-70);
 }
 
 @media(prefers-color-scheme:dark) {
   :root {
-    --ui-bg: #00193f;
-    --ui-fg: #ffffff;
-    --ui-action: #4887c9;
+    --ui-bg: var(--color-black);
+    --ui-fg: var(--color-white);
+    --ui-action: var(--color-blue-70);
   }
 }
 
@@ -101,7 +101,6 @@ body[data-color-mode="dark"] {
     --color-blue-80: color(display-p3 0.360784 0.662745 0.843137);
     --color-blue-90: color(display-p3 0.447059 0.8 0.898039);
     --color-blue-100: color(display-p3 0.537255 0.937255 0.945098);
-    --color-blue-00: color(display-p3 0 0.098039 0.247059);
     --color-darkGray: color(display-p3 0.156863 0.164706 0.215686);
     --color-green: color(display-p3 0.466667 0.803922 0.560784);
     --color-purple: color(display-p3 0.415686 0.207843 0.85098);
@@ -114,28 +113,16 @@ body[data-color-mode="dark"] {
     --color-code-red: color(display-p3 0.960784 0.427451 0.396078);
     --color-code-pink: color(display-p3 1 0.352941 0.886275);
     --color-code-skyBlue: color(display-p3 0.34902 0.756863 1);
-    --ui-bg: color(display-p3 1 1 1);
-    --ui-fg: color(display-p3 0 0.098039 0.247059);
-    --ui-action: color(display-p3 0.168627 0.247059 0.666667);
   }
 
   body[data-color-mode="light"] {
-    --ui-bg: color(display-p3 1 1 1);
-    --ui-fg: color(display-p3 0 0.098039 0.247059);
-    --ui-action: color(display-p3 0.168627 0.247059 0.666667);
   }
 
   body[data-color-mode="dark"] {
-    --ui-bg: color(display-p3 0 0.098039 0.247059);
-    --ui-fg: color(display-p3 1 1 1);
-    --ui-action: color(display-p3 0.282353 0.529412 0.788235);
   }
 
   @media(prefers-color-scheme:dark) {
     :root {
-      --ui-bg: color(display-p3 0 0.098039 0.247059);
-      --ui-fg: color(display-p3 1 1 1);
-      --ui-action: color(display-p3 0.282353 0.529412 0.788235);
     }
   }
 }
