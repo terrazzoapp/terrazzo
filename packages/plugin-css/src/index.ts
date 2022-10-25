@@ -18,7 +18,7 @@ import type {
   ResolvedConfig,
 } from '@cobalt-ui/core';
 import color from 'better-color-tools';
-import {indent, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
+import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {encode, formatFontNames} from './util.js';
 
 const DASH_PREFIX_RE = /^-+/;
@@ -45,13 +45,13 @@ export default function pluginCSS(options?: Options): Plugin {
   let filename = options?.filename || './tokens.css';
   let prefix = options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
 
-  function makeVars(tokens: Record<string, any>, indentLv = 0, generateRoot = false): string[] {
+  function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
     const output: string[] = [];
-    if (generateRoot) output.push(indent(':root {', indentLv));
+    if (root) output.push(indent(':root {', indentLv));
     for (const [id, value] of Object.entries(tokens)) {
-      output.push(indent(`--${prefix}${id.replace(DOT_UNDER_GLOB_RE, '-')}: ${value};`, indentLv + (generateRoot ? 1 : 0)));
+      output.push(indent(`${varName(id, prefix)}: ${value};`, indentLv + (root ? 1 : 0)));
     }
-    if (generateRoot) output.push(indent('}', indentLv));
+    if (root) output.push(indent('}', indentLv));
     return output;
   }
 
@@ -83,25 +83,40 @@ export default function pluginCSS(options?: Options): Plugin {
       const modeVals: {[selector: string]: {[id: string]: any}} = {};
       const selectors: string[] = [];
 
+      const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
+
       // transformation (1 pass through all tokens + modes)
-      // note: async transforms aren’t documented, but allow it just in case a user needs it
       for (const token of tokens) {
-        let value = (typeof options?.transform === 'function' && (await options.transform(token))) || defaultTransformer(token);
-        switch (token.$type) {
-          case 'link': {
-            if (options?.embedFiles) value = encode(value as string, config.outDir);
-            tokenVals[token.id] = value;
-            break;
-          }
-          case 'typography': {
-            for (const [k, v] of Object.entries(value)) {
-              tokenVals[`${token.id}-${k}`] = v;
+        // for aliases, no need to transform
+        if (isAlias(token._original.$value)) {
+          // for typography tokens, expand aliases (note: token.$value points to the resolved alias)
+          if (token.$type === 'typography') {
+            for (const property of Object.keys(token.$value)) {
+              tokenVals[`${token.id}.${property}`] = varRef(`${token._original.$value}.${property}`);
             }
-            break;
+          } else {
+            tokenVals[token.id] = varRef(token._original.$value as string);
           }
-          default: {
-            tokenVals[token.id] = value;
-            break;
+        }
+        // for original values, transform
+        else {
+          let value = (customTransform && customTransform(token)) || defaultTransformer(token);
+          switch (token.$type) {
+            case 'link': {
+              if (options?.embedFiles) value = encode(value as string, config.outDir);
+              tokenVals[token.id] = value;
+              break;
+            }
+            case 'typography': {
+              for (const [k, v] of Object.entries(value)) {
+                tokenVals[`${token.id}-${k}`] = v;
+              }
+              break;
+            }
+            default: {
+              tokenVals[token.id] = value;
+              break;
+            }
           }
         }
 
@@ -113,7 +128,27 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal = (typeof options?.transform === 'function' && (await options.transform(token, modeName))) || defaultTransformer(token, modeName);
+              const ogModeVal = token._original.$extensions?.mode && token._original.$extensions.mode[modeName];
+              const aliasedID = typeof ogModeVal === 'string' && isAlias(ogModeVal) ? ogModeVal.substring(1, ogModeVal.length - 1) : undefined;
+              const [resolvedID, aliasedModeName] = aliasedID?.split('#') || [undefined, undefined];
+              // handle aliases (skip transform)
+              // special case: if this is an alias that references a different mode than the current scope,
+              // we have to break the alias and use the resolved value because the cascade won’t work as expected.
+              if (resolvedID && (!aliasedModeName || aliasedModeName === modeName)) {
+                if (token.$type === 'typography') {
+                  for (const property of Object.keys(token.$value)) {
+                    modeVals[selector][`${token.id}.${property}`] = varRef(`${resolvedID}.${property}`);
+                  }
+                } else {
+                  modeVals[selector][token.id] = varRef(resolvedID);
+                }
+                continue; // for tokens able to be aliased, skip following transform step
+              }
+              // warn user a cross-mode reference happened (this may cause issues with their expected cascade)
+              if (aliasedModeName && aliasedModeName !== modeName) {
+                console.warn(`⚠️ ${FG_YELLOW}Warning: "${token.id}" references "${ogModeVal}" from within "${modeName}". Replaced with a hard-coded value.${RESET}`); // eslint-disable-line no-console
+              }
+              let modeVal = (customTransform && customTransform(token, modeName)) || defaultTransformer(token, modeName);
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
@@ -144,7 +179,7 @@ export default function pluginCSS(options?: Options): Plugin {
       code.push(' * DO NOT EDIT!');
       code.push(' */');
       code.push('');
-      code.push(...makeVars(tokenVals, 0, true));
+      code.push(...makeVars({tokens: tokenVals, indentLv: 0, root: true}));
 
       // modes
       for (const selector of selectors) {
@@ -156,7 +191,7 @@ export default function pluginCSS(options?: Options): Plugin {
         }
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
         code.push(`${wrapper} {`);
-        if (modeVals[selector]) code.push(...makeVars(modeVals[selector], 1, wrapper.startsWith('@')));
+        if (modeVals[selector]) code.push(...makeVars({tokens: modeVals[selector], indentLv: 1, root: wrapper.startsWith('@')}));
         code.push('}');
       }
 
@@ -164,12 +199,12 @@ export default function pluginCSS(options?: Options): Plugin {
       if (tokens.some((t) => t.$type === 'color' || t.$type === 'gradient' || t.$type === 'shadow')) {
         code.push('');
         code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
-        code.push(...makeP3(makeVars(tokenVals, 1, true)));
+        code.push(...makeP3(makeVars({tokens: tokenVals, indentLv: 1, root: true})));
         for (const selector of selectors) {
           code.push('');
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
           code.push(indent(`${wrapper} {`, 1));
-          code.push(...makeP3(makeVars(modeVals[selector], 2, wrapper.startsWith('@'))));
+          code.push(...makeP3(makeVars({tokens: modeVals[selector], indentLv: 2, root: wrapper.startsWith('@')})));
           code.push(indent('}', 1));
         }
         code.push(indent('}', 0));
@@ -271,6 +306,18 @@ export function defaultTransformer(token: ParsedToken, mode?: string): string | 
     default:
       throw new Error(`No transformer defined for $type: ${(token as any).$type} tokens`);
   }
+}
+
+/** convert token name to CSS variable */
+export function varName(id: string, prefix = ''): string {
+  return `--${prefix ? prefix.replace(DASH_PREFIX_RE, '') : ''}${id.replace(DOT_UNDER_GLOB_RE, '-')}`;
+}
+
+/** reference an existing CSS var */
+export function varRef(id: string, ...fallbacks: string[]): string {
+  let refID = id;
+  if (isAlias(id)) refID = id.substring(1, id.length - 1);
+  return `var(${varName(refID)}${fallbacks && fallbacks.length ? `, ${fallbacks.join(', ')}` : ''})`;
 }
 
 /** parse modeSelector */

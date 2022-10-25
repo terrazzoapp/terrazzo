@@ -18,6 +18,7 @@ import type {
   ResolvedConfig,
 } from '@cobalt-ui/core';
 
+import pluginCSS, {varRef, type Options as PluginCSSOptions} from '@cobalt-ui/plugin-css';
 import {indent} from '@cobalt-ui/utils';
 import {encode, formatFontNames} from './util.js';
 
@@ -31,6 +32,8 @@ const DEPENDENCIES = ['sass:list', 'sass:map'];
 export interface Options {
   /** output file (default: "./tokens/index.sass") */
   filename?: string;
+  /** */
+  pluginCSS?: PluginCSSOptions;
   /** use indented syntax (.sass)? (default: false) */
   indentedSyntax?: boolean;
   /** embed files in CSS? */
@@ -43,6 +46,8 @@ export default function pluginSass(options?: Options): Plugin {
   let config: ResolvedConfig;
   let ext = options?.indentedSyntax ? '.sass' : '.scss';
   let filename = `${options?.filename?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
+
+  const cssPlugin = options?.pluginCSS ? pluginCSS(options.pluginCSS) : undefined;
 
   const semi = options?.indentedSyntax ? '' : ';';
   const cbOpen = options?.indentedSyntax ? '' : ' {';
@@ -100,10 +105,12 @@ ${cbClose}`
     name: '@cobalt-ui/plugin-sass',
     config(c): void {
       config = c;
+      if (cssPlugin && typeof cssPlugin.config === 'function') cssPlugin.config(c);
     },
-    async build({tokens, metadata}): Promise<BuildResult[]> {
+    async build({tokens, metadata, rawSchema}): Promise<BuildResult[]> {
       let output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
+      const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
 
       // metadata (SassDoc)
       output.push('////');
@@ -130,13 +137,13 @@ ${cbClose}`
         output.push(indent(`"${token.id}": (`, 1));
 
         // default value
-        let value = (typeof options?.transform === 'function' && options.transform(token)) || defaultTransformer(token);
+        let value = cssPlugin ? varRef(`${options?.pluginCSS?.prefix || ''}${token.id}`) : (customTransform && customTransform(token)) || defaultTransformer(token);
         if (token.$type === 'link' && options?.embedFiles) value = encode(value, config.outDir);
         output.push(indent(`default: (${value}),`, 2));
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-          let modeValue = (typeof options?.transform === 'function' && options.transform(token, modeName)) || defaultTransformer(token, modeName);
+          let modeValue = cssPlugin ? varRef(`${options?.pluginCSS?.prefix || ''}${token.id}`) : (customTransform && customTransform(token, modeName)) || defaultTransformer(token, modeName);
           if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue, config.outDir);
           output.push(indent(`"${modeName}": (${modeValue}),`, 2));
         }
@@ -154,7 +161,11 @@ ${cbClose}`
         defaultProperties.sort(([a], [b]) => a.localeCompare(b));
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
-          output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontNames(value) : value}),`, 3));
+          if (cssPlugin) {
+            output.push(indent(`"${property}": (${varRef(`${token.id}.${property}`)}),`, 3));
+          } else {
+            output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontNames(value) : value}),`, 3));
+          }
         }
         output.push(indent(`),`, 2));
         for (const [mode, modeValue] of Object.entries((token.$extensions && token.$extensions.mode) || {})) {
@@ -180,7 +191,14 @@ ${cbClose}`
       output.push(TYPOGRAPHY_MIXIN);
       output.push('');
 
-      return [{filename, contents: output.join('\n')}];
+      return [
+        {
+          filename,
+          contents: output.join('\n'),
+        },
+        // build pluginCSS (if used)
+        ...((cssPlugin && (await cssPlugin.build({tokens, metadata, rawSchema}))) || []),
+      ];
     },
   };
 }

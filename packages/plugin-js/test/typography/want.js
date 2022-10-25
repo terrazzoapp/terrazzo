@@ -49,7 +49,7 @@ export const meta = {
   'typography.page-title': {
     '$type': 'typography',
     '$value': {
-      fontFamily: 'Helvetica',
+      fontFamily: '{typography.family.heading}',
       fontSize: '48px',
       fontWeight: 600,
       lineHeight: 1.25,
@@ -59,7 +59,7 @@ export const meta = {
   'typography.subheading': {
     '$type': 'typography',
     '$value': {
-      fontFamily: 'Helvetica',
+      fontFamily: '{typography.family.heading}',
       fontSize: '18px',
       fontWeight: 500,
       lineHeight: 1.375,
@@ -70,7 +70,7 @@ export const meta = {
   'typography.callout': {
     '$type': 'typography',
     '$value': {
-      fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
+      fontFamily: '{typography.family.body}',
       fontSize: '18px',
       fontWeight: 300,
       'font-style': 'italic',
@@ -80,7 +80,7 @@ export const meta = {
   'typography.body': {
     '$type': 'typography',
     '$value': {
-      fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
+      fontFamily: '{typography.family.body}',
       fontSize: '16px',
       fontWeight: 400,
       lineHeight: 1.5,

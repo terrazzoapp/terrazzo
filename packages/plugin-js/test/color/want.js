@@ -82,8 +82,8 @@ export const meta = {
     '$value': '{color.black}',
     '$extensions': {
       mode: {
-        light: '#00193f',
-        dark: '#ffffff',
+        light: '{color.black}',
+        dark: '{color.white}',
       },
     },
   },
@@ -92,8 +92,8 @@ export const meta = {
     '$value': '{color.white}',
     '$extensions': {
       mode: {
-        light: '#ffffff',
-        dark: '#00193f',
+        light: '{color.white}',
+        dark: '{color.black}',
       },
     },
   },

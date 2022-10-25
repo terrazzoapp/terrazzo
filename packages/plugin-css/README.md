@@ -1,6 +1,6 @@
 # @cobalt-ui/plugin-css
 
-Generate CSS output for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
+Generate CSS vars for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
 
 Automatically generates 🌈 [**P3 colors**](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) for more vibrant colors on displays that support it.
 
@@ -19,6 +19,22 @@ export default {
   plugins: [pluginCSS()],
 };
 ```
+
+Generates:
+
+```css
+/* tokens/tokens.css */
+
+:root {
+  --color-blue: #0969da;
+  --color-green: #2da44e;
+  --color-red: #cf222e;
+  --color-black: #101010;
+  --color-ui-text: var(--color-black);
+}
+```
+
+You can then use these anywhere in your app.
 
 ## Usage
 
@@ -48,8 +64,8 @@ export default {
       embedFiles: false,
       /** (optional) transform specific token values */
       transform: () => null,
-      /** (optional) prefix variable names */
-      prefix: '--my-prefix',
+      /** (optional) add custom namespace to CSS vars */
+      prefix: '',
     }),
   ],
 };
@@ -242,3 +258,26 @@ export default {
   ],
 };
 ```
+
+### Usage with @cobalt-ui/plugin-sass
+
+If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](../plugin-sass), which lets you use CSS vars while letting Sass typecheck everything and making sure your stylesheet references everything correctly.
+
+To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.mjs` and pass all options into `pluginCSS: {}`:
+
+```diff
+- import pluginCSS from '@cobalt-ui/plugin-css';
++ import pluginSass from '@cobalt-ui/plugin-sass';
+
+  /** @type import('@cobalt-ui/core').Config */
+  export default {
+    plugins: [
+-     pluginCSS({ filename: 'tokens.css }),
++     pluginSass({
++       pluginCSS: { filename: 'tokens.css' },
++     }),
+    ],
+  };
+```
+
+This changes `token('color.blue')` to return CSS vars rather than the original values. To learn more, [read the dos](../plugin-sass).

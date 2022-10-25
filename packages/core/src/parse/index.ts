@@ -1,3 +1,4 @@
+import {cloneDeep} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue} from './tokens/color.js';
@@ -62,7 +63,7 @@ export function parse(schema: Group): ParseResult {
 
       // token
       const token = {
-        _original: {...v},
+        _original: cloneDeep(v),
         _group: {
           id: chain.join('.') || '.',
           ...(group || {}),

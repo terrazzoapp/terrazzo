@@ -25,6 +25,7 @@
     "@cobalt-ui/cli": "*"
   },
   "dependencies": {
+    "@cobalt-ui/plugin-css": "*",
     "@cobalt-ui/utils": "^0.5.1",
     "mime": "^3.0.0",
     "svgo": "^2.8.0"
