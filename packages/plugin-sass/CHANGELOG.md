@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-sass
 
+## 1.1.1
+
+### Patch Changes
+
+- 3119292: Fix prefix bug
+- Updated dependencies [3119292]
+  - @cobalt-ui/plugin-css@1.1.1
+
 ## 1.1.0
 
 ### Minor Changes

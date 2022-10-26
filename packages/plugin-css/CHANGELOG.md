@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.1
+
+### Patch Changes
+
+- 3119292: Fix prefix bug
+
 ## 1.1.0
 
 ### Minor Changes
