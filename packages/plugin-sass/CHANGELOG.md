@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-sass
 
+## 1.1.2
+
+### Patch Changes
+
+- 4eec0bd: Further improve aliases
+- Updated dependencies [4eec0bd]
+  - @cobalt-ui/plugin-css@1.1.2
+
 ## 1.1.1
 
 ### Patch Changes

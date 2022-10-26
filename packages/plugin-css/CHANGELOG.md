@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.2
+
+### Patch Changes
+
+- 4eec0bd: Further improve aliases
+
 ## 1.1.1
 
 ### Patch Changes
