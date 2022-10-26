@@ -82,44 +82,26 @@ export default function pluginCSS(options?: Options): Plugin {
       const tokenVals: {[id: string]: any} = {};
       const modeVals: {[selector: string]: {[id: string]: any}} = {};
       const selectors: string[] = [];
-
       const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
-
-      // transformation (1 pass through all tokens + modes)
       for (const token of tokens) {
-        // for aliases, no need to transform
-        if (isAlias(token._original.$value)) {
-          // for typography tokens, expand aliases (note: token.$value points to the resolved alias)
-          if (token.$type === 'typography') {
-            for (const property of Object.keys(token.$value)) {
-              tokenVals[`${token.id}.${property}`] = varRef(token._original.$value as string, {prefix, suffix: property});
+        let value = (customTransform && customTransform(token)) || defaultTransformer(token, {prefix});
+        switch (token.$type) {
+          case 'link': {
+            if (options?.embedFiles) value = encode(value as string, config.outDir);
+            tokenVals[token.id] = value;
+            break;
+          }
+          case 'typography': {
+            for (const [k, v] of Object.entries(value)) {
+              tokenVals[`${token.id}-${k}`] = v;
             }
-          } else {
-            tokenVals[token.id] = varRef(`${token._original.$value}`, {prefix});
+            break;
+          }
+          default: {
+            tokenVals[token.id] = value;
+            break;
           }
         }
-        // for original values, transform
-        else {
-          let value = (customTransform && customTransform(token)) || defaultTransformer(token);
-          switch (token.$type) {
-            case 'link': {
-              if (options?.embedFiles) value = encode(value as string, config.outDir);
-              tokenVals[token.id] = value;
-              break;
-            }
-            case 'typography': {
-              for (const [k, v] of Object.entries(value)) {
-                tokenVals[`${token.id}-${k}`] = v;
-              }
-              break;
-            }
-            default: {
-              tokenVals[token.id] = value;
-              break;
-            }
-          }
-        }
-
         if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
           for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
             const [groupRoot, modeName] = parseModeSelector(modeID);
@@ -128,27 +110,7 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              const ogModeVal = token._original.$extensions?.mode && token._original.$extensions.mode[modeName];
-              const aliasedID = typeof ogModeVal === 'string' && isAlias(ogModeVal) ? ogModeVal.substring(1, ogModeVal.length - 1) : undefined;
-              const [resolvedID, aliasedModeName] = aliasedID?.split('#') || [undefined, undefined];
-              // handle aliases (skip transform)
-              // special case: if this is an alias that references a different mode than the current scope,
-              // we have to break the alias and use the resolved value because the cascade won’t work as expected.
-              if (resolvedID && (!aliasedModeName || aliasedModeName === modeName)) {
-                if (token.$type === 'typography') {
-                  for (const property of Object.keys(token.$value)) {
-                    modeVals[selector][`${token.id}.${property}`] = varRef(resolvedID, {prefix, suffix: property});
-                  }
-                } else {
-                  modeVals[selector][token.id] = varRef(resolvedID, {prefix});
-                }
-                continue; // for tokens able to be aliased, skip following transform step
-              }
-              // warn user a cross-mode reference happened (this may cause issues with their expected cascade)
-              if (aliasedModeName && aliasedModeName !== modeName) {
-                console.warn(`⚠️ ${FG_YELLOW}Warning: "${token.id}" references "${ogModeVal}" from within "${modeName}". Replaced with a hard-coded value.${RESET}`); // eslint-disable-line no-console
-              }
-              let modeVal = (customTransform && customTransform(token, modeName)) || defaultTransformer(token, modeName);
+              let modeVal = (customTransform && customTransform(token, modeName)) || defaultTransformer(token, {prefix, mode: modeName});
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
@@ -196,7 +158,7 @@ export default function pluginCSS(options?: Options): Plugin {
       }
 
       // P3
-      if (tokens.some((t) => t.$type === 'color' || t.$type === 'gradient' || t.$type === 'shadow')) {
+      if (tokens.some((t) => t.$type === 'color' || t.$type === 'border' || t.$type === 'gradient' || t.$type === 'shadow')) {
         code.push('');
         code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
         code.push(...makeP3(makeVars({tokens: tokenVals, indentLv: 1, root: true})));
@@ -276,33 +238,54 @@ export function transformTypography(value: ParsedTypographyToken['$value']): Rec
   return values;
 }
 
-export function defaultTransformer(token: ParsedToken, mode?: string): string | ReturnType<typeof transformTypography> {
-  if (mode && (!token.$extensions?.mode || !token.$extensions.mode[mode])) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
+export function defaultTransformer(token: ParsedToken, options?: {mode?: string; prefix?: string}): string | ReturnType<typeof transformTypography> {
+  let value = token.$value;
+  let rawVal = token._original.$value;
+
+  // handle modes
+  if (options?.mode) {
+    if (!token.$extensions?.mode || !token.$extensions.mode[options.mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${options.mode}"`);
+    value = token.$extensions.mode[options.mode];
+    rawVal = ((token._original.$extensions as typeof token.$extensions).mode as typeof token.$extensions.mode)[options?.mode]; // very cool TS right here
+  }
+
+  // handle aliases (both full and partial aliasing within compound tokens)
+  const refOptions = {prefix: options?.prefix, mode: options?.mode};
+  if (typeof rawVal === 'string' && isAlias(rawVal)) {
+    value = varRef(rawVal, refOptions);
+  } else if (rawVal && !Array.isArray(rawVal) && typeof rawVal === 'object') {
+    const resolvedVal: Record<string, string> = {...(value as any)};
+    for (const [k, v] of Object.entries(rawVal)) {
+      resolvedVal[k] = isAlias(v) ? varRef(v, refOptions) : (value as any)[k];
+    }
+    value = resolvedVal;
+  }
+
   switch (token.$type) {
     case 'color':
-      return transformColor(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformColor(value as typeof token.$value);
     case 'dimension':
-      return transformDimension(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformDimension(value as typeof token.$value);
     case 'duration':
-      return transformDuration(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformDuration(value as typeof token.$value);
     case 'font':
-      return transformFont(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformFont(value as typeof token.$value);
     case 'cubicBezier':
-      return transformCubicBezier(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformCubicBezier(value as typeof token.$value);
     case 'link':
-      return transformLink(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformLink(value as typeof token.$value);
     case 'strokeStyle':
-      return transformStrokeStyle(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+      return transformStrokeStyle(value as typeof token.$value);
     case 'border':
-      return transformBorder(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
+      return transformBorder(value as typeof token.$value);
     case 'shadow':
-      return transformShadow(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
+      return transformShadow(value as typeof token.$value);
     case 'gradient':
-      return transformGradient(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
+      return transformGradient(value as typeof token.$value);
     case 'transition':
-      return transformTransition(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
+      return transformTransition(value as typeof token.$value);
     case 'typography':
-      return transformTypography(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
+      return transformTypography(value as typeof token.$value);
     default:
       throw new Error(`No transformer defined for $type: ${(token as any).$type} tokens`);
   }
@@ -314,9 +297,13 @@ export function varName(id: string, options?: {prefix?: string; suffix?: string}
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, options?: {prefix?: string; suffix?: string; fallbacks?: string[]}): string {
+export function varRef(id: string, options?: {prefix?: string; suffix?: string; fallbacks?: string[]; mode?: string}): string {
   let refID = id;
-  if (isAlias(id)) refID = id.substring(1, id.length - 1);
+  if (isAlias(id)) {
+    const [rootID, mode] = id.substring(1, id.length - 1).split('#');
+    if (mode && options?.mode && mode !== options?.mode) console.warn(`⚠️  ${FG_YELLOW}"${id}" referenced from within mode "${options.mode}". This may produce unexpected values.${RESET}`); // eslint-disable-line no-console
+    refID = rootID;
+  }
   return ['var(', varName(refID, {prefix: options?.prefix, suffix: options?.suffix}), Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '', ')'].join('');
 }
 

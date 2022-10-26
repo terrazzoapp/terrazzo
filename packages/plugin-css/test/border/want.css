@@ -5,13 +5,34 @@
  */
 
 :root {
+  --ds-color-gray: #544741;
   --ds-border: 1px solid #0d0300;
+  --ds-border-gray: 1px solid var(--ds-color-gray);
 }
 
 [data-color-theme="light"] {
+  --ds-color-gray: #544741;
   --ds-border: 1px solid #0d0300;
 }
 
 [data-color-theme="dark"] {
+  --ds-color-gray: #bbb6b3;
   --ds-border: 1px solid #ffffff;
+}
+
+@supports (color: color(display-p3 1 1 1)) {
+  :root {
+    --ds-color-gray: color(display-p3 0.329412 0.278431 0.254902);
+    --ds-border: 1px solid color(display-p3 0.05098 0.011765 0);
+  }
+
+  [data-color-theme="light"] {
+    --ds-color-gray: color(display-p3 0.329412 0.278431 0.254902);
+    --ds-border: 1px solid color(display-p3 0.05098 0.011765 0);
+  }
+
+  [data-color-theme="dark"] {
+    --ds-color-gray: color(display-p3 0.733333 0.713725 0.701961);
+    --ds-border: 1px solid color(display-p3 1 1 1);
+  }
 }
