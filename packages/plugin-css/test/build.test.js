@@ -12,6 +12,7 @@ describe('@cobalt-ui/plugin-css', () => {
       plugins: [
         pluginCSS({
           filename: 'actual.css',
+          prefix: 'ds-',
           modeSelectors: {
             'border#light': ['[data-color-theme="light"]'],
             'border#dark': ['[data-color-theme="dark"]'],

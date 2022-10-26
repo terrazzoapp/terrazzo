@@ -5,13 +5,13 @@
  */
 
 :root {
-  --border: 1px solid #0d0300;
+  --ds-border: 1px solid #0d0300;
 }
 
 [data-color-theme="light"] {
-  --border: 1px solid #0d0300;
+  --ds-border: 1px solid #0d0300;
 }
 
 [data-color-theme="dark"] {
-  --border: 1px solid #ffffff;
+  --ds-border: 1px solid #ffffff;
 }

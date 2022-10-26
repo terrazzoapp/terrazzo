@@ -43,13 +43,13 @@ export interface Options {
 export default function pluginCSS(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
-  let prefix = options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
+  let prefix = options?.prefix || '';
 
   function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
     const output: string[] = [];
     if (root) output.push(indent(':root {', indentLv));
     for (const [id, value] of Object.entries(tokens)) {
-      output.push(indent(`${varName(id, prefix)}: ${value};`, indentLv + (root ? 1 : 0)));
+      output.push(indent(`${varName(id, {prefix})}: ${value};`, indentLv + (root ? 1 : 0)));
     }
     if (root) output.push(indent('}', indentLv));
     return output;
@@ -92,10 +92,10 @@ export default function pluginCSS(options?: Options): Plugin {
           // for typography tokens, expand aliases (note: token.$value points to the resolved alias)
           if (token.$type === 'typography') {
             for (const property of Object.keys(token.$value)) {
-              tokenVals[`${token.id}.${property}`] = varRef(`${token._original.$value}.${property}`);
+              tokenVals[`${token.id}.${property}`] = varRef(token._original.$value as string, {prefix, suffix: property});
             }
           } else {
-            tokenVals[token.id] = varRef(token._original.$value as string);
+            tokenVals[token.id] = varRef(`${token._original.$value}`, {prefix});
           }
         }
         // for original values, transform
@@ -137,10 +137,10 @@ export default function pluginCSS(options?: Options): Plugin {
               if (resolvedID && (!aliasedModeName || aliasedModeName === modeName)) {
                 if (token.$type === 'typography') {
                   for (const property of Object.keys(token.$value)) {
-                    modeVals[selector][`${token.id}.${property}`] = varRef(`${resolvedID}.${property}`);
+                    modeVals[selector][`${token.id}.${property}`] = varRef(resolvedID, {prefix, suffix: property});
                   }
                 } else {
-                  modeVals[selector][token.id] = varRef(resolvedID);
+                  modeVals[selector][token.id] = varRef(resolvedID, {prefix});
                 }
                 continue; // for tokens able to be aliased, skip following transform step
               }
@@ -309,15 +309,15 @@ export function defaultTransformer(token: ParsedToken, mode?: string): string | 
 }
 
 /** convert token name to CSS variable */
-export function varName(id: string, prefix = ''): string {
-  return `--${prefix ? prefix.replace(DASH_PREFIX_RE, '') : ''}${id.replace(DOT_UNDER_GLOB_RE, '-')}`;
+export function varName(id: string, options?: {prefix?: string; suffix?: string}): string {
+  return ['--', options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '', id.replace(DOT_UNDER_GLOB_RE, '-'), options?.suffix ? `-${options.suffix.replace(DASH_PREFIX_RE, '')}` : ''].join('');
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, ...fallbacks: string[]): string {
+export function varRef(id: string, options?: {prefix?: string; suffix?: string; fallbacks?: string[]}): string {
   let refID = id;
   if (isAlias(id)) refID = id.substring(1, id.length - 1);
-  return `var(${varName(refID)}${fallbacks && fallbacks.length ? `, ${fallbacks.join(', ')}` : ''})`;
+  return ['var(', varName(refID, {prefix: options?.prefix, suffix: options?.suffix}), Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '', ')'].join('');
 }
 
 /** parse modeSelector */
