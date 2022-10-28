@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.7.1
+
+### Patch Changes
+
+- 3032442: Update undici
+
 ## 0.7.0
 
 ### Minor Changes

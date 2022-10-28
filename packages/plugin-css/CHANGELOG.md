@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.3
+
+### Patch Changes
+
+- 3032442: Fix transition token bug
+- Updated dependencies [3032442]
+  - @cobalt-ui/cli@0.7.1
+
 ## 1.1.2
 
 ### Patch Changes
