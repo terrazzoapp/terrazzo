@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.4
+
+### Patch Changes
+
+- 91b1eed: Fix $value resolution on tokens.meta
+
 ## 1.0.3
 
 ### Patch Changes
