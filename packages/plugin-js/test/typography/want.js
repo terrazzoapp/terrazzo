@@ -39,14 +39,50 @@ export const tokens = {
 
 export const meta = {
   'typography.family.body': {
+    '_original': {
+      '$type': 'font',
+      '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
+    },
+    '_group': {
+      id: 'typography.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'font',
     '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
   },
   'typography.family.heading': {
+    '_original': {
+      '$type': 'font',
+      '$value': 'Helvetica',
+    },
+    '_group': {
+      id: 'typography.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'font',
     '$value': 'Helvetica',
   },
   'typography.page-title': {
+    '_original': {
+      '$type': 'typography',
+      '$value': {
+        fontFamily: '{typography.family.heading}',
+        fontSize: '48px',
+        fontWeight: 600,
+        lineHeight: 1.25,
+        letterSpacing: '0.125em',
+      },
+    },
+    '_group': {
+      id: 'typography',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'typography',
     '$value': {
       fontFamily: '{typography.family.heading}',
@@ -57,6 +93,23 @@ export const meta = {
     },
   },
   'typography.subheading': {
+    '_original': {
+      '$type': 'typography',
+      '$value': {
+        fontFamily: '{typography.family.heading}',
+        fontSize: '18px',
+        fontWeight: 500,
+        lineHeight: 1.375,
+        letterSpacing: '0.25em',
+        textTransform: 'uppercase',
+      },
+    },
+    '_group': {
+      id: 'typography',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'typography',
     '$value': {
       fontFamily: '{typography.family.heading}',
@@ -68,6 +121,22 @@ export const meta = {
     },
   },
   'typography.callout': {
+    '_original': {
+      '$type': 'typography',
+      '$value': {
+        fontFamily: '{typography.family.body}',
+        fontSize: '18px',
+        fontWeight: 300,
+        'font-style': 'italic',
+        lineHeight: 1.5,
+      },
+    },
+    '_group': {
+      id: 'typography',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'typography',
     '$value': {
       fontFamily: '{typography.family.body}',
@@ -78,6 +147,21 @@ export const meta = {
     },
   },
   'typography.body': {
+    '_original': {
+      '$type': 'typography',
+      '$value': {
+        fontFamily: '{typography.family.body}',
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: 1.5,
+      },
+    },
+    '_group': {
+      id: 'typography',
+      '$extensions': {
+        requiredModes: [],
+      },
+    },
     '$type': 'typography',
     '$value': {
       fontFamily: '{typography.family.body}',

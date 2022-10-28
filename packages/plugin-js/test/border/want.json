@@ -8,6 +8,34 @@
   },
   "meta": {
     "border": {
+      "_original": {
+        "$type": "border",
+        "$value": {
+          "color": "#0d0300",
+          "width": "1px",
+          "style": "solid"
+        },
+        "$extensions": {
+          "mode": {
+            "light": {
+              "color": "#0d0300",
+              "width": "1px",
+              "style": "solid"
+            },
+            "dark": {
+              "color": "#ffffff",
+              "width": "1px",
+              "style": "solid"
+            }
+          }
+        }
+      },
+      "_group": {
+        "id": ".",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
       "$type": "border",
       "$value": {
         "color": "#0d0300",

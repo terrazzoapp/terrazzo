@@ -196,54 +196,200 @@ export const tokens = {
 
 export const meta = {
   'ease.circ-in': {
+    '_original': {
+      '$value': [0.55, 0, 1, 0.45],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.55, 0, 1, 0.45],
   },
   'ease.circ-out': {
+    '_original': {
+      '$value': [0.33, 1, 0.68, 1],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.33, 1, 0.68, 1],
   },
   'ease.circ-in-out': {
+    '_original': {
+      '$value': [0.85, 0, 0.15, 1],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.85, 0, 0.15, 1],
   },
   'ease.cubic-in': {
+    '_original': {
+      '$value': [0.32, 0, 0.67, 0],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.32, 0, 0.67, 0],
   },
   'ease.cubic-in-out': {
+    '_original': {
+      '$value': [0.65, 0, 0.35, 1],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.65, 0, 0.35, 1],
   },
   'ease.cubic-out': {
+    '_original': {
+      '$value': [0.33, 1, 0.68, 1],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0.33, 1, 0.68, 1],
   },
   'ease.linear': {
+    '_original': {
+      '$value': [0, 0, 1, 1],
+    },
+    '_group': {
+      id: 'ease',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Easing curves',
+      '$type': 'cubicBezier',
+    },
     '$type': 'cubicBezier',
     '$value': [0, 0, 1, 1],
   },
   'timing.instant': {
+    '_original': {
+      '$value': '50ms',
+    },
+    '_group': {
+      id: 'timing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Standardized beats',
+      '$type': 'duration',
+    },
     '$type': 'duration',
     '$value': '50ms',
   },
   'timing.quick': {
+    '_original': {
+      '$value': '100ms',
+    },
+    '_group': {
+      id: 'timing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Standardized beats',
+      '$type': 'duration',
+    },
     '$type': 'duration',
     '$value': '100ms',
   },
   'timing.moderate': {
+    '_original': {
+      '$value': '250ms',
+    },
+    '_group': {
+      id: 'timing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Standardized beats',
+      '$type': 'duration',
+    },
     '$type': 'duration',
     '$value': '250ms',
   },
   'timing.deliberate': {
+    '_original': {
+      '$value': '500ms',
+    },
+    '_group': {
+      id: 'timing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Standardized beats',
+      '$type': 'duration',
+    },
     '$type': 'duration',
     '$value': '500ms',
   },
   'timing.slow': {
+    '_original': {
+      '$value': '1s',
+    },
+    '_group': {
+      id: 'timing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Standardized beats',
+      '$type': 'duration',
+    },
     '$type': 'duration',
     '$value': '1s',
   },
   'transition.circ-in-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.circ-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -251,6 +397,20 @@ export const meta = {
     },
   },
   'transition.circ-in-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.circ-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -258,6 +418,20 @@ export const meta = {
     },
   },
   'transition.circ-in-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.circ-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -265,6 +439,20 @@ export const meta = {
     },
   },
   'transition.circ-in-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.circ-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -272,6 +460,20 @@ export const meta = {
     },
   },
   'transition.circ-in-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.circ-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -279,6 +481,20 @@ export const meta = {
     },
   },
   'transition.circ-in-out-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.circ-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -286,6 +502,20 @@ export const meta = {
     },
   },
   'transition.circ-in-out-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.circ-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -293,6 +523,20 @@ export const meta = {
     },
   },
   'transition.circ-in-out-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.circ-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -300,6 +544,20 @@ export const meta = {
     },
   },
   'transition.circ-in-out-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.circ-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -307,6 +565,20 @@ export const meta = {
     },
   },
   'transition.circ-in-out-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.circ-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -314,6 +586,20 @@ export const meta = {
     },
   },
   'transition.circ-out-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.circ-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -321,6 +607,20 @@ export const meta = {
     },
   },
   'transition.circ-out-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.circ-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -328,6 +628,20 @@ export const meta = {
     },
   },
   'transition.circ-out-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.circ-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -335,6 +649,20 @@ export const meta = {
     },
   },
   'transition.circ-out-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.circ-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -342,6 +670,20 @@ export const meta = {
     },
   },
   'transition.circ-out-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.circ-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -349,6 +691,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.cubic-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -356,6 +712,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.cubic-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -363,6 +733,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.cubic-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -370,6 +754,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.cubic-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -377,6 +775,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.cubic-in}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -384,6 +796,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-out-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.cubic-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -391,6 +817,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-out-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.cubic-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -398,6 +838,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-out-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.cubic-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -405,6 +859,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-out-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.cubic-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -412,6 +880,20 @@ export const meta = {
     },
   },
   'transition.cubic-in-out-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.cubic-in-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -419,6 +901,20 @@ export const meta = {
     },
   },
   'transition.cubic-out-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.cubic-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -426,6 +922,20 @@ export const meta = {
     },
   },
   'transition.cubic-out-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.cubic-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -433,6 +943,20 @@ export const meta = {
     },
   },
   'transition.cubic-out-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.cubic-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -440,6 +964,20 @@ export const meta = {
     },
   },
   'transition.cubic-out-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.cubic-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -447,6 +985,20 @@ export const meta = {
     },
   },
   'transition.cubic-out-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.cubic-out}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',
@@ -454,6 +1006,20 @@ export const meta = {
     },
   },
   'transition.linear-instant': {
+    '_original': {
+      '$value': {
+        duration: '{timing.instant}',
+        timingFunction: '{ease.linear}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.instant}',
@@ -461,6 +1027,20 @@ export const meta = {
     },
   },
   'transition.linear-quick': {
+    '_original': {
+      '$value': {
+        duration: '{timing.quick}',
+        timingFunction: '{ease.linear}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.quick}',
@@ -468,6 +1048,20 @@ export const meta = {
     },
   },
   'transition.linear-moderate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.moderate}',
+        timingFunction: '{ease.linear}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.moderate}',
@@ -475,6 +1069,20 @@ export const meta = {
     },
   },
   'transition.linear-deliberate': {
+    '_original': {
+      '$value': {
+        duration: '{timing.deliberate}',
+        timingFunction: '{ease.linear}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.deliberate}',
@@ -482,6 +1090,20 @@ export const meta = {
     },
   },
   'transition.linear-slow': {
+    '_original': {
+      '$value': {
+        duration: '{timing.slow}',
+        timingFunction: '{ease.linear}',
+      },
+    },
+    '_group': {
+      id: 'transition',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$description': 'Shared transitions',
+      '$type': 'transition',
+    },
     '$type': 'transition',
     '$value': {
       duration: '{timing.slow}',

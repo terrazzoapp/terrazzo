@@ -18,8 +18,44 @@ $__token-values: (
     "light": (#6fdd8b),
     "dark": (#56d364),
   ),
+  "ease.circ-in": (
+    default: (cubic-bezier(0.55, 0, 1, 0.45)),
+  ),
+  "ease.circ-out": (
+    default: (cubic-bezier(0.33, 1, 0.68, 1)),
+  ),
+  "ease.circ-in-out": (
+    default: (cubic-bezier(0.85, 0, 0.15, 1)),
+  ),
+  "ease.cubic-in": (
+    default: (cubic-bezier(0.32, 0, 0.67, 0)),
+  ),
+  "ease.cubic-in-out": (
+    default: (cubic-bezier(0.65, 0, 0.35, 1)),
+  ),
+  "ease.cubic-out": (
+    default: (cubic-bezier(0.33, 1, 0.68, 1)),
+  ),
+  "ease.linear": (
+    default: (cubic-bezier(0, 0, 1, 1)),
+  ),
   "gradient.g-b": (
     default: (#00ff00 0%, #0000ff 100%),
+  ),
+  "timing.instant": (
+    default: (50ms),
+  ),
+  "timing.quick": (
+    default: (100ms),
+  ),
+  "timing.moderate": (
+    default: (250ms),
+  ),
+  "timing.deliberate": (
+    default: (500ms),
+  ),
+  "timing.slow": (
+    default: (1s),
   ),
   "typography.family.body": (
     default: ("IBM Plex Sans", -system-ui, sans-serif),
@@ -42,8 +78,110 @@ $__token-values: (
   "shadow": (
     default: (0 4px 8px 0 #0000001a),
   ),
-  "transition": (
-    default: (0ms 0ms cubic-bezier(0.4,0,0.6,1)),
+  "transition.circ-in-instant": (
+    default: (50ms 0ms cubic-bezier(0.55,0,1,0.45)),
+  ),
+  "transition.circ-in-quick": (
+    default: (100ms 0ms cubic-bezier(0.55,0,1,0.45)),
+  ),
+  "transition.circ-in-moderate": (
+    default: (250ms 0ms cubic-bezier(0.55,0,1,0.45)),
+  ),
+  "transition.circ-in-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.55,0,1,0.45)),
+  ),
+  "transition.circ-in-slow": (
+    default: (1s 0ms cubic-bezier(0.55,0,1,0.45)),
+  ),
+  "transition.circ-in-out-instant": (
+    default: (50ms 0ms cubic-bezier(0.85,0,0.15,1)),
+  ),
+  "transition.circ-in-out-quick": (
+    default: (100ms 0ms cubic-bezier(0.85,0,0.15,1)),
+  ),
+  "transition.circ-in-out-moderate": (
+    default: (250ms 0ms cubic-bezier(0.85,0,0.15,1)),
+  ),
+  "transition.circ-in-out-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.85,0,0.15,1)),
+  ),
+  "transition.circ-in-out-slow": (
+    default: (1s 0ms cubic-bezier(0.85,0,0.15,1)),
+  ),
+  "transition.circ-out-instant": (
+    default: (50ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.circ-out-quick": (
+    default: (100ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.circ-out-moderate": (
+    default: (250ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.circ-out-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.circ-out-slow": (
+    default: (1s 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.cubic-in-instant": (
+    default: (50ms 0ms cubic-bezier(0.32,0,0.67,0)),
+  ),
+  "transition.cubic-in-quick": (
+    default: (100ms 0ms cubic-bezier(0.32,0,0.67,0)),
+  ),
+  "transition.cubic-in-moderate": (
+    default: (250ms 0ms cubic-bezier(0.32,0,0.67,0)),
+  ),
+  "transition.cubic-in-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.32,0,0.67,0)),
+  ),
+  "transition.cubic-in-slow": (
+    default: (1s 0ms cubic-bezier(0.32,0,0.67,0)),
+  ),
+  "transition.cubic-in-out-instant": (
+    default: (50ms 0ms cubic-bezier(0.65,0,0.35,1)),
+  ),
+  "transition.cubic-in-out-quick": (
+    default: (100ms 0ms cubic-bezier(0.65,0,0.35,1)),
+  ),
+  "transition.cubic-in-out-moderate": (
+    default: (250ms 0ms cubic-bezier(0.65,0,0.35,1)),
+  ),
+  "transition.cubic-in-out-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.65,0,0.35,1)),
+  ),
+  "transition.cubic-in-out-slow": (
+    default: (1s 0ms cubic-bezier(0.65,0,0.35,1)),
+  ),
+  "transition.cubic-out-instant": (
+    default: (50ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.cubic-out-quick": (
+    default: (100ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.cubic-out-moderate": (
+    default: (250ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.cubic-out-deliberate": (
+    default: (500ms 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.cubic-out-slow": (
+    default: (1s 0ms cubic-bezier(0.33,1,0.68,1)),
+  ),
+  "transition.linear-instant": (
+    default: (50ms 0ms cubic-bezier(0,0,1,1)),
+  ),
+  "transition.linear-quick": (
+    default: (100ms 0ms cubic-bezier(0,0,1,1)),
+  ),
+  "transition.linear-moderate": (
+    default: (250ms 0ms cubic-bezier(0,0,1,1)),
+  ),
+  "transition.linear-deliberate": (
+    default: (500ms 0ms cubic-bezier(0,0,1,1)),
+  ),
+  "transition.linear-slow": (
+    default: (1s 0ms cubic-bezier(0,0,1,1)),
   ),
 )
 

@@ -5,18 +5,8 @@
  */
 
 import {
-  ColorToken,
-  FontToken,
-  DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
   BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
-  TypographyToken,
+  ParsedBorderToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -24,7 +14,7 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  border: BorderToken & { $extensions: { mode: typeof modes['border'] } };
+  border: ParsedBorderToken & { $extensions: { mode: typeof modes['border'] } };
 };
 
 export declare const modes: {

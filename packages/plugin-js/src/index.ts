@@ -1,5 +1,5 @@
 import type {BuildResult, Mode, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
-import {indent, objKey} from '@cobalt-ui/utils';
+import {cloneDeep, indent, objKey} from '@cobalt-ui/utils';
 
 const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
@@ -66,10 +66,12 @@ function defaultTransform(token: ParsedToken, mode?: string): typeof token['$val
 export default function pluginJS(options?: Options): Plugin {
   if (options && options.js === false && options.json === false) throw new Error(`[plugin-js] Must output either JS or JSON. Received "js: false" and "json: false"`);
 
+  const tsImports = new Set<string>();
+
   // set default options
   let jsFilename: string | undefined = './index.js';
-  if (options?.js === false) jsFilename = undefined;
-  else if (typeof options?.js === 'string' && options.js.length) jsFilename = options?.js;
+  if (options?.js === false || (options?.js === undefined && options?.json !== undefined)) jsFilename = undefined;
+  else if (typeof options?.js === 'string' && options.js.length) jsFilename = options.js;
   let jsonFilename: string | undefined;
   if (options?.json === true) jsonFilename = './tokens.json';
   else if (typeof options?.json === 'string' && options.json.length) jsonFilename = options.json;
@@ -94,12 +96,22 @@ export default function pluginJS(options?: Options): Plugin {
       const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
         js.tokens[token.id] = await transform(token);
-        if (buildTS) ts.tokens.push(indent(`${objKey(token.id)}: ${tokenTypes[token.$type]}['$value'];`, 1));
+        if (buildTS) {
+          const t = tokenTypes[token.$type];
+          ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));
+          tsImports.add(t);
+        }
         js.meta[token.id] = {
+          _original: cloneDeep(token._original),
+          ...((token._group && {_group: token._group}) || {}),
           $type: token.$type,
-          ...(token._original as any),
+          ...cloneDeep(token._original as any),
         };
-        if (buildTS) ts.meta.push(indent(`${objKey(token.id)}: ${tokenTypes[token.$type]}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
+        if (buildTS) {
+          const t = `Parsed${tokenTypes[token.$type]}`;
+          ts.meta.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
+          tsImports.add(t);
+        }
         if (token.$extensions?.mode) {
           js.modes[token.id] = {};
           if (buildTS) ts.modes.push(indent(`${objKey(token.id)}: {`, 1));
@@ -128,6 +140,8 @@ export default function pluginJS(options?: Options): Plugin {
 
       // JS + TS
       if (jsFilename) {
+        const sortedTypeImports = [...tsImports];
+        sortedTypeImports.sort();
         const jsDoc: Record<string, string> = {};
         for (const token of tokens) {
           if (token.$description) jsDoc[token.id] = token.$description;
@@ -158,7 +172,7 @@ export function token(tokenID, modeName) {
               comment,
               '',
               'import {',
-              ...Object.values(tokenTypes).map((t) => `${indent(t, 1)},`),
+              ...sortedTypeImports.map((m) => indent(`${m},`, 1)),
               `} from '@cobalt-ui/core';`,
               '',
               'export declare const tokens: {',

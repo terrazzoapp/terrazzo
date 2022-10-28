@@ -6,17 +6,7 @@
 
 import {
   ColorToken,
-  FontToken,
-  DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
-  TypographyToken,
+  ParsedColorToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -38,21 +28,21 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'color.black': ColorToken;
-  'color.blue.10': ColorToken;
-  'color.blue.20': ColorToken;
-  'color.blue.30': ColorToken;
-  'color.blue.40': ColorToken;
-  'color.blue.50': ColorToken;
-  'color.blue.60': ColorToken;
-  'color.blue.70': ColorToken;
-  'color.blue.80': ColorToken;
-  'color.blue.90': ColorToken;
-  'color.blue.100': ColorToken;
-  'color.blue.00': ColorToken;
-  'color.white': ColorToken;
-  'ui.fg': ColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
-  'ui.bg': ColorToken & { $extensions: { mode: typeof modes['ui.bg'] } };
+  'color.black': ParsedColorToken;
+  'color.blue.10': ParsedColorToken;
+  'color.blue.20': ParsedColorToken;
+  'color.blue.30': ParsedColorToken;
+  'color.blue.40': ParsedColorToken;
+  'color.blue.50': ParsedColorToken;
+  'color.blue.60': ParsedColorToken;
+  'color.blue.70': ParsedColorToken;
+  'color.blue.80': ParsedColorToken;
+  'color.blue.90': ParsedColorToken;
+  'color.blue.100': ParsedColorToken;
+  'color.blue.00': ParsedColorToken;
+  'color.white': ParsedColorToken;
+  'ui.fg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
+  'ui.bg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.bg'] } };
 };
 
 export declare const modes: {

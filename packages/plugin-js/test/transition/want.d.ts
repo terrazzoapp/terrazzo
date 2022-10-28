@@ -5,18 +5,12 @@
  */
 
 import {
-  ColorToken,
-  FontToken,
-  DimensionToken,
-  DurationToken,
   CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
+  DurationToken,
+  ParsedCubicBezierToken,
+  ParsedDurationToken,
+  ParsedTransitionToken,
   TransitionToken,
-  ShadowToken,
-  GradientToken,
-  TypographyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -70,53 +64,53 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'ease.circ-in': CubicBezierToken;
-  'ease.circ-out': CubicBezierToken;
-  'ease.circ-in-out': CubicBezierToken;
-  'ease.cubic-in': CubicBezierToken;
-  'ease.cubic-in-out': CubicBezierToken;
-  'ease.cubic-out': CubicBezierToken;
-  'ease.linear': CubicBezierToken;
-  'timing.instant': DurationToken;
-  'timing.quick': DurationToken;
-  'timing.moderate': DurationToken;
-  'timing.deliberate': DurationToken;
-  'timing.slow': DurationToken;
-  'transition.circ-in-instant': TransitionToken;
-  'transition.circ-in-quick': TransitionToken;
-  'transition.circ-in-moderate': TransitionToken;
-  'transition.circ-in-deliberate': TransitionToken;
-  'transition.circ-in-slow': TransitionToken;
-  'transition.circ-in-out-instant': TransitionToken;
-  'transition.circ-in-out-quick': TransitionToken;
-  'transition.circ-in-out-moderate': TransitionToken;
-  'transition.circ-in-out-deliberate': TransitionToken;
-  'transition.circ-in-out-slow': TransitionToken;
-  'transition.circ-out-instant': TransitionToken;
-  'transition.circ-out-quick': TransitionToken;
-  'transition.circ-out-moderate': TransitionToken;
-  'transition.circ-out-deliberate': TransitionToken;
-  'transition.circ-out-slow': TransitionToken;
-  'transition.cubic-in-instant': TransitionToken;
-  'transition.cubic-in-quick': TransitionToken;
-  'transition.cubic-in-moderate': TransitionToken;
-  'transition.cubic-in-deliberate': TransitionToken;
-  'transition.cubic-in-slow': TransitionToken;
-  'transition.cubic-in-out-instant': TransitionToken;
-  'transition.cubic-in-out-quick': TransitionToken;
-  'transition.cubic-in-out-moderate': TransitionToken;
-  'transition.cubic-in-out-deliberate': TransitionToken;
-  'transition.cubic-in-out-slow': TransitionToken;
-  'transition.cubic-out-instant': TransitionToken;
-  'transition.cubic-out-quick': TransitionToken;
-  'transition.cubic-out-moderate': TransitionToken;
-  'transition.cubic-out-deliberate': TransitionToken;
-  'transition.cubic-out-slow': TransitionToken;
-  'transition.linear-instant': TransitionToken;
-  'transition.linear-quick': TransitionToken;
-  'transition.linear-moderate': TransitionToken;
-  'transition.linear-deliberate': TransitionToken;
-  'transition.linear-slow': TransitionToken;
+  'ease.circ-in': ParsedCubicBezierToken;
+  'ease.circ-out': ParsedCubicBezierToken;
+  'ease.circ-in-out': ParsedCubicBezierToken;
+  'ease.cubic-in': ParsedCubicBezierToken;
+  'ease.cubic-in-out': ParsedCubicBezierToken;
+  'ease.cubic-out': ParsedCubicBezierToken;
+  'ease.linear': ParsedCubicBezierToken;
+  'timing.instant': ParsedDurationToken;
+  'timing.quick': ParsedDurationToken;
+  'timing.moderate': ParsedDurationToken;
+  'timing.deliberate': ParsedDurationToken;
+  'timing.slow': ParsedDurationToken;
+  'transition.circ-in-instant': ParsedTransitionToken;
+  'transition.circ-in-quick': ParsedTransitionToken;
+  'transition.circ-in-moderate': ParsedTransitionToken;
+  'transition.circ-in-deliberate': ParsedTransitionToken;
+  'transition.circ-in-slow': ParsedTransitionToken;
+  'transition.circ-in-out-instant': ParsedTransitionToken;
+  'transition.circ-in-out-quick': ParsedTransitionToken;
+  'transition.circ-in-out-moderate': ParsedTransitionToken;
+  'transition.circ-in-out-deliberate': ParsedTransitionToken;
+  'transition.circ-in-out-slow': ParsedTransitionToken;
+  'transition.circ-out-instant': ParsedTransitionToken;
+  'transition.circ-out-quick': ParsedTransitionToken;
+  'transition.circ-out-moderate': ParsedTransitionToken;
+  'transition.circ-out-deliberate': ParsedTransitionToken;
+  'transition.circ-out-slow': ParsedTransitionToken;
+  'transition.cubic-in-instant': ParsedTransitionToken;
+  'transition.cubic-in-quick': ParsedTransitionToken;
+  'transition.cubic-in-moderate': ParsedTransitionToken;
+  'transition.cubic-in-deliberate': ParsedTransitionToken;
+  'transition.cubic-in-slow': ParsedTransitionToken;
+  'transition.cubic-in-out-instant': ParsedTransitionToken;
+  'transition.cubic-in-out-quick': ParsedTransitionToken;
+  'transition.cubic-in-out-moderate': ParsedTransitionToken;
+  'transition.cubic-in-out-deliberate': ParsedTransitionToken;
+  'transition.cubic-in-out-slow': ParsedTransitionToken;
+  'transition.cubic-out-instant': ParsedTransitionToken;
+  'transition.cubic-out-quick': ParsedTransitionToken;
+  'transition.cubic-out-moderate': ParsedTransitionToken;
+  'transition.cubic-out-deliberate': ParsedTransitionToken;
+  'transition.cubic-out-slow': ParsedTransitionToken;
+  'transition.linear-instant': ParsedTransitionToken;
+  'transition.linear-quick': ParsedTransitionToken;
+  'transition.linear-moderate': ParsedTransitionToken;
+  'transition.linear-deliberate': ParsedTransitionToken;
+  'transition.linear-slow': ParsedTransitionToken;
 };
 
 export declare const modes: Record<string, never>;

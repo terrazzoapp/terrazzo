@@ -5,17 +5,9 @@
  */
 
 import {
-  ColorToken,
   FontToken,
-  DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
+  ParsedFontToken,
+  ParsedTypographyToken,
   TypographyToken,
 } from '@cobalt-ui/core';
 
@@ -29,12 +21,12 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'typography.family.body': FontToken;
-  'typography.family.heading': FontToken;
-  'typography.page-title': TypographyToken;
-  'typography.subheading': TypographyToken;
-  'typography.callout': TypographyToken;
-  'typography.body': TypographyToken;
+  'typography.family.body': ParsedFontToken;
+  'typography.family.heading': ParsedFontToken;
+  'typography.page-title': ParsedTypographyToken;
+  'typography.subheading': ParsedTypographyToken;
+  'typography.callout': ParsedTypographyToken;
+  'typography.body': ParsedTypographyToken;
 };
 
 export declare const modes: Record<string, never>;
