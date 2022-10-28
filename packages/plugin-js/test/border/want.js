@@ -42,6 +42,7 @@ export const meta = {
         requiredModes: [],
       },
     },
+    id: 'border',
     '$type': 'border',
     '$value': {
       color: '#0d0300',

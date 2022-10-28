@@ -416,6 +416,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.circ-in",
       "$type": "cubicBezier",
       "$value": [
         0.55,
@@ -441,6 +442,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.circ-out",
       "$type": "cubicBezier",
       "$value": [
         0.33,
@@ -466,6 +468,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.circ-in-out",
       "$type": "cubicBezier",
       "$value": [
         0.85,
@@ -491,6 +494,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.cubic-in",
       "$type": "cubicBezier",
       "$value": [
         0.32,
@@ -516,6 +520,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.cubic-in-out",
       "$type": "cubicBezier",
       "$value": [
         0.65,
@@ -541,6 +546,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.cubic-out",
       "$type": "cubicBezier",
       "$value": [
         0.33,
@@ -566,6 +572,7 @@
         "$description": "Easing curves",
         "$type": "cubicBezier"
       },
+      "id": "ease.linear",
       "$type": "cubicBezier",
       "$value": [
         0,
@@ -586,6 +593,7 @@
         "$description": "Standardized beats",
         "$type": "duration"
       },
+      "id": "timing.instant",
       "$type": "duration",
       "$value": "50ms"
     },
@@ -601,6 +609,7 @@
         "$description": "Standardized beats",
         "$type": "duration"
       },
+      "id": "timing.quick",
       "$type": "duration",
       "$value": "100ms"
     },
@@ -616,6 +625,7 @@
         "$description": "Standardized beats",
         "$type": "duration"
       },
+      "id": "timing.moderate",
       "$type": "duration",
       "$value": "250ms"
     },
@@ -631,6 +641,7 @@
         "$description": "Standardized beats",
         "$type": "duration"
       },
+      "id": "timing.deliberate",
       "$type": "duration",
       "$value": "500ms"
     },
@@ -646,6 +657,7 @@
         "$description": "Standardized beats",
         "$type": "duration"
       },
+      "id": "timing.slow",
       "$type": "duration",
       "$value": "1s"
     },
@@ -664,10 +676,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.circ-in}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.55,
+          0,
+          1,
+          0.45
+        ]
       }
     },
     "transition.circ-in-quick": {
@@ -685,10 +704,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.circ-in}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.55,
+          0,
+          1,
+          0.45
+        ]
       }
     },
     "transition.circ-in-moderate": {
@@ -706,10 +732,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.circ-in}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.55,
+          0,
+          1,
+          0.45
+        ]
       }
     },
     "transition.circ-in-deliberate": {
@@ -727,10 +760,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.circ-in}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.55,
+          0,
+          1,
+          0.45
+        ]
       }
     },
     "transition.circ-in-slow": {
@@ -748,10 +788,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.circ-in}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.55,
+          0,
+          1,
+          0.45
+        ]
       }
     },
     "transition.circ-in-out-instant": {
@@ -769,10 +816,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-out-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.circ-in-out}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.85,
+          0,
+          0.15,
+          1
+        ]
       }
     },
     "transition.circ-in-out-quick": {
@@ -790,10 +844,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-out-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.circ-in-out}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.85,
+          0,
+          0.15,
+          1
+        ]
       }
     },
     "transition.circ-in-out-moderate": {
@@ -811,10 +872,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-out-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.circ-in-out}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.85,
+          0,
+          0.15,
+          1
+        ]
       }
     },
     "transition.circ-in-out-deliberate": {
@@ -832,10 +900,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-out-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.circ-in-out}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.85,
+          0,
+          0.15,
+          1
+        ]
       }
     },
     "transition.circ-in-out-slow": {
@@ -853,10 +928,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-in-out-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.circ-in-out}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.85,
+          0,
+          0.15,
+          1
+        ]
       }
     },
     "transition.circ-out-instant": {
@@ -874,10 +956,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-out-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.circ-out}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.circ-out-quick": {
@@ -895,10 +984,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-out-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.circ-out}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.circ-out-moderate": {
@@ -916,10 +1012,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-out-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.circ-out}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.circ-out-deliberate": {
@@ -937,10 +1040,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-out-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.circ-out}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.circ-out-slow": {
@@ -958,10 +1068,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.circ-out-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.circ-out}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.cubic-in-instant": {
@@ -979,10 +1096,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.cubic-in}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.32,
+          0,
+          0.67,
+          0
+        ]
       }
     },
     "transition.cubic-in-quick": {
@@ -1000,10 +1124,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.cubic-in}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.32,
+          0,
+          0.67,
+          0
+        ]
       }
     },
     "transition.cubic-in-moderate": {
@@ -1021,10 +1152,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.cubic-in}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.32,
+          0,
+          0.67,
+          0
+        ]
       }
     },
     "transition.cubic-in-deliberate": {
@@ -1042,10 +1180,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.cubic-in}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.32,
+          0,
+          0.67,
+          0
+        ]
       }
     },
     "transition.cubic-in-slow": {
@@ -1063,10 +1208,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.cubic-in}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.32,
+          0,
+          0.67,
+          0
+        ]
       }
     },
     "transition.cubic-in-out-instant": {
@@ -1084,10 +1236,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-out-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.cubic-in-out}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
       }
     },
     "transition.cubic-in-out-quick": {
@@ -1105,10 +1264,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-out-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.cubic-in-out}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
       }
     },
     "transition.cubic-in-out-moderate": {
@@ -1126,10 +1292,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-out-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.cubic-in-out}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
       }
     },
     "transition.cubic-in-out-deliberate": {
@@ -1147,10 +1320,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-out-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.cubic-in-out}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
       }
     },
     "transition.cubic-in-out-slow": {
@@ -1168,10 +1348,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-in-out-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.cubic-in-out}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.65,
+          0,
+          0.35,
+          1
+        ]
       }
     },
     "transition.cubic-out-instant": {
@@ -1189,10 +1376,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-out-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.cubic-out}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.cubic-out-quick": {
@@ -1210,10 +1404,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-out-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.cubic-out}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.cubic-out-moderate": {
@@ -1231,10 +1432,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-out-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.cubic-out}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.cubic-out-deliberate": {
@@ -1252,10 +1460,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-out-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.cubic-out}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.cubic-out-slow": {
@@ -1273,10 +1488,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.cubic-out-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.cubic-out}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0.33,
+          1,
+          0.68,
+          1
+        ]
       }
     },
     "transition.linear-instant": {
@@ -1294,10 +1516,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.linear-instant",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.instant}",
-        "timingFunction": "{ease.linear}"
+        "duration": "50ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0,
+          0,
+          1,
+          1
+        ]
       }
     },
     "transition.linear-quick": {
@@ -1315,10 +1544,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.linear-quick",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.quick}",
-        "timingFunction": "{ease.linear}"
+        "duration": "100ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0,
+          0,
+          1,
+          1
+        ]
       }
     },
     "transition.linear-moderate": {
@@ -1336,10 +1572,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.linear-moderate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.moderate}",
-        "timingFunction": "{ease.linear}"
+        "duration": "250ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0,
+          0,
+          1,
+          1
+        ]
       }
     },
     "transition.linear-deliberate": {
@@ -1357,10 +1600,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.linear-deliberate",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.deliberate}",
-        "timingFunction": "{ease.linear}"
+        "duration": "500ms",
+        "delay": "0ms",
+        "timingFunction": [
+          0,
+          0,
+          1,
+          1
+        ]
       }
     },
     "transition.linear-slow": {
@@ -1378,10 +1628,17 @@
         "$description": "Shared transitions",
         "$type": "transition"
       },
+      "id": "transition.linear-slow",
       "$type": "transition",
       "$value": {
-        "duration": "{timing.slow}",
-        "timingFunction": "{ease.linear}"
+        "duration": "1s",
+        "delay": "0ms",
+        "timingFunction": [
+          0,
+          0,
+          1,
+          1
+        ]
       }
     }
   },

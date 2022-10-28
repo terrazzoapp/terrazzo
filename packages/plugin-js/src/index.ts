@@ -104,8 +104,7 @@ export default function pluginJS(options?: Options): Plugin {
         js.meta[token.id] = {
           _original: cloneDeep(token._original),
           ...((token._group && {_group: token._group}) || {}),
-          $type: token.$type,
-          ...cloneDeep(token._original as any),
+          ...cloneDeep(token as any),
         };
         if (buildTS) {
           const t = `Parsed${tokenTypes[token.$type]}`;
