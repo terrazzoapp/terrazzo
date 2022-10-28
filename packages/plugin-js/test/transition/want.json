@@ -1,0 +1,732 @@
+{
+  "tokens": {
+    "ease.circ-in": [
+      0.55,
+      0,
+      1,
+      0.45
+    ],
+    "ease.circ-out": [
+      0.33,
+      1,
+      0.68,
+      1
+    ],
+    "ease.circ-in-out": [
+      0.85,
+      0,
+      0.15,
+      1
+    ],
+    "ease.cubic-in": [
+      0.32,
+      0,
+      0.67,
+      0
+    ],
+    "ease.cubic-in-out": [
+      0.65,
+      0,
+      0.35,
+      1
+    ],
+    "ease.cubic-out": [
+      0.33,
+      1,
+      0.68,
+      1
+    ],
+    "ease.linear": [
+      0,
+      0,
+      1,
+      1
+    ],
+    "timing.instant": "50ms",
+    "timing.quick": "100ms",
+    "timing.moderate": "250ms",
+    "timing.deliberate": "500ms",
+    "timing.slow": "1s",
+    "transition.circ-in-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "transition.circ-in-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "transition.circ-in-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "transition.circ-in-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "transition.circ-in-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "transition.circ-in-out-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "transition.circ-in-out-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "transition.circ-in-out-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "transition.circ-in-out-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "transition.circ-in-out-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "transition.circ-out-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.circ-out-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.circ-out-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.circ-out-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.circ-out-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.cubic-in-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "transition.cubic-in-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "transition.cubic-in-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "transition.cubic-in-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "transition.cubic-in-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "transition.cubic-in-out-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "transition.cubic-in-out-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "transition.cubic-in-out-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "transition.cubic-in-out-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "transition.cubic-in-out-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "transition.cubic-out-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.cubic-out-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.cubic-out-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.cubic-out-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.cubic-out-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "transition.linear-instant": {
+      "duration": "50ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "transition.linear-quick": {
+      "duration": "100ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "transition.linear-moderate": {
+      "duration": "250ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "transition.linear-deliberate": {
+      "duration": "500ms",
+      "delay": "0ms",
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "transition.linear-slow": {
+      "duration": "1s",
+      "delay": "0ms",
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  },
+  "meta": {
+    "ease.circ-in": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.55,
+        0,
+        1,
+        0.45
+      ]
+    },
+    "ease.circ-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "ease.circ-in-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.85,
+        0,
+        0.15,
+        1
+      ]
+    },
+    "ease.cubic-in": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.32,
+        0,
+        0.67,
+        0
+      ]
+    },
+    "ease.cubic-in-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.65,
+        0,
+        0.35,
+        1
+      ]
+    },
+    "ease.cubic-out": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.33,
+        1,
+        0.68,
+        1
+      ]
+    },
+    "ease.linear": {
+      "$type": "cubicBezier",
+      "$value": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    "timing.instant": {
+      "$type": "duration",
+      "$value": "50ms"
+    },
+    "timing.quick": {
+      "$type": "duration",
+      "$value": "100ms"
+    },
+    "timing.moderate": {
+      "$type": "duration",
+      "$value": "250ms"
+    },
+    "timing.deliberate": {
+      "$type": "duration",
+      "$value": "500ms"
+    },
+    "timing.slow": {
+      "$type": "duration",
+      "$value": "1s"
+    },
+    "transition.circ-in-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.circ-in}"
+      }
+    },
+    "transition.circ-in-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.circ-in}"
+      }
+    },
+    "transition.circ-in-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.circ-in}"
+      }
+    },
+    "transition.circ-in-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.circ-in}"
+      }
+    },
+    "transition.circ-in-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.circ-in}"
+      }
+    },
+    "transition.circ-in-out-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.circ-in-out}"
+      }
+    },
+    "transition.circ-in-out-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.circ-in-out}"
+      }
+    },
+    "transition.circ-in-out-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.circ-in-out}"
+      }
+    },
+    "transition.circ-in-out-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.circ-in-out}"
+      }
+    },
+    "transition.circ-in-out-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.circ-in-out}"
+      }
+    },
+    "transition.circ-out-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.circ-out}"
+      }
+    },
+    "transition.circ-out-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.circ-out}"
+      }
+    },
+    "transition.circ-out-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.circ-out}"
+      }
+    },
+    "transition.circ-out-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.circ-out}"
+      }
+    },
+    "transition.circ-out-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.circ-out}"
+      }
+    },
+    "transition.cubic-in-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.cubic-in}"
+      }
+    },
+    "transition.cubic-in-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.cubic-in}"
+      }
+    },
+    "transition.cubic-in-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.cubic-in}"
+      }
+    },
+    "transition.cubic-in-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.cubic-in}"
+      }
+    },
+    "transition.cubic-in-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.cubic-in}"
+      }
+    },
+    "transition.cubic-in-out-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.cubic-in-out}"
+      }
+    },
+    "transition.cubic-in-out-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.cubic-in-out}"
+      }
+    },
+    "transition.cubic-in-out-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.cubic-in-out}"
+      }
+    },
+    "transition.cubic-in-out-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.cubic-in-out}"
+      }
+    },
+    "transition.cubic-in-out-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.cubic-in-out}"
+      }
+    },
+    "transition.cubic-out-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.cubic-out}"
+      }
+    },
+    "transition.cubic-out-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.cubic-out}"
+      }
+    },
+    "transition.cubic-out-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.cubic-out}"
+      }
+    },
+    "transition.cubic-out-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.cubic-out}"
+      }
+    },
+    "transition.cubic-out-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.cubic-out}"
+      }
+    },
+    "transition.linear-instant": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.instant}",
+        "timingFunction": "{ease.linear}"
+      }
+    },
+    "transition.linear-quick": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.quick}",
+        "timingFunction": "{ease.linear}"
+      }
+    },
+    "transition.linear-moderate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.moderate}",
+        "timingFunction": "{ease.linear}"
+      }
+    },
+    "transition.linear-deliberate": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.deliberate}",
+        "timingFunction": "{ease.linear}"
+      }
+    },
+    "transition.linear-slow": {
+      "$type": "transition",
+      "$value": {
+        "duration": "{timing.slow}",
+        "timingFunction": "{ease.linear}"
+      }
+    }
+  },
+  "modes": {}
+}

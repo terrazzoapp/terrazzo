@@ -226,7 +226,7 @@ export function transformGradient(value: ParsedGradientToken['$value']): string 
 }
 /** transform transition */
 export function transformTransition(value: ParsedTransitionToken['$value']): string {
-  const timingFunction = value.timingFunction ? `cubic-bezier(${value.timingFunction.join(',')})` : undefined;
+  const timingFunction = Array.isArray(value.timingFunction) ? `cubic-bezier(${value.timingFunction.join(',')})` : value.timingFunction;
   return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
 }
 /** transform typography */

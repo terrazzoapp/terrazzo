@@ -29,15 +29,15 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.7.0",
-    "@cobalt-ui/utils": "^0.5.1",
+    "@cobalt-ui/core": "^0.7.1",
+    "@cobalt-ui/utils": "^0.5.2",
     "better-color-tools": "^0.9.1",
     "chokidar": "^3.5.3",
     "dotenv": "^16.0.3",
     "number-precision": "^1.6.0",
     "piscina": "^3.2.0",
     "svgo": "^2.8.0",
-    "undici": "^5.11.0"
+    "undici": "^5.12.0"
   },
   "devDependencies": {
     "@types/svgo": "^2.6.4",
