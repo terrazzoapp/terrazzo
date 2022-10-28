@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.3
+
+### Patch Changes
+
+- 2da8f16: Fix missing \_group and \_original data
+
 ## 1.0.2
 
 ### Patch Changes

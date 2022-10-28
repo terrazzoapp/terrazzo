@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-js",
   "description": "Generate JS, TS, and JSON from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
