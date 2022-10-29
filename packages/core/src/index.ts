@@ -35,6 +35,8 @@ export type {
   TokenOrGroup,
   TokenType,
   TransitionToken,
+  TypographyToken,
+  TypographyValue,
 } from './token.js';
 
 import {parse} from './parse/index.js';

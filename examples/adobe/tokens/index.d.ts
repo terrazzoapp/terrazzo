@@ -6,17 +6,11 @@
 
 import {
   ColorToken,
-  FontToken,
   DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
-  TypographyToken,
+  FontToken,
+  ParsedColorToken,
+  ParsedDimensionToken,
+  ParsedFontToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -101,84 +95,84 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'color.blue400': ColorToken & { $extensions: { mode: typeof modes['color.blue400'] } };
-  'color.blue500': ColorToken & { $extensions: { mode: typeof modes['color.blue500'] } };
-  'color.blue600': ColorToken & { $extensions: { mode: typeof modes['color.blue600'] } };
-  'color.blue700': ColorToken & { $extensions: { mode: typeof modes['color.blue700'] } };
-  'color.gray50': ColorToken & { $extensions: { mode: typeof modes['color.gray50'] } };
-  'color.gray75': ColorToken & { $extensions: { mode: typeof modes['color.gray75'] } };
-  'color.gray100': ColorToken & { $extensions: { mode: typeof modes['color.gray100'] } };
-  'color.gray200': ColorToken & { $extensions: { mode: typeof modes['color.gray200'] } };
-  'color.gray300': ColorToken & { $extensions: { mode: typeof modes['color.gray300'] } };
-  'color.gray400': ColorToken & { $extensions: { mode: typeof modes['color.gray400'] } };
-  'color.gray500': ColorToken & { $extensions: { mode: typeof modes['color.gray500'] } };
-  'color.gray600': ColorToken & { $extensions: { mode: typeof modes['color.gray600'] } };
-  'color.gray700': ColorToken & { $extensions: { mode: typeof modes['color.gray700'] } };
-  'color.gray800': ColorToken & { $extensions: { mode: typeof modes['color.gray800'] } };
-  'color.gray900': ColorToken & { $extensions: { mode: typeof modes['color.gray900'] } };
-  'color.green400': ColorToken & { $extensions: { mode: typeof modes['color.green400'] } };
-  'color.green500': ColorToken & { $extensions: { mode: typeof modes['color.green500'] } };
-  'color.green600': ColorToken & { $extensions: { mode: typeof modes['color.green600'] } };
-  'color.green700': ColorToken & { $extensions: { mode: typeof modes['color.green700'] } };
-  'color.red400': ColorToken & { $extensions: { mode: typeof modes['color.red400'] } };
-  'color.red500': ColorToken & { $extensions: { mode: typeof modes['color.red500'] } };
-  'color.red600': ColorToken & { $extensions: { mode: typeof modes['color.red600'] } };
-  'color.red700': ColorToken & { $extensions: { mode: typeof modes['color.red700'] } };
-  'color.orange400': ColorToken & { $extensions: { mode: typeof modes['color.orange400'] } };
-  'color.orange500': ColorToken & { $extensions: { mode: typeof modes['color.orange500'] } };
-  'color.orange600': ColorToken & { $extensions: { mode: typeof modes['color.orange600'] } };
-  'color.orange700': ColorToken & { $extensions: { mode: typeof modes['color.orange700'] } };
-  'color.label.celery400': ColorToken & { $extensions: { mode: typeof modes['color.label.celery400'] } };
-  'color.label.celery500': ColorToken & { $extensions: { mode: typeof modes['color.label.celery500'] } };
-  'color.label.celery600': ColorToken & { $extensions: { mode: typeof modes['color.label.celery600'] } };
-  'color.label.celery700': ColorToken & { $extensions: { mode: typeof modes['color.label.celery700'] } };
-  'color.label.chartreuse400': ColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse400'] } };
-  'color.label.chartreuse500': ColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse500'] } };
-  'color.label.chartreuse600': ColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse600'] } };
-  'color.label.chartreuse700': ColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse700'] } };
-  'color.label.fuchsia400': ColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia400'] } };
-  'color.label.fuchsia500': ColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia500'] } };
-  'color.label.fuchsia600': ColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia600'] } };
-  'color.label.fuchsia700': ColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia700'] } };
-  'color.label.indigo400': ColorToken & { $extensions: { mode: typeof modes['color.label.indigo400'] } };
-  'color.label.indigo500': ColorToken & { $extensions: { mode: typeof modes['color.label.indigo500'] } };
-  'color.label.indigo600': ColorToken & { $extensions: { mode: typeof modes['color.label.indigo600'] } };
-  'color.label.indigo700': ColorToken & { $extensions: { mode: typeof modes['color.label.indigo700'] } };
-  'color.label.magenta400': ColorToken & { $extensions: { mode: typeof modes['color.label.magenta400'] } };
-  'color.label.magenta500': ColorToken & { $extensions: { mode: typeof modes['color.label.magenta500'] } };
-  'color.label.magenta600': ColorToken & { $extensions: { mode: typeof modes['color.label.magenta600'] } };
-  'color.label.magenta700': ColorToken & { $extensions: { mode: typeof modes['color.label.magenta700'] } };
-  'color.label.purple400': ColorToken & { $extensions: { mode: typeof modes['color.label.purple400'] } };
-  'color.label.purple500': ColorToken & { $extensions: { mode: typeof modes['color.label.purple500'] } };
-  'color.label.purple600': ColorToken & { $extensions: { mode: typeof modes['color.label.purple600'] } };
-  'color.label.purple700': ColorToken & { $extensions: { mode: typeof modes['color.label.purple700'] } };
-  'color.label.seafoam400': ColorToken & { $extensions: { mode: typeof modes['color.label.seafoam400'] } };
-  'color.label.seafoam500': ColorToken & { $extensions: { mode: typeof modes['color.label.seafoam500'] } };
-  'color.label.seafoam600': ColorToken & { $extensions: { mode: typeof modes['color.label.seafoam600'] } };
-  'color.label.seafoam700': ColorToken & { $extensions: { mode: typeof modes['color.label.seafoam700'] } };
-  'color.label.yellow400': ColorToken & { $extensions: { mode: typeof modes['color.label.yellow400'] } };
-  'color.label.yellow500': ColorToken & { $extensions: { mode: typeof modes['color.label.yellow500'] } };
-  'color.label.yellow600': ColorToken & { $extensions: { mode: typeof modes['color.label.yellow600'] } };
-  'color.label.yellow700': ColorToken & { $extensions: { mode: typeof modes['color.label.yellow700'] } };
-  'font.family.clean': FontToken;
-  'font.family.cleanSerif': FontToken;
-  'font.family.cleanHan': FontToken;
-  'font.family.sourceCode': FontToken;
-  'font.size.50': DimensionToken & { $extensions: { mode: typeof modes['font.size.50'] } };
-  'font.size.75': DimensionToken & { $extensions: { mode: typeof modes['font.size.75'] } };
-  'font.size.100': DimensionToken & { $extensions: { mode: typeof modes['font.size.100'] } };
-  'font.size.200': DimensionToken & { $extensions: { mode: typeof modes['font.size.200'] } };
-  'font.size.300': DimensionToken & { $extensions: { mode: typeof modes['font.size.300'] } };
-  'font.size.400': DimensionToken & { $extensions: { mode: typeof modes['font.size.400'] } };
-  'font.size.500': DimensionToken & { $extensions: { mode: typeof modes['font.size.500'] } };
-  'font.size.600': DimensionToken & { $extensions: { mode: typeof modes['font.size.600'] } };
-  'font.size.700': DimensionToken & { $extensions: { mode: typeof modes['font.size.700'] } };
-  'font.size.800': DimensionToken & { $extensions: { mode: typeof modes['font.size.800'] } };
-  'font.size.900': DimensionToken & { $extensions: { mode: typeof modes['font.size.900'] } };
-  'font.size.1000': DimensionToken & { $extensions: { mode: typeof modes['font.size.1000'] } };
-  'font.size.1100': DimensionToken & { $extensions: { mode: typeof modes['font.size.1100'] } };
-  'font.size.1200': DimensionToken & { $extensions: { mode: typeof modes['font.size.1200'] } };
-  'font.size.1300': DimensionToken & { $extensions: { mode: typeof modes['font.size.1300'] } };
+  'color.blue400': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue400'] } };
+  'color.blue500': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue500'] } };
+  'color.blue600': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue600'] } };
+  'color.blue700': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue700'] } };
+  'color.gray50': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray50'] } };
+  'color.gray75': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray75'] } };
+  'color.gray100': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray100'] } };
+  'color.gray200': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray200'] } };
+  'color.gray300': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray300'] } };
+  'color.gray400': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray400'] } };
+  'color.gray500': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray500'] } };
+  'color.gray600': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray600'] } };
+  'color.gray700': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray700'] } };
+  'color.gray800': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray800'] } };
+  'color.gray900': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray900'] } };
+  'color.green400': ParsedColorToken & { $extensions: { mode: typeof modes['color.green400'] } };
+  'color.green500': ParsedColorToken & { $extensions: { mode: typeof modes['color.green500'] } };
+  'color.green600': ParsedColorToken & { $extensions: { mode: typeof modes['color.green600'] } };
+  'color.green700': ParsedColorToken & { $extensions: { mode: typeof modes['color.green700'] } };
+  'color.red400': ParsedColorToken & { $extensions: { mode: typeof modes['color.red400'] } };
+  'color.red500': ParsedColorToken & { $extensions: { mode: typeof modes['color.red500'] } };
+  'color.red600': ParsedColorToken & { $extensions: { mode: typeof modes['color.red600'] } };
+  'color.red700': ParsedColorToken & { $extensions: { mode: typeof modes['color.red700'] } };
+  'color.orange400': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange400'] } };
+  'color.orange500': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange500'] } };
+  'color.orange600': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange600'] } };
+  'color.orange700': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange700'] } };
+  'color.label.celery400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery400'] } };
+  'color.label.celery500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery500'] } };
+  'color.label.celery600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery600'] } };
+  'color.label.celery700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery700'] } };
+  'color.label.chartreuse400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse400'] } };
+  'color.label.chartreuse500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse500'] } };
+  'color.label.chartreuse600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse600'] } };
+  'color.label.chartreuse700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse700'] } };
+  'color.label.fuchsia400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia400'] } };
+  'color.label.fuchsia500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia500'] } };
+  'color.label.fuchsia600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia600'] } };
+  'color.label.fuchsia700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia700'] } };
+  'color.label.indigo400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo400'] } };
+  'color.label.indigo500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo500'] } };
+  'color.label.indigo600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo600'] } };
+  'color.label.indigo700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo700'] } };
+  'color.label.magenta400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta400'] } };
+  'color.label.magenta500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta500'] } };
+  'color.label.magenta600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta600'] } };
+  'color.label.magenta700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta700'] } };
+  'color.label.purple400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple400'] } };
+  'color.label.purple500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple500'] } };
+  'color.label.purple600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple600'] } };
+  'color.label.purple700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple700'] } };
+  'color.label.seafoam400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam400'] } };
+  'color.label.seafoam500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam500'] } };
+  'color.label.seafoam600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam600'] } };
+  'color.label.seafoam700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam700'] } };
+  'color.label.yellow400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow400'] } };
+  'color.label.yellow500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow500'] } };
+  'color.label.yellow600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow600'] } };
+  'color.label.yellow700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow700'] } };
+  'font.family.clean': ParsedFontToken;
+  'font.family.cleanSerif': ParsedFontToken;
+  'font.family.cleanHan': ParsedFontToken;
+  'font.family.sourceCode': ParsedFontToken;
+  'font.size.50': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.50'] } };
+  'font.size.75': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.75'] } };
+  'font.size.100': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.100'] } };
+  'font.size.200': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.200'] } };
+  'font.size.300': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.300'] } };
+  'font.size.400': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.400'] } };
+  'font.size.500': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.500'] } };
+  'font.size.600': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.600'] } };
+  'font.size.700': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.700'] } };
+  'font.size.800': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.800'] } };
+  'font.size.900': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.900'] } };
+  'font.size.1000': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.1000'] } };
+  'font.size.1100': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.1100'] } };
+  'font.size.1200': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.1200'] } };
+  'font.size.1300': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.1300'] } };
 };
 
 export declare const modes: {
@@ -598,5 +592,5 @@ export declare const modes: {
   };
 };
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: undefined): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName: never): typeof tokens[typeof tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];

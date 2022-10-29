@@ -7,15 +7,9 @@
 import {
   ColorToken,
   FontToken,
-  DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
+  ParsedColorToken,
+  ParsedFontToken,
+  ParsedTypographyToken,
   TypographyToken,
 } from '@cobalt-ui/core';
 
@@ -57,40 +51,40 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'color.systemBlue': ColorToken & { $extensions: { mode: typeof modes['color.systemBlue'] } };
-  'color.systemBrown': ColorToken & { $extensions: { mode: typeof modes['color.systemBrown'] } };
-  'color.systemCyan': ColorToken & { $extensions: { mode: typeof modes['color.systemCyan'] } };
-  'color.systemGray': ColorToken & { $extensions: { mode: typeof modes['color.systemGray'] } };
-  'color.systemGray2': ColorToken & { $extensions: { mode: typeof modes['color.systemGray2'] } };
-  'color.systemGray3': ColorToken & { $extensions: { mode: typeof modes['color.systemGray3'] } };
-  'color.systemGray4': ColorToken & { $extensions: { mode: typeof modes['color.systemGray4'] } };
-  'color.systemGray5': ColorToken & { $extensions: { mode: typeof modes['color.systemGray5'] } };
-  'color.systemGray6': ColorToken & { $extensions: { mode: typeof modes['color.systemGray6'] } };
-  'color.systemGreen': ColorToken & { $extensions: { mode: typeof modes['color.systemGreen'] } };
-  'color.systemIndigo': ColorToken & { $extensions: { mode: typeof modes['color.systemIndigo'] } };
-  'color.systemMint': ColorToken & { $extensions: { mode: typeof modes['color.systemMint'] } };
-  'color.systemOrange': ColorToken & { $extensions: { mode: typeof modes['color.systemOrange'] } };
-  'color.systemPurple': ColorToken & { $extensions: { mode: typeof modes['color.systemPurple'] } };
-  'color.systemPink': ColorToken & { $extensions: { mode: typeof modes['color.systemPink'] } };
-  'color.systemRed': ColorToken & { $extensions: { mode: typeof modes['color.systemRed'] } };
-  'color.systemTeal': ColorToken & { $extensions: { mode: typeof modes['color.systemTeal'] } };
-  'color.systemYellow': ColorToken & { $extensions: { mode: typeof modes['color.systemYellow'] } };
-  'font.family.sfPro': FontToken;
-  'font.family.sfProRounded': FontToken;
-  'font.family.sfCompact': FontToken;
-  'font.family.sfMono': FontToken;
-  'font.family.newYork': FontToken;
-  'font.style.largeTitle': TypographyToken & { $extensions: { mode: typeof modes['font.style.largeTitle'] } };
-  'font.style.title1': TypographyToken & { $extensions: { mode: typeof modes['font.style.title1'] } };
-  'font.style.title2': TypographyToken & { $extensions: { mode: typeof modes['font.style.title2'] } };
-  'font.style.title3': TypographyToken & { $extensions: { mode: typeof modes['font.style.title3'] } };
-  'font.style.headline': TypographyToken & { $extensions: { mode: typeof modes['font.style.headline'] } };
-  'font.style.body': TypographyToken & { $extensions: { mode: typeof modes['font.style.body'] } };
-  'font.style.callout': TypographyToken & { $extensions: { mode: typeof modes['font.style.callout'] } };
-  'font.style.subhead': TypographyToken & { $extensions: { mode: typeof modes['font.style.subhead'] } };
-  'font.style.footnote': TypographyToken & { $extensions: { mode: typeof modes['font.style.footnote'] } };
-  'font.style.caption1': TypographyToken & { $extensions: { mode: typeof modes['font.style.caption1'] } };
-  'font.style.caption_2': TypographyToken & { $extensions: { mode: typeof modes['font.style.caption_2'] } };
+  'color.systemBlue': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemBlue'] } };
+  'color.systemBrown': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemBrown'] } };
+  'color.systemCyan': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemCyan'] } };
+  'color.systemGray': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray'] } };
+  'color.systemGray2': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray2'] } };
+  'color.systemGray3': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray3'] } };
+  'color.systemGray4': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray4'] } };
+  'color.systemGray5': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray5'] } };
+  'color.systemGray6': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGray6'] } };
+  'color.systemGreen': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemGreen'] } };
+  'color.systemIndigo': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemIndigo'] } };
+  'color.systemMint': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemMint'] } };
+  'color.systemOrange': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemOrange'] } };
+  'color.systemPurple': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemPurple'] } };
+  'color.systemPink': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemPink'] } };
+  'color.systemRed': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemRed'] } };
+  'color.systemTeal': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemTeal'] } };
+  'color.systemYellow': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemYellow'] } };
+  'font.family.sfPro': ParsedFontToken;
+  'font.family.sfProRounded': ParsedFontToken;
+  'font.family.sfCompact': ParsedFontToken;
+  'font.family.sfMono': ParsedFontToken;
+  'font.family.newYork': ParsedFontToken;
+  'font.style.largeTitle': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.largeTitle'] } };
+  'font.style.title1': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.title1'] } };
+  'font.style.title2': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.title2'] } };
+  'font.style.title3': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.title3'] } };
+  'font.style.headline': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.headline'] } };
+  'font.style.body': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.body'] } };
+  'font.style.callout': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.callout'] } };
+  'font.style.subhead': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.subhead'] } };
+  'font.style.footnote': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.footnote'] } };
+  'font.style.caption1': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.caption1'] } };
+  'font.style.caption_2': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.caption_2'] } };
 };
 
 export declare const modes: {
@@ -303,5 +297,5 @@ export declare const modes: {
   };
 };
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: undefined): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName: never): typeof tokens[typeof tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];

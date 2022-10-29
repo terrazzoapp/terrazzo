@@ -87,6 +87,27 @@ export const tokens = {
 
 export const meta = {
   'color.blue400': {
+    '_original': {
+      '$value': '#2680eb',
+      '$extensions': {
+        mode: {
+          lightest: '#378ef0',
+          light: '#2680eb',
+          dark: '#2680eb',
+          darkest: '#1473e6',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.blue400',
+    '$type': 'color',
     '$value': '#2680eb',
     '$extensions': {
       mode: {
@@ -98,6 +119,27 @@ export const meta = {
     },
   },
   'color.blue500': {
+    '_original': {
+      '$value': '#1473e6',
+      '$extensions': {
+        mode: {
+          lightest: '#2680eb',
+          light: '#1473e6',
+          dark: '#378ef0',
+          darkest: '#2680eb',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.blue500',
+    '$type': 'color',
     '$value': '#1473e6',
     '$extensions': {
       mode: {
@@ -109,6 +151,27 @@ export const meta = {
     },
   },
   'color.blue600': {
+    '_original': {
+      '$value': '#0d66d0',
+      '$extensions': {
+        mode: {
+          lightest: '#1473e6',
+          light: '#0d66d0',
+          dark: '#4b9cf5',
+          darkest: '#378ef0',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.blue600',
+    '$type': 'color',
     '$value': '#0d66d0',
     '$extensions': {
       mode: {
@@ -120,6 +183,27 @@ export const meta = {
     },
   },
   'color.blue700': {
+    '_original': {
+      '$value': '#095aba',
+      '$extensions': {
+        mode: {
+          lightest: '#0d66d0',
+          light: '#095aba',
+          dark: '#5aa9fa',
+          darkest: '#4b9cf5',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.blue700',
+    '$type': 'color',
     '$value': '#095aba',
     '$extensions': {
       mode: {
@@ -131,6 +215,27 @@ export const meta = {
     },
   },
   'color.gray50': {
+    '_original': {
+      '$value': '#ffffff',
+      '$extensions': {
+        mode: {
+          lightest: '#ffffff',
+          light: '#ffffff',
+          dark: '#252525',
+          darkest: '#080808',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray50',
+    '$type': 'color',
     '$value': '#ffffff',
     '$extensions': {
       mode: {
@@ -142,6 +247,27 @@ export const meta = {
     },
   },
   'color.gray75': {
+    '_original': {
+      '$value': '#fafafa',
+      '$extensions': {
+        mode: {
+          lightest: '#ffffff',
+          light: '#fafafa',
+          dark: '#2f2f2f',
+          darkest: '#1a1a1a',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray75',
+    '$type': 'color',
     '$value': '#fafafa',
     '$extensions': {
       mode: {
@@ -153,6 +279,27 @@ export const meta = {
     },
   },
   'color.gray100': {
+    '_original': {
+      '$value': '#f5f5f5',
+      '$extensions': {
+        mode: {
+          lightest: '#ffffff',
+          light: '#f5f5f5',
+          dark: '#323232',
+          darkest: '#1e1e1e',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray100',
+    '$type': 'color',
     '$value': '#f5f5f5',
     '$extensions': {
       mode: {
@@ -164,6 +311,27 @@ export const meta = {
     },
   },
   'color.gray200': {
+    '_original': {
+      '$value': '#eaeaea',
+      '$extensions': {
+        mode: {
+          lightest: '#f4f4f4',
+          light: '#eaeaea',
+          dark: '#3e3e3e',
+          darkest: '#2c2c2c',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray200',
+    '$type': 'color',
     '$value': '#eaeaea',
     '$extensions': {
       mode: {
@@ -175,6 +343,27 @@ export const meta = {
     },
   },
   'color.gray300': {
+    '_original': {
+      '$value': '#e1e1e1',
+      '$extensions': {
+        mode: {
+          lightest: '#eaeaea',
+          light: '#e1e1e1',
+          dark: '#4a4a4a',
+          darkest: '#393939',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray300',
+    '$type': 'color',
     '$value': '#e1e1e1',
     '$extensions': {
       mode: {
@@ -186,6 +375,27 @@ export const meta = {
     },
   },
   'color.gray400': {
+    '_original': {
+      '$value': '#cacaca',
+      '$extensions': {
+        mode: {
+          lightest: '#d3d3d3',
+          light: '#cacaca',
+          dark: '#5a5a5a',
+          darkest: '#494949',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray400',
+    '$type': 'color',
     '$value': '#cacaca',
     '$extensions': {
       mode: {
@@ -197,6 +407,27 @@ export const meta = {
     },
   },
   'color.gray500': {
+    '_original': {
+      '$value': '#b3b3b3',
+      '$extensions': {
+        mode: {
+          lightest: '#bcbcbc',
+          light: '#b3b3b3',
+          dark: '#6e6e6e',
+          darkest: '#5c5c5c',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray500',
+    '$type': 'color',
     '$value': '#b3b3b3',
     '$extensions': {
       mode: {
@@ -208,6 +439,27 @@ export const meta = {
     },
   },
   'color.gray600': {
+    '_original': {
+      '$value': '#8e8e8e',
+      '$extensions': {
+        mode: {
+          lightest: '#959595',
+          light: '#8e8e8e',
+          dark: '#909090',
+          darkest: '#7c7c7c',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray600',
+    '$type': 'color',
     '$value': '#8e8e8e',
     '$extensions': {
       mode: {
@@ -219,6 +471,27 @@ export const meta = {
     },
   },
   'color.gray700': {
+    '_original': {
+      '$value': '#6e6e6e',
+      '$extensions': {
+        mode: {
+          lightest: '#747474',
+          light: '#6e6e6e',
+          dark: '#b9b9b9',
+          darkest: '#a2a2a2',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray700',
+    '$type': 'color',
     '$value': '#6e6e6e',
     '$extensions': {
       mode: {
@@ -230,6 +503,27 @@ export const meta = {
     },
   },
   'color.gray800': {
+    '_original': {
+      '$value': '#4b4b4b',
+      '$extensions': {
+        mode: {
+          lightest: '#505050',
+          light: '#4b4b4b',
+          dark: '#e3e3e3',
+          darkest: '#c8c8c8',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray800',
+    '$type': 'color',
     '$value': '#4b4b4b',
     '$extensions': {
       mode: {
@@ -241,6 +535,27 @@ export const meta = {
     },
   },
   'color.gray900': {
+    '_original': {
+      '$value': '#2c2c2c',
+      '$extensions': {
+        mode: {
+          lightest: '#323232',
+          light: '#2c2c2c',
+          dark: '#ffffff',
+          darkest: '#efefef',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.gray900',
+    '$type': 'color',
     '$value': '#2c2c2c',
     '$extensions': {
       mode: {
@@ -252,6 +567,27 @@ export const meta = {
     },
   },
   'color.green400': {
+    '_original': {
+      '$value': '#2d9d78',
+      '$extensions': {
+        mode: {
+          lightest: '#33ab84',
+          light: '#2d9d78',
+          dark: '#2d9d78',
+          darkest: '#268e6c',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.green400',
+    '$type': 'color',
     '$value': '#2d9d78',
     '$extensions': {
       mode: {
@@ -263,6 +599,27 @@ export const meta = {
     },
   },
   'color.green500': {
+    '_original': {
+      '$value': '#268e6c',
+      '$extensions': {
+        mode: {
+          lightest: '#2d9d78',
+          light: '#268e6c',
+          dark: '#33ab84',
+          darkest: '#2d9d78',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.green500',
+    '$type': 'color',
     '$value': '#268e6c',
     '$extensions': {
       mode: {
@@ -274,6 +631,27 @@ export const meta = {
     },
   },
   'color.green600': {
+    '_original': {
+      '$value': '#12805c',
+      '$extensions': {
+        mode: {
+          lightest: '#268e6c',
+          light: '#12805c',
+          dark: '#39b990',
+          darkest: '#33ab84',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.green600',
+    '$type': 'color',
     '$value': '#12805c',
     '$extensions': {
       mode: {
@@ -285,6 +663,27 @@ export const meta = {
     },
   },
   'color.green700': {
+    '_original': {
+      '$value': '#107154',
+      '$extensions': {
+        mode: {
+          lightest: '#12805c',
+          light: '#107154',
+          dark: '#3fc89c',
+          darkest: '#39b990',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.green700',
+    '$type': 'color',
     '$value': '#107154',
     '$extensions': {
       mode: {
@@ -296,6 +695,27 @@ export const meta = {
     },
   },
   'color.red400': {
+    '_original': {
+      '$value': '#e34850',
+      '$extensions': {
+        mode: {
+          lightest: '#ec5b62',
+          light: '#e34850',
+          dark: '#e34850',
+          darkest: '#d7373f',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.red400',
+    '$type': 'color',
     '$value': '#e34850',
     '$extensions': {
       mode: {
@@ -307,6 +727,27 @@ export const meta = {
     },
   },
   'color.red500': {
+    '_original': {
+      '$value': '#d7373f',
+      '$extensions': {
+        mode: {
+          lightest: '#e34850',
+          light: '#d7373f',
+          dark: '#ec5b62',
+          darkest: '#e34850',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.red500',
+    '$type': 'color',
     '$value': '#d7373f',
     '$extensions': {
       mode: {
@@ -318,6 +759,27 @@ export const meta = {
     },
   },
   'color.red600': {
+    '_original': {
+      '$value': '#c9252d',
+      '$extensions': {
+        mode: {
+          lightest: '#d7373f',
+          light: '#c9252d',
+          dark: '#f76d74',
+          darkest: '#ec5b62',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.red600',
+    '$type': 'color',
     '$value': '#c9252d',
     '$extensions': {
       mode: {
@@ -329,6 +791,27 @@ export const meta = {
     },
   },
   'color.red700': {
+    '_original': {
+      '$value': '#bb121a',
+      '$extensions': {
+        mode: {
+          lightest: '#c9252d',
+          light: '#bb121a',
+          dark: '#ff7b82',
+          darkest: '#f76d74',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.red700',
+    '$type': 'color',
     '$value': '#bb121a',
     '$extensions': {
       mode: {
@@ -340,6 +823,27 @@ export const meta = {
     },
   },
   'color.orange400': {
+    '_original': {
+      '$value': '#e68619',
+      '$extensions': {
+        mode: {
+          lightest: '#f29423',
+          light: '#e68619',
+          dark: '#e68619',
+          darkest: '#da7b11',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.orange400',
+    '$type': 'color',
     '$value': '#e68619',
     '$extensions': {
       mode: {
@@ -351,6 +855,27 @@ export const meta = {
     },
   },
   'color.orange500': {
+    '_original': {
+      '$value': '#da7b11',
+      '$extensions': {
+        mode: {
+          lightest: '#e68619',
+          light: '#da7b11',
+          dark: '#f29423',
+          darkest: '#e68619',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.orange500',
+    '$type': 'color',
     '$value': '#da7b11',
     '$extensions': {
       mode: {
@@ -362,6 +887,27 @@ export const meta = {
     },
   },
   'color.orange600': {
+    '_original': {
+      '$value': '#cb6f10',
+      '$extensions': {
+        mode: {
+          lightest: '#da7b11',
+          light: '#cb6f10',
+          dark: '#f9a43f',
+          darkest: '#f29423',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.orange600',
+    '$type': 'color',
     '$value': '#cb6f10',
     '$extensions': {
       mode: {
@@ -373,6 +919,27 @@ export const meta = {
     },
   },
   'color.orange700': {
+    '_original': {
+      '$value': '#bd640d',
+      '$extensions': {
+        mode: {
+          lightest: '#cb6f10',
+          light: '#bd640d',
+          dark: '#ffb55b',
+          darkest: '#f9a43f',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.orange700',
+    '$type': 'color',
     '$value': '#bd640d',
     '$extensions': {
       mode: {
@@ -384,6 +951,27 @@ export const meta = {
     },
   },
   'color.label.celery400': {
+    '_original': {
+      '$value': '#44b556',
+      '$extensions': {
+        mode: {
+          lightest: '#4bc35f',
+          light: '#44b556',
+          dark: '#44b556',
+          darkest: '#3da74e',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.celery400',
+    '$type': 'color',
     '$value': '#44b556',
     '$extensions': {
       mode: {
@@ -395,6 +983,27 @@ export const meta = {
     },
   },
   'color.label.celery500': {
+    '_original': {
+      '$value': '#3da74e',
+      '$extensions': {
+        mode: {
+          lightest: '#44b556',
+          light: '#3da74e',
+          dark: '#4bc35f',
+          darkest: '#44b556',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.celery500',
+    '$type': 'color',
     '$value': '#3da74e',
     '$extensions': {
       mode: {
@@ -406,6 +1015,27 @@ export const meta = {
     },
   },
   'color.label.celery600': {
+    '_original': {
+      '$value': '#3da74e',
+      '$extensions': {
+        mode: {
+          lightest: '#3da74e',
+          light: '#3da74e',
+          dark: '#51d267',
+          darkest: '#4bc35f',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.celery600',
+    '$type': 'color',
     '$value': '#3da74e',
     '$extensions': {
       mode: {
@@ -417,6 +1047,27 @@ export const meta = {
     },
   },
   'color.label.celery700': {
+    '_original': {
+      '$value': '#3da74e',
+      '$extensions': {
+        mode: {
+          lightest: '#379947',
+          light: '#3da74e',
+          dark: '#58e06f',
+          darkest: '#51d267',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.celery700',
+    '$type': 'color',
     '$value': '#3da74e',
     '$extensions': {
       mode: {
@@ -428,6 +1079,27 @@ export const meta = {
     },
   },
   'color.label.chartreuse400': {
+    '_original': {
+      '$value': '#85d044',
+      '$extensions': {
+        mode: {
+          lightest: '#8ede49',
+          light: '#85d044',
+          dark: '#85d044',
+          darkest: '#7cc33f',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.chartreuse400',
+    '$type': 'color',
     '$value': '#85d044',
     '$extensions': {
       mode: {
@@ -439,6 +1111,27 @@ export const meta = {
     },
   },
   'color.label.chartreuse500': {
+    '_original': {
+      '$value': '#7cc33f',
+      '$extensions': {
+        mode: {
+          lightest: '#85d044',
+          light: '#7cc33f',
+          dark: '#8ede49',
+          darkest: '#85d044',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.chartreuse500',
+    '$type': 'color',
     '$value': '#7cc33f',
     '$extensions': {
       mode: {
@@ -450,6 +1143,27 @@ export const meta = {
     },
   },
   'color.label.chartreuse600': {
+    '_original': {
+      '$value': '#73b53a',
+      '$extensions': {
+        mode: {
+          lightest: '#7cc33f',
+          light: '#73b53a',
+          dark: '#9bec54',
+          darkest: '#8ede49',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.chartreuse600',
+    '$type': 'color',
     '$value': '#73b53a',
     '$extensions': {
       mode: {
@@ -461,6 +1175,27 @@ export const meta = {
     },
   },
   'color.label.chartreuse700': {
+    '_original': {
+      '$value': '#6aa834',
+      '$extensions': {
+        mode: {
+          lightest: '#73b53a',
+          light: '#6aa834',
+          dark: '#a3f858',
+          darkest: '#9bec54',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.chartreuse700',
+    '$type': 'color',
     '$value': '#6aa834',
     '$extensions': {
       mode: {
@@ -472,6 +1207,27 @@ export const meta = {
     },
   },
   'color.label.fuchsia400': {
+    '_original': {
+      '$value': '#c038cc',
+      '$extensions': {
+        mode: {
+          lightest: '#cf3edc',
+          light: '#c038cc',
+          dark: '#c038cc',
+          darkest: '#b130bd',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.fuchsia400',
+    '$type': 'color',
     '$value': '#c038cc',
     '$extensions': {
       mode: {
@@ -483,6 +1239,27 @@ export const meta = {
     },
   },
   'color.label.fuchsia500': {
+    '_original': {
+      '$value': '#b130bd',
+      '$extensions': {
+        mode: {
+          lightest: '#c038cc',
+          light: '#b130bd',
+          dark: '#cf3edc',
+          darkest: '#c038cc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.fuchsia500',
+    '$type': 'color',
     '$value': '#b130bd',
     '$extensions': {
       mode: {
@@ -494,6 +1271,27 @@ export const meta = {
     },
   },
   'color.label.fuchsia600': {
+    '_original': {
+      '$value': '#a228ad',
+      '$extensions': {
+        mode: {
+          lightest: '#b130bd',
+          light: '#a228ad',
+          dark: '#d951e5',
+          darkest: '#cf3edc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.fuchsia600',
+    '$type': 'color',
     '$value': '#a228ad',
     '$extensions': {
       mode: {
@@ -505,6 +1303,27 @@ export const meta = {
     },
   },
   'color.label.fuchsia700': {
+    '_original': {
+      '$value': '#93219e',
+      '$extensions': {
+        mode: {
+          lightest: '#a228ad',
+          light: '#93219e',
+          dark: '#e366ef',
+          darkest: '#d951e5',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.fuchsia700',
+    '$type': 'color',
     '$value': '#93219e',
     '$extensions': {
       mode: {
@@ -516,6 +1335,27 @@ export const meta = {
     },
   },
   'color.label.indigo400': {
+    '_original': {
+      '$value': '#6767ec',
+      '$extensions': {
+        mode: {
+          lightest: '#7575f1',
+          light: '#6767ec',
+          dark: '#6767ec',
+          darkest: '#5c5ce0',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.indigo400',
+    '$type': 'color',
     '$value': '#6767ec',
     '$extensions': {
       mode: {
@@ -527,6 +1367,27 @@ export const meta = {
     },
   },
   'color.label.indigo500': {
+    '_original': {
+      '$value': '#5c5ce0',
+      '$extensions': {
+        mode: {
+          lightest: '#6767ec',
+          light: '#5c5ce0',
+          dark: '#7575f1',
+          darkest: '#6767ec',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.indigo500',
+    '$type': 'color',
     '$value': '#5c5ce0',
     '$extensions': {
       mode: {
@@ -538,6 +1399,27 @@ export const meta = {
     },
   },
   'color.label.indigo600': {
+    '_original': {
+      '$value': '#5151d3',
+      '$extensions': {
+        mode: {
+          lightest: '#5c5ce0',
+          light: '#5151d3',
+          dark: '#8282f6',
+          darkest: '#7575f1',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.indigo600',
+    '$type': 'color',
     '$value': '#5151d3',
     '$extensions': {
       mode: {
@@ -549,6 +1431,27 @@ export const meta = {
     },
   },
   'color.label.indigo700': {
+    '_original': {
+      '$value': '#4646c6',
+      '$extensions': {
+        mode: {
+          lightest: '#5151d3',
+          light: '#4646c6',
+          dark: '#9090fa',
+          darkest: '#8282f6',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.indigo700',
+    '$type': 'color',
     '$value': '#4646c6',
     '$extensions': {
       mode: {
@@ -560,6 +1463,27 @@ export const meta = {
     },
   },
   'color.label.magenta400': {
+    '_original': {
+      '$value': '#d83790',
+      '$extensions': {
+        mode: {
+          lightest: '#e2499d',
+          light: '#d83790',
+          dark: '#d83790',
+          darkest: '#ca2996',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.magenta400',
+    '$type': 'color',
     '$value': '#d83790',
     '$extensions': {
       mode: {
@@ -571,6 +1495,27 @@ export const meta = {
     },
   },
   'color.label.magenta500': {
+    '_original': {
+      '$value': '#ce2783',
+      '$extensions': {
+        mode: {
+          lightest: '#d83790',
+          light: '#ce2783',
+          dark: '#e2499d',
+          darkest: '#d83790',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.magenta500',
+    '$type': 'color',
     '$value': '#ce2783',
     '$extensions': {
       mode: {
@@ -582,6 +1527,27 @@ export const meta = {
     },
   },
   'color.label.magenta600': {
+    '_original': {
+      '$value': '#bc1c74',
+      '$extensions': {
+        mode: {
+          lightest: '#ca2982',
+          light: '#bc1c74',
+          dark: '#ec5aaa',
+          darkest: '#e2499d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.magenta600',
+    '$type': 'color',
     '$value': '#bc1c74',
     '$extensions': {
       mode: {
@@ -593,6 +1559,27 @@ export const meta = {
     },
   },
   'color.label.magenta700': {
+    '_original': {
+      '$value': '#ae0e66',
+      '$extensions': {
+        mode: {
+          lightest: '#bc1c74',
+          light: '#ae0e66',
+          dark: '#f56bb7',
+          darkest: '#ec5aaa',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.magenta700',
+    '$type': 'color',
     '$value': '#ae0e66',
     '$extensions': {
       mode: {
@@ -604,6 +1591,27 @@ export const meta = {
     },
   },
   'color.label.purple400': {
+    '_original': {
+      '$value': '#9256d9',
+      '$extensions': {
+        mode: {
+          lightest: '#9d64e1',
+          light: '#9256d9',
+          dark: '#9256d9',
+          darkest: '#864ccc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.purple400',
+    '$type': 'color',
     '$value': '#9256d9',
     '$extensions': {
       mode: {
@@ -615,6 +1623,27 @@ export const meta = {
     },
   },
   'color.label.purple500': {
+    '_original': {
+      '$value': '#864ccc',
+      '$extensions': {
+        mode: {
+          lightest: '#9256d9',
+          light: '#864ccc',
+          dark: '#9d64e1',
+          darkest: '#9256d9',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.purple500',
+    '$type': 'color',
     '$value': '#864ccc',
     '$extensions': {
       mode: {
@@ -626,6 +1655,27 @@ export const meta = {
     },
   },
   'color.label.purple600': {
+    '_original': {
+      '$value': '#7a42bf',
+      '$extensions': {
+        mode: {
+          lightest: '#864ccc',
+          light: '#7a42bf',
+          dark: '#a873e9',
+          darkest: '#9d64e1',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.purple600',
+    '$type': 'color',
     '$value': '#7a42bf',
     '$extensions': {
       mode: {
@@ -637,6 +1687,27 @@ export const meta = {
     },
   },
   'color.label.purple700': {
+    '_original': {
+      '$value': '#6f38b1',
+      '$extensions': {
+        mode: {
+          lightest: '#7a42bf',
+          light: '#6f38b1',
+          dark: '#b483f0',
+          darkest: '#a873df',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.purple700',
+    '$type': 'color',
     '$value': '#6f38b1',
     '$extensions': {
       mode: {
@@ -648,6 +1719,27 @@ export const meta = {
     },
   },
   'color.label.seafoam400': {
+    '_original': {
+      '$value': '#1b959a',
+      '$extensions': {
+        mode: {
+          lightest: '#20a3a8',
+          light: '#1b959a',
+          dark: '#1b959a',
+          darkest: '#16878c',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.seafoam400',
+    '$type': 'color',
     '$value': '#1b959a',
     '$extensions': {
       mode: {
@@ -659,6 +1751,27 @@ export const meta = {
     },
   },
   'color.label.seafoam500': {
+    '_original': {
+      '$value': '#16878c',
+      '$extensions': {
+        mode: {
+          lightest: '#1b959a',
+          light: '#16878c',
+          dark: '#20a3a8',
+          darkest: '#1b959a',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.seafoam500',
+    '$type': 'color',
     '$value': '#16878c',
     '$extensions': {
       mode: {
@@ -670,6 +1783,27 @@ export const meta = {
     },
   },
   'color.label.seafoam600': {
+    '_original': {
+      '$value': '#0f797d',
+      '$extensions': {
+        mode: {
+          lightest: '#16878c',
+          light: '#0f797d',
+          dark: '#23b2b8',
+          darkest: '#20a3a8',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.seafoam600',
+    '$type': 'color',
     '$value': '#0f797d',
     '$extensions': {
       mode: {
@@ -681,6 +1815,27 @@ export const meta = {
     },
   },
   'color.label.seafoam700': {
+    '_original': {
+      '$value': '#096c6f',
+      '$extensions': {
+        mode: {
+          lightest: '#0f797d',
+          light: '#096c6f',
+          dark: '#26c0c7',
+          darkest: '#23b2b8',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.seafoam700',
+    '$type': 'color',
     '$value': '#096c6f',
     '$extensions': {
       mode: {
@@ -692,6 +1847,27 @@ export const meta = {
     },
   },
   'color.label.yellow400': {
+    '_original': {
+      '$value': '#dfbf00',
+      '$extensions': {
+        mode: {
+          lightest: '#edcc00',
+          light: '#dfbf00',
+          dark: '#dfbf00',
+          darkest: '#d2b200',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.yellow400',
+    '$type': 'color',
     '$value': '#dfbf00',
     '$extensions': {
       mode: {
@@ -703,6 +1879,27 @@ export const meta = {
     },
   },
   'color.label.yellow500': {
+    '_original': {
+      '$value': '#d2b200',
+      '$extensions': {
+        mode: {
+          lightest: '#dfbf00',
+          light: '#d2b200',
+          dark: '#edcc00',
+          darkest: '#dfbf00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.yellow500',
+    '$type': 'color',
     '$value': '#d2b200',
     '$extensions': {
       mode: {
@@ -714,6 +1911,27 @@ export const meta = {
     },
   },
   'color.label.yellow600': {
+    '_original': {
+      '$value': '#c4a600',
+      '$extensions': {
+        mode: {
+          lightest: '#d2b200',
+          light: '#c4a600',
+          dark: '#fad900',
+          darkest: '#edcc00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.yellow600',
+    '$type': 'color',
     '$value': '#c4a600',
     '$extensions': {
       mode: {
@@ -725,6 +1943,27 @@ export const meta = {
     },
   },
   'color.label.yellow700': {
+    '_original': {
+      '$value': '#b79900',
+      '$extensions': {
+        mode: {
+          lightest: '#c4a600',
+          light: '#b79900',
+          dark: '#ffe22e',
+          darkest: '#fad900',
+        },
+      },
+    },
+    '_group': {
+      id: 'color.label',
+      '$extensions': {
+        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'color.label.yellow700',
+    '$type': 'color',
     '$value': '#b79900',
     '$extensions': {
       mode: {
@@ -736,18 +1975,89 @@ export const meta = {
     },
   },
   'font.family.clean': {
-    '$value': 'Adobe Clean',
+    '_original': {
+      '$value': 'Adobe Clean',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'font',
+    },
+    id: 'font.family.clean',
+    '$type': 'font',
+    '$value': ['Adobe Clean'],
   },
   'font.family.cleanSerif': {
-    '$value': 'Adobe Clean Serif',
+    '_original': {
+      '$value': 'Adobe Clean Serif',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'font',
+    },
+    id: 'font.family.cleanSerif',
+    '$type': 'font',
+    '$value': ['Adobe Clean Serif'],
   },
   'font.family.cleanHan': {
-    '$value': 'Adobe Clean Han',
+    '_original': {
+      '$value': 'Adobe Clean Han',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'font',
+    },
+    id: 'font.family.cleanHan',
+    '$type': 'font',
+    '$value': ['Adobe Clean Han'],
   },
   'font.family.sourceCode': {
-    '$value': 'Source Code Pro',
+    '_original': {
+      '$value': 'Source Code Pro',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'font',
+    },
+    id: 'font.family.sourceCode',
+    '$type': 'font',
+    '$value': ['Source Code Pro'],
   },
   'font.size.50': {
+    '_original': {
+      '$value': '11px',
+      '$extensions': {
+        mode: {
+          desktop: '11px',
+          mobile: '13px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.50',
+    '$type': 'dimension',
     '$value': '11px',
     '$extensions': {
       mode: {
@@ -757,6 +2067,25 @@ export const meta = {
     },
   },
   'font.size.75': {
+    '_original': {
+      '$value': '12px',
+      '$extensions': {
+        mode: {
+          desktop: '12px',
+          mobile: '13px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.75',
+    '$type': 'dimension',
     '$value': '12px',
     '$extensions': {
       mode: {
@@ -766,6 +2095,25 @@ export const meta = {
     },
   },
   'font.size.100': {
+    '_original': {
+      '$value': '14px',
+      '$extensions': {
+        mode: {
+          desktop: '14px',
+          mobile: '17px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.100',
+    '$type': 'dimension',
     '$value': '14px',
     '$extensions': {
       mode: {
@@ -775,6 +2123,25 @@ export const meta = {
     },
   },
   'font.size.200': {
+    '_original': {
+      '$value': '16px',
+      '$extensions': {
+        mode: {
+          desktop: '16px',
+          mobile: '19px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.200',
+    '$type': 'dimension',
     '$value': '16px',
     '$extensions': {
       mode: {
@@ -784,6 +2151,25 @@ export const meta = {
     },
   },
   'font.size.300': {
+    '_original': {
+      '$value': '18px',
+      '$extensions': {
+        mode: {
+          desktop: '18px',
+          mobile: '22px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.300',
+    '$type': 'dimension',
     '$value': '18px',
     '$extensions': {
       mode: {
@@ -793,6 +2179,25 @@ export const meta = {
     },
   },
   'font.size.400': {
+    '_original': {
+      '$value': '20px',
+      '$extensions': {
+        mode: {
+          desktop: '20px',
+          mobile: '24px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.400',
+    '$type': 'dimension',
     '$value': '20px',
     '$extensions': {
       mode: {
@@ -802,6 +2207,25 @@ export const meta = {
     },
   },
   'font.size.500': {
+    '_original': {
+      '$value': '22px',
+      '$extensions': {
+        mode: {
+          desktop: '22px',
+          mobile: '27px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.500',
+    '$type': 'dimension',
     '$value': '22px',
     '$extensions': {
       mode: {
@@ -811,6 +2235,25 @@ export const meta = {
     },
   },
   'font.size.600': {
+    '_original': {
+      '$value': '25px',
+      '$extensions': {
+        mode: {
+          desktop: '25px',
+          mobile: '31px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.600',
+    '$type': 'dimension',
     '$value': '25px',
     '$extensions': {
       mode: {
@@ -820,6 +2263,25 @@ export const meta = {
     },
   },
   'font.size.700': {
+    '_original': {
+      '$value': '28px',
+      '$extensions': {
+        mode: {
+          desktop: '28px',
+          mobile: '34px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.700',
+    '$type': 'dimension',
     '$value': '28px',
     '$extensions': {
       mode: {
@@ -829,6 +2291,25 @@ export const meta = {
     },
   },
   'font.size.800': {
+    '_original': {
+      '$value': '32px',
+      '$extensions': {
+        mode: {
+          desktop: '32px',
+          mobile: '39px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.800',
+    '$type': 'dimension',
     '$value': '32px',
     '$extensions': {
       mode: {
@@ -838,6 +2319,25 @@ export const meta = {
     },
   },
   'font.size.900': {
+    '_original': {
+      '$value': '36px',
+      '$extensions': {
+        mode: {
+          desktop: '36px',
+          mobile: '44px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.900',
+    '$type': 'dimension',
     '$value': '36px',
     '$extensions': {
       mode: {
@@ -847,6 +2347,25 @@ export const meta = {
     },
   },
   'font.size.1000': {
+    '_original': {
+      '$value': '40px',
+      '$extensions': {
+        mode: {
+          desktop: '40px',
+          mobile: '49px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.1000',
+    '$type': 'dimension',
     '$value': '40px',
     '$extensions': {
       mode: {
@@ -856,6 +2375,25 @@ export const meta = {
     },
   },
   'font.size.1100': {
+    '_original': {
+      '$value': '45px',
+      '$extensions': {
+        mode: {
+          desktop: '45px',
+          mobile: '55px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.1100',
+    '$type': 'dimension',
     '$value': '45px',
     '$extensions': {
       mode: {
@@ -865,6 +2403,25 @@ export const meta = {
     },
   },
   'font.size.1200': {
+    '_original': {
+      '$value': '50px',
+      '$extensions': {
+        mode: {
+          desktop: '50px',
+          mobile: '62px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.1200',
+    '$type': 'dimension',
     '$value': '50px',
     '$extensions': {
       mode: {
@@ -874,6 +2431,25 @@ export const meta = {
     },
   },
   'font.size.1300': {
+    '_original': {
+      '$value': '60px',
+      '$extensions': {
+        mode: {
+          desktop: '60px',
+          mobile: '70px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: ['desktop', 'mobile'],
+      },
+      '$name': 'Adobe Spectrum',
+      '$type': 'dimension',
+    },
+    id: 'font.size.1300',
+    '$type': 'dimension',
     '$value': '60px',
     '$extensions': {
       mode: {

@@ -591,6 +591,33 @@ export const tokens = {
 
 export const meta = {
   'color.black': {
+    '_original': {
+      '$value': '#1b1f24',
+      '$extensions': {
+        mode: {
+          light: '#1b1f24',
+          'light-colorblind': '#1b1f24',
+          'light-high-contrast': '#010409',
+          dark: '#010409',
+          white: '#f0f6fc',
+          'dark-dimmed': '#1c2128',
+          'dark-high-contrast': '#010409',
+          'dark-colorblind': '#010409',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.black',
+    '$type': 'color',
     '$value': '#1b1f24',
     '$extensions': {
       mode: {
@@ -606,6 +633,32 @@ export const meta = {
     },
   },
   'color.blue0': {
+    '_original': {
+      '$value': '#ddf4ff',
+      '$extensions': {
+        mode: {
+          light: '#ddf4ff',
+          'light-colorblind': '#ddf4ff',
+          'light-high-contrast': '#dff7ff',
+          dark: '#cae8ff',
+          'dark-dimmed': '#c6e6ff',
+          'dark-high-contrast': '#caeaff',
+          'dark-colorblind': '#cae8ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue0',
+    '$type': 'color',
     '$value': '#ddf4ff',
     '$extensions': {
       mode: {
@@ -620,6 +673,32 @@ export const meta = {
     },
   },
   'color.blue1': {
+    '_original': {
+      '$value': '#b6e3ff',
+      '$extensions': {
+        mode: {
+          light: '#b6e3ff',
+          'light-colorblind': '#b6e3ff',
+          'light-high-contrast': '#9cd7ff',
+          dark: '#a5d6ff',
+          'dark-dimmed': '#96d0ff',
+          'dark-high-contrast': '#addcff',
+          'dark-colorblind': '#a5d6ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue1',
+    '$type': 'color',
     '$value': '#b6e3ff',
     '$extensions': {
       mode: {
@@ -634,6 +713,32 @@ export const meta = {
     },
   },
   'color.blue2': {
+    '_original': {
+      '$value': '#80ccff',
+      '$extensions': {
+        mode: {
+          light: '#80ccff',
+          'light-colorblind': '#80ccff',
+          'light-high-contrast': '#67b3fd',
+          dark: '#79c0ff',
+          'dark-dimmed': '#6cb6ff',
+          'dark-high-contrast': '#91cbff',
+          'dark-colorblind': '#79c0ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue2',
+    '$type': 'color',
     '$value': '#80ccff',
     '$extensions': {
       mode: {
@@ -648,6 +753,32 @@ export const meta = {
     },
   },
   'color.blue3': {
+    '_original': {
+      '$value': '#54aeff',
+      '$extensions': {
+        mode: {
+          light: '#54aeff',
+          'light-colorblind': '#54aeff',
+          'light-high-contrast': '#368cf9',
+          dark: '#58a6ff',
+          'dark-dimmed': '#539bf5',
+          'dark-high-contrast': '#71b7ff',
+          'dark-colorblind': '#58a6ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue3',
+    '$type': 'color',
     '$value': '#54aeff',
     '$extensions': {
       mode: {
@@ -662,6 +793,32 @@ export const meta = {
     },
   },
   'color.blue4': {
+    '_original': {
+      '$value': '#218bff',
+      '$extensions': {
+        mode: {
+          light: '#218bff',
+          'light-colorblind': '#218bff',
+          'light-high-contrast': '#1168e3',
+          dark: '#388bfd',
+          'dark-dimmed': '#4184e4',
+          'dark-high-contrast': '#409eff',
+          'dark-colorblind': '#388bfd',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue4',
+    '$type': 'color',
     '$value': '#218bff',
     '$extensions': {
       mode: {
@@ -676,6 +833,32 @@ export const meta = {
     },
   },
   'color.blue5': {
+    '_original': {
+      '$value': '#0969da',
+      '$extensions': {
+        mode: {
+          light: '#0969da',
+          'light-colorblind': '#0969da',
+          'light-high-contrast': '#0349b4',
+          dark: '#1f6feb',
+          'dark-dimmed': '#316dca',
+          'dark-high-contrast': '#409eff',
+          'dark-colorblind': '#1f6feb',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue5',
+    '$type': 'color',
     '$value': '#0969da',
     '$extensions': {
       mode: {
@@ -690,6 +873,32 @@ export const meta = {
     },
   },
   'color.blue6': {
+    '_original': {
+      '$value': '#0550ae',
+      '$extensions': {
+        mode: {
+          light: '#0550ae',
+          'light-colorblind': '#0550ae',
+          'light-high-contrast': '#023b95',
+          dark: '#1158c7',
+          'dark-dimmed': '#255ab2',
+          'dark-high-contrast': '#318bf8',
+          'dark-colorblind': '#1158c7',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue6',
+    '$type': 'color',
     '$value': '#0550ae',
     '$extensions': {
       mode: {
@@ -704,6 +913,32 @@ export const meta = {
     },
   },
   'color.blue7': {
+    '_original': {
+      '$value': '#033d8b',
+      '$extensions': {
+        mode: {
+          light: '#033d8b',
+          'light-colorblind': '#033d8b',
+          'light-high-contrast': '#022f7a',
+          dark: '#0d419d',
+          'dark-dimmed': '#1b4b91',
+          'dark-high-contrast': '#2672f3',
+          'dark-colorblind': '#0d419d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue7',
+    '$type': 'color',
     '$value': '#033d8b',
     '$extensions': {
       mode: {
@@ -718,6 +953,32 @@ export const meta = {
     },
   },
   'color.blue8': {
+    '_original': {
+      '$value': '#0a3069',
+      '$extensions': {
+        mode: {
+          light: '#0a3069',
+          'light-colorblind': '#0a3069',
+          'light-high-contrast': '#032563',
+          dark: '#0c2d6b',
+          'dark-dimmed': '#143d79',
+          'dark-high-contrast': '#1e60d5',
+          'dark-colorblind': '#0c2d6b',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue8',
+    '$type': 'color',
     '$value': '#0a3069',
     '$extensions': {
       mode: {
@@ -732,6 +993,32 @@ export const meta = {
     },
   },
   'color.blue9': {
+    '_original': {
+      '$value': '#002155',
+      '$extensions': {
+        mode: {
+          light: '#002155',
+          'light-colorblind': '#002155',
+          'light-high-contrast': '#021a4a',
+          dark: '#051d4d',
+          'dark-dimmed': '#0f2d5c',
+          'dark-high-contrast': '#194fb1',
+          'dark-colorblind': '#051d4d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.blue9',
+    '$type': 'color',
     '$value': '#002155',
     '$extensions': {
       mode: {
@@ -746,7 +1033,33 @@ export const meta = {
     },
   },
   'color.coral0': {
-    '$value': '#FFF0EB',
+    '_original': {
+      '$value': '#FFF0EB',
+      '$extensions': {
+        mode: {
+          light: '#FFF0EB',
+          'light-colorblind': '#FFF0EB',
+          'light-high-contrast': '#fff0ed',
+          dark: '#FFDDD2',
+          'dark-dimmed': '#FFDACF',
+          'dark-high-contrast': '#FFDED4',
+          'dark-colorblind': '#FFDDD2',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral0',
+    '$type': 'color',
+    '$value': '#fff0eb',
     '$extensions': {
       mode: {
         light: '#fff0eb',
@@ -760,7 +1073,33 @@ export const meta = {
     },
   },
   'color.coral1': {
-    '$value': '#FFD6CC',
+    '_original': {
+      '$value': '#FFD6CC',
+      '$extensions': {
+        mode: {
+          light: '#FFD6CC',
+          'light-colorblind': '#FFD6CC',
+          'light-high-contrast': '#ffc2b6',
+          dark: '#FFC2B2',
+          'dark-dimmed': '#FFB9A5',
+          'dark-high-contrast': '#FFCBB9',
+          'dark-colorblind': '#FFC2B2',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral1',
+    '$type': 'color',
+    '$value': '#ffd6cc',
     '$extensions': {
       mode: {
         light: '#ffd6cc',
@@ -774,7 +1113,33 @@ export const meta = {
     },
   },
   'color.coral2': {
-    '$value': '#FFB4A1',
+    '_original': {
+      '$value': '#FFB4A1',
+      '$extensions': {
+        mode: {
+          light: '#FFB4A1',
+          'light-colorblind': '#FFB4A1',
+          'light-high-contrast': '#ff8f7e',
+          dark: '#FFA28B',
+          'dark-dimmed': '#F79981',
+          'dark-high-contrast': '#FFB39B',
+          'dark-colorblind': '#FFA28B',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral2',
+    '$type': 'color',
+    '$value': '#ffb4a1',
     '$extensions': {
       mode: {
         light: '#ffb4a1',
@@ -788,7 +1153,33 @@ export const meta = {
     },
   },
   'color.coral3': {
-    '$value': '#FD8C73',
+    '_original': {
+      '$value': '#FD8C73',
+      '$extensions': {
+        mode: {
+          light: '#FD8C73',
+          'light-colorblind': '#FD8C73',
+          'light-high-contrast': '#ef5b48',
+          dark: '#F78166',
+          'dark-dimmed': '#EC775C',
+          'dark-high-contrast': '#FF967D',
+          'dark-colorblind': '#F78166',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral3',
+    '$type': 'color',
+    '$value': '#fd8c73',
     '$extensions': {
       mode: {
         light: '#fd8c73',
@@ -802,7 +1193,33 @@ export const meta = {
     },
   },
   'color.coral4': {
-    '$value': '#EC6547',
+    '_original': {
+      '$value': '#EC6547',
+      '$extensions': {
+        mode: {
+          light: '#EC6547',
+          'light-colorblind': '#EC6547',
+          'light-high-contrast': '#cd3425',
+          dark: '#EA6045',
+          'dark-dimmed': '#DE5B41',
+          'dark-high-contrast': '#FC704F',
+          'dark-colorblind': '#EA6045',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral4',
+    '$type': 'color',
+    '$value': '#ec6547',
     '$extensions': {
       mode: {
         light: '#ec6547',
@@ -816,7 +1233,33 @@ export const meta = {
     },
   },
   'color.coral5': {
-    '$value': '#C4432B',
+    '_original': {
+      '$value': '#C4432B',
+      '$extensions': {
+        mode: {
+          light: '#C4432B',
+          'light-colorblind': '#C4432B',
+          'light-high-contrast': '#9f1710',
+          dark: '#CF462D',
+          'dark-dimmed': '#C2442D',
+          'dark-high-contrast': '#FC704F',
+          'dark-colorblind': '#CF462D',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral5',
+    '$type': 'color',
+    '$value': '#c4432b',
     '$extensions': {
       mode: {
         light: '#c4432b',
@@ -830,7 +1273,33 @@ export const meta = {
     },
   },
   'color.coral6': {
-    '$value': '#9E2F1C',
+    '_original': {
+      '$value': '#9E2F1C',
+      '$extensions': {
+        mode: {
+          light: '#9E2F1C',
+          'light-colorblind': '#9E2F1C',
+          'light-high-contrast': '#870706',
+          dark: '#AC3220',
+          'dark-dimmed': '#A93524',
+          'dark-high-contrast': '#F75133',
+          'dark-colorblind': '#AC3220',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral6',
+    '$type': 'color',
+    '$value': '#9e2f1c',
     '$extensions': {
       mode: {
         light: '#9e2f1c',
@@ -844,7 +1313,33 @@ export const meta = {
     },
   },
   'color.coral7': {
-    '$value': '#801F0F',
+    '_original': {
+      '$value': '#801F0F',
+      '$extensions': {
+        mode: {
+          light: '#801F0F',
+          'light-colorblind': '#801F0F',
+          'light-high-contrast': '#6f0107',
+          dark: '#872012',
+          'dark-dimmed': '#8D291B',
+          'dark-high-contrast': '#E03B21',
+          'dark-colorblind': '#872012',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral7',
+    '$type': 'color',
+    '$value': '#801f0f',
     '$extensions': {
       mode: {
         light: '#801f0f',
@@ -858,6 +1353,32 @@ export const meta = {
     },
   },
   'color.coral8': {
+    '_original': {
+      '$value': '#691105',
+      '$extensions': {
+        mode: {
+          light: '#691105',
+          'light-colorblind': '#691105',
+          'light-high-contrast': '#5b0002',
+          dark: '#640D04',
+          'dark-dimmed': '#771D13',
+          'dark-high-contrast': '#C62612',
+          'dark-colorblind': '#640D04',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral8',
+    '$type': 'color',
     '$value': '#691105',
     '$extensions': {
       mode: {
@@ -872,6 +1393,32 @@ export const meta = {
     },
   },
   'color.coral9': {
+    '_original': {
+      '$value': '#510901',
+      '$extensions': {
+        mode: {
+          light: '#510901',
+          'light-colorblind': '#510901',
+          'light-high-contrast': '#430200',
+          dark: '#460701',
+          'dark-dimmed': '#5D1008',
+          'dark-high-contrast': '#A91500',
+          'dark-colorblind': '#460701',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.coral9',
+    '$type': 'color',
     '$value': '#510901',
     '$extensions': {
       mode: {
@@ -886,6 +1433,32 @@ export const meta = {
     },
   },
   'color.gray0': {
+    '_original': {
+      '$value': '#f6f8fa',
+      '$extensions': {
+        mode: {
+          light: '#f6f8fa',
+          'light-colorblind': '#f6f8fa',
+          'light-high-contrast': '#FFFFFF',
+          dark: '#f0f6fc',
+          'dark-dimmed': '#cdd9e5',
+          'dark-high-contrast': '#ffffff',
+          'dark-colorblind': '#f0f6fc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray0',
+    '$type': 'color',
     '$value': '#f6f8fa',
     '$extensions': {
       mode: {
@@ -900,6 +1473,32 @@ export const meta = {
     },
   },
   'color.gray1': {
+    '_original': {
+      '$value': '#eaeef2',
+      '$extensions': {
+        mode: {
+          light: '#eaeef2',
+          'light-colorblind': '#eaeef2',
+          'light-high-contrast': '#E7ECF0',
+          dark: '#c9d1d9',
+          'dark-dimmed': '#adbac7',
+          'dark-high-contrast': '#f0f3f6',
+          'dark-colorblind': '#c9d1d9',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray1',
+    '$type': 'color',
     '$value': '#eaeef2',
     '$extensions': {
       mode: {
@@ -914,6 +1513,32 @@ export const meta = {
     },
   },
   'color.gray2': {
+    '_original': {
+      '$value': '#d0d7de',
+      '$extensions': {
+        mode: {
+          light: '#d0d7de',
+          'light-colorblind': '#d0d7de',
+          'light-high-contrast': '#CED5DC',
+          dark: '#b1bac4',
+          'dark-dimmed': '#909dab',
+          'dark-high-contrast': '#d9dee3',
+          'dark-colorblind': '#b1bac4',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray2',
+    '$type': 'color',
     '$value': '#d0d7de',
     '$extensions': {
       mode: {
@@ -928,6 +1553,32 @@ export const meta = {
     },
   },
   'color.gray3': {
+    '_original': {
+      '$value': '#afb8c1',
+      '$extensions': {
+        mode: {
+          light: '#afb8c1',
+          'light-colorblind': '#afb8c1',
+          'light-high-contrast': '#ACB6C0',
+          dark: '#8b949e',
+          'dark-dimmed': '#768390',
+          'dark-high-contrast': '#bdc4cc',
+          'dark-colorblind': '#8b949e',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray3',
+    '$type': 'color',
     '$value': '#afb8c1',
     '$extensions': {
       mode: {
@@ -942,6 +1593,32 @@ export const meta = {
     },
   },
   'color.gray4': {
+    '_original': {
+      '$value': '#8c959f',
+      '$extensions': {
+        mode: {
+          light: '#8c959f',
+          'light-colorblind': '#8c959f',
+          'light-high-contrast': '#88929D',
+          dark: '#6e7681',
+          'dark-dimmed': '#636e7b',
+          'dark-high-contrast': '#9ea7b3',
+          'dark-colorblind': '#6e7681',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray4',
+    '$type': 'color',
     '$value': '#8c959f',
     '$extensions': {
       mode: {
@@ -956,6 +1633,32 @@ export const meta = {
     },
   },
   'color.gray5': {
+    '_original': {
+      '$value': '#6e7781',
+      '$extensions': {
+        mode: {
+          light: '#6e7781',
+          'light-colorblind': '#6e7781',
+          'light-high-contrast': '#66707B',
+          dark: '#484f58',
+          'dark-dimmed': '#545d68',
+          'dark-high-contrast': '#7a828e',
+          'dark-colorblind': '#484f58',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray5',
+    '$type': 'color',
     '$value': '#6e7781',
     '$extensions': {
       mode: {
@@ -970,6 +1673,32 @@ export const meta = {
     },
   },
   'color.gray6': {
+    '_original': {
+      '$value': '#57606a',
+      '$extensions': {
+        mode: {
+          light: '#57606a',
+          'light-colorblind': '#57606a',
+          'light-high-contrast': '#4B535D',
+          dark: '#30363d',
+          'dark-dimmed': '#444c56',
+          'dark-high-contrast': '#525964',
+          'dark-colorblind': '#30363d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray6',
+    '$type': 'color',
     '$value': '#57606a',
     '$extensions': {
       mode: {
@@ -984,6 +1713,32 @@ export const meta = {
     },
   },
   'color.gray7': {
+    '_original': {
+      '$value': '#424a53',
+      '$extensions': {
+        mode: {
+          light: '#424a53',
+          'light-colorblind': '#424a53',
+          'light-high-contrast': '#343B43',
+          dark: '#21262d',
+          'dark-dimmed': '#373e47',
+          'dark-high-contrast': '#272b33',
+          'dark-colorblind': '#21262d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray7',
+    '$type': 'color',
     '$value': '#424a53',
     '$extensions': {
       mode: {
@@ -998,6 +1753,32 @@ export const meta = {
     },
   },
   'color.gray8': {
+    '_original': {
+      '$value': '#32383f',
+      '$extensions': {
+        mode: {
+          light: '#32383f',
+          'light-colorblind': '#32383f',
+          'light-high-contrast': '#20252C',
+          dark: '#161b22',
+          'dark-dimmed': '#2d333b',
+          'dark-high-contrast': '#272b33',
+          'dark-colorblind': '#161b22',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray8',
+    '$type': 'color',
     '$value': '#32383f',
     '$extensions': {
       mode: {
@@ -1012,6 +1793,32 @@ export const meta = {
     },
   },
   'color.gray9': {
+    '_original': {
+      '$value': '#24292f',
+      '$extensions': {
+        mode: {
+          light: '#24292f',
+          'light-colorblind': '#24292f',
+          'light-high-contrast': '#0E1116',
+          dark: '#0d1117',
+          'dark-dimmed': '#22272e',
+          'dark-high-contrast': '#0a0c10',
+          'dark-colorblind': '#0d1117',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.gray9',
+    '$type': 'color',
     '$value': '#24292f',
     '$extensions': {
       mode: {
@@ -1026,6 +1833,32 @@ export const meta = {
     },
   },
   'color.green0': {
+    '_original': {
+      '$value': '#dafbe1',
+      '$extensions': {
+        mode: {
+          light: '#dafbe1',
+          'light-colorblind': '#c0f6ff',
+          'light-high-contrast': '#d2fedb',
+          dark: '#aff5b4',
+          'dark-dimmed': '#b4f1b4',
+          'dark-high-contrast': '#acf7b6',
+          'dark-colorblind': '#a0e8ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green0',
+    '$type': 'color',
     '$value': '#dafbe1',
     '$extensions': {
       mode: {
@@ -1040,6 +1873,32 @@ export const meta = {
     },
   },
   'color.green1': {
+    '_original': {
+      '$value': '#aceebb',
+      '$extensions': {
+        mode: {
+          light: '#aceebb',
+          'light-colorblind': '#96e5ff',
+          'light-high-contrast': '#82e596',
+          dark: '#7ee787',
+          'dark-dimmed': '#8ddb8c',
+          'dark-high-contrast': '#72f088',
+          'dark-colorblind': '#83d4ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green1',
+    '$type': 'color',
     '$value': '#aceebb',
     '$extensions': {
       mode: {
@@ -1054,6 +1913,32 @@ export const meta = {
     },
   },
   'color.green2': {
+    '_original': {
+      '$value': '#6fdd8b',
+      '$extensions': {
+        mode: {
+          light: '#6fdd8b',
+          'light-colorblind': '#65ccff',
+          'light-high-contrast': '#43c663',
+          dark: '#56d364',
+          'dark-dimmed': '#6bc46d',
+          'dark-high-contrast': '#4ae168',
+          'dark-colorblind': '#66baff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green2',
+    '$type': 'color',
     '$value': '#6fdd8b',
     '$extensions': {
       mode: {
@@ -1068,6 +1953,32 @@ export const meta = {
     },
   },
   'color.green3': {
+    '_original': {
+      '$value': '#4ac26b',
+      '$extensions': {
+        mode: {
+          light: '#4ac26b',
+          'light-colorblind': '#35adff',
+          'light-high-contrast': '#26a148',
+          dark: '#3fb950',
+          'dark-dimmed': '#57ab5a',
+          'dark-high-contrast': '#26cd4d',
+          'dark-colorblind': '#42a0ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green3',
+    '$type': 'color',
     '$value': '#4ac26b',
     '$extensions': {
       mode: {
@@ -1082,6 +1993,32 @@ export const meta = {
     },
   },
   'color.green4': {
+    '_original': {
+      '$value': '#2da44e',
+      '$extensions': {
+        mode: {
+          light: '#2da44e',
+          'light-colorblind': '#0088ff',
+          'light-high-contrast': '#117f32',
+          dark: '#2ea043',
+          'dark-dimmed': '#46954a',
+          'dark-high-contrast': '#09b43a',
+          'dark-colorblind': '#1585fd',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green4',
+    '$type': 'color',
     '$value': '#2da44e',
     '$extensions': {
       mode: {
@@ -1096,6 +2033,32 @@ export const meta = {
     },
   },
   'color.green5': {
+    '_original': {
+      '$value': '#1a7f37',
+      '$extensions': {
+        mode: {
+          light: '#1a7f37',
+          'light-colorblind': '#0566d5',
+          'light-high-contrast': '#055d20',
+          dark: '#238636',
+          'dark-dimmed': '#347d39',
+          'dark-high-contrast': '#09b43a',
+          'dark-colorblind': '#1d69e0',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green5',
+    '$type': 'color',
     '$value': '#1a7f37',
     '$extensions': {
       mode: {
@@ -1110,6 +2073,32 @@ export const meta = {
     },
   },
   'color.green6': {
+    '_original': {
+      '$value': '#116329',
+      '$extensions': {
+        mode: {
+          light: '#116329',
+          'light-colorblind': '#054da9',
+          'light-high-contrast': '#024c1a',
+          dark: '#196c2e',
+          'dark-dimmed': '#2b6a30',
+          'dark-high-contrast': '#02a232',
+          'dark-colorblind': '#0f53bc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green6',
+    '$type': 'color',
     '$value': '#116329',
     '$extensions': {
       mode: {
@@ -1124,6 +2113,32 @@ export const meta = {
     },
   },
   'color.green7': {
+    '_original': {
+      '$value': '#044f1e',
+      '$extensions': {
+        mode: {
+          light: '#044f1e',
+          'light-colorblind': '#033a86',
+          'light-high-contrast': '#013d14',
+          dark: '#0f5323',
+          'dark-dimmed': '#245829',
+          'dark-high-contrast': '#008c2c',
+          'dark-colorblind': '#0b3c92',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green7',
+    '$type': 'color',
     '$value': '#044f1e',
     '$extensions': {
       mode: {
@@ -1138,6 +2153,32 @@ export const meta = {
     },
   },
   'color.green8': {
+    '_original': {
+      '$value': '#003d16',
+      '$extensions': {
+        mode: {
+          light: '#003d16',
+          'light-colorblind': '#002d68',
+          'light-high-contrast': '#003110',
+          dark: '#033a16',
+          'dark-dimmed': '#1b4721',
+          'dark-high-contrast': '#007728',
+          'dark-colorblind': '#0a2861',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green8',
+    '$type': 'color',
     '$value': '#003d16',
     '$extensions': {
       mode: {
@@ -1152,6 +2193,32 @@ export const meta = {
     },
   },
   'color.green9': {
+    '_original': {
+      '$value': '#002d11',
+      '$extensions': {
+        mode: {
+          light: '#002d11',
+          'light-colorblind': '#001f50',
+          'light-high-contrast': '#00230b',
+          dark: '#04260f',
+          'dark-dimmed': '#113417',
+          'dark-high-contrast': '#006222',
+          'dark-colorblind': '#041843',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.green9',
+    '$type': 'color',
     '$value': '#002d11',
     '$extensions': {
       mode: {
@@ -1166,6 +2233,32 @@ export const meta = {
     },
   },
   'color.orange0': {
+    '_original': {
+      '$value': '#fff1e5',
+      '$extensions': {
+        mode: {
+          light: '#fff1e5',
+          'light-colorblind': '#fff1e5',
+          'light-high-contrast': '#fff2d5',
+          dark: '#ffdfb6',
+          'dark-dimmed': '#ffddb0',
+          'dark-high-contrast': '#ffe1b4',
+          'dark-colorblind': '#ffdfb6',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange0',
+    '$type': 'color',
     '$value': '#fff1e5',
     '$extensions': {
       mode: {
@@ -1180,6 +2273,32 @@ export const meta = {
     },
   },
   'color.orange1': {
+    '_original': {
+      '$value': '#ffd8b5',
+      '$extensions': {
+        mode: {
+          light: '#ffd8b5',
+          'light-colorblind': '#ffd8b5',
+          'light-high-contrast': '#ffc67b',
+          dark: '#ffc680',
+          'dark-dimmed': '#ffbc6f',
+          'dark-high-contrast': '#ffcf86',
+          'dark-colorblind': '#ffc680',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange1',
+    '$type': 'color',
     '$value': '#ffd8b5',
     '$extensions': {
       mode: {
@@ -1194,6 +2313,32 @@ export const meta = {
     },
   },
   'color.orange2': {
+    '_original': {
+      '$value': '#ffb77c',
+      '$extensions': {
+        mode: {
+          light: '#ffb77c',
+          'light-colorblind': '#ffb77c',
+          'light-high-contrast': '#f99636',
+          dark: '#ffa657',
+          'dark-dimmed': '#f69d50',
+          'dark-high-contrast': '#ffb757',
+          'dark-colorblind': '#ffa657',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange2',
+    '$type': 'color',
     '$value': '#ffb77c',
     '$extensions': {
       mode: {
@@ -1208,6 +2353,32 @@ export const meta = {
     },
   },
   'color.orange3': {
+    '_original': {
+      '$value': '#fb8f44',
+      '$extensions': {
+        mode: {
+          light: '#fb8f44',
+          'light-colorblind': '#fb8f44',
+          'light-high-contrast': '#dc6d1a',
+          dark: '#f0883e',
+          'dark-dimmed': '#e0823d',
+          'dark-high-contrast': '#fe9a2d',
+          'dark-colorblind': '#f0883e',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange3',
+    '$type': 'color',
     '$value': '#fb8f44',
     '$extensions': {
       mode: {
@@ -1222,6 +2393,32 @@ export const meta = {
     },
   },
   'color.orange4': {
+    '_original': {
+      '$value': '#e16f24',
+      '$extensions': {
+        mode: {
+          light: '#e16f24',
+          'light-colorblind': '#e16f24',
+          'light-high-contrast': '#b45105',
+          dark: '#db6d28',
+          'dark-dimmed': '#cc6b2c',
+          'dark-high-contrast': '#e7811d',
+          'dark-colorblind': '#db6d28',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange4',
+    '$type': 'color',
     '$value': '#e16f24',
     '$extensions': {
       mode: {
@@ -1236,6 +2433,32 @@ export const meta = {
     },
   },
   'color.orange5': {
+    '_original': {
+      '$value': '#bc4c00',
+      '$extensions': {
+        mode: {
+          light: '#bc4c00',
+          'light-colorblind': '#bc4c00',
+          'light-high-contrast': '#873800',
+          dark: '#bd561d',
+          'dark-dimmed': '#ae5622',
+          'dark-high-contrast': '#e7811d',
+          'dark-colorblind': '#bd561d',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange5',
+    '$type': 'color',
     '$value': '#bc4c00',
     '$extensions': {
       mode: {
@@ -1250,6 +2473,32 @@ export const meta = {
     },
   },
   'color.orange6': {
+    '_original': {
+      '$value': '#953800',
+      '$extensions': {
+        mode: {
+          light: '#953800',
+          'light-colorblind': '#953800',
+          'light-high-contrast': '#702c00',
+          dark: '#9b4215',
+          'dark-dimmed': '#94471b',
+          'dark-high-contrast': '#d57014',
+          'dark-colorblind': '#9b4215',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange6',
+    '$type': 'color',
     '$value': '#953800',
     '$extensions': {
       mode: {
@@ -1264,6 +2513,32 @@ export const meta = {
     },
   },
   'color.orange7': {
+    '_original': {
+      '$value': '#762c00',
+      '$extensions': {
+        mode: {
+          light: '#762c00',
+          'light-colorblind': '#762c00',
+          'light-high-contrast': '#5b2300',
+          dark: '#762d0a',
+          'dark-dimmed': '#7f3913',
+          'dark-high-contrast': '#bf5e0a',
+          'dark-colorblind': '#762d0a',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange7',
+    '$type': 'color',
     '$value': '#762c00',
     '$extensions': {
       mode: {
@@ -1278,6 +2553,32 @@ export const meta = {
     },
   },
   'color.orange8': {
+    '_original': {
+      '$value': '#5c2200',
+      '$extensions': {
+        mode: {
+          light: '#5c2200',
+          'light-colorblind': '#5c2200',
+          'light-high-contrast': '#491b00',
+          dark: '#5a1e02',
+          'dark-dimmed': '#682d0f',
+          'dark-high-contrast': '#a74c00',
+          'dark-colorblind': '#5a1e02',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange8',
+    '$type': 'color',
     '$value': '#5c2200',
     '$extensions': {
       mode: {
@@ -1292,6 +2593,32 @@ export const meta = {
     },
   },
   'color.orange9': {
+    '_original': {
+      '$value': '#471700',
+      '$extensions': {
+        mode: {
+          light: '#471700',
+          'light-colorblind': '#471700',
+          'light-high-contrast': '#361200',
+          dark: '#3d1300',
+          'dark-dimmed': '#4d210c',
+          'dark-high-contrast': '#8f3c00',
+          'dark-colorblind': '#3d1300',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.orange9',
+    '$type': 'color',
     '$value': '#471700',
     '$extensions': {
       mode: {
@@ -1306,6 +2633,32 @@ export const meta = {
     },
   },
   'color.pink0': {
+    '_original': {
+      '$value': '#ffeff7',
+      '$extensions': {
+        mode: {
+          light: '#ffeff7',
+          'light-colorblind': '#ffeff7',
+          'light-high-contrast': '#feeff7',
+          dark: '#ffdaec',
+          'dark-dimmed': '#ffd7eb',
+          'dark-high-contrast': '#ffdceb',
+          'dark-colorblind': '#ffdaec',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink0',
+    '$type': 'color',
     '$value': '#ffeff7',
     '$extensions': {
       mode: {
@@ -1320,6 +2673,32 @@ export const meta = {
     },
   },
   'color.pink1': {
+    '_original': {
+      '$value': '#ffd3eb',
+      '$extensions': {
+        mode: {
+          light: '#ffd3eb',
+          'light-colorblind': '#ffd3eb',
+          'light-high-contrast': '#ffbde0',
+          dark: '#ffbedd',
+          'dark-dimmed': '#ffb3d8',
+          'dark-high-contrast': '#ffc7e1',
+          'dark-colorblind': '#ffbedd',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink1',
+    '$type': 'color',
     '$value': '#ffd3eb',
     '$extensions': {
       mode: {
@@ -1334,6 +2713,32 @@ export const meta = {
     },
   },
   'color.pink2': {
+    '_original': {
+      '$value': '#ffadda',
+      '$extensions': {
+        mode: {
+          light: '#ffadda',
+          'light-colorblind': '#ffadda',
+          'light-high-contrast': '#fc87ca',
+          dark: '#ff9bce',
+          'dark-dimmed': '#fc8dc7',
+          'dark-high-contrast': '#ffadd4',
+          'dark-colorblind': '#ff9bce',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink2',
+    '$type': 'color',
     '$value': '#ffadda',
     '$extensions': {
       mode: {
@@ -1348,6 +2753,32 @@ export const meta = {
     },
   },
   'color.pink3': {
+    '_original': {
+      '$value': '#ff80c8',
+      '$extensions': {
+        mode: {
+          light: '#ff80c8',
+          'light-colorblind': '#ff80c8',
+          'light-high-contrast': '#ed4baf',
+          dark: '#f778ba',
+          'dark-dimmed': '#e275ad',
+          'dark-high-contrast': '#ff8dc7',
+          'dark-colorblind': '#f778ba',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink3',
+    '$type': 'color',
     '$value': '#ff80c8',
     '$extensions': {
       mode: {
@@ -1362,6 +2793,32 @@ export const meta = {
     },
   },
   'color.pink4': {
+    '_original': {
+      '$value': '#e85aad',
+      '$extensions': {
+        mode: {
+          light: '#e85aad',
+          'light-colorblind': '#e85aad',
+          'light-high-contrast': '#c9248e',
+          dark: '#db61a2',
+          'dark-dimmed': '#c96198',
+          'dark-high-contrast': '#ef6eb1',
+          'dark-colorblind': '#db61a2',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink4',
+    '$type': 'color',
     '$value': '#e85aad',
     '$extensions': {
       mode: {
@@ -1376,6 +2833,32 @@ export const meta = {
     },
   },
   'color.pink5': {
+    '_original': {
+      '$value': '#bf3989',
+      '$extensions': {
+        mode: {
+          light: '#bf3989',
+          'light-colorblind': '#bf3989',
+          'light-high-contrast': '#971368',
+          dark: '#bf4b8a',
+          'dark-dimmed': '#ae4c82',
+          'dark-high-contrast': '#ef6eb1',
+          'dark-colorblind': '#bf4b8a',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink5',
+    '$type': 'color',
     '$value': '#bf3989',
     '$extensions': {
       mode: {
@@ -1390,6 +2873,32 @@ export const meta = {
     },
   },
   'color.pink6': {
+    '_original': {
+      '$value': '#99286e',
+      '$extensions': {
+        mode: {
+          light: '#99286e',
+          'light-colorblind': '#99286e',
+          'light-high-contrast': '#7d0c57',
+          dark: '#9e3670',
+          'dark-dimmed': '#983b6e',
+          'dark-high-contrast': '#e456a3',
+          'dark-colorblind': '#9e3670',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink6',
+    '$type': 'color',
     '$value': '#99286e',
     '$extensions': {
       mode: {
@@ -1404,6 +2913,32 @@ export const meta = {
     },
   },
   'color.pink7': {
+    '_original': {
+      '$value': '#772057',
+      '$extensions': {
+        mode: {
+          light: '#772057',
+          'light-colorblind': '#772057',
+          'light-high-contrast': '#660847',
+          dark: '#7d2457',
+          'dark-dimmed': '#7e325a',
+          'dark-high-contrast': '#d23d91',
+          'dark-colorblind': '#7d2457',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink7',
+    '$type': 'color',
     '$value': '#772057',
     '$extensions': {
       mode: {
@@ -1418,6 +2953,32 @@ export const meta = {
     },
   },
   'color.pink8': {
+    '_original': {
+      '$value': '#611347',
+      '$extensions': {
+        mode: {
+          light: '#611347',
+          'light-colorblind': '#611347',
+          'light-high-contrast': '#53043a',
+          dark: '#5e103e',
+          'dark-dimmed': '#69264a',
+          'dark-high-contrast': '#b72c7d',
+          'dark-colorblind': '#5e103e',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink8',
+    '$type': 'color',
     '$value': '#611347',
     '$extensions': {
       mode: {
@@ -1432,6 +2993,32 @@ export const meta = {
     },
   },
   'color.pink9': {
+    '_original': {
+      '$value': '#4d0336',
+      '$extensions': {
+        mode: {
+          light: '#4d0336',
+          'light-colorblind': '#4d0336',
+          'light-high-contrast': '#3e022b',
+          dark: '#42062a',
+          'dark-dimmed': '#551639',
+          'dark-high-contrast': '#9c1d6a',
+          'dark-colorblind': '#42062a',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.pink9',
+    '$type': 'color',
     '$value': '#4d0336',
     '$extensions': {
       mode: {
@@ -1446,6 +3033,32 @@ export const meta = {
     },
   },
   'color.purple0': {
+    '_original': {
+      '$value': '#fbefff',
+      '$extensions': {
+        mode: {
+          light: '#fbefff',
+          'light-colorblind': '#fbefff',
+          'light-high-contrast': '#faf0fe',
+          dark: '#eddeff',
+          'dark-dimmed': '#eedcff',
+          'dark-high-contrast': '#f0dfff',
+          'dark-colorblind': '#eddeff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple0',
+    '$type': 'color',
     '$value': '#fbefff',
     '$extensions': {
       mode: {
@@ -1460,6 +3073,32 @@ export const meta = {
     },
   },
   'color.purple1': {
+    '_original': {
+      '$value': '#ecd8ff',
+      '$extensions': {
+        mode: {
+          light: '#ecd8ff',
+          'light-colorblind': '#ecd8ff',
+          'light-high-contrast': '#e0c5ff',
+          dark: '#e2c5ff',
+          'dark-dimmed': '#dcbdfb',
+          'dark-high-contrast': '#e6ccff',
+          'dark-colorblind': '#e2c5ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple1',
+    '$type': 'color',
     '$value': '#ecd8ff',
     '$extensions': {
       mode: {
@@ -1474,6 +3113,32 @@ export const meta = {
     },
   },
   'color.purple2': {
+    '_original': {
+      '$value': '#d8b9ff',
+      '$extensions': {
+        mode: {
+          light: '#d8b9ff',
+          'light-colorblind': '#d8b9ff',
+          'light-high-contrast': '#c49bff',
+          dark: '#d2a8ff',
+          'dark-dimmed': '#dcbdfb',
+          'dark-high-contrast': '#dbb7ff',
+          'dark-colorblind': '#d2a8ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple2',
+    '$type': 'color',
     '$value': '#d8b9ff',
     '$extensions': {
       mode: {
@@ -1488,6 +3153,32 @@ export const meta = {
     },
   },
   'color.purple3': {
+    '_original': {
+      '$value': '#c297ff',
+      '$extensions': {
+        mode: {
+          light: '#c297ff',
+          'light-colorblind': '#c297ff',
+          'light-high-contrast': '#a371f7',
+          dark: '#bc8cff',
+          'dark-dimmed': '#b083f0',
+          'dark-high-contrast': '#cb9eff',
+          'dark-colorblind': '#bc8cff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple3',
+    '$type': 'color',
     '$value': '#c297ff',
     '$extensions': {
       mode: {
@@ -1502,6 +3193,32 @@ export const meta = {
     },
   },
   'color.purple4': {
+    '_original': {
+      '$value': '#a475f9',
+      '$extensions': {
+        mode: {
+          light: '#a475f9',
+          'light-colorblind': '#a475f9',
+          'light-high-contrast': '#844ae7',
+          dark: '#a371f7',
+          'dark-dimmed': '#986ee2',
+          'dark-high-contrast': '#b780ff',
+          'dark-colorblind': '#a371f7',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple4',
+    '$type': 'color',
     '$value': '#a475f9',
     '$extensions': {
       mode: {
@@ -1516,6 +3233,32 @@ export const meta = {
     },
   },
   'color.purple5': {
+    '_original': {
+      '$value': '#8250df',
+      '$extensions': {
+        mode: {
+          light: '#8250df',
+          'light-colorblind': '#8250df',
+          'light-high-contrast': '#622cbc',
+          dark: '#8957e5',
+          'dark-dimmed': '#8256d0',
+          'dark-high-contrast': '#b87fff',
+          'dark-colorblind': '#8957e5',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple5',
+    '$type': 'color',
     '$value': '#8250df',
     '$extensions': {
       mode: {
@@ -1530,6 +3273,32 @@ export const meta = {
     },
   },
   'color.purple6': {
+    '_original': {
+      '$value': '#6639ba',
+      '$extensions': {
+        mode: {
+          light: '#6639ba',
+          'light-colorblind': '#6639ba',
+          'light-high-contrast': '#512598',
+          dark: '#6e40c9',
+          'dark-dimmed': '#6b44bc',
+          'dark-high-contrast': '#a66bff',
+          'dark-colorblind': '#6e40c9',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple6',
+    '$type': 'color',
     '$value': '#6639ba',
     '$extensions': {
       mode: {
@@ -1544,6 +3313,32 @@ export const meta = {
     },
   },
   'color.purple7': {
+    '_original': {
+      '$value': '#512a97',
+      '$extensions': {
+        mode: {
+          light: '#512a97',
+          'light-colorblind': '#512a97',
+          'light-high-contrast': '#411d7b',
+          dark: '#553098',
+          'dark-dimmed': '#5936a2',
+          'dark-high-contrast': '#954ffd',
+          'dark-colorblind': '#553098',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple7',
+    '$type': 'color',
     '$value': '#512a97',
     '$extensions': {
       mode: {
@@ -1558,6 +3353,32 @@ export const meta = {
     },
   },
   'color.purple8': {
+    '_original': {
+      '$value': '#3e1f79',
+      '$extensions': {
+        mode: {
+          light: '#3e1f79',
+          'light-colorblind': '#3e1f79',
+          'light-high-contrast': '#341763',
+          dark: '#3c1e70',
+          'dark-dimmed': '#472c82',
+          'dark-high-contrast': '#8031f7',
+          'dark-colorblind': '#3c1e70',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple8',
+    '$type': 'color',
     '$value': '#3e1f79',
     '$extensions': {
       mode: {
@@ -1572,6 +3393,32 @@ export const meta = {
     },
   },
   'color.purple9': {
+    '_original': {
+      '$value': '#2e1461',
+      '$extensions': {
+        mode: {
+          light: '#2e1461',
+          'light-colorblind': '#2e1461',
+          'light-high-contrast': '#260f49',
+          dark: '#271052',
+          'dark-dimmed': '#352160',
+          'dark-high-contrast': '#6921d7',
+          'dark-colorblind': '#271052',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.purple9',
+    '$type': 'color',
     '$value': '#2e1461',
     '$extensions': {
       mode: {
@@ -1586,7 +3433,33 @@ export const meta = {
     },
   },
   'color.red0': {
-    '$value': '#FFEBE9',
+    '_original': {
+      '$value': '#FFEBE9',
+      '$extensions': {
+        mode: {
+          light: '#FFEBE9',
+          'light-colorblind': '#fefe48',
+          'light-high-contrast': '#fff0ee',
+          dark: '#ffdcd7',
+          'dark-dimmed': '#ffd8d3',
+          'dark-high-contrast': '#ffdedb',
+          'dark-colorblind': '#f0ec59',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red0',
+    '$type': 'color',
+    '$value': '#ffebe9',
     '$extensions': {
       mode: {
         light: '#ffebe9',
@@ -1600,6 +3473,32 @@ export const meta = {
     },
   },
   'color.red1': {
+    '_original': {
+      '$value': '#ffcecb',
+      '$extensions': {
+        mode: {
+          light: '#ffcecb',
+          'light-colorblind': '#fee325',
+          'light-high-contrast': '#ffc1bc',
+          dark: '#ffc1ba',
+          'dark-dimmed': '#ffb8b0',
+          'dark-high-contrast': '#ffc9c7',
+          'dark-colorblind': '#ecd334',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red1',
+    '$type': 'color',
     '$value': '#ffcecb',
     '$extensions': {
       mode: {
@@ -1614,6 +3513,32 @@ export const meta = {
     },
   },
   'color.red2': {
+    '_original': {
+      '$value': '#ffaba8',
+      '$extensions': {
+        mode: {
+          light: '#ffaba8',
+          'light-colorblind': '#f8c200',
+          'light-high-contrast': '#ff8e8a',
+          dark: '#ffa198',
+          'dark-dimmed': '#ff938a',
+          'dark-high-contrast': '#ffb1af',
+          'dark-colorblind': '#e6b716',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red2',
+    '$type': 'color',
     '$value': '#ffaba8',
     '$extensions': {
       mode: {
@@ -1628,6 +3553,32 @@ export const meta = {
     },
   },
   'color.red3': {
+    '_original': {
+      '$value': '#ff8182',
+      '$extensions': {
+        mode: {
+          light: '#ff8182',
+          'light-colorblind': '#e7a100',
+          'light-high-contrast': '#ee5a5d',
+          dark: '#ff7b72',
+          'dark-dimmed': '#f47067',
+          'dark-high-contrast': '#ff9492',
+          'dark-colorblind': '#d69a00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red3',
+    '$type': 'color',
     '$value': '#ff8182',
     '$extensions': {
       mode: {
@@ -1642,6 +3593,32 @@ export const meta = {
     },
   },
   'color.red4': {
+    '_original': {
+      '$value': '#fa4549',
+      '$extensions': {
+        mode: {
+          light: '#fa4549',
+          'light-colorblind': '#d08002',
+          'light-high-contrast': '#d5232c',
+          dark: '#f85149',
+          'dark-dimmed': '#e5534b',
+          'dark-high-contrast': '#ff6a69',
+          'dark-colorblind': '#c38000',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red4',
+    '$type': 'color',
     '$value': '#fa4549',
     '$extensions': {
       mode: {
@@ -1656,6 +3633,32 @@ export const meta = {
     },
   },
   'color.red5': {
+    '_original': {
+      '$value': '#cf222e',
+      '$extensions': {
+        mode: {
+          light: '#cf222e',
+          'light-colorblind': '#ac5e00',
+          'light-high-contrast': '#a0111f',
+          dark: '#da3633',
+          'dark-dimmed': '#c93c37',
+          'dark-high-contrast': '#ff6a69',
+          'dark-colorblind': '#a66900',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red5',
+    '$type': 'color',
     '$value': '#cf222e',
     '$extensions': {
       mode: {
@@ -1670,6 +3673,32 @@ export const meta = {
     },
   },
   'color.red6': {
+    '_original': {
+      '$value': '#a40e26',
+      '$extensions': {
+        mode: {
+          light: '#a40e26',
+          'light-colorblind': '#8b4600',
+          'light-high-contrast': '#86061d',
+          dark: '#b62324',
+          'dark-dimmed': '#ad2e2c',
+          'dark-high-contrast': '#ff4445',
+          'dark-colorblind': '#865401',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red6',
+    '$type': 'color',
     '$value': '#a40e26',
     '$extensions': {
       mode: {
@@ -1684,6 +3713,32 @@ export const meta = {
     },
   },
   'color.red7': {
+    '_original': {
+      '$value': '#82071e',
+      '$extensions': {
+        mode: {
+          light: '#82071e',
+          'light-colorblind': '#6c3900',
+          'light-high-contrast': '#6e011a',
+          dark: '#8e1519',
+          'dark-dimmed': '#922323',
+          'dark-high-contrast': '#e82a2f',
+          'dark-colorblind': '#633e00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red7',
+    '$type': 'color',
     '$value': '#82071e',
     '$extensions': {
       mode: {
@@ -1698,6 +3753,32 @@ export const meta = {
     },
   },
   'color.red8': {
+    '_original': {
+      '$value': '#660018',
+      '$extensions': {
+        mode: {
+          light: '#660018',
+          'light-colorblind': '#4c3100',
+          'light-high-contrast': '#5a0016',
+          dark: '#67060c',
+          'dark-dimmed': '#78191b',
+          'dark-high-contrast': '#cc1421',
+          'dark-colorblind': '#452f00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red8',
+    '$type': 'color',
     '$value': '#660018',
     '$extensions': {
       mode: {
@@ -1712,6 +3793,32 @@ export const meta = {
     },
   },
   'color.red9': {
+    '_original': {
+      '$value': '#4c0014',
+      '$extensions': {
+        mode: {
+          light: '#4c0014',
+          'light-colorblind': '#2f2900',
+          'light-high-contrast': '#430011',
+          dark: '#490202',
+          'dark-dimmed': '#5D0F12',
+          'dark-high-contrast': '#ad0116',
+          'dark-colorblind': '#292100',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.red9',
+    '$type': 'color',
     '$value': '#4c0014',
     '$extensions': {
       mode: {
@@ -1726,6 +3833,32 @@ export const meta = {
     },
   },
   'color.yellow0': {
+    '_original': {
+      '$value': '#fff8c5',
+      '$extensions': {
+        mode: {
+          light: '#fff8c5',
+          'light-colorblind': '#fff8c5',
+          'light-high-contrast': '#fcf7be',
+          dark: '#f8e3a1',
+          'dark-dimmed': '#fbe090',
+          'dark-high-contrast': '#fbe59e',
+          'dark-colorblind': '#f8e3a1',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow0',
+    '$type': 'color',
     '$value': '#fff8c5',
     '$extensions': {
       mode: {
@@ -1740,6 +3873,32 @@ export const meta = {
     },
   },
   'color.yellow1': {
+    '_original': {
+      '$value': '#fae17d',
+      '$extensions': {
+        mode: {
+          light: '#fae17d',
+          'light-colorblind': '#fae17d',
+          'light-high-contrast': '#f0ce53',
+          dark: '#f2cc60',
+          'dark-dimmed': '#eac55f',
+          'dark-high-contrast': '#fbd669',
+          'dark-colorblind': '#f2cc60',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow1',
+    '$type': 'color',
     '$value': '#fae17d',
     '$extensions': {
       mode: {
@@ -1754,6 +3913,32 @@ export const meta = {
     },
   },
   'color.yellow2': {
+    '_original': {
+      '$value': '#eac54f',
+      '$extensions': {
+        mode: {
+          light: '#eac54f',
+          'light-colorblind': '#eac54f',
+          'light-high-contrast': '#d5a824',
+          dark: '#e3b341',
+          'dark-dimmed': '#daaa3f',
+          'dark-high-contrast': '#f7c843',
+          'dark-colorblind': '#e3b341',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow2',
+    '$type': 'color',
     '$value': '#eac54f',
     '$extensions': {
       mode: {
@@ -1768,6 +3953,32 @@ export const meta = {
     },
   },
   'color.yellow3': {
+    '_original': {
+      '$value': '#d4a72c',
+      '$extensions': {
+        mode: {
+          light: '#d4a72c',
+          'light-colorblind': '#d4a72c',
+          'light-high-contrast': '#b58407',
+          dark: '#d29922',
+          'dark-dimmed': '#c69026',
+          'dark-high-contrast': '#f0b72f',
+          'dark-colorblind': '#d29922',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow3',
+    '$type': 'color',
     '$value': '#d4a72c',
     '$extensions': {
       mode: {
@@ -1782,6 +3993,32 @@ export const meta = {
     },
   },
   'color.yellow4': {
+    '_original': {
+      '$value': '#bf8700',
+      '$extensions': {
+        mode: {
+          light: '#bf8700',
+          'light-colorblind': '#bf8700',
+          'light-high-contrast': '#956400',
+          dark: '#bb8009',
+          'dark-dimmed': '#ae7c14',
+          'dark-high-contrast': '#e09b13',
+          'dark-colorblind': '#bb8009',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow4',
+    '$type': 'color',
     '$value': '#bf8700',
     '$extensions': {
       mode: {
@@ -1796,6 +4033,32 @@ export const meta = {
     },
   },
   'color.yellow5': {
+    '_original': {
+      '$value': '#9a6700',
+      '$extensions': {
+        mode: {
+          light: '#9a6700',
+          'light-colorblind': '#9a6700',
+          'light-high-contrast': '#744500',
+          dark: '#9e6a03',
+          'dark-dimmed': '#966600',
+          'dark-high-contrast': '#e09b13',
+          'dark-colorblind': '#9e6a03',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow5',
+    '$type': 'color',
     '$value': '#9a6700',
     '$extensions': {
       mode: {
@@ -1810,6 +4073,32 @@ export const meta = {
     },
   },
   'color.yellow6': {
+    '_original': {
+      '$value': '#7d4e00',
+      '$extensions': {
+        mode: {
+          light: '#7d4e00',
+          'light-colorblind': '#7d4e00',
+          'light-high-contrast': '#603700',
+          dark: '#845306',
+          'dark-dimmed': '#805400',
+          'dark-high-contrast': '#c88508',
+          'dark-colorblind': '#845306',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow6',
+    '$type': 'color',
     '$value': '#7d4e00',
     '$extensions': {
       mode: {
@@ -1824,6 +4113,32 @@ export const meta = {
     },
   },
   'color.yellow7': {
+    '_original': {
+      '$value': '#633c01',
+      '$extensions': {
+        mode: {
+          light: '#633c01',
+          'light-colorblind': '#633c01',
+          'light-high-contrast': '#4e2c00',
+          dark: '#693e00',
+          'dark-dimmed': '#6c4400',
+          'dark-high-contrast': '#ae7104',
+          'dark-colorblind': '#693e00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow7',
+    '$type': 'color',
     '$value': '#633c01',
     '$extensions': {
       mode: {
@@ -1838,6 +4153,32 @@ export const meta = {
     },
   },
   'color.yellow8': {
+    '_original': {
+      '$value': '#4d2d00',
+      '$extensions': {
+        mode: {
+          light: '#4d2d00',
+          'light-colorblind': '#4d2d00',
+          'light-high-contrast': '#3f2200',
+          dark: '#4b2900',
+          'dark-dimmed': '#593600',
+          'dark-high-contrast': '#945d02',
+          'dark-colorblind': '#4b2900',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow8',
+    '$type': 'color',
     '$value': '#4d2d00',
     '$extensions': {
       mode: {
@@ -1852,6 +4193,32 @@ export const meta = {
     },
   },
   'color.yellow9': {
+    '_original': {
+      '$value': '#3b2300',
+      '$extensions': {
+        mode: {
+          light: '#3b2300',
+          'light-colorblind': '#3b2300',
+          'light-high-contrast': '#2e1800',
+          dark: '#341a00',
+          'dark-dimmed': '#452700',
+          'dark-high-contrast': '#7b4900',
+          'dark-colorblind': '#341a00',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.yellow9',
+    '$type': 'color',
     '$value': '#3b2300',
     '$extensions': {
       mode: {
@@ -1866,6 +4233,32 @@ export const meta = {
     },
   },
   'color.white': {
+    '_original': {
+      '$value': '#ffffff',
+      '$extensions': {
+        mode: {
+          light: '#ffffff',
+          'light-colorblind': '#ffffff',
+          'light-high-contrast': '#ffffff',
+          dark: '#f0f6fc',
+          'dark-dimmed': '#cdd9e5',
+          'dark-high-contrast': '#ffffff',
+          'dark-colorblind': '#f0f6fc',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'color',
+    },
+    id: 'color.white',
+    '$type': 'color',
     '$value': '#ffffff',
     '$extensions': {
       mode: {
@@ -1880,1443 +4273,8170 @@ export const meta = {
     },
   },
   'icon.alert-16': {
+    '_original': {
+      '$value': '/icon/alert-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.alert-16',
+    '$type': 'link',
     '$value': '/icon/alert-16.svg',
   },
   'icon.alert-24': {
+    '_original': {
+      '$value': '/icon/alert-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.alert-24',
+    '$type': 'link',
     '$value': '/icon/alert-24.svg',
   },
   'icon.archive-16': {
+    '_original': {
+      '$value': '/icon/archive-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.archive-16',
+    '$type': 'link',
     '$value': '/icon/archive-16.svg',
   },
   'icon.archive-24': {
+    '_original': {
+      '$value': '/icon/archive-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.archive-24',
+    '$type': 'link',
     '$value': '/icon/archive-24.svg',
   },
   'icon.arrow-both-16': {
+    '_original': {
+      '$value': '/icon/arrow-both-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-both-16',
+    '$type': 'link',
     '$value': '/icon/arrow-both-16.svg',
   },
   'icon.alert-fill-12': {
+    '_original': {
+      '$value': '/icon/alert-fill-12.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.alert-fill-12',
+    '$type': 'link',
     '$value': '/icon/alert-fill-12.svg',
   },
   'icon.arrow-both-24': {
+    '_original': {
+      '$value': '/icon/arrow-both-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-both-24',
+    '$type': 'link',
     '$value': '/icon/arrow-both-24.svg',
   },
   'icon.arrow-down-16': {
+    '_original': {
+      '$value': '/icon/arrow-down-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-down-16',
+    '$type': 'link',
     '$value': '/icon/arrow-down-16.svg',
   },
   'icon.arrow-down-24': {
+    '_original': {
+      '$value': '/icon/arrow-down-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-down-24',
+    '$type': 'link',
     '$value': '/icon/arrow-down-24.svg',
   },
   'icon.arrow-down-left-24': {
+    '_original': {
+      '$value': '/icon/arrow-down-left-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-down-left-24',
+    '$type': 'link',
     '$value': '/icon/arrow-down-left-24.svg',
   },
   'icon.arrow-down-right-24': {
+    '_original': {
+      '$value': '/icon/arrow-down-right-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-down-right-24',
+    '$type': 'link',
     '$value': '/icon/arrow-down-right-24.svg',
   },
   'icon.arrow-left-16': {
+    '_original': {
+      '$value': '/icon/arrow-left-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-left-16',
+    '$type': 'link',
     '$value': '/icon/arrow-left-16.svg',
   },
   'icon.arrow-left-24': {
+    '_original': {
+      '$value': '/icon/arrow-left-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-left-24',
+    '$type': 'link',
     '$value': '/icon/arrow-left-24.svg',
   },
   'icon.arrow-right-16': {
+    '_original': {
+      '$value': '/icon/arrow-right-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-right-16',
+    '$type': 'link',
     '$value': '/icon/arrow-right-16.svg',
   },
   'icon.arrow-right-24': {
+    '_original': {
+      '$value': '/icon/arrow-right-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-right-24',
+    '$type': 'link',
     '$value': '/icon/arrow-right-24.svg',
   },
   'icon.arrow-switch-16': {
+    '_original': {
+      '$value': '/icon/arrow-switch-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-switch-16',
+    '$type': 'link',
     '$value': '/icon/arrow-switch-16.svg',
   },
   'icon.arrow-switch-24': {
+    '_original': {
+      '$value': '/icon/arrow-switch-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-switch-24',
+    '$type': 'link',
     '$value': '/icon/arrow-switch-24.svg',
   },
   'icon.arrow-up-16': {
+    '_original': {
+      '$value': '/icon/arrow-up-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-up-16',
+    '$type': 'link',
     '$value': '/icon/arrow-up-16.svg',
   },
   'icon.arrow-up-24': {
+    '_original': {
+      '$value': '/icon/arrow-up-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-up-24',
+    '$type': 'link',
     '$value': '/icon/arrow-up-24.svg',
   },
   'icon.arrow-up-left-24': {
+    '_original': {
+      '$value': '/icon/arrow-up-left-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-up-left-24',
+    '$type': 'link',
     '$value': '/icon/arrow-up-left-24.svg',
   },
   'icon.arrow-up-right-24': {
+    '_original': {
+      '$value': '/icon/arrow-up-right-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.arrow-up-right-24',
+    '$type': 'link',
     '$value': '/icon/arrow-up-right-24.svg',
   },
   'icon.beaker-16': {
+    '_original': {
+      '$value': '/icon/beaker-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.beaker-16',
+    '$type': 'link',
     '$value': '/icon/beaker-16.svg',
   },
   'icon.beaker-24': {
+    '_original': {
+      '$value': '/icon/beaker-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.beaker-24',
+    '$type': 'link',
     '$value': '/icon/beaker-24.svg',
   },
   'icon.bell-16': {
+    '_original': {
+      '$value': '/icon/bell-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-16',
+    '$type': 'link',
     '$value': '/icon/bell-16.svg',
   },
   'icon.bell-24': {
+    '_original': {
+      '$value': '/icon/bell-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-24',
+    '$type': 'link',
     '$value': '/icon/bell-24.svg',
   },
   'icon.bell-fill-16': {
+    '_original': {
+      '$value': '/icon/bell-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-fill-16',
+    '$type': 'link',
     '$value': '/icon/bell-fill-16.svg',
   },
   'icon.bell-fill-24': {
+    '_original': {
+      '$value': '/icon/bell-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-fill-24',
+    '$type': 'link',
     '$value': '/icon/bell-fill-24.svg',
   },
   'icon.bell-slash-16': {
+    '_original': {
+      '$value': '/icon/bell-slash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-slash-16',
+    '$type': 'link',
     '$value': '/icon/bell-slash-16.svg',
   },
   'icon.bell-slash-24': {
+    '_original': {
+      '$value': '/icon/bell-slash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bell-slash-24',
+    '$type': 'link',
     '$value': '/icon/bell-slash-24.svg',
   },
   'icon.blocked-16': {
+    '_original': {
+      '$value': '/icon/blocked-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.blocked-16',
+    '$type': 'link',
     '$value': '/icon/blocked-16.svg',
   },
   'icon.blocked-24': {
+    '_original': {
+      '$value': '/icon/blocked-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.blocked-24',
+    '$type': 'link',
     '$value': '/icon/blocked-24.svg',
   },
   'icon.bold-16': {
+    '_original': {
+      '$value': '/icon/bold-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bold-16',
+    '$type': 'link',
     '$value': '/icon/bold-16.svg',
   },
   'icon.bold-24': {
+    '_original': {
+      '$value': '/icon/bold-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bold-24',
+    '$type': 'link',
     '$value': '/icon/bold-24.svg',
   },
   'icon.book-16': {
+    '_original': {
+      '$value': '/icon/book-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.book-16',
+    '$type': 'link',
     '$value': '/icon/book-16.svg',
   },
   'icon.book-24': {
+    '_original': {
+      '$value': '/icon/book-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.book-24',
+    '$type': 'link',
     '$value': '/icon/book-24.svg',
   },
   'icon.bookmark-16': {
+    '_original': {
+      '$value': '/icon/bookmark-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-16',
+    '$type': 'link',
     '$value': '/icon/bookmark-16.svg',
   },
   'icon.bookmark-24': {
+    '_original': {
+      '$value': '/icon/bookmark-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-24',
+    '$type': 'link',
     '$value': '/icon/bookmark-24.svg',
   },
   'icon.bookmark-fill-24': {
+    '_original': {
+      '$value': '/icon/bookmark-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-fill-24',
+    '$type': 'link',
     '$value': '/icon/bookmark-fill-24.svg',
   },
   'icon.bookmark-slash-16': {
+    '_original': {
+      '$value': '/icon/bookmark-slash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-slash-16',
+    '$type': 'link',
     '$value': '/icon/bookmark-slash-16.svg',
   },
   'icon.bookmark-slash-24': {
+    '_original': {
+      '$value': '/icon/bookmark-slash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-slash-24',
+    '$type': 'link',
     '$value': '/icon/bookmark-slash-24.svg',
   },
   'icon.bookmark-slash-fill-24': {
+    '_original': {
+      '$value': '/icon/bookmark-slash-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bookmark-slash-fill-24',
+    '$type': 'link',
     '$value': '/icon/bookmark-slash-fill-24.svg',
   },
   'icon.briefcase-16': {
+    '_original': {
+      '$value': '/icon/briefcase-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.briefcase-16',
+    '$type': 'link',
     '$value': '/icon/briefcase-16.svg',
   },
   'icon.briefcase-24': {
+    '_original': {
+      '$value': '/icon/briefcase-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.briefcase-24',
+    '$type': 'link',
     '$value': '/icon/briefcase-24.svg',
   },
   'icon.broadcast-16': {
+    '_original': {
+      '$value': '/icon/broadcast-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.broadcast-16',
+    '$type': 'link',
     '$value': '/icon/broadcast-16.svg',
   },
   'icon.broadcast-24': {
+    '_original': {
+      '$value': '/icon/broadcast-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.broadcast-24',
+    '$type': 'link',
     '$value': '/icon/broadcast-24.svg',
   },
   'icon.browser-16': {
+    '_original': {
+      '$value': '/icon/browser-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.browser-16',
+    '$type': 'link',
     '$value': '/icon/browser-16.svg',
   },
   'icon.browser-24': {
+    '_original': {
+      '$value': '/icon/browser-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.browser-24',
+    '$type': 'link',
     '$value': '/icon/browser-24.svg',
   },
   'icon.bug-16': {
+    '_original': {
+      '$value': '/icon/bug-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bug-16',
+    '$type': 'link',
     '$value': '/icon/bug-16.svg',
   },
   'icon.bug-24': {
+    '_original': {
+      '$value': '/icon/bug-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.bug-24',
+    '$type': 'link',
     '$value': '/icon/bug-24.svg',
   },
   'icon.calendar-16': {
+    '_original': {
+      '$value': '/icon/calendar-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.calendar-16',
+    '$type': 'link',
     '$value': '/icon/calendar-16.svg',
   },
   'icon.calendar-24': {
+    '_original': {
+      '$value': '/icon/calendar-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.calendar-24',
+    '$type': 'link',
     '$value': '/icon/calendar-24.svg',
   },
   'icon.check-16': {
+    '_original': {
+      '$value': '/icon/check-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-16',
+    '$type': 'link',
     '$value': '/icon/check-16.svg',
   },
   'icon.check-24': {
+    '_original': {
+      '$value': '/icon/check-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-24',
+    '$type': 'link',
     '$value': '/icon/check-24.svg',
   },
   'icon.check-circle-16': {
+    '_original': {
+      '$value': '/icon/check-circle-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-circle-16',
+    '$type': 'link',
     '$value': '/icon/check-circle-16.svg',
   },
   'icon.check-circle-24': {
+    '_original': {
+      '$value': '/icon/check-circle-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-circle-24',
+    '$type': 'link',
     '$value': '/icon/check-circle-24.svg',
   },
   'icon.check-circle-fill-12': {
+    '_original': {
+      '$value': '/icon/check-circle-fill-12.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-circle-fill-12',
+    '$type': 'link',
     '$value': '/icon/check-circle-fill-12.svg',
   },
   'icon.check-circle-fill-16': {
+    '_original': {
+      '$value': '/icon/check-circle-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-circle-fill-16',
+    '$type': 'link',
     '$value': '/icon/check-circle-fill-16.svg',
   },
   'icon.check-circle-fill-24': {
+    '_original': {
+      '$value': '/icon/check-circle-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.check-circle-fill-24',
+    '$type': 'link',
     '$value': '/icon/check-circle-fill-24.svg',
   },
   'icon.checklist-16': {
+    '_original': {
+      '$value': '/icon/checklist-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.checklist-16',
+    '$type': 'link',
     '$value': '/icon/checklist-16.svg',
   },
   'icon.checklist-24': {
+    '_original': {
+      '$value': '/icon/checklist-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.checklist-24',
+    '$type': 'link',
     '$value': '/icon/checklist-24.svg',
   },
   'icon.chevron-down-16': {
+    '_original': {
+      '$value': '/icon/chevron-down-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-down-16',
+    '$type': 'link',
     '$value': '/icon/chevron-down-16.svg',
   },
   'icon.chevron-down-24': {
+    '_original': {
+      '$value': '/icon/chevron-down-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-down-24',
+    '$type': 'link',
     '$value': '/icon/chevron-down-24.svg',
   },
   'icon.chevron-left-16': {
+    '_original': {
+      '$value': '/icon/chevron-left-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-left-16',
+    '$type': 'link',
     '$value': '/icon/chevron-left-16.svg',
   },
   'icon.chevron-left-24': {
+    '_original': {
+      '$value': '/icon/chevron-left-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-left-24',
+    '$type': 'link',
     '$value': '/icon/chevron-left-24.svg',
   },
   'icon.chevron-right-16': {
+    '_original': {
+      '$value': '/icon/chevron-right-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-right-16',
+    '$type': 'link',
     '$value': '/icon/chevron-right-16.svg',
   },
   'icon.chevron-right-24': {
+    '_original': {
+      '$value': '/icon/chevron-right-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-right-24',
+    '$type': 'link',
     '$value': '/icon/chevron-right-24.svg',
   },
   'icon.chevron-up-16': {
+    '_original': {
+      '$value': '/icon/chevron-up-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-up-16',
+    '$type': 'link',
     '$value': '/icon/chevron-up-16.svg',
   },
   'icon.chevron-up-24': {
+    '_original': {
+      '$value': '/icon/chevron-up-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.chevron-up-24',
+    '$type': 'link',
     '$value': '/icon/chevron-up-24.svg',
   },
   'icon.circle-16': {
+    '_original': {
+      '$value': '/icon/circle-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.circle-16',
+    '$type': 'link',
     '$value': '/icon/circle-16.svg',
   },
   'icon.circle-24': {
+    '_original': {
+      '$value': '/icon/circle-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.circle-24',
+    '$type': 'link',
     '$value': '/icon/circle-24.svg',
   },
   'icon.circle-slash-16': {
+    '_original': {
+      '$value': '/icon/circle-slash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.circle-slash-16',
+    '$type': 'link',
     '$value': '/icon/circle-slash-16.svg',
   },
   'icon.circle-slash-24': {
+    '_original': {
+      '$value': '/icon/circle-slash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.circle-slash-24',
+    '$type': 'link',
     '$value': '/icon/circle-slash-24.svg',
   },
   'icon.clock-16': {
+    '_original': {
+      '$value': '/icon/clock-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.clock-16',
+    '$type': 'link',
     '$value': '/icon/clock-16.svg',
   },
   'icon.clock-24': {
+    '_original': {
+      '$value': '/icon/clock-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.clock-24',
+    '$type': 'link',
     '$value': '/icon/clock-24.svg',
   },
   'icon.code-16': {
+    '_original': {
+      '$value': '/icon/code-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-16',
+    '$type': 'link',
     '$value': '/icon/code-16.svg',
   },
   'icon.code-24': {
+    '_original': {
+      '$value': '/icon/code-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-24',
+    '$type': 'link',
     '$value': '/icon/code-24.svg',
   },
   'icon.code-of-conduct-16': {
+    '_original': {
+      '$value': '/icon/code-of-conduct-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-of-conduct-16',
+    '$type': 'link',
     '$value': '/icon/code-of-conduct-16.svg',
   },
   'icon.code-of-conduct-24': {
+    '_original': {
+      '$value': '/icon/code-of-conduct-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-of-conduct-24',
+    '$type': 'link',
     '$value': '/icon/code-of-conduct-24.svg',
   },
   'icon.code-review-16': {
+    '_original': {
+      '$value': '/icon/code-review-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-review-16',
+    '$type': 'link',
     '$value': '/icon/code-review-16.svg',
   },
   'icon.code-review-24': {
+    '_original': {
+      '$value': '/icon/code-review-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-review-24',
+    '$type': 'link',
     '$value': '/icon/code-review-24.svg',
   },
   'icon.code-square-16': {
+    '_original': {
+      '$value': '/icon/code-square-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-square-16',
+    '$type': 'link',
     '$value': '/icon/code-square-16.svg',
   },
   'icon.code-square-24': {
+    '_original': {
+      '$value': '/icon/code-square-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.code-square-24',
+    '$type': 'link',
     '$value': '/icon/code-square-24.svg',
   },
   'icon.codescan-16': {
+    '_original': {
+      '$value': '/icon/codescan-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codescan-16',
+    '$type': 'link',
     '$value': '/icon/codescan-16.svg',
   },
   'icon.codescan-24': {
+    '_original': {
+      '$value': '/icon/codescan-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codescan-24',
+    '$type': 'link',
     '$value': '/icon/codescan-24.svg',
   },
   'icon.codescan-checkmark-16': {
+    '_original': {
+      '$value': '/icon/codescan-checkmark-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codescan-checkmark-16',
+    '$type': 'link',
     '$value': '/icon/codescan-checkmark-16.svg',
   },
   'icon.codescan-checkmark-24': {
+    '_original': {
+      '$value': '/icon/codescan-checkmark-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codescan-checkmark-24',
+    '$type': 'link',
     '$value': '/icon/codescan-checkmark-24.svg',
   },
   'icon.codespaces-16': {
+    '_original': {
+      '$value': '/icon/codespaces-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codespaces-16',
+    '$type': 'link',
     '$value': '/icon/codespaces-16.svg',
   },
   'icon.codespaces-24': {
+    '_original': {
+      '$value': '/icon/codespaces-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.codespaces-24',
+    '$type': 'link',
     '$value': '/icon/codespaces-24.svg',
   },
   'icon.columns-16': {
+    '_original': {
+      '$value': '/icon/columns-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.columns-16',
+    '$type': 'link',
     '$value': '/icon/columns-16.svg',
   },
   'icon.columns-24': {
+    '_original': {
+      '$value': '/icon/columns-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.columns-24',
+    '$type': 'link',
     '$value': '/icon/columns-24.svg',
   },
   'icon.comment-16': {
+    '_original': {
+      '$value': '/icon/comment-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.comment-16',
+    '$type': 'link',
     '$value': '/icon/comment-16.svg',
   },
   'icon.comment-24': {
+    '_original': {
+      '$value': '/icon/comment-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.comment-24',
+    '$type': 'link',
     '$value': '/icon/comment-24.svg',
   },
   'icon.comment-discussion-16': {
+    '_original': {
+      '$value': '/icon/comment-discussion-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.comment-discussion-16',
+    '$type': 'link',
     '$value': '/icon/comment-discussion-16.svg',
   },
   'icon.comment-discussion-24': {
+    '_original': {
+      '$value': '/icon/comment-discussion-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.comment-discussion-24',
+    '$type': 'link',
     '$value': '/icon/comment-discussion-24.svg',
   },
   'icon.commit-24': {
+    '_original': {
+      '$value': '/icon/commit-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.commit-24',
+    '$type': 'link',
     '$value': '/icon/commit-24.svg',
   },
   'icon.container-16': {
+    '_original': {
+      '$value': '/icon/container-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.container-16',
+    '$type': 'link',
     '$value': '/icon/container-16.svg',
   },
   'icon.container-24': {
+    '_original': {
+      '$value': '/icon/container-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.container-24',
+    '$type': 'link',
     '$value': '/icon/container-24.svg',
   },
   'icon.copy-16': {
+    '_original': {
+      '$value': '/icon/copy-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.copy-16',
+    '$type': 'link',
     '$value': '/icon/copy-16.svg',
   },
   'icon.copy-24': {
+    '_original': {
+      '$value': '/icon/copy-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.copy-24',
+    '$type': 'link',
     '$value': '/icon/copy-24.svg',
   },
   'icon.cpu-16': {
+    '_original': {
+      '$value': '/icon/cpu-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.cpu-16',
+    '$type': 'link',
     '$value': '/icon/cpu-16.svg',
   },
   'icon.cpu-24': {
+    '_original': {
+      '$value': '/icon/cpu-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.cpu-24',
+    '$type': 'link',
     '$value': '/icon/cpu-24.svg',
   },
   'icon.credit-card-16': {
+    '_original': {
+      '$value': '/icon/credit-card-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.credit-card-16',
+    '$type': 'link',
     '$value': '/icon/credit-card-16.svg',
   },
   'icon.credit-card-24': {
+    '_original': {
+      '$value': '/icon/credit-card-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.credit-card-24',
+    '$type': 'link',
     '$value': '/icon/credit-card-24.svg',
   },
   'icon.cross-reference-16': {
+    '_original': {
+      '$value': '/icon/cross-reference-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.cross-reference-16',
+    '$type': 'link',
     '$value': '/icon/cross-reference-16.svg',
   },
   'icon.cross-reference-24': {
+    '_original': {
+      '$value': '/icon/cross-reference-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.cross-reference-24',
+    '$type': 'link',
     '$value': '/icon/cross-reference-24.svg',
   },
   'icon.dash-16': {
+    '_original': {
+      '$value': '/icon/dash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dash-16',
+    '$type': 'link',
     '$value': '/icon/dash-16.svg',
   },
   'icon.dash-24': {
+    '_original': {
+      '$value': '/icon/dash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dash-24',
+    '$type': 'link',
     '$value': '/icon/dash-24.svg',
   },
   'icon.database-16': {
+    '_original': {
+      '$value': '/icon/database-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.database-16',
+    '$type': 'link',
     '$value': '/icon/database-16.svg',
   },
   'icon.database-24': {
+    '_original': {
+      '$value': '/icon/database-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.database-24',
+    '$type': 'link',
     '$value': '/icon/database-24.svg',
   },
   'icon.dependabot-16': {
+    '_original': {
+      '$value': '/icon/dependabot-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dependabot-16',
+    '$type': 'link',
     '$value': '/icon/dependabot-16.svg',
   },
   'icon.dependabot-24': {
+    '_original': {
+      '$value': '/icon/dependabot-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dependabot-24',
+    '$type': 'link',
     '$value': '/icon/dependabot-24.svg',
   },
   'icon.desktop-download-16': {
+    '_original': {
+      '$value': '/icon/desktop-download-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.desktop-download-16',
+    '$type': 'link',
     '$value': '/icon/desktop-download-16.svg',
   },
   'icon.desktop-download-24': {
+    '_original': {
+      '$value': '/icon/desktop-download-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.desktop-download-24',
+    '$type': 'link',
     '$value': '/icon/desktop-download-24.svg',
   },
   'icon.device-camera-16': {
+    '_original': {
+      '$value': '/icon/device-camera-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-camera-16',
+    '$type': 'link',
     '$value': '/icon/device-camera-16.svg',
   },
   'icon.device-camera-video-16': {
+    '_original': {
+      '$value': '/icon/device-camera-video-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-camera-video-16',
+    '$type': 'link',
     '$value': '/icon/device-camera-video-16.svg',
   },
   'icon.device-camera-video-24': {
+    '_original': {
+      '$value': '/icon/device-camera-video-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-camera-video-24',
+    '$type': 'link',
     '$value': '/icon/device-camera-video-24.svg',
   },
   'icon.device-desktop-16': {
+    '_original': {
+      '$value': '/icon/device-desktop-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-desktop-16',
+    '$type': 'link',
     '$value': '/icon/device-desktop-16.svg',
   },
   'icon.device-desktop-24': {
+    '_original': {
+      '$value': '/icon/device-desktop-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-desktop-24',
+    '$type': 'link',
     '$value': '/icon/device-desktop-24.svg',
   },
   'icon.device-mobile-16': {
+    '_original': {
+      '$value': '/icon/device-mobile-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-mobile-16',
+    '$type': 'link',
     '$value': '/icon/device-mobile-16.svg',
   },
   'icon.device-mobile-24': {
+    '_original': {
+      '$value': '/icon/device-mobile-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.device-mobile-24',
+    '$type': 'link',
     '$value': '/icon/device-mobile-24.svg',
   },
   'icon.diamond-16': {
+    '_original': {
+      '$value': '/icon/diamond-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diamond-16',
+    '$type': 'link',
     '$value': '/icon/diamond-16.svg',
   },
   'icon.diamond-24': {
+    '_original': {
+      '$value': '/icon/diamond-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diamond-24',
+    '$type': 'link',
     '$value': '/icon/diamond-24.svg',
   },
   'icon.diff-16': {
+    '_original': {
+      '$value': '/icon/diff-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-16',
+    '$type': 'link',
     '$value': '/icon/diff-16.svg',
   },
   'icon.diff-24': {
+    '_original': {
+      '$value': '/icon/diff-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-24',
+    '$type': 'link',
     '$value': '/icon/diff-24.svg',
   },
   'icon.diff-added-16': {
+    '_original': {
+      '$value': '/icon/diff-added-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-added-16',
+    '$type': 'link',
     '$value': '/icon/diff-added-16.svg',
   },
   'icon.diff-ignored-16': {
+    '_original': {
+      '$value': '/icon/diff-ignored-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-ignored-16',
+    '$type': 'link',
     '$value': '/icon/diff-ignored-16.svg',
   },
   'icon.diff-modified-16': {
+    '_original': {
+      '$value': '/icon/diff-modified-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-modified-16',
+    '$type': 'link',
     '$value': '/icon/diff-modified-16.svg',
   },
   'icon.diff-removed-16': {
+    '_original': {
+      '$value': '/icon/diff-removed-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-removed-16',
+    '$type': 'link',
     '$value': '/icon/diff-removed-16.svg',
   },
   'icon.diff-renamed-16': {
+    '_original': {
+      '$value': '/icon/diff-renamed-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.diff-renamed-16',
+    '$type': 'link',
     '$value': '/icon/diff-renamed-16.svg',
   },
   'icon.dot-16': {
+    '_original': {
+      '$value': '/icon/dot-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dot-16',
+    '$type': 'link',
     '$value': '/icon/dot-16.svg',
   },
   'icon.dot-24': {
+    '_original': {
+      '$value': '/icon/dot-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dot-24',
+    '$type': 'link',
     '$value': '/icon/dot-24.svg',
   },
   'icon.dot-fill-16': {
+    '_original': {
+      '$value': '/icon/dot-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dot-fill-16',
+    '$type': 'link',
     '$value': '/icon/dot-fill-16.svg',
   },
   'icon.dot-fill-24': {
+    '_original': {
+      '$value': '/icon/dot-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.dot-fill-24',
+    '$type': 'link',
     '$value': '/icon/dot-fill-24.svg',
   },
   'icon.download-16': {
+    '_original': {
+      '$value': '/icon/download-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.download-16',
+    '$type': 'link',
     '$value': '/icon/download-16.svg',
   },
   'icon.download-24': {
+    '_original': {
+      '$value': '/icon/download-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.download-24',
+    '$type': 'link',
     '$value': '/icon/download-24.svg',
   },
   'icon.duplicate-16': {
+    '_original': {
+      '$value': '/icon/duplicate-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.duplicate-16',
+    '$type': 'link',
     '$value': '/icon/duplicate-16.svg',
   },
   'icon.duplicate-24': {
+    '_original': {
+      '$value': '/icon/duplicate-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.duplicate-24',
+    '$type': 'link',
     '$value': '/icon/duplicate-24.svg',
   },
   'icon.ellipsis-16': {
+    '_original': {
+      '$value': '/icon/ellipsis-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.ellipsis-16',
+    '$type': 'link',
     '$value': '/icon/ellipsis-16.svg',
   },
   'icon.eye-16': {
+    '_original': {
+      '$value': '/icon/eye-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.eye-16',
+    '$type': 'link',
     '$value': '/icon/eye-16.svg',
   },
   'icon.eye-24': {
+    '_original': {
+      '$value': '/icon/eye-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.eye-24',
+    '$type': 'link',
     '$value': '/icon/eye-24.svg',
   },
   'icon.eye-closed-16': {
+    '_original': {
+      '$value': '/icon/eye-closed-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.eye-closed-16',
+    '$type': 'link',
     '$value': '/icon/eye-closed-16.svg',
   },
   'icon.eye-closed-24': {
+    '_original': {
+      '$value': '/icon/eye-closed-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.eye-closed-24',
+    '$type': 'link',
     '$value': '/icon/eye-closed-24.svg',
   },
   'icon.file-16': {
+    '_original': {
+      '$value': '/icon/file-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-16',
+    '$type': 'link',
     '$value': '/icon/file-16.svg',
   },
   'icon.file-24': {
+    '_original': {
+      '$value': '/icon/file-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-24',
+    '$type': 'link',
     '$value': '/icon/file-24.svg',
   },
   'icon.file-badge-16': {
+    '_original': {
+      '$value': '/icon/file-badge-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-badge-16',
+    '$type': 'link',
     '$value': '/icon/file-badge-16.svg',
   },
   'icon.file-binary-16': {
+    '_original': {
+      '$value': '/icon/file-binary-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-binary-16',
+    '$type': 'link',
     '$value': '/icon/file-binary-16.svg',
   },
   'icon.file-binary-24': {
+    '_original': {
+      '$value': '/icon/file-binary-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-binary-24',
+    '$type': 'link',
     '$value': '/icon/file-binary-24.svg',
   },
   'icon.file-code-16': {
+    '_original': {
+      '$value': '/icon/file-code-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-code-16',
+    '$type': 'link',
     '$value': '/icon/file-code-16.svg',
   },
   'icon.file-code-24': {
+    '_original': {
+      '$value': '/icon/file-code-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-code-24',
+    '$type': 'link',
     '$value': '/icon/file-code-24.svg',
   },
   'icon.file-diff-16': {
+    '_original': {
+      '$value': '/icon/file-diff-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-diff-16',
+    '$type': 'link',
     '$value': '/icon/file-diff-16.svg',
   },
   'icon.file-diff-24': {
+    '_original': {
+      '$value': '/icon/file-diff-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-diff-24',
+    '$type': 'link',
     '$value': '/icon/file-diff-24.svg',
   },
   'icon.file-directory-16': {
+    '_original': {
+      '$value': '/icon/file-directory-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-directory-16',
+    '$type': 'link',
     '$value': '/icon/file-directory-16.svg',
   },
   'icon.file-directory-24': {
+    '_original': {
+      '$value': '/icon/file-directory-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-directory-24',
+    '$type': 'link',
     '$value': '/icon/file-directory-24.svg',
   },
   'icon.file-directory-fill-24': {
+    '_original': {
+      '$value': '/icon/file-directory-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-directory-fill-24',
+    '$type': 'link',
     '$value': '/icon/file-directory-fill-24.svg',
   },
   'icon.file-media-24': {
+    '_original': {
+      '$value': '/icon/file-media-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-media-24',
+    '$type': 'link',
     '$value': '/icon/file-media-24.svg',
   },
   'icon.file-submodule-16': {
+    '_original': {
+      '$value': '/icon/file-submodule-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-submodule-16',
+    '$type': 'link',
     '$value': '/icon/file-submodule-16.svg',
   },
   'icon.file-submodule-24': {
+    '_original': {
+      '$value': '/icon/file-submodule-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-submodule-24',
+    '$type': 'link',
     '$value': '/icon/file-submodule-24.svg',
   },
   'icon.file-symlink-file-16': {
+    '_original': {
+      '$value': '/icon/file-symlink-file-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-symlink-file-16',
+    '$type': 'link',
     '$value': '/icon/file-symlink-file-16.svg',
   },
   'icon.file-symlink-file-24': {
+    '_original': {
+      '$value': '/icon/file-symlink-file-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-symlink-file-24',
+    '$type': 'link',
     '$value': '/icon/file-symlink-file-24.svg',
   },
   'icon.file-zip-16': {
+    '_original': {
+      '$value': '/icon/file-zip-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-zip-16',
+    '$type': 'link',
     '$value': '/icon/file-zip-16.svg',
   },
   'icon.file-zip-24': {
+    '_original': {
+      '$value': '/icon/file-zip-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.file-zip-24',
+    '$type': 'link',
     '$value': '/icon/file-zip-24.svg',
   },
   'icon.filter-16': {
+    '_original': {
+      '$value': '/icon/filter-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.filter-16',
+    '$type': 'link',
     '$value': '/icon/filter-16.svg',
   },
   'icon.filter-24': {
+    '_original': {
+      '$value': '/icon/filter-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.filter-24',
+    '$type': 'link',
     '$value': '/icon/filter-24.svg',
   },
   'icon.flame-16': {
+    '_original': {
+      '$value': '/icon/flame-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.flame-16',
+    '$type': 'link',
     '$value': '/icon/flame-16.svg',
   },
   'icon.flame-24': {
+    '_original': {
+      '$value': '/icon/flame-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.flame-24',
+    '$type': 'link',
     '$value': '/icon/flame-24.svg',
   },
   'icon.fold-16': {
+    '_original': {
+      '$value': '/icon/fold-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-16',
+    '$type': 'link',
     '$value': '/icon/fold-16.svg',
   },
   'icon.fold-24': {
+    '_original': {
+      '$value': '/icon/fold-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-24',
+    '$type': 'link',
     '$value': '/icon/fold-24.svg',
   },
   'icon.fold-down-16': {
+    '_original': {
+      '$value': '/icon/fold-down-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-down-16',
+    '$type': 'link',
     '$value': '/icon/fold-down-16.svg',
   },
   'icon.fold-down-24': {
+    '_original': {
+      '$value': '/icon/fold-down-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-down-24',
+    '$type': 'link',
     '$value': '/icon/fold-down-24.svg',
   },
   'icon.fold-up-16': {
+    '_original': {
+      '$value': '/icon/fold-up-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-up-16',
+    '$type': 'link',
     '$value': '/icon/fold-up-16.svg',
   },
   'icon.fold-up-24': {
+    '_original': {
+      '$value': '/icon/fold-up-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.fold-up-24',
+    '$type': 'link',
     '$value': '/icon/fold-up-24.svg',
   },
   'icon.gear-16': {
+    '_original': {
+      '$value': '/icon/gear-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.gear-16',
+    '$type': 'link',
     '$value': '/icon/gear-16.svg',
   },
   'icon.gear-24': {
+    '_original': {
+      '$value': '/icon/gear-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.gear-24',
+    '$type': 'link',
     '$value': '/icon/gear-24.svg',
   },
   'icon.gift-16': {
+    '_original': {
+      '$value': '/icon/gift-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.gift-16',
+    '$type': 'link',
     '$value': '/icon/gift-16.svg',
   },
   'icon.gift-24': {
+    '_original': {
+      '$value': '/icon/gift-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.gift-24',
+    '$type': 'link',
     '$value': '/icon/gift-24.svg',
   },
   'icon.git-branch-16': {
+    '_original': {
+      '$value': '/icon/git-branch-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-branch-16',
+    '$type': 'link',
     '$value': '/icon/git-branch-16.svg',
   },
   'icon.git-branch-24': {
+    '_original': {
+      '$value': '/icon/git-branch-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-branch-24',
+    '$type': 'link',
     '$value': '/icon/git-branch-24.svg',
   },
   'icon.git-commit-16': {
+    '_original': {
+      '$value': '/icon/git-commit-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-commit-16',
+    '$type': 'link',
     '$value': '/icon/git-commit-16.svg',
   },
   'icon.git-commit-24': {
+    '_original': {
+      '$value': '/icon/git-commit-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-commit-24',
+    '$type': 'link',
     '$value': '/icon/git-commit-24.svg',
   },
   'icon.git-compare-16': {
+    '_original': {
+      '$value': '/icon/git-compare-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-compare-16',
+    '$type': 'link',
     '$value': '/icon/git-compare-16.svg',
   },
   'icon.git-compare-24': {
+    '_original': {
+      '$value': '/icon/git-compare-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-compare-24',
+    '$type': 'link',
     '$value': '/icon/git-compare-24.svg',
   },
   'icon.git-merge-16': {
+    '_original': {
+      '$value': '/icon/git-merge-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-merge-16',
+    '$type': 'link',
     '$value': '/icon/git-merge-16.svg',
   },
   'icon.git-merge-24': {
+    '_original': {
+      '$value': '/icon/git-merge-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-merge-24',
+    '$type': 'link',
     '$value': '/icon/git-merge-24.svg',
   },
   'icon.git-pull-request-16': {
+    '_original': {
+      '$value': '/icon/git-pull-request-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-16',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-16.svg',
   },
   'icon.git-pull-request-24': {
+    '_original': {
+      '$value': '/icon/git-pull-request-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-24',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-24.svg',
   },
   'icon.git-pull-request-closed-16': {
+    '_original': {
+      '$value': '/icon/git-pull-request-closed-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-closed-16',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-closed-16.svg',
   },
   'icon.git-pull-request-closed-24': {
+    '_original': {
+      '$value': '/icon/git-pull-request-closed-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-closed-24',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-closed-24.svg',
   },
   'icon.git-pull-request-draft-16': {
+    '_original': {
+      '$value': '/icon/git-pull-request-draft-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-draft-16',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-draft-16.svg',
   },
   'icon.git-pull-request-draft-24': {
+    '_original': {
+      '$value': '/icon/git-pull-request-draft-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.git-pull-request-draft-24',
+    '$type': 'link',
     '$value': '/icon/git-pull-request-draft-24.svg',
   },
   'icon.globe-16': {
+    '_original': {
+      '$value': '/icon/globe-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.globe-16',
+    '$type': 'link',
     '$value': '/icon/globe-16.svg',
   },
   'icon.globe-24': {
+    '_original': {
+      '$value': '/icon/globe-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.globe-24',
+    '$type': 'link',
     '$value': '/icon/globe-24.svg',
   },
   'icon.grabber-16': {
+    '_original': {
+      '$value': '/icon/grabber-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.grabber-16',
+    '$type': 'link',
     '$value': '/icon/grabber-16.svg',
   },
   'icon.grabber-24': {
+    '_original': {
+      '$value': '/icon/grabber-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.grabber-24',
+    '$type': 'link',
     '$value': '/icon/grabber-24.svg',
   },
   'icon.graph-16': {
+    '_original': {
+      '$value': '/icon/graph-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.graph-16',
+    '$type': 'link',
     '$value': '/icon/graph-16.svg',
   },
   'icon.graph-24': {
+    '_original': {
+      '$value': '/icon/graph-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.graph-24',
+    '$type': 'link',
     '$value': '/icon/graph-24.svg',
   },
   'icon.hash-16': {
+    '_original': {
+      '$value': '/icon/hash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hash-16',
+    '$type': 'link',
     '$value': '/icon/hash-16.svg',
   },
   'icon.hash-24': {
+    '_original': {
+      '$value': '/icon/hash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hash-24',
+    '$type': 'link',
     '$value': '/icon/hash-24.svg',
   },
   'icon.heading-16': {
+    '_original': {
+      '$value': '/icon/heading-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heading-16',
+    '$type': 'link',
     '$value': '/icon/heading-16.svg',
   },
   'icon.heading-24': {
+    '_original': {
+      '$value': '/icon/heading-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heading-24',
+    '$type': 'link',
     '$value': '/icon/heading-24.svg',
   },
   'icon.heart-16': {
+    '_original': {
+      '$value': '/icon/heart-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heart-16',
+    '$type': 'link',
     '$value': '/icon/heart-16.svg',
   },
   'icon.heart-24': {
+    '_original': {
+      '$value': '/icon/heart-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heart-24',
+    '$type': 'link',
     '$value': '/icon/heart-24.svg',
   },
   'icon.heart-fill-16': {
+    '_original': {
+      '$value': '/icon/heart-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heart-fill-16',
+    '$type': 'link',
     '$value': '/icon/heart-fill-16.svg',
   },
   'icon.heart-fill-24': {
+    '_original': {
+      '$value': '/icon/heart-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.heart-fill-24',
+    '$type': 'link',
     '$value': '/icon/heart-fill-24.svg',
   },
   'icon.history-16': {
+    '_original': {
+      '$value': '/icon/history-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.history-16',
+    '$type': 'link',
     '$value': '/icon/history-16.svg',
   },
   'icon.history-24': {
+    '_original': {
+      '$value': '/icon/history-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.history-24',
+    '$type': 'link',
     '$value': '/icon/history-24.svg',
   },
   'icon.home-16': {
+    '_original': {
+      '$value': '/icon/home-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.home-16',
+    '$type': 'link',
     '$value': '/icon/home-16.svg',
   },
   'icon.home-24': {
+    '_original': {
+      '$value': '/icon/home-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.home-24',
+    '$type': 'link',
     '$value': '/icon/home-24.svg',
   },
   'icon.home-fill-24': {
+    '_original': {
+      '$value': '/icon/home-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.home-fill-24',
+    '$type': 'link',
     '$value': '/icon/home-fill-24.svg',
   },
   'icon.horizontal-rule-16': {
+    '_original': {
+      '$value': '/icon/horizontal-rule-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.horizontal-rule-16',
+    '$type': 'link',
     '$value': '/icon/horizontal-rule-16.svg',
   },
   'icon.horizontal-rule-24': {
+    '_original': {
+      '$value': '/icon/horizontal-rule-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.horizontal-rule-24',
+    '$type': 'link',
     '$value': '/icon/horizontal-rule-24.svg',
   },
   'icon.hourglass-16': {
+    '_original': {
+      '$value': '/icon/hourglass-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hourglass-16',
+    '$type': 'link',
     '$value': '/icon/hourglass-16.svg',
   },
   'icon.hourglass-24': {
+    '_original': {
+      '$value': '/icon/hourglass-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hourglass-24',
+    '$type': 'link',
     '$value': '/icon/hourglass-24.svg',
   },
   'icon.hubot-16': {
+    '_original': {
+      '$value': '/icon/hubot-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hubot-16',
+    '$type': 'link',
     '$value': '/icon/hubot-16.svg',
   },
   'icon.hubot-24': {
+    '_original': {
+      '$value': '/icon/hubot-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.hubot-24',
+    '$type': 'link',
     '$value': '/icon/hubot-24.svg',
   },
   'icon.image-16': {
+    '_original': {
+      '$value': '/icon/image-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.image-16',
+    '$type': 'link',
     '$value': '/icon/image-16.svg',
   },
   'icon.image-24': {
+    '_original': {
+      '$value': '/icon/image-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.image-24',
+    '$type': 'link',
     '$value': '/icon/image-24.svg',
   },
   'icon.inbox-16': {
+    '_original': {
+      '$value': '/icon/inbox-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.inbox-16',
+    '$type': 'link',
     '$value': '/icon/inbox-16.svg',
   },
   'icon.inbox-24': {
+    '_original': {
+      '$value': '/icon/inbox-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.inbox-24',
+    '$type': 'link',
     '$value': '/icon/inbox-24.svg',
   },
   'icon.infinity-16': {
+    '_original': {
+      '$value': '/icon/infinity-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.infinity-16',
+    '$type': 'link',
     '$value': '/icon/infinity-16.svg',
   },
   'icon.infinity-24': {
+    '_original': {
+      '$value': '/icon/infinity-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.infinity-24',
+    '$type': 'link',
     '$value': '/icon/infinity-24.svg',
   },
   'icon.info-16': {
+    '_original': {
+      '$value': '/icon/info-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.info-16',
+    '$type': 'link',
     '$value': '/icon/info-16.svg',
   },
   'icon.info-24': {
+    '_original': {
+      '$value': '/icon/info-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.info-24',
+    '$type': 'link',
     '$value': '/icon/info-24.svg',
   },
   'icon.issue-closed-16': {
+    '_original': {
+      '$value': '/icon/issue-closed-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-closed-16',
+    '$type': 'link',
     '$value': '/icon/issue-closed-16.svg',
   },
   'icon.issue-closed-24': {
+    '_original': {
+      '$value': '/icon/issue-closed-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-closed-24',
+    '$type': 'link',
     '$value': '/icon/issue-closed-24.svg',
   },
   'icon.issue-draft-16': {
+    '_original': {
+      '$value': '/icon/issue-draft-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-draft-16',
+    '$type': 'link',
     '$value': '/icon/issue-draft-16.svg',
   },
   'icon.issue-draft-24': {
+    '_original': {
+      '$value': '/icon/issue-draft-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-draft-24',
+    '$type': 'link',
     '$value': '/icon/issue-draft-24.svg',
   },
   'icon.issue-opened-16': {
+    '_original': {
+      '$value': '/icon/issue-opened-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-opened-16',
+    '$type': 'link',
     '$value': '/icon/issue-opened-16.svg',
   },
   'icon.issue-opened-24': {
+    '_original': {
+      '$value': '/icon/issue-opened-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-opened-24',
+    '$type': 'link',
     '$value': '/icon/issue-opened-24.svg',
   },
   'icon.issue-reopened-16': {
+    '_original': {
+      '$value': '/icon/issue-reopened-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-reopened-16',
+    '$type': 'link',
     '$value': '/icon/issue-reopened-16.svg',
   },
   'icon.issue-reopened-24': {
+    '_original': {
+      '$value': '/icon/issue-reopened-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.issue-reopened-24',
+    '$type': 'link',
     '$value': '/icon/issue-reopened-24.svg',
   },
   'icon.italic-16': {
+    '_original': {
+      '$value': '/icon/italic-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.italic-16',
+    '$type': 'link',
     '$value': '/icon/italic-16.svg',
   },
   'icon.italic-24': {
+    '_original': {
+      '$value': '/icon/italic-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.italic-24',
+    '$type': 'link',
     '$value': '/icon/italic-24.svg',
   },
   'icon.iterations-16': {
+    '_original': {
+      '$value': '/icon/iterations-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.iterations-16',
+    '$type': 'link',
     '$value': '/icon/iterations-16.svg',
   },
   'icon.iterations-24': {
+    '_original': {
+      '$value': '/icon/iterations-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.iterations-24',
+    '$type': 'link',
     '$value': '/icon/iterations-24.svg',
   },
   'icon.kebab-horizontal-16': {
+    '_original': {
+      '$value': '/icon/kebab-horizontal-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.kebab-horizontal-16',
+    '$type': 'link',
     '$value': '/icon/kebab-horizontal-16.svg',
   },
   'icon.kebab-horizontal-24': {
+    '_original': {
+      '$value': '/icon/kebab-horizontal-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.kebab-horizontal-24',
+    '$type': 'link',
     '$value': '/icon/kebab-horizontal-24.svg',
   },
   'icon.key-16': {
+    '_original': {
+      '$value': '/icon/key-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.key-16',
+    '$type': 'link',
     '$value': '/icon/key-16.svg',
   },
   'icon.key-24': {
+    '_original': {
+      '$value': '/icon/key-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.key-24',
+    '$type': 'link',
     '$value': '/icon/key-24.svg',
   },
   'icon.key-asterisk-16': {
+    '_original': {
+      '$value': '/icon/key-asterisk-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.key-asterisk-16',
+    '$type': 'link',
     '$value': '/icon/key-asterisk-16.svg',
   },
   'icon.law-16': {
+    '_original': {
+      '$value': '/icon/law-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.law-16',
+    '$type': 'link',
     '$value': '/icon/law-16.svg',
   },
   'icon.law-24': {
+    '_original': {
+      '$value': '/icon/law-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.law-24',
+    '$type': 'link',
     '$value': '/icon/law-24.svg',
   },
   'icon.light-bulb-16': {
+    '_original': {
+      '$value': '/icon/light-bulb-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.light-bulb-16',
+    '$type': 'link',
     '$value': '/icon/light-bulb-16.svg',
   },
   'icon.light-bulb-24': {
+    '_original': {
+      '$value': '/icon/light-bulb-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.light-bulb-24',
+    '$type': 'link',
     '$value': '/icon/light-bulb-24.svg',
   },
   'icon.link-16': {
+    '_original': {
+      '$value': '/icon/link-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.link-16',
+    '$type': 'link',
     '$value': '/icon/link-16.svg',
   },
   'icon.link-24': {
+    '_original': {
+      '$value': '/icon/link-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.link-24',
+    '$type': 'link',
     '$value': '/icon/link-24.svg',
   },
   'icon.link-external-16': {
+    '_original': {
+      '$value': '/icon/link-external-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.link-external-16',
+    '$type': 'link',
     '$value': '/icon/link-external-16.svg',
   },
   'icon.link-external-24': {
+    '_original': {
+      '$value': '/icon/link-external-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.link-external-24',
+    '$type': 'link',
     '$value': '/icon/link-external-24.svg',
   },
   'icon.list-ordered-16': {
+    '_original': {
+      '$value': '/icon/list-ordered-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.list-ordered-16',
+    '$type': 'link',
     '$value': '/icon/list-ordered-16.svg',
   },
   'icon.list-ordered-24': {
+    '_original': {
+      '$value': '/icon/list-ordered-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.list-ordered-24',
+    '$type': 'link',
     '$value': '/icon/list-ordered-24.svg',
   },
   'icon.list-unordered-16': {
+    '_original': {
+      '$value': '/icon/list-unordered-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.list-unordered-16',
+    '$type': 'link',
     '$value': '/icon/list-unordered-16.svg',
   },
   'icon.list-unordered-24': {
+    '_original': {
+      '$value': '/icon/list-unordered-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.list-unordered-24',
+    '$type': 'link',
     '$value': '/icon/list-unordered-24.svg',
   },
   'icon.location-16': {
+    '_original': {
+      '$value': '/icon/location-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.location-16',
+    '$type': 'link',
     '$value': '/icon/location-16.svg',
   },
   'icon.location-24': {
+    '_original': {
+      '$value': '/icon/location-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.location-24',
+    '$type': 'link',
     '$value': '/icon/location-24.svg',
   },
   'icon.lock-16': {
+    '_original': {
+      '$value': '/icon/lock-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.lock-16',
+    '$type': 'link',
     '$value': '/icon/lock-16.svg',
   },
   'icon.lock-24': {
+    '_original': {
+      '$value': '/icon/lock-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.lock-24',
+    '$type': 'link',
     '$value': '/icon/lock-24.svg',
   },
   'icon.logo-gist-16': {
+    '_original': {
+      '$value': '/icon/logo-gist-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.logo-gist-16',
+    '$type': 'link',
     '$value': '/icon/logo-gist-16.svg',
   },
   'icon.logo-github-16': {
+    '_original': {
+      '$value': '/icon/logo-github-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.logo-github-16',
+    '$type': 'link',
     '$value': '/icon/logo-github-16.svg',
   },
   'icon.mail-16': {
+    '_original': {
+      '$value': '/icon/mail-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mail-16',
+    '$type': 'link',
     '$value': '/icon/mail-16.svg',
   },
   'icon.mail-24': {
+    '_original': {
+      '$value': '/icon/mail-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mail-24',
+    '$type': 'link',
     '$value': '/icon/mail-24.svg',
   },
   'icon.mark-github-16': {
+    '_original': {
+      '$value': '/icon/mark-github-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mark-github-16',
+    '$type': 'link',
     '$value': '/icon/mark-github-16.svg',
   },
   'icon.markdown-16': {
+    '_original': {
+      '$value': '/icon/markdown-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.markdown-16',
+    '$type': 'link',
     '$value': '/icon/markdown-16.svg',
   },
   'icon.megaphone-16': {
+    '_original': {
+      '$value': '/icon/megaphone-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.megaphone-16',
+    '$type': 'link',
     '$value': '/icon/megaphone-16.svg',
   },
   'icon.megaphone-24': {
+    '_original': {
+      '$value': '/icon/megaphone-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.megaphone-24',
+    '$type': 'link',
     '$value': '/icon/megaphone-24.svg',
   },
   'icon.mention-16': {
+    '_original': {
+      '$value': '/icon/mention-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mention-16',
+    '$type': 'link',
     '$value': '/icon/mention-16.svg',
   },
   'icon.mention-24': {
+    '_original': {
+      '$value': '/icon/mention-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mention-24',
+    '$type': 'link',
     '$value': '/icon/mention-24.svg',
   },
   'icon.meter-16': {
+    '_original': {
+      '$value': '/icon/meter-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.meter-16',
+    '$type': 'link',
     '$value': '/icon/meter-16.svg',
   },
   'icon.milestone-16': {
+    '_original': {
+      '$value': '/icon/milestone-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.milestone-16',
+    '$type': 'link',
     '$value': '/icon/milestone-16.svg',
   },
   'icon.milestone-24': {
+    '_original': {
+      '$value': '/icon/milestone-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.milestone-24',
+    '$type': 'link',
     '$value': '/icon/milestone-24.svg',
   },
   'icon.mirror-16': {
+    '_original': {
+      '$value': '/icon/mirror-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mirror-16',
+    '$type': 'link',
     '$value': '/icon/mirror-16.svg',
   },
   'icon.mirror-24': {
+    '_original': {
+      '$value': '/icon/mirror-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mirror-24',
+    '$type': 'link',
     '$value': '/icon/mirror-24.svg',
   },
   'icon.moon-16': {
+    '_original': {
+      '$value': '/icon/moon-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.moon-16',
+    '$type': 'link',
     '$value': '/icon/moon-16.svg',
   },
   'icon.moon-24': {
+    '_original': {
+      '$value': '/icon/moon-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.moon-24',
+    '$type': 'link',
     '$value': '/icon/moon-24.svg',
   },
   'icon.mortar-board-16': {
+    '_original': {
+      '$value': '/icon/mortar-board-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mortar-board-16',
+    '$type': 'link',
     '$value': '/icon/mortar-board-16.svg',
   },
   'icon.mortar-board-24': {
+    '_original': {
+      '$value': '/icon/mortar-board-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mortar-board-24',
+    '$type': 'link',
     '$value': '/icon/mortar-board-24.svg',
   },
   'icon.multi-select-16': {
+    '_original': {
+      '$value': '/icon/multi-select-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.multi-select-16',
+    '$type': 'link',
     '$value': '/icon/multi-select-16.svg',
   },
   'icon.multi-select-24': {
+    '_original': {
+      '$value': '/icon/multi-select-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.multi-select-24',
+    '$type': 'link',
     '$value': '/icon/multi-select-24.svg',
   },
   'icon.mute-16': {
+    '_original': {
+      '$value': '/icon/mute-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mute-16',
+    '$type': 'link',
     '$value': '/icon/mute-16.svg',
   },
   'icon.mute-24': {
+    '_original': {
+      '$value': '/icon/mute-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.mute-24',
+    '$type': 'link',
     '$value': '/icon/mute-24.svg',
   },
   'icon.no-entry-16': {
+    '_original': {
+      '$value': '/icon/no-entry-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.no-entry-16',
+    '$type': 'link',
     '$value': '/icon/no-entry-16.svg',
   },
   'icon.no-entry-24': {
+    '_original': {
+      '$value': '/icon/no-entry-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.no-entry-24',
+    '$type': 'link',
     '$value': '/icon/no-entry-24.svg',
   },
   'icon.no-entry-fill-12': {
+    '_original': {
+      '$value': '/icon/no-entry-fill-12.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.no-entry-fill-12',
+    '$type': 'link',
     '$value': '/icon/no-entry-fill-12.svg',
   },
   'icon.north-star-16': {
+    '_original': {
+      '$value': '/icon/north-star-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.north-star-16',
+    '$type': 'link',
     '$value': '/icon/north-star-16.svg',
   },
   'icon.north-star-24': {
+    '_original': {
+      '$value': '/icon/north-star-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.north-star-24',
+    '$type': 'link',
     '$value': '/icon/north-star-24.svg',
   },
   'icon.note-16': {
+    '_original': {
+      '$value': '/icon/note-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.note-16',
+    '$type': 'link',
     '$value': '/icon/note-16.svg',
   },
   'icon.note-24': {
+    '_original': {
+      '$value': '/icon/note-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.note-24',
+    '$type': 'link',
     '$value': '/icon/note-24.svg',
   },
   'icon.number-16': {
+    '_original': {
+      '$value': '/icon/number-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.number-16',
+    '$type': 'link',
     '$value': '/icon/number-16.svg',
   },
   'icon.number-24': {
+    '_original': {
+      '$value': '/icon/number-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.number-24',
+    '$type': 'link',
     '$value': '/icon/number-24.svg',
   },
   'icon.organization-16': {
+    '_original': {
+      '$value': '/icon/organization-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.organization-16',
+    '$type': 'link',
     '$value': '/icon/organization-16.svg',
   },
   'icon.organization-24': {
+    '_original': {
+      '$value': '/icon/organization-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.organization-24',
+    '$type': 'link',
     '$value': '/icon/organization-24.svg',
   },
   'icon.package-16': {
+    '_original': {
+      '$value': '/icon/package-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-16',
+    '$type': 'link',
     '$value': '/icon/package-16.svg',
   },
   'icon.package-24': {
+    '_original': {
+      '$value': '/icon/package-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-24',
+    '$type': 'link',
     '$value': '/icon/package-24.svg',
   },
   'icon.package-dependencies-16': {
+    '_original': {
+      '$value': '/icon/package-dependencies-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-dependencies-16',
+    '$type': 'link',
     '$value': '/icon/package-dependencies-16.svg',
   },
   'icon.package-dependencies-24': {
+    '_original': {
+      '$value': '/icon/package-dependencies-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-dependencies-24',
+    '$type': 'link',
     '$value': '/icon/package-dependencies-24.svg',
   },
   'icon.package-dependents-16': {
+    '_original': {
+      '$value': '/icon/package-dependents-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-dependents-16',
+    '$type': 'link',
     '$value': '/icon/package-dependents-16.svg',
   },
   'icon.package-dependents-24': {
+    '_original': {
+      '$value': '/icon/package-dependents-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.package-dependents-24',
+    '$type': 'link',
     '$value': '/icon/package-dependents-24.svg',
   },
   'icon.paintbrush-16': {
+    '_original': {
+      '$value': '/icon/paintbrush-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.paintbrush-16',
+    '$type': 'link',
     '$value': '/icon/paintbrush-16.svg',
   },
   'icon.paper-airplane-16': {
+    '_original': {
+      '$value': '/icon/paper-airplane-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.paper-airplane-16',
+    '$type': 'link',
     '$value': '/icon/paper-airplane-16.svg',
   },
   'icon.paper-airplane-24': {
+    '_original': {
+      '$value': '/icon/paper-airplane-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.paper-airplane-24',
+    '$type': 'link',
     '$value': '/icon/paper-airplane-24.svg',
   },
   'icon.paste-16': {
+    '_original': {
+      '$value': '/icon/paste-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.paste-16',
+    '$type': 'link',
     '$value': '/icon/paste-16.svg',
   },
   'icon.paste-24': {
+    '_original': {
+      '$value': '/icon/paste-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.paste-24',
+    '$type': 'link',
     '$value': '/icon/paste-24.svg',
   },
   'icon.pencil-16': {
+    '_original': {
+      '$value': '/icon/pencil-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pencil-16',
+    '$type': 'link',
     '$value': '/icon/pencil-16.svg',
   },
   'icon.pencil-24': {
+    '_original': {
+      '$value': '/icon/pencil-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pencil-24',
+    '$type': 'link',
     '$value': '/icon/pencil-24.svg',
   },
   'icon.people-16': {
+    '_original': {
+      '$value': '/icon/people-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.people-16',
+    '$type': 'link',
     '$value': '/icon/people-16.svg',
   },
   'icon.people-24': {
+    '_original': {
+      '$value': '/icon/people-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.people-24',
+    '$type': 'link',
     '$value': '/icon/people-24.svg',
   },
   'icon.person-16': {
+    '_original': {
+      '$value': '/icon/person-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-16',
+    '$type': 'link',
     '$value': '/icon/person-16.svg',
   },
   'icon.person-24': {
+    '_original': {
+      '$value': '/icon/person-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-24',
+    '$type': 'link',
     '$value': '/icon/person-24.svg',
   },
   'icon.person-add-16': {
+    '_original': {
+      '$value': '/icon/person-add-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-add-16',
+    '$type': 'link',
     '$value': '/icon/person-add-16.svg',
   },
   'icon.person-add-24': {
+    '_original': {
+      '$value': '/icon/person-add-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-add-24',
+    '$type': 'link',
     '$value': '/icon/person-add-24.svg',
   },
   'icon.person-fill-16': {
+    '_original': {
+      '$value': '/icon/person-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-fill-16',
+    '$type': 'link',
     '$value': '/icon/person-fill-16.svg',
   },
   'icon.person-fill-24': {
+    '_original': {
+      '$value': '/icon/person-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.person-fill-24',
+    '$type': 'link',
     '$value': '/icon/person-fill-24.svg',
   },
   'icon.pin-16': {
+    '_original': {
+      '$value': '/icon/pin-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pin-16',
+    '$type': 'link',
     '$value': '/icon/pin-16.svg',
   },
   'icon.pin-24': {
+    '_original': {
+      '$value': '/icon/pin-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pin-24',
+    '$type': 'link',
     '$value': '/icon/pin-24.svg',
   },
   'icon.play-16': {
+    '_original': {
+      '$value': '/icon/play-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.play-16',
+    '$type': 'link',
     '$value': '/icon/play-16.svg',
   },
   'icon.play-24': {
+    '_original': {
+      '$value': '/icon/play-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.play-24',
+    '$type': 'link',
     '$value': '/icon/play-24.svg',
   },
   'icon.plug-16': {
+    '_original': {
+      '$value': '/icon/plug-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plug-16',
+    '$type': 'link',
     '$value': '/icon/plug-16.svg',
   },
   'icon.plug-24': {
+    '_original': {
+      '$value': '/icon/plug-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plug-24',
+    '$type': 'link',
     '$value': '/icon/plug-24.svg',
   },
   'icon.plus-16': {
+    '_original': {
+      '$value': '/icon/plus-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plus-16',
+    '$type': 'link',
     '$value': '/icon/plus-16.svg',
   },
   'icon.plus-24': {
+    '_original': {
+      '$value': '/icon/plus-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plus-24',
+    '$type': 'link',
     '$value': '/icon/plus-24.svg',
   },
   'icon.plus-circle-16': {
+    '_original': {
+      '$value': '/icon/plus-circle-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plus-circle-16',
+    '$type': 'link',
     '$value': '/icon/plus-circle-16.svg',
   },
   'icon.plus-circle-24': {
+    '_original': {
+      '$value': '/icon/plus-circle-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.plus-circle-24',
+    '$type': 'link',
     '$value': '/icon/plus-circle-24.svg',
   },
   'icon.project-16': {
+    '_original': {
+      '$value': '/icon/project-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.project-16',
+    '$type': 'link',
     '$value': '/icon/project-16.svg',
   },
   'icon.project-24': {
+    '_original': {
+      '$value': '/icon/project-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.project-24',
+    '$type': 'link',
     '$value': '/icon/project-24.svg',
   },
   'icon.pulse-16': {
+    '_original': {
+      '$value': '/icon/pulse-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pulse-16',
+    '$type': 'link',
     '$value': '/icon/pulse-16.svg',
   },
   'icon.pulse-24': {
+    '_original': {
+      '$value': '/icon/pulse-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.pulse-24',
+    '$type': 'link',
     '$value': '/icon/pulse-24.svg',
   },
   'icon.question-16': {
+    '_original': {
+      '$value': '/icon/question-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.question-16',
+    '$type': 'link',
     '$value': '/icon/question-16.svg',
   },
   'icon.question-24': {
+    '_original': {
+      '$value': '/icon/question-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.question-24',
+    '$type': 'link',
     '$value': '/icon/question-24.svg',
   },
   'icon.quote-16': {
+    '_original': {
+      '$value': '/icon/quote-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.quote-16',
+    '$type': 'link',
     '$value': '/icon/quote-16.svg',
   },
   'icon.quote-24': {
+    '_original': {
+      '$value': '/icon/quote-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.quote-24',
+    '$type': 'link',
     '$value': '/icon/quote-24.svg',
   },
   'icon.reply-16': {
+    '_original': {
+      '$value': '/icon/reply-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.reply-16',
+    '$type': 'link',
     '$value': '/icon/reply-16.svg',
   },
   'icon.reply-24': {
+    '_original': {
+      '$value': '/icon/reply-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.reply-24',
+    '$type': 'link',
     '$value': '/icon/reply-24.svg',
   },
   'icon.repo-16': {
+    '_original': {
+      '$value': '/icon/repo-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-16',
+    '$type': 'link',
     '$value': '/icon/repo-16.svg',
   },
   'icon.repo-24': {
+    '_original': {
+      '$value': '/icon/repo-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-24',
+    '$type': 'link',
     '$value': '/icon/repo-24.svg',
   },
   'icon.repo-clone-16': {
+    '_original': {
+      '$value': '/icon/repo-clone-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-clone-16',
+    '$type': 'link',
     '$value': '/icon/repo-clone-16.svg',
   },
   'icon.repo-forked-16': {
+    '_original': {
+      '$value': '/icon/repo-forked-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-forked-16',
+    '$type': 'link',
     '$value': '/icon/repo-forked-16.svg',
   },
   'icon.repo-forked-24': {
+    '_original': {
+      '$value': '/icon/repo-forked-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-forked-24',
+    '$type': 'link',
     '$value': '/icon/repo-forked-24.svg',
   },
   'icon.repo-pull-16': {
+    '_original': {
+      '$value': '/icon/repo-pull-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-pull-16',
+    '$type': 'link',
     '$value': '/icon/repo-pull-16.svg',
   },
   'icon.repo-push-16': {
+    '_original': {
+      '$value': '/icon/repo-push-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-push-16',
+    '$type': 'link',
     '$value': '/icon/repo-push-16.svg',
   },
   'icon.repo-push-24': {
+    '_original': {
+      '$value': '/icon/repo-push-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-push-24',
+    '$type': 'link',
     '$value': '/icon/repo-push-24.svg',
   },
   'icon.repo-template-16': {
+    '_original': {
+      '$value': '/icon/repo-template-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-template-16',
+    '$type': 'link',
     '$value': '/icon/repo-template-16.svg',
   },
   'icon.repo-template-24': {
+    '_original': {
+      '$value': '/icon/repo-template-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.repo-template-24',
+    '$type': 'link',
     '$value': '/icon/repo-template-24.svg',
   },
   'icon.report-16': {
+    '_original': {
+      '$value': '/icon/report-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.report-16',
+    '$type': 'link',
     '$value': '/icon/report-16.svg',
   },
   'icon.report-24': {
+    '_original': {
+      '$value': '/icon/report-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.report-24',
+    '$type': 'link',
     '$value': '/icon/report-24.svg',
   },
   'icon.rocket-16': {
+    '_original': {
+      '$value': '/icon/rocket-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rocket-16',
+    '$type': 'link',
     '$value': '/icon/rocket-16.svg',
   },
   'icon.rocket-24': {
+    '_original': {
+      '$value': '/icon/rocket-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rocket-24',
+    '$type': 'link',
     '$value': '/icon/rocket-24.svg',
   },
   'icon.rows-16': {
+    '_original': {
+      '$value': '/icon/rows-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rows-16',
+    '$type': 'link',
     '$value': '/icon/rows-16.svg',
   },
   'icon.rows-24': {
+    '_original': {
+      '$value': '/icon/rows-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rows-24',
+    '$type': 'link',
     '$value': '/icon/rows-24.svg',
   },
   'icon.rss-16': {
+    '_original': {
+      '$value': '/icon/rss-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rss-16',
+    '$type': 'link',
     '$value': '/icon/rss-16.svg',
   },
   'icon.rss-24': {
+    '_original': {
+      '$value': '/icon/rss-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.rss-24',
+    '$type': 'link',
     '$value': '/icon/rss-24.svg',
   },
   'icon.ruby-16': {
+    '_original': {
+      '$value': '/icon/ruby-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.ruby-16',
+    '$type': 'link',
     '$value': '/icon/ruby-16.svg',
   },
   'icon.ruby-24': {
+    '_original': {
+      '$value': '/icon/ruby-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.ruby-24',
+    '$type': 'link',
     '$value': '/icon/ruby-24.svg',
   },
   'icon.screen-full-16': {
+    '_original': {
+      '$value': '/icon/screen-full-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.screen-full-16',
+    '$type': 'link',
     '$value': '/icon/screen-full-16.svg',
   },
   'icon.screen-full-24': {
+    '_original': {
+      '$value': '/icon/screen-full-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.screen-full-24',
+    '$type': 'link',
     '$value': '/icon/screen-full-24.svg',
   },
   'icon.screen-normal-16': {
+    '_original': {
+      '$value': '/icon/screen-normal-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.screen-normal-16',
+    '$type': 'link',
     '$value': '/icon/screen-normal-16.svg',
   },
   'icon.screen-normal-24': {
+    '_original': {
+      '$value': '/icon/screen-normal-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.screen-normal-24',
+    '$type': 'link',
     '$value': '/icon/screen-normal-24.svg',
   },
   'icon.search-16': {
+    '_original': {
+      '$value': '/icon/search-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.search-16',
+    '$type': 'link',
     '$value': '/icon/search-16.svg',
   },
   'icon.search-24': {
+    '_original': {
+      '$value': '/icon/search-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.search-24',
+    '$type': 'link',
     '$value': '/icon/search-24.svg',
   },
   'icon.server-16': {
+    '_original': {
+      '$value': '/icon/server-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.server-16',
+    '$type': 'link',
     '$value': '/icon/server-16.svg',
   },
   'icon.server-24': {
+    '_original': {
+      '$value': '/icon/server-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.server-24',
+    '$type': 'link',
     '$value': '/icon/server-24.svg',
   },
   'icon.share-16': {
+    '_original': {
+      '$value': '/icon/share-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.share-16',
+    '$type': 'link',
     '$value': '/icon/share-16.svg',
   },
   'icon.share-24': {
+    '_original': {
+      '$value': '/icon/share-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.share-24',
+    '$type': 'link',
     '$value': '/icon/share-24.svg',
   },
   'icon.share-android-16': {
+    '_original': {
+      '$value': '/icon/share-android-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.share-android-16',
+    '$type': 'link',
     '$value': '/icon/share-android-16.svg',
   },
   'icon.share-android-24': {
+    '_original': {
+      '$value': '/icon/share-android-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.share-android-24',
+    '$type': 'link',
     '$value': '/icon/share-android-24.svg',
   },
   'icon.shield-16': {
+    '_original': {
+      '$value': '/icon/shield-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-16',
+    '$type': 'link',
     '$value': '/icon/shield-16.svg',
   },
   'icon.shield-24': {
+    '_original': {
+      '$value': '/icon/shield-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-24',
+    '$type': 'link',
     '$value': '/icon/shield-24.svg',
   },
   'icon.shield-check-16': {
+    '_original': {
+      '$value': '/icon/shield-check-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-check-16',
+    '$type': 'link',
     '$value': '/icon/shield-check-16.svg',
   },
   'icon.shield-check-24': {
+    '_original': {
+      '$value': '/icon/shield-check-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-check-24',
+    '$type': 'link',
     '$value': '/icon/shield-check-24.svg',
   },
   'icon.shield-lock-16': {
+    '_original': {
+      '$value': '/icon/shield-lock-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-lock-16',
+    '$type': 'link',
     '$value': '/icon/shield-lock-16.svg',
   },
   'icon.shield-lock-24': {
+    '_original': {
+      '$value': '/icon/shield-lock-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-lock-24',
+    '$type': 'link',
     '$value': '/icon/shield-lock-24.svg',
   },
   'icon.shield-x-16': {
+    '_original': {
+      '$value': '/icon/shield-x-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-x-16',
+    '$type': 'link',
     '$value': '/icon/shield-x-16.svg',
   },
   'icon.shield-x-24': {
+    '_original': {
+      '$value': '/icon/shield-x-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.shield-x-24',
+    '$type': 'link',
     '$value': '/icon/shield-x-24.svg',
   },
   'icon.sidebar-collapse-16': {
+    '_original': {
+      '$value': '/icon/sidebar-collapse-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sidebar-collapse-16',
+    '$type': 'link',
     '$value': '/icon/sidebar-collapse-16.svg',
   },
   'icon.sidebar-collapse-24': {
+    '_original': {
+      '$value': '/icon/sidebar-collapse-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sidebar-collapse-24',
+    '$type': 'link',
     '$value': '/icon/sidebar-collapse-24.svg',
   },
   'icon.sidebar-expand-16': {
+    '_original': {
+      '$value': '/icon/sidebar-expand-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sidebar-expand-16',
+    '$type': 'link',
     '$value': '/icon/sidebar-expand-16.svg',
   },
   'icon.sidebar-expand-24': {
+    '_original': {
+      '$value': '/icon/sidebar-expand-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sidebar-expand-24',
+    '$type': 'link',
     '$value': '/icon/sidebar-expand-24.svg',
   },
   'icon.sign-in-16': {
+    '_original': {
+      '$value': '/icon/sign-in-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sign-in-16',
+    '$type': 'link',
     '$value': '/icon/sign-in-16.svg',
   },
   'icon.sign-in-24': {
+    '_original': {
+      '$value': '/icon/sign-in-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sign-in-24',
+    '$type': 'link',
     '$value': '/icon/sign-in-24.svg',
   },
   'icon.sign-out-16': {
+    '_original': {
+      '$value': '/icon/sign-out-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sign-out-16',
+    '$type': 'link',
     '$value': '/icon/sign-out-16.svg',
   },
   'icon.sign-out-24': {
+    '_original': {
+      '$value': '/icon/sign-out-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sign-out-24',
+    '$type': 'link',
     '$value': '/icon/sign-out-24.svg',
   },
   'icon.single-select-16': {
+    '_original': {
+      '$value': '/icon/single-select-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.single-select-16',
+    '$type': 'link',
     '$value': '/icon/single-select-16.svg',
   },
   'icon.single-select-24': {
+    '_original': {
+      '$value': '/icon/single-select-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.single-select-24',
+    '$type': 'link',
     '$value': '/icon/single-select-24.svg',
   },
   'icon.skip-16': {
+    '_original': {
+      '$value': '/icon/skip-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.skip-16',
+    '$type': 'link',
     '$value': '/icon/skip-16.svg',
   },
   'icon.skip-24': {
+    '_original': {
+      '$value': '/icon/skip-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.skip-24',
+    '$type': 'link',
     '$value': '/icon/skip-24.svg',
   },
   'icon.smiley-16': {
+    '_original': {
+      '$value': '/icon/smiley-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.smiley-16',
+    '$type': 'link',
     '$value': '/icon/smiley-16.svg',
   },
   'icon.smiley-24': {
+    '_original': {
+      '$value': '/icon/smiley-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.smiley-24',
+    '$type': 'link',
     '$value': '/icon/smiley-24.svg',
   },
   'icon.sort-asc-16': {
+    '_original': {
+      '$value': '/icon/sort-asc-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sort-asc-16',
+    '$type': 'link',
     '$value': '/icon/sort-asc-16.svg',
   },
   'icon.sort-asc-24': {
+    '_original': {
+      '$value': '/icon/sort-asc-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sort-asc-24',
+    '$type': 'link',
     '$value': '/icon/sort-asc-24.svg',
   },
   'icon.sort-desc-16': {
+    '_original': {
+      '$value': '/icon/sort-desc-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sort-desc-16',
+    '$type': 'link',
     '$value': '/icon/sort-desc-16.svg',
   },
   'icon.sort-desc-24': {
+    '_original': {
+      '$value': '/icon/sort-desc-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sort-desc-24',
+    '$type': 'link',
     '$value': '/icon/sort-desc-24.svg',
   },
   'icon.square-16': {
+    '_original': {
+      '$value': '/icon/square-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.square-16',
+    '$type': 'link',
     '$value': '/icon/square-16.svg',
   },
   'icon.square-24': {
+    '_original': {
+      '$value': '/icon/square-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.square-24',
+    '$type': 'link',
     '$value': '/icon/square-24.svg',
   },
   'icon.square-fill-16': {
+    '_original': {
+      '$value': '/icon/square-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.square-fill-16',
+    '$type': 'link',
     '$value': '/icon/square-fill-16.svg',
   },
   'icon.square-fill-24': {
+    '_original': {
+      '$value': '/icon/square-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.square-fill-24',
+    '$type': 'link',
     '$value': '/icon/square-fill-24.svg',
   },
   'icon.squirrel-16': {
+    '_original': {
+      '$value': '/icon/squirrel-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.squirrel-16',
+    '$type': 'link',
     '$value': '/icon/squirrel-16.svg',
   },
   'icon.squirrel-24': {
+    '_original': {
+      '$value': '/icon/squirrel-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.squirrel-24',
+    '$type': 'link',
     '$value': '/icon/squirrel-24.svg',
   },
   'icon.stack-16': {
+    '_original': {
+      '$value': '/icon/stack-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stack-16',
+    '$type': 'link',
     '$value': '/icon/stack-16.svg',
   },
   'icon.stack-24': {
+    '_original': {
+      '$value': '/icon/stack-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stack-24',
+    '$type': 'link',
     '$value': '/icon/stack-24.svg',
   },
   'icon.star-16': {
+    '_original': {
+      '$value': '/icon/star-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.star-16',
+    '$type': 'link',
     '$value': '/icon/star-16.svg',
   },
   'icon.star-24': {
+    '_original': {
+      '$value': '/icon/star-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.star-24',
+    '$type': 'link',
     '$value': '/icon/star-24.svg',
   },
   'icon.star-fill-16': {
+    '_original': {
+      '$value': '/icon/star-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.star-fill-16',
+    '$type': 'link',
     '$value': '/icon/star-fill-16.svg',
   },
   'icon.star-fill-24': {
+    '_original': {
+      '$value': '/icon/star-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.star-fill-24',
+    '$type': 'link',
     '$value': '/icon/star-fill-24.svg',
   },
   'icon.stop-16': {
+    '_original': {
+      '$value': '/icon/stop-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stop-16',
+    '$type': 'link',
     '$value': '/icon/stop-16.svg',
   },
   'icon.stop-24': {
+    '_original': {
+      '$value': '/icon/stop-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stop-24',
+    '$type': 'link',
     '$value': '/icon/stop-24.svg',
   },
   'icon.stopwatch-16': {
+    '_original': {
+      '$value': '/icon/stopwatch-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stopwatch-16',
+    '$type': 'link',
     '$value': '/icon/stopwatch-16.svg',
   },
   'icon.stopwatch-24': {
+    '_original': {
+      '$value': '/icon/stopwatch-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.stopwatch-24',
+    '$type': 'link',
     '$value': '/icon/stopwatch-24.svg',
   },
   'icon.strikethrough-16': {
+    '_original': {
+      '$value': '/icon/strikethrough-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.strikethrough-16',
+    '$type': 'link',
     '$value': '/icon/strikethrough-16.svg',
   },
   'icon.strikethrough-24': {
+    '_original': {
+      '$value': '/icon/strikethrough-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.strikethrough-24',
+    '$type': 'link',
     '$value': '/icon/strikethrough-24.svg',
   },
   'icon.sun-16': {
+    '_original': {
+      '$value': '/icon/sun-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sun-16',
+    '$type': 'link',
     '$value': '/icon/sun-16.svg',
   },
   'icon.sun-24': {
+    '_original': {
+      '$value': '/icon/sun-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sun-24',
+    '$type': 'link',
     '$value': '/icon/sun-24.svg',
   },
   'icon.sync-16': {
+    '_original': {
+      '$value': '/icon/sync-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sync-16',
+    '$type': 'link',
     '$value': '/icon/sync-16.svg',
   },
   'icon.sync-24': {
+    '_original': {
+      '$value': '/icon/sync-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.sync-24',
+    '$type': 'link',
     '$value': '/icon/sync-24.svg',
   },
   'icon.tab-24': {
+    '_original': {
+      '$value': '/icon/tab-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tab-24',
+    '$type': 'link',
     '$value': '/icon/tab-24.svg',
   },
   'icon.table-16': {
+    '_original': {
+      '$value': '/icon/table-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.table-16',
+    '$type': 'link',
     '$value': '/icon/table-16.svg',
   },
   'icon.table-24': {
+    '_original': {
+      '$value': '/icon/table-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.table-24',
+    '$type': 'link',
     '$value': '/icon/table-24.svg',
   },
   'icon.tag-16': {
+    '_original': {
+      '$value': '/icon/tag-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tag-16',
+    '$type': 'link',
     '$value': '/icon/tag-16.svg',
   },
   'icon.tag-24': {
+    '_original': {
+      '$value': '/icon/tag-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tag-24',
+    '$type': 'link',
     '$value': '/icon/tag-24.svg',
   },
   'icon.tasklist-16': {
+    '_original': {
+      '$value': '/icon/tasklist-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tasklist-16',
+    '$type': 'link',
     '$value': '/icon/tasklist-16.svg',
   },
   'icon.tasklist-24': {
+    '_original': {
+      '$value': '/icon/tasklist-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tasklist-24',
+    '$type': 'link',
     '$value': '/icon/tasklist-24.svg',
   },
   'icon.telescope-16': {
+    '_original': {
+      '$value': '/icon/telescope-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.telescope-16',
+    '$type': 'link',
     '$value': '/icon/telescope-16.svg',
   },
   'icon.telescope-24': {
+    '_original': {
+      '$value': '/icon/telescope-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.telescope-24',
+    '$type': 'link',
     '$value': '/icon/telescope-24.svg',
   },
   'icon.telescope-fill-16': {
+    '_original': {
+      '$value': '/icon/telescope-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.telescope-fill-16',
+    '$type': 'link',
     '$value': '/icon/telescope-fill-16.svg',
   },
   'icon.telescope-fill-24': {
+    '_original': {
+      '$value': '/icon/telescope-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.telescope-fill-24',
+    '$type': 'link',
     '$value': '/icon/telescope-fill-24.svg',
   },
   'icon.terminal-16': {
+    '_original': {
+      '$value': '/icon/terminal-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.terminal-16',
+    '$type': 'link',
     '$value': '/icon/terminal-16.svg',
   },
   'icon.terminal-24': {
+    '_original': {
+      '$value': '/icon/terminal-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.terminal-24',
+    '$type': 'link',
     '$value': '/icon/terminal-24.svg',
   },
   'icon.three-bars-16': {
+    '_original': {
+      '$value': '/icon/three-bars-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.three-bars-16',
+    '$type': 'link',
     '$value': '/icon/three-bars-16.svg',
   },
   'icon.thumbsdown-16': {
+    '_original': {
+      '$value': '/icon/thumbsdown-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.thumbsdown-16',
+    '$type': 'link',
     '$value': '/icon/thumbsdown-16.svg',
   },
   'icon.thumbsdown-24': {
+    '_original': {
+      '$value': '/icon/thumbsdown-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.thumbsdown-24',
+    '$type': 'link',
     '$value': '/icon/thumbsdown-24.svg',
   },
   'icon.thumbsup-16': {
+    '_original': {
+      '$value': '/icon/thumbsup-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.thumbsup-16',
+    '$type': 'link',
     '$value': '/icon/thumbsup-16.svg',
   },
   'icon.thumbsup-24': {
+    '_original': {
+      '$value': '/icon/thumbsup-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.thumbsup-24',
+    '$type': 'link',
     '$value': '/icon/thumbsup-24.svg',
   },
   'icon.tools-16': {
+    '_original': {
+      '$value': '/icon/tools-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tools-16',
+    '$type': 'link',
     '$value': '/icon/tools-16.svg',
   },
   'icon.tools-24': {
+    '_original': {
+      '$value': '/icon/tools-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.tools-24',
+    '$type': 'link',
     '$value': '/icon/tools-24.svg',
   },
   'icon.trash-16': {
+    '_original': {
+      '$value': '/icon/trash-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.trash-16',
+    '$type': 'link',
     '$value': '/icon/trash-16.svg',
   },
   'icon.trash-24': {
+    '_original': {
+      '$value': '/icon/trash-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.trash-24',
+    '$type': 'link',
     '$value': '/icon/trash-24.svg',
   },
   'icon.triangle-down-16': {
+    '_original': {
+      '$value': '/icon/triangle-down-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-down-16',
+    '$type': 'link',
     '$value': '/icon/triangle-down-16.svg',
   },
   'icon.triangle-down-24': {
+    '_original': {
+      '$value': '/icon/triangle-down-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-down-24',
+    '$type': 'link',
     '$value': '/icon/triangle-down-24.svg',
   },
   'icon.triangle-left-16': {
+    '_original': {
+      '$value': '/icon/triangle-left-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-left-16',
+    '$type': 'link',
     '$value': '/icon/triangle-left-16.svg',
   },
   'icon.triangle-left-24': {
+    '_original': {
+      '$value': '/icon/triangle-left-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-left-24',
+    '$type': 'link',
     '$value': '/icon/triangle-left-24.svg',
   },
   'icon.triangle-right-16': {
+    '_original': {
+      '$value': '/icon/triangle-right-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-right-16',
+    '$type': 'link',
     '$value': '/icon/triangle-right-16.svg',
   },
   'icon.triangle-right-24': {
+    '_original': {
+      '$value': '/icon/triangle-right-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-right-24',
+    '$type': 'link',
     '$value': '/icon/triangle-right-24.svg',
   },
   'icon.triangle-up-16': {
+    '_original': {
+      '$value': '/icon/triangle-up-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-up-16',
+    '$type': 'link',
     '$value': '/icon/triangle-up-16.svg',
   },
   'icon.triangle-up-24': {
+    '_original': {
+      '$value': '/icon/triangle-up-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.triangle-up-24',
+    '$type': 'link',
     '$value': '/icon/triangle-up-24.svg',
   },
   'icon.typography-16': {
+    '_original': {
+      '$value': '/icon/typography-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.typography-16',
+    '$type': 'link',
     '$value': '/icon/typography-16.svg',
   },
   'icon.typography-24': {
+    '_original': {
+      '$value': '/icon/typography-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.typography-24',
+    '$type': 'link',
     '$value': '/icon/typography-24.svg',
   },
   'icon.unfold-16': {
+    '_original': {
+      '$value': '/icon/unfold-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unfold-16',
+    '$type': 'link',
     '$value': '/icon/unfold-16.svg',
   },
   'icon.unfold-24': {
+    '_original': {
+      '$value': '/icon/unfold-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unfold-24',
+    '$type': 'link',
     '$value': '/icon/unfold-24.svg',
   },
   'icon.unlock-16': {
+    '_original': {
+      '$value': '/icon/unlock-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unlock-16',
+    '$type': 'link',
     '$value': '/icon/unlock-16.svg',
   },
   'icon.unlock-24': {
+    '_original': {
+      '$value': '/icon/unlock-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unlock-24',
+    '$type': 'link',
     '$value': '/icon/unlock-24.svg',
   },
   'icon.unmute-16': {
+    '_original': {
+      '$value': '/icon/unmute-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unmute-16',
+    '$type': 'link',
     '$value': '/icon/unmute-16.svg',
   },
   'icon.unmute-24': {
+    '_original': {
+      '$value': '/icon/unmute-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unmute-24',
+    '$type': 'link',
     '$value': '/icon/unmute-24.svg',
   },
   'icon.unverified-16': {
+    '_original': {
+      '$value': '/icon/unverified-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unverified-16',
+    '$type': 'link',
     '$value': '/icon/unverified-16.svg',
   },
   'icon.unverified-24': {
+    '_original': {
+      '$value': '/icon/unverified-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.unverified-24',
+    '$type': 'link',
     '$value': '/icon/unverified-24.svg',
   },
   'icon.upload-16': {
+    '_original': {
+      '$value': '/icon/upload-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.upload-16',
+    '$type': 'link',
     '$value': '/icon/upload-16.svg',
   },
   'icon.upload-24': {
+    '_original': {
+      '$value': '/icon/upload-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.upload-24',
+    '$type': 'link',
     '$value': '/icon/upload-24.svg',
   },
   'icon.verified-16': {
+    '_original': {
+      '$value': '/icon/verified-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.verified-16',
+    '$type': 'link',
     '$value': '/icon/verified-16.svg',
   },
   'icon.verified-24': {
+    '_original': {
+      '$value': '/icon/verified-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.verified-24',
+    '$type': 'link',
     '$value': '/icon/verified-24.svg',
   },
   'icon.versions-16': {
+    '_original': {
+      '$value': '/icon/versions-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.versions-16',
+    '$type': 'link',
     '$value': '/icon/versions-16.svg',
   },
   'icon.versions-24': {
+    '_original': {
+      '$value': '/icon/versions-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.versions-24',
+    '$type': 'link',
     '$value': '/icon/versions-24.svg',
   },
   'icon.video-16': {
+    '_original': {
+      '$value': '/icon/video-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.video-16',
+    '$type': 'link',
     '$value': '/icon/video-16.svg',
   },
   'icon.video-24': {
+    '_original': {
+      '$value': '/icon/video-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.video-24',
+    '$type': 'link',
     '$value': '/icon/video-24.svg',
   },
   'icon.workflow-16': {
+    '_original': {
+      '$value': '/icon/workflow-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.workflow-16',
+    '$type': 'link',
     '$value': '/icon/workflow-16.svg',
   },
   'icon.workflow-24': {
+    '_original': {
+      '$value': '/icon/workflow-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.workflow-24',
+    '$type': 'link',
     '$value': '/icon/workflow-24.svg',
   },
   'icon.x-16': {
+    '_original': {
+      '$value': '/icon/x-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-16',
+    '$type': 'link',
     '$value': '/icon/x-16.svg',
   },
   'icon.x-24': {
+    '_original': {
+      '$value': '/icon/x-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-24',
+    '$type': 'link',
     '$value': '/icon/x-24.svg',
   },
   'icon.x-circle-16': {
+    '_original': {
+      '$value': '/icon/x-circle-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-circle-16',
+    '$type': 'link',
     '$value': '/icon/x-circle-16.svg',
   },
   'icon.x-circle-24': {
+    '_original': {
+      '$value': '/icon/x-circle-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-circle-24',
+    '$type': 'link',
     '$value': '/icon/x-circle-24.svg',
   },
   'icon.x-circle-fill-12': {
+    '_original': {
+      '$value': '/icon/x-circle-fill-12.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-circle-fill-12',
+    '$type': 'link',
     '$value': '/icon/x-circle-fill-12.svg',
   },
   'icon.x-circle-fill-16': {
+    '_original': {
+      '$value': '/icon/x-circle-fill-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-circle-fill-16',
+    '$type': 'link',
     '$value': '/icon/x-circle-fill-16.svg',
   },
   'icon.x-circle-fill-24': {
+    '_original': {
+      '$value': '/icon/x-circle-fill-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.x-circle-fill-24',
+    '$type': 'link',
     '$value': '/icon/x-circle-fill-24.svg',
   },
   'icon.zap-16': {
+    '_original': {
+      '$value': '/icon/zap-16.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.zap-16',
+    '$type': 'link',
     '$value': '/icon/zap-16.svg',
   },
   'icon.zap-24': {
+    '_original': {
+      '$value': '/icon/zap-24.svg',
+    },
+    '_group': {
+      id: 'icon',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'link',
+    },
+    id: 'icon.zap-24',
+    '$type': 'link',
     '$value': '/icon/zap-24.svg',
   },
   'spacing.spacer0': {
-    '$value': '0px',
+    '_original': {
+      '$value': '0px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacer0',
+    '$type': 'dimension',
+    '$value': '0',
   },
   'spacing.spacerXs': {
+    '_original': {
+      '$value': '4px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerXs',
+    '$type': 'dimension',
     '$value': '4px',
   },
   'spacing.spacerS': {
+    '_original': {
+      '$value': '8px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerS',
+    '$type': 'dimension',
     '$value': '8px',
   },
   'spacing.spacerM': {
+    '_original': {
+      '$value': '16px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerM',
+    '$type': 'dimension',
     '$value': '16px',
   },
   'spacing.spacerX': {
+    '_original': {
+      '$value': '24px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerX',
+    '$type': 'dimension',
     '$value': '24px',
   },
   'spacing.spacerXl': {
+    '_original': {
+      '$value': '32px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerXl',
+    '$type': 'dimension',
     '$value': '32px',
   },
   'spacing.spacerXxl': {
+    '_original': {
+      '$value': '40px',
+    },
+    '_group': {
+      id: 'spacing',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'spacing.spacerXxl',
+    '$type': 'dimension',
     '$value': '40px',
   },
   'font.family.system': {
+    '_original': {
+      '$value': ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'font',
+    },
+    id: 'font.family.system',
+    '$type': 'font',
     '$value': ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
   },
   'font.family.monospace': {
+    '_original': {
+      '$value': ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'font',
+    },
+    id: 'font.family.monospace',
+    '$type': 'font',
     '$value': ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
   },
   'font.family.display': {
+    '_original': {
+      '$value': ['InterUI', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'sans-serif'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'font',
+    },
+    id: 'font.family.display',
+    '$type': 'font',
     '$value': ['InterUI', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'sans-serif'],
   },
   'font.family.size.f00': {
+    '_original': {
+      '$value': '32px',
+      '$extensions': {
+        mode: {
+          mobile: '32px',
+          desktop: '48px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f00',
+    '$type': 'dimension',
     '$value': '32px',
     '$extensions': {
       mode: {
@@ -3326,6 +12446,27 @@ export const meta = {
     },
   },
   'font.family.size.f0': {
+    '_original': {
+      '$value': '32px',
+      '$extensions': {
+        mode: {
+          mobile: '32px',
+          desktop: '40px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f0',
+    '$type': 'dimension',
     '$value': '32px',
     '$extensions': {
       mode: {
@@ -3335,6 +12476,27 @@ export const meta = {
     },
   },
   'font.family.size.f1': {
+    '_original': {
+      '$value': '26px',
+      '$extensions': {
+        mode: {
+          mobile: '26px',
+          desktop: '32px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f1',
+    '$type': 'dimension',
     '$value': '26px',
     '$extensions': {
       mode: {
@@ -3344,6 +12506,27 @@ export const meta = {
     },
   },
   'font.family.size.f2': {
+    '_original': {
+      '$value': '22px',
+      '$extensions': {
+        mode: {
+          mobile: '22px',
+          desktop: '24px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f2',
+    '$type': 'dimension',
     '$value': '22px',
     '$extensions': {
       mode: {
@@ -3353,6 +12536,27 @@ export const meta = {
     },
   },
   'font.family.size.f3': {
+    '_original': {
+      '$value': '16px',
+      '$extensions': {
+        mode: {
+          mobile: '16px',
+          desktop: '20px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f3',
+    '$type': 'dimension',
     '$value': '16px',
     '$extensions': {
       mode: {
@@ -3362,6 +12566,27 @@ export const meta = {
     },
   },
   'font.family.size.f4': {
+    '_original': {
+      '$value': '16px',
+      '$extensions': {
+        mode: {
+          mobile: '16px',
+          desktop: '16px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f4',
+    '$type': 'dimension',
     '$value': '16px',
     '$extensions': {
       mode: {
@@ -3371,6 +12596,27 @@ export const meta = {
     },
   },
   'font.family.size.f5': {
+    '_original': {
+      '$value': '14px',
+      '$extensions': {
+        mode: {
+          mobile: '14px',
+          desktop: '14px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f5',
+    '$type': 'dimension',
     '$value': '14px',
     '$extensions': {
       mode: {
@@ -3380,6 +12626,27 @@ export const meta = {
     },
   },
   'font.family.size.f6': {
+    '_original': {
+      '$value': '12px',
+      '$extensions': {
+        mode: {
+          mobile: '12px',
+          desktop: '12px',
+        },
+      },
+    },
+    '_group': {
+      id: 'font.family.size',
+      '$extensions': {
+        requiredModes: [],
+        modes: ['mobile', 'desktop'],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.size.f6',
+    '$type': 'dimension',
     '$value': '12px',
     '$extensions': {
       mode: {
@@ -3389,12 +12656,54 @@ export const meta = {
     },
   },
   'font.family.lineHeight.default': {
+    '_original': {
+      '$value': '1.5',
+    },
+    '_group': {
+      id: 'font.family.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.lineHeight.default',
+    '$type': 'dimension',
     '$value': '1.5',
   },
   'font.family.lineHeight.condensed': {
+    '_original': {
+      '$value': '1.25',
+    },
+    '_group': {
+      id: 'font.family.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.lineHeight.condensed',
+    '$type': 'dimension',
     '$value': '1.25',
   },
   'font.family.lineHeight.condensedUltra': {
+    '_original': {
+      '$value': '1',
+    },
+    '_group': {
+      id: 'font.family.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'GitHub Primer Design System',
+      '$description': 'GitHub’s design system',
+      '$type': 'dimension',
+    },
+    id: 'font.family.lineHeight.condensedUltra',
+    '$type': 'dimension',
     '$value': '1',
   },
 };
