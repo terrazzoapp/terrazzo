@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.5
+
+### Patch Changes
+
+- faa7340: Fix TS function overload
+
 ## 1.0.4
 
 ### Patch Changes
