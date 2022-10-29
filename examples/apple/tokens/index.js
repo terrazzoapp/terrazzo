@@ -87,6 +87,28 @@ export const tokens = {
 
 export const meta = {
   'color.systemBlue': {
+    '_original': {
+      '$name': 'Blue',
+      '$value': '#007aff',
+      '$extensions': {
+        mode: {
+          light: '#007aff',
+          dark: '#0a84ff',
+          'light_ax': '#0040dd',
+          'dark_ax': '#409cff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemBlue',
+    '$type': 'color',
     '$name': 'Blue',
     '$value': '#007aff',
     '$extensions': {
@@ -99,6 +121,28 @@ export const meta = {
     },
   },
   'color.systemBrown': {
+    '_original': {
+      '$name': 'Brown',
+      '$value': '#a2845e',
+      '$extensions': {
+        mode: {
+          light: '#a2845e',
+          dark: '#ac8e68',
+          'light_ax': '#7f6545',
+          'dark_ax': '#b59469',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemBrown',
+    '$type': 'color',
     '$name': 'Brown',
     '$value': '#a2845e',
     '$extensions': {
@@ -111,6 +155,28 @@ export const meta = {
     },
   },
   'color.systemCyan': {
+    '_original': {
+      '$name': 'Cyan',
+      '$value': '#32ade6',
+      '$extensions': {
+        mode: {
+          light: '#32ade6',
+          dark: '#64d2ff',
+          'light_ax': '#0071a4',
+          'dark_ax': '#70d7ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemCyan',
+    '$type': 'color',
     '$name': 'Cyan',
     '$value': '#32ade6',
     '$extensions': {
@@ -123,6 +189,28 @@ export const meta = {
     },
   },
   'color.systemGray': {
+    '_original': {
+      '$name': 'Gray',
+      '$value': '#8e8e93',
+      '$extensions': {
+        mode: {
+          light: '#8e8e93',
+          dark: '#8e8e93',
+          'light_ax': '#6c6c70',
+          'dark_ax': '#aeaeb2',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray',
+    '$type': 'color',
     '$name': 'Gray',
     '$value': '#8e8e93',
     '$extensions': {
@@ -135,6 +223,28 @@ export const meta = {
     },
   },
   'color.systemGray2': {
+    '_original': {
+      '$name': 'Gray (2)',
+      '$value': '#aeaeb2',
+      '$extensions': {
+        mode: {
+          light: '#aeaeb2',
+          dark: '#636366',
+          'light_ax': '#8e8e93',
+          'dark_ax': '#7c7c80',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray2',
+    '$type': 'color',
     '$name': 'Gray (2)',
     '$value': '#aeaeb2',
     '$extensions': {
@@ -147,6 +257,28 @@ export const meta = {
     },
   },
   'color.systemGray3': {
+    '_original': {
+      '$name': 'Gray (3)',
+      '$value': '#c7c7cc',
+      '$extensions': {
+        mode: {
+          light: '#c7c7cc',
+          dark: '#48484a',
+          'light_ax': '#aeaeb2',
+          'dark_ax': '#545456',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray3',
+    '$type': 'color',
     '$name': 'Gray (3)',
     '$value': '#c7c7cc',
     '$extensions': {
@@ -159,6 +291,28 @@ export const meta = {
     },
   },
   'color.systemGray4': {
+    '_original': {
+      '$name': 'Gray (4)',
+      '$value': '#d1d1d6',
+      '$extensions': {
+        mode: {
+          light: '#d1d1d6',
+          dark: '#3a3a3c',
+          'light_ax': '#bcbcc0',
+          'dark_ax': '#444446',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray4',
+    '$type': 'color',
     '$name': 'Gray (4)',
     '$value': '#d1d1d6',
     '$extensions': {
@@ -171,6 +325,28 @@ export const meta = {
     },
   },
   'color.systemGray5': {
+    '_original': {
+      '$name': 'Gray (5)',
+      '$value': '#e5e5ea',
+      '$extensions': {
+        mode: {
+          light: '#e5e5ea',
+          dark: '#2c2c2e',
+          'light_ax': '#d8d8dc',
+          'dark_ax': '#363638',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray5',
+    '$type': 'color',
     '$name': 'Gray (5)',
     '$value': '#e5e5ea',
     '$extensions': {
@@ -183,6 +359,28 @@ export const meta = {
     },
   },
   'color.systemGray6': {
+    '_original': {
+      '$name': 'Gray (6)',
+      '$value': '#f2f2f7',
+      '$extensions': {
+        mode: {
+          light: '#f2f2f7',
+          dark: '#1c1c1e',
+          'light_ax': '#ebebf0',
+          'dark_ax': '#242426',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGray6',
+    '$type': 'color',
     '$name': 'Gray (6)',
     '$value': '#f2f2f7',
     '$extensions': {
@@ -195,6 +393,28 @@ export const meta = {
     },
   },
   'color.systemGreen': {
+    '_original': {
+      '$name': 'Green',
+      '$value': '#34c759',
+      '$extensions': {
+        mode: {
+          light: '#34c759',
+          dark: '#30d158',
+          'light_ax': '#248a3d',
+          'dark_ax': '#30db5b',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemGreen',
+    '$type': 'color',
     '$name': 'Green',
     '$value': '#34c759',
     '$extensions': {
@@ -207,6 +427,28 @@ export const meta = {
     },
   },
   'color.systemIndigo': {
+    '_original': {
+      '$name': 'Indigo',
+      '$value': '#5856d6',
+      '$extensions': {
+        mode: {
+          light: '#5856d6',
+          dark: '#5e5ce6',
+          'light_ax': '#3634a3',
+          'dark_ax': '#7d7aff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemIndigo',
+    '$type': 'color',
     '$name': 'Indigo',
     '$value': '#5856d6',
     '$extensions': {
@@ -219,6 +461,28 @@ export const meta = {
     },
   },
   'color.systemMint': {
+    '_original': {
+      '$name': 'Mint',
+      '$value': '#00c7be',
+      '$extensions': {
+        mode: {
+          light: '#00c7be',
+          dark: '#66d4cf',
+          'light_ax': '#0c817b',
+          'dark_ax': '#66d4cf',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemMint',
+    '$type': 'color',
     '$name': 'Mint',
     '$value': '#00c7be',
     '$extensions': {
@@ -231,6 +495,28 @@ export const meta = {
     },
   },
   'color.systemOrange': {
+    '_original': {
+      '$name': 'Orange',
+      '$value': '#ff9500',
+      '$extensions': {
+        mode: {
+          light: '#ff9500',
+          dark: '#ff9f0a',
+          'light_ax': '#c93400',
+          'dark_ax': '#ffb340',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemOrange',
+    '$type': 'color',
     '$name': 'Orange',
     '$value': '#ff9500',
     '$extensions': {
@@ -243,6 +529,28 @@ export const meta = {
     },
   },
   'color.systemPurple': {
+    '_original': {
+      '$name': 'Purple',
+      '$value': '#af52de',
+      '$extensions': {
+        mode: {
+          light: '#af52de',
+          dark: '#bf5af2',
+          'light_ax': '#8944ab',
+          'dark_ax': '#da8fff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemPurple',
+    '$type': 'color',
     '$name': 'Purple',
     '$value': '#af52de',
     '$extensions': {
@@ -255,6 +563,28 @@ export const meta = {
     },
   },
   'color.systemPink': {
+    '_original': {
+      '$name': 'Pink',
+      '$value': '#ff2d55',
+      '$extensions': {
+        mode: {
+          light: '#ff2d55',
+          dark: '#ff375f',
+          'light_ax': '#d30f45',
+          'dark_ax': '#ff6482',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemPink',
+    '$type': 'color',
     '$name': 'Pink',
     '$value': '#ff2d55',
     '$extensions': {
@@ -267,6 +597,28 @@ export const meta = {
     },
   },
   'color.systemRed': {
+    '_original': {
+      '$name': 'Red',
+      '$value': '#ff3b30',
+      '$extensions': {
+        mode: {
+          light: '#ff3b30',
+          dark: '#ff453a',
+          'light_ax': '#d70015',
+          'dark_ax': '#ff6961',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemRed',
+    '$type': 'color',
     '$name': 'Red',
     '$value': '#ff3b30',
     '$extensions': {
@@ -279,6 +631,28 @@ export const meta = {
     },
   },
   'color.systemTeal': {
+    '_original': {
+      '$name': 'Teal',
+      '$value': '#30b0c7',
+      '$extensions': {
+        mode: {
+          light: '#30b0c7',
+          dark: '#40c8e0',
+          'light_ax': '#008299',
+          'dark_ax': '#5de6ff',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemTeal',
+    '$type': 'color',
     '$name': 'Teal',
     '$value': '#30b0c7',
     '$extensions': {
@@ -291,6 +665,28 @@ export const meta = {
     },
   },
   'color.systemYellow': {
+    '_original': {
+      '$name': 'Yellow',
+      '$value': '#ffcc00',
+      '$extensions': {
+        mode: {
+          light: '#ffcc00',
+          dark: '#ffd60a',
+          'light_ax': '#b25000',
+          'dark_ax': '#ffd426',
+        },
+      },
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: ['light', 'dark', 'light_ax', 'dark_ax'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'color',
+    },
+    id: 'color.systemYellow',
+    '$type': 'color',
     '$name': 'Yellow',
     '$value': '#ffcc00',
     '$extensions': {
@@ -303,21 +699,135 @@ export const meta = {
     },
   },
   'font.family.sfPro': {
-    '$value': 'SF Pro',
+    '_original': {
+      '$value': 'SF Pro',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'font',
+    },
+    id: 'font.family.sfPro',
+    '$type': 'font',
+    '$value': ['SF Pro'],
   },
   'font.family.sfProRounded': {
-    '$value': 'SF Pro Rounded',
+    '_original': {
+      '$value': 'SF Pro Rounded',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'font',
+    },
+    id: 'font.family.sfProRounded',
+    '$type': 'font',
+    '$value': ['SF Pro Rounded'],
   },
   'font.family.sfCompact': {
-    '$value': 'SF Compact',
+    '_original': {
+      '$value': 'SF Compact',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'font',
+    },
+    id: 'font.family.sfCompact',
+    '$type': 'font',
+    '$value': ['SF Compact'],
   },
   'font.family.sfMono': {
-    '$value': 'SF Mono',
+    '_original': {
+      '$value': 'SF Mono',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'font',
+    },
+    id: 'font.family.sfMono',
+    '$type': 'font',
+    '$value': ['SF Mono'],
   },
   'font.family.newYork': {
-    '$value': 'New York',
+    '_original': {
+      '$value': 'New York',
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'font',
+    },
+    id: 'font.family.newYork',
+    '$type': 'font',
+    '$value': ['New York'],
   },
   'font.style.largeTitle': {
+    '_original': {
+      '$value': {
+        fontSize: '34px',
+        fontWeight: 400,
+        lineHeight: '41px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '31px',
+            lineHeight: '38px',
+          },
+          Small: {
+            fontSize: '32px',
+            lineHeight: '39px',
+          },
+          Medium: {
+            fontSize: '33px',
+            lineHeight: '40px',
+          },
+          Large: {
+            fontSize: '34px',
+            lineHeight: '41px',
+          },
+          xLarge: {
+            fontSize: '36px',
+            lineHeight: '43px',
+          },
+          xxLarge: {
+            fontSize: '38px',
+            lineHeight: '46px',
+          },
+          xxxLarge: {
+            fontSize: '40px',
+            lineHeight: '48px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.largeTitle',
+    '$type': 'typography',
     '$value': {
       fontSize: '34px',
       fontWeight: 400,
@@ -357,6 +867,55 @@ export const meta = {
     },
   },
   'font.style.title1': {
+    '_original': {
+      '$value': {
+        fontSize: '28px',
+        fontWeight: 400,
+        lineHeight: '34px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '25px',
+            lineHeight: '31px',
+          },
+          Small: {
+            fontSize: '26px',
+            lineHeight: '32px',
+          },
+          Medium: {
+            fontSize: '27px',
+            lineHeight: '33px',
+          },
+          Large: {
+            fontSize: '28px',
+            lineHeight: '34px',
+          },
+          xLarge: {
+            fontSize: '30px',
+            lineHeight: '37px',
+          },
+          xxLarge: {
+            fontSize: '32px',
+            lineHeight: '39px',
+          },
+          xxxLarge: {
+            fontSize: '32px',
+            lineHeight: '41px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.title1',
+    '$type': 'typography',
     '$value': {
       fontSize: '28px',
       fontWeight: 400,
@@ -396,6 +955,55 @@ export const meta = {
     },
   },
   'font.style.title2': {
+    '_original': {
+      '$value': {
+        fontSize: '22px',
+        fontWeight: 400,
+        lineHeight: '25px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+          Small: {
+            fontSize: '20px',
+            lineHeight: '25px',
+          },
+          Medium: {
+            fontSize: '21px',
+            lineHeight: '26px',
+          },
+          Large: {
+            fontSize: '22px',
+            lineHeight: '28px',
+          },
+          xLarge: {
+            fontSize: '24px',
+            lineHeight: '30px',
+          },
+          xxLarge: {
+            fontSize: '26px',
+            lineHeight: '32px',
+          },
+          xxxLarge: {
+            fontSize: '28px',
+            lineHeight: '34px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.title2',
+    '$type': 'typography',
     '$value': {
       fontSize: '22px',
       fontWeight: 400,
@@ -435,6 +1043,55 @@ export const meta = {
     },
   },
   'font.style.title3': {
+    '_original': {
+      '$value': {
+        fontSize: '20px',
+        fontWeight: 400,
+        lineHeight: '25px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '25px',
+            lineHeight: '22px',
+          },
+          Small: {
+            fontSize: '26px',
+            lineHeight: '23px',
+          },
+          Medium: {
+            fontSize: '27px',
+            lineHeight: '24px',
+          },
+          Large: {
+            fontSize: '28px',
+            lineHeight: '25px',
+          },
+          xLarge: {
+            fontSize: '30px',
+            lineHeight: '28px',
+          },
+          xxLarge: {
+            fontSize: '32px',
+            lineHeight: '30px',
+          },
+          xxxLarge: {
+            fontSize: '32px',
+            lineHeight: '32px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.title3',
+    '$type': 'typography',
     '$value': {
       fontSize: '20px',
       fontWeight: 400,
@@ -474,6 +1131,55 @@ export const meta = {
     },
   },
   'font.style.headline': {
+    '_original': {
+      '$value': {
+        fontSize: '17px',
+        fontWeight: 600,
+        lineHeight: '22px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          Small: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          Medium: {
+            fontSize: '16px',
+            lineHeight: '21px',
+          },
+          Large: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+          xLarge: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+          xxLarge: {
+            fontSize: '21px',
+            lineHeight: '26px',
+          },
+          xxxLarge: {
+            fontSize: '23px',
+            lineHeight: '29px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.headline',
+    '$type': 'typography',
     '$value': {
       fontSize: '17px',
       fontWeight: 600,
@@ -513,6 +1219,55 @@ export const meta = {
     },
   },
   'font.style.body': {
+    '_original': {
+      '$value': {
+        fontSize: '17px',
+        fontWeight: 400,
+        lineHeight: '22px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          Small: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          Medium: {
+            fontSize: '16px',
+            lineHeight: '21px',
+          },
+          Large: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+          xLarge: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+          xxLarge: {
+            fontSize: '21px',
+            lineHeight: '26px',
+          },
+          xxxLarge: {
+            fontSize: '23px',
+            lineHeight: '29px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.body',
+    '$type': 'typography',
     '$value': {
       fontSize: '17px',
       fontWeight: 400,
@@ -552,6 +1307,55 @@ export const meta = {
     },
   },
   'font.style.callout': {
+    '_original': {
+      '$value': {
+        fontSize: '16px',
+        fontWeight: 400,
+        lineHeight: '21px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '13px',
+            lineHeight: '18px',
+          },
+          Small: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          Medium: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          Large: {
+            fontSize: '16px',
+            lineHeight: '21px',
+          },
+          xLarge: {
+            fontSize: '18px',
+            lineHeight: '23px',
+          },
+          xxLarge: {
+            fontSize: '20px',
+            lineHeight: '25px',
+          },
+          xxxLarge: {
+            fontSize: '22px',
+            lineHeight: '28px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.callout',
+    '$type': 'typography',
     '$value': {
       fontSize: '16px',
       fontWeight: 400,
@@ -591,6 +1395,55 @@ export const meta = {
     },
   },
   'font.style.subhead': {
+    '_original': {
+      '$value': {
+        fontSize: '15px',
+        fontWeight: 400,
+        lineHeight: '20px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '12px',
+            lineHeight: '16px',
+          },
+          Small: {
+            fontSize: '13px',
+            lineHeight: '18px',
+          },
+          Medium: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          Large: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          xLarge: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+          xxLarge: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+          xxxLarge: {
+            fontSize: '21px',
+            lineHeight: '28px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.subhead',
+    '$type': 'typography',
     '$value': {
       fontSize: '15px',
       fontWeight: 400,
@@ -630,6 +1483,55 @@ export const meta = {
     },
   },
   'font.style.footnote': {
+    '_original': {
+      '$value': {
+        fontSize: '13px',
+        fontWeight: 400,
+        lineHeight: '18px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '12px',
+            lineHeight: '16px',
+          },
+          Small: {
+            fontSize: '12px',
+            lineHeight: '16px',
+          },
+          Medium: {
+            fontSize: '12px',
+            lineHeight: '16px',
+          },
+          Large: {
+            fontSize: '13px',
+            lineHeight: '18px',
+          },
+          xLarge: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          xxLarge: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+          xxxLarge: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.footnote',
+    '$type': 'typography',
     '$value': {
       fontSize: '13px',
       fontWeight: 400,
@@ -669,6 +1571,55 @@ export const meta = {
     },
   },
   'font.style.caption1': {
+    '_original': {
+      '$value': {
+        fontSize: '12px',
+        fontWeight: 400,
+        lineHeight: '16px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Small: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Medium: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Large: {
+            fontSize: '12px',
+            lineHeight: '16px',
+          },
+          xLarge: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          xxLarge: {
+            fontSize: '16px',
+            lineHeight: '18px',
+          },
+          xxxLarge: {
+            fontSize: '23px',
+            lineHeight: '21px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.caption1',
+    '$type': 'typography',
     '$value': {
       fontSize: '12px',
       fontWeight: 400,
@@ -708,6 +1659,55 @@ export const meta = {
     },
   },
   'font.style.caption_2': {
+    '_original': {
+      '$value': {
+        fontSize: '11px',
+        fontWeight: 400,
+        lineHeight: '13px',
+      },
+      '$extensions': {
+        mode: {
+          xSmall: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Small: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Medium: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          Large: {
+            fontSize: '11px',
+            lineHeight: '13px',
+          },
+          xLarge: {
+            fontSize: '13px',
+            lineHeight: '18px',
+          },
+          xxLarge: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          xxxLarge: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'font.style',
+      '$extensions': {
+        requiredModes: ['xSmall', 'Small', 'Medium', 'Large', 'xLarge', 'xxLarge', 'xxxLarge'],
+      },
+      '$name': 'Apple Human Interface Guidelines',
+      '$type': 'typography',
+    },
+    id: 'font.style.caption_2',
+    '$type': 'typography',
     '$value': {
       fontSize: '11px',
       fontWeight: 400,
@@ -860,330 +1860,407 @@ export const modes = {
   'font.style.largeTitle': {
     xSmall: {
       fontSize: '31px',
+      fontWeight: 400,
       lineHeight: '38px',
     },
     Small: {
       fontSize: '32px',
+      fontWeight: 400,
       lineHeight: '39px',
     },
     Medium: {
       fontSize: '33px',
+      fontWeight: 400,
       lineHeight: '40px',
     },
     Large: {
       fontSize: '34px',
+      fontWeight: 400,
       lineHeight: '41px',
     },
     xLarge: {
       fontSize: '36px',
+      fontWeight: 400,
       lineHeight: '43px',
     },
     xxLarge: {
       fontSize: '38px',
+      fontWeight: 400,
       lineHeight: '46px',
     },
     xxxLarge: {
       fontSize: '40px',
+      fontWeight: 400,
       lineHeight: '48px',
     },
   },
   'font.style.title1': {
     xSmall: {
       fontSize: '25px',
+      fontWeight: 400,
       lineHeight: '31px',
     },
     Small: {
       fontSize: '26px',
+      fontWeight: 400,
       lineHeight: '32px',
     },
     Medium: {
       fontSize: '27px',
+      fontWeight: 400,
       lineHeight: '33px',
     },
     Large: {
       fontSize: '28px',
+      fontWeight: 400,
       lineHeight: '34px',
     },
     xLarge: {
       fontSize: '30px',
+      fontWeight: 400,
       lineHeight: '37px',
     },
     xxLarge: {
       fontSize: '32px',
+      fontWeight: 400,
       lineHeight: '39px',
     },
     xxxLarge: {
       fontSize: '32px',
+      fontWeight: 400,
       lineHeight: '41px',
     },
   },
   'font.style.title2': {
     xSmall: {
       fontSize: '19px',
+      fontWeight: 400,
       lineHeight: '24px',
     },
     Small: {
       fontSize: '20px',
+      fontWeight: 400,
       lineHeight: '25px',
     },
     Medium: {
       fontSize: '21px',
+      fontWeight: 400,
       lineHeight: '26px',
     },
     Large: {
       fontSize: '22px',
+      fontWeight: 400,
       lineHeight: '28px',
     },
     xLarge: {
       fontSize: '24px',
+      fontWeight: 400,
       lineHeight: '30px',
     },
     xxLarge: {
       fontSize: '26px',
+      fontWeight: 400,
       lineHeight: '32px',
     },
     xxxLarge: {
       fontSize: '28px',
+      fontWeight: 400,
       lineHeight: '34px',
     },
   },
   'font.style.title3': {
     xSmall: {
       fontSize: '25px',
+      fontWeight: 400,
       lineHeight: '22px',
     },
     Small: {
       fontSize: '26px',
+      fontWeight: 400,
       lineHeight: '23px',
     },
     Medium: {
       fontSize: '27px',
+      fontWeight: 400,
       lineHeight: '24px',
     },
     Large: {
       fontSize: '28px',
+      fontWeight: 400,
       lineHeight: '25px',
     },
     xLarge: {
       fontSize: '30px',
+      fontWeight: 400,
       lineHeight: '28px',
     },
     xxLarge: {
       fontSize: '32px',
+      fontWeight: 400,
       lineHeight: '30px',
     },
     xxxLarge: {
       fontSize: '32px',
+      fontWeight: 400,
       lineHeight: '32px',
     },
   },
   'font.style.headline': {
     xSmall: {
       fontSize: '14px',
+      fontWeight: 600,
       lineHeight: '19px',
     },
     Small: {
       fontSize: '15px',
+      fontWeight: 600,
       lineHeight: '20px',
     },
     Medium: {
       fontSize: '16px',
+      fontWeight: 600,
       lineHeight: '21px',
     },
     Large: {
       fontSize: '17px',
+      fontWeight: 600,
       lineHeight: '22px',
     },
     xLarge: {
       fontSize: '19px',
+      fontWeight: 600,
       lineHeight: '24px',
     },
     xxLarge: {
       fontSize: '21px',
+      fontWeight: 600,
       lineHeight: '26px',
     },
     xxxLarge: {
       fontSize: '23px',
+      fontWeight: 600,
       lineHeight: '29px',
     },
   },
   'font.style.body': {
     xSmall: {
       fontSize: '14px',
+      fontWeight: 400,
       lineHeight: '19px',
     },
     Small: {
       fontSize: '15px',
+      fontWeight: 400,
       lineHeight: '20px',
     },
     Medium: {
       fontSize: '16px',
+      fontWeight: 400,
       lineHeight: '21px',
     },
     Large: {
       fontSize: '17px',
+      fontWeight: 400,
       lineHeight: '22px',
     },
     xLarge: {
       fontSize: '19px',
+      fontWeight: 400,
       lineHeight: '24px',
     },
     xxLarge: {
       fontSize: '21px',
+      fontWeight: 400,
       lineHeight: '26px',
     },
     xxxLarge: {
       fontSize: '23px',
+      fontWeight: 400,
       lineHeight: '29px',
     },
   },
   'font.style.callout': {
     xSmall: {
       fontSize: '13px',
+      fontWeight: 400,
       lineHeight: '18px',
     },
     Small: {
       fontSize: '14px',
+      fontWeight: 400,
       lineHeight: '19px',
     },
     Medium: {
       fontSize: '15px',
+      fontWeight: 400,
       lineHeight: '20px',
     },
     Large: {
       fontSize: '16px',
+      fontWeight: 400,
       lineHeight: '21px',
     },
     xLarge: {
       fontSize: '18px',
+      fontWeight: 400,
       lineHeight: '23px',
     },
     xxLarge: {
       fontSize: '20px',
+      fontWeight: 400,
       lineHeight: '25px',
     },
     xxxLarge: {
       fontSize: '22px',
+      fontWeight: 400,
       lineHeight: '28px',
     },
   },
   'font.style.subhead': {
     xSmall: {
       fontSize: '12px',
+      fontWeight: 400,
       lineHeight: '16px',
     },
     Small: {
       fontSize: '13px',
+      fontWeight: 400,
       lineHeight: '18px',
     },
     Medium: {
       fontSize: '14px',
+      fontWeight: 400,
       lineHeight: '19px',
     },
     Large: {
       fontSize: '15px',
+      fontWeight: 400,
       lineHeight: '20px',
     },
     xLarge: {
       fontSize: '17px',
+      fontWeight: 400,
       lineHeight: '22px',
     },
     xxLarge: {
       fontSize: '19px',
+      fontWeight: 400,
       lineHeight: '24px',
     },
     xxxLarge: {
       fontSize: '21px',
+      fontWeight: 400,
       lineHeight: '28px',
     },
   },
   'font.style.footnote': {
     xSmall: {
       fontSize: '12px',
+      fontWeight: 400,
       lineHeight: '16px',
     },
     Small: {
       fontSize: '12px',
+      fontWeight: 400,
       lineHeight: '16px',
     },
     Medium: {
       fontSize: '12px',
+      fontWeight: 400,
       lineHeight: '16px',
     },
     Large: {
       fontSize: '13px',
+      fontWeight: 400,
       lineHeight: '18px',
     },
     xLarge: {
       fontSize: '15px',
+      fontWeight: 400,
       lineHeight: '20px',
     },
     xxLarge: {
       fontSize: '17px',
+      fontWeight: 400,
       lineHeight: '22px',
     },
     xxxLarge: {
       fontSize: '19px',
+      fontWeight: 400,
       lineHeight: '24px',
     },
   },
   'font.style.caption1': {
     xSmall: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Small: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Medium: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Large: {
       fontSize: '12px',
+      fontWeight: 400,
       lineHeight: '16px',
     },
     xLarge: {
       fontSize: '14px',
+      fontWeight: 400,
       lineHeight: '19px',
     },
     xxLarge: {
       fontSize: '16px',
+      fontWeight: 400,
       lineHeight: '18px',
     },
     xxxLarge: {
       fontSize: '23px',
+      fontWeight: 400,
       lineHeight: '21px',
     },
   },
   'font.style.caption_2': {
     xSmall: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Small: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Medium: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     Large: {
       fontSize: '11px',
+      fontWeight: 400,
       lineHeight: '13px',
     },
     xLarge: {
       fontSize: '13px',
+      fontWeight: 400,
       lineHeight: '18px',
     },
     xxLarge: {
       fontSize: '15px',
+      fontWeight: 400,
       lineHeight: '20px',
     },
     xxxLarge: {
       fontSize: '17px',
+      fontWeight: 400,
       lineHeight: '22px',
     },
   },

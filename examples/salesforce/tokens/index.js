@@ -361,1059 +361,5635 @@ export const tokens = {
 
 export const meta = {
   'palette.blue10': {
+    '_original': {
+      '$value': '#001639',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue10',
+    '$type': 'color',
     '$value': '#001639',
   },
   'palette.blue15': {
+    '_original': {
+      '$value': '#03234d',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue15',
+    '$type': 'color',
     '$value': '#03234d',
   },
   'palette.blue20': {
+    '_original': {
+      '$value': '#032d60',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue20',
+    '$type': 'color',
     '$value': '#032d60',
   },
   'palette.blue30': {
+    '_original': {
+      '$value': '#014486',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue30',
+    '$type': 'color',
     '$value': '#014486',
   },
   'palette.blue40': {
+    '_original': {
+      '$value': '#0b5cab',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue40',
+    '$type': 'color',
     '$value': '#0b5cab',
   },
   'palette.blue50': {
+    '_original': {
+      '$value': '#0176d3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue50',
+    '$type': 'color',
     '$value': '#0176d3',
   },
   'palette.blue60': {
+    '_original': {
+      '$value': '#1b96ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue60',
+    '$type': 'color',
     '$value': '#1b96ff',
   },
   'palette.blue65': {
+    '_original': {
+      '$value': '#57a3fd',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue65',
+    '$type': 'color',
     '$value': '#57a3fd',
   },
   'palette.blue70': {
+    '_original': {
+      '$value': '#78b0fd',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue70',
+    '$type': 'color',
     '$value': '#78b0fd',
   },
   'palette.blue80': {
+    '_original': {
+      '$value': '#aacbff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue80',
+    '$type': 'color',
     '$value': '#aacbff',
   },
   'palette.blue90': {
+    '_original': {
+      '$value': '#d8e6fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue90',
+    '$type': 'color',
     '$value': '#d8e6fe',
   },
   'palette.blue95': {
+    '_original': {
+      '$value': '#eef4ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.blue95',
+    '$type': 'color',
     '$value': '#eef4ff',
   },
   'palette.cloudBlue10': {
+    '_original': {
+      '$value': '#001a28',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue10',
+    '$type': 'color',
     '$value': '#001a28',
   },
   'palette.cloudBlue15': {
+    '_original': {
+      '$value': '#0a2636',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue15',
+    '$type': 'color',
     '$value': '#0a2636',
   },
   'palette.cloudBlue20': {
+    '_original': {
+      '$value': '#023248',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue20',
+    '$type': 'color',
     '$value': '#023248',
   },
   'palette.cloudBlue30': {
+    '_original': {
+      '$value': '#084968',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue30',
+    '$type': 'color',
     '$value': '#084968',
   },
   'palette.cloudBlue40': {
+    '_original': {
+      '$value': '#05628a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue40',
+    '$type': 'color',
     '$value': '#05628a',
   },
   'palette.cloudBlue50': {
+    '_original': {
+      '$value': '#107cad',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue50',
+    '$type': 'color',
     '$value': '#107cad',
   },
   'palette.cloudBlue60': {
+    '_original': {
+      '$value': '#0d9dda',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue60',
+    '$type': 'color',
     '$value': '#0d9dda',
   },
   'palette.cloudBlue65': {
+    '_original': {
+      '$value': '#08abed',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue65',
+    '$type': 'color',
     '$value': '#08abed',
   },
   'palette.cloudBlue70': {
+    '_original': {
+      '$value': '#1ab9ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue70',
+    '$type': 'color',
     '$value': '#1ab9ff',
   },
   'palette.cloudBlue80': {
+    '_original': {
+      '$value': '#90d0fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue80',
+    '$type': 'color',
     '$value': '#90d0fe',
   },
   'palette.cloudBlue90': {
+    '_original': {
+      '$value': '#cfe9fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue90',
+    '$type': 'color',
     '$value': '#cfe9fe',
   },
   'palette.cloudBlue95': {
+    '_original': {
+      '$value': '#eaf5fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.cloudBlue95',
+    '$type': 'color',
     '$value': '#eaf5fe',
   },
   'palette.green10': {
+    '_original': {
+      '$value': '#071b12',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green10',
+    '$type': 'color',
     '$value': '#071b12',
   },
   'palette.green15': {
+    '_original': {
+      '$value': '#0c2912',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green15',
+    '$type': 'color',
     '$value': '#0c2912',
   },
   'palette.green20': {
+    '_original': {
+      '$value': '#0e3522',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green20',
+    '$type': 'color',
     '$value': '#0e3522',
   },
   'palette.green30': {
+    '_original': {
+      '$value': '#194e31',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green30',
+    '$type': 'color',
     '$value': '#194e31',
   },
   'palette.green40': {
+    '_original': {
+      '$value': '#22683e',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green40',
+    '$type': 'color',
     '$value': '#22683e',
   },
   'palette.green50': {
+    '_original': {
+      '$value': '#2e844a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green50',
+    '$type': 'color',
     '$value': '#2e844a',
   },
   'palette.green60': {
+    '_original': {
+      '$value': '#3ba755',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green60',
+    '$type': 'color',
     '$value': '#3ba755',
   },
   'palette.green65': {
+    '_original': {
+      '$value': '#41b658',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green65',
+    '$type': 'color',
     '$value': '#41b658',
   },
   'palette.green70': {
+    '_original': {
+      '$value': '#45c65a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green70',
+    '$type': 'color',
     '$value': '#45c65a',
   },
   'palette.green80': {
+    '_original': {
+      '$value': '#91db8b',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green80',
+    '$type': 'color',
     '$value': '#91db8b',
   },
   'palette.green90': {
+    '_original': {
+      '$value': '#cdefc4',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green90',
+    '$type': 'color',
     '$value': '#cdefc4',
   },
   'palette.green95': {
+    '_original': {
+      '$value': '#ebf7e6',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.green95',
+    '$type': 'color',
     '$value': '#ebf7e6',
   },
   'palette.hotOrange10': {
+    '_original': {
+      '$value': '#281202',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange10',
+    '$type': 'color',
     '$value': '#281202',
   },
   'palette.hotOrange15': {
+    '_original': {
+      '$value': '#421604',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange15',
+    '$type': 'color',
     '$value': '#421604',
   },
   'palette.hotOrange20': {
+    '_original': {
+      '$value': '#541d01',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange20',
+    '$type': 'color',
     '$value': '#541d01',
   },
   'palette.hotOrange30': {
+    '_original': {
+      '$value': '#7e2600',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange30',
+    '$type': 'color',
     '$value': '#7e2600',
   },
   'palette.hotOrange40': {
+    '_original': {
+      '$value': '#aa3001',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange40',
+    '$type': 'color',
     '$value': '#aa3001',
   },
   'palette.hotOrange50': {
+    '_original': {
+      '$value': '#d83a00',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange50',
+    '$type': 'color',
     '$value': '#d83a00',
   },
   'palette.hotOrange60': {
+    '_original': {
+      '$value': '#ff5d2d',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange60',
+    '$type': 'color',
     '$value': '#ff5d2d',
   },
   'palette.hotOrange65': {
+    '_original': {
+      '$value': '#ff784f',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange65',
+    '$type': 'color',
     '$value': '#ff784f',
   },
   'palette.hotOrange70': {
+    '_original': {
+      '$value': '#ff906e',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange70',
+    '$type': 'color',
     '$value': '#ff906e',
   },
   'palette.hotOrange80': {
+    '_original': {
+      '$value': '#feb9a5',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange80',
+    '$type': 'color',
     '$value': '#feb9a5',
   },
   'palette.hotOrange90': {
+    '_original': {
+      '$value': '#ffded5',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange90',
+    '$type': 'color',
     '$value': '#ffded5',
   },
   'palette.hotOrange95': {
+    '_original': {
+      '$value': '#fef1ed',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.hotOrange95',
+    '$type': 'color',
     '$value': '#fef1ed',
   },
   'palette.indigo10': {
+    '_original': {
+      '$value': '#200647',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo10',
+    '$type': 'color',
     '$value': '#200647',
   },
   'palette.indigo15': {
+    '_original': {
+      '$value': '#1f0974',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo15',
+    '$type': 'color',
     '$value': '#1f0974',
   },
   'palette.indigo20': {
+    '_original': {
+      '$value': '#260f8f',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo20',
+    '$type': 'color',
     '$value': '#260f8f',
   },
   'palette.indigo30': {
+    '_original': {
+      '$value': '#2f2cb7',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo30',
+    '$type': 'color',
     '$value': '#2f2cb7',
   },
   'palette.indigo40': {
+    '_original': {
+      '$value': '#3a49da',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo40',
+    '$type': 'color',
     '$value': '#3a49da',
   },
   'palette.indigo50': {
+    '_original': {
+      '$value': '#5867e8',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo50',
+    '$type': 'color',
     '$value': '#5867e8',
   },
   'palette.indigo60': {
+    '_original': {
+      '$value': '#7f8ced',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo60',
+    '$type': 'color',
     '$value': '#7f8ced',
   },
   'palette.indigo65': {
+    '_original': {
+      '$value': '#8e9bef',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo65',
+    '$type': 'color',
     '$value': '#8e9bef',
   },
   'palette.indigo70': {
+    '_original': {
+      '$value': '#9ea9f1',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo70',
+    '$type': 'color',
     '$value': '#9ea9f1',
   },
   'palette.indigo80': {
+    '_original': {
+      '$value': '#bec7f6',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo80',
+    '$type': 'color',
     '$value': '#bec7f6',
   },
   'palette.indigo90': {
+    '_original': {
+      '$value': '#e0e5f8',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo90',
+    '$type': 'color',
     '$value': '#e0e5f8',
   },
   'palette.indigo95': {
+    '_original': {
+      '$value': '#f1f3fb',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.indigo95',
+    '$type': 'color',
     '$value': '#f1f3fb',
   },
   'palette.neutral10': {
+    '_original': {
+      '$value': '#181818',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral10',
+    '$type': 'color',
     '$value': '#181818',
   },
   'palette.neutral20': {
+    '_original': {
+      '$value': '#2e2e2e',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral20',
+    '$type': 'color',
     '$value': '#2e2e2e',
   },
   'palette.neutral30': {
+    '_original': {
+      '$value': '#444444',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral30',
+    '$type': 'color',
     '$value': '#444444',
   },
   'palette.neutral40': {
+    '_original': {
+      '$value': '#5c5c5c',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral40',
+    '$type': 'color',
     '$value': '#5c5c5c',
   },
   'palette.neutral50': {
+    '_original': {
+      '$value': '#747474',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral50',
+    '$type': 'color',
     '$value': '#747474',
   },
   'palette.neutral60': {
+    '_original': {
+      '$value': '#939393',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral60',
+    '$type': 'color',
     '$value': '#939393',
   },
   'palette.neutral70': {
+    '_original': {
+      '$value': '#aeaeae',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral70',
+    '$type': 'color',
     '$value': '#aeaeae',
   },
   'palette.neutral80': {
+    '_original': {
+      '$value': '#c9c9c9',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral80',
+    '$type': 'color',
     '$value': '#c9c9c9',
   },
   'palette.neutral90': {
+    '_original': {
+      '$value': '#e5e5e5',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral90',
+    '$type': 'color',
     '$value': '#e5e5e5',
   },
   'palette.neutral95': {
+    '_original': {
+      '$value': '#f3f3f3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral95',
+    '$type': 'color',
     '$value': '#f3f3f3',
   },
   'palette.neutral100': {
+    '_original': {
+      '$value': '#ffffff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.neutral100',
+    '$type': 'color',
     '$value': '#ffffff',
   },
   'palette.orange10': {
+    '_original': {
+      '$value': '#201600',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange10',
+    '$type': 'color',
     '$value': '#201600',
   },
   'palette.orange15': {
+    '_original': {
+      '$value': '#371e03',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange15',
+    '$type': 'color',
     '$value': '#371e03',
   },
   'palette.orange20': {
+    '_original': {
+      '$value': '#3e2b02',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange20',
+    '$type': 'color',
     '$value': '#3e2b02',
   },
   'palette.orange30': {
+    '_original': {
+      '$value': '#5f3e02',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange30',
+    '$type': 'color',
     '$value': '#5f3e02',
   },
   'palette.orange40': {
+    '_original': {
+      '$value': '#825101',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange40',
+    '$type': 'color',
     '$value': '#825101',
   },
   'palette.orange50': {
+    '_original': {
+      '$value': '#a96404',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange50',
+    '$type': 'color',
     '$value': '#a96404',
   },
   'palette.orange60': {
+    '_original': {
+      '$value': '#dd7a01',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange60',
+    '$type': 'color',
     '$value': '#dd7a01',
   },
   'palette.orange65': {
+    '_original': {
+      '$value': '#f38303',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange65',
+    '$type': 'color',
     '$value': '#f38303',
   },
   'palette.orange70': {
+    '_original': {
+      '$value': '#fe9339',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange70',
+    '$type': 'color',
     '$value': '#fe9339',
   },
   'palette.orange80': {
+    '_original': {
+      '$value': '#ffba90',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange80',
+    '$type': 'color',
     '$value': '#ffba90',
   },
   'palette.orange90': {
+    '_original': {
+      '$value': '#fedfd0',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange90',
+    '$type': 'color',
     '$value': '#fedfd0',
   },
   'palette.orange95': {
+    '_original': {
+      '$value': '#fff1ea',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.orange95',
+    '$type': 'color',
     '$value': '#fff1ea',
   },
   'palette.pink10': {
+    '_original': {
+      '$value': '#370114',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink10',
+    '$type': 'color',
     '$value': '#370114',
   },
   'palette.pink15': {
+    '_original': {
+      '$value': '#4b0620',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink15',
+    '$type': 'color',
     '$value': '#4b0620',
   },
   'palette.pink20': {
+    '_original': {
+      '$value': '#61022a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink20',
+    '$type': 'color',
     '$value': '#61022a',
   },
   'palette.pink30': {
+    '_original': {
+      '$value': '#8a033e',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink30',
+    '$type': 'color',
     '$value': '#8a033e',
   },
   'palette.pink40': {
+    '_original': {
+      '$value': '#b60554',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink40',
+    '$type': 'color',
     '$value': '#b60554',
   },
   'palette.pink50': {
+    '_original': {
+      '$value': '#e3066a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink50',
+    '$type': 'color',
     '$value': '#e3066a',
   },
   'palette.pink60': {
+    '_original': {
+      '$value': '#ff538a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink60',
+    '$type': 'color',
     '$value': '#ff538a',
   },
   'palette.pink65': {
+    '_original': {
+      '$value': '#fe7298',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink65',
+    '$type': 'color',
     '$value': '#fe7298',
   },
   'palette.pink70': {
+    '_original': {
+      '$value': '#fe8aa7',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink70',
+    '$type': 'color',
     '$value': '#fe8aa7',
   },
   'palette.pink80': {
+    '_original': {
+      '$value': '#fdb6c5',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink80',
+    '$type': 'color',
     '$value': '#fdb6c5',
   },
   'palette.pink90': {
+    '_original': {
+      '$value': '#fddde3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink90',
+    '$type': 'color',
     '$value': '#fddde3',
   },
   'palette.pink95': {
+    '_original': {
+      '$value': '#fef0f3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.pink95',
+    '$type': 'color',
     '$value': '#fef0f3',
   },
   'palette.purple10': {
+    '_original': {
+      '$value': '#240643',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple10',
+    '$type': 'color',
     '$value': '#240643',
   },
   'palette.purple15': {
+    '_original': {
+      '$value': '#300b60',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple15',
+    '$type': 'color',
     '$value': '#300b60',
   },
   'palette.purple20': {
+    '_original': {
+      '$value': '#401075',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple20',
+    '$type': 'color',
     '$value': '#401075',
   },
   'palette.purple30': {
+    '_original': {
+      '$value': '#5a1ba9',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple30',
+    '$type': 'color',
     '$value': '#5a1ba9',
   },
   'palette.purple40': {
+    '_original': {
+      '$value': '#7526e3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple40',
+    '$type': 'color',
     '$value': '#7526e3',
   },
   'palette.purple50': {
+    '_original': {
+      '$value': '#9050e9',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple50',
+    '$type': 'color',
     '$value': '#9050e9',
   },
   'palette.purple60': {
+    '_original': {
+      '$value': '#ad7bee',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple60',
+    '$type': 'color',
     '$value': '#ad7bee',
   },
   'palette.purple65': {
+    '_original': {
+      '$value': '#b78def',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple65',
+    '$type': 'color',
     '$value': '#b78def',
   },
   'palette.purple70': {
+    '_original': {
+      '$value': '#c29ef1',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple70',
+    '$type': 'color',
     '$value': '#c29ef1',
   },
   'palette.purple80': {
+    '_original': {
+      '$value': '#d78ff5',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple80',
+    '$type': 'color',
     '$value': '#d78ff5',
   },
   'palette.purple90': {
+    '_original': {
+      '$value': '#ece1f9',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple90',
+    '$type': 'color',
     '$value': '#ece1f9',
   },
   'palette.purple95': {
+    '_original': {
+      '$value': '#f6f2fb',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.purple95',
+    '$type': 'color',
     '$value': '#f6f2fb',
   },
   'palette.red10': {
+    '_original': {
+      '$value': '#300c01',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red10',
+    '$type': 'color',
     '$value': '#300c01',
   },
   'palette.red15': {
+    '_original': {
+      '$value': '#4a0c04',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red15',
+    '$type': 'color',
     '$value': '#4a0c04',
   },
   'palette.red20': {
+    '_original': {
+      '$value': '#640103',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red20',
+    '$type': 'color',
     '$value': '#640103',
   },
   'palette.red30': {
+    '_original': {
+      '$value': '#8e030f',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red30',
+    '$type': 'color',
     '$value': '#8e030f',
   },
   'palette.red40': {
+    '_original': {
+      '$value': '#ba0517',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red40',
+    '$type': 'color',
     '$value': '#ba0517',
   },
   'palette.red50': {
+    '_original': {
+      '$value': '#ea001e',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red50',
+    '$type': 'color',
     '$value': '#ea001e',
   },
   'palette.red60': {
+    '_original': {
+      '$value': '#fe5c4c',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red60',
+    '$type': 'color',
     '$value': '#fe5c4c',
   },
   'palette.red65': {
+    '_original': {
+      '$value': '#fe7765',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red65',
+    '$type': 'color',
     '$value': '#fe7765',
   },
   'palette.red70': {
+    '_original': {
+      '$value': '#fe8f7d',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red70',
+    '$type': 'color',
     '$value': '#fe8f7d',
   },
   'palette.red80': {
+    '_original': {
+      '$value': '#feb8ab',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red80',
+    '$type': 'color',
     '$value': '#feb8ab',
   },
   'palette.red90': {
+    '_original': {
+      '$value': '#feded8',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red90',
+    '$type': 'color',
     '$value': '#feded8',
   },
   'palette.red95': {
+    '_original': {
+      '$value': '#fef1ee',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.red95',
+    '$type': 'color',
     '$value': '#fef1ee',
   },
   'palette.teal10': {
+    '_original': {
+      '$value': '#071b12',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal10',
+    '$type': 'color',
     '$value': '#071b12',
   },
   'palette.teal15': {
+    '_original': {
+      '$value': '#072825',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal15',
+    '$type': 'color',
     '$value': '#072825',
   },
   'palette.teal20': {
+    '_original': {
+      '$value': '#023434',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal20',
+    '$type': 'color',
     '$value': '#023434',
   },
   'palette.teal30': {
+    '_original': {
+      '$value': '#024d4c',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal30',
+    '$type': 'color',
     '$value': '#024d4c',
   },
   'palette.teal40': {
+    '_original': {
+      '$value': '#056764',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal40',
+    '$type': 'color',
     '$value': '#056764',
   },
   'palette.teal50': {
+    '_original': {
+      '$value': '#0b827c',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal50',
+    '$type': 'color',
     '$value': '#0b827c',
   },
   'palette.teal60': {
+    '_original': {
+      '$value': '#06a59a',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal60',
+    '$type': 'color',
     '$value': '#06a59a',
   },
   'palette.teal65': {
+    '_original': {
+      '$value': '#03b4a7',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal65',
+    '$type': 'color',
     '$value': '#03b4a7',
   },
   'palette.teal70': {
+    '_original': {
+      '$value': '#01c3b3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal70',
+    '$type': 'color',
     '$value': '#01c3b3',
   },
   'palette.teal80': {
+    '_original': {
+      '$value': '#04e1cb',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal80',
+    '$type': 'color',
     '$value': '#04e1cb',
   },
   'palette.teal90': {
+    '_original': {
+      '$value': '#acf3e4',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal90',
+    '$type': 'color',
     '$value': '#acf3e4',
   },
   'palette.teal95': {
+    '_original': {
+      '$value': '#def9f3',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.teal95',
+    '$type': 'color',
     '$value': '#def9f3',
   },
   'palette.violet10': {
+    '_original': {
+      '$value': '#2e0039',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet10',
+    '$type': 'color',
     '$value': '#2e0039',
   },
   'palette.violet15': {
+    '_original': {
+      '$value': '#3d0157',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet15',
+    '$type': 'color',
     '$value': '#3d0157',
   },
   'palette.violet20': {
+    '_original': {
+      '$value': '#520066',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet20',
+    '$type': 'color',
     '$value': '#520066',
   },
   'palette.violet30': {
+    '_original': {
+      '$value': '#730394',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet30',
+    '$type': 'color',
     '$value': '#730394',
   },
   'palette.violet40': {
+    '_original': {
+      '$value': '#9602c7',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet40',
+    '$type': 'color',
     '$value': '#9602c7',
   },
   'palette.violet50': {
+    '_original': {
+      '$value': '#ba01ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet50',
+    '$type': 'color',
     '$value': '#ba01ff',
   },
   'palette.violet60': {
+    '_original': {
+      '$value': '#cb65ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet60',
+    '$type': 'color',
     '$value': '#cb65ff',
   },
   'palette.violet65': {
+    '_original': {
+      '$value': '#d17dfe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet65',
+    '$type': 'color',
     '$value': '#d17dfe',
   },
   'palette.violet70': {
+    '_original': {
+      '$value': '#d892fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet70',
+    '$type': 'color',
     '$value': '#d892fe',
   },
   'palette.violet80': {
+    '_original': {
+      '$value': '#e5b9fe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet80',
+    '$type': 'color',
     '$value': '#e5b9fe',
   },
   'palette.violet90': {
+    '_original': {
+      '$value': '#f2defe',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet90',
+    '$type': 'color',
     '$value': '#f2defe',
   },
   'palette.violet95': {
+    '_original': {
+      '$value': '#f9f0ff',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.violet95',
+    '$type': 'color',
     '$value': '#f9f0ff',
   },
   'palette.yellow10': {
+    '_original': {
+      '$value': '#281202',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow10',
+    '$type': 'color',
     '$value': '#281202',
   },
   'palette.yellow15': {
+    '_original': {
+      '$value': '#2e2204',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow15',
+    '$type': 'color',
     '$value': '#2e2204',
   },
   'palette.yellow20': {
+    '_original': {
+      '$value': '#4f2100',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow20',
+    '$type': 'color',
     '$value': '#4f2100',
   },
   'palette.yellow30': {
+    '_original': {
+      '$value': '#6f3400',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow30',
+    '$type': 'color',
     '$value': '#6f3400',
   },
   'palette.yellow40': {
+    '_original': {
+      '$value': '#8c4b02',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow40',
+    '$type': 'color',
     '$value': '#8c4b02',
   },
   'palette.yellow50': {
+    '_original': {
+      '$value': '#a86403',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow50',
+    '$type': 'color',
     '$value': '#a86403',
   },
   'palette.yellow60': {
+    '_original': {
+      '$value': '#ca8501',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow60',
+    '$type': 'color',
     '$value': '#ca8501',
   },
   'palette.yellow65': {
+    '_original': {
+      '$value': '#d79304',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow65',
+    '$type': 'color',
     '$value': '#d79304',
   },
   'palette.yellow70': {
+    '_original': {
+      '$value': '#e4a201',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow70',
+    '$type': 'color',
     '$value': '#e4a201',
   },
   'palette.yellow80': {
+    '_original': {
+      '$value': '#fcc003',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow80',
+    '$type': 'color',
     '$value': '#fcc003',
   },
   'palette.yellow90': {
+    '_original': {
+      '$value': '#f9e3b6',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow90',
+    '$type': 'color',
     '$value': '#f9e3b6',
   },
   'palette.yellow95': {
+    '_original': {
+      '$value': '#fbf3e0',
+    },
+    '_group': {
+      id: 'palette',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'palette.yellow95',
+    '$type': 'color',
     '$value': '#fbf3e0',
   },
   'color.background': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.background',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundActionbarIconUtility': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundActionbarIconUtility',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.backgroundAlt': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundAlt',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.backgroundAlt2': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundAlt2',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundAltInverse': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundAltInverse',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.backgroundAnchor': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundAnchor',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundBackdrop': {
+    '_original': {
+      '$value': '#ffffffbf',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundBackdrop',
+    '$type': 'color',
     '$value': '#ffffffbf',
   },
   'color.backgroundBackdropTint': {
-    '$value': '{color.gray2}',
+    '_original': {
+      '$value': '{color.gray2}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundBackdropTint',
+    '$type': 'color',
+    '$value': '#fafaf9',
   },
   'color.backgroundBrowser': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundBrowser',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.backgroundCustomer': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundCustomer',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.backgroundDark': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundDark',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundDestructive': {
-    '$value': '{palette.red40}',
+    '_original': {
+      '$value': '{palette.red40}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundDestructive',
+    '$type': 'color',
+    '$value': '#ba0517',
   },
   'color.backgroundDestructiveActive': {
-    '$value': '{palette.red30}',
+    '_original': {
+      '$value': '{palette.red30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundDestructiveActive',
+    '$type': 'color',
+    '$value': '#8e030f',
   },
   'color.backgroundDestructiveHover': {
-    '$value': '{palette.red40}',
+    '_original': {
+      '$value': '{palette.red40}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundDestructiveHover',
+    '$type': 'color',
+    '$value': '#ba0517',
   },
   'color.backgroundError': {
-    '$value': '{palette.red60}',
+    '_original': {
+      '$value': '{palette.red60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundError',
+    '$type': 'color',
+    '$value': '#fe5c4c',
   },
   'color.backgroundErrorDark': {
-    '$value': '{palette.red40}',
+    '_original': {
+      '$value': '{palette.red40}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundErrorDark',
+    '$type': 'color',
+    '$value': '#ba0517',
   },
   'color.backgroundHighlight': {
+    '_original': {
+      '$value': '#faffbd',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundHighlight',
+    '$type': 'color',
     '$value': '#faffbd',
   },
   'color.backgroundHighlightSearch': {
+    '_original': {
+      '$value': '#fff03f',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundHighlightSearch',
+    '$type': 'color',
     '$value': '#fff03f',
   },
   'color.backgroundImageOverlay': {
+    '_original': {
+      '$value': '#00000099',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundImageOverlay',
+    '$type': 'color',
     '$value': '#00000099',
   },
   'color.backgroundInfo': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundInfo',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.backgroundInputCheckboxDisabled': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundInputCheckboxDisabled',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.backgroundInputDisabled': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundInputDisabled',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundInverse': {
-    '$value': '{palette.blue10}',
+    '_original': {
+      '$value': '{palette.blue10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundInverse',
+    '$type': 'color',
+    '$value': '#001639',
   },
   'color.backgroundInverseLight': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundInverseLight',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.backgroundLight': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundLight',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.backgroundNotificationNew': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundNotificationNew',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundOffline': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundOffline',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.backgroundPayload': {
-    '$value': '{color.gray2}',
+    '_original': {
+      '$value': '{color.gray2}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundPayload',
+    '$type': 'color',
+    '$value': '#fafaf9',
   },
   'color.backgroundPost': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundPost',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundPrimary': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundPrimary',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundRowActive': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundRowActive',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundRowHover': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundRowHover',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundRowNew': {
+    '_original': {
+      '$value': '#cdefc4',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundRowNew',
+    '$type': 'color',
     '$value': '#cdefc4',
   },
   'color.backgroundRowSelected': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundRowSelected',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundScrollbar': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundScrollbar',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundScrollbarTrack': {
-    '$value': '{color.gray6}',
+    '_original': {
+      '$value': '{color.gray6}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundScrollbarTrack',
+    '$type': 'color',
+    '$value': '#c9c7c5',
   },
   'color.backgroundSecondary': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSecondary',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.backgroundSelection': {
-    '$value': '{palette.blue90}',
+    '_original': {
+      '$value': '{palette.blue90}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSelection',
+    '$type': 'color',
+    '$value': '#d8e6fe',
   },
   'color.backgroundShade': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundShade',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundShadeDark': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundShadeDark',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.backgroundSpinnerDot': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSpinnerDot',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.backgroundStencil': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundStencil',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.backgroundStencilAlt': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundStencilAlt',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundSuccess': {
+    '_original': {
+      '$value': '#45c65a',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSuccess',
+    '$type': 'color',
     '$value': '#45c65a',
   },
   'color.backgroundSuccessDark': {
+    '_original': {
+      '$value': '#2e844a',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSuccessDark',
+    '$type': 'color',
     '$value': '#2e844a',
   },
   'color.backgroundSuccessDarker': {
+    '_original': {
+      '$value': '#194e31',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundSuccessDarker',
+    '$type': 'color',
     '$value': '#194e31',
   },
   'color.backgroundTempModal': {
-    '$value': '{color.gray8}',
+    '_original': {
+      '$value': '{color.gray8}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundTempModal',
+    '$type': 'color',
+    '$value': '#969492',
   },
   'color.backgroundTempModalTint': {
+    '_original': {
+      '$value': '#08070799',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundTempModalTint',
+    '$type': 'color',
     '$value': '#08070799',
   },
   'color.backgroundToast': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundToast',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.backgroundToggle': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundToggle',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.backgroundToggleDisabled': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundToggleDisabled',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.backgroundToggleHover': {
-    '$value': '{color.gray8}',
+    '_original': {
+      '$value': '{color.gray8}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundToggleHover',
+    '$type': 'color',
+    '$value': '#969492',
   },
   'color.backgroundUtilityBarHover': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundUtilityBarHover',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.backgroundWarning': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundWarning',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.backgroundWarningDark': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.backgroundWarningDark',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.border': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.border',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.borderBrand': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderBrand',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.borderBrandDark': {
-    '$value': '{palette.blue30}',
+    '_original': {
+      '$value': '{palette.blue30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderBrandDark',
+    '$type': 'color',
+    '$value': '#014486',
   },
   'color.borderButtonDefault': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderButtonDefault',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.borderButtonFocusInverse': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderButtonFocusInverse',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.borderCustomer': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderCustomer',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.borderDestructive': {
-    '$value': '{palette.red50}',
+    '_original': {
+      '$value': '{palette.red50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderDestructive',
+    '$type': 'color',
+    '$value': '#ea001e',
   },
   'color.borderDestructiveActive': {
-    '$value': '{palette.red30}',
+    '_original': {
+      '$value': '{palette.red30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderDestructiveActive',
+    '$type': 'color',
+    '$value': '#8e030f',
   },
   'color.borderDestructiveHover': {
-    '$value': '{palette.red40}',
+    '_original': {
+      '$value': '{palette.red40}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderDestructiveHover',
+    '$type': 'color',
+    '$value': '#ba0517',
   },
   'color.borderError': {
-    '$value': '{palette.red50}',
+    '_original': {
+      '$value': '{palette.red50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderError',
+    '$type': 'color',
+    '$value': '#ea001e',
   },
   'color.borderErrorAlt': {
-    '$value': '{palette.red70}',
+    '_original': {
+      '$value': '{palette.red70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderErrorAlt',
+    '$type': 'color',
+    '$value': '#fe8f7d',
   },
   'color.borderErrorDark': {
-    '$value': '{palette.red70}',
+    '_original': {
+      '$value': '{palette.red70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderErrorDark',
+    '$type': 'color',
+    '$value': '#fe8f7d',
   },
   'color.borderInfo': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderInfo',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.borderInput': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderInput',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.borderInputDisabled': {
-    '$value': '{color.gray6}',
+    '_original': {
+      '$value': '{color.gray6}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderInputDisabled',
+    '$type': 'color',
+    '$value': '#c9c7c5',
   },
   'color.borderInverse': {
-    '$value': '{palette.blue10}',
+    '_original': {
+      '$value': '{palette.blue10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderInverse',
+    '$type': 'color',
+    '$value': '#001639',
   },
   'color.borderLinkFocusInverse': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderLinkFocusInverse',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.borderOffline': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderOffline',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.borderPrimary': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderPrimary',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.borderReminder': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderReminder',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.borderRowSelected': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderRowSelected',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.borderRowSelectedHover': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderRowSelectedHover',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.borderSelection': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSelection',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.borderSelectionActive': {
-    '$value': '{color.gray2}',
+    '_original': {
+      '$value': '{color.gray2}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSelectionActive',
+    '$type': 'color',
+    '$value': '#fafaf9',
   },
   'color.borderSelectionHover': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSelectionHover',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.borderSeparator': {
-    '$value': '{color.gray2}',
+    '_original': {
+      '$value': '{color.gray2}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSeparator',
+    '$type': 'color',
+    '$value': '#fafaf9',
   },
   'color.borderSeparatorAlt': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSeparatorAlt',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.borderSeparatorAlt2': {
-    '$value': '{color.gray6}',
+    '_original': {
+      '$value': '{color.gray6}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSeparatorAlt2',
+    '$type': 'color',
+    '$value': '#c9c7c5',
   },
   'color.borderSeparatorInverse': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSeparatorInverse',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.borderSuccess': {
+    '_original': {
+      '$value': '#91db8b',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSuccess',
+    '$type': 'color',
     '$value': '#91db8b',
   },
   'color.borderSuccessDark': {
+    '_original': {
+      '$value': '#2e844a',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderSuccessDark',
+    '$type': 'color',
     '$value': '#2e844a',
   },
   'color.borderWarning': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.borderWarning',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.brand': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.brand',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.brandDark': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.brandDark',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.brandDarker': {
-    '$value': '{palette.blue30}',
+    '_original': {
+      '$value': '{palette.blue30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.brandDarker',
+    '$type': 'color',
+    '$value': '#014486',
   },
   'color.contrastPrimary': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.contrastPrimary',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.contrastSecondary': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.contrastSecondary',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.gray1': {
+    '_original': {
+      '$value': '#ffffff',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray1',
+    '$type': 'color',
     '$value': '#ffffff',
   },
   'color.gray2': {
+    '_original': {
+      '$value': '#fafaf9',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray2',
+    '$type': 'color',
     '$value': '#fafaf9',
   },
   'color.gray3': {
+    '_original': {
+      '$value': '#f3f2f2',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray3',
+    '$type': 'color',
     '$value': '#f3f2f2',
   },
   'color.gray4': {
+    '_original': {
+      '$value': '#ecebea',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray4',
+    '$type': 'color',
     '$value': '#ecebea',
   },
   'color.gray5': {
+    '_original': {
+      '$value': '#dddbda',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray5',
+    '$type': 'color',
     '$value': '#dddbda',
   },
   'color.gray6': {
+    '_original': {
+      '$value': '#c9c7c5',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray6',
+    '$type': 'color',
     '$value': '#c9c7c5',
   },
   'color.gray7': {
+    '_original': {
+      '$value': '#b0adab',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray7',
+    '$type': 'color',
     '$value': '#b0adab',
   },
   'color.gray8': {
+    '_original': {
+      '$value': '#969492',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray8',
+    '$type': 'color',
     '$value': '#969492',
   },
   'color.gray9': {
+    '_original': {
+      '$value': '#706e6b',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray9',
+    '$type': 'color',
     '$value': '#706e6b',
   },
   'color.gray10': {
+    '_original': {
+      '$value': '#514f4d',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray10',
+    '$type': 'color',
     '$value': '#514f4d',
   },
   'color.gray11': {
+    '_original': {
+      '$value': '#3e3e3c',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray11',
+    '$type': 'color',
     '$value': '#3e3e3c',
   },
   'color.gray12': {
+    '_original': {
+      '$value': '#2b2826',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray12',
+    '$type': 'color',
     '$value': '#2b2826',
   },
   'color.gray13': {
+    '_original': {
+      '$value': '#080707',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.gray13',
+    '$type': 'color',
     '$value': '#080707',
   },
   'color.pickerSliderThumbColorBackground': {
-    '$value': '{color.gray3}',
+    '_original': {
+      '$value': '{color.gray3}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.pickerSliderThumbColorBackground',
+    '$type': 'color',
+    '$value': '#f3f2f2',
   },
   'color.strokeBrand': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.strokeBrand',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.strokeBrandActive': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.strokeBrandActive',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.strokeBrandHover': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.strokeBrandHover',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.strokeDisabled': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.strokeDisabled',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.strokeHeaderButton': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.strokeHeaderButton',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textActionLabel': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textActionLabel',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.textActionLabelActive': {
-    '$value': '{color.gray13}',
+    '_original': {
+      '$value': '{color.gray13}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textActionLabelActive',
+    '$type': 'color',
+    '$value': '#080707',
   },
   'color.textBrand': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textBrand',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.textBrandPrimary': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textBrandPrimary',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textButtonDefaultDisabled': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textButtonDefaultDisabled',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.textButtonDefaultHint': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textButtonDefaultHint',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textButtonInverse': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textButtonInverse',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textCustomer': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textCustomer',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.textDefault': {
-    '$value': '{color.gray13}',
+    '_original': {
+      '$value': '{color.gray13}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textDefault',
+    '$type': 'color',
+    '$value': '#080707',
   },
   'color.textDestructive': {
-    '$value': '{palette.red50}',
+    '_original': {
+      '$value': '{palette.red50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textDestructive',
+    '$type': 'color',
+    '$value': '#ea001e',
   },
   'color.textDestructiveHover': {
-    '$value': '{palette.red40}',
+    '_original': {
+      '$value': '{palette.red40}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textDestructiveHover',
+    '$type': 'color',
+    '$value': '#ba0517',
   },
   'color.textError': {
-    '$value': '{palette.red50}',
+    '_original': {
+      '$value': '{palette.red50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textError',
+    '$type': 'color',
+    '$value': '#ea001e',
   },
   'color.textIconDefault': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconDefault',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.textIconDefaultDisabled': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconDefaultDisabled',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.textIconDefaultHint': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconDefaultHint',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textIconDefaultHintBorderless': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconDefaultHintBorderless',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textIconInverse': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconInverse',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textIconInverseActive': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconInverseActive',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textIconInverseHover': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconInverseHover',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textIconUtility': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textIconUtility',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textInputDisabled': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInputDisabled',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.textInputIcon': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInputIcon',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textInverse': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInverse',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textInverseActive': {
-    '$value': '{palette.blue60}',
+    '_original': {
+      '$value': '{palette.blue60}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInverseActive',
+    '$type': 'color',
+    '$value': '#1b96ff',
   },
   'color.textInverseHover': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInverseHover',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textInverseWeak': {
-    '$value': '{color.gray7}',
+    '_original': {
+      '$value': '{color.gray7}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textInverseWeak',
+    '$type': 'color',
+    '$value': '#b0adab',
   },
   'color.textLabel': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLabel',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.textLink': {
-    '$value': '{palette.blue50}',
+    '_original': {
+      '$value': '{palette.blue50}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLink',
+    '$type': 'color',
+    '$value': '#0176d3',
   },
   'color.textLinkActive': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkActive',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.textLinkDisabled': {
-    '$value': '{palette.blue20}',
+    '_original': {
+      '$value': '{palette.blue20}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkDisabled',
+    '$type': 'color',
+    '$value': '#032d60',
   },
   'color.textLinkFocus': {
-    '$value': '{palette.blue30}',
+    '_original': {
+      '$value': '{palette.blue30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkFocus',
+    '$type': 'color',
+    '$value': '#014486',
   },
   'color.textLinkHover': {
-    '$value': '{palette.blue30}',
+    '_original': {
+      '$value': '{palette.blue30}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkHover',
+    '$type': 'color',
+    '$value': '#014486',
   },
   'color.textLinkInverse': {
-    '$value': '{palette.neutral100}',
+    '_original': {
+      '$value': '{palette.neutral100}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkInverse',
+    '$type': 'color',
+    '$value': '#ffffff',
   },
   'color.textLinkInverseActive': {
+    '_original': {
+      '$value': '#ffffff80',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkInverseActive',
+    '$type': 'color',
     '$value': '#ffffff80',
   },
   'color.textLinkInverseDisabled': {
+    '_original': {
+      '$value': '#ffffff26',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkInverseDisabled',
+    '$type': 'color',
     '$value': '#ffffff26',
   },
   'color.textLinkInverseHover': {
+    '_original': {
+      '$value': '#ffffffbf',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textLinkInverseHover',
+    '$type': 'color',
     '$value': '#ffffffbf',
   },
   'color.textModalButton': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textModalButton',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.textPlaceholder': {
-    '$value': '{color.gray9}',
+    '_original': {
+      '$value': '{color.gray9}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textPlaceholder',
+    '$type': 'color',
+    '$value': '#706e6b',
   },
   'color.textPlaceholderInverse': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textPlaceholderInverse',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textRequired': {
+    '_original': {
+      '$value': '#ea001e',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textRequired',
+    '$type': 'color',
     '$value': '#ea001e',
   },
   'color.textSecondary': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textSecondary',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'color.textStageLeft': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textStageLeft',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textSuccess': {
+    '_original': {
+      '$value': '#2e844a',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textSuccess',
+    '$type': 'color',
     '$value': '#2e844a',
   },
   'color.textSuccessInverse': {
+    '_original': {
+      '$value': '#45c65a',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textSuccessInverse',
+    '$type': 'color',
     '$value': '#45c65a',
   },
   'color.textTabLabel': {
+    '_original': {
+      '$value': '#2b2826',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textTabLabel',
+    '$type': 'color',
     '$value': '#2b2826',
   },
   'color.textTabLabelDisabled': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textTabLabelDisabled',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textTertiary': {
-    '$value': '{color.gray8}',
+    '_original': {
+      '$value': '{color.gray8}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textTertiary',
+    '$type': 'color',
+    '$value': '#969492',
   },
   'color.textToast': {
-    '$value': '{color.gray4}',
+    '_original': {
+      '$value': '{color.gray4}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textToast',
+    '$type': 'color',
+    '$value': '#ecebea',
   },
   'color.textToggleDisabled': {
-    '$value': '{color.gray5}',
+    '_original': {
+      '$value': '{color.gray5}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textToggleDisabled',
+    '$type': 'color',
+    '$value': '#dddbda',
   },
   'color.textWarning': {
-    '$value': '{palette.orange70}',
+    '_original': {
+      '$value': '{palette.orange70}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textWarning',
+    '$type': 'color',
+    '$value': '#fe9339',
   },
   'color.textWarningAlt': {
+    '_original': {
+      '$value': '#8c4b02',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textWarningAlt',
+    '$type': 'color',
     '$value': '#8c4b02',
   },
   'color.textWeak': {
-    '$value': '{color.gray10}',
+    '_original': {
+      '$value': '{color.gray10}',
+    },
+    '_group': {
+      id: 'color',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'color',
+    },
+    id: 'color.textWeak',
+    '$type': 'color',
+    '$value': '#514f4d',
   },
   'icon.size.xxxSmall': {
+    '_original': {
+      '$value': '3rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.xxxSmall',
+    '$type': 'dimension',
     '$value': '3rem',
   },
   'icon.size.xxSmall': {
+    '_original': {
+      '$value': '6rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.xxSmall',
+    '$type': 'dimension',
     '$value': '6rem',
   },
   'icon.size.xSmall': {
+    '_original': {
+      '$value': '12rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.xSmall',
+    '$type': 'dimension',
     '$value': '12rem',
   },
   'icon.size.small': {
+    '_original': {
+      '$value': '15rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.small',
+    '$type': 'dimension',
     '$value': '15rem',
   },
   'icon.size.medium': {
+    '_original': {
+      '$value': '20rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.medium',
+    '$type': 'dimension',
     '$value': '20rem',
   },
   'icon.size.large': {
+    '_original': {
+      '$value': '25rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.large',
+    '$type': 'dimension',
     '$value': '25rem',
   },
   'icon.size.xLarge': {
+    '_original': {
+      '$value': '40rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.xLarge',
+    '$type': 'dimension',
     '$value': '40rem',
   },
   'icon.size.xxLarge': {
+    '_original': {
+      '$value': '60rem',
+    },
+    '_group': {
+      id: 'icon.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'icon.size.xxLarge',
+    '$type': 'dimension',
     '$value': '60rem',
   },
   'font.family.base': {
+    '_original': {
+      '$value': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'font',
+    },
+    id: 'font.family.base',
+    '$type': 'font',
     '$value': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
   },
   'font.family.heading': {
+    '_original': {
+      '$value': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'font',
+    },
+    id: 'font.family.heading',
+    '$type': 'font',
     '$value': ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'],
   },
   'font.family.mono': {
+    '_original': {
+      '$value': ['Consolas', 'Menlo', 'Monaco', 'Courier', 'monospace'],
+    },
+    '_group': {
+      id: 'font.family',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'font',
+    },
+    id: 'font.family.mono',
+    '$type': 'font',
     '$value': ['Consolas', 'Menlo', 'Monaco', 'Courier', 'monospace'],
   },
   'font.size.1': {
+    '_original': {
+      '$value': '0.625rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.1',
+    '$type': 'dimension',
     '$value': '0.625rem',
   },
   'font.size.2': {
+    '_original': {
+      '$value': '0.75rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.2',
+    '$type': 'dimension',
     '$value': '0.75rem',
   },
   'font.size.3': {
+    '_original': {
+      '$value': '0.8125rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.3',
+    '$type': 'dimension',
     '$value': '0.8125rem',
   },
   'font.size.4': {
+    '_original': {
+      '$value': '0.875rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.4',
+    '$type': 'dimension',
     '$value': '0.875rem',
   },
   'font.size.5': {
+    '_original': {
+      '$value': '1rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.5',
+    '$type': 'dimension',
     '$value': '1rem',
   },
   'font.size.6': {
+    '_original': {
+      '$value': '1.125rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.6',
+    '$type': 'dimension',
     '$value': '1.125rem',
   },
   'font.size.7': {
+    '_original': {
+      '$value': '1.25rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.7',
+    '$type': 'dimension',
     '$value': '1.25rem',
   },
   'font.size.8': {
+    '_original': {
+      '$value': '1.5rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.8',
+    '$type': 'dimension',
     '$value': '1.5rem',
   },
   'font.size.9': {
+    '_original': {
+      '$value': '1.75rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.9',
+    '$type': 'dimension',
     '$value': '1.75rem',
   },
   'font.size.10': {
+    '_original': {
+      '$value': '2rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.10',
+    '$type': 'dimension',
     '$value': '2rem',
   },
   'font.size.11': {
+    '_original': {
+      '$value': '2.625rem',
+    },
+    '_group': {
+      id: 'font.size',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.size.11',
+    '$type': 'dimension',
     '$value': '2.625rem',
   },
   'font.lineHeight.heading': {
+    '_original': {
+      '$value': '1.25em',
+    },
+    '_group': {
+      id: 'font.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.lineHeight.heading',
+    '$type': 'dimension',
     '$value': '1.25em',
   },
   'font.lineHeight.text': {
+    '_original': {
+      '$value': '1.5em',
+    },
+    '_group': {
+      id: 'font.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.lineHeight.text',
+    '$type': 'dimension',
     '$value': '1.5em',
   },
   'font.lineHeight.reset': {
+    '_original': {
+      '$value': '1em',
+    },
+    '_group': {
+      id: 'font.lineHeight',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'font.lineHeight.reset',
+    '$type': 'dimension',
     '$value': '1em',
   },
   'space.none': {
-    '$value': 0,
+    '_original': {
+      '$value': 0,
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.none',
+    '$type': 'dimension',
+    '$value': '0',
   },
   'space.xxxSmall': {
+    '_original': {
+      '$value': '0.125rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.xxxSmall',
+    '$type': 'dimension',
     '$value': '0.125rem',
   },
   'space.xxSmall': {
+    '_original': {
+      '$value': '0.25rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.xxSmall',
+    '$type': 'dimension',
     '$value': '0.25rem',
   },
   'space.xSmall': {
+    '_original': {
+      '$value': '0.5rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.xSmall',
+    '$type': 'dimension',
     '$value': '0.5rem',
   },
   'space.small': {
+    '_original': {
+      '$value': '0.75rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.small',
+    '$type': 'dimension',
     '$value': '0.75rem',
   },
   'space.medium': {
+    '_original': {
+      '$value': '1rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.medium',
+    '$type': 'dimension',
     '$value': '1rem',
   },
   'space.large': {
+    '_original': {
+      '$value': '1.5rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.large',
+    '$type': 'dimension',
     '$value': '1.5rem',
   },
   'space.xLarge': {
+    '_original': {
+      '$value': '2rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.xLarge',
+    '$type': 'dimension',
     '$value': '2rem',
   },
   'space.xxLarge': {
+    '_original': {
+      '$value': '3rem',
+    },
+    '_group': {
+      id: 'space',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$name': 'Salesforce Lightning',
+      '$type': 'dimension',
+    },
+    id: 'space.xxLarge',
+    '$type': 'dimension',
     '$value': '3rem',
   },
 };

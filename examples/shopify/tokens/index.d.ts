@@ -6,17 +6,11 @@
 
 import {
   ColorToken,
-  FontToken,
   DimensionToken,
-  DurationToken,
-  CubicBezierToken,
-  LinkToken,
-  StrokeStyleToken,
-  BorderToken,
-  TransitionToken,
-  ShadowToken,
-  GradientToken,
-  TypographyToken,
+  FontToken,
+  ParsedColorToken,
+  ParsedDimensionToken,
+  ParsedFontToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -90,76 +84,76 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'color.black': ColorToken;
-  'color.blueLighter': ColorToken;
-  'color.blueLight': ColorToken;
-  'color.blue': ColorToken;
-  'color.blueDark': ColorToken;
-  'color.blueDarker': ColorToken;
-  'color.blueText': ColorToken;
-  'color.greenLighter': ColorToken;
-  'color.greenLight': ColorToken;
-  'color.green': ColorToken;
-  'color.greenDark': ColorToken;
-  'color.greenDarker': ColorToken;
-  'color.greenText': ColorToken;
-  'color.indigoLighter': ColorToken;
-  'color.indigoLight': ColorToken;
-  'color.indigo': ColorToken;
-  'color.indigoDark': ColorToken;
-  'color.indigoDarker': ColorToken;
-  'color.indigoText': ColorToken;
-  'color.inkLightest': ColorToken;
-  'color.inkLighter': ColorToken;
-  'color.inkLight': ColorToken;
-  'color.ink': ColorToken;
-  'color.orangeLighter': ColorToken;
-  'color.orangeLight': ColorToken;
-  'color.orange': ColorToken;
-  'color.orangeDark': ColorToken;
-  'color.orangeDarker': ColorToken;
-  'color.orangeText': ColorToken;
-  'color.purpleLighter': ColorToken;
-  'color.purpleLight': ColorToken;
-  'color.purple': ColorToken;
-  'color.purpleDark': ColorToken;
-  'color.purpleDarker': ColorToken;
-  'color.purpleText': ColorToken;
-  'color.redLighter': ColorToken;
-  'color.redLight': ColorToken;
-  'color.red': ColorToken;
-  'color.redDark': ColorToken;
-  'color.redDarker': ColorToken;
-  'color.redText': ColorToken;
-  'color.skyLighter': ColorToken;
-  'color.skyLight': ColorToken;
-  'color.sky': ColorToken;
-  'color.skyDark': ColorToken;
-  'color.tealLighter': ColorToken;
-  'color.tealLight': ColorToken;
-  'color.teal': ColorToken;
-  'color.tealDark': ColorToken;
-  'color.tealDarker': ColorToken;
-  'color.tealText': ColorToken;
-  'color.white': ColorToken;
-  'color.yellowLighter': ColorToken;
-  'color.yellowLight': ColorToken;
-  'color.yellow': ColorToken;
-  'color.yellowDark': ColorToken;
-  'color.yellowDarker': ColorToken;
-  'color.yellowText': ColorToken;
-  'font.family.base': FontToken;
-  'font.family.mono': FontToken;
-  'space.none': DimensionToken;
-  'space.extraTight': DimensionToken;
-  'space.tight': DimensionToken;
-  'space.baseTight': DimensionToken;
-  'space.base': DimensionToken;
-  'space.loose': DimensionToken;
-  'space.extraLoose': DimensionToken;
+  'color.black': ParsedColorToken;
+  'color.blueLighter': ParsedColorToken;
+  'color.blueLight': ParsedColorToken;
+  'color.blue': ParsedColorToken;
+  'color.blueDark': ParsedColorToken;
+  'color.blueDarker': ParsedColorToken;
+  'color.blueText': ParsedColorToken;
+  'color.greenLighter': ParsedColorToken;
+  'color.greenLight': ParsedColorToken;
+  'color.green': ParsedColorToken;
+  'color.greenDark': ParsedColorToken;
+  'color.greenDarker': ParsedColorToken;
+  'color.greenText': ParsedColorToken;
+  'color.indigoLighter': ParsedColorToken;
+  'color.indigoLight': ParsedColorToken;
+  'color.indigo': ParsedColorToken;
+  'color.indigoDark': ParsedColorToken;
+  'color.indigoDarker': ParsedColorToken;
+  'color.indigoText': ParsedColorToken;
+  'color.inkLightest': ParsedColorToken;
+  'color.inkLighter': ParsedColorToken;
+  'color.inkLight': ParsedColorToken;
+  'color.ink': ParsedColorToken;
+  'color.orangeLighter': ParsedColorToken;
+  'color.orangeLight': ParsedColorToken;
+  'color.orange': ParsedColorToken;
+  'color.orangeDark': ParsedColorToken;
+  'color.orangeDarker': ParsedColorToken;
+  'color.orangeText': ParsedColorToken;
+  'color.purpleLighter': ParsedColorToken;
+  'color.purpleLight': ParsedColorToken;
+  'color.purple': ParsedColorToken;
+  'color.purpleDark': ParsedColorToken;
+  'color.purpleDarker': ParsedColorToken;
+  'color.purpleText': ParsedColorToken;
+  'color.redLighter': ParsedColorToken;
+  'color.redLight': ParsedColorToken;
+  'color.red': ParsedColorToken;
+  'color.redDark': ParsedColorToken;
+  'color.redDarker': ParsedColorToken;
+  'color.redText': ParsedColorToken;
+  'color.skyLighter': ParsedColorToken;
+  'color.skyLight': ParsedColorToken;
+  'color.sky': ParsedColorToken;
+  'color.skyDark': ParsedColorToken;
+  'color.tealLighter': ParsedColorToken;
+  'color.tealLight': ParsedColorToken;
+  'color.teal': ParsedColorToken;
+  'color.tealDark': ParsedColorToken;
+  'color.tealDarker': ParsedColorToken;
+  'color.tealText': ParsedColorToken;
+  'color.white': ParsedColorToken;
+  'color.yellowLighter': ParsedColorToken;
+  'color.yellowLight': ParsedColorToken;
+  'color.yellow': ParsedColorToken;
+  'color.yellowDark': ParsedColorToken;
+  'color.yellowDarker': ParsedColorToken;
+  'color.yellowText': ParsedColorToken;
+  'font.family.base': ParsedFontToken;
+  'font.family.mono': ParsedFontToken;
+  'space.none': ParsedDimensionToken;
+  'space.extraTight': ParsedDimensionToken;
+  'space.tight': ParsedDimensionToken;
+  'space.baseTight': ParsedDimensionToken;
+  'space.base': ParsedDimensionToken;
+  'space.loose': ParsedDimensionToken;
+  'space.extraLoose': ParsedDimensionToken;
 };
 
 export declare const modes: Record<string, never>;
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: undefined): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName: never): typeof tokens[typeof tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
