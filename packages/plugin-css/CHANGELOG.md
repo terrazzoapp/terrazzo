@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.4
+
+### Patch Changes
+
+- Update svgo to v3
+
 ## 1.1.3
 
 ### Patch Changes

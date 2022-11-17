@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-sass
 
+## 1.1.3
+
+### Patch Changes
+
+- Update svgo to v3
+- Updated dependencies
+  - @cobalt-ui/plugin-css@1.1.4
+
 ## 1.1.2
 
 ### Patch Changes

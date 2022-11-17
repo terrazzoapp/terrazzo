@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.6
+
+### Patch Changes
+
+- 28baebe: Fix TypeScript types for token fn
+- Updated dependencies [42401cd]
+  - @cobalt-ui/cli@0.7.2
+
 ## 1.0.5
 
 ### Patch Changes

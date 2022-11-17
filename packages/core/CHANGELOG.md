@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.7.2
+
+### Patch Changes
+
+- Update svgo to v3
+
 ## 0.7.1
 
 ### Patch Changes

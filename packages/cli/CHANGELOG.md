@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 0.7.2
+
+### Patch Changes
+
+- 42401cd: Improve tokens resolution
+
 ## 0.7.1
 
 ### Patch Changes
