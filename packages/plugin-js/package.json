@@ -19,6 +19,7 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
+    "pretest": "co build -c ./test/types.tokens.mjs",
     "test": "vitest run"
   },
   "peerDependencies": {

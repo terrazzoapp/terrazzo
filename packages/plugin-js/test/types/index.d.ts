@@ -5,22 +5,24 @@
  */
 
 import {
-  BorderToken,
-  ParsedBorderToken,
+  ColorToken,
+  ParsedColorToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  border: BorderToken['$value'];
+  'color.blue': ColorToken['$value'];
+  'color.red': ColorToken['$value'];
 };
 
 export declare const meta: {
-  border: ParsedBorderToken & { $extensions: { mode: typeof modes['border'] } };
+  'color.blue': ParsedColorToken;
+  'color.red': ParsedColorToken & { $extensions: { mode: typeof modes['color.red'] } };
 };
 
 export declare const modes: {
-  border: {
-    light: BorderToken['$value'];
-    dark: BorderToken['$value'];
+  'color.red': {
+    light: ColorToken['$value'];
+    dark: ColorToken['$value'];
   };
 };
 

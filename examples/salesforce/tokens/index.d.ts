@@ -725,5 +725,5 @@ export declare const meta: {
 
 export declare const modes: Record<string, never>;
 
-export declare function token(tokenID: keyof typeof tokens, modeName: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
