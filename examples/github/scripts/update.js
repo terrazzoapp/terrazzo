@@ -1,6 +1,7 @@
 import primer from '@primer/primitives';
 import octicons from '@primer/octicons';
-import fs from 'fs';
+import fs from 'node:fs';
+import {URL} from 'node:url';
 
 const {colors, spacing, typography} = primer.default;
 

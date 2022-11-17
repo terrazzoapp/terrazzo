@@ -66,7 +66,7 @@ export interface FigmaToken {
 
 export interface FigmaOptimizationSettings {
   /** Default SVGO settings */
-  svgo?: SVGO.OptimizeOptions | boolean;
+  svgo?: SVGO.Config | boolean;
 }
 
 export interface FigmaSettings {

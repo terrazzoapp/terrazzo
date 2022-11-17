@@ -1,7 +1,8 @@
 import type * as Figma from 'figma-api';
 import {GetFileResult} from 'figma-api/lib/api-types';
 import {FG_RED, RESET, UNDERLINE} from '@cobalt-ui/utils';
-import path from 'path';
+import path from 'node:path';
+import {URL} from 'node:url';
 import undici from 'undici';
 
 const SHARE_URL_RE = /^https:\/\/www\.figma\.com\/file\/([A-Za-z0-9]+)\//;

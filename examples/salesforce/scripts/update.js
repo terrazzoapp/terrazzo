@@ -1,6 +1,7 @@
 import color from 'better-color-tools';
 import themeOne from '@salesforce-ux/design-system/design-tokens/dist/theme-one-salesforce.common.js';
-import fs from 'fs';
+import fs from 'node:fs';
+import {URL} from 'node:url';
 
 const tokensPath = new URL('../tokens.json', import.meta.url);
 const schema = JSON.parse(fs.readFileSync(tokensPath));

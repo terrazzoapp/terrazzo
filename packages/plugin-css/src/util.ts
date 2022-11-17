@@ -1,6 +1,6 @@
-import fs from 'fs';
 import mime from 'mime';
-import {fileURLToPath} from 'url';
+import fs from 'node:fs';
+import {fileURLToPath, URL} from 'node:url';
 import svgo from 'svgo';
 
 const LEADING_SLASH_RE = /^\//;
@@ -14,10 +14,8 @@ export function encode(cssURL: string, cwd: URL): string {
 
   // https://css-tricks.com/probably-dont-base64-svg/
   if (type === 'image/svg+xml') {
-    const svg = svgo.optimize(fs.readFileSync(filename));
-    if ((svg as any).data) {
-      return `url('${type};utf8,${(svg as any).data}')`;
-    }
+    const svg = svgo.optimize(fs.readFileSync(filename, 'utf8'));
+    if (svg.data) return `url('${type};utf8,${svg.data}')`;
   }
 
   return `url('${type};base64,${fs.readFileSync(filename).toString('base64')}')`;

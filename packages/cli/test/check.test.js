@@ -1,4 +1,5 @@
 import {execSync} from 'child_process';
+import {URL} from 'node:url';
 import {describe, expect, test} from 'vitest';
 
 const cmd = 'node ../../../bin/cli.js';

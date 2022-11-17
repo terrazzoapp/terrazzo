@@ -1,7 +1,8 @@
 import colors from '@carbon/colors';
 import icons from '@carbon/icons';
 import typography from '@carbon/type';
-import fs from 'fs';
+import fs from 'node:fs';
+import {URL} from 'node:url';
 
 const TEXT_RE = /^[A-Z]+/i;
 const SQ_PREFIX_RE = /^'/;

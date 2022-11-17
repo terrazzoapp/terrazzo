@@ -1,7 +1,7 @@
 import type {FigmaToken, ResolvedConfig, Token} from '@cobalt-ui/core';
 import type * as Figma from 'figma-api';
 import Piscina from 'piscina';
-import {fileURLToPath} from 'url';
+import {fileURLToPath, URL} from 'node:url';
 import {collectChildren, collectStylesAndComponents, fetchDoc, padRight} from './util.js';
 import {colorToHex} from './paint.js';
 

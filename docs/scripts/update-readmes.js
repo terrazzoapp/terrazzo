@@ -4,7 +4,8 @@
  * For the docs pages that are just duplicates of other markdown files, automate them
  */
 
-import fs from 'fs';
+import fs from 'node:fs';
+import {URL} from 'node:url';
 
 const updates = {
   '../../packages/plugin-css/README.md': '../src/pages/docs/plugins/css.md',

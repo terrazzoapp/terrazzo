@@ -1,6 +1,7 @@
 import type {ResolvedConfig, Config} from '@cobalt-ui/core';
-import fs from 'fs';
-import mod from 'module';
+import fs from 'node:fs';
+import mod from 'node:module';
+import {URL} from 'node:url';
 
 const require = mod.createRequire(`file://${process.cwd()}`);
 
@@ -18,7 +19,7 @@ export async function init(userConfig: Config): Promise<ResolvedConfig> {
   }
   // normalize
   else {
-    const tokensPath = new URL(config.tokens, `file://${process.cwd()}/`);
+    const tokensPath = new URL(config.tokens as any, `file://${process.cwd()}/`);
     if (fs.existsSync(tokensPath)) {
       config.tokens = tokensPath;
     }
