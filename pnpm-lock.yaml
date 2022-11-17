@@ -159,6 +159,7 @@ importers:
       svgo: ^3.0.1
       undici: ^5.12.0
       vitest: ^0.25.2
+      yargs-parser: ^21.1.1
     dependencies:
       '@cobalt-ui/core': link:../core
       '@cobalt-ui/utils': link:../utils
@@ -170,6 +171,7 @@ importers:
       piscina: 3.2.0
       svgo: 3.0.1
       undici: 5.12.0
+      yargs-parser: 21.1.1
     devDependencies:
       figma-api: 1.11.0
       vitest: 0.25.2
@@ -6640,7 +6642,6 @@ packages:
   /yargs-parser/21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
-    dev: true
 
   /yargs/15.4.1:
     resolution: {integrity: sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==}

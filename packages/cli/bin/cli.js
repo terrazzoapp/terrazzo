@@ -11,12 +11,23 @@ import chokidar from 'chokidar';
 import fs from 'node:fs';
 import {performance} from 'node:perf_hooks';
 import {fileURLToPath, URL} from 'node:url';
+import parser from 'yargs-parser';
 import {init as initConfig} from '../dist/config.js';
 import {build} from '../dist/build.js';
 import figma from '../dist/figma/index.js';
 
 const [, , cmd, ...args] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
+
+const flags = parser(args, {
+  boolean: ['help', 'watch', 'version'],
+  string: ['config'],
+  alias: {
+    config: ['c'],
+    version: ['v'],
+    watch: ['w'],
+  },
+});
 
 /** `tokens` CLI command */
 async function main() {
@@ -26,13 +37,13 @@ async function main() {
   // half-run commands: --help, --version, init
 
   // --help
-  if (args.includes('--help') || !cmd) {
+  if (flags.help || !cmd) {
     showHelp();
     process.exit(0);
   }
 
   // --version
-  if (cmd === '--version' || cmd === '-v') {
+  if (flags.version) {
     const {version} = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
     console.log(version);
     process.exit(0);
@@ -43,14 +54,12 @@ async function main() {
 
   // setup: load tokens.config.js and tokens.config.json
   let configPath;
-  const configI = args.findIndex((arg) => arg.toLowerCase() === '-c' || arg.toLowerCase() === '--config');
-  if (configI !== -1) {
-    if (args[configI + 1]) {
-      configPath = resolveConfig(args[configI + 1]);
-    } else {
+  if (typeof flags.config === 'string') {
+    if (flags.config === '') {
       console.error(`  ${FG_RED}✘  Missing path after --config flag${RESET}`);
       process.exit(1);
     }
+    configPath = resolveConfig(flags.config);
   }
   let config;
   try {
@@ -208,10 +217,8 @@ function showHelp() {
 function resolveConfig(filename) {
   // --config [configpath]
   if (filename) {
-    const configPath = new URL(args[configI + 1], cwd);
-    if (fs.existsSync(configPath)) {
-      return configPath;
-    }
+    const configPath = new URL(filename, cwd);
+    if (fs.existsSync(configPath)) return configPath;
     return undefined;
   }
 
@@ -225,10 +232,8 @@ function resolveConfig(filename) {
 /** load config */
 async function loadConfig(configPath) {
   let userConfig = {};
-  if (configPath) {
-    userConfig = (await import(configPath instanceof URL ? fileURLToPath(configPath) : configPath)).default;
-  }
-  return await initConfig(userConfig);
+  if (configPath) userConfig = (await import(configPath instanceof URL ? fileURLToPath(configPath) : configPath)).default;
+  return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
 }
 
 /** Print time elapsed */
