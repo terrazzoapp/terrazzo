@@ -29,10 +29,10 @@
     "@cobalt-ui/utils": "^0.5.2",
     "@types/csso": "^5.0.0",
     "better-color-tools": "^0.9.1",
-    "svgo": "^3.0.1"
+    "svgo": "^3.0.2"
   },
   "devDependencies": {
-    "@types/node": "^18.11.9",
-    "vitest": "^0.25.2"
+    "@types/node": "^18.11.18",
+    "vitest": "^0.28.3"
   }
 }

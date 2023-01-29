@@ -29,12 +29,12 @@
     "@types/csso": "^5.0.0",
     "better-color-tools": "^0.9.1",
     "mime": "^3.0.0",
-    "svgo": "^3.0.1"
+    "svgo": "^3.0.2"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "^0.7.2",
     "@cobalt-ui/core": "^0.7.2",
     "@types/mime": "^2.0.3",
-    "vitest": "^0.25.2"
+    "vitest": "^0.28.3"
   }
 }

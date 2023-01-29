@@ -39,17 +39,17 @@
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.25.2",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
+    "@changesets/cli": "^2.26.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
     "del-cli": "^4.0.1",
-    "esbuild": "^0.15.14",
-    "eslint": "^8.27.0",
-    "eslint-config-prettier": "^8.5.0",
+    "esbuild": "^0.17.5",
+    "eslint": "^8.33.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^7.16.1",
-    "prettier": "^2.7.1",
-    "typescript": "^4.9.3"
+    "pnpm": "^7.26.2",
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
   }
 }

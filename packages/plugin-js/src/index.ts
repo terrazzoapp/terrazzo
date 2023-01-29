@@ -184,8 +184,8 @@ export function token(tokenID, modeName) {
               '',
               `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
               '',
-              `export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];`,
-              `export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];`,
+              `export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];`,
+              `export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];`,
               '', // EOF newline
             ].join('\n'),
           },
