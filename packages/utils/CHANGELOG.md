@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 0.5.3
+
+### Patch Changes
+
+- ae8a4d6: Update dependencies
+
 ## 0.5.2
 
 ### Patch Changes

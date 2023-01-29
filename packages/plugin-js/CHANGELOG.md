@@ -1,5 +1,15 @@
 # @cobalt-ui/plugin-js
 
+## 1.0.7
+
+### Patch Changes
+
+- ae8a4d6: Update dependencies
+- ae8a4d6: Fix TypeScript bug with modes
+- Updated dependencies [ae8a4d6]
+  - @cobalt-ui/utils@0.5.3
+  - @cobalt-ui/cli@0.7.3
+
 ## 1.0.6
 
 ### Patch Changes

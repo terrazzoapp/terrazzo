@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.5
+
+### Patch Changes
+
+- ae8a4d6: Update dependencies
+- Updated dependencies [ae8a4d6]
+  - @cobalt-ui/utils@0.5.3
+  - @cobalt-ui/cli@0.7.3
+
 ## 1.1.4
 
 ### Patch Changes
