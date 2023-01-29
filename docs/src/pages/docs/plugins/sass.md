@@ -64,7 +64,7 @@ Note that a function has a few advantages over plain Sass variables:
 
 #### Usage with plugin-css (recommended)
 
-By default, the `token()` function returns the raw token value to Sass. But to take advantage of all the features of [plugin-css](../plugin-css/) such as built-in color theming and out-of-the-box P3 support, you’ll want to use both together.
+By default, the `token()` function returns the raw token value to Sass. But to take advantage of all the features of [plugin-css](./css) such as built-in color theming and out-of-the-box P3 support, you’ll want to use both together.
 
 In your `tokens.config.mjs` file, opt in by adding a `pluginCSS` option. That will automatically load @cobalt-ui/plugin-css and will pass all options to it (all options are supported):
 

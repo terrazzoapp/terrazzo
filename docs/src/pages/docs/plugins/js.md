@@ -251,6 +251,106 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 In addition, you’ll also find the following exports:
 
 | Name     | Type     | Description                                                                                         |
+| :------- | :------- | :------------------------------------------------------------------------------------------------
+
+# @cobalt-ui/plugin-js
+
+Generate JS, TS, and JSON output from design tokens.
+
+```
+npm i -D @cobalt-ui/plugin-js
+```
+
+```js
+// tokens.config.mjs
+import pluginJS from '@cobalt-ui/plugin-js';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJS({
+      /** output JS (with TS types)? boolean or filename (default: true) */
+      js: true,
+      /** output JSON? boolean or filename (default: false) */
+      json: false,
+    }),
+  ],
+};
+```
+
+_Note: the default plugin exports a `.d.ts` file alongside the `.js`, which means the same file can either be used in JS or TS._
+
+## Usage
+
+### JS
+
+To use a token, import the `token()` function and reference it by its full ID:
+
+```ts
+import {token} from './tokens/index.js';
+
+// get default token
+const red = token('color.red.10');
+
+// get token for mode: dark
+const redDark = token('color.red.10', 'dark');
+```
+
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, `token()` is statically typed as it‘s only a thin wrapper around the `tokens` and `modes` exports.
+
+In addition, you’ll also find the following exports:
+
+| Name     | Type     | Description                                                                                         |
+| :------- | :------- | :------------------------------------------------------------------------------------------------
+
+# @cobalt-ui/plugin-js
+
+Generate JS, TS, and JSON output from design tokens.
+
+```
+npm i -D @cobalt-ui/plugin-js
+```
+
+```js
+// tokens.config.mjs
+import pluginJS from '@cobalt-ui/plugin-js';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginJS({
+      /** output JS (with TS types)? boolean or filename (default: true) */
+      js: true,
+      /** output JSON? boolean or filename (default: false) */
+      json: false,
+    }),
+  ],
+};
+```
+
+_Note: the default plugin exports a `.d.ts` file alongside the `.js`, which means the same file can either be used in JS or TS._
+
+## Usage
+
+### JS
+
+To use a token, import the `token()` function and reference it by its full ID:
+
+```ts
+import {token} from './tokens/index.js';
+
+// get default token
+const red = token('color.red.10');
+
+// get token for mode: dark
+const redDark = token('color.red.10', 'dark');
+```
+
+You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, `token()` is statically typed as it‘s only a thin wrapper around the `tokens` and `modes` exports.
+
+In addition, you’ll also find the following exports:
+
+| Name     | Type     | Description                                                                                         |
 | :------- | :------- | :-------------------------------------------------------------------------------------------------- |
 | `tokens` | `object` | Object of token ID → value (all aliases resolved & all transformations applied)                     |
 | `meta`   | `object` | Object of token ID → metadata (`$type`, `$description`, etc.)                                       |

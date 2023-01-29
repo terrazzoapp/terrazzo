@@ -25,9 +25,8 @@
     {"title": "Create Plugins",  "pathname": "/docs/guides/plugins"},
     {"title": "Plugins",         "pathname": "/docs/plugins"},
     {"title": "CSS",             "pathname": "/docs/plugins/css"},
-    {"title": "JSON",            "pathname": "/docs/plugins/json"},
     {"title": "Sass",            "pathname": "/docs/plugins/sass"},
-    {"title": "TypeScript",      "pathname": "/docs/plugins/ts"},
+    {"title": "JS/JSON/TS",      "pathname": "/docs/plugins/js"},
     {"title": "Reference",       "pathname": "/docs/reference"},
     {"title": "Config",          "pathname": "/docs/reference/config"},
     {"title": "About",           "pathname": "/docs/reference/about"}

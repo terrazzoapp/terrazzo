@@ -9,8 +9,6 @@ Cobalt exists to let you ship your `tokens.json` to any digital platform without
 
 - [CSS][plugins]
 - [Sass][plugins]
-- [JSON][plugins]
-- [TypeScript][plugins]
-- JavaScript (coming soon)
+- [JS/JSON/TS][plugins]
 
 [plugins]: ./plugins

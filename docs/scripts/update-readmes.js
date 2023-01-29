@@ -13,8 +13,18 @@ const updates = {
   '../../packages/plugin-js/README.md': '../src/pages/docs/plugins/js.md',
 };
 
+const urlRewrites = {
+  '../plugin-css/': './css',
+  '../plugin-js/': './js',
+  '../plugin-sass/': './sass',
+};
+
 for (const [input, output] of Object.entries(updates)) {
-  const src = fs.readFileSync(new URL(input, import.meta.url), 'utf8');
+  let src = fs.readFileSync(new URL(input, import.meta.url), 'utf8');
+  for (const [find, replace] of Object.entries(urlRewrites)) {
+    src = src.replace(new RegExp(`\\(${find}\\)`, 'g'), `(${replace})`);
+  }
+
   const dest = fs.readFileSync(new URL(output, import.meta.url), 'utf8');
   const parts = dest.split('---');
   parts[parts.length - 1] = `\n\n${src}`;
