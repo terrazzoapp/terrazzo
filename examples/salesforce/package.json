@@ -13,7 +13,7 @@
     "@cobalt-ui/plugin-js": "^1.0.7",
     "@cobalt-ui/plugin-sass": "^1.1.4",
     "@salesforce-ux/design-system": "^2.16.2",
-    "better-color-tools": "^0.9.1",
+    "better-color-tools": "^0.10.0",
     "postcss": "^8.4.16"
   }
 }
