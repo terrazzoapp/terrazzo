@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 0.7.4
+
+### Patch Changes
+
+- 91ff661: Update better-color-tools
+
 ## 0.7.3
 
 ### Patch Changes

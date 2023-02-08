@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-css
 
+## 1.1.6
+
+### Patch Changes
+
+- 91ff661: Update better-color-tools
+- Updated dependencies [91ff661]
+  - @cobalt-ui/cli@0.7.4
+
 ## 1.1.5
 
 ### Patch Changes

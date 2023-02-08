@@ -32,9 +32,9 @@ importers:
 
   docs:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/core': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/core': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-sass': ^1.1.4
       astro: ^2.0.2
       npm-run-all: ^4.1.5
@@ -54,8 +54,8 @@ importers:
 
   examples/adobe:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
     devDependencies:
@@ -66,8 +66,8 @@ importers:
 
   examples/apple:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
     devDependencies:
@@ -78,8 +78,8 @@ importers:
 
   examples/github:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
       '@primer/octicons': ^16.3.1
@@ -97,8 +97,8 @@ importers:
       '@carbon/colors': ^11.6.0
       '@carbon/icons': ^11.10.0
       '@carbon/type': ^11.10.0
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
     devDependencies:
@@ -112,8 +112,8 @@ importers:
 
   examples/salesforce:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
       '@salesforce-ux/design-system': ^2.16.2
@@ -130,8 +130,8 @@ importers:
 
   examples/shopify:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/plugin-css': ^1.1.5
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/plugin-css': ^1.1.6
       '@cobalt-ui/plugin-js': ^1.0.7
       '@cobalt-ui/plugin-sass': ^1.1.4
     devDependencies:
@@ -142,7 +142,7 @@ importers:
 
   packages/cli:
     specifiers:
-      '@cobalt-ui/core': ^0.7.3
+      '@cobalt-ui/core': ^0.7.4
       '@cobalt-ui/utils': ^0.5.3
       '@types/csso': ^5.0.0
       better-color-tools: ^0.10.0
@@ -190,8 +190,8 @@ importers:
 
   packages/plugin-css:
     specifiers:
-      '@cobalt-ui/cli': ^0.7.3
-      '@cobalt-ui/core': ^0.7.3
+      '@cobalt-ui/cli': ^0.7.4
+      '@cobalt-ui/core': ^0.7.4
       '@cobalt-ui/utils': ^0.5.3
       '@types/csso': ^5.0.0
       '@types/mime': ^2.0.3
