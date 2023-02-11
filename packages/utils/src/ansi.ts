@@ -1,4 +1,4 @@
-export const COLOR_ENABLED = typeof process !== undefined ? !process.env.NODE_DISABLE_COLORS && (!process.env.NO_COLOR || process.env.NO_COLOR == "0") : true;
+export const COLOR_ENABLED = typeof process !== 'undefined' ? !process.env.NODE_DISABLE_COLORS && (!process.env.NO_COLOR || process.env.NO_COLOR == "0") : true;
 
 export const RESET      = COLOR_ENABLED ? '\u001b[0m'  : '';
 export const BOLD       = COLOR_ENABLED ? '\u001b[1m'  : '';
