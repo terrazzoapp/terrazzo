@@ -28,11 +28,11 @@
   "dependencies": {
     "@cobalt-ui/utils": "^0.5.3",
     "@types/csso": "^5.0.0",
-    "better-color-tools": "^0.10.0",
+    "better-color-tools": "^0.10.2",
     "svgo": "^3.0.2"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "vitest": "^0.28.3"
+    "@types/node": "^18.15.10",
+    "vitest": "^0.29.7"
   }
 }
