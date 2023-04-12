@@ -16,7 +16,7 @@ Prefer **camelCased** properties when possible:
     "typography": {
 -     "base-heading": {
 +     "baseHeading": {
-        "$type": "font",
+        "$type": "fontFamily",
         "$value": "sans-serif"
       }
     }

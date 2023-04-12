@@ -40,7 +40,7 @@ export const tokens = {
 export const meta = {
   'typography.family.body': {
     '_original': {
-      '$type': 'font',
+      '$type': 'fontFamily',
       '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
     },
     '_group': {
@@ -50,12 +50,12 @@ export const meta = {
       },
     },
     id: 'typography.family.body',
-    '$type': 'font',
+    '$type': 'fontFamily',
     '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
   },
   'typography.family.heading': {
     '_original': {
-      '$type': 'font',
+      '$type': 'fontFamily',
       '$value': 'Helvetica',
     },
     '_group': {
@@ -65,7 +65,7 @@ export const meta = {
       },
     },
     id: 'typography.family.heading',
-    '$type': 'font',
+    '$type': 'fontFamily',
     '$value': ['Helvetica'],
   },
   'typography.page-title': {

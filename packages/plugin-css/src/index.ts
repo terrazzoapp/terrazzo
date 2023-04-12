@@ -6,7 +6,9 @@ import type {
   ParsedCubicBezierToken,
   ParsedDimensionToken,
   ParsedDurationToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
+  ParsedFontWeightToken,
+  ParsedNumberToken,
   ParsedGradientToken,
   ParsedLinkToken,
   ParsedShadowToken,
@@ -196,13 +198,21 @@ export function transformDimension(value: ParsedDimensionToken['$value']): strin
 export function transformDuration(value: ParsedDurationToken['$value']): string {
   return String(value);
 }
-/** transform font */
-export function transformFont(value: ParsedFontToken['$value']): string {
+/** transform font family */
+export function transformFontFamily(value: ParsedFontFamilyToken['$value']): string {
   return formatFontNames(value);
+}
+/** transform font weight */
+export function transformFontWeight(value: ParsedFontWeightToken['$value']): number {
+  return Number(value);
 }
 /** transform cubic beziér */
 export function transformCubicBezier(value: ParsedCubicBezierToken['$value']): string {
   return `cubic-bezier(${value.join(', ')})`;
+}
+/** transform number */
+export function transformNumber(value: ParsedNumberToken['$value']): number {
+  return Number(value);
 }
 /** transform file */
 export function transformLink(value: ParsedLinkToken['$value']): string {
@@ -238,7 +248,7 @@ export function transformTypography(value: ParsedTypographyToken['$value']): Rec
   return values;
 }
 
-export function defaultTransformer(token: ParsedToken, options?: {mode?: string; prefix?: string}): string | ReturnType<typeof transformTypography> {
+export function defaultTransformer(token: ParsedToken, options?: {mode?: string; prefix?: string}): string | number | ReturnType<typeof transformTypography> {
   let value = token.$value;
   let rawVal = token._original.$value;
 
@@ -268,10 +278,14 @@ export function defaultTransformer(token: ParsedToken, options?: {mode?: string;
       return transformDimension(value as typeof token.$value);
     case 'duration':
       return transformDuration(value as typeof token.$value);
-    case 'font':
-      return transformFont(value as typeof token.$value);
+    case 'fontFamily':
+      return transformFontFamily(value as typeof token.$value);
+    case 'fontWeight':
+      return transformFontWeight(value as typeof token.$value);
     case 'cubicBezier':
       return transformCubicBezier(value as typeof token.$value);
+    case 'number':
+      return transformNumber(value as typeof token.$value);
     case 'link':
       return transformLink(value as typeof token.$value);
     case 'strokeStyle':

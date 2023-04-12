@@ -9,13 +9,13 @@ import {
   CubicBezierToken,
   DimensionToken,
   DurationToken,
-  FontToken,
+  FontFamilyToken,
   LinkToken,
   ParsedColorToken,
   ParsedCubicBezierToken,
   ParsedDimensionToken,
   ParsedDurationToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
   ParsedLinkToken,
 } from '@cobalt-ui/core';
 
@@ -2182,11 +2182,11 @@ export declare const tokens: {
   'icon.zoom--out-area': LinkToken['$value'];
   'icon.zoom--reset': LinkToken['$value'];
   'icon.zoom-pan': LinkToken['$value'];
-  'font.family.mono': FontToken['$value'];
-  'font.family.sans': FontToken['$value'];
-  'font.family.sansCondensed': FontToken['$value'];
-  'font.family.sansHebrew': FontToken['$value'];
-  'font.family.serif': FontToken['$value'];
+  'font.family.mono': FontFamilyToken['$value'];
+  'font.family.sans': FontFamilyToken['$value'];
+  'font.family.sansCondensed': FontFamilyToken['$value'];
+  'font.family.sansHebrew': FontFamilyToken['$value'];
+  'font.family.serif': FontFamilyToken['$value'];
   'font.size.body01': DimensionToken['$value'];
   'font.size.body02': DimensionToken['$value'];
   'font.size.bodyCompact01': DimensionToken['$value'];
@@ -4443,11 +4443,11 @@ export declare const meta: {
   'icon.zoom--out-area': ParsedLinkToken;
   'icon.zoom--reset': ParsedLinkToken;
   'icon.zoom-pan': ParsedLinkToken;
-  'font.family.mono': ParsedFontToken;
-  'font.family.sans': ParsedFontToken;
-  'font.family.sansCondensed': ParsedFontToken;
-  'font.family.sansHebrew': ParsedFontToken;
-  'font.family.serif': ParsedFontToken;
+  'font.family.mono': ParsedFontFamilyToken;
+  'font.family.sans': ParsedFontFamilyToken;
+  'font.family.sansCondensed': ParsedFontFamilyToken;
+  'font.family.sansHebrew': ParsedFontFamilyToken;
+  'font.family.serif': ParsedFontFamilyToken;
   'font.size.body01': ParsedDimensionToken;
   'font.size.body02': ParsedDimensionToken;
   'font.size.bodyCompact01': ParsedDimensionToken;
@@ -4543,5 +4543,5 @@ export declare const meta: {
 
 export declare const modes: Record<string, never>;
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];

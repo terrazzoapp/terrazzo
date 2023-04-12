@@ -2,7 +2,7 @@ import {cloneDeep} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue} from './tokens/color.js';
-import {normalizeFontValue} from './tokens/font.js';
+import {normalizeFontFamilyValue} from './tokens/fontFamily.js';
 import {normalizeDurationValue} from './tokens/duration.js';
 import {normalizeDimensionValue} from './tokens/dimension.js';
 import {normalizeCubicBezierValue} from './tokens/cubic-bezier.js';
@@ -13,6 +13,8 @@ import {normalizeTransitionValue} from './tokens/transition.js';
 import {normalizeShadowValue} from './tokens/shadow.js';
 import {normalizeGradientValue} from './tokens/gradient.js';
 import {normalizeTypographyValue} from './tokens/typography.js';
+import {normalizeFontWeightValue} from './tokens/fontWeight.js';
+import {normalizeNumberValue} from './tokens/number.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -229,20 +231,30 @@ export function parse(schema: Group): ParseResult {
           tokens[id].$value = normalizeDimensionValue(values[id]);
           normalizeModes(id, normalizeDimensionValue);
           break;
-        // 8.3 Font
-        case 'font':
-          tokens[id].$value = normalizeFontValue(values[id]);
-          normalizeModes(id, normalizeFontValue);
+        // 8.3 FontFamily
+        case 'fontFamily':
+          tokens[id].$value = normalizeFontFamilyValue(values[id]);
+          normalizeModes(id, normalizeFontFamilyValue);
           break;
-        // 8.4 Duration
+        // 8.4 FontWeight
+        case 'fontWeight':
+          tokens[id].$value = normalizeFontWeightValue(values[id]);
+          normalizeModes(id, normalizeFontWeightValue);
+          break;
+        // 8.5 Duration
         case 'duration':
           tokens[id].$value = normalizeDurationValue(values[id]);
           normalizeModes(id, normalizeDurationValue);
           break;
-        // 8.5 Cubic Bezier
+        // 8.6 Cubic Bezier
         case 'cubicBezier':
           tokens[id].$value = normalizeCubicBezierValue(values[id]);
           normalizeModes(id, normalizeCubicBezierValue);
+          break;
+        // 8.7 Number
+        case 'number':
+          tokens[id].$value = normalizeNumberValue(values[id]);
+          normalizeModes(id, normalizeNumberValue);
           break;
         // 8.? Link
         case 'link':

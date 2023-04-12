@@ -7,10 +7,10 @@
 import {
   ColorToken,
   DimensionToken,
-  FontToken,
+  FontFamilyToken,
   ParsedColorToken,
   ParsedDimensionToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -340,9 +340,9 @@ export declare const tokens: {
   'icon.size.large': DimensionToken['$value'];
   'icon.size.xLarge': DimensionToken['$value'];
   'icon.size.xxLarge': DimensionToken['$value'];
-  'font.family.base': FontToken['$value'];
-  'font.family.heading': FontToken['$value'];
-  'font.family.mono': FontToken['$value'];
+  'font.family.base': FontFamilyToken['$value'];
+  'font.family.heading': FontFamilyToken['$value'];
+  'font.family.mono': FontFamilyToken['$value'];
   'font.size.1': DimensionToken['$value'];
   'font.size.2': DimensionToken['$value'];
   'font.size.3': DimensionToken['$value'];
@@ -695,9 +695,9 @@ export declare const meta: {
   'icon.size.large': ParsedDimensionToken;
   'icon.size.xLarge': ParsedDimensionToken;
   'icon.size.xxLarge': ParsedDimensionToken;
-  'font.family.base': ParsedFontToken;
-  'font.family.heading': ParsedFontToken;
-  'font.family.mono': ParsedFontToken;
+  'font.family.base': ParsedFontFamilyToken;
+  'font.family.heading': ParsedFontFamilyToken;
+  'font.family.mono': ParsedFontFamilyToken;
   'font.size.1': ParsedDimensionToken;
   'font.size.2': ParsedDimensionToken;
   'font.size.3': ParsedDimensionToken;
@@ -725,5 +725,5 @@ export declare const meta: {
 
 export declare const modes: Record<string, never>;
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];

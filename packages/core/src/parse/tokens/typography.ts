@@ -1,28 +1,8 @@
-import type {ParsedTypographyValue, FontWeightName} from '../../token.js';
+import type {ParsedTypographyValue} from '../../token.js';
 import {camelize} from '@cobalt-ui/utils';
-import {normalizeFontValue} from './font.js';
+import {normalizeFontFamilyValue} from './fontFamily.js';
 import {normalizeDimensionValue} from './dimension.js';
-
-const VALID_WEIGHT_NAMES = new Map<FontWeightName, number>([
-  ['thin', 100],
-  ['hairline', 100],
-  ['extra-light', 200],
-  ['ultra-light', 200],
-  ['light', 300],
-  ['normal', 400],
-  ['regular', 400],
-  ['book', 400],
-  ['medium', 500],
-  ['semi-bold', 600],
-  ['demi-bold', 600],
-  ['bold', 700],
-  ['extra-bold', 800],
-  ['ultra-bold', 800],
-  ['black', 900],
-  ['heavy', 900],
-  ['extra-black', 950],
-  ['ultra-black', 950],
-]);
+import {normalizeFontWeightValue} from './fontWeight.js';
 
 /**
  * 9.7 Typography
@@ -49,20 +29,11 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
     switch (property) {
       case 'fontName':
       case 'fontFamily': {
-        normalized.fontFamily = normalizeFontValue(v);
+        normalized.fontFamily = normalizeFontFamilyValue(v);
         break;
       }
       case 'fontWeight': {
-        if (typeof v === 'string') {
-          const wgt = VALID_WEIGHT_NAMES.get(v as any);
-          if (wgt) {
-            normalized.fontWeight = wgt;
-          } else {
-            throw new Error(`invalid font weight "${v}", use number (1-999) or any of: \n  - ${[...VALID_WEIGHT_NAMES.values()].join('\n  - ')}`);
-          }
-        } else if (typeof v === 'number') {
-          normalized.fontWeight = Math.max(1, Math.min(999, v));
-        }
+        normalized.fontWeight = normalizeFontWeightValue(v);
         break;
       }
       default: {

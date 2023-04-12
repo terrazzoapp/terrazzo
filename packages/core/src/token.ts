@@ -22,7 +22,21 @@ export interface TokenBase<T = string> {
   } & Record<string, unknown>;
 }
 
-export type Token = ColorToken | FontToken | DimensionToken | DurationToken | CubicBezierToken | LinkToken | StrokeStyleToken | BorderToken | TransitionToken | ShadowToken | GradientToken | TypographyToken;
+export type Token =
+  | ColorToken
+  | FontFamilyToken
+  | FontWeightToken
+  | DimensionToken
+  | DurationToken
+  | CubicBezierToken
+  | NumberToken
+  | LinkToken
+  | StrokeStyleToken
+  | BorderToken
+  | TransitionToken
+  | ShadowToken
+  | GradientToken
+  | TypographyToken;
 
 export type TokenOrGroup = Token | Group;
 export type TokenType = Token['$type'];
@@ -34,10 +48,12 @@ export interface ParsedTokenBase<T = string> extends TokenBase<T> {
 }
 export type ParsedToken =
   | ParsedColorToken
-  | ParsedFontToken
+  | ParsedFontFamilyToken
+  | ParsedFontWeightToken
   | ParsedDimensionToken
   | ParsedDurationToken
   | ParsedCubicBezierToken
+  | ParsedNumberToken
   | ParsedLinkToken
   | ParsedStrokeStyleToken
   | ParsedBorderToken
@@ -67,17 +83,28 @@ export interface ParsedDimensionToken extends ParsedTokenBase<string> {
   _original: DimensionToken;
 }
 
-// 8.3 Font
+// 8.3 FontFamily
 
-export interface FontToken extends TokenBase<string | string[]> {
-  $type: 'font';
+export interface FontFamilyToken extends TokenBase<string | string[]> {
+  $type: 'fontFamily';
 }
-export interface ParsedFontToken extends ParsedTokenBase<string[]> {
-  $type: 'font';
-  _original: FontToken;
+export interface ParsedFontFamilyToken extends ParsedTokenBase<string[]> {
+  $type: 'fontFamily';
+  _original: FontFamilyToken;
 }
 
-// 8.4 Duration
+// 8.4 fontWeight
+
+export interface FontWeightToken extends TokenBase<number> {
+  $type: 'fontWeight';
+}
+
+export interface ParsedFontWeightToken extends ParsedTokenBase<number> {
+  $type: 'fontWeight';
+  _original: FontWeightToken;
+}
+
+// 8.5 Duration
 
 export interface DurationToken extends TokenBase<string> {
   $type: 'duration';
@@ -87,7 +114,7 @@ export interface ParsedDurationToken extends ParsedTokenBase<string> {
   _original: DurationToken;
 }
 
-// 8.5 Cubic Bezier
+// 8.6 Cubic Bezier
 
 export interface CubicBezierToken extends TokenBase<[number, number, number, number]> {
   $type: 'cubicBezier';
@@ -95,6 +122,17 @@ export interface CubicBezierToken extends TokenBase<[number, number, number, num
 export interface ParsedCubicBezierToken extends ParsedTokenBase<[number, number, number, number]> {
   $type: 'cubicBezier';
   _original: CubicBezierToken;
+}
+
+// 8.7 Number
+
+export interface NumberToken extends TokenBase<number> {
+  $type: 'number';
+}
+
+export interface ParsedNumberToken extends ParsedTokenBase<number> {
+  $type: 'number';
+  _original: NumberToken;
 }
 
 // 8.? Link
@@ -182,37 +220,17 @@ export interface ParsedGradientToken extends ParsedTokenBase<GradientStop[]> {
 }
 
 // 9.7 Typography
-
-export type FontWeightName =
-  | 'thin'
-  | 'hairline'
-  | 'extra-light'
-  | 'ultra-light'
-  | 'light'
-  | 'normal'
-  | 'regular'
-  | 'book'
-  | 'medium'
-  | 'semi-bold'
-  | 'demi-bold'
-  | 'bold'
-  | 'extra-bold'
-  | 'ultra-bold'
-  | 'black'
-  | 'heavy'
-  | 'extra-black'
-  | 'ultra-black';
 export interface TypographyValue {
-  fontFamily: FontToken['$value'];
+  fontFamily: FontFamilyToken['$value'];
   fontSize: DimensionToken['$value'];
   fontStyle: string;
-  fontWeight: number | FontWeightName;
+  fontWeight: FontWeightToken['$value'];
   letterSpacing: DimensionToken['$value'];
   lineHeight: string | number;
   textTransform: string;
 }
 export interface ParsedTypographyValue extends TypographyValue {
-  fontFamily: ParsedFontToken['$value'];
+  fontFamily: ParsedFontFamilyToken['$value'];
 }
 export interface TypographyToken extends TokenBase<Partial<TypographyValue>> {
   $type: 'typography';

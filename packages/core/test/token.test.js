@@ -163,11 +163,11 @@ describe('8. Type', () => {
     });
   });
 
-  describe('8.3: Font', () => {
+  describe('8.3: Font Family', () => {
     test('string', () => {
       const json = {
         typography: {
-          body: {$type: 'font', $value: 'Helvetica'},
+          body: {$type: 'fontFamily', $value: 'Helvetica'},
         },
       };
       const tokens = getTokens(json);
@@ -175,13 +175,31 @@ describe('8. Type', () => {
     });
 
     test('array', () => {
-      const json = {typography: {body: {$type: 'font', $value: ['-system-ui', 'Helvetica']}}};
+      const json = {typography: {body: {$type: 'fontFamily', $value: ['-system-ui', 'Helvetica']}}};
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual(json.typography.body.$value);
     });
   });
 
-  describe('8.4: Duration', () => {
+  describe('8.4: Font Weight', () => {
+    test('string', () => {
+      const json = {
+        typography: {
+          body: {$type: 'fontWeight', $value: 'hairline'},
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'typography.body').$value).toBe(100);
+    });
+
+    test('number', () => {
+      const json = {typography: {body: {$type: 'fontWeight', $value: 100}}};
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual(json.typography.body.$value);
+    });
+  });
+
+  describe('8.5: Duration', () => {
     test('basic', () => {
       const json = {
         duration: {
@@ -206,7 +224,7 @@ describe('8. Type', () => {
     });
   });
 
-  describe('8.5: Cubic Bézier', () => {
+  describe('8.6: Cubic Bézier', () => {
     test('basic', () => {
       const json = {
         ease: {
@@ -215,6 +233,18 @@ describe('8. Type', () => {
       };
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'ease.sine').$value).toEqual(json.ease.sine.$value);
+    });
+  });
+
+  describe('8.7: Number', () => {
+    test('basic', () => {
+      const json = {
+        size: {
+          large: {$type: 'number', $value: 57},
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'size.large').$value).toEqual(json.size.large.$value);
     });
   });
 });
@@ -411,7 +441,7 @@ describe('9. Composite Type', () => {
     test('alias: property', () => {
       const json = {
         typography: {
-          family: {heading: {$type: 'font', $value: ['Helvetica', '-system-ui']}},
+          family: {heading: {$type: 'fontFamily', $value: ['Helvetica', '-system-ui']}},
           pageTitle: {
             $type: 'typography',
             $value: {

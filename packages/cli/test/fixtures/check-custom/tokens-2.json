@@ -38,7 +38,7 @@
   },
   "typography": {
     "family": {
-      "$type": "font",
+      "$type": "fontFamily",
       "ibmPlex": {
         "$value": ["IBM Plex Sans", "-system-ui", "sans-serif"]
       }

@@ -6,9 +6,9 @@
 
 import {
   ColorToken,
-  FontToken,
+  FontFamilyToken,
   ParsedColorToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
   ParsedTypographyToken,
   TypographyToken,
 } from '@cobalt-ui/core';
@@ -32,11 +32,11 @@ export declare const tokens: {
   'color.systemRed': ColorToken['$value'];
   'color.systemTeal': ColorToken['$value'];
   'color.systemYellow': ColorToken['$value'];
-  'font.family.sfPro': FontToken['$value'];
-  'font.family.sfProRounded': FontToken['$value'];
-  'font.family.sfCompact': FontToken['$value'];
-  'font.family.sfMono': FontToken['$value'];
-  'font.family.newYork': FontToken['$value'];
+  'font.family.sfPro': FontFamilyToken['$value'];
+  'font.family.sfProRounded': FontFamilyToken['$value'];
+  'font.family.sfCompact': FontFamilyToken['$value'];
+  'font.family.sfMono': FontFamilyToken['$value'];
+  'font.family.newYork': FontFamilyToken['$value'];
   'font.style.largeTitle': TypographyToken['$value'];
   'font.style.title1': TypographyToken['$value'];
   'font.style.title2': TypographyToken['$value'];
@@ -69,11 +69,11 @@ export declare const meta: {
   'color.systemRed': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemRed'] } };
   'color.systemTeal': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemTeal'] } };
   'color.systemYellow': ParsedColorToken & { $extensions: { mode: typeof modes['color.systemYellow'] } };
-  'font.family.sfPro': ParsedFontToken;
-  'font.family.sfProRounded': ParsedFontToken;
-  'font.family.sfCompact': ParsedFontToken;
-  'font.family.sfMono': ParsedFontToken;
-  'font.family.newYork': ParsedFontToken;
+  'font.family.sfPro': ParsedFontFamilyToken;
+  'font.family.sfProRounded': ParsedFontFamilyToken;
+  'font.family.sfCompact': ParsedFontFamilyToken;
+  'font.family.sfMono': ParsedFontFamilyToken;
+  'font.family.newYork': ParsedFontFamilyToken;
   'font.style.largeTitle': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.largeTitle'] } };
   'font.style.title1': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.title1'] } };
   'font.style.title2': ParsedTypographyToken & { $extensions: { mode: typeof modes['font.style.title2'] } };
@@ -297,5 +297,5 @@ export declare const modes: {
   };
 };
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];
