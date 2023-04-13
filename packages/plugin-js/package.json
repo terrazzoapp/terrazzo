@@ -15,23 +15,25 @@
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
     "pretest": "co build -c ./test/types.tokens.mjs",
-    "test": "vitest run"
+    "test": "run-p -s test:*",
+    "test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "@cobalt-ui/cli": "*"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^0.5.3"
+    "@cobalt-ui/utils": "*"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.7.4",
-    "@cobalt-ui/core": "^0.7.4",
+    "@cobalt-ui/cli": "*",
+    "@cobalt-ui/core": "*",
     "fast-glob": "^3.2.12",
-    "vitest": "^0.29.7"
+    "npm-run-all": "^4.1.5",
+    "vitest": "^0.30.1"
   }
 }

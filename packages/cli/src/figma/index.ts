@@ -1,5 +1,6 @@
 import type {FigmaToken, ResolvedConfig, Token} from '@cobalt-ui/core';
 import type * as Figma from 'figma-api';
+// @ts-expect-error needs https://github.com/piscinajs/piscina/pull/239
 import Piscina from 'piscina';
 import {fileURLToPath, URL} from 'node:url';
 import {collectChildren, collectStylesAndComponents, fetchDoc, padRight} from './util.js';

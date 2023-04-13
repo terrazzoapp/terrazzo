@@ -9,12 +9,11 @@
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
-  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w"
   },
   "devDependencies": {
-    "@types/node": "^18.15.10"
+    "@types/node": "^18.15.11"
   }
 }
