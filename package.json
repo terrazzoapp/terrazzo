@@ -30,7 +30,7 @@
     "dev:plugin-js": "cd packages/plugin-js && npm run dev",
     "dev:plugin-sass": "cd packages/plugin-sass && npm run dev",
     "lint": "eslint \"packages/**/*.{ts,js,cjs,mjs}\"",
-    "test": "run-p -s test:*",
+    "test": "run-p test:*",
     "test:cli": "cd packages/cli && npm run test",
     "test:core": "cd packages/core && npm run test",
     "test:plugin-css": "cd packages/plugin-css && npm run test",
@@ -40,16 +40,15 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.1",
-    "@typescript-eslint/eslint-plugin": "^5.56.0",
-    "@typescript-eslint/parser": "^5.56.0",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
     "del-cli": "^4.0.1",
-    "esbuild": "^0.17.14",
-    "eslint": "^8.36.0",
+    "eslint": "^8.38.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^7.30.5",
+    "pnpm": "^8.2.0",
     "prettier": "^2.8.7",
-    "typescript": "^5.0.2"
+    "typescript": "^5.0.4"
   }
 }

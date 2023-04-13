@@ -8,14 +8,9 @@ on:
 
 jobs:
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-
       - uses: pnpm/action-setup@v2
         with:
           version: latest
@@ -23,14 +18,9 @@ jobs:
       - run: pnpm i
       - run: pnpm run lint
   test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-
       - uses: pnpm/action-setup@v2
         with:
           version: latest

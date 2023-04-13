@@ -1,5 +1,5 @@
 import type * as Figma from 'figma-api';
-import {GetFileResult} from 'figma-api/lib/api-types';
+import type {GetFileResult} from 'figma-api/lib/api-types.js';
 import {FG_RED, RESET, UNDERLINE} from '@cobalt-ui/utils';
 import path from 'node:path';
 import {URL} from 'node:url';

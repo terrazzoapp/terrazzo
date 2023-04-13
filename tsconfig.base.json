@@ -2,8 +2,8 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,

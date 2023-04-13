@@ -5,7 +5,7 @@ const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
 const SINGLE_QUOTE_RE = /'/g;
 
-export type TransformFn = (token: ParsedToken, mode?: string) => typeof token['$value'];
+export type TransformFn = (token: ParsedToken, mode?: string) => (typeof token)['$value'];
 
 export interface Options {
   /** output JS? (default: true) */
@@ -56,7 +56,7 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   throw new Error(`Could not serialize ${value}`);
 }
 
-function defaultTransform(token: ParsedToken, mode?: string): typeof token['$value'] {
+function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$value'] {
   if (!mode || !token.$extensions?.mode || !(mode in token.$extensions.mode) || !token.$extensions.mode[mode]) return token.$value;
   const modeVal = token.$extensions.mode[mode];
   if (typeof modeVal === 'string' || Array.isArray(modeVal)) return modeVal;
@@ -184,8 +184,8 @@ export function token(tokenID, modeName) {
               '',
               `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
               '',
-              `export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];`,
-              `export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];`,
+              `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
+              `export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];`,
               '', // EOF newline
             ].join('\n'),
           },
