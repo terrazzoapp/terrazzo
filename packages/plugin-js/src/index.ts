@@ -24,10 +24,12 @@ interface JSResult {
 
 const tokenTypes: Record<ParsedToken['$type'], string> = {
   color: 'ColorToken',
-  font: 'FontToken',
+  fontFamily: 'FontFamilyToken',
+  fontWeight: 'FontWeightToken',
   dimension: 'DimensionToken',
   duration: 'DurationToken',
   cubicBezier: 'CubicBezierToken',
+  number: 'NumberToken',
   link: 'LinkToken',
   strokeStyle: 'StrokeStyleToken',
   border: 'BorderToken',
@@ -59,7 +61,7 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
 function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$value'] {
   if (!mode || !token.$extensions?.mode || !(mode in token.$extensions.mode) || !token.$extensions.mode[mode]) return token.$value;
   const modeVal = token.$extensions.mode[mode];
-  if (typeof modeVal === 'string' || Array.isArray(modeVal)) return modeVal;
+  if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') return modeVal;
   return {...(token.$value as typeof modeVal), ...modeVal};
 }
 

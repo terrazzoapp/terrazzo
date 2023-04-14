@@ -11,7 +11,9 @@ const tokenDef = {
   cubicBezier: 'https://design-tokens.github.io/community-group/format/#cubic-bezier',
   dimension: 'https://design-tokens.github.io/community-group/format/#dimension',
   duration: 'https://design-tokens.github.io/community-group/format/#duration',
-  font: 'https://design-tokens.github.io/community-group/format/#font',
+  fontFamily: 'https://design-tokens.github.io/community-group/format/#font-family',
+  fontWeight: 'https://design-tokens.github.io/community-group/format/#font-weight',
+  number: 'https://design-tokens.github.io/community-group/format/#number',
   gradient: 'https://design-tokens.github.io/community-group/format/#gradient',
   shadow: 'https://design-tokens.github.io/community-group/format/#shadow',
   strokeStyle: 'https://design-tokens.github.io/community-group/format/#stroke-style',
@@ -79,11 +81,11 @@ const tokenDef = {
   />
 
   <h2 id="font">
-    <Token type="font" />
+    <Token type="fontFamily" />
     Font
   </h2>
 
-  <p>A font name as defined in <a href={tokenDef.font} target="_blank"><b>8.2</b></a>.</p>
+  <p>A font name as defined in <a href={tokenDef.fontFamily} target="_blank"><b>8.3</b></a>.</p>
 
   <table>
     <thead>
@@ -95,12 +97,12 @@ const tokenDef = {
       <tr>
         <td><code>$type</code></td>
         <td><code>string</code></td>
-        <td><b>font</b></td>
+        <td><b>fontFamily</b></td>
       </tr>
       <tr>
         <td><code>$value</code></td>
         <td><code>string | string[]</code></td>
-        <td> Either a string for a single font name, or an array of strings to include fallbacks (most preferred first)</td>
+        <td>Either a string for a single font name, or an array of strings to include fallbacks (most preferred first)</td>
       </tr>
     </tbody>
   </table>
@@ -109,11 +111,52 @@ const tokenDef = {
     lang="json"
     code={`{
   "no-fallbacks": {
-    "$type": "font",
+    "$type": "fontFamily",
     "$value": "Graphik Regular"
   },
   "with-fallbacks": {
-    "$type": "font",
+    "$type": "fontFamily",
+    "$value": ["Graphik Regular", "-system-ui", "Helvetica", "sans-serif"]
+  }
+}`}
+  />
+
+  <h2 id="font-weight">
+    <Token type="fontWeight" />
+    Font
+  </h2>
+
+  <p>A font weight as defined in <a href={tokenDef.fontWeight} target="_blank"><b>8.4</b></a>.</p>
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>$type</code></td>
+        <td><code>number</code> or <code>string</code></td>
+        <td><b>fontWeight</b></td>
+      </tr>
+      <tr>
+        <td><code>$value</code></td>
+        <td><code>number | string</code></td>
+        <td>Either a font weight number, or an <a href="https://design-tokens.github.io/community-group/format/#font-weight" target="_blank">approved alias</a> of a font weight number.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <Code
+    lang="json"
+    code={`{
+  "no-fallbacks": {
+    "$type": "fontFamily",
+    "$value": "Graphik Regular"
+  },
+  "with-fallbacks": {
+    "$type": "fontFamily",
     "$value": ["Graphik Regular", "-system-ui", "Helvetica", "sans-serif"]
   }
 }`}
@@ -124,7 +167,7 @@ const tokenDef = {
     Dimension
   </h2>
 
-  <p>A unit of distance as defined in <a href={tokenDef.dimension} target="_blank"><b>8.3</b></a>.</p>
+  <p>A unit of distance as defined in <a href={tokenDef.dimension} target="_blank"><b>8.2</b></a>.</p>
 
   <table>
     <thead>
@@ -167,7 +210,7 @@ const tokenDef = {
     Duration
   </h2>
 
-  <p>A length of time as defined in <a href={tokenDef.duration} target="_blank"><b>8.4</b></a>.</p>
+  <p>A length of time as defined in <a href={tokenDef.duration} target="_blank"><b>8.5</b></a>.</p>
 
   <table>
     <thead>
@@ -208,7 +251,7 @@ const tokenDef = {
     Cubic bézier
   </h2>
 
-  <p>An easing curve as defined in <a href={tokenDef.cubicBezier} target="_blank"><b>8.5</b></a>.</p>
+  <p>An easing curve as defined in <a href={tokenDef.cubicBezier} target="_blank"><b>8.6</b></a>.</p>
 
   <table>
     <thead>
@@ -248,6 +291,43 @@ const tokenDef = {
   "easeInOutCubic": {
     "$type": "cubicBezier",
     "$value": [0.65, 0, 0.35, 1]
+  }
+}`}
+  />
+
+  <h2 id="number">
+    <Token type="number" />
+    Duration
+  </h2>
+
+  <p>A number as defined in <a href={tokenDef.number} target="_blank"><b>8.7</b></a>.</p>
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>$type</code></td>
+        <td><code>number</code></td>
+        <td><b>number</b></td>
+      </tr>
+      <tr>
+        <td><code>$value</code></td>
+        <td><code>number</code></td>
+        <td>A number, which can be positive, negative, or a fraction.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <Code
+    lang="json"
+    code={`{
+  "large": {
+    "$type": "number",
+    "$value": 100
   }
 }`}
   />
@@ -508,7 +588,7 @@ const tokenDef = {
   />
 
   <h2 id="typography">
-    <Token type="font" />
+    <Token type="typography" />
     Typography
   </h2>
 
@@ -614,7 +694,7 @@ const tokenDef = {
     "$description": "Typographic styles",
     "family": {
       "GraphikRegular": {
-        "$type": "font",
+        "$type": "fontFamily",
         "$value": "Graphik Regular"
       }
     }

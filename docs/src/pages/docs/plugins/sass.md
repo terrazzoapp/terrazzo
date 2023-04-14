@@ -32,7 +32,7 @@ export default {
       /** handle specific token types */
       transform(token, mode) {
         // Replace "sans-serif" with "Brand Sans" for font tokens
-        if (token.$type === 'font') {
+        if (token.$type === 'fontFamily') {
           return token.$value.replace('sans-serif', 'Brand Sans');
         }
       },
@@ -207,7 +207,7 @@ export default {
       transform(token, mode) {
         const oldFont = 'sans-serif';
         const newFont = 'Custom Sans';
-        if (token.$type === 'font') {
+        if (token.$type === 'fontFamily') {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },

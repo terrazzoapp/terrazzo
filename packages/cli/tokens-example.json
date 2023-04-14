@@ -36,7 +36,7 @@
   },
   "typography": {
     "family": {
-      "$type": "font",
+      "$type": "fontFamily",
       "sans": {
         "$value": ["system-ui", "ui-sans-serif", "-apple-system", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"]
       },

@@ -6,7 +6,9 @@ import type {
   ParsedCubicBezierToken,
   ParsedDimensionToken,
   ParsedDurationToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
+  ParsedFontWeightToken,
+  ParsedNumberToken,
   ParsedGradientToken,
   ParsedLinkToken,
   ParsedShadowToken,
@@ -20,7 +22,7 @@ import type {
 
 import pluginCSS, {varRef, type Options as PluginCSSOptions} from '@cobalt-ui/plugin-css';
 import {indent} from '@cobalt-ui/utils';
-import {encode, formatFontNames} from './util.js';
+import {encode, formatFontFamilyNames} from './util.js';
 
 const CAMELCASE_RE = /([^A-Z])([A-Z])/g;
 const VAR_TOKENS = '__token-values';
@@ -139,13 +141,13 @@ ${cbClose}`
 
         // default value
         let value = cssPlugin ? varRef(token.id, {prefix}) : (customTransform && customTransform(token)) || defaultTransformer(token);
-        if (token.$type === 'link' && options?.embedFiles) value = encode(value, config.outDir);
+        if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
         output.push(indent(`default: (${value}),`, 2));
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
           let modeValue = cssPlugin ? varRef(token.id, {prefix}) : (customTransform && customTransform(token, modeName)) || defaultTransformer(token, modeName);
-          if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue, config.outDir);
+          if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue as string, config.outDir);
           output.push(indent(`"${modeName}": (${modeValue}),`, 2));
         }
         output.push(indent('),', 1));
@@ -165,7 +167,7 @@ ${cbClose}`
           if (cssPlugin) {
             output.push(indent(`"${property}": (${varRef(token.id, {prefix, suffix: property})}),`, 3));
           } else {
-            output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontNames(value) : value}),`, 3));
+            output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
         }
         output.push(indent(`),`, 2));
@@ -175,7 +177,7 @@ ${cbClose}`
           modeProperties.sort(([a], [b]) => a.localeCompare(b));
           for (const [k, value] of modeProperties) {
             const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
-            output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontNames(value) : value}),`, 3));
+            output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
           output.push(indent(`),`, 2));
         }
@@ -216,13 +218,21 @@ export function transformDimension(value: ParsedDimensionToken['$value']): strin
 export function transformDuration(value: ParsedDurationToken['$value']): string {
   return String(value);
 }
-/** transform font */
-export function transformFont(value: ParsedFontToken['$value']): string {
-  return formatFontNames(value);
+/** transform fontFamily */
+export function transformFontFamily(value: ParsedFontFamilyToken['$value']): string {
+  return formatFontFamilyNames(value);
+}
+/** transform fontWeight */
+export function transformFontWeight(value: ParsedFontWeightToken['$value']): number {
+  return Number(value);
 }
 /** transform cubic beziér */
 export function transformCubicBezier(value: ParsedCubicBezierToken['$value']): string {
   return `cubic-bezier(${value.join(', ')})`;
+}
+/** transform number */
+export function transformNumber(value: ParsedNumberToken['$value']): number {
+  return Number(value);
 }
 /** transform link */
 export function transformLink(value: ParsedLinkToken['$value']): string {
@@ -250,7 +260,7 @@ export function transformTransition(value: ParsedTransitionToken['$value']): str
   return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
 }
 
-export function defaultTransformer(token: ParsedToken, mode?: string): string {
+export function defaultTransformer(token: ParsedToken, mode?: string): string | number {
   if (mode && (!token.$extensions?.mode || !token.$extensions.mode[mode])) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
   switch (token.$type) {
     case 'color':
@@ -259,10 +269,14 @@ export function defaultTransformer(token: ParsedToken, mode?: string): string {
       return transformDimension(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
     case 'duration':
       return transformDuration(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'font':
-      return transformFont(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'fontFamily':
+      return transformFontFamily(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'fontWeight':
+      return transformFontWeight(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
     case 'cubicBezier':
       return transformCubicBezier(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
+    case 'number':
+      return transformNumber(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
     case 'link':
       return transformLink(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
     case 'strokeStyle':

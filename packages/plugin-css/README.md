@@ -226,7 +226,7 @@ export default {
       transform(token, mode) {
         const oldFont = 'sans-serif';
         const newFont = 'Custom Sans';
-        if (token.$type === 'font') {
+        if (token.$type === 'fontFamily') {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },

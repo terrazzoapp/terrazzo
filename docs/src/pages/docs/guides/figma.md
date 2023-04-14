@@ -174,11 +174,11 @@ export default {
 
 ![](/images/figma-typography.png)
 
-To extract a **Text Style** from Figma, use the `font` or `typography` type.
+To extract a **Text Style** from Figma, use the `fontFamily` or `typography` type.
 
 | Type         | Effect                                                       |
 | :----------- | :----------------------------------------------------------- |
-| `font`       | Extract only the font family name from a style or component. |
+| `fontFamily` | Extract only the font family name from a style or component. |
 | `typography` | Extract all text styles from a style or component.           |
 
 <!-- prettier-ignore -->
@@ -190,7 +190,7 @@ export default {
       {
         url: "https://www.figma.com/file/Mm0nTq0UXZKG1WXu7PeCmS/MyFile?node-id=2%3A2", // “Share” > Copy link
         tokens: [
-          {style: "Brand Sans",                  token: "typography.family.brand-sans", type: "font"},
+          {style: "Brand Sans",                  token: "typography.family.brand-sans", type: "fontFamily"},
           {style: "Typography / Body",           token: "typography.body",              type: "typography"},
           {style: "Typography / Heading 1",      token: "typography.heading-1",         type: "typography"},
           {style: "Typography / Heading 2",      token: "typography.heading-2",         type: "typography"},

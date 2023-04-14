@@ -46,7 +46,7 @@ for (const [fontName, value] of Object.entries(typography)) {
   if (fontName == 'fontFamilies') {
     for (const [familyName, fontStack] of Object.entries(value)) {
       schema.tokens.font.family[familyName] = {
-        type: 'font',
+        type: 'fontFamily',
         value: fontStack.split(',').map((v) => v.trim().replace(SQ_PREFIX_RE, '').replace(SQ_SUFFIX_RE, '')),
       };
     }

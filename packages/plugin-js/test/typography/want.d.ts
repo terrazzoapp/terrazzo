@@ -5,15 +5,15 @@
  */
 
 import {
-  FontToken,
-  ParsedFontToken,
+  FontFamilyToken,
+  ParsedFontFamilyToken,
   ParsedTypographyToken,
   TypographyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'typography.family.body': FontToken['$value'];
-  'typography.family.heading': FontToken['$value'];
+  'typography.family.body': FontFamilyToken['$value'];
+  'typography.family.heading': FontFamilyToken['$value'];
   'typography.page-title': TypographyToken['$value'];
   'typography.subheading': TypographyToken['$value'];
   'typography.callout': TypographyToken['$value'];
@@ -21,8 +21,8 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'typography.family.body': ParsedFontToken;
-  'typography.family.heading': ParsedFontToken;
+  'typography.family.body': ParsedFontFamilyToken;
+  'typography.family.heading': ParsedFontFamilyToken;
   'typography.page-title': ParsedTypographyToken;
   'typography.subheading': ParsedTypographyToken;
   'typography.callout': ParsedTypographyToken;

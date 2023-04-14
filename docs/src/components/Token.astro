@@ -14,7 +14,7 @@ const {type: tokenType} = Astro.props;
     ]
   }
   {
-    tokenType === 'font' && [
+    ['fontFamily', 'fontWeight'].includes(tokenType) && [
       <svg class="token-bg">
         <use xlink:href="#hex" />
       </svg>,

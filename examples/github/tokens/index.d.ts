@@ -7,11 +7,11 @@
 import {
   ColorToken,
   DimensionToken,
-  FontToken,
+  FontFamilyToken,
   LinkToken,
   ParsedColorToken,
   ParsedDimensionToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
   ParsedLinkToken,
 } from '@cobalt-ui/core';
 
@@ -584,9 +584,9 @@ export declare const tokens: {
   'spacing.spacerX': DimensionToken['$value'];
   'spacing.spacerXl': DimensionToken['$value'];
   'spacing.spacerXxl': DimensionToken['$value'];
-  'font.family.system': FontToken['$value'];
-  'font.family.monospace': FontToken['$value'];
-  'font.family.display': FontToken['$value'];
+  'font.family.system': FontFamilyToken['$value'];
+  'font.family.monospace': FontFamilyToken['$value'];
+  'font.family.display': FontFamilyToken['$value'];
   'font.family.size.f00': DimensionToken['$value'];
   'font.family.size.f0': DimensionToken['$value'];
   'font.family.size.f1': DimensionToken['$value'];
@@ -1169,9 +1169,9 @@ export declare const meta: {
   'spacing.spacerX': ParsedDimensionToken;
   'spacing.spacerXl': ParsedDimensionToken;
   'spacing.spacerXxl': ParsedDimensionToken;
-  'font.family.system': ParsedFontToken;
-  'font.family.monospace': ParsedFontToken;
-  'font.family.display': ParsedFontToken;
+  'font.family.system': ParsedFontFamilyToken;
+  'font.family.monospace': ParsedFontFamilyToken;
+  'font.family.display': ParsedFontFamilyToken;
   'font.family.size.f00': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f00'] } };
   'font.family.size.f0': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f0'] } };
   'font.family.size.f1': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f1'] } };
@@ -2049,5 +2049,5 @@ export declare const modes: {
   };
 };
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];

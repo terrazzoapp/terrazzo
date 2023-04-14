@@ -7,10 +7,10 @@
 import {
   ColorToken,
   DimensionToken,
-  FontToken,
+  FontFamilyToken,
   ParsedColorToken,
   ParsedDimensionToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -73,10 +73,10 @@ export declare const tokens: {
   'color.label.yellow500': ColorToken['$value'];
   'color.label.yellow600': ColorToken['$value'];
   'color.label.yellow700': ColorToken['$value'];
-  'font.family.clean': FontToken['$value'];
-  'font.family.cleanSerif': FontToken['$value'];
-  'font.family.cleanHan': FontToken['$value'];
-  'font.family.sourceCode': FontToken['$value'];
+  'font.family.clean': FontFamilyToken['$value'];
+  'font.family.cleanSerif': FontFamilyToken['$value'];
+  'font.family.cleanHan': FontFamilyToken['$value'];
+  'font.family.sourceCode': FontFamilyToken['$value'];
   'font.size.50': DimensionToken['$value'];
   'font.size.75': DimensionToken['$value'];
   'font.size.100': DimensionToken['$value'];
@@ -154,10 +154,10 @@ export declare const meta: {
   'color.label.yellow500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow500'] } };
   'color.label.yellow600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow600'] } };
   'color.label.yellow700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow700'] } };
-  'font.family.clean': ParsedFontToken;
-  'font.family.cleanSerif': ParsedFontToken;
-  'font.family.cleanHan': ParsedFontToken;
-  'font.family.sourceCode': ParsedFontToken;
+  'font.family.clean': ParsedFontFamilyToken;
+  'font.family.cleanSerif': ParsedFontFamilyToken;
+  'font.family.cleanHan': ParsedFontFamilyToken;
+  'font.family.sourceCode': ParsedFontFamilyToken;
   'font.size.50': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.50'] } };
   'font.size.75': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.75'] } };
   'font.size.100': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.size.100'] } };
@@ -592,5 +592,5 @@ export declare const modes: {
   };
 };
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];

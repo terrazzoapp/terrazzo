@@ -50,8 +50,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type                                 | Description                                                                                                                    |
-| :------- | :----------------------------------- | :---------------------------------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -100,8 +100,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type     | Description                                                                                         |
-| :------- | :------- | :------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -150,8 +150,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type     | Description                                                                                         |
-| :------- | :------- | :------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -200,8 +200,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type     | Description                                                                                         |
-| :------- | :------- | :------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -250,8 +250,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type     | Description                                                                                         |
-| :------- | :------- | :------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -300,8 +300,8 @@ You’ll also be able to see any `$description`s specified in your IDE in the fo
 
 In addition, you’ll also find the following exports:
 
-| Name     | Type     | Description                                                                                         |
-| :------- | :------- | :------------------------------------------------------------------------------------------------
+| Name | Type | Description |
+| :--- | :--- | :---------- |
 
 # @cobalt-ui/plugin-js
 
@@ -397,7 +397,7 @@ export default {
       transform(token, mode) {
         const oldFont = 'sans-serif';
         const newFont = 'Custom Sans';
-        if (token.$type === 'font') {
+        if (token.$type === 'fontFamily') {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },

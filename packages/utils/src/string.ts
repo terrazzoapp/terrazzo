@@ -21,6 +21,7 @@ export const CHARACTER_RE = [
 export const CASECHANGE_RE = /[a-zâ-ž][A-ZÀ-Ž]/g;
 export const KEBAB_COVERT_RE = /[_.]/g;
 export const CAMEL_CONVERT_RE = /[^-_.\s][-_.\s]+[^-_.\s]/g;
+/* eslint-disable-next-line no-misleading-character-class */
 export const VALID_KEY = new RegExp(`^[${CHARACTER_RE.join('')}]+$`);
 
 /** convert string to kebab-case */

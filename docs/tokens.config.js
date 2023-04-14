@@ -28,7 +28,7 @@ export default {
           {style: 'Red Gradient', token: 'gradient.red', type: 'gradient'},
 
           // typography
-          {style: 'Brand Sans', token: 'typography.family.brand', type: 'font'},
+          {style: 'Brand Sans', token: 'typography.family.brand', type: 'fontFamily'},
           {style: 'Heading 1', token: 'typography.heading-1', type: 'typography'},
           {style: 'Heading 2', token: 'typography.heading-2', type: 'typography'},
           {style: 'Heading 3', token: 'typography.heading-3', type: 'typography'},

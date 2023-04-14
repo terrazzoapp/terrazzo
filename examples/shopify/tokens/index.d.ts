@@ -7,10 +7,10 @@
 import {
   ColorToken,
   DimensionToken,
-  FontToken,
+  FontFamilyToken,
   ParsedColorToken,
   ParsedDimensionToken,
-  ParsedFontToken,
+  ParsedFontFamilyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
@@ -72,8 +72,8 @@ export declare const tokens: {
   'color.yellowDark': ColorToken['$value'];
   'color.yellowDarker': ColorToken['$value'];
   'color.yellowText': ColorToken['$value'];
-  'font.family.base': FontToken['$value'];
-  'font.family.mono': FontToken['$value'];
+  'font.family.base': FontFamilyToken['$value'];
+  'font.family.mono': FontFamilyToken['$value'];
   'space.none': DimensionToken['$value'];
   'space.extraTight': DimensionToken['$value'];
   'space.tight': DimensionToken['$value'];
@@ -142,8 +142,8 @@ export declare const meta: {
   'color.yellowDark': ParsedColorToken;
   'color.yellowDarker': ParsedColorToken;
   'color.yellowText': ParsedColorToken;
-  'font.family.base': ParsedFontToken;
-  'font.family.mono': ParsedFontToken;
+  'font.family.base': ParsedFontFamilyToken;
+  'font.family.mono': ParsedFontFamilyToken;
   'space.none': ParsedDimensionToken;
   'space.extraTight': ParsedDimensionToken;
   'space.tight': ParsedDimensionToken;
@@ -155,5 +155,5 @@ export declare const meta: {
 
 export declare const modes: Record<string, never>;
 
-export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[typeof tokenID];
-export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[typeof tokenID]): typeof modes[typeof tokenID];
+export declare function token(tokenID: keyof typeof tokens, modeName?: never): typeof tokens[tokenID];
+export declare function token(tokenID: keyof typeof modes, modeName?: keyof typeof modes[tokenID]): typeof modes[tokenID][modeName];
