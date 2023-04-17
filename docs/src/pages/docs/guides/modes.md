@@ -16,7 +16,9 @@ To explain this concept, we’ll explore 2 common usages: <b>color</b> and <b>ty
   <figcaption>GitHub’s settings allow not only light and dark modes, but alternate color themes for color blindness.</figcaption>
 </figure>
 
-GitHub’s Primer design system has 5 color themes: _Light default_, _Light high contrast_, _Dark default_, _Dark high contrast_, and _Dark dimmed_ (shown above). How might that be represented in tokens?
+In this screenshot of GitHub’s dashboard you’ll find 5 color themes: _Light default_, _Light high contrast_, _Dark default_, _Dark high contrast_, and _Dark dimmed_ (shown above). How might that be represented in tokens?
+
+_Note: since this guide was written, GitHub has since added additional color modes. But since that doesn’t change the concept, we’ll stick with the older (simpler) example for the purposes of illustration._
 
 Consider the `red` and `white` colors in the system. Whereas `red` has a different value for each mode, `white` is an absolute value that doesn’t change. One way to represent that may be:
 
