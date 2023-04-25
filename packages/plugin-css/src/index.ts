@@ -272,36 +272,52 @@ export function defaultTransformer(token: ParsedToken, options?: {mode?: string;
   }
 
   switch (token.$type) {
-    case 'color':
+    case 'color': {
       return transformColor(value as typeof token.$value);
-    case 'dimension':
+    }
+    case 'dimension': {
       return transformDimension(value as typeof token.$value);
-    case 'duration':
+    }
+    case 'duration': {
       return transformDuration(value as typeof token.$value);
-    case 'fontFamily':
+    }
+    case 'font' as 'fontFamily': // @deprecated (but keep support for now)
+    case 'fontFamily': {
       return transformFontFamily(value as typeof token.$value);
-    case 'fontWeight':
+    }
+    case 'fontWeight': {
       return transformFontWeight(value as typeof token.$value);
-    case 'cubicBezier':
+    }
+    case 'cubicBezier': {
       return transformCubicBezier(value as typeof token.$value);
-    case 'number':
+    }
+    case 'number': {
       return transformNumber(value as typeof token.$value);
-    case 'link':
+    }
+    case 'link': {
       return transformLink(value as typeof token.$value);
-    case 'strokeStyle':
+    }
+    case 'strokeStyle': {
       return transformStrokeStyle(value as typeof token.$value);
-    case 'border':
+    }
+    case 'border': {
       return transformBorder(value as typeof token.$value);
-    case 'shadow':
+    }
+    case 'shadow': {
       return transformShadow(value as typeof token.$value);
-    case 'gradient':
+    }
+    case 'gradient': {
       return transformGradient(value as typeof token.$value);
-    case 'transition':
+    }
+    case 'transition': {
       return transformTransition(value as typeof token.$value);
-    case 'typography':
+    }
+    case 'typography': {
       return transformTypography(value as typeof token.$value);
-    default:
+    }
+    default: {
       throw new Error(`No transformer defined for $type: ${(token as any).$type} tokens`);
+    }
   }
 }
 
