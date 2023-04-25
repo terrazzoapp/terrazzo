@@ -263,33 +263,48 @@ export function transformTransition(value: ParsedTransitionToken['$value']): str
 export function defaultTransformer(token: ParsedToken, mode?: string): string | number {
   if (mode && (!token.$extensions?.mode || !token.$extensions.mode[mode])) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
   switch (token.$type) {
-    case 'color':
+    case 'color': {
       return transformColor(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'dimension':
+    }
+    case 'dimension': {
       return transformDimension(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'duration':
+    }
+    case 'duration': {
       return transformDuration(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'fontFamily':
+    }
+    case 'font' as 'fontFamily':
+    case 'fontFamily': {
       return transformFontFamily(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'fontWeight':
+    }
+    case 'fontWeight': {
       return transformFontWeight(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'cubicBezier':
+    }
+    case 'cubicBezier': {
       return transformCubicBezier(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'number':
+    }
+    case 'number': {
       return transformNumber(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'link':
+    }
+    case 'link': {
       return transformLink(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'strokeStyle':
+    }
+    case 'strokeStyle': {
       return transformStrokeStyle(mode ? ((token.$extensions as any).mode[mode] as typeof token.$value) : token.$value);
-    case 'border':
+    }
+    case 'border': {
       return transformBorder(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
-    case 'shadow':
+    }
+    case 'shadow': {
       return transformShadow(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
-    case 'gradient':
+    }
+    case 'gradient': {
       return transformGradient(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
-    case 'transition':
+    }
+    case 'transition': {
       return transformTransition(mode ? {...token.$value, ...((token.$extensions as any).mode[mode] as typeof token.$value)} : token.$value);
-    default:
+    }
+    default: {
       throw new Error(`No transformer defined for $type: ${token.$type} tokens`);
+    }
   }
 }

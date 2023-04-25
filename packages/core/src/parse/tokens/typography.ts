@@ -27,6 +27,7 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
   for (const [k, v] of Object.entries(value)) {
     const property = camelize(k);
     switch (property) {
+      case 'font' as 'fontFamily': // @deprecated (but keep support for now)
       case 'fontName':
       case 'fontFamily': {
         normalized.fontFamily = normalizeFontFamilyValue(v);

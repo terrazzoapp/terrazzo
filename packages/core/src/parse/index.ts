@@ -1,4 +1,4 @@
-import {cloneDeep} from '@cobalt-ui/utils';
+import {cloneDeep, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue} from './tokens/color.js';
@@ -222,80 +222,97 @@ export function parse(schema: Group): ParseResult {
     try {
       switch (token.$type) {
         // 8.1 Color
-        case 'color':
+        case 'color': {
           tokens[id].$value = normalizeColorValue(values[id]);
           normalizeModes(id, normalizeColorValue);
           break;
+        }
         // 8.2 Dimension
-        case 'dimension':
+        case 'dimension': {
           tokens[id].$value = normalizeDimensionValue(values[id]);
           normalizeModes(id, normalizeDimensionValue);
           break;
+        }
         // 8.3 FontFamily
-        case 'fontFamily':
+        case 'font' as 'fontFamily': // @deprecated (but keep support for now)
+        case 'fontFamily': {
+          if ((token.$type as any) === 'font') console.warn(`${FG_YELLOW}@cobalt-ui/core${RESET} $type: "font" is deprecated. Please use "fontFamily" instead.`); // eslint-disable-line no-console
           tokens[id].$value = normalizeFontFamilyValue(values[id]);
           normalizeModes(id, normalizeFontFamilyValue);
           break;
+        }
         // 8.4 FontWeight
-        case 'fontWeight':
+        case 'fontWeight': {
           tokens[id].$value = normalizeFontWeightValue(values[id]);
           normalizeModes(id, normalizeFontWeightValue);
           break;
+        }
         // 8.5 Duration
-        case 'duration':
+        case 'duration': {
           tokens[id].$value = normalizeDurationValue(values[id]);
           normalizeModes(id, normalizeDurationValue);
           break;
+        }
         // 8.6 Cubic Bezier
-        case 'cubicBezier':
+        case 'cubicBezier': {
           tokens[id].$value = normalizeCubicBezierValue(values[id]);
           normalizeModes(id, normalizeCubicBezierValue);
           break;
+        }
         // 8.7 Number
-        case 'number':
+        case 'number': {
           tokens[id].$value = normalizeNumberValue(values[id]);
           normalizeModes(id, normalizeNumberValue);
           break;
+        }
         // 8.? Link
-        case 'link':
+        case 'link': {
           tokens[id].$value = normalizeLinkValue(values[id]);
           normalizeModes(id, normalizeLinkValue);
           break;
+        }
         // 9.2 Stroke Style
-        case 'strokeStyle':
+        case 'strokeStyle': {
           tokens[id].$value = normalizeStrokeStyleValue(values[id]);
           normalizeModes(id, normalizeStrokeStyleValue);
           break;
+        }
         // 9.3 Border
-        case 'border':
+        case 'border': {
           tokens[id].$value = normalizeBorderValue(values[id]);
           normalizeModes(id, normalizeBorderValue);
           break;
+        }
         // 9.4 Transition
-        case 'transition':
+        case 'transition': {
           tokens[id].$value = normalizeTransitionValue(values[id]);
           normalizeModes(id, normalizeTransitionValue);
           break;
+        }
         // 9.5 Shadow
-        case 'shadow':
+        case 'shadow': {
           tokens[id].$value = normalizeShadowValue(values[id]);
           normalizeModes(id, normalizeShadowValue);
           break;
+        }
         // 9.6 Gradient
-        case 'gradient':
+        case 'gradient': {
           tokens[id].$value = normalizeGradientValue(values[id]);
           normalizeModes(id, normalizeGradientValue);
           break;
+        }
         // 9.7 Typography
-        case 'typography':
+        case 'typography': {
           tokens[id].$value = normalizeTypographyValue(values[id]);
           normalizeModes(id, normalizeTypographyValue);
           break;
+        }
         // custom/other
-        default:
+        default: {
           (tokens[id] as any).value = values[id];
           normalizeModes(id, (v) => v);
           break;
+        }
       }
     } catch (err: any) {
       errors.push(`${id}: ${err.message || err}`);
