@@ -1,5 +1,20 @@
 # @cobalt-ui/plugin-js
 
+## 1.1.0
+
+### Minor Changes
+
+- 526777f: Add `fontFamily`, `fontWeight`, `fontName`, and `number` types, remove `font` type
+
+### Patch Changes
+
+- ecc5389: Fix TS inference error with newer versions of TS
+- ecc5389: Update TS types for 4.7
+- Updated dependencies [ecc5389]
+- Updated dependencies [526777f]
+  - @cobalt-ui/utils@0.5.4
+  - @cobalt-ui/cli@0.8.0
+
 ## 1.0.7
 
 ### Patch Changes

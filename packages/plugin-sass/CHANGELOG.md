@@ -1,5 +1,20 @@
 # @cobalt-ui/plugin-sass
 
+## 1.2.0
+
+### Minor Changes
+
+- 526777f: Add `fontFamily`, `fontWeight`, `fontName`, and `number` types, remove `font` type
+
+### Patch Changes
+
+- ecc5389: Update TS types for 4.7
+- Updated dependencies [ecc5389]
+- Updated dependencies [526777f]
+  - @cobalt-ui/plugin-css@2.0.0
+  - @cobalt-ui/utils@0.5.4
+  - @cobalt-ui/cli@0.8.0
+
 ## 1.1.4
 
 ### Patch Changes

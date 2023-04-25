@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.0.0
+
+### Patch Changes
+
+- ecc5389: Update TS types for 4.7
+
 ## 0.5.3
 
 ### Patch Changes

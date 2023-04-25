@@ -1,5 +1,23 @@
 # @cobalt-ui/cli
 
+## 1.0.0
+
+1.0 Release! 🎉 While the only significant change from `0.x` to `1.x` is the changing of a few font types, this is more of a symbolic release than an actual semver one. The original plan was to wait to release 1.0 when the W3C Design Token spec was finalized. But who knows when that will be? And so this just marks a journey into building a more stable design token foundation, wherever the current spec is at.
+
+Proper semver will still be respected, so while some spec changes are non-breaking, any breaking change from now on will get proper major bumps for everything.
+
+### Minor Changes
+
+- 526777f: Add `fontFamily`, `fontWeight`, `fontName`, and `number` types, remove `font` type
+
+### Patch Changes
+
+- ecc5389: Update TS types for 4.7
+- Updated dependencies [ecc5389]
+- Updated dependencies [526777f]
+  - @cobalt-ui/utils@0.5.4
+  - @cobalt-ui/core@0.8.0
+
 ## 0.7.4
 
 ### Patch Changes

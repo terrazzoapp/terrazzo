@@ -8,10 +8,10 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^0.7.4",
-    "@cobalt-ui/plugin-css": "^1.1.6",
-    "@cobalt-ui/plugin-js": "^1.0.7",
-    "@cobalt-ui/plugin-sass": "^1.1.4",
+    "@cobalt-ui/cli": "^1.0.0",
+    "@cobalt-ui/plugin-css": "^1.2.0",
+    "@cobalt-ui/plugin-js": "^1.1.0",
+    "@cobalt-ui/plugin-sass": "^1.2.0",
     "@primer/octicons": "^16.3.1",
     "@primer/primitives": "^7.9.0"
   }

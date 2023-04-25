@@ -6,7 +6,7 @@
     "W3C",
     "JSON"
   ],
-  "version": "0.7.4",
+  "version": "1.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -31,8 +31,8 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^0.7.4",
-    "@cobalt-ui/utils": "^0.5.3",
+    "@cobalt-ui/core": "^1.0.0",
+    "@cobalt-ui/utils": "^1.0.0",
     "@types/csso": "^5.0.0",
     "better-color-tools": "^0.10.2",
     "chokidar": "^3.5.3",
