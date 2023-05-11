@@ -12,14 +12,22 @@ export interface Options {
   js?: boolean | string;
   /** output JSON? (default: false) */
   json?: boolean | string;
+  /** output meta? (default: false) */
+  meta?: boolean;
   /** modify values */
   transform?: TransformFn;
 }
 
 interface JSResult {
   tokens: {[id: string]: ParsedToken['$value']};
-  meta: {[id: string]: Token};
+  meta?: {[id: string]: Token};
   modes: {[id: string]: Mode<ParsedToken['$value']>};
+}
+
+interface TSResult {
+  tokens: string[];
+  meta?: string[];
+  modes: string[];
 }
 
 const tokenTypes: Record<ParsedToken['$type'], string> = {
@@ -87,6 +95,7 @@ export default function pluginJS(options?: Options): Plugin {
     async build({tokens, metadata}): Promise<BuildResult[]> {
       let files: BuildResult[] = [];
       const buildTS = !!jsFilename; // should .d.ts be built?
+      const includeMeta = options?.meta !== false; // should `meta` be included?
 
       // 1. Build values
       const js: JSResult = {
@@ -94,7 +103,7 @@ export default function pluginJS(options?: Options): Plugin {
         meta: {},
         modes: {},
       };
-      const ts: Record<'tokens' | 'meta' | 'modes', string[]> = {tokens: [], meta: [], modes: []};
+      const ts: TSResult = {tokens: [], meta: [], modes: []};
       const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
         js.tokens[token.id] = await transform(token);
@@ -103,14 +112,14 @@ export default function pluginJS(options?: Options): Plugin {
           ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));
           tsImports.add(t);
         }
-        js.meta[token.id] = {
+        js.meta![token.id] = {
           _original: cloneDeep(token._original),
           ...((token._group && {_group: token._group}) || {}),
           ...cloneDeep(token as any),
         };
         if (buildTS) {
           const t = `Parsed${tokenTypes[token.$type]}`;
-          ts.meta.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
+          ts.meta!.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
           tsImports.add(t);
         }
         if (token.$extensions?.mode) {
@@ -122,6 +131,11 @@ export default function pluginJS(options?: Options): Plugin {
           }
           if (buildTS) ts.modes.push(indent('};', 1));
         }
+      }
+
+      if (!includeMeta) {
+        delete js.meta;
+        delete ts.meta;
       }
 
       // 2. Write to file
@@ -155,8 +169,7 @@ export default function pluginJS(options?: Options): Plugin {
               '',
               `export const tokens = ${serializeJS(js.tokens, {comments: jsDoc})}`,
               '',
-              `export const meta = ${serializeJS(js.meta)}`,
-              '',
+              ...(!!js.meta ? [`export const meta = ${serializeJS(js.meta)}`, ''] : []),
               `export const modes = ${Object.keys(js.modes).length ? serializeJS(js.modes) : `{};`}`,
               '',
               `/** Get individual token */
@@ -180,10 +193,7 @@ export function token(tokenID, modeName) {
               ...ts.tokens,
               '};',
               '',
-              'export declare const meta: {',
-              ...ts.meta,
-              '};',
-              '',
+              ...(!!ts.meta ? ['export declare const meta: {', ...ts.meta, '};', ''] : []),
               `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
               '',
               `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
