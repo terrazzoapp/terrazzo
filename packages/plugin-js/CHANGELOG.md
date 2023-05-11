@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.2.0
+
+### Minor Changes
+
+- 51fd059: Allow meta fields to not be generated for javascript builds
+
 ## 1.1.0
 
 ### Minor Changes

@@ -77,7 +77,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
@@ -92,7 +92,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
@@ -107,7 +107,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
@@ -137,7 +137,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
@@ -152,7 +152,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
@@ -176,7 +176,7 @@ importers:
         specifier: ^1.2.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
         specifier: ^1.2.0
