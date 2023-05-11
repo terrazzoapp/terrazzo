@@ -169,7 +169,7 @@ export default function pluginJS(options?: Options): Plugin {
               '',
               `export const tokens = ${serializeJS(js.tokens, {comments: jsDoc})}`,
               '',
-              ...(!!js.meta ? [`export const meta = ${serializeJS(js.meta)}`, ''] : []),
+              ...(js.meta ? [`export const meta = ${serializeJS(js.meta)}`, ''] : []),
               `export const modes = ${Object.keys(js.modes).length ? serializeJS(js.modes) : `{};`}`,
               '',
               `/** Get individual token */
@@ -193,7 +193,7 @@ export function token(tokenID, modeName) {
               ...ts.tokens,
               '};',
               '',
-              ...(!!ts.meta ? ['export declare const meta: {', ...ts.meta, '};', ''] : []),
+              ...(ts.meta ? ['export declare const meta: {', ...ts.meta, '};', ''] : []),
               `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
               '',
               `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
