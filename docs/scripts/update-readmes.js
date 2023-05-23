@@ -6,6 +6,7 @@
 
 import fs from 'node:fs';
 import {URL} from 'node:url';
+const FRONTMATTER_RE = /^---/gm;
 
 const updates = {
   '../../packages/plugin-css/README.md': '../src/pages/docs/plugins/css.md',
@@ -26,7 +27,7 @@ for (const [input, output] of Object.entries(updates)) {
   }
 
   const dest = fs.readFileSync(new URL(output, import.meta.url), 'utf8');
-  const parts = dest.split('---');
+  const parts = dest.split(FRONTMATTER_RE);
   parts[parts.length - 1] = `\n\n${src}`;
   fs.writeFileSync(new URL(output, import.meta.url), parts.join('---'));
 }
