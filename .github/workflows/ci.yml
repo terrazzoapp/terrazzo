@@ -27,4 +27,4 @@ jobs:
       - uses: actions/setup-node@v3
       - run: pnpm i
       - run: pnpm run build
-      - run: pnpm run test
+      - run: pnpm test
