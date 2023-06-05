@@ -23,14 +23,14 @@
     {"title": "Guides",          "pathname": "/docs/guides"},
     {"title": "Best Practices",  "pathname": "/docs/guides/best-practices"},
     {"title": "Modes",           "pathname": "/docs/guides/modes"},
-    {"title": "Figma",           "pathname": "/docs/guides/figma"},
+    {"title": "Tokens Studio",   "pathname": "/docs/guides/tokens-studio"},
     {"title": "Create Plugins",  "pathname": "/docs/guides/plugins"},
     {"title": "Plugins",         "pathname": "/docs/plugins"},
     {"title": "CSS",             "pathname": "/docs/plugins/css"},
     {"title": "Sass",            "pathname": "/docs/plugins/sass"},
     {"title": "JS/JSON/TS",      "pathname": "/docs/plugins/js"},
     {"title": "Reference",       "pathname": "/docs/reference"},
-    {"title": "Config",          "pathname": "/docs/reference/config"},
+    {"title": "Config API",      "pathname": "/docs/reference/config"},
     {"title": "About",           "pathname": "/docs/reference/about"}
   ]
 }

@@ -20,12 +20,12 @@ export function normalizeShadowValue(value: unknown): ShadowValue {
   if (!value) throw new Error('missing value');
   if (typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid shadow');
   const v = value as any;
-  ['offsetX', 'offsetX', 'blur', 'spread', 'color'].forEach((k) => {
+  for (const k of ['offsetX', 'offsetX', 'blur', 'spread', 'color']) {
     if (typeof v[k] === 'number' && v[k] > 0) throw new Error(`${k} missing units`);
     if (k === 'offsetX' || k === 'offsetY') {
       if (typeof v[k] !== 'string' && v[k] !== 0) throw new Error(`missing ${k}`);
     }
-  });
+  }
   return {
     offsetX: normalizeDimensionValue(v.offsetX || '0'),
     offsetY: normalizeDimensionValue(v.offsetY || '0'),

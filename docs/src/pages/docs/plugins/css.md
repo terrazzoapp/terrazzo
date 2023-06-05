@@ -21,6 +21,8 @@ import pluginCSS from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [pluginCSS()],
 };
 ```
@@ -57,6 +59,8 @@ import pluginCSS from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginCSS({
       /** set the filename inside outDir */
@@ -133,6 +137,8 @@ import css from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     css({
       modeSelectors: {
@@ -181,6 +187,8 @@ import css from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     css({
       modeSelectors: {
@@ -226,6 +234,8 @@ Inside plugin options, you can specify an optional `transform()` function.
 ```js
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginCSS({
       transform(token, mode) {
@@ -249,6 +259,8 @@ If you have your own custom token type, e.g. `my-custom-type`, you’ll have to 
 ```js
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginCSS({
       transform(token, mode) {
@@ -276,6 +288,8 @@ To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.m
 
   /** @type import('@cobalt-ui/core').Config */
   export default {
+    tokens: './tokens.json',
+    outDir: './tokens/',
     plugins: [
 -     pluginCSS({ filename: 'tokens.css }),
 +     pluginSass({

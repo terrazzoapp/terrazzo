@@ -36,8 +36,8 @@
     "@cobalt-ui/cli": "^1.0.0",
     "@cobalt-ui/core": "^1.0.0",
     "@types/mime": "^2.0.3",
-    "@types/node": "^20.2.3",
+    "@types/node": "^20.2.5",
     "npm-run-all": "^4.1.5",
-    "vitest": "^0.31.1"
+    "vitest": "^0.31.4"
   }
 }

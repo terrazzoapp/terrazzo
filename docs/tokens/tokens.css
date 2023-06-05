@@ -75,16 +75,16 @@ body[data-color-mode="light"] {
 }
 
 body[data-color-mode="dark"] {
-  --ui-bg: var(--color-black);
+  --ui-bg: #001824;
   --ui-fg: var(--color-white);
-  --ui-action: var(--color-blue-70);
+  --ui-action: var(--color-blue-80);
 }
 
 @media(prefers-color-scheme:dark) {
   :root {
-    --ui-bg: var(--color-black);
+    --ui-bg: #001824;
     --ui-fg: var(--color-white);
-    --ui-action: var(--color-blue-70);
+    --ui-action: var(--color-blue-80);
   }
 }
 
@@ -119,10 +119,12 @@ body[data-color-mode="dark"] {
   }
 
   body[data-color-mode="dark"] {
+    --ui-bg: color(display-p3 0 0.094118 0.141176);
   }
 
   @media(prefers-color-scheme:dark) {
     :root {
+      --ui-bg: color(display-p3 0 0.094118 0.141176);
     }
   }
 }

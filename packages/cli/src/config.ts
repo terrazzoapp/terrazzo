@@ -57,28 +57,6 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
     }
   }
 
-  // config.figma
-  // validate & nromalize
-  if (userConfig.figma !== undefined) {
-    if (!userConfig.figma.docs || !Array.isArray(userConfig.figma.docs) || !userConfig.figma.docs.length) throw new Error(`No Figma docs found in config (nothing to sync)`);
-    for (let n = 0; n < userConfig.figma.docs.length; n++) {
-      const doc = userConfig.figma.docs[n];
-      if (!doc.url) throw new Error(`Figma doc [${n}] missing url`);
-      if (!Array.isArray(doc.tokens) || !doc.tokens.length) throw new Error(`Figma doc [${n}] missing array of tokens`);
-      for (const token of doc.tokens) {
-        // required properties
-        if (!token.token) throw new Error(`Figma doc [${n}]: all tokens must have "token" property`);
-        if (!token.type) throw new Error(`Figma doc [${n}]: ${token.token}: missing "type" property`);
-        if (!token.style && !token.component) throw new Error(`Figma doc [${n}]: ${token.token}: must reference a "style" or "component"`);
-        if (token.style && token.component) throw new Error(`Figma doc [${n}]: ${token.token}: cannot reference both "style" AND "component" (choose one)`);
-
-        // file token
-        if (token.type === 'link' && token.style) throw new Error(`Figma doc [${n}]: ${token.token}: link must be a component`);
-        if (token.type === 'link' && !token.filename) throw new Error(`Figma doc [${n}]: ${token.token}: link tokens must specify "filename"`);
-      }
-    }
-  }
-
   // send resolved config to all plugins (pass original reference; don’t clone)
   if (Array.isArray(config.plugins) && config.plugins.length) {
     for (const plugin of config.plugins) {

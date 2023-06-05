@@ -23,16 +23,6 @@ export default {
   outDir: './tokens/',
   /** plugins to generate different outputs */
   plugins: [],
-  /** map Figma styles & components to tokens.json  */
-  figma: {
-    docs: [
-      // add Figma docs
-    ],
-    /** optional: specify optimization settings */
-    optimization: {
-      svgo: false,
-    },
-  },
 };
 ```
 

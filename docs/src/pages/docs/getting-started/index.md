@@ -20,7 +20,7 @@ The W3C Community Group’s approach differs in being the [largest collaborative
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) v16 or higher (newer is always recommended).
+- [Node.js](https://nodejs.org) v18 or higher (newer is always recommended).
 
 ## Install
 
@@ -47,6 +47,8 @@ import pluginCSS from '@cobalt-ui/plugin-css';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [pluginCSS()],
 };
 ```
@@ -62,7 +64,7 @@ This will generate a **tokens/tokens.css** file in your project for you to use.
 ## Next steps
 
 - [Learn about tokens](/docs/tokens)
-- [Sync with Figma](/docs/guides/figma)
+- [Sync with Figma using Tokens Studio](/docs/guides/tokens-studio)
 - [Learn how to configure Cobalt](/docs/reference/config)
 - [Add plugins](/docs/plugins)
 
