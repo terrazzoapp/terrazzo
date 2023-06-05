@@ -45,26 +45,30 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
         margin-left: auto;
         margin-right: auto;
         max-width: 100%;
-        padding: 4rem 2rem;
+        padding: 8rem 2rem 2rem;
         position: relative;
-        width: 55rem;
+        width: 64rem;
         z-index: 10;
 
         @media (min-width: 600px) {
           justify-content: flex-end;
-          padding-top: 12rem;
+          padding-top: 16rem;
         }
       }
 
       .features {
-        font-size: token('font.size.06');
+        font-size: token('font.size.05');
+        font-weight: 400;
+        line-height: 1.8;
+        list-style: none;
         margin-bottom: token('space.layout.sm');
         margin-top: token('space.layout.sm');
         padding: 0;
         text-align: left;
-        font-weight: 400;
-        list-style: none;
-        line-height: 1.8;
+
+        @media (min-width: 600px) {
+          font-size: token('font.size.06');
+        }
 
         li {
           background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='white' d='M21.1921,5.46455 C21.5826,5.85507 21.5826,6.48824 21.1921,6.87876 L9.94909,18.1218 C9.51951,18.5513 8.82303,18.5513 8.39345,18.1218 L2.80731,12.5356 C2.41679,12.1451 2.41679,11.5119 2.80731,11.1214 C3.19783,10.7309 3.831,10.7309 4.22152,11.1214 L9.17127,16.0711 L19.7779,5.46455 C20.1684,5.07402 20.8016,5.07402 21.1921,5.46455 Z'></path></svg>");
@@ -91,7 +95,7 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
         align-items: flex-start;
         display: flex;
         flex-wrap: wrap;
-        height: 50%;
+        height: 12rem;
         justify-content: flex-start;
         left: 0;
         overflow: hidden;
@@ -101,6 +105,10 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
         transform: translateZ(0);
         top: 0;
         width: 100%;
+
+        @media (min-width: 600px) {
+          height: 20rem;
+        }
 
         &::after {
           background: linear-gradient(transparent, #{token('color.blue.50')});
