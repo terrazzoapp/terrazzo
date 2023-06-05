@@ -19,43 +19,66 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
     <style lang="scss">
       @use '../../tokens' as *;
 
-      .header {
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .main {
         --ui-bg: #{token('color.blue.50')};
 
         align-items: center;
         background: token('color.blue.50');
         box-sizing: border-box;
         color: token('color.white');
+        min-height: calc(100vh - 64px); // nav bar height
         display: flex;
         flex-direction: column;
-        padding: 4rem 2rem;
         transform: translateZ(0);
 
-        @media (min-width: 600px) {
-          height: calc(100vh - #{token('space.layout.lg')});
-          justify-content: flex-end;
-          max-height: 60em;
-          padding-bottom: 0;
-          padding-bottom: 12.5%;
-          padding-top: 0;
+        :global(a:not(.btn)) {
+          color: inherit;
         }
       }
 
-      .header-text {
+      .hero {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        padding: 4rem 2rem;
         position: relative;
+        width: 55rem;
         z-index: 10;
+
+        @media (min-width: 600px) {
+          justify-content: flex-end;
+          padding-top: 12rem;
+        }
       }
 
       .features {
-        font-size: token('font.size.05');
+        font-size: token('font.size.06');
         margin-bottom: token('space.layout.sm');
         margin-top: token('space.layout.sm');
+        padding: 0;
         text-align: left;
+        font-weight: 400;
+        list-style: none;
         line-height: 1.8;
+
+        li {
+          background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path fill='white' d='M21.1921,5.46455 C21.5826,5.85507 21.5826,6.48824 21.1921,6.87876 L9.94909,18.1218 C9.51951,18.5513 8.82303,18.5513 8.39345,18.1218 L2.80731,12.5356 C2.41679,12.1451 2.41679,11.5119 2.80731,11.1214 C3.19783,10.7309 3.831,10.7309 4.22152,11.1214 L9.17127,16.0711 L19.7779,5.46455 C20.1684,5.07402 20.8016,5.07402 21.1921,5.46455 Z'></path></svg>");
+          background-size: 1.25rem 1.25rem;
+          background-position: 0 0.625rem;
+          background-repeat: no-repeat;
+          margin: 1rem 0;
+          padding: 0 0 0 2rem;
+        }
       }
 
       .title {
         font-size: 36px;
+        line-height: 0.9;
         font-weight: 550;
         margin: 0;
 
@@ -90,26 +113,52 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
           width: 100%;
         }
       }
+
+      .icon {
+        fill: currentColor;
+        transition: transform 100ms token('ease.outCirc');
+        height: 1em;
+        width: 1em;
+      }
+
+      .btn {
+        padding-right: 0.625em;
+
+        &:hover {
+          .icon {
+            transform: translate3d(20%, 0, 0);
+          }
+        }
+      }
     </style>
   </head>
   <body class="page--home">
     <SkipToMain />
     <Nav />
-    <div>
-      <header class="header tac">
-        <div class="tokens">
-          {[...new Array(1200)].map(() => <Token type={tokenTypes[Math.floor(Math.random() * tokenTypes.length)]} />)}
+    <div class="main">
+      <div class="tokens">
+        {[...new Array(1200)].map(() => <Token type={tokenTypes[Math.floor(Math.random() * tokenTypes.length)]} />)}
+      </div>
+      <div class="hero">
+        <h1 class="title">W3C Design Tokens,<br />Anywhere</h1>
+        <ul class="features">
+          <li>Generate JS, TS, Sass, CSS, and more with plugins</li>
+          <li>Works with Tokens Studio for Figma</li>
+          <li>Make Design Tokens part of your dev stack (React, Vue, Svelte, and vanilla JS/HTML supported)</li>
+        </ul>
+        <div class="actions">
+          <a class="btn" href="/docs/getting-started">
+            Get Started
+            <svg class="icon icon-right" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+              ><path
+                d="M15.7072,11.2929 C16.0977,11.6834 16.0977,12.3166 15.7072,12.7071 L10.0503,18.364 C9.65982,18.7545 9.02666,18.7545 8.63613,18.364 C8.24561,17.9734 8.24561,17.3403 8.63613,16.9497 L13.5859,12 L8.63613,7.05025 C8.24561,6.65973 8.24561,6.02656 8.63613,5.63604 C9.02666,5.24551 9.65982,5.24551 10.0503,5.63604 L15.7072,11.2929 Z"
+              ></path></svg
+            >
+          </a>
         </div>
-        <div class="header-text">
-          <h1 class="title">W3C Design Tokens, Anywhere</h1>
-          <div class="features">• Generate JS, TS, Sass, CSS, and more<br />• Sync with Figma<br />• Use in CI</div>
-          <a class="btn" href="/docs/getting-started">Get Started</a>
-        </div>
-      </header>
+      </div>
+
+      <Footer />
     </div>
-    <div class="wrapper">
-      <DocsPagination />
-    </div>
-    <Footer />
   </body>
 </html>

@@ -180,7 +180,7 @@ export function parse(rawTokens: unknown): ParseResult {
       string(strVal) {
         if (!isAlias(strVal)) return strVal;
         const nextID = getAliasID(strVal);
-        if (!values[nextID]) {
+        if (!(nextID in values)) {
           throw new Error(`${id}: can’t find ${strVal}`);
         }
 

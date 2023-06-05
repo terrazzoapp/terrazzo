@@ -26,13 +26,13 @@ The W3C Community Group’s approach differs in being the [largest collaborative
 
 Install the CLI:
 
-```
+```bash
 npm i -D @cobalt-ui/cli
 ```
 
 Install any plugins you’d like to use (_note: you must install at least one plugin to generate code_):
 
-```
+```bash
 npm i -D @cobalt-ui/plugin-css @cobalt-ui/plugin-js @cobalt-ui/plugin-sass
 ```
 
@@ -55,7 +55,7 @@ export default {
 
 Run the following command (**co** being short for “Cobalt”):
 
-```
+```bash
 npx co build
 ```
 

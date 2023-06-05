@@ -261,7 +261,7 @@ describe('Color', () => {
             fontSize: '14px',
             fontWeight: 400,
             letterSpacing: 0,
-            lineHeight: 1.4,
+            lineHeight: '1.4em',
             textCase: 'none',
             textDecoration: 'none',
           },

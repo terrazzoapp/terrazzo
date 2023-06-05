@@ -1,15 +1,17 @@
 @use '../../tokens' as *;
 
 .btn {
+  align-items: center;
   background-color: token('color.white');
-  border-radius: 0.5em;
   border: 3px solid token('color.blue.50');
+  border-radius: 0.5em;
   color: token('color.blue.50');
-  display: inline-block;
-  font-size: inherit;
+  display: inline-flex;
+  gap: 0.375em;
+  font-size: 1.125rem;
   font-weight: 500;
   outline: 2px solid rgba(token('color.white'), 0);
-  padding: 0.875em 1.125em;
+  padding: 0.75em 1em;
   text-decoration: none;
   transition: outline 150ms linear;
 
