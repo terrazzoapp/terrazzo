@@ -45,16 +45,16 @@ importers:
   docs:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: workspace:^
+        specifier: ^1.0.0
         version: link:../packages/cli
       '@cobalt-ui/core':
-        specifier: workspace:^
+        specifier: ^1.0.0
         version: link:../packages/core
       '@cobalt-ui/plugin-css':
-        specifier: workspace:^
+        specifier: ^1.2.0
         version: link:../packages/plugin-css
       '@cobalt-ui/plugin-sass':
-        specifier: workspace:^
+        specifier: ^1.2.0
         version: link:../packages/plugin-sass
       astro:
         specifier: ^2.5.7

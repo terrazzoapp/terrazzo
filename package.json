@@ -36,7 +36,8 @@
     "test:plugin-css": "cd packages/plugin-css && npm run test",
     "test:plugin-js": "cd packages/plugin-js && npm run test",
     "test:plugin-sass": "cd packages/plugin-sass && npm run test",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "version": "pnpm run build && changeset version && pnpm i"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.4.8",
