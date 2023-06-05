@@ -1,4 +1,4 @@
-import {cloneDeep, FG_YELLOW, RESET} from '@cobalt-ui/utils';
+import {cloneDeep, FG_YELLOW, getAliasID, isAlias, RESET} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue} from './tokens/color.js';
@@ -15,6 +15,7 @@ import {normalizeGradientValue} from './tokens/gradient.js';
 import {normalizeTypographyValue} from './tokens/typography.js';
 import {normalizeFontWeightValue} from './tokens/fontWeight.js';
 import {normalizeNumberValue} from './tokens/number.js';
+import {convertTokensStudioFormat, isTokensStudioFormat} from './tokens-studio.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -25,25 +26,33 @@ export interface ParseResult {
   };
 }
 
-const ALIAS_RE = /^\{([^}]+)\}$/;
+interface InheritedGroup {
+  $type?: TokenType;
+  $extensions: {
+    requiredModes: string[];
+  };
+}
 
 const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$extensions']);
 
-export function parse(schema: Group): ParseResult {
+export function parse(rawTokens: unknown): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const result: ParseResult = {result: {metadata: {}, tokens: []}};
-  if (!schema || typeof schema !== 'object' || Array.isArray(schema)) {
-    errors.push(`Invalid schema type. Expected object, received "${Array.isArray(schema) ? 'Array' : typeof schema}"`);
+  if (!rawTokens || typeof rawTokens !== 'object' || Array.isArray(rawTokens)) {
+    errors.push(`Invalid schema type. Expected object, received "${Array.isArray(rawTokens) ? 'Array' : typeof rawTokens}"`);
     result.errors = errors;
     return result;
   }
 
-  interface InheritedGroup {
-    $type?: TokenType;
-    $extensions: {
-      requiredModes: string[];
-    };
+  // 0. handle Tokens Studio for Figma format
+  let schema = rawTokens as Group;
+
+  if (isTokensStudioFormat(rawTokens)) {
+    const tokensStudioResult = convertTokensStudioFormat(rawTokens as Group);
+    errors.push(...(tokensStudioResult.errors ?? []));
+    warnings.push(...(tokensStudioResult.warnings ?? []));
+    schema = tokensStudioResult.result;
   }
 
   // 1. collect tokens
@@ -132,7 +141,7 @@ export function parse(schema: Group): ParseResult {
   const topNodes: Record<string, TokenOrGroup> = {};
   for (const k of Object.keys(schema)) {
     if (k.startsWith('$')) {
-      if (k === '$extensions') group.$extensions = {...group.$extensions, ...schema.$extensions};
+      if (k === '$extensions') group.$extensions = {...schema.$extensions, ...group.$extensions};
       else (group as any)[k] = schema[k];
       if (!RESERVED_KEYS.has(k)) {
         if (!result.warnings) result.warnings = [];
@@ -169,15 +178,15 @@ export function parse(schema: Group): ParseResult {
         return val;
       },
       string(strVal) {
-        if (!ALIAS_RE.test(strVal)) return strVal;
+        if (!isAlias(strVal)) return strVal;
         const nextID = getAliasID(strVal);
-        if (!values[nextID]) {
+        if (!(nextID in values)) {
           throw new Error(`${id}: can’t find ${strVal}`);
         }
 
         // check for circular references
         const ref = values[nextID] as string;
-        if (typeof ref === 'string' && ALIAS_RE.test(ref) && id === getAliasID(ref)) {
+        if (typeof ref === 'string' && isAlias(ref) && id === getAliasID(ref)) {
           throw new Error(`${id}: can’t reference circular alias ${strVal}`);
         }
 
@@ -357,20 +366,14 @@ function unaliasedValues(values: Record<string, unknown>): boolean {
   return Object.values(values).some((v) =>
     splitType(v, {
       default: () => false,
-      string: (value) => ALIAS_RE.test(value),
+      string: (value) => isAlias(value),
       array: (value) =>
         value.some((part) => {
-          if (typeof part === 'string') return ALIAS_RE.test(part);
+          if (typeof part === 'string') return isAlias(part);
           if (isObj(part)) return unaliasedValues(part as Record<string, unknown>);
           return false;
         }),
       object: (value) => unaliasedValues(value as Record<string, unknown>),
     }),
   );
-}
-
-function getAliasID(input: string): string {
-  const match = input.match(ALIAS_RE);
-  if (!match) return input;
-  return match[1];
 }

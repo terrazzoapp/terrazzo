@@ -12,6 +12,8 @@ import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginJS({
       /** output JS (with TS types)? boolean or filename (default: true) */
@@ -67,6 +69,8 @@ import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginJS({
       /** output JS? boolean or filename */
@@ -87,6 +91,8 @@ Inside plugin options, you can specify an optional `transform()` function.
 ```js
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
   plugins: [
     pluginJS({
       transform(token, mode) {

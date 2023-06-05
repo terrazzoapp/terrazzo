@@ -12,10 +12,8 @@ import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
 export default {
+  tokens: './tokens.json',
   outDir: './tokens/',
-  figma: {
-    // figma settings
-  },
   plugins: [pluginJS()],
 };
 ```
@@ -31,9 +29,9 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 +   tokens: "@my-scope/my-tokens/tokens.json", // ✅ Cobalt can locate this just fine
 ```
 
-## Figma
+## Syncing with Figma
 
-[View Figma docs](../guides/figma)
+You can sync tokens with Figma by using the [Tokens Studio for Figma](../guides/tokens-studio) plugin.
 
 ## Plugins
 

@@ -1,17 +1,20 @@
 /**
- * Schema tests
- * tests support of the Design Tokens W3C spec
+ * W3C Design Tokens specification
  */
-
 import {FG_RED, RESET} from '@cobalt-ui/utils';
 import {describe, expect, test} from 'vitest';
 import {parse} from '../dist/index.js';
 
-// parse schema and expect no errors
+/** parse schema and expect no errors */
 function getTokens(json) {
   const {errors, result} = parse(json);
-  if (errors) errors.forEach((e) => console.error(`${FG_RED}${e}${RESET}`)); // eslint-disable-line no-console
+  if (errors) {
+    for (const err of errors) {
+      console.error(`${FG_RED}${err}${RESET}`); // eslint-disable-line no-console
+    }
+  }
   expect(errors).to.not.be.ok;
+
   return result.tokens;
 }
 

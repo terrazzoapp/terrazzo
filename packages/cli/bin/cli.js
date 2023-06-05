@@ -14,7 +14,6 @@ import {fileURLToPath, URL} from 'node:url';
 import parser from 'yargs-parser';
 import {init as initConfig} from '../dist/config.js';
 import {build} from '../dist/build.js';
-import figma from '../dist/figma/index.js';
 
 const [, , cmd, ...args] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
@@ -50,7 +49,7 @@ async function main() {
   }
 
   // ---
-  // full-run commands: build, sync, check
+  // full-run commands: build, check
 
   // setup: load tokens.config.js and tokens.config.json
   let configPath;
@@ -132,27 +131,8 @@ async function main() {
       break;
     }
     case 'sync': {
-      if (!fs.existsSync(config.tokens)) {
-        console.error(`  ${FG_RED}✘  Could not locate ${config.tokens}. To create one, run \`npx cobalt init\`.${RESET}`);
-        process.exit(1);
-      }
-
-      let rawSchema = JSON.parse(fs.readFileSync(config.tokens), 'utf8');
-
-      const updates = await figma(config);
-      for (const [id, token] of Object.entries(updates)) {
-        let namespaces = id.split('.');
-        let node = rawSchema;
-        for (const namespace of namespaces) {
-          if (!node[namespace]) node[namespace] = {};
-          node = node[namespace];
-        }
-        for (const [k, v] of Object.entries(token)) {
-          node[k] = v; //
-        }
-      }
-      fs.writeFileSync(config.tokens, JSON.stringify(rawSchema, undefined, 2), 'utf8');
-      console.log(`  ${FG_GREEN}✔${RESET}  Tokens updated from Figma`);
+      console.error(`  ${FG_YELLOW}! "co sync" was deprecated. See https://cobalt-ui.pages.dev/docs/guides/figma`);
+      process.exit(1);
       break;
     }
     case 'check': {
@@ -203,7 +183,6 @@ function showHelp() {
   [commands]
     build           Build token artifacts from tokens.json
       --watch, -w   Watch tokens.json for changes and recompile
-    sync            Sync tokens.json with Figma
     init            Create a starter tokens.json file
     check [path]    Check tokens.json for errors
 
@@ -245,11 +224,11 @@ function time(start) {
 /** Print errors */
 export function printErrors(errors) {
   if (!errors || !Array.isArray(errors)) return;
-  errors.forEach((e) => console.error(`  ${FG_RED}✘  ${e}${RESET}`));
+  for (const err of errors) console.error(`  ${FG_RED}✘  ${err}${RESET}`);
 }
 
 /** Print warnings */
 export function printWarnings(warnings) {
   if (!warnings || !Array.isArray(warnings)) return;
-  warnings.forEach((w) => console.warn(`  ${FG_YELLOW}!  ${w}${RESET}`));
+  for (const warn of warnings) console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
 }

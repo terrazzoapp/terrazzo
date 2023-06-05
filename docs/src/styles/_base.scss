@@ -44,7 +44,7 @@ h6 {
 
 h1 {
   font-size: token('font.size.08');
-  font-weight: 600;
+  font-weight: 550;
 }
 
 h2 {
@@ -137,7 +137,9 @@ pre {
 }
 
 code {
+  li &,
   p & {
+    font-size: 0.875em;
     font-weight: 500;
   }
 
