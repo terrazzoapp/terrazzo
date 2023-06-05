@@ -1,5 +1,21 @@
 # @cobalt-ui/cli
 
+## 1.1.0
+
+### Minor Changes
+
+- [#30](https://github.com/drwpow/cobalt-ui/pull/30) [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717) Thanks [@drwpow](https://github.com/drwpow)! - Deprecate Figma sync CLI and core functionality (in favor of Tokens Studio support)
+
+- [#30](https://github.com/drwpow/cobalt-ui/pull/30) [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717) Thanks [@drwpow](https://github.com/drwpow)! - Add Tokens Studio support
+
+### Patch Changes
+
+- [#33](https://github.com/drwpow/cobalt-ui/pull/33) [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f) Thanks [@drwpow](https://github.com/drwpow)! - Remove unused deps
+
+- Updated dependencies [[`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f), [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f), [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717)]:
+  - @cobalt-ui/core@1.1.0
+  - @cobalt-ui/utils@1.1.0
+
 ## 1.0.0
 
 1.0 Release! 🎉 While the only significant change from `0.x` to `1.x` is the changing of a few font types, this is more of a symbolic release than an actual semver one. The original plan was to wait to release 1.0 when the W3C Design Token spec was finalized. But who knows when that will be? And so this just marks a journey into building a more stable design token foundation, wherever the current spec is at.

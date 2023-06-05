@@ -1,5 +1,16 @@
 # @cobalt-ui/plugin-sass
 
+## 1.2.1
+
+### Patch Changes
+
+- [#33](https://github.com/drwpow/cobalt-ui/pull/33) [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f) Thanks [@drwpow](https://github.com/drwpow)! - Remove unused deps
+
+- Updated dependencies [[`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f), [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f)]:
+  - @cobalt-ui/cli@1.1.0
+  - @cobalt-ui/utils@1.1.0
+  - @cobalt-ui/plugin-css@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
@@ -11,7 +22,7 @@
 - ecc5389: Update TS types for 4.7
 - Updated dependencies [ecc5389]
 - Updated dependencies [526777f]
-  - @cobalt-ui/plugin-css@2.0.0
+  - @cobalt-ui/plugin-css@1.2.0
   - @cobalt-ui/utils@0.5.4
   - @cobalt-ui/cli@0.8.0
 

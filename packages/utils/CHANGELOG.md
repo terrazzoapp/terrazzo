@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.1.0
+
+### Minor Changes
+
+- [#32](https://github.com/drwpow/cobalt-ui/pull/32) [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f) Thanks [@drwpow](https://github.com/drwpow)! - Move getAliasID to utils
+
 ## 1.0.0
 
 ### Patch Changes

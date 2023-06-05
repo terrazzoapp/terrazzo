@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-js
 
+## 1.2.1
+
+### Patch Changes
+
+- Updated dependencies [[`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f), [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f)]:
+  - @cobalt-ui/cli@1.1.0
+  - @cobalt-ui/utils@1.1.0
+
 ## 1.2.0
 
 ### Minor Changes
