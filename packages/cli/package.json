@@ -33,14 +33,11 @@
   "dependencies": {
     "@cobalt-ui/core": "^1.0.0",
     "@cobalt-ui/utils": "^1.0.0",
-    "@types/csso": "^5.0.0",
     "better-color-tools": "^0.12.3",
     "chokidar": "^3.5.3",
     "dotenv": "^16.1.4",
-    "number-precision": "^1.6.0",
     "piscina": "^3.2.0",
     "svgo": "^3.0.2",
-    "undici": "^5.22.1",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
