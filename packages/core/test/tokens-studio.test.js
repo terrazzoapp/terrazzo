@@ -38,7 +38,7 @@ describe('Sizing', () => {
     const tokens = getTokens(json);
 
     expect(tokens.find((t) => t.id === 'global.sizing.s')).toEqual(expect.objectContaining({$type: 'dimension', $value: '8px'}));
-    expect(tokens.find((t) => t.id === 'global.sizing.m')).toEqual(expect.objectContaining({$type: 'dimension', $value: '16'}));
+    expect(tokens.find((t) => t.id === 'global.sizing.m')).toEqual(expect.objectContaining({$type: 'number', $value: 16}));
     expect(tokens.find((t) => t.id === 'global.sizing.l')).toEqual(expect.objectContaining({$type: 'dimension', $value: '2rem'}));
   });
 });
@@ -194,6 +194,18 @@ describe('Color', () => {
       };
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'global.borderWidth')).toEqual(expect.objectContaining({$type: 'dimension', $value: '1px'}));
+    });
+  });
+
+  describe('Opacity', () => {
+    test('basic', () => {
+      const json = {
+        global: {
+          opacity: {50: {type: 'opacity', value: 0.5}},
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'global.opacity.50')).toEqual(expect.objectContaining({$type: 'number', $value: 0.5}));
     });
   });
 

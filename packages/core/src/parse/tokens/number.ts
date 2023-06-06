@@ -18,7 +18,7 @@ import type {ParsedNumberToken} from '../../token.js';
  * }
  */
 export function normalizeNumberValue(value: unknown): ParsedNumberToken['$value'] {
-  if (!value) throw new Error('missing value');
+  if (value === null || value === undefined) throw new Error('missing value');
   if (typeof value === 'number') return value;
   throw new Error(`expected number, received ${typeof value}`);
 }
