@@ -5,7 +5,28 @@ import Nav from '../components/Nav.astro';
 import SkipToMain from '../components/SkipToMain.astro';
 import Token from '../components/Token.astro';
 
-const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 'fontWeight', 'dimension', 'duration', 'link', 'cubic-bezier', 'shadow', 'border', 'stroke-style', 'transition', 'empty', 'empty', 'empty', 'empty', 'empty'];
+const tokenTypes = [
+  'border',
+  'color',
+  'color',
+  'cubic-bezier',
+  'dimension',
+  'duration',
+  'fontFamily',
+  'fontFamily',
+  'fontWeight',
+  'fontWeight',
+  'link',
+  'number',
+  'shadow',
+  'stroke-style',
+  'transition',
+  'empty',
+  'empty',
+  'empty',
+  'empty',
+  'empty',
+];
 ---
 
 <!DOCTYPE html>
@@ -27,7 +48,7 @@ const tokenTypes = ['color', 'color', 'fontFamily', 'fontFamily', 'fontWeight', 
         background: token('color.blue.50');
         box-sizing: border-box;
         color: token('color.white');
-        min-height: calc(100vh - 64px); // nav bar height
+        min-height: calc(100vh - 3.5rem); // nav bar height
         display: flex;
         flex-direction: column;
         transform: translateZ(0);

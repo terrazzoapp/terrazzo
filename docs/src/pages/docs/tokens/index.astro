@@ -60,12 +60,7 @@ const tokenDef = {
       <tr>
         <td><code>$value</code></td>
         <td><code>string</code></td>
-        <td
-          >A hexadecimal color. 3-, 6-, and 8-character (with alpha) are all allowed. The original spec limits valid colors to hexadecimal only, but Cobalt allows any valid CSS color (parsed by <a
-            href="https://github.com/drwpow/better-color-tools"
-            target="_blank">better-color-tools</a
-          >)
-        </td>
+        <td>Though the spec limits valid colors to hex, Cobalt allows any valid CSS color, including OKLAB and OKLCH (parsed by <a href="https://github.com/drwpow/better-color-tools" target="_blank">better-color-tools</a>)</td>
       </tr>
     </tbody>
   </table>
@@ -74,9 +69,11 @@ const tokenDef = {
     lang="json"
     code={`{
   "blue": {
-    "$type": "color",
-    "$value": "#fa4549"
-  }
+    "60": {
+      "$type": "color",
+      "$value": "oklch(60% 0.216564 269)"
+    }
+  },
 }`}
   />
 
@@ -658,7 +655,7 @@ const tokenDef = {
       <tr>
         <td><code>$type</code></td>
         <td><code>string</code></td>
-        <td>(optional) Lets child tokens omit <b>$type</b> and will use this instead (can be overridden per-token)</td>
+        <td>(optional) Lets child tokens omit <code>$type</code> and will use this instead (can be overridden per-token)</td>
       </tr>
       <tr>
         <td><code>$extensions</code></td>
@@ -705,7 +702,7 @@ const tokenDef = {
   <h2>Custom types</h2>
 
   <p>
-    Any other <b>$type</b> will be treated as a custom type. <b>$value</b> may have any shape desired. But note that custom types will likely break existing plugins unless you configure them (the CSS and Sass plugins have a <b
+    Any other <code>$type</code> will be treated as a custom type. <code>$value</code> may have any shape desired. But note that custom types will likely break existing plugins unless you configure them (the CSS and Sass plugins have a <b
       >transformer</b
     > option), or unless you write your own plugin for Cobalt (which is easier than some may think!).
   </p>

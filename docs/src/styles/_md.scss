@@ -53,9 +53,16 @@
     }
   }
 
+  blockquote {
+    background-color: token('color.blue.95');
+    border-left: 0.375rem solid token('color.blue.70');
+    margin: 0;
+    padding: 0.5rem 1.5rem;
+  }
+
   li {
-    margin-bottom: token('space.2xs');
-    margin-top: token('space.2xs');
+    margin-bottom: token('space.sm');
+    margin-top: token('space.sm');
 
     p:first-of-type {
       margin-top: 0;
@@ -74,6 +81,23 @@
     display: inline-block;
     position: relative;
     z-index: 2;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  li {
+    code {
+      border: 1px solid token('color.ui.contrast.10');
+      background-color: token('color.ui.contrast.05');
+      border-radius: 0.25rem;
+      line-height: 1.4;
+      padding: 0 0.25em;
+    }
   }
 
   figure {

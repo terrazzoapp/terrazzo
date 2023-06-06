@@ -9,193 +9,309 @@
 
 $__token-values: (
   "color.black": (
-    default: (#00193f),
+    default: (var(--color-black)),
   ),
   "color.blue.10": (
-    default: (#062053),
+    default: (var(--color-blue-10)),
+  ),
+  "color.blue.15": (
+    default: (var(--color-blue-15)),
   ),
   "color.blue.20": (
-    default: (#0f2868),
+    default: (var(--color-blue-20)),
+  ),
+  "color.blue.25": (
+    default: (var(--color-blue-25)),
   ),
   "color.blue.30": (
-    default: (#192f7d),
+    default: (var(--color-blue-30)),
   ),
   "color.blue.40": (
-    default: (#223793),
+    default: (var(--color-blue-40)),
   ),
   "color.blue.50": (
-    default: (#2b3faa),
+    default: (var(--color-blue-50)),
   ),
   "color.blue.60": (
-    default: (#3764ba),
+    default: (var(--color-blue-60)),
   ),
   "color.blue.70": (
-    default: (#4887c9),
+    default: (var(--color-blue-70)),
   ),
   "color.blue.80": (
-    default: (#5ca9d7),
+    default: (var(--color-blue-80)),
+  ),
+  "color.blue.85": (
+    default: (var(--color-blue-85)),
   ),
   "color.blue.90": (
-    default: (#72cce5),
+    default: (var(--color-blue-90)),
   ),
-  "color.blue.100": (
-    default: (#89eff1),
+  "color.blue.95": (
+    default: (var(--color-blue-95)),
   ),
-  "color.blue.00": (
-    default: (#00193f),
+  "color.gray.0": (
+    default: (var(--color-gray-0)),
+  ),
+  "color.gray.10": (
+    default: (var(--color-gray-10)),
+  ),
+  "color.gray.15": (
+    default: (var(--color-gray-15)),
+  ),
+  "color.gray.20": (
+    default: (var(--color-gray-20)),
+  ),
+  "color.gray.25": (
+    default: (var(--color-gray-25)),
+  ),
+  "color.gray.30": (
+    default: (var(--color-gray-30)),
+  ),
+  "color.gray.40": (
+    default: (var(--color-gray-40)),
+  ),
+  "color.gray.50": (
+    default: (var(--color-gray-50)),
+  ),
+  "color.gray.60": (
+    default: (var(--color-gray-60)),
+  ),
+  "color.gray.70": (
+    default: (var(--color-gray-70)),
+  ),
+  "color.gray.80": (
+    default: (var(--color-gray-80)),
+  ),
+  "color.gray.85": (
+    default: (var(--color-gray-85)),
+  ),
+  "color.gray.90": (
+    default: (var(--color-gray-90)),
+  ),
+  "color.gray.95": (
+    default: (var(--color-gray-95)),
+  ),
+  "color.gray.100": (
+    default: (var(--color-gray-100)),
   ),
   "color.darkGray": (
-    default: (#282a37),
+    default: (var(--color-darkGray)),
   ),
   "color.green": (
-    default: (#77cd8f),
+    default: (var(--color-green)),
   ),
   "color.purple": (
-    default: (#6a35d9),
+    default: (var(--color-purple)),
   ),
   "color.red": (
-    default: (#f6566a),
+    default: (var(--color-red)),
   ),
   "color.white": (
-    default: (#ffffff),
+    default: (var(--color-white)),
   ),
   "color.code.bg.greenShift": (
-    default: (#2b5eaa),
+    default: (var(--color-code-bg-greenShift)),
   ),
   "color.code.gold": (
-    default: (#ffdc2b),
+    default: (var(--color-code-gold)),
   ),
   "color.code.green": (
-    default: (#79ff6a),
+    default: (var(--color-code-green)),
   ),
   "color.code.orange": (
-    default: (#ff6418),
+    default: (var(--color-code-orange)),
   ),
   "color.code.red": (
-    default: (#f56d65),
+    default: (var(--color-code-red)),
   ),
   "color.code.pink": (
-    default: (#ff5ae2),
+    default: (var(--color-code-pink)),
   ),
   "color.code.skyBlue": (
-    default: (#59c1ff),
+    default: (var(--color-code-skyBlue)),
   ),
-  "ui.bg": (
-    default: (#ffffff),
-    "light": (#ffffff),
-    "dark": (#001824),
+  "color.ui.contrast.0": (
+    default: (var(--color-ui-contrast-0)),
+    "light": (var(--color-ui-contrast-0)),
+    "dark": (var(--color-ui-contrast-0)),
   ),
-  "ui.fg": (
-    default: (#00193f),
-    "light": (#00193f),
-    "dark": (#ffffff),
+  "color.ui.contrast.10": (
+    default: (var(--color-ui-contrast-10)),
+    "light": (var(--color-ui-contrast-10)),
+    "dark": (var(--color-ui-contrast-10)),
   ),
-  "ui.action": (
-    default: (#2b3faa),
-    "light": (#2b3faa),
-    "dark": (#5ca9d7),
+  "color.ui.contrast.15": (
+    default: (var(--color-ui-contrast-15)),
+    "light": (var(--color-ui-contrast-15)),
+    "dark": (var(--color-ui-contrast-15)),
+  ),
+  "color.ui.contrast.20": (
+    default: (var(--color-ui-contrast-20)),
+    "light": (var(--color-ui-contrast-20)),
+    "dark": (var(--color-ui-contrast-20)),
+  ),
+  "color.ui.contrast.30": (
+    default: (var(--color-ui-contrast-30)),
+    "light": (var(--color-ui-contrast-30)),
+    "dark": (var(--color-ui-contrast-30)),
+  ),
+  "color.ui.contrast.40": (
+    default: (var(--color-ui-contrast-40)),
+    "light": (var(--color-ui-contrast-40)),
+    "dark": (var(--color-ui-contrast-40)),
+  ),
+  "color.ui.contrast.50": (
+    default: (var(--color-ui-contrast-50)),
+    "light": (var(--color-ui-contrast-50)),
+    "dark": (var(--color-ui-contrast-50)),
+  ),
+  "color.ui.contrast.60": (
+    default: (var(--color-ui-contrast-60)),
+    "light": (var(--color-ui-contrast-60)),
+    "dark": (var(--color-ui-contrast-60)),
+  ),
+  "color.ui.contrast.70": (
+    default: (var(--color-ui-contrast-70)),
+    "light": (var(--color-ui-contrast-70)),
+    "dark": (var(--color-ui-contrast-70)),
+  ),
+  "color.ui.contrast.80": (
+    default: (var(--color-ui-contrast-80)),
+    "light": (var(--color-ui-contrast-80)),
+    "dark": (var(--color-ui-contrast-80)),
+  ),
+  "color.ui.contrast.85": (
+    default: (var(--color-ui-contrast-85)),
+    "light": (var(--color-ui-contrast-85)),
+    "dark": (var(--color-ui-contrast-85)),
+  ),
+  "color.ui.contrast.90": (
+    default: (var(--color-ui-contrast-90)),
+    "light": (var(--color-ui-contrast-90)),
+    "dark": (var(--color-ui-contrast-90)),
+  ),
+  "color.ui.contrast.95": (
+    default: (var(--color-ui-contrast-95)),
+    "light": (var(--color-ui-contrast-95)),
+    "dark": (var(--color-ui-contrast-95)),
+  ),
+  "color.ui.contrast.100": (
+    default: (var(--color-ui-contrast-100)),
+    "light": (var(--color-ui-contrast-100)),
+    "dark": (var(--color-ui-contrast-100)),
+  ),
+  "color.ui.contrast.05": (
+    default: (var(--color-ui-contrast-05)),
+    "light": (var(--color-ui-contrast-05)),
+    "dark": (var(--color-ui-contrast-05)),
+  ),
+  "color.ui.action": (
+    default: (var(--color-ui-action)),
+    "light": (var(--color-ui-action)),
+    "dark": (var(--color-ui-action)),
   ),
   "font.family.ppNeue": (
-    default: ("PP Neue Montreal", system-ui, ui-sans-serif, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif),
+    default: (var(--font-family-ppNeue)),
   ),
   "font.family.mono": (
-    default: ("Red Hat Mono", ui-monospace, "SF Mono", Monaco, "Cascadia Mono", "Cascadia Code", Consolas, monospace),
+    default: (var(--font-family-mono)),
   ),
   "font.size.01": (
-    default: (8px),
+    default: (var(--font-size-01)),
   ),
   "font.size.02": (
-    default: (9px),
+    default: (var(--font-size-02)),
   ),
   "font.size.03": (
-    default: (12px),
+    default: (var(--font-size-03)),
   ),
   "font.size.04": (
-    default: (14px),
+    default: (var(--font-size-04)),
   ),
   "font.size.05": (
-    default: (18px),
+    default: (var(--font-size-05)),
   ),
   "font.size.06": (
-    default: (22px),
+    default: (var(--font-size-06)),
   ),
   "font.size.07": (
-    default: (28px),
+    default: (var(--font-size-07)),
   ),
   "font.size.08": (
-    default: (32px),
+    default: (var(--font-size-08)),
   ),
   "space.4xs": (
-    default: (1px),
+    default: (var(--space-4xs)),
   ),
   "space.3xs": (
-    default: (2px),
+    default: (var(--space-3xs)),
   ),
   "space.2xs": (
-    default: (4px),
+    default: (var(--space-2xs)),
   ),
   "space.xs": (
-    default: (8px),
+    default: (var(--space-xs)),
   ),
   "space.sm": (
-    default: (12px),
+    default: (var(--space-sm)),
   ),
   "space.md": (
-    default: (16px),
+    default: (var(--space-md)),
   ),
   "space.lg": (
-    default: (24px),
+    default: (var(--space-lg)),
   ),
   "space.xl": (
-    default: (32px),
+    default: (var(--space-xl)),
   ),
   "space.2xl": (
-    default: (40px),
+    default: (var(--space-2xl)),
   ),
   "space.3xl": (
-    default: (48px),
+    default: (var(--space-3xl)),
   ),
   "space.layout.2xs": (
-    default: (16px),
+    default: (var(--space-layout-2xs)),
   ),
   "space.layout.xs": (
-    default: (24px),
+    default: (var(--space-layout-xs)),
   ),
   "space.layout.sm": (
-    default: (32px),
+    default: (var(--space-layout-sm)),
   ),
   "space.layout.md": (
-    default: (48px),
+    default: (var(--space-layout-md)),
   ),
   "space.layout.lg": (
-    default: (64px),
+    default: (var(--space-layout-lg)),
   ),
   "space.layout.xl": (
-    default: (96px),
+    default: (var(--space-layout-xl)),
   ),
   "space.layout.2xl": (
-    default: (160px),
+    default: (var(--space-layout-2xl)),
   ),
   "ease.linear": (
-    default: (cubic-bezier(0, 0, 1, 1)),
+    default: (var(--ease-linear)),
   ),
   "ease.inCirc": (
-    default: (cubic-bezier(0.55, 0, 1, 0.45)),
+    default: (var(--ease-inCirc)),
   ),
   "ease.outCirc": (
-    default: (cubic-bezier(0, 0.55, 0.45, 1)),
+    default: (var(--ease-outCirc)),
   ),
   "ease.inOutCirc": (
-    default: (cubic-bezier(0.85, 0, 0.15, 1)),
+    default: (var(--ease-inOutCirc)),
   ),
   "ease.outCubic": (
-    default: (cubic-bezier(0.33, 1, 0.68, 1)),
+    default: (var(--ease-outCubic)),
   ),
   "ease.inCubic": (
-    default: (cubic-bezier(0.32, 0, 0.67, 1)),
+    default: (var(--ease-inCubic)),
   ),
   "ease.inOutCubic": (
-    default: (cubic-bezier(0.65, 0, 0.35, 1)),
+    default: (var(--ease-inOutCubic)),
   ),
 );
 
