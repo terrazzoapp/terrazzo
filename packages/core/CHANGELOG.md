@@ -1,5 +1,13 @@
 # @cobalt-ui/core
 
+## 1.1.1
+
+### Patch Changes
+
+- [#37](https://github.com/drwpow/cobalt-ui/pull/37) [`214559f`](https://github.com/drwpow/cobalt-ui/commit/214559f87d5fe38355b5ef0552388397cb77129b) Thanks [@drwpow](https://github.com/drwpow)! - Fix Tokens Studio opacity token type
+
+- [#37](https://github.com/drwpow/cobalt-ui/pull/37) [`214559f`](https://github.com/drwpow/cobalt-ui/commit/214559f87d5fe38355b5ef0552388397cb77129b) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug where `$type: number, $value: 0` was treated as a missing value
+
 ## 1.1.0
 
 ### Minor Changes

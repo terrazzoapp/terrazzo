@@ -6,6 +6,10 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "keywords": [
+    "cobalt",
+    "design tokens"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/drwpow/cobalt-ui.git",

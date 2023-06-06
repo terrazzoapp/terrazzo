@@ -189,7 +189,7 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.1.0
+        specifier: ^1.1.1
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.1.0
