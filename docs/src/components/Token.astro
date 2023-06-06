@@ -22,11 +22,42 @@ const {type: tokenType} = Astro.props;
     ]
   }
   {
-    ['dimension', 'duration', 'link'].includes(tokenType) && [
+    ['dimension', 'duration'].includes(tokenType) && [
       <svg class="token-bg">
         <use xlink:href="#hex" />
       </svg>,
       <div class="token-fg" />,
+    ]
+  }
+  {
+    tokenType === 'number' && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <div class="token-fg">
+        <div class="token-fg-dot" />
+        <div class="token-fg-dot" style="animation-delay: 50ms" />
+        <div class="token-fg-dot" style="animation-delay: 100ms" />
+        <div class="token-fg-dot" style="animation-delay: 50ms" />
+        <div class="token-fg-dot" style="animation-delay: 100ms" />
+        <div class="token-fg-dot" style="animation-delay: 150ms" />
+        <div class="token-fg-dot" style="animation-delay: 100ms" />
+        <div class="token-fg-dot" style="animation-delay: 150ms" />
+        <div class="token-fg-dot" style="animation-delay: 200ms" />
+      </div>,
+    ]
+  }
+  {
+    tokenType === 'link' && [
+      <svg class="token-bg">
+        <use xlink:href="#hex" />
+      </svg>,
+      <div class="token-fg">
+        <div class="token-fg-dot-1" />
+        <div class="token-fg-dot-2" />
+        <div class="token-fg-dot-3" />
+        <div class="token-fg-dot-4" />
+      </div>,
     ]
   }
   {
@@ -101,11 +132,13 @@ const {type: tokenType} = Astro.props;
       }
     }
 
-    &--font,
+    &--fontFamily,
+    &--fontWeight,
     &--typography {
       .token-fg {
-        font-size: 19px;
-        font-weight: 600;
+        animation: embolden token('ease.linear') infinite 2s;
+        font-size: 19px !important;
+        font-weight: 400;
         letter-spacing: -0.0125em;
       }
     }
@@ -150,6 +183,26 @@ const {type: tokenType} = Astro.props;
       }
     }
 
+    &--number {
+      .token-fg {
+        display: grid;
+        gap: 0.0625rem;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-items: center;
+        padding: 0.25rem;
+
+        &-dot {
+          --size: 0.25rem;
+          animation: shrink token('ease.inOutCirc') infinite 2s;
+          background-color: currentColor;
+          border-radius: 50%;
+          height: var(--size);
+          width: var(--size);
+        }
+      }
+    }
+
     &--cubic-bezier {
       .token-fg {
         animation: flip token('ease.inOutCirc') infinite 2s;
@@ -163,34 +216,35 @@ const {type: tokenType} = Astro.props;
 
     &--link {
       .token-fg {
-        animation: spin token('ease.inOutCubic') infinite 2s;
-        background: conic-gradient(var(--ui-bg), var(--ui-bg) 120deg, var(--ui-fg));
-        border-radius: 50%;
-        height: 50%;
-        width: 50%;
-
-        &::before {
-          background: var(--ui-fg);
+        &-dot-1,
+        &-dot-2,
+        &-dot-3,
+        &-dot-4 {
+          --size: #{math.div(10rem, 32)};
+          animation: spin token('ease.inOutCubic') infinite 2s;
+          background-color: currentColor;
           border-radius: 50%;
-          content: '';
-          height: 18.75%;
+          height: var(--size);
           left: 50%;
-          position: absolute;
-          top: 0;
-          transform: translate3d(-50%, 0, 0);
-          width: 18.75%;
-        }
-
-        &::after {
-          background: var(--ui-bg);
-          border-radius: 50%;
-          content: '';
-          height: 62.5%;
-          left: 50%;
+          margin-left: calc(-0.5 * var(--size));
+          margin-top: calc(-0.5 * var(--size));
           position: absolute;
           top: 50%;
-          transform: translate3d(-50%, -50%, 0);
-          width: 62.5%;
+          transform: translate3d(-50%, -1rem, 0);
+          width: var(--size);
+        }
+
+        &-dot-2 {
+          --size: #{math.div(9rem, 32)};
+          animation-delay: 50ms;
+        }
+        &-dot-3 {
+          --size: #{math.div(8rem, 32)};
+          animation-delay: 100ms;
+        }
+        &-dot-4 {
+          --size: #{math.div(7rem, 32)};
+          animation-delay: 150ms;
         }
       }
     }
@@ -246,6 +300,16 @@ const {type: tokenType} = Astro.props;
         position: relative;
         z-index: 10;
       }
+    }
+  }
+
+  @keyframes embolden {
+    0%,
+    100% {
+      font-weight: 1;
+    }
+    50% {
+      font-weight: 999;
     }
   }
 
@@ -381,12 +445,22 @@ const {type: tokenType} = Astro.props;
     }
   }
 
+  @keyframes shrink {
+    0%,
+    100% {
+      transform: scale(0.25);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+
   @keyframes spin {
     0% {
-      transform: translate3d(-50%, -50%, 0) rotate(0deg);
+      transform: rotate(0deg) translate3d(0, -0.375rem, 0);
     }
     100% {
-      transform: translate3d(-50%, -50%, 0) rotate(1080deg);
+      transform: rotate(1080deg) translate3d(0, -0.375rem, 0);
     }
   }
 

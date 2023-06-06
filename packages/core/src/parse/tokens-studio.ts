@@ -135,18 +135,19 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
           case 'fontSizes':
           case 'letterSpacing':
           case 'lineHeights':
+          case 'opacity':
           case 'sizing': {
-            addToken({$type: 'dimension', $value: v.value === '0' ? 0 : v.value}, [...path, k]);
+            // this is a number if this is unitless
+            const isNumber = typeof v.value === 'number' || (typeof v.value === 'string' && String(Number(v.value)) === v.value);
+            if (isNumber) {
+              addToken({$type: 'number', $value: Number(v.value)}, [...path, k]);
+            } else {
+              addToken({$type: 'dimension', $value: v.value}, [...path, k]);
+            }
             break;
           }
           case 'fontWeights': {
             addToken({$type: 'fontWeight', $value: parseInt(v.value, 10) || v.value}, [...path, k]);
-            break;
-          }
-          // unsupported
-          case 'opacity': {
-            // @ts-expect-error this should throw a warning
-            addToken({$type: 'opacity', $value: v.value}, [...path, k]);
             break;
           }
           case 'spacing': {
