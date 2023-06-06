@@ -31,10 +31,10 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 
 ## Syncing with Figma
 
-You can sync tokens with Figma by using the [Tokens Studio for Figma](../guides/tokens-studio) plugin.
+You can sync tokens with Figma by using the [Tokens Studio for Figma](/docs/guides/tokens-studio) plugin.
 
 ## Plugins
 
 Each plugin comes with its own rules and setup. Follow the corresponding plugin guide to enable code generation:
 
-👉 **[View plugins](../plugins)**
+👉 **[View plugins](/docs/plugins)**

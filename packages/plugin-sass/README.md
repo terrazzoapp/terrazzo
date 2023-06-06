@@ -4,7 +4,7 @@ Generate Sass output for [Cobalt](https://cobalt-ui.pages.dev) from design token
 
 ## Setup
 
-```
+```bash
 npm i -D @cobalt-ui/plugin-sass
 ```
 

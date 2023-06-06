@@ -2,16 +2,20 @@
   @use '../../tokens' as *;
 
   .box {
-    --size: 1.625rem;
+    --size: 1.25rem;
     align-items: flex-end;
     background-color: token('color.blue.50');
+    border: 1px solid token('color.ui.contrast.0');
+    box-sizing: content-box;
     color: token('color.white');
     display: flex;
     font-size: 0.75rem;
     font-weight: 500;
-    line-height: 0.8;
     height: var(--size);
     justify-content: flex-end;
+    line-height: 0.8;
+    margin-left: -1px; // account for border
+    margin-top: -1px; // account for border
     padding: 0.25rem;
     width: var(--size);
   }

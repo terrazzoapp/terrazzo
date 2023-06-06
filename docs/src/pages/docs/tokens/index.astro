@@ -26,17 +26,16 @@ const tokenDef = {
   <h1>Tokens</h1>
 
   <p>
-    Tokens are defined via the <a href="https://design-tokens.github.io/community-group/format/" target="_blank">the W3C Design Tokens format</a> schema (Apr 2023). Cobalt aims to supports 100% of the spec as-outlined, but with the following
-    known extensions:
+    Tokens are defined via the <a href="https://design-tokens.github.io/community-group/format/" target="_blank">the W3C Design Tokens format</a> schema (Apr 2023). Cobalt supports 100% of the spec, but with the following changes:
   </p>
 
   <ul>
-    <li>Cobalt supports the <a href="#link">link</a> type</li>
+    <li>Cobalt supports assets via the <a href="#link">link</a> type</li>
     <li>Cobalt introduces the concept of <a href="#modes">Modes</a></li>
-    <li>While the spec technically prohibits unknown keys or properties; Cobalt ignores them.</li>
+    <li>Cobalt ignores unknown properties rather than throwing errors as the spec requires.</li>
   </ul>
 
-  <p>Any other deviations can be treated as unintentional (so please <a href="https://github.com/drwpow/cobalt-ui/issues">file an issue!</a>).</p>
+  <p>Any other deviations can be treated as unintentional (please <a href="https://github.com/drwpow/cobalt-ui/issues">file an issue!</a>).</p>
 
   <h2 id="color">
     <Token type="color" />

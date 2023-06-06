@@ -6,7 +6,7 @@ Automatically generates 🌈 [**P3 colors**](https://developer.mozilla.org/en-US
 
 ## Setup
 
-```
+```bash
 npm i -D @cobalt-ui/plugin-css
 ```
 
