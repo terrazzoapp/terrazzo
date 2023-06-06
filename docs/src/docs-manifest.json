@@ -30,6 +30,7 @@
     {"title": "Sass",            "pathname": "/docs/plugins/sass"},
     {"title": "JS/JSON/TS",      "pathname": "/docs/plugins/js"},
     {"title": "Reference",       "pathname": "/docs/reference"},
+    {"title": "CLI",             "pathname": "/docs/reference/cli"},
     {"title": "Config API",      "pathname": "/docs/reference/config"},
     {"title": "About",           "pathname": "/docs/reference/about"}
   ]

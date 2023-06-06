@@ -1,7 +1,6 @@
 ---
 import CobaltSm from './CobaltSm.astro';
 import Icons from './Icons.astro';
-let currentPage = Astro.url.pathname;
 let {title = 'Cobalt'} = Astro.props;
 ---
 
@@ -10,7 +9,7 @@ let {title = 'Cobalt'} = Astro.props;
 
   .grid {
     display: flex;
-    height: token('space.layout.lg');
+    height: 3.5rem;
     padding-left: token('space.lg');
   }
 
@@ -20,7 +19,7 @@ let {title = 'Cobalt'} = Astro.props;
     color: currentColor;
     display: grid;
     grid-template-columns: min-content min-content;
-    grid-gap: 0.75rem;
+    grid-gap: 0.5rem;
     text-decoration: none;
   }
 

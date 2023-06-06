@@ -4,7 +4,7 @@ import pages from '../docs-manifest.json';
 let prev;
 let next;
 for (let n = 0; n < pages.pages.length; n++) {
-  if (pages.pages[n].pathname === Astro.url.pathname) {
+  if (Astro.url.pathname.startsWith(pages.pages[n].pathname)) {
     if (pages.pages[n - 1]) prev = pages.pages[n - 1];
     if (pages.pages[n + 1]) next = pages.pages[n + 1];
     break;

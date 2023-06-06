@@ -40,3 +40,5 @@ export default {
 | [Border](https://docs.tokens.studio/available-tokens/border-tokens)               |    ✅     | Direct equivalent to [Border](/docs/tokens/#border).                                                                                                                     |
 
 Note that **Duration** and **Cubic Bezier** aren’t supported by Tokens Studio (because Figma currently doesn’t support animations). So to use those types you’ll need to convert your tokens into the W3C Design Token format.
+
+Though Cobalt preserves your [Token Sets](https://docs.tokens.studio/themes/token-sets), which means most aliases will work, Token Studio’s [Advanced Themes](https://docs.tokens.studio/themes/themes-pro) is a paid feature and is therefore not supported. Though you could manually upconvert Token Studio themes to [modes](http://localhost:3000/docs/tokens/#modes).
