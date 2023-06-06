@@ -1,6 +1,6 @@
 # Cobalt UI
 
-Schemas and tools for managing design tokens.
+CLI for managing [W3C Design Token format](https://www.w3.org/community/design-tokens/) design systems.
 
 ## Usage
 

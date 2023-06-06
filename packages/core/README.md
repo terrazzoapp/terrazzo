@@ -1,11 +1,8 @@
 # @cobalt-ui/core
 
-Parse a `tokens.json` schema, validate it for errors, and return tokens as a
-normalized, flattened array.
+Node.js API for managing [W3C Design Token format](https://www.w3.org/community/design-tokens/) design systems.
 
-Use `@cobalt-ui/core` in the browser or in Node.js.
-
-For building tokens and syncing with Figma, use `@cobalt-ui/cli`.
+For the CLI, use `@cobalt-ui/cli`.
 
 ## Install
 
@@ -23,9 +20,9 @@ import co from '@cobalt-ui/core';
 
 const designTokens = {
   color: {
-    red:   {type: 'color', value: '#e34850'},
-    green: {type: 'color', value: '#2d9d78'},
-    blue:  {type: 'color', value: '#2680eb'},
+    red:   {$type: 'color', $value: '#e34850'},
+    green: {$type: 'color', $value: '#2d9d78'},
+    blue:  {$type: 'color', $value: '#2680eb'},
   },
 };
 
