@@ -7,7 +7,7 @@ layout: ../../../layouts/docs.astro
 
 Generate JS, TS, and JSON output from design tokens.
 
-```
+```bash
 npm i -D @cobalt-ui/plugin-js
 ```
 

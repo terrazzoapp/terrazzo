@@ -7,16 +7,17 @@ layout: ../../../layouts/docs.astro
 
 ## Project Goals
 
-The project goals are subject to change, but currently are encompassed by 3 points:
-
 1. Support the complete and full [W3C Design Tokens CG spec](https://design-tokens.github.io/community-group/format)
-2. Maintain a pluggable interface, where users can write their own plugins or the community can contribute plugins
-3. Make syncing from Figma easy and automatable
+2. Support a pluggable and configurable architecture, enabling users and the community to write their own plugins to generate any format
+3. Make syncing from Figma easy and automatable ([docs](/docs/guides/tokens-studio))
 
 ## Why the name “Cobalt”?
 
 The name **Cobalt** has three meanings:
 
-1. Cobalt is an [element on the periodic table](https://en.wikipedia.org/wiki/Cobalt) in reference to design tokens being the “atoms” of design systems.
-2. Just as blue pigment (cobalt or ultramarine) was [the last “missing piece“ in paint colors](https://artuk.org/discover/stories/colour-in-art-a-brief-history-of-blue-pigment), having an easy-to-use system to manage design tokens aims to be the “missing piece” to design management.
-3. Blue is also a reference to a [blueprint](https://en.wikipedia.org/wiki/Blueprint) that acts as the reference for a design system.
+1. Cobalt [the element](https://en.wikipedia.org/wiki/Cobalt) is a nod to design tokens being the “atoms” of your design system<br />
+   _Fun fact: the crystalline structure of Cobalt is hexagonal_
+2. Cobalt [the pigment](https://artsartistsartwork.com/history-of-the-colour-blue-in-art/) is a nod to blue being the last missing color in art history, just as design tokens are the last missing piece of design systems<br />
+   _Fun fact: Van Gogh once said “Cobalt is a divine colour and there is nothing so beautiful for putting atmosphere around things”_
+3. Cobalt the color is a nod to [blueprints](https://en.wikipedia.org/wiki/Blueprint)<br />
+   _Fun fact: blueprints originally were colored with Prussian Blue (ferrous ferrocyanide), not Cobalt, for cost reasons_
