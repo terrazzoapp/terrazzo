@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -189,7 +189,7 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.1.1
+        specifier: ^1.1.2
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.1.0

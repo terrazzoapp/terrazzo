@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.1.2
+
+### Patch Changes
+
+- [#43](https://github.com/drwpow/cobalt-ui/pull/43) [`8bf696d`](https://github.com/drwpow/cobalt-ui/commit/8bf696d045269ba552424a0221347413a9272cc5) Thanks [@drwpow](https://github.com/drwpow)! - Fix @cobalt-ui/core package import
+
 ## 1.1.1
 
 ### Patch Changes
