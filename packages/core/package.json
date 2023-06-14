@@ -25,8 +25,7 @@
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.min.js",
-  "module": "./dist/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc && npm run bundle",
     "bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap && cp dist/index.d.ts dist/index.min.d.ts",
