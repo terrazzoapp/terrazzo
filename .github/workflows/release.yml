@@ -18,6 +18,7 @@ jobs:
         with:
           node-version: 20
       - run: pnpm i
+      - run: pnpm run build
       - uses: changesets/action@v1
         with:
           version: pnpm run version
