@@ -5,6 +5,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-dynamic-delete': 'off',
     '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-invalid-void-type': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-unused-vars': 'off', // handled by TS
     'no-console': ['error'],

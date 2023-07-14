@@ -4,7 +4,7 @@ const ALIAS_RE = /^\{([^}]+)\}$/;
 export function getAliasID(input: string): string {
   const match = input.match(ALIAS_RE);
   if (!match) return input;
-  return match[1];
+  return match[1] ?? match[0];
 }
 
 /** is this token an alias of another? */

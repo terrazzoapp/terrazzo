@@ -34,7 +34,8 @@ export function kebabinate(input: string): string {
 
 /** convert input to camelCase */
 export function camelize(input: string): string {
-  return input.replace(CAMEL_CONVERT_RE, (s) => `${s[0].toLocaleLowerCase()}${s[s.length - 1].toLocaleUpperCase()}`);
+  if (input.length < 2) return input;
+  return input.replace(CAMEL_CONVERT_RE, (s) => `${s[0]!.toLocaleLowerCase()}${s[s.length - 1]!.toLocaleUpperCase()}`);
 }
 
 /** wrap bad obj keynames in strings */
