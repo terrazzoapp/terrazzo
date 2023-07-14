@@ -52,7 +52,7 @@ export interface BuildResult {
 }
 
 export interface ResolvedConfig extends ParseOptions {
-  tokens: URL;
+  tokens: URL[];
   outDir: URL;
   plugins: Plugin[];
 }
@@ -67,7 +67,7 @@ export interface Plugin {
 
 export interface Config extends Partial<ParseOptions> {
   /** path to tokens.json (default: "./tokens.json") */
-  tokens?: string;
+  tokens?: string | string[];
   /** output directory (default: "./tokens/") */
   outDir?: string;
   /** specify plugins */

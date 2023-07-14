@@ -12,8 +12,8 @@
     "@cobalt-ui/plugin-css": "workspace:*",
     "@cobalt-ui/plugin-js": "workspace:*",
     "@cobalt-ui/plugin-sass": "workspace:*",
-    "@salesforce-ux/design-system": "^2.16.2",
+    "@salesforce-ux/design-system": "^2.21.3",
     "better-color-tools": "^0.12.3",
-    "postcss": "^8.4.16"
+    "postcss": "^8.4.26"
   }
 }

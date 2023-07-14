@@ -126,14 +126,14 @@ importers:
   examples/ibm:
     devDependencies:
       '@carbon/colors':
-        specifier: ^11.6.0
-        version: 11.6.0
+        specifier: ^11.17.1
+        version: 11.17.1
       '@carbon/icons':
-        specifier: ^11.10.0
-        version: 11.10.0
+        specifier: ^11.22.1
+        version: 11.22.1
       '@carbon/type':
-        specifier: ^11.10.0
-        version: 11.10.0
+        specifier: ^11.20.1
+        version: 11.20.1
       '@cobalt-ui/cli':
         specifier: workspace:*
         version: link:../../packages/cli
@@ -162,14 +162,14 @@ importers:
         specifier: workspace:*
         version: link:../../packages/plugin-sass
       '@salesforce-ux/design-system':
-        specifier: ^2.16.2
-        version: 2.16.2(postcss@8.4.18)
+        specifier: ^2.21.3
+        version: 2.21.3(postcss@8.4.26)
       better-color-tools:
         specifier: ^0.12.3
         version: 0.12.3
       postcss:
-        specifier: ^8.4.16
-        version: 8.4.18
+        specifier: ^8.4.26
+        version: 8.4.26
 
   examples/shopify:
     devDependencies:
@@ -203,6 +203,9 @@ importers:
       dotenv:
         specifier: ^16.3.1
         version: 16.3.1
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
       piscina:
         specifier: ^3.2.0
         version: 3.2.0
@@ -216,6 +219,9 @@ importers:
       '@types/node':
         specifier: ^20.4.2
         version: 20.4.2
+      execa:
+        specifier: ^7.1.1
+        version: 7.1.1
       figma-api:
         specifier: ^1.11.0
         version: 1.11.0
@@ -678,29 +684,29 @@ packages:
       to-fast-properties: 2.0.0
     dev: true
 
-  /@carbon/colors@11.6.0:
-    resolution: {integrity: sha512-LE3aaQvRVR9zI2ao4+SHP8vfEaXtfffq4wXHvbPwoTK+I3Db745XuNWeWxC3Rte2uNPS9sjeEyCid2Q0wY/tSw==}
+  /@carbon/colors@11.17.1:
+    resolution: {integrity: sha512-Q2VlMaZcl3U9Qc1RQbhuf4M4SVuJIeE+NIIDExPCRFaWeuN/5EIUYxEkPgDqvkLU91QTu6lH8TqxFPZORlRvDA==}
     dev: true
 
-  /@carbon/grid@11.7.0:
-    resolution: {integrity: sha512-OCDXQNSPVOoBQN08Qn5wo2WpKRGRm/kEBo6ZTl2NoDCl21mcYJZ0IDbKPTukixJB1sUNDUlnrpwMoaznPj48dw==}
+  /@carbon/grid@11.16.1:
+    resolution: {integrity: sha512-xrnySc/9jRebcVyATn6ArO9kQsgUcUDwrUrWPH5yt4AU7lDvzfpsxbO5NehRekURxPJjplr0DOhPAwC4qbuaaw==}
     dependencies:
-      '@carbon/layout': 11.7.0
+      '@carbon/layout': 11.16.1
     dev: true
 
-  /@carbon/icons@11.10.0:
-    resolution: {integrity: sha512-NUKXGZ5Yi184mvAs9q1sPt0ns2qXOF6dK4DG4mMHq5RgJRjq5diLHIm1t49SIwjF4X8b3KSehmrK7N9H6bf1Zg==}
+  /@carbon/icons@11.22.1:
+    resolution: {integrity: sha512-d1FtLT3+BRuUn6P59mvIr6m4osfz7RQbKL8tSrU72c45/eb/w8xDJ/1NOSoVIjZ55/JKLo9XkSt7HwwOJBlEiQ==}
     dev: true
 
-  /@carbon/layout@11.7.0:
-    resolution: {integrity: sha512-p4YQvW8U5Go0Tz1PZZgllGSPmoq8xBB5PHByuHiAjzwGclxPsBmY6Ea7tftINFW8VlcjDcampyT8VfZXhP2lFg==}
+  /@carbon/layout@11.16.1:
+    resolution: {integrity: sha512-uUJmNrB7GKJzR/ZEzVxqGNb7US8UB1jL0X3lia3pnyqQ8Rcxq3y1RNmj/bfuI6LWC9GA0lLrsKRdKOpdLyqJMQ==}
     dev: true
 
-  /@carbon/type@11.10.0:
-    resolution: {integrity: sha512-LjhhJchI0Vpnmq2IkNtHy7HIW/WjiOEVXH+bDKf0Laay0EQtwxagQSI41W2+0dNtcK4zJBKjfm1uorsxmR5/Qw==}
+  /@carbon/type@11.20.1:
+    resolution: {integrity: sha512-CZSDN//3M7DhiMEzwNjDXpJ3Iqcaetu/hiFghxSACOuz88jni36Qj/qOg0ELZNrsswGk5GwnJx/IN1u40TAieA==}
     dependencies:
-      '@carbon/grid': 11.7.0
-      '@carbon/layout': 11.7.0
+      '@carbon/grid': 11.16.1
+      '@carbon/layout': 11.16.1
     dev: true
 
   /@changesets/apply-release-plan@6.1.4:
@@ -1479,12 +1485,12 @@ packages:
     resolution: {integrity: sha512-ZHHfwB0z0z6nDJp263gyGIClYDy+rl0nwqyi4qhcv3Cxhkmtf+If2KVjr6FQqBBFfi1wQwUzaax2FBvfEMFBnw==}
     dev: true
 
-  /@salesforce-ux/design-system@2.16.2(postcss@8.4.18):
-    resolution: {integrity: sha512-8qG5wdR3+5s4zcszMZs9Z4HocPV6uWhisHSeUyxl6Idb5m99yER3HwyKtyIUViPB/8ukDwptLBvJWH+qwA6EOg==}
+  /@salesforce-ux/design-system@2.21.3(postcss@8.4.26):
+    resolution: {integrity: sha512-7+3LWTH26O0y/Uxw9bg6F+TntS4tXB7gmD8a3bLFwAxUgsdO7LVbKvchwFHElgZQU5ICFfUCFB8LzmCgVJ9KIA==}
     peerDependencies:
       postcss: ^8.3.5
     dependencies:
-      postcss: 8.4.18
+      postcss: 8.4.26
     dev: true
 
   /@sinclair/typebox@0.27.8:
@@ -1907,7 +1913,6 @@ packages:
 
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-    dev: true
 
   /array-buffer-byte-length@1.0.0:
     resolution: {integrity: sha512-LPuwb2P+NrQw3XhxGc36+XSvuBPopovXYTR9Ew++Du9Yb/bx5AzBfrIsBoj0EZUifjQU+sHL21sseZ3jerWO/A==}
@@ -3870,7 +3875,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
-    dev: true
 
   /jsesc@2.5.2:
     resolution: {integrity: sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==}
@@ -4564,12 +4568,6 @@ packages:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
     dev: true
 
-  /nanoid@3.3.4:
-    resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
-    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
-    hasBin: true
-    dev: true
-
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -4979,15 +4977,6 @@ packages:
       jsonc-parser: 3.2.0
       mlly: 1.3.0
       pathe: 1.1.1
-    dev: true
-
-  /postcss@8.4.18:
-    resolution: {integrity: sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.4
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
     dev: true
 
   /postcss@8.4.26:

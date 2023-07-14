@@ -10,6 +10,7 @@ import {DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET} from '@coba
 import chokidar from 'chokidar';
 import fs from 'node:fs';
 import {performance} from 'node:perf_hooks';
+import yaml from 'js-yaml';
 import {fileURLToPath, URL} from 'node:url';
 import parser from 'yargs-parser';
 import {init as initConfig} from '../dist/config.js';
@@ -62,7 +63,12 @@ async function main() {
   }
   let config;
   try {
-    config = await loadConfig(resolveConfig(configPath));
+    // if running `co check [tokens]`, don’t load config from file
+    if (cmd === 'check' && args[0]) {
+      config = await initConfig({tokens: args[0]}, cwd);
+    } else {
+      config = await loadConfig(resolveConfig(configPath));
+    }
   } catch (err) {
     console.error(`  ${FG_RED}✘  ${err.message || err}${RESET}`);
     process.exit(1);
@@ -70,17 +76,12 @@ async function main() {
 
   switch (cmd) {
     case 'build': {
-      if (!fs.existsSync(config.tokens)) {
-        console.error(`  ${FG_RED}✘  Could not locate ${config.tokens}. To create one, run \`npx cobalt init\`.${RESET}`);
-        process.exit(1);
-      }
-
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
         console.error(`  ${FG_RED}✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}${RESET}`);
         process.exit(1);
       }
 
-      let rawSchema = JSON.parse(fs.readFileSync(config.tokens), 'utf8');
+      let rawSchema = await loadTokens(config.tokens);
 
       const dt = new Intl.DateTimeFormat('en-us', {
         hour: '2-digit',
@@ -95,17 +96,16 @@ async function main() {
       if (result.errors) process.exit(1);
 
       if (watch) {
-        const tokenWatcher = chokidar.watch(fileURLToPath(config.tokens));
-        const tokensYAML = config.tokens.href.replace(cwd.href, '');
+        const tokenWatcher = chokidar.watch(config.tokens.map((filepath) => fileURLToPath(filepath)));
         tokenWatcher.on('change', async (filePath) => {
           try {
-            rawSchema = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+            rawSchema = await loadTokens(config.tokens);
             result = await build(rawSchema, config);
             if (result.errors || result.warnings) {
               printErrors(result.errors);
               printWarnings(result.warnings);
             } else {
-              console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${tokensYAML}${RESET} updated ${FG_GREEN}✔${RESET}`);
+              console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${filePath}${RESET} updated ${FG_GREEN}✔${RESET}`);
             }
           } catch (err) {
             printErrors([err.message || err]);
@@ -116,7 +116,7 @@ async function main() {
           try {
             console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`);
             config = await loadConfig(filePath);
-            rawSchema = JSON.parse(fs.readFileSync(config.tokens, 'utf8'));
+            rawSchema = await loadTokens(config.tokens);
             result = await build(rawSchema, config);
           } catch (err) {
             printErrors([err.message || err]);
@@ -136,22 +136,9 @@ async function main() {
       break;
     }
     case 'check': {
-      let tokensPath = config.tokens;
-      if (args[0]) {
-        tokensPath = new URL(args[0], cwd);
-        if (!fs.existsSync(tokensPath)) {
-          console.error(`Expected format: cobalt check ./path/to/tokens.json. Could not locate ${args[0]}.`);
-          process.exit(1);
-        }
-      }
-
-      if (!fs.existsSync(tokensPath)) {
-        console.error(`  ${FG_RED}✘  Could not locate ${tokensPath}. To create one, run \`npx cobalt init\`.${RESET}`);
-        process.exit(1);
-      }
-
-      let rawSchema = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
-      console.log(`${UNDERLINE}${fileURLToPath(tokensPath)}${RESET}`);
+      const rawSchema = await loadTokens(config.tokens);
+      const filepath = config.tokens[0];
+      console.log(`${UNDERLINE}${filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath}${RESET}`);
       const {errors, warnings} = parse(rawSchema, config); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
@@ -213,6 +200,77 @@ async function loadConfig(configPath) {
   let userConfig = {};
   if (configPath) userConfig = (await import(configPath instanceof URL ? fileURLToPath(configPath) : configPath)).default;
   return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
+}
+
+/** load tokens */
+async function loadTokens(tokenPaths) {
+  const rawTokens = [];
+
+  // download/read
+  for (const filepath of tokenPaths) {
+    const pathname = filepath.pathname.toLowerCase();
+    const isYAMLExt = pathname.endsWith('.yaml') || pathname.endsWith('.yml');
+    if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
+      try {
+        const res = await globalThis.fetch(filepath, {method: 'GET', headers: {Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/116.0'}});
+        const raw = await res.text();
+        if (isYAMLExt || res.headers.get('content-type').includes('yaml')) {
+          rawTokens.push(yaml.load(raw));
+        } else {
+          rawTokens.push(JSON.parse(raw));
+        }
+      } catch (err) {
+        console.error(`  ${FG_RED}✘  ${filepath.href}: ${err}${RESET}`);
+      }
+    } else {
+      if (fs.existsSync(filepath)) {
+        try {
+          const raw = fs.readFileSync(filepath, 'utf8');
+          if (isYAMLExt) {
+            rawTokens.push(yaml.load(raw));
+          } else {
+            rawTokens.push(JSON.parse(raw));
+          }
+        } catch (err) {
+          console.error(`  ${FG_RED}✘  ${filepath.href}: ${err}${RESET}`);
+        }
+      } else {
+        console.error(`  ${FG_RED}✘  Could not locate ${filepath}. To create one, run \`npx cobalt init\`.${RESET}`);
+        process.exit(1);
+      }
+    }
+  }
+
+  // combine
+  const tokens = {};
+  for (const subtokens of rawTokens) {
+    merge(tokens, subtokens);
+  }
+
+  return tokens;
+}
+
+/** Merge JSON B into A */
+function merge(a, b) {
+  if (Array.isArray(b)) {
+    console.error(`  ${FG_RED}✘ Internal error parsing tokens file.${RESET}`); // oops
+    process.exit(1);
+    return;
+  }
+  for (const [k, v] of Object.entries(b)) {
+    // overwrite if:
+    // - this key doesn’t exist on a, or
+    // - this is a token with a $value (don’t merge tokens! overwrite!), or
+    // - this is a primitive value (it’s the user’s responsibility to merge these correctly)
+    if (!(k in a) || Array.isArray(v) || typeof v !== 'object' || (typeof v === 'object' && '$value' in v)) {
+      a[k] = v;
+      continue;
+    }
+    // continue
+    if (typeof v === 'object' && !Array.isArray(v)) {
+      merge(a[k], v);
+    }
+  }
 }
 
 /** Print time elapsed */

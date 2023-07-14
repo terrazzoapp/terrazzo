@@ -1,22 +1,29 @@
-import {execSync} from 'child_process';
+import {execa} from 'execa';
 import {URL} from 'node:url';
 import {describe, expect, test} from 'vitest';
 
-const cmd = 'node ../../../bin/cli.js';
+const cmd = '../../../bin/cli.js';
 
 describe('co check', () => {
-  test('default filename', () => {
+  test('default filename', async () => {
     const cwd = new URL('./fixtures/check-default/', import.meta.url);
-    expect(() => execSync(`${cmd} check`, {cwd})).to.not.throw();
+    const result = await execa('node', [cmd, 'check'], {cwd});
+    expect(result.exitCode).toBe(0);
   });
 
-  test('custom filename', () => {
+  test('custom filename', async () => {
     const cwd = new URL('./fixtures/check-custom/', import.meta.url);
-    expect(() => execSync(`${cmd} check tokens-2.json`, {cwd})).to.not.throw();
+    const result = await execa('node', [cmd, 'check', 'tokens-2.json'], {cwd});
+    expect(result.exitCode).toBe(0);
   });
 
-  test('invalid tokens', () => {
+  test('URL', async () => {
+    const result = await execa('node', ['./bin/cli.js', 'check', 'https://raw.githubusercontent.com/drwpow/cobalt-ui/main/packages/cli/test/fixtures/check-default/tokens.json']);
+    expect(result.exitCode).toBe(0);
+  });
+
+  test('invalid tokens', async () => {
     const cwd = new URL('./fixtures/check-invalid/', import.meta.url);
-    expect(() => execSync(`${cmd} check`, {cwd})).to.throw();
+    await expect(async () => await execa('node', [cmd, 'check'], {cwd, throwOnStderr: false})).rejects.toThrow();
   });
 });
