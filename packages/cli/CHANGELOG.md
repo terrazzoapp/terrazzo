@@ -1,5 +1,17 @@
 # @cobalt-ui/cli
 
+## 1.3.0
+
+### Minor Changes
+
+- [#51](https://github.com/drwpow/cobalt-ui/pull/51) [`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f) Thanks [@drwpow](https://github.com/drwpow)! - Allow combining multiple schemas
+
+- [#51](https://github.com/drwpow/cobalt-ui/pull/51) [`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f) Thanks [@drwpow](https://github.com/drwpow)! - Allow loading tokens as YAML
+
+### Patch Changes
+
+- [#51](https://github.com/drwpow/cobalt-ui/pull/51) [`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f) Thanks [@drwpow](https://github.com/drwpow)! - Breaking: require Node v18 or greater
+
 ## 1.2.0
 
 ### Minor Changes
