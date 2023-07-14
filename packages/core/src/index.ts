@@ -41,8 +41,8 @@ export type {
   TypographyValue,
 } from './token.js';
 
-import {parse} from './parse/index.js';
-export {parse, ParseResult} from './parse/index.js';
+import {ParseOptions, parse} from './parse/index.js';
+export {parse, ParseOptions, ParseResult} from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
@@ -51,7 +51,7 @@ export interface BuildResult {
   contents: string | Buffer;
 }
 
-export interface ResolvedConfig {
+export interface ResolvedConfig extends ParseOptions {
   tokens: URL;
   outDir: URL;
   plugins: Plugin[];
@@ -65,7 +65,7 @@ export interface Plugin {
   build(options: {tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group}): Promise<BuildResult[]>;
 }
 
-export interface Config {
+export interface Config extends Partial<ParseOptions> {
   /** path to tokens.json (default: "./tokens.json") */
   tokens?: string;
   /** output directory (default: "./tokens/") */

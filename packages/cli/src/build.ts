@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {URL} from 'node:url';
 
 export async function build(rawSchema: Group, config: ResolvedConfig): Promise<ParseResult> {
-  const {errors, warnings, result} = co.parse(rawSchema);
+  const {errors, warnings, result} = co.parse(rawSchema, config);
   if (errors) return {errors, warnings, result};
 
   await Promise.all(

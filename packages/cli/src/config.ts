@@ -68,5 +68,11 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
     }
   }
 
+  // token type options
+  for (const tokenType of ['color']) {
+    // normalize
+    (config as any)[tokenType] = {...((userConfig as any)[tokenType] ?? {})};
+  }
+
   return config;
 }

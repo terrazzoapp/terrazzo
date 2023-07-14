@@ -3,11 +3,13 @@
  */
 import {FG_RED, RESET} from '@cobalt-ui/utils';
 import {describe, expect, test} from 'vitest';
-import {parse} from '../dist/index.js';
+import {ParseOptions, parse} from '../src/index';
+
+const DEFAULT_PARSE_OPTIONS: ParseOptions = {color: {}};
 
 /** parse schema and expect no errors */
-function getTokens(json) {
-  const {errors, result} = parse(json);
+function getTokens(json: any, parseOptions: ParseOptions = DEFAULT_PARSE_OPTIONS) {
+  const {errors, result} = parse(json, parseOptions);
   if (errors) {
     for (const err of errors) {
       console.error(`${FG_RED}${err}${RESET}`); // eslint-disable-line no-console
@@ -27,7 +29,7 @@ describe('5. Group', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.blue')._group.$name).toBe(json.$name);
+    expect(tokens.find((t) => t.id === 'color.blue')!._group.$name).toBe(json.$name);
   });
 
   test('inheritance', () => {
@@ -38,7 +40,7 @@ describe('5. Group', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.blue').$type).toBe('color');
+    expect(tokens.find((t) => t.id === 'color.blue')!.$type).toBe('color');
   });
 });
 
@@ -51,7 +53,7 @@ describe('7. Alias', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'color.darkBlue').$value).toBe(json.color.blue.$extensions.mode.dark);
+    expect(tokens.find((t) => t.id === 'color.darkBlue')?.$value).toBe(json.color.blue.$extensions.mode.dark);
   });
 
   test('missing', () => {
@@ -60,7 +62,7 @@ describe('7. Alias', () => {
         green: {$type: 'color', $value: '{color.emerald}'},
       },
     };
-    const {errors} = parse(json);
+    const {errors} = parse(json, DEFAULT_PARSE_OPTIONS);
     expect(errors).to.deep.equal(['color.green: can’t find {color.emerald}']);
   });
 
@@ -70,7 +72,7 @@ describe('7. Alias', () => {
       b: {$type: 'color', $value: '{c}'},
       c: {$type: 'color', $value: '{a}'},
     };
-    const {errors} = parse(json);
+    const {errors} = parse(json, DEFAULT_PARSE_OPTIONS);
     expect(errors).to.deep.equal(['c: can’t reference circular alias {a}']);
   });
 });
@@ -84,7 +86,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'color.red').$value).toBe(json.color.red.$value);
+      expect(tokens.find((t) => t.id === 'color.red')?.$value).toBe(json.color.red.$value);
     });
 
     test('CSS name', () => {
@@ -93,7 +95,7 @@ describe('8. Type', () => {
           purple: {$type: 'color', $value: 'rebeccapurple'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.purple').$value).toBe('#663399');
+      expect(tokens.find((t) => t.id === 'color.purple')?.$value).toBe('#663399');
     });
 
     test('P3', () => {
@@ -102,7 +104,7 @@ describe('8. Type', () => {
           green: {$type: 'color', $value: 'color(display-p3 0 1 0)'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.green').$value).toBe('#00ff00');
+      expect(tokens.find((t) => t.id === 'color.green')?.$value).toBe('#00ff00');
     });
 
     test('alias', () => {
@@ -112,11 +114,23 @@ describe('8. Type', () => {
           active: {$type: 'color', $value: '{color.blue}'},
         },
       });
-      expect(tokens.find((t) => t.id === 'color.active').$value).toBe('#218bff');
+      expect(tokens.find((t) => t.id === 'color.active')?.$value).toBe('#218bff');
+    });
+
+    test('transform disabled', () => {
+      const tokens = getTokens(
+        {
+          color: {
+            blue: {$type: 'color', $value: 'oklch(60% 0.17 250)'},
+          },
+        },
+        {color: {convertToHex: false}},
+      );
+      expect(tokens.find((t) => t.id === 'color.blue')?.$value).toBe('oklch(60% 0.17 250)');
     });
 
     test('invalid', () => {
-      const {errors} = parse({red: {$type: 'color', $value: 'NOT_A_COLOR'}});
+      const {errors} = parse({red: {$type: 'color', $value: 'NOT_A_COLOR'}}, DEFAULT_PARSE_OPTIONS);
       expect(errors).toEqual(['red: invalid color "NOT_A_COLOR"']);
     });
   });
@@ -133,7 +147,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'space.component.xs').$value).toBe('0.5rem');
+      expect(tokens.find((t) => t.id === 'space.component.xs')?.$value).toBe('0.5rem');
     });
 
     test('allows zero', () => {
@@ -141,7 +155,7 @@ describe('8. Type', () => {
         lineHeight: {$type: 'dimension', $value: 0},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'lineHeight').$value).toBe('0');
+      expect(tokens.find((t) => t.id === 'lineHeight')?.$value).toBe('0');
     });
 
     test('normalizes zero', () => {
@@ -149,7 +163,7 @@ describe('8. Type', () => {
         lineHeight: {$type: 'dimension', $value: '0px'},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'lineHeight').$value).toBe('0');
+      expect(tokens.find((t) => t.id === 'lineHeight')?.$value).toBe('0');
     });
 
     test('alias', () => {
@@ -162,7 +176,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'layout.m').$value).toBe('1rem');
+      expect(tokens.find((t) => t.id === 'layout.m')?.$value).toBe('1rem');
     });
   });
 
@@ -174,13 +188,13 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual([json.typography.body.$value]);
+      expect(tokens.find((t) => t.id === 'typography.body')?.$value).toEqual([json.typography.body.$value]);
     });
 
     test('array', () => {
       const json = {typography: {body: {$type: 'fontFamily', $value: ['-system-ui', 'Helvetica']}}};
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual(json.typography.body.$value);
+      expect(tokens.find((t) => t.id === 'typography.body')?.$value).toEqual(json.typography.body.$value);
     });
   });
 
@@ -192,13 +206,13 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).toBe(100);
+      expect(tokens.find((t) => t.id === 'typography.body')?.$value).toBe(100);
     });
 
     test('number', () => {
       const json = {typography: {body: {$type: 'fontWeight', $value: 100}}};
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.body').$value).toEqual(json.typography.body.$value);
+      expect(tokens.find((t) => t.id === 'typography.body')?.$value).toEqual(json.typography.body.$value);
     });
   });
 
@@ -210,7 +224,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'duration.short').$value).toBe('100ms');
+      expect(tokens.find((t) => t.id === 'duration.short')?.$value).toBe('100ms');
     });
 
     test('alias', () => {
@@ -223,7 +237,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'animation.card').$value).toBe('100ms');
+      expect(tokens.find((t) => t.id === 'animation.card')?.$value).toBe('100ms');
     });
   });
 
@@ -235,7 +249,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'ease.sine').$value).toEqual(json.ease.sine.$value);
+      expect(tokens.find((t) => t.id === 'ease.sine')?.$value).toEqual(json.ease.sine.$value);
     });
   });
 
@@ -247,7 +261,7 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'size.large').$value).toEqual(json.size.large.$value);
+      expect(tokens.find((t) => t.id === 'size.large')?.$value).toEqual(json.size.large.$value);
     });
   });
 });
@@ -259,15 +273,15 @@ describe('9. Composite Type', () => {
         stroke: {$type: 'strokeStyle', $value: 'solid'},
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'stroke').$value).toBe('solid');
+      expect(tokens.find((t) => t.id === 'stroke')?.$value).toBe('solid');
     });
 
     test('validates', () => {
       const json = {
         stroke: {$type: 'strokeStyle', $value: 'foo'},
       };
-      const {errors} = parse(json);
-      expect(errors.length).toBe(1);
+      const {errors} = parse(json, DEFAULT_PARSE_OPTIONS);
+      expect(errors?.length).toBe(1);
     });
   });
 
@@ -279,16 +293,16 @@ describe('9. Composite Type', () => {
           $value: {color: '#363636', width: '3px', style: 'solid'},
         },
       };
-      const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'heavy').$value).to.deep.equal({color: '#363636', width: '3px', style: 'solid'});
+      const tokens = getTokens(json, DEFAULT_PARSE_OPTIONS);
+      expect(tokens.find((t) => t.id === 'heavy')?.$value).to.deep.equal({color: '#363636', width: '3px', style: 'solid'});
     });
 
     test('validates', () => {
       const json = {
         border: {$type: 'border', $value: {color: '#363636'}},
       };
-      const {errors} = parse(json);
-      expect(errors.length).toBe(1);
+      const {errors} = parse(json, DEFAULT_PARSE_OPTIONS);
+      expect(errors?.length).toBe(1);
     });
   });
 
@@ -300,7 +314,10 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'transition.cubic').$value.timingFunction).to.deep.equal(json.transition.cubic.$value.timingFunction);
+      expect(
+        // @ts-expect-error it doesn’t know what token type this is
+        tokens.find((t) => t.id === 'transition.cubic')?.$value.timingFunction,
+      ).to.deep.equal(json.transition.cubic.$value.timingFunction);
     });
 
     test('alias', () => {
@@ -313,7 +330,10 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find(({id}) => id === 'transition.sine').$value.timingFunction).to.deep.equal(json.easing.sine.$value);
+      expect(
+        // @ts-expect-error it doesn’t know what token type this is
+        tokens.find(({id}) => id === 'transition.sine')?.$value.timingFunction,
+      ).to.deep.equal(json.easing.sine.$value);
     });
   });
 
@@ -328,7 +348,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'shadow.simple').$value).to.deep.equal({
+      expect(tokens.find((t) => t.id === 'shadow.simple')?.$value).to.deep.equal({
         offsetX: '0',
         offsetY: '4px',
         blur: '8px',
@@ -357,7 +377,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'gradient.roygbiv').$value).to.deep.equal(json.gradient.roygbiv.$value);
+      expect(tokens.find((t) => t.id === 'gradient.roygbiv')?.$value).to.deep.equal(json.gradient.roygbiv.$value);
     });
 
     test('alias: color', () => {
@@ -382,11 +402,14 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'gradient.b-g').$value).to.deep.equal([
+      expect(tokens.find((t) => t.id === 'gradient.b-g')?.$value).to.deep.equal([
         {color: '#0000ff', position: 0},
         {color: '#00ff00', position: 1},
       ]);
-      expect(tokens.find((t) => t.id === 'gradient.b-g').$extensions.mode.colorblind).to.deep.equal([
+      expect(
+        // @ts-expect-error it doesn’t know what token type this is
+        tokens.find((t) => t.id === 'gradient.b-g').$extensions.mode.colorblind,
+      ).to.deep.equal([
         {color: '#0000ff', position: 0},
         {color: '#ffc000', position: 1},
       ]);
@@ -408,7 +431,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'ui.bg').$value).to.deep.equal(json.gradient['b-g'].$value);
+      expect(tokens.find((t) => t.id === 'ui.bg')?.$value).to.deep.equal(json.gradient['b-g'].$value);
     });
   });
 
@@ -423,7 +446,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.pageTitle').$value).to.deep.equal(json.typography['pageTitle'].$value);
+      expect(tokens.find((t) => t.id === 'typography.pageTitle')?.$value).to.deep.equal(json.typography['pageTitle'].$value);
     });
 
     test('fontWeight: string', () => {
@@ -438,7 +461,10 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.heading').$value.fontWeight).toBe(900);
+      expect(
+        // @ts-expect-error it doesn’t know what token type this is
+        tokens.find((t) => t.id === 'typography.heading')!.$value.fontWeight,
+      ).toBe(900);
     });
 
     test('alias: property', () => {
@@ -457,7 +483,10 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.pageTitle').$value.fontFamily).to.deep.equal(json.typography.family.heading.$value);
+      expect(
+        // @ts-expect-error it doesn’t know what token type this is
+        tokens.find((t) => t.id === 'typography.pageTitle').$value.fontFamily,
+      ).to.deep.equal(json.typography.family.heading.$value);
     });
 
     test('alias: whole type', () => {
@@ -471,7 +500,7 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.lgTitle').$value).to.deep.equal(json.typography['pageTitle'].$value);
+      expect(tokens.find((t) => t.id === 'typography.lgTitle')?.$value).to.deep.equal(json.typography['pageTitle'].$value);
     });
   });
 });

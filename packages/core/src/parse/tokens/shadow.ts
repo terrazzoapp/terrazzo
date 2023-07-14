@@ -1,6 +1,10 @@
 import type {ShadowValue} from '../../token.js';
-import {normalizeColorValue} from './color.js';
+import {ParseColorOptions, normalizeColorValue} from './color.js';
 import {normalizeDimensionValue} from './dimension.js';
+
+export interface ParseShadowOptions {
+  color: ParseColorOptions;
+}
 
 /**
  * 9.5 Shadow
@@ -16,7 +20,7 @@ import {normalizeDimensionValue} from './dimension.js';
  *   }
  * }
  */
-export function normalizeShadowValue(value: unknown): ShadowValue {
+export function normalizeShadowValue(value: unknown, options: ParseShadowOptions): ShadowValue {
   if (!value) throw new Error('missing value');
   if (typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid shadow');
   const v = value as any;
@@ -31,7 +35,7 @@ export function normalizeShadowValue(value: unknown): ShadowValue {
     offsetY: normalizeDimensionValue(v.offsetY || '0'),
     blur: normalizeDimensionValue(v.blur || '0'),
     spread: normalizeDimensionValue(v.spread || '0'),
-    color: normalizeColorValue(v.color),
+    color: normalizeColorValue(v.color, options.color),
     // extra values are discarded rather than throwing an error
   };
 }

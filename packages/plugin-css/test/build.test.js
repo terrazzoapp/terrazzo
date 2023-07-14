@@ -27,6 +27,7 @@ describe('@cobalt-ui/plugin-css', () => {
           },
         }),
       ],
+      color: {},
     });
 
     expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
