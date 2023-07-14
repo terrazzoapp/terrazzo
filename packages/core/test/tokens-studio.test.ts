@@ -3,17 +3,17 @@
  */
 import {FG_RED, RESET} from '@cobalt-ui/utils';
 import {describe, expect, test} from 'vitest';
-import {parse} from '../dist/index.js';
+import {parse, ParseOptions} from '../src/index.js';
 
 /** parse schema and expect no errors */
-function getTokens(json) {
+function getTokens(json, parseOptions: ParseOptions = {color: {}}) {
   // the presence of top-level "$themes" and "$metadata" is necessary to detect
   // Tokens Studio format, as it always outputs these, and these are invalid
   // for the W3C format)
   if (!('$themes' in json)) json.$themes = [];
   if (!('$metadata' in json)) json.$metadata = {};
 
-  const {errors, result} = parse(json);
+  const {errors, result} = parse(json, parseOptions);
   if (errors) {
     for (const err of errors) {
       console.error(`${FG_RED}${err}${RESET}`); // eslint-disable-line no-console

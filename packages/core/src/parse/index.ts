@@ -1,7 +1,7 @@
 import {cloneDeep, FG_YELLOW, getAliasID, isAlias, RESET} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
-import {normalizeColorValue} from './tokens/color.js';
+import {normalizeColorValue, ParseColorOptions} from './tokens/color.js';
 import {normalizeFontFamilyValue} from './tokens/fontFamily.js';
 import {normalizeDurationValue} from './tokens/duration.js';
 import {normalizeDimensionValue} from './tokens/dimension.js';
@@ -26,6 +26,11 @@ export interface ParseResult {
   };
 }
 
+export interface ParseOptions {
+  /** Configure transformations for color tokens */
+  color: ParseColorOptions;
+}
+
 interface InheritedGroup {
   $type?: TokenType;
   $extensions: {
@@ -35,7 +40,7 @@ interface InheritedGroup {
 
 const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$extensions']);
 
-export function parse(rawTokens: unknown): ParseResult {
+export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const result: ParseResult = {result: {metadata: {}, tokens: []}};
@@ -232,14 +237,14 @@ export function parse(rawTokens: unknown): ParseResult {
       switch (token.$type) {
         // 8.1 Color
         case 'color': {
-          tokens[id]!.$value = normalizeColorValue(values[id]);
-          normalizeModes(id, normalizeColorValue);
+          tokens[id]!.$value = normalizeColorValue(values[id], options.color);
+          normalizeModes(id, (v) => normalizeColorValue(v, options.color));
           break;
         }
         // 8.2 Dimension
         case 'dimension': {
           tokens[id]!.$value = normalizeDimensionValue(values[id]);
-          normalizeModes(id, normalizeDimensionValue);
+          normalizeModes(id, (v) => normalizeDimensionValue(v));
           break;
         }
         // 8.3 FontFamily
@@ -247,73 +252,73 @@ export function parse(rawTokens: unknown): ParseResult {
         case 'fontFamily': {
           if ((token.$type as any) === 'font') console.warn(`${FG_YELLOW}@cobalt-ui/core${RESET} $type: "font" is deprecated. Please use "fontFamily" instead.`); // eslint-disable-line no-console
           tokens[id]!.$value = normalizeFontFamilyValue(values[id]);
-          normalizeModes(id, normalizeFontFamilyValue);
+          normalizeModes(id, (v) => normalizeFontFamilyValue(v));
           break;
         }
         // 8.4 FontWeight
         case 'fontWeight': {
           tokens[id]!.$value = normalizeFontWeightValue(values[id]);
-          normalizeModes(id, normalizeFontWeightValue);
+          normalizeModes(id, (v) => normalizeFontWeightValue(v));
           break;
         }
         // 8.5 Duration
         case 'duration': {
           tokens[id]!.$value = normalizeDurationValue(values[id]);
-          normalizeModes(id, normalizeDurationValue);
+          normalizeModes(id, (v) => normalizeDurationValue(v));
           break;
         }
         // 8.6 Cubic Bezier
         case 'cubicBezier': {
           tokens[id]!.$value = normalizeCubicBezierValue(values[id]);
-          normalizeModes(id, normalizeCubicBezierValue);
+          normalizeModes(id, (v) => normalizeCubicBezierValue(v));
           break;
         }
         // 8.7 Number
         case 'number': {
           tokens[id]!.$value = normalizeNumberValue(values[id]);
-          normalizeModes(id, normalizeNumberValue);
+          normalizeModes(id, (v) => normalizeNumberValue(v));
           break;
         }
         // 8.? Link
         case 'link': {
           tokens[id]!.$value = normalizeLinkValue(values[id]);
-          normalizeModes(id, normalizeLinkValue);
+          normalizeModes(id, (v) => normalizeLinkValue(v));
           break;
         }
         // 9.2 Stroke Style
         case 'strokeStyle': {
           tokens[id]!.$value = normalizeStrokeStyleValue(values[id]);
-          normalizeModes(id, normalizeStrokeStyleValue);
+          normalizeModes(id, (v) => normalizeStrokeStyleValue(v));
           break;
         }
         // 9.3 Border
         case 'border': {
-          tokens[id]!.$value = normalizeBorderValue(values[id]);
-          normalizeModes(id, normalizeBorderValue);
+          tokens[id]!.$value = normalizeBorderValue(values[id], {color: options.color});
+          normalizeModes(id, (v) => normalizeBorderValue(v, {color: options.color}));
           break;
         }
         // 9.4 Transition
         case 'transition': {
           tokens[id]!.$value = normalizeTransitionValue(values[id]);
-          normalizeModes(id, normalizeTransitionValue);
+          normalizeModes(id, (v) => normalizeTransitionValue(v));
           break;
         }
         // 9.5 Shadow
         case 'shadow': {
-          tokens[id]!.$value = normalizeShadowValue(values[id]);
-          normalizeModes(id, normalizeShadowValue);
+          tokens[id]!.$value = normalizeShadowValue(values[id], {color: options.color});
+          normalizeModes(id, (v) => normalizeShadowValue(v, {color: options.color}));
           break;
         }
         // 9.6 Gradient
         case 'gradient': {
-          tokens[id]!.$value = normalizeGradientValue(values[id]);
-          normalizeModes(id, normalizeGradientValue);
+          tokens[id]!.$value = normalizeGradientValue(values[id], {color: options.color});
+          normalizeModes(id, (v) => normalizeGradientValue(v, {color: options.color}));
           break;
         }
         // 9.7 Typography
         case 'typography': {
           tokens[id]!.$value = normalizeTypographyValue(values[id]);
-          normalizeModes(id, normalizeTypographyValue);
+          normalizeModes(id, (v) => normalizeTypographyValue(v));
           break;
         }
         // custom/other

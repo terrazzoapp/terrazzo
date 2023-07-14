@@ -15,6 +15,8 @@ export default {
   tokens: './tokens.json',
   outDir: './tokens/',
   plugins: [pluginJS()],
+
+  /** token type options */
 };
 ```
 
@@ -27,6 +29,20 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
   export default {
 -   tokens: "@my-scope/my-tokens",             // ❌ Cobalt won’t be able to find the tokens
 +   tokens: "@my-scope/my-tokens/tokens.json", // ✅ Cobalt can locate this just fine
+```
+
+## Token Type Options
+
+Some token types allow for extra configuration in transformation. Here are all the available settings, along with defaults.
+
+### Color
+
+```ts
+export default {
+  color: {
+    convertToHex: true, // Convert all colors to sRGB hexadecimal (default: true). Disable if you’d like to use another format (such as oklab())
+  },
+};
 ```
 
 ## Syncing with Figma

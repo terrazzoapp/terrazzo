@@ -152,7 +152,7 @@ async function main() {
 
       let rawSchema = JSON.parse(fs.readFileSync(tokensPath, 'utf8'));
       console.log(`${UNDERLINE}${fileURLToPath(tokensPath)}${RESET}`);
-      const {errors, warnings} = parse(rawSchema); // will throw if errors
+      const {errors, warnings} = parse(rawSchema, config); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
         printWarnings(warnings);
