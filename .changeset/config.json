@@ -4,6 +4,5 @@
   "commit": false,
   "linked": [["@cobalt-ui/core", "@cobalt-ui/cli"]],
   "access": "public",
-  "baseBranch": "main",
-  "updateInternalDependencies": "patch"
+  "baseBranch": "main"
 }
