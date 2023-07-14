@@ -28,7 +28,7 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "*"
+    "@cobalt-ui/cli": "^1.2.0"
   },
   "dependencies": {
     "@cobalt-ui/utils": "^1.1.1"
