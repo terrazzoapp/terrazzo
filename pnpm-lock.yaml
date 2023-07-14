@@ -45,16 +45,16 @@ importers:
   docs:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../packages/cli
       '@cobalt-ui/core':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../packages/core
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.2
+        specifier: ^2.0.0
         version: link:../packages/plugin-css
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.2
+        specifier: ^2.0.0
         version: link:../packages/plugin-sass
       astro:
         specifier: ^2.8.2
@@ -75,46 +75,46 @@ importers:
   examples/adobe:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
 
   examples/apple:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
 
   examples/github:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
       '@primer/octicons':
         specifier: ^16.3.1
@@ -135,31 +135,31 @@ importers:
         specifier: ^11.10.0
         version: 11.10.0
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
 
   examples/salesforce:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
       '@salesforce-ux/design-system':
         specifier: ^2.16.2
@@ -174,22 +174,22 @@ importers:
   examples/shopify:
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.0
+        specifier: ^1.2.0
         version: link:../../packages/cli
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-css
       '@cobalt-ui/plugin-js':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-js
       '@cobalt-ui/plugin-sass':
-        specifier: ^1.2.1
+        specifier: ^2.0.0
         version: link:../../packages/plugin-sass
 
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.1.1
@@ -264,10 +264,10 @@ importers:
         version: 3.0.2
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../core
       '@types/mime':
         specifier: ^2.0.3
@@ -289,10 +289,10 @@ importers:
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../core
       fast-glob:
         specifier: ^3.3.0
@@ -307,7 +307,7 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@cobalt-ui/plugin-css':
-        specifier: ^1.2.2
+        specifier: ^2.0.0
         version: link:../plugin-css
       '@cobalt-ui/utils':
         specifier: ^1.1.1
@@ -320,10 +320,10 @@ importers:
         version: 3.0.2
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.1.3
+        specifier: ^1.2.0
         version: link:../core
       '@types/mime':
         specifier: ^2.0.3
