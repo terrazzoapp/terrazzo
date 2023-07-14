@@ -16,6 +16,7 @@ describe('@cobalt-ui/plugin-sass', () => {
             filename: 'actual.scss',
           }),
         ],
+        color: {},
       });
       expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.scss', cwd), 'utf8'));
     });
@@ -31,6 +32,7 @@ describe('@cobalt-ui/plugin-sass', () => {
             indentedSyntax: true,
           }),
         ],
+        color: {},
       });
       expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.sass', cwd), 'utf8'));
     });
@@ -46,6 +48,7 @@ describe('@cobalt-ui/plugin-sass', () => {
             pluginCSS: {prefix: 'ds-'},
           }),
         ],
+        color: {},
       });
       expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.scss', cwd), 'utf8'));
     });

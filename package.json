@@ -20,7 +20,7 @@
     "build:examples:shopify": "cd examples/shopify && pnpm run build:tokens",
     "build:packages": "tsc -b packages/cli packages/plugin-css packages/plugin-js packages/plugin-sass",
     "build:utils": "tsc -b packages/utils",
-    "cf:build": "npm run build && cd docs && pnpm run build",
+    "cf:build": "pnpm run build && cd docs && pnpm run build",
     "changeset": "changeset",
     "dev": "run-p -s dev:*",
     "dev:core": "cd packages/core && pnpm run dev",

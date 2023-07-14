@@ -17,6 +17,7 @@ describe('@cobalt-ui/plugin-js', () => {
             json: 'actual.json',
           }),
         ],
+        color: {},
       });
       expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `${dir}: JS`).toBe(fs.readFileSync(new URL('want.js', cwd), 'utf8'));
       expect(fs.readFileSync(new URL('actual.d.ts', cwd), 'utf8'), `${dir}: TS`).toBe(fs.readFileSync(new URL('want.d.ts', cwd), 'utf8'));

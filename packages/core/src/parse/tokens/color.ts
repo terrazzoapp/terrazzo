@@ -19,12 +19,11 @@ export function normalizeColorValue(value: unknown, options: ParseColorOptions):
   if (!value) throw new Error('missing value');
   if (typeof value === 'string' || typeof value === 'number') {
     try {
-      const c = color.from(value); // throws on invalid color;
       if (options.convertToHex === false && typeof value === 'string') {
         return value;
       }
-      return c.hex;
-    } catch {
+      return color.from(value).hex;
+    } catch (err) {
       throw new Error(`invalid color "${value}"`);
     }
   }
