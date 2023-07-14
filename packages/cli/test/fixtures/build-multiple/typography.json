@@ -1,0 +1,29 @@
+{
+  "color": {
+    "$type": "color",
+    "black": {
+      "$value": "#081f2f"
+    }
+  },
+  "typography": {
+    "$type": "typography",
+    "family": {
+      "base": {"$type": "fontName", "$value": ["system-ui", "sans-serif"]},
+      "mono": {"$type": "fontName", "$value": ["ui-monospace", "monospace"]}
+    },
+    "base": {
+      "$value": {
+        "fontFamily": "{typography.family.base}",
+        "fontSize": "0.875rem",
+        "lineHeight": "1.2"
+      }
+    },
+    "code": {
+      "$value": {
+        "fontFamily": "{typography.family.mono}",
+        "fontSize": "0.875rem",
+        "lineHeight": "1.5"
+      }
+    }
+  }
+}

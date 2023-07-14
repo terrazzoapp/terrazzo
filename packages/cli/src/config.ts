@@ -11,23 +11,42 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
   // config.tokens
   // default
   if (userConfig.tokens === undefined) {
-    config.tokens = new URL('./tokens.json', cwd);
-  }
-  // validate
-  else if (typeof userConfig.tokens !== 'string') {
-    throw new Error(`[config] tokens must be string, received ${typeof userConfig.tokens}`);
+    config.tokens = ['./tokens.json' as any]; // will be normalized in next step
+  } else if (typeof userConfig.tokens === 'string') {
+    config.tokens = [userConfig.tokens as any]; // will be normalized in next step
+  } else if (Array.isArray(userConfig.tokens)) {
+    config.tokens = [];
+    for (const file of userConfig.tokens) {
+      if (typeof file === 'string') {
+        config.tokens.push(file as any); // will be normalized in next step
+      } else {
+        throw new Error(`[config] tokens must be array of strings, encountered unexpected path "${file}"`);
+      }
+    }
+  } else {
+    throw new Error(`[config] tokens must be string or array of strings, received ${typeof userConfig.tokens}`);
   }
   // normalize
-  else {
-    const tokensPath = new URL(config.tokens as any, cwd);
-    if (fs.existsSync(tokensPath)) {
-      config.tokens = tokensPath;
-    }
-    // otherwise, try Node resolution
-    else {
-      const nodeResolved = require.resolve(userConfig.tokens, {paths: [fileURLToPath(cwd), process.cwd(), import.meta.url]});
-      if (!fs.existsSync(nodeResolved)) throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
-      config.tokens = new URL(`file://${nodeResolved}`);
+  for (let i = 0; i < config.tokens.length; i++) {
+    const filepath = config.tokens[i] as any as string;
+    const isRemote = filepath.startsWith('//') || filepath.startsWith('http:') || filepath.startsWith('https:');
+    if (isRemote) {
+      try {
+        config.tokens[i] = new URL(filepath);
+      } catch {
+        throw new Error(`[config] invalid URL "${filepath}"`);
+      }
+    } else {
+      const tokensPath = new URL(filepath, cwd);
+      if (fs.existsSync(tokensPath)) {
+        config.tokens[i] = tokensPath;
+      }
+      // otherwise, attempt Node resolution (sometimes it do be like that)
+      else {
+        const nodeResolved = require.resolve(filepath, {paths: [fileURLToPath(cwd), process.cwd(), import.meta.url]});
+        if (!fs.existsSync(nodeResolved)) throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
+        config.tokens[i] = new URL(`file://${nodeResolved}`);
+      }
     }
   }
 
