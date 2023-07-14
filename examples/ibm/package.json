@@ -8,9 +8,9 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@carbon/colors": "^11.6.0",
-    "@carbon/icons": "^11.10.0",
-    "@carbon/type": "^11.10.0",
+    "@carbon/colors": "^11.17.1",
+    "@carbon/icons": "^11.22.1",
+    "@carbon/type": "^11.20.1",
     "@cobalt-ui/cli": "workspace:*",
     "@cobalt-ui/plugin-css": "workspace:*",
     "@cobalt-ui/plugin-js": "workspace:*",
