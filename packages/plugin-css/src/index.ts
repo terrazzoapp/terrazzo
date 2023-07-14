@@ -40,6 +40,8 @@ export interface Options {
   transform?: (token: ParsedToken, mode?: string) => string;
   /** prefix variable names */
   prefix?: string;
+  /** enable P3 color enhancement? (default: true) */
+  p3?: boolean;
 }
 
 export default function pluginCSS(options?: Options): Plugin {
@@ -160,7 +162,7 @@ export default function pluginCSS(options?: Options): Plugin {
       }
 
       // P3
-      if (tokens.some((t) => t.$type === 'color' || t.$type === 'border' || t.$type === 'gradient' || t.$type === 'shadow')) {
+      if (options?.p3 !== false && tokens.some((t) => t.$type === 'color' || t.$type === 'border' || t.$type === 'gradient' || t.$type === 'shadow')) {
         code.push('');
         code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
         code.push(...makeP3(makeVars({tokens: tokenVals, indentLv: 1, root: true})));

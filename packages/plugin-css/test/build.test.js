@@ -32,4 +32,22 @@ describe('@cobalt-ui/plugin-css', () => {
 
     expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
   });
+
+  describe('options', () => {
+    test('p3', async () => {
+      const cwd = new URL(`./p3/`, import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            filename: 'actual.css',
+            p3: false,
+          }),
+        ],
+        color: {},
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
+    });
+  });
 });
