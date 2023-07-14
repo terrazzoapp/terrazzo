@@ -73,6 +73,8 @@ export default {
       transform: () => null,
       /** (optional) add custom namespace to CSS vars */
       prefix: '',
+      /** enable P3 support? */
+      p3: true,
     }),
   ],
 };
