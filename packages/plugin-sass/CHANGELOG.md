@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-sass
 
+## 2.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f), [`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f), [`e1e18c1`](https://github.com/drwpow/cobalt-ui/commit/e1e18c1aa0fca4f3fc915f937fe148ee56ac184f)]:
+  - @cobalt-ui/cli@1.3.0
+  - @cobalt-ui/plugin-css@2.0.0
+
 ## 1.2.3
 
 ### Patch Changes
