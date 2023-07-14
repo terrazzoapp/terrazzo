@@ -9,10 +9,8 @@ import {parse} from '@cobalt-ui/core';
 import {DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET} from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
 import fs from 'node:fs';
-import path from 'node:path';
 import {performance} from 'node:perf_hooks';
 import yaml from 'js-yaml';
-import undici from 'undici';
 import {fileURLToPath, URL} from 'node:url';
 import parser from 'yargs-parser';
 import {init as initConfig} from '../dist/config.js';
@@ -210,11 +208,11 @@ async function loadTokens(tokenPaths) {
 
   // download/read
   for (const filepath of tokenPaths) {
-    const ext = path.extname(filepath.pathname);
-    const isYAMLExt = ext === '.yaml' || ext === '.yml';
+    const pathname = filepath.pathname.toLowerCase();
+    const isYAMLExt = pathname.endsWith('.yaml') || pathname.endsWith('.yml');
     if (filepath.protocol === 'url:') {
       try {
-        const raw = await undici.fetch(filepath, {method: 'GET', headers: {Accepted: '*/*', 'User-Agent': 'cobalt'}}).then((res) => res.text());
+        const raw = await globalThis.fetch(filepath, {method: 'GET', headers: {Accepted: '*/*', 'User-Agent': 'cobalt'}}).then((res) => res.text());
         if (isYAMLExt || res.headers.get('content-type').includes('yaml')) {
           rawTokens.push(yaml.load(raw));
         } else {
