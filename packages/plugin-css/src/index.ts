@@ -116,17 +116,17 @@ export default function pluginCSS(options?: Options): Plugin {
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
-                  modeVals[selector][token.id] = modeVal;
+                  modeVals[selector]![token.id] = modeVal;
                   break;
                 }
                 case 'typography': {
                   for (const [k, v] of Object.entries(modeVal)) {
-                    modeVals[selector][`${token.id}-${k}`] = v;
+                    modeVals[selector]![`${token.id}-${k}`] = v;
                   }
                   break;
                 }
                 default: {
-                  modeVals[selector][token.id] = modeVal;
+                  modeVals[selector]![token.id] = modeVal;
                   break;
                 }
               }
@@ -148,14 +148,14 @@ export default function pluginCSS(options?: Options): Plugin {
       // modes
       for (const selector of selectors) {
         code.push('');
-        if (!Object.keys(modeVals[selector]).length) {
+        if (!Object.keys(modeVals[selector]!).length) {
           // eslint-disable-next-line no-console
           console.warn(`${FG_YELLOW}@cobalt-ui/plugin-css${RESET} can’t find any tokens for "${selector}"`);
           continue;
         }
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
         code.push(`${wrapper} {`);
-        if (modeVals[selector]) code.push(...makeVars({tokens: modeVals[selector], indentLv: 1, root: wrapper.startsWith('@')}));
+        if (modeVals[selector]) code.push(...makeVars({tokens: modeVals[selector]!, indentLv: 1, root: wrapper.startsWith('@')}));
         code.push('}');
       }
 
@@ -168,7 +168,7 @@ export default function pluginCSS(options?: Options): Plugin {
           code.push('');
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
           code.push(indent(`${wrapper} {`, 1));
-          code.push(...makeP3(makeVars({tokens: modeVals[selector], indentLv: 2, root: wrapper.startsWith('@')})));
+          code.push(...makeP3(makeVars({tokens: modeVals[selector]!, indentLv: 2, root: wrapper.startsWith('@')})));
           code.push(indent('}', 1));
         }
         code.push(indent('}', 0));
@@ -255,8 +255,8 @@ export function defaultTransformer(token: ParsedToken, options?: {mode?: string;
   // handle modes
   if (options?.mode) {
     if (!token.$extensions?.mode || !token.$extensions.mode[options.mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${options.mode}"`);
-    value = token.$extensions.mode[options.mode];
-    rawVal = ((token._original.$extensions as typeof token.$extensions).mode as typeof token.$extensions.mode)[options?.mode]; // very cool TS right here
+    value = token.$extensions.mode[options.mode]!;
+    rawVal = ((token._original.$extensions as typeof token.$extensions).mode as typeof token.$extensions.mode)[options?.mode]!; // very cool TS right here
   }
 
   // handle aliases (both full and partial aliasing within compound tokens)
@@ -332,7 +332,7 @@ export function varRef(id: string, options?: {prefix?: string; suffix?: string; 
   if (isAlias(id)) {
     const [rootID, mode] = id.substring(1, id.length - 1).split('#');
     if (mode && options?.mode && mode !== options?.mode) console.warn(`⚠️  ${FG_YELLOW}"${id}" referenced from within mode "${options.mode}". This may produce unexpected values.${RESET}`); // eslint-disable-line no-console
-    refID = rootID;
+    refID = rootID!;
   }
   return ['var(', varName(refID, {prefix: options?.prefix, suffix: options?.suffix}), Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '', ')'].join('');
 }
@@ -342,5 +342,5 @@ function parseModeSelector(modeID: string): [string, string] {
   if (!modeID.includes('#')) throw new Error(`modeSelector key must have "#" character`);
   const parts = modeID.split('#').map((s) => s.trim());
   if (parts.length > 2) throw new Error(`modeSelector key must have only 1 "#" character`);
-  return [parts[0], parts[1]];
+  return [parts[0]!, parts[1]!];
 }

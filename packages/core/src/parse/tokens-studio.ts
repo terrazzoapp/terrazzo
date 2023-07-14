@@ -32,7 +32,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
         const tokenID = [...path, k].join('.');
 
         // resolve aliases
-        const tokenSet = path[0];
+        const tokenSet = path[0]!;
         if (typeof v.value === 'string') {
           if (v.value.trim().startsWith('{') && !v.value.trim().startsWith(`{${tokenSet}`)) {
             v.value = v.value.trim().replace('{', `{${tokenSet}.`);
@@ -67,9 +67,9 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             } else if (values.length === 2 || values.length === 3 || values.length === 4) {
               // Tokens Studio doesn’t support the "/" character … right?
               warnings.push(`Token "${tokenID}" is a multi value borderRadius token. Expanding into ${tokenID}TopLeft, ${tokenID}TopRight, ${tokenID}BottomRight, and ${tokenID}BottomLeft.`);
-              let order = [values[0], values[1], values[0], values[1]]; // TL, BR
-              if (values.length === 3) order = [values[0], values[1], values[2], values[1]]; // TL, TR/BL, BR
-              else if (values.length === 4) order = [values[0], values[1], values[2], values[3]]; // TL, TR, BR, BL
+              let order = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TL, BR
+              if (values.length === 3) order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // TL, TR/BL, BR
+              else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // TL, TR, BR, BL
               addToken({$type: 'dimension', $value: order[0]}, [...path, `${k}TopLeft`]);
               addToken({$type: 'dimension', $value: order[1]}, [...path, `${k}TopRight`]);
               addToken({$type: 'dimension', $value: order[2]}, [...path, `${k}BottomRight`]);
@@ -165,9 +165,9 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
               addToken({$type: 'dimension', $value: v.value.trim()}, [...path, k]);
             } else if (values.length === 2 || values.length === 3 || values.length === 4) {
               warnings.push(`Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`);
-              let order = [values[0], values[1], values[0], values[1]]; // TB, RL
-              if (values.length === 3) order = [values[0], values[1], values[2], values[1]]; // T, RL, B
-              else if (values.length === 4) order = [values[0], values[1], values[2], values[3]]; // T, R, B, L
+              let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TB, RL
+              if (values.length === 3) order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // T, RL, B
+              else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // T, R, B, L
               addToken({$type: 'dimension', $value: order[0]}, [...path, `${k}Top`]);
               addToken({$type: 'dimension', $value: order[1]}, [...path, `${k}Right`]);
               addToken({$type: 'dimension', $value: order[2]}, [...path, `${k}Bottom`]);

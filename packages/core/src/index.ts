@@ -60,7 +60,7 @@ export interface ResolvedConfig {
 export interface Plugin {
   name: string;
   /** (optional) read config, and optionally modify */
-  config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
+  config?(config: ResolvedConfig): ResolvedConfig | undefined;
   /** main build fn */
   build(options: {tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group}): Promise<BuildResult[]>;
 }

@@ -1,11 +1,14 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/strict', 'prettier'],
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
+    '@typescript-eslint/no-dynamic-delete': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-unused-vars': 'off', // handled by TS
     'no-console': ['error'],
     'no-misleading-character-class': 'off',
-    'no-prototype-builtins': 'off', // don’t tell me how to JS!
     'no-shadow': ['error'],
     'no-undef': 'off', // handled by TS
     'prefer-const': 'off',

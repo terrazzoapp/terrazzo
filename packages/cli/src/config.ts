@@ -51,9 +51,10 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
     if (!Array.isArray(userConfig.plugins)) throw new Error(`[config] plugins must be array, received ${typeof userConfig.plugins}`);
     if (!userConfig.plugins.length) throw new Error(`[config] plugins are empty`);
     for (let n = 0; n < userConfig.plugins.length; n++) {
-      if (typeof userConfig.plugins[n] !== 'object') throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(userConfig.plugins[n])}`);
-      if (!userConfig.plugins[n].name) throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
-      if (typeof userConfig.plugins[n].build !== 'function') throw new Error(`[${userConfig.plugins[n].name}] missing "build" function`);
+      const plugin = userConfig.plugins[n];
+      if (typeof plugin !== 'object') throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(plugin)}`);
+      if (!plugin.name) throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
+      if (typeof plugin.build !== 'function') throw new Error(`[${plugin.name}] missing "build" function`);
     }
   }
 

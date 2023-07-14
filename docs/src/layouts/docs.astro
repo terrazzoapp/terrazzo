@@ -11,7 +11,7 @@ const {content = {}} = Astro.props;
 <!DOCTYPE html>
 <html>
   <head>
-    <Head title={content.title || 'Docs'} />
+    <Head title={content.title ? `${content.title} / Cobalt design tokens}` : 'Docs / Cobalt design tokens'} />
     <style lang="scss">
       @use '../../tokens' as *;
 

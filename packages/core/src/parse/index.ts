@@ -83,7 +83,7 @@ export function parse(rawTokens: unknown): ParseResult {
         $type: v.$type || group.$type,
         ...v,
       } as ParsedToken;
-      const isToken = token.hasOwnProperty('$value'); // token MUST have $value, per the sepc
+      const isToken = '$value' in token; // token MUST have $value, per the sepc
       if (isToken) {
         if (k.startsWith('$')) {
           errors.push(`${k}: token ID can’t start with the $ character`);
@@ -149,7 +149,7 @@ export function parse(rawTokens: unknown): ParseResult {
       }
       result.result.metadata[k] = schema[k];
     } else {
-      topNodes[k] = schema[k];
+      topNodes[k] = schema[k]!;
     }
   }
   walk(topNodes, [], group);
@@ -220,7 +220,7 @@ export function parse(rawTokens: unknown): ParseResult {
 
   // 3. validate values & replace aliases
   function normalizeModes(id: string, validate: (value: unknown) => any): void {
-    const token = tokens[id];
+    const token = tokens[id]!;
     if (!token.$extensions || !token.$extensions.mode) return;
     for (const k of Object.keys(token.$extensions.mode || {})) {
       (tokens[id] as any).$extensions.mode[k] = validate(values[`${id}#${k}`]);
@@ -232,13 +232,13 @@ export function parse(rawTokens: unknown): ParseResult {
       switch (token.$type) {
         // 8.1 Color
         case 'color': {
-          tokens[id].$value = normalizeColorValue(values[id]);
+          tokens[id]!.$value = normalizeColorValue(values[id]);
           normalizeModes(id, normalizeColorValue);
           break;
         }
         // 8.2 Dimension
         case 'dimension': {
-          tokens[id].$value = normalizeDimensionValue(values[id]);
+          tokens[id]!.$value = normalizeDimensionValue(values[id]);
           normalizeModes(id, normalizeDimensionValue);
           break;
         }
@@ -246,73 +246,73 @@ export function parse(rawTokens: unknown): ParseResult {
         case 'font' as 'fontFamily': // @deprecated (but keep support for now)
         case 'fontFamily': {
           if ((token.$type as any) === 'font') console.warn(`${FG_YELLOW}@cobalt-ui/core${RESET} $type: "font" is deprecated. Please use "fontFamily" instead.`); // eslint-disable-line no-console
-          tokens[id].$value = normalizeFontFamilyValue(values[id]);
+          tokens[id]!.$value = normalizeFontFamilyValue(values[id]);
           normalizeModes(id, normalizeFontFamilyValue);
           break;
         }
         // 8.4 FontWeight
         case 'fontWeight': {
-          tokens[id].$value = normalizeFontWeightValue(values[id]);
+          tokens[id]!.$value = normalizeFontWeightValue(values[id]);
           normalizeModes(id, normalizeFontWeightValue);
           break;
         }
         // 8.5 Duration
         case 'duration': {
-          tokens[id].$value = normalizeDurationValue(values[id]);
+          tokens[id]!.$value = normalizeDurationValue(values[id]);
           normalizeModes(id, normalizeDurationValue);
           break;
         }
         // 8.6 Cubic Bezier
         case 'cubicBezier': {
-          tokens[id].$value = normalizeCubicBezierValue(values[id]);
+          tokens[id]!.$value = normalizeCubicBezierValue(values[id]);
           normalizeModes(id, normalizeCubicBezierValue);
           break;
         }
         // 8.7 Number
         case 'number': {
-          tokens[id].$value = normalizeNumberValue(values[id]);
+          tokens[id]!.$value = normalizeNumberValue(values[id]);
           normalizeModes(id, normalizeNumberValue);
           break;
         }
         // 8.? Link
         case 'link': {
-          tokens[id].$value = normalizeLinkValue(values[id]);
+          tokens[id]!.$value = normalizeLinkValue(values[id]);
           normalizeModes(id, normalizeLinkValue);
           break;
         }
         // 9.2 Stroke Style
         case 'strokeStyle': {
-          tokens[id].$value = normalizeStrokeStyleValue(values[id]);
+          tokens[id]!.$value = normalizeStrokeStyleValue(values[id]);
           normalizeModes(id, normalizeStrokeStyleValue);
           break;
         }
         // 9.3 Border
         case 'border': {
-          tokens[id].$value = normalizeBorderValue(values[id]);
+          tokens[id]!.$value = normalizeBorderValue(values[id]);
           normalizeModes(id, normalizeBorderValue);
           break;
         }
         // 9.4 Transition
         case 'transition': {
-          tokens[id].$value = normalizeTransitionValue(values[id]);
+          tokens[id]!.$value = normalizeTransitionValue(values[id]);
           normalizeModes(id, normalizeTransitionValue);
           break;
         }
         // 9.5 Shadow
         case 'shadow': {
-          tokens[id].$value = normalizeShadowValue(values[id]);
+          tokens[id]!.$value = normalizeShadowValue(values[id]);
           normalizeModes(id, normalizeShadowValue);
           break;
         }
         // 9.6 Gradient
         case 'gradient': {
-          tokens[id].$value = normalizeGradientValue(values[id]);
+          tokens[id]!.$value = normalizeGradientValue(values[id]);
           normalizeModes(id, normalizeGradientValue);
           break;
         }
         // 9.7 Typography
         case 'typography': {
-          tokens[id].$value = normalizeTypographyValue(values[id]);
+          tokens[id]!.$value = normalizeTypographyValue(values[id]);
           normalizeModes(id, normalizeTypographyValue);
           break;
         }

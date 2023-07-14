@@ -126,7 +126,7 @@ export default function pluginJS(options?: Options): Plugin {
           js.modes[token.id] = {};
           if (buildTS) ts.modes.push(indent(`${objKey(token.id)}: {`, 1));
           for (const modeName of Object.keys(token.$extensions.mode)) {
-            js.modes[token.id][modeName] = await transform(token, modeName);
+            js.modes[token.id]![modeName] = await transform(token, modeName);
             if (buildTS) ts.modes.push(indent(`${objKey(modeName)}: ${tokenTypes[token.$type]}['$value'];`, 2));
           }
           if (buildTS) ts.modes.push(indent('};', 1));

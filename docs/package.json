@@ -14,14 +14,14 @@
     "dev:serve": "astro dev"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^1.1.0",
-    "@cobalt-ui/core": "^1.1.0",
-    "@cobalt-ui/plugin-css": "^1.2.1",
-    "@cobalt-ui/plugin-sass": "^1.2.1",
-    "astro": "^2.5.7",
+    "@cobalt-ui/cli": "^1.1.3",
+    "@cobalt-ui/core": "^1.1.3",
+    "@cobalt-ui/plugin-css": "^1.2.2",
+    "@cobalt-ui/plugin-sass": "^1.2.2",
+    "astro": "^2.8.2",
     "npm-run-all": "^4.1.5",
-    "sass": "^1.62.1",
-    "shiki": "^0.14.2",
-    "vite": "^4.3.9"
+    "sass": "^1.63.6",
+    "shiki": "^0.14.3",
+    "vite": "^4.4.4"
   }
 }
