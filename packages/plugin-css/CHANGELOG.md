@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.3.0
+
+### Minor Changes
+
+- [#49](https://github.com/drwpow/cobalt-ui/pull/49) [`dbd82fc`](https://github.com/drwpow/cobalt-ui/commit/dbd82fc41900ebf8ed74fd87e6cb1e85249a09dc) Thanks [@drwpow](https://github.com/drwpow)! - Allow disabling of P3 color support
+
 ## 1.2.3
 
 ### Patch Changes
