@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.2.0
+
+### Minor Changes
+
+- [#47](https://github.com/drwpow/cobalt-ui/pull/47) [`432029f`](https://github.com/drwpow/cobalt-ui/commit/432029f78130bec264fbdb26e83a6980fb923b0e) Thanks [@drwpow](https://github.com/drwpow)! - Add global color transform options
+
 ## 1.1.3
 
 ### Patch Changes

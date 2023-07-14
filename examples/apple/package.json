@@ -8,9 +8,9 @@
     "check": "co check"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^1.1.0",
-    "@cobalt-ui/plugin-css": "^1.2.1",
-    "@cobalt-ui/plugin-js": "^1.2.1",
-    "@cobalt-ui/plugin-sass": "^1.2.1"
+    "@cobalt-ui/cli": "workspace:*",
+    "@cobalt-ui/plugin-css": "workspace:*",
+    "@cobalt-ui/plugin-js": "workspace:*",
+    "@cobalt-ui/plugin-sass": "workspace:*"
   }
 }
