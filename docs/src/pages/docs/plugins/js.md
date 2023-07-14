@@ -5,7 +5,15 @@ layout: ../../../layouts/docs.astro
 
 # @cobalt-ui/plugin-js
 
-Generate JS, TS, and JSON output from design tokens.
+Generate `.js`, and `.json` from your design tokens using [Cobalt](https://cobalt-ui.pages.dev).
+
+**Features**
+
+- ✅ Access all your design tokens safely and programatically in any frontend or backend setup
+- ✅ Full support for token modes (e.g. light/dark mode)
+- ✅ Automatic TypeScript types for strong typechecking (never have a broken style)
+
+## Setup
 
 ```bash
 npm i -D @cobalt-ui/plugin-js

@@ -5,9 +5,12 @@ layout: ../../../layouts/docs.astro
 
 # @cobalt-ui/plugin-css
 
-Generate CSS vars for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
+Generate `.css` from your design tokens using [Cobalt](https://cobalt-ui.pages.dev).
 
-Automatically generates 🌈 [**P3 colors**](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) for more vibrant colors on displays that support it.
+**Features**
+
+- ✅ 🌈 Automatic [P3 color](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) enhancement
+- ✅ Automatic mode inheritance (e.g. light/dark mode)
 
 ## Setup
 

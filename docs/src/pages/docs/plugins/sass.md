@@ -5,7 +5,12 @@ layout: ../../../layouts/docs.astro
 
 # @cobalt-ui/plugin-sass
 
-Generate Sass output for [Cobalt](https://cobalt-ui.pages.dev) from design tokens.
+Generate `.scss` and `.sass` output from your design tokens using [Cobalt](https://cobalt-ui.pages.dev).
+
+**Features**
+
+- ✅ Supports all features of the [CSS plugin](https://cobalt-ui.pages.dev/plugins/css)
+- ✅ Strong typechecking with Sass to never have broken styles
 
 ## Setup
 
