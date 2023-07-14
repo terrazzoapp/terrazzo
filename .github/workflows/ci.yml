@@ -11,20 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: pnpm/action-setup@v2
         with:
           version: latest
-      - uses: actions/setup-node@v3
       - run: pnpm i
       - run: pnpm run lint
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
       - uses: pnpm/action-setup@v2
         with:
           version: latest
-      - uses: actions/setup-node@v3
       - run: pnpm i
       - run: pnpm run build
       - run: pnpm test
