@@ -45,8 +45,6 @@ export default {
 
 ## Usage
 
-### Tokens
-
 Use the provided `token()` function to get a token by its ID (separated by dots):
 
 ```scss
@@ -56,6 +54,10 @@ Use the provided `token()` function to get a token by its ID (separated by dots)
   color: token('color.blue');
   font-size: token('typography.size.xxl');
 }
+
+body[color-mode='dark'] .heading {
+  color: token('color.blue', 'dark'); // pull "dark" mode variant
+}
 ```
 
 Note that a function has a few advantages over plain Sass variables:
@@ -64,9 +66,39 @@ Note that a function has a few advantages over plain Sass variables:
 - ✅ You can programmatically pull values (which is more difficult to do with Sass vars)
 - ✅ Use the same function to access [modes](#modes)
 
-#### Usage with plugin-css (recommended)
+### CSS Variable Mode (recommended)
 
-By default, the `token()` function returns the raw token value to Sass. But to take advantage of all the features of [plugin-css](./css) such as built-in color theming and out-of-the-box P3 support, you’ll want to use both together.
+By default, the Sass plugin only loads your raw token values to Sass. This is a good basic usage, but leaves all the automatic mode inheritance and advanced features of the CSS plugin on the table. To get all the features of the CSS plugin, you can load it through the Sass plugin. In other words:
+
+```sass
+color: token('color.blue');
+```
+
+Becomes:
+
+```diff
+- color: #506fff;
++ color: var(--color-blue);
+```
+
+_“Why would I want to do this?”_ you may ask. _“Why not just type CSS variables directly?”_
+
+The answer is that **CSS variables have no typechecking.** If, say, your tokens were renamed, or you made a typo, you would never know! You would just have broken styles. However, **using the Sass plugin in CSS variable mode** gives you all the advantages of CSS variables but with the typechecking of Sass so that you’ll never have a single broken style.
+
+Keep in mind, however, enabling CSS Variable Mode does come with a few caveats:
+
+**Pros**
+
+- Get automatic mode inheritance from CSS variables (such as light/dark mode)
+- Get dynamic style inheritance from your app
+- Get P3 Color enhancement (provided by `@cobalt-ui/plugin-css`)
+
+**Cons**
+
+- No Sass color adjustments (e.g. `rgba(token('color.blue'), 25%)`). However, [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) is now widely-available and superior
+- No Sass calculations (e.g. `2 * token('dimension.medium')`). However [calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) is more versatile
+
+#### Setup
 
 In your `tokens.config.mjs` file, opt in by adding a `pluginCSS` option. That will automatically load @cobalt-ui/plugin-css and will pass all options to it (all options are supported):
 
@@ -93,65 +125,13 @@ export default {
 };
 ```
 
-⚠️ Don’t load another instance of @cobalt-ui/plugin-css, otherwise they may conflict!
+> ⚠️ Don’t load another instance of @cobalt-ui/plugin-css, otherwise they may conflict!
 
 Lastly, you’ll need to make sure the new `tokens.css` file is loaded in your app somehow (otherwise the variables won’t be defined):
 
 ```diff
   // src/app.ts
 + import '../tokens/tokens.css';
-```
-
-Now `token('color.blue')` will output `var(--ds-color-blue)` instead of a raw hex value, and your app can now dynamically change themes and take advantage of all the power CSS variables have to offer.
-
-If you‘re using Sass, this method is recommended because `token()` will safely guard against accidental typos for your design tokens.
-
-### Typography
-
-As `$type: "typography"` tokens contain multiple values, you’ll need to use the `typography()` mixin instead:
-
-```scss
-@use '../tokens' as *;
-
-.heading {
-  @include typography('typography');
-
-  font-size: token('typography.size.xxl');
-}
-```
-
-Note that you can override any individual property so long as it comes _after_ the mixin.
-
-### Modes
-
-If you take advantage of [modes](https://cobalt-ui.pages.dev/docs/guides/modes) in your tokens, you can pass a 2nd param into `tokens()` with a mode name:
-
-```scss
-@use '../tokens' as *;
-
-.heading {
-  color: token('color.blue');
-
-  body[color-mode='dark'] & {
-    color: token('color.blue', 'dark');
-  }
-}
-```
-
-⚠️ Note that modes are designed to gracefully fall back. So if a certain value isn’t defined on a mode, it will fall back to the default, rather than throwing an error.
-
-#### List modes
-
-To see which modes a token has defined, use the `getModes()` function which returns a list. This can be used to generate styles for specific modes:
-
-```scss
-@use '../tokens' as *;
-
-@for $mode in listModes('color.blue') {
-  [data-color-mode='#{$mode}'] {
-    color: token('color.blue', $mode);
-  }
-}
 ```
 
 ## Config
@@ -247,3 +227,49 @@ export default {
   ],
 };
 ```
+
+## API
+
+All available methods in the Sass plugin.
+
+### listModes()
+
+List all modes a token has defined. This returns a [Sass list](https://sass-lang.com/documentation/values/lists/). This can be used to generate styles for specific modes:
+
+```scss
+@use '../tokens' as *;
+
+@for $mode in listModes('color.blue') {
+  [data-color-mode='#{$mode}'] {
+    color: token('color.blue', $mode);
+  }
+}
+```
+
+### token()
+
+Retrieve a token by its ID. Optionally provide the **mode** as the 2nd param.
+
+```scss
+token($tokenID, [$mode]);
+```
+
+### typography()
+
+[Sass mixin](https://sass-lang.com/documentation/at-rules/mixin/) to inject all styles from a [typography](https://cobalt-ui.pages.dev/docs/tokens/#typography) token. Optionally provide the **mode** as the 2nd param.
+
+```scss
+@include typography($tokenID, [$mode]);
+```
+
+```scss
+@use '../tokens' as *;
+
+h2 {
+  @include typography('typography.heading-2');
+
+  font-size: token('typography.size.xxl'); // overrides can still be applied after the mixin!
+}
+```
+
+Note that you can override any individual property so long as it comes _after_ the mixin.
