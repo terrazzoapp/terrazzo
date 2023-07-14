@@ -16,7 +16,7 @@ jobs:
           node-version: 20
       - uses: pnpm/action-setup@v2
         with:
-          version: latest
+          version: 8
       - run: pnpm i
       - run: pnpm run lint
   test:
@@ -28,7 +28,7 @@ jobs:
           node-version: 20
       - uses: pnpm/action-setup@v2
         with:
-          version: latest
+          version: 8
       - run: pnpm i
       - run: pnpm run build
       - run: pnpm test

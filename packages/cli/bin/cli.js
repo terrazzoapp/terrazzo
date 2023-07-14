@@ -65,7 +65,6 @@ async function main() {
   try {
     // if running `co check [tokens]`, don’t load config from file
     if (cmd === 'check' && args[0]) {
-      console.log(args[0]);
       config = await initConfig({tokens: args[0]}, cwd);
     } else {
       config = await loadConfig(resolveConfig(configPath));
@@ -137,8 +136,9 @@ async function main() {
       break;
     }
     case 'check': {
-      console.log(`${UNDERLINE}${fileURLToPath(config.tokens[0])}${RESET}`);
       const rawSchema = await loadTokens(config.tokens);
+      const filepath = config.tokens[0];
+      console.log(`${UNDERLINE}${filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath}${RESET}`);
       const {errors, warnings} = parse(rawSchema, config); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
@@ -210,9 +210,10 @@ async function loadTokens(tokenPaths) {
   for (const filepath of tokenPaths) {
     const pathname = filepath.pathname.toLowerCase();
     const isYAMLExt = pathname.endsWith('.yaml') || pathname.endsWith('.yml');
-    if (filepath.protocol === 'url:') {
+    if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
       try {
-        const raw = await globalThis.fetch(filepath, {method: 'GET', headers: {Accepted: '*/*', 'User-Agent': 'cobalt'}}).then((res) => res.text());
+        const res = await globalThis.fetch(filepath, {method: 'GET', headers: {Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/116.0'}});
+        const raw = await res.text();
         if (isYAMLExt || res.headers.get('content-type').includes('yaml')) {
           rawTokens.push(yaml.load(raw));
         } else {

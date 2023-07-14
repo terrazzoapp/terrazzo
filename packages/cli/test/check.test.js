@@ -17,6 +17,11 @@ describe('co check', () => {
     expect(result.exitCode).toBe(0);
   });
 
+  test('URL', async () => {
+    const result = await execa('node', ['./bin/cli.js', 'check', 'https://raw.githubusercontent.com/drwpow/cobalt-ui/main/packages/cli/test/fixtures/check-default/tokens.json']);
+    expect(result.exitCode).toBe(0);
+  });
+
   test('invalid tokens', async () => {
     const cwd = new URL('./fixtures/check-invalid/', import.meta.url);
     await expect(async () => await execa('node', [cmd, 'check'], {cwd, throwOnStderr: false})).rejects.toThrow();
