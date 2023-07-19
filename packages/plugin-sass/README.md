@@ -85,8 +85,6 @@ _“Why would I want to do this?”_ you may ask. _“Why not just type CSS vari
 
 The answer is that **CSS variables have no typechecking.** If, say, your tokens were renamed, or you made a typo, you would never know! You would just have broken styles. However, **using the Sass plugin in CSS variable mode** gives you all the advantages of CSS variables but with the typechecking of Sass so that you’ll never have a single broken style.
 
-Keep in mind, however, enabling CSS Variable Mode does come with a few caveats:
-
 **Pros**
 
 - Get automatic mode inheritance from CSS variables (such as light/dark mode)
@@ -95,8 +93,7 @@ Keep in mind, however, enabling CSS Variable Mode does come with a few caveats:
 
 **Cons**
 
-- No Sass color adjustments (e.g. `rgba(token('color.blue'), 25%)`). However, [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) is now widely-available and superior
-- No Sass calculations (e.g. `2 * token('dimension.medium')`). However [calc()](https://developer.mozilla.org/en-US/docs/Web/CSS/calc) is more versatile
+- None, really! You may have to just change how you write CSS.
 
 #### Setup
 
@@ -133,6 +130,26 @@ Lastly, you’ll need to make sure the new `tokens.css` file is loaded in your a
   // src/app.ts
 + import '../tokens/tokens.css';
 ```
+
+#### Usage
+
+Here’s one example of how you may need to adjust your code with CSS vars. For example, **opacity** can be achieved with the [color-mix()](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color-mix) function:
+
+```diff
+- color: rgba(token('color.ui.foreground'), 0.75); // ❌ rgba(var(--color-ui-foreground), 0.75)
++ color: color-mix(in oklab, #{token('color.ui.foreground')}, 25% transparent); // ✅ var(--color-ui-foreground) at 75% opacity
+```
+
+Or perhaps you want to do some calculations off your tokens. CSS’ `calc()` can do that the same:
+
+```diff
+- margin-left: -0.5 * token('space.sm'); // ❌ Error: Undefined operation "-0.5 * var(--space-sm)"
++ margin-left: calc(-0.5 * #{token('space.ms')}); // ✅ calc(-0.5 * var(--color-ui-foreground));
+```
+
+In either case, letting the browser do the work is better, especially considering CSS variables are dynamic and can be modified on-the-fly.
+
+> ✨ **Tip**: Always use `in oklab` as the default colorspace for `color-mix()`. It usually outperforms other blending methods ([comparison](https://better-color-tools.pages.dev/mix)).
 
 ## Config
 
