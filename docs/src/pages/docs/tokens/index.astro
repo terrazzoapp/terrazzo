@@ -1,5 +1,5 @@
 ---
-import {Code} from 'astro/components';
+import JSONYaml from '../../../components/JSONYaml.astro';
 import Token from '../../../components/Token.astro';
 import Layout from '../../../layouts/docs.astro';
 
@@ -64,15 +64,14 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "blue": {
     "60": {
       "$type": "color",
       "$value": "oklch(60% 0.216564 269)"
     }
-  },
+  }
 }`}
   />
 
@@ -103,8 +102,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "no-fallbacks": {
     "$type": "fontFamily",
@@ -144,8 +142,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "no-fallbacks": {
     "$type": "fontFamily",
@@ -185,8 +182,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "space": {
     "md": {
@@ -228,8 +224,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "quick": {
     "$type": "duration",
@@ -269,8 +264,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "linear": {
     "$type": "cubicBezier",
@@ -318,8 +312,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "large": {
     "$type": "number",
@@ -355,8 +348,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "iconAlert": {
     "$type": "link",
@@ -392,8 +384,7 @@ const tokenDef = {
 
   <p>A type of stroke as defined in <a href={tokenDef.strokeStyle} target="_blank"><b>9.2</b></a>.</p>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "focus-ring-style": {
     "$type": "strokeStyle",
@@ -429,8 +420,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "heavy": {
     "$type": "border",
@@ -470,8 +460,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "easeOutQuick": {
     "$type": "transition",
@@ -513,8 +502,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "shadow-md": {
     "$type": "shadow",
@@ -565,8 +553,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "rainbow": {
     "$type": "gradient",
@@ -614,8 +601,7 @@ const tokenDef = {
     </tbody>
   </table>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "body": {
     "$type": "typography",
@@ -676,8 +662,7 @@ const tokenDef = {
     they’re not inside tokens.
   </p>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "color": {
     "$description": "color palette",
@@ -716,8 +701,7 @@ const tokenDef = {
     >):
   </p>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "color": {
     "blue": {
@@ -750,8 +734,7 @@ const tokenDef = {
     that:
   </p>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "red": {
     "$type": "color",
@@ -774,8 +757,7 @@ const tokenDef = {
 
   <p>To address all these, let’s use modes instead by adding an <b>$extensions.mode</b> property:</p>
 
-  <Code
-    lang="json"
+  <JSONYaml
     code={`{
   "red": {
     "$type": "token",

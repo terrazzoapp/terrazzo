@@ -24,6 +24,16 @@ body {
   line-height: 1;
 }
 
+a,
+button,
+[tabindex] {
+  outline: 2px solid transparent;
+
+  &:focus-visible {
+    outline-color: token('color.blue.60');
+  }
+}
+
 h1,
 h2,
 h3,
