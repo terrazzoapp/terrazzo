@@ -1,0 +1,152 @@
+---
+import {Code} from 'astro/components';
+import {nanoid} from 'nanoid';
+import yaml from 'js-yaml';
+
+interface Props {
+  code: string;
+}
+const {code} = Astro.props;
+
+const uuid = nanoid();
+
+const yamlCode = yaml.dump(JSON.parse(code)).trim();
+---
+
+<div class="jsonyaml-wrapper">
+  <menu class="tablist" role="tablist">
+    <li class="tab" role="tab"><button class="tabbutton" type="button" aria-controls={`tab-${uuid}-json`} aria-expanded="true">JSON</button></li>
+    <li class="tab" role="tab"><button class="tabbutton" type="button" aria-controls={`tab-${uuid}-yaml`}>YAML</button></li>
+  </menu>
+  <div id={`tab-${uuid}-json`} class="tabpanel" role="tabpanel">
+    <button class="copy" type="button" data-code={code}>
+      <svg class="icon icon--copy" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+        ><title>copy</title><path
+          fill="currentColor"
+          d="M9,2 C7.89543,2 7,2.89543 7,4 L7,6 L9,6 L9,4 L20,4 L20,15 L18,15 L18,17 L20,17 C21.1046,17 22,16.1046 22,15 L22,4 C22,2.89543 21.1046,2 20,2 L9,2 Z M4,7 C2.89543,7 2,7.89543 2,9 L2,20 C2,21.1046 2.89543,22 4,22 L15,22 C16.1046,22 17,21.1046 17,20 L17,9 C17,7.89543 16.1046,7 15,7 L4,7 Z M4,9 L15,9 L15,20 L4,20 L4,9 Z"
+        ></path>
+      </svg>
+    </button>
+    <Code lang="json" code={code} />
+  </div>
+  <div id={`tab-${uuid}-yaml`} class="tabpanel" role="tabpanel" hidden>
+    <button class="copy" type="button" data-code={yamlCode}>
+      <svg class="icon icon--copy" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+        ><title>copy</title><path
+          fill="currentColor"
+          d="M9,2 C7.89543,2 7,2.89543 7,4 L7,6 L9,6 L9,4 L20,4 L20,15 L18,15 L18,17 L20,17 C21.1046,17 22,16.1046 22,15 L22,4 C22,2.89543 21.1046,2 20,2 L9,2 Z M4,7 C2.89543,7 2,7.89543 2,9 L2,20 C2,21.1046 2.89543,22 4,22 L15,22 C16.1046,22 17,21.1046 17,20 L17,9 C17,7.89543 16.1046,7 15,7 L4,7 Z M4,9 L15,9 L15,20 L4,20 L4,9 Z"
+        ></path>
+      </svg>
+    </button>
+    <Code lang="yaml" code={yamlCode} />
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('[role="tab"]').forEach((tab) => {
+    const tabBtn = tab.querySelector('button')!;
+    const rootEl = tab.closest('.jsonyaml-wrapper')!;
+
+    tabBtn.addEventListener('click', (evt) => {
+      evt.preventDefault();
+
+      // update tabpanels
+      rootEl.querySelectorAll('[role="tabpanel').forEach((el) => el.setAttribute('hidden', ''));
+      const tabpanel = document.getElementById(tabBtn.getAttribute('aria-controls')!)!;
+      tabpanel.removeAttribute('hidden');
+
+      // update tabs
+      rootEl.querySelectorAll('[role="tab"] button').forEach((el) => el.setAttribute('aria-expanded', 'false'));
+      (evt.target as HTMLButtonElement).setAttribute('aria-expanded', 'true');
+    });
+  });
+
+  document.querySelectorAll('button[data-code]').forEach((el) => {
+    el.addEventListener('click', (evt) => {
+      const code = el.getAttribute('data-code')!;
+      if (!code) return;
+      navigator.clipboard.writeText(code);
+    });
+  });
+</script>
+
+<style lang="scss">
+  @use '../../tokens' as *;
+
+  .jsonyaml-wrapper {
+    background-color: #24292e; // saem as Code component
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 0;
+  }
+
+  .tablist {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+    margin: 0 0 -1rem 0;
+    padding: 0;
+    position: relative;
+    z-index: 100;
+  }
+
+  .tab {
+    display: flex;
+    margin: 0 !important;
+    padding: 0;
+  }
+
+  .tabbutton {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    color: token('color.gray.60');
+    padding: 0.5em;
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    &:hover {
+      background-color: rgba(white, 0.1);
+    }
+
+    &[aria-expanded='true'] {
+      background-color: rgba(white, 0.1);
+      border-color: token('color.gray.80');
+      color: token('color.gray.90');
+    }
+  }
+
+  .tabpanel {
+    position: relative;
+  }
+
+  .icon {
+    height: 1rem;
+    width: 1rem;
+  }
+
+  .copy {
+    align-items: center;
+    background: none;
+    border: none;
+    border-radius: 0.375rem;
+    color: token('color.gray.80');
+    cursor: pointer;
+    display: flex;
+    height: 2rem;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: -1rem;
+    width: 2rem;
+    z-index: 100;
+
+    &:hover {
+      background: rgba(white, 0.1);
+    }
+  }
+</style>
