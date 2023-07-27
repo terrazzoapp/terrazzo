@@ -22,6 +22,8 @@ body {
   color: token('color.ui.contrast.100');
   font-family: 'Neue Montreal', -system-ui, 'Helvetica', sans-serif;
   line-height: 1;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 a,

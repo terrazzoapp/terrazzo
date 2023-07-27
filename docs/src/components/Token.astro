@@ -4,7 +4,7 @@ const {type: tokenType} = Astro.props;
 
 <div class={`token token--${tokenType}`}>
   {
-    ['color', 'border', 'transition', 'shadow'].includes(tokenType) && [
+    ['color', 'border', 'gradient', 'transition', 'shadow'].includes(tokenType) && [
       <svg class="token-bg">
         <use xlink:href="#hex" />
       </svg>,
@@ -124,12 +124,40 @@ const {type: tokenType} = Astro.props;
     &--color,
     &--gradient {
       .token-bg {
-        animation: kaleidoscope linear infinite 15s;
+        animation: kaleidoscope linear infinite 12s;
         fill: none !important;
       }
 
       .token-fg {
-        animation: kaleidoscope linear infinite 15s;
+        animation: kaleidoscope linear infinite 12s;
+      }
+    }
+
+    &--gradient {
+      position: relative;
+
+      &::before,
+      &::after {
+        animation: kaleidoscope linear infinite 12s;
+        background-color: currentColor;
+        color: rgb(100% 40.23% 63.07%);
+        content: '';
+        height: 16px;
+        left: 45%;
+        position: absolute;
+        top: 39%;
+        width: 15px;
+        z-index: 20;
+      }
+
+      &::before {
+        animation-delay: 4s;
+        transform: translateX(-74%) rotateX(42deg) rotateY(42deg);
+      }
+
+      &::after {
+        animation-delay: 8s;
+        transform: rotateX(42deg) rotateY(-42deg);
       }
     }
 
@@ -318,50 +346,62 @@ const {type: tokenType} = Astro.props;
   @keyframes kaleidoscope {
     0%,
     100% {
+      color: rgb(100% 40.23% 63.07%);
       fill: rgb(100% 40.23% 63.07%);
       stroke: rgb(100% 40.23% 63.07%);
     }
     8.3333% {
+      color: rgb(100% 42.75% 40.59%);
       fill: rgb(100% 42.75% 40.59%);
       stroke: rgb(100% 42.75% 40.59%);
     }
     16.6666% {
+      color: rgb(94.33% 48.8% 0%);
       fill: rgb(94.33% 48.8% 0%);
       stroke: rgb(94.33% 48.8% 0%);
     }
     25% {
+      color: rgb(70.79% 61.17% 0%);
       fill: rgb(70.79% 61.17% 0%);
       stroke: rgb(70.79% 61.17% 0%);
     }
     33.3333% {
+      color: rgb(43.78% 68.36% 0%);
       fill: rgb(43.78% 68.36% 0%);
       stroke: rgb(43.78% 68.36% 0%);
     }
     41.6666% {
+      color: rgb(0% 71.18% 37.75%);
       fill: rgb(0% 71.18% 37.75%);
       stroke: rgb(0% 71.18% 37.75%);
     }
     50% {
+      color: rgb(0% 69.92% 61.19%);
       fill: rgb(0% 69.92% 61.19%);
       stroke: rgb(0% 69.92% 61.19%);
     }
     58.3333% {
+      color: rgb(0% 68.75% 75.24%);
       fill: rgb(0% 68.75% 75.24%);
       stroke: rgb(0% 68.75% 75.24%);
     }
     66.6666% {
+      color: rgb(0% 67.23% 89.25%);
       fill: rgb(0% 67.23% 89.25%);
       stroke: rgb(0% 67.23% 89.25%);
     }
     75% {
+      color: rgb(36.59% 63.12% 100%);
       fill: rgb(36.59% 63.12% 100%);
       stroke: rgb(36.59% 63.12% 100%);
     }
     83.3333% {
+      color: rgb(67.39% 54.94% 100%);
       fill: rgb(67.39% 54.94% 100%);
       stroke: rgb(67.39% 54.94% 100%);
     }
     91.6666% {
+      color: rgb(100% 33.43% 93.85%);
       fill: rgb(100% 33.43% 93.85%);
       stroke: rgb(100% 33.43% 93.85%);
     }
