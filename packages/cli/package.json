@@ -33,7 +33,9 @@
     "cobalt": "./bin/cli.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "run-s -s build:*",
+    "build:clean": "del dist",
+    "build:ts": "tsc",
     "dev": "tsc -w",
     "test": "run-p test:js test:ts",
     "test:js": "vitest run",
