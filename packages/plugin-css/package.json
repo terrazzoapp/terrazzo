@@ -20,7 +20,10 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "run-s -s build:*",
+    "build:clean": "del dist",
+    "build:ts": "tsc",
+    "build:license": "../../scripts/inject-license.js @cobalt-ui/plugin-css dist/index.js",
     "dev": "tsc -w",
     "test": "run-p -s test:*",
     "test:js": "vitest run",

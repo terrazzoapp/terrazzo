@@ -27,8 +27,11 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc && npm run bundle",
-    "bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap && cp dist/index.d.ts dist/index.min.d.ts",
+    "build": "run-s -s build:*",
+    "build:clean": "del dist",
+    "build:ts": "tsc",
+    "build:bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap && cp dist/index.d.ts dist/index.min.d.ts",
+    "build:license": "../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
     "dev": "run-p -s dev:*",
     "dev:ts": "tsc --watch",
     "dev:bundle": "npm run bundle -- --watch",
