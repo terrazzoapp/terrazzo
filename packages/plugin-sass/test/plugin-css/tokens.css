@@ -36,9 +36,9 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   :root {
-    --ds-border-std: 1px solid color(display-p3 0.05098 0.011765 0);
+    --ds-border-std: 1px solid color(display-p3 0.050980392156862744 0.011764705882352941 0);
     --ds-color-green: color(display-p3 0 1 0);
     --ds-gradient-g-b: color(display-p3 0 1 0) 0%, color(display-p3 0 0 1) 100%;
-    --ds-shadow: 0 4px 8px 0 color(display-p3 0 0 0/0.10196);
+    --ds-shadow: 0 4px 8px 0 color(display-p3 0 0 0 / 0.10196078431372549);
   }
 }

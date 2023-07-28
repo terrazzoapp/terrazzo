@@ -47,35 +47,35 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   :root {
-    --ds-color-blue: color(display-p3 0.129412 0.545098 1);
-    --ds-gradient: color(display-p3 0.129412 0.545098 1) 0%, color(display-p3 0.909804 0.352941 0.678431) 100%;
+    --ds-color-blue: color(display-p3 0.12941176470588237 0.5450980392156862 1);
+    --ds-gradient: color(display-p3 0.12941176470588237 0.5450980392156862 1) 0%, color(display-p3 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
   }
 
   [data-color-theme="light"] {
-    --ds-color-blue: color(display-p3 0.129412 0.545098 1);
+    --ds-color-blue: color(display-p3 0.12941176470588237 0.5450980392156862 1);
   }
 
   [data-color-theme="dark"] {
-    --ds-color-blue: color(display-p3 0.219608 0.545098 0.992157);
+    --ds-color-blue: color(display-p3 0.2196078431372549 0.5450980392156862 0.9921568627450981);
   }
 
   [data-color-theme="light-colorblind"] {
-    --ds-color-blue: color(display-p3 0.129412 0.545098 1);
+    --ds-color-blue: color(display-p3 0.12941176470588237 0.5450980392156862 1);
   }
 
   [data-color-theme="light-high-contrast"] {
-    --ds-color-blue: color(display-p3 0.066667 0.407843 0.890196);
+    --ds-color-blue: color(display-p3 0.06666666666666667 0.40784313725490196 0.8901960784313725);
   }
 
   [data-color-theme="dark-dimmed"] {
-    --ds-color-blue: color(display-p3 0.254902 0.517647 0.894118);
+    --ds-color-blue: color(display-p3 0.2549019607843137 0.5176470588235295 0.8941176470588236);
   }
 
   [data-color-theme="high-contrast"] {
-    --ds-color-blue: color(display-p3 0.25098 0.619608 1);
+    --ds-color-blue: color(display-p3 0.25098039215686274 0.6196078431372549 1);
   }
 
   [data-color-theme="dark-colorblind"] {
-    --ds-color-blue: color(display-p3 0.219608 0.545098 0.992157);
+    --ds-color-blue: color(display-p3 0.2196078431372549 0.5450980392156862 0.9921568627450981);
   }
 }

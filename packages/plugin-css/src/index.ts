@@ -19,7 +19,7 @@ import type {
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
-import color from 'better-color-tools';
+import {converter, formatCss} from 'culori';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {encode, formatFontNames} from './util.js';
 
@@ -43,6 +43,9 @@ export interface Options {
   /** enable P3 color enhancement? (default: true) */
   p3?: boolean;
 }
+
+/** ⚠️ Important! We do NOT want to parse as P3. We want to parse as sRGB, then expand 1:1 to P3. @see https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/ */
+const rgb = converter('rgb');
 
 export default function pluginCSS(options?: Options): Plugin {
   let config: ResolvedConfig;
@@ -70,7 +73,9 @@ export default function pluginCSS(options?: Options): Plugin {
       if (!matches || !matches.length) continue;
       let newVal = line;
       for (const c of matches) {
-        newVal = newVal.replace(c, color.from(c).p3);
+        const parsed = rgb(c);
+        if (!parsed) throw new Error(`invalid color "${c}"`);
+        newVal = newVal.replace(c, formatCss({...parsed, mode: 'p3'}));
       }
       output.push(newVal);
     }
