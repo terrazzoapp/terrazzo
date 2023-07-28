@@ -1,4 +1,4 @@
-import color from 'better-color-tools';
+import {formatHex, formatHex8, parse} from 'culori';
 import type {ParsedColorToken} from '../../token.js';
 
 export interface ParseColorOptions {
@@ -17,15 +17,13 @@ export interface ParseColorOptions {
  */
 export function normalizeColorValue(value: unknown, options: ParseColorOptions): ParsedColorToken['$value'] {
   if (!value) throw new Error('missing value');
-  if (typeof value === 'string' || typeof value === 'number') {
-    try {
-      if (options.convertToHex === false && typeof value === 'string') {
-        return value;
-      }
-      return color.from(value).hex;
-    } catch (err) {
-      throw new Error(`invalid color "${value}"`);
+  if (typeof value === 'string') {
+    if (options.convertToHex === false) {
+      return value;
     }
+    const parsed = parse(value);
+    if (!parsed) throw new Error(`invalid color "${value}"`);
+    return typeof parsed.alpha === 'number' && parsed.alpha < 1 ? formatHex8(parsed) : formatHex(parsed);
   }
   throw new Error(`expected string, received ${typeof value}`);
 }

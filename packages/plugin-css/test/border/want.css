@@ -22,17 +22,17 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   :root {
-    --ds-color-gray: color(display-p3 0.329412 0.278431 0.254902);
-    --ds-border: 1px solid color(display-p3 0.05098 0.011765 0);
+    --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
+    --ds-border: 1px solid color(display-p3 0.050980392156862744 0.011764705882352941 0);
   }
 
   [data-color-theme="light"] {
-    --ds-color-gray: color(display-p3 0.329412 0.278431 0.254902);
-    --ds-border: 1px solid color(display-p3 0.05098 0.011765 0);
+    --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
+    --ds-border: 1px solid color(display-p3 0.050980392156862744 0.011764705882352941 0);
   }
 
   [data-color-theme="dark"] {
-    --ds-color-gray: color(display-p3 0.733333 0.713725 0.701961);
+    --ds-color-gray: color(display-p3 0.7333333333333333 0.7137254901960784 0.7019607843137254);
     --ds-border: 1px solid color(display-p3 1 1 1);
   }
 }

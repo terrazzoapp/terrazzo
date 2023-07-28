@@ -84,7 +84,6 @@ describe('Spacing', () => {
 
 describe('Color', () => {
   test('CSS color', () => {
-    // note: better-color-tools will parse any CSS-valid color so we don’t need to be exhaustive here
     const json = {
       global: {
         color: {
