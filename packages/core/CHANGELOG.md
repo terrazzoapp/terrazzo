@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.4.0
+
+### Minor Changes
+
+- [#63](https://github.com/drwpow/cobalt-ui/pull/63) [`f20f589`](https://github.com/drwpow/cobalt-ui/commit/f20f5896568a9f71b90135606eb3abc041263a02) Thanks [@drwpow](https://github.com/drwpow)! - Add `co bundle` command
+
 ## 1.3.1
 
 ### Patch Changes

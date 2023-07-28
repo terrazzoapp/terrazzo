@@ -196,7 +196,7 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.3.1
+        specifier: ^1.4.0
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.1.1
@@ -289,10 +289,10 @@ importers:
         version: 3.0.2
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.3.1
+        specifier: ^1.4.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.3.1
+        specifier: ^1.4.0
         version: link:../core
       '@types/node':
         specifier: ^20.4.5
@@ -311,10 +311,10 @@ importers:
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.3.0
+        specifier: ^1.4.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.3.0
+        specifier: ^1.4.0
         version: link:../core
       fast-glob:
         specifier: ^3.3.1
@@ -342,10 +342,10 @@ importers:
         version: 3.0.2
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.3.0
+        specifier: ^1.4.0
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.3.0
+        specifier: ^1.4.0
         version: link:../core
       '@cobalt-ui/plugin-css':
         specifier: ^1.3.0
