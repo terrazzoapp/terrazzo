@@ -1,11 +1,10 @@
-import fs from 'node:fs';
 import {execa} from 'execa';
-import {describe, expect, test} from 'vitest';
+import {describe, expect, it} from 'vitest';
 
 const cmd = '../../../bin/cli.js';
 
 describe('co build', () => {
-  test('default', async () => {
+  it('default', async () => {
     const cwd = new URL('./fixtures/build-default/', import.meta.url);
     await execa('node', [cmd, 'build'], {cwd});
 
@@ -15,7 +14,7 @@ describe('co build', () => {
     expect(Object.keys(builtTokens.meta).length).toBe(34);
   });
 
-  test('yaml', async () => {
+  it('yaml', async () => {
     const cwd = new URL('./fixtures/build-yaml/', import.meta.url);
     await execa('node', [cmd, 'build'], {cwd});
 
@@ -25,7 +24,7 @@ describe('co build', () => {
     expect(Object.keys(builtTokens.meta).length).toBe(34);
   });
 
-  test('multiple', async () => {
+  it('multiple', async () => {
     const cwd = new URL('./fixtures/build-multiple/', import.meta.url);
     await execa('node', [cmd, 'build'], {cwd});
 

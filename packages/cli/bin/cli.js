@@ -21,7 +21,7 @@ const cwd = new URL(`file://${process.cwd()}/`);
 
 const flags = parser(args, {
   boolean: ['help', 'watch', 'version'],
-  string: ['config'],
+  string: ['config', 'out'],
   alias: {
     config: ['c'],
     version: ['v'],
@@ -56,7 +56,7 @@ async function main() {
   let configPath;
   if (typeof flags.config === 'string') {
     if (flags.config === '') {
-      console.error(`  ${FG_RED}✘  Missing path after --config flag${RESET}`);
+      printErrors('Missing path after --config flag');
       process.exit(1);
     }
     configPath = resolveConfig(flags.config);
@@ -70,14 +70,14 @@ async function main() {
       config = await loadConfig(resolveConfig(configPath));
     }
   } catch (err) {
-    console.error(`  ${FG_RED}✘  ${err.message || err}${RESET}`);
+    printErrors(err.message || err);
     process.exit(1);
   }
 
   switch (cmd) {
     case 'build': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
-        console.error(`  ${FG_RED}✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}${RESET}`);
+        printErrors(`✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
         process.exit(1);
       }
 
@@ -126,12 +126,32 @@ async function main() {
         // keep process occupied
         await new Promise(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
       } else {
-        console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built`);
+        console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built ${time(start)}`);
       }
       break;
     }
+    case 'bundle': {
+      if (config.tokens.length < 2) {
+        printErrors(`co bundle requires multiple inputs, but only found ${config.tokens.length} files in config.`);
+        process.exit(1);
+      }
+      if (!flags.out) {
+        printErrors(`--out [file] is required to save bundle`);
+        process.exit(1);
+      }
+
+      const tokens = await loadTokens(config.tokens);
+
+      const resolvedOut = new URL(flags.out, cwd);
+      fs.mkdirSync(new URL('.', resolvedOut), {recursive: true});
+
+      const isYAML = resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
+      fs.writeFileSync(resolvedOut, isYAML ? yaml.dump(tokens) : JSON.stringify(tokens, undefined, 2));
+      console.log(`  ${FG_GREEN}✔${RESET} Bundled ${config.tokens.length} schemas ${time(start)}`);
+      break;
+    }
     case 'sync': {
-      console.error(`  ${FG_YELLOW}! "co sync" was deprecated. See https://cobalt-ui.pages.dev/docs/guides/figma`);
+      printWarnings('"co sync" was deprecated. See https://cobalt-ui.pages.dev/docs/guides/figma');
       process.exit(1);
       break;
     }
@@ -145,20 +165,22 @@ async function main() {
         printWarnings(warnings);
         process.exit(1);
       }
-      console.log(`  ${FG_GREEN}✔${RESET}  no errors`);
+      console.log(`  ${FG_GREEN}✔${RESET}  no errors ${time(start)}`);
       break;
     }
     case 'init': {
       if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
       fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
-      console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created`);
+      console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created ${time(start)}`);
       break;
     }
-    default:
+    default: {
       showHelp();
+      break;
+    }
   }
 
-  console.info(`  Done  ${time(start)}`);
+  // done
   process.exit(0);
 }
 
@@ -170,6 +192,8 @@ function showHelp() {
   [commands]
     build           Build token artifacts from tokens.json
       --watch, -w   Watch tokens.json for changes and recompile
+    bundle          Combine multiple tokens schemas into one
+      --out [path]  Specify bundled tokens.json output
     init            Create a starter tokens.json file
     check [path]    Check tokens.json for errors
 
@@ -220,7 +244,7 @@ async function loadTokens(tokenPaths) {
           rawTokens.push(JSON.parse(raw));
         }
       } catch (err) {
-        console.error(`  ${FG_RED}✘  ${filepath.href}: ${err}${RESET}`);
+        printErrors(`${filepath.href}: ${err}`);
       }
     } else {
       if (fs.existsSync(filepath)) {
@@ -232,10 +256,10 @@ async function loadTokens(tokenPaths) {
             rawTokens.push(JSON.parse(raw));
           }
         } catch (err) {
-          console.error(`  ${FG_RED}✘  ${filepath.href}: ${err}${RESET}`);
+          printErrors(`${filepath.href}: ${err}`);
         }
       } else {
-        console.error(`  ${FG_RED}✘  Could not locate ${filepath}. To create one, run \`npx cobalt init\`.${RESET}`);
+        printErrors(`Could not locate ${filepath}. To create one, run \`npx cobalt init\`.`);
         process.exit(1);
       }
     }
@@ -253,7 +277,7 @@ async function loadTokens(tokenPaths) {
 /** Merge JSON B into A */
 function merge(a, b) {
   if (Array.isArray(b)) {
-    console.error(`  ${FG_RED}✘ Internal error parsing tokens file.${RESET}`); // oops
+    printErrors('Internal error parsing tokens file.'); // oops
     process.exit(1);
     return;
   }
@@ -281,12 +305,12 @@ function time(start) {
 
 /** Print errors */
 export function printErrors(errors) {
-  if (!errors || !Array.isArray(errors)) return;
-  for (const err of errors) console.error(`  ${FG_RED}✘  ${err}${RESET}`);
+  if (!errors || (typeof errors !== 'string' && !Array.isArray(errors))) return;
+  for (const err of Array.isArray(errors) ? errors : [errors]) console.error(`  ${FG_RED}✘  ${err}${RESET}`);
 }
 
 /** Print warnings */
 export function printWarnings(warnings) {
-  if (!warnings || !Array.isArray(warnings)) return;
-  for (const warn of warnings) console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
+  if (!warnings || (typeof warnings !== 'string' && !Array.isArray(warnings))) return;
+  for (const warn of Array.isArray(warnings) ? warnings : [warnings]) console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
 }
