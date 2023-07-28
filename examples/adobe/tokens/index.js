@@ -5,65 +5,105 @@
  */
 
 export const tokens = {
-  'color.blue400': '#2680eb',
-  'color.blue500': '#1473e6',
-  'color.blue600': '#0d66d0',
-  'color.blue700': '#095aba',
-  'color.gray50': '#ffffff',
-  'color.gray75': '#fafafa',
-  'color.gray100': '#f5f5f5',
-  'color.gray200': '#eaeaea',
-  'color.gray300': '#e1e1e1',
-  'color.gray400': '#cacaca',
-  'color.gray500': '#b3b3b3',
-  'color.gray600': '#8e8e8e',
-  'color.gray700': '#6e6e6e',
-  'color.gray800': '#4b4b4b',
-  'color.gray900': '#2c2c2c',
-  'color.green400': '#2d9d78',
-  'color.green500': '#268e6c',
-  'color.green600': '#12805c',
-  'color.green700': '#107154',
-  'color.red400': '#e34850',
-  'color.red500': '#d7373f',
-  'color.red600': '#c9252d',
-  'color.red700': '#bb121a',
-  'color.orange400': '#e68619',
-  'color.orange500': '#da7b11',
-  'color.orange600': '#cb6f10',
-  'color.orange700': '#bd640d',
-  'color.label.celery400': '#44b556',
-  'color.label.celery500': '#3da74e',
-  'color.label.celery600': '#3da74e',
-  'color.label.celery700': '#3da74e',
-  'color.label.chartreuse400': '#85d044',
-  'color.label.chartreuse500': '#7cc33f',
-  'color.label.chartreuse600': '#73b53a',
-  'color.label.chartreuse700': '#6aa834',
-  'color.label.fuchsia400': '#c038cc',
-  'color.label.fuchsia500': '#b130bd',
-  'color.label.fuchsia600': '#a228ad',
-  'color.label.fuchsia700': '#93219e',
-  'color.label.indigo400': '#6767ec',
-  'color.label.indigo500': '#5c5ce0',
-  'color.label.indigo600': '#5151d3',
-  'color.label.indigo700': '#4646c6',
-  'color.label.magenta400': '#d83790',
-  'color.label.magenta500': '#ce2783',
-  'color.label.magenta600': '#bc1c74',
-  'color.label.magenta700': '#ae0e66',
-  'color.label.purple400': '#9256d9',
-  'color.label.purple500': '#864ccc',
-  'color.label.purple600': '#7a42bf',
-  'color.label.purple700': '#6f38b1',
-  'color.label.seafoam400': '#1b959a',
-  'color.label.seafoam500': '#16878c',
-  'color.label.seafoam600': '#0f797d',
-  'color.label.seafoam700': '#096c6f',
-  'color.label.yellow400': '#dfbf00',
-  'color.label.yellow500': '#d2b200',
-  'color.label.yellow600': '#c4a600',
-  'color.label.yellow700': '#b79900',
+  'global.color.opacity.0': 0,
+  'global.color.opacity.4': 0.04,
+  'global.color.opacity.5': 0.05,
+  'global.color.opacity.6': 0.06,
+  'global.color.opacity.7': 0.07,
+  'global.color.opacity.8': 0.08,
+  'global.color.opacity.10': 0.1,
+  'global.color.opacity.15': 0.15,
+  'global.color.opacity.20': 0.2,
+  'global.color.opacity.25': 0.25,
+  'global.color.opacity.30': 0.3,
+  'global.color.opacity.40': 0.4,
+  'global.color.opacity.42': 0.42,
+  'global.color.opacity.50': 0.5,
+  'global.color.opacity.55': 0.55,
+  'global.color.opacity.60': 0.6,
+  'global.color.opacity.70': 0.7,
+  'global.color.opacity.80': 0.8,
+  'global.color.opacity.90': 0.9,
+  'global.color.opacity.100': 1,
+  'global.color.celery.400': '#27bb36',
+  'global.color.celery.500': '#07a721',
+  'global.color.celery.600': '#009112',
+  'global.color.celery.700': '#007c0f',
+  'global.color.chartreuse.400': '#98c50a',
+  'global.color.chartreuse.500': '#87b103',
+  'global.color.chartreuse.600': '#769c00',
+  'global.color.chartreuse.700': '#678800',
+  'global.color.yellow.400': '#e8c600',
+  'global.color.yellow.500': '#d7b300',
+  'global.color.yellow.600': '#c49f00',
+  'global.color.yellow.700': '#b08c00',
+  'global.color.magenta.400': '#de3d82',
+  'global.color.magenta.500': '#c82269',
+  'global.color.magenta.600': '#ad0955',
+  'global.color.magenta.700': '#8e0045',
+  'global.color.fuchsia.400': '#cd3ace',
+  'global.color.fuchsia.500': '#b622b7',
+  'global.color.fuchsia.600': '#9d039e',
+  'global.color.fuchsia.700': '#800081',
+  'global.color.purple.400': '#9d57f4',
+  'global.color.purple.500': '#893de7',
+  'global.color.purple.600': '#7326d3',
+  'global.color.purple.700': '#5d13b7',
+  'global.color.indigo.400': '#686df4',
+  'global.color.indigo.500': '#5258e4',
+  'global.color.indigo.600': '#4046ca',
+  'global.color.indigo.700': '#3236a8',
+  'global.color.seafoam.400': '#00a19a',
+  'global.color.seafoam.500': '#008c87',
+  'global.color.seafoam.600': '#007772',
+  'global.color.seafoam.700': '#00635f',
+  'global.color.red.400': '#ea3829',
+  'global.color.red.500': '#d31510',
+  'global.color.red.600': '#b40000',
+  'global.color.red.700': '#930000',
+  'global.color.orange.400': '#f68511',
+  'global.color.orange.500': '#e46f00',
+  'global.color.orange.600': '#cb5d00',
+  'global.color.orange.700': '#b14c00',
+  'global.color.green.400': '#008f5d',
+  'global.color.green.500': '#007a4d',
+  'global.color.green.600': '#00653e',
+  'global.color.green.700': '#005132',
+  'global.color.blue.400': '#147af3',
+  'global.color.blue.500': '#0265dc',
+  'global.color.blue.600': '#0054b6',
+  'global.color.blue.700': '#004491',
+  'global.color.gray.50': '#ffffff',
+  'global.color.gray.75': '#fdfdfd',
+  'global.color.gray.100': '#f8f8f8',
+  'global.color.gray.200': '#e6e6e6',
+  'global.color.gray.300': '#d5d5d5',
+  'global.color.gray.400': '#b1b1b1',
+  'global.color.gray.500': '#909090',
+  'global.color.gray.600': '#6d6d6d',
+  'global.color.gray.700': '#464646',
+  'global.color.gray.800': '#222222',
+  'global.color.gray.900': '#000000',
+  'alias.background-color-primary': '#ffffff',
+  'alias.background-color-secondary': '#f8f8f8',
+  'alias.background-color-modal-overlay': '#00000066',
+  'alias.background-color-hover-overly': '#0000000a',
+  'alias.background-color-quickactions': '#f8f8f8e6',
+  'alias.dropshadow-color': '#00000026',
+  'alias.highlight-hover': '#0000000f',
+  'alias.highlight-down': '#0000001a',
+  'alias.highlight-selected': '#0265dc1a',
+  'alias.highlight-selected-hover': '#0265dc33',
+  'alias.text-highlight-color': '#0265dc33',
+  'alias.border-color-translucent': '#0000001a',
+  'alias.radial-reaction-color': '#22222299',
+  'alias.pasteboard-background-color': '#d5d5d5',
+  'alias.appframe.border-color': '#d5d5d5',
+  'alias.appframe.separator-color': '#d5d5d5',
+  'scrollbar.mac.s.track-background-color': '#fdfdfd',
+  'scrollbar.mac.m.track-background-color': '#fdfdfd',
+  'scrollbar.mac.l.track-background-color': '#fdfdfd',
+  'well.background-color': '#22222205',
   'font.family.clean': ['Adobe Clean'],
   'font.family.cleanSerif': ['Adobe Clean Serif'],
   'font.family.cleanHan': ['Adobe Clean Han'],
@@ -86,1893 +126,3264 @@ export const tokens = {
 };
 
 export const meta = {
-  'color.blue400': {
+  'global.color.opacity.0': {
     '_original': {
-      '$value': '#2680eb',
+      '$value': 0,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.0',
+    '$type': 'number',
+    '$value': 0,
+  },
+  'global.color.opacity.4': {
+    '_original': {
+      '$value': 0.04,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.4',
+    '$type': 'number',
+    '$value': 0.04,
+  },
+  'global.color.opacity.5': {
+    '_original': {
+      '$value': 0.05,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.5',
+    '$type': 'number',
+    '$value': 0.05,
+  },
+  'global.color.opacity.6': {
+    '_original': {
+      '$value': 0.06,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.6',
+    '$type': 'number',
+    '$value': 0.06,
+  },
+  'global.color.opacity.7': {
+    '_original': {
+      '$value': 0.07,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.7',
+    '$type': 'number',
+    '$value': 0.07,
+  },
+  'global.color.opacity.8': {
+    '_original': {
+      '$value': 0.08,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.8',
+    '$type': 'number',
+    '$value': 0.08,
+  },
+  'global.color.opacity.10': {
+    '_original': {
+      '$value': 0.1,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.10',
+    '$type': 'number',
+    '$value': 0.1,
+  },
+  'global.color.opacity.15': {
+    '_original': {
+      '$value': 0.15,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.15',
+    '$type': 'number',
+    '$value': 0.15,
+  },
+  'global.color.opacity.20': {
+    '_original': {
+      '$value': 0.2,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.20',
+    '$type': 'number',
+    '$value': 0.2,
+  },
+  'global.color.opacity.25': {
+    '_original': {
+      '$value': 0.25,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.25',
+    '$type': 'number',
+    '$value': 0.25,
+  },
+  'global.color.opacity.30': {
+    '_original': {
+      '$value': 0.3,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.30',
+    '$type': 'number',
+    '$value': 0.3,
+  },
+  'global.color.opacity.40': {
+    '_original': {
+      '$value': 0.4,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.40',
+    '$type': 'number',
+    '$value': 0.4,
+  },
+  'global.color.opacity.42': {
+    '_original': {
+      '$value': 0.42,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.42',
+    '$type': 'number',
+    '$value': 0.42,
+  },
+  'global.color.opacity.50': {
+    '_original': {
+      '$value': 0.5,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.50',
+    '$type': 'number',
+    '$value': 0.5,
+  },
+  'global.color.opacity.55': {
+    '_original': {
+      '$value': 0.55,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.55',
+    '$type': 'number',
+    '$value': 0.55,
+  },
+  'global.color.opacity.60': {
+    '_original': {
+      '$value': 0.6,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.60',
+    '$type': 'number',
+    '$value': 0.6,
+  },
+  'global.color.opacity.70': {
+    '_original': {
+      '$value': 0.7,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.70',
+    '$type': 'number',
+    '$value': 0.7,
+  },
+  'global.color.opacity.80': {
+    '_original': {
+      '$value': 0.8,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.80',
+    '$type': 'number',
+    '$value': 0.8,
+  },
+  'global.color.opacity.90': {
+    '_original': {
+      '$value': 0.9,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.90',
+    '$type': 'number',
+    '$value': 0.9,
+  },
+  'global.color.opacity.100': {
+    '_original': {
+      '$value': 1,
+    },
+    '_group': {
+      id: 'global.color.opacity',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'number',
+    },
+    id: 'global.color.opacity.100',
+    '$type': 'number',
+    '$value': 1,
+  },
+  'global.color.celery.400': {
+    '_original': {
+      '$value': 'rgb(39, 187, 54)',
       '$extensions': {
         mode: {
-          lightest: '#378ef0',
-          light: '#2680eb',
-          dark: '#2680eb',
-          darkest: '#1473e6',
+          dark: 'rgb(34, 184, 51)',
+          darkest: 'rgb(13, 171, 37)',
+          light: 'rgb(39, 187, 54)',
+          lightest: 'rgb(48, 193, 61)',
+          middark: 'rgb(45, 190, 58)',
+          midlight: 'rgb(7, 167, 33)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'global.color.celery',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'color',
     },
-    id: 'color.blue400',
+    id: 'global.color.celery.400',
     '$type': 'color',
-    '$value': '#2680eb',
+    '$value': '#27bb36',
     '$extensions': {
       mode: {
-        lightest: '#378ef0',
-        light: '#2680eb',
-        dark: '#2680eb',
-        darkest: '#1473e6',
+        dark: '#22b833',
+        darkest: '#0dab25',
+        light: '#27bb36',
+        lightest: '#30c13d',
+        middark: '#2dbe3a',
+        midlight: '#07a721',
       },
     },
   },
-  'color.blue500': {
+  'global.color.celery.500': {
     '_original': {
-      '$value': '#1473e6',
+      '$value': 'rgb(7, 167, 33)',
       '$extensions': {
         mode: {
-          lightest: '#2680eb',
-          light: '#1473e6',
-          dark: '#378ef0',
-          darkest: '#2680eb',
+          dark: 'rgb(68, 202, 73)',
+          darkest: 'rgb(45, 191, 58)',
+          light: 'rgb(7, 167, 33)',
+          lightest: 'rgb(15, 172, 38)',
+          middark: 'rgb(78, 207, 80)',
+          midlight: 'rgb(0, 148, 19)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'global.color.celery',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'color',
     },
-    id: 'color.blue500',
+    id: 'global.color.celery.500',
     '$type': 'color',
-    '$value': '#1473e6',
+    '$value': '#07a721',
     '$extensions': {
       mode: {
-        lightest: '#2680eb',
-        light: '#1473e6',
-        dark: '#378ef0',
-        darkest: '#2680eb',
+        dark: '#44ca49',
+        darkest: '#2dbf3a',
+        light: '#07a721',
+        lightest: '#0fac26',
+        middark: '#4ecf50',
+        midlight: '#009413',
       },
     },
   },
-  'color.blue600': {
+  'global.color.celery.600': {
     '_original': {
-      '$value': '#0d66d0',
+      '$value': 'rgb(0, 145, 18)',
       '$extensions': {
         mode: {
-          lightest: '#1473e6',
-          light: '#0d66d0',
-          dark: '#4b9cf5',
-          darkest: '#378ef0',
+          dark: 'rgb(105, 220, 99)',
+          darkest: 'rgb(80, 208, 82)',
+          light: 'rgb(0, 145, 18)',
+          lightest: 'rgb(0, 150, 20)',
+          middark: 'rgb(112, 223, 104)',
+          midlight: 'rgb(0, 127, 15)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'global.color.celery',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'color',
     },
-    id: 'color.blue600',
+    id: 'global.color.celery.600',
     '$type': 'color',
-    '$value': '#0d66d0',
+    '$value': '#009112',
     '$extensions': {
       mode: {
-        lightest: '#1473e6',
-        light: '#0d66d0',
-        dark: '#4b9cf5',
-        darkest: '#378ef0',
+        dark: '#69dc63',
+        darkest: '#50d052',
+        light: '#009112',
+        lightest: '#009614',
+        middark: '#70df68',
+        midlight: '#007f0f',
       },
     },
   },
-  'color.blue700': {
+  'global.color.celery.700': {
     '_original': {
-      '$value': '#095aba',
+      '$value': 'rgb(0, 124, 15)',
       '$extensions': {
         mode: {
-          lightest: '#0d66d0',
-          light: '#095aba',
-          dark: '#5aa9fa',
-          darkest: '#4b9cf5',
+          dark: 'rgb(142, 235, 127)',
+          darkest: 'rgb(115, 224, 107)',
+          light: 'rgb(0, 124, 15)',
+          lightest: 'rgb(0, 128, 15)',
+          middark: 'rgb(146, 237, 130)',
+          midlight: 'rgb(0, 107, 15)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'global.color.celery',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'color',
     },
-    id: 'color.blue700',
+    id: 'global.color.celery.700',
     '$type': 'color',
-    '$value': '#095aba',
+    '$value': '#007c0f',
     '$extensions': {
       mode: {
-        lightest: '#0d66d0',
-        light: '#095aba',
-        dark: '#5aa9fa',
-        darkest: '#4b9cf5',
+        dark: '#8eeb7f',
+        darkest: '#73e06b',
+        light: '#007c0f',
+        lightest: '#00800f',
+        middark: '#92ed82',
+        midlight: '#006b0f',
       },
     },
   },
-  'color.gray50': {
+  'global.color.chartreuse.400': {
     '_original': {
-      '$value': '#ffffff',
+      '$value': 'rgb(152, 197, 10)',
       '$extensions': {
         mode: {
-          lightest: '#ffffff',
-          light: '#ffffff',
-          dark: '#252525',
-          darkest: '#080808',
+          dark: 'rgb(148, 192, 8)',
+          darkest: 'rgb(138, 180, 3)',
+          light: 'rgb(152, 197, 10)',
+          lightest: 'rgb(157, 203, 13)',
+          middark: 'rgb(153, 197, 10)',
+          midlight: 'rgb(134, 175, 2)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'global.color.chartreuse',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'color',
     },
-    id: 'color.gray50',
+    id: 'global.color.chartreuse.400',
+    '$type': 'color',
+    '$value': '#98c50a',
+    '$extensions': {
+      mode: {
+        dark: '#94c008',
+        darkest: '#8ab403',
+        light: '#98c50a',
+        lightest: '#9dcb0d',
+        middark: '#99c50a',
+        midlight: '#86af02',
+      },
+    },
+  },
+  'global.color.chartreuse.500': {
+    '_original': {
+      '$value': 'rgb(135, 177, 3)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(166, 211, 18)',
+          darkest: 'rgb(154, 198, 11)',
+          light: 'rgb(135, 177, 3)',
+          lightest: 'rgb(139, 182, 4)',
+          middark: 'rgb(169, 215, 21)',
+          midlight: 'rgb(119, 157, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.chartreuse',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.chartreuse.500',
+    '$type': 'color',
+    '$value': '#87b103',
+    '$extensions': {
+      mode: {
+        dark: '#a6d312',
+        darkest: '#9ac60b',
+        light: '#87b103',
+        lightest: '#8bb604',
+        middark: '#a9d715',
+        midlight: '#779d00',
+      },
+    },
+  },
+  'global.color.chartreuse.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(184, 229, 37)',
+          darkest: 'rgb(170, 216, 22)',
+          light: 'rgb(118, 156, 0)',
+          lightest: 'rgb(122, 162, 0)',
+          middark: 'rgb(186, 232, 40)',
+          midlight: 'rgb(104, 138, 0)',
+        },
+      },
+      '$value': 'rgb(118, 156, 0)',
+    },
+    '_group': {
+      id: 'global.color.chartreuse',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.chartreuse.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#b8e525',
+        darkest: '#aad816',
+        light: '#769c00',
+        lightest: '#7aa200',
+        middark: '#bae828',
+        midlight: '#688a00',
+      },
+    },
+    '$value': '#769c00',
+  },
+  'global.color.chartreuse.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(205, 245, 71)',
+          darkest: 'rgb(187, 232, 41)',
+          light: 'rgb(103, 136, 0)',
+          lightest: 'rgb(106, 141, 0)',
+          middark: 'rgb(206, 246, 75)',
+          midlight: 'rgb(90, 119, 0)',
+        },
+      },
+      '$value': 'rgb(103, 136, 0)',
+    },
+    '_group': {
+      id: 'global.color.chartreuse',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.chartreuse.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#cdf547',
+        darkest: '#bbe829',
+        light: '#678800',
+        lightest: '#6a8d00',
+        middark: '#cef64b',
+        midlight: '#5a7700',
+      },
+    },
+    '$value': '#678800',
+  },
+  'global.color.yellow.400': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(228, 194, 0)',
+          darkest: 'rgb(216, 181, 0)',
+          light: 'rgb(232, 198, 0)',
+          lightest: 'rgb(238, 205, 0)',
+          middark: 'rgb(232, 197, 0)',
+          midlight: 'rgb(211, 175, 0)',
+        },
+      },
+      '$value': 'rgb(232, 198, 0)',
+    },
+    '_group': {
+      id: 'global.color.yellow',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.yellow.400',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#e4c200',
+        darkest: '#d8b500',
+        light: '#e8c600',
+        lightest: '#eecd00',
+        middark: '#e8c500',
+        midlight: '#d3af00',
+      },
+    },
+    '$value': '#e8c600',
+  },
+  'global.color.yellow.500': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(244, 213, 0)',
+          darkest: 'rgb(233, 199, 0)',
+          light: 'rgb(215, 179, 0)',
+          lightest: 'rgb(221, 185, 0)',
+          middark: 'rgb(246, 215, 2)',
+          midlight: 'rgb(194, 157, 0)',
+        },
+      },
+      '$value': 'rgb(215, 179, 0)',
+    },
+    '_group': {
+      id: 'global.color.yellow',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.yellow.500',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#f4d500',
+        darkest: '#e9c700',
+        light: '#d7b300',
+        lightest: '#ddb900',
+        middark: '#f6d702',
+        midlight: '#c29d00',
+      },
+    },
+    '$value': '#d7b300',
+  },
+  'global.color.yellow.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(249, 232, 92)',
+          darkest: 'rgb(247, 216, 4)',
+          light: 'rgb(196, 159, 0)',
+          lightest: 'rgb(201, 164, 0)',
+          middark: 'rgb(249, 234, 99)',
+          midlight: 'rgb(176, 140, 0)',
+        },
+      },
+      '$value': 'rgb(196, 159, 0)',
+    },
+    '_group': {
+      id: 'global.color.yellow',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.yellow.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#f9e85c',
+        darkest: '#f7d804',
+        light: '#c49f00',
+        lightest: '#c9a400',
+        middark: '#f9ea63',
+        midlight: '#b08c00',
+      },
+    },
+    '$value': '#c49f00',
+  },
+  'global.color.yellow.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(252, 246, 187)',
+          darkest: 'rgb(249, 233, 97)',
+          light: 'rgb(176, 140, 0)',
+          lightest: 'rgb(181, 144, 0)',
+          middark: 'rgb(253, 246, 191)',
+          midlight: 'rgb(157, 122, 0)',
+        },
+      },
+      '$value': 'rgb(176, 140, 0)',
+    },
+    '_group': {
+      id: 'global.color.yellow',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.yellow.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#fcf6bb',
+        darkest: '#f9e961',
+        light: '#b08c00',
+        lightest: '#b59000',
+        middark: '#fdf6bf',
+        midlight: '#9d7a00',
+      },
+    },
+    '$value': '#b08c00',
+  },
+  'global.color.magenta.400': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(222, 61, 130)',
+          darkest: 'rgb(209, 43, 114)',
+          light: 'rgb(222, 61, 130)',
+          lightest: 'rgb(226, 68, 135)',
+          middark: 'rgb(231, 75, 141)',
+          midlight: 'rgb(204, 39, 110)',
+        },
+      },
+      '$value': 'rgb(222, 61, 130)',
+    },
+    '_group': {
+      id: 'global.color.magenta',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.magenta.400',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#de3d82',
+        darkest: '#d12b72',
+        light: '#de3d82',
+        lightest: '#e24487',
+        middark: '#e74b8d',
+        midlight: '#cc276e',
+      },
+    },
+    '$value': '#de3d82',
+  },
+  'global.color.magenta.500': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(237, 87, 149)',
+          darkest: 'rgb(227, 69, 137)',
+          light: 'rgb(200, 34, 105)',
+          lightest: 'rgb(205, 40, 111)',
+          middark: 'rgb(242, 99, 157)',
+          midlight: 'rgb(179, 15, 88)',
+        },
+      },
+      '$value': 'rgb(200, 34, 105)',
+    },
+    '_group': {
+      id: 'global.color.magenta',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.magenta.500',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ed5795',
+        darkest: '#e34589',
+        light: '#c82269',
+        lightest: '#cd286f',
+        middark: '#f2639d',
+        midlight: '#b30f58',
+      },
+    },
+    '$value': '#c82269',
+  },
+  'global.color.magenta.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(249, 114, 167)',
+          darkest: 'rgb(241, 97, 156)',
+          light: 'rgb(173, 9, 85)',
+          lightest: 'rgb(179, 15, 89)',
+          middark: 'rgb(252, 123, 173)',
+          midlight: 'rgb(149, 0, 72)',
+        },
+      },
+      '$value': 'rgb(173, 9, 85)',
+    },
+    '_group': {
+      id: 'global.color.magenta',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.magenta.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#f972a7',
+        darkest: '#f1619c',
+        light: '#ad0955',
+        lightest: '#b30f59',
+        middark: '#fc7bad',
+        midlight: '#950048',
+      },
+    },
+    '$value': '#ad0955',
+  },
+  'global.color.magenta.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(255, 143, 185)',
+          darkest: 'rgb(252, 124, 173)',
+          light: 'rgb(142, 0, 69)',
+          lightest: 'rgb(149, 0, 72)',
+          middark: 'rgb(255, 150, 189)',
+          midlight: 'rgb(116, 0, 57)',
+        },
+      },
+      '$value': 'rgb(142, 0, 69)',
+    },
+    '_group': {
+      id: 'global.color.magenta',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.magenta.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ff8fb9',
+        darkest: '#fc7cad',
+        light: '#8e0045',
+        lightest: '#950048',
+        middark: '#ff96bd',
+        midlight: '#740039',
+      },
+    },
+    '$value': '#8e0045',
+  },
+  'global.color.fuchsia.400': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(205, 57, 206)',
+          darkest: 'rgb(191, 43, 191)',
+          light: 'rgb(205, 58, 206)',
+          lightest: 'rgb(211, 63, 212)',
+          middark: 'rgb(216, 70, 217)',
+          midlight: 'rgb(186, 38, 186)',
+        },
+      },
+      '$value': 'rgb(205, 58, 206)',
+    },
+    '_group': {
+      id: 'global.color.fuchsia',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.fuchsia.400',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#cd39ce',
+        darkest: '#bf2bbf',
+        light: '#cd3ace',
+        lightest: '#d33fd4',
+        middark: '#d846d9',
+        midlight: '#ba26ba',
+      },
+    },
+    '$value': '#cd3ace',
+  },
+  'global.color.fuchsia.500': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(223, 81, 224)',
+          darkest: 'rgb(211, 65, 213)',
+          light: 'rgb(182, 34, 183)',
+          lightest: 'rgb(188, 39, 187)',
+          middark: 'rgb(229, 93, 230)',
+          midlight: 'rgb(163, 9, 163)',
+        },
+      },
+      '$value': 'rgb(182, 34, 183)',
+    },
+    '_group': {
+      id: 'global.color.fuchsia',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.fuchsia.500',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#df51e0',
+        darkest: '#d341d5',
+        light: '#b622b7',
+        lightest: '#bc27bb',
+        middark: '#e55de6',
+        midlight: '#a309a3',
+      },
+    },
+    '$value': '#b622b7',
+  },
+  'global.color.fuchsia.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(235, 110, 236)',
+          darkest: 'rgb(228, 91, 229)',
+          light: 'rgb(157, 3, 158)',
+          lightest: 'rgb(163, 10, 163)',
+          middark: 'rgb(239, 120, 238)',
+          midlight: 'rgb(134, 0, 135)',
+        },
+      },
+      '$value': 'rgb(157, 3, 158)',
+    },
+    '_group': {
+      id: 'global.color.fuchsia',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.fuchsia.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#eb6eec',
+        darkest: '#e45be5',
+        light: '#9d039e',
+        lightest: '#a30aa3',
+        middark: '#ef78ee',
+        midlight: '#860087',
+      },
+    },
+    '$value': '#9d039e',
+  },
+  'global.color.fuchsia.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(244, 140, 242)',
+          darkest: 'rgb(239, 120, 238)',
+          light: 'rgb(128, 0, 129)',
+          lightest: 'rgb(135, 0, 136)',
+          middark: 'rgb(246, 147, 243)',
+          midlight: 'rgb(104, 4, 104)',
+        },
+      },
+      '$value': 'rgb(128, 0, 129)',
+    },
+    '_group': {
+      id: 'global.color.fuchsia',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.fuchsia.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#f48cf2',
+        darkest: '#ef78ee',
+        light: '#800081',
+        lightest: '#870088',
+        middark: '#f693f3',
+        midlight: '#680468',
+      },
+    },
+    '$value': '#800081',
+  },
+  'global.color.purple.400': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(157, 87, 243)',
+          darkest: 'rgb(145, 70, 236)',
+          light: 'rgb(157, 87, 244)',
+          lightest: 'rgb(161, 93, 246)',
+          middark: 'rgb(166, 100, 247)',
+          midlight: 'rgb(141, 66, 233)',
+        },
+      },
+      '$value': 'rgb(157, 87, 244)',
+    },
+    '_group': {
+      id: 'global.color.purple',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.purple.400',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#9d57f3',
+        darkest: '#9146ec',
+        light: '#9d57f4',
+        lightest: '#a15df6',
+        middark: '#a664f7',
+        midlight: '#8d42e9',
+      },
+    },
+    '$value': '#9d57f4',
+  },
+  'global.color.purple.500': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(172, 111, 249)',
+          darkest: 'rgb(162, 94, 246)',
+          light: 'rgb(137, 61, 231)',
+          lightest: 'rgb(142, 67, 234)',
+          middark: 'rgb(179, 121, 250)',
+          midlight: 'rgb(120, 42, 216)',
+        },
+      },
+      '$value': 'rgb(137, 61, 231)',
+    },
+    '_group': {
+      id: 'global.color.purple',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.purple.500',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ac6ff9',
+        darkest: '#a25ef6',
+        light: '#893de7',
+        lightest: '#8e43ea',
+        middark: '#b379fa',
+        midlight: '#782ad8',
+      },
+    },
+    '$value': '#893de7',
+  },
+  'global.color.purple.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(187, 135, 251)',
+          darkest: 'rgb(178, 119, 250)',
+          light: 'rgb(115, 38, 211)',
+          lightest: 'rgb(120, 43, 216)',
+          middark: 'rgb(192, 143, 252)',
+          midlight: 'rgb(97, 22, 190)',
+        },
+      },
+      '$value': 'rgb(115, 38, 211)',
+    },
+    '_group': {
+      id: 'global.color.purple',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.purple.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#bb87fb',
+        darkest: '#b277fa',
+        light: '#7326d3',
+        lightest: '#782bd8',
+        middark: '#c08ffc',
+        midlight: '#6116be',
+      },
+    },
+    '$value': '#7326d3',
+  },
+  'global.color.purple.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(202, 159, 252)',
+          darkest: 'rgb(192, 143, 252)',
+          light: 'rgb(93, 19, 183)',
+          lightest: 'rgb(98, 23, 190)',
+          middark: 'rgb(205, 165, 253)',
+          midlight: 'rgb(74, 12, 153)',
+        },
+      },
+      '$value': 'rgb(93, 19, 183)',
+    },
+    '_group': {
+      id: 'global.color.purple',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.purple.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ca9ffc',
+        darkest: '#c08ffc',
+        light: '#5d13b7',
+        lightest: '#6217be',
+        middark: '#cda5fd',
+        midlight: '#4a0c99',
+      },
+    },
+    '$value': '#5d13b7',
+  },
+  'global.color.indigo.400': {
+    '_original': {
+      '$value': 'rgb(104, 109, 244)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(104, 109, 244)',
+          darkest: 'rgb(90, 96, 235)',
+          light: 'rgb(104, 109, 244)',
+          lightest: 'rgb(109, 115, 246)',
+          middark: 'rgb(115, 120, 248)',
+          midlight: 'rgb(86, 92, 231)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.indigo',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.indigo.400',
+    '$type': 'color',
+    '$value': '#686df4',
+    '$extensions': {
+      mode: {
+        dark: '#686df4',
+        darkest: '#5a60eb',
+        light: '#686df4',
+        lightest: '#6d73f6',
+        middark: '#7378f8',
+        midlight: '#565ce7',
+      },
+    },
+  },
+  'global.color.indigo.500': {
+    '_original': {
+      '$value': 'rgb(82, 88, 228)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(124, 129, 251)',
+          darkest: 'rgb(110, 115, 246)',
+          light: 'rgb(82, 88, 228)',
+          lightest: 'rgb(87, 93, 232)',
+          middark: 'rgb(133, 138, 253)',
+          midlight: 'rgb(68, 73, 208)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.indigo',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.indigo.500',
+    '$type': 'color',
+    '$value': '#5258e4',
+    '$extensions': {
+      mode: {
+        dark: '#7c81fb',
+        darkest: '#6e73f6',
+        light: '#5258e4',
+        lightest: '#575de8',
+        middark: '#858afd',
+        midlight: '#4449d0',
+      },
+    },
+  },
+  'global.color.indigo.600': {
+    '_original': {
+      '$value': 'rgb(64, 70, 202)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(145, 149, 255)',
+          darkest: 'rgb(132, 136, 253)',
+          light: 'rgb(64, 70, 202)',
+          lightest: 'rgb(68, 74, 208)',
+          middark: 'rgb(152, 157, 255)',
+          midlight: 'rgb(52, 57, 176)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.indigo',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.indigo.600',
+    '$type': 'color',
+    '$value': '#4046ca',
+    '$extensions': {
+      mode: {
+        dark: '#9195ff',
+        darkest: '#8488fd',
+        light: '#4046ca',
+        lightest: '#444ad0',
+        middark: '#989dff',
+        midlight: '#3439b0',
+      },
+    },
+  },
+  'global.color.indigo.700': {
+    '_original': {
+      '$value': 'rgb(50, 54, 168)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(167, 170, 255)',
+          darkest: 'rgb(153, 157, 255)',
+          light: 'rgb(50, 54, 168)',
+          lightest: 'rgb(53, 58, 176)',
+          middark: 'rgb(172, 176, 255)',
+          midlight: 'rgb(39, 43, 139)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.indigo',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.indigo.700',
+    '$type': 'color',
+    '$value': '#3236a8',
+    '$extensions': {
+      mode: {
+        dark: '#a7aaff',
+        darkest: '#999dff',
+        light: '#3236a8',
+        lightest: '#353ab0',
+        middark: '#acb0ff',
+        midlight: '#272b8b',
+      },
+    },
+  },
+  'global.color.seafoam.400': {
+    '_original': {
+      '$value': 'rgb(0, 161, 154)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(0, 158, 152)',
+          darkest: 'rgb(0, 146, 140)',
+          light: 'rgb(0, 161, 154)',
+          lightest: 'rgb(0, 166, 160)',
+          middark: 'rgb(0, 167, 160)',
+          midlight: 'rgb(0, 142, 136)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.seafoam',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.seafoam.400',
+    '$type': 'color',
+    '$value': '#00a19a',
+    '$extensions': {
+      mode: {
+        dark: '#009e98',
+        darkest: '#00928c',
+        light: '#00a19a',
+        lightest: '#00a6a0',
+        middark: '#00a7a0',
+        midlight: '#008e88',
+      },
+    },
+  },
+  'global.color.seafoam.500': {
+    '_original': {
+      '$value': 'rgb(0, 140, 135)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(3, 178, 171)',
+          darkest: 'rgb(0, 165, 159)',
+          light: 'rgb(0, 140, 135)',
+          lightest: 'rgb(0, 145, 139)',
+          middark: 'rgb(25, 184, 177)',
+          midlight: 'rgb(0, 122, 117)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.seafoam',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.seafoam.500',
+    '$type': 'color',
+    '$value': '#008c87',
+    '$extensions': {
+      mode: {
+        dark: '#03b2ab',
+        darkest: '#00a59f',
+        light: '#008c87',
+        lightest: '#00918b',
+        middark: '#19b8b1',
+        midlight: '#007a75',
+      },
+    },
+  },
+  'global.color.seafoam.600': {
+    '_original': {
+      '$value': 'rgb(0, 119, 114)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(54, 197, 189)',
+          darkest: 'rgb(26, 185, 178)',
+          light: 'rgb(0, 119, 114)',
+          lightest: 'rgb(0, 124, 118)',
+          middark: 'rgb(64, 201, 194)',
+          midlight: 'rgb(0, 103, 99)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.seafoam',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.seafoam.600',
+    '$type': 'color',
+    '$value': '#007772',
+    '$extensions': {
+      mode: {
+        dark: '#36c5bd',
+        darkest: '#1ab9b2',
+        light: '#007772',
+        lightest: '#007c76',
+        middark: '#40c9c2',
+        midlight: '#006763',
+      },
+    },
+  },
+  'global.color.seafoam.700': {
+    '_original': {
+      '$value': 'rgb(0, 99, 95)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(93, 214, 207)',
+          darkest: 'rgb(66, 202, 195)',
+          light: 'rgb(0, 99, 95)',
+          lightest: 'rgb(0, 103, 99)',
+          middark: 'rgb(100, 217, 210)',
+          midlight: 'rgb(10, 83, 80)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.seafoam',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.seafoam.700',
+    '$type': 'color',
+    '$value': '#00635f',
+    '$extensions': {
+      mode: {
+        dark: '#5dd6cf',
+        darkest: '#42cac3',
+        light: '#00635f',
+        lightest: '#006763',
+        middark: '#64d9d2',
+        midlight: '#0a5350',
+      },
+    },
+  },
+  'global.color.red.400': {
+    '_original': {
+      '$value': 'rgb(234, 56, 41)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(234, 56, 41)',
+          darkest: 'rgb(221, 33, 24)',
+          light: 'rgb(234, 56, 41)',
+          lightest: 'rgb(237, 64, 48)',
+          middark: 'rgb(241, 74, 55)',
+          midlight: 'rgb(216, 26, 19)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.red',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.red.400',
+    '$type': 'color',
+    '$value': '#ea3829',
+    '$extensions': {
+      mode: {
+        dark: '#ea3829',
+        darkest: '#dd2118',
+        light: '#ea3829',
+        lightest: '#ed4030',
+        middark: '#f14a37',
+        midlight: '#d81a13',
+      },
+    },
+  },
+  'global.color.red.500': {
+    '_original': {
+      '$value': 'rgb(211, 21, 16)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(246, 88, 67)',
+          darkest: 'rgb(238, 67, 49)',
+          light: 'rgb(211, 21, 16)',
+          lightest: 'rgb(217, 28, 21)',
+          middark: 'rgb(250, 101, 79)',
+          midlight: 'rgb(187, 2, 2)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.red',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.red.500',
+    '$type': 'color',
+    '$value': '#d31510',
+    '$extensions': {
+      mode: {
+        dark: '#f65843',
+        darkest: '#ee4331',
+        light: '#d31510',
+        lightest: '#d91c15',
+        middark: '#fa654f',
+        midlight: '#bb0202',
+      },
+    },
+  },
+  'global.color.red.600': {
+    '_original': {
+      '$value': 'rgb(180, 0, 0)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(255, 117, 94)',
+          darkest: 'rgb(249, 99, 76)',
+          light: 'rgb(180, 0, 0)',
+          lightest: 'rgb(187, 2, 2)',
+          middark: 'rgb(255, 129, 107)',
+          midlight: 'rgb(153, 0, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.red',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.red.600',
+    '$type': 'color',
+    '$value': '#b40000',
+    '$extensions': {
+      mode: {
+        dark: '#ff755e',
+        darkest: '#f9634c',
+        light: '#b40000',
+        lightest: '#bb0202',
+        middark: '#ff816b',
+        midlight: '#990000',
+      },
+    },
+  },
+  'global.color.red.700': {
+    '_original': {
+      '$value': 'rgb(147, 0, 0)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(255, 149, 129)',
+          darkest: 'rgb(255, 129, 107)',
+          light: 'rgb(147, 0, 0)',
+          lightest: 'rgb(154, 0, 0)',
+          middark: 'rgb(255, 156, 137)',
+          midlight: 'rgb(120, 0, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.red',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.red.700',
+    '$type': 'color',
+    '$value': '#930000',
+    '$extensions': {
+      mode: {
+        dark: '#ff9581',
+        darkest: '#ff816b',
+        light: '#930000',
+        lightest: '#9a0000',
+        middark: '#ff9c89',
+        midlight: '#780000',
+      },
+    },
+  },
+  'global.color.orange.400': {
+    '_original': {
+      '$value': 'rgb(246, 133, 17)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(244, 129, 12)',
+          darkest: 'rgb(232, 116, 0)',
+          light: 'rgb(246, 133, 17)',
+          lightest: 'rgb(250, 139, 26)',
+          middark: 'rgb(248, 137, 22)',
+          midlight: 'rgb(228, 111, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.orange',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.orange.400',
+    '$type': 'color',
+    '$value': '#f68511',
+    '$extensions': {
+      mode: {
+        dark: '#f4810c',
+        darkest: '#e87400',
+        light: '#f68511',
+        lightest: '#fa8b1a',
+        middark: '#f88916',
+        midlight: '#e46f00',
+      },
+    },
+  },
+  'global.color.orange.500': {
+    '_original': {
+      '$value': 'rgb(228, 111, 0)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(254, 154, 46)',
+          darkest: 'rgb(249, 137, 23)',
+          light: 'rgb(228, 111, 0)',
+          lightest: 'rgb(233, 117, 0)',
+          middark: 'rgb(255, 161, 57)',
+          midlight: 'rgb(205, 95, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.orange',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.orange.500',
+    '$type': 'color',
+    '$value': '#e46f00',
+    '$extensions': {
+      mode: {
+        dark: '#fe9a2e',
+        darkest: '#f98917',
+        light: '#e46f00',
+        lightest: '#e97500',
+        middark: '#ffa139',
+        midlight: '#cd5f00',
+      },
+    },
+  },
+  'global.color.orange.600': {
+    '_original': {
+      '$value': 'rgb(203, 93, 0)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(255, 181, 88)',
+          darkest: 'rgb(255, 162, 59)',
+          light: 'rgb(203, 93, 0)',
+          lightest: 'rgb(209, 97, 0)',
+          middark: 'rgb(255, 186, 97)',
+          midlight: 'rgb(181, 79, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.orange',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.orange.600',
+    '$type': 'color',
+    '$value': '#cb5d00',
+    '$extensions': {
+      mode: {
+        dark: '#ffb558',
+        darkest: '#ffa23b',
+        light: '#cb5d00',
+        lightest: '#d16100',
+        middark: '#ffba61',
+        midlight: '#b54f00',
+      },
+    },
+  },
+  'global.color.orange.700': {
+    '_original': {
+      '$value': 'rgb(177, 76, 0)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(253, 206, 136)',
+          darkest: 'rgb(255, 188, 102)',
+          light: 'rgb(177, 76, 0)',
+          lightest: 'rgb(182, 80, 0)',
+          middark: 'rgb(253, 208, 142)',
+          midlight: 'rgb(155, 64, 0)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.orange',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.orange.700',
+    '$type': 'color',
+    '$value': '#b14c00',
+    '$extensions': {
+      mode: {
+        dark: '#fdce88',
+        darkest: '#ffbc66',
+        light: '#b14c00',
+        lightest: '#b65000',
+        middark: '#fdd08e',
+        midlight: '#9b4000',
+      },
+    },
+  },
+  'global.color.green.400': {
+    '_original': {
+      '$value': 'rgb(0, 143, 93)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(18, 162, 108)',
+          darkest: 'rgb(0, 149, 98)',
+          light: 'rgb(0, 143, 93)',
+          lightest: 'rgb(0, 148, 97)',
+          middark: 'rgb(30, 170, 116)',
+          midlight: 'rgb(0, 125, 79)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.green',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.green.400',
+    '$type': 'color',
+    '$value': '#008f5d',
+    '$extensions': {
+      mode: {
+        dark: '#12a26c',
+        darkest: '#009562',
+        light: '#008f5d',
+        lightest: '#009461',
+        middark: '#1eaa74',
+        midlight: '#007d4f',
+      },
+    },
+  },
+  'global.color.green.500': {
+    '_original': {
+      '$value': 'rgb(0, 122, 77)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(43, 180, 125)',
+          darkest: 'rgb(28, 168, 114)',
+          light: 'rgb(0, 122, 77)',
+          lightest: 'rgb(0, 126, 80)',
+          middark: 'rgb(51, 187, 131)',
+          midlight: 'rgb(0, 105, 65)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.green',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.green.500',
+    '$type': 'color',
+    '$value': '#007a4d',
+    '$extensions': {
+      mode: {
+        dark: '#2bb47d',
+        darkest: '#1ca872',
+        light: '#007a4d',
+        lightest: '#007e50',
+        middark: '#33bb83',
+        midlight: '#006941',
+      },
+    },
+  },
+  'global.color.green.600': {
+    '_original': {
+      '$value': 'rgb(0, 101, 62)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(67, 199, 143)',
+          darkest: 'rgb(52, 187, 132)',
+          light: 'rgb(0, 101, 62)',
+          lightest: 'rgb(0, 105, 65)',
+          middark: 'rgb(74, 204, 148)',
+          midlight: 'rgb(0, 85, 52)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.green',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.green.600',
+    '$type': 'color',
+    '$value': '#00653e',
+    '$extensions': {
+      mode: {
+        dark: '#43c78f',
+        darkest: '#34bb84',
+        light: '#00653e',
+        lightest: '#006941',
+        middark: '#4acc94',
+        midlight: '#005534',
+      },
+    },
+  },
+  'global.color.green.700': {
+    '_original': {
+      '$value': 'rgb(0, 81, 50)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(94, 217, 162)',
+          darkest: 'rgb(75, 205, 149)',
+          light: 'rgb(0, 81, 50)',
+          lightest: 'rgb(0, 86, 53)',
+          middark: 'rgb(101, 221, 167)',
+          midlight: 'rgb(5, 65, 40)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.green',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.green.700',
+    '$type': 'color',
+    '$value': '#005132',
+    '$extensions': {
+      mode: {
+        dark: '#5ed9a2',
+        darkest: '#4bcd95',
+        light: '#005132',
+        lightest: '#005635',
+        middark: '#65dda7',
+        midlight: '#054128',
+      },
+    },
+  },
+  'global.color.blue.400': {
+    '_original': {
+      '$value': 'rgb(20, 122, 243)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(52, 143, 244)',
+          darkest: 'rgb(29, 128, 245)',
+          light: 'rgb(20, 122, 243)',
+          lightest: 'rgb(27, 127, 245)',
+          middark: 'rgb(66, 152, 244)',
+          midlight: 'rgb(4, 104, 225)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.blue',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.blue.400',
+    '$type': 'color',
+    '$value': '#147af3',
+    '$extensions': {
+      mode: {
+        dark: '#348ff4',
+        darkest: '#1d80f5',
+        light: '#147af3',
+        lightest: '#1b7ff5',
+        middark: '#4298f4',
+        midlight: '#0468e1',
+      },
+    },
+  },
+  'global.color.blue.500': {
+    '_original': {
+      '$value': 'rgb(2, 101, 220)',
+      '$extensions': {
+        mode: {
+          dark: 'rgb(84, 163, 246)',
+          darkest: 'rgb(64, 150, 243)',
+          light: 'rgb(2, 101, 220)',
+          lightest: 'rgb(4, 105, 227)',
+          middark: 'rgb(94, 170, 247)',
+          midlight: 'rgb(0, 87, 190)',
+        },
+      },
+    },
+    '_group': {
+      id: 'global.color.blue',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.blue.500',
+    '$type': 'color',
+    '$value': '#0265dc',
+    '$extensions': {
+      mode: {
+        dark: '#54a3f6',
+        darkest: '#4096f3',
+        light: '#0265dc',
+        lightest: '#0469e3',
+        middark: '#5eaaf7',
+        midlight: '#0057be',
+      },
+    },
+  },
+  'global.color.blue.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(114, 183, 249)',
+          darkest: 'rgb(94, 170, 247)',
+          light: 'rgb(0, 84, 182)',
+          lightest: 'rgb(0, 87, 190)',
+          middark: 'rgb(122, 188, 250)',
+          midlight: 'rgb(0, 71, 152)',
+        },
+      },
+      '$value': 'rgb(0, 84, 182)',
+    },
+    '_group': {
+      id: 'global.color.blue',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.blue.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#72b7f9',
+        darkest: '#5eaaf7',
+        light: '#0054b6',
+        lightest: '#0057be',
+        middark: '#7abcfa',
+        midlight: '#004798',
+      },
+    },
+    '$value': '#0054b6',
+  },
+  'global.color.blue.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(143, 202, 252)',
+          darkest: 'rgb(124, 189, 250)',
+          light: 'rgb(0, 68, 145)',
+          lightest: 'rgb(0, 72, 153)',
+          middark: 'rgb(149, 205, 252)',
+          midlight: 'rgb(0, 55, 118)',
+        },
+      },
+      '$value': 'rgb(0, 68, 145)',
+    },
+    '_group': {
+      id: 'global.color.blue',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.blue.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#8fcafc',
+        darkest: '#7cbdfa',
+        light: '#004491',
+        lightest: '#004899',
+        middark: '#95cdfc',
+        midlight: '#003776',
+      },
+    },
+    '$value': '#004491',
+  },
+  'global.color.gray.50': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(29, 29, 29)',
+          darkest: 'rgb(0, 0, 0)',
+          light: 'rgb(255, 255, 255)',
+          lightest: 'rgb(255, 255, 255)',
+          middark: 'rgb(57, 57, 57)',
+          midlight: 'rgb(250, 250, 250)',
+        },
+      },
+      '$value': 'rgb(255, 255, 255)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.50',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#1d1d1d',
+        darkest: '#000000',
+        light: '#ffffff',
+        lightest: '#ffffff',
+        middark: '#393939',
+        midlight: '#fafafa',
+      },
+    },
+    '$value': '#ffffff',
+  },
+  'global.color.gray.75': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(38, 38, 38)',
+          darkest: 'rgb(14, 14, 14)',
+          light: 'rgb(253, 253, 253)',
+          lightest: 'rgb(255, 255, 255)',
+          middark: 'rgb(65, 65, 65)',
+          midlight: 'rgb(239, 239, 239)',
+        },
+      },
+      '$value': 'rgb(253, 253, 253)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.75',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#262626',
+        darkest: '#0e0e0e',
+        light: '#fdfdfd',
+        lightest: '#ffffff',
+        middark: '#414141',
+        midlight: '#efefef',
+      },
+    },
+    '$value': '#fdfdfd',
+  },
+  'global.color.gray.100': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(50, 50, 50)',
+          darkest: 'rgb(29, 29, 29)',
+          light: 'rgb(248, 248, 248)',
+          lightest: 'rgb(255, 255, 255)',
+          middark: 'rgb(75, 75, 75)',
+          midlight: 'rgb(219, 219, 219)',
+        },
+      },
+      '$value': 'rgb(248, 248, 248)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.100',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#323232',
+        darkest: '#1d1d1d',
+        light: '#f8f8f8',
+        lightest: '#ffffff',
+        middark: '#4b4b4b',
+        midlight: '#dbdbdb',
+      },
+    },
+    '$value': '#f8f8f8',
+  },
+  'global.color.gray.200': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(63, 63, 63)',
+          darkest: 'rgb(48, 48, 48)',
+          light: 'rgb(230, 230, 230)',
+          lightest: 'rgb(235, 235, 235)',
+          middark: 'rgb(83, 83, 83)',
+          midlight: 'rgb(207, 207, 207)',
+        },
+      },
+      '$value': 'rgb(230, 230, 230)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.200',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#3f3f3f',
+        darkest: '#303030',
+        light: '#e6e6e6',
+        lightest: '#ebebeb',
+        middark: '#535353',
+        midlight: '#cfcfcf',
+      },
+    },
+    '$value': '#e6e6e6',
+  },
+  'global.color.gray.300': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(84, 84, 84)',
+          darkest: 'rgb(75, 75, 75)',
+          light: 'rgb(213, 213, 213)',
+          lightest: 'rgb(217, 217, 217)',
+          middark: 'rgb(99, 99, 99)',
+          midlight: 'rgb(195, 195, 195)',
+        },
+      },
+      '$value': 'rgb(213, 213, 213)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.300',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#545454',
+        darkest: '#4b4b4b',
+        light: '#d5d5d5',
+        lightest: '#d9d9d9',
+        middark: '#636363',
+        midlight: '#c3c3c3',
+      },
+    },
+    '$value': '#d5d5d5',
+  },
+  'global.color.gray.400': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(112, 112, 112)',
+          darkest: 'rgb(106, 106, 106)',
+          light: 'rgb(177, 177, 177)',
+          lightest: 'rgb(179, 179, 179)',
+          middark: 'rgb(122, 122, 122)',
+          midlight: 'rgb(166, 166, 166)',
+        },
+      },
+      '$value': 'rgb(177, 177, 177)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.400',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#707070',
+        darkest: '#6a6a6a',
+        light: '#b1b1b1',
+        lightest: '#b3b3b3',
+        middark: '#7a7a7a',
+        midlight: '#a6a6a6',
+      },
+    },
+    '$value': '#b1b1b1',
+  },
+  'global.color.gray.500': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(144, 144, 144)',
+          darkest: 'rgb(141, 141, 141)',
+          light: 'rgb(144, 144, 144)',
+          lightest: 'rgb(146, 146, 146)',
+          middark: 'rgb(151, 151, 151)',
+          midlight: 'rgb(138, 138, 138)',
+        },
+      },
+      '$value': 'rgb(144, 144, 144)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.500',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#909090',
+        darkest: '#8d8d8d',
+        light: '#909090',
+        lightest: '#929292',
+        middark: '#979797',
+        midlight: '#8a8a8a',
+      },
+    },
+    '$value': '#909090',
+  },
+  'global.color.gray.600': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(178, 178, 178)',
+          darkest: 'rgb(176, 176, 176)',
+          light: 'rgb(109, 109, 109)',
+          lightest: 'rgb(110, 110, 110)',
+          middark: 'rgb(182, 182, 182)',
+          midlight: 'rgb(106, 106, 106)',
+        },
+      },
+      '$value': 'rgb(109, 109, 109)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.600',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#b2b2b2',
+        darkest: '#b0b0b0',
+        light: '#6d6d6d',
+        lightest: '#6e6e6e',
+        middark: '#b6b6b6',
+        midlight: '#6a6a6a',
+      },
+    },
+    '$value': '#6d6d6d',
+  },
+  'global.color.gray.700': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(209, 209, 209)',
+          darkest: 'rgb(208, 208, 208)',
+          light: 'rgb(70, 70, 70)',
+          lightest: 'rgb(71, 71, 71)',
+          middark: 'rgb(212, 212, 212)',
+          midlight: 'rgb(69, 69, 69)',
+        },
+      },
+      '$value': 'rgb(70, 70, 70)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.700',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#d1d1d1',
+        darkest: '#d0d0d0',
+        light: '#464646',
+        lightest: '#474747',
+        middark: '#d4d4d4',
+        midlight: '#454545',
+      },
+    },
+    '$value': '#464646',
+  },
+  'global.color.gray.800': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(235, 235, 235)',
+          darkest: 'rgb(235, 235, 235)',
+          light: 'rgb(34, 34, 34)',
+          lightest: 'rgb(34, 34, 34)',
+          middark: 'rgb(236, 236, 236)',
+          midlight: 'rgb(33, 33, 33)',
+        },
+      },
+      '$value': 'rgb(34, 34, 34)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.800',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ebebeb',
+        darkest: '#ebebeb',
+        light: '#222222',
+        lightest: '#222222',
+        middark: '#ececec',
+        midlight: '#212121',
+      },
+    },
+    '$value': '#222222',
+  },
+  'global.color.gray.900': {
+    '_original': {
+      '$extensions': {
+        mode: {
+          dark: 'rgb(255, 255, 255)',
+          darkest: 'rgb(255, 255, 255)',
+          light: 'rgb(0, 0, 0)',
+          lightest: 'rgb(0, 0, 0)',
+          middark: 'rgb(255, 255, 255)',
+          midlight: 'rgb(0, 0, 0)',
+        },
+      },
+      '$value': 'rgb(0, 0, 0)',
+    },
+    '_group': {
+      id: 'global.color.gray',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+      '$type': 'color',
+    },
+    id: 'global.color.gray.900',
+    '$type': 'color',
+    '$extensions': {
+      mode: {
+        dark: '#ffffff',
+        darkest: '#ffffff',
+        light: '#000000',
+        lightest: '#000000',
+        middark: '#ffffff',
+        midlight: '#000000',
+      },
+    },
+    '$value': '#000000',
+  },
+  'alias.background-color-primary': {
+    '_original': {
+      '$type': 'color',
+      '$value': '{global.color.gray.50}',
+      '$extensions': {
+        mode: {
+          dark: '{global.color.gray.100}',
+          darkest: '{global.color.gray.100}',
+          light: '{global.color.gray.50}',
+          lightest: '{global.color.gray.50}',
+          middark: '{global.color.gray.100}',
+          midlight: '{global.color.gray.50}',
+        },
+      },
+    },
+    '_group': {
+      id: 'alias',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+    },
+    id: 'alias.background-color-primary',
     '$type': 'color',
     '$value': '#ffffff',
     '$extensions': {
       mode: {
-        lightest: '#ffffff',
+        dark: '#f8f8f8',
+        darkest: '#f8f8f8',
         light: '#ffffff',
-        dark: '#252525',
-        darkest: '#080808',
-      },
-    },
-  },
-  'color.gray75': {
-    '_original': {
-      '$value': '#fafafa',
-      '$extensions': {
-        mode: {
-          lightest: '#ffffff',
-          light: '#fafafa',
-          dark: '#2f2f2f',
-          darkest: '#1a1a1a',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.gray75',
-    '$type': 'color',
-    '$value': '#fafafa',
-    '$extensions': {
-      mode: {
         lightest: '#ffffff',
-        light: '#fafafa',
-        dark: '#2f2f2f',
-        darkest: '#1a1a1a',
+        middark: '#f8f8f8',
+        midlight: '#ffffff',
       },
     },
   },
-  'color.gray100': {
+  'alias.background-color-secondary': {
     '_original': {
-      '$value': '#f5f5f5',
+      '$type': 'color',
+      '$value': '{global.color.gray.100}',
       '$extensions': {
         mode: {
-          lightest: '#ffffff',
-          light: '#f5f5f5',
-          dark: '#323232',
-          darkest: '#1e1e1e',
+          dark: '{global.color.gray.75}',
+          darkest: '{global.color.gray.75}',
+          light: '{global.color.gray.100}',
+          lightest: '{global.color.gray.100}',
+          middark: '{global.color.gray.75}',
+          midlight: '{global.color.gray.100}',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray100',
+    id: 'alias.background-color-secondary',
     '$type': 'color',
-    '$value': '#f5f5f5',
+    '$value': '#f8f8f8',
     '$extensions': {
       mode: {
-        lightest: '#ffffff',
-        light: '#f5f5f5',
-        dark: '#323232',
-        darkest: '#1e1e1e',
+        dark: '#fdfdfd',
+        darkest: '#fdfdfd',
+        light: '#f8f8f8',
+        lightest: '#f8f8f8',
+        middark: '#fdfdfd',
+        midlight: '#f8f8f8',
       },
     },
   },
-  'color.gray200': {
+  'alias.background-color-modal-overlay': {
     '_original': {
-      '$value': '#eaeaea',
+      '$type': 'color',
+      '$value': 'rgba(0, 0, 0, 0.4)',
       '$extensions': {
         mode: {
-          lightest: '#f4f4f4',
-          light: '#eaeaea',
-          dark: '#3e3e3e',
-          darkest: '#2c2c2c',
+          dark: 'rgba(0, 0, 0, 0.5)',
+          darkest: 'rgba(0, 0, 0, 0.6)',
+          light: 'rgba(0, 0, 0, 0.4)',
+          lightest: 'rgba(0, 0, 0, 0.4)',
+          middark: 'rgba(0, 0, 0, 0.4)',
+          midlight: 'rgba(0, 0, 0, 0.4)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray200',
+    id: 'alias.background-color-modal-overlay',
     '$type': 'color',
-    '$value': '#eaeaea',
+    '$value': '#00000066',
     '$extensions': {
       mode: {
-        lightest: '#f4f4f4',
-        light: '#eaeaea',
-        dark: '#3e3e3e',
-        darkest: '#2c2c2c',
+        dark: '#00000080',
+        darkest: '#00000099',
+        light: '#00000066',
+        lightest: '#00000066',
+        middark: '#00000066',
+        midlight: '#00000066',
       },
     },
   },
-  'color.gray300': {
+  'alias.background-color-hover-overly': {
     '_original': {
-      '$value': '#e1e1e1',
+      '$type': 'color',
+      '$value': 'rgba(0, 0, 0, 0.04)',
       '$extensions': {
         mode: {
-          lightest: '#eaeaea',
-          light: '#e1e1e1',
-          dark: '#4a4a4a',
-          darkest: '#393939',
+          dark: 'rgba(255, 255, 255, 0.06)',
+          darkest: 'rgba(255, 255, 255, 0.08)',
+          light: 'rgba(0, 0, 0, 0.04)',
+          lightest: 'rgba(0, 0, 0, 0.04)',
+          middark: 'rgba(255, 255, 255, 0.05)',
+          midlight: 'rgba(0, 0, 0, 0.04)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray300',
+    id: 'alias.background-color-hover-overly',
     '$type': 'color',
-    '$value': '#e1e1e1',
+    '$value': '#0000000a',
     '$extensions': {
       mode: {
-        lightest: '#eaeaea',
-        light: '#e1e1e1',
-        dark: '#4a4a4a',
-        darkest: '#393939',
+        dark: '#ffffff0f',
+        darkest: '#ffffff14',
+        light: '#0000000a',
+        lightest: '#0000000a',
+        middark: '#ffffff0d',
+        midlight: '#0000000a',
       },
     },
   },
-  'color.gray400': {
+  'alias.background-color-quickactions': {
     '_original': {
-      '$value': '#cacaca',
+      '$type': 'color',
+      '$value': 'rgba(248, 248, 248, 0.9)',
       '$extensions': {
         mode: {
-          lightest: '#d3d3d3',
-          light: '#cacaca',
-          dark: '#5a5a5a',
-          darkest: '#494949',
+          dark: 'rgba(50, 50, 50, 0.9)',
+          darkest: 'rgba(29, 29, 29, 0.9)',
+          light: 'rgba(248, 248, 248, 0.9)',
+          lightest: 'rgba(255, 255, 255, 0.9)',
+          middark: 'rgba(75, 75, 75, 0.9)',
+          midlight: 'rgba(219, 219, 219, 0.9)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray400',
+    id: 'alias.background-color-quickactions',
     '$type': 'color',
-    '$value': '#cacaca',
+    '$value': '#f8f8f8e6',
     '$extensions': {
       mode: {
-        lightest: '#d3d3d3',
-        light: '#cacaca',
-        dark: '#5a5a5a',
-        darkest: '#494949',
+        dark: '#323232e6',
+        darkest: '#1d1d1de6',
+        light: '#f8f8f8e6',
+        lightest: '#ffffffe6',
+        middark: '#4b4b4be6',
+        midlight: '#dbdbdbe6',
       },
     },
   },
-  'color.gray500': {
+  'alias.dropshadow-color': {
     '_original': {
-      '$value': '#b3b3b3',
+      '$value': 'rgba(0, 0, 0, 0.15)',
+      '$type': 'color',
       '$extensions': {
         mode: {
-          lightest: '#bcbcbc',
-          light: '#b3b3b3',
-          dark: '#6e6e6e',
-          darkest: '#5c5c5c',
+          dark: 'rgba(0, 0, 0, 0.5)',
+          darkest: 'rgba(0, 0, 0, 0.8)',
+          light: 'rgba(0, 0, 0, 0.15)',
+          lightest: 'rgba(0, 0, 0, 0.15)',
+          middark: 'rgba(0, 0, 0, 0.3)',
+          midlight: 'rgba(0, 0, 0, 0.15)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray500',
+    id: 'alias.dropshadow-color',
     '$type': 'color',
-    '$value': '#b3b3b3',
+    '$value': '#00000026',
     '$extensions': {
       mode: {
-        lightest: '#bcbcbc',
-        light: '#b3b3b3',
-        dark: '#6e6e6e',
-        darkest: '#5c5c5c',
+        dark: '#00000080',
+        darkest: '#000000cc',
+        light: '#00000026',
+        lightest: '#00000026',
+        middark: '#0000004d',
+        midlight: '#00000026',
       },
     },
   },
-  'color.gray600': {
+  'alias.highlight-hover': {
     '_original': {
-      '$value': '#8e8e8e',
+      '$type': 'color',
+      '$value': 'rgba(0, 0, 0, 0.06)',
       '$extensions': {
         mode: {
-          lightest: '#959595',
-          light: '#8e8e8e',
-          dark: '#909090',
-          darkest: '#7c7c7c',
+          dark: 'rgba(255, 255, 255, 0.07)',
+          darkest: 'rgba(255, 255, 255, 0.08)',
+          light: 'rgba(0, 0, 0, 0.06)',
+          lightest: 'rgba(0, 0, 0, 0.06)',
+          middark: 'rgba(255, 255, 255, 0.06)',
+          midlight: 'rgba(0, 0, 0, 0.06)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray600',
+    id: 'alias.highlight-hover',
     '$type': 'color',
-    '$value': '#8e8e8e',
+    '$value': '#0000000f',
     '$extensions': {
       mode: {
-        lightest: '#959595',
-        light: '#8e8e8e',
-        dark: '#909090',
-        darkest: '#7c7c7c',
+        dark: '#ffffff12',
+        darkest: '#ffffff14',
+        light: '#0000000f',
+        lightest: '#0000000f',
+        middark: '#ffffff0f',
+        midlight: '#0000000f',
       },
     },
   },
-  'color.gray700': {
+  'alias.highlight-down': {
     '_original': {
-      '$value': '#6e6e6e',
+      '$type': 'color',
+      '$value': 'rgba(0, 0, 0, 0.1)',
       '$extensions': {
         mode: {
-          lightest: '#747474',
-          light: '#6e6e6e',
-          dark: '#b9b9b9',
-          darkest: '#a2a2a2',
+          dark: 'rgba(255, 255, 255, 0.1)',
+          darkest: 'rgba(255, 255, 255, 0.15)',
+          light: 'rgba(0, 0, 0, 0.1)',
+          lightest: 'rgba(0, 0, 0, 0.1)',
+          middark: 'rgba(255, 255, 255, 0.1)',
+          midlight: 'rgba(0, 0, 0, 0.1)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray700',
+    id: 'alias.highlight-down',
     '$type': 'color',
-    '$value': '#6e6e6e',
+    '$value': '#0000001a',
     '$extensions': {
       mode: {
-        lightest: '#747474',
-        light: '#6e6e6e',
-        dark: '#b9b9b9',
-        darkest: '#a2a2a2',
+        dark: '#ffffff1a',
+        darkest: '#ffffff26',
+        light: '#0000001a',
+        lightest: '#0000001a',
+        middark: '#ffffff1a',
+        midlight: '#0000001a',
       },
     },
   },
-  'color.gray800': {
+  'alias.highlight-selected': {
     '_original': {
-      '$value': '#4b4b4b',
+      '$type': 'color',
+      '$value': 'rgba(2, 101, 220, 0.1)',
       '$extensions': {
         mode: {
-          lightest: '#505050',
-          light: '#4b4b4b',
-          dark: '#e3e3e3',
-          darkest: '#c8c8c8',
+          dark: 'rgba(84, 163, 246, 0.15)',
+          darkest: 'rgba(64, 150, 243, 0.2)',
+          light: 'rgba(2, 101, 220, 0.1)',
+          lightest: 'rgba(4, 105, 227, 0.1)',
+          middark: 'rgba(94, 170, 247, 0.1)',
+          midlight: 'rgba(0, 87, 190, 0.1)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray800',
+    id: 'alias.highlight-selected',
     '$type': 'color',
-    '$value': '#4b4b4b',
+    '$value': '#0265dc1a',
     '$extensions': {
       mode: {
-        lightest: '#505050',
-        light: '#4b4b4b',
-        dark: '#e3e3e3',
-        darkest: '#c8c8c8',
+        dark: '#54a3f626',
+        darkest: '#4096f333',
+        light: '#0265dc1a',
+        lightest: '#0469e31a',
+        middark: '#5eaaf71a',
+        midlight: '#0057be1a',
       },
     },
   },
-  'color.gray900': {
+  'alias.highlight-selected-hover': {
     '_original': {
-      '$value': '#2c2c2c',
+      '$type': 'color',
+      '$value': 'rgba(2, 101, 220, 0.2)',
       '$extensions': {
         mode: {
-          lightest: '#323232',
-          light: '#2c2c2c',
-          dark: '#ffffff',
-          darkest: '#efefef',
+          dark: 'rgba(84, 163, 246, 0.25)',
+          darkest: 'rgba(64, 150, 243, 0.3)',
+          light: 'rgba(2, 101, 220, 0.2)',
+          lightest: 'rgba(4, 105, 227, 0.2)',
+          middark: 'rgba(94, 170, 247, 0.2)',
+          midlight: 'rgba(0, 87, 190, 0.2)',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.gray900',
+    id: 'alias.highlight-selected-hover',
     '$type': 'color',
-    '$value': '#2c2c2c',
+    '$value': '#0265dc33',
     '$extensions': {
       mode: {
-        lightest: '#323232',
-        light: '#2c2c2c',
+        dark: '#54a3f640',
+        darkest: '#4096f34d',
+        light: '#0265dc33',
+        lightest: '#0469e333',
+        middark: '#5eaaf733',
+        midlight: '#0057be33',
+      },
+    },
+  },
+  'alias.text-highlight-color': {
+    '_original': {
+      '$type': 'color',
+      '$value': 'rgba(2, 101, 220, 0.2)',
+      '$extensions': {
+        mode: {
+          dark: 'rgba(84, 163, 246, 0.25)',
+          darkest: 'rgba(64, 150, 243, 0.3)',
+          light: 'rgba(2, 101, 220, 0.2)',
+          lightest: 'rgba(4, 105, 227, 0.2)',
+          middark: 'rgba(94, 170, 247, 0.2)',
+          midlight: 'rgba(0, 87, 190, 0.2)',
+        },
+      },
+    },
+    '_group': {
+      id: 'alias',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+    },
+    id: 'alias.text-highlight-color',
+    '$type': 'color',
+    '$value': '#0265dc33',
+    '$extensions': {
+      mode: {
+        dark: '#54a3f640',
+        darkest: '#4096f34d',
+        light: '#0265dc33',
+        lightest: '#0469e333',
+        middark: '#5eaaf733',
+        midlight: '#0057be33',
+      },
+    },
+  },
+  'alias.border-color-translucent': {
+    '_original': {
+      '$type': 'color',
+      '$value': 'rgba(0, 0, 0, 0.1)',
+      '$extensions': {
+        mode: {
+          dark: 'rgba(255, 255, 255, 0.1)',
+          darkest: 'rgba(255, 255, 255, 0.1)',
+          light: 'rgba(0, 0, 0, 0.1)',
+          lightest: 'rgba(0, 0, 0, 0.1)',
+          middark: 'rgba(255, 255, 255, 0.1)',
+          midlight: 'rgba(0, 0, 0, 0.1)',
+        },
+      },
+    },
+    '_group': {
+      id: 'alias',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+    },
+    id: 'alias.border-color-translucent',
+    '$type': 'color',
+    '$value': '#0000001a',
+    '$extensions': {
+      mode: {
+        dark: '#ffffff1a',
+        darkest: '#ffffff1a',
+        light: '#0000001a',
+        lightest: '#0000001a',
+        middark: '#ffffff1a',
+        midlight: '#0000001a',
+      },
+    },
+  },
+  'alias.radial-reaction-color': {
+    '_original': {
+      '$type': 'color',
+      '$value': 'rgba(34, 34, 34, 0.6)',
+      default: {
+        '$extensions': {
+          mode: {
+            dark: 'rgba(235, 235, 235, 0.6)',
+            darkest: 'rgba(235, 235, 235, 0.6)',
+            light: 'rgba(34, 34, 34, 0.6)',
+            lightest: 'rgba(34, 34, 34, 0.6)',
+            middark: 'rgba(236, 236, 236, 0.6)',
+            midlight: 'rgba(33, 33, 33, 0.6)',
+          },
+        },
+      },
+    },
+    '_group': {
+      id: 'alias',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+    },
+    id: 'alias.radial-reaction-color',
+    '$type': 'color',
+    '$value': '#22222299',
+    default: {
+      '$extensions': {
+        mode: {
+          dark: 'rgba(235, 235, 235, 0.6)',
+          darkest: 'rgba(235, 235, 235, 0.6)',
+          light: 'rgba(34, 34, 34, 0.6)',
+          lightest: 'rgba(34, 34, 34, 0.6)',
+          middark: 'rgba(236, 236, 236, 0.6)',
+          midlight: 'rgba(33, 33, 33, 0.6)',
+        },
+      },
+    },
+  },
+  'alias.pasteboard-background-color': {
+    '_original': {
+      '$type': 'color',
+      '$value': '{global.color.gray.300}',
+      '$extensions': {
+        mode: {
+          dark: '{global.color.gray.50}',
+          darkest: '{global.color.gray.50}',
+          light: '{global.color.gray.300}',
+          lightest: '{global.color.gray.300}',
+          middark: '{global.color.gray.50}',
+          midlight: '{global.color.gray.300}',
+        },
+      },
+    },
+    '_group': {
+      id: 'alias',
+      '$extensions': {
+        requiredModes: [],
+      },
+      '$schema': '../../packages/core/tokens-schema.json',
+      '$name': 'Adobe Spectrum',
+    },
+    id: 'alias.pasteboard-background-color',
+    '$type': 'color',
+    '$value': '#d5d5d5',
+    '$extensions': {
+      mode: {
         dark: '#ffffff',
-        darkest: '#efefef',
+        darkest: '#ffffff',
+        light: '#d5d5d5',
+        lightest: '#d5d5d5',
+        middark: '#ffffff',
+        midlight: '#d5d5d5',
       },
     },
   },
-  'color.green400': {
+  'alias.appframe.border-color': {
     '_original': {
-      '$value': '#2d9d78',
+      '$type': 'color',
+      '$value': '{global.color.gray.300}',
       '$extensions': {
         mode: {
-          lightest: '#33ab84',
-          light: '#2d9d78',
-          dark: '#2d9d78',
-          darkest: '#268e6c',
+          dark: '{global.color.gray.50}',
+          darkest: '{global.color.gray.50}',
+          light: '{global.color.gray.300}',
+          lightest: '{global.color.gray.300}',
+          middark: '{global.color.gray.50}',
+          midlight: '{global.color.gray.300}',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias.appframe',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.green400',
+    id: 'alias.appframe.border-color',
     '$type': 'color',
-    '$value': '#2d9d78',
+    '$value': '#d5d5d5',
     '$extensions': {
       mode: {
-        lightest: '#33ab84',
-        light: '#2d9d78',
-        dark: '#2d9d78',
-        darkest: '#268e6c',
+        dark: '#ffffff',
+        darkest: '#ffffff',
+        light: '#d5d5d5',
+        lightest: '#d5d5d5',
+        middark: '#ffffff',
+        midlight: '#d5d5d5',
       },
     },
   },
-  'color.green500': {
+  'alias.appframe.separator-color': {
     '_original': {
-      '$value': '#268e6c',
+      '$type': 'color',
+      '$value': '{global.color.gray.300}',
       '$extensions': {
         mode: {
-          lightest: '#2d9d78',
-          light: '#268e6c',
-          dark: '#33ab84',
-          darkest: '#2d9d78',
+          dark: '{global.color.gray.50}',
+          darkest: '{global.color.gray.50}',
+          light: '{global.color.gray.300}',
+          lightest: '{global.color.gray.300}',
+          middark: '{global.color.gray.50}',
+          midlight: '{global.color.gray.300}',
         },
       },
     },
     '_group': {
-      id: 'color',
+      id: 'alias.appframe',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.green500',
+    id: 'alias.appframe.separator-color',
     '$type': 'color',
-    '$value': '#268e6c',
+    '$value': '#d5d5d5',
     '$extensions': {
       mode: {
-        lightest: '#2d9d78',
-        light: '#268e6c',
-        dark: '#33ab84',
-        darkest: '#2d9d78',
+        dark: '#ffffff',
+        darkest: '#ffffff',
+        light: '#d5d5d5',
+        lightest: '#d5d5d5',
+        middark: '#ffffff',
+        midlight: '#d5d5d5',
       },
     },
   },
-  'color.green600': {
+  'scrollbar.mac.s.track-background-color': {
     '_original': {
-      '$value': '#12805c',
+      '$type': 'color',
       '$extensions': {
         mode: {
-          lightest: '#268e6c',
-          light: '#12805c',
-          dark: '#39b990',
-          darkest: '#33ab84',
+          dark: '{global.color.gray.100}',
+          darkest: '{global.color.gray.100}',
+          light: '{global.color.gray.75}',
+          middark: 'transparent',
+          midlight: 'transparent',
         },
       },
+      '$value': '{global.color.gray.75}',
     },
     '_group': {
-      id: 'color',
+      id: 'scrollbar.mac.s',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.green600',
+    id: 'scrollbar.mac.s.track-background-color',
     '$type': 'color',
-    '$value': '#12805c',
     '$extensions': {
       mode: {
-        lightest: '#268e6c',
-        light: '#12805c',
-        dark: '#39b990',
-        darkest: '#33ab84',
+        dark: '#f8f8f8',
+        darkest: '#f8f8f8',
+        light: '#fdfdfd',
+        middark: '#00000000',
+        midlight: '#00000000',
       },
     },
+    '$value': '#fdfdfd',
   },
-  'color.green700': {
+  'scrollbar.mac.m.track-background-color': {
     '_original': {
-      '$value': '#107154',
+      '$type': 'color',
       '$extensions': {
         mode: {
-          lightest: '#12805c',
-          light: '#107154',
-          dark: '#3fc89c',
-          darkest: '#39b990',
+          dark: '{global.color.gray.100}',
+          darkest: '{global.color.gray.100}',
+          light: '{global.color.gray.75}',
+          middark: 'transparent',
+          midlight: 'transparent',
         },
       },
+      '$value': '{global.color.gray.75}',
     },
     '_group': {
-      id: 'color',
+      id: 'scrollbar.mac.m',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.green700',
+    id: 'scrollbar.mac.m.track-background-color',
     '$type': 'color',
-    '$value': '#107154',
     '$extensions': {
       mode: {
-        lightest: '#12805c',
-        light: '#107154',
-        dark: '#3fc89c',
-        darkest: '#39b990',
+        dark: '#f8f8f8',
+        darkest: '#f8f8f8',
+        light: '#fdfdfd',
+        middark: '#00000000',
+        midlight: '#00000000',
       },
     },
+    '$value': '#fdfdfd',
   },
-  'color.red400': {
+  'scrollbar.mac.l.track-background-color': {
     '_original': {
-      '$value': '#e34850',
+      '$type': 'color',
       '$extensions': {
         mode: {
-          lightest: '#ec5b62',
-          light: '#e34850',
-          dark: '#e34850',
-          darkest: '#d7373f',
+          dark: '{global.color.gray.100}',
+          darkest: '{global.color.gray.100}',
+          light: '{global.color.gray.75}',
+          middark: 'transparent',
+          midlight: 'transparent',
         },
       },
+      '$value': '{global.color.gray.75}',
     },
     '_group': {
-      id: 'color',
+      id: 'scrollbar.mac.l',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.red400',
+    id: 'scrollbar.mac.l.track-background-color',
     '$type': 'color',
-    '$value': '#e34850',
     '$extensions': {
       mode: {
-        lightest: '#ec5b62',
-        light: '#e34850',
-        dark: '#e34850',
-        darkest: '#d7373f',
+        dark: '#f8f8f8',
+        darkest: '#f8f8f8',
+        light: '#fdfdfd',
+        middark: '#00000000',
+        midlight: '#00000000',
       },
     },
+    '$value': '#fdfdfd',
   },
-  'color.red500': {
+  'well.background-color': {
     '_original': {
-      '$value': '#d7373f',
+      '$type': 'color',
       '$extensions': {
         mode: {
-          lightest: '#e34850',
-          light: '#d7373f',
-          dark: '#ec5b62',
-          darkest: '#e34850',
+          dark: 'rgba(235, 235, 235, 0.02)',
+          darkest: 'rgba(235, 235, 235, 0.02)',
+          light: 'rgba(34, 34, 34, 0.02)',
+          middark: 'rgba(236, 236, 236, 0.02)',
+          midlight: 'rgba(33, 33, 33, 0.02)',
         },
       },
+      '$value': 'rgba(34, 34, 34, 0.02)',
     },
     '_group': {
-      id: 'color',
+      id: 'well',
       '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
+        requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
-      '$type': 'color',
     },
-    id: 'color.red500',
+    id: 'well.background-color',
     '$type': 'color',
-    '$value': '#d7373f',
     '$extensions': {
       mode: {
-        lightest: '#e34850',
-        light: '#d7373f',
-        dark: '#ec5b62',
-        darkest: '#e34850',
+        dark: '#ebebeb05',
+        darkest: '#ebebeb05',
+        light: '#22222205',
+        middark: '#ececec05',
+        midlight: '#21212105',
       },
     },
-  },
-  'color.red600': {
-    '_original': {
-      '$value': '#c9252d',
-      '$extensions': {
-        mode: {
-          lightest: '#d7373f',
-          light: '#c9252d',
-          dark: '#f76d74',
-          darkest: '#ec5b62',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.red600',
-    '$type': 'color',
-    '$value': '#c9252d',
-    '$extensions': {
-      mode: {
-        lightest: '#d7373f',
-        light: '#c9252d',
-        dark: '#f76d74',
-        darkest: '#ec5b62',
-      },
-    },
-  },
-  'color.red700': {
-    '_original': {
-      '$value': '#bb121a',
-      '$extensions': {
-        mode: {
-          lightest: '#c9252d',
-          light: '#bb121a',
-          dark: '#ff7b82',
-          darkest: '#f76d74',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.red700',
-    '$type': 'color',
-    '$value': '#bb121a',
-    '$extensions': {
-      mode: {
-        lightest: '#c9252d',
-        light: '#bb121a',
-        dark: '#ff7b82',
-        darkest: '#f76d74',
-      },
-    },
-  },
-  'color.orange400': {
-    '_original': {
-      '$value': '#e68619',
-      '$extensions': {
-        mode: {
-          lightest: '#f29423',
-          light: '#e68619',
-          dark: '#e68619',
-          darkest: '#da7b11',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.orange400',
-    '$type': 'color',
-    '$value': '#e68619',
-    '$extensions': {
-      mode: {
-        lightest: '#f29423',
-        light: '#e68619',
-        dark: '#e68619',
-        darkest: '#da7b11',
-      },
-    },
-  },
-  'color.orange500': {
-    '_original': {
-      '$value': '#da7b11',
-      '$extensions': {
-        mode: {
-          lightest: '#e68619',
-          light: '#da7b11',
-          dark: '#f29423',
-          darkest: '#e68619',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.orange500',
-    '$type': 'color',
-    '$value': '#da7b11',
-    '$extensions': {
-      mode: {
-        lightest: '#e68619',
-        light: '#da7b11',
-        dark: '#f29423',
-        darkest: '#e68619',
-      },
-    },
-  },
-  'color.orange600': {
-    '_original': {
-      '$value': '#cb6f10',
-      '$extensions': {
-        mode: {
-          lightest: '#da7b11',
-          light: '#cb6f10',
-          dark: '#f9a43f',
-          darkest: '#f29423',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.orange600',
-    '$type': 'color',
-    '$value': '#cb6f10',
-    '$extensions': {
-      mode: {
-        lightest: '#da7b11',
-        light: '#cb6f10',
-        dark: '#f9a43f',
-        darkest: '#f29423',
-      },
-    },
-  },
-  'color.orange700': {
-    '_original': {
-      '$value': '#bd640d',
-      '$extensions': {
-        mode: {
-          lightest: '#cb6f10',
-          light: '#bd640d',
-          dark: '#ffb55b',
-          darkest: '#f9a43f',
-        },
-      },
-    },
-    '_group': {
-      id: 'color',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.orange700',
-    '$type': 'color',
-    '$value': '#bd640d',
-    '$extensions': {
-      mode: {
-        lightest: '#cb6f10',
-        light: '#bd640d',
-        dark: '#ffb55b',
-        darkest: '#f9a43f',
-      },
-    },
-  },
-  'color.label.celery400': {
-    '_original': {
-      '$value': '#44b556',
-      '$extensions': {
-        mode: {
-          lightest: '#4bc35f',
-          light: '#44b556',
-          dark: '#44b556',
-          darkest: '#3da74e',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.celery400',
-    '$type': 'color',
-    '$value': '#44b556',
-    '$extensions': {
-      mode: {
-        lightest: '#4bc35f',
-        light: '#44b556',
-        dark: '#44b556',
-        darkest: '#3da74e',
-      },
-    },
-  },
-  'color.label.celery500': {
-    '_original': {
-      '$value': '#3da74e',
-      '$extensions': {
-        mode: {
-          lightest: '#44b556',
-          light: '#3da74e',
-          dark: '#4bc35f',
-          darkest: '#44b556',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.celery500',
-    '$type': 'color',
-    '$value': '#3da74e',
-    '$extensions': {
-      mode: {
-        lightest: '#44b556',
-        light: '#3da74e',
-        dark: '#4bc35f',
-        darkest: '#44b556',
-      },
-    },
-  },
-  'color.label.celery600': {
-    '_original': {
-      '$value': '#3da74e',
-      '$extensions': {
-        mode: {
-          lightest: '#3da74e',
-          light: '#3da74e',
-          dark: '#51d267',
-          darkest: '#4bc35f',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.celery600',
-    '$type': 'color',
-    '$value': '#3da74e',
-    '$extensions': {
-      mode: {
-        lightest: '#3da74e',
-        light: '#3da74e',
-        dark: '#51d267',
-        darkest: '#4bc35f',
-      },
-    },
-  },
-  'color.label.celery700': {
-    '_original': {
-      '$value': '#3da74e',
-      '$extensions': {
-        mode: {
-          lightest: '#379947',
-          light: '#3da74e',
-          dark: '#58e06f',
-          darkest: '#51d267',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.celery700',
-    '$type': 'color',
-    '$value': '#3da74e',
-    '$extensions': {
-      mode: {
-        lightest: '#379947',
-        light: '#3da74e',
-        dark: '#58e06f',
-        darkest: '#51d267',
-      },
-    },
-  },
-  'color.label.chartreuse400': {
-    '_original': {
-      '$value': '#85d044',
-      '$extensions': {
-        mode: {
-          lightest: '#8ede49',
-          light: '#85d044',
-          dark: '#85d044',
-          darkest: '#7cc33f',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.chartreuse400',
-    '$type': 'color',
-    '$value': '#85d044',
-    '$extensions': {
-      mode: {
-        lightest: '#8ede49',
-        light: '#85d044',
-        dark: '#85d044',
-        darkest: '#7cc33f',
-      },
-    },
-  },
-  'color.label.chartreuse500': {
-    '_original': {
-      '$value': '#7cc33f',
-      '$extensions': {
-        mode: {
-          lightest: '#85d044',
-          light: '#7cc33f',
-          dark: '#8ede49',
-          darkest: '#85d044',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.chartreuse500',
-    '$type': 'color',
-    '$value': '#7cc33f',
-    '$extensions': {
-      mode: {
-        lightest: '#85d044',
-        light: '#7cc33f',
-        dark: '#8ede49',
-        darkest: '#85d044',
-      },
-    },
-  },
-  'color.label.chartreuse600': {
-    '_original': {
-      '$value': '#73b53a',
-      '$extensions': {
-        mode: {
-          lightest: '#7cc33f',
-          light: '#73b53a',
-          dark: '#9bec54',
-          darkest: '#8ede49',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.chartreuse600',
-    '$type': 'color',
-    '$value': '#73b53a',
-    '$extensions': {
-      mode: {
-        lightest: '#7cc33f',
-        light: '#73b53a',
-        dark: '#9bec54',
-        darkest: '#8ede49',
-      },
-    },
-  },
-  'color.label.chartreuse700': {
-    '_original': {
-      '$value': '#6aa834',
-      '$extensions': {
-        mode: {
-          lightest: '#73b53a',
-          light: '#6aa834',
-          dark: '#a3f858',
-          darkest: '#9bec54',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.chartreuse700',
-    '$type': 'color',
-    '$value': '#6aa834',
-    '$extensions': {
-      mode: {
-        lightest: '#73b53a',
-        light: '#6aa834',
-        dark: '#a3f858',
-        darkest: '#9bec54',
-      },
-    },
-  },
-  'color.label.fuchsia400': {
-    '_original': {
-      '$value': '#c038cc',
-      '$extensions': {
-        mode: {
-          lightest: '#cf3edc',
-          light: '#c038cc',
-          dark: '#c038cc',
-          darkest: '#b130bd',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.fuchsia400',
-    '$type': 'color',
-    '$value': '#c038cc',
-    '$extensions': {
-      mode: {
-        lightest: '#cf3edc',
-        light: '#c038cc',
-        dark: '#c038cc',
-        darkest: '#b130bd',
-      },
-    },
-  },
-  'color.label.fuchsia500': {
-    '_original': {
-      '$value': '#b130bd',
-      '$extensions': {
-        mode: {
-          lightest: '#c038cc',
-          light: '#b130bd',
-          dark: '#cf3edc',
-          darkest: '#c038cc',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.fuchsia500',
-    '$type': 'color',
-    '$value': '#b130bd',
-    '$extensions': {
-      mode: {
-        lightest: '#c038cc',
-        light: '#b130bd',
-        dark: '#cf3edc',
-        darkest: '#c038cc',
-      },
-    },
-  },
-  'color.label.fuchsia600': {
-    '_original': {
-      '$value': '#a228ad',
-      '$extensions': {
-        mode: {
-          lightest: '#b130bd',
-          light: '#a228ad',
-          dark: '#d951e5',
-          darkest: '#cf3edc',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.fuchsia600',
-    '$type': 'color',
-    '$value': '#a228ad',
-    '$extensions': {
-      mode: {
-        lightest: '#b130bd',
-        light: '#a228ad',
-        dark: '#d951e5',
-        darkest: '#cf3edc',
-      },
-    },
-  },
-  'color.label.fuchsia700': {
-    '_original': {
-      '$value': '#93219e',
-      '$extensions': {
-        mode: {
-          lightest: '#a228ad',
-          light: '#93219e',
-          dark: '#e366ef',
-          darkest: '#d951e5',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.fuchsia700',
-    '$type': 'color',
-    '$value': '#93219e',
-    '$extensions': {
-      mode: {
-        lightest: '#a228ad',
-        light: '#93219e',
-        dark: '#e366ef',
-        darkest: '#d951e5',
-      },
-    },
-  },
-  'color.label.indigo400': {
-    '_original': {
-      '$value': '#6767ec',
-      '$extensions': {
-        mode: {
-          lightest: '#7575f1',
-          light: '#6767ec',
-          dark: '#6767ec',
-          darkest: '#5c5ce0',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.indigo400',
-    '$type': 'color',
-    '$value': '#6767ec',
-    '$extensions': {
-      mode: {
-        lightest: '#7575f1',
-        light: '#6767ec',
-        dark: '#6767ec',
-        darkest: '#5c5ce0',
-      },
-    },
-  },
-  'color.label.indigo500': {
-    '_original': {
-      '$value': '#5c5ce0',
-      '$extensions': {
-        mode: {
-          lightest: '#6767ec',
-          light: '#5c5ce0',
-          dark: '#7575f1',
-          darkest: '#6767ec',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.indigo500',
-    '$type': 'color',
-    '$value': '#5c5ce0',
-    '$extensions': {
-      mode: {
-        lightest: '#6767ec',
-        light: '#5c5ce0',
-        dark: '#7575f1',
-        darkest: '#6767ec',
-      },
-    },
-  },
-  'color.label.indigo600': {
-    '_original': {
-      '$value': '#5151d3',
-      '$extensions': {
-        mode: {
-          lightest: '#5c5ce0',
-          light: '#5151d3',
-          dark: '#8282f6',
-          darkest: '#7575f1',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.indigo600',
-    '$type': 'color',
-    '$value': '#5151d3',
-    '$extensions': {
-      mode: {
-        lightest: '#5c5ce0',
-        light: '#5151d3',
-        dark: '#8282f6',
-        darkest: '#7575f1',
-      },
-    },
-  },
-  'color.label.indigo700': {
-    '_original': {
-      '$value': '#4646c6',
-      '$extensions': {
-        mode: {
-          lightest: '#5151d3',
-          light: '#4646c6',
-          dark: '#9090fa',
-          darkest: '#8282f6',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.indigo700',
-    '$type': 'color',
-    '$value': '#4646c6',
-    '$extensions': {
-      mode: {
-        lightest: '#5151d3',
-        light: '#4646c6',
-        dark: '#9090fa',
-        darkest: '#8282f6',
-      },
-    },
-  },
-  'color.label.magenta400': {
-    '_original': {
-      '$value': '#d83790',
-      '$extensions': {
-        mode: {
-          lightest: '#e2499d',
-          light: '#d83790',
-          dark: '#d83790',
-          darkest: '#ca2996',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.magenta400',
-    '$type': 'color',
-    '$value': '#d83790',
-    '$extensions': {
-      mode: {
-        lightest: '#e2499d',
-        light: '#d83790',
-        dark: '#d83790',
-        darkest: '#ca2996',
-      },
-    },
-  },
-  'color.label.magenta500': {
-    '_original': {
-      '$value': '#ce2783',
-      '$extensions': {
-        mode: {
-          lightest: '#d83790',
-          light: '#ce2783',
-          dark: '#e2499d',
-          darkest: '#d83790',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.magenta500',
-    '$type': 'color',
-    '$value': '#ce2783',
-    '$extensions': {
-      mode: {
-        lightest: '#d83790',
-        light: '#ce2783',
-        dark: '#e2499d',
-        darkest: '#d83790',
-      },
-    },
-  },
-  'color.label.magenta600': {
-    '_original': {
-      '$value': '#bc1c74',
-      '$extensions': {
-        mode: {
-          lightest: '#ca2982',
-          light: '#bc1c74',
-          dark: '#ec5aaa',
-          darkest: '#e2499d',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.magenta600',
-    '$type': 'color',
-    '$value': '#bc1c74',
-    '$extensions': {
-      mode: {
-        lightest: '#ca2982',
-        light: '#bc1c74',
-        dark: '#ec5aaa',
-        darkest: '#e2499d',
-      },
-    },
-  },
-  'color.label.magenta700': {
-    '_original': {
-      '$value': '#ae0e66',
-      '$extensions': {
-        mode: {
-          lightest: '#bc1c74',
-          light: '#ae0e66',
-          dark: '#f56bb7',
-          darkest: '#ec5aaa',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.magenta700',
-    '$type': 'color',
-    '$value': '#ae0e66',
-    '$extensions': {
-      mode: {
-        lightest: '#bc1c74',
-        light: '#ae0e66',
-        dark: '#f56bb7',
-        darkest: '#ec5aaa',
-      },
-    },
-  },
-  'color.label.purple400': {
-    '_original': {
-      '$value': '#9256d9',
-      '$extensions': {
-        mode: {
-          lightest: '#9d64e1',
-          light: '#9256d9',
-          dark: '#9256d9',
-          darkest: '#864ccc',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.purple400',
-    '$type': 'color',
-    '$value': '#9256d9',
-    '$extensions': {
-      mode: {
-        lightest: '#9d64e1',
-        light: '#9256d9',
-        dark: '#9256d9',
-        darkest: '#864ccc',
-      },
-    },
-  },
-  'color.label.purple500': {
-    '_original': {
-      '$value': '#864ccc',
-      '$extensions': {
-        mode: {
-          lightest: '#9256d9',
-          light: '#864ccc',
-          dark: '#9d64e1',
-          darkest: '#9256d9',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.purple500',
-    '$type': 'color',
-    '$value': '#864ccc',
-    '$extensions': {
-      mode: {
-        lightest: '#9256d9',
-        light: '#864ccc',
-        dark: '#9d64e1',
-        darkest: '#9256d9',
-      },
-    },
-  },
-  'color.label.purple600': {
-    '_original': {
-      '$value': '#7a42bf',
-      '$extensions': {
-        mode: {
-          lightest: '#864ccc',
-          light: '#7a42bf',
-          dark: '#a873e9',
-          darkest: '#9d64e1',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.purple600',
-    '$type': 'color',
-    '$value': '#7a42bf',
-    '$extensions': {
-      mode: {
-        lightest: '#864ccc',
-        light: '#7a42bf',
-        dark: '#a873e9',
-        darkest: '#9d64e1',
-      },
-    },
-  },
-  'color.label.purple700': {
-    '_original': {
-      '$value': '#6f38b1',
-      '$extensions': {
-        mode: {
-          lightest: '#7a42bf',
-          light: '#6f38b1',
-          dark: '#b483f0',
-          darkest: '#a873df',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.purple700',
-    '$type': 'color',
-    '$value': '#6f38b1',
-    '$extensions': {
-      mode: {
-        lightest: '#7a42bf',
-        light: '#6f38b1',
-        dark: '#b483f0',
-        darkest: '#a873df',
-      },
-    },
-  },
-  'color.label.seafoam400': {
-    '_original': {
-      '$value': '#1b959a',
-      '$extensions': {
-        mode: {
-          lightest: '#20a3a8',
-          light: '#1b959a',
-          dark: '#1b959a',
-          darkest: '#16878c',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.seafoam400',
-    '$type': 'color',
-    '$value': '#1b959a',
-    '$extensions': {
-      mode: {
-        lightest: '#20a3a8',
-        light: '#1b959a',
-        dark: '#1b959a',
-        darkest: '#16878c',
-      },
-    },
-  },
-  'color.label.seafoam500': {
-    '_original': {
-      '$value': '#16878c',
-      '$extensions': {
-        mode: {
-          lightest: '#1b959a',
-          light: '#16878c',
-          dark: '#20a3a8',
-          darkest: '#1b959a',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.seafoam500',
-    '$type': 'color',
-    '$value': '#16878c',
-    '$extensions': {
-      mode: {
-        lightest: '#1b959a',
-        light: '#16878c',
-        dark: '#20a3a8',
-        darkest: '#1b959a',
-      },
-    },
-  },
-  'color.label.seafoam600': {
-    '_original': {
-      '$value': '#0f797d',
-      '$extensions': {
-        mode: {
-          lightest: '#16878c',
-          light: '#0f797d',
-          dark: '#23b2b8',
-          darkest: '#20a3a8',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.seafoam600',
-    '$type': 'color',
-    '$value': '#0f797d',
-    '$extensions': {
-      mode: {
-        lightest: '#16878c',
-        light: '#0f797d',
-        dark: '#23b2b8',
-        darkest: '#20a3a8',
-      },
-    },
-  },
-  'color.label.seafoam700': {
-    '_original': {
-      '$value': '#096c6f',
-      '$extensions': {
-        mode: {
-          lightest: '#0f797d',
-          light: '#096c6f',
-          dark: '#26c0c7',
-          darkest: '#23b2b8',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.seafoam700',
-    '$type': 'color',
-    '$value': '#096c6f',
-    '$extensions': {
-      mode: {
-        lightest: '#0f797d',
-        light: '#096c6f',
-        dark: '#26c0c7',
-        darkest: '#23b2b8',
-      },
-    },
-  },
-  'color.label.yellow400': {
-    '_original': {
-      '$value': '#dfbf00',
-      '$extensions': {
-        mode: {
-          lightest: '#edcc00',
-          light: '#dfbf00',
-          dark: '#dfbf00',
-          darkest: '#d2b200',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.yellow400',
-    '$type': 'color',
-    '$value': '#dfbf00',
-    '$extensions': {
-      mode: {
-        lightest: '#edcc00',
-        light: '#dfbf00',
-        dark: '#dfbf00',
-        darkest: '#d2b200',
-      },
-    },
-  },
-  'color.label.yellow500': {
-    '_original': {
-      '$value': '#d2b200',
-      '$extensions': {
-        mode: {
-          lightest: '#dfbf00',
-          light: '#d2b200',
-          dark: '#edcc00',
-          darkest: '#dfbf00',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.yellow500',
-    '$type': 'color',
-    '$value': '#d2b200',
-    '$extensions': {
-      mode: {
-        lightest: '#dfbf00',
-        light: '#d2b200',
-        dark: '#edcc00',
-        darkest: '#dfbf00',
-      },
-    },
-  },
-  'color.label.yellow600': {
-    '_original': {
-      '$value': '#c4a600',
-      '$extensions': {
-        mode: {
-          lightest: '#d2b200',
-          light: '#c4a600',
-          dark: '#fad900',
-          darkest: '#edcc00',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.yellow600',
-    '$type': 'color',
-    '$value': '#c4a600',
-    '$extensions': {
-      mode: {
-        lightest: '#d2b200',
-        light: '#c4a600',
-        dark: '#fad900',
-        darkest: '#edcc00',
-      },
-    },
-  },
-  'color.label.yellow700': {
-    '_original': {
-      '$value': '#b79900',
-      '$extensions': {
-        mode: {
-          lightest: '#c4a600',
-          light: '#b79900',
-          dark: '#ffe22e',
-          darkest: '#fad900',
-        },
-      },
-    },
-    '_group': {
-      id: 'color.label',
-      '$extensions': {
-        requiredModes: ['lightest', 'light', 'dark', 'darkest'],
-      },
-      '$name': 'Adobe Spectrum',
-      '$type': 'color',
-    },
-    id: 'color.label.yellow700',
-    '$type': 'color',
-    '$value': '#b79900',
-    '$extensions': {
-      mode: {
-        lightest: '#c4a600',
-        light: '#b79900',
-        dark: '#ffe22e',
-        darkest: '#fad900',
-      },
-    },
+    '$value': '#22222205',
   },
   'font.family.clean': {
     '_original': {
@@ -1983,6 +3394,7 @@ export const meta = {
       '$extensions': {
         requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'fontFamily',
     },
@@ -1999,6 +3411,7 @@ export const meta = {
       '$extensions': {
         requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'fontFamily',
     },
@@ -2015,6 +3428,7 @@ export const meta = {
       '$extensions': {
         requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'fontFamily',
     },
@@ -2031,6 +3445,7 @@ export const meta = {
       '$extensions': {
         requiredModes: [],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'fontFamily',
     },
@@ -2053,6 +3468,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2081,6 +3497,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2109,6 +3526,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2137,6 +3555,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2165,6 +3584,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2193,6 +3613,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2221,6 +3642,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2249,6 +3671,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2277,6 +3700,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2305,6 +3729,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2333,6 +3758,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2361,6 +3787,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2389,6 +3816,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2417,6 +3845,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2445,6 +3874,7 @@ export const meta = {
       '$extensions': {
         requiredModes: ['desktop', 'mobile'],
       },
+      '$schema': '../../packages/core/tokens-schema.json',
       '$name': 'Adobe Spectrum',
       '$type': 'dimension',
     },
@@ -2461,359 +3891,625 @@ export const meta = {
 };
 
 export const modes = {
-  'color.blue400': {
-    lightest: '#378ef0',
-    light: '#2680eb',
-    dark: '#2680eb',
-    darkest: '#1473e6',
+  'global.color.celery.400': {
+    dark: '#22b833',
+    darkest: '#0dab25',
+    light: '#27bb36',
+    lightest: '#30c13d',
+    middark: '#2dbe3a',
+    midlight: '#07a721',
   },
-  'color.blue500': {
-    lightest: '#2680eb',
-    light: '#1473e6',
-    dark: '#378ef0',
-    darkest: '#2680eb',
+  'global.color.celery.500': {
+    dark: '#44ca49',
+    darkest: '#2dbf3a',
+    light: '#07a721',
+    lightest: '#0fac26',
+    middark: '#4ecf50',
+    midlight: '#009413',
   },
-  'color.blue600': {
-    lightest: '#1473e6',
-    light: '#0d66d0',
-    dark: '#4b9cf5',
-    darkest: '#378ef0',
+  'global.color.celery.600': {
+    dark: '#69dc63',
+    darkest: '#50d052',
+    light: '#009112',
+    lightest: '#009614',
+    middark: '#70df68',
+    midlight: '#007f0f',
   },
-  'color.blue700': {
-    lightest: '#0d66d0',
-    light: '#095aba',
-    dark: '#5aa9fa',
-    darkest: '#4b9cf5',
+  'global.color.celery.700': {
+    dark: '#8eeb7f',
+    darkest: '#73e06b',
+    light: '#007c0f',
+    lightest: '#00800f',
+    middark: '#92ed82',
+    midlight: '#006b0f',
   },
-  'color.gray50': {
-    lightest: '#ffffff',
+  'global.color.chartreuse.400': {
+    dark: '#94c008',
+    darkest: '#8ab403',
+    light: '#98c50a',
+    lightest: '#9dcb0d',
+    middark: '#99c50a',
+    midlight: '#86af02',
+  },
+  'global.color.chartreuse.500': {
+    dark: '#a6d312',
+    darkest: '#9ac60b',
+    light: '#87b103',
+    lightest: '#8bb604',
+    middark: '#a9d715',
+    midlight: '#779d00',
+  },
+  'global.color.chartreuse.600': {
+    dark: '#b8e525',
+    darkest: '#aad816',
+    light: '#769c00',
+    lightest: '#7aa200',
+    middark: '#bae828',
+    midlight: '#688a00',
+  },
+  'global.color.chartreuse.700': {
+    dark: '#cdf547',
+    darkest: '#bbe829',
+    light: '#678800',
+    lightest: '#6a8d00',
+    middark: '#cef64b',
+    midlight: '#5a7700',
+  },
+  'global.color.yellow.400': {
+    dark: '#e4c200',
+    darkest: '#d8b500',
+    light: '#e8c600',
+    lightest: '#eecd00',
+    middark: '#e8c500',
+    midlight: '#d3af00',
+  },
+  'global.color.yellow.500': {
+    dark: '#f4d500',
+    darkest: '#e9c700',
+    light: '#d7b300',
+    lightest: '#ddb900',
+    middark: '#f6d702',
+    midlight: '#c29d00',
+  },
+  'global.color.yellow.600': {
+    dark: '#f9e85c',
+    darkest: '#f7d804',
+    light: '#c49f00',
+    lightest: '#c9a400',
+    middark: '#f9ea63',
+    midlight: '#b08c00',
+  },
+  'global.color.yellow.700': {
+    dark: '#fcf6bb',
+    darkest: '#f9e961',
+    light: '#b08c00',
+    lightest: '#b59000',
+    middark: '#fdf6bf',
+    midlight: '#9d7a00',
+  },
+  'global.color.magenta.400': {
+    dark: '#de3d82',
+    darkest: '#d12b72',
+    light: '#de3d82',
+    lightest: '#e24487',
+    middark: '#e74b8d',
+    midlight: '#cc276e',
+  },
+  'global.color.magenta.500': {
+    dark: '#ed5795',
+    darkest: '#e34589',
+    light: '#c82269',
+    lightest: '#cd286f',
+    middark: '#f2639d',
+    midlight: '#b30f58',
+  },
+  'global.color.magenta.600': {
+    dark: '#f972a7',
+    darkest: '#f1619c',
+    light: '#ad0955',
+    lightest: '#b30f59',
+    middark: '#fc7bad',
+    midlight: '#950048',
+  },
+  'global.color.magenta.700': {
+    dark: '#ff8fb9',
+    darkest: '#fc7cad',
+    light: '#8e0045',
+    lightest: '#950048',
+    middark: '#ff96bd',
+    midlight: '#740039',
+  },
+  'global.color.fuchsia.400': {
+    dark: '#cd39ce',
+    darkest: '#bf2bbf',
+    light: '#cd3ace',
+    lightest: '#d33fd4',
+    middark: '#d846d9',
+    midlight: '#ba26ba',
+  },
+  'global.color.fuchsia.500': {
+    dark: '#df51e0',
+    darkest: '#d341d5',
+    light: '#b622b7',
+    lightest: '#bc27bb',
+    middark: '#e55de6',
+    midlight: '#a309a3',
+  },
+  'global.color.fuchsia.600': {
+    dark: '#eb6eec',
+    darkest: '#e45be5',
+    light: '#9d039e',
+    lightest: '#a30aa3',
+    middark: '#ef78ee',
+    midlight: '#860087',
+  },
+  'global.color.fuchsia.700': {
+    dark: '#f48cf2',
+    darkest: '#ef78ee',
+    light: '#800081',
+    lightest: '#870088',
+    middark: '#f693f3',
+    midlight: '#680468',
+  },
+  'global.color.purple.400': {
+    dark: '#9d57f3',
+    darkest: '#9146ec',
+    light: '#9d57f4',
+    lightest: '#a15df6',
+    middark: '#a664f7',
+    midlight: '#8d42e9',
+  },
+  'global.color.purple.500': {
+    dark: '#ac6ff9',
+    darkest: '#a25ef6',
+    light: '#893de7',
+    lightest: '#8e43ea',
+    middark: '#b379fa',
+    midlight: '#782ad8',
+  },
+  'global.color.purple.600': {
+    dark: '#bb87fb',
+    darkest: '#b277fa',
+    light: '#7326d3',
+    lightest: '#782bd8',
+    middark: '#c08ffc',
+    midlight: '#6116be',
+  },
+  'global.color.purple.700': {
+    dark: '#ca9ffc',
+    darkest: '#c08ffc',
+    light: '#5d13b7',
+    lightest: '#6217be',
+    middark: '#cda5fd',
+    midlight: '#4a0c99',
+  },
+  'global.color.indigo.400': {
+    dark: '#686df4',
+    darkest: '#5a60eb',
+    light: '#686df4',
+    lightest: '#6d73f6',
+    middark: '#7378f8',
+    midlight: '#565ce7',
+  },
+  'global.color.indigo.500': {
+    dark: '#7c81fb',
+    darkest: '#6e73f6',
+    light: '#5258e4',
+    lightest: '#575de8',
+    middark: '#858afd',
+    midlight: '#4449d0',
+  },
+  'global.color.indigo.600': {
+    dark: '#9195ff',
+    darkest: '#8488fd',
+    light: '#4046ca',
+    lightest: '#444ad0',
+    middark: '#989dff',
+    midlight: '#3439b0',
+  },
+  'global.color.indigo.700': {
+    dark: '#a7aaff',
+    darkest: '#999dff',
+    light: '#3236a8',
+    lightest: '#353ab0',
+    middark: '#acb0ff',
+    midlight: '#272b8b',
+  },
+  'global.color.seafoam.400': {
+    dark: '#009e98',
+    darkest: '#00928c',
+    light: '#00a19a',
+    lightest: '#00a6a0',
+    middark: '#00a7a0',
+    midlight: '#008e88',
+  },
+  'global.color.seafoam.500': {
+    dark: '#03b2ab',
+    darkest: '#00a59f',
+    light: '#008c87',
+    lightest: '#00918b',
+    middark: '#19b8b1',
+    midlight: '#007a75',
+  },
+  'global.color.seafoam.600': {
+    dark: '#36c5bd',
+    darkest: '#1ab9b2',
+    light: '#007772',
+    lightest: '#007c76',
+    middark: '#40c9c2',
+    midlight: '#006763',
+  },
+  'global.color.seafoam.700': {
+    dark: '#5dd6cf',
+    darkest: '#42cac3',
+    light: '#00635f',
+    lightest: '#006763',
+    middark: '#64d9d2',
+    midlight: '#0a5350',
+  },
+  'global.color.red.400': {
+    dark: '#ea3829',
+    darkest: '#dd2118',
+    light: '#ea3829',
+    lightest: '#ed4030',
+    middark: '#f14a37',
+    midlight: '#d81a13',
+  },
+  'global.color.red.500': {
+    dark: '#f65843',
+    darkest: '#ee4331',
+    light: '#d31510',
+    lightest: '#d91c15',
+    middark: '#fa654f',
+    midlight: '#bb0202',
+  },
+  'global.color.red.600': {
+    dark: '#ff755e',
+    darkest: '#f9634c',
+    light: '#b40000',
+    lightest: '#bb0202',
+    middark: '#ff816b',
+    midlight: '#990000',
+  },
+  'global.color.red.700': {
+    dark: '#ff9581',
+    darkest: '#ff816b',
+    light: '#930000',
+    lightest: '#9a0000',
+    middark: '#ff9c89',
+    midlight: '#780000',
+  },
+  'global.color.orange.400': {
+    dark: '#f4810c',
+    darkest: '#e87400',
+    light: '#f68511',
+    lightest: '#fa8b1a',
+    middark: '#f88916',
+    midlight: '#e46f00',
+  },
+  'global.color.orange.500': {
+    dark: '#fe9a2e',
+    darkest: '#f98917',
+    light: '#e46f00',
+    lightest: '#e97500',
+    middark: '#ffa139',
+    midlight: '#cd5f00',
+  },
+  'global.color.orange.600': {
+    dark: '#ffb558',
+    darkest: '#ffa23b',
+    light: '#cb5d00',
+    lightest: '#d16100',
+    middark: '#ffba61',
+    midlight: '#b54f00',
+  },
+  'global.color.orange.700': {
+    dark: '#fdce88',
+    darkest: '#ffbc66',
+    light: '#b14c00',
+    lightest: '#b65000',
+    middark: '#fdd08e',
+    midlight: '#9b4000',
+  },
+  'global.color.green.400': {
+    dark: '#12a26c',
+    darkest: '#009562',
+    light: '#008f5d',
+    lightest: '#009461',
+    middark: '#1eaa74',
+    midlight: '#007d4f',
+  },
+  'global.color.green.500': {
+    dark: '#2bb47d',
+    darkest: '#1ca872',
+    light: '#007a4d',
+    lightest: '#007e50',
+    middark: '#33bb83',
+    midlight: '#006941',
+  },
+  'global.color.green.600': {
+    dark: '#43c78f',
+    darkest: '#34bb84',
+    light: '#00653e',
+    lightest: '#006941',
+    middark: '#4acc94',
+    midlight: '#005534',
+  },
+  'global.color.green.700': {
+    dark: '#5ed9a2',
+    darkest: '#4bcd95',
+    light: '#005132',
+    lightest: '#005635',
+    middark: '#65dda7',
+    midlight: '#054128',
+  },
+  'global.color.blue.400': {
+    dark: '#348ff4',
+    darkest: '#1d80f5',
+    light: '#147af3',
+    lightest: '#1b7ff5',
+    middark: '#4298f4',
+    midlight: '#0468e1',
+  },
+  'global.color.blue.500': {
+    dark: '#54a3f6',
+    darkest: '#4096f3',
+    light: '#0265dc',
+    lightest: '#0469e3',
+    middark: '#5eaaf7',
+    midlight: '#0057be',
+  },
+  'global.color.blue.600': {
+    dark: '#72b7f9',
+    darkest: '#5eaaf7',
+    light: '#0054b6',
+    lightest: '#0057be',
+    middark: '#7abcfa',
+    midlight: '#004798',
+  },
+  'global.color.blue.700': {
+    dark: '#8fcafc',
+    darkest: '#7cbdfa',
+    light: '#004491',
+    lightest: '#004899',
+    middark: '#95cdfc',
+    midlight: '#003776',
+  },
+  'global.color.gray.50': {
+    dark: '#1d1d1d',
+    darkest: '#000000',
     light: '#ffffff',
-    dark: '#252525',
-    darkest: '#080808',
-  },
-  'color.gray75': {
     lightest: '#ffffff',
-    light: '#fafafa',
-    dark: '#2f2f2f',
-    darkest: '#1a1a1a',
+    middark: '#393939',
+    midlight: '#fafafa',
   },
-  'color.gray100': {
+  'global.color.gray.75': {
+    dark: '#262626',
+    darkest: '#0e0e0e',
+    light: '#fdfdfd',
     lightest: '#ffffff',
-    light: '#f5f5f5',
+    middark: '#414141',
+    midlight: '#efefef',
+  },
+  'global.color.gray.100': {
     dark: '#323232',
-    darkest: '#1e1e1e',
+    darkest: '#1d1d1d',
+    light: '#f8f8f8',
+    lightest: '#ffffff',
+    middark: '#4b4b4b',
+    midlight: '#dbdbdb',
   },
-  'color.gray200': {
-    lightest: '#f4f4f4',
-    light: '#eaeaea',
-    dark: '#3e3e3e',
-    darkest: '#2c2c2c',
+  'global.color.gray.200': {
+    dark: '#3f3f3f',
+    darkest: '#303030',
+    light: '#e6e6e6',
+    lightest: '#ebebeb',
+    middark: '#535353',
+    midlight: '#cfcfcf',
   },
-  'color.gray300': {
-    lightest: '#eaeaea',
-    light: '#e1e1e1',
-    dark: '#4a4a4a',
-    darkest: '#393939',
+  'global.color.gray.300': {
+    dark: '#545454',
+    darkest: '#4b4b4b',
+    light: '#d5d5d5',
+    lightest: '#d9d9d9',
+    middark: '#636363',
+    midlight: '#c3c3c3',
   },
-  'color.gray400': {
-    lightest: '#d3d3d3',
-    light: '#cacaca',
-    dark: '#5a5a5a',
-    darkest: '#494949',
+  'global.color.gray.400': {
+    dark: '#707070',
+    darkest: '#6a6a6a',
+    light: '#b1b1b1',
+    lightest: '#b3b3b3',
+    middark: '#7a7a7a',
+    midlight: '#a6a6a6',
   },
-  'color.gray500': {
-    lightest: '#bcbcbc',
-    light: '#b3b3b3',
-    dark: '#6e6e6e',
-    darkest: '#5c5c5c',
-  },
-  'color.gray600': {
-    lightest: '#959595',
-    light: '#8e8e8e',
+  'global.color.gray.500': {
     dark: '#909090',
-    darkest: '#7c7c7c',
+    darkest: '#8d8d8d',
+    light: '#909090',
+    lightest: '#929292',
+    middark: '#979797',
+    midlight: '#8a8a8a',
   },
-  'color.gray700': {
-    lightest: '#747474',
-    light: '#6e6e6e',
-    dark: '#b9b9b9',
-    darkest: '#a2a2a2',
+  'global.color.gray.600': {
+    dark: '#b2b2b2',
+    darkest: '#b0b0b0',
+    light: '#6d6d6d',
+    lightest: '#6e6e6e',
+    middark: '#b6b6b6',
+    midlight: '#6a6a6a',
   },
-  'color.gray800': {
-    lightest: '#505050',
-    light: '#4b4b4b',
-    dark: '#e3e3e3',
-    darkest: '#c8c8c8',
+  'global.color.gray.700': {
+    dark: '#d1d1d1',
+    darkest: '#d0d0d0',
+    light: '#464646',
+    lightest: '#474747',
+    middark: '#d4d4d4',
+    midlight: '#454545',
   },
-  'color.gray900': {
-    lightest: '#323232',
-    light: '#2c2c2c',
+  'global.color.gray.800': {
+    dark: '#ebebeb',
+    darkest: '#ebebeb',
+    light: '#222222',
+    lightest: '#222222',
+    middark: '#ececec',
+    midlight: '#212121',
+  },
+  'global.color.gray.900': {
     dark: '#ffffff',
-    darkest: '#efefef',
+    darkest: '#ffffff',
+    light: '#000000',
+    lightest: '#000000',
+    middark: '#ffffff',
+    midlight: '#000000',
   },
-  'color.green400': {
-    lightest: '#33ab84',
-    light: '#2d9d78',
-    dark: '#2d9d78',
-    darkest: '#268e6c',
+  'alias.background-color-primary': {
+    dark: '#f8f8f8',
+    darkest: '#f8f8f8',
+    light: '#ffffff',
+    lightest: '#ffffff',
+    middark: '#f8f8f8',
+    midlight: '#ffffff',
   },
-  'color.green500': {
-    lightest: '#2d9d78',
-    light: '#268e6c',
-    dark: '#33ab84',
-    darkest: '#2d9d78',
+  'alias.background-color-secondary': {
+    dark: '#fdfdfd',
+    darkest: '#fdfdfd',
+    light: '#f8f8f8',
+    lightest: '#f8f8f8',
+    middark: '#fdfdfd',
+    midlight: '#f8f8f8',
   },
-  'color.green600': {
-    lightest: '#268e6c',
-    light: '#12805c',
-    dark: '#39b990',
-    darkest: '#33ab84',
+  'alias.background-color-modal-overlay': {
+    dark: '#00000080',
+    darkest: '#00000099',
+    light: '#00000066',
+    lightest: '#00000066',
+    middark: '#00000066',
+    midlight: '#00000066',
   },
-  'color.green700': {
-    lightest: '#12805c',
-    light: '#107154',
-    dark: '#3fc89c',
-    darkest: '#39b990',
+  'alias.background-color-hover-overly': {
+    dark: '#ffffff0f',
+    darkest: '#ffffff14',
+    light: '#0000000a',
+    lightest: '#0000000a',
+    middark: '#ffffff0d',
+    midlight: '#0000000a',
   },
-  'color.red400': {
-    lightest: '#ec5b62',
-    light: '#e34850',
-    dark: '#e34850',
-    darkest: '#d7373f',
+  'alias.background-color-quickactions': {
+    dark: '#323232e6',
+    darkest: '#1d1d1de6',
+    light: '#f8f8f8e6',
+    lightest: '#ffffffe6',
+    middark: '#4b4b4be6',
+    midlight: '#dbdbdbe6',
   },
-  'color.red500': {
-    lightest: '#e34850',
-    light: '#d7373f',
-    dark: '#ec5b62',
-    darkest: '#e34850',
+  'alias.dropshadow-color': {
+    dark: '#00000080',
+    darkest: '#000000cc',
+    light: '#00000026',
+    lightest: '#00000026',
+    middark: '#0000004d',
+    midlight: '#00000026',
   },
-  'color.red600': {
-    lightest: '#d7373f',
-    light: '#c9252d',
-    dark: '#f76d74',
-    darkest: '#ec5b62',
+  'alias.highlight-hover': {
+    dark: '#ffffff12',
+    darkest: '#ffffff14',
+    light: '#0000000f',
+    lightest: '#0000000f',
+    middark: '#ffffff0f',
+    midlight: '#0000000f',
   },
-  'color.red700': {
-    lightest: '#c9252d',
-    light: '#bb121a',
-    dark: '#ff7b82',
-    darkest: '#f76d74',
+  'alias.highlight-down': {
+    dark: '#ffffff1a',
+    darkest: '#ffffff26',
+    light: '#0000001a',
+    lightest: '#0000001a',
+    middark: '#ffffff1a',
+    midlight: '#0000001a',
   },
-  'color.orange400': {
-    lightest: '#f29423',
-    light: '#e68619',
-    dark: '#e68619',
-    darkest: '#da7b11',
+  'alias.highlight-selected': {
+    dark: '#54a3f626',
+    darkest: '#4096f333',
+    light: '#0265dc1a',
+    lightest: '#0469e31a',
+    middark: '#5eaaf71a',
+    midlight: '#0057be1a',
   },
-  'color.orange500': {
-    lightest: '#e68619',
-    light: '#da7b11',
-    dark: '#f29423',
-    darkest: '#e68619',
+  'alias.highlight-selected-hover': {
+    dark: '#54a3f640',
+    darkest: '#4096f34d',
+    light: '#0265dc33',
+    lightest: '#0469e333',
+    middark: '#5eaaf733',
+    midlight: '#0057be33',
   },
-  'color.orange600': {
-    lightest: '#da7b11',
-    light: '#cb6f10',
-    dark: '#f9a43f',
-    darkest: '#f29423',
+  'alias.text-highlight-color': {
+    dark: '#54a3f640',
+    darkest: '#4096f34d',
+    light: '#0265dc33',
+    lightest: '#0469e333',
+    middark: '#5eaaf733',
+    midlight: '#0057be33',
   },
-  'color.orange700': {
-    lightest: '#cb6f10',
-    light: '#bd640d',
-    dark: '#ffb55b',
-    darkest: '#f9a43f',
+  'alias.border-color-translucent': {
+    dark: '#ffffff1a',
+    darkest: '#ffffff1a',
+    light: '#0000001a',
+    lightest: '#0000001a',
+    middark: '#ffffff1a',
+    midlight: '#0000001a',
   },
-  'color.label.celery400': {
-    lightest: '#4bc35f',
-    light: '#44b556',
-    dark: '#44b556',
-    darkest: '#3da74e',
+  'alias.pasteboard-background-color': {
+    dark: '#ffffff',
+    darkest: '#ffffff',
+    light: '#d5d5d5',
+    lightest: '#d5d5d5',
+    middark: '#ffffff',
+    midlight: '#d5d5d5',
   },
-  'color.label.celery500': {
-    lightest: '#44b556',
-    light: '#3da74e',
-    dark: '#4bc35f',
-    darkest: '#44b556',
+  'alias.appframe.border-color': {
+    dark: '#ffffff',
+    darkest: '#ffffff',
+    light: '#d5d5d5',
+    lightest: '#d5d5d5',
+    middark: '#ffffff',
+    midlight: '#d5d5d5',
   },
-  'color.label.celery600': {
-    lightest: '#3da74e',
-    light: '#3da74e',
-    dark: '#51d267',
-    darkest: '#4bc35f',
+  'alias.appframe.separator-color': {
+    dark: '#ffffff',
+    darkest: '#ffffff',
+    light: '#d5d5d5',
+    lightest: '#d5d5d5',
+    middark: '#ffffff',
+    midlight: '#d5d5d5',
   },
-  'color.label.celery700': {
-    lightest: '#379947',
-    light: '#3da74e',
-    dark: '#58e06f',
-    darkest: '#51d267',
+  'scrollbar.mac.s.track-background-color': {
+    dark: '#f8f8f8',
+    darkest: '#f8f8f8',
+    light: '#fdfdfd',
+    middark: '#00000000',
+    midlight: '#00000000',
   },
-  'color.label.chartreuse400': {
-    lightest: '#8ede49',
-    light: '#85d044',
-    dark: '#85d044',
-    darkest: '#7cc33f',
+  'scrollbar.mac.m.track-background-color': {
+    dark: '#f8f8f8',
+    darkest: '#f8f8f8',
+    light: '#fdfdfd',
+    middark: '#00000000',
+    midlight: '#00000000',
   },
-  'color.label.chartreuse500': {
-    lightest: '#85d044',
-    light: '#7cc33f',
-    dark: '#8ede49',
-    darkest: '#85d044',
+  'scrollbar.mac.l.track-background-color': {
+    dark: '#f8f8f8',
+    darkest: '#f8f8f8',
+    light: '#fdfdfd',
+    middark: '#00000000',
+    midlight: '#00000000',
   },
-  'color.label.chartreuse600': {
-    lightest: '#7cc33f',
-    light: '#73b53a',
-    dark: '#9bec54',
-    darkest: '#8ede49',
-  },
-  'color.label.chartreuse700': {
-    lightest: '#73b53a',
-    light: '#6aa834',
-    dark: '#a3f858',
-    darkest: '#9bec54',
-  },
-  'color.label.fuchsia400': {
-    lightest: '#cf3edc',
-    light: '#c038cc',
-    dark: '#c038cc',
-    darkest: '#b130bd',
-  },
-  'color.label.fuchsia500': {
-    lightest: '#c038cc',
-    light: '#b130bd',
-    dark: '#cf3edc',
-    darkest: '#c038cc',
-  },
-  'color.label.fuchsia600': {
-    lightest: '#b130bd',
-    light: '#a228ad',
-    dark: '#d951e5',
-    darkest: '#cf3edc',
-  },
-  'color.label.fuchsia700': {
-    lightest: '#a228ad',
-    light: '#93219e',
-    dark: '#e366ef',
-    darkest: '#d951e5',
-  },
-  'color.label.indigo400': {
-    lightest: '#7575f1',
-    light: '#6767ec',
-    dark: '#6767ec',
-    darkest: '#5c5ce0',
-  },
-  'color.label.indigo500': {
-    lightest: '#6767ec',
-    light: '#5c5ce0',
-    dark: '#7575f1',
-    darkest: '#6767ec',
-  },
-  'color.label.indigo600': {
-    lightest: '#5c5ce0',
-    light: '#5151d3',
-    dark: '#8282f6',
-    darkest: '#7575f1',
-  },
-  'color.label.indigo700': {
-    lightest: '#5151d3',
-    light: '#4646c6',
-    dark: '#9090fa',
-    darkest: '#8282f6',
-  },
-  'color.label.magenta400': {
-    lightest: '#e2499d',
-    light: '#d83790',
-    dark: '#d83790',
-    darkest: '#ca2996',
-  },
-  'color.label.magenta500': {
-    lightest: '#d83790',
-    light: '#ce2783',
-    dark: '#e2499d',
-    darkest: '#d83790',
-  },
-  'color.label.magenta600': {
-    lightest: '#ca2982',
-    light: '#bc1c74',
-    dark: '#ec5aaa',
-    darkest: '#e2499d',
-  },
-  'color.label.magenta700': {
-    lightest: '#bc1c74',
-    light: '#ae0e66',
-    dark: '#f56bb7',
-    darkest: '#ec5aaa',
-  },
-  'color.label.purple400': {
-    lightest: '#9d64e1',
-    light: '#9256d9',
-    dark: '#9256d9',
-    darkest: '#864ccc',
-  },
-  'color.label.purple500': {
-    lightest: '#9256d9',
-    light: '#864ccc',
-    dark: '#9d64e1',
-    darkest: '#9256d9',
-  },
-  'color.label.purple600': {
-    lightest: '#864ccc',
-    light: '#7a42bf',
-    dark: '#a873e9',
-    darkest: '#9d64e1',
-  },
-  'color.label.purple700': {
-    lightest: '#7a42bf',
-    light: '#6f38b1',
-    dark: '#b483f0',
-    darkest: '#a873df',
-  },
-  'color.label.seafoam400': {
-    lightest: '#20a3a8',
-    light: '#1b959a',
-    dark: '#1b959a',
-    darkest: '#16878c',
-  },
-  'color.label.seafoam500': {
-    lightest: '#1b959a',
-    light: '#16878c',
-    dark: '#20a3a8',
-    darkest: '#1b959a',
-  },
-  'color.label.seafoam600': {
-    lightest: '#16878c',
-    light: '#0f797d',
-    dark: '#23b2b8',
-    darkest: '#20a3a8',
-  },
-  'color.label.seafoam700': {
-    lightest: '#0f797d',
-    light: '#096c6f',
-    dark: '#26c0c7',
-    darkest: '#23b2b8',
-  },
-  'color.label.yellow400': {
-    lightest: '#edcc00',
-    light: '#dfbf00',
-    dark: '#dfbf00',
-    darkest: '#d2b200',
-  },
-  'color.label.yellow500': {
-    lightest: '#dfbf00',
-    light: '#d2b200',
-    dark: '#edcc00',
-    darkest: '#dfbf00',
-  },
-  'color.label.yellow600': {
-    lightest: '#d2b200',
-    light: '#c4a600',
-    dark: '#fad900',
-    darkest: '#edcc00',
-  },
-  'color.label.yellow700': {
-    lightest: '#c4a600',
-    light: '#b79900',
-    dark: '#ffe22e',
-    darkest: '#fad900',
+  'well.background-color': {
+    dark: '#ebebeb05',
+    darkest: '#ebebeb05',
+    light: '#22222205',
+    middark: '#ececec05',
+    midlight: '#21212105',
   },
   'font.size.50': {
     desktop: '11px',

@@ -8,71 +8,113 @@ import {
   ColorToken,
   DimensionToken,
   FontFamilyToken,
+  NumberToken,
   ParsedColorToken,
   ParsedDimensionToken,
   ParsedFontFamilyToken,
+  ParsedNumberToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'color.blue400': ColorToken['$value'];
-  'color.blue500': ColorToken['$value'];
-  'color.blue600': ColorToken['$value'];
-  'color.blue700': ColorToken['$value'];
-  'color.gray50': ColorToken['$value'];
-  'color.gray75': ColorToken['$value'];
-  'color.gray100': ColorToken['$value'];
-  'color.gray200': ColorToken['$value'];
-  'color.gray300': ColorToken['$value'];
-  'color.gray400': ColorToken['$value'];
-  'color.gray500': ColorToken['$value'];
-  'color.gray600': ColorToken['$value'];
-  'color.gray700': ColorToken['$value'];
-  'color.gray800': ColorToken['$value'];
-  'color.gray900': ColorToken['$value'];
-  'color.green400': ColorToken['$value'];
-  'color.green500': ColorToken['$value'];
-  'color.green600': ColorToken['$value'];
-  'color.green700': ColorToken['$value'];
-  'color.red400': ColorToken['$value'];
-  'color.red500': ColorToken['$value'];
-  'color.red600': ColorToken['$value'];
-  'color.red700': ColorToken['$value'];
-  'color.orange400': ColorToken['$value'];
-  'color.orange500': ColorToken['$value'];
-  'color.orange600': ColorToken['$value'];
-  'color.orange700': ColorToken['$value'];
-  'color.label.celery400': ColorToken['$value'];
-  'color.label.celery500': ColorToken['$value'];
-  'color.label.celery600': ColorToken['$value'];
-  'color.label.celery700': ColorToken['$value'];
-  'color.label.chartreuse400': ColorToken['$value'];
-  'color.label.chartreuse500': ColorToken['$value'];
-  'color.label.chartreuse600': ColorToken['$value'];
-  'color.label.chartreuse700': ColorToken['$value'];
-  'color.label.fuchsia400': ColorToken['$value'];
-  'color.label.fuchsia500': ColorToken['$value'];
-  'color.label.fuchsia600': ColorToken['$value'];
-  'color.label.fuchsia700': ColorToken['$value'];
-  'color.label.indigo400': ColorToken['$value'];
-  'color.label.indigo500': ColorToken['$value'];
-  'color.label.indigo600': ColorToken['$value'];
-  'color.label.indigo700': ColorToken['$value'];
-  'color.label.magenta400': ColorToken['$value'];
-  'color.label.magenta500': ColorToken['$value'];
-  'color.label.magenta600': ColorToken['$value'];
-  'color.label.magenta700': ColorToken['$value'];
-  'color.label.purple400': ColorToken['$value'];
-  'color.label.purple500': ColorToken['$value'];
-  'color.label.purple600': ColorToken['$value'];
-  'color.label.purple700': ColorToken['$value'];
-  'color.label.seafoam400': ColorToken['$value'];
-  'color.label.seafoam500': ColorToken['$value'];
-  'color.label.seafoam600': ColorToken['$value'];
-  'color.label.seafoam700': ColorToken['$value'];
-  'color.label.yellow400': ColorToken['$value'];
-  'color.label.yellow500': ColorToken['$value'];
-  'color.label.yellow600': ColorToken['$value'];
-  'color.label.yellow700': ColorToken['$value'];
+  'global.color.opacity.0': NumberToken['$value'];
+  'global.color.opacity.4': NumberToken['$value'];
+  'global.color.opacity.5': NumberToken['$value'];
+  'global.color.opacity.6': NumberToken['$value'];
+  'global.color.opacity.7': NumberToken['$value'];
+  'global.color.opacity.8': NumberToken['$value'];
+  'global.color.opacity.10': NumberToken['$value'];
+  'global.color.opacity.15': NumberToken['$value'];
+  'global.color.opacity.20': NumberToken['$value'];
+  'global.color.opacity.25': NumberToken['$value'];
+  'global.color.opacity.30': NumberToken['$value'];
+  'global.color.opacity.40': NumberToken['$value'];
+  'global.color.opacity.42': NumberToken['$value'];
+  'global.color.opacity.50': NumberToken['$value'];
+  'global.color.opacity.55': NumberToken['$value'];
+  'global.color.opacity.60': NumberToken['$value'];
+  'global.color.opacity.70': NumberToken['$value'];
+  'global.color.opacity.80': NumberToken['$value'];
+  'global.color.opacity.90': NumberToken['$value'];
+  'global.color.opacity.100': NumberToken['$value'];
+  'global.color.celery.400': ColorToken['$value'];
+  'global.color.celery.500': ColorToken['$value'];
+  'global.color.celery.600': ColorToken['$value'];
+  'global.color.celery.700': ColorToken['$value'];
+  'global.color.chartreuse.400': ColorToken['$value'];
+  'global.color.chartreuse.500': ColorToken['$value'];
+  'global.color.chartreuse.600': ColorToken['$value'];
+  'global.color.chartreuse.700': ColorToken['$value'];
+  'global.color.yellow.400': ColorToken['$value'];
+  'global.color.yellow.500': ColorToken['$value'];
+  'global.color.yellow.600': ColorToken['$value'];
+  'global.color.yellow.700': ColorToken['$value'];
+  'global.color.magenta.400': ColorToken['$value'];
+  'global.color.magenta.500': ColorToken['$value'];
+  'global.color.magenta.600': ColorToken['$value'];
+  'global.color.magenta.700': ColorToken['$value'];
+  'global.color.fuchsia.400': ColorToken['$value'];
+  'global.color.fuchsia.500': ColorToken['$value'];
+  'global.color.fuchsia.600': ColorToken['$value'];
+  'global.color.fuchsia.700': ColorToken['$value'];
+  'global.color.purple.400': ColorToken['$value'];
+  'global.color.purple.500': ColorToken['$value'];
+  'global.color.purple.600': ColorToken['$value'];
+  'global.color.purple.700': ColorToken['$value'];
+  'global.color.indigo.400': ColorToken['$value'];
+  'global.color.indigo.500': ColorToken['$value'];
+  'global.color.indigo.600': ColorToken['$value'];
+  'global.color.indigo.700': ColorToken['$value'];
+  'global.color.seafoam.400': ColorToken['$value'];
+  'global.color.seafoam.500': ColorToken['$value'];
+  'global.color.seafoam.600': ColorToken['$value'];
+  'global.color.seafoam.700': ColorToken['$value'];
+  'global.color.red.400': ColorToken['$value'];
+  'global.color.red.500': ColorToken['$value'];
+  'global.color.red.600': ColorToken['$value'];
+  'global.color.red.700': ColorToken['$value'];
+  'global.color.orange.400': ColorToken['$value'];
+  'global.color.orange.500': ColorToken['$value'];
+  'global.color.orange.600': ColorToken['$value'];
+  'global.color.orange.700': ColorToken['$value'];
+  'global.color.green.400': ColorToken['$value'];
+  'global.color.green.500': ColorToken['$value'];
+  'global.color.green.600': ColorToken['$value'];
+  'global.color.green.700': ColorToken['$value'];
+  'global.color.blue.400': ColorToken['$value'];
+  'global.color.blue.500': ColorToken['$value'];
+  'global.color.blue.600': ColorToken['$value'];
+  'global.color.blue.700': ColorToken['$value'];
+  'global.color.gray.50': ColorToken['$value'];
+  'global.color.gray.75': ColorToken['$value'];
+  'global.color.gray.100': ColorToken['$value'];
+  'global.color.gray.200': ColorToken['$value'];
+  'global.color.gray.300': ColorToken['$value'];
+  'global.color.gray.400': ColorToken['$value'];
+  'global.color.gray.500': ColorToken['$value'];
+  'global.color.gray.600': ColorToken['$value'];
+  'global.color.gray.700': ColorToken['$value'];
+  'global.color.gray.800': ColorToken['$value'];
+  'global.color.gray.900': ColorToken['$value'];
+  'alias.background-color-primary': ColorToken['$value'];
+  'alias.background-color-secondary': ColorToken['$value'];
+  'alias.background-color-modal-overlay': ColorToken['$value'];
+  'alias.background-color-hover-overly': ColorToken['$value'];
+  'alias.background-color-quickactions': ColorToken['$value'];
+  'alias.dropshadow-color': ColorToken['$value'];
+  'alias.highlight-hover': ColorToken['$value'];
+  'alias.highlight-down': ColorToken['$value'];
+  'alias.highlight-selected': ColorToken['$value'];
+  'alias.highlight-selected-hover': ColorToken['$value'];
+  'alias.text-highlight-color': ColorToken['$value'];
+  'alias.border-color-translucent': ColorToken['$value'];
+  'alias.radial-reaction-color': ColorToken['$value'];
+  'alias.pasteboard-background-color': ColorToken['$value'];
+  'alias.appframe.border-color': ColorToken['$value'];
+  'alias.appframe.separator-color': ColorToken['$value'];
+  'scrollbar.mac.s.track-background-color': ColorToken['$value'];
+  'scrollbar.mac.m.track-background-color': ColorToken['$value'];
+  'scrollbar.mac.l.track-background-color': ColorToken['$value'];
+  'well.background-color': ColorToken['$value'];
   'font.family.clean': FontFamilyToken['$value'];
   'font.family.cleanSerif': FontFamilyToken['$value'];
   'font.family.cleanHan': FontFamilyToken['$value'];
@@ -95,65 +137,105 @@ export declare const tokens: {
 };
 
 export declare const meta: {
-  'color.blue400': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue400'] } };
-  'color.blue500': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue500'] } };
-  'color.blue600': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue600'] } };
-  'color.blue700': ParsedColorToken & { $extensions: { mode: typeof modes['color.blue700'] } };
-  'color.gray50': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray50'] } };
-  'color.gray75': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray75'] } };
-  'color.gray100': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray100'] } };
-  'color.gray200': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray200'] } };
-  'color.gray300': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray300'] } };
-  'color.gray400': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray400'] } };
-  'color.gray500': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray500'] } };
-  'color.gray600': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray600'] } };
-  'color.gray700': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray700'] } };
-  'color.gray800': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray800'] } };
-  'color.gray900': ParsedColorToken & { $extensions: { mode: typeof modes['color.gray900'] } };
-  'color.green400': ParsedColorToken & { $extensions: { mode: typeof modes['color.green400'] } };
-  'color.green500': ParsedColorToken & { $extensions: { mode: typeof modes['color.green500'] } };
-  'color.green600': ParsedColorToken & { $extensions: { mode: typeof modes['color.green600'] } };
-  'color.green700': ParsedColorToken & { $extensions: { mode: typeof modes['color.green700'] } };
-  'color.red400': ParsedColorToken & { $extensions: { mode: typeof modes['color.red400'] } };
-  'color.red500': ParsedColorToken & { $extensions: { mode: typeof modes['color.red500'] } };
-  'color.red600': ParsedColorToken & { $extensions: { mode: typeof modes['color.red600'] } };
-  'color.red700': ParsedColorToken & { $extensions: { mode: typeof modes['color.red700'] } };
-  'color.orange400': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange400'] } };
-  'color.orange500': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange500'] } };
-  'color.orange600': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange600'] } };
-  'color.orange700': ParsedColorToken & { $extensions: { mode: typeof modes['color.orange700'] } };
-  'color.label.celery400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery400'] } };
-  'color.label.celery500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery500'] } };
-  'color.label.celery600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery600'] } };
-  'color.label.celery700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.celery700'] } };
-  'color.label.chartreuse400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse400'] } };
-  'color.label.chartreuse500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse500'] } };
-  'color.label.chartreuse600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse600'] } };
-  'color.label.chartreuse700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.chartreuse700'] } };
-  'color.label.fuchsia400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia400'] } };
-  'color.label.fuchsia500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia500'] } };
-  'color.label.fuchsia600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia600'] } };
-  'color.label.fuchsia700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.fuchsia700'] } };
-  'color.label.indigo400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo400'] } };
-  'color.label.indigo500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo500'] } };
-  'color.label.indigo600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo600'] } };
-  'color.label.indigo700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.indigo700'] } };
-  'color.label.magenta400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta400'] } };
-  'color.label.magenta500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta500'] } };
-  'color.label.magenta600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta600'] } };
-  'color.label.magenta700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.magenta700'] } };
-  'color.label.purple400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple400'] } };
-  'color.label.purple500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple500'] } };
-  'color.label.purple600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple600'] } };
-  'color.label.purple700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.purple700'] } };
-  'color.label.seafoam400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam400'] } };
-  'color.label.seafoam500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam500'] } };
-  'color.label.seafoam600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam600'] } };
-  'color.label.seafoam700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.seafoam700'] } };
-  'color.label.yellow400': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow400'] } };
-  'color.label.yellow500': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow500'] } };
-  'color.label.yellow600': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow600'] } };
-  'color.label.yellow700': ParsedColorToken & { $extensions: { mode: typeof modes['color.label.yellow700'] } };
+  'global.color.opacity.0': ParsedNumberToken;
+  'global.color.opacity.4': ParsedNumberToken;
+  'global.color.opacity.5': ParsedNumberToken;
+  'global.color.opacity.6': ParsedNumberToken;
+  'global.color.opacity.7': ParsedNumberToken;
+  'global.color.opacity.8': ParsedNumberToken;
+  'global.color.opacity.10': ParsedNumberToken;
+  'global.color.opacity.15': ParsedNumberToken;
+  'global.color.opacity.20': ParsedNumberToken;
+  'global.color.opacity.25': ParsedNumberToken;
+  'global.color.opacity.30': ParsedNumberToken;
+  'global.color.opacity.40': ParsedNumberToken;
+  'global.color.opacity.42': ParsedNumberToken;
+  'global.color.opacity.50': ParsedNumberToken;
+  'global.color.opacity.55': ParsedNumberToken;
+  'global.color.opacity.60': ParsedNumberToken;
+  'global.color.opacity.70': ParsedNumberToken;
+  'global.color.opacity.80': ParsedNumberToken;
+  'global.color.opacity.90': ParsedNumberToken;
+  'global.color.opacity.100': ParsedNumberToken;
+  'global.color.celery.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.celery.400'] } };
+  'global.color.celery.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.celery.500'] } };
+  'global.color.celery.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.celery.600'] } };
+  'global.color.celery.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.celery.700'] } };
+  'global.color.chartreuse.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.chartreuse.400'] } };
+  'global.color.chartreuse.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.chartreuse.500'] } };
+  'global.color.chartreuse.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.chartreuse.600'] } };
+  'global.color.chartreuse.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.chartreuse.700'] } };
+  'global.color.yellow.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.yellow.400'] } };
+  'global.color.yellow.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.yellow.500'] } };
+  'global.color.yellow.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.yellow.600'] } };
+  'global.color.yellow.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.yellow.700'] } };
+  'global.color.magenta.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.magenta.400'] } };
+  'global.color.magenta.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.magenta.500'] } };
+  'global.color.magenta.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.magenta.600'] } };
+  'global.color.magenta.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.magenta.700'] } };
+  'global.color.fuchsia.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.fuchsia.400'] } };
+  'global.color.fuchsia.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.fuchsia.500'] } };
+  'global.color.fuchsia.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.fuchsia.600'] } };
+  'global.color.fuchsia.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.fuchsia.700'] } };
+  'global.color.purple.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.purple.400'] } };
+  'global.color.purple.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.purple.500'] } };
+  'global.color.purple.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.purple.600'] } };
+  'global.color.purple.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.purple.700'] } };
+  'global.color.indigo.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.indigo.400'] } };
+  'global.color.indigo.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.indigo.500'] } };
+  'global.color.indigo.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.indigo.600'] } };
+  'global.color.indigo.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.indigo.700'] } };
+  'global.color.seafoam.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.seafoam.400'] } };
+  'global.color.seafoam.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.seafoam.500'] } };
+  'global.color.seafoam.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.seafoam.600'] } };
+  'global.color.seafoam.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.seafoam.700'] } };
+  'global.color.red.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.red.400'] } };
+  'global.color.red.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.red.500'] } };
+  'global.color.red.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.red.600'] } };
+  'global.color.red.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.red.700'] } };
+  'global.color.orange.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.orange.400'] } };
+  'global.color.orange.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.orange.500'] } };
+  'global.color.orange.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.orange.600'] } };
+  'global.color.orange.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.orange.700'] } };
+  'global.color.green.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.green.400'] } };
+  'global.color.green.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.green.500'] } };
+  'global.color.green.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.green.600'] } };
+  'global.color.green.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.green.700'] } };
+  'global.color.blue.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.blue.400'] } };
+  'global.color.blue.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.blue.500'] } };
+  'global.color.blue.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.blue.600'] } };
+  'global.color.blue.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.blue.700'] } };
+  'global.color.gray.50': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.50'] } };
+  'global.color.gray.75': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.75'] } };
+  'global.color.gray.100': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.100'] } };
+  'global.color.gray.200': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.200'] } };
+  'global.color.gray.300': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.300'] } };
+  'global.color.gray.400': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.400'] } };
+  'global.color.gray.500': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.500'] } };
+  'global.color.gray.600': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.600'] } };
+  'global.color.gray.700': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.700'] } };
+  'global.color.gray.800': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.800'] } };
+  'global.color.gray.900': ParsedColorToken & { $extensions: { mode: typeof modes['global.color.gray.900'] } };
+  'alias.background-color-primary': ParsedColorToken & { $extensions: { mode: typeof modes['alias.background-color-primary'] } };
+  'alias.background-color-secondary': ParsedColorToken & { $extensions: { mode: typeof modes['alias.background-color-secondary'] } };
+  'alias.background-color-modal-overlay': ParsedColorToken & { $extensions: { mode: typeof modes['alias.background-color-modal-overlay'] } };
+  'alias.background-color-hover-overly': ParsedColorToken & { $extensions: { mode: typeof modes['alias.background-color-hover-overly'] } };
+  'alias.background-color-quickactions': ParsedColorToken & { $extensions: { mode: typeof modes['alias.background-color-quickactions'] } };
+  'alias.dropshadow-color': ParsedColorToken & { $extensions: { mode: typeof modes['alias.dropshadow-color'] } };
+  'alias.highlight-hover': ParsedColorToken & { $extensions: { mode: typeof modes['alias.highlight-hover'] } };
+  'alias.highlight-down': ParsedColorToken & { $extensions: { mode: typeof modes['alias.highlight-down'] } };
+  'alias.highlight-selected': ParsedColorToken & { $extensions: { mode: typeof modes['alias.highlight-selected'] } };
+  'alias.highlight-selected-hover': ParsedColorToken & { $extensions: { mode: typeof modes['alias.highlight-selected-hover'] } };
+  'alias.text-highlight-color': ParsedColorToken & { $extensions: { mode: typeof modes['alias.text-highlight-color'] } };
+  'alias.border-color-translucent': ParsedColorToken & { $extensions: { mode: typeof modes['alias.border-color-translucent'] } };
+  'alias.radial-reaction-color': ParsedColorToken;
+  'alias.pasteboard-background-color': ParsedColorToken & { $extensions: { mode: typeof modes['alias.pasteboard-background-color'] } };
+  'alias.appframe.border-color': ParsedColorToken & { $extensions: { mode: typeof modes['alias.appframe.border-color'] } };
+  'alias.appframe.separator-color': ParsedColorToken & { $extensions: { mode: typeof modes['alias.appframe.separator-color'] } };
+  'scrollbar.mac.s.track-background-color': ParsedColorToken & { $extensions: { mode: typeof modes['scrollbar.mac.s.track-background-color'] } };
+  'scrollbar.mac.m.track-background-color': ParsedColorToken & { $extensions: { mode: typeof modes['scrollbar.mac.m.track-background-color'] } };
+  'scrollbar.mac.l.track-background-color': ParsedColorToken & { $extensions: { mode: typeof modes['scrollbar.mac.l.track-background-color'] } };
+  'well.background-color': ParsedColorToken & { $extensions: { mode: typeof modes['well.background-color'] } };
   'font.family.clean': ParsedFontFamilyToken;
   'font.family.cleanSerif': ParsedFontFamilyToken;
   'font.family.cleanHan': ParsedFontFamilyToken;
@@ -176,359 +258,625 @@ export declare const meta: {
 };
 
 export declare const modes: {
-  'color.blue400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.celery.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.blue500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.celery.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.blue600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.celery.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.blue700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.celery.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray50': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.chartreuse.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray75': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.chartreuse.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray100': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.chartreuse.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray200': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.chartreuse.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray300': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.yellow.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.yellow.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.yellow.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.yellow.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.magenta.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray800': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.magenta.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.gray900': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.magenta.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.green400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.magenta.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.green500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.fuchsia.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.green600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.fuchsia.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.green700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.fuchsia.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.red400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.fuchsia.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.red500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.purple.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.red600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.purple.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.red700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.purple.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.orange400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.purple.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.orange500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.indigo.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.orange600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.indigo.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.orange700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.indigo.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.celery400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.indigo.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.celery500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.seafoam.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.celery600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.seafoam.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.celery700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.seafoam.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.chartreuse400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.seafoam.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.chartreuse500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.red.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.chartreuse600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.red.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.chartreuse700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.red.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.fuchsia400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.red.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.fuchsia500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.orange.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.fuchsia600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.orange.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.fuchsia700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.orange.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.indigo400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.orange.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.indigo500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.green.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.indigo600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.green.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.indigo700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.green.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.magenta400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.green.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.magenta500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.blue.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.magenta600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.blue.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.magenta700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.blue.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.purple400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.blue.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.purple500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.50': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.purple600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.75': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.purple700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.100': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.seafoam400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.200': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.seafoam500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.300': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.seafoam600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.400': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.seafoam700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.500': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.yellow400': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.600': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.yellow500': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.700': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.yellow600': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.800': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
-  'color.label.yellow700': {
-    lightest: ColorToken['$value'];
-    light: ColorToken['$value'];
+  'global.color.gray.900': {
     dark: ColorToken['$value'];
     darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.background-color-primary': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.background-color-secondary': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.background-color-modal-overlay': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.background-color-hover-overly': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.background-color-quickactions': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.dropshadow-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.highlight-hover': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.highlight-down': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.highlight-selected': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.highlight-selected-hover': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.text-highlight-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.border-color-translucent': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.pasteboard-background-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.appframe.border-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'alias.appframe.separator-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    lightest: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'scrollbar.mac.s.track-background-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'scrollbar.mac.m.track-background-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'scrollbar.mac.l.track-background-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
+  };
+  'well.background-color': {
+    dark: ColorToken['$value'];
+    darkest: ColorToken['$value'];
+    light: ColorToken['$value'];
+    middark: ColorToken['$value'];
+    midlight: ColorToken['$value'];
   };
   'font.size.50': {
     desktop: DimensionToken['$value'];
