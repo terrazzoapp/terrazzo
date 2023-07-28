@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-css
 
+## 1.3.1
+
+### Patch Changes
+
+- [#61](https://github.com/drwpow/cobalt-ui/pull/61) [`949481f`](https://github.com/drwpow/cobalt-ui/commit/949481ff53489baf485f6befd3befcd6ec176260) Thanks [@drwpow](https://github.com/drwpow)! - Replace better-color-tools with culori for faster, more accurate color operations
+
+- Updated dependencies [[`949481f`](https://github.com/drwpow/cobalt-ui/commit/949481ff53489baf485f6befd3befcd6ec176260)]:
+  - @cobalt-ui/cli@1.3.1
+
 ## 1.3.0
 
 ### Minor Changes
