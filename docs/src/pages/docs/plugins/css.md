@@ -134,7 +134,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and specify `mode: [selector1, selector2, …]`.
 
-For example, if your `color.base` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
+For example, if your `color` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
 
 ```js
 // tokens.config.mjs
@@ -147,8 +147,8 @@ export default {
   plugins: [
     css({
       modeSelectors: {
-        'color.base#light': ['body[data-color-mode="light"]'],
-        'color.base#dark': ['body[data-color-mode="dark"]', '@media (prefers-color-scheme:dark)'],
+        'color#light': ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'],
+        'color#dark': ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
         'transition#reduced': ['@media (prefers-reduced-motion)'],
       },
     }),
@@ -159,30 +159,39 @@ export default {
 This will generate the following CSS:
 
 ```css
-/* default theme set by tokens.json (same as "light") */
 :root {
-  --color-blue: #0969da;
-  --color-green: #2da44e;
-  --color-red: #cf222e;
-  /* … */
+  /* all tokens (defaults) */
 }
 
-/* light theme colors */
+@media (prefers-color-scheme: light) {
+  :root {
+    /* light mdoe palette */
+  }
+}
+
 body[data-color-mode='light'] {
-  --color-blue: #0969da;
-  --color-green: #2da44e;
-  --color-red: #cf222e;
-  /* … */
+  /* light mode palette */
 }
 
 /* dark theme colors */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* dark mode palette */
+  }
+}
+
 body[data-color-mode='dark'] {
-  --color-blue: #1f6feb;
-  --color-green: #2ea043;
-  --color-red: #da3633;
-  /* … */
+  /* dark mode palette */
+}
+
+@media (prefers-reduced-motion) {
+  :root {
+    /* reduced motion transitions */
+  }
 }
 ```
+
+By default you get automatic inference from the `@media` selectors. But as a fallback, you could also manually set `<body data-color-mode="[mode]">` to override the default (e.g. to respect user preference).
 
 But more than just classes can be used (that’s why it’s called `modeSelectors` and not `modeClasses`)! You could also generate CSS if your `type.size` group had `desktop` and `mobile` sizes:
 
@@ -197,6 +206,7 @@ export default {
   plugins: [
     css({
       modeSelectors: {
+        'type.size#mobile': ['@media (max-width: 600px)'],
         'type.size#desktop': ['@media (min-width: 600px)'],
       },
     }),
@@ -207,15 +217,19 @@ export default {
 That will generate the following:
 
 ```css
-/* default size (in this case, mobile) */
 :root {
-  --type-size: 16px;
+  /* all tokens (defaults) */
 }
 
-/* desktop size */
+@media (max-width: 600px) {
+  :root {
+    /* mobile size typography */
+  }
+}
+
 @media (min-width: 600px) {
   :root {
-    --type-size: 18px;
+    /* desktop size typography */
   }
 }
 ```

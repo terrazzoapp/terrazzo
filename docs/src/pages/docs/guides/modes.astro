@@ -1,4 +1,5 @@
 ---
+import {Code} from 'astro/components';
 import Layout from '../../../layouts/docs.astro';
 import JSONYaml from '../../../components/JSONYaml.astro';
 
@@ -26,7 +27,12 @@ const title = 'Modes';
 
   <p><em>Note: since this guide was written, GitHub has since added additional color modes. But since that doesn’t change the concept, we’ll stick with the older (simpler) example for the purposes of illustration.</em></p>
 
-  <p>Consider the <code>red</code> and <code>white</code> colors in the system. Whereas <code>red</code> has a different value for each mode, <code>white</code> is an absolute value that doesn’t change. One way to represent that may be:</p>
+  <h3>Without Modes</h3>
+
+  <p>
+    Consider the <code>red</code> and <code>white</code> colors in the system. Whereas <code>red</code> has a different value for each mode, <code>white</code> is an absolute value that doesn’t change. A (wrong) first attempt may look something
+    like:
+  </p>
 
   <JSONYaml
     code={`{
@@ -54,6 +60,8 @@ const title = 'Modes';
     <li>Updating/managing color modes can become a precarious game of find-and-replace</li>
     <li>What if <code>red-darker</code> was added in the future—do we now have <code>red-darker</code>, <code>red-darker-dark</code>, and <code>red-darker-light</code>?</li>
   </ul>
+
+  <h3>With Modes</h3>
 
   <p><b>Modes</b> exist to solve these problems by decoupling token names from context and state. This is how it can be represented with modes (using the “$extensions” property from the token syntax):</p>
 
@@ -89,12 +97,46 @@ const title = 'Modes';
     to see the “how”).
   </p>
 
+  <h3>With @cobalt/plugin-css</h3>
+
+  <p>If using <a href="/docs/plugins/css">@cobalt/plugin-css</a>, you could generate CSS to handle these modes. That would look something like:</p>
+
+  <Code
+    lang="js"
+    code={`import pluginCSS from '@cobalt-ui/plugin-css';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
+  plugins: [
+    pluginCSS({
+      modeSelectors: {
+        light: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'],
+        lightHighContrast: ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]'],
+        lightColorblind: ['body[data-color-mode="lightColorblind"]'],
+        dark: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
+        darkHighContrast: ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]'],
+        darkColorblind: ['body[data-color-mode="darkColorblind"]'],
+      },
+    }),
+  ],
+};`}
+  />
+
+  <p>
+    Then in your CSS, the correct color mode would apply automatically in most instances, but you could also set <code>&lt;body data-color-mode="[mode]"&gt;</code> to override it. Also note there aren’t browser-global colorblind preferences,
+    so for the colorblind color schemes, they’d have to be set manually.
+  </p>
+
   <h2>Example: typographic modes</h2>
 
   <figure>
     <img src="/images/mode-apple.png" width="1562" height="898" />
     <figcaption>Apple’s dynamic text sizes use modes to control multiple type scales</figcaption>
   </figure>
+
+  <h3>Without Modes</h3>
 
   <p>Another common example is <strong>text size</strong>. If users need to make the text bigger or smaller, they can adjust to their taste. But trying to have this context exist in the token names can result in pretty long values:</p>
 
@@ -118,6 +160,8 @@ const title = 'Modes';
     Referring to a font size as <code>typography.size.title1-Medium</code> or <code>typography.size.title2-Medium</code> is a bad idea, because then every level of your application must be aware of the user’s current preference settings. And
     if values ever change, now your entire application must be updated everywhere.
   </p>
+
+  <h3>With Modes</h3>
 
   <p>Instead, by declaring font sizes as modes, the value becomes much more portable: <code>typography.size.title1</code>.</p>
 
