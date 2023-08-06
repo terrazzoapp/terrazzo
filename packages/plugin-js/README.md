@@ -49,11 +49,15 @@ const red = token('color.red.10');
 
 // get token for mode: dark
 const redDark = token('color.red.10', 'dark');
+
+// cubicBezier + bezier-easing library
+import BezierEasing from 'bezier-easing';
+const easing = BezierEasing(...token('ease.cubic-in-out'));
 ```
 
 You’ll also be able to see any `$description`s specified in your IDE in the form of JSDoc. If using TypeScript, `token()` is statically typed as it‘s only a thin wrapper around the `tokens` and `modes` exports.
 
-In addition, you’ll also find the following exports:
+In addition, you’ll also find the following named exports:
 
 | Name     | Type     | Description                                                                                         |
 | :------- | :------- | :-------------------------------------------------------------------------------------------------- |
