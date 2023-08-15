@@ -34,7 +34,6 @@
     "build:license": "../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
     "dev": "run-p -s dev:*",
     "dev:ts": "tsc --watch",
-    "dev:bundle": "npm run bundle -- --watch",
     "test": "run-p -s test:*",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
