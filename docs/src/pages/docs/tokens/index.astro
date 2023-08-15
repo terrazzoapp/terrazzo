@@ -131,7 +131,7 @@ const tokenDef = {
     <tbody>
       <tr>
         <td><code>$type</code></td>
-        <td><code>number</code> or <code>string</code></td>
+        <td><code>string</code></td>
         <td><b>fontWeight</b></td>
       </tr>
       <tr>
@@ -144,15 +144,16 @@ const tokenDef = {
 
   <JSONYaml
     code={`{
-  "no-fallbacks": {
-    "$type": "fontFamily",
-    "$value": "Graphik Regular"
+  "font-weight-default": {
+    "$value": 350,
+    "$type": "fontWeight"
   },
-  "with-fallbacks": {
-    "$type": "fontFamily",
-    "$value": ["Graphik Regular", "-system-ui", "Helvetica", "sans-serif"]
+  "font-weight-thick": {
+    "$value": "extra-bold",
+    "$type": "fontWeight"
   }
 }`}
+
   />
 
   <h2 id="dimension">
