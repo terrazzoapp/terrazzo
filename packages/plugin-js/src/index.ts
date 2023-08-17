@@ -1,5 +1,5 @@
 import type {BuildResult, Mode, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
-import {cloneDeep, indent, objKey} from '@cobalt-ui/utils';
+import {cloneDeep, indent, objKey, set} from '@cobalt-ui/utils';
 
 const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
@@ -16,6 +16,8 @@ export interface Options {
   meta?: boolean;
   /** modify values */
   transform?: TransformFn;
+  /** nested or flat output (default: false) */
+  deep?: boolean;
 }
 
 interface JSResult {
@@ -48,8 +50,9 @@ const tokenTypes: Record<ParsedToken['$type'], string> = {
 };
 
 /** serialize JS ref into string */
-export function serializeJS(value: unknown, options?: {comments?: Record<string, string>; indentLv?: number}): string {
+export function serializeJS(value: unknown, options?: {comments?: Record<string, string>; commentPath?: string; indentLv?: number}): string {
   const comments = options?.comments || {};
+  const commentPath = options?.commentPath ?? '';
   const indentLv = options?.indentLv || 0;
   if (typeof value === 'string') return `'${value.replace(SINGLE_QUOTE_RE, "\\'")}'`;
   if (typeof value === 'number') return `${value}`;
@@ -60,7 +63,16 @@ export function serializeJS(value: unknown, options?: {comments?: Record<string,
   if (typeof value === 'object')
     return `{
 ${Object.entries(value)
-  .map(([k, v]) => `${comments[k] ? `${indent(`/** ${comments[k]} */`, indentLv + 1)}\n` : ''}${indent(objKey(k), indentLv + 1)}: ${serializeJS(v, {indentLv: indentLv + 1})}`)
+  .map(([k, v]) => {
+    const nextCommentPath = commentPath === '' ? k : `${commentPath}.${k}`;
+    const comment = comments[nextCommentPath] ? `${indent(`/** ${comments[nextCommentPath]} */`, indentLv + 1)}\n` : '';
+
+    return `${comment}${indent(objKey(k), indentLv + 1)}: ${serializeJS(v, {
+      comments,
+      commentPath: nextCommentPath,
+      indentLv: indentLv + 1,
+    })}`;
+  })
   .join(',\n')},
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   throw new Error(`Could not serialize ${value}`);
@@ -71,6 +83,16 @@ function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$v
   const modeVal = token.$extensions.mode[mode];
   if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') return modeVal;
   return {...(token.$value as typeof modeVal), ...modeVal};
+}
+
+function setToken(obj: Record<string, any>, id: string, value: any, nest = false) {
+  if (nest) {
+    return set(obj, id, value);
+  }
+
+  obj[id] = value;
+
+  return obj;
 }
 
 export default function pluginJS(options?: Options): Plugin {
@@ -106,7 +128,7 @@ export default function pluginJS(options?: Options): Plugin {
       const ts: TSResult = {tokens: [], meta: [], modes: []};
       const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
-        js.tokens[token.id] = await transform(token);
+        setToken(js.tokens, token.id, await transform(token), options?.deep);
         if (buildTS) {
           const t = tokenTypes[token.$type];
           ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));

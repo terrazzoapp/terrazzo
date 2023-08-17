@@ -24,4 +24,25 @@ describe('@cobalt-ui/plugin-js', () => {
       expect(fs.readFileSync(new URL('actual.json', cwd), 'utf8'), `${dir}: JSON`).toBe(fs.readFileSync(new URL('want.json', cwd), 'utf8'));
     });
   });
+
+  describe('nested output', () => {
+    test('nested output is correct', async () => {
+      const cwd = new URL(`./nested/`, import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('tokens.json', cwd)));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginJS({
+            js: 'actual.js',
+            json: 'actual.json',
+            deep: true,
+          }),
+        ],
+        color: {},
+      });
+      expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `nested: JS`).toBe(fs.readFileSync(new URL('want.js', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('actual.d.ts', cwd), 'utf8'), `nested: TS`).toBe(fs.readFileSync(new URL('want.d.ts', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('actual.json', cwd), 'utf8'), `nested: JSON`).toBe(fs.readFileSync(new URL('want.json', cwd), 'utf8'));
+    });
+  });
 });
