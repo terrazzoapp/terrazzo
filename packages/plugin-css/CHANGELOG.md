@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.3.2
+
+### Patch Changes
+
+- [#76](https://github.com/drwpow/cobalt-ui/pull/76) [`ebc9a01`](https://github.com/drwpow/cobalt-ui/commit/ebc9a01e74cb47de577ee3a317d69f2abd928d63) Thanks [@drwpow](https://github.com/drwpow)! - Fix generating empty CSS selectors
+
 ## 1.3.1
 
 ### Patch Changes
