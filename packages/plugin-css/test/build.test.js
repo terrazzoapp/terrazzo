@@ -2,6 +2,7 @@ import {build} from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
 import {URL} from 'node:url';
 import {describe, expect, test} from 'vitest';
+import yaml from 'js-yaml';
 import pluginCSS from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
@@ -30,6 +31,25 @@ describe('@cobalt-ui/plugin-css', () => {
       color: {},
     });
 
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
+  });
+
+  test('doesn’t generate empty media queries', async () => {
+    const cwd = new URL(`./no-empty-modes/`, import.meta.url);
+    const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd)));
+    await build(tokens, {
+      outDir: cwd,
+      plugins: [
+        pluginCSS({
+          filename: 'actual.css',
+          modeSelectors: {
+            'color#light': ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'],
+            'color#dark': ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'],
+          },
+        }),
+      ],
+      color: {},
+    });
     expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
   });
 

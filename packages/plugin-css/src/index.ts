@@ -64,6 +64,7 @@ export default function pluginCSS(options?: Options): Plugin {
 
   function makeP3(input: string[]): string[] {
     const output: string[] = [];
+    let hasValidColors = false;
     for (const line of input) {
       if (line.includes('{') || line.includes('}')) {
         output.push(line);
@@ -76,10 +77,15 @@ export default function pluginCSS(options?: Options): Plugin {
         const parsed = rgb(c);
         if (!parsed) throw new Error(`invalid color "${c}"`);
         newVal = newVal.replace(c, formatCss({...parsed, mode: 'p3'}));
+        hasValidColors = true; // keep track of whether or not actual colors have been generated (we also generate non-color output, so checking for output.length won’t work)
       }
       output.push(newVal);
     }
-    return output;
+    // only return output if real colors were generated
+    if (hasValidColors) {
+      return output;
+    }
+    return [];
   }
 
   return {
@@ -161,9 +167,13 @@ export default function pluginCSS(options?: Options): Plugin {
           continue;
         }
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-        code.push(`${wrapper} {`);
-        if (modeVals[selector]) code.push(...makeVars({tokens: modeVals[selector]!, indentLv: 1, root: wrapper.startsWith('@')}));
-        code.push('}');
+        if (modeVals[selector]) {
+          const vars = makeVars({tokens: modeVals[selector]!, indentLv: 1, root: wrapper.startsWith('@')});
+          // don’t output empty selectors
+          if (vars.length) {
+            code.push(`${wrapper} {`, ...vars, '}');
+          }
+        }
       }
 
       // P3
@@ -172,11 +182,13 @@ export default function pluginCSS(options?: Options): Plugin {
         code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
         code.push(...makeP3(makeVars({tokens: tokenVals, indentLv: 1, root: true})));
         for (const selector of selectors) {
-          code.push('');
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-          code.push(indent(`${wrapper} {`, 1));
-          code.push(...makeP3(makeVars({tokens: modeVals[selector]!, indentLv: 2, root: wrapper.startsWith('@')})));
-          code.push(indent('}', 1));
+          const vars = makeVars({tokens: modeVals[selector]!, indentLv: 2, root: wrapper.startsWith('@')});
+          const p3colors = makeP3(vars);
+          // don’t output empty selectors
+          if (p3colors.length) {
+            code.push('', indent(`${wrapper} {`, 1), ...p3colors, indent('}', 1));
+          }
         }
         code.push(indent('}', 0));
       }
