@@ -54,10 +54,10 @@
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.4.5",
+    "@types/node": "^20.5.0",
     "execa": "^7.2.0",
     "figma-api": "^1.11.0",
     "npm-run-all": "^4.1.5",
-    "vitest": "^0.33.0"
+    "vitest": "^0.34.2"
   }
 }
