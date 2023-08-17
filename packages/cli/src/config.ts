@@ -4,6 +4,7 @@ import mod from 'node:module';
 import {fileURLToPath, URL} from 'node:url';
 
 const require = mod.createRequire(`file://${process.cwd()}`);
+const TRAILING_SLASH_RE = /\/*$/;
 
 export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig> {
   let config = {...(userConfig as any)} as ResolvedConfig;
@@ -61,7 +62,8 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
   }
   // normalize
   else {
-    config.outDir = new URL(userConfig.outDir, cwd);
+    // note: always add trailing slash so URL treats it as a directory
+    config.outDir = new URL(userConfig.outDir.replace(TRAILING_SLASH_RE, '/'), cwd);
   }
 
   // config.plugins

@@ -38,4 +38,16 @@ describe('co build', () => {
       $value: '#081f2f',
     });
   });
+
+  describe('config', () => {
+    it('outDir', async () => {
+      const cwd = new URL('./fixtures/build-custom-dir/', import.meta.url);
+      await execa('node', [cmd, 'build'], {cwd});
+
+      const builtTokens = await import('./fixtures/build-custom-dir/src/tokens/index.js');
+
+      // rough token count
+      expect(Object.keys(builtTokens.meta).length).toBe(34);
+    });
+  });
 });
