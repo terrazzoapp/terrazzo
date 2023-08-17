@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.4.1
+
+### Patch Changes
+
+- [#74](https://github.com/drwpow/cobalt-ui/pull/74) [`27365f3`](https://github.com/drwpow/cobalt-ui/commit/27365f316c7b73566004e2f38f73652a1149eefc) Thanks [@drwpow](https://github.com/drwpow)! - Fix trailing slash being necessary in config.outDir
+
 ## 1.4.0
 
 ### Minor Changes
