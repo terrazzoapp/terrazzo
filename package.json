@@ -39,6 +39,7 @@
     "test:plugin-css": "cd packages/plugin-css && pnpm run test",
     "test:plugin-js": "cd packages/plugin-js && pnpm run test",
     "test:plugin-sass": "cd packages/plugin-sass && pnpm run test",
+    "test:utils": "cd packages/utils && pnpm run test",
     "prepublishOnly": "pnpm run build",
     "version": "pnpm run build && changeset version && pnpm i --no-frozen-lockfile"
   },
