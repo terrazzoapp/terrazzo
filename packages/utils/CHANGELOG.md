@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.2.0
+
+### Minor Changes
+
+- [#79](https://github.com/drwpow/cobalt-ui/pull/79) [`2963b21`](https://github.com/drwpow/cobalt-ui/commit/2963b215e31096290acadd247963105646248bb2) Thanks [@mike-engel](https://github.com/mike-engel)! - Allow JS plugin output to be nested
+
 ## 1.1.1
 
 ### Patch Changes
