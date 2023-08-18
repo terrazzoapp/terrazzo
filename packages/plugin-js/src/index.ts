@@ -1,5 +1,5 @@
 import type {BuildResult, Mode, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
-import {cloneDeep, indent, objKey} from '@cobalt-ui/utils';
+import {cloneDeep, indent, objKey, set} from '@cobalt-ui/utils';
 
 const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
@@ -16,18 +16,20 @@ export interface Options {
   meta?: boolean;
   /** modify values */
   transform?: TransformFn;
+  /** nested or flat output (default: false) */
+  deep?: boolean;
 }
 
 interface JSResult {
-  tokens: {[id: string]: ParsedToken['$value']};
-  meta?: {[id: string]: Token};
-  modes: {[id: string]: Mode<ParsedToken['$value']>};
+  tokens: {[id: string]: ParsedToken['$value'] | JSResult['tokens']};
+  meta?: {[id: string]: Token | JSResult['meta']};
+  modes: {[id: string]: Mode<ParsedToken['$value'] | JSResult['modes']>};
 }
 
 interface TSResult {
-  tokens: string[];
-  meta?: string[];
-  modes: string[];
+  tokens: {[id: string]: string | TSResult['tokens']};
+  meta?: {[id: string]: string | TSResult['meta']};
+  modes: {[id: string]: string | TSResult['modes']};
 }
 
 const tokenTypes: Record<ParsedToken['$type'], string> = {
@@ -48,8 +50,9 @@ const tokenTypes: Record<ParsedToken['$type'], string> = {
 };
 
 /** serialize JS ref into string */
-export function serializeJS(value: unknown, options?: {comments?: Record<string, string>; indentLv?: number}): string {
+export function serializeJS(value: unknown, options?: {comments?: Record<string, string>; commentPath?: string; indentLv?: number}): string {
   const comments = options?.comments || {};
+  const commentPath = options?.commentPath ?? '';
   const indentLv = options?.indentLv || 0;
   if (typeof value === 'string') return `'${value.replace(SINGLE_QUOTE_RE, "\\'")}'`;
   if (typeof value === 'number') return `${value}`;
@@ -60,8 +63,34 @@ export function serializeJS(value: unknown, options?: {comments?: Record<string,
   if (typeof value === 'object')
     return `{
 ${Object.entries(value)
-  .map(([k, v]) => `${comments[k] ? `${indent(`/** ${comments[k]} */`, indentLv + 1)}\n` : ''}${indent(objKey(k), indentLv + 1)}: ${serializeJS(v, {indentLv: indentLv + 1})}`)
+  .map(([k, v]) => {
+    const nextCommentPath = commentPath === '' ? k : `${commentPath}.${k}`;
+    const comment = comments[nextCommentPath] ? `${indent(`/** ${comments[nextCommentPath]} */`, indentLv + 1)}\n` : '';
+
+    return `${comment}${indent(objKey(k), indentLv + 1)}: ${serializeJS(v, {
+      comments,
+      commentPath: nextCommentPath,
+      indentLv: indentLv + 1,
+    })}`;
+  })
   .join(',\n')},
+${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
+  throw new Error(`Could not serialize ${value}`);
+}
+
+/** serialize TS ref into string */
+export function serializeTS(value: unknown, options?: {indentLv?: number}): string {
+  const indentLv = options?.indentLv || 0;
+  if (typeof value === 'number' || typeof value === 'string') return `${value}`;
+  if (value === undefined) return 'undefined';
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return `[${value.map((item) => serializeTS(item, {indentLv: indentLv + 1})).join(', ')}]`;
+  if (typeof value === 'function') throw new Error(`Cannot serialize function ${value}`);
+  if (typeof value === 'object')
+    return `{
+${Object.entries(value)
+  .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, {indentLv: indentLv + 1})}`)
+  .join(';\n')};
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   throw new Error(`Could not serialize ${value}`);
 }
@@ -71,6 +100,16 @@ function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$v
   const modeVal = token.$extensions.mode[mode];
   if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') return modeVal;
   return {...(token.$value as typeof modeVal), ...modeVal};
+}
+
+function setToken(obj: Record<string, any>, id: string, value: any, nest = false) {
+  if (nest) {
+    return set(obj, id, value);
+  }
+
+  obj[id] = value;
+
+  return obj;
 }
 
 export default function pluginJS(options?: Options): Plugin {
@@ -103,33 +142,48 @@ export default function pluginJS(options?: Options): Plugin {
         meta: {},
         modes: {},
       };
-      const ts: TSResult = {tokens: [], meta: [], modes: []};
+      const ts: TSResult = {tokens: {}, meta: {}, modes: {}};
       const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
-        js.tokens[token.id] = await transform(token);
+        setToken(js.tokens, token.id, await transform(token), options?.deep);
         if (buildTS) {
           const t = tokenTypes[token.$type];
-          ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));
+          setToken(ts.tokens, token.id, `${t}['$value']`, options?.deep);
           tsImports.add(t);
         }
-        js.meta![token.id] = {
-          _original: cloneDeep(token._original),
-          ...((token._group && {_group: token._group}) || {}),
-          ...cloneDeep(token as any),
-        };
+        setToken(
+          js.meta!,
+          token.id,
+          {
+            _original: cloneDeep(token._original),
+            ...((token._group && {_group: token._group}) || {}),
+            ...cloneDeep(token as any),
+          },
+          options?.deep,
+        );
         if (buildTS) {
           const t = `Parsed${tokenTypes[token.$type]}`;
-          ts.meta!.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
+          const modeAccessor = options?.deep ? token.id.replace('.', "']['") : token.id;
+          setToken(ts.meta!, token.id, `${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${modeAccessor}'] } }` : ''}`, options?.deep);
           tsImports.add(t);
         }
         if (token.$extensions?.mode) {
-          js.modes[token.id] = {};
-          if (buildTS) ts.modes.push(indent(`${objKey(token.id)}: {`, 1));
+          setToken(js.modes, token.id, {}, options?.deep);
+          if (buildTS) setToken(ts.modes, token.id, {}, options?.deep);
           for (const modeName of Object.keys(token.$extensions.mode)) {
-            js.modes[token.id]![modeName] = await transform(token, modeName);
-            if (buildTS) ts.modes.push(indent(`${objKey(modeName)}: ${tokenTypes[token.$type]}['$value'];`, 2));
+            if (options?.deep) {
+              setToken(js.modes, `${token.id}.${modeName}`, await transform(token, modeName), true);
+            } else {
+              js.modes[token.id]![modeName] = await transform(token, modeName);
+            }
+            if (buildTS) {
+              if (options?.deep) {
+                setToken(ts.modes, `${token.id}.${modeName}`, `${tokenTypes[token.$type]}['$value']`, true);
+              } else {
+                (ts.modes[token.id] as TSResult['modes'])[modeName] = `${tokenTypes[token.$type]}['$value']`;
+              }
+            }
           }
-          if (buildTS) ts.modes.push(indent('};', 1));
         }
       }
 
@@ -189,12 +243,10 @@ export function token(tokenID, modeName) {
               ...sortedTypeImports.map((m) => indent(`${m},`, 1)),
               `} from '@cobalt-ui/core';`,
               '',
-              'export declare const tokens: {',
-              ...ts.tokens,
-              '};',
+              `export declare const tokens: ${serializeTS(ts.tokens)}`,
               '',
-              ...(ts.meta ? ['export declare const meta: {', ...ts.meta, '};', ''] : []),
-              `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
+              ...(ts.meta ? [`export declare const meta: ${serializeTS(ts.meta)}`, ''] : []),
+              `export declare const modes: ${Object.keys(ts.modes).length ? serializeTS(ts.modes) : 'Record<string, never>;'}`,
               '',
               `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
               `export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];`,
