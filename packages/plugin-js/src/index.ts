@@ -21,15 +21,15 @@ export interface Options {
 }
 
 interface JSResult {
-  tokens: {[id: string]: ParsedToken['$value']};
-  meta?: {[id: string]: Token};
-  modes: {[id: string]: Mode<ParsedToken['$value']>};
+  tokens: {[id: string]: ParsedToken['$value'] | JSResult['tokens']};
+  meta?: {[id: string]: Token | JSResult['meta']};
+  modes: {[id: string]: Mode<ParsedToken['$value'] | JSResult['modes']>};
 }
 
 interface TSResult {
-  tokens: string[];
-  meta?: string[];
-  modes: string[];
+  tokens: {[id: string]: string | TSResult['tokens']};
+  meta?: {[id: string]: string | TSResult['meta']};
+  modes: {[id: string]: string | TSResult['modes']};
 }
 
 const tokenTypes: Record<ParsedToken['$type'], string> = {
@@ -74,6 +74,23 @@ ${Object.entries(value)
     })}`;
   })
   .join(',\n')},
+${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
+  throw new Error(`Could not serialize ${value}`);
+}
+
+/** serialize TS ref into string */
+export function serializeTS(value: unknown, options?: {indentLv?: number}): string {
+  const indentLv = options?.indentLv || 0;
+  if (typeof value === 'number' || typeof value === 'string') return `${value}`;
+  if (value === undefined) return 'undefined';
+  if (value === null) return 'null';
+  if (Array.isArray(value)) return `[${value.map((item) => serializeTS(item, {indentLv: indentLv + 1})).join(', ')}]`;
+  if (typeof value === 'function') throw new Error(`Cannot serialize function ${value}`);
+  if (typeof value === 'object')
+    return `{
+${Object.entries(value)
+  .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, {indentLv: indentLv + 1})}`)
+  .join(';\n')};
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   throw new Error(`Could not serialize ${value}`);
 }
@@ -125,13 +142,13 @@ export default function pluginJS(options?: Options): Plugin {
         meta: {},
         modes: {},
       };
-      const ts: TSResult = {tokens: [], meta: [], modes: []};
+      const ts: TSResult = {tokens: {}, meta: {}, modes: {}};
       const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
         setToken(js.tokens, token.id, await transform(token), options?.deep);
         if (buildTS) {
           const t = tokenTypes[token.$type];
-          ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));
+          setToken(ts.tokens, token.id, `${t}['$value']`, options?.deep);
           tsImports.add(t);
         }
         setToken(
@@ -146,21 +163,27 @@ export default function pluginJS(options?: Options): Plugin {
         );
         if (buildTS) {
           const t = `Parsed${tokenTypes[token.$type]}`;
-          ts.meta!.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
+          const modeAccessor = options?.deep ? token.id.replace('.', "']['") : token.id;
+          setToken(ts.meta!, token.id, `${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${modeAccessor}'] } }` : ''}`, options?.deep);
           tsImports.add(t);
         }
         if (token.$extensions?.mode) {
           setToken(js.modes, token.id, {}, options?.deep);
-          if (buildTS) ts.modes.push(indent(`${objKey(token.id)}: {`, 1));
+          if (buildTS) setToken(ts.modes, token.id, {}, options?.deep);
           for (const modeName of Object.keys(token.$extensions.mode)) {
             if (options?.deep) {
               setToken(js.modes, `${token.id}.${modeName}`, await transform(token, modeName), true);
             } else {
               js.modes[token.id]![modeName] = await transform(token, modeName);
             }
-            if (buildTS) ts.modes.push(indent(`${objKey(modeName)}: ${tokenTypes[token.$type]}['$value'];`, 2));
+            if (buildTS) {
+              if (options?.deep) {
+                setToken(ts.modes, `${token.id}.${modeName}`, `${tokenTypes[token.$type]}['$value']`, true);
+              } else {
+                (ts.modes[token.id] as TSResult['modes'])[modeName] = `${tokenTypes[token.$type]}['$value']`;
+              }
+            }
           }
-          if (buildTS) ts.modes.push(indent('};', 1));
         }
       }
 
@@ -220,12 +243,10 @@ export function token(tokenID, modeName) {
               ...sortedTypeImports.map((m) => indent(`${m},`, 1)),
               `} from '@cobalt-ui/core';`,
               '',
-              'export declare const tokens: {',
-              ...ts.tokens,
-              '};',
+              `export declare const tokens: ${serializeTS(ts.tokens)}`,
               '',
-              ...(ts.meta ? ['export declare const meta: {', ...ts.meta, '};', ''] : []),
-              `export declare const modes: ${ts.modes.length ? `{\n${ts.modes.join('\n')}\n}` : 'Record<string, never>'};`,
+              ...(ts.meta ? [`export declare const meta: ${serializeTS(ts.meta)}`, ''] : []),
+              `export declare const modes: ${Object.keys(ts.modes).length ? serializeTS(ts.modes) : 'Record<string, never>;'}`,
               '',
               `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
               `export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];`,

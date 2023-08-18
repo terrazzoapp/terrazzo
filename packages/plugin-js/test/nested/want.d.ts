@@ -10,49 +10,63 @@ import {
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'color.black': ColorToken['$value'];
-  'color.blue.10': ColorToken['$value'];
-  'color.blue.20': ColorToken['$value'];
-  'color.blue.30': ColorToken['$value'];
-  'color.blue.40': ColorToken['$value'];
-  'color.blue.50': ColorToken['$value'];
-  'color.blue.60': ColorToken['$value'];
-  'color.blue.70': ColorToken['$value'];
-  'color.blue.80': ColorToken['$value'];
-  'color.blue.90': ColorToken['$value'];
-  'color.blue.100': ColorToken['$value'];
-  'color.blue.00': ColorToken['$value'];
-  'color.white': ColorToken['$value'];
-  'ui.fg': ColorToken['$value'];
-  'ui.bg': ColorToken['$value'];
+  color: {
+    black: ColorToken['$value'];
+    blue: {
+      10: ColorToken['$value'];
+      20: ColorToken['$value'];
+      30: ColorToken['$value'];
+      40: ColorToken['$value'];
+      50: ColorToken['$value'];
+      60: ColorToken['$value'];
+      70: ColorToken['$value'];
+      80: ColorToken['$value'];
+      90: ColorToken['$value'];
+      100: ColorToken['$value'];
+      '00': ColorToken['$value'];
+    };
+    white: ColorToken['$value'];
+  };
+  ui: {
+    fg: ColorToken['$value'];
+    bg: ColorToken['$value'];
+  };
 };
 
 export declare const meta: {
-  'color.black': ParsedColorToken;
-  'color.blue.10': ParsedColorToken;
-  'color.blue.20': ParsedColorToken;
-  'color.blue.30': ParsedColorToken;
-  'color.blue.40': ParsedColorToken;
-  'color.blue.50': ParsedColorToken;
-  'color.blue.60': ParsedColorToken;
-  'color.blue.70': ParsedColorToken;
-  'color.blue.80': ParsedColorToken;
-  'color.blue.90': ParsedColorToken;
-  'color.blue.100': ParsedColorToken;
-  'color.blue.00': ParsedColorToken;
-  'color.white': ParsedColorToken;
-  'ui.fg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
-  'ui.bg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.bg'] } };
+  color: {
+    black: ParsedColorToken;
+    blue: {
+      10: ParsedColorToken;
+      20: ParsedColorToken;
+      30: ParsedColorToken;
+      40: ParsedColorToken;
+      50: ParsedColorToken;
+      60: ParsedColorToken;
+      70: ParsedColorToken;
+      80: ParsedColorToken;
+      90: ParsedColorToken;
+      100: ParsedColorToken;
+      '00': ParsedColorToken;
+    };
+    white: ParsedColorToken;
+  };
+  ui: {
+    fg: ParsedColorToken & { $extensions: { mode: typeof modes['ui']['fg'] } };
+    bg: ParsedColorToken & { $extensions: { mode: typeof modes['ui']['bg'] } };
+  };
 };
 
 export declare const modes: {
-  'ui.fg': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-  };
-  'ui.bg': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
+  ui: {
+    fg: {
+      light: ColorToken['$value'];
+      dark: ColorToken['$value'];
+    };
+    bg: {
+      light: ColorToken['$value'];
+      dark: ColorToken['$value'];
+    };
   };
 };
 
