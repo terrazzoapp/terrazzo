@@ -134,21 +134,30 @@ export default function pluginJS(options?: Options): Plugin {
           ts.tokens.push(indent(`${objKey(token.id)}: ${t}['$value'];`, 1));
           tsImports.add(t);
         }
-        js.meta![token.id] = {
-          _original: cloneDeep(token._original),
-          ...((token._group && {_group: token._group}) || {}),
-          ...cloneDeep(token as any),
-        };
+        setToken(
+          js.meta!,
+          token.id,
+          {
+            _original: cloneDeep(token._original),
+            ...((token._group && {_group: token._group}) || {}),
+            ...cloneDeep(token as any),
+          },
+          options?.deep,
+        );
         if (buildTS) {
           const t = `Parsed${tokenTypes[token.$type]}`;
           ts.meta!.push(indent(`${objKey(token.id)}: ${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${token.id}'] } }` : ''};`, 1));
           tsImports.add(t);
         }
         if (token.$extensions?.mode) {
-          js.modes[token.id] = {};
+          setToken(js.modes, token.id, {}, options?.deep);
           if (buildTS) ts.modes.push(indent(`${objKey(token.id)}: {`, 1));
           for (const modeName of Object.keys(token.$extensions.mode)) {
-            js.modes[token.id]![modeName] = await transform(token, modeName);
+            if (options?.deep) {
+              setToken(js.modes, `${token.id}.${modeName}`, await transform(token, modeName), true);
+            } else {
+              js.modes[token.id]![modeName] = await transform(token, modeName);
+            }
             if (buildTS) ts.modes.push(indent(`${objKey(modeName)}: ${tokenTypes[token.$type]}['$value'];`, 2));
           }
           if (buildTS) ts.modes.push(indent('};', 1));
