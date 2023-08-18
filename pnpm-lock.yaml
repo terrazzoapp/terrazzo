@@ -310,7 +310,7 @@ importers:
   packages/plugin-js:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.1.1
+        specifier: ^1.2.0
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
