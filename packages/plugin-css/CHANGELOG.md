@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.3.3
+
+### Patch Changes
+
+- [#81](https://github.com/drwpow/cobalt-ui/pull/81) [`3b96d87`](https://github.com/drwpow/cobalt-ui/commit/3b96d87b2843e1eebe6467609099050286330b6e) Thanks [@drwpow](https://github.com/drwpow)! - Fix fontFamily alias bug
+
 ## 1.3.2
 
 ### Patch Changes
