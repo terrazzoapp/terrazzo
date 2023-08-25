@@ -192,9 +192,22 @@ describe('8. Type', () => {
     });
 
     test('array', () => {
-      const json = {typography: {body: {$type: 'fontFamily', $value: ['-system-ui', 'Helvetica']}}};
+      const json = {typography: {body: {$type: 'fontFamily', $value: ['system-ui', 'Helvetica']}}};
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'typography.body')?.$value).toEqual(json.typography.body.$value);
+    });
+
+    test('alias', () => {
+      const json = {
+        typography: {
+          family: {
+            base: {$type: 'fontFamily', $value: ['Helvetica', 'system-ui']},
+            heading: {$type: 'fontFamily', $value: '{typography.family.base}'},
+          },
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'typography.family.heading')?.$value).toEqual(json.typography.family.base.$value);
     });
   });
 
@@ -441,7 +454,7 @@ describe('9. Composite Type', () => {
         typography: {
           pageTitle: {
             $type: 'typography',
-            $value: {fontFamily: ['Helvetica', '-system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25},
+            $value: {fontFamily: ['Helvetica', 'system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25},
           },
         },
       };
@@ -470,7 +483,7 @@ describe('9. Composite Type', () => {
     test('alias: property', () => {
       const json = {
         typography: {
-          family: {heading: {$type: 'fontFamily', $value: ['Helvetica', '-system-ui']}},
+          family: {heading: {$type: 'fontFamily', $value: ['Helvetica', 'system-ui']}},
           pageTitle: {
             $type: 'typography',
             $value: {

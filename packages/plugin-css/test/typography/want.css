@@ -6,6 +6,7 @@
 
 :root {
   --ds-typography-family-body: "IBM Plex Sans", -system-ui, sans-serif;
+  --ds-typography-family-footnote: var(--ds-typography-family-body);
   --ds-typography-family-heading: Helvetica;
   --ds-typography-page-title-font-family: var(--ds-typography-family-heading);
   --ds-typography-page-title-font-size: 48px;
