@@ -23,6 +23,7 @@ import {converter, formatCss} from 'culori';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {encode, formatFontNames} from './util.js';
 
+const CSS_VAR_RE = /^var\(--[^)]+\)$/;
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
 const DOT_UNDER_GLOB_RE = /[._]/g;
@@ -288,6 +289,11 @@ export function defaultTransformer(token: ParsedToken, options?: {mode?: string;
       resolvedVal[k] = isAlias(v) ? varRef(v, refOptions) : (value as any)[k];
     }
     value = resolvedVal;
+  }
+
+  // if this is a flat CSS var, no need to transform
+  if (typeof value === 'string' && CSS_VAR_RE.test(value)) {
+    return value;
   }
 
   switch (token.$type) {
