@@ -16,8 +16,8 @@ describe('@cobalt-ui/plugin-css', () => {
           filename: 'actual.css',
           prefix: 'ds-',
           modeSelectors: {
-            'border#light': ['[data-color-theme="light"]'],
-            'border#dark': ['[data-color-theme="dark"]'],
+            '#light': ['@media (prefers-color-scheme: light)'],
+            '#dark': ['@media (prefers-color-scheme: dark)'],
             'color#light': ['[data-color-theme="light"]'],
             'color#dark': ['[data-color-theme="dark"]'],
             'color#light-colorblind': ['[data-color-theme="light-colorblind"]'],
