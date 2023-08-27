@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.4.2
+
+### Patch Changes
+
+- [#86](https://github.com/drwpow/cobalt-ui/pull/86) [`d83f825`](https://github.com/drwpow/cobalt-ui/commit/d83f82520d20811e6575c26d65146d8fd2449e25) Thanks [@drwpow](https://github.com/drwpow)! - Fix Windows bug with `npx co build`
+
 ## 1.4.1
 
 ### Patch Changes
