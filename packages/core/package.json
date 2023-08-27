@@ -31,7 +31,7 @@
     "build:clean": "del dist",
     "build:ts": "tsc",
     "build:bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap && cp dist/index.d.ts dist/index.min.d.ts",
-    "build:license": "../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
+    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
     "dev": "run-p -s dev:*",
     "dev:ts": "tsc --watch",
     "test": "run-p -s test:*",
