@@ -134,7 +134,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and specify `mode: [selector1, selector2, …]`.
 
-For example, if your `color` group has `light` and `dark` modes, and you want to alter the CSS variables based on a body attribute:
+All mode names must start with the `#` character. You can also optionally filter to a token group by adding part or all of a group name before the `#`. For example, if your `color.*` tokens had `light` and `dark` mode you wanted to generate CSS for, as well as `transition.*` tokens with `reduced` modes, you could add the following selectors:
 
 ```js
 // tokens.config.mjs
@@ -156,7 +156,7 @@ export default {
 };
 ```
 
-This will generate the following CSS:
+This would generate the following CSS:
 
 ```css
 :root {
