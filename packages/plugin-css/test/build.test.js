@@ -1,6 +1,6 @@
 import {build} from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {URL} from 'node:url';
+import {URL, fileURLToPath} from 'node:url';
 import {describe, expect, test} from 'vitest';
 import yaml from 'js-yaml';
 import pluginCSS from '../dist/index.js';
@@ -31,7 +31,7 @@ describe('@cobalt-ui/plugin-css', () => {
       color: {},
     });
 
-    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 
   test('doesn’t generate empty media queries', async () => {
@@ -50,7 +50,7 @@ describe('@cobalt-ui/plugin-css', () => {
       ],
       color: {},
     });
-    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 
   describe('options', () => {
@@ -67,7 +67,7 @@ describe('@cobalt-ui/plugin-css', () => {
         ],
         color: {},
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.css', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });
   });
 });

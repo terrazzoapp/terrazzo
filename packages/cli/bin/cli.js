@@ -247,7 +247,7 @@ function resolveConfig(filename) {
 /** load config */
 async function loadConfig(configPath) {
   let userConfig = {};
-  if (configPath) userConfig = (await import(configPath instanceof URL ? fileURLToPath(configPath) : configPath)).default;
+  if (configPath) userConfig = (await import(configPath)).default;
   return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
 }
 

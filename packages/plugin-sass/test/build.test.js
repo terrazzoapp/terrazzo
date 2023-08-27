@@ -1,6 +1,6 @@
 import {build} from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {URL} from 'node:url';
+import {URL, fileURLToPath} from 'node:url';
 import {describe, expect, test} from 'vitest';
 import pluginSass from '../dist/index.js';
 
@@ -18,7 +18,7 @@ describe('@cobalt-ui/plugin-sass', () => {
         ],
         color: {},
       });
-      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.scss', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.scss', cwd)));
     });
 
     test('basic (indented)', async () => {
@@ -34,7 +34,7 @@ describe('@cobalt-ui/plugin-sass', () => {
         ],
         color: {},
       });
-      expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.sass', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.sass', cwd)));
     });
 
     test('plugin-css', async () => {
@@ -50,7 +50,7 @@ describe('@cobalt-ui/plugin-sass', () => {
         ],
         color: {},
       });
-      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toBe(fs.readFileSync(new URL('./want.scss', cwd), 'utf8'));
+      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.scss', cwd)));
     });
   });
 });

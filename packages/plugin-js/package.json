@@ -23,7 +23,7 @@
     "build": "run-s -s build:*",
     "build:clean": "del dist",
     "build:ts": "tsc",
-    "build:license": "../../scripts/inject-license.js @cobalt-ui/plugin-js dist/index.js",
+    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-js dist/index.js",
     "dev": "tsc -w",
     "pretest": "co build -c ./test/types.tokens.mjs",
     "test": "run-p -s test:*",
