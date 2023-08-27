@@ -1,6 +1,6 @@
 import {execa} from 'execa';
 import fs from 'node:fs';
-import {fileURLToPath} from 'node:url';
+import {fileURLToPath, URL} from 'node:url';
 import {describe, expect, it} from 'vitest';
 
 const cmd = '../../../bin/cli.js';
