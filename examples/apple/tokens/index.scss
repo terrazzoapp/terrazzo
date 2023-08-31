@@ -99,19 +99,19 @@ $__token-values: (
     "light_ax": (#c93400),
     "dark_ax": (#ffb340),
   ),
-  "color.systemPurple": (
-    default: (#af52de),
-    "light": (#af52de),
-    "dark": (#bf5af2),
-    "light_ax": (#8944ab),
-    "dark_ax": (#da8fff),
-  ),
   "color.systemPink": (
     default: (#ff2d55),
     "light": (#ff2d55),
     "dark": (#ff375f),
     "light_ax": (#d30f45),
     "dark_ax": (#ff6482),
+  ),
+  "color.systemPurple": (
+    default: (#af52de),
+    "light": (#af52de),
+    "dark": (#bf5af2),
+    "light_ax": (#8944ab),
+    "dark_ax": (#da8fff),
   ),
   "color.systemRed": (
     default: (#ff3b30),
@@ -134,11 +134,8 @@ $__token-values: (
     "light_ax": (#b25000),
     "dark_ax": (#ffd426),
   ),
-  "font.family.sfPro": (
-    default: ("SF Pro"),
-  ),
-  "font.family.sfProRounded": (
-    default: ("SF Pro Rounded"),
+  "font.family.newYork": (
+    default: ("New York"),
   ),
   "font.family.sfCompact": (
     default: ("SF Compact"),
@@ -146,11 +143,35 @@ $__token-values: (
   "font.family.sfMono": (
     default: ("SF Mono"),
   ),
-  "font.family.newYork": (
-    default: ("New York"),
+  "font.family.sfPro": (
+    default: ("SF Pro"),
+  ),
+  "font.family.sfProRounded": (
+    default: ("SF Pro Rounded"),
+  ),
+  "font.style.body": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.body\")` instead.",
+  ),
+  "font.style.callout": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.callout\")` instead.",
+  ),
+  "font.style.caption_2": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption_2\")` instead.",
+  ),
+  "font.style.caption1": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption1\")` instead.",
+  ),
+  "font.style.footnote": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.footnote\")` instead.",
+  ),
+  "font.style.headline": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.headline\")` instead.",
   ),
   "font.style.largeTitle": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.largeTitle\")` instead.",
+  ),
+  "font.style.subhead": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.subhead\")` instead.",
   ),
   "font.style.title1": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title1\")` instead.",
@@ -161,30 +182,219 @@ $__token-values: (
   "font.style.title3": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.title3\")` instead.",
   ),
-  "font.style.headline": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.headline\")` instead.",
-  ),
-  "font.style.body": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.body\")` instead.",
-  ),
-  "font.style.callout": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.callout\")` instead.",
-  ),
-  "font.style.subhead": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.subhead\")` instead.",
-  ),
-  "font.style.footnote": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.footnote\")` instead.",
-  ),
-  "font.style.caption1": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption1\")` instead.",
-  ),
-  "font.style.caption_2": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.caption_2\")` instead.",
-  ),
 );
 
 $__token-typography-mixins: (
+  "font.style.body": (
+    default: (
+      "font-size": (17px),
+      "font-weight": (400),
+      "line-height": (22px),
+    ),
+    "xSmall": (
+      "font-size": (14px),
+      "line-height": (19px),
+    ),
+    "Small": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "Medium": (
+      "font-size": (16px),
+      "line-height": (21px),
+    ),
+    "Large": (
+      "font-size": (17px),
+      "line-height": (22px),
+    ),
+    "xLarge": (
+      "font-size": (19px),
+      "line-height": (24px),
+    ),
+    "xxLarge": (
+      "font-size": (21px),
+      "line-height": (26px),
+    ),
+    "xxxLarge": (
+      "font-size": (23px),
+      "line-height": (29px),
+    ),
+  ),
+  "font.style.callout": (
+    default: (
+      "font-size": (16px),
+      "font-weight": (400),
+      "line-height": (21px),
+    ),
+    "xSmall": (
+      "font-size": (13px),
+      "line-height": (18px),
+    ),
+    "Small": (
+      "font-size": (14px),
+      "line-height": (19px),
+    ),
+    "Medium": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "Large": (
+      "font-size": (16px),
+      "line-height": (21px),
+    ),
+    "xLarge": (
+      "font-size": (18px),
+      "line-height": (23px),
+    ),
+    "xxLarge": (
+      "font-size": (20px),
+      "line-height": (25px),
+    ),
+    "xxxLarge": (
+      "font-size": (22px),
+      "line-height": (28px),
+    ),
+  ),
+  "font.style.caption_2": (
+    default: (
+      "font-size": (11px),
+      "font-weight": (400),
+      "line-height": (13px),
+    ),
+    "xSmall": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Small": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Medium": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Large": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "xLarge": (
+      "font-size": (13px),
+      "line-height": (18px),
+    ),
+    "xxLarge": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "xxxLarge": (
+      "font-size": (17px),
+      "line-height": (22px),
+    ),
+  ),
+  "font.style.caption1": (
+    default: (
+      "font-size": (12px),
+      "font-weight": (400),
+      "line-height": (16px),
+    ),
+    "xSmall": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Small": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Medium": (
+      "font-size": (11px),
+      "line-height": (13px),
+    ),
+    "Large": (
+      "font-size": (12px),
+      "line-height": (16px),
+    ),
+    "xLarge": (
+      "font-size": (14px),
+      "line-height": (19px),
+    ),
+    "xxLarge": (
+      "font-size": (16px),
+      "line-height": (18px),
+    ),
+    "xxxLarge": (
+      "font-size": (23px),
+      "line-height": (21px),
+    ),
+  ),
+  "font.style.footnote": (
+    default: (
+      "font-size": (13px),
+      "font-weight": (400),
+      "line-height": (18px),
+    ),
+    "xSmall": (
+      "font-size": (12px),
+      "line-height": (16px),
+    ),
+    "Small": (
+      "font-size": (12px),
+      "line-height": (16px),
+    ),
+    "Medium": (
+      "font-size": (12px),
+      "line-height": (16px),
+    ),
+    "Large": (
+      "font-size": (13px),
+      "line-height": (18px),
+    ),
+    "xLarge": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "xxLarge": (
+      "font-size": (17px),
+      "line-height": (22px),
+    ),
+    "xxxLarge": (
+      "font-size": (19px),
+      "line-height": (24px),
+    ),
+  ),
+  "font.style.headline": (
+    default: (
+      "font-size": (17px),
+      "font-weight": (600),
+      "line-height": (22px),
+    ),
+    "xSmall": (
+      "font-size": (14px),
+      "line-height": (19px),
+    ),
+    "Small": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "Medium": (
+      "font-size": (16px),
+      "line-height": (21px),
+    ),
+    "Large": (
+      "font-size": (17px),
+      "line-height": (22px),
+    ),
+    "xLarge": (
+      "font-size": (19px),
+      "line-height": (24px),
+    ),
+    "xxLarge": (
+      "font-size": (21px),
+      "line-height": (26px),
+    ),
+    "xxxLarge": (
+      "font-size": (23px),
+      "line-height": (29px),
+    ),
+  ),
   "font.style.largeTitle": (
     default: (
       "font-size": (34px),
@@ -218,6 +428,41 @@ $__token-typography-mixins: (
     "xxxLarge": (
       "font-size": (40px),
       "line-height": (48px),
+    ),
+  ),
+  "font.style.subhead": (
+    default: (
+      "font-size": (15px),
+      "font-weight": (400),
+      "line-height": (20px),
+    ),
+    "xSmall": (
+      "font-size": (12px),
+      "line-height": (16px),
+    ),
+    "Small": (
+      "font-size": (13px),
+      "line-height": (18px),
+    ),
+    "Medium": (
+      "font-size": (14px),
+      "line-height": (19px),
+    ),
+    "Large": (
+      "font-size": (15px),
+      "line-height": (20px),
+    ),
+    "xLarge": (
+      "font-size": (17px),
+      "line-height": (22px),
+    ),
+    "xxLarge": (
+      "font-size": (19px),
+      "line-height": (24px),
+    ),
+    "xxxLarge": (
+      "font-size": (21px),
+      "line-height": (28px),
     ),
   ),
   "font.style.title1": (
@@ -323,251 +568,6 @@ $__token-typography-mixins: (
     "xxxLarge": (
       "font-size": (32px),
       "line-height": (32px),
-    ),
-  ),
-  "font.style.headline": (
-    default: (
-      "font-size": (17px),
-      "font-weight": (600),
-      "line-height": (22px),
-    ),
-    "xSmall": (
-      "font-size": (14px),
-      "line-height": (19px),
-    ),
-    "Small": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "Medium": (
-      "font-size": (16px),
-      "line-height": (21px),
-    ),
-    "Large": (
-      "font-size": (17px),
-      "line-height": (22px),
-    ),
-    "xLarge": (
-      "font-size": (19px),
-      "line-height": (24px),
-    ),
-    "xxLarge": (
-      "font-size": (21px),
-      "line-height": (26px),
-    ),
-    "xxxLarge": (
-      "font-size": (23px),
-      "line-height": (29px),
-    ),
-  ),
-  "font.style.body": (
-    default: (
-      "font-size": (17px),
-      "font-weight": (400),
-      "line-height": (22px),
-    ),
-    "xSmall": (
-      "font-size": (14px),
-      "line-height": (19px),
-    ),
-    "Small": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "Medium": (
-      "font-size": (16px),
-      "line-height": (21px),
-    ),
-    "Large": (
-      "font-size": (17px),
-      "line-height": (22px),
-    ),
-    "xLarge": (
-      "font-size": (19px),
-      "line-height": (24px),
-    ),
-    "xxLarge": (
-      "font-size": (21px),
-      "line-height": (26px),
-    ),
-    "xxxLarge": (
-      "font-size": (23px),
-      "line-height": (29px),
-    ),
-  ),
-  "font.style.callout": (
-    default: (
-      "font-size": (16px),
-      "font-weight": (400),
-      "line-height": (21px),
-    ),
-    "xSmall": (
-      "font-size": (13px),
-      "line-height": (18px),
-    ),
-    "Small": (
-      "font-size": (14px),
-      "line-height": (19px),
-    ),
-    "Medium": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "Large": (
-      "font-size": (16px),
-      "line-height": (21px),
-    ),
-    "xLarge": (
-      "font-size": (18px),
-      "line-height": (23px),
-    ),
-    "xxLarge": (
-      "font-size": (20px),
-      "line-height": (25px),
-    ),
-    "xxxLarge": (
-      "font-size": (22px),
-      "line-height": (28px),
-    ),
-  ),
-  "font.style.subhead": (
-    default: (
-      "font-size": (15px),
-      "font-weight": (400),
-      "line-height": (20px),
-    ),
-    "xSmall": (
-      "font-size": (12px),
-      "line-height": (16px),
-    ),
-    "Small": (
-      "font-size": (13px),
-      "line-height": (18px),
-    ),
-    "Medium": (
-      "font-size": (14px),
-      "line-height": (19px),
-    ),
-    "Large": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "xLarge": (
-      "font-size": (17px),
-      "line-height": (22px),
-    ),
-    "xxLarge": (
-      "font-size": (19px),
-      "line-height": (24px),
-    ),
-    "xxxLarge": (
-      "font-size": (21px),
-      "line-height": (28px),
-    ),
-  ),
-  "font.style.footnote": (
-    default: (
-      "font-size": (13px),
-      "font-weight": (400),
-      "line-height": (18px),
-    ),
-    "xSmall": (
-      "font-size": (12px),
-      "line-height": (16px),
-    ),
-    "Small": (
-      "font-size": (12px),
-      "line-height": (16px),
-    ),
-    "Medium": (
-      "font-size": (12px),
-      "line-height": (16px),
-    ),
-    "Large": (
-      "font-size": (13px),
-      "line-height": (18px),
-    ),
-    "xLarge": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "xxLarge": (
-      "font-size": (17px),
-      "line-height": (22px),
-    ),
-    "xxxLarge": (
-      "font-size": (19px),
-      "line-height": (24px),
-    ),
-  ),
-  "font.style.caption1": (
-    default: (
-      "font-size": (12px),
-      "font-weight": (400),
-      "line-height": (16px),
-    ),
-    "xSmall": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Small": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Medium": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Large": (
-      "font-size": (12px),
-      "line-height": (16px),
-    ),
-    "xLarge": (
-      "font-size": (14px),
-      "line-height": (19px),
-    ),
-    "xxLarge": (
-      "font-size": (16px),
-      "line-height": (18px),
-    ),
-    "xxxLarge": (
-      "font-size": (23px),
-      "line-height": (21px),
-    ),
-  ),
-  "font.style.caption_2": (
-    default: (
-      "font-size": (11px),
-      "font-weight": (400),
-      "line-height": (13px),
-    ),
-    "xSmall": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Small": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Medium": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "Large": (
-      "font-size": (11px),
-      "line-height": (13px),
-    ),
-    "xLarge": (
-      "font-size": (13px),
-      "line-height": (18px),
-    ),
-    "xxLarge": (
-      "font-size": (15px),
-      "line-height": (20px),
-    ),
-    "xxxLarge": (
-      "font-size": (17px),
-      "line-height": (22px),
     ),
   ),
 );

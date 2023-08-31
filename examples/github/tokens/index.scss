@@ -819,6 +819,16 @@ $__token-values: (
     "dark-high-contrast": (#ad0116),
     "dark-colorblind": (#292100),
   ),
+  "color.white": (
+    default: (#ffffff),
+    "light": (#ffffff),
+    "light-colorblind": (#ffffff),
+    "light-high-contrast": (#ffffff),
+    "dark": (#f0f6fc),
+    "dark-dimmed": (#cdd9e5),
+    "dark-high-contrast": (#ffffff),
+    "dark-colorblind": (#f0f6fc),
+  ),
   "color.yellow0": (
     default: (#fff8c5),
     "light": (#fff8c5),
@@ -919,21 +929,72 @@ $__token-values: (
     "dark-high-contrast": (#7b4900),
     "dark-colorblind": (#341a00),
   ),
-  "color.white": (
-    default: (#ffffff),
-    "light": (#ffffff),
-    "light-colorblind": (#ffffff),
-    "light-high-contrast": (#ffffff),
-    "dark": (#f0f6fc),
-    "dark-dimmed": (#cdd9e5),
-    "dark-high-contrast": (#ffffff),
-    "dark-colorblind": (#f0f6fc),
+  "font.family.display": (
+    default: (InterUI, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif),
+  ),
+  "font.family.lineHeight.condensed": (
+    default: (1.25),
+  ),
+  "font.family.lineHeight.condensedUltra": (
+    default: (1),
+  ),
+  "font.family.lineHeight.default": (
+    default: (1.5),
+  ),
+  "font.family.monospace": (
+    default: (SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace),
+  ),
+  "font.family.size.f00": (
+    default: (32px),
+    "mobile": (32px),
+    "desktop": (48px),
+  ),
+  "font.family.size.f0": (
+    default: (32px),
+    "mobile": (32px),
+    "desktop": (40px),
+  ),
+  "font.family.size.f1": (
+    default: (26px),
+    "mobile": (26px),
+    "desktop": (32px),
+  ),
+  "font.family.size.f2": (
+    default: (22px),
+    "mobile": (22px),
+    "desktop": (24px),
+  ),
+  "font.family.size.f3": (
+    default: (16px),
+    "mobile": (16px),
+    "desktop": (20px),
+  ),
+  "font.family.size.f4": (
+    default: (16px),
+    "mobile": (16px),
+    "desktop": (16px),
+  ),
+  "font.family.size.f5": (
+    default: (14px),
+    "mobile": (14px),
+    "desktop": (14px),
+  ),
+  "font.family.size.f6": (
+    default: (12px),
+    "mobile": (12px),
+    "desktop": (12px),
+  ),
+  "font.family.system": (
+    default: (-apple-system,, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"),
   ),
   "icon.alert-16": (
     default: (url('/icon/alert-16.svg')),
   ),
   "icon.alert-24": (
     default: (url('/icon/alert-24.svg')),
+  ),
+  "icon.alert-fill-12": (
+    default: (url('/icon/alert-fill-12.svg')),
   ),
   "icon.archive-16": (
     default: (url('/icon/archive-16.svg')),
@@ -943,9 +1004,6 @@ $__token-values: (
   ),
   "icon.arrow-both-16": (
     default: (url('/icon/arrow-both-16.svg')),
-  ),
-  "icon.alert-fill-12": (
-    default: (url('/icon/alert-fill-12.svg')),
   ),
   "icon.arrow-both-24": (
     default: (url('/icon/arrow-both-24.svg')),
@@ -2339,14 +2397,11 @@ $__token-values: (
   "spacing.spacer0": (
     default: (0),
   ),
-  "spacing.spacerXs": (
-    default: (4px),
+  "spacing.spacerM": (
+    default: (16px),
   ),
   "spacing.spacerS": (
     default: (8px),
-  ),
-  "spacing.spacerM": (
-    default: (16px),
   ),
   "spacing.spacerX": (
     default: (24px),
@@ -2354,66 +2409,11 @@ $__token-values: (
   "spacing.spacerXl": (
     default: (32px),
   ),
+  "spacing.spacerXs": (
+    default: (4px),
+  ),
   "spacing.spacerXxl": (
     default: (40px),
-  ),
-  "font.family.system": (
-    default: (-apple-system,, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji"),
-  ),
-  "font.family.monospace": (
-    default: (SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace),
-  ),
-  "font.family.display": (
-    default: (InterUI, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif),
-  ),
-  "font.family.size.f00": (
-    default: (32px),
-    "mobile": (32px),
-    "desktop": (48px),
-  ),
-  "font.family.size.f0": (
-    default: (32px),
-    "mobile": (32px),
-    "desktop": (40px),
-  ),
-  "font.family.size.f1": (
-    default: (26px),
-    "mobile": (26px),
-    "desktop": (32px),
-  ),
-  "font.family.size.f2": (
-    default: (22px),
-    "mobile": (22px),
-    "desktop": (24px),
-  ),
-  "font.family.size.f3": (
-    default: (16px),
-    "mobile": (16px),
-    "desktop": (20px),
-  ),
-  "font.family.size.f4": (
-    default: (16px),
-    "mobile": (16px),
-    "desktop": (16px),
-  ),
-  "font.family.size.f5": (
-    default: (14px),
-    "mobile": (14px),
-    "desktop": (14px),
-  ),
-  "font.family.size.f6": (
-    default: (12px),
-    "mobile": (12px),
-    "desktop": (12px),
-  ),
-  "font.family.lineHeight.default": (
-    default: (1.5),
-  ),
-  "font.family.lineHeight.condensed": (
-    default: (1.25),
-  ),
-  "font.family.lineHeight.condensedUltra": (
-    default: (1),
   ),
 );
 

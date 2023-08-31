@@ -11,12 +11,6 @@ $__token-values: (
   "color.black": (
     default: (#000000),
   ),
-  "color.blueLighter": (
-    default: (#ebf5fa),
-  ),
-  "color.blueLight": (
-    default: (#b4e1fa),
-  ),
   "color.blue": (
     default: (#006fbb),
   ),
@@ -26,14 +20,14 @@ $__token-values: (
   "color.blueDarker": (
     default: (#001429),
   ),
+  "color.blueLight": (
+    default: (#b4e1fa),
+  ),
+  "color.blueLighter": (
+    default: (#ebf5fa),
+  ),
   "color.blueText": (
     default: (#3e4e57),
-  ),
-  "color.greenLighter": (
-    default: (#e3f1df),
-  ),
-  "color.greenLight": (
-    default: (#bbe5b3),
   ),
   "color.green": (
     default: (#50b83c),
@@ -44,14 +38,14 @@ $__token-values: (
   "color.greenDarker": (
     default: (#173630),
   ),
+  "color.greenLight": (
+    default: (#bbe5b3),
+  ),
+  "color.greenLighter": (
+    default: (#e3f1df),
+  ),
   "color.greenText": (
     default: (#414f3e),
-  ),
-  "color.indigoLighter": (
-    default: (#f4f5fa),
-  ),
-  "color.indigoLight": (
-    default: (#b3bcf5),
   ),
   "color.indigo": (
     default: (#5c6ac4),
@@ -62,26 +56,26 @@ $__token-values: (
   "color.indigoDarker": (
     default: (#000639),
   ),
+  "color.indigoLight": (
+    default: (#b3bcf5),
+  ),
+  "color.indigoLighter": (
+    default: (#f4f5fa),
+  ),
   "color.indigoText": (
     default: (#3e4155),
-  ),
-  "color.inkLightest": (
-    default: (#919eab),
-  ),
-  "color.inkLighter": (
-    default: (#637381),
-  ),
-  "color.inkLight": (
-    default: (#454f5b),
   ),
   "color.ink": (
     default: (#212b36),
   ),
-  "color.orangeLighter": (
-    default: (#fcebdb),
+  "color.inkLight": (
+    default: (#454f5b),
   ),
-  "color.orangeLight": (
-    default: (#ffc58b),
+  "color.inkLighter": (
+    default: (#637381),
+  ),
+  "color.inkLightest": (
+    default: (#919eab),
   ),
   "color.orange": (
     default: (#f49342),
@@ -92,14 +86,14 @@ $__token-values: (
   "color.orangeDarker": (
     default: (#4a1504),
   ),
+  "color.orangeLight": (
+    default: (#ffc58b),
+  ),
+  "color.orangeLighter": (
+    default: (#fcebdb),
+  ),
   "color.orangeText": (
     default: (#594430),
-  ),
-  "color.purpleLighter": (
-    default: (#f6f0fd),
-  ),
-  "color.purpleLight": (
-    default: (#e3d0ff),
   ),
   "color.purple": (
     default: (#9c6ade),
@@ -110,14 +104,14 @@ $__token-values: (
   "color.purpleDarker": (
     default: (#230051),
   ),
+  "color.purpleLight": (
+    default: (#e3d0ff),
+  ),
+  "color.purpleLighter": (
+    default: (#f6f0fd),
+  ),
   "color.purpleText": (
     default: (#50495a),
-  ),
-  "color.redLighter": (
-    default: (#fbeae5),
-  ),
-  "color.redLight": (
-    default: (#fead9a),
   ),
   "color.red": (
     default: (#de3618),
@@ -128,14 +122,14 @@ $__token-values: (
   "color.redDarker": (
     default: (#330101),
   ),
+  "color.redLight": (
+    default: (#fead9a),
+  ),
+  "color.redLighter": (
+    default: (#fbeae5),
+  ),
   "color.redText": (
     default: (#583c35),
-  ),
-  "color.skyLighter": (
-    default: (#f9fafb),
-  ),
-  "color.skyLight": (
-    default: (#f4f6f8),
   ),
   "color.sky": (
     default: (#dfe3e8),
@@ -143,11 +137,11 @@ $__token-values: (
   "color.skyDark": (
     default: (#c4cdd5),
   ),
-  "color.tealLighter": (
-    default: (#e0f5f5),
+  "color.skyLight": (
+    default: (#f4f6f8),
   ),
-  "color.tealLight": (
-    default: (#b7ecec),
+  "color.skyLighter": (
+    default: (#f9fafb),
   ),
   "color.teal": (
     default: (#47c1bf),
@@ -158,17 +152,17 @@ $__token-values: (
   "color.tealDarker": (
     default: (#003135),
   ),
+  "color.tealLight": (
+    default: (#b7ecec),
+  ),
+  "color.tealLighter": (
+    default: (#e0f5f5),
+  ),
   "color.tealText": (
     default: (#405352),
   ),
   "color.white": (
     default: (#ffffff),
-  ),
-  "color.yellowLighter": (
-    default: (#fcf1cd),
-  ),
-  "color.yellowLight": (
-    default: (#ffea8a),
   ),
   "color.yellow": (
     default: (#eec200),
@@ -179,6 +173,12 @@ $__token-values: (
   "color.yellowDarker": (
     default: (#573b00),
   ),
+  "color.yellowLight": (
+    default: (#ffea8a),
+  ),
+  "color.yellowLighter": (
+    default: (#fcf1cd),
+  ),
   "color.yellowText": (
     default: (#595130),
   ),
@@ -188,26 +188,26 @@ $__token-values: (
   "font.family.mono": (
     default: (Monaco, Consolas, "Lucida Console", monospace),
   ),
-  "space.none": (
-    default: (0),
-  ),
-  "space.extraTight": (
-    default: (4px),
-  ),
-  "space.tight": (
-    default: (8px),
+  "space.base": (
+    default: (16px),
   ),
   "space.baseTight": (
     default: (12px),
   ),
-  "space.base": (
-    default: (16px),
+  "space.extraLoose": (
+    default: (32px),
+  ),
+  "space.extraTight": (
+    default: (4px),
   ),
   "space.loose": (
     default: (20px),
   ),
-  "space.extraLoose": (
-    default: (32px),
+  "space.none": (
+    default: (0),
+  ),
+  "space.tight": (
+    default: (8px),
   ),
 );
 
