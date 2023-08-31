@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-css
 
+## 1.4.0
+
+### Minor Changes
+
+- [#96](https://github.com/drwpow/cobalt-ui/pull/96) [`92884e6`](https://github.com/drwpow/cobalt-ui/commit/92884e612e0bee327776f2531cc779913aa3bb78) Thanks [@drwpow](https://github.com/drwpow)! - Improve modeSelectors API
+
+- [#96](https://github.com/drwpow/cobalt-ui/pull/96) [`92884e6`](https://github.com/drwpow/cobalt-ui/commit/92884e612e0bee327776f2531cc779913aa3bb78) Thanks [@drwpow](https://github.com/drwpow)! - Add glob support for modeSelectors token matching
+
 ## 1.3.4
 
 ### Patch Changes
