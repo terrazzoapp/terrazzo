@@ -25,236 +25,236 @@ export const tokens = {
 
 export const meta = {
   'color.black': {
-    '_original': {
-      '$value': '#00193f',
+    _original: {
+      $value: '#00193f',
     },
-    '_group': {
+    _group: {
       id: 'color',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.black',
-    '$type': 'color',
-    '$value': '#00193f',
+    $type: 'color',
+    $value: '#00193f',
   },
   'color.blue.10': {
-    '_original': {
-      '$value': '#062053',
+    _original: {
+      $value: '#062053',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.10',
-    '$type': 'color',
-    '$value': '#062053',
+    $type: 'color',
+    $value: '#062053',
   },
   'color.blue.20': {
-    '_original': {
-      '$value': '#0f2868',
+    _original: {
+      $value: '#0f2868',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.20',
-    '$type': 'color',
-    '$value': '#0f2868',
+    $type: 'color',
+    $value: '#0f2868',
   },
   'color.blue.30': {
-    '_original': {
-      '$value': '#192f7d',
+    _original: {
+      $value: '#192f7d',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.30',
-    '$type': 'color',
-    '$value': '#192f7d',
+    $type: 'color',
+    $value: '#192f7d',
   },
   'color.blue.40': {
-    '_original': {
-      '$value': '#223793',
+    _original: {
+      $value: '#223793',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.40',
-    '$type': 'color',
-    '$value': '#223793',
+    $type: 'color',
+    $value: '#223793',
   },
   'color.blue.50': {
-    '_original': {
-      '$description': 'Medium blue',
-      '$value': '#2b3faa',
+    _original: {
+      $description: 'Medium blue',
+      $value: '#2b3faa',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.50',
-    '$type': 'color',
-    '$description': 'Medium blue',
-    '$value': '#2b3faa',
+    $type: 'color',
+    $description: 'Medium blue',
+    $value: '#2b3faa',
   },
   'color.blue.60': {
-    '_original': {
-      '$value': '#3764ba',
+    _original: {
+      $value: '#3764ba',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.60',
-    '$type': 'color',
-    '$value': '#3764ba',
+    $type: 'color',
+    $value: '#3764ba',
   },
   'color.blue.70': {
-    '_original': {
-      '$value': '#4887c9',
+    _original: {
+      $value: '#4887c9',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.70',
-    '$type': 'color',
-    '$value': '#4887c9',
+    $type: 'color',
+    $value: '#4887c9',
   },
   'color.blue.80': {
-    '_original': {
-      '$value': '#5ca9d7',
+    _original: {
+      $value: '#5ca9d7',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.80',
-    '$type': 'color',
-    '$value': '#5ca9d7',
+    $type: 'color',
+    $value: '#5ca9d7',
   },
   'color.blue.90': {
-    '_original': {
-      '$value': '#72cce5',
+    _original: {
+      $value: '#72cce5',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.90',
-    '$type': 'color',
-    '$value': '#72cce5',
+    $type: 'color',
+    $value: '#72cce5',
   },
   'color.blue.100': {
-    '_original': {
-      '$value': '#89eff1',
+    _original: {
+      $value: '#89eff1',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.100',
-    '$type': 'color',
-    '$value': '#89eff1',
+    $type: 'color',
+    $value: '#89eff1',
   },
   'color.blue.00': {
-    '_original': {
-      '$value': '{color.black}',
+    _original: {
+      $value: '{color.black}',
     },
-    '_group': {
+    _group: {
       id: 'color.blue',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.blue.00',
-    '$type': 'color',
-    '$value': '#00193f',
+    $type: 'color',
+    $value: '#00193f',
   },
   'color.white': {
-    '_original': {
-      '$value': '#ffffff',
+    _original: {
+      $value: '#ffffff',
     },
-    '_group': {
+    _group: {
       id: 'color',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$type': 'color',
-      '$description': 'Brand blue',
+      $type: 'color',
+      $description: 'Brand blue',
     },
     id: 'color.white',
-    '$type': 'color',
-    '$value': '#ffffff',
+    $type: 'color',
+    $value: '#ffffff',
   },
   'ui.fg': {
-    '_original': {
-      '$type': 'color',
-      '$value': '{color.black}',
-      '$extensions': {
+    _original: {
+      $type: 'color',
+      $value: '{color.black}',
+      $extensions: {
         mode: {
           light: '{color.black}',
           dark: '{color.white}',
         },
       },
     },
-    '_group': {
+    _group: {
       id: 'ui',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'ui.fg',
-    '$type': 'color',
-    '$value': '#00193f',
-    '$extensions': {
+    $type: 'color',
+    $value: '#00193f',
+    $extensions: {
       mode: {
         light: '#00193f',
         dark: '#ffffff',
@@ -262,26 +262,26 @@ export const meta = {
     },
   },
   'ui.bg': {
-    '_original': {
-      '$type': 'color',
-      '$value': '{color.white}',
-      '$extensions': {
+    _original: {
+      $type: 'color',
+      $value: '{color.white}',
+      $extensions: {
         mode: {
           light: '{color.white}',
           dark: '{color.black}',
         },
       },
     },
-    '_group': {
+    _group: {
       id: 'ui',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'ui.bg',
-    '$type': 'color',
-    '$value': '#ffffff',
-    '$extensions': {
+    $type: 'color',
+    $value: '#ffffff',
+    $extensions: {
       mode: {
         light: '#ffffff',
         dark: '#00193f',

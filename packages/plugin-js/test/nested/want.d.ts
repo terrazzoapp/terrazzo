@@ -13,16 +13,16 @@ export declare const tokens: {
   color: {
     black: ColorToken['$value'];
     blue: {
-      10: ColorToken['$value'];
-      20: ColorToken['$value'];
-      30: ColorToken['$value'];
-      40: ColorToken['$value'];
-      50: ColorToken['$value'];
-      60: ColorToken['$value'];
-      70: ColorToken['$value'];
-      80: ColorToken['$value'];
-      90: ColorToken['$value'];
-      100: ColorToken['$value'];
+      '10': ColorToken['$value'];
+      '20': ColorToken['$value'];
+      '30': ColorToken['$value'];
+      '40': ColorToken['$value'];
+      '50': ColorToken['$value'];
+      '60': ColorToken['$value'];
+      '70': ColorToken['$value'];
+      '80': ColorToken['$value'];
+      '90': ColorToken['$value'];
+      '100': ColorToken['$value'];
       '00': ColorToken['$value'];
     };
     white: ColorToken['$value'];
@@ -37,16 +37,16 @@ export declare const meta: {
   color: {
     black: ParsedColorToken;
     blue: {
-      10: ParsedColorToken;
-      20: ParsedColorToken;
-      30: ParsedColorToken;
-      40: ParsedColorToken;
-      50: ParsedColorToken;
-      60: ParsedColorToken;
-      70: ParsedColorToken;
-      80: ParsedColorToken;
-      90: ParsedColorToken;
-      100: ParsedColorToken;
+      '10': ParsedColorToken;
+      '20': ParsedColorToken;
+      '30': ParsedColorToken;
+      '40': ParsedColorToken;
+      '50': ParsedColorToken;
+      '60': ParsedColorToken;
+      '70': ParsedColorToken;
+      '80': ParsedColorToken;
+      '90': ParsedColorToken;
+      '100': ParsedColorToken;
       '00': ParsedColorToken;
     };
     white: ParsedColorToken;

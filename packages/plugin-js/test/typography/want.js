@@ -7,178 +7,321 @@
 export const tokens = {
   'typography.family.body': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
   'typography.family.heading': ['Helvetica'],
-  'typography.page-title': {
+  'typography.largeTitle': {
     fontFamily: ['Helvetica'],
-    fontSize: '48px',
-    fontWeight: 600,
-    lineHeight: 1.25,
-    letterSpacing: '0.125em',
-  },
-  'typography.subheading': {
-    fontFamily: ['Helvetica'],
-    fontSize: '18px',
-    fontWeight: 500,
-    lineHeight: 1.375,
-    letterSpacing: '0.25em',
-    textTransform: 'uppercase',
-  },
-  'typography.callout': {
-    fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
-    fontSize: '18px',
-    fontWeight: 300,
-    fontStyle: 'italic',
-    lineHeight: 1.5,
+    fontSize: '34px',
+    fontWeight: 400,
+    lineHeight: '41px',
   },
   'typography.body': {
-    fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
-    fontSize: '16px',
+    fontFamily: ['Helvetica'],
+    fontSize: '17px',
     fontWeight: 400,
-    lineHeight: 1.5,
+    lineHeight: '22px',
   },
 };
 
 export const meta = {
   'typography.family.body': {
-    '_original': {
-      '$type': 'fontFamily',
-      '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
+    _original: {
+      $type: 'fontFamily',
+      $value: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
     },
-    '_group': {
+    _group: {
       id: 'typography.family',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'typography.family.body',
-    '$type': 'fontFamily',
-    '$value': ['IBM Plex Sans', '-system-ui', 'sans-serif'],
+    $type: 'fontFamily',
+    $value: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
   },
   'typography.family.heading': {
-    '_original': {
-      '$type': 'fontFamily',
-      '$value': 'Helvetica',
+    _original: {
+      $type: 'fontFamily',
+      $value: 'Helvetica',
     },
-    '_group': {
+    _group: {
       id: 'typography.family',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'typography.family.heading',
-    '$type': 'fontFamily',
-    '$value': ['Helvetica'],
+    $type: 'fontFamily',
+    $value: ['Helvetica'],
   },
-  'typography.page-title': {
-    '_original': {
-      '$type': 'typography',
-      '$value': {
+  'typography.largeTitle': {
+    _original: {
+      $type: 'typography',
+      $value: {
         fontFamily: '{typography.family.heading}',
-        fontSize: '48px',
-        fontWeight: 600,
-        lineHeight: 1.25,
-        letterSpacing: '0.125em',
+        fontSize: '34px',
+        fontWeight: 400,
+        lineHeight: '41px',
+      },
+      $extensions: {
+        mode: {
+          xs: {
+            fontSize: '31px',
+            lineHeight: '38px',
+          },
+          s: {
+            fontSize: '32px',
+            lineHeight: '39px',
+          },
+          m: {
+            fontSize: '33px',
+            lineHeight: '40px',
+          },
+          l: {
+            fontSize: '34px',
+            lineHeight: '41px',
+          },
+          xl: {
+            fontSize: '36px',
+            lineHeight: '43px',
+          },
+          '2xl': {
+            fontSize: '38px',
+            lineHeight: '46px',
+          },
+          '3xl': {
+            fontSize: '40px',
+            lineHeight: '48px',
+          },
+        },
       },
     },
-    '_group': {
+    _group: {
       id: 'typography',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
-    id: 'typography.page-title',
-    '$type': 'typography',
-    '$value': {
+    id: 'typography.largeTitle',
+    $type: 'typography',
+    $value: {
       fontFamily: ['Helvetica'],
-      fontSize: '48px',
-      fontWeight: 600,
-      lineHeight: 1.25,
-      letterSpacing: '0.125em',
+      fontSize: '34px',
+      fontWeight: 400,
+      lineHeight: '41px',
     },
-  },
-  'typography.subheading': {
-    '_original': {
-      '$type': 'typography',
-      '$value': {
-        fontFamily: '{typography.family.heading}',
-        fontSize: '18px',
-        fontWeight: 500,
-        lineHeight: 1.375,
-        letterSpacing: '0.25em',
-        textTransform: 'uppercase',
+    $extensions: {
+      mode: {
+        xs: {
+          fontSize: '31px',
+          lineHeight: '38px',
+        },
+        s: {
+          fontSize: '32px',
+          lineHeight: '39px',
+        },
+        m: {
+          fontSize: '33px',
+          lineHeight: '40px',
+        },
+        l: {
+          fontSize: '34px',
+          lineHeight: '41px',
+        },
+        xl: {
+          fontSize: '36px',
+          lineHeight: '43px',
+        },
+        '2xl': {
+          fontSize: '38px',
+          lineHeight: '46px',
+        },
+        '3xl': {
+          fontSize: '40px',
+          lineHeight: '48px',
+        },
       },
-    },
-    '_group': {
-      id: 'typography',
-      '$extensions': {
-        requiredModes: [],
-      },
-    },
-    id: 'typography.subheading',
-    '$type': 'typography',
-    '$value': {
-      fontFamily: ['Helvetica'],
-      fontSize: '18px',
-      fontWeight: 500,
-      lineHeight: 1.375,
-      letterSpacing: '0.25em',
-      textTransform: 'uppercase',
-    },
-  },
-  'typography.callout': {
-    '_original': {
-      '$type': 'typography',
-      '$value': {
-        fontFamily: '{typography.family.body}',
-        fontSize: '18px',
-        fontWeight: 300,
-        'font-style': 'italic',
-        lineHeight: 1.5,
-      },
-    },
-    '_group': {
-      id: 'typography',
-      '$extensions': {
-        requiredModes: [],
-      },
-    },
-    id: 'typography.callout',
-    '$type': 'typography',
-    '$value': {
-      fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
-      fontSize: '18px',
-      fontWeight: 300,
-      fontStyle: 'italic',
-      lineHeight: 1.5,
     },
   },
   'typography.body': {
-    '_original': {
-      '$type': 'typography',
-      '$value': {
-        fontFamily: '{typography.family.body}',
-        fontSize: '16px',
+    _original: {
+      $type: 'typography',
+      $value: {
+        fontFamily: '{typography.family.heading}',
+        fontSize: '17px',
         fontWeight: 400,
-        lineHeight: 1.5,
+        lineHeight: '22px',
+      },
+      $extensions: {
+        mode: {
+          xs: {
+            fontSize: '14px',
+            lineHeight: '19px',
+          },
+          s: {
+            fontSize: '15px',
+            lineHeight: '20px',
+          },
+          m: {
+            fontSize: '16px',
+            lineHeight: '21px',
+          },
+          l: {
+            fontSize: '17px',
+            lineHeight: '22px',
+          },
+          xl: {
+            fontSize: '19px',
+            lineHeight: '24px',
+          },
+          '2xl': {
+            fontSize: '21px',
+            lineHeight: '26px',
+          },
+          '3xl': {
+            fontSize: '23px',
+            lineHeight: '29px',
+          },
+        },
       },
     },
-    '_group': {
+    _group: {
       id: 'typography',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'typography.body',
-    '$type': 'typography',
-    '$value': {
-      fontFamily: ['IBM Plex Sans', '-system-ui', 'sans-serif'],
-      fontSize: '16px',
+    $type: 'typography',
+    $value: {
+      fontFamily: ['Helvetica'],
+      fontSize: '17px',
       fontWeight: 400,
-      lineHeight: 1.5,
+      lineHeight: '22px',
+    },
+    $extensions: {
+      mode: {
+        xs: {
+          fontSize: '14px',
+          lineHeight: '19px',
+        },
+        s: {
+          fontSize: '15px',
+          lineHeight: '20px',
+        },
+        m: {
+          fontSize: '16px',
+          lineHeight: '21px',
+        },
+        l: {
+          fontSize: '17px',
+          lineHeight: '22px',
+        },
+        xl: {
+          fontSize: '19px',
+          lineHeight: '24px',
+        },
+        '2xl': {
+          fontSize: '21px',
+          lineHeight: '26px',
+        },
+        '3xl': {
+          fontSize: '23px',
+          lineHeight: '29px',
+        },
+      },
     },
   },
 };
 
-export const modes = {};
+export const modes = {
+  'typography.largeTitle': {
+    xs: {
+      fontFamily: ['Helvetica'],
+      fontSize: '31px',
+      fontWeight: 400,
+      lineHeight: '38px',
+    },
+    s: {
+      fontFamily: ['Helvetica'],
+      fontSize: '32px',
+      fontWeight: 400,
+      lineHeight: '39px',
+    },
+    m: {
+      fontFamily: ['Helvetica'],
+      fontSize: '33px',
+      fontWeight: 400,
+      lineHeight: '40px',
+    },
+    l: {
+      fontFamily: ['Helvetica'],
+      fontSize: '34px',
+      fontWeight: 400,
+      lineHeight: '41px',
+    },
+    xl: {
+      fontFamily: ['Helvetica'],
+      fontSize: '36px',
+      fontWeight: 400,
+      lineHeight: '43px',
+    },
+    '2xl': {
+      fontFamily: ['Helvetica'],
+      fontSize: '38px',
+      fontWeight: 400,
+      lineHeight: '46px',
+    },
+    '3xl': {
+      fontFamily: ['Helvetica'],
+      fontSize: '40px',
+      fontWeight: 400,
+      lineHeight: '48px',
+    },
+  },
+  'typography.body': {
+    xs: {
+      fontFamily: ['Helvetica'],
+      fontSize: '14px',
+      fontWeight: 400,
+      lineHeight: '19px',
+    },
+    s: {
+      fontFamily: ['Helvetica'],
+      fontSize: '15px',
+      fontWeight: 400,
+      lineHeight: '20px',
+    },
+    m: {
+      fontFamily: ['Helvetica'],
+      fontSize: '16px',
+      fontWeight: 400,
+      lineHeight: '21px',
+    },
+    l: {
+      fontFamily: ['Helvetica'],
+      fontSize: '17px',
+      fontWeight: 400,
+      lineHeight: '22px',
+    },
+    xl: {
+      fontFamily: ['Helvetica'],
+      fontSize: '19px',
+      fontWeight: 400,
+      lineHeight: '24px',
+    },
+    '2xl': {
+      fontFamily: ['Helvetica'],
+      fontSize: '21px',
+      fontWeight: 400,
+      lineHeight: '26px',
+    },
+    '3xl': {
+      fontFamily: ['Helvetica'],
+      fontSize: '23px',
+      fontWeight: 400,
+      lineHeight: '29px',
+    },
+  },
+};
 
 /** Get individual token */
 export function token(tokenID, modeName) {

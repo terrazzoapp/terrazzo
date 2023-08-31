@@ -196,997 +196,997 @@ export const tokens = {
 
 export const meta = {
   'ease.circ-in': {
-    '_original': {
-      '$value': [0.55, 0, 1, 0.45],
+    _original: {
+      $value: [0.55, 0, 1, 0.45],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.circ-in',
-    '$type': 'cubicBezier',
-    '$value': [0.55, 0, 1, 0.45],
+    $type: 'cubicBezier',
+    $value: [0.55, 0, 1, 0.45],
   },
   'ease.circ-out': {
-    '_original': {
-      '$value': [0.33, 1, 0.68, 1],
+    _original: {
+      $value: [0.33, 1, 0.68, 1],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.circ-out',
-    '$type': 'cubicBezier',
-    '$value': [0.33, 1, 0.68, 1],
+    $type: 'cubicBezier',
+    $value: [0.33, 1, 0.68, 1],
   },
   'ease.circ-in-out': {
-    '_original': {
-      '$value': [0.85, 0, 0.15, 1],
+    _original: {
+      $value: [0.85, 0, 0.15, 1],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.circ-in-out',
-    '$type': 'cubicBezier',
-    '$value': [0.85, 0, 0.15, 1],
+    $type: 'cubicBezier',
+    $value: [0.85, 0, 0.15, 1],
   },
   'ease.cubic-in': {
-    '_original': {
-      '$value': [0.32, 0, 0.67, 0],
+    _original: {
+      $value: [0.32, 0, 0.67, 0],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.cubic-in',
-    '$type': 'cubicBezier',
-    '$value': [0.32, 0, 0.67, 0],
+    $type: 'cubicBezier',
+    $value: [0.32, 0, 0.67, 0],
   },
   'ease.cubic-in-out': {
-    '_original': {
-      '$value': [0.65, 0, 0.35, 1],
+    _original: {
+      $value: [0.65, 0, 0.35, 1],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.cubic-in-out',
-    '$type': 'cubicBezier',
-    '$value': [0.65, 0, 0.35, 1],
+    $type: 'cubicBezier',
+    $value: [0.65, 0, 0.35, 1],
   },
   'ease.cubic-out': {
-    '_original': {
-      '$value': [0.33, 1, 0.68, 1],
+    _original: {
+      $value: [0.33, 1, 0.68, 1],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.cubic-out',
-    '$type': 'cubicBezier',
-    '$value': [0.33, 1, 0.68, 1],
+    $type: 'cubicBezier',
+    $value: [0.33, 1, 0.68, 1],
   },
   'ease.linear': {
-    '_original': {
-      '$value': [0, 0, 1, 1],
+    _original: {
+      $value: [0, 0, 1, 1],
     },
-    '_group': {
+    _group: {
       id: 'ease',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Easing curves',
-      '$type': 'cubicBezier',
+      $description: 'Easing curves',
+      $type: 'cubicBezier',
     },
     id: 'ease.linear',
-    '$type': 'cubicBezier',
-    '$value': [0, 0, 1, 1],
+    $type: 'cubicBezier',
+    $value: [0, 0, 1, 1],
   },
   'timing.instant': {
-    '_original': {
-      '$value': '50ms',
+    _original: {
+      $value: '50ms',
     },
-    '_group': {
+    _group: {
       id: 'timing',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Standardized beats',
-      '$type': 'duration',
+      $description: 'Standardized beats',
+      $type: 'duration',
     },
     id: 'timing.instant',
-    '$type': 'duration',
-    '$value': '50ms',
+    $type: 'duration',
+    $value: '50ms',
   },
   'timing.quick': {
-    '_original': {
-      '$value': '100ms',
+    _original: {
+      $value: '100ms',
     },
-    '_group': {
+    _group: {
       id: 'timing',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Standardized beats',
-      '$type': 'duration',
+      $description: 'Standardized beats',
+      $type: 'duration',
     },
     id: 'timing.quick',
-    '$type': 'duration',
-    '$value': '100ms',
+    $type: 'duration',
+    $value: '100ms',
   },
   'timing.moderate': {
-    '_original': {
-      '$value': '250ms',
+    _original: {
+      $value: '250ms',
     },
-    '_group': {
+    _group: {
       id: 'timing',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Standardized beats',
-      '$type': 'duration',
+      $description: 'Standardized beats',
+      $type: 'duration',
     },
     id: 'timing.moderate',
-    '$type': 'duration',
-    '$value': '250ms',
+    $type: 'duration',
+    $value: '250ms',
   },
   'timing.deliberate': {
-    '_original': {
-      '$value': '500ms',
+    _original: {
+      $value: '500ms',
     },
-    '_group': {
+    _group: {
       id: 'timing',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Standardized beats',
-      '$type': 'duration',
+      $description: 'Standardized beats',
+      $type: 'duration',
     },
     id: 'timing.deliberate',
-    '$type': 'duration',
-    '$value': '500ms',
+    $type: 'duration',
+    $value: '500ms',
   },
   'timing.slow': {
-    '_original': {
-      '$value': '1s',
+    _original: {
+      $value: '1s',
     },
-    '_group': {
+    _group: {
       id: 'timing',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Standardized beats',
-      '$type': 'duration',
+      $description: 'Standardized beats',
+      $type: 'duration',
     },
     id: 'timing.slow',
-    '$type': 'duration',
-    '$value': '1s',
+    $type: 'duration',
+    $value: '1s',
   },
   'transition.circ-in-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.circ-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.55, 0, 1, 0.45],
     },
   },
   'transition.circ-in-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.circ-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.55, 0, 1, 0.45],
     },
   },
   'transition.circ-in-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.circ-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.55, 0, 1, 0.45],
     },
   },
   'transition.circ-in-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.circ-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.55, 0, 1, 0.45],
     },
   },
   'transition.circ-in-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.circ-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.55, 0, 1, 0.45],
     },
   },
   'transition.circ-in-out-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.circ-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-out-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.85, 0, 0.15, 1],
     },
   },
   'transition.circ-in-out-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.circ-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-out-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.85, 0, 0.15, 1],
     },
   },
   'transition.circ-in-out-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.circ-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-out-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.85, 0, 0.15, 1],
     },
   },
   'transition.circ-in-out-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.circ-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-out-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.85, 0, 0.15, 1],
     },
   },
   'transition.circ-in-out-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.circ-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-in-out-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.85, 0, 0.15, 1],
     },
   },
   'transition.circ-out-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.circ-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-out-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.circ-out-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.circ-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-out-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.circ-out-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.circ-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-out-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.circ-out-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.circ-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-out-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.circ-out-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.circ-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.circ-out-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.cubic-in-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.cubic-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.32, 0, 0.67, 0],
     },
   },
   'transition.cubic-in-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.cubic-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.32, 0, 0.67, 0],
     },
   },
   'transition.cubic-in-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.cubic-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.32, 0, 0.67, 0],
     },
   },
   'transition.cubic-in-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.cubic-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.32, 0, 0.67, 0],
     },
   },
   'transition.cubic-in-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.cubic-in}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.32, 0, 0.67, 0],
     },
   },
   'transition.cubic-in-out-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.cubic-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-out-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.65, 0, 0.35, 1],
     },
   },
   'transition.cubic-in-out-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.cubic-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-out-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.65, 0, 0.35, 1],
     },
   },
   'transition.cubic-in-out-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.cubic-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-out-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.65, 0, 0.35, 1],
     },
   },
   'transition.cubic-in-out-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.cubic-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-out-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.65, 0, 0.35, 1],
     },
   },
   'transition.cubic-in-out-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.cubic-in-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-in-out-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.65, 0, 0.35, 1],
     },
   },
   'transition.cubic-out-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.cubic-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-out-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.cubic-out-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.cubic-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-out-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.cubic-out-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.cubic-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-out-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.cubic-out-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.cubic-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-out-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.cubic-out-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.cubic-out}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.cubic-out-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0.33, 1, 0.68, 1],
     },
   },
   'transition.linear-instant': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.instant}',
         timingFunction: '{ease.linear}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.linear-instant',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '50ms',
       delay: '0ms',
       timingFunction: [0, 0, 1, 1],
     },
   },
   'transition.linear-quick': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.quick}',
         timingFunction: '{ease.linear}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.linear-quick',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '100ms',
       delay: '0ms',
       timingFunction: [0, 0, 1, 1],
     },
   },
   'transition.linear-moderate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.moderate}',
         timingFunction: '{ease.linear}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.linear-moderate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '250ms',
       delay: '0ms',
       timingFunction: [0, 0, 1, 1],
     },
   },
   'transition.linear-deliberate': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.deliberate}',
         timingFunction: '{ease.linear}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.linear-deliberate',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '500ms',
       delay: '0ms',
       timingFunction: [0, 0, 1, 1],
     },
   },
   'transition.linear-slow': {
-    '_original': {
-      '$value': {
+    _original: {
+      $value: {
         duration: '{timing.slow}',
         timingFunction: '{ease.linear}',
       },
     },
-    '_group': {
+    _group: {
       id: 'transition',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
-      '$description': 'Shared transitions',
-      '$type': 'transition',
+      $description: 'Shared transitions',
+      $type: 'transition',
     },
     id: 'transition.linear-slow',
-    '$type': 'transition',
-    '$value': {
+    $type: 'transition',
+    $value: {
       duration: '1s',
       delay: '0ms',
       timingFunction: [0, 0, 1, 1],
