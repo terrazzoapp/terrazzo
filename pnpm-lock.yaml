@@ -248,7 +248,7 @@ importers:
   packages/core:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.1.1
+        specifier: ^1.2.1
         version: link:../utils
       '@types/culori':
         specifier: ^2.0.0
