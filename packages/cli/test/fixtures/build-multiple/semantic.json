@@ -3,7 +3,7 @@
     "$type": "color",
     "ui": {
       "contrast": {
-        "0": {"$value": "{color.gray.100}", "$extensions": {"mode": {"light": "{color.gray.100}", "dark": "{color.gray.0}"}}},
+        "00": {"$value": "{color.gray.100}", "$extensions": {"mode": {"light": "{color.gray.100}", "dark": "{color.gray.00}"}}},
         "05": {"$value": "{color.gray.95}", "$extensions": {"mode": {"light": "{color.gray.95}", "dark": "{color.gray.10}"}}},
         "10": {"$value": "{color.gray.90}", "$extensions": {"mode": {"light": "{color.gray.90}", "dark": "{color.gray.10}"}}},
         "15": {"$value": "{color.gray.85}", "$extensions": {"mode": {"light": "{color.gray.85}", "dark": "{color.gray.15}"}}},
@@ -17,7 +17,7 @@
         "85": {"$value": "{color.gray.15}", "$extensions": {"mode": {"light": "{color.gray.15}", "dark": "{color.gray.85}"}}},
         "90": {"$value": "{color.gray.10}", "$extensions": {"mode": {"light": "{color.gray.10}", "dark": "{color.gray.90}"}}},
         "95": {"$value": "{color.gray.10}", "$extensions": {"mode": {"light": "{color.gray.10}", "dark": "{color.gray.95}"}}},
-        "100": {"$value": "{color.gray.0}", "$extensions": {"mode": {"light": "{color.gray.0}", "dark": "{color.gray.100}"}}}
+        "100": {"$value": "{color.gray.00}", "$extensions": {"mode": {"light": "{color.gray.00}", "dark": "{color.gray.100}"}}}
       },
       "action": {
         "10": {"$value": "{color.blue.10}"},

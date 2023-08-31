@@ -41,9 +41,9 @@ for (const icon of Object.values(icons)) {
 }
 
 // typography
-for (const [fontName, value] of Object.entries(typography)) {
+for (const [fontFamily, value] of Object.entries(typography)) {
   // family
-  if (fontName == 'fontFamilies') {
+  if (fontFamily == 'fontFamilies') {
     for (const [familyName, fontStack] of Object.entries(value)) {
       schema.tokens.font.family[familyName] = {
         type: 'fontFamily',
@@ -54,7 +54,7 @@ for (const [fontName, value] of Object.entries(typography)) {
   }
   // size
   if (typeof value == 'object' && value.fontSize) {
-    schema.tokens.font.size[fontName] = {
+    schema.tokens.font.size[fontFamily] = {
       type: 'dimension',
       value: value.fontSize,
     };

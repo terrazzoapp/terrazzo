@@ -5,58 +5,58 @@
  */
 
 :root {
-  --ds-color-blue: #218bff;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #218bff;
   --ds-gradient: #218bff 0%, #e85aad 100%;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-color-blue: #218bff;
     --ds-color-action: var(--ds-color-blue);
+    --ds-color-blue: #218bff;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ds-color-blue: #388bfd;
     --ds-color-action: var(--ds-color-blue);
+    --ds-color-blue: #388bfd;
   }
 }
 
 [data-color-theme="light"] {
-  --ds-color-blue: #218bff;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #218bff;
 }
 
 [data-color-theme="dark"] {
-  --ds-color-blue: #388bfd;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #388bfd;
 }
 
 [data-color-theme="light-colorblind"] {
-  --ds-color-blue: #218bff;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #218bff;
 }
 
 [data-color-theme="light-high-contrast"] {
-  --ds-color-blue: #1168e3;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #1168e3;
 }
 
 [data-color-theme="dark-dimmed"] {
-  --ds-color-blue: #4184e4;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #4184e4;
 }
 
 [data-color-theme="high-contrast"] {
-  --ds-color-blue: #409eff;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #409eff;
 }
 
 [data-color-theme="dark-colorblind"] {
-  --ds-color-blue: #388bfd;
   --ds-color-action: var(--ds-color-blue);
+  --ds-color-blue: #388bfd;
 }
 
 @supports (color: color(display-p3 1 1 1)) {

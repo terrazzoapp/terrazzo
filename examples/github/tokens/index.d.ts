@@ -97,6 +97,7 @@ export declare const tokens: {
   'color.red7': ColorToken['$value'];
   'color.red8': ColorToken['$value'];
   'color.red9': ColorToken['$value'];
+  'color.white': ColorToken['$value'];
   'color.yellow0': ColorToken['$value'];
   'color.yellow1': ColorToken['$value'];
   'color.yellow2': ColorToken['$value'];
@@ -107,13 +108,26 @@ export declare const tokens: {
   'color.yellow7': ColorToken['$value'];
   'color.yellow8': ColorToken['$value'];
   'color.yellow9': ColorToken['$value'];
-  'color.white': ColorToken['$value'];
+  'font.family.display': FontFamilyToken['$value'];
+  'font.family.lineHeight.condensed': DimensionToken['$value'];
+  'font.family.lineHeight.condensedUltra': DimensionToken['$value'];
+  'font.family.lineHeight.default': DimensionToken['$value'];
+  'font.family.monospace': FontFamilyToken['$value'];
+  'font.family.size.f00': DimensionToken['$value'];
+  'font.family.size.f0': DimensionToken['$value'];
+  'font.family.size.f1': DimensionToken['$value'];
+  'font.family.size.f2': DimensionToken['$value'];
+  'font.family.size.f3': DimensionToken['$value'];
+  'font.family.size.f4': DimensionToken['$value'];
+  'font.family.size.f5': DimensionToken['$value'];
+  'font.family.size.f6': DimensionToken['$value'];
+  'font.family.system': FontFamilyToken['$value'];
   'icon.alert-16': LinkToken['$value'];
   'icon.alert-24': LinkToken['$value'];
+  'icon.alert-fill-12': LinkToken['$value'];
   'icon.archive-16': LinkToken['$value'];
   'icon.archive-24': LinkToken['$value'];
   'icon.arrow-both-16': LinkToken['$value'];
-  'icon.alert-fill-12': LinkToken['$value'];
   'icon.arrow-both-24': LinkToken['$value'];
   'icon.arrow-down-16': LinkToken['$value'];
   'icon.arrow-down-24': LinkToken['$value'];
@@ -578,26 +592,12 @@ export declare const tokens: {
   'icon.zap-16': LinkToken['$value'];
   'icon.zap-24': LinkToken['$value'];
   'spacing.spacer0': DimensionToken['$value'];
-  'spacing.spacerXs': DimensionToken['$value'];
-  'spacing.spacerS': DimensionToken['$value'];
   'spacing.spacerM': DimensionToken['$value'];
+  'spacing.spacerS': DimensionToken['$value'];
   'spacing.spacerX': DimensionToken['$value'];
   'spacing.spacerXl': DimensionToken['$value'];
+  'spacing.spacerXs': DimensionToken['$value'];
   'spacing.spacerXxl': DimensionToken['$value'];
-  'font.family.system': FontFamilyToken['$value'];
-  'font.family.monospace': FontFamilyToken['$value'];
-  'font.family.display': FontFamilyToken['$value'];
-  'font.family.size.f00': DimensionToken['$value'];
-  'font.family.size.f0': DimensionToken['$value'];
-  'font.family.size.f1': DimensionToken['$value'];
-  'font.family.size.f2': DimensionToken['$value'];
-  'font.family.size.f3': DimensionToken['$value'];
-  'font.family.size.f4': DimensionToken['$value'];
-  'font.family.size.f5': DimensionToken['$value'];
-  'font.family.size.f6': DimensionToken['$value'];
-  'font.family.lineHeight.default': DimensionToken['$value'];
-  'font.family.lineHeight.condensed': DimensionToken['$value'];
-  'font.family.lineHeight.condensedUltra': DimensionToken['$value'];
 };
 
 export declare const meta: {
@@ -682,6 +682,7 @@ export declare const meta: {
   'color.red7': ParsedColorToken & { $extensions: { mode: typeof modes['color.red7'] } };
   'color.red8': ParsedColorToken & { $extensions: { mode: typeof modes['color.red8'] } };
   'color.red9': ParsedColorToken & { $extensions: { mode: typeof modes['color.red9'] } };
+  'color.white': ParsedColorToken & { $extensions: { mode: typeof modes['color.white'] } };
   'color.yellow0': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow0'] } };
   'color.yellow1': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow1'] } };
   'color.yellow2': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow2'] } };
@@ -692,13 +693,26 @@ export declare const meta: {
   'color.yellow7': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow7'] } };
   'color.yellow8': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow8'] } };
   'color.yellow9': ParsedColorToken & { $extensions: { mode: typeof modes['color.yellow9'] } };
-  'color.white': ParsedColorToken & { $extensions: { mode: typeof modes['color.white'] } };
+  'font.family.display': ParsedFontFamilyToken;
+  'font.family.lineHeight.condensed': ParsedDimensionToken;
+  'font.family.lineHeight.condensedUltra': ParsedDimensionToken;
+  'font.family.lineHeight.default': ParsedDimensionToken;
+  'font.family.monospace': ParsedFontFamilyToken;
+  'font.family.size.f00': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f00'] } };
+  'font.family.size.f0': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f0'] } };
+  'font.family.size.f1': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f1'] } };
+  'font.family.size.f2': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f2'] } };
+  'font.family.size.f3': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f3'] } };
+  'font.family.size.f4': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f4'] } };
+  'font.family.size.f5': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f5'] } };
+  'font.family.size.f6': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f6'] } };
+  'font.family.system': ParsedFontFamilyToken;
   'icon.alert-16': ParsedLinkToken;
   'icon.alert-24': ParsedLinkToken;
+  'icon.alert-fill-12': ParsedLinkToken;
   'icon.archive-16': ParsedLinkToken;
   'icon.archive-24': ParsedLinkToken;
   'icon.arrow-both-16': ParsedLinkToken;
-  'icon.alert-fill-12': ParsedLinkToken;
   'icon.arrow-both-24': ParsedLinkToken;
   'icon.arrow-down-16': ParsedLinkToken;
   'icon.arrow-down-24': ParsedLinkToken;
@@ -1163,26 +1177,12 @@ export declare const meta: {
   'icon.zap-16': ParsedLinkToken;
   'icon.zap-24': ParsedLinkToken;
   'spacing.spacer0': ParsedDimensionToken;
-  'spacing.spacerXs': ParsedDimensionToken;
-  'spacing.spacerS': ParsedDimensionToken;
   'spacing.spacerM': ParsedDimensionToken;
+  'spacing.spacerS': ParsedDimensionToken;
   'spacing.spacerX': ParsedDimensionToken;
   'spacing.spacerXl': ParsedDimensionToken;
+  'spacing.spacerXs': ParsedDimensionToken;
   'spacing.spacerXxl': ParsedDimensionToken;
-  'font.family.system': ParsedFontFamilyToken;
-  'font.family.monospace': ParsedFontFamilyToken;
-  'font.family.display': ParsedFontFamilyToken;
-  'font.family.size.f00': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f00'] } };
-  'font.family.size.f0': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f0'] } };
-  'font.family.size.f1': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f1'] } };
-  'font.family.size.f2': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f2'] } };
-  'font.family.size.f3': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f3'] } };
-  'font.family.size.f4': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f4'] } };
-  'font.family.size.f5': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f5'] } };
-  'font.family.size.f6': ParsedDimensionToken & { $extensions: { mode: typeof modes['font.family.size.f6'] } };
-  'font.family.lineHeight.default': ParsedDimensionToken;
-  'font.family.lineHeight.condensed': ParsedDimensionToken;
-  'font.family.lineHeight.condensedUltra': ParsedDimensionToken;
 };
 
 export declare const modes: {
@@ -1916,6 +1916,15 @@ export declare const modes: {
     'dark-high-contrast': ColorToken['$value'];
     'dark-colorblind': ColorToken['$value'];
   };
+  'color.white': {
+    light: ColorToken['$value'];
+    'light-colorblind': ColorToken['$value'];
+    'light-high-contrast': ColorToken['$value'];
+    dark: ColorToken['$value'];
+    'dark-dimmed': ColorToken['$value'];
+    'dark-high-contrast': ColorToken['$value'];
+    'dark-colorblind': ColorToken['$value'];
+  };
   'color.yellow0': {
     light: ColorToken['$value'];
     'light-colorblind': ColorToken['$value'];
@@ -1998,15 +2007,6 @@ export declare const modes: {
     'dark-colorblind': ColorToken['$value'];
   };
   'color.yellow9': {
-    light: ColorToken['$value'];
-    'light-colorblind': ColorToken['$value'];
-    'light-high-contrast': ColorToken['$value'];
-    dark: ColorToken['$value'];
-    'dark-dimmed': ColorToken['$value'];
-    'dark-high-contrast': ColorToken['$value'];
-    'dark-colorblind': ColorToken['$value'];
-  };
-  'color.white': {
     light: ColorToken['$value'];
     'light-colorblind': ColorToken['$value'];
     'light-high-contrast': ColorToken['$value'];

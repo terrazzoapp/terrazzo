@@ -14,14 +14,14 @@ export const tokens = {
 
 export const meta = {
   border: {
-    '_original': {
-      '$type': 'border',
-      '$value': {
+    _original: {
+      $type: 'border',
+      $value: {
         color: '#0d0300',
         width: '1px',
         style: 'solid',
       },
-      '$extensions': {
+      $extensions: {
         mode: {
           light: {
             color: '#0d0300',
@@ -36,20 +36,20 @@ export const meta = {
         },
       },
     },
-    '_group': {
+    _group: {
       id: '.',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'border',
-    '$type': 'border',
-    '$value': {
+    $type: 'border',
+    $value: {
       color: '#0d0300',
       width: '1px',
       style: 'solid',
     },
-    '$extensions': {
+    $extensions: {
       mode: {
         light: {
           color: '#0d0300',

@@ -5,7 +5,7 @@
  */
 
 :root {
-  --color-blue: #218bff;
   --color-action: var(--color-blue);
+  --color-blue: #218bff;
   --gradient: #218bff 0%, #e85aad 100%;
 }

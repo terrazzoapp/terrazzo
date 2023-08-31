@@ -11,6 +11,7 @@ import {
 
 export declare const tokens: {
   'color.black': ColorToken['$value'];
+  'color.blue.00': ColorToken['$value'];
   'color.blue.10': ColorToken['$value'];
   'color.blue.20': ColorToken['$value'];
   'color.blue.30': ColorToken['$value'];
@@ -21,14 +22,14 @@ export declare const tokens: {
   'color.blue.80': ColorToken['$value'];
   'color.blue.90': ColorToken['$value'];
   'color.blue.100': ColorToken['$value'];
-  'color.blue.00': ColorToken['$value'];
   'color.white': ColorToken['$value'];
-  'ui.fg': ColorToken['$value'];
   'ui.bg': ColorToken['$value'];
+  'ui.fg': ColorToken['$value'];
 };
 
 export declare const meta: {
   'color.black': ParsedColorToken;
+  'color.blue.00': ParsedColorToken;
   'color.blue.10': ParsedColorToken;
   'color.blue.20': ParsedColorToken;
   'color.blue.30': ParsedColorToken;
@@ -39,18 +40,17 @@ export declare const meta: {
   'color.blue.80': ParsedColorToken;
   'color.blue.90': ParsedColorToken;
   'color.blue.100': ParsedColorToken;
-  'color.blue.00': ParsedColorToken;
   'color.white': ParsedColorToken;
-  'ui.fg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
   'ui.bg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.bg'] } };
+  'ui.fg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
 };
 
 export declare const modes: {
-  'ui.fg': {
+  'ui.bg': {
     light: ColorToken['$value'];
     dark: ColorToken['$value'];
   };
-  'ui.bg': {
+  'ui.fg': {
     light: ColorToken['$value'];
     dark: ColorToken['$value'];
   };

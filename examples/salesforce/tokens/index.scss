@@ -8,471 +8,6 @@
 @use "sass:map";
 
 $__token-values: (
-  "palette.blue10": (
-    default: (#001639),
-  ),
-  "palette.blue15": (
-    default: (#03234d),
-  ),
-  "palette.blue20": (
-    default: (#032d60),
-  ),
-  "palette.blue30": (
-    default: (#014486),
-  ),
-  "palette.blue40": (
-    default: (#0b5cab),
-  ),
-  "palette.blue50": (
-    default: (#0176d3),
-  ),
-  "palette.blue60": (
-    default: (#1b96ff),
-  ),
-  "palette.blue65": (
-    default: (#57a3fd),
-  ),
-  "palette.blue70": (
-    default: (#78b0fd),
-  ),
-  "palette.blue80": (
-    default: (#aacbff),
-  ),
-  "palette.blue90": (
-    default: (#d8e6fe),
-  ),
-  "palette.blue95": (
-    default: (#eef4ff),
-  ),
-  "palette.cloudBlue10": (
-    default: (#001a28),
-  ),
-  "palette.cloudBlue15": (
-    default: (#0a2636),
-  ),
-  "palette.cloudBlue20": (
-    default: (#023248),
-  ),
-  "palette.cloudBlue30": (
-    default: (#084968),
-  ),
-  "palette.cloudBlue40": (
-    default: (#05628a),
-  ),
-  "palette.cloudBlue50": (
-    default: (#107cad),
-  ),
-  "palette.cloudBlue60": (
-    default: (#0d9dda),
-  ),
-  "palette.cloudBlue65": (
-    default: (#08abed),
-  ),
-  "palette.cloudBlue70": (
-    default: (#1ab9ff),
-  ),
-  "palette.cloudBlue80": (
-    default: (#90d0fe),
-  ),
-  "palette.cloudBlue90": (
-    default: (#cfe9fe),
-  ),
-  "palette.cloudBlue95": (
-    default: (#eaf5fe),
-  ),
-  "palette.green10": (
-    default: (#071b12),
-  ),
-  "palette.green15": (
-    default: (#0c2912),
-  ),
-  "palette.green20": (
-    default: (#0e3522),
-  ),
-  "palette.green30": (
-    default: (#194e31),
-  ),
-  "palette.green40": (
-    default: (#22683e),
-  ),
-  "palette.green50": (
-    default: (#2e844a),
-  ),
-  "palette.green60": (
-    default: (#3ba755),
-  ),
-  "palette.green65": (
-    default: (#41b658),
-  ),
-  "palette.green70": (
-    default: (#45c65a),
-  ),
-  "palette.green80": (
-    default: (#91db8b),
-  ),
-  "palette.green90": (
-    default: (#cdefc4),
-  ),
-  "palette.green95": (
-    default: (#ebf7e6),
-  ),
-  "palette.hotOrange10": (
-    default: (#281202),
-  ),
-  "palette.hotOrange15": (
-    default: (#421604),
-  ),
-  "palette.hotOrange20": (
-    default: (#541d01),
-  ),
-  "palette.hotOrange30": (
-    default: (#7e2600),
-  ),
-  "palette.hotOrange40": (
-    default: (#aa3001),
-  ),
-  "palette.hotOrange50": (
-    default: (#d83a00),
-  ),
-  "palette.hotOrange60": (
-    default: (#ff5d2d),
-  ),
-  "palette.hotOrange65": (
-    default: (#ff784f),
-  ),
-  "palette.hotOrange70": (
-    default: (#ff906e),
-  ),
-  "palette.hotOrange80": (
-    default: (#feb9a5),
-  ),
-  "palette.hotOrange90": (
-    default: (#ffded5),
-  ),
-  "palette.hotOrange95": (
-    default: (#fef1ed),
-  ),
-  "palette.indigo10": (
-    default: (#200647),
-  ),
-  "palette.indigo15": (
-    default: (#1f0974),
-  ),
-  "palette.indigo20": (
-    default: (#260f8f),
-  ),
-  "palette.indigo30": (
-    default: (#2f2cb7),
-  ),
-  "palette.indigo40": (
-    default: (#3a49da),
-  ),
-  "palette.indigo50": (
-    default: (#5867e8),
-  ),
-  "palette.indigo60": (
-    default: (#7f8ced),
-  ),
-  "palette.indigo65": (
-    default: (#8e9bef),
-  ),
-  "palette.indigo70": (
-    default: (#9ea9f1),
-  ),
-  "palette.indigo80": (
-    default: (#bec7f6),
-  ),
-  "palette.indigo90": (
-    default: (#e0e5f8),
-  ),
-  "palette.indigo95": (
-    default: (#f1f3fb),
-  ),
-  "palette.neutral10": (
-    default: (#181818),
-  ),
-  "palette.neutral20": (
-    default: (#2e2e2e),
-  ),
-  "palette.neutral30": (
-    default: (#444444),
-  ),
-  "palette.neutral40": (
-    default: (#5c5c5c),
-  ),
-  "palette.neutral50": (
-    default: (#747474),
-  ),
-  "palette.neutral60": (
-    default: (#939393),
-  ),
-  "palette.neutral70": (
-    default: (#aeaeae),
-  ),
-  "palette.neutral80": (
-    default: (#c9c9c9),
-  ),
-  "palette.neutral90": (
-    default: (#e5e5e5),
-  ),
-  "palette.neutral95": (
-    default: (#f3f3f3),
-  ),
-  "palette.neutral100": (
-    default: (#ffffff),
-  ),
-  "palette.orange10": (
-    default: (#201600),
-  ),
-  "palette.orange15": (
-    default: (#371e03),
-  ),
-  "palette.orange20": (
-    default: (#3e2b02),
-  ),
-  "palette.orange30": (
-    default: (#5f3e02),
-  ),
-  "palette.orange40": (
-    default: (#825101),
-  ),
-  "palette.orange50": (
-    default: (#a96404),
-  ),
-  "palette.orange60": (
-    default: (#dd7a01),
-  ),
-  "palette.orange65": (
-    default: (#f38303),
-  ),
-  "palette.orange70": (
-    default: (#fe9339),
-  ),
-  "palette.orange80": (
-    default: (#ffba90),
-  ),
-  "palette.orange90": (
-    default: (#fedfd0),
-  ),
-  "palette.orange95": (
-    default: (#fff1ea),
-  ),
-  "palette.pink10": (
-    default: (#370114),
-  ),
-  "palette.pink15": (
-    default: (#4b0620),
-  ),
-  "palette.pink20": (
-    default: (#61022a),
-  ),
-  "palette.pink30": (
-    default: (#8a033e),
-  ),
-  "palette.pink40": (
-    default: (#b60554),
-  ),
-  "palette.pink50": (
-    default: (#e3066a),
-  ),
-  "palette.pink60": (
-    default: (#ff538a),
-  ),
-  "palette.pink65": (
-    default: (#fe7298),
-  ),
-  "palette.pink70": (
-    default: (#fe8aa7),
-  ),
-  "palette.pink80": (
-    default: (#fdb6c5),
-  ),
-  "palette.pink90": (
-    default: (#fddde3),
-  ),
-  "palette.pink95": (
-    default: (#fef0f3),
-  ),
-  "palette.purple10": (
-    default: (#240643),
-  ),
-  "palette.purple15": (
-    default: (#300b60),
-  ),
-  "palette.purple20": (
-    default: (#401075),
-  ),
-  "palette.purple30": (
-    default: (#5a1ba9),
-  ),
-  "palette.purple40": (
-    default: (#7526e3),
-  ),
-  "palette.purple50": (
-    default: (#9050e9),
-  ),
-  "palette.purple60": (
-    default: (#ad7bee),
-  ),
-  "palette.purple65": (
-    default: (#b78def),
-  ),
-  "palette.purple70": (
-    default: (#c29ef1),
-  ),
-  "palette.purple80": (
-    default: (#d78ff5),
-  ),
-  "palette.purple90": (
-    default: (#ece1f9),
-  ),
-  "palette.purple95": (
-    default: (#f6f2fb),
-  ),
-  "palette.red10": (
-    default: (#300c01),
-  ),
-  "palette.red15": (
-    default: (#4a0c04),
-  ),
-  "palette.red20": (
-    default: (#640103),
-  ),
-  "palette.red30": (
-    default: (#8e030f),
-  ),
-  "palette.red40": (
-    default: (#ba0517),
-  ),
-  "palette.red50": (
-    default: (#ea001e),
-  ),
-  "palette.red60": (
-    default: (#fe5c4c),
-  ),
-  "palette.red65": (
-    default: (#fe7765),
-  ),
-  "palette.red70": (
-    default: (#fe8f7d),
-  ),
-  "palette.red80": (
-    default: (#feb8ab),
-  ),
-  "palette.red90": (
-    default: (#feded8),
-  ),
-  "palette.red95": (
-    default: (#fef1ee),
-  ),
-  "palette.teal10": (
-    default: (#071b12),
-  ),
-  "palette.teal15": (
-    default: (#072825),
-  ),
-  "palette.teal20": (
-    default: (#023434),
-  ),
-  "palette.teal30": (
-    default: (#024d4c),
-  ),
-  "palette.teal40": (
-    default: (#056764),
-  ),
-  "palette.teal50": (
-    default: (#0b827c),
-  ),
-  "palette.teal60": (
-    default: (#06a59a),
-  ),
-  "palette.teal65": (
-    default: (#03b4a7),
-  ),
-  "palette.teal70": (
-    default: (#01c3b3),
-  ),
-  "palette.teal80": (
-    default: (#04e1cb),
-  ),
-  "palette.teal90": (
-    default: (#acf3e4),
-  ),
-  "palette.teal95": (
-    default: (#def9f3),
-  ),
-  "palette.violet10": (
-    default: (#2e0039),
-  ),
-  "palette.violet15": (
-    default: (#3d0157),
-  ),
-  "palette.violet20": (
-    default: (#520066),
-  ),
-  "palette.violet30": (
-    default: (#730394),
-  ),
-  "palette.violet40": (
-    default: (#9602c7),
-  ),
-  "palette.violet50": (
-    default: (#ba01ff),
-  ),
-  "palette.violet60": (
-    default: (#cb65ff),
-  ),
-  "palette.violet65": (
-    default: (#d17dfe),
-  ),
-  "palette.violet70": (
-    default: (#d892fe),
-  ),
-  "palette.violet80": (
-    default: (#e5b9fe),
-  ),
-  "palette.violet90": (
-    default: (#f2defe),
-  ),
-  "palette.violet95": (
-    default: (#f9f0ff),
-  ),
-  "palette.yellow10": (
-    default: (#281202),
-  ),
-  "palette.yellow15": (
-    default: (#2e2204),
-  ),
-  "palette.yellow20": (
-    default: (#4f2100),
-  ),
-  "palette.yellow30": (
-    default: (#6f3400),
-  ),
-  "palette.yellow40": (
-    default: (#8c4b02),
-  ),
-  "palette.yellow50": (
-    default: (#a86403),
-  ),
-  "palette.yellow60": (
-    default: (#ca8501),
-  ),
-  "palette.yellow65": (
-    default: (#d79304),
-  ),
-  "palette.yellow70": (
-    default: (#e4a201),
-  ),
-  "palette.yellow80": (
-    default: (#fcc003),
-  ),
-  "palette.yellow90": (
-    default: (#f9e3b6),
-  ),
-  "palette.yellow95": (
-    default: (#fbf3e0),
-  ),
   "color.background": (
     default: (#f3f2f2),
   ),
@@ -962,30 +497,6 @@ $__token-values: (
   "color.textWeak": (
     default: (#514f4d),
   ),
-  "icon.size.xxxSmall": (
-    default: (3rem),
-  ),
-  "icon.size.xxSmall": (
-    default: (6rem),
-  ),
-  "icon.size.xSmall": (
-    default: (12rem),
-  ),
-  "icon.size.small": (
-    default: (15rem),
-  ),
-  "icon.size.medium": (
-    default: (20rem),
-  ),
-  "icon.size.large": (
-    default: (25rem),
-  ),
-  "icon.size.xLarge": (
-    default: (40rem),
-  ),
-  "icon.size.xxLarge": (
-    default: (60rem),
-  ),
   "font.family.base": (
     default: (-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"),
   ),
@@ -994,6 +505,15 @@ $__token-values: (
   ),
   "font.family.mono": (
     default: (Consolas, Menlo, Monaco, Courier, monospace),
+  ),
+  "font.lineHeight.heading": (
+    default: (1.25em),
+  ),
+  "font.lineHeight.reset": (
+    default: (1em),
+  ),
+  "font.lineHeight.text": (
+    default: (1.5em),
   ),
   "font.size.1": (
     default: (0.625rem),
@@ -1028,41 +548,521 @@ $__token-values: (
   "font.size.11": (
     default: (2.625rem),
   ),
-  "font.lineHeight.heading": (
-    default: (1.25em),
+  "icon.size.large": (
+    default: (25rem),
   ),
-  "font.lineHeight.text": (
-    default: (1.5em),
+  "icon.size.medium": (
+    default: (20rem),
   ),
-  "font.lineHeight.reset": (
-    default: (1em),
+  "icon.size.small": (
+    default: (15rem),
   ),
-  "space.none": (
-    default: (0),
+  "icon.size.xLarge": (
+    default: (40rem),
   ),
-  "space.xxxSmall": (
-    default: (0.125rem),
+  "icon.size.xSmall": (
+    default: (12rem),
   ),
-  "space.xxSmall": (
-    default: (0.25rem),
+  "icon.size.xxLarge": (
+    default: (60rem),
   ),
-  "space.xSmall": (
-    default: (0.5rem),
+  "icon.size.xxSmall": (
+    default: (6rem),
   ),
-  "space.small": (
-    default: (0.75rem),
+  "icon.size.xxxSmall": (
+    default: (3rem),
   ),
-  "space.medium": (
-    default: (1rem),
+  "palette.blue10": (
+    default: (#001639),
+  ),
+  "palette.blue15": (
+    default: (#03234d),
+  ),
+  "palette.blue20": (
+    default: (#032d60),
+  ),
+  "palette.blue30": (
+    default: (#014486),
+  ),
+  "palette.blue40": (
+    default: (#0b5cab),
+  ),
+  "palette.blue50": (
+    default: (#0176d3),
+  ),
+  "palette.blue60": (
+    default: (#1b96ff),
+  ),
+  "palette.blue65": (
+    default: (#57a3fd),
+  ),
+  "palette.blue70": (
+    default: (#78b0fd),
+  ),
+  "palette.blue80": (
+    default: (#aacbff),
+  ),
+  "palette.blue90": (
+    default: (#d8e6fe),
+  ),
+  "palette.blue95": (
+    default: (#eef4ff),
+  ),
+  "palette.cloudBlue10": (
+    default: (#001a28),
+  ),
+  "palette.cloudBlue15": (
+    default: (#0a2636),
+  ),
+  "palette.cloudBlue20": (
+    default: (#023248),
+  ),
+  "palette.cloudBlue30": (
+    default: (#084968),
+  ),
+  "palette.cloudBlue40": (
+    default: (#05628a),
+  ),
+  "palette.cloudBlue50": (
+    default: (#107cad),
+  ),
+  "palette.cloudBlue60": (
+    default: (#0d9dda),
+  ),
+  "palette.cloudBlue65": (
+    default: (#08abed),
+  ),
+  "palette.cloudBlue70": (
+    default: (#1ab9ff),
+  ),
+  "palette.cloudBlue80": (
+    default: (#90d0fe),
+  ),
+  "palette.cloudBlue90": (
+    default: (#cfe9fe),
+  ),
+  "palette.cloudBlue95": (
+    default: (#eaf5fe),
+  ),
+  "palette.green10": (
+    default: (#071b12),
+  ),
+  "palette.green15": (
+    default: (#0c2912),
+  ),
+  "palette.green20": (
+    default: (#0e3522),
+  ),
+  "palette.green30": (
+    default: (#194e31),
+  ),
+  "palette.green40": (
+    default: (#22683e),
+  ),
+  "palette.green50": (
+    default: (#2e844a),
+  ),
+  "palette.green60": (
+    default: (#3ba755),
+  ),
+  "palette.green65": (
+    default: (#41b658),
+  ),
+  "palette.green70": (
+    default: (#45c65a),
+  ),
+  "palette.green80": (
+    default: (#91db8b),
+  ),
+  "palette.green90": (
+    default: (#cdefc4),
+  ),
+  "palette.green95": (
+    default: (#ebf7e6),
+  ),
+  "palette.hotOrange10": (
+    default: (#281202),
+  ),
+  "palette.hotOrange15": (
+    default: (#421604),
+  ),
+  "palette.hotOrange20": (
+    default: (#541d01),
+  ),
+  "palette.hotOrange30": (
+    default: (#7e2600),
+  ),
+  "palette.hotOrange40": (
+    default: (#aa3001),
+  ),
+  "palette.hotOrange50": (
+    default: (#d83a00),
+  ),
+  "palette.hotOrange60": (
+    default: (#ff5d2d),
+  ),
+  "palette.hotOrange65": (
+    default: (#ff784f),
+  ),
+  "palette.hotOrange70": (
+    default: (#ff906e),
+  ),
+  "palette.hotOrange80": (
+    default: (#feb9a5),
+  ),
+  "palette.hotOrange90": (
+    default: (#ffded5),
+  ),
+  "palette.hotOrange95": (
+    default: (#fef1ed),
+  ),
+  "palette.indigo10": (
+    default: (#200647),
+  ),
+  "palette.indigo15": (
+    default: (#1f0974),
+  ),
+  "palette.indigo20": (
+    default: (#260f8f),
+  ),
+  "palette.indigo30": (
+    default: (#2f2cb7),
+  ),
+  "palette.indigo40": (
+    default: (#3a49da),
+  ),
+  "palette.indigo50": (
+    default: (#5867e8),
+  ),
+  "palette.indigo60": (
+    default: (#7f8ced),
+  ),
+  "palette.indigo65": (
+    default: (#8e9bef),
+  ),
+  "palette.indigo70": (
+    default: (#9ea9f1),
+  ),
+  "palette.indigo80": (
+    default: (#bec7f6),
+  ),
+  "palette.indigo90": (
+    default: (#e0e5f8),
+  ),
+  "palette.indigo95": (
+    default: (#f1f3fb),
+  ),
+  "palette.neutral10": (
+    default: (#181818),
+  ),
+  "palette.neutral20": (
+    default: (#2e2e2e),
+  ),
+  "palette.neutral30": (
+    default: (#444444),
+  ),
+  "palette.neutral40": (
+    default: (#5c5c5c),
+  ),
+  "palette.neutral50": (
+    default: (#747474),
+  ),
+  "palette.neutral60": (
+    default: (#939393),
+  ),
+  "palette.neutral70": (
+    default: (#aeaeae),
+  ),
+  "palette.neutral80": (
+    default: (#c9c9c9),
+  ),
+  "palette.neutral90": (
+    default: (#e5e5e5),
+  ),
+  "palette.neutral95": (
+    default: (#f3f3f3),
+  ),
+  "palette.neutral100": (
+    default: (#ffffff),
+  ),
+  "palette.orange10": (
+    default: (#201600),
+  ),
+  "palette.orange15": (
+    default: (#371e03),
+  ),
+  "palette.orange20": (
+    default: (#3e2b02),
+  ),
+  "palette.orange30": (
+    default: (#5f3e02),
+  ),
+  "palette.orange40": (
+    default: (#825101),
+  ),
+  "palette.orange50": (
+    default: (#a96404),
+  ),
+  "palette.orange60": (
+    default: (#dd7a01),
+  ),
+  "palette.orange65": (
+    default: (#f38303),
+  ),
+  "palette.orange70": (
+    default: (#fe9339),
+  ),
+  "palette.orange80": (
+    default: (#ffba90),
+  ),
+  "palette.orange90": (
+    default: (#fedfd0),
+  ),
+  "palette.orange95": (
+    default: (#fff1ea),
+  ),
+  "palette.pink10": (
+    default: (#370114),
+  ),
+  "palette.pink15": (
+    default: (#4b0620),
+  ),
+  "palette.pink20": (
+    default: (#61022a),
+  ),
+  "palette.pink30": (
+    default: (#8a033e),
+  ),
+  "palette.pink40": (
+    default: (#b60554),
+  ),
+  "palette.pink50": (
+    default: (#e3066a),
+  ),
+  "palette.pink60": (
+    default: (#ff538a),
+  ),
+  "palette.pink65": (
+    default: (#fe7298),
+  ),
+  "palette.pink70": (
+    default: (#fe8aa7),
+  ),
+  "palette.pink80": (
+    default: (#fdb6c5),
+  ),
+  "palette.pink90": (
+    default: (#fddde3),
+  ),
+  "palette.pink95": (
+    default: (#fef0f3),
+  ),
+  "palette.purple10": (
+    default: (#240643),
+  ),
+  "palette.purple15": (
+    default: (#300b60),
+  ),
+  "palette.purple20": (
+    default: (#401075),
+  ),
+  "palette.purple30": (
+    default: (#5a1ba9),
+  ),
+  "palette.purple40": (
+    default: (#7526e3),
+  ),
+  "palette.purple50": (
+    default: (#9050e9),
+  ),
+  "palette.purple60": (
+    default: (#ad7bee),
+  ),
+  "palette.purple65": (
+    default: (#b78def),
+  ),
+  "palette.purple70": (
+    default: (#c29ef1),
+  ),
+  "palette.purple80": (
+    default: (#d78ff5),
+  ),
+  "palette.purple90": (
+    default: (#ece1f9),
+  ),
+  "palette.purple95": (
+    default: (#f6f2fb),
+  ),
+  "palette.red10": (
+    default: (#300c01),
+  ),
+  "palette.red15": (
+    default: (#4a0c04),
+  ),
+  "palette.red20": (
+    default: (#640103),
+  ),
+  "palette.red30": (
+    default: (#8e030f),
+  ),
+  "palette.red40": (
+    default: (#ba0517),
+  ),
+  "palette.red50": (
+    default: (#ea001e),
+  ),
+  "palette.red60": (
+    default: (#fe5c4c),
+  ),
+  "palette.red65": (
+    default: (#fe7765),
+  ),
+  "palette.red70": (
+    default: (#fe8f7d),
+  ),
+  "palette.red80": (
+    default: (#feb8ab),
+  ),
+  "palette.red90": (
+    default: (#feded8),
+  ),
+  "palette.red95": (
+    default: (#fef1ee),
+  ),
+  "palette.teal10": (
+    default: (#071b12),
+  ),
+  "palette.teal15": (
+    default: (#072825),
+  ),
+  "palette.teal20": (
+    default: (#023434),
+  ),
+  "palette.teal30": (
+    default: (#024d4c),
+  ),
+  "palette.teal40": (
+    default: (#056764),
+  ),
+  "palette.teal50": (
+    default: (#0b827c),
+  ),
+  "palette.teal60": (
+    default: (#06a59a),
+  ),
+  "palette.teal65": (
+    default: (#03b4a7),
+  ),
+  "palette.teal70": (
+    default: (#01c3b3),
+  ),
+  "palette.teal80": (
+    default: (#04e1cb),
+  ),
+  "palette.teal90": (
+    default: (#acf3e4),
+  ),
+  "palette.teal95": (
+    default: (#def9f3),
+  ),
+  "palette.violet10": (
+    default: (#2e0039),
+  ),
+  "palette.violet15": (
+    default: (#3d0157),
+  ),
+  "palette.violet20": (
+    default: (#520066),
+  ),
+  "palette.violet30": (
+    default: (#730394),
+  ),
+  "palette.violet40": (
+    default: (#9602c7),
+  ),
+  "palette.violet50": (
+    default: (#ba01ff),
+  ),
+  "palette.violet60": (
+    default: (#cb65ff),
+  ),
+  "palette.violet65": (
+    default: (#d17dfe),
+  ),
+  "palette.violet70": (
+    default: (#d892fe),
+  ),
+  "palette.violet80": (
+    default: (#e5b9fe),
+  ),
+  "palette.violet90": (
+    default: (#f2defe),
+  ),
+  "palette.violet95": (
+    default: (#f9f0ff),
+  ),
+  "palette.yellow10": (
+    default: (#281202),
+  ),
+  "palette.yellow15": (
+    default: (#2e2204),
+  ),
+  "palette.yellow20": (
+    default: (#4f2100),
+  ),
+  "palette.yellow30": (
+    default: (#6f3400),
+  ),
+  "palette.yellow40": (
+    default: (#8c4b02),
+  ),
+  "palette.yellow50": (
+    default: (#a86403),
+  ),
+  "palette.yellow60": (
+    default: (#ca8501),
+  ),
+  "palette.yellow65": (
+    default: (#d79304),
+  ),
+  "palette.yellow70": (
+    default: (#e4a201),
+  ),
+  "palette.yellow80": (
+    default: (#fcc003),
+  ),
+  "palette.yellow90": (
+    default: (#f9e3b6),
+  ),
+  "palette.yellow95": (
+    default: (#fbf3e0),
   ),
   "space.large": (
     default: (1.5rem),
   ),
+  "space.medium": (
+    default: (1rem),
+  ),
+  "space.none": (
+    default: (0),
+  ),
+  "space.small": (
+    default: (0.75rem),
+  ),
   "space.xLarge": (
     default: (2rem),
   ),
+  "space.xSmall": (
+    default: (0.5rem),
+  ),
   "space.xxLarge": (
     default: (3rem),
+  ),
+  "space.xxSmall": (
+    default: (0.25rem),
+  ),
+  "space.xxxSmall": (
+    default: (0.125rem),
   ),
 );
 

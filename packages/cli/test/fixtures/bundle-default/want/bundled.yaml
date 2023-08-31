@@ -30,8 +30,6 @@ color:
     '95':
       $value: oklch(95% 0.023788 264)
   gray:
-    '0':
-      $value: '{color.black}'
     '10':
       $value: '#00040d'
     '15':
@@ -60,6 +58,8 @@ color:
       $value: '#ebeef7'
     '100':
       $value: '{color.white}'
+    '00':
+      $value: '{color.black}'
   darkGray:
     $value: '#282a37'
   green:
@@ -72,12 +72,6 @@ color:
     $value: '#ffffff'
   ui:
     contrast:
-      '0':
-        $value: '{color.gray.100}'
-        $extensions:
-          mode:
-            light: '{color.gray.100}'
-            dark: '{color.gray.0}'
       '10':
         $value: '{color.gray.90}'
         $extensions:
@@ -151,11 +145,17 @@ color:
             light: '{color.gray.10}'
             dark: '{color.gray.95}'
       '100':
-        $value: '{color.gray.0}'
+        $value: '{color.gray.00}'
         $extensions:
           mode:
-            light: '{color.gray.0}'
+            light: '{color.gray.00}'
             dark: '{color.gray.100}'
+      '00':
+        $value: '{color.gray.100}'
+        $extensions:
+          mode:
+            light: '{color.gray.100}'
+            dark: '{color.gray.00}'
       '05':
         $value: '{color.gray.95}'
         $extensions:
@@ -193,12 +193,12 @@ typography:
   $type: typography
   family:
     base:
-      $type: fontName
+      $type: fontFamily
       $value:
         - system-ui
         - sans-serif
     mono:
-      $type: fontName
+      $type: fontFamily
       $value:
         - ui-monospace
         - monospace

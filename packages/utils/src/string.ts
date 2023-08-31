@@ -2,6 +2,7 @@
 export const CHARACTER_RE = [
   '0-9', // Numeric
   'A-Za-z', // Basic Latin
+  '_$', // valid symbols
   '\u00C0-\u00FF', // Latin-1 Supplement
   '\u0100-\u017F', // Latin Extended-A
   '\u0180-\u024F', // Latin Extended-B
@@ -18,6 +19,7 @@ export const CHARACTER_RE = [
   '\u4E00-\u9FFF', // CJK
 ];
 
+export const STARTS_WITH_NUMBER_RE = /^[0-9]/;
 export const CASECHANGE_RE = /[a-zâ-ž][A-ZÀ-Ž]/g;
 export const KEBAB_COVERT_RE = /[_.]/g;
 export const CAMEL_CONVERT_RE = /[^-_.\s][-_.\s]+[^-_.\s]/g;
@@ -40,6 +42,6 @@ export function camelize(input: string): string {
 
 /** wrap bad obj keynames in strings */
 export function objKey(name: string, wrapper = "'"): string {
-  if (name[0] === '0' && name.length > 1) return `${wrapper}${name}${wrapper}`; // zero-prefixed numbers get wrapper
+  if (STARTS_WITH_NUMBER_RE.test(name)) return `${wrapper}${name}${wrapper}`; // keys that start with a number get wrapper
   return VALID_KEY.test(name) ? name : `${wrapper}${name}${wrapper}`;
 }

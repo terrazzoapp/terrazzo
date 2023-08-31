@@ -12,24 +12,39 @@ import {
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
+  'typography.body': TypographyToken['$value'];
   'typography.family.body': FontFamilyToken['$value'];
   'typography.family.heading': FontFamilyToken['$value'];
-  'typography.page-title': TypographyToken['$value'];
-  'typography.subheading': TypographyToken['$value'];
-  'typography.callout': TypographyToken['$value'];
-  'typography.body': TypographyToken['$value'];
+  'typography.largeTitle': TypographyToken['$value'];
 };
 
 export declare const meta: {
+  'typography.body': ParsedTypographyToken & { $extensions: { mode: typeof modes['typography.body'] } };
   'typography.family.body': ParsedFontFamilyToken;
   'typography.family.heading': ParsedFontFamilyToken;
-  'typography.page-title': ParsedTypographyToken;
-  'typography.subheading': ParsedTypographyToken;
-  'typography.callout': ParsedTypographyToken;
-  'typography.body': ParsedTypographyToken;
+  'typography.largeTitle': ParsedTypographyToken & { $extensions: { mode: typeof modes['typography.largeTitle'] } };
 };
 
-export declare const modes: Record<string, never>;
+export declare const modes: {
+  'typography.body': {
+    xs: TypographyToken['$value'];
+    s: TypographyToken['$value'];
+    m: TypographyToken['$value'];
+    l: TypographyToken['$value'];
+    xl: TypographyToken['$value'];
+    '2xl': TypographyToken['$value'];
+    '3xl': TypographyToken['$value'];
+  };
+  'typography.largeTitle': {
+    xs: TypographyToken['$value'];
+    s: TypographyToken['$value'];
+    m: TypographyToken['$value'];
+    l: TypographyToken['$value'];
+    xl: TypographyToken['$value'];
+    '2xl': TypographyToken['$value'];
+    '3xl': TypographyToken['$value'];
+  };
+};
 
 export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];
 export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];
