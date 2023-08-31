@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.2.1
+
+### Patch Changes
+
+- [#92](https://github.com/drwpow/cobalt-ui/pull/92) [`e859bef`](https://github.com/drwpow/cobalt-ui/commit/e859bef2dea05c5087c4205f3ef89dc8273361a3) Thanks [@drwpow](https://github.com/drwpow)! - Fix JS objKey utility
+
 ## 1.2.0
 
 ### Minor Changes
