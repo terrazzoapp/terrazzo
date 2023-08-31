@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.3.4
+
+### Patch Changes
+
+- [#94](https://github.com/drwpow/cobalt-ui/pull/94) [`01d1d31`](https://github.com/drwpow/cobalt-ui/commit/01d1d3139dcdc25c2883378522f349c817e9fc1f) Thanks [@drwpow](https://github.com/drwpow)! - Bump @cobalt-ui/utils
+
 ## 1.3.3
 
 ### Patch Changes
