@@ -117,10 +117,10 @@ export default {
       cssVars: true,
       pluginCSS: {
         prefix: 'ds',
-        modeSelectors: {
-          'color#light': ['[data-color-theme="light"]'],
-          'color#dark': ['[data-color-theme="dark"]'],
-        },
+        modeSelectors: [
+          {mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]']},
+          {mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]']},
+        ],
       },
     }),
   ],

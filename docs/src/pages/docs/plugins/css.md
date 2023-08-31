@@ -69,9 +69,9 @@ export default {
       /** set the filename inside outDir */
       filename: './tokens.css',
       /** create selector wrappers around modes */
-      modeSelectors: {
+      modeSelectors: [
         // …
-      },
+      ],
       /** embed file tokens? */
       embedFiles: false,
       /** (optional) transform specific token values */
@@ -132,7 +132,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 #### Example
 
-To generate CSS for Modes, add a `modeSelectors: {}` object to your config, and specify `mode: [selector1, selector2, …]`.
+To generate CSS for Modes, add a `modeSelectors: []` array to your config, and specify `mode: [selector1, selector2, …]`.
 
 All mode names must start with the `#` character. You can also optionally filter to a token group by adding part or all of a group name before the `#`. For example, if your `color.*` tokens had `light` and `dark` mode you wanted to generate CSS for, as well as `transition.*` tokens with `reduced` modes, you could add the following selectors:
 
@@ -146,11 +146,22 @@ export default {
   outDir: './tokens/',
   plugins: [
     css({
-      modeSelectors: {
-        'color#light': ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'],
-        'color#dark': ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
-        'transition#reduced': ['@media (prefers-reduced-motion)'],
-      },
+      modeSelectors: [
+        {
+          mode: 'light', // match all tokens with $extensions.mode.light
+          selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'], // the following CSS selectors trigger the mode swap
+          tokens: ['color.*'], // (optional) limit to specific tokens, if desired (default: all tokens that use `mode` will be included)
+        },
+        {
+          mode: 'dark',
+          selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
+          tokens: 'color.*',
+        },
+        {
+          mode: 'reduced',
+          selectors: ['@media (prefers-reduced-motion)'],
+        },
+      ],
     }),
   ],
 };
@@ -205,10 +216,10 @@ export default {
   outDir: './tokens/',
   plugins: [
     css({
-      modeSelectors: {
-        'type.size#mobile': ['@media (max-width: 600px)'],
-        'type.size#desktop': ['@media (min-width: 600px)'],
-      },
+      modeSelectors: [
+        {mode: 'mobile', tokens: ['type.size.*'], selectors: ['@media (max-width: 600px)']},
+        {mode: 'desktop', tokens: ['type.size.*'], selectors: ['@media (min-width: 600px)']},
+      ],
     }),
   ],
 };

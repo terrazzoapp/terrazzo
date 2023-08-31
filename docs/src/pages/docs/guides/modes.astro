@@ -111,14 +111,14 @@ export default {
   outDir: './tokens/',
   plugins: [
     pluginCSS({
-      modeSelectors: {
-        '#light': ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'],
-        '#lightHighContrast': ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]'],
-        '#lightColorblind': ['body[data-color-mode="lightColorblind"]'],
-        '#dark': ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
-        '#darkHighContrast': ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]'],
-        '#darkColorblind': ['body[data-color-mode="darkColorblind"]'],
-      },
+      modeSelectors: [
+        {mode: 'light',             selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]']},
+        {mode: 'lightHighContrast', selectors: ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]']},
+        {mode: 'lightColorblind',   selectors: ['body[data-color-mode="lightColorblind"]']},
+        {mode: 'dark',              selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]']},
+        {mode: 'darkHighContrast',  selectors: ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]']},
+        {mode: 'darkColorblind',    selectors: ['body[data-color-mode="darkColorblind"]']},
+      ],
     }),
   ],
 };`}

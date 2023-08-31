@@ -5,10 +5,10 @@ export default {
   plugins: [
     pluginSass({
       pluginCSS: {
-        modeSelectors: {
-          'ui#light': ['body[data-color-mode="light"]'],
-          'ui#dark': ['body[data-color-mode="dark"]', '@media(prefers-color-scheme:dark)'],
-        },
+        modeSelectors: [
+          {mode: 'light', tokens: ['color.ui.*'], selectors: ['body[data-color-mode="light"]']},
+          {mode: 'dark', tokens: ['color.ui.*'], selectors: ['body[data-color-mode="dark"]', '@media(prefers-color-scheme:dark)']},
+        ],
       },
     }),
   ],

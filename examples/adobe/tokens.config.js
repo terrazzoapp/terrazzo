@@ -7,14 +7,14 @@ export default {
   plugins: [
     pluginCSS({
       prefix: 'spectrum',
-      modeSelectors: {
-        '#dark': ['body[data-color-mode="dark"]', '@media (prefers-color-scheme: dark)'],
-        '#darkest': ['body[data-color-mode="darkest"]'],
-        '#light': ['body[data-color-mode="light"]', '@media (prefers-color-scheme: light)'],
-        '#lightest': ['body[data-color-mode="lightest"]'],
-        '#middark': ['body[data-color-mode="middark"]'],
-        '#midlight': ['body[data-color-mode="midlight"]'],
-      },
+      modeSelectors: [
+        {mode: 'dark', selectors: ['body[data-color-mode="dark"]', '@media (prefers-color-scheme: dark)']},
+        {mode: 'darkest', selectors: ['body[data-color-mode="darkest"]']},
+        {mode: 'light', selectors: ['body[data-color-mode="light"]', '@media (prefers-color-scheme: light)']},
+        {mode: 'lightest', selectors: ['body[data-color-mode="lightest"]']},
+        {mode: 'middark', selectors: ['body[data-color-mode="middark"]']},
+        {mode: 'midlight', selectors: ['body[data-color-mode="midlight"]']},
+      ],
     }),
     pluginJS(),
     pluginSass(),

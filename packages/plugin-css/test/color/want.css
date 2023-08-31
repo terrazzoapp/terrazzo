@@ -49,7 +49,7 @@
   --ds-color-blue: #4184e4;
 }
 
-[data-color-theme="high-contrast"] {
+[data-color-theme="dark-high-contrast"] {
   --ds-color-action: var(--ds-color-blue);
   --ds-color-blue: #409eff;
 }
@@ -97,7 +97,7 @@
     --ds-color-blue: color(display-p3 0.2549019607843137 0.5176470588235295 0.8941176470588236);
   }
 
-  [data-color-theme="high-contrast"] {
+  [data-color-theme="dark-high-contrast"] {
     --ds-color-blue: color(display-p3 0.25098039215686274 0.6196078431372549 1);
   }
 
