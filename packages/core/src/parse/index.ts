@@ -337,6 +337,7 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
   if (errors.length) result.errors = errors;
   if (warnings.length) result.warnings = warnings;
   result.result.tokens = Object.values(tokens);
+  result.result.tokens.sort((a, b) => a.id.localeCompare(b.id, 'en-us', {numeric: true})); // sort alphabetically
   return result;
 }
 

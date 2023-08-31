@@ -56,7 +56,9 @@ export default function pluginCSS(options?: Options): Plugin {
   function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
     const output: string[] = [];
     if (root) output.push(indent(':root {', indentLv));
-    for (const [id, value] of Object.entries(tokens)) {
+    const sortedTokens = Object.entries(tokens);
+    sortedTokens.sort((a, b) => a[0].localeCompare(b[0], 'en-us', {numeric: true}));
+    for (const [id, value] of sortedTokens) {
       output.push(indent(`${varName(id, {prefix})}: ${value};`, indentLv + (root ? 1 : 0)));
     }
     if (root) output.push(indent('}', indentLv));

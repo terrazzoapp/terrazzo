@@ -12,21 +12,21 @@ import {
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
+  'typography.body': TypographyToken['$value'];
   'typography.family.body': FontFamilyToken['$value'];
   'typography.family.heading': FontFamilyToken['$value'];
   'typography.largeTitle': TypographyToken['$value'];
-  'typography.body': TypographyToken['$value'];
 };
 
 export declare const meta: {
+  'typography.body': ParsedTypographyToken & { $extensions: { mode: typeof modes['typography.body'] } };
   'typography.family.body': ParsedFontFamilyToken;
   'typography.family.heading': ParsedFontFamilyToken;
   'typography.largeTitle': ParsedTypographyToken & { $extensions: { mode: typeof modes['typography.largeTitle'] } };
-  'typography.body': ParsedTypographyToken & { $extensions: { mode: typeof modes['typography.body'] } };
 };
 
 export declare const modes: {
-  'typography.largeTitle': {
+  'typography.body': {
     xs: TypographyToken['$value'];
     s: TypographyToken['$value'];
     m: TypographyToken['$value'];
@@ -35,7 +35,7 @@ export declare const modes: {
     '2xl': TypographyToken['$value'];
     '3xl': TypographyToken['$value'];
   };
-  'typography.body': {
+  'typography.largeTitle': {
     xs: TypographyToken['$value'];
     s: TypographyToken['$value'];
     m: TypographyToken['$value'];

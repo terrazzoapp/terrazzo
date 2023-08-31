@@ -66,7 +66,7 @@ color:
           mode:
             light: '{color.gray.100}'
             dark: '{color.gray.10}'
-      05:
+      '05':
         $value: '{color.gray.95}'
         $extensions:
           mode:

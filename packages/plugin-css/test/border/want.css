@@ -5,22 +5,22 @@
  */
 
 :root {
-  --ds-color-gray: #544741;
   --ds-border: 1px solid #0d0300;
   --ds-border-gray: 1px solid var(--ds-color-gray);
+  --ds-color-gray: #544741;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-color-gray: #544741;
     --ds-border: 1px solid #0d0300;
+    --ds-color-gray: #544741;
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ds-color-gray: #bbb6b3;
     --ds-border: 1px solid #ffffff;
+    --ds-color-gray: #bbb6b3;
   }
 }
 
@@ -34,21 +34,21 @@
 
 @supports (color: color(display-p3 1 1 1)) {
   :root {
-    --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
     --ds-border: 1px solid color(display-p3 0.050980392156862744 0.011764705882352941 0);
+    --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
   }
 
   @media (prefers-color-scheme: light) {
     :root {
-      --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
       --ds-border: 1px solid color(display-p3 0.050980392156862744 0.011764705882352941 0);
+      --ds-color-gray: color(display-p3 0.32941176470588235 0.2784313725490196 0.2549019607843137);
     }
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --ds-color-gray: color(display-p3 0.7333333333333333 0.7137254901960784 0.7019607843137254);
       --ds-border: 1px solid color(display-p3 1 1 1);
+      --ds-color-gray: color(display-p3 0.7333333333333333 0.7137254901960784 0.7019607843137254);
     }
   }
 

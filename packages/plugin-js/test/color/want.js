@@ -6,6 +6,7 @@
 
 export const tokens = {
   'color.black': '#00193f',
+  'color.blue.00': '#00193f',
   'color.blue.10': '#062053',
   'color.blue.20': '#0f2868',
   'color.blue.30': '#192f7d',
@@ -17,10 +18,9 @@ export const tokens = {
   'color.blue.80': '#5ca9d7',
   'color.blue.90': '#72cce5',
   'color.blue.100': '#89eff1',
-  'color.blue.00': '#00193f',
   'color.white': '#ffffff',
-  'ui.fg': '#00193f',
   'ui.bg': '#ffffff',
+  'ui.fg': '#00193f',
 };
 
 export const meta = {
@@ -37,6 +37,22 @@ export const meta = {
       $description: 'Brand blue',
     },
     id: 'color.black',
+    $type: 'color',
+    $value: '#00193f',
+  },
+  'color.blue.00': {
+    _original: {
+      $value: '{color.black}',
+    },
+    _group: {
+      id: 'color.blue',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'color',
+      $description: 'Brand blue',
+    },
+    id: 'color.blue.00',
     $type: 'color',
     $value: '#00193f',
   },
@@ -202,22 +218,6 @@ export const meta = {
     $type: 'color',
     $value: '#89eff1',
   },
-  'color.blue.00': {
-    _original: {
-      $value: '{color.black}',
-    },
-    _group: {
-      id: 'color.blue',
-      $extensions: {
-        requiredModes: [],
-      },
-      $type: 'color',
-      $description: 'Brand blue',
-    },
-    id: 'color.blue.00',
-    $type: 'color',
-    $value: '#00193f',
-  },
   'color.white': {
     _original: {
       $value: '#ffffff',
@@ -233,33 +233,6 @@ export const meta = {
     id: 'color.white',
     $type: 'color',
     $value: '#ffffff',
-  },
-  'ui.fg': {
-    _original: {
-      $type: 'color',
-      $value: '{color.black}',
-      $extensions: {
-        mode: {
-          light: '{color.black}',
-          dark: '{color.white}',
-        },
-      },
-    },
-    _group: {
-      id: 'ui',
-      $extensions: {
-        requiredModes: [],
-      },
-    },
-    id: 'ui.fg',
-    $type: 'color',
-    $value: '#00193f',
-    $extensions: {
-      mode: {
-        light: '#00193f',
-        dark: '#ffffff',
-      },
-    },
   },
   'ui.bg': {
     _original: {
@@ -288,16 +261,43 @@ export const meta = {
       },
     },
   },
+  'ui.fg': {
+    _original: {
+      $type: 'color',
+      $value: '{color.black}',
+      $extensions: {
+        mode: {
+          light: '{color.black}',
+          dark: '{color.white}',
+        },
+      },
+    },
+    _group: {
+      id: 'ui',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'ui.fg',
+    $type: 'color',
+    $value: '#00193f',
+    $extensions: {
+      mode: {
+        light: '#00193f',
+        dark: '#ffffff',
+      },
+    },
+  },
 };
 
 export const modes = {
-  'ui.fg': {
-    light: '#00193f',
-    dark: '#ffffff',
-  },
   'ui.bg': {
     light: '#ffffff',
     dark: '#00193f',
+  },
+  'ui.fg': {
+    light: '#00193f',
+    dark: '#ffffff',
   },
 };
 

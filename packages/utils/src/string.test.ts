@@ -10,6 +10,8 @@ describe('camelize', () => {
 describe('kebabinate', () => {
   test('basic', () => {
     expect(kebabinate('stringToKebabinate')).toBe('string-to-kebabinate');
+    expect(kebabinate('color.ui.contrast.00')).toBe('color-ui-contrast-00');
+    expect(kebabinate('color.ui.contrast.05')).toBe('color-ui-contrast-05');
   });
 });
 

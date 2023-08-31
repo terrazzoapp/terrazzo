@@ -24,8 +24,8 @@ export const tokens = {
     white: '#ffffff',
   },
   ui: {
-    fg: '#00193f',
     bg: '#ffffff',
+    fg: '#00193f',
   },
 };
 
@@ -245,33 +245,6 @@ export const meta = {
     },
   },
   ui: {
-    fg: {
-      _original: {
-        $type: 'color',
-        $value: '{color.black}',
-        $extensions: {
-          mode: {
-            light: '{color.black}',
-            dark: '{color.white}',
-          },
-        },
-      },
-      _group: {
-        id: 'ui',
-        $extensions: {
-          requiredModes: [],
-        },
-      },
-      id: 'ui.fg',
-      $type: 'color',
-      $value: '#00193f',
-      $extensions: {
-        mode: {
-          light: '#00193f',
-          dark: '#ffffff',
-        },
-      },
-    },
     bg: {
       _original: {
         $type: 'color',
@@ -299,18 +272,45 @@ export const meta = {
         },
       },
     },
+    fg: {
+      _original: {
+        $type: 'color',
+        $value: '{color.black}',
+        $extensions: {
+          mode: {
+            light: '{color.black}',
+            dark: '{color.white}',
+          },
+        },
+      },
+      _group: {
+        id: 'ui',
+        $extensions: {
+          requiredModes: [],
+        },
+      },
+      id: 'ui.fg',
+      $type: 'color',
+      $value: '#00193f',
+      $extensions: {
+        mode: {
+          light: '#00193f',
+          dark: '#ffffff',
+        },
+      },
+    },
   },
 };
 
 export const modes = {
   ui: {
-    fg: {
-      light: '#00193f',
-      dark: '#ffffff',
-    },
     bg: {
       light: '#ffffff',
       dark: '#00193f',
+    },
+    fg: {
+      light: '#00193f',
+      dark: '#ffffff',
     },
   },
 };

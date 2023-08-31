@@ -46,9 +46,6 @@
       }
     },
     "gray": {
-      "0": {
-        "$value": "{color.black}"
-      },
       "10": {
         "$value": "#00040d"
       },
@@ -90,6 +87,9 @@
       },
       "100": {
         "$value": "{color.white}"
+      },
+      "00": {
+        "$value": "{color.black}"
       }
     },
     "darkGray": {
@@ -109,15 +109,6 @@
     },
     "ui": {
       "contrast": {
-        "0": {
-          "$value": "{color.gray.100}",
-          "$extensions": {
-            "mode": {
-              "light": "{color.gray.100}",
-              "dark": "{color.gray.0}"
-            }
-          }
-        },
         "10": {
           "$value": "{color.gray.90}",
           "$extensions": {
@@ -227,11 +218,20 @@
           }
         },
         "100": {
-          "$value": "{color.gray.0}",
+          "$value": "{color.gray.00}",
           "$extensions": {
             "mode": {
-              "light": "{color.gray.0}",
+              "light": "{color.gray.00}",
               "dark": "{color.gray.100}"
+            }
+          }
+        },
+        "00": {
+          "$value": "{color.gray.100}",
+          "$extensions": {
+            "mode": {
+              "light": "{color.gray.100}",
+              "dark": "{color.gray.00}"
             }
           }
         },
@@ -292,14 +292,14 @@
     "$type": "typography",
     "family": {
       "base": {
-        "$type": "fontName",
+        "$type": "fontFamily",
         "$value": [
           "system-ui",
           "sans-serif"
         ]
       },
       "mono": {
-        "$type": "fontName",
+        "$type": "fontFamily",
         "$value": [
           "ui-monospace",
           "monospace"

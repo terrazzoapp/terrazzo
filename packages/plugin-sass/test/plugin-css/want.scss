@@ -21,6 +21,18 @@ $__token-values: (
   "gradient.g-b": (
     default: (var(--ds-gradient-g-b)),
   ),
+  "shadow": (
+    default: (var(--ds-shadow)),
+  ),
+  "transition": (
+    default: (var(--ds-transition)),
+  ),
+  "typography.body": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.body\")` instead.",
+  ),
+  "typography.callout": (
+    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.callout\")` instead.",
+  ),
   "typography.family.body": (
     default: (var(--ds-typography-family-body)),
   ),
@@ -33,21 +45,26 @@ $__token-values: (
   "typography.subheading": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.subheading\")` instead.",
   ),
-  "typography.callout": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.callout\")` instead.",
-  ),
-  "typography.body": (
-    "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.body\")` instead.",
-  ),
-  "shadow": (
-    default: (var(--ds-shadow)),
-  ),
-  "transition": (
-    default: (var(--ds-transition)),
-  ),
 );
 
 $__token-typography-mixins: (
+  "typography.body": (
+    default: (
+      "font-family": (var(--ds-typography-body-font-family)),
+      "font-size": (var(--ds-typography-body-font-size)),
+      "font-weight": (var(--ds-typography-body-font-weight)),
+      "line-height": (var(--ds-typography-body-line-height)),
+    ),
+  ),
+  "typography.callout": (
+    default: (
+      "font-family": (var(--ds-typography-callout-font-family)),
+      "font-size": (var(--ds-typography-callout-font-size)),
+      "font-style": (var(--ds-typography-callout-font-style)),
+      "font-weight": (var(--ds-typography-callout-font-weight)),
+      "line-height": (var(--ds-typography-callout-line-height)),
+    ),
+  ),
   "typography.page-title": (
     default: (
       "font-family": (var(--ds-typography-page-title-font-family)),
@@ -65,23 +82,6 @@ $__token-typography-mixins: (
       "letter-spacing": (var(--ds-typography-subheading-letter-spacing)),
       "line-height": (var(--ds-typography-subheading-line-height)),
       "text-transform": (var(--ds-typography-subheading-text-transform)),
-    ),
-  ),
-  "typography.callout": (
-    default: (
-      "font-family": (var(--ds-typography-callout-font-family)),
-      "font-size": (var(--ds-typography-callout-font-size)),
-      "font-style": (var(--ds-typography-callout-font-style)),
-      "font-weight": (var(--ds-typography-callout-font-weight)),
-      "line-height": (var(--ds-typography-callout-line-height)),
-    ),
-  ),
-  "typography.body": (
-    default: (
-      "font-family": (var(--ds-typography-body-font-family)),
-      "font-size": (var(--ds-typography-body-font-size)),
-      "font-weight": (var(--ds-typography-body-font-weight)),
-      "line-height": (var(--ds-typography-body-line-height)),
     ),
   ),
 );

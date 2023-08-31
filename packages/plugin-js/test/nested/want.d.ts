@@ -28,8 +28,8 @@ export declare const tokens: {
     white: ColorToken['$value'];
   };
   ui: {
-    fg: ColorToken['$value'];
     bg: ColorToken['$value'];
+    fg: ColorToken['$value'];
   };
 };
 
@@ -52,18 +52,18 @@ export declare const meta: {
     white: ParsedColorToken;
   };
   ui: {
-    fg: ParsedColorToken & { $extensions: { mode: typeof modes['ui']['fg'] } };
     bg: ParsedColorToken & { $extensions: { mode: typeof modes['ui']['bg'] } };
+    fg: ParsedColorToken & { $extensions: { mode: typeof modes['ui']['fg'] } };
   };
 };
 
 export declare const modes: {
   ui: {
-    fg: {
+    bg: {
       light: ColorToken['$value'];
       dark: ColorToken['$value'];
     };
-    bg: {
+    fg: {
       light: ColorToken['$value'];
       dark: ColorToken['$value'];
     };

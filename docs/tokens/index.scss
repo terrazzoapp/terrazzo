@@ -136,6 +136,11 @@ $__token-values: (
     "light": (var(--color-ui-contrast-0)),
     "dark": (var(--color-ui-contrast-0)),
   ),
+  "color.ui.contrast.05": (
+    default: (var(--color-ui-contrast-05)),
+    "light": (var(--color-ui-contrast-05)),
+    "dark": (var(--color-ui-contrast-05)),
+  ),
   "color.ui.contrast.10": (
     default: (var(--color-ui-contrast-10)),
     "light": (var(--color-ui-contrast-10)),
@@ -200,11 +205,6 @@ $__token-values: (
     default: (var(--color-ui-contrast-100)),
     "light": (var(--color-ui-contrast-100)),
     "dark": (var(--color-ui-contrast-100)),
-  ),
-  "color.ui.contrast.05": (
-    default: (var(--color-ui-contrast-05)),
-    "light": (var(--color-ui-contrast-05)),
-    "dark": (var(--color-ui-contrast-05)),
   ),
   "color.ui.action": (
     default: (var(--color-ui-action)),
