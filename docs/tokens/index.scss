@@ -50,6 +50,30 @@ $__token-values: (
   "color.blue.95": (
     default: (var(--color-blue-95)),
   ),
+  "color.code.bg.greenShift": (
+    default: (var(--color-code-bg-greenShift)),
+  ),
+  "color.code.gold": (
+    default: (var(--color-code-gold)),
+  ),
+  "color.code.green": (
+    default: (var(--color-code-green)),
+  ),
+  "color.code.orange": (
+    default: (var(--color-code-orange)),
+  ),
+  "color.code.pink": (
+    default: (var(--color-code-pink)),
+  ),
+  "color.code.red": (
+    default: (var(--color-code-red)),
+  ),
+  "color.code.skyBlue": (
+    default: (var(--color-code-skyBlue)),
+  ),
+  "color.darkGray": (
+    default: (var(--color-darkGray)),
+  ),
   "color.gray.0": (
     default: (var(--color-gray-0)),
   ),
@@ -95,9 +119,6 @@ $__token-values: (
   "color.gray.100": (
     default: (var(--color-gray-100)),
   ),
-  "color.darkGray": (
-    default: (var(--color-darkGray)),
-  ),
   "color.green": (
     default: (var(--color-green)),
   ),
@@ -107,29 +128,10 @@ $__token-values: (
   "color.red": (
     default: (var(--color-red)),
   ),
-  "color.white": (
-    default: (var(--color-white)),
-  ),
-  "color.code.bg.greenShift": (
-    default: (var(--color-code-bg-greenShift)),
-  ),
-  "color.code.gold": (
-    default: (var(--color-code-gold)),
-  ),
-  "color.code.green": (
-    default: (var(--color-code-green)),
-  ),
-  "color.code.orange": (
-    default: (var(--color-code-orange)),
-  ),
-  "color.code.red": (
-    default: (var(--color-code-red)),
-  ),
-  "color.code.pink": (
-    default: (var(--color-code-pink)),
-  ),
-  "color.code.skyBlue": (
-    default: (var(--color-code-skyBlue)),
+  "color.ui.action": (
+    default: (var(--color-ui-action)),
+    "light": (var(--color-ui-action)),
+    "dark": (var(--color-ui-action)),
   ),
   "color.ui.contrast.0": (
     default: (var(--color-ui-contrast-0)),
@@ -206,16 +208,35 @@ $__token-values: (
     "light": (var(--color-ui-contrast-100)),
     "dark": (var(--color-ui-contrast-100)),
   ),
-  "color.ui.action": (
-    default: (var(--color-ui-action)),
-    "light": (var(--color-ui-action)),
-    "dark": (var(--color-ui-action)),
+  "color.white": (
+    default: (var(--color-white)),
   ),
-  "font.family.ppNeue": (
-    default: (var(--font-family-ppNeue)),
+  "ease.inCirc": (
+    default: (var(--ease-inCirc)),
+  ),
+  "ease.inCubic": (
+    default: (var(--ease-inCubic)),
+  ),
+  "ease.inOutCirc": (
+    default: (var(--ease-inOutCirc)),
+  ),
+  "ease.inOutCubic": (
+    default: (var(--ease-inOutCubic)),
+  ),
+  "ease.linear": (
+    default: (var(--ease-linear)),
+  ),
+  "ease.outCirc": (
+    default: (var(--ease-outCirc)),
+  ),
+  "ease.outCubic": (
+    default: (var(--ease-outCubic)),
   ),
   "font.family.mono": (
     default: (var(--font-family-mono)),
+  ),
+  "font.family.ppNeue": (
+    default: (var(--font-family-ppNeue)),
   ),
   "font.size.01": (
     default: (var(--font-size-01)),
@@ -241,77 +262,56 @@ $__token-values: (
   "font.size.08": (
     default: (var(--font-size-08)),
   ),
-  "space.4xs": (
-    default: (var(--space-4xs)),
-  ),
-  "space.3xs": (
-    default: (var(--space-3xs)),
+  "space.2xl": (
+    default: (var(--space-2xl)),
   ),
   "space.2xs": (
     default: (var(--space-2xs)),
   ),
-  "space.xs": (
-    default: (var(--space-xs)),
-  ),
-  "space.sm": (
-    default: (var(--space-sm)),
-  ),
-  "space.md": (
-    default: (var(--space-md)),
-  ),
-  "space.lg": (
-    default: (var(--space-lg)),
-  ),
-  "space.xl": (
-    default: (var(--space-xl)),
-  ),
-  "space.2xl": (
-    default: (var(--space-2xl)),
-  ),
   "space.3xl": (
     default: (var(--space-3xl)),
   ),
-  "space.layout.2xs": (
-    default: (var(--space-layout-2xs)),
+  "space.3xs": (
+    default: (var(--space-3xs)),
   ),
-  "space.layout.xs": (
-    default: (var(--space-layout-xs)),
-  ),
-  "space.layout.sm": (
-    default: (var(--space-layout-sm)),
-  ),
-  "space.layout.md": (
-    default: (var(--space-layout-md)),
-  ),
-  "space.layout.lg": (
-    default: (var(--space-layout-lg)),
-  ),
-  "space.layout.xl": (
-    default: (var(--space-layout-xl)),
+  "space.4xs": (
+    default: (var(--space-4xs)),
   ),
   "space.layout.2xl": (
     default: (var(--space-layout-2xl)),
   ),
-  "ease.linear": (
-    default: (var(--ease-linear)),
+  "space.layout.2xs": (
+    default: (var(--space-layout-2xs)),
   ),
-  "ease.inCirc": (
-    default: (var(--ease-inCirc)),
+  "space.layout.lg": (
+    default: (var(--space-layout-lg)),
   ),
-  "ease.outCirc": (
-    default: (var(--ease-outCirc)),
+  "space.layout.md": (
+    default: (var(--space-layout-md)),
   ),
-  "ease.inOutCirc": (
-    default: (var(--ease-inOutCirc)),
+  "space.layout.sm": (
+    default: (var(--space-layout-sm)),
   ),
-  "ease.outCubic": (
-    default: (var(--ease-outCubic)),
+  "space.layout.xl": (
+    default: (var(--space-layout-xl)),
   ),
-  "ease.inCubic": (
-    default: (var(--ease-inCubic)),
+  "space.layout.xs": (
+    default: (var(--space-layout-xs)),
   ),
-  "ease.inOutCubic": (
-    default: (var(--ease-inOutCubic)),
+  "space.lg": (
+    default: (var(--space-lg)),
+  ),
+  "space.md": (
+    default: (var(--space-md)),
+  ),
+  "space.sm": (
+    default: (var(--space-sm)),
+  ),
+  "space.xl": (
+    default: (var(--space-xl)),
+  ),
+  "space.xs": (
+    default: (var(--space-xs)),
   ),
 );
 

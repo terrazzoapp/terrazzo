@@ -6,12 +6,12 @@ import pluginJS from '@cobalt-ui/plugin-js';
 export default {
   plugins: [
     pluginCSS({
-      modeSelectors: {
-        'color#light': ['[data-color-theme="light"]'],
-        'color#light_colorblind': ['[data-color-theme="light-colorblind"]'],
-        'color#light_low_contrast': ['[data-color-theme="light-low-contrast"]'],
-        'font.size#desktop': ['@media (min-width: 600px)'],
-      },
+      modeSelectors: [
+        {mode: 'light', selectors: ['[data-color-theme="light"]']},
+        {mode: 'light_colorblind', selectors: ['[data-color-theme="light-colorblind"]']},
+        {mode: 'light_low_contrast', selectors: ['[data-color-theme="light-low-contrast"]']},
+        {mode: 'desktop', tokens: ['font.size.*'], selectors: ['@media (min-width: 600px)']},
+      ],
     }),
     pluginSass(),
     pluginJS(),

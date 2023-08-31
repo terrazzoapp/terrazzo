@@ -19,8 +19,9 @@ import type {
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
-import {converter, formatCss} from 'culori';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
+import {converter, formatCss} from 'culori';
+import micromatch from 'micromatch';
 import {encode, formatFontNames} from './util.js';
 
 const CSS_VAR_RE = /^var\(--[^)]+\)$/;
@@ -30,13 +31,25 @@ const DOT_UNDER_GLOB_RE = /[._]/g;
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
 
+/** @deprecated */
+export type LegacyModeSelectors = Record<string, string | string[]>;
+
+export interface ModeSelector {
+  /** The name of the mode to match */
+  mode: string;
+  /** (optional) Provide token IDs to match. Globs are allowed (e.g: `["color.*", "shadow.dark"]`) */
+  tokens?: string[];
+  /** Provide CSS selectors to generate. (e.g.: `["@media (prefers-color-scheme: dark)", "[data-color-theme='dark']"]` ) */
+  selectors: string[];
+}
+
 export interface Options {
   /** output file (default: "./tokens/tokens.css") */
   filename?: string;
   /** embed files in CSS? */
   embedFiles?: boolean;
   /** generate wrapper selectors around token modes */
-  modeSelectors?: Record<string, string | string[]>;
+  modeSelectors?: ModeSelector[] | LegacyModeSelectors;
   /** handle different token types */
   transform?: (token: ParsedToken, mode?: string) => string;
   /** prefix variable names */
@@ -121,14 +134,43 @@ export default function pluginCSS(options?: Options): Plugin {
           }
         }
         if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
-          for (let [modeID, modeSelectors] of Object.entries(options.modeSelectors)) {
-            const [groupRoot, modeName] = parseModeSelector(modeID);
-            if ((groupRoot && !token.id.startsWith(groupRoot)) || !token.$extensions.mode[modeName]) continue;
-            if (!Array.isArray(selectors)) modeSelectors = [selectors];
-            for (const selector of modeSelectors) {
+          const modeSelectors: ModeSelector[] = [];
+
+          if (Array.isArray(options.modeSelectors)) {
+            // validate
+            for (let i = 0; i < options.modeSelectors.length; i++) {
+              const modeSelector = options.modeSelectors[i]!;
+              if (!modeSelector || typeof modeSelector !== 'object') {
+                continue;
+              }
+              if (!modeSelector.mode) {
+                throw new Error(`modeSelectors[${i}] missing required "mode"}`);
+              }
+              if (modeSelector.tokens && (!Array.isArray(modeSelector.tokens) || modeSelector.tokens.some((s) => typeof s !== 'string'))) {
+                throw new Error(`modeSelectors[${i}] tokens must be an array of strings`);
+              }
+              if (!Array.isArray(modeSelector.selectors) || modeSelector.selectors.some((s) => typeof s !== 'string')) {
+                throw new Error(`modeSelectors[${i}] selectors must be an array of strings`);
+              }
+              modeSelectors.push(modeSelector);
+            }
+          }
+          // normalize legacy mode selectors
+          else if (typeof options.modeSelectors === 'object') {
+            for (const [modeID, selector] of Object.entries(options.modeSelectors)) {
+              const [groupRoot, modeName] = parseLegacyModeSelector(modeID);
+              modeSelectors.push({mode: modeName, tokens: groupRoot ? [`${groupRoot}*`] : undefined, selectors: Array.isArray(selector) ? selector : [selector]});
+            }
+          }
+
+          for (const modeSelector of modeSelectors) {
+            if (!token.$extensions.mode[modeSelector.mode] || (modeSelector.tokens?.length && !micromatch.isMatch(token.id, modeSelector.tokens))) {
+              continue;
+            }
+            for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal = (customTransform && customTransform(token, modeName)) || defaultTransformer(token, {prefix, mode: modeName});
+              let modeVal = (customTransform && customTransform(token, modeSelector.mode)) || defaultTransformer(token, {prefix, mode: modeSelector.mode});
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
@@ -364,8 +406,8 @@ export function varRef(id: string, options?: {prefix?: string; suffix?: string; 
   return ['var(', varName(refID, {prefix: options?.prefix, suffix: options?.suffix}), Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '', ')'].join('');
 }
 
-/** parse modeSelector */
-function parseModeSelector(modeID: string): [string, string] {
+/** @deprecated parse legacy modeSelector */
+function parseLegacyModeSelector(modeID: string): [string, string] {
   if (!modeID.includes('#')) throw new Error(`modeSelector key must have "#" character`);
   const parts = modeID.split('#').map((s) => s.trim());
   if (parts.length > 2) throw new Error(`modeSelector key must have only 1 "#" character`);
