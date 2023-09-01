@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.4.1
+
+### Patch Changes
+
+- [`adfe228`](https://github.com/drwpow/cobalt-ui/commit/adfe2280718244a3a25086e3f3b47e963993bca2) Thanks [@drwpow](https://github.com/drwpow)! - Replace micromatch with wildcard-match
+
 ## 1.4.0
 
 ### Minor Changes
