@@ -21,8 +21,7 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {converter, formatCss} from 'culori';
-import micromatch from 'micromatch';
-import {encode, formatFontNames} from './util.js';
+import {encode, formatFontNames, isTokenMatch} from './util.js';
 
 const CSS_VAR_RE = /^var\(--[^)]+\)$/;
 const DASH_PREFIX_RE = /^-+/;
@@ -164,9 +163,10 @@ export default function pluginCSS(options?: Options): Plugin {
           }
 
           for (const modeSelector of modeSelectors) {
-            if (!token.$extensions.mode[modeSelector.mode] || (modeSelector.tokens?.length && !micromatch.isMatch(token.id, modeSelector.tokens))) {
+            if (!token.$extensions.mode[modeSelector.mode] || (modeSelector.tokens && !isTokenMatch(token.id, modeSelector.tokens))) {
               continue;
             }
+
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};

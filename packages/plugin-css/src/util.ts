@@ -2,6 +2,7 @@ import mime from 'mime';
 import fs from 'node:fs';
 import {fileURLToPath, URL} from 'node:url';
 import svgo from 'svgo';
+import wcmatch from './wildcard-match.js';
 
 const LEADING_SLASH_RE = /^\//;
 const URL_PREFIX = /^\s*url\(['"]?/;
@@ -24,4 +25,16 @@ export function encode(cssURL: string, cwd: URL): string {
 /** format font stack */
 export function formatFontNames(fontNames: string[]): string {
   return fontNames.map((n) => (n.includes(' ') ? `"${n}"` : n)).join(', ');
+}
+
+/** match token against globs */
+export function isTokenMatch(tokenID: string, globPatterns: string[]): boolean {
+  let isMatch = false;
+  for (const tokenMatch of globPatterns) {
+    if (wcmatch(tokenMatch)(tokenID)) {
+      isMatch = true;
+      break;
+    }
+  }
+  return isMatch;
 }
