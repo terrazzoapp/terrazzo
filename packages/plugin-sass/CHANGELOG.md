@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-sass
 
+## 1.2.5
+
+### Patch Changes
+
+- [#99](https://github.com/drwpow/cobalt-ui/pull/99) [`e660687`](https://github.com/drwpow/cobalt-ui/commit/e66068772654c1432fa5a5d87c44b50ca8d19ac8) Thanks [@drwpow](https://github.com/drwpow)! - Make plugin-css a peerDep
+
+- Updated dependencies [[`adfe228`](https://github.com/drwpow/cobalt-ui/commit/adfe2280718244a3a25086e3f3b47e963993bca2)]:
+  - @cobalt-ui/plugin-css@1.4.1
+
 ## 1.2.4
 
 ### Patch Changes
