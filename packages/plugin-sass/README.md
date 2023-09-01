@@ -10,7 +10,7 @@ Generate `.scss` and `.sass` output from your design tokens using [Cobalt](https
 ## Setup
 
 ```bash
-npm i -D @cobalt-ui/plugin-sass
+npm i -D @cobalt-ui/plugin-sass @cobalt-ui/plugin-css
 ```
 
 ```js
