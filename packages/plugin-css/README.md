@@ -238,14 +238,6 @@ That will generate the following:
 }
 ```
 
-#### Syntax
-
-The `#` character designates the mode. **You must have a `#` somewhere in the selector.**
-
-- `#light`: match _any_ token that has a `light` mode
-- `color#light`: deeply match any token inside the `color` group, that has a `light` mode
-- `color.base#light`: deeply match any token inside the `color.base` group with a `light` mode, but ignore any other tokens inside `color`
-
 #### Further Reading
 
 To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/guides/modes/)
