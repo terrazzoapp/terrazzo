@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.2.2
+
+### Patch Changes
+
+- [#104](https://github.com/drwpow/cobalt-ui/pull/104) [`c391da1`](https://github.com/drwpow/cobalt-ui/commit/c391da12ddb342e6bea90197d53052ef6d6fdbfe) Thanks [@drwpow](https://github.com/drwpow)! - Add getLocalID util
+
 ## 1.2.1
 
 ### Patch Changes

@@ -31,10 +31,10 @@
   },
   "peerDependencies": {
     "@cobalt-ui/cli": "^1.x",
-    "@cobalt-ui/plugin-css": "^1.4.1"
+    "@cobalt-ui/plugin-css": "^1.x"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^1.2.1",
+    "@cobalt-ui/utils": "^1.2.2",
     "@types/mime": "^3.0.1",
     "mime": "^3.0.0",
     "svgo": "^3.0.2"
