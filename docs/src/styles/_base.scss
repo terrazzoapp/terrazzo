@@ -20,7 +20,11 @@ html {
 body {
   background-color: token('color.ui.contrast.0');
   color: token('color.ui.contrast.100');
-  font-family: 'Neue Montreal', -system-ui, 'Helvetica', sans-serif;
+  font-family:
+    'Neue Montreal',
+    -system-ui,
+    'Helvetica',
+    sans-serif;
   line-height: 1;
   perspective: 1000px;
   transform-style: preserve-3d;
@@ -148,9 +152,12 @@ code {
 
 pre {
   font-size: token('font.size.04');
+  font-variant-ligatures: none;
 }
 
 code {
+  font-variant-ligatures: none;
+
   li &,
   p & {
     font-weight: 500;

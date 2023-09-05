@@ -132,9 +132,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 #### Example
 
-To generate CSS for Modes, add a `modeSelectors: []` array to your config, and specify `mode: [selector1, selector2, …]`.
-
-All mode names must start with the `#` character. You can also optionally filter to a token group by adding part or all of a group name before the `#`. For example, if your `color.*` tokens had `light` and `dark` mode you wanted to generate CSS for, as well as `transition.*` tokens with `reduced` modes, you could add the following selectors:
+To generate CSS for Modes, add a `modeSelectors` array to your config that specifies the **mode** you’d like to target and which **CSS selectors** should activate those modes (can either be one or multiple). You may optionally also decide to include or exclude certain tokens (e.g. `color.*` will only target the tokens that begin with `color.`).
 
 ```js
 // tokens.config.mjs
@@ -149,13 +147,13 @@ export default {
       modeSelectors: [
         {
           mode: 'light', // match all tokens with $extensions.mode.light
-          selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'], // the following CSS selectors trigger the mode swap
-          tokens: ['color.*'], // (optional) limit to specific tokens, if desired (default: all tokens that use `mode` will be included)
+          selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'], // the following CSS selectors trigger the mode swap
+          tokens: ['color.*'], // (optional) limit to specific tokens, if desired (by default any tokens with this mode will be included)
         },
         {
           mode: 'dark',
-          selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'],
-          tokens: 'color.*',
+          selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'],
+          tokens: ['color.*'],
         },
         {
           mode: 'reduced',
@@ -171,40 +169,40 @@ This would generate the following CSS:
 
 ```css
 :root {
-  /* all tokens (defaults) */
+  /* all default token values (ignoring modes) */
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    /* light mdoe palette */
+    /* all `light` mode values for color.* tokens */
   }
 }
 
-body[data-color-mode='light'] {
-  /* light mode palette */
+[data-color-mode='light'] {
+  /* (same) */
 }
 
 /* dark theme colors */
 @media (prefers-color-scheme: dark) {
   :root {
-    /* dark mode palette */
+    /* all `dark` mode values for color.* tokens */
   }
 }
 
-body[data-color-mode='dark'] {
-  /* dark mode palette */
+[data-color-mode='dark'] {
+  /* (same) */
 }
 
 @media (prefers-reduced-motion) {
   :root {
-    /* reduced motion transitions */
+    /* all `reduced` mode values for any token */
   }
 }
 ```
 
-By default you get automatic inference from the `@media` selectors. But as a fallback, you could also manually set `<body data-color-mode="[mode]">` to override the default (e.g. to respect user preference).
+In our example the `@media` selectors would automatically pick up whether a user’s OS is in light or dark mode. But as a fallback, you could also manually set `data-color-mode="[mode]"` on any element override the default (e.g. for user preferences, or even previewing one theme in the context of another).
 
-But more than just classes can be used (that’s why it’s called `modeSelectors` and not `modeClasses`)! You could also generate CSS if your `type.size` group had `desktop` and `mobile` sizes:
+Further, any valid CSS selector can be used (that’s why it’s called `modeSelectors` and not `modeClasses`)! You could also generate CSS if your `typography.size` group had `desktop` and `mobile` sizes:
 
 ```js
 // tokens.config.mjs
@@ -217,8 +215,8 @@ export default {
   plugins: [
     css({
       modeSelectors: [
-        {mode: 'mobile', tokens: ['type.size.*'], selectors: ['@media (max-width: 600px)']},
-        {mode: 'desktop', tokens: ['type.size.*'], selectors: ['@media (min-width: 600px)']},
+        {mode: 'mobile', tokens: ['typography.size.*'], selectors: ['@media (width < 600px)']},
+        {mode: 'desktop', tokens: ['typography.size.*'], selectors: ['@media (width >= 600px)']},
       ],
     }),
   ],
@@ -232,26 +230,18 @@ That will generate the following:
   /* all tokens (defaults) */
 }
 
-@media (max-width: 600px) {
+@media (width < 600px) {
   :root {
-    /* mobile size typography */
+    /* `mobile` mode values for `typography.size.*` tokens */
   }
 }
 
-@media (min-width: 600px) {
+@media (width >= 600px) {
   :root {
-    /* desktop size typography */
+    /* `desktop` mode values for `typography.size.*` tokens */
   }
 }
 ```
-
-#### Syntax
-
-The `#` character designates the mode. **You must have a `#` somewhere in the selector.**
-
-- `#light`: match _any_ token that has a `light` mode
-- `color#light`: deeply match any token inside the `color` group, that has a `light` mode
-- `color.base#light`: deeply match any token inside the `color.base` group with a `light` mode, but ignore any other tokens inside `color`
 
 #### Further Reading
 
