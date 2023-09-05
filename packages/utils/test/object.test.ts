@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {cloneDeep} from './object.js';
+import {cloneDeep} from '../src/object.js';
 
 describe('cloneDeep', () => {
   test('creates deep copies of all types', () => {

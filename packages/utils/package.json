@@ -10,12 +10,13 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "del dist && tsc",
     "dev": "tsc -w",
     "test": "vitest run"
   },
   "devDependencies": {
     "@types/node": "^20.5.0",
+    "del-cli": "^4.0.1",
     "vitest": "^0.34.2"
   }
 }
