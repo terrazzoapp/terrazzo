@@ -1,5 +1,12 @@
 # @cobalt-ui/plugin-css
 
+## 2.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`c391da1`](https://github.com/drwpow/cobalt-ui/commit/c391da12ddb342e6bea90197d53052ef6d6fdbfe)]:
+  - @cobalt-ui/cli@1.5.0
+
 ## 1.4.1
 
 ### Patch Changes
