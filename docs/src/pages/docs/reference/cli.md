@@ -13,7 +13,7 @@ npm i -D @cobalt-ui/cli
 
 ## API
 
-All CLI commands require a [config](/docs/reference/config/) to work properly, with the exception of `co check`.
+All CLI commands require a [config](/docs/reference/config/) to work properly, with the exception of `co check` and `co convert`.
 
 `npx co [command]`
 
