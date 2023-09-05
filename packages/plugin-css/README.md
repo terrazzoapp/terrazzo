@@ -293,7 +293,7 @@ export default {
 
 ### Usage with @cobalt-ui/plugin-sass
 
-If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](../plugin-sass), which lets you use CSS vars while letting Sass typecheck everything and making sure your stylesheet references everything correctly.
+If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](https://cobalt-ui.pages.dev/docs/plugins/sass/), which lets you use CSS vars while letting Sass typecheck everything and making sure your stylesheet references everything correctly.
 
 To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.mjs` and pass all options into `pluginCSS: {}`:
 
@@ -314,4 +314,4 @@ To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.m
   };
 ```
 
-This changes `token('color.blue')` to return CSS vars rather than the original values. To learn more, [read the dos](../plugin-sass).
+This changes `token('color.blue')` to return CSS vars rather than the original values. To learn more, [read the docs](https://cobalt-ui.pages.dev/docs/plugins/sass/).
