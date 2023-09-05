@@ -3,7 +3,7 @@ import co from '@cobalt-ui/core';
 import fs from 'node:fs';
 import {URL} from 'node:url';
 
-export async function build(rawSchema: Group, config: ResolvedConfig): Promise<ParseResult> {
+export default async function build(rawSchema: Group, config: ResolvedConfig): Promise<ParseResult> {
   const {errors, warnings, result} = co.parse(rawSchema, config);
   if (errors) return {errors, warnings, result};
 

@@ -6,7 +6,7 @@ CLI for managing [W3C Design Token format](https://www.w3.org/community/design-t
 
 Install:
 
-```
+```bash
 npm i -D @cobalt-ui/cli
 ```
 
@@ -28,21 +28,21 @@ export default {
 
 ## Commands
 
-| Command            | Description                                               |
-| :----------------- | :-------------------------------------------------------- |
-| `co build`         | Generate code from `tokens.json`                          |
-| `co build --watch` | Watch `tokens.json` for changes and rebuild on every save |
-| `co sync`          | Sync `tokens.json` with Figma                             |
-| `co init`          | Create a stub `tokens.json` file                          |
-| `co check`         | Check `tokens.json` for errors                            |
+All CLI commands require a [config](/docs/reference/config/) to work properly, with the exception of `co check` and `co convert`.
+
+`npx co [command]`
+
+| Command                       | Notes                                                                                                                                                                                                                                           |
+| :---------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `build`                       | Turn design tokens into output files using [plugins](/docs/plugins). You can watch for changes in dev mode with `build --watch`.                                                                                                                |
+| `bundle --out [path]`         | Bundle multiple `tokens.json` files into one, e.g. `co bundle --out path/to/output.json`. Can output `.json` or `.yaml`. Requires [multiple schemas set in config](https://cobalt-ui.pages.dev/docs/reference/config/#loading-multiple-schemas) |
+| `check [path]`                | Validate a `tokens.json` file and check for errors. This won’t output any files.                                                                                                                                                                |
+| `init`                        | Create a starter `tokens.json` file.                                                                                                                                                                                                            |
+| `convert [path] --out [path]` | Convert a [Style Dictionary](https://amzn.github.io/style-dictionary) JSON file to the W3C format ([docs](/docs/guides/style-dictionary))                                                                                                       |
 
 ## Plugins
 
 Plugins are the entire purpose of using Cobalt! See the [plugin documentation](https://cobalt-ui.pages.dev/docs/plugins/) for instructions on getting started.
-
-## Figma
-
-For instructions on setting up figma, see the [Figma documentation](https://cobalt-ui.pages.dev/docs/guides/tokens-studio/)
 
 ## Documentation
 
