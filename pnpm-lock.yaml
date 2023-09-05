@@ -202,7 +202,7 @@ importers:
         specifier: ^1.4.3
         version: link:../core
       '@cobalt-ui/utils':
-        specifier: ^1.2.1
+        specifier: ^1.2.2
         version: link:../utils
       chokidar:
         specifier: ^3.5.3
@@ -248,7 +248,7 @@ importers:
   packages/core:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.1
+        specifier: ^1.2.2
         version: link:../utils
       '@types/culori':
         specifier: ^2.0.0
@@ -273,7 +273,7 @@ importers:
   packages/plugin-css:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.1
+        specifier: ^1.2.2
         version: link:../utils
       '@types/culori':
         specifier: ^2.0.0
@@ -310,7 +310,7 @@ importers:
   packages/plugin-js:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.1
+        specifier: ^1.2.2
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
@@ -332,7 +332,7 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.1
+        specifier: ^1.2.2
         version: link:../utils
       '@types/mime':
         specifier: ^3.0.1
