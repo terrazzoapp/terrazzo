@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {getAliasID, isAlias} from './token.js';
+import {getAliasID, getLocalID, isAlias} from './token.js';
 
 describe('getAliasID', () => {
   test('returns unwrapped ID for valid ID', () => {
@@ -22,5 +22,15 @@ describe('isAlias', () => {
 
   test('ignores invalid values', () => {
     expect(isAlias([])).toBe(false);
+  });
+});
+
+describe('localID', () => {
+  test('returns last segment of ID', () => {
+    expect(getLocalID('color.blue.60')).toBe('60');
+  });
+
+  test('returns entire token if no segments', () => {
+    expect(getLocalID('token')).toBe('token');
   });
 });

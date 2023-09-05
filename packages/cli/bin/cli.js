@@ -33,13 +33,14 @@ dotenv.config();
 import {parse} from '@cobalt-ui/core';
 import {DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET} from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
+import yaml from 'js-yaml';
 import fs from 'node:fs';
 import {performance} from 'node:perf_hooks';
-import yaml from 'js-yaml';
 import {fileURLToPath, URL} from 'node:url';
 import parser from 'yargs-parser';
+import build from '../dist/build.js';
 import {init as initConfig} from '../dist/config.js';
-import {build} from '../dist/build.js';
+import convert from '../dist/convert.js';
 
 const [, , cmd, ...args] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
@@ -49,6 +50,7 @@ const flags = parser(args, {
   string: ['config', 'out'],
   alias: {
     config: ['c'],
+    out: ['o'],
     version: ['v'],
     watch: ['w'],
   },
@@ -175,6 +177,35 @@ async function main() {
       console.log(`  ${FG_GREEN}✔${RESET} Bundled ${config.tokens.length} schemas ${time(start)}`);
       break;
     }
+    case 'convert': {
+      if (!args[0]) {
+        printErrors(`Expected format "co convert [input] --out [output]"`);
+        process.exit(1);
+      }
+      if (!fs.existsSync(new URL(args[0], cwd))) {
+        printErrors(`Could not find "${args[0]}". Does the file exist?`);
+        process.exit(1);
+      }
+      if (!flags.out) {
+        printErrors(`--out [file] is required to convert`);
+        process.exit(1);
+      }
+
+      console.log(process.argv, args);
+      const input = JSON.parse(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
+      const {errors, warnings, result} = await convert(input);
+      if (errors) {
+        printErrors(errors);
+        process.exit(1);
+      }
+      if (warnings) {
+        printWarnings(warnings);
+      }
+      console.log(`  ${FG_GREEN}✔${RESET}  converted ${args[0]} → ${flags.out} ${time(start)}`);
+      fs.writeFileSync(new URL(flags.out, cwd), JSON.stringify(result, undefined, 2));
+
+      break;
+    }
     case 'sync': {
       printWarnings('"co sync" was deprecated. See https://cobalt-ui.pages.dev/docs/guides/figma');
       process.exit(1);
@@ -217,10 +248,12 @@ function showHelp() {
   [commands]
     build           Build token artifacts from tokens.json
       --watch, -w   Watch tokens.json for changes and recompile
+    check [path]    Check tokens.json for errors
+    init            Create a starter tokens.json file
     bundle          Combine multiple tokens schemas into one
       --out [path]  Specify bundled tokens.json output
-    init            Create a starter tokens.json file
-    check [path]    Check tokens.json for errors
+    convert [file]  Convert Style Dictionary format to W3C format
+      --out [path]  Specify converted tokens.json output
 
   [options]
     --help         Show this message

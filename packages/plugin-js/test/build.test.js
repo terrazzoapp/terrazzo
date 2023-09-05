@@ -1,4 +1,4 @@
-import {build} from '@cobalt-ui/cli/dist/build.js';
+import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
 import {URL, fileURLToPath} from 'node:url';
 import {describe, expect, test} from 'vitest';
