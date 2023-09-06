@@ -125,8 +125,6 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 ### Mode Selectors
 
-#### Example
-
 To generate CSS for Modes, add a `modeSelectors` array to your config that specifies the **mode** you’d like to target and which **CSS selectors** should activate those modes (can either be one or multiple). You may optionally also decide to include or exclude certain tokens (e.g. `color.*` will only target the tokens that begin with `color.`).
 
 ```js
@@ -238,9 +236,7 @@ That will generate the following:
 }
 ```
 
-#### Further Reading
-
-To learn about modes, [read the documentation](https://cobalt-ui.pages.dev/docs/guides/modes/)
+[Learn more about modes](https://cobalt-ui.pages.dev/docs/guides/modes/)
 
 ### Transform
 
