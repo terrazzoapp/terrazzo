@@ -8,7 +8,7 @@ layout: ../../../layouts/docs.astro
 You can migrate your <a href="https://amzn.github.io/style-dictionary" target="_blank" rel="noopener noreferrer">Style Dictionary</a> tokens to the W3C format by running the following command (granted you have [the CLI installed](/docs/reference/cli)):
 
 ```bash
-npx co convert style-dictionary-tokens.json --output tokens.json
+npx co convert style-dictionary-tokens.json --out tokens.json
 ```
 
 > ⚠️ **Warning**
