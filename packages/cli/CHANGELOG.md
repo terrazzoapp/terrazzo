@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.5.0
+
+### Minor Changes
+
+- [#104](https://github.com/drwpow/cobalt-ui/pull/104) [`c391da1`](https://github.com/drwpow/cobalt-ui/commit/c391da12ddb342e6bea90197d53052ef6d6fdbfe) Thanks [@drwpow](https://github.com/drwpow)! - Add Style Dictionary conversion
+
 ## 1.4.2
 
 ### Patch Changes
