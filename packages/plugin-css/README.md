@@ -75,6 +75,8 @@ export default {
       prefix: '',
       /** enable P3 support? */
       p3: true,
+      /** normalize all colors */
+      colorFormat: 'hex',
     }),
   ],
 };
@@ -237,6 +239,25 @@ That will generate the following:
 ```
 
 [Learn more about modes](https://cobalt-ui.pages.dev/docs/guides/modes/)
+
+### Color Format
+
+By specifying a `colorFormat`, you can transform all your colors to [any browser-supported colorspace](https://www.w3.org/TR/css-color-4/). Any of the following colorspaces are accepted:
+
+- [hex](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) (default)
+- [rgb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
+- [hsl](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)
+- [hwb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)
+- [lab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab)
+- [lch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch)
+- [oklab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab)
+- [oklch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
+- [p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)
+- [srgb-linear](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+- [xyz-d50](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+- [xyz-d65](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+
+If you are unfamiliar with these colorspaces, the default `hex` value is best for most users (though [you should use OKLCH to define your colors](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)).
 
 ### Transform
 
