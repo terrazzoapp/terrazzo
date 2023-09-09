@@ -333,6 +333,34 @@ describe('9. Composite Type', () => {
       ).to.deep.equal(json.transition.cubic.$value.timingFunction);
     });
 
+    describe('validation', () => {
+      test('missing duration', () => {
+        expect(
+          parse(
+            {
+              transition: {
+                cubic: {$type: 'transition', $value: {delay: 0, timingFunction: [0.33, 1, 0.68, 1]}},
+              },
+            },
+            DEFAULT_PARSE_OPTIONS,
+          ).errors?.length,
+        ).toBeGreaterThan(0);
+      });
+
+      test('missing timingFunction', () => {
+        expect(
+          parse(
+            {
+              transition: {
+                cubic: {$type: 'transition', $value: {duration: '100ms', delay: 0}},
+              },
+            },
+            DEFAULT_PARSE_OPTIONS,
+          ).errors?.length,
+        ).toBeGreaterThan(0);
+      });
+    });
+
     test('alias', () => {
       const json = {
         easing: {
@@ -361,13 +389,32 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'shadow.simple')?.$value).to.deep.equal({
-        offsetX: '0',
-        offsetY: '4px',
-        blur: '8px',
-        spread: '0',
-        color: '#00000026',
-      });
+      expect(tokens.find((t) => t.id === 'shadow.simple')?.$value).to.deep.equal([{offsetX: '0', offsetY: '4px', blur: '8px', spread: '0', color: '#00000026', inset: false}]);
+    });
+
+    test('shadows (community spec)', () => {
+      const json = {
+        shadow: {
+          layered: {
+            $type: 'shadow',
+            $value: [
+              {offsetX: 0, offsetY: '1px', blur: '1px', color: 'rgba(0,0,0,0.12)'},
+              {offsetX: 0, offsetY: '2px', blur: '2px', color: 'rgba(0,0,0,0.12)'},
+              {offsetX: 0, offsetY: '4px', blur: '4px', color: 'rgba(0,0,0,0.12)'},
+              {offsetX: 0, offsetY: '8px', blur: '8px', color: 'rgba(0,0,0,0.12)'},
+              {offsetX: 0, offsetY: '16px', blur: '16px', color: 'rgba(0,0,0,0.12)'},
+            ],
+          },
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'shadow.layered')?.$value).to.deep.equal([
+        {blur: '1px', color: '#0000001f', inset: false, offsetX: '0', offsetY: '1px', spread: '0'},
+        {blur: '2px', color: '#0000001f', inset: false, offsetX: '0', offsetY: '2px', spread: '0'},
+        {blur: '4px', color: '#0000001f', inset: false, offsetX: '0', offsetY: '4px', spread: '0'},
+        {blur: '8px', color: '#0000001f', inset: false, offsetX: '0', offsetY: '8px', spread: '0'},
+        {blur: '16px', color: '#0000001f', inset: false, offsetX: '0', offsetY: '16px', spread: '0'},
+      ]);
     });
   });
 

@@ -18,7 +18,7 @@ export interface ParseGradientOptions {
  */
 export function normalizeGradientValue(value: unknown, options: ParseGradientOptions): ParsedGradientToken['$value'] {
   if (!value) throw new Error('missing value');
-  if (!Array.isArray(value)) throw new Error(`expected array of gradient stops, received ${typeof value}`);
+  if (!Array.isArray(value)) throw new Error(`expected array, received ${typeof value}`);
   if (value.some((v) => !v || !v.color)) throw new Error('all gradient stops must have color');
   return (value as any).map((v: GradientStop) => ({
     color: normalizeColorValue(v.color, options.color),

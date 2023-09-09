@@ -89,14 +89,17 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             addToken(
               {
                 $type: 'shadow',
-                $value: {
-                  offsetX: v.value.x,
-                  offsetY: v.value.y,
-                  blur: v.value.blur,
-                  spread: v.value.spread,
-                  color: v.value.color,
-                  // type: ignore???
-                },
+                $value: [
+                  {
+                    offsetX: v.value.x,
+                    offsetY: v.value.y,
+                    blur: v.value.blur,
+                    spread: v.value.spread,
+                    color: v.value.color,
+                    inset: v.value.inset ?? false,
+                    // type: ignore???
+                  },
+                ],
               },
               [...path, k],
             );

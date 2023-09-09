@@ -196,11 +196,13 @@ export interface ShadowValue {
   blur: DimensionToken['$value'];
   spread: DimensionToken['$value'];
   color: ColorToken['$value'];
+  /** is this shadow inset? */
+  inset?: boolean;
 }
-export interface ShadowToken extends TokenBase<Partial<ShadowValue>> {
+export interface ShadowToken extends TokenBase<Partial<ShadowValue> | Partial<ShadowValue>[]> {
   $type: 'shadow';
 }
-export interface ParsedShadowToken extends ParsedTokenBase<ShadowValue> {
+export interface ParsedShadowToken extends ParsedTokenBase<ShadowValue[]> {
   $type: 'shadow';
   _original: ShadowToken;
 }

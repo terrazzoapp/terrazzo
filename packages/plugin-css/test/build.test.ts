@@ -6,7 +6,7 @@ import yaml from 'js-yaml';
 import pluginCSS from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
-  test.each(['border', 'color', 'typography', 'transition'])('%s', async (dir) => {
+  test.each(['border', 'color', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
     const cwd = new URL(`./${dir}/`, import.meta.url);
     const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
     await build(tokens, {

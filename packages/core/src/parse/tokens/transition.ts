@@ -19,8 +19,10 @@ const EASE: CubicBezierToken['$value'] = [0.25, 0.1, 0.25, 1];
  */
 export function normalizeTransitionValue(value: unknown): ParsedTransitionToken['$value'] {
   if (!value) throw new Error('missing value');
-  if (typeof value !== 'object' || Array.isArray(value)) throw new Error('invalid transition format, e');
-  if (!Object.keys(value).length) throw new Error('At least 1 transition property is required');
+  if (typeof value !== 'object' || Array.isArray(value)) throw new Error(`expected object, got ${typeof value}`);
+  if (!('duration' in value)) throw new Error('missing duration');
+  // currently delay is optional; is that right?
+  if (!('timingFunction' in value)) throw new Error('missing timingFunction');
   const v = value as any;
   return {
     duration: normalizeDurationValue(v.duration || '0'),
