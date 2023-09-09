@@ -248,7 +248,8 @@ export function transformBorder(value: ParsedBorderToken['$value']): string {
 }
 /** transform shadow */
 export function transformShadow(value: ParsedShadowToken['$value']): string {
-  return [transformDimension(value.offsetX), transformDimension(value.offsetY), transformDimension(value.blur), transformDimension(value.spread), transformDimension(value.color)].join(' ');
+  const shadows = Array.isArray(value) ? value : [value]; // allow backwards compat with older versions where array was not guaranteed
+  return shadows.map((s) => [s.inset ? 'inset' : undefined, s.offsetX, s.offsetY, s.blur, s.spread, s.color].filter((v) => v !== undefined).join(' ')).join(', ');
 }
 /** transform gradient */
 export function transformGradient(value: ParsedGradientToken['$value']): string {

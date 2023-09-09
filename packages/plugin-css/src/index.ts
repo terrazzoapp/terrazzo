@@ -1,7 +1,5 @@
 import type {
   BuildResult,
-  GradientStop,
-  ParsedBorderToken,
   ParsedColorToken,
   ParsedCubicBezierToken,
   ParsedDimensionToken,
@@ -9,13 +7,9 @@ import type {
   ParsedFontFamilyToken,
   ParsedFontWeightToken,
   ParsedNumberToken,
-  ParsedGradientToken,
   ParsedLinkToken,
-  ParsedShadowToken,
   ParsedStrokeStyleToken,
   ParsedToken,
-  ParsedTransitionToken,
-  ParsedTypographyToken,
   Plugin,
   ResolvedConfig,
 } from '@cobalt-ui/core';
@@ -23,7 +17,6 @@ import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {converter, formatCss} from 'culori';
 import {encode, formatFontNames, isTokenMatch} from './util.js';
 
-const CSS_VAR_RE = /^var\(--[^)]+\)$/;
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
 const DOT_UNDER_GLOB_RE = /[._]/g;
@@ -286,108 +279,167 @@ export function transformLink(value: ParsedLinkToken['$value']): string {
 export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): string {
   return String(value);
 }
-/** transform border */
-export function transformBorder(value: ParsedBorderToken['$value']): string {
-  return [transformDimension(value.width), transformStrokeStyle(value.style), transformColor(value.color)].join(' ');
-}
-/** transform shadow */
-export function transformShadow(value: ParsedShadowToken['$value']): string {
-  return [value.offsetX, value.offsetY, value.blur, value.spread, value.color].join(' ');
-}
-/** transform gradient */
-export function transformGradient(value: ParsedGradientToken['$value']): string {
-  return value.map((g: GradientStop) => `${g.color} ${g.position * 100}%`).join(', ');
-}
-/** transform transition */
-export function transformTransition(value: ParsedTransitionToken['$value']): string {
-  const timingFunction = Array.isArray(value.timingFunction) ? `cubic-bezier(${value.timingFunction.join(',')})` : value.timingFunction;
-  return [value.duration, value.delay, timingFunction].filter((v) => v !== undefined).join(' ');
-}
-/** transform typography */
-export function transformTypography(value: ParsedTypographyToken['$value']): Record<string, string | number | string[]> {
-  const values: Record<string, string | number | string[]> = {};
-  for (const [k, v] of Object.entries(value)) {
-    values[kebabinate(k)] = Array.isArray(v) ? formatFontNames(v) : (v as any);
-  }
-  return values;
-}
 
-export function defaultTransformer(token: ParsedToken, options?: {mode?: string; prefix?: string}): string | number | ReturnType<typeof transformTypography> {
-  let value = token.$value;
-  let rawVal = token._original.$value;
-
-  // handle modes
-  if (options?.mode) {
-    if (!token.$extensions?.mode || !token.$extensions.mode[options.mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${options.mode}"`);
-    value = token.$extensions.mode[options.mode]!;
-    rawVal = ((token._original.$extensions as typeof token.$extensions).mode as typeof token.$extensions.mode)[options?.mode]!; // very cool TS right here
-  }
-
-  // handle aliases (both full and partial aliasing within compound tokens)
-  const refOptions = {prefix: options?.prefix, mode: options?.mode};
-  if (typeof rawVal === 'string' && isAlias(rawVal)) {
-    value = varRef(rawVal, refOptions);
-  } else if (rawVal && !Array.isArray(rawVal) && typeof rawVal === 'object') {
-    const resolvedVal: Record<string, string> = {...(value as any)};
-    for (const [k, v] of Object.entries(rawVal)) {
-      resolvedVal[k] = isAlias(v) ? varRef(v, refOptions) : (value as any)[k];
-    }
-    value = resolvedVal;
-  }
-
-  // if this is a flat CSS var, no need to transform
-  if (typeof value === 'string' && CSS_VAR_RE.test(value)) {
-    return value;
-  }
-
+export function defaultTransformer(token: ParsedToken, options?: {mode?: string; prefix?: string}): string | number | Record<string, string> {
   switch (token.$type) {
+    // base tokens
     case 'color': {
-      return transformColor(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+      return transformColor(value);
     }
     case 'dimension': {
-      return transformDimension(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformDimension(value);
     }
     case 'duration': {
-      return transformDuration(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformDuration(value);
     }
     case 'font' as 'fontFamily': // @deprecated (but keep support for now)
     case 'fontFamily': {
-      return transformFontFamily(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformFontFamily(value);
     }
     case 'fontWeight': {
-      return transformFontWeight(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformFontWeight(value);
     }
     case 'cubicBezier': {
-      return transformCubicBezier(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformCubicBezier(value);
     }
     case 'number': {
-      return transformNumber(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformNumber(value);
     }
     case 'link': {
-      return transformLink(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformLink(value);
     }
     case 'strokeStyle': {
-      return transformStrokeStyle(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (isAlias(originalVal)) {
+        return varRef(originalVal as string, {prefix: options?.prefix});
+      }
+      return transformStrokeStyle(value);
     }
+    // composite tokens
     case 'border': {
-      return transformBorder(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (typeof originalVal === 'string') {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+      const width = isAlias(originalVal.width) ? varRef(originalVal.width, {prefix: options?.prefix}) : transformDimension(value.width);
+      const color = isAlias(originalVal.color) ? varRef(originalVal.color, {prefix: options?.prefix}) : transformColor(value.color);
+      const style = isAlias(originalVal.style) ? varRef(originalVal.style, {prefix: options?.prefix}) : transformStrokeStyle(value.style);
+      return `${width} ${style} ${color}`;
     }
     case 'shadow': {
-      return transformShadow(value as typeof token.$value);
+      let {value, originalVal} = getMode(token, options?.mode);
+      if (typeof originalVal === 'string') {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+
+      // handle backwards compat for previous versions that didn’t always return array
+      if (!Array.isArray(value)) value = [value];
+      if (!Array.isArray(originalVal)) originalVal = [originalVal];
+
+      return value
+        .map((shadow, i) => {
+          const origShadow = originalVal[i]!;
+          if (typeof origShadow === 'string') {
+            return varRef(origShadow, {prefix: options?.prefix});
+          }
+          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, {prefix: options?.prefix}) : transformDimension(shadow.offsetX);
+          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, {prefix: options?.prefix}) : transformDimension(shadow.offsetY);
+          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, {prefix: options?.prefix}) : transformDimension(shadow.blur);
+          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, {prefix: options?.prefix}) : transformDimension(shadow.spread);
+          const color = isAlias(origShadow.color) ? varRef(origShadow.color, {prefix: options?.prefix}) : transformColor(shadow.color);
+          return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
+        })
+        .join(', ');
     }
     case 'gradient': {
-      return transformGradient(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (typeof originalVal === 'string') {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+      return value
+        .map((gradient, i) => {
+          const origGradient = originalVal[i]!;
+          if (typeof origGradient === 'string') {
+            return varRef(origGradient, {prefix: options?.prefix});
+          }
+          const color = isAlias(origGradient.color) ? varRef(origGradient.color, {prefix: options?.prefix}) : transformColor(gradient.color);
+          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, {prefix: options?.prefix}) : `${100 * gradient.position}%`;
+          return `${color} ${stop}`;
+        })
+        .join(', ');
     }
     case 'transition': {
-      return transformTransition(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (typeof originalVal === 'string') {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, {prefix: options?.prefix}) : transformDuration(value.duration);
+      let delay: string | undefined = undefined;
+      if (value.delay) {
+        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, {prefix: options?.prefix}) : transformDuration(value.delay);
+      }
+      const timingFunction = isAlias(originalVal.timingFunction) ? varRef(originalVal.timingFunction as any, {prefix: options?.prefix}) : transformCubicBezier(value.timingFunction);
+      return `${duration} ${delay ?? ''} ${timingFunction}`;
     }
     case 'typography': {
-      return transformTypography(value as typeof token.$value);
+      const {value, originalVal} = getMode(token, options?.mode);
+      if (typeof originalVal === 'string') {
+        return varRef(originalVal, {prefix: options?.prefix});
+      }
+      const output: Record<string, string> = {};
+      for (const [k, v] of Object.entries(value)) {
+        const formatter = k === 'fontFamily' ? transformFontFamily : (val: any): string => String(val);
+        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], {prefix: options?.prefix}) : formatter(v as any);
+      }
+      return output;
     }
     default: {
       throw new Error(`No transformer defined for $type: ${(token as any).$type} tokens`);
     }
   }
+}
+
+function getMode<T extends {id: string; $value: any; $extensions?: any; _original: any}>(token: T, mode?: string): {value: T['$value']; originalVal: T['$value'] | string} {
+  if (mode) {
+    if (!token.$extensions?.mode || !token.$extensions.mode[mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
+    return {
+      value: token.$extensions.mode[mode]!,
+      originalVal: token._original.$extensions.mode[mode]!,
+    };
+  }
+  return {value: token.$value, originalVal: token._original.$value};
 }
 
 /** convert token name to CSS variable */

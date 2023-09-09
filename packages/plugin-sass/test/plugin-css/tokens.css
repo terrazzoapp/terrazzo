@@ -9,14 +9,14 @@
   --ds-color-green: #00ff00;
   --ds-gradient-g-b: #00ff00 0%, #0000ff 100%;
   --ds-shadow: 0 4px 8px 0 #0000001a;
-  --ds-transition: 0ms 0ms cubic-bezier(0.4,0,0.6,1);
+  --ds-transition: 0ms 0ms cubic-bezier(0.4, 0, 0.6, 1);
   --ds-typography-body-font-family: var(--ds-typography-family-body);
   --ds-typography-body-font-size: 16px;
   --ds-typography-body-font-weight: 400;
   --ds-typography-body-line-height: 1.5;
   --ds-typography-callout-font-family: var(--ds-typography-family-body);
   --ds-typography-callout-font-size: 18px;
-  --ds-typography-callout-font-style: undefined;
+  --ds-typography-callout-font-style: italic;
   --ds-typography-callout-font-weight: 300;
   --ds-typography-callout-line-height: 1.5;
   --ds-typography-family-body: "IBM Plex Sans", -system-ui, sans-serif;
