@@ -1,5 +1,13 @@
 # @cobalt-ui/core
 
+## 1.5.0
+
+### Minor Changes
+
+- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Add "inset" property for shadows
+
+- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Support arrays of shadows
+
 ## 1.4.3
 
 ### Patch Changes

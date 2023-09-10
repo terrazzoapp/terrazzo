@@ -242,6 +242,12 @@ That will generate the following:
 
 ### Color Format
 
+```js
+pluginCSS({
+  colorFormat: 'oklch',
+}),
+```
+
 By specifying a `colorFormat`, you can transform all your colors to [any browser-supported colorspace](https://www.w3.org/TR/css-color-4/). Any of the following colorspaces are accepted:
 
 - [hex](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) (default)

@@ -1,5 +1,20 @@
 # @cobalt-ui/plugin-sass
 
+## 1.3.0
+
+### Minor Changes
+
+- [#113](https://github.com/drwpow/cobalt-ui/pull/113) [`cc078a7`](https://github.com/drwpow/cobalt-ui/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91) Thanks [@drwpow](https://github.com/drwpow)! - Add colorFormat option
+
+- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Add "inset" property for shadows
+
+- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Support arrays of shadows
+
+### Patch Changes
+
+- Updated dependencies [[`cc078a7`](https://github.com/drwpow/cobalt-ui/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91), [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045), [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045)]:
+  - @cobalt-ui/plugin-css@1.5.0
+
 ## 1.2.5
 
 ### Patch Changes
