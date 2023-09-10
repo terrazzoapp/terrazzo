@@ -12,7 +12,7 @@ import pluginCSS, {
   transformStrokeStyle,
   varRef,
 } from '@cobalt-ui/plugin-css';
-import {getAliasID, indent, isAlias} from '@cobalt-ui/utils';
+import {indent, isAlias} from '@cobalt-ui/utils';
 import {encode, formatFontFamilyNames} from './util.js';
 
 const CAMELCASE_RE = /([^A-Z])([A-Z])/g;
@@ -204,133 +204,84 @@ ${cbClose}`
 export function defaultTransformer(token: ParsedToken, {colorFormat, mode}: {colorFormat: NonNullable<PluginCSSOptions['colorFormat']>; mode?: string}): string | number {
   switch (token.$type) {
     case 'color': {
-      const {originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal);
-      }
-      return transformColor(originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
+      const {value, originalVal} = getMode(token, mode);
+      return transformColor(isAlias(originalVal) ? value : originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
     }
     case 'dimension': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal);
-      }
+      const {value} = getMode(token, mode);
       return transformDimension(value);
     }
     case 'duration': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal);
-      }
+      const {value} = getMode(token, mode);
       return transformDuration(value);
     }
     case 'font' as 'fontFamily':
     case 'fontFamily': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformFontFamily(value);
     }
     case 'fontWeight': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformFontWeight(value);
     }
     case 'cubicBezier': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformCubicBezier(value);
     }
     case 'number': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformNumber(value);
     }
     case 'link': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformLink(value);
     }
     case 'strokeStyle': {
-      const {value, originalVal} = getMode(token, mode);
-      if (isAlias(originalVal)) {
-        return makeRef(originalVal as string);
-      }
+      const {value} = getMode(token, mode);
       return transformStrokeStyle(value);
     }
     // composite tokens
     case 'border': {
       const {value, originalVal} = getMode(token, mode);
-      if (typeof originalVal === 'string') {
-        return makeRef(originalVal);
-      }
-      const width = isAlias(originalVal.width) ? makeRef(originalVal.width) : transformDimension(value.width);
-      const color = isAlias(originalVal.color) ? makeRef(originalVal.color) : transformColor(originalVal.color, colorFormat);
-      const style = isAlias(originalVal.style) ? makeRef(originalVal.style) : transformStrokeStyle(value.style);
+      const width = transformDimension(value.width);
+      const color = transformColor(typeof originalVal === 'string' || isAlias(originalVal.color) ? value.color : originalVal.color, colorFormat);
+      const style = transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
     case 'shadow': {
       let {value, originalVal} = getMode(token, mode);
-      if (typeof originalVal === 'string') {
-        return makeRef(originalVal);
-      }
-
       // handle backwards compat for previous versions that didn’t always return array
       if (!Array.isArray(value)) value = [value];
-      if (!Array.isArray(originalVal)) originalVal = [originalVal];
+      if (!Array.isArray(originalVal)) originalVal = [originalVal] as any;
 
       return value
         .map((shadow, i) => {
           const origShadow = originalVal[i]!;
-          if (typeof origShadow === 'string') {
-            return makeRef(origShadow);
-          }
-          const offsetX = isAlias(origShadow.offsetX) ? makeRef(origShadow.offsetX) : transformDimension(shadow.offsetX);
-          const offsetY = isAlias(origShadow.offsetY) ? makeRef(origShadow.offsetY) : transformDimension(shadow.offsetY);
-          const blur = isAlias(origShadow.blur) ? makeRef(origShadow.blur) : transformDimension(shadow.blur);
-          const spread = isAlias(origShadow.spread) ? makeRef(origShadow.spread) : transformDimension(shadow.spread);
-          const color = isAlias(origShadow.color) ? makeRef(origShadow.color) : transformColor(origShadow.color, colorFormat);
+          const offsetX = transformDimension(shadow.offsetX);
+          const offsetY = transformDimension(shadow.offsetY);
+          const blur = transformDimension(shadow.blur);
+          const spread = transformDimension(shadow.spread);
+          const color = transformColor(typeof origShadow === 'string' || isAlias(origShadow.color) ? shadow.color : origShadow.color, colorFormat);
           return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
         })
         .join(', ');
     }
     case 'gradient': {
       const {value, originalVal} = getMode(token, mode);
-      if (typeof originalVal === 'string') {
-        return makeRef(originalVal);
-      }
       return value
         .map((gradient, i) => {
           const origGradient = originalVal[i]!;
-          if (typeof origGradient === 'string') {
-            return makeRef(origGradient);
-          }
-          const color = isAlias(origGradient.color) ? makeRef(origGradient.color) : transformColor(origGradient.color, colorFormat);
-          const stop = isAlias(origGradient.position) ? makeRef(origGradient.position as any) : `${100 * gradient.position}%`;
+          const color = transformColor(typeof origGradient === 'string' || isAlias(origGradient.color) ? gradient.color : origGradient.color, colorFormat);
+          const stop = `${100 * gradient.position}%`;
           return `${color} ${stop}`;
         })
         .join(', ');
     }
     case 'transition': {
-      const {value, originalVal} = getMode(token, mode);
-      if (typeof originalVal === 'string') {
-        return makeRef(originalVal);
-      }
-      const duration = isAlias(originalVal.duration) ? makeRef(originalVal.duration) : transformDuration(value.duration);
-      let delay: string | undefined = undefined;
-      if (value.delay) {
-        delay = isAlias(originalVal.delay) ? makeRef(originalVal.delay) : transformDuration(value.delay);
-      }
-      const timingFunction = isAlias(originalVal.timingFunction) ? makeRef(originalVal.timingFunction as any) : transformCubicBezier(value.timingFunction);
+      const {value} = getMode(token, mode);
+      const duration = transformDuration(value.duration);
+      const delay = value.delay ? transformDuration(value.delay) : undefined;
+      const timingFunction = transformCubicBezier(value.timingFunction);
       return `${duration} ${delay ?? ''} ${timingFunction}`;
     }
     default: {
@@ -348,10 +299,4 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
     };
   }
   return {value: token.$value, originalVal: token._original.$value};
-}
-
-/** reference another token in Sass */
-function makeRef(id: string, escape = false): string {
-  const ref = `token("${getAliasID(id)}")`;
-  return escape ? `#{${ref}}` : ref;
 }
