@@ -56,6 +56,34 @@ describe('@cobalt-ui/plugin-css', () => {
   });
 
   describe('options', () => {
+    test('colorFormat', async () => {
+      const cwd = new URL(`./color-format/`, import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            filename: 'actual.css',
+            colorFormat: 'oklch',
+            modeSelectors: [
+              {mode: 'light', selectors: ['@media (prefers-color-scheme: light)']},
+              {mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)']},
+              {mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]']},
+              {mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]']},
+              {mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]']},
+              {mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]']},
+              {mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]']},
+              {mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]']},
+              {mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]']},
+            ],
+          }),
+        ],
+        color: {},
+        tokens: [],
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    });
+
     test('p3', async () => {
       const cwd = new URL(`./p3/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));

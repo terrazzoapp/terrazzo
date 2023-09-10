@@ -81,6 +81,8 @@ export default {
 };
 ```
 
+_Note: individual plugins may override these settings per-platform. E.g. you may want a different color format for CSS/web than you do for native code._
+
 ## Syncing with Figma
 
 You can sync tokens with Figma by using the [Tokens Studio for Figma](/docs/guides/tokens-studio) plugin.
