@@ -54,13 +54,19 @@ export function serializeJS(value: unknown, options?: {comments?: Record<string,
   const comments = options?.comments || {};
   const commentPath = options?.commentPath ?? '';
   const indentLv = options?.indentLv || 0;
-  if (typeof value === 'string') return `'${value.replace(SINGLE_QUOTE_RE, "\\'")}'`;
-  if (typeof value === 'number') return `${value}`;
-  if (value === undefined) return 'undefined';
-  if (value === null) return 'null';
-  if (Array.isArray(value)) return `[${value.map((item) => serializeJS(item, {indentLv: indentLv + 1})).join(', ')}]`;
-  if (typeof value === 'function') throw new Error(`Cannot serialize function ${value}`);
-  if (typeof value === 'object')
+  if (typeof value === 'string') {
+    return `'${value.replace(SINGLE_QUOTE_RE, "\\'")}'`;
+  }
+  if (typeof value === 'number' || typeof value === 'boolean' || value === undefined || value === null) {
+    return String(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => serializeJS(item, {indentLv})).join(', ')}]`;
+  }
+  if (typeof value === 'function') {
+    throw new Error(`Cannot serialize function ${value}`);
+  }
+  if (typeof value === 'object') {
     return `{
 ${Object.entries(value)
   .map(([k, v]) => {
@@ -75,23 +81,29 @@ ${Object.entries(value)
   })
   .join(',\n')},
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
+  }
   throw new Error(`Could not serialize ${value}`);
 }
 
 /** serialize TS ref into string */
 export function serializeTS(value: unknown, options?: {indentLv?: number}): string {
   const indentLv = options?.indentLv || 0;
-  if (typeof value === 'number' || typeof value === 'string') return `${value}`;
-  if (value === undefined) return 'undefined';
-  if (value === null) return 'null';
-  if (Array.isArray(value)) return `[${value.map((item) => serializeTS(item, {indentLv: indentLv + 1})).join(', ')}]`;
-  if (typeof value === 'function') throw new Error(`Cannot serialize function ${value}`);
-  if (typeof value === 'object')
+  if (typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean' || value === 'undefined' || value === null) {
+    return String(value);
+  }
+  if (Array.isArray(value)) {
+    return `[${value.map((item) => serializeTS(item, {indentLv})).join(', ')}]`;
+  }
+  if (typeof value === 'function') {
+    throw new Error(`Cannot serialize function ${value}`);
+  }
+  if (typeof value === 'object') {
     return `{
 ${Object.entries(value)
   .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, {indentLv: indentLv + 1})}`)
   .join(';\n')};
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
+  }
   throw new Error(`Could not serialize ${value}`);
 }
 
@@ -102,7 +114,7 @@ function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$v
   return {...(token.$value as typeof modeVal), ...modeVal};
 }
 
-function setToken(obj: Record<string, any>, id: string, value: any, nest = false) {
+function setToken<T extends Record<string, any>>(obj: T, id: keyof T, value: any, nest = false): T {
   if (nest) {
     return set(obj, id, value);
   }
