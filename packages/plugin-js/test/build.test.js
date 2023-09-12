@@ -6,7 +6,7 @@ import pluginJS from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-js', () => {
   describe('fixtures', () => {
-    test.each(['border', 'color', 'typography', 'transition'])('%s', async (dir) => {
+    test.each(['border', 'color', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
       const cwd = new URL(`./${dir}/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('tokens.json', cwd)));
       await build(tokens, {

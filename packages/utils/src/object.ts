@@ -19,20 +19,19 @@ export function cloneDeep<T = unknown>(item: T): T {
  * We can assume that all token ids will be dot-notation, so we don't need to handle
  * array accessors or string accessors.
  */
-export function set(obj: Record<string, any>, key: string, value: any): Record<string, any> {
-  let [root, ...rest] = key.split('.');
-
+export function set<T extends Record<string, any>>(obj: T, key: keyof T, value: any): T {
+  const rest = String(key).split('.');
+  const root = rest.shift()! as keyof T;
   if (root === '') {
     return obj;
   }
 
   if (rest.length === 0) {
     obj[root!] = value;
-
     return obj;
   }
 
-  obj[root!] = obj[root!] ?? {};
+  obj[root] = (obj[root] as any) ?? ({} as any);
 
-  return set(obj[root!], rest.join('.'), value);
+  return set(obj[root], rest.join('.'), value);
 }
