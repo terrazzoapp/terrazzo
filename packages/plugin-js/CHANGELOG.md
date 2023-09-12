@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.4.1
+
+### Patch Changes
+
+- [#117](https://github.com/drwpow/cobalt-ui/pull/117) [`e36605c`](https://github.com/drwpow/cobalt-ui/commit/e36605c01ff86a2e8f3f43192aa53637a8934dfd) Thanks [@drwpow](https://github.com/drwpow)! - Fix array of shadows bug
+
 ## 1.4.0
 
 ### Minor Changes
