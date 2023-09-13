@@ -8,6 +8,7 @@ layout: ../../../layouts/docs.astro
 Customizing Cobalt and managing plugins requires you to add a `tokens.config.mjs` file in the root of your project. Here’s an example configuration with all settings and defaults:
 
 ```js
+// tokens.config.mjs
 import pluginJS from '@cobalt-ui/plugin-js';
 
 /** @type import('@cobalt-ui/core').Config */
@@ -37,6 +38,7 @@ export default {
 Cobalt can load tokens from any **publicly-available** URL:
 
 ```js
+// tokens.config.mjs
 export default {
   tokens: 'https://my-bucket.s3.amazonaws.com/tokens.json',
 };
@@ -58,6 +60,7 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 Cobalt supports loading multiple tokens schemas by passing an array:
 
 ```js
+// tokens.config.mjs
 export default {
   tokens: ['./base.json', './theme.json', './overrides.json'],
 };
@@ -69,19 +72,20 @@ Cobalt will flatten these schemas in order, with the latter entries overriding t
 
 ## Token Type Options
 
-Some token types allow for extra configuration in transformation. Here are all the available settings, along with defaults.
-
-### Color
+Some token types allow for extra configuration.
 
 ```ts
+// tokens.config.mjs
 export default {
   color: {
-    convertToHex: true, // Convert all colors to sRGB hexadecimal (default: true). Disable if you’d like to use another format (such as oklab())
+    convertToHex: false, // Convert all colors to sRGB hexadecimal (default: false). By default, colors are kept in their formats
   },
 };
 ```
 
-_Note: individual plugins may override these settings per-platform. E.g. you may want a different color format for CSS/web than you do for native code._
+| Name                 |   Type    | Description                                                                                                      |
+| :------------------- | :-------: | :--------------------------------------------------------------------------------------------------------------- |
+| `color.convertToHex` | `boolean` | Convert this color to sRGB hexadecimal. By default, colors are kept in the original formats they’re authored in. |
 
 ## Syncing with Figma
 

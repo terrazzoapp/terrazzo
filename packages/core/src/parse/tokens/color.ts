@@ -18,12 +18,12 @@ export interface ParseColorOptions {
 export function normalizeColorValue(value: unknown, options: ParseColorOptions): ParsedColorToken['$value'] {
   if (!value) throw new Error('missing value');
   if (typeof value === 'string') {
-    if (options.convertToHex === false) {
-      return value;
+    if (options.convertToHex === true) {
+      const parsed = parse(value);
+      if (!parsed) throw new Error(`invalid color "${value}"`);
+      return typeof parsed.alpha === 'number' && parsed.alpha < 1 ? formatHex8(parsed) : formatHex(parsed);
     }
-    const parsed = parse(value);
-    if (!parsed) throw new Error(`invalid color "${value}"`);
-    return typeof parsed.alpha === 'number' && parsed.alpha < 1 ? formatHex8(parsed) : formatHex(parsed);
+    return value;
   }
   throw new Error(`expected string, received ${typeof value}`);
 }
