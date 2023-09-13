@@ -6,7 +6,7 @@
         "offsetY": "4px",
         "blur": "8px",
         "spread": "0",
-        "color": "#00000026",
+        "color": "rgb(0, 0, 0, 0.15)",
         "inset": false
       }
     ],
@@ -16,7 +16,7 @@
         "offsetY": "4px",
         "blur": "8px",
         "spread": "0",
-        "color": "#00000026",
+        "color": "rgb(0, 0, 0, 0.15)",
         "inset": true
       }
     ],
@@ -26,7 +26,7 @@
         "offsetY": "1px",
         "blur": "1px",
         "spread": "0",
-        "color": "#0000001f",
+        "color": "rgba(0, 0, 0, 0.12)",
         "inset": false
       },
       {
@@ -34,7 +34,7 @@
         "offsetY": "2px",
         "blur": "2px",
         "spread": "0",
-        "color": "#0000001f",
+        "color": "rgba(0, 0, 0, 0.12)",
         "inset": false
       },
       {
@@ -42,7 +42,7 @@
         "offsetY": "4px",
         "blur": "4px",
         "spread": "0",
-        "color": "#0000001f",
+        "color": "rgba(0, 0, 0, 0.12)",
         "inset": false
       },
       {
@@ -50,7 +50,7 @@
         "offsetY": "8px",
         "blur": "8px",
         "spread": "0",
-        "color": "#0000001f",
+        "color": "rgba(0, 0, 0, 0.12)",
         "inset": false
       },
       {
@@ -58,7 +58,7 @@
         "offsetY": "16px",
         "blur": "16px",
         "spread": "0",
-        "color": "#0000001f",
+        "color": "rgba(0, 0, 0, 0.12)",
         "inset": false
       }
     ],
@@ -68,7 +68,7 @@
         "offsetY": "4px",
         "blur": "8px",
         "spread": "0",
-        "color": "#00000026",
+        "color": "rgb(0, 0, 0, 0.15)",
         "inset": false
       }
     ]
@@ -93,7 +93,7 @@
           "offsetY": "4px",
           "blur": "8px",
           "spread": "0",
-          "color": "#00000026",
+          "color": "rgb(0, 0, 0, 0.15)",
           "inset": false
         }
       ]
@@ -124,7 +124,7 @@
           "offsetY": "4px",
           "blur": "8px",
           "spread": "0",
-          "color": "#00000026",
+          "color": "rgb(0, 0, 0, 0.15)",
           "inset": true
         }
       ]
@@ -137,31 +137,31 @@
             "offsetX": 0,
             "offsetY": "1px",
             "blur": "1px",
-            "color": "rgba(0,0,0,0.12)"
+            "color": "rgba(0, 0, 0, 0.12)"
           },
           {
             "offsetX": 0,
             "offsetY": "2px",
             "blur": "2px",
-            "color": "rgba(0,0,0,0.12)"
+            "color": "rgba(0, 0, 0, 0.12)"
           },
           {
             "offsetX": 0,
             "offsetY": "4px",
             "blur": "4px",
-            "color": "rgba(0,0,0,0.12)"
+            "color": "rgba(0, 0, 0, 0.12)"
           },
           {
             "offsetX": 0,
             "offsetY": "8px",
             "blur": "8px",
-            "color": "rgba(0,0,0,0.12)"
+            "color": "rgba(0, 0, 0, 0.12)"
           },
           {
             "offsetX": 0,
             "offsetY": "16px",
             "blur": "16px",
-            "color": "rgba(0,0,0,0.12)"
+            "color": "rgba(0, 0, 0, 0.12)"
           }
         ]
       },
@@ -179,7 +179,7 @@
           "offsetY": "1px",
           "blur": "1px",
           "spread": "0",
-          "color": "#0000001f",
+          "color": "rgba(0, 0, 0, 0.12)",
           "inset": false
         },
         {
@@ -187,7 +187,7 @@
           "offsetY": "2px",
           "blur": "2px",
           "spread": "0",
-          "color": "#0000001f",
+          "color": "rgba(0, 0, 0, 0.12)",
           "inset": false
         },
         {
@@ -195,7 +195,7 @@
           "offsetY": "4px",
           "blur": "4px",
           "spread": "0",
-          "color": "#0000001f",
+          "color": "rgba(0, 0, 0, 0.12)",
           "inset": false
         },
         {
@@ -203,7 +203,7 @@
           "offsetY": "8px",
           "blur": "8px",
           "spread": "0",
-          "color": "#0000001f",
+          "color": "rgba(0, 0, 0, 0.12)",
           "inset": false
         },
         {
@@ -211,7 +211,7 @@
           "offsetY": "16px",
           "blur": "16px",
           "spread": "0",
-          "color": "#0000001f",
+          "color": "rgba(0, 0, 0, 0.12)",
           "inset": false
         }
       ]
@@ -241,7 +241,7 @@
           "offsetY": "4px",
           "blur": "8px",
           "spread": "0",
-          "color": "#00000026",
+          "color": "rgb(0, 0, 0, 0.15)",
           "inset": false
         }
       ]
