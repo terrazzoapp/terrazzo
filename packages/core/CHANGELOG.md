@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.6.0
+
+### Minor Changes
+
+- [#119](https://github.com/drwpow/cobalt-ui/pull/119) [`1a76946`](https://github.com/drwpow/cobalt-ui/commit/1a769463920d730a9688e0be66c27426da25cf7d) Thanks [@drwpow](https://github.com/drwpow)! - Breaking change: don’t automatically convert colors to hex
+
 ## 1.5.0
 
 ### Minor Changes
