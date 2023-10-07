@@ -173,13 +173,13 @@ importers:
         version: link:../../packages/plugin-sass
       '@salesforce-ux/design-system':
         specifier: ^2.21.3
-        version: 2.21.3(postcss@8.4.26)
+        version: 2.21.3(postcss@8.4.31)
       culori:
         specifier: ^3.2.0
         version: 3.2.0
       postcss:
-        specifier: ^8.4.26
-        version: 8.4.26
+        specifier: ^8.4.31
+        version: 8.4.31
 
   examples/shopify:
     devDependencies:
@@ -1470,12 +1470,12 @@ packages:
     resolution: {integrity: sha512-ZHHfwB0z0z6nDJp263gyGIClYDy+rl0nwqyi4qhcv3Cxhkmtf+If2KVjr6FQqBBFfi1wQwUzaax2FBvfEMFBnw==}
     dev: true
 
-  /@salesforce-ux/design-system@2.21.3(postcss@8.4.26):
+  /@salesforce-ux/design-system@2.21.3(postcss@8.4.31):
     resolution: {integrity: sha512-7+3LWTH26O0y/Uxw9bg6F+TntS4tXB7gmD8a3bLFwAxUgsdO7LVbKvchwFHElgZQU5ICFfUCFB8LzmCgVJ9KIA==}
     peerDependencies:
       postcss: ^8.3.5
     dependencies:
-      postcss: 8.4.26
+      postcss: 8.4.31
     dev: true
 
   /@sinclair/typebox@0.27.8:
@@ -5188,17 +5188,8 @@ packages:
       pathe: 1.1.1
     dev: true
 
-  /postcss@8.4.26:
-    resolution: {integrity: sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw==}
-    engines: {node: ^10 || ^12 || >=14}
-    dependencies:
-      nanoid: 3.3.6
-      picocolors: 1.0.0
-      source-map-js: 1.0.2
-    dev: true
-
-  /postcss@8.4.29:
-    resolution: {integrity: sha512-cbI+jaqIeu/VGqXEarWkRCCffhjgXc0qjBtXpqJhTBohMUjUQnbBr0xqX3vEKudc4iviTewcJo5ajcec5+wdJw==}
+  /postcss@8.4.31:
+    resolution: {integrity: sha512-PS08Iboia9mts/2ygV3eLpY5ghnUcfLV/EXTOW1E2qYxJKGGBUtNjN76FYHnMs36RmARn41bC0AZmn+rR0OVpQ==}
     engines: {node: ^10 || ^12 || >=14}
     dependencies:
       nanoid: 3.3.6
@@ -6592,7 +6583,7 @@ packages:
     dependencies:
       '@types/node': 20.5.7
       esbuild: 0.18.20
-      postcss: 8.4.29
+      postcss: 8.4.31
       rollup: 3.28.1
     optionalDependencies:
       fsevents: 2.3.3
@@ -6627,7 +6618,7 @@ packages:
         optional: true
     dependencies:
       esbuild: 0.18.20
-      postcss: 8.4.29
+      postcss: 8.4.31
       rollup: 3.28.1
       sass: 1.66.1
     optionalDependencies:

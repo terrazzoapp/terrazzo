@@ -14,6 +14,6 @@
     "@cobalt-ui/plugin-sass": "workspace:*",
     "@salesforce-ux/design-system": "^2.21.3",
     "culori": "^3.2.0",
-    "postcss": "^8.4.26"
+    "postcss": "^8.4.31"
   }
 }
