@@ -39,7 +39,7 @@ const tokenDef = {
 
   <h2 id="color">
     <Token type="color" />
-    Color
+     Color
   </h2>
 
   <p>A CSS-valid color as defined in <a href={tokenDef.color} target="_blank"><b>8.1</b></a>.</p>
@@ -75,90 +75,9 @@ const tokenDef = {
 }`}
   />
 
-  <h2 id="fontFamily">
-    <Token type="fontFamily" />
-    Font Family
-  </h2>
-
-  <p>A font name as defined in <a href={tokenDef.fontFamily} target="_blank"><b>8.3</b></a>.</p>
-
-  <table>
-    <thead>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Description</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>$type</code></td>
-        <td><code>string</code></td>
-        <td><b>fontFamily</b></td>
-      </tr>
-      <tr>
-        <td><code>$value</code></td>
-        <td><code>string | string[]</code></td>
-        <td>Either a string for a single font name, or an array of strings to include fallbacks (most preferred first)</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <JSONYaml
-    code={`{
-  "no-fallbacks": {
-    "$type": "fontFamily",
-    "$value": "Graphik Regular"
-  },
-  "with-fallbacks": {
-    "$type": "fontFamily",
-    "$value": ["Graphik Regular", "-system-ui", "Helvetica", "sans-serif"]
-  }
-}`}
-  />
-
-  <h2 id="font-weight">
-    <Token type="fontWeight" />
-    Font Weight
-  </h2>
-
-  <p>A font weight as defined in <a href={tokenDef.fontWeight} target="_blank"><b>8.4</b></a>.</p>
-
-  <table>
-    <thead>
-      <th>Property</th>
-      <th>Type</th>
-      <th>Description</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>$type</code></td>
-        <td><code>string</code></td>
-        <td><b>fontWeight</b></td>
-      </tr>
-      <tr>
-        <td><code>$value</code></td>
-        <td><code>number | string</code></td>
-        <td>Either a font weight number, or an <a href="https://design-tokens.github.io/community-group/format/#font-weight" target="_blank">approved alias</a> of a font weight number.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <JSONYaml
-    code={`{
-  "font-weight-default": {
-    "$value": 350,
-    "$type": "fontWeight"
-  },
-  "font-weight-thick": {
-    "$value": "extra-bold",
-    "$type": "fontWeight"
-  }
-}`}
-
-  />
-
   <h2 id="dimension">
     <Token type="dimension" />
-    Dimension
+     Dimension
   </h2>
 
   <p>A unit of distance as defined in <a href={tokenDef.dimension} target="_blank"><b>8.2</b></a>.</p>
@@ -198,9 +117,89 @@ const tokenDef = {
 }`}
   />
 
+  <h2 id="fontFamily">
+    <Token type="fontFamily" />
+     Font Family
+  </h2>
+
+  <p>A font name as defined in <a href={tokenDef.fontFamily} target="_blank"><b>8.3</b></a>.</p>
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>$type</code></td>
+        <td><code>string</code></td>
+        <td><b>fontFamily</b></td>
+      </tr>
+      <tr>
+        <td><code>$value</code></td>
+        <td><code>string | string[]</code></td>
+        <td>Either a string for a single font name, or an array of strings to include fallbacks (most preferred first)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <JSONYaml
+    code={`{
+  "no-fallbacks": {
+    "$type": "fontFamily",
+    "$value": "Graphik Regular"
+  },
+  "with-fallbacks": {
+    "$type": "fontFamily",
+    "$value": ["Graphik Regular", "-system-ui", "Helvetica", "sans-serif"]
+  }
+}`}
+  />
+
+  <h2 id="font-weight">
+    <Token type="fontWeight" />
+     Font Weight
+  </h2>
+
+  <p>A font weight as defined in <a href={tokenDef.fontWeight} target="_blank"><b>8.4</b></a>.</p>
+
+  <table>
+    <thead>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Description</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>$type</code></td>
+        <td><code>string</code></td>
+        <td><b>fontWeight</b></td>
+      </tr>
+      <tr>
+        <td><code>$value</code></td>
+        <td><code>number | string</code></td>
+        <td>Either a font weight number, or an <a href="https://design-tokens.github.io/community-group/format/#font-weight" target="_blank">approved alias</a> of a font weight number.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <JSONYaml
+    code={`{
+  "font-weight-default": {
+    "$value": 350,
+    "$type": "fontWeight"
+  },
+  "font-weight-thick": {
+    "$value": "extra-bold",
+    "$type": "fontWeight"
+  }
+}`}
+  />
+
   <h2 id="duration">
     <Token type="duration" />
-    Duration
+     Duration
   </h2>
 
   <p>A length of time as defined in <a href={tokenDef.duration} target="_blank"><b>8.5</b></a>.</p>
@@ -240,7 +239,7 @@ const tokenDef = {
 
   <h2 id="cubic-bezier">
     <Token type="cubic-bezier" />
-    Cubic bézier
+     Cubic bézier
   </h2>
 
   <p>An easing curve as defined in <a href={tokenDef.cubicBezier} target="_blank"><b>8.6</b></a>.</p>
@@ -288,7 +287,7 @@ const tokenDef = {
 
   <h2 id="number">
     <Token type="number" />
-    Number
+     Number
   </h2>
 
   <p>A number as defined in <a href={tokenDef.number} target="_blank"><b>8.7</b></a>.</p>
@@ -324,7 +323,7 @@ const tokenDef = {
 
   <h2 id="link">
     <Token type="link" />
-    Link
+     Link
   </h2>
 
   <p><strong>Cobalt extension</strong>. A link to a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" target="_blank">resource</a> such as an image.</p>
@@ -360,7 +359,7 @@ const tokenDef = {
 
   <h2 id="stroke-style">
     <Token type="stroke-style" />
-    Stroke style
+     Stroke style
   </h2>
 
   <table>
@@ -396,10 +395,10 @@ const tokenDef = {
 
   <h2 id="border">
     <Token type="border" />
-    Border
+     Border
   </h2>
 
-  <p>A border as defined in <a href={tokenDef.border} target="_blank"><b>9.3</b></a> consisting of a <a href="#color">color</a>, <a href="#dimension">width</a>, and <a href="#stroke-style">style</a>.</p>
+  <p>A composite type combining <a href="#color">color</a>, <a href="#dimension">width</a>, and <a href="#stroke-style">style</a> , as defined in <a href={tokenDef.border} target="_blank"><b>9.3</b></a>.</p>
 
   <table>
     <thead>
@@ -436,7 +435,7 @@ const tokenDef = {
 
   <h2 id="transition">
     <Token type="transition" />
-    Transition
+     Transition
   </h2>
 
   <p>A composite type combining <a href="#duration">duration</a> and <a href="#cubic-bezier">cubicBezier</a> types to form a CSS transition, as defined in <a href={tokenDef.transition} target="_blank"><b>9.4</b></a>.</p>
@@ -476,7 +475,7 @@ const tokenDef = {
 
   <h2 id="shadow">
     <Token type="shadow" />
-    Shadow
+     Shadow
   </h2>
 
   <p>A composite type combining <a href="#dimension">dimension</a> with a <a href="#color">color</a> to form a CSS <code>box-shadow</code>, as defined in <a href={tokenDef.shadow} target="_blank"><b>9.5</b></a></p>
@@ -497,7 +496,8 @@ const tokenDef = {
         <td><code>$value</code></td>
         <td><code>object</code></td>
         <td
-          >Specify a <a href="#dimension">offsetX</a>, <a href="#dimension">offsetY</a>, <a href="#dimension">blur</a>, <a href="#dimension">spread</a>, and <a href="#color">color</a> to form a shadow. <b>color</b> is the only required prop.</td
+          >Specify a <a href="#dimension">offsetX</a>, <a href="#dimension">offsetY</a>, <a href="#dimension">blur</a>, <a href="#dimension">spread</a>, and <a href="#color">color</a> to form a shadow. <b>color</b> is the only required
+          prop.</td
         >
       </tr>
     </tbody>
@@ -520,7 +520,7 @@ const tokenDef = {
 
   <h2 id="gradient">
     <Token type="gradient" />
-    Gradient
+     Gradient
   </h2>
 
   <p>A composite type combining <a href="#color">color</a> and <a href="#dimension">percentages</a> (normalized to <b>1</b>) to form the stops of a CSS gradient, as defined in <a href={tokenDef.gradient} target="_blank"><b>9.6</b></a>.</p>
@@ -549,7 +549,7 @@ const tokenDef = {
       <tr>
         <td><code>$value</code></td>
         <td><code>{'{'}color: string, position: number{'}'}[]</code></td>
-        <td>Array of stops that provdide both a <a href="#color">color</a> and <a href="#dimension">position</a>, from <code>0</code> (0%) to <code>1</code> (100%).</td>
+        <td>Array of stops that provide both a <a href="#color">color</a> and <a href="#dimension">position</a>, from <code>0</code> (0%) to <code>1</code> (100%).</td>
       </tr>
     </tbody>
   </table>
@@ -573,7 +573,7 @@ const tokenDef = {
 
   <h2 id="typography">
     <Token type="typography" />
-    Typography
+     Typography
   </h2>
 
   <p>A composite type combining <b>font</b> and <b>dimension</b> to form a complete typographic style, as defined in <a href={tokenDef.typography} target="_blank"><b>9.7</b></a>.</p>
@@ -731,8 +731,8 @@ const tokenDef = {
   <h2 id="modes">Modes</h2>
 
   <p>
-    <a href="/docs/guides/modes">Modes</a> are alternate versions of your tokens. For example, say your design system has a <b>standard</b> palette and an alternate version optimized for <b>colorblind</b> users. Here’s one way you could declare
-    that:
+    <a href="/docs/guides/modes">Modes</a> are alternate versions of your tokens. For example, say your design system has a <b>standard</b> palette and an alternate version optimized for <b>colorblind</b> users. Here’s one way you could
+    declare that:
   </p>
 
   <JSONYaml
