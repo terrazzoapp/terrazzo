@@ -33,19 +33,20 @@ const title = 'Getting Started';
       Running the CLI
       <li><i>(Optional)</i> Adding Cobalt to CI</li>
     </li>
+  </ol>
 
-    <h2>1. Creating the <code>tokens.json</code> file</h2>
+  <h2>1. Creating the <code>tokens.json</code> file</h2>
 
-    <p>
-      Converting your tokens to JSON is a manual process of grabbing values from your design files and formatting the JSON yourself. There’s not a great UI for this yet, but <strong>the Cobalt team is developing one currently</strong>.
-    </p>
+  <p>
+    Converting your tokens to JSON is a manual process of grabbing values from your design files and formatting the JSON yourself. There’s not a great UI for this yet, but <strong>the Cobalt team is developing one currently</strong>.
+  </p>
 
-    <blockquote><p>✨ Cobalt can now convert some Style Dictionary files into the W3C format (<a href="/docs/guides/style-dictionary">docs</a>)</p></blockquote>
+  <aside class="callout"><p>✨ Cobalt can now convert some Style Dictionary files into the W3C format (<a href="/docs/guides/style-dictionary">docs</a>)</p></aside>
 
-    <p>Save these all to a <code>tokens.json</code> file (or <code>tokens.yaml</code>, if you prefer YAML) like so:</p>
+  <p>Save these all to a <code>tokens.json</code> file (or <code>tokens.yaml</code>, if you prefer YAML) like so:</p>
 
-    <JSONYaml
-      code={`{
+  <JSONYaml
+    code={`{
   "blue": {
     "60": {
       "$type": "color",
@@ -53,51 +54,51 @@ const title = 'Getting Started';
     }
   }
 }`}
-    />
+  />
 
-    <p>You can use the following token types (organizing them into any <a href="/docs/tokens/#groups">Groups</a> you’d like) (<a href="/docs/tokens">docs</a>):</p>
+  <p>You can use the following token types (organizing them into any <a href="/docs/tokens/#groups">Groups</a> you’d like) (<a href="/docs/tokens">docs</a>):</p>
 
-    <ul class="tokens-list">
-      <li><a class="token-card" href="/docs/tokens/#color"><Token type="color" /><span class="token-type">Color</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#dimension"><Token type="dimension" /><span class="token-type">Dimension</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#font-family"><Token type="fontFamily" /><span class="token-type">Font Family</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#font-weight"><Token type="fontWeight" /><span class="token-type">Font Weight</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#duration"><Token type="duration" /><span class="token-type">Duration</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#cubic-bezier"><Token type="cubic-bezier" /><span class="token-type">Cubic Bézier</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#number"><Token type="number" /><span class="token-type">Number</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#link"><Token type="link" /><span class="token-type">Link</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#stroke-style"><Token type="stroke-style" /><span class="token-type">Stroke style</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#border"><Token type="border" /><span class="token-type">Border</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#transition"><Token type="transition" /><span class="token-type">Transition</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#shadow"><Token type="shadow" /><span class="token-type">Shadow</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#gradient"><Token type="gradient" /><span class="token-type">Gradient</span></a></li>
-      <li><a class="token-card" href="/docs/tokens/#typography"><Token type="typography" /><span class="token-type">Typography</span></a></li>
-    </ul>
+  <ul class="tokens-list">
+    <li><a class="token-card" href="/docs/tokens/#color"><Token type="color" /><span class="token-type">Color</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#dimension"><Token type="dimension" /><span class="token-type">Dimension</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#font-family"><Token type="fontFamily" /><span class="token-type">Font Family</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#font-weight"><Token type="fontWeight" /><span class="token-type">Font Weight</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#duration"><Token type="duration" /><span class="token-type">Duration</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#cubic-bezier"><Token type="cubic-bezier" /><span class="token-type">Cubic Bézier</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#number"><Token type="number" /><span class="token-type">Number</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#link"><Token type="link" /><span class="token-type">Link</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#stroke-style"><Token type="stroke-style" /><span class="token-type">Stroke style</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#border"><Token type="border" /><span class="token-type">Border</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#transition"><Token type="transition" /><span class="token-type">Transition</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#shadow"><Token type="shadow" /><span class="token-type">Shadow</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#gradient"><Token type="gradient" /><span class="token-type">Gradient</span></a></li>
+    <li><a class="token-card" href="/docs/tokens/#typography"><Token type="typography" /><span class="token-type">Typography</span></a></li>
+  </ul>
 
-    <h2>2. Installing Cobalt Plugins</h2>
+  <h2>2. Installing Cobalt Plugins</h2>
 
-    <blockquote><p>ℹ️ For this step, you’ll need <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js</a> installed (v20 is recommended).</p></blockquote>
+  <div class="callout" role="note"><p>ℹ️ For this step, you’ll need <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js</a> installed (v20 is recommended).</p></div>
 
-    <p>
-      For this example, we’ll install the <a href="/docs/integrations/js">JS</a>, <a href="/docs/integrations/sass">Sass</a>, and <a href="/docs/integrations/css">CSS</a> plugins, but skip any you don’t need (you can always install them
-      later).
-    </p>
+  <p>
+    For this example, we’ll install the <a href="/docs/integrations/js">JS</a>, <a href="/docs/integrations/sass">Sass</a>, and <a href="/docs/integrations/css">CSS</a> plugins, but skip any you don’t need (you can always install them
+    later).
+  </p>
 
-    <p>Run the following in a terminal, in the code project folder you’d like to generate code to:</p>
+  <p>Run the following in a terminal, in the code project folder you’d like to generate code to:</p>
 
-    <Code lang="bash" code="npm i -D @cobalt-ui/plugin-js @cobalt-ui/plugin-css @cobalt-ui/plugin-sass" />
+  <Code lang="bash" code="npm i -D @cobalt-ui/plugin-js @cobalt-ui/plugin-css @cobalt-ui/plugin-sass" />
 
-    <h2>3. Running the CLI</h2>
+  <h2>3. Running the CLI</h2>
 
-    <p>First install the CLI:</p>
+  <p>First install the CLI:</p>
 
-    <Code lang="bash" code="npm i -D @cobalt-ui/cli" />
+  <Code lang="bash" code="npm i -D @cobalt-ui/cli" />
 
-    <p>Next, in the root of your code project, create a <code>tokens.config.mjs</code> file, importing the plugins you installed in the previous step:</p>
+  <p>Next, in the root of your code project, create a <code>tokens.config.mjs</code> file, importing the plugins you installed in the previous step:</p>
 
-    <Code
-      lang="js"
-      code={`import pluginCSS from '@cobalt-ui/plugin-css';
+  <Code
+    lang="js"
+    code={`import pluginCSS from '@cobalt-ui/plugin-css';
 import pluginJS from '@cobalt-ui/plugin-js';
 import pluginSass from '@cobalt-ui/plugin-sass';
 
@@ -111,23 +112,23 @@ export default {
     pluginSass(/* options */),
   ],
 };`}
-    />
+  />
 
-    <p>To learn more about the config file, see <a href="/docs/reference/config">config options</a>. To learn about plugins and integrations, see <a href="/docs/integrations">Integrations</a>.</p>
+  <p>To learn more about the config file, see <a href="/docs/reference/config">config options</a>. To learn about plugins and integrations, see <a href="/docs/integrations">Integrations</a>.</p>
 
-    <p>Lastly, run the following command to generate all code from your tokens:</p>
+  <p>Lastly, run the following command to generate all code from your tokens:</p>
 
-    <Code lang="bash" code="npx co build" />
+  <Code lang="bash" code="npx co build" />
 
-    <p>This will output JS, CSS, and Sass in the <code>./tokens/</code> folder (which you can change in your config). It will also alert you of any errors in your schema.</p>
+  <p>This will output JS, CSS, and Sass in the <code>./tokens/</code> folder (which you can change in your config). It will also alert you of any errors in your schema.</p>
 
-    <h2>4. (optional) Adding Cobalt to CI</h2>
+  <h2>4. (optional) Adding Cobalt to CI</h2>
 
-    <p>Using your preferred CI stack, here’s an example of how you could add Cobalt to your CI. First, we’ll take a <code>package.json</code> that had an existing <code>npm run build</code> command, and add <code>co build</code> to it:</p>
+  <p>Using your preferred CI stack, here’s an example of how you could add Cobalt to your CI. First, we’ll take a <code>package.json</code> that had an existing <code>npm run build</code> command, and add <code>co build</code> to it:</p>
 
-    <Code
-      lang="diff"
-      code={`  {
+  <Code
+    lang="diff"
+    code={`  {
      "scripts": {
 -      "build": "npm run build:app",
 +      "build": "npm run build:tokens && npm run build:app",
@@ -135,15 +136,15 @@ export default {
 +      "build:tokens": "co build",
      }
   }`}
-    />
+  />
 
-    <p><em>Note: this is just a generic example. The important part is that <code>co build</code> is run somehow during the build.</em></p>
+  <p><em>Note: this is just a generic example. The important part is that <code>co build</code> is run somehow during the build.</em></p>
 
-    <p>Then add the <code>npm run build</code> command to your preferred CI tool. Here’s an example in GitHub Actions:</p>
+  <p>Then add the <code>npm run build</code> command to your preferred CI tool. Here’s an example in GitHub Actions:</p>
 
-    <Code
-      lang="yaml"
-      code={`name: CI
+  <Code
+    lang="yaml"
+    code={`name: CI
 
 on:
   push:
@@ -165,29 +166,28 @@ jobs:
           node-version: 20
       - run: npm i
       - run: npm run build`}
-    />
+  />
 
-    <p>
-      This will then run <code>co build</code> on every code change. This not only validates your tokens to make sure they’re 100% valid; it also runs all the code plugins so you know if there was an error generating tokens to CSS, etc.
-    </p>
+  <p>
+    This will then run <code>co build</code> on every code change. This not only validates your tokens to make sure they’re 100% valid; it also runs all the code plugins so you know if there was an error generating tokens to CSS, etc.
+  </p>
 
-    <p>
-      You could then take the additional step of using a package versioning tool like <a href="https://github.com/changesets/changesets" target="_blank" rel="noopener noreferrer">Changesets</a> to release npm packages from CI (the <a
-        href="https://github.com/drwpow/cobalt-ui/blob/main/.github/workflows/release.yml"
-        target="_blank"
-        rel="noopener noreferrer">the Cobalt GitHub repo</a
-      > uses this to release new package versions automatically).
-    </p>
+  <p>
+    You could then take the additional step of using a package versioning tool like <a href="https://github.com/changesets/changesets" target="_blank" rel="noopener noreferrer">Changesets</a> to release npm packages from CI (the <a
+      href="https://github.com/drwpow/cobalt-ui/blob/main/.github/workflows/release.yml"
+      target="_blank"
+      rel="noopener noreferrer">the Cobalt GitHub repo</a
+    > uses this to release new package versions automatically).
+  </p>
 
-    <h2>Next steps</h2>
+  <h2>Next steps</h2>
 
-    <ul>
-      <li><a href="/docs/tokens">Learn about tokens</a></li>
-      <li><a href="/docs/integrations/tokens-studio">Sync with Figma using Tokens Studio</a></li>
-      <li><a href="/docs/reference/config">Learn how to configure Cobalt</a></li>
-      <li><a href="/docs/integrations">Add integrations</a></li>
-    </ul>
-  </ol>
+  <ul>
+    <li><a href="/docs/tokens">Learn about tokens</a></li>
+    <li><a href="/docs/integrations/tokens-studio">Sync with Figma using Tokens Studio</a></li>
+    <li><a href="/docs/reference/config">Learn how to configure Cobalt</a></li>
+    <li><a href="/docs/integrations">Add integrations</a></li>
+  </ul>
 
   <style lang="scss">
     @use '../../../../tokens/index' as *;
