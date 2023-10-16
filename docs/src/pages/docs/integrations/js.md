@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # @cobalt-ui/plugin-js
 
-Generate `.js`, and `.json` from your design tokens using [Cobalt](https://cobalt-ui.pages.dev).
+Generate JSON and JS (with TypeScript types) from your design tokens using [Cobalt](https://cobalt-ui.pages.dev).
 
 **Features**
 
@@ -72,7 +72,13 @@ In addition, you’ll also find the following named exports:
 
 ### JSON
 
-This plugin’s JSON output has the same shape as the JS output. This format may be preferable if you’re preparing the tokens for an API or some other non-JS runtime.
+This plugin’s JSON output has the same shape as the JS output. This format is preferable if you’re preparing tokens for an API, or for native apps (iOS or Android).
+
+Note that even if your tokens started off as a `tokens.json` file, this output JSON differs in the following ways:
+
+- It flattens deeply-nested structures into a single depth (e.g. `color.core.blue.500` becomes `tokens["color.core.blue.500"]`)
+- It resolves all aliases (so you don’t have to)
+- It normalizes token values (especially helpful when the original spec is loose in what’s accepted)
 
 ## Options
 

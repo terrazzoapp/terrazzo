@@ -9,7 +9,7 @@ Generate `.scss` and `.sass` output from your design tokens using [Cobalt](https
 
 **Features**
 
-- ✅ Supports all features of the [CSS plugin](https://cobalt-ui.pages.dev/plugins/css)
+- ✅ Supports all features of the [CSS plugin](https://cobalt-ui.pages.dev/integrations/css)
 - ✅ Strong typechecking with Sass to never have broken styles
 
 ## Setup

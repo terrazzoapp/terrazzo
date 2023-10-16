@@ -9,7 +9,7 @@ layout: ../../../layouts/docs.astro
 
 1. Support the complete and full [W3C Design Tokens CG spec](https://design-tokens.github.io/community-group/format)
 2. Support a pluggable and configurable architecture, enabling users and the community to write their own plugins to generate any format
-3. Make syncing from Figma easy and automatable ([docs](/docs/guides/tokens-studio))
+3. Make syncing from Figma easy and automatable ([docs](/docs/integrations/tokens-studio))
 
 ## Why the name “Cobalt”?
 

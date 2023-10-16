@@ -71,8 +71,8 @@ That will generate a new `/tokens/` folder along with one output per plugin:
 
 ## Next steps
 
-Learn more about the existing plugins and [view documentation](docs/plugins)
+Learn more about the existing plugins and [view documentation](/docs/integrations)
 
-- **CSS**: [@cobalt-ui/plugin-css](/docs/plugins/css)
-- **JS/TS/JSON**: [@cobalt-ui/plugin-js](/docs/plugins/js)
-- **Sass**: [@cobalt-ui/plugin-sass](/docs/plugins/sass)
+- **CSS**: [@cobalt-ui/plugin-css](/docs/integrations/css)
+- **JS/TS/JSON**: [@cobalt-ui/plugin-js](/docs/integrations/js)
+- **Sass**: [@cobalt-ui/plugin-sass](/docs/integrations/sass)

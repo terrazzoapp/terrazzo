@@ -21,8 +21,8 @@ const title = 'Modes';
   </figure>
 
   <p>
-    In this screenshot of GitHub’s dashboard you’ll find 5 color themes: <em>Light default</em>, <em>Light high contrast</em>, <em>Dark default</em>, <em>Dark high contrast</em>, and <em>Dark dimmed</em> (shown above). How might that be represented
-    in tokens?
+    In this screenshot of GitHub’s dashboard you’ll find 5 color themes: <em>Light default</em>, <em>Light high contrast</em>, <em>Dark default</em>, <em>Dark high contrast</em>, and <em>Dark dimmed</em> (shown above). How might that be
+    represented in tokens?
   </p>
 
   <p><em>Note: since this guide was written, GitHub has since added additional color modes. But since that doesn’t change the concept, we’ll stick with the older (simpler) example for the purposes of illustration.</em></p>
@@ -30,8 +30,8 @@ const title = 'Modes';
   <h3>Without Modes</h3>
 
   <p>
-    Consider the <code>red</code> and <code>white</code> colors in the system. Whereas <code>red</code> has a different value for each mode, <code>white</code> is an absolute value that doesn’t change. A (wrong) first attempt may look something
-    like:
+    Consider the <code>red</code> and <code>white</code> colors in the system. Whereas <code>red</code> has a different value for each mode, <code>white</code> is an absolute value that doesn’t change. A (wrong) first attempt may look
+    something like:
   </p>
 
   <JSONYaml
@@ -93,13 +93,13 @@ const title = 'Modes';
   </p>
 
   <p>
-    This simplifies your application code, too, as, you can simply refer to <code>red</code> or <code>white</code> and the mode can be inferred based on the global context (see the <a href="#examples-in-code">Examples in code</a> section below
-    to see the “how”).
+    This simplifies your application code, too, as, you can simply refer to <code>red</code> or <code>white</code> and the mode can be inferred based on the global context (see the <a href="#examples-in-code">Examples in code</a> section
+    below to see the “how”).
   </p>
 
   <h3>With @cobalt/plugin-css</h3>
 
-  <p>If using <a href="/docs/plugins/css">@cobalt/plugin-css</a>, you could generate CSS to handle these modes. That would look something like:</p>
+  <p>If using <a href="/docs/integrations/css">@cobalt/plugin-css</a>, you could generate CSS to handle these modes. That would look something like:</p>
 
   <Code
     lang="js"
@@ -125,8 +125,8 @@ export default {
   />
 
   <p>
-    Then in your CSS, the correct color mode would apply automatically in most instances, but you could also set <code>&lt;body data-color-mode="[mode]"&gt;</code> to override it. Also note there aren’t browser-global colorblind preferences,
-    so for the colorblind color schemes, they’d have to be set manually.
+    Then in your CSS, the correct color mode would apply automatically in most instances, but you could also set <code>&lt;body data-color-mode="[mode]"&gt;</code> to override it. Also note there aren’t browser-global colorblind
+    preferences, so for the colorblind color schemes, they’d have to be set manually.
   </p>
 
   <h2>Example: typographic modes</h2>
@@ -157,8 +157,8 @@ export default {
   />
 
   <p>
-    Referring to a font size as <code>typography.size.title1-Medium</code> or <code>typography.size.title2-Medium</code> is a bad idea, because then every level of your application must be aware of the user’s current preference settings. And
-    if values ever change, now your entire application must be updated everywhere.
+    Referring to a font size as <code>typography.size.title1-Medium</code> or <code>typography.size.title2-Medium</code> is a bad idea, because then every level of your application must be aware of the user’s current preference settings.
+    And if values ever change, now your entire application must be updated everywhere.
   </p>
 
   <h3>With Modes</h3>
@@ -230,9 +230,9 @@ export default {
   <p>The examples above were generic concepts that applied to all languages. To see how to use modes in specific languages, see the following plugin docs:</p>
 
   <ul>
-    <li><a href="/docs/plugins/css#mode-selectors">@cobalt-ui/plugin-css</a></li>
-    <li><a href="/docs/plugins/js#usage">@cobalt-ui/plugin-js</a></li>
-    <li><a href="/docs/plugins/sass#modes">@cobalt-ui/plugin-sass</a></li>
+    <li><a href="/docs/integrations/css#mode-selectors">@cobalt-ui/plugin-css</a></li>
+    <li><a href="/docs/integrations/js#usage">@cobalt-ui/plugin-js</a></li>
+    <li><a href="/docs/integrations/sass#modes">@cobalt-ui/plugin-sass</a></li>
   </ul>
 
   <h2>Advanced</h2>

@@ -8,7 +8,7 @@ import SkipToMain from '../components/SkipToMain.astro';
 const {content = {}} = Astro.props;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <Head title={content.title ? `${content.title} / Cobalt design tokens}` : 'Docs / Cobalt design tokens'} />
@@ -21,8 +21,15 @@ const {content = {}} = Astro.props;
 
         @media (min-width: 600px) {
           flex-direction: row;
+          gap: 2.5rem;
           padding-right: token('space.layout.2xl');
         }
+      }
+
+      .content {
+        margin-right: auto;
+        max-width: 100%;
+        width: 65rem;
       }
     </style>
   </head>
@@ -31,7 +38,7 @@ const {content = {}} = Astro.props;
     <Nav />
     <div class="docs">
       <DocsNav />
-      <main class="wrapper content md-content" id="#main">
+      <main class="content md-content" id="#main">
         <slot />
       </main>
     </div>

@@ -9,9 +9,9 @@ import {URL} from 'node:url';
 const FRONTMATTER_RE = /^---/gm;
 
 const updates = {
-  '../../packages/plugin-css/README.md': '../src/pages/docs/plugins/css.md',
-  '../../packages/plugin-sass/README.md': '../src/pages/docs/plugins/sass.md',
-  '../../packages/plugin-js/README.md': '../src/pages/docs/plugins/js.md',
+  '../../packages/plugin-css/README.md': '../src/pages/docs/integrations/css.md',
+  '../../packages/plugin-sass/README.md': '../src/pages/docs/integrations/sass.md',
+  '../../packages/plugin-js/README.md': '../src/pages/docs/integrations/js.md',
 };
 
 const urlRewrites = {

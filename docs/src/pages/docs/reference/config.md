@@ -89,10 +89,10 @@ export default {
 
 ## Syncing with Figma
 
-You can sync tokens with Figma by using the [Tokens Studio for Figma](/docs/guides/tokens-studio) plugin.
+You can sync tokens with Figma by using the [Tokens Studio for Figma](/docs/integrations/tokens-studio) plugin.
 
-## Plugins
+## Integrations
 
-Each plugin comes with its own rules and setup. Follow the corresponding plugin guide to enable code generation:
+Each integration comes with its own rules and setup. Follow the corresponding guide to enable code generation:
 
-👉 **[View plugins](/docs/plugins)**
+👉 **[View Integrations](/docs/integrations)**

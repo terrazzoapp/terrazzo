@@ -17,11 +17,14 @@ function showSubPage(url) {
   @use '../../tokens' as *;
 
   .nav {
+    box-shadow: inset 1px 0 0 token('color.ui.contrast.10');
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     display: flex;
     flex-direction: column;
     font-size: token('font.size.04');
+    height: max-content;
     margin-bottom: token('space.md');
+    margin-left: auto;
     max-height: calc(100vh - #{token('space.layout.sm')});
     min-width: token('space.layout.2xl');
     padding-bottom: token('space.md');
@@ -37,14 +40,22 @@ function showSubPage(url) {
 
   .a {
     align-items: center;
-    color: token('color.ui.contrast.100');
+    border-left: 1px solid token('color.ui.contrast.10');
+    color: token('color.ui.contrast.70');
     display: flex;
-    min-height: token('space.lg');
-    padding-left: token('space.lg');
+    min-height: token('space.xl');
+    padding-left: token('space.sm');
     position: relative;
     text-decoration: none;
 
+    &:hover {
+      border-left-color: token('color.ui.contrast.50');
+      color: token('color.ui.contrast.80');
+    }
+
     &[aria-current='page'] {
+      background-color: color-mix(in oklab, #{token('color.ui.action')}, transparent 90%);
+      border-color: token('color.ui.action');
       color: token('color.ui.action');
       font-weight: 550;
     }
@@ -56,7 +67,13 @@ function showSubPage(url) {
     }
 
     &--subpage {
+      border-left: none;
       margin-left: token('space.md');
+      min-height: token('space.lg');
+
+      &[aria-current='page'] {
+        background: none;
+      }
 
       &::before {
         left: -0.875rem;

@@ -17,9 +17,10 @@ const title = 'Getting Started';
   />
 
   <p>
-    Cobalt turns your <a href="/docs/guides/design-tokens">design tokens</a> into code using a CLI or Node.js. Cobalt is configurable and pluggable, and can generate <a href="/plugins/js">JavaScript</a>, <a href="/plugins/js">TypeScript</a
-    >, <a href="/plugins/js">JSON</a>, <a href="/plugins/css">CSS</a>, and <a href="/plugins/js">Sass</a> via the official <a href="/docs/plugins">plugins</a>. Or you can generate anything else by <a href="/docs/guides/plugins"
-      >creating your own plugin</a
+    Cobalt turns your <a href="/docs/guides/design-tokens">design tokens</a> into code using a CLI or Node.js. Cobalt is configurable and pluggable, and can generate <a href="/integrations/js">JavaScript</a>, <a href="/integrations/js"
+      >TypeScript</a
+    >, <a href="/integrations/js">JSON</a>, <a href="/integrations/css">CSS</a>, and <a href="/integrations/js">Sass</a> via the official <a href="/docs/integrations">plugins</a>. Or you can generate anything else by <a
+      href="/docs/integrations/custom-plugins">creating your own plugin</a
     >.
   </p>
 
@@ -77,7 +78,10 @@ const title = 'Getting Started';
 
     <blockquote><p>ℹ️ For this step, you’ll need <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer">Node.js</a> installed (v20 is recommended).</p></blockquote>
 
-    <p>For this example, we’ll install the <a href="/docs/plugins/js">JS</a>, <a href="/docs/plugins/sass">Sass</a>, and <a href="/docs/plugins/css">CSS</a> plugins, but skip any you don’t need (you can always install them later).</p>
+    <p>
+      For this example, we’ll install the <a href="/docs/integrations/js">JS</a>, <a href="/docs/integrations/sass">Sass</a>, and <a href="/docs/integrations/css">CSS</a> plugins, but skip any you don’t need (you can always install them
+      later).
+    </p>
 
     <p>Run the following in a terminal, in the code project folder you’d like to generate code to:</p>
 
@@ -109,7 +113,7 @@ export default {
 };`}
     />
 
-    <p>To learn more about the config file, see <a href="/docs/reference/config">config options</a>. To learn about plugin options, see <a href="/docs/plugins">plugins</a>.</p>
+    <p>To learn more about the config file, see <a href="/docs/reference/config">config options</a>. To learn about plugins and integrations, see <a href="/docs/integrations">Integrations</a>.</p>
 
     <p>Lastly, run the following command to generate all code from your tokens:</p>
 
@@ -179,9 +183,9 @@ jobs:
 
     <ul>
       <li><a href="/docs/tokens">Learn about tokens</a></li>
-      <li><a href="/docs/guides/tokens-studio">Sync with Figma using Tokens Studio</a></li>
+      <li><a href="/docs/integrations/tokens-studio">Sync with Figma using Tokens Studio</a></li>
       <li><a href="/docs/reference/config">Learn how to configure Cobalt</a></li>
-      <li><a href="/docs/plugins">Add plugins</a></li>
+      <li><a href="/docs/integrations">Add integrations</a></li>
     </ul>
   </ol>
 
