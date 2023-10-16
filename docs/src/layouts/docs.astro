@@ -16,20 +16,28 @@ const {content = {}} = Astro.props;
       @use '../../tokens' as *;
 
       .docs {
+        --nav-width: 16rem;
+
         display: flex;
         flex-direction: column;
 
         @media (min-width: 600px) {
           flex-direction: row;
-          gap: 2.5rem;
-          padding-right: token('space.layout.2xl');
+          padding-right: var(--nav-width);
         }
       }
 
       .content {
         margin-right: auto;
         max-width: 100%;
-        width: 65rem;
+        padding-left: token('space.md');
+        padding-right: token('space.md');
+        width: 60rem;
+
+        @media (min-width: 600px) {
+          padding-left: token('space.lg');
+          padding-right: token('space.lg');
+        }
       }
     </style>
   </head>
