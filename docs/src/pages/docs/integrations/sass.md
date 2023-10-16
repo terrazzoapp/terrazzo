@@ -127,7 +127,11 @@ export default {
 };
 ```
 
-> ⚠️ Don’t load another instance of @cobalt-ui/plugin-css, otherwise they may conflict!
+<div class="callout" role="note">
+
+⚠️ Don’t load another instance of @cobalt-ui/plugin-css, otherwise they may conflict!
+
+</div>
 
 Lastly, you’ll need to make sure the new `tokens.css` file is loaded in your app somehow (otherwise the variables won’t be defined):
 
@@ -154,7 +158,11 @@ Or perhaps you want to do some calculations off your tokens. CSS’ `calc()` can
 
 In either case, letting the browser do the work is better, especially considering CSS variables are dynamic and can be modified on-the-fly.
 
-> ✨ **Tip**: Always use `in oklab` as the default colorspace for `color-mix()`. It usually outperforms other blending methods ([comparison](https://better-color-tools.pages.dev/mix)).
+<div class="callout" role="note">
+
+✨ **Tip**: Always use `in oklab` as the default colorspace for `color-mix()`. It usually outperforms other blending methods ([comparison](https://better-color-tools.pages.dev/mix)).
+
+</div>
 
 ## Config
 

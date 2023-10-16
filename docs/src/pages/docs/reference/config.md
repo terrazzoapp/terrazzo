@@ -31,7 +31,11 @@ export default {
 };
 ```
 
-> ⚠️ Note the file must end in `.yml` or `.yaml` to take effect
+<div class="callout" role="note">
+
+⚠️ Note the file must end in `.yml` or `.yaml` to take effect
+
+</div>
 
 ### Loading from URL
 
@@ -68,7 +72,11 @@ export default {
 
 Cobalt will flatten these schemas in order, with the latter entries overriding the former if there are any conflicts. The final result of all the combined schemas **must** result in a valid tokens.json.
 
-> ⚠️ **Warning** All aliases must refer to the same document, e.g. don’t try to include filenames such as `{./theme.json#/color.action.50}`. Reference it as if it were in the same file.
+<div class="callout" role="note">
+
+⚠️ **Warning** All aliases must refer to the same document, e.g. don’t try to include filenames such as `{./theme.json#/color.action.50}`. Reference it as if it were in the same file.
+
+</div>
 
 ## Token Type Options
 
