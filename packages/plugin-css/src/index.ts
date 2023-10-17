@@ -15,13 +15,11 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
+import {varName} from './utils/convert-token-name.js';
 import {encode} from './utils/encode.js';
 import {formatFontNames} from './utils/format-font-names.js';
 import {isTokenMatch} from './utils/is-token-match.js';
 
-const DASH_PREFIX_RE = /^-+/;
-const DASH_SUFFIX_RE = /-+$/;
-const DOT_UNDER_GLOB_RE = /[._]/g;
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
 
@@ -502,11 +500,6 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
     };
   }
   return {value: token.$value, originalVal: token._original.$value};
-}
-
-/** convert token name to CSS variable */
-export function varName(id: string, options?: {prefix?: string; suffix?: string}): string {
-  return ['--', options?.prefix ? `${options.prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '', id.replace(DOT_UNDER_GLOB_RE, '-'), options?.suffix ? `-${options.suffix.replace(DASH_PREFIX_RE, '')}` : ''].join('');
 }
 
 /** reference an existing CSS var */
