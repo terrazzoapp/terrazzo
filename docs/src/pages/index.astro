@@ -29,12 +29,16 @@ const tokenTypes = [
 ];
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <Head title="Cobalt: manage your design tokens in code" />
     <style lang="scss">
       @use '../../tokens' as *;
+
+      body {
+        background: token('color.blue.50');
+      }
 
       .actions {
         display: flex;
