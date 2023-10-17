@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {isTokenMatch} from '../src/util.js';
+import {isTokenMatch} from './is-token-match.js';
 
 describe('isTokenMatch', () => {
   test('finds matching tokens', () => {

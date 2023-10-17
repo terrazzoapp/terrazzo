@@ -15,7 +15,9 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
-import {encode, formatFontNames, isTokenMatch} from './util.js';
+import {encode} from './utils/encode.js';
+import {formatFontNames} from './utils/format-font-names.js';
+import {isTokenMatch} from './utils/is-token-match.js';
 
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
