@@ -8,6 +8,22 @@ describe('varName', () => {
     expect(varName('token')).toBe('--token');
   });
 
+  test('removes leading and trailing whitespace from id', () => {
+    expect(varName(' path.to.token ')).toBe('--path-to-token');
+  });
+
+  test('removes leading and trailing whitespace from group and token names', () => {
+    expect(varName('path. to .token')).toBe('--path-to-token');
+  });
+
+  test('replaces whitespace inside group and token names with "_" by default', () => {
+    expect(varName('path.to the.token')).toBe('--path-to_the-token');
+  });
+
+  test('replaces whitespace inside group and token names with custom replacement when provided', () => {
+    expect(varName('path.to the.token', {spaceReplacement: '-'})).toBe('--path-to-the-token');
+  });
+
   describe('prefix option', () => {
     test('adds a prefix when provided', () => {
       expect(varName('path.to.token', {prefix: 'scope'})).toBe('--scope-path-to-token');

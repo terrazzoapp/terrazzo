@@ -109,6 +109,7 @@ ${cbClose}`
       const typographyTokens: ParsedTypographyToken[] = [];
       const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
       const prefix = options?.pluginCSS?.prefix || '';
+      const spaceReplacement = options?.pluginCSS?.spaceReplacement;
 
       // metadata (SassDoc)
       output.push('////');
@@ -135,13 +136,13 @@ ${cbClose}`
         output.push(indent(`"${token.id}": (`, 1));
 
         // default value
-        let value = cssPlugin ? varRef(token.id, {prefix}) : (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat});
+        let value = cssPlugin ? varRef(token.id, {prefix, spaceReplacement}) : (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat});
         if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
         output.push(indent(`default: (${value}),`, 2));
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-          let modeValue = cssPlugin ? varRef(token.id, {prefix}) : (customTransform && customTransform(token, modeName)) || defaultTransformer(token, {colorFormat, mode: modeName});
+          let modeValue = cssPlugin ? varRef(token.id, {prefix, spaceReplacement}) : (customTransform && customTransform(token, modeName)) || defaultTransformer(token, {colorFormat, mode: modeName});
           if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue as string, config.outDir);
           output.push(indent(`"${modeName}": (${modeValue}),`, 2));
         }
@@ -160,7 +161,7 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, {prefix, suffix: property})}),`, 3));
+            output.push(indent(`"${property}": (${varRef(token.id, {prefix, spaceReplacement, suffix: property})}),`, 3));
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }

@@ -50,6 +50,8 @@ export interface Options {
   p3?: boolean;
   /** normalize all color outputs to format (default: "hex") or specify "none" to keep as-is */
   colorFormat?: 'none' | 'hex' | 'rgb' | 'hsl' | 'hwb' | 'srgb-linear' | 'p3' | 'lab' | 'lch' | 'oklab' | 'oklch' | 'xyz-d50' | 'xyz-d65';
+  /** used to replace whitespace in the middle of group and token names (default: "_")  */
+  spaceReplacement?: string;
 }
 
 /** ⚠️ Important! We do NOT want to parse as P3. We want to parse as sRGB, then expand 1:1 to P3. @see https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/ */
@@ -69,6 +71,7 @@ export default function pluginCSS(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
   let prefix = options?.prefix || '';
+  const spaceReplacement = options?.spaceReplacement;
 
   function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
     const output: string[] = [];
@@ -76,7 +79,7 @@ export default function pluginCSS(options?: Options): Plugin {
     const sortedTokens = Object.entries(tokens);
     sortedTokens.sort((a, b) => a[0].localeCompare(b[0], 'en-us', {numeric: true}));
     for (const [id, value] of sortedTokens) {
-      output.push(indent(`${varName(id, {prefix})}: ${value};`, indentLv + (root ? 1 : 0)));
+      output.push(indent(`${varName(id, {prefix, spaceReplacement})}: ${value};`, indentLv + (root ? 1 : 0)));
     }
     if (root) output.push(indent('}', indentLv));
     return output;
@@ -120,7 +123,7 @@ export default function pluginCSS(options?: Options): Plugin {
       const colorFormat = options?.colorFormat ?? 'hex';
       const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
       for (const token of tokens) {
-        let value = (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat, prefix});
+        let value = (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat, prefix, spaceReplacement});
         switch (token.$type) {
           case 'link': {
             if (options?.embedFiles) value = encode(value as string, config.outDir);
@@ -176,7 +179,7 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal = (customTransform && customTransform(token, modeSelector.mode)) || defaultTransformer(token, {colorFormat, prefix, mode: modeSelector.mode});
+              let modeVal = (customTransform && customTransform(token, modeSelector.mode)) || defaultTransformer(token, {colorFormat, prefix, mode: modeSelector.mode, spaceReplacement});
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
@@ -340,27 +343,30 @@ export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): s
   return String(value);
 }
 
-export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mode, prefix}: {colorFormat: Options['colorFormat']; mode?: string; prefix?: string}): string | number | Record<string, string> {
+export function defaultTransformer(
+  token: ParsedToken,
+  {colorFormat = 'hex', mode, prefix, spaceReplacement}: {colorFormat: Options['colorFormat']; mode?: string; prefix?: string; spaceReplacement?: string},
+): string | number | Record<string, string> {
   switch (token.$type) {
     // base tokens
     case 'color': {
       const {originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
       return transformColor(originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
     }
     case 'dimension': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformDimension(value);
     }
     case 'duration': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformDuration(value);
     }
@@ -368,42 +374,42 @@ export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mod
     case 'fontFamily': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformFontFamily(value);
     }
     case 'fontWeight': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformFontWeight(value);
     }
     case 'cubicBezier': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformCubicBezier(value);
     }
     case 'number': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformNumber(value);
     }
     case 'link': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformLink(value);
     }
     case 'strokeStyle': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, {prefix});
+        return varRef(originalVal as string, {prefix, spaceReplacement});
       }
       return transformStrokeStyle(value);
     }
@@ -411,17 +417,17 @@ export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mod
     case 'border': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
-      const width = isAlias(originalVal.width) ? varRef(originalVal.width, {prefix}) : transformDimension(value.width);
-      const color = isAlias(originalVal.color) ? varRef(originalVal.color, {prefix}) : transformColor(originalVal.color, colorFormat);
-      const style = isAlias(originalVal.style) ? varRef(originalVal.style, {prefix}) : transformStrokeStyle(value.style);
+      const width = isAlias(originalVal.width) ? varRef(originalVal.width, {prefix, spaceReplacement}) : transformDimension(value.width);
+      const color = isAlias(originalVal.color) ? varRef(originalVal.color, {prefix, spaceReplacement}) : transformColor(originalVal.color, colorFormat);
+      const style = isAlias(originalVal.style) ? varRef(originalVal.style, {prefix, spaceReplacement}) : transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
     case 'shadow': {
       let {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
 
       // handle backwards compat for previous versions that didn’t always return array
@@ -432,13 +438,13 @@ export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mod
         .map((shadow, i) => {
           const origShadow = originalVal[i]!;
           if (typeof origShadow === 'string') {
-            return varRef(origShadow, {prefix});
+            return varRef(origShadow, {prefix, spaceReplacement});
           }
-          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, {prefix}) : transformDimension(shadow.offsetX);
-          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, {prefix}) : transformDimension(shadow.offsetY);
-          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, {prefix}) : transformDimension(shadow.blur);
-          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, {prefix}) : transformDimension(shadow.spread);
-          const color = isAlias(origShadow.color) ? varRef(origShadow.color, {prefix}) : transformColor(origShadow.color, colorFormat);
+          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, {prefix, spaceReplacement}) : transformDimension(shadow.offsetX);
+          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, {prefix, spaceReplacement}) : transformDimension(shadow.offsetY);
+          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, {prefix, spaceReplacement}) : transformDimension(shadow.blur);
+          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, {prefix, spaceReplacement}) : transformDimension(shadow.spread);
+          const color = isAlias(origShadow.color) ? varRef(origShadow.color, {prefix, spaceReplacement}) : transformColor(origShadow.color, colorFormat);
           return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
         })
         .join(', ');
@@ -446,16 +452,16 @@ export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mod
     case 'gradient': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
       return value
         .map((gradient, i) => {
           const origGradient = originalVal[i]!;
           if (typeof origGradient === 'string') {
-            return varRef(origGradient, {prefix});
+            return varRef(origGradient, {prefix, spaceReplacement});
           }
-          const color = isAlias(origGradient.color) ? varRef(origGradient.color, {prefix}) : transformColor(origGradient.color, colorFormat);
-          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, {prefix}) : `${100 * gradient.position}%`;
+          const color = isAlias(origGradient.color) ? varRef(origGradient.color, {prefix, spaceReplacement}) : transformColor(origGradient.color, colorFormat);
+          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, {prefix, spaceReplacement}) : `${100 * gradient.position}%`;
           return `${color} ${stop}`;
         })
         .join(', ');
@@ -463,25 +469,25 @@ export function defaultTransformer(token: ParsedToken, {colorFormat = 'hex', mod
     case 'transition': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
-      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, {prefix}) : transformDuration(value.duration);
+      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, {prefix, spaceReplacement}) : transformDuration(value.duration);
       let delay: string | undefined = undefined;
       if (value.delay) {
-        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, {prefix}) : transformDuration(value.delay);
+        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, {prefix, spaceReplacement}) : transformDuration(value.delay);
       }
-      const timingFunction = isAlias(originalVal.timingFunction) ? varRef(originalVal.timingFunction as any, {prefix}) : transformCubicBezier(value.timingFunction);
+      const timingFunction = isAlias(originalVal.timingFunction) ? varRef(originalVal.timingFunction as any, {prefix, spaceReplacement}) : transformCubicBezier(value.timingFunction);
       return `${duration} ${delay ?? ''} ${timingFunction}`;
     }
     case 'typography': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix});
+        return varRef(originalVal, {prefix, spaceReplacement});
       }
       const output: Record<string, string> = {};
       for (const [k, v] of Object.entries(value)) {
         const formatter = k === 'fontFamily' ? transformFontFamily : (val: any): string => String(val);
-        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], {prefix}) : formatter(v as any);
+        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], {prefix, spaceReplacement}) : formatter(v as any);
       }
       return output;
     }
@@ -503,14 +509,19 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, options?: {prefix?: string; suffix?: string; fallbacks?: string[]; mode?: string}): string {
+export function varRef(id: string, options?: {prefix?: string; suffix?: string; spaceReplacement?: string; fallbacks?: string[]; mode?: string}): string {
   let refID = id;
   if (isAlias(id)) {
     const [rootID, mode] = id.substring(1, id.length - 1).split('#');
     if (mode && options?.mode && mode !== options?.mode) console.warn(`⚠️  ${FG_YELLOW}"${id}" referenced from within mode "${options.mode}". This may produce unexpected values.${RESET}`); // eslint-disable-line no-console
     refID = rootID!;
   }
-  return ['var(', varName(refID, {prefix: options?.prefix, suffix: options?.suffix}), Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '', ')'].join('');
+  return [
+    'var(',
+    varName(refID, {prefix: options?.prefix, suffix: options?.suffix, spaceReplacement: options?.spaceReplacement}),
+    Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '',
+    ')',
+  ].join('');
 }
 
 /** @deprecated parse legacy modeSelector */

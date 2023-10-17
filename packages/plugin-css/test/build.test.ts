@@ -100,5 +100,22 @@ describe('@cobalt-ui/plugin-css', () => {
       });
       expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });
+
+    test('spaceReplacement', async () => {
+      const cwd = new URL(`./space-replacement/`, import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            spaceReplacement: 'x',
+            filename: 'actual.css',
+          }),
+        ],
+        color: {},
+        tokens: [],
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    });
   });
 });
