@@ -314,6 +314,29 @@ export default {
 };
 ```
 
+### Space Replacement
+
+Tokens and tokens groups can have whitespace in their names, but CSS variable names cannot contain whitespace. Leading and trailing whitespace will be removed during transformation and any whitespace in the middle of a group or token name will be replaced with the value of the `spaceReplacement` option.
+
+`spaceReplacement` defaults to an underscore (`'_'`), so this token...
+
+```json
+{
+  "group": {
+    "token name": {
+      "$type": "dimension",
+      "$value": "42px"
+    }
+  }
+}
+```
+
+...would be transformed into the following CSS variable.
+
+```css
+--group-token_name: 42px;
+```
+
 ### Usage with @cobalt-ui/plugin-sass
 
 If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](https://cobalt-ui.pages.dev/docs/integrations/sass/), which lets you use CSS vars while letting Sass typecheck everything and making sure your stylesheet references everything correctly.
