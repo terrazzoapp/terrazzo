@@ -48,7 +48,7 @@
     "@changesets/cli": "^2.26.2",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
-    "del-cli": "^4.0.1",
+    "del-cli": "^5.1.0",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",

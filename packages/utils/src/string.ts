@@ -42,6 +42,8 @@ export function camelize(input: string): string {
 
 /** wrap bad obj keynames in strings */
 export function objKey(name: string, wrapper = "'"): string {
-  if (STARTS_WITH_NUMBER_RE.test(name)) return `${wrapper}${name}${wrapper}`; // keys that start with a number get wrapper
+  if (STARTS_WITH_NUMBER_RE.test(name)) {
+    return `${wrapper}${name}${wrapper}`; // keys that start with a number get wrapper
+  }
   return VALID_KEY.test(name) ? name : `${wrapper}${name}${wrapper}`;
 }

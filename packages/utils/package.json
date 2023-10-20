@@ -15,8 +15,8 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
-    "del-cli": "^4.0.1",
-    "vitest": "^0.34.2"
+    "@types/node": "^20.8.7",
+    "del-cli": "^5.1.0",
+    "vitest": "^0.34.6"
   }
 }

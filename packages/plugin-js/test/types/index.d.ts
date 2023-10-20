@@ -5,24 +5,98 @@
  */
 
 import {
-  ColorToken,
   ParsedColorToken,
+  ParsedCubicBezierToken,
+  ParsedDimensionToken,
+  ParsedDurationToken,
+  ParsedFontFamilyToken,
+  ParsedLinkToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'color.blue': ColorToken['$value'];
-  'color.red': ColorToken['$value'];
+  'color.blue': ParsedColorToken['$value'];
+  'color.red': ParsedColorToken['$value'];
+  'easing.easeIn': ParsedCubicBezierToken['$value'];
+  'easing.easeOut': ParsedCubicBezierToken['$value'];
+  'easing.entrance': ParsedCubicBezierToken['$value'];
+  'easing.entrance--expressive': ParsedCubicBezierToken['$value'];
+  'easing.exit': ParsedCubicBezierToken['$value'];
+  'easing.exit--expressive': ParsedCubicBezierToken['$value'];
+  'easing.standard': ParsedCubicBezierToken['$value'];
+  'easing.standard--expressive': ParsedCubicBezierToken['$value'];
+  'font.family.sans': ParsedFontFamilyToken['$value'];
+  'icon.3D-Cursor': ParsedLinkToken['$value'];
+  'spacing.2xl': ParsedDimensionToken['$value'];
+  'spacing.2xs': ParsedDimensionToken['$value'];
+  'spacing.3xl': ParsedDimensionToken['$value'];
+  'spacing.3xs': ParsedDimensionToken['$value'];
+  'spacing.4xs': ParsedDimensionToken['$value'];
+  'spacing.layout.2xl': ParsedDimensionToken['$value'];
+  'spacing.layout.2xs': ParsedDimensionToken['$value'];
+  'spacing.layout.lg': ParsedDimensionToken['$value'];
+  'spacing.layout.md': ParsedDimensionToken['$value'];
+  'spacing.layout.sm': ParsedDimensionToken['$value'];
+  'spacing.layout.xl': ParsedDimensionToken['$value'];
+  'spacing.layout.xs': ParsedDimensionToken['$value'];
+  'spacing.lg': ParsedDimensionToken['$value'];
+  'spacing.md': ParsedDimensionToken['$value'];
+  'spacing.sm': ParsedDimensionToken['$value'];
+  'spacing.xl': ParsedDimensionToken['$value'];
+  'spacing.xs': ParsedDimensionToken['$value'];
+  'transition.base': ParsedDurationToken['$value'];
+  'transition.expansion': ParsedDurationToken['$value'];
+  'transition.fast01': ParsedDurationToken['$value'];
+  'transition.fast02': ParsedDurationToken['$value'];
+  'transition.moderate01': ParsedDurationToken['$value'];
+  'transition.moderate02': ParsedDurationToken['$value'];
+  'transition.slow01': ParsedDurationToken['$value'];
+  'transition.slow02': ParsedDurationToken['$value'];
 };
 
 export declare const meta: {
   'color.blue': ParsedColorToken;
   'color.red': ParsedColorToken & { $extensions: { mode: typeof modes['color.red'] } };
+  'easing.easeIn': ParsedCubicBezierToken;
+  'easing.easeOut': ParsedCubicBezierToken;
+  'easing.entrance': ParsedCubicBezierToken;
+  'easing.entrance--expressive': ParsedCubicBezierToken;
+  'easing.exit': ParsedCubicBezierToken;
+  'easing.exit--expressive': ParsedCubicBezierToken;
+  'easing.standard': ParsedCubicBezierToken;
+  'easing.standard--expressive': ParsedCubicBezierToken;
+  'font.family.sans': ParsedFontFamilyToken;
+  'icon.3D-Cursor': ParsedLinkToken;
+  'spacing.2xl': ParsedDimensionToken;
+  'spacing.2xs': ParsedDimensionToken;
+  'spacing.3xl': ParsedDimensionToken;
+  'spacing.3xs': ParsedDimensionToken;
+  'spacing.4xs': ParsedDimensionToken;
+  'spacing.layout.2xl': ParsedDimensionToken;
+  'spacing.layout.2xs': ParsedDimensionToken;
+  'spacing.layout.lg': ParsedDimensionToken;
+  'spacing.layout.md': ParsedDimensionToken;
+  'spacing.layout.sm': ParsedDimensionToken;
+  'spacing.layout.xl': ParsedDimensionToken;
+  'spacing.layout.xs': ParsedDimensionToken;
+  'spacing.lg': ParsedDimensionToken;
+  'spacing.md': ParsedDimensionToken;
+  'spacing.sm': ParsedDimensionToken;
+  'spacing.xl': ParsedDimensionToken;
+  'spacing.xs': ParsedDimensionToken;
+  'transition.base': ParsedDurationToken;
+  'transition.expansion': ParsedDurationToken;
+  'transition.fast01': ParsedDurationToken;
+  'transition.fast02': ParsedDurationToken;
+  'transition.moderate01': ParsedDurationToken;
+  'transition.moderate02': ParsedDurationToken;
+  'transition.slow01': ParsedDurationToken;
+  'transition.slow02': ParsedDurationToken;
 };
 
 export declare const modes: {
   'color.red': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
   };
 };
 

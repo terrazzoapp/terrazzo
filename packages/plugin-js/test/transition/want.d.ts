@@ -5,62 +5,59 @@
  */
 
 import {
-  CubicBezierToken,
-  DurationToken,
   ParsedCubicBezierToken,
   ParsedDurationToken,
   ParsedTransitionToken,
-  TransitionToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'ease.circ-in': CubicBezierToken['$value'];
-  'ease.circ-in-out': CubicBezierToken['$value'];
-  'ease.circ-out': CubicBezierToken['$value'];
-  'ease.cubic-in': CubicBezierToken['$value'];
-  'ease.cubic-in-out': CubicBezierToken['$value'];
-  'ease.cubic-out': CubicBezierToken['$value'];
-  'ease.linear': CubicBezierToken['$value'];
-  'timing.deliberate': DurationToken['$value'];
-  'timing.instant': DurationToken['$value'];
-  'timing.moderate': DurationToken['$value'];
-  'timing.quick': DurationToken['$value'];
-  'timing.slow': DurationToken['$value'];
-  'transition.circ-in-deliberate': TransitionToken['$value'];
-  'transition.circ-in-instant': TransitionToken['$value'];
-  'transition.circ-in-moderate': TransitionToken['$value'];
-  'transition.circ-in-out-deliberate': TransitionToken['$value'];
-  'transition.circ-in-out-instant': TransitionToken['$value'];
-  'transition.circ-in-out-moderate': TransitionToken['$value'];
-  'transition.circ-in-out-quick': TransitionToken['$value'];
-  'transition.circ-in-out-slow': TransitionToken['$value'];
-  'transition.circ-in-quick': TransitionToken['$value'];
-  'transition.circ-in-slow': TransitionToken['$value'];
-  'transition.circ-out-deliberate': TransitionToken['$value'];
-  'transition.circ-out-instant': TransitionToken['$value'];
-  'transition.circ-out-moderate': TransitionToken['$value'];
-  'transition.circ-out-quick': TransitionToken['$value'];
-  'transition.circ-out-slow': TransitionToken['$value'];
-  'transition.cubic-in-deliberate': TransitionToken['$value'];
-  'transition.cubic-in-instant': TransitionToken['$value'];
-  'transition.cubic-in-moderate': TransitionToken['$value'];
-  'transition.cubic-in-out-deliberate': TransitionToken['$value'];
-  'transition.cubic-in-out-instant': TransitionToken['$value'];
-  'transition.cubic-in-out-moderate': TransitionToken['$value'];
-  'transition.cubic-in-out-quick': TransitionToken['$value'];
-  'transition.cubic-in-out-slow': TransitionToken['$value'];
-  'transition.cubic-in-quick': TransitionToken['$value'];
-  'transition.cubic-in-slow': TransitionToken['$value'];
-  'transition.cubic-out-deliberate': TransitionToken['$value'];
-  'transition.cubic-out-instant': TransitionToken['$value'];
-  'transition.cubic-out-moderate': TransitionToken['$value'];
-  'transition.cubic-out-quick': TransitionToken['$value'];
-  'transition.cubic-out-slow': TransitionToken['$value'];
-  'transition.linear-deliberate': TransitionToken['$value'];
-  'transition.linear-instant': TransitionToken['$value'];
-  'transition.linear-moderate': TransitionToken['$value'];
-  'transition.linear-quick': TransitionToken['$value'];
-  'transition.linear-slow': TransitionToken['$value'];
+  'ease.circ-in': ParsedCubicBezierToken['$value'];
+  'ease.circ-in-out': ParsedCubicBezierToken['$value'];
+  'ease.circ-out': ParsedCubicBezierToken['$value'];
+  'ease.cubic-in': ParsedCubicBezierToken['$value'];
+  'ease.cubic-in-out': ParsedCubicBezierToken['$value'];
+  'ease.cubic-out': ParsedCubicBezierToken['$value'];
+  'ease.linear': ParsedCubicBezierToken['$value'];
+  'timing.deliberate': ParsedDurationToken['$value'];
+  'timing.instant': ParsedDurationToken['$value'];
+  'timing.moderate': ParsedDurationToken['$value'];
+  'timing.quick': ParsedDurationToken['$value'];
+  'timing.slow': ParsedDurationToken['$value'];
+  'transition.circ-in-deliberate': ParsedTransitionToken['$value'];
+  'transition.circ-in-instant': ParsedTransitionToken['$value'];
+  'transition.circ-in-moderate': ParsedTransitionToken['$value'];
+  'transition.circ-in-out-deliberate': ParsedTransitionToken['$value'];
+  'transition.circ-in-out-instant': ParsedTransitionToken['$value'];
+  'transition.circ-in-out-moderate': ParsedTransitionToken['$value'];
+  'transition.circ-in-out-quick': ParsedTransitionToken['$value'];
+  'transition.circ-in-out-slow': ParsedTransitionToken['$value'];
+  'transition.circ-in-quick': ParsedTransitionToken['$value'];
+  'transition.circ-in-slow': ParsedTransitionToken['$value'];
+  'transition.circ-out-deliberate': ParsedTransitionToken['$value'];
+  'transition.circ-out-instant': ParsedTransitionToken['$value'];
+  'transition.circ-out-moderate': ParsedTransitionToken['$value'];
+  'transition.circ-out-quick': ParsedTransitionToken['$value'];
+  'transition.circ-out-slow': ParsedTransitionToken['$value'];
+  'transition.cubic-in-deliberate': ParsedTransitionToken['$value'];
+  'transition.cubic-in-instant': ParsedTransitionToken['$value'];
+  'transition.cubic-in-moderate': ParsedTransitionToken['$value'];
+  'transition.cubic-in-out-deliberate': ParsedTransitionToken['$value'];
+  'transition.cubic-in-out-instant': ParsedTransitionToken['$value'];
+  'transition.cubic-in-out-moderate': ParsedTransitionToken['$value'];
+  'transition.cubic-in-out-quick': ParsedTransitionToken['$value'];
+  'transition.cubic-in-out-slow': ParsedTransitionToken['$value'];
+  'transition.cubic-in-quick': ParsedTransitionToken['$value'];
+  'transition.cubic-in-slow': ParsedTransitionToken['$value'];
+  'transition.cubic-out-deliberate': ParsedTransitionToken['$value'];
+  'transition.cubic-out-instant': ParsedTransitionToken['$value'];
+  'transition.cubic-out-moderate': ParsedTransitionToken['$value'];
+  'transition.cubic-out-quick': ParsedTransitionToken['$value'];
+  'transition.cubic-out-slow': ParsedTransitionToken['$value'];
+  'transition.linear-deliberate': ParsedTransitionToken['$value'];
+  'transition.linear-instant': ParsedTransitionToken['$value'];
+  'transition.linear-moderate': ParsedTransitionToken['$value'];
+  'transition.linear-quick': ParsedTransitionToken['$value'];
+  'transition.linear-slow': ParsedTransitionToken['$value'];
 };
 
 export declare const meta: {

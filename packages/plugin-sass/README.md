@@ -9,9 +9,13 @@ Generate `.scss` and `.sass` output from your design tokens using [Cobalt](https
 
 ## Setup
 
+Install the plugin (and its dependency) from npm:
+
 ```bash
 npm i -D @cobalt-ui/plugin-sass @cobalt-ui/plugin-css
 ```
+
+Then add to your `tokens.config.mjs` file:
 
 ```js
 // tokens.config.mjs

@@ -5,26 +5,25 @@
  */
 
 import {
-  ColorToken,
   ParsedColorToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'color.black': ColorToken['$value'];
-  'color.blue.00': ColorToken['$value'];
-  'color.blue.10': ColorToken['$value'];
-  'color.blue.20': ColorToken['$value'];
-  'color.blue.30': ColorToken['$value'];
-  'color.blue.40': ColorToken['$value'];
-  'color.blue.50': ColorToken['$value'];
-  'color.blue.60': ColorToken['$value'];
-  'color.blue.70': ColorToken['$value'];
-  'color.blue.80': ColorToken['$value'];
-  'color.blue.90': ColorToken['$value'];
-  'color.blue.100': ColorToken['$value'];
-  'color.white': ColorToken['$value'];
-  'ui.bg': ColorToken['$value'];
-  'ui.fg': ColorToken['$value'];
+  'color.black': ParsedColorToken['$value'];
+  'color.blue.00': ParsedColorToken['$value'];
+  'color.blue.10': ParsedColorToken['$value'];
+  'color.blue.20': ParsedColorToken['$value'];
+  'color.blue.30': ParsedColorToken['$value'];
+  'color.blue.40': ParsedColorToken['$value'];
+  'color.blue.50': ParsedColorToken['$value'];
+  'color.blue.60': ParsedColorToken['$value'];
+  'color.blue.70': ParsedColorToken['$value'];
+  'color.blue.80': ParsedColorToken['$value'];
+  'color.blue.90': ParsedColorToken['$value'];
+  'color.blue.100': ParsedColorToken['$value'];
+  'color.white': ParsedColorToken['$value'];
+  'ui.bg': ParsedColorToken['$value'];
+  'ui.fg': ParsedColorToken['$value'];
 };
 
 export declare const meta: {
@@ -47,12 +46,12 @@ export declare const meta: {
 
 export declare const modes: {
   'ui.bg': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
   };
   'ui.fg': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
   };
 };
 

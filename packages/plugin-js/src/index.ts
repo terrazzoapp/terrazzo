@@ -33,20 +33,20 @@ interface TSResult {
 }
 
 const tokenTypes: Record<ParsedToken['$type'], string> = {
-  color: 'ColorToken',
-  fontFamily: 'FontFamilyToken',
-  fontWeight: 'FontWeightToken',
-  dimension: 'DimensionToken',
-  duration: 'DurationToken',
-  cubicBezier: 'CubicBezierToken',
-  number: 'NumberToken',
-  link: 'LinkToken',
-  strokeStyle: 'StrokeStyleToken',
-  border: 'BorderToken',
-  transition: 'TransitionToken',
-  shadow: 'ShadowToken',
-  gradient: 'GradientToken',
-  typography: 'TypographyToken',
+  color: 'ParsedColorToken',
+  fontFamily: 'ParsedFontFamilyToken',
+  fontWeight: 'ParsedFontWeightToken',
+  dimension: 'ParsedDimensionToken',
+  duration: 'ParsedDurationToken',
+  cubicBezier: 'ParsedCubicBezierToken',
+  number: 'ParsedNumberToken',
+  link: 'ParsedLinkToken',
+  strokeStyle: 'ParsedStrokeStyleToken',
+  border: 'ParsedBorderToken',
+  transition: 'ParsedTransitionToken',
+  shadow: 'ParsedShadowToken',
+  gradient: 'ParsedGradientToken',
+  typography: 'ParsedTypographyToken',
 };
 
 /** serialize JS ref into string */
@@ -107,10 +107,14 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   throw new Error(`Could not serialize ${value}`);
 }
 
-function defaultTransform(token: ParsedToken, mode?: string): (typeof token)['$value'] {
-  if (!mode || !token.$extensions?.mode || !(mode in token.$extensions.mode) || !token.$extensions.mode[mode]) return token.$value;
+export function defaultTransformer(token: ParsedToken, mode?: string): (typeof token)['$value'] {
+  if (!mode || !token.$extensions?.mode || !(mode in token.$extensions.mode) || !(mode in token.$extensions.mode)) {
+    return token.$value;
+  }
   const modeVal = token.$extensions.mode[mode];
-  if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') return modeVal;
+  if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') {
+    return modeVal;
+  }
   return {...(token.$value as typeof modeVal), ...modeVal};
 }
 
@@ -155,9 +159,12 @@ export default function pluginJS(options?: Options): Plugin {
         modes: {},
       };
       const ts: TSResult = {tokens: {}, meta: {}, modes: {}};
-      const transform = (typeof options?.transform === 'function' && options.transform) || defaultTransform;
       for (const token of tokens) {
-        setToken(js.tokens, token.id, await transform(token), options?.deep);
+        let result = await options?.transform?.(token);
+        if (result === undefined || result === null) {
+          result = defaultTransformer(token);
+        }
+        setToken(js.tokens, token.id, result, options?.deep);
         if (buildTS) {
           const t = tokenTypes[token.$type];
           setToken(ts.tokens, token.id, `${t}['$value']`, options?.deep);
@@ -174,7 +181,7 @@ export default function pluginJS(options?: Options): Plugin {
           options?.deep,
         );
         if (buildTS) {
-          const t = `Parsed${tokenTypes[token.$type]}`;
+          const t = `${tokenTypes[token.$type]}`;
           const modeAccessor = options?.deep ? token.id.replace('.', "']['") : token.id;
           setToken(ts.meta!, token.id, `${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${modeAccessor}'] } }` : ''}`, options?.deep);
           tsImports.add(t);
@@ -183,10 +190,14 @@ export default function pluginJS(options?: Options): Plugin {
           setToken(js.modes, token.id, {}, options?.deep);
           if (buildTS) setToken(ts.modes, token.id, {}, options?.deep);
           for (const modeName of Object.keys(token.$extensions.mode)) {
+            let modeResult = await options?.transform?.(token, modeName);
+            if (modeResult === undefined || modeResult === null) {
+              modeResult = defaultTransformer(token, modeName);
+            }
             if (options?.deep) {
-              setToken(js.modes, `${token.id}.${modeName}`, await transform(token, modeName), true);
+              setToken(js.modes, `${token.id}.${modeName}`, modeResult, true);
             } else {
-              js.modes[token.id]![modeName] = await transform(token, modeName);
+              js.modes[token.id]![modeName] = modeResult;
             }
             if (buildTS) {
               if (options?.deep) {

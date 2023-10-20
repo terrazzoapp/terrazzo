@@ -9,9 +9,13 @@ Generate CSS from your design tokens using [Cobalt](https://cobalt-ui.pages.dev)
 
 ## Setup
 
+Install the plugin from npm:
+
 ```bash
 npm i -D @cobalt-ui/plugin-css
 ```
+
+Then add to your `tokens.config.mjs` file:
 
 ```js
 // tokens.config.mjs
