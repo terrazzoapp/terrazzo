@@ -24,15 +24,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/drwpow/cobalt-ui.git",
     "directory": "packages/cli"
   },
   "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "co": "./bin/cli.js",
-    "cobalt": "./bin/cli.js"
+    "co": "bin/cli.js",
+    "cobalt": "bin/cli.js"
   },
   "scripts": {
     "build": "run-s -s build:*",

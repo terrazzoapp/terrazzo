@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/drwpow/cobalt-ui.git",
     "directory": "packages/plugin-js"
   },
   "homepage": "https://cobalt-ui.pages.dev",
