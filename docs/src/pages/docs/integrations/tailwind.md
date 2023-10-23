@@ -11,7 +11,7 @@ Cobalt integrates fully with TailwindCSS. To start, install the Tailwind plugin 
 npm install -D @cobalut-ui/plugin-tailwind @cobalt-ui/cli
 ```
 
-Then set up your `tokens.config.mjs` file, adding thie Tailwind plugin with your token settings inside `tailwind`:
+Then set up your `tokens.config.mjs` file, adding the Tailwind plugin, and mapping token IDs to the Tailwind [theme config](https://tailwindcss.com/docs/configuration#theme) inside the `tailwind` option:
 
 ```js
 // tokens.config.mjs
