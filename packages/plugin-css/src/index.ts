@@ -43,7 +43,7 @@ export interface Options {
   /** generate wrapper selectors around token modes */
   modeSelectors?: ModeSelector[] | LegacyModeSelectors;
   /** handle different token types */
-  transform?: (token: ParsedToken, mode?: string) => string;
+  transform?: <T extends ParsedToken>(token: T, mode?: string) => string;
   /** prefix variable names */
   prefix?: string;
   /** enable P3 color enhancement? (default: true) */
@@ -118,9 +118,11 @@ export default function pluginCSS(options?: Options): Plugin {
       const modeVals: {[selector: string]: {[id: string]: any}} = {};
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
-      const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
       for (const token of tokens) {
-        let value = (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat, prefix});
+        let value: ReturnType<typeof defaultTransformer> | undefined = await options?.transform?.(token);
+        if (value === undefined || value === null) {
+          value = defaultTransformer(token, {colorFormat, prefix});
+        }
         switch (token.$type) {
           case 'link': {
             if (options?.embedFiles) value = encode(value as string, config.outDir);
@@ -176,7 +178,10 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal = (customTransform && customTransform(token, modeSelector.mode)) || defaultTransformer(token, {colorFormat, prefix, mode: modeSelector.mode});
+              let modeVal: ReturnType<typeof defaultTransformer> | undefined = await options?.transform?.(token, modeSelector.mode);
+              if (modeVal === undefined || modeVal === null) {
+                modeVal = defaultTransformer(token, {colorFormat, prefix, mode: modeSelector.mode});
+              }
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);

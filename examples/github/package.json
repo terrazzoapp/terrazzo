@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build",
-    "update": "node scripts/update"
+    "build:tokens": "co build"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:*",

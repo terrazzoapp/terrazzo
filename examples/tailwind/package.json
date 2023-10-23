@@ -1,0 +1,14 @@
+{
+  "name": "@example/tailwind",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:tokens": "co build",
+    "build": "tailwind build -o tailwind.css"
+  },
+  "devDependencies": {
+    "@cobalt-ui/cli": "workspace:^",
+    "@cobalt-ui/plugin-tailwind": "workspace:^",
+    "tailwindcss": "^3.3.3"
+  }
+}

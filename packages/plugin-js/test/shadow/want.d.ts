@@ -6,14 +6,13 @@
 
 import {
   ParsedShadowToken,
-  ShadowToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'shadow.base': ShadowToken['$value'];
-  'shadow.inset': ShadowToken['$value'];
-  'shadow.layered': ShadowToken['$value'];
-  'shadow.simple': ShadowToken['$value'];
+  'shadow.base': ParsedShadowToken['$value'];
+  'shadow.inset': ParsedShadowToken['$value'];
+  'shadow.layered': ParsedShadowToken['$value'];
+  'shadow.simple': ParsedShadowToken['$value'];
 };
 
 export declare const meta: {

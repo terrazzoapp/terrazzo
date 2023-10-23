@@ -4,15 +4,20 @@ Generate JSON and JS (with TypeScript types) from your design tokens using [Coba
 
 **Features**
 
+- ✅ Universal JSON format makes it easy to consume tokens in any platform (including native/compiled code)
 - ✅ Access all your design tokens safely and programatically in any frontend or backend setup
 - ✅ Full support for token modes (e.g. light/dark mode)
 - ✅ Automatic TypeScript types for strong typechecking (never have a broken style)
 
 ## Setup
 
+Install the plugin from npm:
+
 ```bash
 npm i -D @cobalt-ui/plugin-js
 ```
+
+Then add to your `tokens.config.mjs` file:
 
 ```js
 // tokens.config.mjs
