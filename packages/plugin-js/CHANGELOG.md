@@ -1,5 +1,13 @@
 # @cobalt-ui/plugin-js
 
+## 1.4.2
+
+### Patch Changes
+
+- [#132](https://github.com/drwpow/cobalt-ui/pull/132) [`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c) Thanks [@drwpow](https://github.com/drwpow)! - Fix exported types
+
+- [#132](https://github.com/drwpow/cobalt-ui/pull/132) [`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c) Thanks [@drwpow](https://github.com/drwpow)! - Allow options?.transformer() to return `undefined` and fall back to default
+
 ## 1.4.1
 
 ### Patch Changes

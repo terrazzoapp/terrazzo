@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-sass
 
+## 1.3.1
+
+### Patch Changes
+
+- [#132](https://github.com/drwpow/cobalt-ui/pull/132) [`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c) Thanks [@drwpow](https://github.com/drwpow)! - Allow options?.transformer() to return `undefined` and fall back to default
+
+- Updated dependencies [[`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c)]:
+  - @cobalt-ui/plugin-css@1.5.1
+
 ## 1.3.0
 
 ### Minor Changes
