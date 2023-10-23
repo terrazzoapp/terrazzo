@@ -12,7 +12,7 @@ export interface ConvertResult {
 
 const DURATION_RE = /^[0-9]+(\.[0-9]+)?(s|ms)$/;
 
-/** Convert a Style Dictionary format into a W3C Design Tokens format. Or die trying. */
+/** Convert a Style Dictionary format into DTFM. Or die trying. */
 export default function convert(input: any): ConvertResult {
   const errors: string[] = [];
   const warnings: string[] = [];

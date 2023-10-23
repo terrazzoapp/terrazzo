@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "$id": "https://cobalt-ui.pages/dev/tokens-schema.json",
-  "title": "W3C Design Tokens Community Group Format",
+  "title": "Design Tokens Format Module",
   "additionalProperties": {
     "$ref": "#/$defs/group"
   },

@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Tailwind
 
-Cobalt’s Tailwind plugin lets you use your W3C Design Token Community Group tokens seamlessly in any Tailwind project by building your own custom [preset](https://tailwindcss.com/docs/presets). To start, install the Tailwind plugin and CLI:
+Cobalt’s Tailwind plugin lets you use your [Design Tokens Format Module](https://designtokens.org) tokens seamlessly in any Tailwind project by building your own custom [preset](https://tailwindcss.com/docs/presets). To start, install the Tailwind plugin and CLI:
 
 ```bash
 npm install -D @cobalut-ui/plugin-tailwind @cobalt-ui/cli

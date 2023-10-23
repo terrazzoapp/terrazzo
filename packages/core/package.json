@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/core",
-  "description": "CLI for using the W3C design token format",
+  "description": "Parser/validator for the Design Tokens Format Module (DTFM) standard.",
   "version": "1.6.0",
   "author": {
     "name": "Drew Powers",
@@ -8,6 +8,8 @@
   },
   "keywords": [
     "design tokens",
+    "design tokens format module",
+    "dtfm",
     "cli",
     "w3c design tokens",
     "design system",

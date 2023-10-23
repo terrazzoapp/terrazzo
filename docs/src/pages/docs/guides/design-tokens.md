@@ -36,10 +36,10 @@ Though there is <a href="https://designtokens.org" target="_blank" rel="noopener
     allowfullscreen></iframe>
 </div>
 
-Cobalt uses this new W3C community standard in the hopes that it will become a common/universal way of expressing design tokens. To get started, you can view either:
+Cobalt uses the <a href="https://designtokens.org" target="_blank" rel="noopener noreferrer">Design Tokens Format Module</a> standard in the hopes that it will become a common/universal way of expressing design tokens. To get started, you can view either:
 
 - [Cobalt’s guide to writing tokens](/docs/tokens), or
-- [The W3C Design Tokens specification itself](https://design-tokens.github.io/community-group/format/)
+- [Design Token Format Module spec](https://design-tokens.github.io/community-group/format/)
 
 Other competing formats include, but aren’t limited to:
 

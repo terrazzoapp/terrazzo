@@ -9,14 +9,14 @@ Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript
 
 ## Why use Cobalt?
 
-Cobalt was created to deal with the following difficulties of the W3C Design Tokens spec:
+Cobalt was created to deal with the following difficulties of the Design Tokens Format Module (DTFM) spec:
 
 1. **Validation**: Cobalt errs on schema violations
-2. **Normalization**: The W3C Design Tokens spec allows for much flexibility, which means many unexpected values
+2. **Normalization**: The DTFM spec allows for much flexibility, which means many unexpected values
 3. **Aliasing**: Cobalt resolves aliases (including _aliases of aliases of aliases!_) for you
 4. **Traversal**: A deeply-nested object is converted into a flat array for easy iteration
-5. **Modes** Cobalt extends the design tokens format with powerful [modes](/docs/tokens#modes)
-6. **Figma syncing** Update your design tokens with Figma easily
+5. **Modes** Cobalt extends the DTFM with powerful [modes](/docs/tokens#modes)
+6. **Figma syncing** Update your DTFM tokens with Figma easily
 
 ## Basic structure
 
