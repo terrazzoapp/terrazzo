@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/cli",
-  "description": "CLI for using the W3C design token format",
+  "description": "CLI for managing design tokens using the Design Tokens Format Module (DTFM) standard and generating code for any platform via plugins.",
   "version": "1.6.0",
   "author": {
     "name": "Drew Powers",
@@ -8,6 +8,7 @@
   },
   "keywords": [
     "design tokens",
+    "design tokens format module",
     "dtfm",
     "dtcg",
     "cli",

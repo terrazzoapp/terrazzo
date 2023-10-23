@@ -1,6 +1,6 @@
 # Cobalt UI
 
-CLI for managing [W3C Design Token format](https://www.w3.org/community/design-tokens/) design systems.
+CLI for managing [Design Tokens Format Module](https://designtokens.org) token manifests (`tokens.json`) and generating code for any platform via plugins.
 
 ## Usage
 
@@ -38,7 +38,7 @@ All CLI commands require a [config](/docs/reference/config/) to work properly, w
 | `bundle --out [path]`         | Bundle multiple `tokens.json` files into one, e.g. `co bundle --out path/to/output.json`. Can output `.json` or `.yaml`. Requires [multiple schemas set in config](https://cobalt-ui.pages.dev/docs/reference/config/#loading-multiple-schemas) |
 | `check [path]`                | Validate a `tokens.json` file and check for errors. This won’t output any files.                                                                                                                                                                |
 | `init`                        | Create a starter `tokens.json` file.                                                                                                                                                                                                            |
-| `convert [path] --out [path]` | Convert a [Style Dictionary](https://amzn.github.io/style-dictionary) JSON file to the W3C format ([docs](https://cobalt-ui.pages.dev/docs/integrations/style-dictionary))                                                                      |
+| `convert [path] --out [path]` | Convert a [Style Dictionary](https://amzn.github.io/style-dictionary) JSON file to DTFM ([docs](https://cobalt-ui.pages.dev/docs/integrations/style-dictionary))                                                                                |
 
 ## Plugins
 

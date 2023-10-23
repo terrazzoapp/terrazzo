@@ -9,7 +9,7 @@ import {parse, ParseOptions} from '../src/index.js';
 function getTokens(json, parseOptions: ParseOptions = {color: {}}) {
   // the presence of top-level "$themes" and "$metadata" is necessary to detect
   // Tokens Studio format, as it always outputs these, and these are invalid
-  // for the W3C format)
+  // for DTFM)
   if (!('$themes' in json)) json.$themes = [];
   if (!('$metadata' in json)) json.$metadata = {};
 
