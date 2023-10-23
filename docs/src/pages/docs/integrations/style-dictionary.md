@@ -11,10 +11,14 @@ You can migrate your <a href="https://amzn.github.io/style-dictionary" target="_
 npx co convert style-dictionary-tokens.json --out tokens.json
 ```
 
-> ⚠️ **Warning**
-> This is **NOT** meant to be a comprehensive conversion. The W3C format is not 1:1 compatible with Style Dictionary. This will not import your transformations, and it will probably make mistakes, and miss tokens. This is only meant for **migrating** to the W3C format permanently, and is meant to save you some work by giving you a starting point you’ll have to clean up afterward.
->
-> After running `npx co convert` it’s not recommended to keep using the Style Dictionary format.
+<div class="callout" role="note">
+
+⚠️ **Warning**
+This is **NOT** meant to be a comprehensive conversion. The W3C format is not 1:1 compatible with Style Dictionary. This will not import your transformations, and it will probably make mistakes, and miss tokens. This is only meant for **migrating** to the W3C format permanently, and is meant to save you some work by giving you a starting point you’ll have to clean up afterward.
+
+After running `npx co convert` it’s not recommended to keep using the Style Dictionary format.
+
+</div>
 
 ## Why convert to W3C Design Tokens?
 
