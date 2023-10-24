@@ -1,0 +1,54 @@
+{
+  "name": "@cobalt-ui/plugin-tailwind",
+  "version": "0.0.1",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "keywords": [
+    "cobalt",
+    "design tokens",
+    "design tokens format module",
+    "design system",
+    "dtfm",
+    "dtcg",
+    "w3c",
+    "tailwind",
+    "css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/drwpow/cobalt-ui.git",
+    "directory": "packages/plugin-tailwind"
+  },
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "run-s -s build:*",
+    "build:clean": "del dist",
+    "build:ts": "tsc",
+    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
+    "dev": "tsc -w",
+    "test": "run-p -s test:*",
+    "test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@cobalt-ui/cli": "*",
+    "tailwindcss": "*"
+  },
+  "dependencies": {
+    "@cobalt-ui/plugin-css": "^1.5.0",
+    "@cobalt-ui/utils": "^1.2.2"
+  },
+  "devDependencies": {
+    "@cobalt-ui/cli": "^1.6.0",
+    "@cobalt-ui/core": "^1.6.0",
+    "@types/node": "^20.8.7",
+    "js-yaml": "^4.1.0",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^3.3.3",
+    "vitest": "^0.34.6"
+  }
+}

@@ -1,6 +1,6 @@
 # @cobalt-ui/core
 
-Node.js API for managing [W3C Design Token format](https://www.w3.org/community/design-tokens/) design systems.
+Parser/validator for the [Design Tokens Format Module](https://designtokens.org) (DTFM) standard.",
 
 For the CLI, use `@cobalt-ui/cli`.
 

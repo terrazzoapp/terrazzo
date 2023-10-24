@@ -1,18 +1,23 @@
 {
   "name": "@cobalt-ui/plugin-js",
   "description": "Generate JS, TS, and JSON from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
   "keywords": [
     "cobalt",
-    "design tokens"
+    "design tokens",
+    "design tokens format module",
+    "design system",
+    "dtfm",
+    "dtcg",
+    "w3c design tokens"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/drwpow/cobalt-ui.git",
     "directory": "packages/plugin-js"
   },
   "homepage": "https://cobalt-ui.pages.dev",
@@ -41,6 +46,6 @@
     "@cobalt-ui/core": "^1.6.0",
     "fast-glob": "^3.3.1",
     "npm-run-all": "^4.1.5",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.6"
   }
 }

@@ -32,7 +32,7 @@ export interface Options {
   /** embed files in CSS? */
   embedFiles?: boolean;
   /** handle different token types */
-  transform?: (token: ParsedToken, mode?: string) => string;
+  transform?: <T extends ParsedToken>(token: T, mode?: string) => string;
   /** transform color */
   colorFormat?: NonNullable<PluginCSSOptions['colorFormat']>;
 }
@@ -107,7 +107,6 @@ ${cbClose}`
     async build({tokens, metadata, rawSchema}): Promise<BuildResult[]> {
       let output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
-      const customTransform = typeof options?.transform === 'function' ? options.transform : undefined;
       const prefix = options?.pluginCSS?.prefix || '';
       const spaceReplacement = options?.pluginCSS?.spaceReplacement;
 
@@ -135,14 +134,29 @@ ${cbClose}`
 
         output.push(indent(`"${token.id}": (`, 1));
 
-        // default value
-        let value = cssPlugin ? varRef(token.id, {prefix, spaceReplacement}) : (customTransform && customTransform(token)) || defaultTransformer(token, {colorFormat});
+        let value: string | number | undefined;
+        if (cssPlugin) {
+          value = varRef(token.id, {prefix, spaceReplacement});
+        } else {
+          value = await options?.transform?.(token);
+          if (value === undefined || value === null) {
+            value = defaultTransformer(token, {colorFormat});
+          }
+        }
         if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
         output.push(indent(`default: (${value}),`, 2));
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-          let modeValue = cssPlugin ? varRef(token.id, {prefix, spaceReplacement}) : (customTransform && customTransform(token, modeName)) || defaultTransformer(token, {colorFormat, mode: modeName});
+          let modeValue: string | number | undefined;
+          if (cssPlugin) {
+            modeValue = varRef(token.id, {prefix, spaceReplacement});
+          } else {
+            modeValue = options?.transform?.(token, modeName);
+            if (modeValue === undefined || modeValue === null) {
+              modeValue = defaultTransformer(token, {colorFormat, mode: modeName});
+            }
+          }
           if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue as string, config.outDir);
           output.push(indent(`"${modeName}": (${modeValue}),`, 2));
         }

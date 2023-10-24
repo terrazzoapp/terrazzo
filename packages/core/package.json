@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/core",
-  "description": "CLI for using the W3C design token format",
+  "description": "Parser/validator for the Design Tokens Format Module (DTFM) standard.",
   "version": "1.6.0",
   "author": {
     "name": "Drew Powers",
@@ -8,6 +8,8 @@
   },
   "keywords": [
     "design tokens",
+    "design tokens format module",
+    "dtfm",
     "cli",
     "w3c design tokens",
     "design system",
@@ -19,7 +21,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/drwpow/cobalt-ui.git",
     "directory": "packages/core"
   },
   "homepage": "https://cobalt-ui.pages.dev",
@@ -44,9 +46,9 @@
     "culori": "^3.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.5.7",
+    "@types/node": "^20.8.7",
     "esbuild": "^0.19.2",
     "npm-run-all": "^4.1.5",
-    "vitest": "^0.34.4"
+    "vitest": "^0.34.6"
   }
 }

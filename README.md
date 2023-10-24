@@ -1,6 +1,6 @@
 # Cobalt
 
-Design token tooling compatible with the [W3C Design Tokens specification](https://design-tokens.github.io/community-group/format/). Cobalt can:
+Design token tooling compatible with the [Design Tokens Format Module](https://design-tokens.github.io/community-group/format/). Cobalt can:
 
 - Parse and validate any valid `tokens.json` file
 - Generate Sass, CSS, TypeScript, and more from `tokens.json`

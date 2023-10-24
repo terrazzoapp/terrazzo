@@ -1,7 +1,7 @@
 /**
  * Handle format for Tokens Studio for Figma
  * This works by first converting the Tokens Studio format
- * into an equivalent W3C Design Tokens format, then parsing that result
+ * into an equivalent DTFM result, then parsing that result
  */
 import {getAliasID, isAlias} from '@cobalt-ui/utils';
 import type {GradientStop, Group, Token} from '../token.js';
@@ -9,12 +9,12 @@ import type {GradientStop, Group, Token} from '../token.js';
 export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {errors?: string[]; warnings?: string[]; result: Group} {
   const errors: string[] = [];
   const warnings: string[] = [];
-  const w3cTokens: Group = {};
+  const dtfmTokens: Group = {};
 
   function addToken(value: Token, path: string[]): void {
     const parts = [...path];
     const id = parts.pop()!;
-    let tokenNode = w3cTokens;
+    let tokenNode = dtfmTokens;
     for (const p of parts) {
       if (!(p in tokenNode)) tokenNode[p] = {};
       tokenNode = tokenNode[p] as Group;
@@ -188,7 +188,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
           }
           case 'typography': {
             // fortunately, the Tokens Studio spec is inconsistent with their "typography" tokens
-            // in that they match the W3C format (even though `fontFamilies` [sic] tokens exist)
+            // in that they match DTFM (even though `fontFamilies` [sic] tokens exist)
 
             // unfortunately, `textCase` and `textDecoration` are special and have to be flattened
             if (!!v.value && typeof v.value === 'object') {
@@ -234,7 +234,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
   return {
     errors: errors.length ? errors : undefined,
     warnings: warnings.length ? warnings : undefined,
-    result: w3cTokens,
+    result: dtfmTokens,
   };
 }
 

@@ -5,597 +5,731 @@
  */
 
 export const tokens = {
-  'color.black': '#1b1f24',
-  'color.blue0': '#ddf4ff',
-  'color.blue1': '#b6e3ff',
-  'color.blue2': '#80ccff',
-  'color.blue3': '#54aeff',
-  'color.blue4': '#218bff',
-  'color.blue5': '#0969da',
-  'color.blue6': '#0550ae',
-  'color.blue7': '#033d8b',
-  'color.blue8': '#0a3069',
-  'color.blue9': '#002155',
-  'color.coral0': '#fff0eb',
-  'color.coral1': '#ffd6cc',
-  'color.coral2': '#ffb4a1',
-  'color.coral3': '#fd8c73',
-  'color.coral4': '#ec6547',
-  'color.coral5': '#c4432b',
-  'color.coral6': '#9e2f1c',
-  'color.coral7': '#801f0f',
-  'color.coral8': '#691105',
-  'color.coral9': '#510901',
-  'color.gray0': '#f6f8fa',
-  'color.gray1': '#eaeef2',
-  'color.gray2': '#d0d7de',
-  'color.gray3': '#afb8c1',
-  'color.gray4': '#8c959f',
-  'color.gray5': '#6e7781',
-  'color.gray6': '#57606a',
-  'color.gray7': '#424a53',
-  'color.gray8': '#32383f',
-  'color.gray9': '#24292f',
-  'color.green0': '#dafbe1',
-  'color.green1': '#aceebb',
-  'color.green2': '#6fdd8b',
-  'color.green3': '#4ac26b',
-  'color.green4': '#2da44e',
-  'color.green5': '#1a7f37',
-  'color.green6': '#116329',
-  'color.green7': '#044f1e',
-  'color.green8': '#003d16',
-  'color.green9': '#002d11',
-  'color.orange0': '#fff1e5',
-  'color.orange1': '#ffd8b5',
-  'color.orange2': '#ffb77c',
-  'color.orange3': '#fb8f44',
-  'color.orange4': '#e16f24',
-  'color.orange5': '#bc4c00',
-  'color.orange6': '#953800',
-  'color.orange7': '#762c00',
-  'color.orange8': '#5c2200',
-  'color.orange9': '#471700',
-  'color.pink0': '#ffeff7',
-  'color.pink1': '#ffd3eb',
-  'color.pink2': '#ffadda',
-  'color.pink3': '#ff80c8',
-  'color.pink4': '#e85aad',
-  'color.pink5': '#bf3989',
-  'color.pink6': '#99286e',
-  'color.pink7': '#772057',
-  'color.pink8': '#611347',
-  'color.pink9': '#4d0336',
-  'color.purple0': '#fbefff',
-  'color.purple1': '#ecd8ff',
-  'color.purple2': '#d8b9ff',
-  'color.purple3': '#c297ff',
-  'color.purple4': '#a475f9',
-  'color.purple5': '#8250df',
-  'color.purple6': '#6639ba',
-  'color.purple7': '#512a97',
-  'color.purple8': '#3e1f79',
-  'color.purple9': '#2e1461',
-  'color.red0': '#ffebe9',
-  'color.red1': '#ffcecb',
-  'color.red2': '#ffaba8',
-  'color.red3': '#ff8182',
-  'color.red4': '#fa4549',
-  'color.red5': '#cf222e',
-  'color.red6': '#a40e26',
-  'color.red7': '#82071e',
-  'color.red8': '#660018',
-  'color.red9': '#4c0014',
-  'color.white': '#ffffff',
-  'color.yellow0': '#fff8c5',
-  'color.yellow1': '#fae17d',
-  'color.yellow2': '#eac54f',
-  'color.yellow3': '#d4a72c',
-  'color.yellow4': '#bf8700',
-  'color.yellow5': '#9a6700',
-  'color.yellow6': '#7d4e00',
-  'color.yellow7': '#633c01',
-  'color.yellow8': '#4d2d00',
-  'color.yellow9': '#3b2300',
-  'font.family.display': ['InterUI', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'sans-serif'],
-  'font.family.lineHeight.condensed': '1.25',
-  'font.family.lineHeight.condensedUltra': '1',
-  'font.family.lineHeight.default': '1.5',
-  'font.family.monospace': ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
-  'font.family.size.f00': '32px',
-  'font.family.size.f0': '32px',
-  'font.family.size.f1': '26px',
-  'font.family.size.f2': '22px',
-  'font.family.size.f3': '16px',
-  'font.family.size.f4': '16px',
-  'font.family.size.f5': '14px',
-  'font.family.size.f6': '12px',
-  'font.family.system': ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
-  'icon.alert-16': '/icon/alert-16.svg',
-  'icon.alert-24': '/icon/alert-24.svg',
-  'icon.alert-fill-12': '/icon/alert-fill-12.svg',
-  'icon.archive-16': '/icon/archive-16.svg',
-  'icon.archive-24': '/icon/archive-24.svg',
-  'icon.arrow-both-16': '/icon/arrow-both-16.svg',
-  'icon.arrow-both-24': '/icon/arrow-both-24.svg',
-  'icon.arrow-down-16': '/icon/arrow-down-16.svg',
-  'icon.arrow-down-24': '/icon/arrow-down-24.svg',
-  'icon.arrow-down-left-24': '/icon/arrow-down-left-24.svg',
-  'icon.arrow-down-right-24': '/icon/arrow-down-right-24.svg',
-  'icon.arrow-left-16': '/icon/arrow-left-16.svg',
-  'icon.arrow-left-24': '/icon/arrow-left-24.svg',
-  'icon.arrow-right-16': '/icon/arrow-right-16.svg',
-  'icon.arrow-right-24': '/icon/arrow-right-24.svg',
-  'icon.arrow-switch-16': '/icon/arrow-switch-16.svg',
-  'icon.arrow-switch-24': '/icon/arrow-switch-24.svg',
-  'icon.arrow-up-16': '/icon/arrow-up-16.svg',
-  'icon.arrow-up-24': '/icon/arrow-up-24.svg',
-  'icon.arrow-up-left-24': '/icon/arrow-up-left-24.svg',
-  'icon.arrow-up-right-24': '/icon/arrow-up-right-24.svg',
-  'icon.beaker-16': '/icon/beaker-16.svg',
-  'icon.beaker-24': '/icon/beaker-24.svg',
-  'icon.bell-16': '/icon/bell-16.svg',
-  'icon.bell-24': '/icon/bell-24.svg',
-  'icon.bell-fill-16': '/icon/bell-fill-16.svg',
-  'icon.bell-fill-24': '/icon/bell-fill-24.svg',
-  'icon.bell-slash-16': '/icon/bell-slash-16.svg',
-  'icon.bell-slash-24': '/icon/bell-slash-24.svg',
-  'icon.blocked-16': '/icon/blocked-16.svg',
-  'icon.blocked-24': '/icon/blocked-24.svg',
-  'icon.bold-16': '/icon/bold-16.svg',
-  'icon.bold-24': '/icon/bold-24.svg',
-  'icon.book-16': '/icon/book-16.svg',
-  'icon.book-24': '/icon/book-24.svg',
-  'icon.bookmark-16': '/icon/bookmark-16.svg',
-  'icon.bookmark-24': '/icon/bookmark-24.svg',
-  'icon.bookmark-fill-24': '/icon/bookmark-fill-24.svg',
-  'icon.bookmark-slash-16': '/icon/bookmark-slash-16.svg',
-  'icon.bookmark-slash-24': '/icon/bookmark-slash-24.svg',
-  'icon.bookmark-slash-fill-24': '/icon/bookmark-slash-fill-24.svg',
-  'icon.briefcase-16': '/icon/briefcase-16.svg',
-  'icon.briefcase-24': '/icon/briefcase-24.svg',
-  'icon.broadcast-16': '/icon/broadcast-16.svg',
-  'icon.broadcast-24': '/icon/broadcast-24.svg',
-  'icon.browser-16': '/icon/browser-16.svg',
-  'icon.browser-24': '/icon/browser-24.svg',
-  'icon.bug-16': '/icon/bug-16.svg',
-  'icon.bug-24': '/icon/bug-24.svg',
-  'icon.calendar-16': '/icon/calendar-16.svg',
-  'icon.calendar-24': '/icon/calendar-24.svg',
-  'icon.check-16': '/icon/check-16.svg',
-  'icon.check-24': '/icon/check-24.svg',
-  'icon.check-circle-16': '/icon/check-circle-16.svg',
-  'icon.check-circle-24': '/icon/check-circle-24.svg',
-  'icon.check-circle-fill-12': '/icon/check-circle-fill-12.svg',
-  'icon.check-circle-fill-16': '/icon/check-circle-fill-16.svg',
-  'icon.check-circle-fill-24': '/icon/check-circle-fill-24.svg',
-  'icon.checklist-16': '/icon/checklist-16.svg',
-  'icon.checklist-24': '/icon/checklist-24.svg',
-  'icon.chevron-down-16': '/icon/chevron-down-16.svg',
-  'icon.chevron-down-24': '/icon/chevron-down-24.svg',
-  'icon.chevron-left-16': '/icon/chevron-left-16.svg',
-  'icon.chevron-left-24': '/icon/chevron-left-24.svg',
-  'icon.chevron-right-16': '/icon/chevron-right-16.svg',
-  'icon.chevron-right-24': '/icon/chevron-right-24.svg',
-  'icon.chevron-up-16': '/icon/chevron-up-16.svg',
-  'icon.chevron-up-24': '/icon/chevron-up-24.svg',
-  'icon.circle-16': '/icon/circle-16.svg',
-  'icon.circle-24': '/icon/circle-24.svg',
-  'icon.circle-slash-16': '/icon/circle-slash-16.svg',
-  'icon.circle-slash-24': '/icon/circle-slash-24.svg',
-  'icon.clock-16': '/icon/clock-16.svg',
-  'icon.clock-24': '/icon/clock-24.svg',
-  'icon.code-16': '/icon/code-16.svg',
-  'icon.code-24': '/icon/code-24.svg',
-  'icon.code-of-conduct-16': '/icon/code-of-conduct-16.svg',
-  'icon.code-of-conduct-24': '/icon/code-of-conduct-24.svg',
-  'icon.code-review-16': '/icon/code-review-16.svg',
-  'icon.code-review-24': '/icon/code-review-24.svg',
-  'icon.code-square-16': '/icon/code-square-16.svg',
-  'icon.code-square-24': '/icon/code-square-24.svg',
-  'icon.codescan-16': '/icon/codescan-16.svg',
-  'icon.codescan-24': '/icon/codescan-24.svg',
-  'icon.codescan-checkmark-16': '/icon/codescan-checkmark-16.svg',
-  'icon.codescan-checkmark-24': '/icon/codescan-checkmark-24.svg',
-  'icon.codespaces-16': '/icon/codespaces-16.svg',
-  'icon.codespaces-24': '/icon/codespaces-24.svg',
-  'icon.columns-16': '/icon/columns-16.svg',
-  'icon.columns-24': '/icon/columns-24.svg',
-  'icon.comment-16': '/icon/comment-16.svg',
-  'icon.comment-24': '/icon/comment-24.svg',
-  'icon.comment-discussion-16': '/icon/comment-discussion-16.svg',
-  'icon.comment-discussion-24': '/icon/comment-discussion-24.svg',
-  'icon.commit-24': '/icon/commit-24.svg',
-  'icon.container-16': '/icon/container-16.svg',
-  'icon.container-24': '/icon/container-24.svg',
-  'icon.copy-16': '/icon/copy-16.svg',
-  'icon.copy-24': '/icon/copy-24.svg',
-  'icon.cpu-16': '/icon/cpu-16.svg',
-  'icon.cpu-24': '/icon/cpu-24.svg',
-  'icon.credit-card-16': '/icon/credit-card-16.svg',
-  'icon.credit-card-24': '/icon/credit-card-24.svg',
-  'icon.cross-reference-16': '/icon/cross-reference-16.svg',
-  'icon.cross-reference-24': '/icon/cross-reference-24.svg',
-  'icon.dash-16': '/icon/dash-16.svg',
-  'icon.dash-24': '/icon/dash-24.svg',
-  'icon.database-16': '/icon/database-16.svg',
-  'icon.database-24': '/icon/database-24.svg',
-  'icon.dependabot-16': '/icon/dependabot-16.svg',
-  'icon.dependabot-24': '/icon/dependabot-24.svg',
-  'icon.desktop-download-16': '/icon/desktop-download-16.svg',
-  'icon.desktop-download-24': '/icon/desktop-download-24.svg',
-  'icon.device-camera-16': '/icon/device-camera-16.svg',
-  'icon.device-camera-video-16': '/icon/device-camera-video-16.svg',
-  'icon.device-camera-video-24': '/icon/device-camera-video-24.svg',
-  'icon.device-desktop-16': '/icon/device-desktop-16.svg',
-  'icon.device-desktop-24': '/icon/device-desktop-24.svg',
-  'icon.device-mobile-16': '/icon/device-mobile-16.svg',
-  'icon.device-mobile-24': '/icon/device-mobile-24.svg',
-  'icon.diamond-16': '/icon/diamond-16.svg',
-  'icon.diamond-24': '/icon/diamond-24.svg',
-  'icon.diff-16': '/icon/diff-16.svg',
-  'icon.diff-24': '/icon/diff-24.svg',
-  'icon.diff-added-16': '/icon/diff-added-16.svg',
-  'icon.diff-ignored-16': '/icon/diff-ignored-16.svg',
-  'icon.diff-modified-16': '/icon/diff-modified-16.svg',
-  'icon.diff-removed-16': '/icon/diff-removed-16.svg',
-  'icon.diff-renamed-16': '/icon/diff-renamed-16.svg',
-  'icon.dot-16': '/icon/dot-16.svg',
-  'icon.dot-24': '/icon/dot-24.svg',
-  'icon.dot-fill-16': '/icon/dot-fill-16.svg',
-  'icon.dot-fill-24': '/icon/dot-fill-24.svg',
-  'icon.download-16': '/icon/download-16.svg',
-  'icon.download-24': '/icon/download-24.svg',
-  'icon.duplicate-16': '/icon/duplicate-16.svg',
-  'icon.duplicate-24': '/icon/duplicate-24.svg',
-  'icon.ellipsis-16': '/icon/ellipsis-16.svg',
-  'icon.eye-16': '/icon/eye-16.svg',
-  'icon.eye-24': '/icon/eye-24.svg',
-  'icon.eye-closed-16': '/icon/eye-closed-16.svg',
-  'icon.eye-closed-24': '/icon/eye-closed-24.svg',
-  'icon.file-16': '/icon/file-16.svg',
-  'icon.file-24': '/icon/file-24.svg',
-  'icon.file-badge-16': '/icon/file-badge-16.svg',
-  'icon.file-binary-16': '/icon/file-binary-16.svg',
-  'icon.file-binary-24': '/icon/file-binary-24.svg',
-  'icon.file-code-16': '/icon/file-code-16.svg',
-  'icon.file-code-24': '/icon/file-code-24.svg',
-  'icon.file-diff-16': '/icon/file-diff-16.svg',
-  'icon.file-diff-24': '/icon/file-diff-24.svg',
-  'icon.file-directory-16': '/icon/file-directory-16.svg',
-  'icon.file-directory-24': '/icon/file-directory-24.svg',
-  'icon.file-directory-fill-24': '/icon/file-directory-fill-24.svg',
-  'icon.file-media-24': '/icon/file-media-24.svg',
-  'icon.file-submodule-16': '/icon/file-submodule-16.svg',
-  'icon.file-submodule-24': '/icon/file-submodule-24.svg',
-  'icon.file-symlink-file-16': '/icon/file-symlink-file-16.svg',
-  'icon.file-symlink-file-24': '/icon/file-symlink-file-24.svg',
-  'icon.file-zip-16': '/icon/file-zip-16.svg',
-  'icon.file-zip-24': '/icon/file-zip-24.svg',
-  'icon.filter-16': '/icon/filter-16.svg',
-  'icon.filter-24': '/icon/filter-24.svg',
-  'icon.flame-16': '/icon/flame-16.svg',
-  'icon.flame-24': '/icon/flame-24.svg',
-  'icon.fold-16': '/icon/fold-16.svg',
-  'icon.fold-24': '/icon/fold-24.svg',
-  'icon.fold-down-16': '/icon/fold-down-16.svg',
-  'icon.fold-down-24': '/icon/fold-down-24.svg',
-  'icon.fold-up-16': '/icon/fold-up-16.svg',
-  'icon.fold-up-24': '/icon/fold-up-24.svg',
-  'icon.gear-16': '/icon/gear-16.svg',
-  'icon.gear-24': '/icon/gear-24.svg',
-  'icon.gift-16': '/icon/gift-16.svg',
-  'icon.gift-24': '/icon/gift-24.svg',
-  'icon.git-branch-16': '/icon/git-branch-16.svg',
-  'icon.git-branch-24': '/icon/git-branch-24.svg',
-  'icon.git-commit-16': '/icon/git-commit-16.svg',
-  'icon.git-commit-24': '/icon/git-commit-24.svg',
-  'icon.git-compare-16': '/icon/git-compare-16.svg',
-  'icon.git-compare-24': '/icon/git-compare-24.svg',
-  'icon.git-merge-16': '/icon/git-merge-16.svg',
-  'icon.git-merge-24': '/icon/git-merge-24.svg',
-  'icon.git-pull-request-16': '/icon/git-pull-request-16.svg',
-  'icon.git-pull-request-24': '/icon/git-pull-request-24.svg',
-  'icon.git-pull-request-closed-16': '/icon/git-pull-request-closed-16.svg',
-  'icon.git-pull-request-closed-24': '/icon/git-pull-request-closed-24.svg',
-  'icon.git-pull-request-draft-16': '/icon/git-pull-request-draft-16.svg',
-  'icon.git-pull-request-draft-24': '/icon/git-pull-request-draft-24.svg',
-  'icon.globe-16': '/icon/globe-16.svg',
-  'icon.globe-24': '/icon/globe-24.svg',
-  'icon.grabber-16': '/icon/grabber-16.svg',
-  'icon.grabber-24': '/icon/grabber-24.svg',
-  'icon.graph-16': '/icon/graph-16.svg',
-  'icon.graph-24': '/icon/graph-24.svg',
-  'icon.hash-16': '/icon/hash-16.svg',
-  'icon.hash-24': '/icon/hash-24.svg',
-  'icon.heading-16': '/icon/heading-16.svg',
-  'icon.heading-24': '/icon/heading-24.svg',
-  'icon.heart-16': '/icon/heart-16.svg',
-  'icon.heart-24': '/icon/heart-24.svg',
-  'icon.heart-fill-16': '/icon/heart-fill-16.svg',
-  'icon.heart-fill-24': '/icon/heart-fill-24.svg',
-  'icon.history-16': '/icon/history-16.svg',
-  'icon.history-24': '/icon/history-24.svg',
-  'icon.home-16': '/icon/home-16.svg',
-  'icon.home-24': '/icon/home-24.svg',
-  'icon.home-fill-24': '/icon/home-fill-24.svg',
-  'icon.horizontal-rule-16': '/icon/horizontal-rule-16.svg',
-  'icon.horizontal-rule-24': '/icon/horizontal-rule-24.svg',
-  'icon.hourglass-16': '/icon/hourglass-16.svg',
-  'icon.hourglass-24': '/icon/hourglass-24.svg',
-  'icon.hubot-16': '/icon/hubot-16.svg',
-  'icon.hubot-24': '/icon/hubot-24.svg',
-  'icon.image-16': '/icon/image-16.svg',
-  'icon.image-24': '/icon/image-24.svg',
-  'icon.inbox-16': '/icon/inbox-16.svg',
-  'icon.inbox-24': '/icon/inbox-24.svg',
-  'icon.infinity-16': '/icon/infinity-16.svg',
-  'icon.infinity-24': '/icon/infinity-24.svg',
-  'icon.info-16': '/icon/info-16.svg',
-  'icon.info-24': '/icon/info-24.svg',
-  'icon.issue-closed-16': '/icon/issue-closed-16.svg',
-  'icon.issue-closed-24': '/icon/issue-closed-24.svg',
-  'icon.issue-draft-16': '/icon/issue-draft-16.svg',
-  'icon.issue-draft-24': '/icon/issue-draft-24.svg',
-  'icon.issue-opened-16': '/icon/issue-opened-16.svg',
-  'icon.issue-opened-24': '/icon/issue-opened-24.svg',
-  'icon.issue-reopened-16': '/icon/issue-reopened-16.svg',
-  'icon.issue-reopened-24': '/icon/issue-reopened-24.svg',
-  'icon.italic-16': '/icon/italic-16.svg',
-  'icon.italic-24': '/icon/italic-24.svg',
-  'icon.iterations-16': '/icon/iterations-16.svg',
-  'icon.iterations-24': '/icon/iterations-24.svg',
-  'icon.kebab-horizontal-16': '/icon/kebab-horizontal-16.svg',
-  'icon.kebab-horizontal-24': '/icon/kebab-horizontal-24.svg',
-  'icon.key-16': '/icon/key-16.svg',
-  'icon.key-24': '/icon/key-24.svg',
-  'icon.key-asterisk-16': '/icon/key-asterisk-16.svg',
-  'icon.law-16': '/icon/law-16.svg',
-  'icon.law-24': '/icon/law-24.svg',
-  'icon.light-bulb-16': '/icon/light-bulb-16.svg',
-  'icon.light-bulb-24': '/icon/light-bulb-24.svg',
-  'icon.link-16': '/icon/link-16.svg',
-  'icon.link-24': '/icon/link-24.svg',
-  'icon.link-external-16': '/icon/link-external-16.svg',
-  'icon.link-external-24': '/icon/link-external-24.svg',
-  'icon.list-ordered-16': '/icon/list-ordered-16.svg',
-  'icon.list-ordered-24': '/icon/list-ordered-24.svg',
-  'icon.list-unordered-16': '/icon/list-unordered-16.svg',
-  'icon.list-unordered-24': '/icon/list-unordered-24.svg',
-  'icon.location-16': '/icon/location-16.svg',
-  'icon.location-24': '/icon/location-24.svg',
-  'icon.lock-16': '/icon/lock-16.svg',
-  'icon.lock-24': '/icon/lock-24.svg',
-  'icon.logo-gist-16': '/icon/logo-gist-16.svg',
-  'icon.logo-github-16': '/icon/logo-github-16.svg',
-  'icon.mail-16': '/icon/mail-16.svg',
-  'icon.mail-24': '/icon/mail-24.svg',
-  'icon.mark-github-16': '/icon/mark-github-16.svg',
-  'icon.markdown-16': '/icon/markdown-16.svg',
-  'icon.megaphone-16': '/icon/megaphone-16.svg',
-  'icon.megaphone-24': '/icon/megaphone-24.svg',
-  'icon.mention-16': '/icon/mention-16.svg',
-  'icon.mention-24': '/icon/mention-24.svg',
-  'icon.meter-16': '/icon/meter-16.svg',
-  'icon.milestone-16': '/icon/milestone-16.svg',
-  'icon.milestone-24': '/icon/milestone-24.svg',
-  'icon.mirror-16': '/icon/mirror-16.svg',
-  'icon.mirror-24': '/icon/mirror-24.svg',
-  'icon.moon-16': '/icon/moon-16.svg',
-  'icon.moon-24': '/icon/moon-24.svg',
-  'icon.mortar-board-16': '/icon/mortar-board-16.svg',
-  'icon.mortar-board-24': '/icon/mortar-board-24.svg',
-  'icon.multi-select-16': '/icon/multi-select-16.svg',
-  'icon.multi-select-24': '/icon/multi-select-24.svg',
-  'icon.mute-16': '/icon/mute-16.svg',
-  'icon.mute-24': '/icon/mute-24.svg',
-  'icon.no-entry-16': '/icon/no-entry-16.svg',
-  'icon.no-entry-24': '/icon/no-entry-24.svg',
-  'icon.no-entry-fill-12': '/icon/no-entry-fill-12.svg',
-  'icon.north-star-16': '/icon/north-star-16.svg',
-  'icon.north-star-24': '/icon/north-star-24.svg',
-  'icon.note-16': '/icon/note-16.svg',
-  'icon.note-24': '/icon/note-24.svg',
-  'icon.number-16': '/icon/number-16.svg',
-  'icon.number-24': '/icon/number-24.svg',
-  'icon.organization-16': '/icon/organization-16.svg',
-  'icon.organization-24': '/icon/organization-24.svg',
-  'icon.package-16': '/icon/package-16.svg',
-  'icon.package-24': '/icon/package-24.svg',
-  'icon.package-dependencies-16': '/icon/package-dependencies-16.svg',
-  'icon.package-dependencies-24': '/icon/package-dependencies-24.svg',
-  'icon.package-dependents-16': '/icon/package-dependents-16.svg',
-  'icon.package-dependents-24': '/icon/package-dependents-24.svg',
-  'icon.paintbrush-16': '/icon/paintbrush-16.svg',
-  'icon.paper-airplane-16': '/icon/paper-airplane-16.svg',
-  'icon.paper-airplane-24': '/icon/paper-airplane-24.svg',
-  'icon.paste-16': '/icon/paste-16.svg',
-  'icon.paste-24': '/icon/paste-24.svg',
-  'icon.pencil-16': '/icon/pencil-16.svg',
-  'icon.pencil-24': '/icon/pencil-24.svg',
-  'icon.people-16': '/icon/people-16.svg',
-  'icon.people-24': '/icon/people-24.svg',
-  'icon.person-16': '/icon/person-16.svg',
-  'icon.person-24': '/icon/person-24.svg',
-  'icon.person-add-16': '/icon/person-add-16.svg',
-  'icon.person-add-24': '/icon/person-add-24.svg',
-  'icon.person-fill-16': '/icon/person-fill-16.svg',
-  'icon.person-fill-24': '/icon/person-fill-24.svg',
-  'icon.pin-16': '/icon/pin-16.svg',
-  'icon.pin-24': '/icon/pin-24.svg',
-  'icon.play-16': '/icon/play-16.svg',
-  'icon.play-24': '/icon/play-24.svg',
-  'icon.plug-16': '/icon/plug-16.svg',
-  'icon.plug-24': '/icon/plug-24.svg',
-  'icon.plus-16': '/icon/plus-16.svg',
-  'icon.plus-24': '/icon/plus-24.svg',
-  'icon.plus-circle-16': '/icon/plus-circle-16.svg',
-  'icon.plus-circle-24': '/icon/plus-circle-24.svg',
-  'icon.project-16': '/icon/project-16.svg',
-  'icon.project-24': '/icon/project-24.svg',
-  'icon.pulse-16': '/icon/pulse-16.svg',
-  'icon.pulse-24': '/icon/pulse-24.svg',
-  'icon.question-16': '/icon/question-16.svg',
-  'icon.question-24': '/icon/question-24.svg',
-  'icon.quote-16': '/icon/quote-16.svg',
-  'icon.quote-24': '/icon/quote-24.svg',
-  'icon.reply-16': '/icon/reply-16.svg',
-  'icon.reply-24': '/icon/reply-24.svg',
-  'icon.repo-16': '/icon/repo-16.svg',
-  'icon.repo-24': '/icon/repo-24.svg',
-  'icon.repo-clone-16': '/icon/repo-clone-16.svg',
-  'icon.repo-forked-16': '/icon/repo-forked-16.svg',
-  'icon.repo-forked-24': '/icon/repo-forked-24.svg',
-  'icon.repo-pull-16': '/icon/repo-pull-16.svg',
-  'icon.repo-push-16': '/icon/repo-push-16.svg',
-  'icon.repo-push-24': '/icon/repo-push-24.svg',
-  'icon.repo-template-16': '/icon/repo-template-16.svg',
-  'icon.repo-template-24': '/icon/repo-template-24.svg',
-  'icon.report-16': '/icon/report-16.svg',
-  'icon.report-24': '/icon/report-24.svg',
-  'icon.rocket-16': '/icon/rocket-16.svg',
-  'icon.rocket-24': '/icon/rocket-24.svg',
-  'icon.rows-16': '/icon/rows-16.svg',
-  'icon.rows-24': '/icon/rows-24.svg',
-  'icon.rss-16': '/icon/rss-16.svg',
-  'icon.rss-24': '/icon/rss-24.svg',
-  'icon.ruby-16': '/icon/ruby-16.svg',
-  'icon.ruby-24': '/icon/ruby-24.svg',
-  'icon.screen-full-16': '/icon/screen-full-16.svg',
-  'icon.screen-full-24': '/icon/screen-full-24.svg',
-  'icon.screen-normal-16': '/icon/screen-normal-16.svg',
-  'icon.screen-normal-24': '/icon/screen-normal-24.svg',
-  'icon.search-16': '/icon/search-16.svg',
-  'icon.search-24': '/icon/search-24.svg',
-  'icon.server-16': '/icon/server-16.svg',
-  'icon.server-24': '/icon/server-24.svg',
-  'icon.share-16': '/icon/share-16.svg',
-  'icon.share-24': '/icon/share-24.svg',
-  'icon.share-android-16': '/icon/share-android-16.svg',
-  'icon.share-android-24': '/icon/share-android-24.svg',
-  'icon.shield-16': '/icon/shield-16.svg',
-  'icon.shield-24': '/icon/shield-24.svg',
-  'icon.shield-check-16': '/icon/shield-check-16.svg',
-  'icon.shield-check-24': '/icon/shield-check-24.svg',
-  'icon.shield-lock-16': '/icon/shield-lock-16.svg',
-  'icon.shield-lock-24': '/icon/shield-lock-24.svg',
-  'icon.shield-x-16': '/icon/shield-x-16.svg',
-  'icon.shield-x-24': '/icon/shield-x-24.svg',
-  'icon.sidebar-collapse-16': '/icon/sidebar-collapse-16.svg',
-  'icon.sidebar-collapse-24': '/icon/sidebar-collapse-24.svg',
-  'icon.sidebar-expand-16': '/icon/sidebar-expand-16.svg',
-  'icon.sidebar-expand-24': '/icon/sidebar-expand-24.svg',
-  'icon.sign-in-16': '/icon/sign-in-16.svg',
-  'icon.sign-in-24': '/icon/sign-in-24.svg',
-  'icon.sign-out-16': '/icon/sign-out-16.svg',
-  'icon.sign-out-24': '/icon/sign-out-24.svg',
-  'icon.single-select-16': '/icon/single-select-16.svg',
-  'icon.single-select-24': '/icon/single-select-24.svg',
-  'icon.skip-16': '/icon/skip-16.svg',
-  'icon.skip-24': '/icon/skip-24.svg',
-  'icon.smiley-16': '/icon/smiley-16.svg',
-  'icon.smiley-24': '/icon/smiley-24.svg',
-  'icon.sort-asc-16': '/icon/sort-asc-16.svg',
-  'icon.sort-asc-24': '/icon/sort-asc-24.svg',
-  'icon.sort-desc-16': '/icon/sort-desc-16.svg',
-  'icon.sort-desc-24': '/icon/sort-desc-24.svg',
-  'icon.square-16': '/icon/square-16.svg',
-  'icon.square-24': '/icon/square-24.svg',
-  'icon.square-fill-16': '/icon/square-fill-16.svg',
-  'icon.square-fill-24': '/icon/square-fill-24.svg',
-  'icon.squirrel-16': '/icon/squirrel-16.svg',
-  'icon.squirrel-24': '/icon/squirrel-24.svg',
-  'icon.stack-16': '/icon/stack-16.svg',
-  'icon.stack-24': '/icon/stack-24.svg',
-  'icon.star-16': '/icon/star-16.svg',
-  'icon.star-24': '/icon/star-24.svg',
-  'icon.star-fill-16': '/icon/star-fill-16.svg',
-  'icon.star-fill-24': '/icon/star-fill-24.svg',
-  'icon.stop-16': '/icon/stop-16.svg',
-  'icon.stop-24': '/icon/stop-24.svg',
-  'icon.stopwatch-16': '/icon/stopwatch-16.svg',
-  'icon.stopwatch-24': '/icon/stopwatch-24.svg',
-  'icon.strikethrough-16': '/icon/strikethrough-16.svg',
-  'icon.strikethrough-24': '/icon/strikethrough-24.svg',
-  'icon.sun-16': '/icon/sun-16.svg',
-  'icon.sun-24': '/icon/sun-24.svg',
-  'icon.sync-16': '/icon/sync-16.svg',
-  'icon.sync-24': '/icon/sync-24.svg',
-  'icon.tab-24': '/icon/tab-24.svg',
-  'icon.table-16': '/icon/table-16.svg',
-  'icon.table-24': '/icon/table-24.svg',
-  'icon.tag-16': '/icon/tag-16.svg',
-  'icon.tag-24': '/icon/tag-24.svg',
-  'icon.tasklist-16': '/icon/tasklist-16.svg',
-  'icon.tasklist-24': '/icon/tasklist-24.svg',
-  'icon.telescope-16': '/icon/telescope-16.svg',
-  'icon.telescope-24': '/icon/telescope-24.svg',
-  'icon.telescope-fill-16': '/icon/telescope-fill-16.svg',
-  'icon.telescope-fill-24': '/icon/telescope-fill-24.svg',
-  'icon.terminal-16': '/icon/terminal-16.svg',
-  'icon.terminal-24': '/icon/terminal-24.svg',
-  'icon.three-bars-16': '/icon/three-bars-16.svg',
-  'icon.thumbsdown-16': '/icon/thumbsdown-16.svg',
-  'icon.thumbsdown-24': '/icon/thumbsdown-24.svg',
-  'icon.thumbsup-16': '/icon/thumbsup-16.svg',
-  'icon.thumbsup-24': '/icon/thumbsup-24.svg',
-  'icon.tools-16': '/icon/tools-16.svg',
-  'icon.tools-24': '/icon/tools-24.svg',
-  'icon.trash-16': '/icon/trash-16.svg',
-  'icon.trash-24': '/icon/trash-24.svg',
-  'icon.triangle-down-16': '/icon/triangle-down-16.svg',
-  'icon.triangle-down-24': '/icon/triangle-down-24.svg',
-  'icon.triangle-left-16': '/icon/triangle-left-16.svg',
-  'icon.triangle-left-24': '/icon/triangle-left-24.svg',
-  'icon.triangle-right-16': '/icon/triangle-right-16.svg',
-  'icon.triangle-right-24': '/icon/triangle-right-24.svg',
-  'icon.triangle-up-16': '/icon/triangle-up-16.svg',
-  'icon.triangle-up-24': '/icon/triangle-up-24.svg',
-  'icon.typography-16': '/icon/typography-16.svg',
-  'icon.typography-24': '/icon/typography-24.svg',
-  'icon.unfold-16': '/icon/unfold-16.svg',
-  'icon.unfold-24': '/icon/unfold-24.svg',
-  'icon.unlock-16': '/icon/unlock-16.svg',
-  'icon.unlock-24': '/icon/unlock-24.svg',
-  'icon.unmute-16': '/icon/unmute-16.svg',
-  'icon.unmute-24': '/icon/unmute-24.svg',
-  'icon.unverified-16': '/icon/unverified-16.svg',
-  'icon.unverified-24': '/icon/unverified-24.svg',
-  'icon.upload-16': '/icon/upload-16.svg',
-  'icon.upload-24': '/icon/upload-24.svg',
-  'icon.verified-16': '/icon/verified-16.svg',
-  'icon.verified-24': '/icon/verified-24.svg',
-  'icon.versions-16': '/icon/versions-16.svg',
-  'icon.versions-24': '/icon/versions-24.svg',
-  'icon.video-16': '/icon/video-16.svg',
-  'icon.video-24': '/icon/video-24.svg',
-  'icon.workflow-16': '/icon/workflow-16.svg',
-  'icon.workflow-24': '/icon/workflow-24.svg',
-  'icon.x-16': '/icon/x-16.svg',
-  'icon.x-24': '/icon/x-24.svg',
-  'icon.x-circle-16': '/icon/x-circle-16.svg',
-  'icon.x-circle-24': '/icon/x-circle-24.svg',
-  'icon.x-circle-fill-12': '/icon/x-circle-fill-12.svg',
-  'icon.x-circle-fill-16': '/icon/x-circle-fill-16.svg',
-  'icon.x-circle-fill-24': '/icon/x-circle-fill-24.svg',
-  'icon.zap-16': '/icon/zap-16.svg',
-  'icon.zap-24': '/icon/zap-24.svg',
-  'spacing.spacer0': '0',
-  'spacing.spacerM': '16px',
-  'spacing.spacerS': '8px',
-  'spacing.spacerX': '24px',
-  'spacing.spacerXl': '32px',
-  'spacing.spacerXs': '4px',
-  'spacing.spacerXxl': '40px',
+  'base.color.black': '#1f2328',
+  'base.color.blue.0': '#ddf4ff',
+  'base.color.blue.1': '#b6e3ff',
+  'base.color.blue.2': '#80ccff',
+  'base.color.blue.3': '#54aeff',
+  'base.color.blue.4': '#218bff',
+  'base.color.blue.5': '#0969da',
+  'base.color.blue.6': '#0550ae',
+  'base.color.blue.7': '#033d8b',
+  'base.color.blue.8': '#0a3069',
+  'base.color.blue.9': '#002155',
+  'base.color.coral.0': '#FFF0EB',
+  'base.color.coral.1': '#FFD6CC',
+  'base.color.coral.2': '#FFB4A1',
+  'base.color.coral.3': '#FD8C73',
+  'base.color.coral.4': '#EC6547',
+  'base.color.coral.5': '#C4432B',
+  'base.color.coral.6': '#9E2F1C',
+  'base.color.coral.7': '#801F0F',
+  'base.color.coral.8': '#691105',
+  'base.color.coral.9': '#510901',
+  'base.color.gray.0': '#f6f8fa',
+  'base.color.gray.1': '#eaeef2',
+  'base.color.gray.2': '#d0d7de',
+  'base.color.gray.3': '#afb8c1',
+  'base.color.gray.4': '#8c959f',
+  'base.color.gray.5': '#6e7781',
+  'base.color.gray.6': '#57606a',
+  'base.color.gray.7': '#424a53',
+  'base.color.gray.8': '#32383f',
+  'base.color.gray.9': '#24292f',
+  'base.color.green.0': '#dafbe1',
+  'base.color.green.1': '#aceebb',
+  'base.color.green.2': '#6fdd8b',
+  'base.color.green.3': '#4ac26b',
+  'base.color.green.4': '#2da44e',
+  'base.color.green.5': '#1a7f37',
+  'base.color.green.6': '#116329',
+  'base.color.green.7': '#044f1e',
+  'base.color.green.8': '#003d16',
+  'base.color.green.9': '#002d11',
+  'base.color.orange.0': '#fff1e5',
+  'base.color.orange.1': '#ffd8b5',
+  'base.color.orange.2': '#ffb77c',
+  'base.color.orange.3': '#fb8f44',
+  'base.color.orange.4': '#e16f24',
+  'base.color.orange.5': '#bc4c00',
+  'base.color.orange.6': '#953800',
+  'base.color.orange.7': '#762c00',
+  'base.color.orange.8': '#5c2200',
+  'base.color.orange.9': '#471700',
+  'base.color.pink.0': '#ffeff7',
+  'base.color.pink.1': '#ffd3eb',
+  'base.color.pink.2': '#ffadda',
+  'base.color.pink.3': '#ff80c8',
+  'base.color.pink.4': '#e85aad',
+  'base.color.pink.5': '#bf3989',
+  'base.color.pink.6': '#99286e',
+  'base.color.pink.7': '#772057',
+  'base.color.pink.8': '#611347',
+  'base.color.pink.9': '#4d0336',
+  'base.color.purple.0': '#fbefff',
+  'base.color.purple.1': '#ecd8ff',
+  'base.color.purple.2': '#d8b9ff',
+  'base.color.purple.3': '#c297ff',
+  'base.color.purple.4': '#a475f9',
+  'base.color.purple.5': '#8250df',
+  'base.color.purple.6': '#6639ba',
+  'base.color.purple.7': '#512a97',
+  'base.color.purple.8': '#3e1f79',
+  'base.color.purple.9': '#2e1461',
+  'base.color.red.0': '#FFEBE9',
+  'base.color.red.1': '#ffcecb',
+  'base.color.red.2': '#ffaba8',
+  'base.color.red.3': '#ff8182',
+  'base.color.red.4': '#fa4549',
+  'base.color.red.5': '#cf222e',
+  'base.color.red.6': '#a40e26',
+  'base.color.red.7': '#82071e',
+  'base.color.red.8': '#660018',
+  'base.color.red.9': '#4c0014',
+  'base.color.transparent': 'ffffff',
+  'base.color.white': 'ffffff',
+  'base.color.yellow.0': '#fff8c5',
+  'base.color.yellow.1': '#fae17d',
+  'base.color.yellow.2': '#eac54f',
+  'base.color.yellow.3': '#d4a72c',
+  'base.color.yellow.4': '#bf8700',
+  'base.color.yellow.5': '#9a6700',
+  'base.color.yellow.6': '#7d4e00',
+  'base.color.yellow.7': '#633c01',
+  'base.color.yellow.8': '#4d2d00',
+  'base.color.yellow.9': '#3b2300',
+  'base.icon.alert-16': '/icon/alert-16.svg',
+  'base.icon.alert-24': '/icon/alert-24.svg',
+  'base.icon.alert-fill-12': '/icon/alert-fill-12.svg',
+  'base.icon.archive-16': '/icon/archive-16.svg',
+  'base.icon.archive-24': '/icon/archive-24.svg',
+  'base.icon.arrow-both-16': '/icon/arrow-both-16.svg',
+  'base.icon.arrow-both-24': '/icon/arrow-both-24.svg',
+  'base.icon.arrow-down-16': '/icon/arrow-down-16.svg',
+  'base.icon.arrow-down-24': '/icon/arrow-down-24.svg',
+  'base.icon.arrow-down-left-24': '/icon/arrow-down-left-24.svg',
+  'base.icon.arrow-down-right-24': '/icon/arrow-down-right-24.svg',
+  'base.icon.arrow-left-16': '/icon/arrow-left-16.svg',
+  'base.icon.arrow-left-24': '/icon/arrow-left-24.svg',
+  'base.icon.arrow-right-16': '/icon/arrow-right-16.svg',
+  'base.icon.arrow-right-24': '/icon/arrow-right-24.svg',
+  'base.icon.arrow-switch-16': '/icon/arrow-switch-16.svg',
+  'base.icon.arrow-switch-24': '/icon/arrow-switch-24.svg',
+  'base.icon.arrow-up-16': '/icon/arrow-up-16.svg',
+  'base.icon.arrow-up-24': '/icon/arrow-up-24.svg',
+  'base.icon.arrow-up-left-24': '/icon/arrow-up-left-24.svg',
+  'base.icon.arrow-up-right-24': '/icon/arrow-up-right-24.svg',
+  'base.icon.beaker-16': '/icon/beaker-16.svg',
+  'base.icon.beaker-24': '/icon/beaker-24.svg',
+  'base.icon.bell-16': '/icon/bell-16.svg',
+  'base.icon.bell-24': '/icon/bell-24.svg',
+  'base.icon.bell-fill-16': '/icon/bell-fill-16.svg',
+  'base.icon.bell-fill-24': '/icon/bell-fill-24.svg',
+  'base.icon.bell-slash-16': '/icon/bell-slash-16.svg',
+  'base.icon.bell-slash-24': '/icon/bell-slash-24.svg',
+  'base.icon.blocked-16': '/icon/blocked-16.svg',
+  'base.icon.blocked-24': '/icon/blocked-24.svg',
+  'base.icon.bold-16': '/icon/bold-16.svg',
+  'base.icon.bold-24': '/icon/bold-24.svg',
+  'base.icon.book-16': '/icon/book-16.svg',
+  'base.icon.book-24': '/icon/book-24.svg',
+  'base.icon.bookmark-16': '/icon/bookmark-16.svg',
+  'base.icon.bookmark-24': '/icon/bookmark-24.svg',
+  'base.icon.bookmark-fill-24': '/icon/bookmark-fill-24.svg',
+  'base.icon.bookmark-slash-16': '/icon/bookmark-slash-16.svg',
+  'base.icon.bookmark-slash-24': '/icon/bookmark-slash-24.svg',
+  'base.icon.bookmark-slash-fill-24': '/icon/bookmark-slash-fill-24.svg',
+  'base.icon.briefcase-16': '/icon/briefcase-16.svg',
+  'base.icon.briefcase-24': '/icon/briefcase-24.svg',
+  'base.icon.broadcast-16': '/icon/broadcast-16.svg',
+  'base.icon.broadcast-24': '/icon/broadcast-24.svg',
+  'base.icon.browser-16': '/icon/browser-16.svg',
+  'base.icon.browser-24': '/icon/browser-24.svg',
+  'base.icon.bug-16': '/icon/bug-16.svg',
+  'base.icon.bug-24': '/icon/bug-24.svg',
+  'base.icon.calendar-16': '/icon/calendar-16.svg',
+  'base.icon.calendar-24': '/icon/calendar-24.svg',
+  'base.icon.check-16': '/icon/check-16.svg',
+  'base.icon.check-24': '/icon/check-24.svg',
+  'base.icon.check-circle-16': '/icon/check-circle-16.svg',
+  'base.icon.check-circle-24': '/icon/check-circle-24.svg',
+  'base.icon.check-circle-fill-12': '/icon/check-circle-fill-12.svg',
+  'base.icon.check-circle-fill-16': '/icon/check-circle-fill-16.svg',
+  'base.icon.check-circle-fill-24': '/icon/check-circle-fill-24.svg',
+  'base.icon.checklist-16': '/icon/checklist-16.svg',
+  'base.icon.checklist-24': '/icon/checklist-24.svg',
+  'base.icon.chevron-down-16': '/icon/chevron-down-16.svg',
+  'base.icon.chevron-down-24': '/icon/chevron-down-24.svg',
+  'base.icon.chevron-left-16': '/icon/chevron-left-16.svg',
+  'base.icon.chevron-left-24': '/icon/chevron-left-24.svg',
+  'base.icon.chevron-right-16': '/icon/chevron-right-16.svg',
+  'base.icon.chevron-right-24': '/icon/chevron-right-24.svg',
+  'base.icon.chevron-up-16': '/icon/chevron-up-16.svg',
+  'base.icon.chevron-up-24': '/icon/chevron-up-24.svg',
+  'base.icon.circle-16': '/icon/circle-16.svg',
+  'base.icon.circle-24': '/icon/circle-24.svg',
+  'base.icon.circle-slash-16': '/icon/circle-slash-16.svg',
+  'base.icon.circle-slash-24': '/icon/circle-slash-24.svg',
+  'base.icon.clock-16': '/icon/clock-16.svg',
+  'base.icon.clock-24': '/icon/clock-24.svg',
+  'base.icon.code-16': '/icon/code-16.svg',
+  'base.icon.code-24': '/icon/code-24.svg',
+  'base.icon.code-of-conduct-16': '/icon/code-of-conduct-16.svg',
+  'base.icon.code-of-conduct-24': '/icon/code-of-conduct-24.svg',
+  'base.icon.code-review-16': '/icon/code-review-16.svg',
+  'base.icon.code-review-24': '/icon/code-review-24.svg',
+  'base.icon.code-square-16': '/icon/code-square-16.svg',
+  'base.icon.code-square-24': '/icon/code-square-24.svg',
+  'base.icon.codescan-16': '/icon/codescan-16.svg',
+  'base.icon.codescan-24': '/icon/codescan-24.svg',
+  'base.icon.codescan-checkmark-16': '/icon/codescan-checkmark-16.svg',
+  'base.icon.codescan-checkmark-24': '/icon/codescan-checkmark-24.svg',
+  'base.icon.codespaces-16': '/icon/codespaces-16.svg',
+  'base.icon.codespaces-24': '/icon/codespaces-24.svg',
+  'base.icon.columns-16': '/icon/columns-16.svg',
+  'base.icon.columns-24': '/icon/columns-24.svg',
+  'base.icon.comment-16': '/icon/comment-16.svg',
+  'base.icon.comment-24': '/icon/comment-24.svg',
+  'base.icon.comment-discussion-16': '/icon/comment-discussion-16.svg',
+  'base.icon.comment-discussion-24': '/icon/comment-discussion-24.svg',
+  'base.icon.commit-24': '/icon/commit-24.svg',
+  'base.icon.container-16': '/icon/container-16.svg',
+  'base.icon.container-24': '/icon/container-24.svg',
+  'base.icon.copy-16': '/icon/copy-16.svg',
+  'base.icon.copy-24': '/icon/copy-24.svg',
+  'base.icon.cpu-16': '/icon/cpu-16.svg',
+  'base.icon.cpu-24': '/icon/cpu-24.svg',
+  'base.icon.credit-card-16': '/icon/credit-card-16.svg',
+  'base.icon.credit-card-24': '/icon/credit-card-24.svg',
+  'base.icon.cross-reference-16': '/icon/cross-reference-16.svg',
+  'base.icon.cross-reference-24': '/icon/cross-reference-24.svg',
+  'base.icon.dash-16': '/icon/dash-16.svg',
+  'base.icon.dash-24': '/icon/dash-24.svg',
+  'base.icon.database-16': '/icon/database-16.svg',
+  'base.icon.database-24': '/icon/database-24.svg',
+  'base.icon.dependabot-16': '/icon/dependabot-16.svg',
+  'base.icon.dependabot-24': '/icon/dependabot-24.svg',
+  'base.icon.desktop-download-16': '/icon/desktop-download-16.svg',
+  'base.icon.desktop-download-24': '/icon/desktop-download-24.svg',
+  'base.icon.device-camera-16': '/icon/device-camera-16.svg',
+  'base.icon.device-camera-video-16': '/icon/device-camera-video-16.svg',
+  'base.icon.device-camera-video-24': '/icon/device-camera-video-24.svg',
+  'base.icon.device-desktop-16': '/icon/device-desktop-16.svg',
+  'base.icon.device-desktop-24': '/icon/device-desktop-24.svg',
+  'base.icon.device-mobile-16': '/icon/device-mobile-16.svg',
+  'base.icon.device-mobile-24': '/icon/device-mobile-24.svg',
+  'base.icon.diamond-16': '/icon/diamond-16.svg',
+  'base.icon.diamond-24': '/icon/diamond-24.svg',
+  'base.icon.diff-16': '/icon/diff-16.svg',
+  'base.icon.diff-24': '/icon/diff-24.svg',
+  'base.icon.diff-added-16': '/icon/diff-added-16.svg',
+  'base.icon.diff-ignored-16': '/icon/diff-ignored-16.svg',
+  'base.icon.diff-modified-16': '/icon/diff-modified-16.svg',
+  'base.icon.diff-removed-16': '/icon/diff-removed-16.svg',
+  'base.icon.diff-renamed-16': '/icon/diff-renamed-16.svg',
+  'base.icon.dot-16': '/icon/dot-16.svg',
+  'base.icon.dot-24': '/icon/dot-24.svg',
+  'base.icon.dot-fill-16': '/icon/dot-fill-16.svg',
+  'base.icon.dot-fill-24': '/icon/dot-fill-24.svg',
+  'base.icon.download-16': '/icon/download-16.svg',
+  'base.icon.download-24': '/icon/download-24.svg',
+  'base.icon.duplicate-16': '/icon/duplicate-16.svg',
+  'base.icon.duplicate-24': '/icon/duplicate-24.svg',
+  'base.icon.ellipsis-16': '/icon/ellipsis-16.svg',
+  'base.icon.eye-16': '/icon/eye-16.svg',
+  'base.icon.eye-24': '/icon/eye-24.svg',
+  'base.icon.eye-closed-16': '/icon/eye-closed-16.svg',
+  'base.icon.eye-closed-24': '/icon/eye-closed-24.svg',
+  'base.icon.file-16': '/icon/file-16.svg',
+  'base.icon.file-24': '/icon/file-24.svg',
+  'base.icon.file-badge-16': '/icon/file-badge-16.svg',
+  'base.icon.file-binary-16': '/icon/file-binary-16.svg',
+  'base.icon.file-binary-24': '/icon/file-binary-24.svg',
+  'base.icon.file-code-16': '/icon/file-code-16.svg',
+  'base.icon.file-code-24': '/icon/file-code-24.svg',
+  'base.icon.file-diff-16': '/icon/file-diff-16.svg',
+  'base.icon.file-diff-24': '/icon/file-diff-24.svg',
+  'base.icon.file-directory-16': '/icon/file-directory-16.svg',
+  'base.icon.file-directory-24': '/icon/file-directory-24.svg',
+  'base.icon.file-directory-fill-24': '/icon/file-directory-fill-24.svg',
+  'base.icon.file-media-24': '/icon/file-media-24.svg',
+  'base.icon.file-submodule-16': '/icon/file-submodule-16.svg',
+  'base.icon.file-submodule-24': '/icon/file-submodule-24.svg',
+  'base.icon.file-symlink-file-16': '/icon/file-symlink-file-16.svg',
+  'base.icon.file-symlink-file-24': '/icon/file-symlink-file-24.svg',
+  'base.icon.file-zip-16': '/icon/file-zip-16.svg',
+  'base.icon.file-zip-24': '/icon/file-zip-24.svg',
+  'base.icon.filter-16': '/icon/filter-16.svg',
+  'base.icon.filter-24': '/icon/filter-24.svg',
+  'base.icon.flame-16': '/icon/flame-16.svg',
+  'base.icon.flame-24': '/icon/flame-24.svg',
+  'base.icon.fold-16': '/icon/fold-16.svg',
+  'base.icon.fold-24': '/icon/fold-24.svg',
+  'base.icon.fold-down-16': '/icon/fold-down-16.svg',
+  'base.icon.fold-down-24': '/icon/fold-down-24.svg',
+  'base.icon.fold-up-16': '/icon/fold-up-16.svg',
+  'base.icon.fold-up-24': '/icon/fold-up-24.svg',
+  'base.icon.gear-16': '/icon/gear-16.svg',
+  'base.icon.gear-24': '/icon/gear-24.svg',
+  'base.icon.gift-16': '/icon/gift-16.svg',
+  'base.icon.gift-24': '/icon/gift-24.svg',
+  'base.icon.git-branch-16': '/icon/git-branch-16.svg',
+  'base.icon.git-branch-24': '/icon/git-branch-24.svg',
+  'base.icon.git-commit-16': '/icon/git-commit-16.svg',
+  'base.icon.git-commit-24': '/icon/git-commit-24.svg',
+  'base.icon.git-compare-16': '/icon/git-compare-16.svg',
+  'base.icon.git-compare-24': '/icon/git-compare-24.svg',
+  'base.icon.git-merge-16': '/icon/git-merge-16.svg',
+  'base.icon.git-merge-24': '/icon/git-merge-24.svg',
+  'base.icon.git-pull-request-16': '/icon/git-pull-request-16.svg',
+  'base.icon.git-pull-request-24': '/icon/git-pull-request-24.svg',
+  'base.icon.git-pull-request-closed-16': '/icon/git-pull-request-closed-16.svg',
+  'base.icon.git-pull-request-closed-24': '/icon/git-pull-request-closed-24.svg',
+  'base.icon.git-pull-request-draft-16': '/icon/git-pull-request-draft-16.svg',
+  'base.icon.git-pull-request-draft-24': '/icon/git-pull-request-draft-24.svg',
+  'base.icon.globe-16': '/icon/globe-16.svg',
+  'base.icon.globe-24': '/icon/globe-24.svg',
+  'base.icon.grabber-16': '/icon/grabber-16.svg',
+  'base.icon.grabber-24': '/icon/grabber-24.svg',
+  'base.icon.graph-16': '/icon/graph-16.svg',
+  'base.icon.graph-24': '/icon/graph-24.svg',
+  'base.icon.hash-16': '/icon/hash-16.svg',
+  'base.icon.hash-24': '/icon/hash-24.svg',
+  'base.icon.heading-16': '/icon/heading-16.svg',
+  'base.icon.heading-24': '/icon/heading-24.svg',
+  'base.icon.heart-16': '/icon/heart-16.svg',
+  'base.icon.heart-24': '/icon/heart-24.svg',
+  'base.icon.heart-fill-16': '/icon/heart-fill-16.svg',
+  'base.icon.heart-fill-24': '/icon/heart-fill-24.svg',
+  'base.icon.history-16': '/icon/history-16.svg',
+  'base.icon.history-24': '/icon/history-24.svg',
+  'base.icon.home-16': '/icon/home-16.svg',
+  'base.icon.home-24': '/icon/home-24.svg',
+  'base.icon.home-fill-24': '/icon/home-fill-24.svg',
+  'base.icon.horizontal-rule-16': '/icon/horizontal-rule-16.svg',
+  'base.icon.horizontal-rule-24': '/icon/horizontal-rule-24.svg',
+  'base.icon.hourglass-16': '/icon/hourglass-16.svg',
+  'base.icon.hourglass-24': '/icon/hourglass-24.svg',
+  'base.icon.hubot-16': '/icon/hubot-16.svg',
+  'base.icon.hubot-24': '/icon/hubot-24.svg',
+  'base.icon.image-16': '/icon/image-16.svg',
+  'base.icon.image-24': '/icon/image-24.svg',
+  'base.icon.inbox-16': '/icon/inbox-16.svg',
+  'base.icon.inbox-24': '/icon/inbox-24.svg',
+  'base.icon.infinity-16': '/icon/infinity-16.svg',
+  'base.icon.infinity-24': '/icon/infinity-24.svg',
+  'base.icon.info-16': '/icon/info-16.svg',
+  'base.icon.info-24': '/icon/info-24.svg',
+  'base.icon.issue-closed-16': '/icon/issue-closed-16.svg',
+  'base.icon.issue-closed-24': '/icon/issue-closed-24.svg',
+  'base.icon.issue-draft-16': '/icon/issue-draft-16.svg',
+  'base.icon.issue-draft-24': '/icon/issue-draft-24.svg',
+  'base.icon.issue-opened-16': '/icon/issue-opened-16.svg',
+  'base.icon.issue-opened-24': '/icon/issue-opened-24.svg',
+  'base.icon.issue-reopened-16': '/icon/issue-reopened-16.svg',
+  'base.icon.issue-reopened-24': '/icon/issue-reopened-24.svg',
+  'base.icon.italic-16': '/icon/italic-16.svg',
+  'base.icon.italic-24': '/icon/italic-24.svg',
+  'base.icon.iterations-16': '/icon/iterations-16.svg',
+  'base.icon.iterations-24': '/icon/iterations-24.svg',
+  'base.icon.kebab-horizontal-16': '/icon/kebab-horizontal-16.svg',
+  'base.icon.kebab-horizontal-24': '/icon/kebab-horizontal-24.svg',
+  'base.icon.key-16': '/icon/key-16.svg',
+  'base.icon.key-24': '/icon/key-24.svg',
+  'base.icon.key-asterisk-16': '/icon/key-asterisk-16.svg',
+  'base.icon.law-16': '/icon/law-16.svg',
+  'base.icon.law-24': '/icon/law-24.svg',
+  'base.icon.light-bulb-16': '/icon/light-bulb-16.svg',
+  'base.icon.light-bulb-24': '/icon/light-bulb-24.svg',
+  'base.icon.link-16': '/icon/link-16.svg',
+  'base.icon.link-24': '/icon/link-24.svg',
+  'base.icon.link-external-16': '/icon/link-external-16.svg',
+  'base.icon.link-external-24': '/icon/link-external-24.svg',
+  'base.icon.list-ordered-16': '/icon/list-ordered-16.svg',
+  'base.icon.list-ordered-24': '/icon/list-ordered-24.svg',
+  'base.icon.list-unordered-16': '/icon/list-unordered-16.svg',
+  'base.icon.list-unordered-24': '/icon/list-unordered-24.svg',
+  'base.icon.location-16': '/icon/location-16.svg',
+  'base.icon.location-24': '/icon/location-24.svg',
+  'base.icon.lock-16': '/icon/lock-16.svg',
+  'base.icon.lock-24': '/icon/lock-24.svg',
+  'base.icon.logo-gist-16': '/icon/logo-gist-16.svg',
+  'base.icon.logo-github-16': '/icon/logo-github-16.svg',
+  'base.icon.mail-16': '/icon/mail-16.svg',
+  'base.icon.mail-24': '/icon/mail-24.svg',
+  'base.icon.mark-github-16': '/icon/mark-github-16.svg',
+  'base.icon.markdown-16': '/icon/markdown-16.svg',
+  'base.icon.megaphone-16': '/icon/megaphone-16.svg',
+  'base.icon.megaphone-24': '/icon/megaphone-24.svg',
+  'base.icon.mention-16': '/icon/mention-16.svg',
+  'base.icon.mention-24': '/icon/mention-24.svg',
+  'base.icon.meter-16': '/icon/meter-16.svg',
+  'base.icon.milestone-16': '/icon/milestone-16.svg',
+  'base.icon.milestone-24': '/icon/milestone-24.svg',
+  'base.icon.mirror-16': '/icon/mirror-16.svg',
+  'base.icon.mirror-24': '/icon/mirror-24.svg',
+  'base.icon.moon-16': '/icon/moon-16.svg',
+  'base.icon.moon-24': '/icon/moon-24.svg',
+  'base.icon.mortar-board-16': '/icon/mortar-board-16.svg',
+  'base.icon.mortar-board-24': '/icon/mortar-board-24.svg',
+  'base.icon.multi-select-16': '/icon/multi-select-16.svg',
+  'base.icon.multi-select-24': '/icon/multi-select-24.svg',
+  'base.icon.mute-16': '/icon/mute-16.svg',
+  'base.icon.mute-24': '/icon/mute-24.svg',
+  'base.icon.no-entry-16': '/icon/no-entry-16.svg',
+  'base.icon.no-entry-24': '/icon/no-entry-24.svg',
+  'base.icon.no-entry-fill-12': '/icon/no-entry-fill-12.svg',
+  'base.icon.north-star-16': '/icon/north-star-16.svg',
+  'base.icon.north-star-24': '/icon/north-star-24.svg',
+  'base.icon.note-16': '/icon/note-16.svg',
+  'base.icon.note-24': '/icon/note-24.svg',
+  'base.icon.number-16': '/icon/number-16.svg',
+  'base.icon.number-24': '/icon/number-24.svg',
+  'base.icon.organization-16': '/icon/organization-16.svg',
+  'base.icon.organization-24': '/icon/organization-24.svg',
+  'base.icon.package-16': '/icon/package-16.svg',
+  'base.icon.package-24': '/icon/package-24.svg',
+  'base.icon.package-dependencies-16': '/icon/package-dependencies-16.svg',
+  'base.icon.package-dependencies-24': '/icon/package-dependencies-24.svg',
+  'base.icon.package-dependents-16': '/icon/package-dependents-16.svg',
+  'base.icon.package-dependents-24': '/icon/package-dependents-24.svg',
+  'base.icon.paintbrush-16': '/icon/paintbrush-16.svg',
+  'base.icon.paper-airplane-16': '/icon/paper-airplane-16.svg',
+  'base.icon.paper-airplane-24': '/icon/paper-airplane-24.svg',
+  'base.icon.paste-16': '/icon/paste-16.svg',
+  'base.icon.paste-24': '/icon/paste-24.svg',
+  'base.icon.pencil-16': '/icon/pencil-16.svg',
+  'base.icon.pencil-24': '/icon/pencil-24.svg',
+  'base.icon.people-16': '/icon/people-16.svg',
+  'base.icon.people-24': '/icon/people-24.svg',
+  'base.icon.person-16': '/icon/person-16.svg',
+  'base.icon.person-24': '/icon/person-24.svg',
+  'base.icon.person-add-16': '/icon/person-add-16.svg',
+  'base.icon.person-add-24': '/icon/person-add-24.svg',
+  'base.icon.person-fill-16': '/icon/person-fill-16.svg',
+  'base.icon.person-fill-24': '/icon/person-fill-24.svg',
+  'base.icon.pin-16': '/icon/pin-16.svg',
+  'base.icon.pin-24': '/icon/pin-24.svg',
+  'base.icon.play-16': '/icon/play-16.svg',
+  'base.icon.play-24': '/icon/play-24.svg',
+  'base.icon.plug-16': '/icon/plug-16.svg',
+  'base.icon.plug-24': '/icon/plug-24.svg',
+  'base.icon.plus-16': '/icon/plus-16.svg',
+  'base.icon.plus-24': '/icon/plus-24.svg',
+  'base.icon.plus-circle-16': '/icon/plus-circle-16.svg',
+  'base.icon.plus-circle-24': '/icon/plus-circle-24.svg',
+  'base.icon.project-16': '/icon/project-16.svg',
+  'base.icon.project-24': '/icon/project-24.svg',
+  'base.icon.pulse-16': '/icon/pulse-16.svg',
+  'base.icon.pulse-24': '/icon/pulse-24.svg',
+  'base.icon.question-16': '/icon/question-16.svg',
+  'base.icon.question-24': '/icon/question-24.svg',
+  'base.icon.quote-16': '/icon/quote-16.svg',
+  'base.icon.quote-24': '/icon/quote-24.svg',
+  'base.icon.reply-16': '/icon/reply-16.svg',
+  'base.icon.reply-24': '/icon/reply-24.svg',
+  'base.icon.repo-16': '/icon/repo-16.svg',
+  'base.icon.repo-24': '/icon/repo-24.svg',
+  'base.icon.repo-clone-16': '/icon/repo-clone-16.svg',
+  'base.icon.repo-forked-16': '/icon/repo-forked-16.svg',
+  'base.icon.repo-forked-24': '/icon/repo-forked-24.svg',
+  'base.icon.repo-pull-16': '/icon/repo-pull-16.svg',
+  'base.icon.repo-push-16': '/icon/repo-push-16.svg',
+  'base.icon.repo-push-24': '/icon/repo-push-24.svg',
+  'base.icon.repo-template-16': '/icon/repo-template-16.svg',
+  'base.icon.repo-template-24': '/icon/repo-template-24.svg',
+  'base.icon.report-16': '/icon/report-16.svg',
+  'base.icon.report-24': '/icon/report-24.svg',
+  'base.icon.rocket-16': '/icon/rocket-16.svg',
+  'base.icon.rocket-24': '/icon/rocket-24.svg',
+  'base.icon.rows-16': '/icon/rows-16.svg',
+  'base.icon.rows-24': '/icon/rows-24.svg',
+  'base.icon.rss-16': '/icon/rss-16.svg',
+  'base.icon.rss-24': '/icon/rss-24.svg',
+  'base.icon.ruby-16': '/icon/ruby-16.svg',
+  'base.icon.ruby-24': '/icon/ruby-24.svg',
+  'base.icon.screen-full-16': '/icon/screen-full-16.svg',
+  'base.icon.screen-full-24': '/icon/screen-full-24.svg',
+  'base.icon.screen-normal-16': '/icon/screen-normal-16.svg',
+  'base.icon.screen-normal-24': '/icon/screen-normal-24.svg',
+  'base.icon.search-16': '/icon/search-16.svg',
+  'base.icon.search-24': '/icon/search-24.svg',
+  'base.icon.server-16': '/icon/server-16.svg',
+  'base.icon.server-24': '/icon/server-24.svg',
+  'base.icon.share-16': '/icon/share-16.svg',
+  'base.icon.share-24': '/icon/share-24.svg',
+  'base.icon.share-android-16': '/icon/share-android-16.svg',
+  'base.icon.share-android-24': '/icon/share-android-24.svg',
+  'base.icon.shield-16': '/icon/shield-16.svg',
+  'base.icon.shield-24': '/icon/shield-24.svg',
+  'base.icon.shield-check-16': '/icon/shield-check-16.svg',
+  'base.icon.shield-check-24': '/icon/shield-check-24.svg',
+  'base.icon.shield-lock-16': '/icon/shield-lock-16.svg',
+  'base.icon.shield-lock-24': '/icon/shield-lock-24.svg',
+  'base.icon.shield-x-16': '/icon/shield-x-16.svg',
+  'base.icon.shield-x-24': '/icon/shield-x-24.svg',
+  'base.icon.sidebar-collapse-16': '/icon/sidebar-collapse-16.svg',
+  'base.icon.sidebar-collapse-24': '/icon/sidebar-collapse-24.svg',
+  'base.icon.sidebar-expand-16': '/icon/sidebar-expand-16.svg',
+  'base.icon.sidebar-expand-24': '/icon/sidebar-expand-24.svg',
+  'base.icon.sign-in-16': '/icon/sign-in-16.svg',
+  'base.icon.sign-in-24': '/icon/sign-in-24.svg',
+  'base.icon.sign-out-16': '/icon/sign-out-16.svg',
+  'base.icon.sign-out-24': '/icon/sign-out-24.svg',
+  'base.icon.single-select-16': '/icon/single-select-16.svg',
+  'base.icon.single-select-24': '/icon/single-select-24.svg',
+  'base.icon.skip-16': '/icon/skip-16.svg',
+  'base.icon.skip-24': '/icon/skip-24.svg',
+  'base.icon.smiley-16': '/icon/smiley-16.svg',
+  'base.icon.smiley-24': '/icon/smiley-24.svg',
+  'base.icon.sort-asc-16': '/icon/sort-asc-16.svg',
+  'base.icon.sort-asc-24': '/icon/sort-asc-24.svg',
+  'base.icon.sort-desc-16': '/icon/sort-desc-16.svg',
+  'base.icon.sort-desc-24': '/icon/sort-desc-24.svg',
+  'base.icon.square-16': '/icon/square-16.svg',
+  'base.icon.square-24': '/icon/square-24.svg',
+  'base.icon.square-fill-16': '/icon/square-fill-16.svg',
+  'base.icon.square-fill-24': '/icon/square-fill-24.svg',
+  'base.icon.squirrel-16': '/icon/squirrel-16.svg',
+  'base.icon.squirrel-24': '/icon/squirrel-24.svg',
+  'base.icon.stack-16': '/icon/stack-16.svg',
+  'base.icon.stack-24': '/icon/stack-24.svg',
+  'base.icon.star-16': '/icon/star-16.svg',
+  'base.icon.star-24': '/icon/star-24.svg',
+  'base.icon.star-fill-16': '/icon/star-fill-16.svg',
+  'base.icon.star-fill-24': '/icon/star-fill-24.svg',
+  'base.icon.stop-16': '/icon/stop-16.svg',
+  'base.icon.stop-24': '/icon/stop-24.svg',
+  'base.icon.stopwatch-16': '/icon/stopwatch-16.svg',
+  'base.icon.stopwatch-24': '/icon/stopwatch-24.svg',
+  'base.icon.strikethrough-16': '/icon/strikethrough-16.svg',
+  'base.icon.strikethrough-24': '/icon/strikethrough-24.svg',
+  'base.icon.sun-16': '/icon/sun-16.svg',
+  'base.icon.sun-24': '/icon/sun-24.svg',
+  'base.icon.sync-16': '/icon/sync-16.svg',
+  'base.icon.sync-24': '/icon/sync-24.svg',
+  'base.icon.tab-24': '/icon/tab-24.svg',
+  'base.icon.table-16': '/icon/table-16.svg',
+  'base.icon.table-24': '/icon/table-24.svg',
+  'base.icon.tag-16': '/icon/tag-16.svg',
+  'base.icon.tag-24': '/icon/tag-24.svg',
+  'base.icon.tasklist-16': '/icon/tasklist-16.svg',
+  'base.icon.tasklist-24': '/icon/tasklist-24.svg',
+  'base.icon.telescope-16': '/icon/telescope-16.svg',
+  'base.icon.telescope-24': '/icon/telescope-24.svg',
+  'base.icon.telescope-fill-16': '/icon/telescope-fill-16.svg',
+  'base.icon.telescope-fill-24': '/icon/telescope-fill-24.svg',
+  'base.icon.terminal-16': '/icon/terminal-16.svg',
+  'base.icon.terminal-24': '/icon/terminal-24.svg',
+  'base.icon.three-bars-16': '/icon/three-bars-16.svg',
+  'base.icon.thumbsdown-16': '/icon/thumbsdown-16.svg',
+  'base.icon.thumbsdown-24': '/icon/thumbsdown-24.svg',
+  'base.icon.thumbsup-16': '/icon/thumbsup-16.svg',
+  'base.icon.thumbsup-24': '/icon/thumbsup-24.svg',
+  'base.icon.tools-16': '/icon/tools-16.svg',
+  'base.icon.tools-24': '/icon/tools-24.svg',
+  'base.icon.trash-16': '/icon/trash-16.svg',
+  'base.icon.trash-24': '/icon/trash-24.svg',
+  'base.icon.triangle-down-16': '/icon/triangle-down-16.svg',
+  'base.icon.triangle-down-24': '/icon/triangle-down-24.svg',
+  'base.icon.triangle-left-16': '/icon/triangle-left-16.svg',
+  'base.icon.triangle-left-24': '/icon/triangle-left-24.svg',
+  'base.icon.triangle-right-16': '/icon/triangle-right-16.svg',
+  'base.icon.triangle-right-24': '/icon/triangle-right-24.svg',
+  'base.icon.triangle-up-16': '/icon/triangle-up-16.svg',
+  'base.icon.triangle-up-24': '/icon/triangle-up-24.svg',
+  'base.icon.typography-16': '/icon/typography-16.svg',
+  'base.icon.typography-24': '/icon/typography-24.svg',
+  'base.icon.unfold-16': '/icon/unfold-16.svg',
+  'base.icon.unfold-24': '/icon/unfold-24.svg',
+  'base.icon.unlock-16': '/icon/unlock-16.svg',
+  'base.icon.unlock-24': '/icon/unlock-24.svg',
+  'base.icon.unmute-16': '/icon/unmute-16.svg',
+  'base.icon.unmute-24': '/icon/unmute-24.svg',
+  'base.icon.unverified-16': '/icon/unverified-16.svg',
+  'base.icon.unverified-24': '/icon/unverified-24.svg',
+  'base.icon.upload-16': '/icon/upload-16.svg',
+  'base.icon.upload-24': '/icon/upload-24.svg',
+  'base.icon.verified-16': '/icon/verified-16.svg',
+  'base.icon.verified-24': '/icon/verified-24.svg',
+  'base.icon.versions-16': '/icon/versions-16.svg',
+  'base.icon.versions-24': '/icon/versions-24.svg',
+  'base.icon.video-16': '/icon/video-16.svg',
+  'base.icon.video-24': '/icon/video-24.svg',
+  'base.icon.workflow-16': '/icon/workflow-16.svg',
+  'base.icon.workflow-24': '/icon/workflow-24.svg',
+  'base.icon.x-16': '/icon/x-16.svg',
+  'base.icon.x-24': '/icon/x-24.svg',
+  'base.icon.x-circle-16': '/icon/x-circle-16.svg',
+  'base.icon.x-circle-24': '/icon/x-circle-24.svg',
+  'base.icon.x-circle-fill-12': '/icon/x-circle-fill-12.svg',
+  'base.icon.x-circle-fill-16': '/icon/x-circle-fill-16.svg',
+  'base.icon.x-circle-fill-24': '/icon/x-circle-fill-24.svg',
+  'base.icon.zap-16': '/icon/zap-16.svg',
+  'base.icon.zap-24': '/icon/zap-24.svg',
+  'base.size.4': '4px',
+  'base.size.8': '8px',
+  'base.size.12': '12px',
+  'base.size.16': '16px',
+  'base.size.20': '20px',
+  'base.size.24': '24px',
+  'base.size.28': '28px',
+  'base.size.32': '32px',
+  'base.size.36': '36px',
+  'base.size.40': '40px',
+  'base.size.44': '44px',
+  'base.size.48': '48px',
+  'base.size.64': '64px',
+  'base.size.80': '80px',
+  'base.size.96': '96px',
+  'base.size.112': '112px',
+  'base.size.128': '128px',
+  'base.text.weight.light': 300,
+  'base.text.weight.medium': 500,
+  'base.text.weight.normal': 400,
+  'base.text.weight.semibold': 600,
+  /** Use this border radius for pill shaped elements */
+  'borderRadius.full': '9999px',
+  'borderRadius.large': '12px',
+  'borderRadius.medium': '6px',
+  'borderRadius.small': '3px',
+  'breakpoint.large': '1012px',
+  'breakpoint.medium': '768px',
+  'breakpoint.small': '544px',
+  'breakpoint.xlarge': '1280px',
+  'breakpoint.xsmall': '320px',
+  'breakpoint.xxlarge': '1440px',
+  'fontStack.monospace': ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+  'fontStack.sansSerif': ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  'fontStack.system': ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  /** The amount of time to wait before showing a loading indicator or announcing a loading state to assistive technologies. */
+  'motion.loading.delay.default': '1000ms',
+  /** The amount of times it takes the "shimmer" effect to go from the start (left) of the skeleton loader to the end (right) */
+  'motion.skeletonLoader.shimmer.duration.scale': '1000ms',
+  /** The amount of time it takes the "Spinner" loading indicator to make a full 360deg rotation */
+  'motion.spinner.duration.rotation': '1000ms',
+  'space.large': '12px',
+  'space.medium': '8px',
+  'space.small': '6px',
+  'space.xlarge': '16px',
+  'space.xsmall': '4px',
+  'space.xxsmall': '2px',
+  'text.body.lineHeight.large': 1.5,
+  'text.body.lineHeight.medium': 1.4285,
+  'text.body.lineHeight.small': 1.6666,
+  /** User-generated content, markdown rendering. */
+  'text.body.shorthand.large': {
+    fontWeight: 400,
+    fontSize: '16px',
+    lineHeight: 1.5,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  /** Default UI font. Most commonly used for body text. */
+  'text.body.shorthand.medium': {
+    fontWeight: 400,
+    fontSize: '14px',
+    lineHeight: 1.4285,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  /** Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px. */
+  'text.body.shorthand.small': {
+    fontWeight: 400,
+    fontSize: '12px',
+    lineHeight: 1.6666,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'text.body.size.large': '16px',
+  'text.body.size.medium': '14px',
+  'text.body.size.small': '12px',
+  'text.body.weight': 400,
+  'text.caption.lineHeight': 1.3333,
+  /** Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements. */
+  'text.caption.shorthand': {
+    fontWeight: 400,
+    fontSize: '12px',
+    lineHeight: 1.3333,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'text.caption.size': '12px',
+  'text.caption.weight': 400,
+  'text.codeBlock.lineHeight': 1.5385,
+  /** Default style for rendering code blocks. */
+  'text.codeBlock.shorthand': {
+    fontWeight: 400,
+    fontSize: '13px',
+    lineHeight: 1.5385,
+    fontFamily: ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+  },
+  'text.codeBlock.size': '13px',
+  'text.codeBlock.weight': 400,
+  /** Inline code blocks using em units to inherit size from its parent. */
+  'text.codeInline.shorthand': {
+    fontWeight: 400,
+    fontSize: '0.9285em',
+    fontFamily: ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+  },
+  'text.codeInline.size': '0.9285em',
+  'text.codeInline.weight': 400,
+  'text.display.lineBoxHeight': '56px',
+  'text.display.lineHeight': 1.4,
+  /** Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports. */
+  'text.display.shorthand': {
+    fontWeight: 500,
+    fontSize: '40px',
+    lineHeight: 1.4,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'text.display.size': '40px',
+  'text.display.weight': 500,
+  'text.subtitle.lineHeight': 1.6,
+  /** Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium). */
+  'text.subtitle.shorthand': {
+    fontWeight: 400,
+    fontSize: '20px',
+    lineHeight: 1.6,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'text.subtitle.size': '20px',
+  'text.subtitle.weight': 400,
+  'text.title.lineHeight.large': 1.5,
+  'text.title.lineHeight.medium': 1.6,
+  'text.title.lineHeight.small': 1.5,
+  /** Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports. */
+  'text.title.shorthand.large': {
+    fontWeight: 600,
+    fontSize: '32px',
+    lineHeight: 1.5,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  /** Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition. */
+  'text.title.shorthand.medium': {
+    fontWeight: 600,
+    fontSize: '20px',
+    lineHeight: 1.6,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  /** Uses the same size as body (large) with a heavier weight of semibold (600). */
+  'text.title.shorthand.small': {
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: 1.5,
+    fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'text.title.size.large': '32px',
+  'text.title.size.medium': '20px',
+  'text.title.size.small': '16px',
+  'text.title.weight.large': 600,
+  'text.title.weight.medium': 600,
+  'text.title.weight.small': 600,
 };
 
 export const meta = {
-  'color.black': {
+  'base.color.black': {
     _original: {
-      $value: '#1b1f24',
+      $value: '#1f2328',
       $extensions: {
         mode: {
-          light: '#1b1f24',
+          light: '#1f2328',
           'light-colorblind': '#1b1f24',
           'light-high-contrast': '#010409',
           dark: '#010409',
@@ -607,21 +741,19 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.black',
+    id: 'base.color.black',
     $type: 'color',
-    $value: '#1b1f24',
+    $value: '#1f2328',
     $extensions: {
       mode: {
-        light: '#1b1f24',
+        light: '#1f2328',
         'light-colorblind': '#1b1f24',
         'light-high-contrast': '#010409',
         dark: '#010409',
@@ -632,7 +764,7 @@ export const meta = {
       },
     },
   },
-  'color.blue0': {
+  'base.color.blue.0': {
     _original: {
       $value: '#ddf4ff',
       $extensions: {
@@ -648,16 +780,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue0',
+    id: 'base.color.blue.0',
     $type: 'color',
     $value: '#ddf4ff',
     $extensions: {
@@ -672,7 +802,7 @@ export const meta = {
       },
     },
   },
-  'color.blue1': {
+  'base.color.blue.1': {
     _original: {
       $value: '#b6e3ff',
       $extensions: {
@@ -688,16 +818,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue1',
+    id: 'base.color.blue.1',
     $type: 'color',
     $value: '#b6e3ff',
     $extensions: {
@@ -712,7 +840,7 @@ export const meta = {
       },
     },
   },
-  'color.blue2': {
+  'base.color.blue.2': {
     _original: {
       $value: '#80ccff',
       $extensions: {
@@ -728,16 +856,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue2',
+    id: 'base.color.blue.2',
     $type: 'color',
     $value: '#80ccff',
     $extensions: {
@@ -752,7 +878,7 @@ export const meta = {
       },
     },
   },
-  'color.blue3': {
+  'base.color.blue.3': {
     _original: {
       $value: '#54aeff',
       $extensions: {
@@ -768,16 +894,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue3',
+    id: 'base.color.blue.3',
     $type: 'color',
     $value: '#54aeff',
     $extensions: {
@@ -792,7 +916,7 @@ export const meta = {
       },
     },
   },
-  'color.blue4': {
+  'base.color.blue.4': {
     _original: {
       $value: '#218bff',
       $extensions: {
@@ -808,16 +932,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue4',
+    id: 'base.color.blue.4',
     $type: 'color',
     $value: '#218bff',
     $extensions: {
@@ -832,7 +954,7 @@ export const meta = {
       },
     },
   },
-  'color.blue5': {
+  'base.color.blue.5': {
     _original: {
       $value: '#0969da',
       $extensions: {
@@ -848,16 +970,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue5',
+    id: 'base.color.blue.5',
     $type: 'color',
     $value: '#0969da',
     $extensions: {
@@ -872,7 +992,7 @@ export const meta = {
       },
     },
   },
-  'color.blue6': {
+  'base.color.blue.6': {
     _original: {
       $value: '#0550ae',
       $extensions: {
@@ -888,16 +1008,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue6',
+    id: 'base.color.blue.6',
     $type: 'color',
     $value: '#0550ae',
     $extensions: {
@@ -912,7 +1030,7 @@ export const meta = {
       },
     },
   },
-  'color.blue7': {
+  'base.color.blue.7': {
     _original: {
       $value: '#033d8b',
       $extensions: {
@@ -928,16 +1046,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue7',
+    id: 'base.color.blue.7',
     $type: 'color',
     $value: '#033d8b',
     $extensions: {
@@ -952,7 +1068,7 @@ export const meta = {
       },
     },
   },
-  'color.blue8': {
+  'base.color.blue.8': {
     _original: {
       $value: '#0a3069',
       $extensions: {
@@ -968,16 +1084,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue8',
+    id: 'base.color.blue.8',
     $type: 'color',
     $value: '#0a3069',
     $extensions: {
@@ -992,7 +1106,7 @@ export const meta = {
       },
     },
   },
-  'color.blue9': {
+  'base.color.blue.9': {
     _original: {
       $value: '#002155',
       $extensions: {
@@ -1008,16 +1122,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.blue',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.blue9',
+    id: 'base.color.blue.9',
     $type: 'color',
     $value: '#002155',
     $extensions: {
@@ -1032,7 +1144,7 @@ export const meta = {
       },
     },
   },
-  'color.coral0': {
+  'base.color.coral.0': {
     _original: {
       $value: '#FFF0EB',
       $extensions: {
@@ -1048,31 +1160,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral0',
+    id: 'base.color.coral.0',
     $type: 'color',
-    $value: '#fff0eb',
+    $value: '#FFF0EB',
     $extensions: {
       mode: {
-        light: '#fff0eb',
-        'light-colorblind': '#fff0eb',
+        light: '#FFF0EB',
+        'light-colorblind': '#FFF0EB',
         'light-high-contrast': '#fff0ed',
-        dark: '#ffddd2',
-        'dark-dimmed': '#ffdacf',
-        'dark-high-contrast': '#ffded4',
-        'dark-colorblind': '#ffddd2',
+        dark: '#FFDDD2',
+        'dark-dimmed': '#FFDACF',
+        'dark-high-contrast': '#FFDED4',
+        'dark-colorblind': '#FFDDD2',
       },
     },
   },
-  'color.coral1': {
+  'base.color.coral.1': {
     _original: {
       $value: '#FFD6CC',
       $extensions: {
@@ -1088,31 +1198,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral1',
+    id: 'base.color.coral.1',
     $type: 'color',
-    $value: '#ffd6cc',
+    $value: '#FFD6CC',
     $extensions: {
       mode: {
-        light: '#ffd6cc',
-        'light-colorblind': '#ffd6cc',
+        light: '#FFD6CC',
+        'light-colorblind': '#FFD6CC',
         'light-high-contrast': '#ffc2b6',
-        dark: '#ffc2b2',
-        'dark-dimmed': '#ffb9a5',
-        'dark-high-contrast': '#ffcbb9',
-        'dark-colorblind': '#ffc2b2',
+        dark: '#FFC2B2',
+        'dark-dimmed': '#FFB9A5',
+        'dark-high-contrast': '#FFCBB9',
+        'dark-colorblind': '#FFC2B2',
       },
     },
   },
-  'color.coral2': {
+  'base.color.coral.2': {
     _original: {
       $value: '#FFB4A1',
       $extensions: {
@@ -1128,31 +1236,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral2',
+    id: 'base.color.coral.2',
     $type: 'color',
-    $value: '#ffb4a1',
+    $value: '#FFB4A1',
     $extensions: {
       mode: {
-        light: '#ffb4a1',
-        'light-colorblind': '#ffb4a1',
+        light: '#FFB4A1',
+        'light-colorblind': '#FFB4A1',
         'light-high-contrast': '#ff8f7e',
-        dark: '#ffa28b',
-        'dark-dimmed': '#f79981',
-        'dark-high-contrast': '#ffb39b',
-        'dark-colorblind': '#ffa28b',
+        dark: '#FFA28B',
+        'dark-dimmed': '#F79981',
+        'dark-high-contrast': '#FFB39B',
+        'dark-colorblind': '#FFA28B',
       },
     },
   },
-  'color.coral3': {
+  'base.color.coral.3': {
     _original: {
       $value: '#FD8C73',
       $extensions: {
@@ -1168,31 +1274,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral3',
+    id: 'base.color.coral.3',
     $type: 'color',
-    $value: '#fd8c73',
+    $value: '#FD8C73',
     $extensions: {
       mode: {
-        light: '#fd8c73',
-        'light-colorblind': '#fd8c73',
+        light: '#FD8C73',
+        'light-colorblind': '#FD8C73',
         'light-high-contrast': '#ef5b48',
-        dark: '#f78166',
-        'dark-dimmed': '#ec775c',
-        'dark-high-contrast': '#ff967d',
-        'dark-colorblind': '#f78166',
+        dark: '#F78166',
+        'dark-dimmed': '#EC775C',
+        'dark-high-contrast': '#FF967D',
+        'dark-colorblind': '#F78166',
       },
     },
   },
-  'color.coral4': {
+  'base.color.coral.4': {
     _original: {
       $value: '#EC6547',
       $extensions: {
@@ -1208,31 +1312,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral4',
+    id: 'base.color.coral.4',
     $type: 'color',
-    $value: '#ec6547',
+    $value: '#EC6547',
     $extensions: {
       mode: {
-        light: '#ec6547',
-        'light-colorblind': '#ec6547',
+        light: '#EC6547',
+        'light-colorblind': '#EC6547',
         'light-high-contrast': '#cd3425',
-        dark: '#ea6045',
-        'dark-dimmed': '#de5b41',
-        'dark-high-contrast': '#fc704f',
-        'dark-colorblind': '#ea6045',
+        dark: '#EA6045',
+        'dark-dimmed': '#DE5B41',
+        'dark-high-contrast': '#FC704F',
+        'dark-colorblind': '#EA6045',
       },
     },
   },
-  'color.coral5': {
+  'base.color.coral.5': {
     _original: {
       $value: '#C4432B',
       $extensions: {
@@ -1248,31 +1350,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral5',
+    id: 'base.color.coral.5',
     $type: 'color',
-    $value: '#c4432b',
+    $value: '#C4432B',
     $extensions: {
       mode: {
-        light: '#c4432b',
-        'light-colorblind': '#c4432b',
+        light: '#C4432B',
+        'light-colorblind': '#C4432B',
         'light-high-contrast': '#9f1710',
-        dark: '#cf462d',
-        'dark-dimmed': '#c2442d',
-        'dark-high-contrast': '#fc704f',
-        'dark-colorblind': '#cf462d',
+        dark: '#CF462D',
+        'dark-dimmed': '#C2442D',
+        'dark-high-contrast': '#FC704F',
+        'dark-colorblind': '#CF462D',
       },
     },
   },
-  'color.coral6': {
+  'base.color.coral.6': {
     _original: {
       $value: '#9E2F1C',
       $extensions: {
@@ -1288,31 +1388,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral6',
+    id: 'base.color.coral.6',
     $type: 'color',
-    $value: '#9e2f1c',
+    $value: '#9E2F1C',
     $extensions: {
       mode: {
-        light: '#9e2f1c',
-        'light-colorblind': '#9e2f1c',
+        light: '#9E2F1C',
+        'light-colorblind': '#9E2F1C',
         'light-high-contrast': '#870706',
-        dark: '#ac3220',
-        'dark-dimmed': '#a93524',
-        'dark-high-contrast': '#f75133',
-        'dark-colorblind': '#ac3220',
+        dark: '#AC3220',
+        'dark-dimmed': '#A93524',
+        'dark-high-contrast': '#F75133',
+        'dark-colorblind': '#AC3220',
       },
     },
   },
-  'color.coral7': {
+  'base.color.coral.7': {
     _original: {
       $value: '#801F0F',
       $extensions: {
@@ -1328,31 +1426,29 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral7',
+    id: 'base.color.coral.7',
     $type: 'color',
-    $value: '#801f0f',
+    $value: '#801F0F',
     $extensions: {
       mode: {
-        light: '#801f0f',
-        'light-colorblind': '#801f0f',
+        light: '#801F0F',
+        'light-colorblind': '#801F0F',
         'light-high-contrast': '#6f0107',
         dark: '#872012',
-        'dark-dimmed': '#8d291b',
-        'dark-high-contrast': '#e03b21',
+        'dark-dimmed': '#8D291B',
+        'dark-high-contrast': '#E03B21',
         'dark-colorblind': '#872012',
       },
     },
   },
-  'color.coral8': {
+  'base.color.coral.8': {
     _original: {
       $value: '#691105',
       $extensions: {
@@ -1368,16 +1464,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral8',
+    id: 'base.color.coral.8',
     $type: 'color',
     $value: '#691105',
     $extensions: {
@@ -1385,14 +1479,14 @@ export const meta = {
         light: '#691105',
         'light-colorblind': '#691105',
         'light-high-contrast': '#5b0002',
-        dark: '#640d04',
-        'dark-dimmed': '#771d13',
-        'dark-high-contrast': '#c62612',
-        'dark-colorblind': '#640d04',
+        dark: '#640D04',
+        'dark-dimmed': '#771D13',
+        'dark-high-contrast': '#C62612',
+        'dark-colorblind': '#640D04',
       },
     },
   },
-  'color.coral9': {
+  'base.color.coral.9': {
     _original: {
       $value: '#510901',
       $extensions: {
@@ -1408,16 +1502,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.coral',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.coral9',
+    id: 'base.color.coral.9',
     $type: 'color',
     $value: '#510901',
     $extensions: {
@@ -1426,20 +1518,20 @@ export const meta = {
         'light-colorblind': '#510901',
         'light-high-contrast': '#430200',
         dark: '#460701',
-        'dark-dimmed': '#5d1008',
-        'dark-high-contrast': '#a91500',
+        'dark-dimmed': '#5D1008',
+        'dark-high-contrast': '#A91500',
         'dark-colorblind': '#460701',
       },
     },
   },
-  'color.gray0': {
+  'base.color.gray.0': {
     _original: {
       $value: '#f6f8fa',
       $extensions: {
         mode: {
           light: '#f6f8fa',
           'light-colorblind': '#f6f8fa',
-          'light-high-contrast': '#FFFFFF',
+          'light-high-contrast': '#ffffff',
           dark: '#f0f6fc',
           'dark-dimmed': '#cdd9e5',
           'dark-high-contrast': '#ffffff',
@@ -1448,16 +1540,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray0',
+    id: 'base.color.gray.0',
     $type: 'color',
     $value: '#f6f8fa',
     $extensions: {
@@ -1472,14 +1562,14 @@ export const meta = {
       },
     },
   },
-  'color.gray1': {
+  'base.color.gray.1': {
     _original: {
       $value: '#eaeef2',
       $extensions: {
         mode: {
           light: '#eaeef2',
           'light-colorblind': '#eaeef2',
-          'light-high-contrast': '#E7ECF0',
+          'light-high-contrast': '#e7ecf0',
           dark: '#c9d1d9',
           'dark-dimmed': '#adbac7',
           'dark-high-contrast': '#f0f3f6',
@@ -1488,16 +1578,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray1',
+    id: 'base.color.gray.1',
     $type: 'color',
     $value: '#eaeef2',
     $extensions: {
@@ -1512,14 +1600,14 @@ export const meta = {
       },
     },
   },
-  'color.gray2': {
+  'base.color.gray.2': {
     _original: {
       $value: '#d0d7de',
       $extensions: {
         mode: {
           light: '#d0d7de',
           'light-colorblind': '#d0d7de',
-          'light-high-contrast': '#CED5DC',
+          'light-high-contrast': '#ced5dc',
           dark: '#b1bac4',
           'dark-dimmed': '#909dab',
           'dark-high-contrast': '#d9dee3',
@@ -1528,16 +1616,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray2',
+    id: 'base.color.gray.2',
     $type: 'color',
     $value: '#d0d7de',
     $extensions: {
@@ -1552,14 +1638,14 @@ export const meta = {
       },
     },
   },
-  'color.gray3': {
+  'base.color.gray.3': {
     _original: {
       $value: '#afb8c1',
       $extensions: {
         mode: {
           light: '#afb8c1',
           'light-colorblind': '#afb8c1',
-          'light-high-contrast': '#ACB6C0',
+          'light-high-contrast': '#acb6c0',
           dark: '#8b949e',
           'dark-dimmed': '#768390',
           'dark-high-contrast': '#bdc4cc',
@@ -1568,16 +1654,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray3',
+    id: 'base.color.gray.3',
     $type: 'color',
     $value: '#afb8c1',
     $extensions: {
@@ -1592,14 +1676,14 @@ export const meta = {
       },
     },
   },
-  'color.gray4': {
+  'base.color.gray.4': {
     _original: {
       $value: '#8c959f',
       $extensions: {
         mode: {
           light: '#8c959f',
           'light-colorblind': '#8c959f',
-          'light-high-contrast': '#88929D',
+          'light-high-contrast': '#88929d',
           dark: '#6e7681',
           'dark-dimmed': '#636e7b',
           'dark-high-contrast': '#9ea7b3',
@@ -1608,16 +1692,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray4',
+    id: 'base.color.gray.4',
     $type: 'color',
     $value: '#8c959f',
     $extensions: {
@@ -1632,7 +1714,7 @@ export const meta = {
       },
     },
   },
-  'color.gray5': {
+  'base.color.gray.5': {
     _original: {
       $value: '#6e7781',
       $extensions: {
@@ -1648,23 +1730,21 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray5',
+    id: 'base.color.gray.5',
     $type: 'color',
     $value: '#6e7781',
     $extensions: {
       mode: {
         light: '#6e7781',
         'light-colorblind': '#6e7781',
-        'light-high-contrast': '#66707b',
+        'light-high-contrast': '#66707B',
         dark: '#484f58',
         'dark-dimmed': '#545d68',
         'dark-high-contrast': '#7a828e',
@@ -1672,14 +1752,14 @@ export const meta = {
       },
     },
   },
-  'color.gray6': {
+  'base.color.gray.6': {
     _original: {
       $value: '#57606a',
       $extensions: {
         mode: {
           light: '#57606a',
           'light-colorblind': '#57606a',
-          'light-high-contrast': '#4B535D',
+          'light-high-contrast': '#4b535d',
           dark: '#30363d',
           'dark-dimmed': '#444c56',
           'dark-high-contrast': '#525964',
@@ -1688,16 +1768,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray6',
+    id: 'base.color.gray.6',
     $type: 'color',
     $value: '#57606a',
     $extensions: {
@@ -1712,14 +1790,14 @@ export const meta = {
       },
     },
   },
-  'color.gray7': {
+  'base.color.gray.7': {
     _original: {
       $value: '#424a53',
       $extensions: {
         mode: {
           light: '#424a53',
           'light-colorblind': '#424a53',
-          'light-high-contrast': '#343B43',
+          'light-high-contrast': '#343b43',
           dark: '#21262d',
           'dark-dimmed': '#373e47',
           'dark-high-contrast': '#272b33',
@@ -1728,16 +1806,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray7',
+    id: 'base.color.gray.7',
     $type: 'color',
     $value: '#424a53',
     $extensions: {
@@ -1752,14 +1828,14 @@ export const meta = {
       },
     },
   },
-  'color.gray8': {
+  'base.color.gray.8': {
     _original: {
       $value: '#32383f',
       $extensions: {
         mode: {
           light: '#32383f',
           'light-colorblind': '#32383f',
-          'light-high-contrast': '#20252C',
+          'light-high-contrast': '#20252c',
           dark: '#161b22',
           'dark-dimmed': '#2d333b',
           'dark-high-contrast': '#272b33',
@@ -1768,16 +1844,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray8',
+    id: 'base.color.gray.8',
     $type: 'color',
     $value: '#32383f',
     $extensions: {
@@ -1792,14 +1866,14 @@ export const meta = {
       },
     },
   },
-  'color.gray9': {
+  'base.color.gray.9': {
     _original: {
       $value: '#24292f',
       $extensions: {
         mode: {
           light: '#24292f',
           'light-colorblind': '#24292f',
-          'light-high-contrast': '#0E1116',
+          'light-high-contrast': '#0e1116',
           dark: '#0d1117',
           'dark-dimmed': '#22272e',
           'dark-high-contrast': '#0a0c10',
@@ -1808,16 +1882,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.gray',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.gray9',
+    id: 'base.color.gray.9',
     $type: 'color',
     $value: '#24292f',
     $extensions: {
@@ -1832,7 +1904,7 @@ export const meta = {
       },
     },
   },
-  'color.green0': {
+  'base.color.green.0': {
     _original: {
       $value: '#dafbe1',
       $extensions: {
@@ -1848,16 +1920,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green0',
+    id: 'base.color.green.0',
     $type: 'color',
     $value: '#dafbe1',
     $extensions: {
@@ -1872,7 +1942,7 @@ export const meta = {
       },
     },
   },
-  'color.green1': {
+  'base.color.green.1': {
     _original: {
       $value: '#aceebb',
       $extensions: {
@@ -1888,16 +1958,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green1',
+    id: 'base.color.green.1',
     $type: 'color',
     $value: '#aceebb',
     $extensions: {
@@ -1912,7 +1980,7 @@ export const meta = {
       },
     },
   },
-  'color.green2': {
+  'base.color.green.2': {
     _original: {
       $value: '#6fdd8b',
       $extensions: {
@@ -1928,16 +1996,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green2',
+    id: 'base.color.green.2',
     $type: 'color',
     $value: '#6fdd8b',
     $extensions: {
@@ -1952,7 +2018,7 @@ export const meta = {
       },
     },
   },
-  'color.green3': {
+  'base.color.green.3': {
     _original: {
       $value: '#4ac26b',
       $extensions: {
@@ -1968,16 +2034,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green3',
+    id: 'base.color.green.3',
     $type: 'color',
     $value: '#4ac26b',
     $extensions: {
@@ -1992,7 +2056,7 @@ export const meta = {
       },
     },
   },
-  'color.green4': {
+  'base.color.green.4': {
     _original: {
       $value: '#2da44e',
       $extensions: {
@@ -2008,16 +2072,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green4',
+    id: 'base.color.green.4',
     $type: 'color',
     $value: '#2da44e',
     $extensions: {
@@ -2032,7 +2094,7 @@ export const meta = {
       },
     },
   },
-  'color.green5': {
+  'base.color.green.5': {
     _original: {
       $value: '#1a7f37',
       $extensions: {
@@ -2048,16 +2110,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green5',
+    id: 'base.color.green.5',
     $type: 'color',
     $value: '#1a7f37',
     $extensions: {
@@ -2072,7 +2132,7 @@ export const meta = {
       },
     },
   },
-  'color.green6': {
+  'base.color.green.6': {
     _original: {
       $value: '#116329',
       $extensions: {
@@ -2088,16 +2148,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green6',
+    id: 'base.color.green.6',
     $type: 'color',
     $value: '#116329',
     $extensions: {
@@ -2112,7 +2170,7 @@ export const meta = {
       },
     },
   },
-  'color.green7': {
+  'base.color.green.7': {
     _original: {
       $value: '#044f1e',
       $extensions: {
@@ -2128,16 +2186,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green7',
+    id: 'base.color.green.7',
     $type: 'color',
     $value: '#044f1e',
     $extensions: {
@@ -2152,7 +2208,7 @@ export const meta = {
       },
     },
   },
-  'color.green8': {
+  'base.color.green.8': {
     _original: {
       $value: '#003d16',
       $extensions: {
@@ -2168,16 +2224,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green8',
+    id: 'base.color.green.8',
     $type: 'color',
     $value: '#003d16',
     $extensions: {
@@ -2192,7 +2246,7 @@ export const meta = {
       },
     },
   },
-  'color.green9': {
+  'base.color.green.9': {
     _original: {
       $value: '#002d11',
       $extensions: {
@@ -2208,16 +2262,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.green',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.green9',
+    id: 'base.color.green.9',
     $type: 'color',
     $value: '#002d11',
     $extensions: {
@@ -2232,7 +2284,7 @@ export const meta = {
       },
     },
   },
-  'color.orange0': {
+  'base.color.orange.0': {
     _original: {
       $value: '#fff1e5',
       $extensions: {
@@ -2248,16 +2300,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange0',
+    id: 'base.color.orange.0',
     $type: 'color',
     $value: '#fff1e5',
     $extensions: {
@@ -2272,7 +2322,7 @@ export const meta = {
       },
     },
   },
-  'color.orange1': {
+  'base.color.orange.1': {
     _original: {
       $value: '#ffd8b5',
       $extensions: {
@@ -2288,16 +2338,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange1',
+    id: 'base.color.orange.1',
     $type: 'color',
     $value: '#ffd8b5',
     $extensions: {
@@ -2312,7 +2360,7 @@ export const meta = {
       },
     },
   },
-  'color.orange2': {
+  'base.color.orange.2': {
     _original: {
       $value: '#ffb77c',
       $extensions: {
@@ -2328,16 +2376,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange2',
+    id: 'base.color.orange.2',
     $type: 'color',
     $value: '#ffb77c',
     $extensions: {
@@ -2352,7 +2398,7 @@ export const meta = {
       },
     },
   },
-  'color.orange3': {
+  'base.color.orange.3': {
     _original: {
       $value: '#fb8f44',
       $extensions: {
@@ -2368,16 +2414,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange3',
+    id: 'base.color.orange.3',
     $type: 'color',
     $value: '#fb8f44',
     $extensions: {
@@ -2392,7 +2436,7 @@ export const meta = {
       },
     },
   },
-  'color.orange4': {
+  'base.color.orange.4': {
     _original: {
       $value: '#e16f24',
       $extensions: {
@@ -2408,16 +2452,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange4',
+    id: 'base.color.orange.4',
     $type: 'color',
     $value: '#e16f24',
     $extensions: {
@@ -2432,7 +2474,7 @@ export const meta = {
       },
     },
   },
-  'color.orange5': {
+  'base.color.orange.5': {
     _original: {
       $value: '#bc4c00',
       $extensions: {
@@ -2448,16 +2490,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange5',
+    id: 'base.color.orange.5',
     $type: 'color',
     $value: '#bc4c00',
     $extensions: {
@@ -2472,7 +2512,7 @@ export const meta = {
       },
     },
   },
-  'color.orange6': {
+  'base.color.orange.6': {
     _original: {
       $value: '#953800',
       $extensions: {
@@ -2488,16 +2528,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange6',
+    id: 'base.color.orange.6',
     $type: 'color',
     $value: '#953800',
     $extensions: {
@@ -2512,7 +2550,7 @@ export const meta = {
       },
     },
   },
-  'color.orange7': {
+  'base.color.orange.7': {
     _original: {
       $value: '#762c00',
       $extensions: {
@@ -2528,16 +2566,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange7',
+    id: 'base.color.orange.7',
     $type: 'color',
     $value: '#762c00',
     $extensions: {
@@ -2552,7 +2588,7 @@ export const meta = {
       },
     },
   },
-  'color.orange8': {
+  'base.color.orange.8': {
     _original: {
       $value: '#5c2200',
       $extensions: {
@@ -2568,16 +2604,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange8',
+    id: 'base.color.orange.8',
     $type: 'color',
     $value: '#5c2200',
     $extensions: {
@@ -2592,7 +2626,7 @@ export const meta = {
       },
     },
   },
-  'color.orange9': {
+  'base.color.orange.9': {
     _original: {
       $value: '#471700',
       $extensions: {
@@ -2608,16 +2642,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.orange',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.orange9',
+    id: 'base.color.orange.9',
     $type: 'color',
     $value: '#471700',
     $extensions: {
@@ -2632,7 +2664,7 @@ export const meta = {
       },
     },
   },
-  'color.pink0': {
+  'base.color.pink.0': {
     _original: {
       $value: '#ffeff7',
       $extensions: {
@@ -2648,16 +2680,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink0',
+    id: 'base.color.pink.0',
     $type: 'color',
     $value: '#ffeff7',
     $extensions: {
@@ -2672,7 +2702,7 @@ export const meta = {
       },
     },
   },
-  'color.pink1': {
+  'base.color.pink.1': {
     _original: {
       $value: '#ffd3eb',
       $extensions: {
@@ -2688,16 +2718,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink1',
+    id: 'base.color.pink.1',
     $type: 'color',
     $value: '#ffd3eb',
     $extensions: {
@@ -2712,7 +2740,7 @@ export const meta = {
       },
     },
   },
-  'color.pink2': {
+  'base.color.pink.2': {
     _original: {
       $value: '#ffadda',
       $extensions: {
@@ -2728,16 +2756,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink2',
+    id: 'base.color.pink.2',
     $type: 'color',
     $value: '#ffadda',
     $extensions: {
@@ -2752,7 +2778,7 @@ export const meta = {
       },
     },
   },
-  'color.pink3': {
+  'base.color.pink.3': {
     _original: {
       $value: '#ff80c8',
       $extensions: {
@@ -2768,16 +2794,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink3',
+    id: 'base.color.pink.3',
     $type: 'color',
     $value: '#ff80c8',
     $extensions: {
@@ -2792,7 +2816,7 @@ export const meta = {
       },
     },
   },
-  'color.pink4': {
+  'base.color.pink.4': {
     _original: {
       $value: '#e85aad',
       $extensions: {
@@ -2808,16 +2832,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink4',
+    id: 'base.color.pink.4',
     $type: 'color',
     $value: '#e85aad',
     $extensions: {
@@ -2832,7 +2854,7 @@ export const meta = {
       },
     },
   },
-  'color.pink5': {
+  'base.color.pink.5': {
     _original: {
       $value: '#bf3989',
       $extensions: {
@@ -2848,16 +2870,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink5',
+    id: 'base.color.pink.5',
     $type: 'color',
     $value: '#bf3989',
     $extensions: {
@@ -2872,7 +2892,7 @@ export const meta = {
       },
     },
   },
-  'color.pink6': {
+  'base.color.pink.6': {
     _original: {
       $value: '#99286e',
       $extensions: {
@@ -2888,16 +2908,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink6',
+    id: 'base.color.pink.6',
     $type: 'color',
     $value: '#99286e',
     $extensions: {
@@ -2912,7 +2930,7 @@ export const meta = {
       },
     },
   },
-  'color.pink7': {
+  'base.color.pink.7': {
     _original: {
       $value: '#772057',
       $extensions: {
@@ -2928,16 +2946,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink7',
+    id: 'base.color.pink.7',
     $type: 'color',
     $value: '#772057',
     $extensions: {
@@ -2952,7 +2968,7 @@ export const meta = {
       },
     },
   },
-  'color.pink8': {
+  'base.color.pink.8': {
     _original: {
       $value: '#611347',
       $extensions: {
@@ -2968,16 +2984,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink8',
+    id: 'base.color.pink.8',
     $type: 'color',
     $value: '#611347',
     $extensions: {
@@ -2992,7 +3006,7 @@ export const meta = {
       },
     },
   },
-  'color.pink9': {
+  'base.color.pink.9': {
     _original: {
       $value: '#4d0336',
       $extensions: {
@@ -3008,16 +3022,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.pink',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.pink9',
+    id: 'base.color.pink.9',
     $type: 'color',
     $value: '#4d0336',
     $extensions: {
@@ -3032,7 +3044,7 @@ export const meta = {
       },
     },
   },
-  'color.purple0': {
+  'base.color.purple.0': {
     _original: {
       $value: '#fbefff',
       $extensions: {
@@ -3048,16 +3060,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple0',
+    id: 'base.color.purple.0',
     $type: 'color',
     $value: '#fbefff',
     $extensions: {
@@ -3072,7 +3082,7 @@ export const meta = {
       },
     },
   },
-  'color.purple1': {
+  'base.color.purple.1': {
     _original: {
       $value: '#ecd8ff',
       $extensions: {
@@ -3088,16 +3098,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple1',
+    id: 'base.color.purple.1',
     $type: 'color',
     $value: '#ecd8ff',
     $extensions: {
@@ -3112,7 +3120,7 @@ export const meta = {
       },
     },
   },
-  'color.purple2': {
+  'base.color.purple.2': {
     _original: {
       $value: '#d8b9ff',
       $extensions: {
@@ -3128,16 +3136,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple2',
+    id: 'base.color.purple.2',
     $type: 'color',
     $value: '#d8b9ff',
     $extensions: {
@@ -3152,7 +3158,7 @@ export const meta = {
       },
     },
   },
-  'color.purple3': {
+  'base.color.purple.3': {
     _original: {
       $value: '#c297ff',
       $extensions: {
@@ -3168,16 +3174,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple3',
+    id: 'base.color.purple.3',
     $type: 'color',
     $value: '#c297ff',
     $extensions: {
@@ -3192,7 +3196,7 @@ export const meta = {
       },
     },
   },
-  'color.purple4': {
+  'base.color.purple.4': {
     _original: {
       $value: '#a475f9',
       $extensions: {
@@ -3208,16 +3212,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple4',
+    id: 'base.color.purple.4',
     $type: 'color',
     $value: '#a475f9',
     $extensions: {
@@ -3232,7 +3234,7 @@ export const meta = {
       },
     },
   },
-  'color.purple5': {
+  'base.color.purple.5': {
     _original: {
       $value: '#8250df',
       $extensions: {
@@ -3248,16 +3250,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple5',
+    id: 'base.color.purple.5',
     $type: 'color',
     $value: '#8250df',
     $extensions: {
@@ -3272,7 +3272,7 @@ export const meta = {
       },
     },
   },
-  'color.purple6': {
+  'base.color.purple.6': {
     _original: {
       $value: '#6639ba',
       $extensions: {
@@ -3288,16 +3288,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple6',
+    id: 'base.color.purple.6',
     $type: 'color',
     $value: '#6639ba',
     $extensions: {
@@ -3312,7 +3310,7 @@ export const meta = {
       },
     },
   },
-  'color.purple7': {
+  'base.color.purple.7': {
     _original: {
       $value: '#512a97',
       $extensions: {
@@ -3328,16 +3326,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple7',
+    id: 'base.color.purple.7',
     $type: 'color',
     $value: '#512a97',
     $extensions: {
@@ -3352,7 +3348,7 @@ export const meta = {
       },
     },
   },
-  'color.purple8': {
+  'base.color.purple.8': {
     _original: {
       $value: '#3e1f79',
       $extensions: {
@@ -3368,16 +3364,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple8',
+    id: 'base.color.purple.8',
     $type: 'color',
     $value: '#3e1f79',
     $extensions: {
@@ -3392,7 +3386,7 @@ export const meta = {
       },
     },
   },
-  'color.purple9': {
+  'base.color.purple.9': {
     _original: {
       $value: '#2e1461',
       $extensions: {
@@ -3408,16 +3402,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.purple',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.purple9',
+    id: 'base.color.purple.9',
     $type: 'color',
     $value: '#2e1461',
     $extensions: {
@@ -3432,7 +3424,7 @@ export const meta = {
       },
     },
   },
-  'color.red0': {
+  'base.color.red.0': {
     _original: {
       $value: '#FFEBE9',
       $extensions: {
@@ -3448,21 +3440,19 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red0',
+    id: 'base.color.red.0',
     $type: 'color',
-    $value: '#ffebe9',
+    $value: '#FFEBE9',
     $extensions: {
       mode: {
-        light: '#ffebe9',
+        light: '#FFEBE9',
         'light-colorblind': '#fefe48',
         'light-high-contrast': '#fff0ee',
         dark: '#ffdcd7',
@@ -3472,7 +3462,7 @@ export const meta = {
       },
     },
   },
-  'color.red1': {
+  'base.color.red.1': {
     _original: {
       $value: '#ffcecb',
       $extensions: {
@@ -3488,16 +3478,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red1',
+    id: 'base.color.red.1',
     $type: 'color',
     $value: '#ffcecb',
     $extensions: {
@@ -3512,7 +3500,7 @@ export const meta = {
       },
     },
   },
-  'color.red2': {
+  'base.color.red.2': {
     _original: {
       $value: '#ffaba8',
       $extensions: {
@@ -3528,16 +3516,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red2',
+    id: 'base.color.red.2',
     $type: 'color',
     $value: '#ffaba8',
     $extensions: {
@@ -3552,7 +3538,7 @@ export const meta = {
       },
     },
   },
-  'color.red3': {
+  'base.color.red.3': {
     _original: {
       $value: '#ff8182',
       $extensions: {
@@ -3568,16 +3554,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red3',
+    id: 'base.color.red.3',
     $type: 'color',
     $value: '#ff8182',
     $extensions: {
@@ -3592,7 +3576,7 @@ export const meta = {
       },
     },
   },
-  'color.red4': {
+  'base.color.red.4': {
     _original: {
       $value: '#fa4549',
       $extensions: {
@@ -3608,16 +3592,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red4',
+    id: 'base.color.red.4',
     $type: 'color',
     $value: '#fa4549',
     $extensions: {
@@ -3632,7 +3614,7 @@ export const meta = {
       },
     },
   },
-  'color.red5': {
+  'base.color.red.5': {
     _original: {
       $value: '#cf222e',
       $extensions: {
@@ -3648,16 +3630,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red5',
+    id: 'base.color.red.5',
     $type: 'color',
     $value: '#cf222e',
     $extensions: {
@@ -3672,7 +3652,7 @@ export const meta = {
       },
     },
   },
-  'color.red6': {
+  'base.color.red.6': {
     _original: {
       $value: '#a40e26',
       $extensions: {
@@ -3688,16 +3668,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red6',
+    id: 'base.color.red.6',
     $type: 'color',
     $value: '#a40e26',
     $extensions: {
@@ -3712,7 +3690,7 @@ export const meta = {
       },
     },
   },
-  'color.red7': {
+  'base.color.red.7': {
     _original: {
       $value: '#82071e',
       $extensions: {
@@ -3728,16 +3706,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red7',
+    id: 'base.color.red.7',
     $type: 'color',
     $value: '#82071e',
     $extensions: {
@@ -3752,7 +3728,7 @@ export const meta = {
       },
     },
   },
-  'color.red8': {
+  'base.color.red.8': {
     _original: {
       $value: '#660018',
       $extensions: {
@@ -3768,16 +3744,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red8',
+    id: 'base.color.red.8',
     $type: 'color',
     $value: '#660018',
     $extensions: {
@@ -3792,7 +3766,7 @@ export const meta = {
       },
     },
   },
-  'color.red9': {
+  'base.color.red.9': {
     _original: {
       $value: '#4c0014',
       $extensions: {
@@ -3808,16 +3782,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.red',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.red9',
+    id: 'base.color.red.9',
     $type: 'color',
     $value: '#4c0014',
     $extensions: {
@@ -3826,53 +3798,79 @@ export const meta = {
         'light-colorblind': '#2f2900',
         'light-high-contrast': '#430011',
         dark: '#490202',
-        'dark-dimmed': '#5d0f12',
+        'dark-dimmed': '#5D0F12',
         'dark-high-contrast': '#ad0116',
         'dark-colorblind': '#292100',
       },
     },
   },
-  'color.white': {
+  'base.color.transparent': {
     _original: {
-      $value: '#ffffff',
+      $value: 'ffffff',
       $extensions: {
         mode: {
-          light: '#ffffff',
-          'light-colorblind': '#ffffff',
+          light: 'ffffff',
           'light-high-contrast': '#ffffff',
-          dark: '#f0f6fc',
-          'dark-dimmed': '#cdd9e5',
-          'dark-high-contrast': '#ffffff',
-          'dark-colorblind': '#f0f6fc',
         },
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.white',
+    id: 'base.color.transparent',
     $type: 'color',
-    $value: '#ffffff',
+    $value: 'ffffff',
     $extensions: {
       mode: {
-        light: '#ffffff',
-        'light-colorblind': '#ffffff',
+        light: 'ffffff',
         'light-high-contrast': '#ffffff',
-        dark: '#f0f6fc',
-        'dark-dimmed': '#cdd9e5',
-        'dark-high-contrast': '#ffffff',
-        'dark-colorblind': '#f0f6fc',
       },
     },
   },
-  'color.yellow0': {
+  'base.color.white': {
+    _original: {
+      $value: 'ffffff',
+      $extensions: {
+        mode: {
+          light: 'ffffff',
+          'light-colorblind': '#ffffff',
+          'light-high-contrast': '#ffffff',
+          dark: '#ffffff',
+          'dark-dimmed': '#ffffff',
+          'dark-high-contrast': '#ffffff',
+          'dark-colorblind': '#ffffff',
+        },
+      },
+    },
+    _group: {
+      id: 'base.color',
+      $extensions: {
+        requiredModes: [],
+        modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
+      },
+      $type: 'color',
+    },
+    id: 'base.color.white',
+    $type: 'color',
+    $value: 'ffffff',
+    $extensions: {
+      mode: {
+        light: 'ffffff',
+        'light-colorblind': '#ffffff',
+        'light-high-contrast': '#ffffff',
+        dark: '#ffffff',
+        'dark-dimmed': '#ffffff',
+        'dark-high-contrast': '#ffffff',
+        'dark-colorblind': '#ffffff',
+      },
+    },
+  },
+  'base.color.yellow.0': {
     _original: {
       $value: '#fff8c5',
       $extensions: {
@@ -3888,16 +3886,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow0',
+    id: 'base.color.yellow.0',
     $type: 'color',
     $value: '#fff8c5',
     $extensions: {
@@ -3912,7 +3908,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow1': {
+  'base.color.yellow.1': {
     _original: {
       $value: '#fae17d',
       $extensions: {
@@ -3928,16 +3924,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow1',
+    id: 'base.color.yellow.1',
     $type: 'color',
     $value: '#fae17d',
     $extensions: {
@@ -3952,7 +3946,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow2': {
+  'base.color.yellow.2': {
     _original: {
       $value: '#eac54f',
       $extensions: {
@@ -3968,16 +3962,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow2',
+    id: 'base.color.yellow.2',
     $type: 'color',
     $value: '#eac54f',
     $extensions: {
@@ -3992,7 +3984,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow3': {
+  'base.color.yellow.3': {
     _original: {
       $value: '#d4a72c',
       $extensions: {
@@ -4008,16 +4000,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow3',
+    id: 'base.color.yellow.3',
     $type: 'color',
     $value: '#d4a72c',
     $extensions: {
@@ -4032,7 +4022,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow4': {
+  'base.color.yellow.4': {
     _original: {
       $value: '#bf8700',
       $extensions: {
@@ -4048,16 +4038,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow4',
+    id: 'base.color.yellow.4',
     $type: 'color',
     $value: '#bf8700',
     $extensions: {
@@ -4072,7 +4060,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow5': {
+  'base.color.yellow.5': {
     _original: {
       $value: '#9a6700',
       $extensions: {
@@ -4088,16 +4076,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow5',
+    id: 'base.color.yellow.5',
     $type: 'color',
     $value: '#9a6700',
     $extensions: {
@@ -4112,7 +4098,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow6': {
+  'base.color.yellow.6': {
     _original: {
       $value: '#7d4e00',
       $extensions: {
@@ -4128,16 +4114,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow6',
+    id: 'base.color.yellow.6',
     $type: 'color',
     $value: '#7d4e00',
     $extensions: {
@@ -4152,7 +4136,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow7': {
+  'base.color.yellow.7': {
     _original: {
       $value: '#633c01',
       $extensions: {
@@ -4168,16 +4152,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow7',
+    id: 'base.color.yellow.7',
     $type: 'color',
     $value: '#633c01',
     $extensions: {
@@ -4192,7 +4174,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow8': {
+  'base.color.yellow.8': {
     _original: {
       $value: '#4d2d00',
       $extensions: {
@@ -4208,16 +4190,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow8',
+    id: 'base.color.yellow.8',
     $type: 'color',
     $value: '#4d2d00',
     $extensions: {
@@ -4232,7 +4212,7 @@ export const meta = {
       },
     },
   },
-  'color.yellow9': {
+  'base.color.yellow.9': {
     _original: {
       $value: '#3b2300',
       $extensions: {
@@ -4248,16 +4228,14 @@ export const meta = {
       },
     },
     _group: {
-      id: 'color',
+      id: 'base.color.yellow',
       $extensions: {
         requiredModes: [],
         modes: ['light', 'light-colorblind', 'light-high-contrast', 'dark', 'dark-colorblind', 'dark-dimmed', 'dark-high-contrast'],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'color',
     },
-    id: 'color.yellow9',
+    id: 'base.color.yellow.9',
     $type: 'color',
     $value: '#3b2300',
     $extensions: {
@@ -4272,8445 +4250,8462 @@ export const meta = {
       },
     },
   },
-  'font.family.display': {
-    _original: {
-      $value: ['InterUI', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'sans-serif'],
-    },
-    _group: {
-      id: 'font.family',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'fontFamily',
-    },
-    id: 'font.family.display',
-    $type: 'fontFamily',
-    $value: ['InterUI', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Open Sans', 'sans-serif'],
-  },
-  'font.family.lineHeight.condensed': {
-    _original: {
-      $value: '1.25',
-    },
-    _group: {
-      id: 'font.family.lineHeight',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.lineHeight.condensed',
-    $type: 'dimension',
-    $value: '1.25',
-  },
-  'font.family.lineHeight.condensedUltra': {
-    _original: {
-      $value: '1',
-    },
-    _group: {
-      id: 'font.family.lineHeight',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.lineHeight.condensedUltra',
-    $type: 'dimension',
-    $value: '1',
-  },
-  'font.family.lineHeight.default': {
-    _original: {
-      $value: '1.5',
-    },
-    _group: {
-      id: 'font.family.lineHeight',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.lineHeight.default',
-    $type: 'dimension',
-    $value: '1.5',
-  },
-  'font.family.monospace': {
-    _original: {
-      $value: ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
-    },
-    _group: {
-      id: 'font.family',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'fontFamily',
-    },
-    id: 'font.family.monospace',
-    $type: 'fontFamily',
-    $value: ['SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', 'monospace'],
-  },
-  'font.family.size.f00': {
-    _original: {
-      $value: '32px',
-      $extensions: {
-        mode: {
-          mobile: '32px',
-          desktop: '48px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f00',
-    $type: 'dimension',
-    $value: '32px',
-    $extensions: {
-      mode: {
-        mobile: '32px',
-        desktop: '48px',
-      },
-    },
-  },
-  'font.family.size.f0': {
-    _original: {
-      $value: '32px',
-      $extensions: {
-        mode: {
-          mobile: '32px',
-          desktop: '40px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f0',
-    $type: 'dimension',
-    $value: '32px',
-    $extensions: {
-      mode: {
-        mobile: '32px',
-        desktop: '40px',
-      },
-    },
-  },
-  'font.family.size.f1': {
-    _original: {
-      $value: '26px',
-      $extensions: {
-        mode: {
-          mobile: '26px',
-          desktop: '32px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f1',
-    $type: 'dimension',
-    $value: '26px',
-    $extensions: {
-      mode: {
-        mobile: '26px',
-        desktop: '32px',
-      },
-    },
-  },
-  'font.family.size.f2': {
-    _original: {
-      $value: '22px',
-      $extensions: {
-        mode: {
-          mobile: '22px',
-          desktop: '24px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f2',
-    $type: 'dimension',
-    $value: '22px',
-    $extensions: {
-      mode: {
-        mobile: '22px',
-        desktop: '24px',
-      },
-    },
-  },
-  'font.family.size.f3': {
-    _original: {
-      $value: '16px',
-      $extensions: {
-        mode: {
-          mobile: '16px',
-          desktop: '20px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f3',
-    $type: 'dimension',
-    $value: '16px',
-    $extensions: {
-      mode: {
-        mobile: '16px',
-        desktop: '20px',
-      },
-    },
-  },
-  'font.family.size.f4': {
-    _original: {
-      $value: '16px',
-      $extensions: {
-        mode: {
-          mobile: '16px',
-          desktop: '16px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f4',
-    $type: 'dimension',
-    $value: '16px',
-    $extensions: {
-      mode: {
-        mobile: '16px',
-        desktop: '16px',
-      },
-    },
-  },
-  'font.family.size.f5': {
-    _original: {
-      $value: '14px',
-      $extensions: {
-        mode: {
-          mobile: '14px',
-          desktop: '14px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f5',
-    $type: 'dimension',
-    $value: '14px',
-    $extensions: {
-      mode: {
-        mobile: '14px',
-        desktop: '14px',
-      },
-    },
-  },
-  'font.family.size.f6': {
-    _original: {
-      $value: '12px',
-      $extensions: {
-        mode: {
-          mobile: '12px',
-          desktop: '12px',
-        },
-      },
-    },
-    _group: {
-      id: 'font.family.size',
-      $extensions: {
-        requiredModes: [],
-        modes: ['mobile', 'desktop'],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'font.family.size.f6',
-    $type: 'dimension',
-    $value: '12px',
-    $extensions: {
-      mode: {
-        mobile: '12px',
-        desktop: '12px',
-      },
-    },
-  },
-  'font.family.system': {
-    _original: {
-      $value: ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
-    },
-    _group: {
-      id: 'font.family',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'fontFamily',
-    },
-    id: 'font.family.system',
-    $type: 'fontFamily',
-    $value: ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji'],
-  },
-  'icon.alert-16': {
+  'base.icon.alert-16': {
     _original: {
       $value: '/icon/alert-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.alert-16',
+    id: 'base.icon.alert-16',
     $type: 'link',
     $value: '/icon/alert-16.svg',
   },
-  'icon.alert-24': {
+  'base.icon.alert-24': {
     _original: {
       $value: '/icon/alert-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.alert-24',
+    id: 'base.icon.alert-24',
     $type: 'link',
     $value: '/icon/alert-24.svg',
   },
-  'icon.alert-fill-12': {
+  'base.icon.alert-fill-12': {
     _original: {
       $value: '/icon/alert-fill-12.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.alert-fill-12',
+    id: 'base.icon.alert-fill-12',
     $type: 'link',
     $value: '/icon/alert-fill-12.svg',
   },
-  'icon.archive-16': {
+  'base.icon.archive-16': {
     _original: {
       $value: '/icon/archive-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.archive-16',
+    id: 'base.icon.archive-16',
     $type: 'link',
     $value: '/icon/archive-16.svg',
   },
-  'icon.archive-24': {
+  'base.icon.archive-24': {
     _original: {
       $value: '/icon/archive-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.archive-24',
+    id: 'base.icon.archive-24',
     $type: 'link',
     $value: '/icon/archive-24.svg',
   },
-  'icon.arrow-both-16': {
+  'base.icon.arrow-both-16': {
     _original: {
       $value: '/icon/arrow-both-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-both-16',
+    id: 'base.icon.arrow-both-16',
     $type: 'link',
     $value: '/icon/arrow-both-16.svg',
   },
-  'icon.arrow-both-24': {
+  'base.icon.arrow-both-24': {
     _original: {
       $value: '/icon/arrow-both-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-both-24',
+    id: 'base.icon.arrow-both-24',
     $type: 'link',
     $value: '/icon/arrow-both-24.svg',
   },
-  'icon.arrow-down-16': {
+  'base.icon.arrow-down-16': {
     _original: {
       $value: '/icon/arrow-down-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-down-16',
+    id: 'base.icon.arrow-down-16',
     $type: 'link',
     $value: '/icon/arrow-down-16.svg',
   },
-  'icon.arrow-down-24': {
+  'base.icon.arrow-down-24': {
     _original: {
       $value: '/icon/arrow-down-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-down-24',
+    id: 'base.icon.arrow-down-24',
     $type: 'link',
     $value: '/icon/arrow-down-24.svg',
   },
-  'icon.arrow-down-left-24': {
+  'base.icon.arrow-down-left-24': {
     _original: {
       $value: '/icon/arrow-down-left-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-down-left-24',
+    id: 'base.icon.arrow-down-left-24',
     $type: 'link',
     $value: '/icon/arrow-down-left-24.svg',
   },
-  'icon.arrow-down-right-24': {
+  'base.icon.arrow-down-right-24': {
     _original: {
       $value: '/icon/arrow-down-right-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-down-right-24',
+    id: 'base.icon.arrow-down-right-24',
     $type: 'link',
     $value: '/icon/arrow-down-right-24.svg',
   },
-  'icon.arrow-left-16': {
+  'base.icon.arrow-left-16': {
     _original: {
       $value: '/icon/arrow-left-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-left-16',
+    id: 'base.icon.arrow-left-16',
     $type: 'link',
     $value: '/icon/arrow-left-16.svg',
   },
-  'icon.arrow-left-24': {
+  'base.icon.arrow-left-24': {
     _original: {
       $value: '/icon/arrow-left-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-left-24',
+    id: 'base.icon.arrow-left-24',
     $type: 'link',
     $value: '/icon/arrow-left-24.svg',
   },
-  'icon.arrow-right-16': {
+  'base.icon.arrow-right-16': {
     _original: {
       $value: '/icon/arrow-right-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-right-16',
+    id: 'base.icon.arrow-right-16',
     $type: 'link',
     $value: '/icon/arrow-right-16.svg',
   },
-  'icon.arrow-right-24': {
+  'base.icon.arrow-right-24': {
     _original: {
       $value: '/icon/arrow-right-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-right-24',
+    id: 'base.icon.arrow-right-24',
     $type: 'link',
     $value: '/icon/arrow-right-24.svg',
   },
-  'icon.arrow-switch-16': {
+  'base.icon.arrow-switch-16': {
     _original: {
       $value: '/icon/arrow-switch-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-switch-16',
+    id: 'base.icon.arrow-switch-16',
     $type: 'link',
     $value: '/icon/arrow-switch-16.svg',
   },
-  'icon.arrow-switch-24': {
+  'base.icon.arrow-switch-24': {
     _original: {
       $value: '/icon/arrow-switch-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-switch-24',
+    id: 'base.icon.arrow-switch-24',
     $type: 'link',
     $value: '/icon/arrow-switch-24.svg',
   },
-  'icon.arrow-up-16': {
+  'base.icon.arrow-up-16': {
     _original: {
       $value: '/icon/arrow-up-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-up-16',
+    id: 'base.icon.arrow-up-16',
     $type: 'link',
     $value: '/icon/arrow-up-16.svg',
   },
-  'icon.arrow-up-24': {
+  'base.icon.arrow-up-24': {
     _original: {
       $value: '/icon/arrow-up-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-up-24',
+    id: 'base.icon.arrow-up-24',
     $type: 'link',
     $value: '/icon/arrow-up-24.svg',
   },
-  'icon.arrow-up-left-24': {
+  'base.icon.arrow-up-left-24': {
     _original: {
       $value: '/icon/arrow-up-left-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-up-left-24',
+    id: 'base.icon.arrow-up-left-24',
     $type: 'link',
     $value: '/icon/arrow-up-left-24.svg',
   },
-  'icon.arrow-up-right-24': {
+  'base.icon.arrow-up-right-24': {
     _original: {
       $value: '/icon/arrow-up-right-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.arrow-up-right-24',
+    id: 'base.icon.arrow-up-right-24',
     $type: 'link',
     $value: '/icon/arrow-up-right-24.svg',
   },
-  'icon.beaker-16': {
+  'base.icon.beaker-16': {
     _original: {
       $value: '/icon/beaker-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.beaker-16',
+    id: 'base.icon.beaker-16',
     $type: 'link',
     $value: '/icon/beaker-16.svg',
   },
-  'icon.beaker-24': {
+  'base.icon.beaker-24': {
     _original: {
       $value: '/icon/beaker-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.beaker-24',
+    id: 'base.icon.beaker-24',
     $type: 'link',
     $value: '/icon/beaker-24.svg',
   },
-  'icon.bell-16': {
+  'base.icon.bell-16': {
     _original: {
       $value: '/icon/bell-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-16',
+    id: 'base.icon.bell-16',
     $type: 'link',
     $value: '/icon/bell-16.svg',
   },
-  'icon.bell-24': {
+  'base.icon.bell-24': {
     _original: {
       $value: '/icon/bell-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-24',
+    id: 'base.icon.bell-24',
     $type: 'link',
     $value: '/icon/bell-24.svg',
   },
-  'icon.bell-fill-16': {
+  'base.icon.bell-fill-16': {
     _original: {
       $value: '/icon/bell-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-fill-16',
+    id: 'base.icon.bell-fill-16',
     $type: 'link',
     $value: '/icon/bell-fill-16.svg',
   },
-  'icon.bell-fill-24': {
+  'base.icon.bell-fill-24': {
     _original: {
       $value: '/icon/bell-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-fill-24',
+    id: 'base.icon.bell-fill-24',
     $type: 'link',
     $value: '/icon/bell-fill-24.svg',
   },
-  'icon.bell-slash-16': {
+  'base.icon.bell-slash-16': {
     _original: {
       $value: '/icon/bell-slash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-slash-16',
+    id: 'base.icon.bell-slash-16',
     $type: 'link',
     $value: '/icon/bell-slash-16.svg',
   },
-  'icon.bell-slash-24': {
+  'base.icon.bell-slash-24': {
     _original: {
       $value: '/icon/bell-slash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bell-slash-24',
+    id: 'base.icon.bell-slash-24',
     $type: 'link',
     $value: '/icon/bell-slash-24.svg',
   },
-  'icon.blocked-16': {
+  'base.icon.blocked-16': {
     _original: {
       $value: '/icon/blocked-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.blocked-16',
+    id: 'base.icon.blocked-16',
     $type: 'link',
     $value: '/icon/blocked-16.svg',
   },
-  'icon.blocked-24': {
+  'base.icon.blocked-24': {
     _original: {
       $value: '/icon/blocked-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.blocked-24',
+    id: 'base.icon.blocked-24',
     $type: 'link',
     $value: '/icon/blocked-24.svg',
   },
-  'icon.bold-16': {
+  'base.icon.bold-16': {
     _original: {
       $value: '/icon/bold-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bold-16',
+    id: 'base.icon.bold-16',
     $type: 'link',
     $value: '/icon/bold-16.svg',
   },
-  'icon.bold-24': {
+  'base.icon.bold-24': {
     _original: {
       $value: '/icon/bold-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bold-24',
+    id: 'base.icon.bold-24',
     $type: 'link',
     $value: '/icon/bold-24.svg',
   },
-  'icon.book-16': {
+  'base.icon.book-16': {
     _original: {
       $value: '/icon/book-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.book-16',
+    id: 'base.icon.book-16',
     $type: 'link',
     $value: '/icon/book-16.svg',
   },
-  'icon.book-24': {
+  'base.icon.book-24': {
     _original: {
       $value: '/icon/book-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.book-24',
+    id: 'base.icon.book-24',
     $type: 'link',
     $value: '/icon/book-24.svg',
   },
-  'icon.bookmark-16': {
+  'base.icon.bookmark-16': {
     _original: {
       $value: '/icon/bookmark-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-16',
+    id: 'base.icon.bookmark-16',
     $type: 'link',
     $value: '/icon/bookmark-16.svg',
   },
-  'icon.bookmark-24': {
+  'base.icon.bookmark-24': {
     _original: {
       $value: '/icon/bookmark-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-24',
+    id: 'base.icon.bookmark-24',
     $type: 'link',
     $value: '/icon/bookmark-24.svg',
   },
-  'icon.bookmark-fill-24': {
+  'base.icon.bookmark-fill-24': {
     _original: {
       $value: '/icon/bookmark-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-fill-24',
+    id: 'base.icon.bookmark-fill-24',
     $type: 'link',
     $value: '/icon/bookmark-fill-24.svg',
   },
-  'icon.bookmark-slash-16': {
+  'base.icon.bookmark-slash-16': {
     _original: {
       $value: '/icon/bookmark-slash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-slash-16',
+    id: 'base.icon.bookmark-slash-16',
     $type: 'link',
     $value: '/icon/bookmark-slash-16.svg',
   },
-  'icon.bookmark-slash-24': {
+  'base.icon.bookmark-slash-24': {
     _original: {
       $value: '/icon/bookmark-slash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-slash-24',
+    id: 'base.icon.bookmark-slash-24',
     $type: 'link',
     $value: '/icon/bookmark-slash-24.svg',
   },
-  'icon.bookmark-slash-fill-24': {
+  'base.icon.bookmark-slash-fill-24': {
     _original: {
       $value: '/icon/bookmark-slash-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bookmark-slash-fill-24',
+    id: 'base.icon.bookmark-slash-fill-24',
     $type: 'link',
     $value: '/icon/bookmark-slash-fill-24.svg',
   },
-  'icon.briefcase-16': {
+  'base.icon.briefcase-16': {
     _original: {
       $value: '/icon/briefcase-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.briefcase-16',
+    id: 'base.icon.briefcase-16',
     $type: 'link',
     $value: '/icon/briefcase-16.svg',
   },
-  'icon.briefcase-24': {
+  'base.icon.briefcase-24': {
     _original: {
       $value: '/icon/briefcase-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.briefcase-24',
+    id: 'base.icon.briefcase-24',
     $type: 'link',
     $value: '/icon/briefcase-24.svg',
   },
-  'icon.broadcast-16': {
+  'base.icon.broadcast-16': {
     _original: {
       $value: '/icon/broadcast-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.broadcast-16',
+    id: 'base.icon.broadcast-16',
     $type: 'link',
     $value: '/icon/broadcast-16.svg',
   },
-  'icon.broadcast-24': {
+  'base.icon.broadcast-24': {
     _original: {
       $value: '/icon/broadcast-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.broadcast-24',
+    id: 'base.icon.broadcast-24',
     $type: 'link',
     $value: '/icon/broadcast-24.svg',
   },
-  'icon.browser-16': {
+  'base.icon.browser-16': {
     _original: {
       $value: '/icon/browser-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.browser-16',
+    id: 'base.icon.browser-16',
     $type: 'link',
     $value: '/icon/browser-16.svg',
   },
-  'icon.browser-24': {
+  'base.icon.browser-24': {
     _original: {
       $value: '/icon/browser-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.browser-24',
+    id: 'base.icon.browser-24',
     $type: 'link',
     $value: '/icon/browser-24.svg',
   },
-  'icon.bug-16': {
+  'base.icon.bug-16': {
     _original: {
       $value: '/icon/bug-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bug-16',
+    id: 'base.icon.bug-16',
     $type: 'link',
     $value: '/icon/bug-16.svg',
   },
-  'icon.bug-24': {
+  'base.icon.bug-24': {
     _original: {
       $value: '/icon/bug-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.bug-24',
+    id: 'base.icon.bug-24',
     $type: 'link',
     $value: '/icon/bug-24.svg',
   },
-  'icon.calendar-16': {
+  'base.icon.calendar-16': {
     _original: {
       $value: '/icon/calendar-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.calendar-16',
+    id: 'base.icon.calendar-16',
     $type: 'link',
     $value: '/icon/calendar-16.svg',
   },
-  'icon.calendar-24': {
+  'base.icon.calendar-24': {
     _original: {
       $value: '/icon/calendar-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.calendar-24',
+    id: 'base.icon.calendar-24',
     $type: 'link',
     $value: '/icon/calendar-24.svg',
   },
-  'icon.check-16': {
+  'base.icon.check-16': {
     _original: {
       $value: '/icon/check-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-16',
+    id: 'base.icon.check-16',
     $type: 'link',
     $value: '/icon/check-16.svg',
   },
-  'icon.check-24': {
+  'base.icon.check-24': {
     _original: {
       $value: '/icon/check-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-24',
+    id: 'base.icon.check-24',
     $type: 'link',
     $value: '/icon/check-24.svg',
   },
-  'icon.check-circle-16': {
+  'base.icon.check-circle-16': {
     _original: {
       $value: '/icon/check-circle-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-circle-16',
+    id: 'base.icon.check-circle-16',
     $type: 'link',
     $value: '/icon/check-circle-16.svg',
   },
-  'icon.check-circle-24': {
+  'base.icon.check-circle-24': {
     _original: {
       $value: '/icon/check-circle-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-circle-24',
+    id: 'base.icon.check-circle-24',
     $type: 'link',
     $value: '/icon/check-circle-24.svg',
   },
-  'icon.check-circle-fill-12': {
+  'base.icon.check-circle-fill-12': {
     _original: {
       $value: '/icon/check-circle-fill-12.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-circle-fill-12',
+    id: 'base.icon.check-circle-fill-12',
     $type: 'link',
     $value: '/icon/check-circle-fill-12.svg',
   },
-  'icon.check-circle-fill-16': {
+  'base.icon.check-circle-fill-16': {
     _original: {
       $value: '/icon/check-circle-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-circle-fill-16',
+    id: 'base.icon.check-circle-fill-16',
     $type: 'link',
     $value: '/icon/check-circle-fill-16.svg',
   },
-  'icon.check-circle-fill-24': {
+  'base.icon.check-circle-fill-24': {
     _original: {
       $value: '/icon/check-circle-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.check-circle-fill-24',
+    id: 'base.icon.check-circle-fill-24',
     $type: 'link',
     $value: '/icon/check-circle-fill-24.svg',
   },
-  'icon.checklist-16': {
+  'base.icon.checklist-16': {
     _original: {
       $value: '/icon/checklist-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.checklist-16',
+    id: 'base.icon.checklist-16',
     $type: 'link',
     $value: '/icon/checklist-16.svg',
   },
-  'icon.checklist-24': {
+  'base.icon.checklist-24': {
     _original: {
       $value: '/icon/checklist-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.checklist-24',
+    id: 'base.icon.checklist-24',
     $type: 'link',
     $value: '/icon/checklist-24.svg',
   },
-  'icon.chevron-down-16': {
+  'base.icon.chevron-down-16': {
     _original: {
       $value: '/icon/chevron-down-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-down-16',
+    id: 'base.icon.chevron-down-16',
     $type: 'link',
     $value: '/icon/chevron-down-16.svg',
   },
-  'icon.chevron-down-24': {
+  'base.icon.chevron-down-24': {
     _original: {
       $value: '/icon/chevron-down-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-down-24',
+    id: 'base.icon.chevron-down-24',
     $type: 'link',
     $value: '/icon/chevron-down-24.svg',
   },
-  'icon.chevron-left-16': {
+  'base.icon.chevron-left-16': {
     _original: {
       $value: '/icon/chevron-left-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-left-16',
+    id: 'base.icon.chevron-left-16',
     $type: 'link',
     $value: '/icon/chevron-left-16.svg',
   },
-  'icon.chevron-left-24': {
+  'base.icon.chevron-left-24': {
     _original: {
       $value: '/icon/chevron-left-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-left-24',
+    id: 'base.icon.chevron-left-24',
     $type: 'link',
     $value: '/icon/chevron-left-24.svg',
   },
-  'icon.chevron-right-16': {
+  'base.icon.chevron-right-16': {
     _original: {
       $value: '/icon/chevron-right-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-right-16',
+    id: 'base.icon.chevron-right-16',
     $type: 'link',
     $value: '/icon/chevron-right-16.svg',
   },
-  'icon.chevron-right-24': {
+  'base.icon.chevron-right-24': {
     _original: {
       $value: '/icon/chevron-right-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-right-24',
+    id: 'base.icon.chevron-right-24',
     $type: 'link',
     $value: '/icon/chevron-right-24.svg',
   },
-  'icon.chevron-up-16': {
+  'base.icon.chevron-up-16': {
     _original: {
       $value: '/icon/chevron-up-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-up-16',
+    id: 'base.icon.chevron-up-16',
     $type: 'link',
     $value: '/icon/chevron-up-16.svg',
   },
-  'icon.chevron-up-24': {
+  'base.icon.chevron-up-24': {
     _original: {
       $value: '/icon/chevron-up-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.chevron-up-24',
+    id: 'base.icon.chevron-up-24',
     $type: 'link',
     $value: '/icon/chevron-up-24.svg',
   },
-  'icon.circle-16': {
+  'base.icon.circle-16': {
     _original: {
       $value: '/icon/circle-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.circle-16',
+    id: 'base.icon.circle-16',
     $type: 'link',
     $value: '/icon/circle-16.svg',
   },
-  'icon.circle-24': {
+  'base.icon.circle-24': {
     _original: {
       $value: '/icon/circle-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.circle-24',
+    id: 'base.icon.circle-24',
     $type: 'link',
     $value: '/icon/circle-24.svg',
   },
-  'icon.circle-slash-16': {
+  'base.icon.circle-slash-16': {
     _original: {
       $value: '/icon/circle-slash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.circle-slash-16',
+    id: 'base.icon.circle-slash-16',
     $type: 'link',
     $value: '/icon/circle-slash-16.svg',
   },
-  'icon.circle-slash-24': {
+  'base.icon.circle-slash-24': {
     _original: {
       $value: '/icon/circle-slash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.circle-slash-24',
+    id: 'base.icon.circle-slash-24',
     $type: 'link',
     $value: '/icon/circle-slash-24.svg',
   },
-  'icon.clock-16': {
+  'base.icon.clock-16': {
     _original: {
       $value: '/icon/clock-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.clock-16',
+    id: 'base.icon.clock-16',
     $type: 'link',
     $value: '/icon/clock-16.svg',
   },
-  'icon.clock-24': {
+  'base.icon.clock-24': {
     _original: {
       $value: '/icon/clock-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.clock-24',
+    id: 'base.icon.clock-24',
     $type: 'link',
     $value: '/icon/clock-24.svg',
   },
-  'icon.code-16': {
+  'base.icon.code-16': {
     _original: {
       $value: '/icon/code-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-16',
+    id: 'base.icon.code-16',
     $type: 'link',
     $value: '/icon/code-16.svg',
   },
-  'icon.code-24': {
+  'base.icon.code-24': {
     _original: {
       $value: '/icon/code-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-24',
+    id: 'base.icon.code-24',
     $type: 'link',
     $value: '/icon/code-24.svg',
   },
-  'icon.code-of-conduct-16': {
+  'base.icon.code-of-conduct-16': {
     _original: {
       $value: '/icon/code-of-conduct-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-of-conduct-16',
+    id: 'base.icon.code-of-conduct-16',
     $type: 'link',
     $value: '/icon/code-of-conduct-16.svg',
   },
-  'icon.code-of-conduct-24': {
+  'base.icon.code-of-conduct-24': {
     _original: {
       $value: '/icon/code-of-conduct-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-of-conduct-24',
+    id: 'base.icon.code-of-conduct-24',
     $type: 'link',
     $value: '/icon/code-of-conduct-24.svg',
   },
-  'icon.code-review-16': {
+  'base.icon.code-review-16': {
     _original: {
       $value: '/icon/code-review-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-review-16',
+    id: 'base.icon.code-review-16',
     $type: 'link',
     $value: '/icon/code-review-16.svg',
   },
-  'icon.code-review-24': {
+  'base.icon.code-review-24': {
     _original: {
       $value: '/icon/code-review-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-review-24',
+    id: 'base.icon.code-review-24',
     $type: 'link',
     $value: '/icon/code-review-24.svg',
   },
-  'icon.code-square-16': {
+  'base.icon.code-square-16': {
     _original: {
       $value: '/icon/code-square-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-square-16',
+    id: 'base.icon.code-square-16',
     $type: 'link',
     $value: '/icon/code-square-16.svg',
   },
-  'icon.code-square-24': {
+  'base.icon.code-square-24': {
     _original: {
       $value: '/icon/code-square-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.code-square-24',
+    id: 'base.icon.code-square-24',
     $type: 'link',
     $value: '/icon/code-square-24.svg',
   },
-  'icon.codescan-16': {
+  'base.icon.codescan-16': {
     _original: {
       $value: '/icon/codescan-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codescan-16',
+    id: 'base.icon.codescan-16',
     $type: 'link',
     $value: '/icon/codescan-16.svg',
   },
-  'icon.codescan-24': {
+  'base.icon.codescan-24': {
     _original: {
       $value: '/icon/codescan-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codescan-24',
+    id: 'base.icon.codescan-24',
     $type: 'link',
     $value: '/icon/codescan-24.svg',
   },
-  'icon.codescan-checkmark-16': {
+  'base.icon.codescan-checkmark-16': {
     _original: {
       $value: '/icon/codescan-checkmark-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codescan-checkmark-16',
+    id: 'base.icon.codescan-checkmark-16',
     $type: 'link',
     $value: '/icon/codescan-checkmark-16.svg',
   },
-  'icon.codescan-checkmark-24': {
+  'base.icon.codescan-checkmark-24': {
     _original: {
       $value: '/icon/codescan-checkmark-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codescan-checkmark-24',
+    id: 'base.icon.codescan-checkmark-24',
     $type: 'link',
     $value: '/icon/codescan-checkmark-24.svg',
   },
-  'icon.codespaces-16': {
+  'base.icon.codespaces-16': {
     _original: {
       $value: '/icon/codespaces-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codespaces-16',
+    id: 'base.icon.codespaces-16',
     $type: 'link',
     $value: '/icon/codespaces-16.svg',
   },
-  'icon.codespaces-24': {
+  'base.icon.codespaces-24': {
     _original: {
       $value: '/icon/codespaces-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.codespaces-24',
+    id: 'base.icon.codespaces-24',
     $type: 'link',
     $value: '/icon/codespaces-24.svg',
   },
-  'icon.columns-16': {
+  'base.icon.columns-16': {
     _original: {
       $value: '/icon/columns-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.columns-16',
+    id: 'base.icon.columns-16',
     $type: 'link',
     $value: '/icon/columns-16.svg',
   },
-  'icon.columns-24': {
+  'base.icon.columns-24': {
     _original: {
       $value: '/icon/columns-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.columns-24',
+    id: 'base.icon.columns-24',
     $type: 'link',
     $value: '/icon/columns-24.svg',
   },
-  'icon.comment-16': {
+  'base.icon.comment-16': {
     _original: {
       $value: '/icon/comment-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.comment-16',
+    id: 'base.icon.comment-16',
     $type: 'link',
     $value: '/icon/comment-16.svg',
   },
-  'icon.comment-24': {
+  'base.icon.comment-24': {
     _original: {
       $value: '/icon/comment-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.comment-24',
+    id: 'base.icon.comment-24',
     $type: 'link',
     $value: '/icon/comment-24.svg',
   },
-  'icon.comment-discussion-16': {
+  'base.icon.comment-discussion-16': {
     _original: {
       $value: '/icon/comment-discussion-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.comment-discussion-16',
+    id: 'base.icon.comment-discussion-16',
     $type: 'link',
     $value: '/icon/comment-discussion-16.svg',
   },
-  'icon.comment-discussion-24': {
+  'base.icon.comment-discussion-24': {
     _original: {
       $value: '/icon/comment-discussion-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.comment-discussion-24',
+    id: 'base.icon.comment-discussion-24',
     $type: 'link',
     $value: '/icon/comment-discussion-24.svg',
   },
-  'icon.commit-24': {
+  'base.icon.commit-24': {
     _original: {
       $value: '/icon/commit-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.commit-24',
+    id: 'base.icon.commit-24',
     $type: 'link',
     $value: '/icon/commit-24.svg',
   },
-  'icon.container-16': {
+  'base.icon.container-16': {
     _original: {
       $value: '/icon/container-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.container-16',
+    id: 'base.icon.container-16',
     $type: 'link',
     $value: '/icon/container-16.svg',
   },
-  'icon.container-24': {
+  'base.icon.container-24': {
     _original: {
       $value: '/icon/container-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.container-24',
+    id: 'base.icon.container-24',
     $type: 'link',
     $value: '/icon/container-24.svg',
   },
-  'icon.copy-16': {
+  'base.icon.copy-16': {
     _original: {
       $value: '/icon/copy-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.copy-16',
+    id: 'base.icon.copy-16',
     $type: 'link',
     $value: '/icon/copy-16.svg',
   },
-  'icon.copy-24': {
+  'base.icon.copy-24': {
     _original: {
       $value: '/icon/copy-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.copy-24',
+    id: 'base.icon.copy-24',
     $type: 'link',
     $value: '/icon/copy-24.svg',
   },
-  'icon.cpu-16': {
+  'base.icon.cpu-16': {
     _original: {
       $value: '/icon/cpu-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.cpu-16',
+    id: 'base.icon.cpu-16',
     $type: 'link',
     $value: '/icon/cpu-16.svg',
   },
-  'icon.cpu-24': {
+  'base.icon.cpu-24': {
     _original: {
       $value: '/icon/cpu-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.cpu-24',
+    id: 'base.icon.cpu-24',
     $type: 'link',
     $value: '/icon/cpu-24.svg',
   },
-  'icon.credit-card-16': {
+  'base.icon.credit-card-16': {
     _original: {
       $value: '/icon/credit-card-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.credit-card-16',
+    id: 'base.icon.credit-card-16',
     $type: 'link',
     $value: '/icon/credit-card-16.svg',
   },
-  'icon.credit-card-24': {
+  'base.icon.credit-card-24': {
     _original: {
       $value: '/icon/credit-card-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.credit-card-24',
+    id: 'base.icon.credit-card-24',
     $type: 'link',
     $value: '/icon/credit-card-24.svg',
   },
-  'icon.cross-reference-16': {
+  'base.icon.cross-reference-16': {
     _original: {
       $value: '/icon/cross-reference-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.cross-reference-16',
+    id: 'base.icon.cross-reference-16',
     $type: 'link',
     $value: '/icon/cross-reference-16.svg',
   },
-  'icon.cross-reference-24': {
+  'base.icon.cross-reference-24': {
     _original: {
       $value: '/icon/cross-reference-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.cross-reference-24',
+    id: 'base.icon.cross-reference-24',
     $type: 'link',
     $value: '/icon/cross-reference-24.svg',
   },
-  'icon.dash-16': {
+  'base.icon.dash-16': {
     _original: {
       $value: '/icon/dash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dash-16',
+    id: 'base.icon.dash-16',
     $type: 'link',
     $value: '/icon/dash-16.svg',
   },
-  'icon.dash-24': {
+  'base.icon.dash-24': {
     _original: {
       $value: '/icon/dash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dash-24',
+    id: 'base.icon.dash-24',
     $type: 'link',
     $value: '/icon/dash-24.svg',
   },
-  'icon.database-16': {
+  'base.icon.database-16': {
     _original: {
       $value: '/icon/database-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.database-16',
+    id: 'base.icon.database-16',
     $type: 'link',
     $value: '/icon/database-16.svg',
   },
-  'icon.database-24': {
+  'base.icon.database-24': {
     _original: {
       $value: '/icon/database-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.database-24',
+    id: 'base.icon.database-24',
     $type: 'link',
     $value: '/icon/database-24.svg',
   },
-  'icon.dependabot-16': {
+  'base.icon.dependabot-16': {
     _original: {
       $value: '/icon/dependabot-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dependabot-16',
+    id: 'base.icon.dependabot-16',
     $type: 'link',
     $value: '/icon/dependabot-16.svg',
   },
-  'icon.dependabot-24': {
+  'base.icon.dependabot-24': {
     _original: {
       $value: '/icon/dependabot-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dependabot-24',
+    id: 'base.icon.dependabot-24',
     $type: 'link',
     $value: '/icon/dependabot-24.svg',
   },
-  'icon.desktop-download-16': {
+  'base.icon.desktop-download-16': {
     _original: {
       $value: '/icon/desktop-download-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.desktop-download-16',
+    id: 'base.icon.desktop-download-16',
     $type: 'link',
     $value: '/icon/desktop-download-16.svg',
   },
-  'icon.desktop-download-24': {
+  'base.icon.desktop-download-24': {
     _original: {
       $value: '/icon/desktop-download-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.desktop-download-24',
+    id: 'base.icon.desktop-download-24',
     $type: 'link',
     $value: '/icon/desktop-download-24.svg',
   },
-  'icon.device-camera-16': {
+  'base.icon.device-camera-16': {
     _original: {
       $value: '/icon/device-camera-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-camera-16',
+    id: 'base.icon.device-camera-16',
     $type: 'link',
     $value: '/icon/device-camera-16.svg',
   },
-  'icon.device-camera-video-16': {
+  'base.icon.device-camera-video-16': {
     _original: {
       $value: '/icon/device-camera-video-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-camera-video-16',
+    id: 'base.icon.device-camera-video-16',
     $type: 'link',
     $value: '/icon/device-camera-video-16.svg',
   },
-  'icon.device-camera-video-24': {
+  'base.icon.device-camera-video-24': {
     _original: {
       $value: '/icon/device-camera-video-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-camera-video-24',
+    id: 'base.icon.device-camera-video-24',
     $type: 'link',
     $value: '/icon/device-camera-video-24.svg',
   },
-  'icon.device-desktop-16': {
+  'base.icon.device-desktop-16': {
     _original: {
       $value: '/icon/device-desktop-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-desktop-16',
+    id: 'base.icon.device-desktop-16',
     $type: 'link',
     $value: '/icon/device-desktop-16.svg',
   },
-  'icon.device-desktop-24': {
+  'base.icon.device-desktop-24': {
     _original: {
       $value: '/icon/device-desktop-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-desktop-24',
+    id: 'base.icon.device-desktop-24',
     $type: 'link',
     $value: '/icon/device-desktop-24.svg',
   },
-  'icon.device-mobile-16': {
+  'base.icon.device-mobile-16': {
     _original: {
       $value: '/icon/device-mobile-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-mobile-16',
+    id: 'base.icon.device-mobile-16',
     $type: 'link',
     $value: '/icon/device-mobile-16.svg',
   },
-  'icon.device-mobile-24': {
+  'base.icon.device-mobile-24': {
     _original: {
       $value: '/icon/device-mobile-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.device-mobile-24',
+    id: 'base.icon.device-mobile-24',
     $type: 'link',
     $value: '/icon/device-mobile-24.svg',
   },
-  'icon.diamond-16': {
+  'base.icon.diamond-16': {
     _original: {
       $value: '/icon/diamond-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diamond-16',
+    id: 'base.icon.diamond-16',
     $type: 'link',
     $value: '/icon/diamond-16.svg',
   },
-  'icon.diamond-24': {
+  'base.icon.diamond-24': {
     _original: {
       $value: '/icon/diamond-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diamond-24',
+    id: 'base.icon.diamond-24',
     $type: 'link',
     $value: '/icon/diamond-24.svg',
   },
-  'icon.diff-16': {
+  'base.icon.diff-16': {
     _original: {
       $value: '/icon/diff-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-16',
+    id: 'base.icon.diff-16',
     $type: 'link',
     $value: '/icon/diff-16.svg',
   },
-  'icon.diff-24': {
+  'base.icon.diff-24': {
     _original: {
       $value: '/icon/diff-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-24',
+    id: 'base.icon.diff-24',
     $type: 'link',
     $value: '/icon/diff-24.svg',
   },
-  'icon.diff-added-16': {
+  'base.icon.diff-added-16': {
     _original: {
       $value: '/icon/diff-added-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-added-16',
+    id: 'base.icon.diff-added-16',
     $type: 'link',
     $value: '/icon/diff-added-16.svg',
   },
-  'icon.diff-ignored-16': {
+  'base.icon.diff-ignored-16': {
     _original: {
       $value: '/icon/diff-ignored-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-ignored-16',
+    id: 'base.icon.diff-ignored-16',
     $type: 'link',
     $value: '/icon/diff-ignored-16.svg',
   },
-  'icon.diff-modified-16': {
+  'base.icon.diff-modified-16': {
     _original: {
       $value: '/icon/diff-modified-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-modified-16',
+    id: 'base.icon.diff-modified-16',
     $type: 'link',
     $value: '/icon/diff-modified-16.svg',
   },
-  'icon.diff-removed-16': {
+  'base.icon.diff-removed-16': {
     _original: {
       $value: '/icon/diff-removed-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-removed-16',
+    id: 'base.icon.diff-removed-16',
     $type: 'link',
     $value: '/icon/diff-removed-16.svg',
   },
-  'icon.diff-renamed-16': {
+  'base.icon.diff-renamed-16': {
     _original: {
       $value: '/icon/diff-renamed-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.diff-renamed-16',
+    id: 'base.icon.diff-renamed-16',
     $type: 'link',
     $value: '/icon/diff-renamed-16.svg',
   },
-  'icon.dot-16': {
+  'base.icon.dot-16': {
     _original: {
       $value: '/icon/dot-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dot-16',
+    id: 'base.icon.dot-16',
     $type: 'link',
     $value: '/icon/dot-16.svg',
   },
-  'icon.dot-24': {
+  'base.icon.dot-24': {
     _original: {
       $value: '/icon/dot-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dot-24',
+    id: 'base.icon.dot-24',
     $type: 'link',
     $value: '/icon/dot-24.svg',
   },
-  'icon.dot-fill-16': {
+  'base.icon.dot-fill-16': {
     _original: {
       $value: '/icon/dot-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dot-fill-16',
+    id: 'base.icon.dot-fill-16',
     $type: 'link',
     $value: '/icon/dot-fill-16.svg',
   },
-  'icon.dot-fill-24': {
+  'base.icon.dot-fill-24': {
     _original: {
       $value: '/icon/dot-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.dot-fill-24',
+    id: 'base.icon.dot-fill-24',
     $type: 'link',
     $value: '/icon/dot-fill-24.svg',
   },
-  'icon.download-16': {
+  'base.icon.download-16': {
     _original: {
       $value: '/icon/download-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.download-16',
+    id: 'base.icon.download-16',
     $type: 'link',
     $value: '/icon/download-16.svg',
   },
-  'icon.download-24': {
+  'base.icon.download-24': {
     _original: {
       $value: '/icon/download-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.download-24',
+    id: 'base.icon.download-24',
     $type: 'link',
     $value: '/icon/download-24.svg',
   },
-  'icon.duplicate-16': {
+  'base.icon.duplicate-16': {
     _original: {
       $value: '/icon/duplicate-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.duplicate-16',
+    id: 'base.icon.duplicate-16',
     $type: 'link',
     $value: '/icon/duplicate-16.svg',
   },
-  'icon.duplicate-24': {
+  'base.icon.duplicate-24': {
     _original: {
       $value: '/icon/duplicate-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.duplicate-24',
+    id: 'base.icon.duplicate-24',
     $type: 'link',
     $value: '/icon/duplicate-24.svg',
   },
-  'icon.ellipsis-16': {
+  'base.icon.ellipsis-16': {
     _original: {
       $value: '/icon/ellipsis-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.ellipsis-16',
+    id: 'base.icon.ellipsis-16',
     $type: 'link',
     $value: '/icon/ellipsis-16.svg',
   },
-  'icon.eye-16': {
+  'base.icon.eye-16': {
     _original: {
       $value: '/icon/eye-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.eye-16',
+    id: 'base.icon.eye-16',
     $type: 'link',
     $value: '/icon/eye-16.svg',
   },
-  'icon.eye-24': {
+  'base.icon.eye-24': {
     _original: {
       $value: '/icon/eye-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.eye-24',
+    id: 'base.icon.eye-24',
     $type: 'link',
     $value: '/icon/eye-24.svg',
   },
-  'icon.eye-closed-16': {
+  'base.icon.eye-closed-16': {
     _original: {
       $value: '/icon/eye-closed-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.eye-closed-16',
+    id: 'base.icon.eye-closed-16',
     $type: 'link',
     $value: '/icon/eye-closed-16.svg',
   },
-  'icon.eye-closed-24': {
+  'base.icon.eye-closed-24': {
     _original: {
       $value: '/icon/eye-closed-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.eye-closed-24',
+    id: 'base.icon.eye-closed-24',
     $type: 'link',
     $value: '/icon/eye-closed-24.svg',
   },
-  'icon.file-16': {
+  'base.icon.file-16': {
     _original: {
       $value: '/icon/file-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-16',
+    id: 'base.icon.file-16',
     $type: 'link',
     $value: '/icon/file-16.svg',
   },
-  'icon.file-24': {
+  'base.icon.file-24': {
     _original: {
       $value: '/icon/file-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-24',
+    id: 'base.icon.file-24',
     $type: 'link',
     $value: '/icon/file-24.svg',
   },
-  'icon.file-badge-16': {
+  'base.icon.file-badge-16': {
     _original: {
       $value: '/icon/file-badge-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-badge-16',
+    id: 'base.icon.file-badge-16',
     $type: 'link',
     $value: '/icon/file-badge-16.svg',
   },
-  'icon.file-binary-16': {
+  'base.icon.file-binary-16': {
     _original: {
       $value: '/icon/file-binary-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-binary-16',
+    id: 'base.icon.file-binary-16',
     $type: 'link',
     $value: '/icon/file-binary-16.svg',
   },
-  'icon.file-binary-24': {
+  'base.icon.file-binary-24': {
     _original: {
       $value: '/icon/file-binary-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-binary-24',
+    id: 'base.icon.file-binary-24',
     $type: 'link',
     $value: '/icon/file-binary-24.svg',
   },
-  'icon.file-code-16': {
+  'base.icon.file-code-16': {
     _original: {
       $value: '/icon/file-code-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-code-16',
+    id: 'base.icon.file-code-16',
     $type: 'link',
     $value: '/icon/file-code-16.svg',
   },
-  'icon.file-code-24': {
+  'base.icon.file-code-24': {
     _original: {
       $value: '/icon/file-code-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-code-24',
+    id: 'base.icon.file-code-24',
     $type: 'link',
     $value: '/icon/file-code-24.svg',
   },
-  'icon.file-diff-16': {
+  'base.icon.file-diff-16': {
     _original: {
       $value: '/icon/file-diff-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-diff-16',
+    id: 'base.icon.file-diff-16',
     $type: 'link',
     $value: '/icon/file-diff-16.svg',
   },
-  'icon.file-diff-24': {
+  'base.icon.file-diff-24': {
     _original: {
       $value: '/icon/file-diff-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-diff-24',
+    id: 'base.icon.file-diff-24',
     $type: 'link',
     $value: '/icon/file-diff-24.svg',
   },
-  'icon.file-directory-16': {
+  'base.icon.file-directory-16': {
     _original: {
       $value: '/icon/file-directory-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-directory-16',
+    id: 'base.icon.file-directory-16',
     $type: 'link',
     $value: '/icon/file-directory-16.svg',
   },
-  'icon.file-directory-24': {
+  'base.icon.file-directory-24': {
     _original: {
       $value: '/icon/file-directory-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-directory-24',
+    id: 'base.icon.file-directory-24',
     $type: 'link',
     $value: '/icon/file-directory-24.svg',
   },
-  'icon.file-directory-fill-24': {
+  'base.icon.file-directory-fill-24': {
     _original: {
       $value: '/icon/file-directory-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-directory-fill-24',
+    id: 'base.icon.file-directory-fill-24',
     $type: 'link',
     $value: '/icon/file-directory-fill-24.svg',
   },
-  'icon.file-media-24': {
+  'base.icon.file-media-24': {
     _original: {
       $value: '/icon/file-media-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-media-24',
+    id: 'base.icon.file-media-24',
     $type: 'link',
     $value: '/icon/file-media-24.svg',
   },
-  'icon.file-submodule-16': {
+  'base.icon.file-submodule-16': {
     _original: {
       $value: '/icon/file-submodule-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-submodule-16',
+    id: 'base.icon.file-submodule-16',
     $type: 'link',
     $value: '/icon/file-submodule-16.svg',
   },
-  'icon.file-submodule-24': {
+  'base.icon.file-submodule-24': {
     _original: {
       $value: '/icon/file-submodule-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-submodule-24',
+    id: 'base.icon.file-submodule-24',
     $type: 'link',
     $value: '/icon/file-submodule-24.svg',
   },
-  'icon.file-symlink-file-16': {
+  'base.icon.file-symlink-file-16': {
     _original: {
       $value: '/icon/file-symlink-file-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-symlink-file-16',
+    id: 'base.icon.file-symlink-file-16',
     $type: 'link',
     $value: '/icon/file-symlink-file-16.svg',
   },
-  'icon.file-symlink-file-24': {
+  'base.icon.file-symlink-file-24': {
     _original: {
       $value: '/icon/file-symlink-file-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-symlink-file-24',
+    id: 'base.icon.file-symlink-file-24',
     $type: 'link',
     $value: '/icon/file-symlink-file-24.svg',
   },
-  'icon.file-zip-16': {
+  'base.icon.file-zip-16': {
     _original: {
       $value: '/icon/file-zip-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-zip-16',
+    id: 'base.icon.file-zip-16',
     $type: 'link',
     $value: '/icon/file-zip-16.svg',
   },
-  'icon.file-zip-24': {
+  'base.icon.file-zip-24': {
     _original: {
       $value: '/icon/file-zip-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.file-zip-24',
+    id: 'base.icon.file-zip-24',
     $type: 'link',
     $value: '/icon/file-zip-24.svg',
   },
-  'icon.filter-16': {
+  'base.icon.filter-16': {
     _original: {
       $value: '/icon/filter-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.filter-16',
+    id: 'base.icon.filter-16',
     $type: 'link',
     $value: '/icon/filter-16.svg',
   },
-  'icon.filter-24': {
+  'base.icon.filter-24': {
     _original: {
       $value: '/icon/filter-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.filter-24',
+    id: 'base.icon.filter-24',
     $type: 'link',
     $value: '/icon/filter-24.svg',
   },
-  'icon.flame-16': {
+  'base.icon.flame-16': {
     _original: {
       $value: '/icon/flame-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.flame-16',
+    id: 'base.icon.flame-16',
     $type: 'link',
     $value: '/icon/flame-16.svg',
   },
-  'icon.flame-24': {
+  'base.icon.flame-24': {
     _original: {
       $value: '/icon/flame-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.flame-24',
+    id: 'base.icon.flame-24',
     $type: 'link',
     $value: '/icon/flame-24.svg',
   },
-  'icon.fold-16': {
+  'base.icon.fold-16': {
     _original: {
       $value: '/icon/fold-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-16',
+    id: 'base.icon.fold-16',
     $type: 'link',
     $value: '/icon/fold-16.svg',
   },
-  'icon.fold-24': {
+  'base.icon.fold-24': {
     _original: {
       $value: '/icon/fold-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-24',
+    id: 'base.icon.fold-24',
     $type: 'link',
     $value: '/icon/fold-24.svg',
   },
-  'icon.fold-down-16': {
+  'base.icon.fold-down-16': {
     _original: {
       $value: '/icon/fold-down-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-down-16',
+    id: 'base.icon.fold-down-16',
     $type: 'link',
     $value: '/icon/fold-down-16.svg',
   },
-  'icon.fold-down-24': {
+  'base.icon.fold-down-24': {
     _original: {
       $value: '/icon/fold-down-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-down-24',
+    id: 'base.icon.fold-down-24',
     $type: 'link',
     $value: '/icon/fold-down-24.svg',
   },
-  'icon.fold-up-16': {
+  'base.icon.fold-up-16': {
     _original: {
       $value: '/icon/fold-up-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-up-16',
+    id: 'base.icon.fold-up-16',
     $type: 'link',
     $value: '/icon/fold-up-16.svg',
   },
-  'icon.fold-up-24': {
+  'base.icon.fold-up-24': {
     _original: {
       $value: '/icon/fold-up-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.fold-up-24',
+    id: 'base.icon.fold-up-24',
     $type: 'link',
     $value: '/icon/fold-up-24.svg',
   },
-  'icon.gear-16': {
+  'base.icon.gear-16': {
     _original: {
       $value: '/icon/gear-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.gear-16',
+    id: 'base.icon.gear-16',
     $type: 'link',
     $value: '/icon/gear-16.svg',
   },
-  'icon.gear-24': {
+  'base.icon.gear-24': {
     _original: {
       $value: '/icon/gear-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.gear-24',
+    id: 'base.icon.gear-24',
     $type: 'link',
     $value: '/icon/gear-24.svg',
   },
-  'icon.gift-16': {
+  'base.icon.gift-16': {
     _original: {
       $value: '/icon/gift-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.gift-16',
+    id: 'base.icon.gift-16',
     $type: 'link',
     $value: '/icon/gift-16.svg',
   },
-  'icon.gift-24': {
+  'base.icon.gift-24': {
     _original: {
       $value: '/icon/gift-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.gift-24',
+    id: 'base.icon.gift-24',
     $type: 'link',
     $value: '/icon/gift-24.svg',
   },
-  'icon.git-branch-16': {
+  'base.icon.git-branch-16': {
     _original: {
       $value: '/icon/git-branch-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-branch-16',
+    id: 'base.icon.git-branch-16',
     $type: 'link',
     $value: '/icon/git-branch-16.svg',
   },
-  'icon.git-branch-24': {
+  'base.icon.git-branch-24': {
     _original: {
       $value: '/icon/git-branch-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-branch-24',
+    id: 'base.icon.git-branch-24',
     $type: 'link',
     $value: '/icon/git-branch-24.svg',
   },
-  'icon.git-commit-16': {
+  'base.icon.git-commit-16': {
     _original: {
       $value: '/icon/git-commit-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-commit-16',
+    id: 'base.icon.git-commit-16',
     $type: 'link',
     $value: '/icon/git-commit-16.svg',
   },
-  'icon.git-commit-24': {
+  'base.icon.git-commit-24': {
     _original: {
       $value: '/icon/git-commit-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-commit-24',
+    id: 'base.icon.git-commit-24',
     $type: 'link',
     $value: '/icon/git-commit-24.svg',
   },
-  'icon.git-compare-16': {
+  'base.icon.git-compare-16': {
     _original: {
       $value: '/icon/git-compare-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-compare-16',
+    id: 'base.icon.git-compare-16',
     $type: 'link',
     $value: '/icon/git-compare-16.svg',
   },
-  'icon.git-compare-24': {
+  'base.icon.git-compare-24': {
     _original: {
       $value: '/icon/git-compare-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-compare-24',
+    id: 'base.icon.git-compare-24',
     $type: 'link',
     $value: '/icon/git-compare-24.svg',
   },
-  'icon.git-merge-16': {
+  'base.icon.git-merge-16': {
     _original: {
       $value: '/icon/git-merge-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-merge-16',
+    id: 'base.icon.git-merge-16',
     $type: 'link',
     $value: '/icon/git-merge-16.svg',
   },
-  'icon.git-merge-24': {
+  'base.icon.git-merge-24': {
     _original: {
       $value: '/icon/git-merge-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-merge-24',
+    id: 'base.icon.git-merge-24',
     $type: 'link',
     $value: '/icon/git-merge-24.svg',
   },
-  'icon.git-pull-request-16': {
+  'base.icon.git-pull-request-16': {
     _original: {
       $value: '/icon/git-pull-request-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-16',
+    id: 'base.icon.git-pull-request-16',
     $type: 'link',
     $value: '/icon/git-pull-request-16.svg',
   },
-  'icon.git-pull-request-24': {
+  'base.icon.git-pull-request-24': {
     _original: {
       $value: '/icon/git-pull-request-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-24',
+    id: 'base.icon.git-pull-request-24',
     $type: 'link',
     $value: '/icon/git-pull-request-24.svg',
   },
-  'icon.git-pull-request-closed-16': {
+  'base.icon.git-pull-request-closed-16': {
     _original: {
       $value: '/icon/git-pull-request-closed-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-closed-16',
+    id: 'base.icon.git-pull-request-closed-16',
     $type: 'link',
     $value: '/icon/git-pull-request-closed-16.svg',
   },
-  'icon.git-pull-request-closed-24': {
+  'base.icon.git-pull-request-closed-24': {
     _original: {
       $value: '/icon/git-pull-request-closed-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-closed-24',
+    id: 'base.icon.git-pull-request-closed-24',
     $type: 'link',
     $value: '/icon/git-pull-request-closed-24.svg',
   },
-  'icon.git-pull-request-draft-16': {
+  'base.icon.git-pull-request-draft-16': {
     _original: {
       $value: '/icon/git-pull-request-draft-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-draft-16',
+    id: 'base.icon.git-pull-request-draft-16',
     $type: 'link',
     $value: '/icon/git-pull-request-draft-16.svg',
   },
-  'icon.git-pull-request-draft-24': {
+  'base.icon.git-pull-request-draft-24': {
     _original: {
       $value: '/icon/git-pull-request-draft-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.git-pull-request-draft-24',
+    id: 'base.icon.git-pull-request-draft-24',
     $type: 'link',
     $value: '/icon/git-pull-request-draft-24.svg',
   },
-  'icon.globe-16': {
+  'base.icon.globe-16': {
     _original: {
       $value: '/icon/globe-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.globe-16',
+    id: 'base.icon.globe-16',
     $type: 'link',
     $value: '/icon/globe-16.svg',
   },
-  'icon.globe-24': {
+  'base.icon.globe-24': {
     _original: {
       $value: '/icon/globe-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.globe-24',
+    id: 'base.icon.globe-24',
     $type: 'link',
     $value: '/icon/globe-24.svg',
   },
-  'icon.grabber-16': {
+  'base.icon.grabber-16': {
     _original: {
       $value: '/icon/grabber-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.grabber-16',
+    id: 'base.icon.grabber-16',
     $type: 'link',
     $value: '/icon/grabber-16.svg',
   },
-  'icon.grabber-24': {
+  'base.icon.grabber-24': {
     _original: {
       $value: '/icon/grabber-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.grabber-24',
+    id: 'base.icon.grabber-24',
     $type: 'link',
     $value: '/icon/grabber-24.svg',
   },
-  'icon.graph-16': {
+  'base.icon.graph-16': {
     _original: {
       $value: '/icon/graph-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.graph-16',
+    id: 'base.icon.graph-16',
     $type: 'link',
     $value: '/icon/graph-16.svg',
   },
-  'icon.graph-24': {
+  'base.icon.graph-24': {
     _original: {
       $value: '/icon/graph-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.graph-24',
+    id: 'base.icon.graph-24',
     $type: 'link',
     $value: '/icon/graph-24.svg',
   },
-  'icon.hash-16': {
+  'base.icon.hash-16': {
     _original: {
       $value: '/icon/hash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hash-16',
+    id: 'base.icon.hash-16',
     $type: 'link',
     $value: '/icon/hash-16.svg',
   },
-  'icon.hash-24': {
+  'base.icon.hash-24': {
     _original: {
       $value: '/icon/hash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hash-24',
+    id: 'base.icon.hash-24',
     $type: 'link',
     $value: '/icon/hash-24.svg',
   },
-  'icon.heading-16': {
+  'base.icon.heading-16': {
     _original: {
       $value: '/icon/heading-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heading-16',
+    id: 'base.icon.heading-16',
     $type: 'link',
     $value: '/icon/heading-16.svg',
   },
-  'icon.heading-24': {
+  'base.icon.heading-24': {
     _original: {
       $value: '/icon/heading-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heading-24',
+    id: 'base.icon.heading-24',
     $type: 'link',
     $value: '/icon/heading-24.svg',
   },
-  'icon.heart-16': {
+  'base.icon.heart-16': {
     _original: {
       $value: '/icon/heart-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heart-16',
+    id: 'base.icon.heart-16',
     $type: 'link',
     $value: '/icon/heart-16.svg',
   },
-  'icon.heart-24': {
+  'base.icon.heart-24': {
     _original: {
       $value: '/icon/heart-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heart-24',
+    id: 'base.icon.heart-24',
     $type: 'link',
     $value: '/icon/heart-24.svg',
   },
-  'icon.heart-fill-16': {
+  'base.icon.heart-fill-16': {
     _original: {
       $value: '/icon/heart-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heart-fill-16',
+    id: 'base.icon.heart-fill-16',
     $type: 'link',
     $value: '/icon/heart-fill-16.svg',
   },
-  'icon.heart-fill-24': {
+  'base.icon.heart-fill-24': {
     _original: {
       $value: '/icon/heart-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.heart-fill-24',
+    id: 'base.icon.heart-fill-24',
     $type: 'link',
     $value: '/icon/heart-fill-24.svg',
   },
-  'icon.history-16': {
+  'base.icon.history-16': {
     _original: {
       $value: '/icon/history-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.history-16',
+    id: 'base.icon.history-16',
     $type: 'link',
     $value: '/icon/history-16.svg',
   },
-  'icon.history-24': {
+  'base.icon.history-24': {
     _original: {
       $value: '/icon/history-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.history-24',
+    id: 'base.icon.history-24',
     $type: 'link',
     $value: '/icon/history-24.svg',
   },
-  'icon.home-16': {
+  'base.icon.home-16': {
     _original: {
       $value: '/icon/home-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.home-16',
+    id: 'base.icon.home-16',
     $type: 'link',
     $value: '/icon/home-16.svg',
   },
-  'icon.home-24': {
+  'base.icon.home-24': {
     _original: {
       $value: '/icon/home-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.home-24',
+    id: 'base.icon.home-24',
     $type: 'link',
     $value: '/icon/home-24.svg',
   },
-  'icon.home-fill-24': {
+  'base.icon.home-fill-24': {
     _original: {
       $value: '/icon/home-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.home-fill-24',
+    id: 'base.icon.home-fill-24',
     $type: 'link',
     $value: '/icon/home-fill-24.svg',
   },
-  'icon.horizontal-rule-16': {
+  'base.icon.horizontal-rule-16': {
     _original: {
       $value: '/icon/horizontal-rule-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.horizontal-rule-16',
+    id: 'base.icon.horizontal-rule-16',
     $type: 'link',
     $value: '/icon/horizontal-rule-16.svg',
   },
-  'icon.horizontal-rule-24': {
+  'base.icon.horizontal-rule-24': {
     _original: {
       $value: '/icon/horizontal-rule-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.horizontal-rule-24',
+    id: 'base.icon.horizontal-rule-24',
     $type: 'link',
     $value: '/icon/horizontal-rule-24.svg',
   },
-  'icon.hourglass-16': {
+  'base.icon.hourglass-16': {
     _original: {
       $value: '/icon/hourglass-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hourglass-16',
+    id: 'base.icon.hourglass-16',
     $type: 'link',
     $value: '/icon/hourglass-16.svg',
   },
-  'icon.hourglass-24': {
+  'base.icon.hourglass-24': {
     _original: {
       $value: '/icon/hourglass-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hourglass-24',
+    id: 'base.icon.hourglass-24',
     $type: 'link',
     $value: '/icon/hourglass-24.svg',
   },
-  'icon.hubot-16': {
+  'base.icon.hubot-16': {
     _original: {
       $value: '/icon/hubot-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hubot-16',
+    id: 'base.icon.hubot-16',
     $type: 'link',
     $value: '/icon/hubot-16.svg',
   },
-  'icon.hubot-24': {
+  'base.icon.hubot-24': {
     _original: {
       $value: '/icon/hubot-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.hubot-24',
+    id: 'base.icon.hubot-24',
     $type: 'link',
     $value: '/icon/hubot-24.svg',
   },
-  'icon.image-16': {
+  'base.icon.image-16': {
     _original: {
       $value: '/icon/image-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.image-16',
+    id: 'base.icon.image-16',
     $type: 'link',
     $value: '/icon/image-16.svg',
   },
-  'icon.image-24': {
+  'base.icon.image-24': {
     _original: {
       $value: '/icon/image-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.image-24',
+    id: 'base.icon.image-24',
     $type: 'link',
     $value: '/icon/image-24.svg',
   },
-  'icon.inbox-16': {
+  'base.icon.inbox-16': {
     _original: {
       $value: '/icon/inbox-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.inbox-16',
+    id: 'base.icon.inbox-16',
     $type: 'link',
     $value: '/icon/inbox-16.svg',
   },
-  'icon.inbox-24': {
+  'base.icon.inbox-24': {
     _original: {
       $value: '/icon/inbox-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.inbox-24',
+    id: 'base.icon.inbox-24',
     $type: 'link',
     $value: '/icon/inbox-24.svg',
   },
-  'icon.infinity-16': {
+  'base.icon.infinity-16': {
     _original: {
       $value: '/icon/infinity-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.infinity-16',
+    id: 'base.icon.infinity-16',
     $type: 'link',
     $value: '/icon/infinity-16.svg',
   },
-  'icon.infinity-24': {
+  'base.icon.infinity-24': {
     _original: {
       $value: '/icon/infinity-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.infinity-24',
+    id: 'base.icon.infinity-24',
     $type: 'link',
     $value: '/icon/infinity-24.svg',
   },
-  'icon.info-16': {
+  'base.icon.info-16': {
     _original: {
       $value: '/icon/info-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.info-16',
+    id: 'base.icon.info-16',
     $type: 'link',
     $value: '/icon/info-16.svg',
   },
-  'icon.info-24': {
+  'base.icon.info-24': {
     _original: {
       $value: '/icon/info-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.info-24',
+    id: 'base.icon.info-24',
     $type: 'link',
     $value: '/icon/info-24.svg',
   },
-  'icon.issue-closed-16': {
+  'base.icon.issue-closed-16': {
     _original: {
       $value: '/icon/issue-closed-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-closed-16',
+    id: 'base.icon.issue-closed-16',
     $type: 'link',
     $value: '/icon/issue-closed-16.svg',
   },
-  'icon.issue-closed-24': {
+  'base.icon.issue-closed-24': {
     _original: {
       $value: '/icon/issue-closed-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-closed-24',
+    id: 'base.icon.issue-closed-24',
     $type: 'link',
     $value: '/icon/issue-closed-24.svg',
   },
-  'icon.issue-draft-16': {
+  'base.icon.issue-draft-16': {
     _original: {
       $value: '/icon/issue-draft-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-draft-16',
+    id: 'base.icon.issue-draft-16',
     $type: 'link',
     $value: '/icon/issue-draft-16.svg',
   },
-  'icon.issue-draft-24': {
+  'base.icon.issue-draft-24': {
     _original: {
       $value: '/icon/issue-draft-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-draft-24',
+    id: 'base.icon.issue-draft-24',
     $type: 'link',
     $value: '/icon/issue-draft-24.svg',
   },
-  'icon.issue-opened-16': {
+  'base.icon.issue-opened-16': {
     _original: {
       $value: '/icon/issue-opened-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-opened-16',
+    id: 'base.icon.issue-opened-16',
     $type: 'link',
     $value: '/icon/issue-opened-16.svg',
   },
-  'icon.issue-opened-24': {
+  'base.icon.issue-opened-24': {
     _original: {
       $value: '/icon/issue-opened-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-opened-24',
+    id: 'base.icon.issue-opened-24',
     $type: 'link',
     $value: '/icon/issue-opened-24.svg',
   },
-  'icon.issue-reopened-16': {
+  'base.icon.issue-reopened-16': {
     _original: {
       $value: '/icon/issue-reopened-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-reopened-16',
+    id: 'base.icon.issue-reopened-16',
     $type: 'link',
     $value: '/icon/issue-reopened-16.svg',
   },
-  'icon.issue-reopened-24': {
+  'base.icon.issue-reopened-24': {
     _original: {
       $value: '/icon/issue-reopened-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.issue-reopened-24',
+    id: 'base.icon.issue-reopened-24',
     $type: 'link',
     $value: '/icon/issue-reopened-24.svg',
   },
-  'icon.italic-16': {
+  'base.icon.italic-16': {
     _original: {
       $value: '/icon/italic-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.italic-16',
+    id: 'base.icon.italic-16',
     $type: 'link',
     $value: '/icon/italic-16.svg',
   },
-  'icon.italic-24': {
+  'base.icon.italic-24': {
     _original: {
       $value: '/icon/italic-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.italic-24',
+    id: 'base.icon.italic-24',
     $type: 'link',
     $value: '/icon/italic-24.svg',
   },
-  'icon.iterations-16': {
+  'base.icon.iterations-16': {
     _original: {
       $value: '/icon/iterations-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.iterations-16',
+    id: 'base.icon.iterations-16',
     $type: 'link',
     $value: '/icon/iterations-16.svg',
   },
-  'icon.iterations-24': {
+  'base.icon.iterations-24': {
     _original: {
       $value: '/icon/iterations-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.iterations-24',
+    id: 'base.icon.iterations-24',
     $type: 'link',
     $value: '/icon/iterations-24.svg',
   },
-  'icon.kebab-horizontal-16': {
+  'base.icon.kebab-horizontal-16': {
     _original: {
       $value: '/icon/kebab-horizontal-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.kebab-horizontal-16',
+    id: 'base.icon.kebab-horizontal-16',
     $type: 'link',
     $value: '/icon/kebab-horizontal-16.svg',
   },
-  'icon.kebab-horizontal-24': {
+  'base.icon.kebab-horizontal-24': {
     _original: {
       $value: '/icon/kebab-horizontal-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.kebab-horizontal-24',
+    id: 'base.icon.kebab-horizontal-24',
     $type: 'link',
     $value: '/icon/kebab-horizontal-24.svg',
   },
-  'icon.key-16': {
+  'base.icon.key-16': {
     _original: {
       $value: '/icon/key-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.key-16',
+    id: 'base.icon.key-16',
     $type: 'link',
     $value: '/icon/key-16.svg',
   },
-  'icon.key-24': {
+  'base.icon.key-24': {
     _original: {
       $value: '/icon/key-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.key-24',
+    id: 'base.icon.key-24',
     $type: 'link',
     $value: '/icon/key-24.svg',
   },
-  'icon.key-asterisk-16': {
+  'base.icon.key-asterisk-16': {
     _original: {
       $value: '/icon/key-asterisk-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.key-asterisk-16',
+    id: 'base.icon.key-asterisk-16',
     $type: 'link',
     $value: '/icon/key-asterisk-16.svg',
   },
-  'icon.law-16': {
+  'base.icon.law-16': {
     _original: {
       $value: '/icon/law-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.law-16',
+    id: 'base.icon.law-16',
     $type: 'link',
     $value: '/icon/law-16.svg',
   },
-  'icon.law-24': {
+  'base.icon.law-24': {
     _original: {
       $value: '/icon/law-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.law-24',
+    id: 'base.icon.law-24',
     $type: 'link',
     $value: '/icon/law-24.svg',
   },
-  'icon.light-bulb-16': {
+  'base.icon.light-bulb-16': {
     _original: {
       $value: '/icon/light-bulb-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.light-bulb-16',
+    id: 'base.icon.light-bulb-16',
     $type: 'link',
     $value: '/icon/light-bulb-16.svg',
   },
-  'icon.light-bulb-24': {
+  'base.icon.light-bulb-24': {
     _original: {
       $value: '/icon/light-bulb-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.light-bulb-24',
+    id: 'base.icon.light-bulb-24',
     $type: 'link',
     $value: '/icon/light-bulb-24.svg',
   },
-  'icon.link-16': {
+  'base.icon.link-16': {
     _original: {
       $value: '/icon/link-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.link-16',
+    id: 'base.icon.link-16',
     $type: 'link',
     $value: '/icon/link-16.svg',
   },
-  'icon.link-24': {
+  'base.icon.link-24': {
     _original: {
       $value: '/icon/link-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.link-24',
+    id: 'base.icon.link-24',
     $type: 'link',
     $value: '/icon/link-24.svg',
   },
-  'icon.link-external-16': {
+  'base.icon.link-external-16': {
     _original: {
       $value: '/icon/link-external-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.link-external-16',
+    id: 'base.icon.link-external-16',
     $type: 'link',
     $value: '/icon/link-external-16.svg',
   },
-  'icon.link-external-24': {
+  'base.icon.link-external-24': {
     _original: {
       $value: '/icon/link-external-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.link-external-24',
+    id: 'base.icon.link-external-24',
     $type: 'link',
     $value: '/icon/link-external-24.svg',
   },
-  'icon.list-ordered-16': {
+  'base.icon.list-ordered-16': {
     _original: {
       $value: '/icon/list-ordered-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.list-ordered-16',
+    id: 'base.icon.list-ordered-16',
     $type: 'link',
     $value: '/icon/list-ordered-16.svg',
   },
-  'icon.list-ordered-24': {
+  'base.icon.list-ordered-24': {
     _original: {
       $value: '/icon/list-ordered-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.list-ordered-24',
+    id: 'base.icon.list-ordered-24',
     $type: 'link',
     $value: '/icon/list-ordered-24.svg',
   },
-  'icon.list-unordered-16': {
+  'base.icon.list-unordered-16': {
     _original: {
       $value: '/icon/list-unordered-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.list-unordered-16',
+    id: 'base.icon.list-unordered-16',
     $type: 'link',
     $value: '/icon/list-unordered-16.svg',
   },
-  'icon.list-unordered-24': {
+  'base.icon.list-unordered-24': {
     _original: {
       $value: '/icon/list-unordered-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.list-unordered-24',
+    id: 'base.icon.list-unordered-24',
     $type: 'link',
     $value: '/icon/list-unordered-24.svg',
   },
-  'icon.location-16': {
+  'base.icon.location-16': {
     _original: {
       $value: '/icon/location-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.location-16',
+    id: 'base.icon.location-16',
     $type: 'link',
     $value: '/icon/location-16.svg',
   },
-  'icon.location-24': {
+  'base.icon.location-24': {
     _original: {
       $value: '/icon/location-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.location-24',
+    id: 'base.icon.location-24',
     $type: 'link',
     $value: '/icon/location-24.svg',
   },
-  'icon.lock-16': {
+  'base.icon.lock-16': {
     _original: {
       $value: '/icon/lock-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.lock-16',
+    id: 'base.icon.lock-16',
     $type: 'link',
     $value: '/icon/lock-16.svg',
   },
-  'icon.lock-24': {
+  'base.icon.lock-24': {
     _original: {
       $value: '/icon/lock-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.lock-24',
+    id: 'base.icon.lock-24',
     $type: 'link',
     $value: '/icon/lock-24.svg',
   },
-  'icon.logo-gist-16': {
+  'base.icon.logo-gist-16': {
     _original: {
       $value: '/icon/logo-gist-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.logo-gist-16',
+    id: 'base.icon.logo-gist-16',
     $type: 'link',
     $value: '/icon/logo-gist-16.svg',
   },
-  'icon.logo-github-16': {
+  'base.icon.logo-github-16': {
     _original: {
       $value: '/icon/logo-github-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.logo-github-16',
+    id: 'base.icon.logo-github-16',
     $type: 'link',
     $value: '/icon/logo-github-16.svg',
   },
-  'icon.mail-16': {
+  'base.icon.mail-16': {
     _original: {
       $value: '/icon/mail-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mail-16',
+    id: 'base.icon.mail-16',
     $type: 'link',
     $value: '/icon/mail-16.svg',
   },
-  'icon.mail-24': {
+  'base.icon.mail-24': {
     _original: {
       $value: '/icon/mail-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mail-24',
+    id: 'base.icon.mail-24',
     $type: 'link',
     $value: '/icon/mail-24.svg',
   },
-  'icon.mark-github-16': {
+  'base.icon.mark-github-16': {
     _original: {
       $value: '/icon/mark-github-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mark-github-16',
+    id: 'base.icon.mark-github-16',
     $type: 'link',
     $value: '/icon/mark-github-16.svg',
   },
-  'icon.markdown-16': {
+  'base.icon.markdown-16': {
     _original: {
       $value: '/icon/markdown-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.markdown-16',
+    id: 'base.icon.markdown-16',
     $type: 'link',
     $value: '/icon/markdown-16.svg',
   },
-  'icon.megaphone-16': {
+  'base.icon.megaphone-16': {
     _original: {
       $value: '/icon/megaphone-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.megaphone-16',
+    id: 'base.icon.megaphone-16',
     $type: 'link',
     $value: '/icon/megaphone-16.svg',
   },
-  'icon.megaphone-24': {
+  'base.icon.megaphone-24': {
     _original: {
       $value: '/icon/megaphone-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.megaphone-24',
+    id: 'base.icon.megaphone-24',
     $type: 'link',
     $value: '/icon/megaphone-24.svg',
   },
-  'icon.mention-16': {
+  'base.icon.mention-16': {
     _original: {
       $value: '/icon/mention-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mention-16',
+    id: 'base.icon.mention-16',
     $type: 'link',
     $value: '/icon/mention-16.svg',
   },
-  'icon.mention-24': {
+  'base.icon.mention-24': {
     _original: {
       $value: '/icon/mention-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mention-24',
+    id: 'base.icon.mention-24',
     $type: 'link',
     $value: '/icon/mention-24.svg',
   },
-  'icon.meter-16': {
+  'base.icon.meter-16': {
     _original: {
       $value: '/icon/meter-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.meter-16',
+    id: 'base.icon.meter-16',
     $type: 'link',
     $value: '/icon/meter-16.svg',
   },
-  'icon.milestone-16': {
+  'base.icon.milestone-16': {
     _original: {
       $value: '/icon/milestone-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.milestone-16',
+    id: 'base.icon.milestone-16',
     $type: 'link',
     $value: '/icon/milestone-16.svg',
   },
-  'icon.milestone-24': {
+  'base.icon.milestone-24': {
     _original: {
       $value: '/icon/milestone-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.milestone-24',
+    id: 'base.icon.milestone-24',
     $type: 'link',
     $value: '/icon/milestone-24.svg',
   },
-  'icon.mirror-16': {
+  'base.icon.mirror-16': {
     _original: {
       $value: '/icon/mirror-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mirror-16',
+    id: 'base.icon.mirror-16',
     $type: 'link',
     $value: '/icon/mirror-16.svg',
   },
-  'icon.mirror-24': {
+  'base.icon.mirror-24': {
     _original: {
       $value: '/icon/mirror-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mirror-24',
+    id: 'base.icon.mirror-24',
     $type: 'link',
     $value: '/icon/mirror-24.svg',
   },
-  'icon.moon-16': {
+  'base.icon.moon-16': {
     _original: {
       $value: '/icon/moon-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.moon-16',
+    id: 'base.icon.moon-16',
     $type: 'link',
     $value: '/icon/moon-16.svg',
   },
-  'icon.moon-24': {
+  'base.icon.moon-24': {
     _original: {
       $value: '/icon/moon-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.moon-24',
+    id: 'base.icon.moon-24',
     $type: 'link',
     $value: '/icon/moon-24.svg',
   },
-  'icon.mortar-board-16': {
+  'base.icon.mortar-board-16': {
     _original: {
       $value: '/icon/mortar-board-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mortar-board-16',
+    id: 'base.icon.mortar-board-16',
     $type: 'link',
     $value: '/icon/mortar-board-16.svg',
   },
-  'icon.mortar-board-24': {
+  'base.icon.mortar-board-24': {
     _original: {
       $value: '/icon/mortar-board-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mortar-board-24',
+    id: 'base.icon.mortar-board-24',
     $type: 'link',
     $value: '/icon/mortar-board-24.svg',
   },
-  'icon.multi-select-16': {
+  'base.icon.multi-select-16': {
     _original: {
       $value: '/icon/multi-select-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.multi-select-16',
+    id: 'base.icon.multi-select-16',
     $type: 'link',
     $value: '/icon/multi-select-16.svg',
   },
-  'icon.multi-select-24': {
+  'base.icon.multi-select-24': {
     _original: {
       $value: '/icon/multi-select-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.multi-select-24',
+    id: 'base.icon.multi-select-24',
     $type: 'link',
     $value: '/icon/multi-select-24.svg',
   },
-  'icon.mute-16': {
+  'base.icon.mute-16': {
     _original: {
       $value: '/icon/mute-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mute-16',
+    id: 'base.icon.mute-16',
     $type: 'link',
     $value: '/icon/mute-16.svg',
   },
-  'icon.mute-24': {
+  'base.icon.mute-24': {
     _original: {
       $value: '/icon/mute-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.mute-24',
+    id: 'base.icon.mute-24',
     $type: 'link',
     $value: '/icon/mute-24.svg',
   },
-  'icon.no-entry-16': {
+  'base.icon.no-entry-16': {
     _original: {
       $value: '/icon/no-entry-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.no-entry-16',
+    id: 'base.icon.no-entry-16',
     $type: 'link',
     $value: '/icon/no-entry-16.svg',
   },
-  'icon.no-entry-24': {
+  'base.icon.no-entry-24': {
     _original: {
       $value: '/icon/no-entry-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.no-entry-24',
+    id: 'base.icon.no-entry-24',
     $type: 'link',
     $value: '/icon/no-entry-24.svg',
   },
-  'icon.no-entry-fill-12': {
+  'base.icon.no-entry-fill-12': {
     _original: {
       $value: '/icon/no-entry-fill-12.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.no-entry-fill-12',
+    id: 'base.icon.no-entry-fill-12',
     $type: 'link',
     $value: '/icon/no-entry-fill-12.svg',
   },
-  'icon.north-star-16': {
+  'base.icon.north-star-16': {
     _original: {
       $value: '/icon/north-star-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.north-star-16',
+    id: 'base.icon.north-star-16',
     $type: 'link',
     $value: '/icon/north-star-16.svg',
   },
-  'icon.north-star-24': {
+  'base.icon.north-star-24': {
     _original: {
       $value: '/icon/north-star-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.north-star-24',
+    id: 'base.icon.north-star-24',
     $type: 'link',
     $value: '/icon/north-star-24.svg',
   },
-  'icon.note-16': {
+  'base.icon.note-16': {
     _original: {
       $value: '/icon/note-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.note-16',
+    id: 'base.icon.note-16',
     $type: 'link',
     $value: '/icon/note-16.svg',
   },
-  'icon.note-24': {
+  'base.icon.note-24': {
     _original: {
       $value: '/icon/note-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.note-24',
+    id: 'base.icon.note-24',
     $type: 'link',
     $value: '/icon/note-24.svg',
   },
-  'icon.number-16': {
+  'base.icon.number-16': {
     _original: {
       $value: '/icon/number-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.number-16',
+    id: 'base.icon.number-16',
     $type: 'link',
     $value: '/icon/number-16.svg',
   },
-  'icon.number-24': {
+  'base.icon.number-24': {
     _original: {
       $value: '/icon/number-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.number-24',
+    id: 'base.icon.number-24',
     $type: 'link',
     $value: '/icon/number-24.svg',
   },
-  'icon.organization-16': {
+  'base.icon.organization-16': {
     _original: {
       $value: '/icon/organization-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.organization-16',
+    id: 'base.icon.organization-16',
     $type: 'link',
     $value: '/icon/organization-16.svg',
   },
-  'icon.organization-24': {
+  'base.icon.organization-24': {
     _original: {
       $value: '/icon/organization-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.organization-24',
+    id: 'base.icon.organization-24',
     $type: 'link',
     $value: '/icon/organization-24.svg',
   },
-  'icon.package-16': {
+  'base.icon.package-16': {
     _original: {
       $value: '/icon/package-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-16',
+    id: 'base.icon.package-16',
     $type: 'link',
     $value: '/icon/package-16.svg',
   },
-  'icon.package-24': {
+  'base.icon.package-24': {
     _original: {
       $value: '/icon/package-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-24',
+    id: 'base.icon.package-24',
     $type: 'link',
     $value: '/icon/package-24.svg',
   },
-  'icon.package-dependencies-16': {
+  'base.icon.package-dependencies-16': {
     _original: {
       $value: '/icon/package-dependencies-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-dependencies-16',
+    id: 'base.icon.package-dependencies-16',
     $type: 'link',
     $value: '/icon/package-dependencies-16.svg',
   },
-  'icon.package-dependencies-24': {
+  'base.icon.package-dependencies-24': {
     _original: {
       $value: '/icon/package-dependencies-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-dependencies-24',
+    id: 'base.icon.package-dependencies-24',
     $type: 'link',
     $value: '/icon/package-dependencies-24.svg',
   },
-  'icon.package-dependents-16': {
+  'base.icon.package-dependents-16': {
     _original: {
       $value: '/icon/package-dependents-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-dependents-16',
+    id: 'base.icon.package-dependents-16',
     $type: 'link',
     $value: '/icon/package-dependents-16.svg',
   },
-  'icon.package-dependents-24': {
+  'base.icon.package-dependents-24': {
     _original: {
       $value: '/icon/package-dependents-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.package-dependents-24',
+    id: 'base.icon.package-dependents-24',
     $type: 'link',
     $value: '/icon/package-dependents-24.svg',
   },
-  'icon.paintbrush-16': {
+  'base.icon.paintbrush-16': {
     _original: {
       $value: '/icon/paintbrush-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.paintbrush-16',
+    id: 'base.icon.paintbrush-16',
     $type: 'link',
     $value: '/icon/paintbrush-16.svg',
   },
-  'icon.paper-airplane-16': {
+  'base.icon.paper-airplane-16': {
     _original: {
       $value: '/icon/paper-airplane-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.paper-airplane-16',
+    id: 'base.icon.paper-airplane-16',
     $type: 'link',
     $value: '/icon/paper-airplane-16.svg',
   },
-  'icon.paper-airplane-24': {
+  'base.icon.paper-airplane-24': {
     _original: {
       $value: '/icon/paper-airplane-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.paper-airplane-24',
+    id: 'base.icon.paper-airplane-24',
     $type: 'link',
     $value: '/icon/paper-airplane-24.svg',
   },
-  'icon.paste-16': {
+  'base.icon.paste-16': {
     _original: {
       $value: '/icon/paste-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.paste-16',
+    id: 'base.icon.paste-16',
     $type: 'link',
     $value: '/icon/paste-16.svg',
   },
-  'icon.paste-24': {
+  'base.icon.paste-24': {
     _original: {
       $value: '/icon/paste-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.paste-24',
+    id: 'base.icon.paste-24',
     $type: 'link',
     $value: '/icon/paste-24.svg',
   },
-  'icon.pencil-16': {
+  'base.icon.pencil-16': {
     _original: {
       $value: '/icon/pencil-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pencil-16',
+    id: 'base.icon.pencil-16',
     $type: 'link',
     $value: '/icon/pencil-16.svg',
   },
-  'icon.pencil-24': {
+  'base.icon.pencil-24': {
     _original: {
       $value: '/icon/pencil-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pencil-24',
+    id: 'base.icon.pencil-24',
     $type: 'link',
     $value: '/icon/pencil-24.svg',
   },
-  'icon.people-16': {
+  'base.icon.people-16': {
     _original: {
       $value: '/icon/people-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.people-16',
+    id: 'base.icon.people-16',
     $type: 'link',
     $value: '/icon/people-16.svg',
   },
-  'icon.people-24': {
+  'base.icon.people-24': {
     _original: {
       $value: '/icon/people-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.people-24',
+    id: 'base.icon.people-24',
     $type: 'link',
     $value: '/icon/people-24.svg',
   },
-  'icon.person-16': {
+  'base.icon.person-16': {
     _original: {
       $value: '/icon/person-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-16',
+    id: 'base.icon.person-16',
     $type: 'link',
     $value: '/icon/person-16.svg',
   },
-  'icon.person-24': {
+  'base.icon.person-24': {
     _original: {
       $value: '/icon/person-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-24',
+    id: 'base.icon.person-24',
     $type: 'link',
     $value: '/icon/person-24.svg',
   },
-  'icon.person-add-16': {
+  'base.icon.person-add-16': {
     _original: {
       $value: '/icon/person-add-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-add-16',
+    id: 'base.icon.person-add-16',
     $type: 'link',
     $value: '/icon/person-add-16.svg',
   },
-  'icon.person-add-24': {
+  'base.icon.person-add-24': {
     _original: {
       $value: '/icon/person-add-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-add-24',
+    id: 'base.icon.person-add-24',
     $type: 'link',
     $value: '/icon/person-add-24.svg',
   },
-  'icon.person-fill-16': {
+  'base.icon.person-fill-16': {
     _original: {
       $value: '/icon/person-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-fill-16',
+    id: 'base.icon.person-fill-16',
     $type: 'link',
     $value: '/icon/person-fill-16.svg',
   },
-  'icon.person-fill-24': {
+  'base.icon.person-fill-24': {
     _original: {
       $value: '/icon/person-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.person-fill-24',
+    id: 'base.icon.person-fill-24',
     $type: 'link',
     $value: '/icon/person-fill-24.svg',
   },
-  'icon.pin-16': {
+  'base.icon.pin-16': {
     _original: {
       $value: '/icon/pin-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pin-16',
+    id: 'base.icon.pin-16',
     $type: 'link',
     $value: '/icon/pin-16.svg',
   },
-  'icon.pin-24': {
+  'base.icon.pin-24': {
     _original: {
       $value: '/icon/pin-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pin-24',
+    id: 'base.icon.pin-24',
     $type: 'link',
     $value: '/icon/pin-24.svg',
   },
-  'icon.play-16': {
+  'base.icon.play-16': {
     _original: {
       $value: '/icon/play-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.play-16',
+    id: 'base.icon.play-16',
     $type: 'link',
     $value: '/icon/play-16.svg',
   },
-  'icon.play-24': {
+  'base.icon.play-24': {
     _original: {
       $value: '/icon/play-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.play-24',
+    id: 'base.icon.play-24',
     $type: 'link',
     $value: '/icon/play-24.svg',
   },
-  'icon.plug-16': {
+  'base.icon.plug-16': {
     _original: {
       $value: '/icon/plug-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plug-16',
+    id: 'base.icon.plug-16',
     $type: 'link',
     $value: '/icon/plug-16.svg',
   },
-  'icon.plug-24': {
+  'base.icon.plug-24': {
     _original: {
       $value: '/icon/plug-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plug-24',
+    id: 'base.icon.plug-24',
     $type: 'link',
     $value: '/icon/plug-24.svg',
   },
-  'icon.plus-16': {
+  'base.icon.plus-16': {
     _original: {
       $value: '/icon/plus-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plus-16',
+    id: 'base.icon.plus-16',
     $type: 'link',
     $value: '/icon/plus-16.svg',
   },
-  'icon.plus-24': {
+  'base.icon.plus-24': {
     _original: {
       $value: '/icon/plus-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plus-24',
+    id: 'base.icon.plus-24',
     $type: 'link',
     $value: '/icon/plus-24.svg',
   },
-  'icon.plus-circle-16': {
+  'base.icon.plus-circle-16': {
     _original: {
       $value: '/icon/plus-circle-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plus-circle-16',
+    id: 'base.icon.plus-circle-16',
     $type: 'link',
     $value: '/icon/plus-circle-16.svg',
   },
-  'icon.plus-circle-24': {
+  'base.icon.plus-circle-24': {
     _original: {
       $value: '/icon/plus-circle-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.plus-circle-24',
+    id: 'base.icon.plus-circle-24',
     $type: 'link',
     $value: '/icon/plus-circle-24.svg',
   },
-  'icon.project-16': {
+  'base.icon.project-16': {
     _original: {
       $value: '/icon/project-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.project-16',
+    id: 'base.icon.project-16',
     $type: 'link',
     $value: '/icon/project-16.svg',
   },
-  'icon.project-24': {
+  'base.icon.project-24': {
     _original: {
       $value: '/icon/project-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.project-24',
+    id: 'base.icon.project-24',
     $type: 'link',
     $value: '/icon/project-24.svg',
   },
-  'icon.pulse-16': {
+  'base.icon.pulse-16': {
     _original: {
       $value: '/icon/pulse-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pulse-16',
+    id: 'base.icon.pulse-16',
     $type: 'link',
     $value: '/icon/pulse-16.svg',
   },
-  'icon.pulse-24': {
+  'base.icon.pulse-24': {
     _original: {
       $value: '/icon/pulse-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.pulse-24',
+    id: 'base.icon.pulse-24',
     $type: 'link',
     $value: '/icon/pulse-24.svg',
   },
-  'icon.question-16': {
+  'base.icon.question-16': {
     _original: {
       $value: '/icon/question-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.question-16',
+    id: 'base.icon.question-16',
     $type: 'link',
     $value: '/icon/question-16.svg',
   },
-  'icon.question-24': {
+  'base.icon.question-24': {
     _original: {
       $value: '/icon/question-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.question-24',
+    id: 'base.icon.question-24',
     $type: 'link',
     $value: '/icon/question-24.svg',
   },
-  'icon.quote-16': {
+  'base.icon.quote-16': {
     _original: {
       $value: '/icon/quote-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.quote-16',
+    id: 'base.icon.quote-16',
     $type: 'link',
     $value: '/icon/quote-16.svg',
   },
-  'icon.quote-24': {
+  'base.icon.quote-24': {
     _original: {
       $value: '/icon/quote-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.quote-24',
+    id: 'base.icon.quote-24',
     $type: 'link',
     $value: '/icon/quote-24.svg',
   },
-  'icon.reply-16': {
+  'base.icon.reply-16': {
     _original: {
       $value: '/icon/reply-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.reply-16',
+    id: 'base.icon.reply-16',
     $type: 'link',
     $value: '/icon/reply-16.svg',
   },
-  'icon.reply-24': {
+  'base.icon.reply-24': {
     _original: {
       $value: '/icon/reply-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.reply-24',
+    id: 'base.icon.reply-24',
     $type: 'link',
     $value: '/icon/reply-24.svg',
   },
-  'icon.repo-16': {
+  'base.icon.repo-16': {
     _original: {
       $value: '/icon/repo-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-16',
+    id: 'base.icon.repo-16',
     $type: 'link',
     $value: '/icon/repo-16.svg',
   },
-  'icon.repo-24': {
+  'base.icon.repo-24': {
     _original: {
       $value: '/icon/repo-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-24',
+    id: 'base.icon.repo-24',
     $type: 'link',
     $value: '/icon/repo-24.svg',
   },
-  'icon.repo-clone-16': {
+  'base.icon.repo-clone-16': {
     _original: {
       $value: '/icon/repo-clone-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-clone-16',
+    id: 'base.icon.repo-clone-16',
     $type: 'link',
     $value: '/icon/repo-clone-16.svg',
   },
-  'icon.repo-forked-16': {
+  'base.icon.repo-forked-16': {
     _original: {
       $value: '/icon/repo-forked-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-forked-16',
+    id: 'base.icon.repo-forked-16',
     $type: 'link',
     $value: '/icon/repo-forked-16.svg',
   },
-  'icon.repo-forked-24': {
+  'base.icon.repo-forked-24': {
     _original: {
       $value: '/icon/repo-forked-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-forked-24',
+    id: 'base.icon.repo-forked-24',
     $type: 'link',
     $value: '/icon/repo-forked-24.svg',
   },
-  'icon.repo-pull-16': {
+  'base.icon.repo-pull-16': {
     _original: {
       $value: '/icon/repo-pull-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-pull-16',
+    id: 'base.icon.repo-pull-16',
     $type: 'link',
     $value: '/icon/repo-pull-16.svg',
   },
-  'icon.repo-push-16': {
+  'base.icon.repo-push-16': {
     _original: {
       $value: '/icon/repo-push-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-push-16',
+    id: 'base.icon.repo-push-16',
     $type: 'link',
     $value: '/icon/repo-push-16.svg',
   },
-  'icon.repo-push-24': {
+  'base.icon.repo-push-24': {
     _original: {
       $value: '/icon/repo-push-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-push-24',
+    id: 'base.icon.repo-push-24',
     $type: 'link',
     $value: '/icon/repo-push-24.svg',
   },
-  'icon.repo-template-16': {
+  'base.icon.repo-template-16': {
     _original: {
       $value: '/icon/repo-template-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-template-16',
+    id: 'base.icon.repo-template-16',
     $type: 'link',
     $value: '/icon/repo-template-16.svg',
   },
-  'icon.repo-template-24': {
+  'base.icon.repo-template-24': {
     _original: {
       $value: '/icon/repo-template-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.repo-template-24',
+    id: 'base.icon.repo-template-24',
     $type: 'link',
     $value: '/icon/repo-template-24.svg',
   },
-  'icon.report-16': {
+  'base.icon.report-16': {
     _original: {
       $value: '/icon/report-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.report-16',
+    id: 'base.icon.report-16',
     $type: 'link',
     $value: '/icon/report-16.svg',
   },
-  'icon.report-24': {
+  'base.icon.report-24': {
     _original: {
       $value: '/icon/report-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.report-24',
+    id: 'base.icon.report-24',
     $type: 'link',
     $value: '/icon/report-24.svg',
   },
-  'icon.rocket-16': {
+  'base.icon.rocket-16': {
     _original: {
       $value: '/icon/rocket-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rocket-16',
+    id: 'base.icon.rocket-16',
     $type: 'link',
     $value: '/icon/rocket-16.svg',
   },
-  'icon.rocket-24': {
+  'base.icon.rocket-24': {
     _original: {
       $value: '/icon/rocket-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rocket-24',
+    id: 'base.icon.rocket-24',
     $type: 'link',
     $value: '/icon/rocket-24.svg',
   },
-  'icon.rows-16': {
+  'base.icon.rows-16': {
     _original: {
       $value: '/icon/rows-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rows-16',
+    id: 'base.icon.rows-16',
     $type: 'link',
     $value: '/icon/rows-16.svg',
   },
-  'icon.rows-24': {
+  'base.icon.rows-24': {
     _original: {
       $value: '/icon/rows-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rows-24',
+    id: 'base.icon.rows-24',
     $type: 'link',
     $value: '/icon/rows-24.svg',
   },
-  'icon.rss-16': {
+  'base.icon.rss-16': {
     _original: {
       $value: '/icon/rss-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rss-16',
+    id: 'base.icon.rss-16',
     $type: 'link',
     $value: '/icon/rss-16.svg',
   },
-  'icon.rss-24': {
+  'base.icon.rss-24': {
     _original: {
       $value: '/icon/rss-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.rss-24',
+    id: 'base.icon.rss-24',
     $type: 'link',
     $value: '/icon/rss-24.svg',
   },
-  'icon.ruby-16': {
+  'base.icon.ruby-16': {
     _original: {
       $value: '/icon/ruby-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.ruby-16',
+    id: 'base.icon.ruby-16',
     $type: 'link',
     $value: '/icon/ruby-16.svg',
   },
-  'icon.ruby-24': {
+  'base.icon.ruby-24': {
     _original: {
       $value: '/icon/ruby-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.ruby-24',
+    id: 'base.icon.ruby-24',
     $type: 'link',
     $value: '/icon/ruby-24.svg',
   },
-  'icon.screen-full-16': {
+  'base.icon.screen-full-16': {
     _original: {
       $value: '/icon/screen-full-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.screen-full-16',
+    id: 'base.icon.screen-full-16',
     $type: 'link',
     $value: '/icon/screen-full-16.svg',
   },
-  'icon.screen-full-24': {
+  'base.icon.screen-full-24': {
     _original: {
       $value: '/icon/screen-full-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.screen-full-24',
+    id: 'base.icon.screen-full-24',
     $type: 'link',
     $value: '/icon/screen-full-24.svg',
   },
-  'icon.screen-normal-16': {
+  'base.icon.screen-normal-16': {
     _original: {
       $value: '/icon/screen-normal-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.screen-normal-16',
+    id: 'base.icon.screen-normal-16',
     $type: 'link',
     $value: '/icon/screen-normal-16.svg',
   },
-  'icon.screen-normal-24': {
+  'base.icon.screen-normal-24': {
     _original: {
       $value: '/icon/screen-normal-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.screen-normal-24',
+    id: 'base.icon.screen-normal-24',
     $type: 'link',
     $value: '/icon/screen-normal-24.svg',
   },
-  'icon.search-16': {
+  'base.icon.search-16': {
     _original: {
       $value: '/icon/search-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.search-16',
+    id: 'base.icon.search-16',
     $type: 'link',
     $value: '/icon/search-16.svg',
   },
-  'icon.search-24': {
+  'base.icon.search-24': {
     _original: {
       $value: '/icon/search-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.search-24',
+    id: 'base.icon.search-24',
     $type: 'link',
     $value: '/icon/search-24.svg',
   },
-  'icon.server-16': {
+  'base.icon.server-16': {
     _original: {
       $value: '/icon/server-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.server-16',
+    id: 'base.icon.server-16',
     $type: 'link',
     $value: '/icon/server-16.svg',
   },
-  'icon.server-24': {
+  'base.icon.server-24': {
     _original: {
       $value: '/icon/server-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.server-24',
+    id: 'base.icon.server-24',
     $type: 'link',
     $value: '/icon/server-24.svg',
   },
-  'icon.share-16': {
+  'base.icon.share-16': {
     _original: {
       $value: '/icon/share-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.share-16',
+    id: 'base.icon.share-16',
     $type: 'link',
     $value: '/icon/share-16.svg',
   },
-  'icon.share-24': {
+  'base.icon.share-24': {
     _original: {
       $value: '/icon/share-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.share-24',
+    id: 'base.icon.share-24',
     $type: 'link',
     $value: '/icon/share-24.svg',
   },
-  'icon.share-android-16': {
+  'base.icon.share-android-16': {
     _original: {
       $value: '/icon/share-android-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.share-android-16',
+    id: 'base.icon.share-android-16',
     $type: 'link',
     $value: '/icon/share-android-16.svg',
   },
-  'icon.share-android-24': {
+  'base.icon.share-android-24': {
     _original: {
       $value: '/icon/share-android-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.share-android-24',
+    id: 'base.icon.share-android-24',
     $type: 'link',
     $value: '/icon/share-android-24.svg',
   },
-  'icon.shield-16': {
+  'base.icon.shield-16': {
     _original: {
       $value: '/icon/shield-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-16',
+    id: 'base.icon.shield-16',
     $type: 'link',
     $value: '/icon/shield-16.svg',
   },
-  'icon.shield-24': {
+  'base.icon.shield-24': {
     _original: {
       $value: '/icon/shield-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-24',
+    id: 'base.icon.shield-24',
     $type: 'link',
     $value: '/icon/shield-24.svg',
   },
-  'icon.shield-check-16': {
+  'base.icon.shield-check-16': {
     _original: {
       $value: '/icon/shield-check-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-check-16',
+    id: 'base.icon.shield-check-16',
     $type: 'link',
     $value: '/icon/shield-check-16.svg',
   },
-  'icon.shield-check-24': {
+  'base.icon.shield-check-24': {
     _original: {
       $value: '/icon/shield-check-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-check-24',
+    id: 'base.icon.shield-check-24',
     $type: 'link',
     $value: '/icon/shield-check-24.svg',
   },
-  'icon.shield-lock-16': {
+  'base.icon.shield-lock-16': {
     _original: {
       $value: '/icon/shield-lock-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-lock-16',
+    id: 'base.icon.shield-lock-16',
     $type: 'link',
     $value: '/icon/shield-lock-16.svg',
   },
-  'icon.shield-lock-24': {
+  'base.icon.shield-lock-24': {
     _original: {
       $value: '/icon/shield-lock-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-lock-24',
+    id: 'base.icon.shield-lock-24',
     $type: 'link',
     $value: '/icon/shield-lock-24.svg',
   },
-  'icon.shield-x-16': {
+  'base.icon.shield-x-16': {
     _original: {
       $value: '/icon/shield-x-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-x-16',
+    id: 'base.icon.shield-x-16',
     $type: 'link',
     $value: '/icon/shield-x-16.svg',
   },
-  'icon.shield-x-24': {
+  'base.icon.shield-x-24': {
     _original: {
       $value: '/icon/shield-x-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.shield-x-24',
+    id: 'base.icon.shield-x-24',
     $type: 'link',
     $value: '/icon/shield-x-24.svg',
   },
-  'icon.sidebar-collapse-16': {
+  'base.icon.sidebar-collapse-16': {
     _original: {
       $value: '/icon/sidebar-collapse-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sidebar-collapse-16',
+    id: 'base.icon.sidebar-collapse-16',
     $type: 'link',
     $value: '/icon/sidebar-collapse-16.svg',
   },
-  'icon.sidebar-collapse-24': {
+  'base.icon.sidebar-collapse-24': {
     _original: {
       $value: '/icon/sidebar-collapse-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sidebar-collapse-24',
+    id: 'base.icon.sidebar-collapse-24',
     $type: 'link',
     $value: '/icon/sidebar-collapse-24.svg',
   },
-  'icon.sidebar-expand-16': {
+  'base.icon.sidebar-expand-16': {
     _original: {
       $value: '/icon/sidebar-expand-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sidebar-expand-16',
+    id: 'base.icon.sidebar-expand-16',
     $type: 'link',
     $value: '/icon/sidebar-expand-16.svg',
   },
-  'icon.sidebar-expand-24': {
+  'base.icon.sidebar-expand-24': {
     _original: {
       $value: '/icon/sidebar-expand-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sidebar-expand-24',
+    id: 'base.icon.sidebar-expand-24',
     $type: 'link',
     $value: '/icon/sidebar-expand-24.svg',
   },
-  'icon.sign-in-16': {
+  'base.icon.sign-in-16': {
     _original: {
       $value: '/icon/sign-in-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sign-in-16',
+    id: 'base.icon.sign-in-16',
     $type: 'link',
     $value: '/icon/sign-in-16.svg',
   },
-  'icon.sign-in-24': {
+  'base.icon.sign-in-24': {
     _original: {
       $value: '/icon/sign-in-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sign-in-24',
+    id: 'base.icon.sign-in-24',
     $type: 'link',
     $value: '/icon/sign-in-24.svg',
   },
-  'icon.sign-out-16': {
+  'base.icon.sign-out-16': {
     _original: {
       $value: '/icon/sign-out-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sign-out-16',
+    id: 'base.icon.sign-out-16',
     $type: 'link',
     $value: '/icon/sign-out-16.svg',
   },
-  'icon.sign-out-24': {
+  'base.icon.sign-out-24': {
     _original: {
       $value: '/icon/sign-out-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sign-out-24',
+    id: 'base.icon.sign-out-24',
     $type: 'link',
     $value: '/icon/sign-out-24.svg',
   },
-  'icon.single-select-16': {
+  'base.icon.single-select-16': {
     _original: {
       $value: '/icon/single-select-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.single-select-16',
+    id: 'base.icon.single-select-16',
     $type: 'link',
     $value: '/icon/single-select-16.svg',
   },
-  'icon.single-select-24': {
+  'base.icon.single-select-24': {
     _original: {
       $value: '/icon/single-select-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.single-select-24',
+    id: 'base.icon.single-select-24',
     $type: 'link',
     $value: '/icon/single-select-24.svg',
   },
-  'icon.skip-16': {
+  'base.icon.skip-16': {
     _original: {
       $value: '/icon/skip-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.skip-16',
+    id: 'base.icon.skip-16',
     $type: 'link',
     $value: '/icon/skip-16.svg',
   },
-  'icon.skip-24': {
+  'base.icon.skip-24': {
     _original: {
       $value: '/icon/skip-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.skip-24',
+    id: 'base.icon.skip-24',
     $type: 'link',
     $value: '/icon/skip-24.svg',
   },
-  'icon.smiley-16': {
+  'base.icon.smiley-16': {
     _original: {
       $value: '/icon/smiley-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.smiley-16',
+    id: 'base.icon.smiley-16',
     $type: 'link',
     $value: '/icon/smiley-16.svg',
   },
-  'icon.smiley-24': {
+  'base.icon.smiley-24': {
     _original: {
       $value: '/icon/smiley-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.smiley-24',
+    id: 'base.icon.smiley-24',
     $type: 'link',
     $value: '/icon/smiley-24.svg',
   },
-  'icon.sort-asc-16': {
+  'base.icon.sort-asc-16': {
     _original: {
       $value: '/icon/sort-asc-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sort-asc-16',
+    id: 'base.icon.sort-asc-16',
     $type: 'link',
     $value: '/icon/sort-asc-16.svg',
   },
-  'icon.sort-asc-24': {
+  'base.icon.sort-asc-24': {
     _original: {
       $value: '/icon/sort-asc-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sort-asc-24',
+    id: 'base.icon.sort-asc-24',
     $type: 'link',
     $value: '/icon/sort-asc-24.svg',
   },
-  'icon.sort-desc-16': {
+  'base.icon.sort-desc-16': {
     _original: {
       $value: '/icon/sort-desc-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sort-desc-16',
+    id: 'base.icon.sort-desc-16',
     $type: 'link',
     $value: '/icon/sort-desc-16.svg',
   },
-  'icon.sort-desc-24': {
+  'base.icon.sort-desc-24': {
     _original: {
       $value: '/icon/sort-desc-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sort-desc-24',
+    id: 'base.icon.sort-desc-24',
     $type: 'link',
     $value: '/icon/sort-desc-24.svg',
   },
-  'icon.square-16': {
+  'base.icon.square-16': {
     _original: {
       $value: '/icon/square-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.square-16',
+    id: 'base.icon.square-16',
     $type: 'link',
     $value: '/icon/square-16.svg',
   },
-  'icon.square-24': {
+  'base.icon.square-24': {
     _original: {
       $value: '/icon/square-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.square-24',
+    id: 'base.icon.square-24',
     $type: 'link',
     $value: '/icon/square-24.svg',
   },
-  'icon.square-fill-16': {
+  'base.icon.square-fill-16': {
     _original: {
       $value: '/icon/square-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.square-fill-16',
+    id: 'base.icon.square-fill-16',
     $type: 'link',
     $value: '/icon/square-fill-16.svg',
   },
-  'icon.square-fill-24': {
+  'base.icon.square-fill-24': {
     _original: {
       $value: '/icon/square-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.square-fill-24',
+    id: 'base.icon.square-fill-24',
     $type: 'link',
     $value: '/icon/square-fill-24.svg',
   },
-  'icon.squirrel-16': {
+  'base.icon.squirrel-16': {
     _original: {
       $value: '/icon/squirrel-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.squirrel-16',
+    id: 'base.icon.squirrel-16',
     $type: 'link',
     $value: '/icon/squirrel-16.svg',
   },
-  'icon.squirrel-24': {
+  'base.icon.squirrel-24': {
     _original: {
       $value: '/icon/squirrel-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.squirrel-24',
+    id: 'base.icon.squirrel-24',
     $type: 'link',
     $value: '/icon/squirrel-24.svg',
   },
-  'icon.stack-16': {
+  'base.icon.stack-16': {
     _original: {
       $value: '/icon/stack-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stack-16',
+    id: 'base.icon.stack-16',
     $type: 'link',
     $value: '/icon/stack-16.svg',
   },
-  'icon.stack-24': {
+  'base.icon.stack-24': {
     _original: {
       $value: '/icon/stack-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stack-24',
+    id: 'base.icon.stack-24',
     $type: 'link',
     $value: '/icon/stack-24.svg',
   },
-  'icon.star-16': {
+  'base.icon.star-16': {
     _original: {
       $value: '/icon/star-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.star-16',
+    id: 'base.icon.star-16',
     $type: 'link',
     $value: '/icon/star-16.svg',
   },
-  'icon.star-24': {
+  'base.icon.star-24': {
     _original: {
       $value: '/icon/star-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.star-24',
+    id: 'base.icon.star-24',
     $type: 'link',
     $value: '/icon/star-24.svg',
   },
-  'icon.star-fill-16': {
+  'base.icon.star-fill-16': {
     _original: {
       $value: '/icon/star-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.star-fill-16',
+    id: 'base.icon.star-fill-16',
     $type: 'link',
     $value: '/icon/star-fill-16.svg',
   },
-  'icon.star-fill-24': {
+  'base.icon.star-fill-24': {
     _original: {
       $value: '/icon/star-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.star-fill-24',
+    id: 'base.icon.star-fill-24',
     $type: 'link',
     $value: '/icon/star-fill-24.svg',
   },
-  'icon.stop-16': {
+  'base.icon.stop-16': {
     _original: {
       $value: '/icon/stop-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stop-16',
+    id: 'base.icon.stop-16',
     $type: 'link',
     $value: '/icon/stop-16.svg',
   },
-  'icon.stop-24': {
+  'base.icon.stop-24': {
     _original: {
       $value: '/icon/stop-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stop-24',
+    id: 'base.icon.stop-24',
     $type: 'link',
     $value: '/icon/stop-24.svg',
   },
-  'icon.stopwatch-16': {
+  'base.icon.stopwatch-16': {
     _original: {
       $value: '/icon/stopwatch-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stopwatch-16',
+    id: 'base.icon.stopwatch-16',
     $type: 'link',
     $value: '/icon/stopwatch-16.svg',
   },
-  'icon.stopwatch-24': {
+  'base.icon.stopwatch-24': {
     _original: {
       $value: '/icon/stopwatch-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.stopwatch-24',
+    id: 'base.icon.stopwatch-24',
     $type: 'link',
     $value: '/icon/stopwatch-24.svg',
   },
-  'icon.strikethrough-16': {
+  'base.icon.strikethrough-16': {
     _original: {
       $value: '/icon/strikethrough-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.strikethrough-16',
+    id: 'base.icon.strikethrough-16',
     $type: 'link',
     $value: '/icon/strikethrough-16.svg',
   },
-  'icon.strikethrough-24': {
+  'base.icon.strikethrough-24': {
     _original: {
       $value: '/icon/strikethrough-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.strikethrough-24',
+    id: 'base.icon.strikethrough-24',
     $type: 'link',
     $value: '/icon/strikethrough-24.svg',
   },
-  'icon.sun-16': {
+  'base.icon.sun-16': {
     _original: {
       $value: '/icon/sun-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sun-16',
+    id: 'base.icon.sun-16',
     $type: 'link',
     $value: '/icon/sun-16.svg',
   },
-  'icon.sun-24': {
+  'base.icon.sun-24': {
     _original: {
       $value: '/icon/sun-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sun-24',
+    id: 'base.icon.sun-24',
     $type: 'link',
     $value: '/icon/sun-24.svg',
   },
-  'icon.sync-16': {
+  'base.icon.sync-16': {
     _original: {
       $value: '/icon/sync-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sync-16',
+    id: 'base.icon.sync-16',
     $type: 'link',
     $value: '/icon/sync-16.svg',
   },
-  'icon.sync-24': {
+  'base.icon.sync-24': {
     _original: {
       $value: '/icon/sync-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.sync-24',
+    id: 'base.icon.sync-24',
     $type: 'link',
     $value: '/icon/sync-24.svg',
   },
-  'icon.tab-24': {
+  'base.icon.tab-24': {
     _original: {
       $value: '/icon/tab-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tab-24',
+    id: 'base.icon.tab-24',
     $type: 'link',
     $value: '/icon/tab-24.svg',
   },
-  'icon.table-16': {
+  'base.icon.table-16': {
     _original: {
       $value: '/icon/table-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.table-16',
+    id: 'base.icon.table-16',
     $type: 'link',
     $value: '/icon/table-16.svg',
   },
-  'icon.table-24': {
+  'base.icon.table-24': {
     _original: {
       $value: '/icon/table-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.table-24',
+    id: 'base.icon.table-24',
     $type: 'link',
     $value: '/icon/table-24.svg',
   },
-  'icon.tag-16': {
+  'base.icon.tag-16': {
     _original: {
       $value: '/icon/tag-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tag-16',
+    id: 'base.icon.tag-16',
     $type: 'link',
     $value: '/icon/tag-16.svg',
   },
-  'icon.tag-24': {
+  'base.icon.tag-24': {
     _original: {
       $value: '/icon/tag-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tag-24',
+    id: 'base.icon.tag-24',
     $type: 'link',
     $value: '/icon/tag-24.svg',
   },
-  'icon.tasklist-16': {
+  'base.icon.tasklist-16': {
     _original: {
       $value: '/icon/tasklist-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tasklist-16',
+    id: 'base.icon.tasklist-16',
     $type: 'link',
     $value: '/icon/tasklist-16.svg',
   },
-  'icon.tasklist-24': {
+  'base.icon.tasklist-24': {
     _original: {
       $value: '/icon/tasklist-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tasklist-24',
+    id: 'base.icon.tasklist-24',
     $type: 'link',
     $value: '/icon/tasklist-24.svg',
   },
-  'icon.telescope-16': {
+  'base.icon.telescope-16': {
     _original: {
       $value: '/icon/telescope-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.telescope-16',
+    id: 'base.icon.telescope-16',
     $type: 'link',
     $value: '/icon/telescope-16.svg',
   },
-  'icon.telescope-24': {
+  'base.icon.telescope-24': {
     _original: {
       $value: '/icon/telescope-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.telescope-24',
+    id: 'base.icon.telescope-24',
     $type: 'link',
     $value: '/icon/telescope-24.svg',
   },
-  'icon.telescope-fill-16': {
+  'base.icon.telescope-fill-16': {
     _original: {
       $value: '/icon/telescope-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.telescope-fill-16',
+    id: 'base.icon.telescope-fill-16',
     $type: 'link',
     $value: '/icon/telescope-fill-16.svg',
   },
-  'icon.telescope-fill-24': {
+  'base.icon.telescope-fill-24': {
     _original: {
       $value: '/icon/telescope-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.telescope-fill-24',
+    id: 'base.icon.telescope-fill-24',
     $type: 'link',
     $value: '/icon/telescope-fill-24.svg',
   },
-  'icon.terminal-16': {
+  'base.icon.terminal-16': {
     _original: {
       $value: '/icon/terminal-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.terminal-16',
+    id: 'base.icon.terminal-16',
     $type: 'link',
     $value: '/icon/terminal-16.svg',
   },
-  'icon.terminal-24': {
+  'base.icon.terminal-24': {
     _original: {
       $value: '/icon/terminal-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.terminal-24',
+    id: 'base.icon.terminal-24',
     $type: 'link',
     $value: '/icon/terminal-24.svg',
   },
-  'icon.three-bars-16': {
+  'base.icon.three-bars-16': {
     _original: {
       $value: '/icon/three-bars-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.three-bars-16',
+    id: 'base.icon.three-bars-16',
     $type: 'link',
     $value: '/icon/three-bars-16.svg',
   },
-  'icon.thumbsdown-16': {
+  'base.icon.thumbsdown-16': {
     _original: {
       $value: '/icon/thumbsdown-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.thumbsdown-16',
+    id: 'base.icon.thumbsdown-16',
     $type: 'link',
     $value: '/icon/thumbsdown-16.svg',
   },
-  'icon.thumbsdown-24': {
+  'base.icon.thumbsdown-24': {
     _original: {
       $value: '/icon/thumbsdown-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.thumbsdown-24',
+    id: 'base.icon.thumbsdown-24',
     $type: 'link',
     $value: '/icon/thumbsdown-24.svg',
   },
-  'icon.thumbsup-16': {
+  'base.icon.thumbsup-16': {
     _original: {
       $value: '/icon/thumbsup-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.thumbsup-16',
+    id: 'base.icon.thumbsup-16',
     $type: 'link',
     $value: '/icon/thumbsup-16.svg',
   },
-  'icon.thumbsup-24': {
+  'base.icon.thumbsup-24': {
     _original: {
       $value: '/icon/thumbsup-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.thumbsup-24',
+    id: 'base.icon.thumbsup-24',
     $type: 'link',
     $value: '/icon/thumbsup-24.svg',
   },
-  'icon.tools-16': {
+  'base.icon.tools-16': {
     _original: {
       $value: '/icon/tools-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tools-16',
+    id: 'base.icon.tools-16',
     $type: 'link',
     $value: '/icon/tools-16.svg',
   },
-  'icon.tools-24': {
+  'base.icon.tools-24': {
     _original: {
       $value: '/icon/tools-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.tools-24',
+    id: 'base.icon.tools-24',
     $type: 'link',
     $value: '/icon/tools-24.svg',
   },
-  'icon.trash-16': {
+  'base.icon.trash-16': {
     _original: {
       $value: '/icon/trash-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.trash-16',
+    id: 'base.icon.trash-16',
     $type: 'link',
     $value: '/icon/trash-16.svg',
   },
-  'icon.trash-24': {
+  'base.icon.trash-24': {
     _original: {
       $value: '/icon/trash-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.trash-24',
+    id: 'base.icon.trash-24',
     $type: 'link',
     $value: '/icon/trash-24.svg',
   },
-  'icon.triangle-down-16': {
+  'base.icon.triangle-down-16': {
     _original: {
       $value: '/icon/triangle-down-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-down-16',
+    id: 'base.icon.triangle-down-16',
     $type: 'link',
     $value: '/icon/triangle-down-16.svg',
   },
-  'icon.triangle-down-24': {
+  'base.icon.triangle-down-24': {
     _original: {
       $value: '/icon/triangle-down-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-down-24',
+    id: 'base.icon.triangle-down-24',
     $type: 'link',
     $value: '/icon/triangle-down-24.svg',
   },
-  'icon.triangle-left-16': {
+  'base.icon.triangle-left-16': {
     _original: {
       $value: '/icon/triangle-left-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-left-16',
+    id: 'base.icon.triangle-left-16',
     $type: 'link',
     $value: '/icon/triangle-left-16.svg',
   },
-  'icon.triangle-left-24': {
+  'base.icon.triangle-left-24': {
     _original: {
       $value: '/icon/triangle-left-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-left-24',
+    id: 'base.icon.triangle-left-24',
     $type: 'link',
     $value: '/icon/triangle-left-24.svg',
   },
-  'icon.triangle-right-16': {
+  'base.icon.triangle-right-16': {
     _original: {
       $value: '/icon/triangle-right-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-right-16',
+    id: 'base.icon.triangle-right-16',
     $type: 'link',
     $value: '/icon/triangle-right-16.svg',
   },
-  'icon.triangle-right-24': {
+  'base.icon.triangle-right-24': {
     _original: {
       $value: '/icon/triangle-right-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-right-24',
+    id: 'base.icon.triangle-right-24',
     $type: 'link',
     $value: '/icon/triangle-right-24.svg',
   },
-  'icon.triangle-up-16': {
+  'base.icon.triangle-up-16': {
     _original: {
       $value: '/icon/triangle-up-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-up-16',
+    id: 'base.icon.triangle-up-16',
     $type: 'link',
     $value: '/icon/triangle-up-16.svg',
   },
-  'icon.triangle-up-24': {
+  'base.icon.triangle-up-24': {
     _original: {
       $value: '/icon/triangle-up-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.triangle-up-24',
+    id: 'base.icon.triangle-up-24',
     $type: 'link',
     $value: '/icon/triangle-up-24.svg',
   },
-  'icon.typography-16': {
+  'base.icon.typography-16': {
     _original: {
       $value: '/icon/typography-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.typography-16',
+    id: 'base.icon.typography-16',
     $type: 'link',
     $value: '/icon/typography-16.svg',
   },
-  'icon.typography-24': {
+  'base.icon.typography-24': {
     _original: {
       $value: '/icon/typography-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.typography-24',
+    id: 'base.icon.typography-24',
     $type: 'link',
     $value: '/icon/typography-24.svg',
   },
-  'icon.unfold-16': {
+  'base.icon.unfold-16': {
     _original: {
       $value: '/icon/unfold-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unfold-16',
+    id: 'base.icon.unfold-16',
     $type: 'link',
     $value: '/icon/unfold-16.svg',
   },
-  'icon.unfold-24': {
+  'base.icon.unfold-24': {
     _original: {
       $value: '/icon/unfold-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unfold-24',
+    id: 'base.icon.unfold-24',
     $type: 'link',
     $value: '/icon/unfold-24.svg',
   },
-  'icon.unlock-16': {
+  'base.icon.unlock-16': {
     _original: {
       $value: '/icon/unlock-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unlock-16',
+    id: 'base.icon.unlock-16',
     $type: 'link',
     $value: '/icon/unlock-16.svg',
   },
-  'icon.unlock-24': {
+  'base.icon.unlock-24': {
     _original: {
       $value: '/icon/unlock-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unlock-24',
+    id: 'base.icon.unlock-24',
     $type: 'link',
     $value: '/icon/unlock-24.svg',
   },
-  'icon.unmute-16': {
+  'base.icon.unmute-16': {
     _original: {
       $value: '/icon/unmute-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unmute-16',
+    id: 'base.icon.unmute-16',
     $type: 'link',
     $value: '/icon/unmute-16.svg',
   },
-  'icon.unmute-24': {
+  'base.icon.unmute-24': {
     _original: {
       $value: '/icon/unmute-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unmute-24',
+    id: 'base.icon.unmute-24',
     $type: 'link',
     $value: '/icon/unmute-24.svg',
   },
-  'icon.unverified-16': {
+  'base.icon.unverified-16': {
     _original: {
       $value: '/icon/unverified-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unverified-16',
+    id: 'base.icon.unverified-16',
     $type: 'link',
     $value: '/icon/unverified-16.svg',
   },
-  'icon.unverified-24': {
+  'base.icon.unverified-24': {
     _original: {
       $value: '/icon/unverified-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.unverified-24',
+    id: 'base.icon.unverified-24',
     $type: 'link',
     $value: '/icon/unverified-24.svg',
   },
-  'icon.upload-16': {
+  'base.icon.upload-16': {
     _original: {
       $value: '/icon/upload-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.upload-16',
+    id: 'base.icon.upload-16',
     $type: 'link',
     $value: '/icon/upload-16.svg',
   },
-  'icon.upload-24': {
+  'base.icon.upload-24': {
     _original: {
       $value: '/icon/upload-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.upload-24',
+    id: 'base.icon.upload-24',
     $type: 'link',
     $value: '/icon/upload-24.svg',
   },
-  'icon.verified-16': {
+  'base.icon.verified-16': {
     _original: {
       $value: '/icon/verified-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.verified-16',
+    id: 'base.icon.verified-16',
     $type: 'link',
     $value: '/icon/verified-16.svg',
   },
-  'icon.verified-24': {
+  'base.icon.verified-24': {
     _original: {
       $value: '/icon/verified-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.verified-24',
+    id: 'base.icon.verified-24',
     $type: 'link',
     $value: '/icon/verified-24.svg',
   },
-  'icon.versions-16': {
+  'base.icon.versions-16': {
     _original: {
       $value: '/icon/versions-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.versions-16',
+    id: 'base.icon.versions-16',
     $type: 'link',
     $value: '/icon/versions-16.svg',
   },
-  'icon.versions-24': {
+  'base.icon.versions-24': {
     _original: {
       $value: '/icon/versions-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.versions-24',
+    id: 'base.icon.versions-24',
     $type: 'link',
     $value: '/icon/versions-24.svg',
   },
-  'icon.video-16': {
+  'base.icon.video-16': {
     _original: {
       $value: '/icon/video-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.video-16',
+    id: 'base.icon.video-16',
     $type: 'link',
     $value: '/icon/video-16.svg',
   },
-  'icon.video-24': {
+  'base.icon.video-24': {
     _original: {
       $value: '/icon/video-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.video-24',
+    id: 'base.icon.video-24',
     $type: 'link',
     $value: '/icon/video-24.svg',
   },
-  'icon.workflow-16': {
+  'base.icon.workflow-16': {
     _original: {
       $value: '/icon/workflow-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.workflow-16',
+    id: 'base.icon.workflow-16',
     $type: 'link',
     $value: '/icon/workflow-16.svg',
   },
-  'icon.workflow-24': {
+  'base.icon.workflow-24': {
     _original: {
       $value: '/icon/workflow-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.workflow-24',
+    id: 'base.icon.workflow-24',
     $type: 'link',
     $value: '/icon/workflow-24.svg',
   },
-  'icon.x-16': {
+  'base.icon.x-16': {
     _original: {
       $value: '/icon/x-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-16',
+    id: 'base.icon.x-16',
     $type: 'link',
     $value: '/icon/x-16.svg',
   },
-  'icon.x-24': {
+  'base.icon.x-24': {
     _original: {
       $value: '/icon/x-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-24',
+    id: 'base.icon.x-24',
     $type: 'link',
     $value: '/icon/x-24.svg',
   },
-  'icon.x-circle-16': {
+  'base.icon.x-circle-16': {
     _original: {
       $value: '/icon/x-circle-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-circle-16',
+    id: 'base.icon.x-circle-16',
     $type: 'link',
     $value: '/icon/x-circle-16.svg',
   },
-  'icon.x-circle-24': {
+  'base.icon.x-circle-24': {
     _original: {
       $value: '/icon/x-circle-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-circle-24',
+    id: 'base.icon.x-circle-24',
     $type: 'link',
     $value: '/icon/x-circle-24.svg',
   },
-  'icon.x-circle-fill-12': {
+  'base.icon.x-circle-fill-12': {
     _original: {
       $value: '/icon/x-circle-fill-12.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-circle-fill-12',
+    id: 'base.icon.x-circle-fill-12',
     $type: 'link',
     $value: '/icon/x-circle-fill-12.svg',
   },
-  'icon.x-circle-fill-16': {
+  'base.icon.x-circle-fill-16': {
     _original: {
       $value: '/icon/x-circle-fill-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-circle-fill-16',
+    id: 'base.icon.x-circle-fill-16',
     $type: 'link',
     $value: '/icon/x-circle-fill-16.svg',
   },
-  'icon.x-circle-fill-24': {
+  'base.icon.x-circle-fill-24': {
     _original: {
       $value: '/icon/x-circle-fill-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.x-circle-fill-24',
+    id: 'base.icon.x-circle-fill-24',
     $type: 'link',
     $value: '/icon/x-circle-fill-24.svg',
   },
-  'icon.zap-16': {
+  'base.icon.zap-16': {
     _original: {
       $value: '/icon/zap-16.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.zap-16',
+    id: 'base.icon.zap-16',
     $type: 'link',
     $value: '/icon/zap-16.svg',
   },
-  'icon.zap-24': {
+  'base.icon.zap-24': {
     _original: {
       $value: '/icon/zap-24.svg',
     },
     _group: {
-      id: 'icon',
+      id: 'base.icon',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'link',
     },
-    id: 'icon.zap-24',
+    id: 'base.icon.zap-24',
     $type: 'link',
     $value: '/icon/zap-24.svg',
   },
-  'spacing.spacer0': {
-    _original: {
-      $value: '0px',
-    },
-    _group: {
-      id: 'spacing',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'spacing.spacer0',
-    $type: 'dimension',
-    $value: '0',
-  },
-  'spacing.spacerM': {
-    _original: {
-      $value: '16px',
-    },
-    _group: {
-      id: 'spacing',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'spacing.spacerM',
-    $type: 'dimension',
-    $value: '16px',
-  },
-  'spacing.spacerS': {
-    _original: {
-      $value: '8px',
-    },
-    _group: {
-      id: 'spacing',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'spacing.spacerS',
-    $type: 'dimension',
-    $value: '8px',
-  },
-  'spacing.spacerX': {
-    _original: {
-      $value: '24px',
-    },
-    _group: {
-      id: 'spacing',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'spacing.spacerX',
-    $type: 'dimension',
-    $value: '24px',
-  },
-  'spacing.spacerXl': {
-    _original: {
-      $value: '32px',
-    },
-    _group: {
-      id: 'spacing',
-      $extensions: {
-        requiredModes: [],
-      },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
-      $type: 'dimension',
-    },
-    id: 'spacing.spacerXl',
-    $type: 'dimension',
-    $value: '32px',
-  },
-  'spacing.spacerXs': {
+  'base.size.4': {
     _original: {
       $value: '4px',
     },
     _group: {
-      id: 'spacing',
+      id: 'base.size',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'dimension',
     },
-    id: 'spacing.spacerXs',
+    id: 'base.size.4',
     $type: 'dimension',
     $value: '4px',
   },
-  'spacing.spacerXxl': {
+  'base.size.8': {
+    _original: {
+      $value: '8px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.8',
+    $type: 'dimension',
+    $value: '8px',
+  },
+  'base.size.12': {
+    _original: {
+      $value: '12px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.12',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'base.size.16': {
+    _original: {
+      $value: '16px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.16',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'base.size.20': {
+    _original: {
+      $value: '20px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.20',
+    $type: 'dimension',
+    $value: '20px',
+  },
+  'base.size.24': {
+    _original: {
+      $value: '24px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.24',
+    $type: 'dimension',
+    $value: '24px',
+  },
+  'base.size.28': {
+    _original: {
+      $value: '28px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.28',
+    $type: 'dimension',
+    $value: '28px',
+  },
+  'base.size.32': {
+    _original: {
+      $value: '32px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.32',
+    $type: 'dimension',
+    $value: '32px',
+  },
+  'base.size.36': {
+    _original: {
+      $value: '36px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.36',
+    $type: 'dimension',
+    $value: '36px',
+  },
+  'base.size.40': {
     _original: {
       $value: '40px',
     },
     _group: {
-      id: 'spacing',
+      id: 'base.size',
       $extensions: {
         requiredModes: [],
       },
-      $name: 'GitHub Primer Design System',
-      $description: 'GitHub’s design system',
       $type: 'dimension',
     },
-    id: 'spacing.spacerXxl',
+    id: 'base.size.40',
     $type: 'dimension',
     $value: '40px',
+  },
+  'base.size.44': {
+    _original: {
+      $value: '44px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.44',
+    $type: 'dimension',
+    $value: '44px',
+  },
+  'base.size.48': {
+    _original: {
+      $value: '48px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.48',
+    $type: 'dimension',
+    $value: '48px',
+  },
+  'base.size.64': {
+    _original: {
+      $value: '64px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.64',
+    $type: 'dimension',
+    $value: '64px',
+  },
+  'base.size.80': {
+    _original: {
+      $value: '80px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.80',
+    $type: 'dimension',
+    $value: '80px',
+  },
+  'base.size.96': {
+    _original: {
+      $value: '96px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.96',
+    $type: 'dimension',
+    $value: '96px',
+  },
+  'base.size.112': {
+    _original: {
+      $value: '112px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.112',
+    $type: 'dimension',
+    $value: '112px',
+  },
+  'base.size.128': {
+    _original: {
+      $value: '128px',
+    },
+    _group: {
+      id: 'base.size',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'base.size.128',
+    $type: 'dimension',
+    $value: '128px',
+  },
+  'base.text.weight.light': {
+    _original: {
+      $value: 300,
+    },
+    _group: {
+      id: 'base.text.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'fontWeight',
+    },
+    id: 'base.text.weight.light',
+    $type: 'fontWeight',
+    $value: 300,
+  },
+  'base.text.weight.medium': {
+    _original: {
+      $value: 500,
+    },
+    _group: {
+      id: 'base.text.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'fontWeight',
+    },
+    id: 'base.text.weight.medium',
+    $type: 'fontWeight',
+    $value: 500,
+  },
+  'base.text.weight.normal': {
+    _original: {
+      $value: 400,
+    },
+    _group: {
+      id: 'base.text.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'fontWeight',
+    },
+    id: 'base.text.weight.normal',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'base.text.weight.semibold': {
+    _original: {
+      $value: 600,
+    },
+    _group: {
+      id: 'base.text.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'fontWeight',
+    },
+    id: 'base.text.weight.semibold',
+    $type: 'fontWeight',
+    $value: 600,
+  },
+  'borderRadius.full': {
+    _original: {
+      $value: '9999px',
+      $description: 'Use this border radius for pill shaped elements',
+    },
+    _group: {
+      id: 'borderRadius',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'borderRadius.full',
+    $type: 'dimension',
+    $value: '9999px',
+    $description: 'Use this border radius for pill shaped elements',
+  },
+  'borderRadius.large': {
+    _original: {
+      $value: '12px',
+    },
+    _group: {
+      id: 'borderRadius',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'borderRadius.large',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'borderRadius.medium': {
+    _original: {
+      $value: '6px',
+    },
+    _group: {
+      id: 'borderRadius',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'borderRadius.medium',
+    $type: 'dimension',
+    $value: '6px',
+  },
+  'borderRadius.small': {
+    _original: {
+      $value: '3px',
+    },
+    _group: {
+      id: 'borderRadius',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'borderRadius.small',
+    $type: 'dimension',
+    $value: '3px',
+  },
+  'breakpoint.large': {
+    _original: {
+      $value: '1012px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.large',
+    $type: 'dimension',
+    $value: '1012px',
+  },
+  'breakpoint.medium': {
+    _original: {
+      $value: '768px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.medium',
+    $type: 'dimension',
+    $value: '768px',
+  },
+  'breakpoint.small': {
+    _original: {
+      $value: '544px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.small',
+    $type: 'dimension',
+    $value: '544px',
+  },
+  'breakpoint.xlarge': {
+    _original: {
+      $value: '1280px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.xlarge',
+    $type: 'dimension',
+    $value: '1280px',
+  },
+  'breakpoint.xsmall': {
+    _original: {
+      $value: '320px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.xsmall',
+    $type: 'dimension',
+    $value: '320px',
+  },
+  'breakpoint.xxlarge': {
+    _original: {
+      $value: '1440px',
+    },
+    _group: {
+      id: 'breakpoint',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'breakpoint.xxlarge',
+    $type: 'dimension',
+    $value: '1440px',
+  },
+  'fontStack.monospace': {
+    _original: {
+      $value: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace',
+      $type: 'fontFamily',
+    },
+    _group: {
+      id: 'fontStack',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'fontStack.monospace',
+    $type: 'fontFamily',
+    $value: ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+  },
+  'fontStack.sansSerif': {
+    _original: {
+      $value: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\'',
+      $type: 'fontFamily',
+    },
+    _group: {
+      id: 'fontStack',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'fontStack.sansSerif',
+    $type: 'fontFamily',
+    $value: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'fontStack.system': {
+    _original: {
+      $value: '-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\'',
+      $type: 'fontFamily',
+    },
+    _group: {
+      id: 'fontStack',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'fontStack.system',
+    $type: 'fontFamily',
+    $value: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+  },
+  'motion.loading.delay.default': {
+    _original: {
+      $value: '1000ms',
+      $type: 'duration',
+      $description: 'The amount of time to wait before showing a loading indicator or announcing a loading state to assistive technologies.',
+    },
+    _group: {
+      id: 'motion.loading.delay',
+      $extensions: {
+        requiredModes: [],
+      },
+      $description: 'Used for consistent durations of loading indicator animations',
+    },
+    id: 'motion.loading.delay.default',
+    $type: 'duration',
+    $value: '1000ms',
+    $description: 'The amount of time to wait before showing a loading indicator or announcing a loading state to assistive technologies.',
+  },
+  'motion.skeletonLoader.shimmer.duration.scale': {
+    _original: {
+      $value: '1000ms',
+      $type: 'duration',
+      $description: 'The amount of times it takes the "shimmer" effect to go from the start (left) of the skeleton loader to the end (right)',
+    },
+    _group: {
+      id: 'motion.skeletonLoader.shimmer.duration',
+      $extensions: {
+        requiredModes: [],
+      },
+      $description: 'Used for consistent durations of loading indicator animations',
+    },
+    id: 'motion.skeletonLoader.shimmer.duration.scale',
+    $type: 'duration',
+    $value: '1000ms',
+    $description: 'The amount of times it takes the "shimmer" effect to go from the start (left) of the skeleton loader to the end (right)',
+  },
+  'motion.spinner.duration.rotation': {
+    _original: {
+      $value: '1000ms',
+      $type: 'duration',
+      $description: 'The amount of time it takes the "Spinner" loading indicator to make a full 360deg rotation',
+    },
+    _group: {
+      id: 'motion.spinner.duration',
+      $extensions: {
+        requiredModes: [],
+      },
+      $description: 'Used for consistent durations of loading indicator animations',
+    },
+    id: 'motion.spinner.duration.rotation',
+    $type: 'duration',
+    $value: '1000ms',
+    $description: 'The amount of time it takes the "Spinner" loading indicator to make a full 360deg rotation',
+  },
+  'space.large': {
+    _original: {
+      $value: '{base.size.12}',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.large',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'space.medium': {
+    _original: {
+      $value: '{base.size.8}',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.medium',
+    $type: 'dimension',
+    $value: '8px',
+  },
+  'space.small': {
+    _original: {
+      $value: '6px',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.small',
+    $type: 'dimension',
+    $value: '6px',
+  },
+  'space.xlarge': {
+    _original: {
+      $value: '{base.size.16}',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.xlarge',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'space.xsmall': {
+    _original: {
+      $value: '{base.size.4}',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.xsmall',
+    $type: 'dimension',
+    $value: '4px',
+  },
+  'space.xxsmall': {
+    _original: {
+      $value: '2px',
+    },
+    _group: {
+      id: 'space',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'space.xxsmall',
+    $type: 'dimension',
+    $value: '2px',
+  },
+  'text.body.lineHeight.large': {
+    _original: {
+      $value: 1.5,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.body.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.lineHeight.large',
+    $type: 'number',
+    $value: 1.5,
+  },
+  'text.body.lineHeight.medium': {
+    _original: {
+      $value: 1.4285,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.body.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.lineHeight.medium',
+    $type: 'number',
+    $value: 1.4285,
+  },
+  'text.body.lineHeight.small': {
+    _original: {
+      $value: 1.6666,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.body.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.lineHeight.small',
+    $type: 'number',
+    $value: 1.6666,
+  },
+  'text.body.shorthand.large': {
+    _original: {
+      $value: {
+        fontWeight: '{text.body.weight}',
+        fontSize: '{text.body.size.large}',
+        lineHeight: '{text.body.lineHeight.large}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'User-generated content, markdown rendering.',
+    },
+    _group: {
+      id: 'text.body.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.shorthand.large',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '16px',
+      lineHeight: 1.5,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'User-generated content, markdown rendering.',
+  },
+  'text.body.shorthand.medium': {
+    _original: {
+      $value: {
+        fontWeight: '{text.body.weight}',
+        fontSize: '{text.body.size.medium}',
+        lineHeight: '{text.body.lineHeight.medium}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Default UI font. Most commonly used for body text.',
+    },
+    _group: {
+      id: 'text.body.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.shorthand.medium',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '14px',
+      lineHeight: 1.4285,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Default UI font. Most commonly used for body text.',
+  },
+  'text.body.shorthand.small': {
+    _original: {
+      $value: {
+        fontWeight: '{text.body.weight}',
+        fontSize: '{text.body.size.small}',
+        lineHeight: '{text.body.lineHeight.small}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px.',
+    },
+    _group: {
+      id: 'text.body.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.shorthand.small',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '12px',
+      lineHeight: 1.6666,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px.',
+  },
+  'text.body.size.large': {
+    _original: {
+      $value: '16px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.body.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.size.large',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'text.body.size.medium': {
+    _original: {
+      $value: '14px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.body.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.size.medium',
+    $type: 'dimension',
+    $value: '14px',
+  },
+  'text.body.size.small': {
+    _original: {
+      $value: '12px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.body.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.size.small',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'text.body.weight': {
+    _original: {
+      $value: '{base.text.weight.normal}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.body',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.body.weight',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'text.caption.lineHeight': {
+    _original: {
+      $value: 1.3333,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.caption',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.caption.lineHeight',
+    $type: 'number',
+    $value: 1.3333,
+  },
+  'text.caption.shorthand': {
+    _original: {
+      $value: {
+        fontWeight: '{text.caption.weight}',
+        fontSize: '{text.caption.size}',
+        lineHeight: '{text.caption.lineHeight}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements.',
+    },
+    _group: {
+      id: 'text.caption',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.caption.shorthand',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '12px',
+      lineHeight: 1.3333,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements.',
+  },
+  'text.caption.size': {
+    _original: {
+      $value: '12px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.caption',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.caption.size',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'text.caption.weight': {
+    _original: {
+      $value: '{base.text.weight.normal}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.caption',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.caption.weight',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'text.codeBlock.lineHeight': {
+    _original: {
+      $value: 1.5385,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.codeBlock',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeBlock.lineHeight',
+    $type: 'number',
+    $value: 1.5385,
+  },
+  'text.codeBlock.shorthand': {
+    _original: {
+      $value: {
+        fontWeight: '{text.codeBlock.weight}',
+        fontSize: '{text.codeBlock.size}',
+        lineHeight: '{text.codeBlock.lineHeight}',
+        fontFamily: '{fontStack.monospace}',
+      },
+      $type: 'typography',
+      $description: 'Default style for rendering code blocks.',
+    },
+    _group: {
+      id: 'text.codeBlock',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeBlock.shorthand',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '13px',
+      lineHeight: 1.5385,
+      fontFamily: ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+    },
+    $description: 'Default style for rendering code blocks.',
+  },
+  'text.codeBlock.size': {
+    _original: {
+      $value: '13px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.codeBlock',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeBlock.size',
+    $type: 'dimension',
+    $value: '13px',
+  },
+  'text.codeBlock.weight': {
+    _original: {
+      $value: '{base.text.weight.normal}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.codeBlock',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeBlock.weight',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'text.codeInline.shorthand': {
+    _original: {
+      $value: {
+        fontWeight: '{text.codeInline.weight}',
+        fontSize: '{text.codeInline.size}',
+        fontFamily: '{fontStack.monospace}',
+      },
+      $type: 'typography',
+      $description: 'Inline code blocks using em units to inherit size from its parent.',
+    },
+    _group: {
+      id: 'text.codeInline',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeInline.shorthand',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '0.9285em',
+      fontFamily: ['ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace'],
+    },
+    $description: 'Inline code blocks using em units to inherit size from its parent.',
+  },
+  'text.codeInline.size': {
+    _original: {
+      $value: '0.9285em',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.codeInline',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeInline.size',
+    $type: 'dimension',
+    $value: '0.9285em',
+  },
+  'text.codeInline.weight': {
+    _original: {
+      $value: '{base.text.weight.normal}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.codeInline',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.codeInline.weight',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'text.display.lineBoxHeight': {
+    _original: {
+      $value: '56px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.display',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.display.lineBoxHeight',
+    $type: 'dimension',
+    $value: '56px',
+  },
+  'text.display.lineHeight': {
+    _original: {
+      $value: 1.4,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.display',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.display.lineHeight',
+    $type: 'number',
+    $value: 1.4,
+  },
+  'text.display.shorthand': {
+    _original: {
+      $value: {
+        fontWeight: '{text.display.weight}',
+        fontSize: '{text.display.size}',
+        lineHeight: '{text.display.lineHeight}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports.',
+    },
+    _group: {
+      id: 'text.display',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.display.shorthand',
+    $type: 'typography',
+    $value: {
+      fontWeight: 500,
+      fontSize: '40px',
+      lineHeight: 1.4,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports.',
+  },
+  'text.display.size': {
+    _original: {
+      $value: '40px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.display',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.display.size',
+    $type: 'dimension',
+    $value: '40px',
+  },
+  'text.display.weight': {
+    _original: {
+      $value: '{base.text.weight.medium}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.display',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.display.weight',
+    $type: 'fontWeight',
+    $value: 500,
+  },
+  'text.subtitle.lineHeight': {
+    _original: {
+      $value: 1.6,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.subtitle',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.subtitle.lineHeight',
+    $type: 'number',
+    $value: 1.6,
+  },
+  'text.subtitle.shorthand': {
+    _original: {
+      $value: {
+        fontWeight: '{text.subtitle.weight}',
+        fontSize: '{text.subtitle.size}',
+        lineHeight: '{text.subtitle.lineHeight}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium).',
+    },
+    _group: {
+      id: 'text.subtitle',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.subtitle.shorthand',
+    $type: 'typography',
+    $value: {
+      fontWeight: 400,
+      fontSize: '20px',
+      lineHeight: 1.6,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium).',
+  },
+  'text.subtitle.size': {
+    _original: {
+      $value: '20px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.subtitle',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.subtitle.size',
+    $type: 'dimension',
+    $value: '20px',
+  },
+  'text.subtitle.weight': {
+    _original: {
+      $value: '{base.text.weight.normal}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.subtitle',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.subtitle.weight',
+    $type: 'fontWeight',
+    $value: 400,
+  },
+  'text.title.lineHeight.large': {
+    _original: {
+      $value: 1.5,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.title.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.lineHeight.large',
+    $type: 'number',
+    $value: 1.5,
+  },
+  'text.title.lineHeight.medium': {
+    _original: {
+      $value: 1.6,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.title.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.lineHeight.medium',
+    $type: 'number',
+    $value: 1.6,
+  },
+  'text.title.lineHeight.small': {
+    _original: {
+      $value: 1.5,
+      $type: 'number',
+    },
+    _group: {
+      id: 'text.title.lineHeight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.lineHeight.small',
+    $type: 'number',
+    $value: 1.5,
+  },
+  'text.title.shorthand.large': {
+    _original: {
+      $value: {
+        fontWeight: '{text.title.weight.large}',
+        fontSize: '{text.title.size.large}',
+        lineHeight: '{text.title.lineHeight.large}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports.',
+    },
+    _group: {
+      id: 'text.title.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.shorthand.large',
+    $type: 'typography',
+    $value: {
+      fontWeight: 600,
+      fontSize: '32px',
+      lineHeight: 1.5,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports.',
+  },
+  'text.title.shorthand.medium': {
+    _original: {
+      $value: {
+        fontWeight: '{text.title.weight.medium}',
+        fontSize: '{text.title.size.medium}',
+        lineHeight: '{text.title.lineHeight.medium}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition.',
+    },
+    _group: {
+      id: 'text.title.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.shorthand.medium',
+    $type: 'typography',
+    $value: {
+      fontWeight: 600,
+      fontSize: '20px',
+      lineHeight: 1.6,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition.',
+  },
+  'text.title.shorthand.small': {
+    _original: {
+      $value: {
+        fontWeight: '{text.title.weight.small}',
+        fontSize: '{text.title.size.small}',
+        lineHeight: '{text.title.lineHeight.small}',
+        fontFamily: '{fontStack.sansSerif}',
+      },
+      $type: 'typography',
+      $description: 'Uses the same size as body (large) with a heavier weight of semibold (600).',
+    },
+    _group: {
+      id: 'text.title.shorthand',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.shorthand.small',
+    $type: 'typography',
+    $value: {
+      fontWeight: 600,
+      fontSize: '16px',
+      lineHeight: 1.5,
+      fontFamily: ['-apple-system, BlinkMacSystemFont, \'Segoe UI\', \'Noto Sans\', Helvetica, Arial, sans-serif, \'Apple Color Emoji\', \'Segoe UI Emoji\''],
+    },
+    $description: 'Uses the same size as body (large) with a heavier weight of semibold (600).',
+  },
+  'text.title.size.large': {
+    _original: {
+      $value: '32px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.title.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.size.large',
+    $type: 'dimension',
+    $value: '32px',
+  },
+  'text.title.size.medium': {
+    _original: {
+      $value: '20px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.title.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.size.medium',
+    $type: 'dimension',
+    $value: '20px',
+  },
+  'text.title.size.small': {
+    _original: {
+      $value: '16px',
+      $type: 'dimension',
+    },
+    _group: {
+      id: 'text.title.size',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.size.small',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'text.title.weight.large': {
+    _original: {
+      $value: '{base.text.weight.semibold}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.title.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.weight.large',
+    $type: 'fontWeight',
+    $value: 600,
+  },
+  'text.title.weight.medium': {
+    _original: {
+      $value: '{base.text.weight.semibold}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.title.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.weight.medium',
+    $type: 'fontWeight',
+    $value: 600,
+  },
+  'text.title.weight.small': {
+    _original: {
+      $value: '{base.text.weight.semibold}',
+      $type: 'fontWeight',
+    },
+    _group: {
+      id: 'text.title.weight',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'text.title.weight.small',
+    $type: 'fontWeight',
+    $value: 600,
   },
 };
 
 export const modes = {
-  'color.black': {
-    light: '#1b1f24',
+  'base.color.black': {
+    light: '#1f2328',
     'light-colorblind': '#1b1f24',
     'light-high-contrast': '#010409',
     dark: '#010409',
@@ -12719,7 +12714,7 @@ export const modes = {
     'dark-high-contrast': '#010409',
     'dark-colorblind': '#010409',
   },
-  'color.blue0': {
+  'base.color.blue.0': {
     light: '#ddf4ff',
     'light-colorblind': '#ddf4ff',
     'light-high-contrast': '#dff7ff',
@@ -12728,7 +12723,7 @@ export const modes = {
     'dark-high-contrast': '#caeaff',
     'dark-colorblind': '#cae8ff',
   },
-  'color.blue1': {
+  'base.color.blue.1': {
     light: '#b6e3ff',
     'light-colorblind': '#b6e3ff',
     'light-high-contrast': '#9cd7ff',
@@ -12737,7 +12732,7 @@ export const modes = {
     'dark-high-contrast': '#addcff',
     'dark-colorblind': '#a5d6ff',
   },
-  'color.blue2': {
+  'base.color.blue.2': {
     light: '#80ccff',
     'light-colorblind': '#80ccff',
     'light-high-contrast': '#67b3fd',
@@ -12746,7 +12741,7 @@ export const modes = {
     'dark-high-contrast': '#91cbff',
     'dark-colorblind': '#79c0ff',
   },
-  'color.blue3': {
+  'base.color.blue.3': {
     light: '#54aeff',
     'light-colorblind': '#54aeff',
     'light-high-contrast': '#368cf9',
@@ -12755,7 +12750,7 @@ export const modes = {
     'dark-high-contrast': '#71b7ff',
     'dark-colorblind': '#58a6ff',
   },
-  'color.blue4': {
+  'base.color.blue.4': {
     light: '#218bff',
     'light-colorblind': '#218bff',
     'light-high-contrast': '#1168e3',
@@ -12764,7 +12759,7 @@ export const modes = {
     'dark-high-contrast': '#409eff',
     'dark-colorblind': '#388bfd',
   },
-  'color.blue5': {
+  'base.color.blue.5': {
     light: '#0969da',
     'light-colorblind': '#0969da',
     'light-high-contrast': '#0349b4',
@@ -12773,7 +12768,7 @@ export const modes = {
     'dark-high-contrast': '#409eff',
     'dark-colorblind': '#1f6feb',
   },
-  'color.blue6': {
+  'base.color.blue.6': {
     light: '#0550ae',
     'light-colorblind': '#0550ae',
     'light-high-contrast': '#023b95',
@@ -12782,7 +12777,7 @@ export const modes = {
     'dark-high-contrast': '#318bf8',
     'dark-colorblind': '#1158c7',
   },
-  'color.blue7': {
+  'base.color.blue.7': {
     light: '#033d8b',
     'light-colorblind': '#033d8b',
     'light-high-contrast': '#022f7a',
@@ -12791,7 +12786,7 @@ export const modes = {
     'dark-high-contrast': '#2672f3',
     'dark-colorblind': '#0d419d',
   },
-  'color.blue8': {
+  'base.color.blue.8': {
     light: '#0a3069',
     'light-colorblind': '#0a3069',
     'light-high-contrast': '#032563',
@@ -12800,7 +12795,7 @@ export const modes = {
     'dark-high-contrast': '#1e60d5',
     'dark-colorblind': '#0c2d6b',
   },
-  'color.blue9': {
+  'base.color.blue.9': {
     light: '#002155',
     'light-colorblind': '#002155',
     'light-high-contrast': '#021a4a',
@@ -12809,97 +12804,97 @@ export const modes = {
     'dark-high-contrast': '#194fb1',
     'dark-colorblind': '#051d4d',
   },
-  'color.coral0': {
-    light: '#fff0eb',
-    'light-colorblind': '#fff0eb',
+  'base.color.coral.0': {
+    light: '#FFF0EB',
+    'light-colorblind': '#FFF0EB',
     'light-high-contrast': '#fff0ed',
-    dark: '#ffddd2',
-    'dark-dimmed': '#ffdacf',
-    'dark-high-contrast': '#ffded4',
-    'dark-colorblind': '#ffddd2',
+    dark: '#FFDDD2',
+    'dark-dimmed': '#FFDACF',
+    'dark-high-contrast': '#FFDED4',
+    'dark-colorblind': '#FFDDD2',
   },
-  'color.coral1': {
-    light: '#ffd6cc',
-    'light-colorblind': '#ffd6cc',
+  'base.color.coral.1': {
+    light: '#FFD6CC',
+    'light-colorblind': '#FFD6CC',
     'light-high-contrast': '#ffc2b6',
-    dark: '#ffc2b2',
-    'dark-dimmed': '#ffb9a5',
-    'dark-high-contrast': '#ffcbb9',
-    'dark-colorblind': '#ffc2b2',
+    dark: '#FFC2B2',
+    'dark-dimmed': '#FFB9A5',
+    'dark-high-contrast': '#FFCBB9',
+    'dark-colorblind': '#FFC2B2',
   },
-  'color.coral2': {
-    light: '#ffb4a1',
-    'light-colorblind': '#ffb4a1',
+  'base.color.coral.2': {
+    light: '#FFB4A1',
+    'light-colorblind': '#FFB4A1',
     'light-high-contrast': '#ff8f7e',
-    dark: '#ffa28b',
-    'dark-dimmed': '#f79981',
-    'dark-high-contrast': '#ffb39b',
-    'dark-colorblind': '#ffa28b',
+    dark: '#FFA28B',
+    'dark-dimmed': '#F79981',
+    'dark-high-contrast': '#FFB39B',
+    'dark-colorblind': '#FFA28B',
   },
-  'color.coral3': {
-    light: '#fd8c73',
-    'light-colorblind': '#fd8c73',
+  'base.color.coral.3': {
+    light: '#FD8C73',
+    'light-colorblind': '#FD8C73',
     'light-high-contrast': '#ef5b48',
-    dark: '#f78166',
-    'dark-dimmed': '#ec775c',
-    'dark-high-contrast': '#ff967d',
-    'dark-colorblind': '#f78166',
+    dark: '#F78166',
+    'dark-dimmed': '#EC775C',
+    'dark-high-contrast': '#FF967D',
+    'dark-colorblind': '#F78166',
   },
-  'color.coral4': {
-    light: '#ec6547',
-    'light-colorblind': '#ec6547',
+  'base.color.coral.4': {
+    light: '#EC6547',
+    'light-colorblind': '#EC6547',
     'light-high-contrast': '#cd3425',
-    dark: '#ea6045',
-    'dark-dimmed': '#de5b41',
-    'dark-high-contrast': '#fc704f',
-    'dark-colorblind': '#ea6045',
+    dark: '#EA6045',
+    'dark-dimmed': '#DE5B41',
+    'dark-high-contrast': '#FC704F',
+    'dark-colorblind': '#EA6045',
   },
-  'color.coral5': {
-    light: '#c4432b',
-    'light-colorblind': '#c4432b',
+  'base.color.coral.5': {
+    light: '#C4432B',
+    'light-colorblind': '#C4432B',
     'light-high-contrast': '#9f1710',
-    dark: '#cf462d',
-    'dark-dimmed': '#c2442d',
-    'dark-high-contrast': '#fc704f',
-    'dark-colorblind': '#cf462d',
+    dark: '#CF462D',
+    'dark-dimmed': '#C2442D',
+    'dark-high-contrast': '#FC704F',
+    'dark-colorblind': '#CF462D',
   },
-  'color.coral6': {
-    light: '#9e2f1c',
-    'light-colorblind': '#9e2f1c',
+  'base.color.coral.6': {
+    light: '#9E2F1C',
+    'light-colorblind': '#9E2F1C',
     'light-high-contrast': '#870706',
-    dark: '#ac3220',
-    'dark-dimmed': '#a93524',
-    'dark-high-contrast': '#f75133',
-    'dark-colorblind': '#ac3220',
+    dark: '#AC3220',
+    'dark-dimmed': '#A93524',
+    'dark-high-contrast': '#F75133',
+    'dark-colorblind': '#AC3220',
   },
-  'color.coral7': {
-    light: '#801f0f',
-    'light-colorblind': '#801f0f',
+  'base.color.coral.7': {
+    light: '#801F0F',
+    'light-colorblind': '#801F0F',
     'light-high-contrast': '#6f0107',
     dark: '#872012',
-    'dark-dimmed': '#8d291b',
-    'dark-high-contrast': '#e03b21',
+    'dark-dimmed': '#8D291B',
+    'dark-high-contrast': '#E03B21',
     'dark-colorblind': '#872012',
   },
-  'color.coral8': {
+  'base.color.coral.8': {
     light: '#691105',
     'light-colorblind': '#691105',
     'light-high-contrast': '#5b0002',
-    dark: '#640d04',
-    'dark-dimmed': '#771d13',
-    'dark-high-contrast': '#c62612',
-    'dark-colorblind': '#640d04',
+    dark: '#640D04',
+    'dark-dimmed': '#771D13',
+    'dark-high-contrast': '#C62612',
+    'dark-colorblind': '#640D04',
   },
-  'color.coral9': {
+  'base.color.coral.9': {
     light: '#510901',
     'light-colorblind': '#510901',
     'light-high-contrast': '#430200',
     dark: '#460701',
-    'dark-dimmed': '#5d1008',
-    'dark-high-contrast': '#a91500',
+    'dark-dimmed': '#5D1008',
+    'dark-high-contrast': '#A91500',
     'dark-colorblind': '#460701',
   },
-  'color.gray0': {
+  'base.color.gray.0': {
     light: '#f6f8fa',
     'light-colorblind': '#f6f8fa',
     'light-high-contrast': '#ffffff',
@@ -12908,7 +12903,7 @@ export const modes = {
     'dark-high-contrast': '#ffffff',
     'dark-colorblind': '#f0f6fc',
   },
-  'color.gray1': {
+  'base.color.gray.1': {
     light: '#eaeef2',
     'light-colorblind': '#eaeef2',
     'light-high-contrast': '#e7ecf0',
@@ -12917,7 +12912,7 @@ export const modes = {
     'dark-high-contrast': '#f0f3f6',
     'dark-colorblind': '#c9d1d9',
   },
-  'color.gray2': {
+  'base.color.gray.2': {
     light: '#d0d7de',
     'light-colorblind': '#d0d7de',
     'light-high-contrast': '#ced5dc',
@@ -12926,7 +12921,7 @@ export const modes = {
     'dark-high-contrast': '#d9dee3',
     'dark-colorblind': '#b1bac4',
   },
-  'color.gray3': {
+  'base.color.gray.3': {
     light: '#afb8c1',
     'light-colorblind': '#afb8c1',
     'light-high-contrast': '#acb6c0',
@@ -12935,7 +12930,7 @@ export const modes = {
     'dark-high-contrast': '#bdc4cc',
     'dark-colorblind': '#8b949e',
   },
-  'color.gray4': {
+  'base.color.gray.4': {
     light: '#8c959f',
     'light-colorblind': '#8c959f',
     'light-high-contrast': '#88929d',
@@ -12944,16 +12939,16 @@ export const modes = {
     'dark-high-contrast': '#9ea7b3',
     'dark-colorblind': '#6e7681',
   },
-  'color.gray5': {
+  'base.color.gray.5': {
     light: '#6e7781',
     'light-colorblind': '#6e7781',
-    'light-high-contrast': '#66707b',
+    'light-high-contrast': '#66707B',
     dark: '#484f58',
     'dark-dimmed': '#545d68',
     'dark-high-contrast': '#7a828e',
     'dark-colorblind': '#484f58',
   },
-  'color.gray6': {
+  'base.color.gray.6': {
     light: '#57606a',
     'light-colorblind': '#57606a',
     'light-high-contrast': '#4b535d',
@@ -12962,7 +12957,7 @@ export const modes = {
     'dark-high-contrast': '#525964',
     'dark-colorblind': '#30363d',
   },
-  'color.gray7': {
+  'base.color.gray.7': {
     light: '#424a53',
     'light-colorblind': '#424a53',
     'light-high-contrast': '#343b43',
@@ -12971,7 +12966,7 @@ export const modes = {
     'dark-high-contrast': '#272b33',
     'dark-colorblind': '#21262d',
   },
-  'color.gray8': {
+  'base.color.gray.8': {
     light: '#32383f',
     'light-colorblind': '#32383f',
     'light-high-contrast': '#20252c',
@@ -12980,7 +12975,7 @@ export const modes = {
     'dark-high-contrast': '#272b33',
     'dark-colorblind': '#161b22',
   },
-  'color.gray9': {
+  'base.color.gray.9': {
     light: '#24292f',
     'light-colorblind': '#24292f',
     'light-high-contrast': '#0e1116',
@@ -12989,7 +12984,7 @@ export const modes = {
     'dark-high-contrast': '#0a0c10',
     'dark-colorblind': '#0d1117',
   },
-  'color.green0': {
+  'base.color.green.0': {
     light: '#dafbe1',
     'light-colorblind': '#c0f6ff',
     'light-high-contrast': '#d2fedb',
@@ -12998,7 +12993,7 @@ export const modes = {
     'dark-high-contrast': '#acf7b6',
     'dark-colorblind': '#a0e8ff',
   },
-  'color.green1': {
+  'base.color.green.1': {
     light: '#aceebb',
     'light-colorblind': '#96e5ff',
     'light-high-contrast': '#82e596',
@@ -13007,7 +13002,7 @@ export const modes = {
     'dark-high-contrast': '#72f088',
     'dark-colorblind': '#83d4ff',
   },
-  'color.green2': {
+  'base.color.green.2': {
     light: '#6fdd8b',
     'light-colorblind': '#65ccff',
     'light-high-contrast': '#43c663',
@@ -13016,7 +13011,7 @@ export const modes = {
     'dark-high-contrast': '#4ae168',
     'dark-colorblind': '#66baff',
   },
-  'color.green3': {
+  'base.color.green.3': {
     light: '#4ac26b',
     'light-colorblind': '#35adff',
     'light-high-contrast': '#26a148',
@@ -13025,7 +13020,7 @@ export const modes = {
     'dark-high-contrast': '#26cd4d',
     'dark-colorblind': '#42a0ff',
   },
-  'color.green4': {
+  'base.color.green.4': {
     light: '#2da44e',
     'light-colorblind': '#0088ff',
     'light-high-contrast': '#117f32',
@@ -13034,7 +13029,7 @@ export const modes = {
     'dark-high-contrast': '#09b43a',
     'dark-colorblind': '#1585fd',
   },
-  'color.green5': {
+  'base.color.green.5': {
     light: '#1a7f37',
     'light-colorblind': '#0566d5',
     'light-high-contrast': '#055d20',
@@ -13043,7 +13038,7 @@ export const modes = {
     'dark-high-contrast': '#09b43a',
     'dark-colorblind': '#1d69e0',
   },
-  'color.green6': {
+  'base.color.green.6': {
     light: '#116329',
     'light-colorblind': '#054da9',
     'light-high-contrast': '#024c1a',
@@ -13052,7 +13047,7 @@ export const modes = {
     'dark-high-contrast': '#02a232',
     'dark-colorblind': '#0f53bc',
   },
-  'color.green7': {
+  'base.color.green.7': {
     light: '#044f1e',
     'light-colorblind': '#033a86',
     'light-high-contrast': '#013d14',
@@ -13061,7 +13056,7 @@ export const modes = {
     'dark-high-contrast': '#008c2c',
     'dark-colorblind': '#0b3c92',
   },
-  'color.green8': {
+  'base.color.green.8': {
     light: '#003d16',
     'light-colorblind': '#002d68',
     'light-high-contrast': '#003110',
@@ -13070,7 +13065,7 @@ export const modes = {
     'dark-high-contrast': '#007728',
     'dark-colorblind': '#0a2861',
   },
-  'color.green9': {
+  'base.color.green.9': {
     light: '#002d11',
     'light-colorblind': '#001f50',
     'light-high-contrast': '#00230b',
@@ -13079,7 +13074,7 @@ export const modes = {
     'dark-high-contrast': '#006222',
     'dark-colorblind': '#041843',
   },
-  'color.orange0': {
+  'base.color.orange.0': {
     light: '#fff1e5',
     'light-colorblind': '#fff1e5',
     'light-high-contrast': '#fff2d5',
@@ -13088,7 +13083,7 @@ export const modes = {
     'dark-high-contrast': '#ffe1b4',
     'dark-colorblind': '#ffdfb6',
   },
-  'color.orange1': {
+  'base.color.orange.1': {
     light: '#ffd8b5',
     'light-colorblind': '#ffd8b5',
     'light-high-contrast': '#ffc67b',
@@ -13097,7 +13092,7 @@ export const modes = {
     'dark-high-contrast': '#ffcf86',
     'dark-colorblind': '#ffc680',
   },
-  'color.orange2': {
+  'base.color.orange.2': {
     light: '#ffb77c',
     'light-colorblind': '#ffb77c',
     'light-high-contrast': '#f99636',
@@ -13106,7 +13101,7 @@ export const modes = {
     'dark-high-contrast': '#ffb757',
     'dark-colorblind': '#ffa657',
   },
-  'color.orange3': {
+  'base.color.orange.3': {
     light: '#fb8f44',
     'light-colorblind': '#fb8f44',
     'light-high-contrast': '#dc6d1a',
@@ -13115,7 +13110,7 @@ export const modes = {
     'dark-high-contrast': '#fe9a2d',
     'dark-colorblind': '#f0883e',
   },
-  'color.orange4': {
+  'base.color.orange.4': {
     light: '#e16f24',
     'light-colorblind': '#e16f24',
     'light-high-contrast': '#b45105',
@@ -13124,7 +13119,7 @@ export const modes = {
     'dark-high-contrast': '#e7811d',
     'dark-colorblind': '#db6d28',
   },
-  'color.orange5': {
+  'base.color.orange.5': {
     light: '#bc4c00',
     'light-colorblind': '#bc4c00',
     'light-high-contrast': '#873800',
@@ -13133,7 +13128,7 @@ export const modes = {
     'dark-high-contrast': '#e7811d',
     'dark-colorblind': '#bd561d',
   },
-  'color.orange6': {
+  'base.color.orange.6': {
     light: '#953800',
     'light-colorblind': '#953800',
     'light-high-contrast': '#702c00',
@@ -13142,7 +13137,7 @@ export const modes = {
     'dark-high-contrast': '#d57014',
     'dark-colorblind': '#9b4215',
   },
-  'color.orange7': {
+  'base.color.orange.7': {
     light: '#762c00',
     'light-colorblind': '#762c00',
     'light-high-contrast': '#5b2300',
@@ -13151,7 +13146,7 @@ export const modes = {
     'dark-high-contrast': '#bf5e0a',
     'dark-colorblind': '#762d0a',
   },
-  'color.orange8': {
+  'base.color.orange.8': {
     light: '#5c2200',
     'light-colorblind': '#5c2200',
     'light-high-contrast': '#491b00',
@@ -13160,7 +13155,7 @@ export const modes = {
     'dark-high-contrast': '#a74c00',
     'dark-colorblind': '#5a1e02',
   },
-  'color.orange9': {
+  'base.color.orange.9': {
     light: '#471700',
     'light-colorblind': '#471700',
     'light-high-contrast': '#361200',
@@ -13169,7 +13164,7 @@ export const modes = {
     'dark-high-contrast': '#8f3c00',
     'dark-colorblind': '#3d1300',
   },
-  'color.pink0': {
+  'base.color.pink.0': {
     light: '#ffeff7',
     'light-colorblind': '#ffeff7',
     'light-high-contrast': '#feeff7',
@@ -13178,7 +13173,7 @@ export const modes = {
     'dark-high-contrast': '#ffdceb',
     'dark-colorblind': '#ffdaec',
   },
-  'color.pink1': {
+  'base.color.pink.1': {
     light: '#ffd3eb',
     'light-colorblind': '#ffd3eb',
     'light-high-contrast': '#ffbde0',
@@ -13187,7 +13182,7 @@ export const modes = {
     'dark-high-contrast': '#ffc7e1',
     'dark-colorblind': '#ffbedd',
   },
-  'color.pink2': {
+  'base.color.pink.2': {
     light: '#ffadda',
     'light-colorblind': '#ffadda',
     'light-high-contrast': '#fc87ca',
@@ -13196,7 +13191,7 @@ export const modes = {
     'dark-high-contrast': '#ffadd4',
     'dark-colorblind': '#ff9bce',
   },
-  'color.pink3': {
+  'base.color.pink.3': {
     light: '#ff80c8',
     'light-colorblind': '#ff80c8',
     'light-high-contrast': '#ed4baf',
@@ -13205,7 +13200,7 @@ export const modes = {
     'dark-high-contrast': '#ff8dc7',
     'dark-colorblind': '#f778ba',
   },
-  'color.pink4': {
+  'base.color.pink.4': {
     light: '#e85aad',
     'light-colorblind': '#e85aad',
     'light-high-contrast': '#c9248e',
@@ -13214,7 +13209,7 @@ export const modes = {
     'dark-high-contrast': '#ef6eb1',
     'dark-colorblind': '#db61a2',
   },
-  'color.pink5': {
+  'base.color.pink.5': {
     light: '#bf3989',
     'light-colorblind': '#bf3989',
     'light-high-contrast': '#971368',
@@ -13223,7 +13218,7 @@ export const modes = {
     'dark-high-contrast': '#ef6eb1',
     'dark-colorblind': '#bf4b8a',
   },
-  'color.pink6': {
+  'base.color.pink.6': {
     light: '#99286e',
     'light-colorblind': '#99286e',
     'light-high-contrast': '#7d0c57',
@@ -13232,7 +13227,7 @@ export const modes = {
     'dark-high-contrast': '#e456a3',
     'dark-colorblind': '#9e3670',
   },
-  'color.pink7': {
+  'base.color.pink.7': {
     light: '#772057',
     'light-colorblind': '#772057',
     'light-high-contrast': '#660847',
@@ -13241,7 +13236,7 @@ export const modes = {
     'dark-high-contrast': '#d23d91',
     'dark-colorblind': '#7d2457',
   },
-  'color.pink8': {
+  'base.color.pink.8': {
     light: '#611347',
     'light-colorblind': '#611347',
     'light-high-contrast': '#53043a',
@@ -13250,7 +13245,7 @@ export const modes = {
     'dark-high-contrast': '#b72c7d',
     'dark-colorblind': '#5e103e',
   },
-  'color.pink9': {
+  'base.color.pink.9': {
     light: '#4d0336',
     'light-colorblind': '#4d0336',
     'light-high-contrast': '#3e022b',
@@ -13259,7 +13254,7 @@ export const modes = {
     'dark-high-contrast': '#9c1d6a',
     'dark-colorblind': '#42062a',
   },
-  'color.purple0': {
+  'base.color.purple.0': {
     light: '#fbefff',
     'light-colorblind': '#fbefff',
     'light-high-contrast': '#faf0fe',
@@ -13268,7 +13263,7 @@ export const modes = {
     'dark-high-contrast': '#f0dfff',
     'dark-colorblind': '#eddeff',
   },
-  'color.purple1': {
+  'base.color.purple.1': {
     light: '#ecd8ff',
     'light-colorblind': '#ecd8ff',
     'light-high-contrast': '#e0c5ff',
@@ -13277,7 +13272,7 @@ export const modes = {
     'dark-high-contrast': '#e6ccff',
     'dark-colorblind': '#e2c5ff',
   },
-  'color.purple2': {
+  'base.color.purple.2': {
     light: '#d8b9ff',
     'light-colorblind': '#d8b9ff',
     'light-high-contrast': '#c49bff',
@@ -13286,7 +13281,7 @@ export const modes = {
     'dark-high-contrast': '#dbb7ff',
     'dark-colorblind': '#d2a8ff',
   },
-  'color.purple3': {
+  'base.color.purple.3': {
     light: '#c297ff',
     'light-colorblind': '#c297ff',
     'light-high-contrast': '#a371f7',
@@ -13295,7 +13290,7 @@ export const modes = {
     'dark-high-contrast': '#cb9eff',
     'dark-colorblind': '#bc8cff',
   },
-  'color.purple4': {
+  'base.color.purple.4': {
     light: '#a475f9',
     'light-colorblind': '#a475f9',
     'light-high-contrast': '#844ae7',
@@ -13304,7 +13299,7 @@ export const modes = {
     'dark-high-contrast': '#b780ff',
     'dark-colorblind': '#a371f7',
   },
-  'color.purple5': {
+  'base.color.purple.5': {
     light: '#8250df',
     'light-colorblind': '#8250df',
     'light-high-contrast': '#622cbc',
@@ -13313,7 +13308,7 @@ export const modes = {
     'dark-high-contrast': '#b87fff',
     'dark-colorblind': '#8957e5',
   },
-  'color.purple6': {
+  'base.color.purple.6': {
     light: '#6639ba',
     'light-colorblind': '#6639ba',
     'light-high-contrast': '#512598',
@@ -13322,7 +13317,7 @@ export const modes = {
     'dark-high-contrast': '#a66bff',
     'dark-colorblind': '#6e40c9',
   },
-  'color.purple7': {
+  'base.color.purple.7': {
     light: '#512a97',
     'light-colorblind': '#512a97',
     'light-high-contrast': '#411d7b',
@@ -13331,7 +13326,7 @@ export const modes = {
     'dark-high-contrast': '#954ffd',
     'dark-colorblind': '#553098',
   },
-  'color.purple8': {
+  'base.color.purple.8': {
     light: '#3e1f79',
     'light-colorblind': '#3e1f79',
     'light-high-contrast': '#341763',
@@ -13340,7 +13335,7 @@ export const modes = {
     'dark-high-contrast': '#8031f7',
     'dark-colorblind': '#3c1e70',
   },
-  'color.purple9': {
+  'base.color.purple.9': {
     light: '#2e1461',
     'light-colorblind': '#2e1461',
     'light-high-contrast': '#260f49',
@@ -13349,8 +13344,8 @@ export const modes = {
     'dark-high-contrast': '#6921d7',
     'dark-colorblind': '#271052',
   },
-  'color.red0': {
-    light: '#ffebe9',
+  'base.color.red.0': {
+    light: '#FFEBE9',
     'light-colorblind': '#fefe48',
     'light-high-contrast': '#fff0ee',
     dark: '#ffdcd7',
@@ -13358,7 +13353,7 @@ export const modes = {
     'dark-high-contrast': '#ffdedb',
     'dark-colorblind': '#f0ec59',
   },
-  'color.red1': {
+  'base.color.red.1': {
     light: '#ffcecb',
     'light-colorblind': '#fee325',
     'light-high-contrast': '#ffc1bc',
@@ -13367,7 +13362,7 @@ export const modes = {
     'dark-high-contrast': '#ffc9c7',
     'dark-colorblind': '#ecd334',
   },
-  'color.red2': {
+  'base.color.red.2': {
     light: '#ffaba8',
     'light-colorblind': '#f8c200',
     'light-high-contrast': '#ff8e8a',
@@ -13376,7 +13371,7 @@ export const modes = {
     'dark-high-contrast': '#ffb1af',
     'dark-colorblind': '#e6b716',
   },
-  'color.red3': {
+  'base.color.red.3': {
     light: '#ff8182',
     'light-colorblind': '#e7a100',
     'light-high-contrast': '#ee5a5d',
@@ -13385,7 +13380,7 @@ export const modes = {
     'dark-high-contrast': '#ff9492',
     'dark-colorblind': '#d69a00',
   },
-  'color.red4': {
+  'base.color.red.4': {
     light: '#fa4549',
     'light-colorblind': '#d08002',
     'light-high-contrast': '#d5232c',
@@ -13394,7 +13389,7 @@ export const modes = {
     'dark-high-contrast': '#ff6a69',
     'dark-colorblind': '#c38000',
   },
-  'color.red5': {
+  'base.color.red.5': {
     light: '#cf222e',
     'light-colorblind': '#ac5e00',
     'light-high-contrast': '#a0111f',
@@ -13403,7 +13398,7 @@ export const modes = {
     'dark-high-contrast': '#ff6a69',
     'dark-colorblind': '#a66900',
   },
-  'color.red6': {
+  'base.color.red.6': {
     light: '#a40e26',
     'light-colorblind': '#8b4600',
     'light-high-contrast': '#86061d',
@@ -13412,7 +13407,7 @@ export const modes = {
     'dark-high-contrast': '#ff4445',
     'dark-colorblind': '#865401',
   },
-  'color.red7': {
+  'base.color.red.7': {
     light: '#82071e',
     'light-colorblind': '#6c3900',
     'light-high-contrast': '#6e011a',
@@ -13421,7 +13416,7 @@ export const modes = {
     'dark-high-contrast': '#e82a2f',
     'dark-colorblind': '#633e00',
   },
-  'color.red8': {
+  'base.color.red.8': {
     light: '#660018',
     'light-colorblind': '#4c3100',
     'light-high-contrast': '#5a0016',
@@ -13430,25 +13425,29 @@ export const modes = {
     'dark-high-contrast': '#cc1421',
     'dark-colorblind': '#452f00',
   },
-  'color.red9': {
+  'base.color.red.9': {
     light: '#4c0014',
     'light-colorblind': '#2f2900',
     'light-high-contrast': '#430011',
     dark: '#490202',
-    'dark-dimmed': '#5d0f12',
+    'dark-dimmed': '#5D0F12',
     'dark-high-contrast': '#ad0116',
     'dark-colorblind': '#292100',
   },
-  'color.white': {
-    light: '#ffffff',
+  'base.color.transparent': {
+    light: 'ffffff',
+    'light-high-contrast': '#ffffff',
+  },
+  'base.color.white': {
+    light: 'ffffff',
     'light-colorblind': '#ffffff',
     'light-high-contrast': '#ffffff',
-    dark: '#f0f6fc',
-    'dark-dimmed': '#cdd9e5',
+    dark: '#ffffff',
+    'dark-dimmed': '#ffffff',
     'dark-high-contrast': '#ffffff',
-    'dark-colorblind': '#f0f6fc',
+    'dark-colorblind': '#ffffff',
   },
-  'color.yellow0': {
+  'base.color.yellow.0': {
     light: '#fff8c5',
     'light-colorblind': '#fff8c5',
     'light-high-contrast': '#fcf7be',
@@ -13457,7 +13456,7 @@ export const modes = {
     'dark-high-contrast': '#fbe59e',
     'dark-colorblind': '#f8e3a1',
   },
-  'color.yellow1': {
+  'base.color.yellow.1': {
     light: '#fae17d',
     'light-colorblind': '#fae17d',
     'light-high-contrast': '#f0ce53',
@@ -13466,7 +13465,7 @@ export const modes = {
     'dark-high-contrast': '#fbd669',
     'dark-colorblind': '#f2cc60',
   },
-  'color.yellow2': {
+  'base.color.yellow.2': {
     light: '#eac54f',
     'light-colorblind': '#eac54f',
     'light-high-contrast': '#d5a824',
@@ -13475,7 +13474,7 @@ export const modes = {
     'dark-high-contrast': '#f7c843',
     'dark-colorblind': '#e3b341',
   },
-  'color.yellow3': {
+  'base.color.yellow.3': {
     light: '#d4a72c',
     'light-colorblind': '#d4a72c',
     'light-high-contrast': '#b58407',
@@ -13484,7 +13483,7 @@ export const modes = {
     'dark-high-contrast': '#f0b72f',
     'dark-colorblind': '#d29922',
   },
-  'color.yellow4': {
+  'base.color.yellow.4': {
     light: '#bf8700',
     'light-colorblind': '#bf8700',
     'light-high-contrast': '#956400',
@@ -13493,7 +13492,7 @@ export const modes = {
     'dark-high-contrast': '#e09b13',
     'dark-colorblind': '#bb8009',
   },
-  'color.yellow5': {
+  'base.color.yellow.5': {
     light: '#9a6700',
     'light-colorblind': '#9a6700',
     'light-high-contrast': '#744500',
@@ -13502,7 +13501,7 @@ export const modes = {
     'dark-high-contrast': '#e09b13',
     'dark-colorblind': '#9e6a03',
   },
-  'color.yellow6': {
+  'base.color.yellow.6': {
     light: '#7d4e00',
     'light-colorblind': '#7d4e00',
     'light-high-contrast': '#603700',
@@ -13511,7 +13510,7 @@ export const modes = {
     'dark-high-contrast': '#c88508',
     'dark-colorblind': '#845306',
   },
-  'color.yellow7': {
+  'base.color.yellow.7': {
     light: '#633c01',
     'light-colorblind': '#633c01',
     'light-high-contrast': '#4e2c00',
@@ -13520,7 +13519,7 @@ export const modes = {
     'dark-high-contrast': '#ae7104',
     'dark-colorblind': '#693e00',
   },
-  'color.yellow8': {
+  'base.color.yellow.8': {
     light: '#4d2d00',
     'light-colorblind': '#4d2d00',
     'light-high-contrast': '#3f2200',
@@ -13529,7 +13528,7 @@ export const modes = {
     'dark-high-contrast': '#945d02',
     'dark-colorblind': '#4b2900',
   },
-  'color.yellow9': {
+  'base.color.yellow.9': {
     light: '#3b2300',
     'light-colorblind': '#3b2300',
     'light-high-contrast': '#2e1800',
@@ -13537,38 +13536,6 @@ export const modes = {
     'dark-dimmed': '#452700',
     'dark-high-contrast': '#7b4900',
     'dark-colorblind': '#341a00',
-  },
-  'font.family.size.f00': {
-    mobile: '32px',
-    desktop: '48px',
-  },
-  'font.family.size.f0': {
-    mobile: '32px',
-    desktop: '40px',
-  },
-  'font.family.size.f1': {
-    mobile: '26px',
-    desktop: '32px',
-  },
-  'font.family.size.f2': {
-    mobile: '22px',
-    desktop: '24px',
-  },
-  'font.family.size.f3': {
-    mobile: '16px',
-    desktop: '20px',
-  },
-  'font.family.size.f4': {
-    mobile: '16px',
-    desktop: '16px',
-  },
-  'font.family.size.f5': {
-    mobile: '14px',
-    desktop: '14px',
-  },
-  'font.family.size.f6': {
-    mobile: '12px',
-    desktop: '12px',
   },
 };
 

@@ -1,0 +1,359 @@
+color:
+  $type: color
+  $extensions:
+    modes:
+      - light
+      - light-colorblind
+      - light-high-contrast
+      - dark
+      - dark-colorblind
+      - dark-dimmed
+      - dark-high-contrast
+  black:
+    $value: '#1b1f24'
+    $extensions:
+      mode:
+        light: '#1b1f24'
+        light-colorblind: '#1b1f24'
+        light-high-contrast: '#010409'
+        dark: '#010409'
+        white: '#f0f6fc'
+        dark-dimmed: '#1c2128'
+        dark-high-contrast: '#010409'
+        dark-colorblind: '#010409'
+  blue:
+    '0':
+      $value: '#ddf4ff'
+      $extensions:
+        mode:
+          light: '#ddf4ff'
+          light-colorblind: '#ddf4ff'
+          light-high-contrast: '#dff7ff'
+          dark: '#cae8ff'
+          dark-dimmed: '#c6e6ff'
+          dark-high-contrast: '#caeaff'
+          dark-colorblind: '#cae8ff'
+    '1':
+      $value: '#b6e3ff'
+      $extensions:
+        mode:
+          light: '#b6e3ff'
+          light-colorblind: '#b6e3ff'
+          light-high-contrast: '#9cd7ff'
+          dark: '#a5d6ff'
+          dark-dimmed: '#96d0ff'
+          dark-high-contrast: '#addcff'
+          dark-colorblind: '#a5d6ff'
+    '2':
+      $value: '#80ccff'
+      $extensions:
+        mode:
+          light: '#80ccff'
+          light-colorblind: '#80ccff'
+          light-high-contrast: '#67b3fd'
+          dark: '#79c0ff'
+          dark-dimmed: '#6cb6ff'
+          dark-high-contrast: '#91cbff'
+          dark-colorblind: '#79c0ff'
+    '3':
+      $value: '#54aeff'
+      $extensions:
+        mode:
+          light: '#54aeff'
+          light-colorblind: '#54aeff'
+          light-high-contrast: '#368cf9'
+          dark: '#58a6ff'
+          dark-dimmed: '#539bf5'
+          dark-high-contrast: '#71b7ff'
+          dark-colorblind: '#58a6ff'
+    '4':
+      $value: '#218bff'
+      $extensions:
+        mode:
+          light: '#218bff'
+          light-colorblind: '#218bff'
+          light-high-contrast: '#1168e3'
+          dark: '#388bfd'
+          dark-dimmed: '#4184e4'
+          dark-high-contrast: '#409eff'
+          dark-colorblind: '#388bfd'
+    '5':
+      $value: '#0969da'
+      $extensions:
+        mode:
+          light: '#0969da'
+          light-colorblind: '#0969da'
+          light-high-contrast: '#0349b4'
+          dark: '#1f6feb'
+          dark-dimmed: '#316dca'
+          dark-high-contrast: '#409eff'
+          dark-colorblind: '#1f6feb'
+    '6':
+      $value: '#0550ae'
+      $extensions:
+        mode:
+          light: '#0550ae'
+          light-colorblind: '#0550ae'
+          light-high-contrast: '#023b95'
+          dark: '#1158c7'
+          dark-dimmed: '#255ab2'
+          dark-high-contrast: '#318bf8'
+          dark-colorblind: '#1158c7'
+    '7':
+      $value: '#033d8b'
+      $extensions:
+        mode:
+          light: '#033d8b'
+          light-colorblind: '#033d8b'
+          light-high-contrast: '#022f7a'
+          dark: '#0d419d'
+          dark-dimmed: '#1b4b91'
+          dark-high-contrast: '#2672f3'
+          dark-colorblind: '#0d419d'
+    '8':
+      $value: '#0a3069'
+      $extensions:
+        mode:
+          light: '#0a3069'
+          light-colorblind: '#0a3069'
+          light-high-contrast: '#032563'
+          dark: '#0c2d6b'
+          dark-dimmed: '#143d79'
+          dark-high-contrast: '#1e60d5'
+          dark-colorblind: '#0c2d6b'
+    '9':
+      $value: '#002155'
+      $extensions:
+        mode:
+          light: '#002155'
+          light-colorblind: '#002155'
+          light-high-contrast: '#021a4a'
+          dark: '#051d4d'
+          dark-dimmed: '#0f2d5c'
+          dark-high-contrast: '#194fb1'
+          dark-colorblind: '#051d4d'
+  gray:
+    '0':
+      $value: '#f6f8fa'
+      $extensions:
+        mode:
+          light: '#f6f8fa'
+          light-colorblind: '#f6f8fa'
+          light-high-contrast: '#FFFFFF'
+          dark: '#f0f6fc'
+          dark-dimmed: '#cdd9e5'
+          dark-high-contrast: '#ffffff'
+          dark-colorblind: '#f0f6fc'
+    '1':
+      $value: '#eaeef2'
+      $extensions:
+        mode:
+          light: '#eaeef2'
+          light-colorblind: '#eaeef2'
+          light-high-contrast: '#E7ECF0'
+          dark: '#c9d1d9'
+          dark-dimmed: '#adbac7'
+          dark-high-contrast: '#f0f3f6'
+          dark-colorblind: '#c9d1d9'
+    '2':
+      $value: '#d0d7de'
+      $extensions:
+        mode:
+          light: '#d0d7de'
+          light-colorblind: '#d0d7de'
+          light-high-contrast: '#CED5DC'
+          dark: '#b1bac4'
+          dark-dimmed: '#909dab'
+          dark-high-contrast: '#d9dee3'
+          dark-colorblind: '#b1bac4'
+    '3':
+      $value: '#afb8c1'
+      $extensions:
+        mode:
+          light: '#afb8c1'
+          light-colorblind: '#afb8c1'
+          light-high-contrast: '#ACB6C0'
+          dark: '#8b949e'
+          dark-dimmed: '#768390'
+          dark-high-contrast: '#bdc4cc'
+          dark-colorblind: '#8b949e'
+    '4':
+      $value: '#8c959f'
+      $extensions:
+        mode:
+          light: '#8c959f'
+          light-colorblind: '#8c959f'
+          light-high-contrast: '#88929D'
+          dark: '#6e7681'
+          dark-dimmed: '#636e7b'
+          dark-high-contrast: '#9ea7b3'
+          dark-colorblind: '#6e7681'
+    '5':
+      $value: '#6e7781'
+      $extensions:
+        mode:
+          light: '#6e7781'
+          light-colorblind: '#6e7781'
+          light-high-contrast: '#66707B'
+          dark: '#484f58'
+          dark-dimmed: '#545d68'
+          dark-high-contrast: '#7a828e'
+          dark-colorblind: '#484f58'
+    '6':
+      $value: '#57606a'
+      $extensions:
+        mode:
+          light: '#57606a'
+          light-colorblind: '#57606a'
+          light-high-contrast: '#4B535D'
+          dark: '#30363d'
+          dark-dimmed: '#444c56'
+          dark-high-contrast: '#525964'
+          dark-colorblind: '#30363d'
+    '7':
+      $value: '#424a53'
+      $extensions:
+        mode:
+          light: '#424a53'
+          light-colorblind: '#424a53'
+          light-high-contrast: '#343B43'
+          dark: '#21262d'
+          dark-dimmed: '#373e47'
+          dark-high-contrast: '#272b33'
+          dark-colorblind: '#21262d'
+    '8':
+      $value: '#32383f'
+      $extensions:
+        mode:
+          light: '#32383f'
+          light-colorblind: '#32383f'
+          light-high-contrast: '#20252C'
+          dark: '#161b22'
+          dark-dimmed: '#2d333b'
+          dark-high-contrast: '#272b33'
+          dark-colorblind: '#161b22'
+    '9':
+      $value: '#24292f'
+      $extensions:
+        mode:
+          light: '#24292f'
+          light-colorblind: '#24292f'
+          light-high-contrast: '#0E1116'
+          dark: '#0d1117'
+          dark-dimmed: '#22272e'
+          dark-high-contrast: '#0a0c10'
+          dark-colorblind: '#0d1117'
+icon:
+  $type: link
+  3D-Cursor:
+    $value: /icon/3D-Cursor.svg
+font:
+  family:
+    $type: fontFamily
+    system:
+      $value: ['-apple-system,', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji']
+spacing:
+  $type: dimension
+  4xs:
+    $value: 1px
+  3xs:
+    $value: 2px
+  2xs:
+    $value: 4px
+  xs:
+    $value: 8px
+  sm:
+    $value: 12px
+  md:
+    $value: 16px
+  lg:
+    $value: 24px
+  xl:
+    $value: 32px
+  2xl:
+    $value: 40px
+  3xl:
+    $value: 48px
+  layout:
+    2xs:
+      $value: 16px
+    xs:
+      $value: 24px
+    sm:
+      $value: 32px
+    md:
+      $value: 48px
+    lg:
+      $value: 64px
+    xl:
+      $value: 96px
+    2xl:
+      $value: 160px
+easing:
+  $type: cubicBezier
+  easeIn:
+    $value:
+      - 0.25
+      - 0
+      - 1
+      - 1
+  easeOut:
+    $value:
+      - 0
+      - 0
+      - 0.25
+      - 1
+  standard:
+    $value:
+      - 0.5
+      - 0
+      - 0.1
+      - 1
+  standard--expressive:
+    $value:
+      - 0.4
+      - 0.14
+      - 0.3
+      - 1
+  entrance:
+    $value:
+      - 0
+      - 0
+      - 0.38
+      - 0.9
+  entrance--expressive:
+    $value:
+      - 0
+      - 0
+      - 0.3
+      - 1
+  exit:
+    $value:
+      - 0.2
+      - 0
+      - 1
+      - 0.9
+  exit--expressive:
+    $value:
+      - 0.4
+      - 0.14
+      - 1
+      - 1
+transition:
+  $type: duration
+  base:
+    $value: 250ms
+  expansion:
+    $value: 300ms
+  fast01:
+    $value: 70ms
+  fast02:
+    $value: 110ms
+  moderate01:
+    $value: 150ms
+  moderate02:
+    $value: 240ms
+  slow01:
+    $value: 400ms
+  slow02:
+    $value: 720ms

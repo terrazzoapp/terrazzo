@@ -5,12 +5,11 @@
  */
 
 import {
-  BorderToken,
   ParsedBorderToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  border: BorderToken['$value'];
+  border: ParsedBorderToken['$value'];
 };
 
 export declare const meta: {
@@ -19,8 +18,8 @@ export declare const meta: {
 
 export declare const modes: {
   border: {
-    light: BorderToken['$value'];
-    dark: BorderToken['$value'];
+    light: ParsedBorderToken['$value'];
+    dark: ParsedBorderToken['$value'];
   };
 };
 

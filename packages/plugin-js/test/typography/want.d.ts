@@ -5,17 +5,15 @@
  */
 
 import {
-  FontFamilyToken,
   ParsedFontFamilyToken,
   ParsedTypographyToken,
-  TypographyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'typography.body': TypographyToken['$value'];
-  'typography.family.body': FontFamilyToken['$value'];
-  'typography.family.heading': FontFamilyToken['$value'];
-  'typography.largeTitle': TypographyToken['$value'];
+  'typography.body': ParsedTypographyToken['$value'];
+  'typography.family.body': ParsedFontFamilyToken['$value'];
+  'typography.family.heading': ParsedFontFamilyToken['$value'];
+  'typography.largeTitle': ParsedTypographyToken['$value'];
 };
 
 export declare const meta: {
@@ -27,22 +25,22 @@ export declare const meta: {
 
 export declare const modes: {
   'typography.body': {
-    xs: TypographyToken['$value'];
-    s: TypographyToken['$value'];
-    m: TypographyToken['$value'];
-    l: TypographyToken['$value'];
-    xl: TypographyToken['$value'];
-    '2xl': TypographyToken['$value'];
-    '3xl': TypographyToken['$value'];
+    xs: ParsedTypographyToken['$value'];
+    s: ParsedTypographyToken['$value'];
+    m: ParsedTypographyToken['$value'];
+    l: ParsedTypographyToken['$value'];
+    xl: ParsedTypographyToken['$value'];
+    '2xl': ParsedTypographyToken['$value'];
+    '3xl': ParsedTypographyToken['$value'];
   };
   'typography.largeTitle': {
-    xs: TypographyToken['$value'];
-    s: TypographyToken['$value'];
-    m: TypographyToken['$value'];
-    l: TypographyToken['$value'];
-    xl: TypographyToken['$value'];
-    '2xl': TypographyToken['$value'];
-    '3xl': TypographyToken['$value'];
+    xs: ParsedTypographyToken['$value'];
+    s: ParsedTypographyToken['$value'];
+    m: ParsedTypographyToken['$value'];
+    l: ParsedTypographyToken['$value'];
+    xl: ParsedTypographyToken['$value'];
+    '2xl': ParsedTypographyToken['$value'];
+    '3xl': ParsedTypographyToken['$value'];
   };
 };
 

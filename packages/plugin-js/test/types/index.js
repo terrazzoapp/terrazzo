@@ -7,50 +7,610 @@
 export const tokens = {
   'color.blue': '#218bff',
   'color.red': '#fa4549',
+  'easing.easeIn': [0.25, 0, 1, 1],
+  'easing.easeOut': [0, 0, 0.25, 1],
+  'easing.entrance': [0, 0, 0.38, 0.9],
+  'easing.entrance--expressive': [0, 0, 0.3, 1],
+  'easing.exit': [0.2, 0, 1, 0.9],
+  'easing.exit--expressive': [0.4, 0.14, 1, 1],
+  'easing.standard': [0.5, 0, 0.1, 1],
+  'easing.standard--expressive': [0.4, 0.14, 0.3, 1],
+  'font.family.sans': ['IBM Plex Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  'icon.3D-Cursor': '/icon/3D-Cursor.svg',
+  'spacing.2xl': '40px',
+  'spacing.2xs': '4px',
+  'spacing.3xl': '48px',
+  'spacing.3xs': '2px',
+  'spacing.4xs': '1px',
+  'spacing.layout.2xl': '160px',
+  'spacing.layout.2xs': '16px',
+  'spacing.layout.lg': '64px',
+  'spacing.layout.md': '48px',
+  'spacing.layout.sm': '32px',
+  'spacing.layout.xl': '96px',
+  'spacing.layout.xs': '24px',
+  'spacing.lg': '24px',
+  'spacing.md': '16px',
+  'spacing.sm': '12px',
+  'spacing.xl': '32px',
+  'spacing.xs': '8px',
+  'transition.base': '250ms',
+  'transition.expansion': '300ms',
+  'transition.fast01': '70ms',
+  'transition.fast02': '110ms',
+  'transition.moderate01': '150ms',
+  'transition.moderate02': '240ms',
+  'transition.slow01': '400ms',
+  'transition.slow02': '720ms',
 };
 
 export const meta = {
   'color.blue': {
-    '_original': {
-      '$type': 'color',
-      '$value': '#218bff',
+    _original: {
+      $type: 'color',
+      $value: '#218bff',
     },
-    '_group': {
+    _group: {
       id: 'color',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'color.blue',
-    '$type': 'color',
-    '$value': '#218bff',
+    $type: 'color',
+    $value: '#218bff',
   },
   'color.red': {
-    '_original': {
-      '$type': 'color',
-      '$value': '#fa4549',
-      '$extensions': {
+    _original: {
+      $type: 'color',
+      $value: '#fa4549',
+      $extensions: {
         mode: {
           light: '#fa4549',
           dark: '#da3633',
         },
       },
     },
-    '_group': {
+    _group: {
       id: 'color',
-      '$extensions': {
+      $extensions: {
         requiredModes: [],
       },
     },
     id: 'color.red',
-    '$type': 'color',
-    '$value': '#fa4549',
-    '$extensions': {
+    $type: 'color',
+    $value: '#fa4549',
+    $extensions: {
       mode: {
         light: '#fa4549',
         dark: '#da3633',
       },
     },
+  },
+  'easing.easeIn': {
+    _original: {
+      $value: [0.25, 0, 1, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.easeIn',
+    $type: 'cubicBezier',
+    $value: [0.25, 0, 1, 1],
+  },
+  'easing.easeOut': {
+    _original: {
+      $value: [0, 0, 0.25, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.easeOut',
+    $type: 'cubicBezier',
+    $value: [0, 0, 0.25, 1],
+  },
+  'easing.entrance': {
+    _original: {
+      $value: [0, 0, 0.38, 0.9],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.entrance',
+    $type: 'cubicBezier',
+    $value: [0, 0, 0.38, 0.9],
+  },
+  'easing.entrance--expressive': {
+    _original: {
+      $value: [0, 0, 0.3, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.entrance--expressive',
+    $type: 'cubicBezier',
+    $value: [0, 0, 0.3, 1],
+  },
+  'easing.exit': {
+    _original: {
+      $value: [0.2, 0, 1, 0.9],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.exit',
+    $type: 'cubicBezier',
+    $value: [0.2, 0, 1, 0.9],
+  },
+  'easing.exit--expressive': {
+    _original: {
+      $value: [0.4, 0.14, 1, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.exit--expressive',
+    $type: 'cubicBezier',
+    $value: [0.4, 0.14, 1, 1],
+  },
+  'easing.standard': {
+    _original: {
+      $value: [0.5, 0, 0.1, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.standard',
+    $type: 'cubicBezier',
+    $value: [0.5, 0, 0.1, 1],
+  },
+  'easing.standard--expressive': {
+    _original: {
+      $value: [0.4, 0.14, 0.3, 1],
+    },
+    _group: {
+      id: 'easing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'cubicBezier',
+    },
+    id: 'easing.standard--expressive',
+    $type: 'cubicBezier',
+    $value: [0.4, 0.14, 0.3, 1],
+  },
+  'font.family.sans': {
+    _original: {
+      $value: ['IBM Plex Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
+    },
+    _group: {
+      id: 'font.family',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'fontFamily',
+    },
+    id: 'font.family.sans',
+    $type: 'fontFamily',
+    $value: ['IBM Plex Sans', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  },
+  'icon.3D-Cursor': {
+    _original: {
+      $value: '/icon/3D-Cursor.svg',
+    },
+    _group: {
+      id: 'icon',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'link',
+    },
+    id: 'icon.3D-Cursor',
+    $type: 'link',
+    $value: '/icon/3D-Cursor.svg',
+  },
+  'spacing.2xl': {
+    _original: {
+      $value: '40px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.2xl',
+    $type: 'dimension',
+    $value: '40px',
+  },
+  'spacing.2xs': {
+    _original: {
+      $value: '4px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.2xs',
+    $type: 'dimension',
+    $value: '4px',
+  },
+  'spacing.3xl': {
+    _original: {
+      $value: '48px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.3xl',
+    $type: 'dimension',
+    $value: '48px',
+  },
+  'spacing.3xs': {
+    _original: {
+      $value: '2px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.3xs',
+    $type: 'dimension',
+    $value: '2px',
+  },
+  'spacing.4xs': {
+    _original: {
+      $value: '1px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.4xs',
+    $type: 'dimension',
+    $value: '1px',
+  },
+  'spacing.layout.2xl': {
+    _original: {
+      $value: '160px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.2xl',
+    $type: 'dimension',
+    $value: '160px',
+  },
+  'spacing.layout.2xs': {
+    _original: {
+      $value: '16px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.2xs',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'spacing.layout.lg': {
+    _original: {
+      $value: '64px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.lg',
+    $type: 'dimension',
+    $value: '64px',
+  },
+  'spacing.layout.md': {
+    _original: {
+      $value: '48px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.md',
+    $type: 'dimension',
+    $value: '48px',
+  },
+  'spacing.layout.sm': {
+    _original: {
+      $value: '32px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.sm',
+    $type: 'dimension',
+    $value: '32px',
+  },
+  'spacing.layout.xl': {
+    _original: {
+      $value: '96px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.xl',
+    $type: 'dimension',
+    $value: '96px',
+  },
+  'spacing.layout.xs': {
+    _original: {
+      $value: '24px',
+    },
+    _group: {
+      id: 'spacing.layout',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.layout.xs',
+    $type: 'dimension',
+    $value: '24px',
+  },
+  'spacing.lg': {
+    _original: {
+      $value: '24px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.lg',
+    $type: 'dimension',
+    $value: '24px',
+  },
+  'spacing.md': {
+    _original: {
+      $value: '16px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.md',
+    $type: 'dimension',
+    $value: '16px',
+  },
+  'spacing.sm': {
+    _original: {
+      $value: '12px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.sm',
+    $type: 'dimension',
+    $value: '12px',
+  },
+  'spacing.xl': {
+    _original: {
+      $value: '32px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.xl',
+    $type: 'dimension',
+    $value: '32px',
+  },
+  'spacing.xs': {
+    _original: {
+      $value: '8px',
+    },
+    _group: {
+      id: 'spacing',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'dimension',
+    },
+    id: 'spacing.xs',
+    $type: 'dimension',
+    $value: '8px',
+  },
+  'transition.base': {
+    _original: {
+      $value: '250ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.base',
+    $type: 'duration',
+    $value: '250ms',
+  },
+  'transition.expansion': {
+    _original: {
+      $value: '300ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.expansion',
+    $type: 'duration',
+    $value: '300ms',
+  },
+  'transition.fast01': {
+    _original: {
+      $value: '70ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.fast01',
+    $type: 'duration',
+    $value: '70ms',
+  },
+  'transition.fast02': {
+    _original: {
+      $value: '110ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.fast02',
+    $type: 'duration',
+    $value: '110ms',
+  },
+  'transition.moderate01': {
+    _original: {
+      $value: '150ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.moderate01',
+    $type: 'duration',
+    $value: '150ms',
+  },
+  'transition.moderate02': {
+    _original: {
+      $value: '240ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.moderate02',
+    $type: 'duration',
+    $value: '240ms',
+  },
+  'transition.slow01': {
+    _original: {
+      $value: '400ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.slow01',
+    $type: 'duration',
+    $value: '400ms',
+  },
+  'transition.slow02': {
+    _original: {
+      $value: '720ms',
+    },
+    _group: {
+      id: 'transition',
+      $extensions: {
+        requiredModes: [],
+      },
+      $type: 'duration',
+    },
+    id: 'transition.slow02',
+    $type: 'duration',
+    $value: '720ms',
   },
 };
 
