@@ -1,5 +1,5 @@
 import {describe, expect, test} from 'vitest';
-import {varName} from './convert-token-name.js';
+import {varName} from './generate-token-name.js';
 
 describe('varName', () => {
   test('variable names start with two dashes and separate groups names with single dashes', () => {

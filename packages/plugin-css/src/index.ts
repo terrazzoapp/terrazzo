@@ -15,7 +15,7 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
-import {varName} from './utils/convert-token-name.js';
+import {varName} from './utils/generate-token-name.js';
 import {encode} from './utils/encode.js';
 import {formatFontNames} from './utils/format-font-names.js';
 import {isTokenMatch} from './utils/is-token-match.js';
