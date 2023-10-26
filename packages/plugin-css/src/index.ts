@@ -44,7 +44,7 @@ export interface Options {
   modeSelectors?: ModeSelector[] | LegacyModeSelectors;
   /** handle different token types */
   transform?: <T extends ParsedToken>(token: T, mode?: string) => string;
-  /** prefix variable names */
+  /** @deprecated prefix variable names */
   prefix?: string;
   /** enable P3 color enhancement? (default: true) */
   p3?: boolean;
