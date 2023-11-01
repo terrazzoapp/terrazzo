@@ -15,7 +15,7 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
-import {varName} from './utils/generate-token-name.js';
+import {CustomNameGenerator, makeNameGenerator} from './utils/generate-token-name.js';
 import {encode} from './utils/encode.js';
 import {formatFontNames} from './utils/format-font-names.js';
 import {isTokenMatch} from './utils/is-token-match.js';
@@ -50,8 +50,8 @@ export interface Options {
   p3?: boolean;
   /** normalize all color outputs to format (default: "hex") or specify "none" to keep as-is */
   colorFormat?: 'none' | 'hex' | 'rgb' | 'hsl' | 'hwb' | 'srgb-linear' | 'p3' | 'lab' | 'lch' | 'oklab' | 'oklch' | 'xyz-d50' | 'xyz-d65';
-  /** used to replace whitespace in the middle of group and token names (default: "_")  */
-  spaceReplacement?: string;
+  /** generate variable name  */
+  generateName?: CustomNameGenerator;
 }
 
 /** ⚠️ Important! We do NOT want to parse as P3. We want to parse as sRGB, then expand 1:1 to P3. @see https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/ */
@@ -71,15 +71,15 @@ export default function pluginCSS(options?: Options): Plugin {
   let config: ResolvedConfig;
   let filename = options?.filename || './tokens.css';
   let prefix = options?.prefix || '';
-  const spaceReplacement = options?.spaceReplacement;
+  const generateName = makeNameGenerator(options?.generateName);
 
   function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
     const output: string[] = [];
     if (root) output.push(indent(':root {', indentLv));
     const sortedTokens = Object.entries(tokens);
     sortedTokens.sort((a, b) => a[0].localeCompare(b[0], 'en-us', {numeric: true}));
-    for (const [id, value] of sortedTokens) {
-      output.push(indent(`${varName(id, {prefix, spaceReplacement})}: ${value};`, indentLv + (root ? 1 : 0)));
+    for (const [variableName, value] of sortedTokens) {
+      output.push(indent(`${variableName}: ${value};`, indentLv + (root ? 1 : 0)));
     }
     if (root) output.push(indent('}', indentLv));
     return output;
@@ -117,29 +117,29 @@ export default function pluginCSS(options?: Options): Plugin {
       config = c;
     },
     async build({tokens, metadata}): Promise<BuildResult[]> {
-      const tokenVals: {[id: string]: any} = {};
-      const modeVals: {[selector: string]: {[id: string]: any}} = {};
+      const tokenVals: {[variableName: string]: any} = {};
+      const modeVals: {[selector: string]: {[variableName: string]: any}} = {};
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
       for (const token of tokens) {
         let value: ReturnType<typeof defaultTransformer> | undefined = await options?.transform?.(token);
         if (value === undefined || value === null) {
-          value = defaultTransformer(token, {colorFormat, prefix, spaceReplacement});
+          value = defaultTransformer(token, {colorFormat, prefix, generateName});
         }
         switch (token.$type) {
           case 'link': {
             if (options?.embedFiles) value = encode(value as string, config.outDir);
-            tokenVals[token.id] = value;
+            tokenVals[generateName(token.id, token)] = value;
             break;
           }
           case 'typography': {
             for (const [k, v] of Object.entries(value)) {
-              tokenVals[`${token.id}-${k}`] = v;
+              tokenVals[generateName(`${token.id}-${k}`, token)] = v;
             }
             break;
           }
           default: {
-            tokenVals[token.id] = value;
+            tokenVals[generateName(token.id, token)] = value;
             break;
           }
         }
@@ -188,17 +188,17 @@ export default function pluginCSS(options?: Options): Plugin {
               switch (token.$type) {
                 case 'link': {
                   if (options?.embedFiles) modeVal = encode(modeVal as string, config.outDir);
-                  modeVals[selector]![token.id] = modeVal;
+                  modeVals[selector]![generateName(token.id, token)] = modeVal;
                   break;
                 }
                 case 'typography': {
                   for (const [k, v] of Object.entries(modeVal)) {
-                    modeVals[selector]![`${token.id}-${k}`] = v;
+                    modeVals[selector]![generateName(`${token.id}-${k}`, token)] = v;
                   }
                   break;
                 }
                 default: {
-                  modeVals[selector]![token.id] = modeVal;
+                  modeVals[selector]![generateName(token.id, token)] = modeVal;
                   break;
                 }
               }
@@ -350,14 +350,14 @@ export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): s
 
 export function defaultTransformer(
   token: ParsedToken,
-  {colorFormat = 'hex', mode, prefix, spaceReplacement}: {colorFormat: Options['colorFormat']; mode?: string; prefix?: string; spaceReplacement?: string},
+  {colorFormat = 'hex', mode, prefix, generateName}: {colorFormat: Options['colorFormat']; mode?: string; prefix?: string; generateName?: CustomNameGenerator},
 ): string | number | Record<string, string> {
   switch (token.$type) {
     // base tokens
     case 'color': {
       const {originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal, {prefix, spaceReplacement});
+        return varRef(originalVal, {prefix, generateName});
       }
       return transformColor(originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
     }
@@ -514,16 +514,17 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, options?: {prefix?: string; suffix?: string; spaceReplacement?: string; fallbacks?: string[]; mode?: string}): string {
+export function varRef(id: string, options?: {prefix?: string; suffix?: string; generateName?: CustomNameGenerator; fallbacks?: string[]; mode?: string}): string {
   let refID = id;
   if (isAlias(id)) {
     const [rootID, mode] = id.substring(1, id.length - 1).split('#');
     if (mode && options?.mode && mode !== options?.mode) console.warn(`⚠️  ${FG_YELLOW}"${id}" referenced from within mode "${options.mode}". This may produce unexpected values.${RESET}`); // eslint-disable-line no-console
     refID = rootID!;
   }
+  const generateName = makeNameGenerator(options?.generateName);
   return [
     'var(',
-    varName(refID, {prefix: options?.prefix, suffix: options?.suffix, spaceReplacement: options?.spaceReplacement}),
+    generateName(refID, token, prefix: options?.prefix, suffix: options?.suffix),
     Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '',
     ')',
   ].join('');
