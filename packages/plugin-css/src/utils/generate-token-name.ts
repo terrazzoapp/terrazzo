@@ -17,24 +17,30 @@ function camelCase(inputString: string): string {
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
 
+/**
+ * @param variableId dot separated path to the token, possibly with type specific modifications (such as composite token property names)
+ */
 export function defaultNameGenerator(
-  normalizedId: string,
+  variableId: string,
   // TODO: remove prefix arg in next major version
   prefix?: string,
 ): string {
   const normalizedPrefix = prefix ? `${prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
-  return `--${normalizedPrefix}${normalizedId.split('.').map(camelCase).join('-')}`;
+  return `--${normalizedPrefix}${variableId.split('.').map(camelCase).join('-')}`;
 }
 
-export type CustomNameGenerator = (normalizedId: string, token?: ParsedToken) => string;
+export type CustomNameGenerator = (variableId: string, token?: ParsedToken) => string;
 
-export function makeNameGenerator(customNameGenerator?: CustomNameGenerator) {
-  // TODO: remove prefix arg in next major version
-  return (normalizedId: string, token: ParsedToken, prefix?: string): string => {
+// TODO: remove prefix arg in next major version
+export function makeNameGenerator(customNameGenerator?: CustomNameGenerator, prefix?: string) {
+  /**
+   * @param variableId dot separated path to the token, possibly with type specific modifications (such as composite token property names)
+   */
+  return (variableId: string, token: ParsedToken): string => {
     if (customNameGenerator) {
-      const name = customNameGenerator(normalizedId, token);
+      const name = customNameGenerator(variableId, token);
       return name.replace(DASH_PREFIX_RE, '--');
     }
-    return defaultNameGenerator(normalizedId, prefix);
+    return defaultNameGenerator(variableId, prefix);
   };
 }
