@@ -513,18 +513,15 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, token: ParsedToken, generateName: ReturnType<typeof makeNameGenerator>, options?: {fallbacks?: string[]; mode?: string}): string {
+export function varRef(id: string, token: ParsedToken, generateName: ReturnType<typeof makeNameGenerator>): string {
   let refID = id;
   if (isAlias(id)) {
-    const [rootID, mode] = id.substring(1, id.length - 1).split('#');
-    if (mode && options?.mode && mode !== options?.mode) console.warn(`⚠️  ${FG_YELLOW}"${id}" referenced from within mode "${options.mode}". This may produce unexpected values.${RESET}`); // eslint-disable-line no-console
+    // unclear if mode is ever appended to id when passed here, but leaving for safety in case
+    const [rootID, _mode] = id.substring(1, id.length - 1).split('#');
     refID = rootID!;
   }
 
-  const variableName = generateName(refID, token);
-  const resolvedFallbacks = Array.isArray(options?.fallbacks) && options?.fallbacks.length ? `, ${options.fallbacks.join(', ')}` : '';
-
-  return `var(${variableName}${resolvedFallbacks})`;
+  return `var(${generateName(refID, token)})`;
 }
 
 /** @deprecated parse legacy modeSelector */
