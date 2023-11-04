@@ -11,10 +11,10 @@ function camelCase(inputString: string): string {
         return word[0]?.toUpperCase() + word.slice(1).toLowerCase();
       }
     })
-    .join();
+    .join('');
 }
 
-const DASH_PREFIX_RE = /^-+/;
+export const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
 
 /**
@@ -39,7 +39,7 @@ export function makeNameGenerator(customNameGenerator?: CustomNameGenerator, pre
   return (variableId: string, token: ParsedToken): string => {
     if (customNameGenerator) {
       const name = customNameGenerator(variableId, token);
-      return name.replace(DASH_PREFIX_RE, '--');
+      return `--${name.replace(DASH_PREFIX_RE, '')}`;
     }
     return defaultNameGenerator(variableId, prefix);
   };

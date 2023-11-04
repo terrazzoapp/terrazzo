@@ -15,10 +15,12 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
-import {CustomNameGenerator, makeNameGenerator} from './utils/generate-token-name.js';
+import {CustomNameGenerator, DASH_PREFIX_RE, makeNameGenerator} from './utils/generate-token-name.js';
 import {encode} from './utils/encode.js';
 import {formatFontNames} from './utils/format-font-names.js';
 import {isTokenMatch} from './utils/is-token-match.js';
+
+export {makeNameGenerator as _INTERNAL_makeNameGenerator, defaultNameGenerator} from './utils/generate-token-name.js';
 
 const SELECTOR_BRACKET_RE = /\s*{/;
 const HEX_RE = /#[0-9a-f]{3,8}/g;
@@ -513,13 +515,17 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
 }
 
 /** reference an existing CSS var */
-export function varRef(id: string, token: ParsedToken, generateName: ReturnType<typeof makeNameGenerator>): string {
+export function varRef(id: string, token: ParsedToken, generateName: ReturnType<typeof makeNameGenerator>, suffix?: string): string {
   let refID = id;
   if (isAlias(id)) {
     // unclear if mode is ever appended to id when passed here, but leaving for safety in case
     const [rootID, _mode] = id.substring(1, id.length - 1).split('#');
     refID = rootID!;
   }
+
+  // suffix is only used internally (one place in plugin-sass), so handle it here rather than clutter the public API in defaultNameGenerator
+  const normalizedSuffix = suffix ? `-${suffix.replace(DASH_PREFIX_RE, '')}` : '';
+  refID = refID + normalizedSuffix;
 
   return `var(${generateName(refID, token)})`;
 }
