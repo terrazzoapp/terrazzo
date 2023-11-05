@@ -76,14 +76,14 @@ export default {
       embedFiles: false,
       /** (optional) transform specific token values */
       transform: () => null,
-      /** (optional) add custom namespace to CSS vars */
+      /** (deprecated, use generateName instead) add custom namespace to CSS vars */
       prefix: '',
       /** enable P3 support? */
       p3: true,
       /** normalize all colors */
       colorFormat: 'hex',
-      /** used to replace whitespace in the middle of group and token names */
-      spaceReplacement: '_',
+      /** used to generate the name of each CSS variable */
+      generateName: defaultNameGenerator,
     }),
   ],
 };
@@ -321,27 +321,50 @@ export default {
 };
 ```
 
-### Space Replacement
+### Generate Name
 
-Tokens and tokens groups can have whitespace in their names, but CSS variable names cannot contain whitespace. Leading and trailing whitespace will be removed during transformation and any whitespace in the middle of a group or token name will be replaced with the value of the `spaceReplacement` option.
+Because token IDs are a dot-separated series of JSON keys, they cannot be trusted to be valid CSS variable names. By default, Cobalt generates CSS variable names using the `defaultNameGenerator` function which...
 
-`spaceReplacement` defaults to an underscore (`'_'`), so this token...
+- Removes leading and trailing whitespace from each group or token name in an ID
+- camelCases any group or token name that has a space in the middle of it
+- Joins the normalized segments together with a single dashes
 
-```json
-{
-  "group": {
-    "token name": {
-      "$type": "dimension",
-      "$value": "42px"
-    }
-  }
-}
+If you wish to customize this behavior, you can specify your own name generator with the plugin's `generateName` option. It accepts a function with the following signature.
+
+```ts
+type CustomNameGenerator = (variableId: string, token?: ParsedToken) => string;
 ```
 
-...would be transformed into the following CSS variable.
+A couple things to be aware of:
 
-```css
---group-token_name: 42px;
+- `token` can be undefined in rare cases
+  - This occurs when a token references another token that is not defined. Currently, this is not explicitly disallowed by the design tokens specification.
+- `variableId` may not be a 1:1 match with the `token.id`
+  - For example, each property in a composite token will have its own variable generated, so those `variableId`s will include the property name. In most cases you should use `variableId` rather than `token.id`.
+- The string returned does not need to be prefixed with `--`, Cobalt will take care of that for you
+
+If you wish, you can use the `defaultNameGenerator` in your custom name generator. This is handy if you only want to modify the behavior of a special case.
+
+```js
+// tokens.config.mjs
+import pluginCSS, { defaultNameGenerator } from '@cobalt-ui/plugin-css';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
+  plugins: [
+    pluginCSS({
+      generateName: (variableId, token) {
+        if (variableId === 'my.special.token') {
+          return "SUPER_IMPORTANT_VARIABLE";
+        }
+
+        return defaultNameGenerator(variableId);
+      },
+    }),
+  ],
+};
 ```
 
 ### Usage with @cobalt-ui/plugin-sass
