@@ -514,6 +514,7 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
   return {value: token.$value, originalVal: token._original.$value};
 }
 
+// TODO: The tokens passed to varRef need to be the token's represented by the id
 /** reference an existing CSS var */
 export function varRef(id: string, token: ParsedToken, generateName: ReturnType<typeof makeNameGenerator>, suffix?: string): string {
   let refID = id;

@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import {URL, fileURLToPath} from 'node:url';
 import {describe, expect, test} from 'vitest';
 import yaml from 'js-yaml';
-import pluginCSS from '../dist/index.js';
+import pluginCSS, {defaultNameGenerator} from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
   test.each(['border', 'color', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
@@ -49,6 +49,18 @@ describe('@cobalt-ui/plugin-css', () => {
           ],
         }),
       ],
+      color: {},
+      tokens: [],
+    });
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+  });
+
+  test('handles whitespace and camelCases names', async () => {
+    const cwd = new URL(`./whitespace-and-casing/`, import.meta.url);
+    const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
+    await build(tokens, {
+      outDir: cwd,
+      plugins: [pluginCSS({filename: 'actual.css'})],
       color: {},
       tokens: [],
     });
@@ -101,17 +113,20 @@ describe('@cobalt-ui/plugin-css', () => {
       expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });
 
-    test('spaceReplacement', async () => {
-      const cwd = new URL(`./space-replacement/`, import.meta.url);
+    test('uses a custom name generator when provided', async () => {
+      function myGenerator(variableId, token) {
+        if (variableId === 'color.gray') return 'super-special-variable';
+
+        if (token.$type === 'border') return `rad-${defaultNameGenerator(variableId)}`;
+
+        return defaultNameGenerator(variableId);
+      }
+
+      const cwd = new URL(`./generate-name/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
-        plugins: [
-          pluginCSS({
-            spaceReplacement: 'x',
-            filename: 'actual.css',
-          }),
-        ],
+        plugins: [pluginCSS({filename: 'actual.css', generateName: myGenerator})],
         color: {},
         tokens: [],
       });
