@@ -147,14 +147,21 @@ export interface ParsedLinkToken extends ParsedTokenBase<string> {
 
 // 9.2 Stroke style
 
-export interface StrokeStyleToken extends TokenBase<string | Partial<string>> {
+export interface StrokeStyleToken extends TokenBase<StrokeStyleValue> {
   $type: 'strokeStyle';
 }
 
-export interface ParsedStrokeStyleToken extends ParsedTokenBase<string> {
+export interface ParsedStrokeStyleToken extends ParsedTokenBase<StrokeStyleValue> {
   $type: 'strokeStyle';
   _original: StrokeStyleToken;
 }
+
+export type StrokeStyleValue =
+  | string
+  | {
+      dashArray: string[];
+      lineCap: 'round' | 'butt' | 'square';
+    };
 
 // 9.3 Border
 

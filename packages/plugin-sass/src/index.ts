@@ -174,7 +174,7 @@ ${cbClose}`
         const defaultProperties = Object.entries(token.$value); // legacy: support camelCase properties
         defaultProperties.sort(([a], [b]) => a.localeCompare(b));
         for (const [k, value] of defaultProperties) {
-          const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
+          const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
           if (cssPlugin) {
             output.push(indent(`"${property}": (${varRef(token.id, tokens, generateName, property)}),`, 3));
           } else {
@@ -187,7 +187,7 @@ ${cbClose}`
           const modeProperties = Object.entries(modeValue);
           modeProperties.sort(([a], [b]) => a.localeCompare(b));
           for (const [k, value] of modeProperties) {
-            const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
+            const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
           output.push(indent(`),`, 2));

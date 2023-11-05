@@ -346,7 +346,10 @@ export function transformLink(value: ParsedLinkToken['$value']): string {
 }
 /** transform stroke style */
 export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): string {
-  return String(value);
+  if (typeof value === 'string') {
+    return value;
+  }
+  return 'dashed'; // CSS doesn’t support custom dashes or line caps, so just convert to `dashed`
 }
 
 export function defaultTransformer(
@@ -428,7 +431,7 @@ export function defaultTransformer(
       }
       const width = isAlias(originalVal.width) ? varRef(originalVal.width, tokens, generateName) : transformDimension(value.width);
       const color = isAlias(originalVal.color) ? varRef(originalVal.color, tokens, generateName) : transformColor(originalVal.color, colorFormat);
-      const style = isAlias(originalVal.style) ? varRef(originalVal.style, tokens, generateName) : transformStrokeStyle(value.style);
+      const style = isAlias(originalVal.style) ? varRef(originalVal.style as string, tokens, generateName) : transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
     case 'shadow': {

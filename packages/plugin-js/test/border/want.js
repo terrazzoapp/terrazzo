@@ -5,31 +5,108 @@
  */
 
 export const tokens = {
-  border: {
-    color: '#0d0300',
+  'border.dashed': {
+    color: '#a6b0b5',
+    width: '1.5px',
+    style: {
+      dashArray: ['0.5rem', '0.25rem'],
+      lineCap: 'round',
+    },
+  },
+  'border.solid': {
+    color: '#a6b0b5',
     width: '1px',
     style: 'solid',
   },
 };
 
 export const meta = {
-  border: {
+  'border.dashed': {
     _original: {
       $type: 'border',
       $value: {
-        color: '#0d0300',
+        color: '#a6b0b5',
+        width: '1.5px',
+        style: {
+          dashArray: ['0.5rem', '0.25rem'],
+          lineCap: 'round',
+        },
+      },
+      extensions: {
+        mode: {
+          light: {
+            color: '#a6b0b5',
+            width: '1.5px',
+            style: {
+              dashArray: ['0.5rem', '0.25rem'],
+              lineCap: 'round',
+            },
+          },
+          dark: {
+            color: '#14171b',
+            width: '1.5px',
+            style: {
+              dashArray: ['0.5rem', '0.25rem'],
+              lineCap: 'round',
+            },
+          },
+        },
+      },
+    },
+    _group: {
+      id: 'border',
+      $extensions: {
+        requiredModes: [],
+      },
+    },
+    id: 'border.dashed',
+    $type: 'border',
+    $value: {
+      color: '#a6b0b5',
+      width: '1.5px',
+      style: {
+        dashArray: ['0.5rem', '0.25rem'],
+        lineCap: 'round',
+      },
+    },
+    extensions: {
+      mode: {
+        light: {
+          color: '#a6b0b5',
+          width: '1.5px',
+          style: {
+            dashArray: ['0.5rem', '0.25rem'],
+            lineCap: 'round',
+          },
+        },
+        dark: {
+          color: '#14171b',
+          width: '1.5px',
+          style: {
+            dashArray: ['0.5rem', '0.25rem'],
+            lineCap: 'round',
+          },
+        },
+      },
+    },
+  },
+  'border.solid': {
+    _original: {
+      $type: 'border',
+      $value: {
+        color: '#a6b0b5',
         width: '1px',
         style: 'solid',
       },
       $extensions: {
         mode: {
           light: {
-            color: '#0d0300',
+            color: '#a6b0b5',
             width: '1px',
             style: 'solid',
           },
           dark: {
-            color: '#ffffff',
+            color: '#14171b',
             width: '1px',
             style: 'solid',
           },
@@ -37,27 +114,27 @@ export const meta = {
       },
     },
     _group: {
-      id: '.',
+      id: 'border',
       $extensions: {
         requiredModes: [],
       },
     },
-    id: 'border',
+    id: 'border.solid',
     $type: 'border',
     $value: {
-      color: '#0d0300',
+      color: '#a6b0b5',
       width: '1px',
       style: 'solid',
     },
     $extensions: {
       mode: {
         light: {
-          color: '#0d0300',
+          color: '#a6b0b5',
           width: '1px',
           style: 'solid',
         },
         dark: {
-          color: '#ffffff',
+          color: '#14171b',
           width: '1px',
           style: 'solid',
         },
@@ -67,14 +144,14 @@ export const meta = {
 };
 
 export const modes = {
-  border: {
+  'border.solid': {
     light: {
-      color: '#0d0300',
+      color: '#a6b0b5',
       width: '1px',
       style: 'solid',
     },
     dark: {
-      color: '#ffffff',
+      color: '#14171b',
       width: '1px',
       style: 'solid',
     },

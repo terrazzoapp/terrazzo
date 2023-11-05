@@ -56,7 +56,13 @@ export default {
 };
 ```
 
-Then, when you run `co build` in your project, it will generate a `./tokens/tailwind-tokens.js` file. Now add it to your Tailwind config under `presets` ([docs](https://tailwindcss.com/docs/configuration#presets)):
+Then run:
+
+```sh
+npx co build
+```
+
+And you’ll generate a `./tokens/tailwind-tokens.js` file. Add it to your Tailwind config [`presets`](https://tailwindcss.com/docs/configuration#presets) and your Tailwind theme now pulls directly from your design tokens:
 
 ```diff
 + import tailwindTokens from './tokens/tailwind-tokens.js';
@@ -69,44 +75,8 @@ Then, when you run `co build` in your project, it will generate a `./tokens/tail
   };
 ```
 
-_Note: if using CommonJS, use the `outputFormat: 'cjs'` plugin option._
-
-And you’re up and running! You’ll now have all your design tokens available in Tailwind.
-
 _✨ **Tip**: be sure to rerun `co build` to rebuild your Tailwind preset, or run `co build --watch` to rebuild your tokens every time they change!_
 
-### Dynamic values
+## Docs
 
-Because the Tailwind config is just JS, you can generate dynamic values like so:
-
-```js
-// tokens.config.mjs
-import pluginTailwind from '@cobalt-ui/plugin-tailwind';
-
-function makeColor(colorName) {
-  const output = {};
-  for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
-    output[step] = [colorName, step].join('.'); // e.g. `color.blue.50`
-  }
-  return output;
-}
-
-/** @type import('@cobalt-ui/core').Config */
-export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
-  plugins: [
-    pluginTailwind({
-      tailwind: {
-        theme: {
-          colors: {
-            blue: makeColor('color.blue'), // { 50: 'color.blue.50', 100: 'color.blue.100', … }
-            green: makeColor('color.green'), // { 50: 'color.green.50', 100: 'color.green.100', … }
-            // …
-          },
-        },
-      },
-    }),
-  ],
-};
-```
+[View the full documentation](https://cobalt-ui.pages.dev/integrations/tailwind)

@@ -1,12 +1,12 @@
 # @cobalt-ui/core
 
-Parser/validator for the [Design Tokens Format Module](https://designtokens.org) (DTFM) standard.",
+Parser/validator for the [Design Tokens Format Module](https://designtokens.org) (DTFM) standard.
 
 For the CLI, use `@cobalt-ui/cli`.
 
 ## Install
 
-```
+```sh
 npm install @cobalt-ui/core
 ```
 
