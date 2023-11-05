@@ -1,5 +1,6 @@
 import type {BuildResult, ParsedToken, ParsedTypographyToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
 import pluginCSS, {
+  _INTERNAL_makeNameGenerator,
   type Options as PluginCSSOptions,
   transformColor,
   transformCubicBezier,
@@ -108,6 +109,7 @@ ${cbClose}`
       let output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
       const prefix = options?.pluginCSS?.prefix || '';
+      const generateName = _INTERNAL_makeNameGenerator(options?.pluginCSS?.generateName, prefix);
 
       // metadata (SassDoc)
       output.push('////');
@@ -133,10 +135,9 @@ ${cbClose}`
 
         output.push(indent(`"${token.id}": (`, 1));
 
-        // default value
         let value: string | number | undefined;
         if (cssPlugin) {
-          value = varRef(token.id, {prefix});
+          value = varRef(token.id, tokens, generateName);
         } else {
           value = await options?.transform?.(token);
           if (value === undefined || value === null) {
@@ -150,7 +151,7 @@ ${cbClose}`
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
           let modeValue: string | number | undefined;
           if (cssPlugin) {
-            modeValue = varRef(token.id, {prefix});
+            modeValue = varRef(token.id, tokens, generateName);
           } else {
             modeValue = options?.transform?.(token, modeName);
             if (modeValue === undefined || modeValue === null) {
@@ -175,7 +176,7 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, {prefix, suffix: property})}),`, 3));
+            output.push(indent(`"${property}": (${varRef(token.id, tokens, generateName, property)}),`, 3));
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
