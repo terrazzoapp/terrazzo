@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-sass
 
+## 1.3.2
+
+### Patch Changes
+
+- [#131](https://github.com/drwpow/cobalt-ui/pull/131) [`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - Handle whitespace in token ids when creating CSS variables
+
+- Updated dependencies [[`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480)]:
+  - @cobalt-ui/plugin-css@1.6.0
+
 ## 1.3.1
 
 ### Patch Changes
@@ -45,7 +54,7 @@
 
 - Updated dependencies [[`432029f`](https://github.com/drwpow/cobalt-ui/commit/432029f78130bec264fbdb26e83a6980fb923b0e)]:
   - @cobalt-ui/cli@1.2.0
-  - @cobalt-ui/plugin-css@2.0.0
+  - @cobalt-ui/plugin-css@1.3.0
 
 ## 1.2.2
 
