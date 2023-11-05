@@ -524,7 +524,9 @@ export function varRef(id: string, tokens: ParsedToken[], generateName: ReturnTy
     refID = rootID!;
   }
 
-  const token = tokens.find((token) => token.id === refID);
+  const token = tokens.find((t) => t.id === refID);
+
+  // eslint-disable-next-line no-console
   if (!token) console.warn(`Tried to reference variable with id: ${refID}, no token found`);
 
   // suffix is only used internally (one place in plugin-sass), so handle it here rather than clutter the public API in defaultNameGenerator
