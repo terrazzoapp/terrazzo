@@ -7,16 +7,16 @@ describe('defaultNameGenerator', () => {
     expect(defaultNameGenerator('path.to.token')).toBe('path-to-token');
   });
 
-  test('removes leading and trailing whitespace from id', () => {
-    expect(defaultNameGenerator(' path.to.token ')).toBe('path-to-token');
-  });
-
   test('removes leading and trailing whitespace from group and token names', () => {
+    expect(defaultNameGenerator(' path.to.token ')).toBe('path-to-token');
     expect(defaultNameGenerator('path. to .token')).toBe('path-to-token');
   });
 
-  test('camelCases group and token names', () => {
-    expect(defaultNameGenerator('Path.To.Token')).toBe('path-to-token');
+  test('leaves capitalized names with no spaces alone', () => {
+    expect(defaultNameGenerator('Path.To.Token')).toBe('Path-To-Token');
+  });
+
+  test('camelCases group and token names with middle spaces', () => {
     expect(defaultNameGenerator('path.to the.token')).toBe('path-toThe-token');
     expect(defaultNameGenerator('path.to.the token')).toBe('path-to-theToken');
   });
@@ -44,7 +44,7 @@ describe('makeNameGenerator', () => {
   test('returns the default name generator if none is provided', () => {
     const generateName = makeNameGenerator();
     // @ts-expect-error - we aren't inspecting an actual token in this test, so no need to mock it fully
-    expect(generateName(' path. to the .Token ', incompleteMockToken)).toBe('--path-toThe-token');
+    expect(generateName(' path. to the .Token ', incompleteMockToken)).toBe('--path-toThe-Token');
   });
 
   describe('custom generators', () => {

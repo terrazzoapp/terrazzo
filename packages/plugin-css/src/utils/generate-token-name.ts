@@ -1,17 +1,23 @@
 import type {ParsedToken} from '@cobalt-ui/core';
 
-function camelCase(inputString: string): string {
-  return inputString
-    .trim()
-    .split(' ')
-    .map((word, i) => {
-      if (i === 0) {
-        return word.toLowerCase();
-      } else {
-        return word[0]?.toUpperCase() + word.slice(1).toLowerCase();
-      }
-    })
-    .join('');
+function normalizeIdSegment(inputString: string): string {
+  const words = inputString.trim().split(' ');
+
+  /* Only camelCase id segments if they have a middle space.
+  This prevents a breaking change to names that have capitals but no spaces. */
+  if (words.length > 1) {
+    return words
+      .map((word, i) => {
+        if (i === 0) {
+          return word.toLowerCase();
+        } else {
+          return word[0]?.toUpperCase() + word.slice(1).toLowerCase();
+        }
+      })
+      .join('');
+  }
+
+  return words[0]!;
 }
 
 export const DASH_PREFIX_RE = /^-+/;
@@ -24,7 +30,7 @@ export function defaultNameGenerator(
   prefix?: string,
 ): string {
   const normalizedPrefix = prefix ? `${prefix.replace(DASH_PREFIX_RE, '').replace(DASH_SUFFIX_RE, '')}-` : '';
-  return `${normalizedPrefix}${variableId.split('.').map(camelCase).join('-')}`;
+  return `${normalizedPrefix}${variableId.split('.').map(normalizeIdSegment).join('-')}`;
 }
 
 export type CustomNameGenerator = (variableId: string, token?: ParsedToken) => string;

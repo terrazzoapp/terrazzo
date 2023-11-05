@@ -10,10 +10,10 @@
   --myColors-blue: #0000ff;
   --myColors-primary: var(--myColors-aNiceGreen);
   --myColors-red: #ff0000;
-  --prettyTypography-body-font-family: var(--prettyTypography-family-body);
-  --prettyTypography-body-font-size: 16px;
-  --prettyTypography-body-font-weight: 400;
-  --prettyTypography-body-line-height: 1.5;
+  --prettyTypography-Body-font-family: var(--prettyTypography-family-body);
+  --prettyTypography-Body-font-size: 16px;
+  --prettyTypography-Body-font-weight: 400;
+  --prettyTypography-Body-line-height: 1.5;
   --prettyTypography-family-body: "IBM Plex Sans", -system-ui, sans-serif;
   --prettyTypography-family-footnote: var(--prettyTypography-family-body);
   --prettyTypography-family-heading: Helvetica;
@@ -22,12 +22,12 @@
   --prettyTypography-page-title-font-weight: 600;
   --prettyTypography-page-title-letter-spacing: 0.125em;
   --prettyTypography-page-title-line-height: 1.25;
-  --prettyTypography-subheading-font-family: var(--prettyTypography-family-heading);
-  --prettyTypography-subheading-font-size: 18px;
-  --prettyTypography-subheading-font-weight: 500;
-  --prettyTypography-subheading-letter-spacing: 0.25em;
-  --prettyTypography-subheading-line-height: 1.375;
-  --prettyTypography-subheading-text-transform: uppercase;
+  --prettyTypography-Subheading-font-family: var(--prettyTypography-family-heading);
+  --prettyTypography-Subheading-font-size: 18px;
+  --prettyTypography-Subheading-font-weight: 500;
+  --prettyTypography-Subheading-letter-spacing: 0.25em;
+  --prettyTypography-Subheading-line-height: 1.375;
+  --prettyTypography-Subheading-text-transform: uppercase;
 }
 
 @supports (color: color(display-p3 1 1 1)) {
