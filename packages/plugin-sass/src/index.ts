@@ -137,7 +137,7 @@ ${cbClose}`
 
         let value: string | number | undefined;
         if (cssPlugin) {
-          value = varRef(token.id, token, generateName);
+          value = varRef(token.id, tokens, generateName);
         } else {
           value = await options?.transform?.(token);
           if (value === undefined || value === null) {
@@ -151,7 +151,7 @@ ${cbClose}`
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
           let modeValue: string | number | undefined;
           if (cssPlugin) {
-            modeValue = varRef(token.id, token, generateName);
+            modeValue = varRef(token.id, tokens, generateName);
           } else {
             modeValue = options?.transform?.(token, modeName);
             if (modeValue === undefined || modeValue === null) {
@@ -176,7 +176,7 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, token, generateName, property)}),`, 3));
+            output.push(indent(`"${property}": (${varRef(token.id, tokens, generateName, property)}),`, 3));
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }

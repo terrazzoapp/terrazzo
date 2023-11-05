@@ -40,7 +40,7 @@ export function makeNameGenerator(customNameGenerator?: CustomNameGenerator, pre
   return (
     /** dot separated path to token with possible type specific modifications (such as appended composite token property names)  */
     variableId: string,
-    token: ParsedToken,
+    token?: ParsedToken,
   ): string => {
     const name = customNameGenerator ? customNameGenerator(variableId, token) : defaultNameGenerator(variableId, prefix);
 
