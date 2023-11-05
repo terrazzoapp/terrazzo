@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.6.0
+
+### Minor Changes
+
+- [#131](https://github.com/drwpow/cobalt-ui/pull/131) [`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - Handle whitespace in token ids when creating CSS variables
+
 ## 1.5.1
 
 ### Patch Changes
