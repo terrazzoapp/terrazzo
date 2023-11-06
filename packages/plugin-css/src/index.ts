@@ -15,7 +15,7 @@ import type {
 } from '@cobalt-ui/core';
 import {indent, isAlias, kebabinate, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {clampChroma, converter, formatCss, formatHex, formatHex8, formatHsl, formatRgb, parse as parseColor} from 'culori';
-import {CustomNameGenerator, DASH_PREFIX_RE, makeNameGenerator} from './utils/generate-token-name.js';
+import {CustomNameGenerator, DASH_PREFIX_RE, defaultNameGenerator, makeNameGenerator} from './utils/generate-token-name.js';
 import {encode} from './utils/encode.js';
 import {formatFontNames} from './utils/format-font-names.js';
 import {isTokenMatch} from './utils/is-token-match.js';
@@ -45,7 +45,7 @@ export interface Options {
   /** generate wrapper selectors around token modes */
   modeSelectors?: ModeSelector[] | LegacyModeSelectors;
   /** handle different token types */
-  transform?: <T extends ParsedToken>(token: T, mode?: string) => string;
+  transform?: <T extends ParsedToken>(token: T, mode?: string) => string | undefined | null;
   /** @deprecated prefix variable names */
   prefix?: string;
   /** enable P3 color enhancement? (default: true) */
@@ -123,9 +123,9 @@ export default function pluginCSS(options?: Options): Plugin {
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
       for (const token of tokens) {
-        let value: ReturnType<typeof defaultTransformer> | undefined = await options?.transform?.(token);
+        let value: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token);
         if (value === undefined || value === null) {
-          value = defaultTransformer(token, tokens, {colorFormat, generateName});
+          value = defaultTransformer(token, {prefix, colorFormat, generateName, tokens});
         }
         switch (token.$type) {
           case 'link': {
@@ -182,9 +182,9 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal: ReturnType<typeof defaultTransformer> | undefined = await options?.transform?.(token, modeSelector.mode);
+              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token, modeSelector.mode);
               if (modeVal === undefined || modeVal === null) {
-                modeVal = defaultTransformer(token, tokens, {colorFormat, mode: modeSelector.mode, generateName});
+                modeVal = defaultTransformer(token, {colorFormat, generateName, mode: modeSelector.mode, prefix, tokens});
               }
               switch (token.$type) {
                 case 'link': {
@@ -354,29 +354,40 @@ export function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): s
 
 export function defaultTransformer(
   token: ParsedToken,
-  tokens: ParsedToken[],
-  {colorFormat = 'hex', mode, generateName}: {colorFormat: Options['colorFormat']; mode?: string; generateName: ReturnType<typeof makeNameGenerator>},
+  {
+    colorFormat = 'hex',
+    generateName,
+    mode,
+    prefix,
+    tokens,
+  }: {
+    colorFormat: Options['colorFormat'];
+    generateName?: ReturnType<typeof makeNameGenerator>;
+    mode?: string;
+    prefix?: string;
+    tokens?: ParsedToken[];
+  },
 ): string | number | Record<string, string> {
   switch (token.$type) {
     // base tokens
     case 'color': {
       const {originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
       return transformColor(originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
     }
     case 'dimension': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformDimension(value);
     }
     case 'duration': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformDuration(value);
     }
@@ -384,42 +395,42 @@ export function defaultTransformer(
     case 'fontFamily': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformFontFamily(value);
     }
     case 'fontWeight': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformFontWeight(value);
     }
     case 'cubicBezier': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformCubicBezier(value);
     }
     case 'number': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformNumber(value);
     }
     case 'link': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformLink(value);
     }
     case 'strokeStyle': {
       const {value, originalVal} = getMode(token, mode);
       if (isAlias(originalVal)) {
-        return varRef(originalVal as string, tokens, generateName);
+        return varRef(originalVal as string, {prefix, tokens, generateName});
       }
       return transformStrokeStyle(value);
     }
@@ -427,17 +438,17 @@ export function defaultTransformer(
     case 'border': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
-      const width = isAlias(originalVal.width) ? varRef(originalVal.width, tokens, generateName) : transformDimension(value.width);
-      const color = isAlias(originalVal.color) ? varRef(originalVal.color, tokens, generateName) : transformColor(originalVal.color, colorFormat);
-      const style = isAlias(originalVal.style) ? varRef(originalVal.style as string, tokens, generateName) : transformStrokeStyle(value.style);
+      const width = isAlias(originalVal.width) ? varRef(originalVal.width, {prefix, tokens, generateName}) : transformDimension(value.width);
+      const color = isAlias(originalVal.color) ? varRef(originalVal.color, {prefix, tokens, generateName}) : transformColor(originalVal.color, colorFormat);
+      const style = isAlias(originalVal.style) ? varRef(originalVal.style as string, {prefix, tokens, generateName}) : transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
     case 'shadow': {
       let {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
 
       // handle backwards compat for previous versions that didn’t always return array
@@ -448,13 +459,13 @@ export function defaultTransformer(
         .map((shadow, i) => {
           const origShadow = originalVal[i]!;
           if (typeof origShadow === 'string') {
-            return varRef(origShadow, tokens, generateName);
+            return varRef(origShadow, {prefix, tokens, generateName});
           }
-          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, tokens, generateName) : transformDimension(shadow.offsetX);
-          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, tokens, generateName) : transformDimension(shadow.offsetY);
-          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, tokens, generateName) : transformDimension(shadow.blur);
-          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, tokens, generateName) : transformDimension(shadow.spread);
-          const color = isAlias(origShadow.color) ? varRef(origShadow.color, tokens, generateName) : transformColor(origShadow.color, colorFormat);
+          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, {prefix, tokens, generateName}) : transformDimension(shadow.offsetX);
+          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, {prefix, tokens, generateName}) : transformDimension(shadow.offsetY);
+          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, {prefix, tokens, generateName}) : transformDimension(shadow.blur);
+          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, {prefix, tokens, generateName}) : transformDimension(shadow.spread);
+          const color = isAlias(origShadow.color) ? varRef(origShadow.color, {prefix, tokens, generateName}) : transformColor(origShadow.color, colorFormat);
           return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
         })
         .join(', ');
@@ -462,16 +473,16 @@ export function defaultTransformer(
     case 'gradient': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
       return value
         .map((gradient, i) => {
           const origGradient = originalVal[i]!;
           if (typeof origGradient === 'string') {
-            return varRef(origGradient, tokens, generateName);
+            return varRef(origGradient, {prefix, tokens, generateName});
           }
-          const color = isAlias(origGradient.color) ? varRef(origGradient.color, tokens, generateName) : transformColor(origGradient.color, colorFormat);
-          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, tokens, generateName) : `${100 * gradient.position}%`;
+          const color = isAlias(origGradient.color) ? varRef(origGradient.color, {prefix, tokens, generateName}) : transformColor(origGradient.color, colorFormat);
+          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, {prefix, tokens, generateName}) : `${100 * gradient.position}%`;
           return `${color} ${stop}`;
         })
         .join(', ');
@@ -479,25 +490,25 @@ export function defaultTransformer(
     case 'transition': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
-      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, tokens, generateName) : transformDuration(value.duration);
+      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, {prefix, tokens, generateName}) : transformDuration(value.duration);
       let delay: string | undefined = undefined;
       if (value.delay) {
-        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, tokens, generateName) : transformDuration(value.delay);
+        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, {prefix, tokens, generateName}) : transformDuration(value.delay);
       }
-      const timingFunction = isAlias(originalVal.timingFunction) ? varRef(originalVal.timingFunction as any, tokens, generateName) : transformCubicBezier(value.timingFunction);
+      const timingFunction = isAlias(originalVal.timingFunction) ? varRef(originalVal.timingFunction as any, {prefix, tokens, generateName}) : transformCubicBezier(value.timingFunction);
       return `${duration} ${delay ?? ''} ${timingFunction}`;
     }
     case 'typography': {
       const {value, originalVal} = getMode(token, mode);
       if (typeof originalVal === 'string') {
-        return varRef(originalVal, tokens, generateName);
+        return varRef(originalVal, {prefix, tokens, generateName});
       }
       const output: Record<string, string> = {};
       for (const [k, v] of Object.entries(value)) {
         const formatter = k === 'fontFamily' ? transformFontFamily : (val: any): string => String(val);
-        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], tokens, generateName) : formatter(v as any);
+        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], {prefix, tokens, generateName}) : formatter(v as any);
       }
       return output;
     }
@@ -518,8 +529,20 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
   return {value: token.$value, originalVal: token._original.$value};
 }
 
-/** reference an existing CSS var */
-export function varRef(id: string, tokens: ParsedToken[], generateName: ReturnType<typeof makeNameGenerator>, suffix?: string): string {
+/**
+ * Reference an existing CSS var
+ *
+ */
+export function varRef(
+  id: string,
+  options?: {
+    prefix?: string;
+    suffix?: string;
+    // note: the following properties are optional to preserve backwards-compat without a breaking change
+    tokens?: ParsedToken[];
+    generateName?: ReturnType<typeof makeNameGenerator>;
+  },
+): string {
   let refID = id;
   if (isAlias(id)) {
     // unclear if mode is ever appended to id when passed here, but leaving for safety in case
@@ -527,16 +550,17 @@ export function varRef(id: string, tokens: ParsedToken[], generateName: ReturnTy
     refID = rootID!;
   }
 
-  const token = tokens.find((t) => t.id === refID);
+  const token = options?.tokens?.find((t) => t.id === refID);
 
-  // eslint-disable-next-line no-console
-  if (!token) console.warn(`Tried to reference variable with id: ${refID}, no token found`);
+  if (!token) {
+    console.warn(`Tried to reference variable with id: ${refID}, no token found`); // eslint-disable-line no-console
+  }
 
   // suffix is only used internally (one place in plugin-sass), so handle it here rather than clutter the public API in defaultNameGenerator
-  const normalizedSuffix = suffix ? `-${suffix.replace(DASH_PREFIX_RE, '')}` : '';
+  const normalizedSuffix = options?.suffix ? `-${options?.suffix.replace(DASH_PREFIX_RE, '')}` : '';
   const variableId = refID + normalizedSuffix;
 
-  return `var(${generateName(variableId, token)})`;
+  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)})`;
 }
 
 /** @deprecated parse legacy modeSelector */
