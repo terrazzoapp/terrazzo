@@ -6,6 +6,13 @@ export default defineConfig({
   title: 'Cobalt',
   description: 'Tooling to use DTFM Design Tokens anywhere',
   cleanUrls: true,
+  head: [
+    ['link', {rel: 'shortcut icon', type: 'image/png', href: '/favicon-32.png'}],
+    ['link', {rel: 'apple-touch-icon', type: 'image/png', sizes: '128x128', href: '/favicon-128.png'}],
+    ['link', {rel: 'apple-touch-icon', type: 'image/png', sizes: '512x512', href: '/favicon-512.png'}],
+    ['script', {defer: '', src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "f5713e86f9aa43278151f2763d6b59ae"}'}],
+  ],
+
   /** @see https://vitepress.dev/reference/default-theme-config */
   themeConfig: {
     logo: '/images/cobalt-icon-solid.svg',
