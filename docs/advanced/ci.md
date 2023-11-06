@@ -1,8 +1,8 @@
 ---
-title: CI
+title: Using Cobalt in CI
 ---
 
-# CI
+# Using Cobalt in CI
 
 Using your preferred CI stack, here’s an example of how you could add Cobalt to your CI. First, we’ll take a `package.json` that had an existing `npm run build` command, and add `co build` script to it:
 

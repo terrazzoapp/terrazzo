@@ -1,5 +1,5 @@
 ---
-title: Node.js API
+title: Cobalt Node.js API
 ---
 
 # Node.js API

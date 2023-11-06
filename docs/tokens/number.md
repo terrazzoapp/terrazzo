@@ -1,5 +1,5 @@
 ---
-title: Number
+title: Number Token
 ---
 
 # Number

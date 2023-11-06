@@ -1,5 +1,5 @@
 ---
-title: Modes
+title: Token Modes
 ---
 
 # Modes

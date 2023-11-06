@@ -1,8 +1,8 @@
 ---
-title: Figma
+title: Figma Integration
 ---
 
-# Figma
+# Figma Integration
 
 Because Figma doesn’t have a way to export the [Design Tokens Format Module (DTFM)](https://designtokens.org) directly, you’ll need a plugin to export your styles to the DTFM format.
 

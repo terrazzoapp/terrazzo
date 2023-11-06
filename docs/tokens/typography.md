@@ -1,5 +1,5 @@
 ---
-title: Typography
+title: Typography Token
 ---
 
 # Typography

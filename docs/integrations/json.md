@@ -1,8 +1,8 @@
 ---
-title: JSON
+title: JSON Integration
 ---
 
-# JSON + Native Apps
+# JSON + Native App Integration
 
 Generate universal JSON from your Design Tokens Format Module (DTFM) tokens. This is usable by any platform, any language (provided you do a small amount of JSON parsing).
 

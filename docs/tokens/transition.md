@@ -1,5 +1,5 @@
 ---
-title: Transition
+title: Transition Token
 ---
 
 # Transition

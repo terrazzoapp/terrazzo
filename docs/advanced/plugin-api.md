@@ -1,5 +1,5 @@
 ---
-title: Plugin API
+title: Cobalt Plugin API
 ---
 
 # Plugin API

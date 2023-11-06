@@ -1,5 +1,5 @@
 ---
-title: Dimension
+title: Dimension Token
 ---
 
 # Dimension

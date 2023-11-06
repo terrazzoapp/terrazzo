@@ -1,5 +1,5 @@
 ---
-title: color
+title: Color Token
 ---
 
 # Color

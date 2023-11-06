@@ -1,6 +1,8 @@
 import {defineConfig} from 'vitepress';
 import packageJSON from '../../packages/cli/package.json';
 
+const HOSTNAME = 'https://cobalt-ui.pages.dev';
+
 /** @see https://vitepress.dev/reference/site-config */
 export default defineConfig({
   title: 'Cobalt',
@@ -13,7 +15,15 @@ export default defineConfig({
     ['script', {defer: '', src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "f5713e86f9aa43278151f2763d6b59ae"}'}],
   ],
   sitemap: {
-    hostname: 'https://cobalt-ui.pages.dev',
+    hostname: HOSTNAME,
+  },
+  transformHead(context) {
+    return [
+      ['meta', {name: 'og:title', content: context.pageData.frontmatter.title ? `${context.pageData.frontmatter.title} | Cobalt` : `Cobalt: CI for your Design Tokens`}],
+      ['meta', {name: 'og:description', content: context.pageData.frontmatter.description || 'Use Design Tokens Format Module tokens to generate CSS, Sass, JS/TS, universal JSON, and more.'}],
+      ['meta', {name: 'og:image', content: `${HOSTNAME}/social.png`}],
+      ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
+    ];
   },
   /** @see https://vitepress.dev/reference/default-theme-config */
   themeConfig: {

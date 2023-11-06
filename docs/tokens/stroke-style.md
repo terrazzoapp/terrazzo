@@ -1,5 +1,5 @@
 ---
-title: Stroke Style
+title: Stroke Style Token
 ---
 
 # Stroke Style

@@ -1,5 +1,5 @@
 ---
-title: Gradient
+title: Gradient Token
 ---
 
 # Gradient
