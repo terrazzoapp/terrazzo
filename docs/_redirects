@@ -6,9 +6,17 @@
 /docs/integrations/css /integrations/css 301
 /docs/integrations/custom-plugins /advanced/plugin-api 301
 /docs/integrations/js /integrations/js 301
+/docs/integrations/json /integrations/json 301
 /docs/integrations/sass /integrations/sass 301
 /docs/integrations/tailwind /integrations/tailwind 301
 /docs/integrations/tokens-studio /integrations/figma 301
+/docs/integrations/ts /integrations/js 301
+/docs/plugins/css /integrations/css 301
+/docs/plugins/js /integrations/js 301
+/docs/plugins/json /integrations/json 301
+/docs/plugins/sass /integrations/css 301
+/docs/plugins/tailwind /integrations/tailwind 301
+/docs/plugins/ts /integrations/js 301
 /docs/reference/about /advanced/about 301
 /docs/reference/cli /guides/cli 301
 /docs/reference/config /advanced/config 301
