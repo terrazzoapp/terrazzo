@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build",
+    "build": "del .vitepress/dist && vitepress build && cp _redirects .vitepress/dist",
     "preview": "vitepress preview"
   },
   "dependencies": {
