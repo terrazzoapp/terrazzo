@@ -1,5 +1,14 @@
 # @cobalt-ui/cli
 
+## 1.6.1
+
+### Patch Changes
+
+- [#140](https://github.com/drwpow/cobalt-ui/pull/140) [`636f4da`](https://github.com/drwpow/cobalt-ui/commit/636f4dae537677dfe893bb310352589b7bb58795) Thanks [@drwpow](https://github.com/drwpow)! - Call all config() callbacks before running builds
+
+- Updated dependencies [[`636f4da`](https://github.com/drwpow/cobalt-ui/commit/636f4dae537677dfe893bb310352589b7bb58795)]:
+  - @cobalt-ui/core@1.6.1
+
 ## 1.6.0
 
 ### Minor Changes

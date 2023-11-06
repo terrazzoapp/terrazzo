@@ -187,7 +187,7 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.2.2
@@ -280,10 +280,10 @@ importers:
         version: 3.0.2
     devDependencies:
       '@cobalt-ui/cli':
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../cli
       '@cobalt-ui/core':
-        specifier: ^1.6.0
+        specifier: ^1.6.1
         version: link:../core
       '@types/node':
         specifier: ^20.8.10
