@@ -96,6 +96,27 @@ describe('@cobalt-ui/plugin-css', () => {
       expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });
 
+    test('transform', async () => {
+      const cwd = new URL(`./transform/`, import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            filename: 'actual.css',
+            transform(token) {
+              if (token.id === 'color.blue.5') {
+                return '#0969db';
+              }
+            },
+          }),
+        ],
+        color: {},
+        tokens: [],
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    });
+
     test('p3', async () => {
       const cwd = new URL(`./p3/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));

@@ -33,7 +33,7 @@ export interface Options {
   /** embed files in CSS? */
   embedFiles?: boolean;
   /** handle different token types */
-  transform?: <T extends ParsedToken>(token: T, mode?: string) => string;
+  transform?: <T extends ParsedToken>(token: T, mode?: string) => string | undefined | null;
   /** transform color */
   colorFormat?: NonNullable<PluginCSSOptions['colorFormat']>;
 }
@@ -135,9 +135,9 @@ ${cbClose}`
 
         output.push(indent(`"${token.id}": (`, 1));
 
-        let value: string | number | undefined;
+        let value: string | number | undefined | null;
         if (cssPlugin) {
-          value = varRef(token.id, tokens, generateName);
+          value = varRef(token.id, {prefix, tokens, generateName});
         } else {
           value = await options?.transform?.(token);
           if (value === undefined || value === null) {
@@ -149,9 +149,9 @@ ${cbClose}`
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-          let modeValue: string | number | undefined;
+          let modeValue: string | number | undefined | null;
           if (cssPlugin) {
-            modeValue = varRef(token.id, tokens, generateName);
+            modeValue = varRef(token.id, {tokens, generateName});
           } else {
             modeValue = options?.transform?.(token, modeName);
             if (modeValue === undefined || modeValue === null) {
@@ -176,7 +176,7 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, tokens, generateName, property)}),`, 3));
+            output.push(indent(`"${property}": (${varRef(token.id, {prefix, generateName, suffix: property, tokens})}),`, 3));
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
