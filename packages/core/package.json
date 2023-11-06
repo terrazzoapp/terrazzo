@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/core",
   "description": "Parser/validator for the Design Tokens Format Module (DTFM) standard.",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
