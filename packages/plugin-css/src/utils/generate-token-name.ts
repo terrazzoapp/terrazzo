@@ -9,9 +9,9 @@ function normalizeIdSegment(inputString: string): string {
     return words
       .map((word, i) => {
         if (i === 0) {
-          return word.toLowerCase();
+          return word.toLocaleLowerCase();
         } else {
-          return word[0]?.toUpperCase() + word.slice(1).toLowerCase();
+          return word[0]?.toLocaleUpperCase() + word.slice(1).toLocaleLowerCase();
         }
       })
       .join('');
@@ -33,7 +33,7 @@ export function defaultNameGenerator(
   return `${normalizedPrefix}${variableId.split('.').map(normalizeIdSegment).join('-')}`;
 }
 
-export type CustomNameGenerator = (variableId: string, token?: ParsedToken) => string;
+export type CustomNameGenerator = (variableId: string, token?: ParsedToken) => string | undefined | null;
 
 // TODO: remove prefix arg in next major version
 export function makeNameGenerator(customNameGenerator?: CustomNameGenerator, prefix?: string) {
@@ -42,7 +42,7 @@ export function makeNameGenerator(customNameGenerator?: CustomNameGenerator, pre
     variableId: string,
     token?: ParsedToken,
   ): string => {
-    const name = customNameGenerator ? customNameGenerator(variableId, token) : defaultNameGenerator(variableId, prefix);
+    const name = customNameGenerator?.(variableId, token) || defaultNameGenerator(variableId, prefix);
 
     return `--${name.replace(DASH_PREFIX_RE, '')}`;
   };

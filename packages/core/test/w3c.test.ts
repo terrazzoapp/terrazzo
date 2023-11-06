@@ -286,12 +286,26 @@ describe('8. Type', () => {
 
 describe('9. Composite Type', () => {
   describe('9.2: Stroke Style', () => {
-    test('basic', () => {
+    test('9.2.1 string value', () => {
       const json = {
         stroke: {$type: 'strokeStyle', $value: 'solid'},
       };
       const tokens = getTokens(json);
       expect(tokens.find((t) => t.id === 'stroke')?.$value).toBe('solid');
+    });
+
+    test('9.2.2 object value', () => {
+      const json = {
+        stroke: {
+          $type: 'strokeStyle',
+          $value: {
+            dashArray: ['10px', '0.25rem'],
+            lineCap: 'butt',
+          },
+        },
+      };
+      const tokens = getTokens(json);
+      expect(tokens.find((t) => t.id === 'stroke')?.$value).toEqual({dashArray: ['10px', '0.25rem'], lineCap: 'butt'});
     });
 
     test('validates', () => {

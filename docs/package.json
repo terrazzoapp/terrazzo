@@ -1,31 +1,18 @@
 {
-  "name": "cobalt-docs",
-  "version": "0.0.0",
+  "name": "@cobalt-ui/docs",
   "private": true,
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "npm run build:tokens && npm run build:readme && npm run build:static",
-    "build:tokens": "co build",
-    "build:readme": "node ./scripts/update-readmes.js",
-    "build:static": "astro build",
-    "sync": "co sync",
-    "dev": "run-p dev:*",
-    "dev:tokens": "co build -w",
-    "dev:serve": "astro dev"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "dependencies": {
-    "js-yaml": "^4.1.0",
-    "nanoid": "^4.0.2"
+    "vue": "^3.3.7"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/core": "workspace:*",
-    "@cobalt-ui/plugin-css": "workspace:*",
-    "@cobalt-ui/plugin-sass": "workspace:*",
-    "astro": "^3.3.2",
-    "npm-run-all": "^4.1.5",
-    "sass": "^1.69.4",
-    "shiki": "^0.14.5",
-    "vite": "^4.5.0"
+    "vite": "^4.5.0",
+    "vitepress": "1.0.0-rc.24"
   }
 }

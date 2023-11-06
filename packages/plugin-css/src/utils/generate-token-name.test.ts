@@ -1,3 +1,4 @@
+import type {ParsedColorToken} from '@cobalt-ui/core';
 import {describe, expect, test} from 'vitest';
 import {defaultNameGenerator, makeNameGenerator} from './generate-token-name.js';
 
@@ -39,12 +40,17 @@ describe('defaultNameGenerator', () => {
 });
 
 describe('makeNameGenerator', () => {
-  const incompleteMockToken = {id: 'Hello'};
+  const mockToken: ParsedColorToken = {
+    id: 'color.blue.500',
+    $type: 'color',
+    $value: '#0000ff',
+    _original: {$type: 'color', $value: '#0000ff'},
+    _group: {id: 'color.blue'},
+  };
 
   test('returns the default name generator if none is provided', () => {
     const generateName = makeNameGenerator();
-    // @ts-expect-error - we aren't inspecting an actual token in this test, so no need to mock it fully
-    expect(generateName(' path. to the .Token ', incompleteMockToken)).toBe('--path-toThe-Token');
+    expect(generateName(' path. to the .Token ', mockToken)).toBe('--path-toThe-Token');
   });
 
   describe('custom generators', () => {
@@ -52,23 +58,25 @@ describe('makeNameGenerator', () => {
       const generateName = makeNameGenerator((variableId) => {
         return `--my-prefix-${variableId
           .split('.')
-          .map((segment) => segment.trim().replaceAll(' ', '_'))
+          .map((segment) => segment.trim().replace(/\s+/, '_'))
           .join('-')}`;
       });
-      // @ts-expect-error - we aren't inspecting an actual token in this test, so no need to mock it fully
-      expect(generateName('path.to the.token', incompleteMockToken)).toBe('--my-prefix-path-to_the-token');
+      expect(generateName('path.to the.token', mockToken)).toBe('--my-prefix-path-to_the-token');
     });
 
     test('prefixes returned name with -- if it is not already', () => {
       const generateName = makeNameGenerator((_variableId) => 'path-to-token');
-      // @ts-expect-error - we aren't inspecting an actual token in this test, so no need to mock it fully
-      expect(generateName('path.to.token', incompleteMockToken)).toBe('--path-to-token');
+      expect(generateName('path.to.token', mockToken)).toBe('--path-to-token');
     });
 
     test('passes the token object to custom generators', () => {
-      const generateName = makeNameGenerator((_variableId, token) => (token === incompleteMockToken ? 'yes' : 'no'));
-      // @ts-expect-error - we aren't inspecting an actual token in this test, so no need to mock it fully
-      expect(generateName('some.token.id', incompleteMockToken)).toBe('--yes');
+      const generateName = makeNameGenerator((_variableId, token) => (token === mockToken ? 'yes' : 'no'));
+      expect(generateName('some.token.id', mockToken)).toBe('--yes');
+    });
+
+    test('allows returning `undefined` to fall back to default', () => {
+      const generateName = makeNameGenerator(() => undefined);
+      expect(generateName('color.blue.500')).toBe('--color-blue-500');
     });
   });
 });

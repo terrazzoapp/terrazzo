@@ -5,14 +5,25 @@ import {URL} from 'node:url';
 
 export default async function build(rawSchema: Group, config: ResolvedConfig): Promise<ParseResult> {
   const {errors, warnings, result} = co.parse(rawSchema, config);
-  if (errors) return {errors, warnings, result};
+  if (errors) {
+    return {errors, warnings, result};
+  }
+
+  config.plugins.map((plugin) => {
+    try {
+      if (plugin.config) {
+        plugin.config(config);
+      }
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(`[${plugin.name}] ${err}`);
+      throw err;
+    }
+  });
 
   await Promise.all(
     config.plugins.map(async (plugin) => {
       try {
-        // config()
-        if (plugin.config) plugin.config(config);
-
         // build()
         const results = await plugin.build({tokens: result.tokens, metadata: result.metadata, rawSchema});
         if (!results) return;

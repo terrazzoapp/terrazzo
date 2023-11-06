@@ -9,15 +9,17 @@ import {
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  border: ParsedBorderToken['$value'];
+  'border.dashed': ParsedBorderToken['$value'];
+  'border.solid': ParsedBorderToken['$value'];
 };
 
 export declare const meta: {
-  border: ParsedBorderToken & { $extensions: { mode: typeof modes['border'] } };
+  'border.dashed': ParsedBorderToken;
+  'border.solid': ParsedBorderToken & { $extensions: { mode: typeof modes['border.solid'] } };
 };
 
 export declare const modes: {
-  border: {
+  'border.solid': {
     light: ParsedBorderToken['$value'];
     dark: ParsedBorderToken['$value'];
   };
