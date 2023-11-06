@@ -19,7 +19,7 @@ export default defineConfig({
   },
   transformHead(context) {
     return [
-      ['meta', {name: 'og:title', content: context.pageData.frontmatter.title ? `${context.pageData.frontmatter.title} | Cobalt` : `Cobalt: CI for your Design Tokens`}],
+      ['meta', {name: 'og:title', content: context.pageData.frontmatter.title ? `${context.pageData.frontmatter.title} | Cobalt` : 'Cobalt: CI for your Design Tokens'}],
       ['meta', {name: 'og:description', content: context.pageData.frontmatter.description || 'Use Design Tokens Format Module tokens to generate CSS, Sass, JS/TS, universal JSON, and more.'}],
       ['meta', {name: 'og:image', content: `${HOSTNAME}/social.png`}],
       ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
