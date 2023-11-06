@@ -1,8 +1,8 @@
 ---
-title: Tailwind CSS
+title: Tailwind CSS Integration
 ---
 
-# Tailwind CSS
+# Tailwind CSS Integration
 
 Generate a [Tailwind CSS](https://tailwindcss.com/) preset from your design tokens.
 

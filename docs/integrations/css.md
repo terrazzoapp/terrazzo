@@ -1,8 +1,8 @@
 ---
-title: CSS
+title: CSS Integration
 ---
 
-# CSS
+# CSS Integration
 
 Generate CSS variables from your Design Tokens Format Module (DTFM) tokens.
 

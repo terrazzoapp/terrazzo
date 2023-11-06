@@ -1,5 +1,5 @@
 ---
-title: Alias
+title: Token Alias
 ---
 
 # Alias

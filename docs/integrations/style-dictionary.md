@@ -1,8 +1,8 @@
 ---
-title: Style Dictionary
+title: Style Dictionary Integration
 ---
 
-# Style Dictionary
+# Style Dictionary Integration
 
 You can migrate your [Style Dictionary](https://amzn.github.io/style-dictionary) tokens to the Design Tokens Format Module (DTFM) standard by running the following command (granted you have [the CLI installed](/guides/cli)):
 

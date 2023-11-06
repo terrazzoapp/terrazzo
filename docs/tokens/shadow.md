@@ -1,5 +1,5 @@
 ---
-title: Shadow
+title: Shadow Token
 ---
 
 # Shadow

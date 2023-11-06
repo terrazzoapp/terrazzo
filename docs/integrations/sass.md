@@ -1,8 +1,8 @@
 ---
-title: Sass
+title: Sass Integration
 ---
 
-# Sass
+# Sass Integration
 
 Generate `.scss` and `.sass` from your Design Tokens Format Module (DTFM) tokens.
 

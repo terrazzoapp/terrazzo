@@ -1,5 +1,5 @@
 ---
-title: Link
+title: Link Token
 ---
 
 # Link

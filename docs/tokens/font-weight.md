@@ -1,5 +1,5 @@
 ---
-title: Font Weight
+title: Font Weight Token
 ---
 
 # Font Weight

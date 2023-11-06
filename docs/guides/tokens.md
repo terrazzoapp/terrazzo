@@ -1,5 +1,5 @@
 ---
-title: tokens.json
+title: tokens.json Manifest
 ---
 
 # tokens.json

@@ -1,5 +1,5 @@
 ---
-title: Group
+title: Token Group
 ---
 
 # Group

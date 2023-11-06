@@ -1,5 +1,5 @@
 ---
-title: Duration
+title: Duration Token
 ---
 
 # Duration

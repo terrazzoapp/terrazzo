@@ -2,6 +2,8 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 
+title: 'Cobalt: CI for your design tokens'
+
 hero:
   name: Cobalt
   text: CI for Design Tokens

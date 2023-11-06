@@ -1,5 +1,5 @@
 ---
-title: Font Family
+title: Font Family Token
 ---
 
 # Font Family

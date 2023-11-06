@@ -1,8 +1,8 @@
 ---
-title: JS / TS
+title: JS + TS Integration
 ---
 
-# JavaScript + TypeScript
+# JavaScript + TypeScript Integration
 
 Generate JavaScript (with TypeScript declarations) from your Design Tokens Format Module (DTFM) tokens.
 

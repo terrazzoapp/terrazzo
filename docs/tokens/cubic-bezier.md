@@ -1,5 +1,5 @@
 ---
-title: Cubic Bézier
+title: Cubic Bézier Token
 ---
 
 # Cubic Bézier
