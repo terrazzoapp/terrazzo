@@ -12,7 +12,9 @@ export default defineConfig({
     ['link', {rel: 'apple-touch-icon', type: 'image/png', sizes: '512x512', href: '/favicon-512.png'}],
     ['script', {defer: '', src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "f5713e86f9aa43278151f2763d6b59ae"}'}],
   ],
-
+  sitemap: {
+    hostname: 'https://cobalt-ui.pages.dev',
+  },
   /** @see https://vitepress.dev/reference/default-theme-config */
   themeConfig: {
     logo: '/images/cobalt-icon-solid.svg',
