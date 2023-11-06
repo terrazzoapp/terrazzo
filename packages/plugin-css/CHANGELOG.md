@@ -1,5 +1,15 @@
 # @cobalt-ui/plugin-css
 
+## 1.6.2
+
+### Patch Changes
+
+- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: bugs in transform() API introduced in 1.6.0
+
+- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix TypeScript signature for transform() plugin option
+
+- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: mismatched versions of plugin-css and plugin-sass (if either were on `latest`) were broken.
+
 ## 1.6.1
 
 ### Patch Changes

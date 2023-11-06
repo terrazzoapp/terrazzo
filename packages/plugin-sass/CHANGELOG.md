@@ -4,6 +4,17 @@
 
 ### Patch Changes
 
+- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix TypeScript signature for transform() plugin option
+
+- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: mismatched versions of plugin-css and plugin-sass (if either were on `latest`) were broken.
+
+- Updated dependencies [[`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629)]:
+  - @cobalt-ui/plugin-css@1.6.2
+
+## 1.3.2
+
+### Patch Changes
+
 - [#131](https://github.com/drwpow/cobalt-ui/pull/131) [`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - Handle whitespace in token ids when creating CSS variables
 
 - Updated dependencies [[`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480)]:
