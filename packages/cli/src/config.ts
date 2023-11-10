@@ -38,14 +38,23 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
         throw new Error(`[config] invalid URL "${filepath}"`);
       }
     } else {
-      const tokensPath = new URL(filepath, cwd);
+      let tokensPath = new URL(filepath, cwd);
       if (fs.existsSync(tokensPath)) {
         config.tokens[i] = tokensPath;
+      }
+      // fallback: if this is looking for the default file, autodetect tokens.yaml
+      else if (i === 0 && filepath === './tokens.json') {
+        tokensPath = new URL('./tokens.yaml', cwd);
+        if (fs.existsSync(tokensPath)) {
+          config.tokens[i] = tokensPath;
+        }
       }
       // otherwise, attempt Node resolution (sometimes it do be like that)
       else {
         const nodeResolved = require.resolve(filepath, {paths: [fileURLToPath(cwd), process.cwd(), import.meta.url]});
-        if (!fs.existsSync(nodeResolved)) throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
+        if (!fs.existsSync(nodeResolved)) {
+          throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
+        }
         config.tokens[i] = new URL(`file://${nodeResolved}`);
       }
     }

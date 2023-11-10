@@ -133,6 +133,28 @@ importers:
         specifier: workspace:*
         version: link:../../packages/plugin-sass
 
+  examples/radix:
+    dependencies:
+      '@radix-ui/colors':
+        specifier: ^3.0.0
+        version: 3.0.0
+    devDependencies:
+      '@cobalt-ui/cli':
+        specifier: workspace:*
+        version: link:../../packages/cli
+      '@cobalt-ui/plugin-css':
+        specifier: workspace:*
+        version: link:../../packages/plugin-css
+      '@cobalt-ui/plugin-js':
+        specifier: workspace:*
+        version: link:../../packages/plugin-js
+      '@cobalt-ui/plugin-sass':
+        specifier: workspace:*
+        version: link:../../packages/plugin-sass
+      js-yaml:
+        specifier: ^4.1.0
+        version: 4.1.0
+
   examples/salesforce:
     devDependencies:
       '@cobalt-ui/cli':
@@ -1418,6 +1440,10 @@ packages:
   /@primer/primitives@7.9.0:
     resolution: {integrity: sha512-ZHHfwB0z0z6nDJp263gyGIClYDy+rl0nwqyi4qhcv3Cxhkmtf+If2KVjr6FQqBBFfi1wQwUzaax2FBvfEMFBnw==}
     dev: true
+
+  /@radix-ui/colors@3.0.0:
+    resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
+    dev: false
 
   /@salesforce-ux/design-system@2.22.0(postcss@8.4.31):
     resolution: {integrity: sha512-WdJLQpCd9GSlBV75G4sP71KCHvyLuzk6Qupem5HHDCey5fsQWHdmVLmYCcOefnIxd+2MGkPeAoFwkosnnY9PVw==}

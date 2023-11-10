@@ -1,0 +1,20 @@
+{
+  "name": "@example/radix",
+  "description": "https://www.radix-ui.com/primitives",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build:tokens": "co build",
+    "update": "node ./scripts/update.js"
+  },
+  "devDependencies": {
+    "@cobalt-ui/cli": "workspace:*",
+    "@cobalt-ui/plugin-css": "workspace:*",
+    "@cobalt-ui/plugin-js": "workspace:*",
+    "@cobalt-ui/plugin-sass": "workspace:*",
+    "js-yaml": "^4.1.0"
+  },
+  "dependencies": {
+    "@radix-ui/colors": "^3.0.0"
+  }
+}
