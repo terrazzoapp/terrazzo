@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.6.2
+
+### Patch Changes
+
+- [#154](https://github.com/drwpow/cobalt-ui/pull/154) [`64464f2`](https://github.com/drwpow/cobalt-ui/commit/64464f2eb95fcc9a297e4c72428b46117bc053e3) Thanks [@drwpow](https://github.com/drwpow)! - Detect tokens.yaml automatically
+
 ## 1.6.1
 
 ### Patch Changes
