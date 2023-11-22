@@ -9,6 +9,6 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/plugin-tailwind": "workspace:^",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.5"
   }
 }

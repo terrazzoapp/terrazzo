@@ -101,6 +101,10 @@ export default {
 
 :::
 
+### VS Code Autocomplete
+
+If your tokens are saved locally (by default in `src/tokens/tokens.css`), VS Code will automatically pick up on this file and allow autocompletions. However, if you’re publishing your package to npm, it will ignore `node_modules`. The [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables) extension lets you add additional files for autocompletion.
+
 ## Color tokens
 
 ::: code-group
