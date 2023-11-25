@@ -136,10 +136,12 @@ describe('@cobalt-ui/plugin-css', () => {
 
     test('uses a custom name generator when provided', async () => {
       function myGenerator(variableId, token) {
-        if (variableId === 'color.gray') return 'super-special-variable';
-
-        if (token.$type === 'border') return `rad-${defaultNameGenerator(variableId)}`;
-
+        if (variableId === 'color.gray') {
+          return 'super-special-variable';
+        }
+        if (token.$type === 'border') {
+          return `rad-${defaultNameGenerator(variableId)}`;
+        }
         return defaultNameGenerator(variableId);
       }
 
