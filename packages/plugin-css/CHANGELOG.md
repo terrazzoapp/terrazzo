@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.7.0
+
+### Minor Changes
+
+- [#158](https://github.com/drwpow/cobalt-ui/pull/158) [`6020c15`](https://github.com/drwpow/cobalt-ui/commit/6020c15dae130ffd30a21c844e7e1a6277c7106d) Thanks [@drwpow](https://github.com/drwpow)! - Add Utility CSS generation
+
 ## 1.6.2
 
 ### Patch Changes
