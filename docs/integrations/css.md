@@ -105,103 +105,122 @@ export default {
 
 If your tokens are saved locally (by default in `src/tokens/tokens.css`), VS Code will automatically pick up on this file and allow autocompletions. However, if you’re publishing your package to npm, it will ignore `node_modules`. The [CSS Variable Autocomplete](https://marketplace.visualstudio.com/items?itemName=vunguyentuan.vscode-css-variables) extension lets you add additional files for autocompletion.
 
-## Color tokens
+## Utility CSS
 
-::: code-group
+By default, this plugin will **only generate CSS variables**. To generate some lightweight utility CSS classes from your tokens _a la_ Tailwind or Bootstrap Utility CSS, specify a `utility` object to enable the types of utility classes you’d like to generate.
 
-```js [tokens.config.mjs] {5}
-/** @type import('@cobalt-ui/core').Config */
-export default {
-  plugins: [
-    pluginCSS({
-      colorFormat: 'oklch',
-    }),
-  ],
-};
+By default, **all groups are off**. to generate a group, pass its name as the key, along with an array of **token selectors** (wildcards) to match tokens. For example, the following config:
+
+```js
+pluginCSS({
+  utility: {
+    bg: ['color.semantic.*'],
+    text: ['color.semantic.*'],
+    margin: ['space.*'],
+  },
+});
 ```
 
-:::
-
-By specifying a `colorFormat`, you can transform all your colors to [any browser-supported colorspace](https://www.w3.org/TR/css-color-4/). Any of the following colorspaces are accepted:
-
-- [hex](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) (default)
-- [rgb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
-- [hsl](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)
-- [hwb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)
-- [lab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab)
-- [lch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch)
-- [oklab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab)
-- [oklch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
-- [p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)
-- [srgb-linear](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
-- [xyz-d50](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
-- [xyz-d65](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
-
-If you are unfamiliar with these colorspaces, the default `hex` value is best for most users (though [you should use OKLCH to define your colors](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)).
-
-## Link tokens
-
-Say you have [Link tokens](/tokens/link) in your `tokens.json`:
-
-::: code-group
-
-```json [JSON]
-{
-  "icon": {
-    "alert": {
-      "$type": "link",
-      "$value": "./icon/alert.svg"
-    }
-  }
-}
-```
-
-```yaml [YAML]
-icon:
-  alert:
-    $type: link
-    value: ./icon/alert.svg
-```
-
-:::
-
-By default, consuming those will print values as-is:
+…will generate the following CSS:
 
 ```css
-:root {
-  --icon-alert: url('./icon/alert.svg');
+.bg-primary {
+  background-color: var(--color-semantic-primary);
 }
-
-.icon-alert {
-  background-image: var(--icon-alert);
+.bg-secondary {
+  background-color: var(--color-semantic-secondary);
 }
+.text-primary {
+  color: var(--color-semantic-primary);
+}
+.text-secondary {
+  color: var(--color-semantic-secondary);
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+/* … */
 ```
 
-In some scenarios this is preferable, but in others, this may result in too many requests and may result in degraded performance. You can set `embedFiles: true` to generate the following instead:
+Here are all the groups available, along with the associated CSS:
 
-```css
-:root {
-  --icon-alert: url('image/svg+xml;utf8,<svg …></svg>');
-}
+| Group       | Class Name               | CSS                                                                     |
+| :---------- | :----------------------- | :---------------------------------------------------------------------- |
+| **bg**      | `.bg-[token]`            | `background-color: [value]` \*                                          |
+| **border**  | `.border-[token]`        | `border: [value]`                                                       |
+|             | `.border-top-[token]`    | `border-top: [value]`                                                   |
+|             | `.border-right-[token]`  | `border-right: [value]`                                                 |
+|             | `.border-bottom-[token]` | `border-bottom: [value]`                                                |
+|             | `.border-left-[token]`   | `border-left: [value]`                                                  |
+| **font**    | `.font-[token]`          | (all typographic properties of [Typography Tokens](/tokens/typography)) |
+| **gap**     | `.gap-[token]`           | `gap: [value]`                                                          |
+|             | `.gap-col-[token]`       | `column-gap: [value]`                                                   |
+|             | `.gap-row-[token]`       | `row-gap: [value]`                                                      |
+| **margin**  | `.mt-[token]`            | `margin-top: [value]`                                                   |
+|             | `.mr-[token]`            | `margin-right: [value]`                                                 |
+|             | `.mb-[token]`            | `margin-bottom: [value]`                                                |
+|             | `.ml-[token]`            | `margin-left: [value]`                                                  |
+|             | `.ms-[token]`            | `margin-inline-start: [value]`                                          |
+|             | `.me-[token]`            | `margin-inline-end: [value]`                                            |
+|             | `.mx-[token]`            | `margin-left: [value]; margin-right: [value]`                           |
+|             | `.my-[token]`            | `margin-top: [value]; margin-bottom: [value]`                           |
+|             | `.ma-[token]`            | `margin: [value]`                                                       |
+| **padding** | `.pt-[token]`            | `padding-top: [value]`                                                  |
+|             | `.pr-[token]`            | `padding-right: [value]`                                                |
+|             | `.pb-[token]`            | `padding-bottom: [value]`                                               |
+|             | `.pl-[token]`            | `padding-left: [value]`                                                 |
+|             | `.px-[token]`            | `padding-left: [value]; padding-right: [value]`                         |
+|             | `.py-[token]`            | `padding-top: [value]; padding-bottom: [value]`                         |
+|             | `.pa-[token]`            | `padding: [value]`                                                      |
+| **shadow**  | `.shadow-[token]`        | `box-shadow: [value]`                                                   |
+| **text**    | `.text-[token]`          | `color: [value]` \*                                                     |
 
-.icon-alert {
-  background-image: var(--icon-alert);
-}
-```
+::: info
 
-::: tip
-
-The CSS plugin uses [SVGO](https://github.com/svg/svgo) to optimize SVGs at lossless quality. However, raster images won’t be optimized so quality isn’t degraded.
+The **bg** and **text** groups also accept [Gradient Tokens](/tokens/gradient), and will generate the appropriate CSS for those.
 
 :::
 
-[Read more about the advantages to inlining files](https://css-tricks.com/data-uris/)
+### Naming
 
-## Generate name
+The `utility` mapping will use the remainder of the token ID, minus the selector (but will always keep the last segment, no matter what). For example, if you had a `color.semantic.primary` token, here’s how you’d control the generated CSS name:
+
+| Selector                     | CSS Class                    |
+| :--------------------------- | :--------------------------- |
+| `['color.semantic.primary']` | `.bg-primary`                |
+| `['color.semantic.*']`       | `.bg-primary`                |
+| `['color.*']`                | `.bg-semantic-primary`       |
+| `['*']`                      | `.bg-color-semantic-primary` |
+
+You can use as much or as little of the token ID as you like, according to what makes sense to you.
+
+This comes up a lot with spacing ([Dimension](/tokens/dimension)) tokens: if, for example, you had a `space.layout.xs` token, you could specify `['space.*']` if you wanted the CSS class `.mt-layout-xs`, or `['space.layout.*']` if you wanted `.mt-xs`. Only you know your DS and what makes the most sense, and when a name is either too long or too short.
+
+Note that **this utility does not let you rename token IDs** for ease of use. If you want to remap and/or mix and combine tokens into different class names, you’ll have to write your own CSS manually (using the generated CSS variables, of course).
+
+### Comparison to Tailwind
+
+This plugin’s utility CSS can be used **in place of Tailwind,** and probably works best if the project isn’t based on Tailwind. It’s simply a lighter-weight way of using your design tokens directly in CSS. For comparison:
+
+- ✅ **It respects dynamic vars.** The generated utility CSS references core vars, which means all your modes and [Mode Selectors](#mode-selectors) are preserved, and all the dynamism of your variables are kept.
+- ✅ **Direct 1:1 mapping with tokens**. There’s no additional translation layer, or renaming into Tailwind. This just references your tokens as you’ve named them (with the only learning curve being familiarizing yourself with a few prefixes).
+- ✅ **No additional build step or dependencies.** Utility CSS gets generated along with the rest of your DS code, without any additional setup.
+- ✅ **No code scanning.** You only generate what you need, so no need to scan your code.
+- ❌ **No automatic treeshaking.** Conversely, you control everything in the config, so you’ll have to configure for yourself how much CSS to generate from your DS (for most DSs it’s a negligible amount of CSS, however, huge DSs may need to be more selective).
+
+If you are already using Tailwind in your project, you may find the [Tailwind Plugin](https://cobalt-ui.pages.dev/docs/integrations/tailwind/) more useful.
+
+## Renaming CSS variables
 
 Use the `generateName()` option to customize the naming of CSS tokens, such as adding prefixes/suffixes, or just changing how the default variable naming works in general.
 
-### Default naming
+#### Default naming
 
 By default, Cobalt takes your dot-separated token IDs and…
 
@@ -209,7 +228,7 @@ By default, Cobalt takes your dot-separated token IDs and…
 - camelCases any group or token name that has a space in the middle of it
 - Joins the normalized segments together with a single dashes
 
-### Custom naming
+#### Custom naming
 
 To override specific or all CSS variable names yourself, use the `generateName()` option:
 
@@ -366,7 +385,7 @@ That will generate the following:
 
 [Learn more about modes](/guides/modes)
 
-## Transform
+## Transforming values
 
 Inside plugin options, you can specify an optional `transform()` function.
 
@@ -423,9 +442,105 @@ export default {
 
 :::
 
-## Sass interop
+## Special token behavior
 
-If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](/integrations/sass), which gives you all the benefits of this plugin plus Sass’ typechecking (the Sass plugin’s normal Sass vars will be swapped for CSS vars, but it will still error on any mistyped tokens).
+Helpful information for @cobalt-ui/plugin-css’ handling of specific token types.
+
+### Color tokens
+
+::: code-group
+
+```js [tokens.config.mjs] {5}
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  plugins: [
+    pluginCSS({
+      colorFormat: 'oklch',
+    }),
+  ],
+};
+```
+
+:::
+
+By specifying a `colorFormat`, you can transform all your colors to [any browser-supported colorspace](https://www.w3.org/TR/css-color-4/). Any of the following colorspaces are accepted:
+
+- [hex](https://developer.mozilla.org/en-US/docs/Web/CSS/hex-color) (default)
+- [rgb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/rgb)
+- [hsl](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl)
+- [hwb](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hwb)
+- [lab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lab)
+- [lch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/lch)
+- [oklab](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab)
+- [oklch](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch)
+- [p3](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)
+- [srgb-linear](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+- [xyz-d50](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+- [xyz-d65](https://developer.mozilla.org/en-US/docs/Web/CSS/color-interpolation-method)
+
+If you are unfamiliar with these colorspaces, the default `hex` value is best for most users (though [you should use OKLCH to define your colors](https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl)).
+
+### Link tokens
+
+Say you have [Link tokens](/tokens/link) in your `tokens.json`:
+
+::: code-group
+
+```json [JSON]
+{
+  "icon": {
+    "alert": {
+      "$type": "link",
+      "$value": "./icon/alert.svg"
+    }
+  }
+}
+```
+
+```yaml [YAML]
+icon:
+  alert:
+    $type: link
+    value: ./icon/alert.svg
+```
+
+:::
+
+By default, consuming those will print values as-is:
+
+```css
+:root {
+  --icon-alert: url('./icon/alert.svg');
+}
+
+.icon-alert {
+  background-image: var(--icon-alert);
+}
+```
+
+In some scenarios this is preferable, but in others, this may result in too many requests and may result in degraded performance. You can set `embedFiles: true` to generate the following instead:
+
+```css
+:root {
+  --icon-alert: url('image/svg+xml;utf8,<svg …></svg>');
+}
+
+.icon-alert {
+  background-image: var(--icon-alert);
+}
+```
+
+::: tip
+
+The CSS plugin uses [SVGO](https://github.com/svg/svgo) to optimize SVGs at lossless quality. However, raster images won’t be optimized so quality isn’t degraded.
+
+:::
+
+[Read more about the advantages to inlining files](https://css-tricks.com/data-uris/)
+
+## Sass typechecking
+
+If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](/integrations/sass), which lets you keep the dynamism of CSS variables but lets Sass check for typos (by default, the Sass plugin uses static values).
 
 To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.mjs` and move your options into the `pluginCSS: {}` option:
 
