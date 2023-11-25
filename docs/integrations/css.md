@@ -107,103 +107,104 @@ If your tokens are saved locally (by default in `src/tokens/tokens.css`), VS Cod
 
 ## Utility CSS
 
-By default, this plugin will **only generate CSS variables**. But if you’d also like to generate lightweight utility CSS classes from your tokens a la Tailwind or Bootstrap Utility CSS, you can opt in with the `utility` option. The resulting CSS is minimal in size, and only generates what you request:
+By default, this plugin will **only generate CSS variables**. To generate some lightweight utility CSS classes from your tokens _a la_ Tailwind or Bootstrap Utility CSS, specify a `utility` object to enable the types of utility classes you’d like to generate.
+
+By default, **all groups are off**. to generate a group, pass its name as the key, along with an array of **token selectors** (wildcards) to match tokens. For example, the following config:
 
 ```js
 pluginCSS({
   utility: {
-    tokens: ['border.*', 'color.*', 'spacing.*', 'typography.*'],
+    bg: ['color.semantic.*'],
+    text: ['color.semantic.*'],
+    margin: ['space.*'],
   },
 });
 ```
 
-::: tip
+…will generate the following CSS:
 
-If you want to generate all utility CSS, you can specify `tokens: ['*']`. Just watch your CSS size!
+```css
+.bg-primary {
+  background-color: var(--color-semantic-primary);
+}
+.bg-secondary {
+  background-color: var(--color-semantic-secondary);
+}
+.text-primary {
+  color: var(--color-semantic-primary);
+}
+.text-secondary {
+  color: var(--color-semantic-secondary);
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
+.mr-1 {
+  margin-right: 0.25rem;
+}
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+/* … */
+```
+
+Here are all the groups available, along with the associated CSS:
+
+| Group       | Class Name               | CSS                                                                     |
+| :---------- | :----------------------- | :---------------------------------------------------------------------- |
+| **bg**      | `.bg-[token]`            | `background-color: [value]` \*                                          |
+| **border**  | `.border-[token]`        | `border: [value]`                                                       |
+|             | `.border-top-[token]`    | `border-top: [value]`                                                   |
+|             | `.border-right-[token]`  | `border-right: [value]`                                                 |
+|             | `.border-bottom-[token]` | `border-bottom: [value]`                                                |
+|             | `.border-left-[token]`   | `border-left: [value]`                                                  |
+| **font**    | `.font-[token]`          | (all typographic properties of [Typography Tokens](/tokens/typography)) |
+| **gap**     | `.gap-[token]`           | `gap: [value]`                                                          |
+|             | `.gap-col-[token]`       | `column-gap: [value]`                                                   |
+|             | `.gap-row-[token]`       | `row-gap: [value]`                                                      |
+| **margin**  | `.mt-[token]`            | `margin-top: [value]`                                                   |
+|             | `.mr-[token]`            | `margin-right: [value]`                                                 |
+|             | `.mb-[token]`            | `margin-bottom: [value]`                                                |
+|             | `.ml-[token]`            | `margin-left: [value]`                                                  |
+|             | `.ms-[token]`            | `margin-inline-start: [value]`                                          |
+|             | `.me-[token]`            | `margin-inline-end: [value]`                                            |
+|             | `.mx-[token]`            | `margin-left: [value]; margin-right: [value]`                           |
+|             | `.my-[token]`            | `margin-top: [value]; margin-bottom: [value]`                           |
+|             | `.ma-[token]`            | `margin: [value]`                                                       |
+| **padding** | `.pt-[token]`            | `padding-top: [value]`                                                  |
+|             | `.pr-[token]`            | `padding-right: [value]`                                                |
+|             | `.pb-[token]`            | `padding-bottom: [value]`                                               |
+|             | `.pl-[token]`            | `padding-left: [value]`                                                 |
+|             | `.px-[token]`            | `padding-left: [value]; padding-right: [value]`                         |
+|             | `.py-[token]`            | `padding-top: [value]; padding-bottom: [value]`                         |
+|             | `.pa-[token]`            | `padding: [value]`                                                      |
+| **shadow**  | `.shadow-[token]`        | `box-shadow: [value]`                                                   |
+| **text**    | `.text-[token]`          | `color: [value]` \*                                                     |
+
+::: info
+
+The **bg** and **text** groups also accept [Gradient Tokens](/tokens/gradient), and will generate the appropriate CSS for those.
 
 :::
 
-```css
-/* Color example: color.base.blue.500 */
-.text-base-blue-500 {
-  color: var(--color-base-blue-500);
-}
-.bg-base-blue-500 {
-  background-color: var(--color-base-blue-500);
-}
+### Naming
 
-/* Spacing example: space.1 */
-.ma-1 {
-  margin: var(--space-1);
-}
-.mt-1 {
-  margin-top: var(--space-1);
-}
-.mr-1 {
-  margin-right: var(--space-1);
-}
-.mx-1 {
-  margin-left: var(--space-1);
-  margin-right: var(--space-1);
-}
-/* .p-* and .space-* utilities truncated for brevity … */
+The `utility` mapping will use the remainder of the token ID, minus the selector (but will always keep the last segment, no matter what). For example, if you had a `color.semantic.primary` token, here’s how you’d control the generated CSS name:
 
-/* Typography example: typography.base */
-.typography-base {
-  font-family: var(--typography-family-base);
-  font-size: var(--typography-base-font-size);
-  font-style: var(--typography-base-font-style);
-  font-weight: var(--typography-base-font-weight);
-  line-height: var(--typography-base-line-height);
-}
-```
+| Selector                     | CSS Class                    |
+| :--------------------------- | :--------------------------- |
+| `['color.semantic.primary']` | `.bg-primary`                |
+| `['color.semantic.*']`       | `.bg-primary`                |
+| `['color.*']`                | `.bg-semantic-primary`       |
+| `['*']`                      | `.bg-color-semantic-primary` |
 
-How it works is it **automatically generates CSS based on the [token type](https://cobalt-ui.pages.dev/docs/tokens).** Because there’s information about the type of token you’re using, it knows how to generate the resulting CSS (in fact, it will just use the variables it generated).
+You can use as much or as little of the token ID as you like, according to what makes sense to you.
 
-It will also **preserve your full token IDs** so there’s no documentation needed—just use your design system!
+This comes up a lot with spacing ([Dimension](/tokens/dimension)) tokens: if, for example, you had a `space.layout.xs` token, you could specify `['space.*']` if you wanted the CSS class `.mt-layout-xs`, or `['space.layout.*']` if you wanted `.mt-xs`. Only you know your DS and what makes the most sense, and when a name is either too long or too short.
 
-| Token Type   | Generated CSS                                                                 |
-| :----------- | :---------------------------------------------------------------------------- |
-| `color`      | `.text-*` (text color) `.bg-*` (background color), `.border-*` (border color) |
-| `dimension`  | `.m-*` (margin)\*, `.p-*` (padding)\*, `.space-*` (space-between)\*           |
-| `fontWeight` | `.font-weight-*` (font weight)                                                |
-| `transition` | `.transition-*` (transition), `.animation-*` (animation)                      |
-| `typography` | `.typography-*` (all Typographic styles)                                      |
+Note that **this utility does not let you rename token IDs** for ease of use. If you want to remap and/or mix and combine tokens into different class names, you’ll have to write your own CSS manually (using the generated CSS variables, of course).
 
-_\*Unless specifically identified as a `border` or `font`-type dimension (see below)_
-
-#### Dimension Overrides (Border, Font)
-
-[Dimension tokens](https://cobalt-ui.pages.dev/docs/tokens/#dimension) are special in that you can use them for spacing, border size, font size—so many things! So if you don’t want a dimension to be treated as **spacing** (default), you can convert it to a more helpful semantic utility via `overrides.dimension`:
-
-```js
-pluginCSS({
-  utility: {
-    tokens: ['border.*', 'typography.*'],
-    overrides: {
-      /** (optional) distinguish border CSS */
-      border: {
-        radius: ['border.radius.*'],
-        width: ['border.width.*'],
-      },
-      /** (optional) distinguish font CSS */
-      font: {
-        size: ['typography.size.*'],
-      },
-    },
-  },
-});
-```
-
-| Override name   | Generated CSS                    |
-| :-------------- | :------------------------------- |
-| `border.radius` | `.rounded-*` (border radius)     |
-| `border.width`  | `.border-width-*` (border width) |
-| `font.size`     | `.font-size-*` (font size)       |
-
-Currently, `dimension` is the only token that can be overridden, but more may be added as this tool expands.
-
-#### Comparison to Tailwind
+### Comparison to Tailwind
 
 This plugin’s utility CSS can be used **in place of Tailwind,** and probably works best if the project isn’t based on Tailwind. It’s simply a lighter-weight way of using your design tokens directly in CSS. For comparison:
 
@@ -215,7 +216,7 @@ This plugin’s utility CSS can be used **in place of Tailwind,** and probably w
 
 If you are already using Tailwind in your project, you may find the [Tailwind Plugin](https://cobalt-ui.pages.dev/docs/integrations/tailwind/) more useful.
 
-### Generate name
+## Renaming CSS variables
 
 Use the `generateName()` option to customize the naming of CSS tokens, such as adding prefixes/suffixes, or just changing how the default variable naming works in general.
 
@@ -384,7 +385,7 @@ That will generate the following:
 
 [Learn more about modes](/guides/modes)
 
-## Transform
+## Transforming values
 
 Inside plugin options, you can specify an optional `transform()` function.
 
@@ -441,7 +442,7 @@ export default {
 
 :::
 
-## Special behavior
+## Special token behavior
 
 Helpful information for @cobalt-ui/plugin-css’ handling of specific token types.
 
@@ -537,9 +538,9 @@ The CSS plugin uses [SVGO](https://github.com/svg/svgo) to optimize SVGs at loss
 
 [Read more about the advantages to inlining files](https://css-tricks.com/data-uris/)
 
-## Sass interop
+## Sass typechecking
 
-If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](/integrations/sass), which gives you all the benefits of this plugin plus Sass’ typechecking (the Sass plugin’s normal Sass vars will be swapped for CSS vars, but it will still error on any mistyped tokens).
+If you’re using Sass in your project, you can load this plugin through [@cobalt-ui/plugin-sass](/integrations/sass), which lets you keep the dynamism of CSS variables but lets Sass check for typos (by default, the Sass plugin uses static values).
 
 To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.mjs` and move your options into the `pluginCSS: {}` option:
 

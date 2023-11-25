@@ -134,7 +134,7 @@ describe('@cobalt-ui/plugin-css', () => {
       expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });
 
-    test('uses a custom name generator when provided', async () => {
+    test('generateName', async () => {
       function myGenerator(variableId, token) {
         if (variableId === 'color.gray') {
           return 'super-special-variable';
@@ -150,6 +150,32 @@ describe('@cobalt-ui/plugin-css', () => {
       await build(tokens, {
         outDir: cwd,
         plugins: [pluginCSS({filename: 'actual.css', generateName: myGenerator})],
+        color: {},
+        tokens: [],
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    });
+
+    test('utility', async () => {
+      const cwd = new URL('./utility/', import.meta.url);
+      const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            filename: 'actual.css',
+            utility: {
+              bg: ['color.semantic.*', 'color.gradient.*'],
+              border: ['border.*'],
+              font: ['typography.*'],
+              gap: ['space.*'],
+              margin: ['space.*'],
+              padding: ['space.*'],
+              shadow: ['shadow.*'],
+              text: ['color.semantic.*', 'color.gradient.*'],
+            },
+          }),
+        ],
         color: {},
         tokens: [],
       });

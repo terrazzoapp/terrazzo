@@ -1,6 +1,18 @@
 import type {ParsedColorToken} from '@cobalt-ui/core';
 import {describe, expect, test} from 'vitest';
-import {defaultNameGenerator, makeNameGenerator} from './generate-token-name.js';
+import {defaultNameGenerator, isTokenMatch, makeNameGenerator} from './token.js';
+
+describe('isTokenMatch', () => {
+  test('finds matching tokens', () => {
+    expect(isTokenMatch('color.blue.50', ['color.*'])).toBe('color.*');
+    expect(isTokenMatch('size.m.padding', ['*.m.*'])).toBe('*.m.*');
+  });
+
+  test('skips non-matching tokens', () => {
+    expect(isTokenMatch('typography.base', ['typography'])).toBe(undefined);
+    expect(isTokenMatch('button.color.base', ['color.*'])).toBe(undefined);
+  });
+});
 
 describe('defaultNameGenerator', () => {
   test('separate groups names with single dashes', () => {
