@@ -361,7 +361,7 @@ importers:
         specifier: ^1.6.1
         version: link:../core
       '@cobalt-ui/plugin-css':
-        specifier: ^1.6.2
+        specifier: ^1.7.0
         version: link:../plugin-css
       '@types/node':
         specifier: ^20.9.3
