@@ -1,6 +1,7 @@
 import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
 import {URL, fileURLToPath} from 'node:url';
+import * as culori from 'culori';
 import {describe, expect, test} from 'vitest';
 import yaml from 'js-yaml';
 import pluginCSS, {defaultNameGenerator} from '../dist/index.js';
@@ -173,6 +174,30 @@ describe('@cobalt-ui/plugin-css', () => {
               padding: ['space.*'],
               shadow: ['shadow.*'],
               text: ['color.semantic.*', 'color.gradient.*'],
+            },
+          }),
+        ],
+        color: {},
+        tokens: [],
+      });
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    });
+
+    test('tailwind alpha value', async () => {
+      const cwd = new URL(`./color-transform-tw-alpha/`, import.meta.url);
+      const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
+      await build(tokens, {
+        outDir: cwd,
+        plugins: [
+          pluginCSS({
+            filename: 'actual.css',
+            transform(token) {
+              if (token.$type === 'color') {
+                const color = culori.parse(token.$value);
+                if (!color) throw new Error(`Could not parse color "${token.$value}"`);
+                const {r, g, b} = culori.rgb(color);
+                return `${Math.round(r * 255)} ${Math.round(g * 255)} ${Math.round(b * 255)}`;
+              }
             },
           }),
         ],
