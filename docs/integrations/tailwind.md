@@ -157,3 +157,52 @@ export default {
 ```
 
 :::
+
+## Using CSS Variables
+
+Because Tailwind lets you use any CSS variables from anywhere, you can use [@cobalt-ui/plugin-css](/integrations/css) to generate these for you. However, you might be using some advanced functionality such as `<alpha-value>` that requires specific color formats. In those cases, you can use plugin-css’ `transform()` option in combination with the fast, accurate, and lightweight [culori](https://culorijs.org/) library to format colors in the desired format:
+
+```sh
+npm i -D @cobalt-ui/plugin-css culori
+```
+
+::: code-group
+
+```js [tokens.config.js] {12-17}
+import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginTailwind from '@cobalt-ui/plugin-tailwind';
+import * as culori from 'culori';
+
+/** @type import('@cobalt-ui/core').Config */
+export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
+  plugins: [
+    pluginTailwind(),
+    pluginCSS({
+      transform(token) {
+        if (token.$type === 'color') {
+          const {r, g, b} = culori.rgb(culori.parse(token.$value));
+          return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)].join(' ');
+        }
+      },
+    }),
+  ],
+};
+```
+
+:::
+
+This will generate colors like so:
+
+```css
+:root {
+  --color-blue-1: 251 253 255;
+  --color-blue-2: 244 250 255;
+  --color-blue-3: 230 244 254;
+  --color-blue-4: 213 239 255;
+  /* … */
+}
+```
+
+For more info, see [the docs for plugin-css](/integrations/css).
