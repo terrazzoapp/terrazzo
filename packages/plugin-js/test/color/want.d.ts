@@ -39,12 +39,13 @@ export declare const meta: {
   'color.blue.80': ParsedColorToken;
   'color.blue.90': ParsedColorToken;
   'color.blue.100': ParsedColorToken;
-  'color.white': ParsedColorToken;
+  'color.white': ParsedColorToken & { $extensions: { mode: typeof modes['color.white'] } };
   'ui.bg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.bg'] } };
   'ui.fg': ParsedColorToken & { $extensions: { mode: typeof modes['ui.fg'] } };
 };
 
 export declare const modes: {
+  'color.white': Record<string, never>;
   'ui.bg': {
     light: ParsedColorToken['$value'];
     dark: ParsedColorToken['$value'];
