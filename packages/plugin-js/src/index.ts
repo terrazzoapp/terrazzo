@@ -1,11 +1,12 @@
-import type {BuildResult, Mode, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
+import type {BuildResult, Mode, TransformTokenFn, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
 import {cloneDeep, indent, objKey, set} from '@cobalt-ui/utils';
 
 const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
 const SINGLE_QUOTE_RE = /'/g;
 
-export type TransformFn = (token: ParsedToken, mode?: string) => (typeof token)['$value'];
+/** @deprecated consider `TransformTokenFn` from `@cobault-ui/core` instead */
+export type TransformFn = TransformTokenFn;
 
 export interface Options {
   /** output JS? (default: true) */
@@ -14,8 +15,8 @@ export interface Options {
   json?: boolean | string;
   /** output meta? (default: false) */
   meta?: boolean;
-  /** modify values */
-  transform?: TransformFn;
+  /** custom handling of token(s) */
+  transform?: TransformTokenFn;
   /** nested or flat output (default: false) */
   deep?: boolean;
 }

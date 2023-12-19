@@ -1,4 +1,4 @@
-import type {BuildResult, ParsedToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
+import type {BuildResult, Plugin, TransformTokenFn, ResolvedConfig} from '@cobalt-ui/core';
 import {indent, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {formatCss} from 'culori';
 import defaultTransformer, {type ColorFormat, toRGB} from './transform/index.js';
@@ -33,8 +33,8 @@ export interface Options {
   embedFiles?: boolean;
   /** generate wrapper selectors around token modes */
   modeSelectors?: ModeSelector[] | LegacyModeSelectors;
-  /** handle different token types */
-  transform?: <T extends ParsedToken>(token: T, mode?: string) => string | undefined | null;
+  /** custom handling of token(s) */
+  transform?: TransformTokenFn;
   /** @deprecated prefix variable names */
   prefix?: string;
   /** enable P3 color enhancement? (default: true) */
@@ -102,7 +102,7 @@ export default function pluginCSS(options?: Options): Plugin {
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
       for (const token of tokens) {
-        let value: ReturnType<typeof defaultTransformer> | undefined | null = options?.transform?.(token);
+        let value: ReturnType<TransformTokenFn> | undefined = options?.transform?.(token);
         if (value === undefined || value === null) {
           value = defaultTransformer(token, {prefix, colorFormat, generateName, tokens});
         }
@@ -165,7 +165,7 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = options?.transform?.(token, modeSelector.mode);
+              let modeVal: ReturnType<TransformTokenFn> | undefined = options?.transform?.(token, modeSelector.mode);
               if (modeVal === undefined || modeVal === null) {
                 modeVal = defaultTransformer(token, {colorFormat, generateName, mode: modeSelector.mode, prefix, tokens});
               }

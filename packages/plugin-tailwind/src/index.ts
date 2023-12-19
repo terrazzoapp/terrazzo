@@ -1,15 +1,17 @@
-import type {BuildResult, ParsedToken, Plugin} from '@cobalt-ui/core';
+import type {BuildResult, TransformTokenFn, ParsedToken, Plugin} from '@cobalt-ui/core';
 import {indent, objKey} from '@cobalt-ui/utils';
 import {defaultTransformer} from '@cobalt-ui/plugin-css';
 import type {Config} from 'tailwindcss';
+
+export type StyleTransformFn = <T extends ParsedToken>(token: T, mode?: string) => string | undefined | null;
 
 export interface Options {
   /** output file (default: "./tailwind-tokens.js") */
   filename?: string;
   /** (optional) module format to use (to match your Tailwind config) */
   format?: 'esm' | 'cjs';
-  /** (optional) Transform token value */
-  transform?: <T extends ParsedToken>(token: T, metadata: Record<string, unknown>) => string | number | string[] | undefined;
+  /** custom handling of token(s) */
+  transform?: TransformTokenFn;
   /** @see https://tailwindcss.com/docs/theme */
   tailwind: {
     theme: Config['theme'];
@@ -34,7 +36,7 @@ export default function pluginTailwind(options: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-tailwind',
-    async build({tokens, metadata}): Promise<BuildResult[]> {
+    async build({tokens}): Promise<BuildResult[]> {
       /** walk through Tailwind’s theme object */
       function walk(node: any, path: (string | number)[] = []): string {
         const output: string[] = [];
@@ -49,7 +51,7 @@ export default function pluginTailwind(options: Options): Plugin {
           if (!token) {
             throw new Error(`Can’t find token "${node}"`);
           }
-          let value = options.transform?.(token, metadata);
+          let value = options.transform?.(token);
           if (value === undefined || value === null) {
             if (token.$type === 'fontFamily') {
               return JSON.stringify(token.$value);

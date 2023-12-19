@@ -1,4 +1,4 @@
-import type {BuildResult, ParsedToken, ParsedTypographyToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
+import type {BuildResult, TransformTokenFn, ParsedToken, ParsedTypographyToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
 import pluginCSS, {
   _INTERNAL_makeNameGenerator,
   type Options as PluginCSSOptions,
@@ -32,8 +32,8 @@ export interface Options {
   indentedSyntax?: boolean;
   /** embed files in CSS? */
   embedFiles?: boolean;
-  /** handle different token types */
-  transform?: <T extends ParsedToken>(token: T, mode?: string) => string | undefined | null;
+  /** custom handling of token(s) */
+  transform?: TransformTokenFn;
   /** transform color */
   colorFormat?: NonNullable<PluginCSSOptions['colorFormat']>;
 }
@@ -135,7 +135,7 @@ ${cbClose}`
 
         output.push(indent(`"${token.id}": (`, 1));
 
-        let value: string | number | undefined | null;
+        let value: ReturnType<TransformTokenFn> | undefined;
         if (cssPlugin) {
           value = varRef(token.id, {prefix, tokens, generateName});
         } else {
@@ -149,7 +149,7 @@ ${cbClose}`
 
         // modes
         for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
-          let modeValue: string | number | undefined | null;
+          let modeValue: ReturnType<TransformTokenFn> | undefined;
           if (cssPlugin) {
             modeValue = varRef(token.id, {tokens, generateName});
           } else {
