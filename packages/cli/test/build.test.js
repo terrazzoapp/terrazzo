@@ -50,4 +50,15 @@ describe('co build', () => {
       expect(Object.keys(builtTokens.meta).length).toBe(34);
     });
   });
+
+  describe('docs examples', () => {
+    it('Guides: Getting Started', async () => {
+      const cwd = new URL('./fixtures/build-docs-examples/guides/getting-started', import.meta.url);
+      await execa('node', [`../../${cmd}`, 'build'], {cwd});
+
+      const builtTokens = await import('./fixtures/build-docs-examples/guides/getting-started/tokens/index.js');
+
+      expect(Object.keys(builtTokens.meta).length).toBe(29);
+    });
+  });
 });

@@ -52,8 +52,8 @@ Next, we’ll create a `tokens.json` file in the root of our project (or `tokens
       }
     },
     "semantic": {
-      "action": "{color.base.blue.5}",
-      "textColor": "{color.base.gray.9}"
+      "action": {"$value": "{color.base.blue.5}"},
+      "textColor": {"$value": "{color.base.gray.9}"}
     }
   },
   "fontStack": {
@@ -121,8 +121,10 @@ color:
       '9':
         $value: '#002155'
   semantic:
-    action: '{color.base.blue.5}'
-    textColor: '{color.base.gray.9}'
+    action:
+      $value: '{color.base.blue.5}'
+    textColor:
+      $value: '{color.base.gray.9}'
 fontStack:
   $type: fontFamily
   sansSerif:
