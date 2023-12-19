@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-js
 
+## 1.4.3
+
+### Patch Changes
+
+- [#169](https://github.com/drwpow/cobalt-ui/pull/169) [`8b77c6e`](https://github.com/drwpow/cobalt-ui/commit/8b77c6efb4af147a5989af1d74fc3db5a79ce085) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - pluginJS: properly serialize output when $extensions.mode is an empty object
+
 ## 1.4.2
 
 ### Patch Changes
