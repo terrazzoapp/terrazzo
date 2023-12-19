@@ -74,6 +74,20 @@ export interface Config extends Partial<ParseOptions> {
   plugins: Plugin[];
 }
 
+/**
+ * Custom handling of token(s)
+ */
+export type TransformTokenFn = <T extends ParsedToken>(
+  /**
+   * token source on which a transformation is applied
+   */
+  token: T,
+  /**
+   * context at which a transfomration is applied (see `Modes`)
+   */
+  mode?: string,
+) => (typeof token)['$value'] | null;
+
 export default {
   parse,
 };
