@@ -139,7 +139,7 @@ ${cbClose}`
         if (cssPlugin) {
           value = varRef(token.id, {prefix, tokens, generateName});
         } else {
-          value = await options?.transform?.(token);
+          value = options?.transform?.(token);
           if (value === undefined || value === null) {
             value = defaultTransformer(token, {colorFormat});
           }

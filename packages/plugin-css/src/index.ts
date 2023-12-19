@@ -102,7 +102,7 @@ export default function pluginCSS(options?: Options): Plugin {
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
       for (const token of tokens) {
-        let value: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token);
+        let value: ReturnType<typeof defaultTransformer> | undefined | null = options?.transform?.(token);
         if (value === undefined || value === null) {
           value = defaultTransformer(token, {prefix, colorFormat, generateName, tokens});
         }
@@ -165,7 +165,7 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const selector of modeSelector.selectors) {
               if (!selectors.includes(selector)) selectors.push(selector);
               if (!modeVals[selector]) modeVals[selector] = {};
-              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token, modeSelector.mode);
+              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = options?.transform?.(token, modeSelector.mode);
               if (modeVal === undefined || modeVal === null) {
                 modeVal = defaultTransformer(token, {colorFormat, generateName, mode: modeSelector.mode, prefix, tokens});
               }

@@ -168,7 +168,7 @@ export default function pluginJS(options?: Options): Plugin {
       };
       const ts: TSResult = {tokens: {}, meta: {}, modes: {}};
       for (const token of tokens) {
-        let result = await options?.transform?.(token);
+        let result = options?.transform?.(token);
         if (result === undefined || result === null) {
           result = defaultTransformer(token);
         }
@@ -198,7 +198,7 @@ export default function pluginJS(options?: Options): Plugin {
           setToken(js.modes, token.id, {}, options?.deep);
           if (buildTS) setToken(ts.modes, token.id, {}, options?.deep);
           for (const modeName of Object.keys(token.$extensions.mode)) {
-            let modeResult = await options?.transform?.(token, modeName);
+            let modeResult = options?.transform?.(token, modeName);
             if (modeResult === undefined || modeResult === null) {
               modeResult = defaultTransformer(token, modeName);
             }
