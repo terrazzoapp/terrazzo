@@ -221,6 +221,9 @@ export const meta = {
   'color.white': {
     _original: {
       $value: '#ffffff',
+      $extensions: {
+        mode: {},
+      },
     },
     _group: {
       id: 'color',
@@ -233,6 +236,9 @@ export const meta = {
     id: 'color.white',
     $type: 'color',
     $value: '#ffffff',
+    $extensions: {
+      mode: {},
+    },
   },
   'ui.bg': {
     _original: {
@@ -291,6 +297,7 @@ export const meta = {
 };
 
 export const modes = {
+  'color.white': {},
   'ui.bg': {
     light: '#ffffff',
     dark: '#00193f',

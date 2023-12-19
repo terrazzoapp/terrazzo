@@ -32,6 +32,10 @@ interface TSResult {
   modes: {[id: string]: string | TSResult['modes']};
 }
 
+function isEmptyObject(obj: object): boolean {
+  return Object.keys(obj as object).length === 0;
+}
+
 const tokenTypes: Record<ParsedToken['$type'], string> = {
   color: 'ParsedColorToken',
   fontFamily: 'ParsedFontFamilyToken',
@@ -67,6 +71,8 @@ export function serializeJS(value: unknown, options?: {comments?: Record<string,
     throw new Error(`Cannot serialize function ${value}`);
   }
   if (typeof value === 'object') {
+    if (isEmptyObject(value)) return '{}';
+
     return `{
 ${Object.entries(value)
   .map(([k, v]) => {
@@ -98,6 +104,8 @@ export function serializeTS(value: unknown, options?: {indentLv?: number}): stri
     throw new Error(`Cannot serialize function ${value}`);
   }
   if (typeof value === 'object') {
+    if (isEmptyObject(value)) return 'Record<string, never>';
+
     return `{
 ${Object.entries(value)
   .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, {indentLv: indentLv + 1})}`)

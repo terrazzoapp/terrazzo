@@ -213,7 +213,10 @@
     },
     "color.white": {
       "_original": {
-        "$value": "#ffffff"
+        "$value": "#ffffff",
+        "$extensions": {
+          "mode": {}
+        }
       },
       "_group": {
         "id": "color",
@@ -225,7 +228,10 @@
       },
       "id": "color.white",
       "$type": "color",
-      "$value": "#ffffff"
+      "$value": "#ffffff",
+      "$extensions": {
+        "mode": {}
+      }
     },
     "ui.bg": {
       "_original": {
@@ -283,6 +289,7 @@
     }
   },
   "modes": {
+    "color.white": {},
     "ui.bg": {
       "light": "#ffffff",
       "dark": "#00193f"
