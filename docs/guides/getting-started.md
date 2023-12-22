@@ -164,7 +164,7 @@ Then we’ll configure our plugins. Create a `tokens.config.mjs` file ([docs](/a
 import pluginCSS from '@cobalt-ui/plugin-css';
 import pluginJS from '@cobalt-ui/plugin-js';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

@@ -11,7 +11,7 @@ Customizing Cobalt and managing plugins requires you to add a `tokens.config.mjs
 ```js [tokens.config.mjs]
 import pluginJS from '@cobalt-ui/plugin-js';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -34,7 +34,7 @@ Cobalt supports `tokens.json` as YAML as well:
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.yaml',
 };
@@ -53,7 +53,7 @@ Cobalt can load tokens from any **publicly-available** URL:
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: 'https://my-bucket.s3.amazonaws.com/tokens.json',
 };
@@ -68,7 +68,7 @@ To load tokens from an npm package, update `config.tokens` to point to the **ful
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: '@my-scope/my-tokens', // [!code --]
   tokens: '@my-scope/my-tokens/tokens.json', // [!code ++]
@@ -84,7 +84,7 @@ Cobalt supports loading multiple tokens schemas by passing an array:
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: ['./base.json', './theme.json', './overrides.json'],
 };
@@ -132,7 +132,7 @@ Some token types allow for extra configuration.
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   color: {
     convertToHex: false, // Convert all colors to sRGB hexadecimal (default: false). By default, colors are kept in their formats

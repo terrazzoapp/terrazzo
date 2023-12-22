@@ -21,7 +21,7 @@ Once your design tokens are in Tokens Studio ([docs](https://docs.tokens.studio/
 ```js
 import pluginCSS from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

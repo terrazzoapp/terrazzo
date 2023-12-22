@@ -25,7 +25,7 @@ Then add to your `tokens.config.mjs` file, configuring [theme](https://tailwindc
 ```js [tokens.config.mjs]
 import pluginTailwind from '@cobalt-ui/plugin-tailwind';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginTailwind({
@@ -113,7 +113,7 @@ function makeColor(colorName) {
   return output;
 }
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -146,7 +146,7 @@ If you’re still using CommonJS (using `require("…")` rather than `import "�
 ```js [tokens.config.mjs] {7}
 import pluginTailwind from '@cobalt-ui/plugin-tailwind';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginTailwind({
@@ -173,7 +173,7 @@ import pluginCSS from '@cobalt-ui/plugin-css';
 import pluginTailwind from '@cobalt-ui/plugin-tailwind';
 import * as culori from 'culori';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

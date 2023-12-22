@@ -28,7 +28,7 @@ Then add to your `tokens.config.mjs` file:
 ```js [tokens.config.mjs]
 import pluginJS from '@cobalt-ui/plugin-js'; // [!code ++]
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -90,7 +90,7 @@ Here are all plugin options, along with their default values:
 ```js [tokens.config.mjs]
 import pluginJS from '@cobalt-ui/plugin-js';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -114,7 +114,7 @@ export default {
 Inside plugin options, you can specify an optional `transform()` function.
 
 ```js
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

@@ -1,6 +1,6 @@
 import pluginTailwind from '@cobalt-ui/plugin-tailwind';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: ['../github/tokens.json'],
   plugins: [
