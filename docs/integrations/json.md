@@ -28,7 +28,7 @@ Then add to your `tokens.config.mjs` file:
 ```js [tokens.config.mjs]
 import pluginJS from '@cobalt-ui/plugin-js'; // [!code ++]
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

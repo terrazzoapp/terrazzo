@@ -16,7 +16,7 @@ Then add to your `tokens.config.mjs` file, configuring [theme](https://tailwindc
 // tokens.config.mjs
 import pluginTailwind from '@cobalt-ui/plugin-tailwind';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginTailwind({

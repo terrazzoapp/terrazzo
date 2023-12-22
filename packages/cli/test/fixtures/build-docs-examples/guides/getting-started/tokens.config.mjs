@@ -1,7 +1,7 @@
 import pluginCSS from '../../../../../../plugin-css/dist/index.js';
 import pluginJS from '../../../../../../plugin-js/dist/index.js';
 
-/** @type import('../../../../../../core').Config */
+/** @type {import('../../../../../../core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

@@ -27,7 +27,7 @@ Then add to your `tokens.config.mjs` file:
 ```js [tokens.config.mjs]
 import pluginSass from '@cobalt-ui/plugin-sass'; // [!code ++]
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -130,7 +130,7 @@ To use CSS variables instead of Sass variables, set the `pluginCSS` option (can 
 ```js [tokens.config.mjs] {7-14}
 import pluginSass from '@cobalt-ui/plugin-sass';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginSass({
@@ -197,7 +197,7 @@ Here are all plugin options, along with their default values:
 ```js [tokens.config.mjs]
 import pluginSass from '@cobalt-ui/plugin-sass';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -230,7 +230,7 @@ export default {
 ::: code-group
 
 ```js [tokens.config.mjs] {5}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginSass({
@@ -316,7 +316,7 @@ Inside plugin options, you can specify an optional `transform()` function:
 ::: code-group
 
 ```js [tokens.config.mjs] {7-13}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -345,7 +345,7 @@ If you have your own custom token type, e.g. `my-custom-type`, you’ll have to 
 ::: code-group
 
 ```js [tokens.config.mjs] {8-13}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

@@ -29,7 +29,7 @@ Then add to your `tokens.config.mjs` file:
 ```js [tokens.config.mjs]
 import pluginCSS from '@cobalt-ui/plugin-css'; // [!code ++]
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -70,7 +70,7 @@ Here are all plugin options, along with their default values
 ```js [tokens.config.mjs]
 import pluginCSS from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -237,7 +237,7 @@ To override specific or all CSS variable names yourself, use the `generateName()
 ```js [tokens.config.mjs]
 import pluginCSS from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -273,7 +273,7 @@ To generate CSS for Modes, add a `modeSelectors` array to your config that speci
 ```js [tokens.config.mjs]
 import css from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -346,7 +346,7 @@ Further, any valid CSS selector can be used (that’s why it’s called `modeSel
 ```js [tokens.config.mjs]
 import css from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -392,7 +392,7 @@ Inside plugin options, you can specify an optional `transform()` function.
 ::: code-group
 
 ```js [tokens.config.mjs] {7-13}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -421,7 +421,7 @@ If you have your own custom token type, e.g. `my-custom-type`, you’ll have to 
 ::: code-group
 
 ```js [tokens.config.mjs] {8-13}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',
@@ -451,7 +451,7 @@ Helpful information for @cobalt-ui/plugin-css’ handling of specific token type
 ::: code-group
 
 ```js [tokens.config.mjs] {5}
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   plugins: [
     pluginCSS({
@@ -551,7 +551,7 @@ To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.m
 import pluginCSS from '@cobalt-ui/plugin-css'; // [!code --]
 import pluginSass from '@cobalt-ui/plugin-sass'; // [!code ++]
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

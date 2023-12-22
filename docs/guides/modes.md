@@ -131,7 +131,7 @@ If using [@cobalt/plugin-css](/integrations/css), you could generate CSS to hand
 ```js
 import pluginCSS from '@cobalt-ui/plugin-css';
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: './tokens.json',
   outDir: './tokens/',

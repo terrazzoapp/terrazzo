@@ -120,7 +120,7 @@ With Cobalt, you can organize your tokens into separate files if you’d like, a
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   tokens: ['./token-src/colors.json', './token-src/typography.json', './token-src/icons.json', './token-src/spacing.json'],
 };

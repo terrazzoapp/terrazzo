@@ -15,7 +15,7 @@ And place a `tokens.config.mjs` file in the root of your project. Here are all t
 ```js
 // tokens.config.mjs
 
-/** @type import('@cobalt-ui/core').Config */
+/** @type {import('@cobalt-ui/core').Config} */
 export default {
   /** path to tokens.json */
   tokens: './tokens.json',
