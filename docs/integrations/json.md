@@ -4,7 +4,7 @@ title: JSON Integration
 
 # JSON + Native App Integration
 
-Generate universal JSON from your Design Tokens Format Module (DTFM) tokens. This is usable by any platform, any language (provided you do a small amount of JSON parsing).
+Generate universal JSON from your Design Tokens Community Group (DTCG) tokens. This is usable by any platform, any language (provided you do a small amount of JSON parsing).
 
 ## Setup
 
@@ -61,7 +61,7 @@ You’ll get a generated `./tokens/tokens.json` file with the following structur
 
 Usage will vary depending on the platform and language, but here are a few examples:
 
-- [Simplifying iOS Apps Design with Design Tokens](https://blogs.halodoc.io/simplifying-ios-app-design-with-design-tokens/) (this blog post uses Style Dictonary JSON, but the same ideas apply to DTFM JSON)
+- [Simplifying iOS Apps Design with Design Tokens](https://blogs.halodoc.io/simplifying-ios-app-design-with-design-tokens/) (this blog post uses Style Dictonary JSON, but the same ideas apply to DTCG JSON)
 
 ## Config
 

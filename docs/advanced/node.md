@@ -4,7 +4,7 @@ title: Cobalt Node.js API
 
 # Node.js API
 
-Cobalt’s Node.js API is for parsing and validating the [Design Tokens Format Module](https://designtokens.org) (DTFM) standard. It can’t output code like the [CLI](/guides/cli) can, but it is a lightweight and fast parser/validator for the DTFM spec that could even be used in client code if desired.
+Cobalt’s Node.js API is for parsing and validating the [Design Tokens Community Group format](https://designtokens.org) (DTCG) standard. It can’t output code like the [CLI](/guides/cli) can, but it is a lightweight and fast parser/validator for the DTCG spec that could even be used in client code if desired.
 
 ## Setup
 

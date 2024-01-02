@@ -200,7 +200,7 @@ You can also change any settings in `tokens.config.mjs` ([docs](/advanced/config
 
 This covers the basics, but there’s a lot more you can do with your design tokens:
 
-- [Learn about the DTFM format](/guides/tokens)
+- [Learn about the DTCG format](/guides/tokens)
 - [Learn about Modes](/guides/modes) (unique to Cobalt!)
 - See additional integrations:
   - [CSS](/integrations/css)

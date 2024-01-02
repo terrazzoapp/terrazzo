@@ -4,9 +4,9 @@ title: Figma Integration
 
 # Figma Integration
 
-Because Figma doesn’t have a way to export the [Design Tokens Format Module (DTFM)](https://designtokens.org) directly, you’ll need a plugin to export your styles to the DTFM format.
+Because Figma doesn’t have a way to export the [Design Tokens Community Group format (DTCG)](https://designtokens.org) directly, you’ll need a plugin to export your styles to the DTCG format.
 
-The plugin we recommend for now is [Tokens Studio for Figma](https://tokens.studio). Though it doesn’t support DTFM directly either, it does allow you to export your design tokens in a format Cobalt can read.
+The plugin we recommend for now is [Tokens Studio for Figma](https://tokens.studio). Though it doesn’t support DTCG directly either, it does allow you to export your design tokens in a format Cobalt can read.
 
 ::: info
 
@@ -42,7 +42,7 @@ Once your sync method is set up, it should be a snap to re-export that `tokens.j
 | [Border width](https://docs.tokens.studio/available-tokens/border-width-tokens)   |    ✅     | Converted to [Dimension](/tokens/dimension).                                                                                                           |
 | [Shadow](https://docs.tokens.studio/available-tokens/shadow-tokens)               |    ✅     | Basically equivalent to [Shadow](/tokens/shadow).                                                                                                      |
 | [Opacity](https://docs.tokens.studio/available-tokens/opacity-tokens)             |    ✅     | Converted to [Number](/tokens/number)                                                                                                                  |
-| [Typography](https://docs.tokens.studio/available-tokens/typography-tokens)       |    ✅     | Basically equivalent to [Typography](/tokens/typography). **Text decoration** and **Text Case** must be flattened as there is no DTFM spec equivalent. |
+| [Typography](https://docs.tokens.studio/available-tokens/typography-tokens)       |    ✅     | Basically equivalent to [Typography](/tokens/typography). **Text decoration** and **Text Case** must be flattened as there is no DTCG spec equivalent. |
 | [Asset](https://docs.tokens.studio/available-tokens/asset-tokens)                 |    ❌     | TODO. Cobalt supports [Link](/tokens/link), which should be an equivalent.                                                                             |
 | [Composition](https://docs.tokens.studio/available-tokens/composition-tokens)     |    ❌     | Unsupported because this is a paid feature.                                                                                                            |
 | [Dimension](https://docs.tokens.studio/available-tokens/dimension-tokens)         |    ✅     | Direct equivalent to [Dimension](/tokens/dimension).                                                                                                   |
@@ -50,5 +50,5 @@ Once your sync method is set up, it should be a snap to re-export that `tokens.j
 
 #### Notes
 
-- **Duration** and **Cubic Bézier** types aren’t supported by Tokens Studio (because Figma currently doesn’t support animations). So to use those types you’ll need to convert your tokens into DTFM.
+- **Duration** and **Cubic Bézier** types aren’t supported by Tokens Studio (because Figma currently doesn’t support animations). So to use those types you’ll need to convert your tokens into DTCG.
 - Though Cobalt preserves your [Token Sets](https://docs.tokens.studio/themes/token-sets), which means most aliases will work, Token Studio’s [Advanced Themes](https://docs.tokens.studio/themes/themes-pro) is a paid feature and is therefore not supported. Though you could manually upconvert Token Studio themes to [modes](/guides/modes).

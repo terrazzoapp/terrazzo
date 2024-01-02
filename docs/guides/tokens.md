@@ -4,11 +4,11 @@ title: tokens.json Manifest
 
 # tokens.json
 
-Your `tokens.json` (or `tokens.yaml`) file is a complete manifest of all your design tokens. It follows the [Design Token Format Module (DTFM)](https://www.w3.org/community/design-tokens/), an official standard for describing design tokens.
+Your `tokens.json` (or `tokens.yaml`) file is a complete manifest of all your design tokens. It follows the [Design Token Community Group format (DTCG)](https://www.w3.org/community/design-tokens/), an official standard for describing design tokens.
 
-The format is currently in draft, and being developed by hundreds of design leaders that work at Figma, Adobe, Salesforce, Google, Amazon, Microsoft, Zeplin, Supernova, and more! But despite it still being a draft, it’s still a robust format and is becoming the de-facto standard for design tokens, and many popular design systems [like GitHub Primer](https://primer.style/) either have switched to DTFM or are planning to in the near future.
+The format is currently in draft, and being developed by hundreds of design leaders that work at Figma, Adobe, Salesforce, Google, Amazon, Microsoft, Zeplin, Supernova, and more! But despite it still being a draft, it’s still a robust format and is becoming the de-facto standard for design tokens, and many popular design systems [like GitHub Primer](https://primer.style/) either have switched to DTCG or are planning to in the near future.
 
-## DTFM Format
+## DTCG Format
 
 The basic design token consists of a simple JSON object with `$type` and `$value` (required), as well as an optional `$description` (highly-recommended to use to describe the token’s purpose, as well as usage instructions).
 
@@ -95,7 +95,7 @@ And in addition to these, you can also [group tokens](/tokens/group) in any hier
 
 ### Cobalt extensions
 
-Cobalt **is NOT** its own format; it is an implementation of DTFM as close to the spec as possible. However, just for quality of life, Cobalt supports a superset to DTFM, allowing:
+Cobalt **is NOT** its own format; it is an implementation of DTCG as close to the spec as possible. However, just for quality of life, Cobalt supports a superset to DTCG, allowing:
 
 - [Addition of a Link token for assets](/tokens/link)
 - YAML is supported in addition to JSON
@@ -109,7 +109,7 @@ Any other deviations are considered unintentional. Please [file an issue](https:
 
 ## JSON or YAML?
 
-Though the original [DTFM spec](https://design-tokens.github.io/community-group/format/) (and most examples) use JSON, Cobalt supports YAML equally well since it’s a 1:1 translation. But since YAML is an easier format to read and write, you may prefer it (the Cobalt maintainers do!). Wherever you see mention of `tokens.json`, know that Cobalt supports `tokens.yaml` equally well; the former is just used as the common term for simplicity.
+Though the original [DTCG spec](https://design-tokens.github.io/community-group/format/) (and most examples) use JSON, Cobalt supports YAML equally well since it’s a 1:1 translation. But since YAML is an easier format to read and write, you may prefer it (the Cobalt maintainers do!). Wherever you see mention of `tokens.json`, know that Cobalt supports `tokens.yaml` equally well; the former is just used as the common term for simplicity.
 
 _Tip: [Boop](https://boop.okat.best/) is a simple, secure tool to convert JSON to YAML in a snap._
 
@@ -132,7 +132,7 @@ Note that this will flatten all tokens into one manifest, so you’ll have to ha
 
 ## Naming / organization
 
-Organization is completely up to you! The DTFM spec allows infinite nesting, and lets you name tokens anything, with the following exceptions:
+Organization is completely up to you! The DTCG spec allows infinite nesting, and lets you name tokens anything, with the following exceptions:
 
 - Token names or group names can’t …
   - … contain dots (`.`). These are reserved for shorthand IDs (e.g. `color.base.blue.500`).
@@ -152,4 +152,4 @@ Based on looking at dozens of design systems, here are a few tips and common pat
 
 ## Further Reading
 
-- [The official DTFM specification](https://design-tokens.github.io/community-group/format/)
+- [The official DTCG specification](https://design-tokens.github.io/community-group/format/)
