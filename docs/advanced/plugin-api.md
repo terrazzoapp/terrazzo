@@ -128,7 +128,7 @@ The `build()` function takes one parameter object with 3 keys:
 | Name        |         Type          | Description                                                 |
 | :---------- | :-------------------: | :---------------------------------------------------------- |
 | `tokens`    |       `Token[]`       | An array of tokens with metadata ([docs](#token-structure)) |
-| `rawSchema` |      `DTFM JSON`      | The original `tokens.json` file, unedited.                  |
+| `rawSchema` |      `DTCG JSON`      | The original `tokens.json` file, unedited.                  |
 | `metadata`  | `Record<string, any>` | (currently unused)                                          |
 
 After running, and formatting your output, the `build()` function should return an array of objects with the following properties:

@@ -4,7 +4,7 @@ title: CSS Integration
 
 # CSS Integration
 
-Generate CSS variables from your Design Tokens Format Module (DTFM) tokens.
+Generate CSS variables from your Design Tokens Community Group (DTCG) tokens.
 
 This plugin generates CSS variables for dynamic, flexible theming that supports modes and gives you the full range of what CSS can do.
 

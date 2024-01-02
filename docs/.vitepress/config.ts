@@ -6,7 +6,7 @@ const HOSTNAME = 'https://cobalt-ui.pages.dev';
 /** @see https://vitepress.dev/reference/site-config */
 export default defineConfig({
   title: 'Cobalt',
-  description: 'Tooling to use DTFM Design Tokens anywhere',
+  description: 'Tooling to use DTCG Design Tokens anywhere',
   cleanUrls: true,
   head: [
     ['link', {rel: 'shortcut icon', type: 'image/png', href: '/favicon-32.png'}],
@@ -20,7 +20,7 @@ export default defineConfig({
   transformHead(context) {
     return [
       ['meta', {name: 'og:title', content: context.pageData.frontmatter.title ? `${context.pageData.frontmatter.title} | Cobalt` : 'Cobalt: CI for your Design Tokens'}],
-      ['meta', {name: 'og:description', content: context.pageData.frontmatter.description || 'Use Design Tokens Format Module tokens to generate CSS, Sass, JS/TS, universal JSON, and more.'}],
+      ['meta', {name: 'og:description', content: context.pageData.frontmatter.description || 'Use Design Tokens Community Group tokens to generate CSS, Sass, JS/TS, universal JSON, and more.'}],
       ['meta', {name: 'og:image', content: `${HOSTNAME}/social.png`}],
       ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
     ];

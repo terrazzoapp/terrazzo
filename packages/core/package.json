@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/core",
-  "description": "Parser/validator for the Design Tokens Format Module (DTFM) standard.",
+  "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
   "version": "1.6.1",
   "author": {
     "name": "Drew Powers",
@@ -8,8 +8,9 @@
   },
   "keywords": [
     "design tokens",
+    "design tokens community group",
     "design tokens format module",
-    "dtfm",
+    "dtcg",
     "cli",
     "w3c design tokens",
     "design system",

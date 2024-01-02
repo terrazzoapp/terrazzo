@@ -4,7 +4,7 @@ title: Cobalt CLI
 
 # CLI
 
-The Cobalt CLI is the primary way to turn your Design Token Format Module (DTFM) design tokens into code. To install it to your project, run:
+The Cobalt CLI is the primary way to turn your Design Token Community Group (DTCG) design tokens into code. To install it to your project, run:
 
 ```sh
 npm i -D @cobalt-ui/cli
@@ -56,11 +56,11 @@ Be sure to specify a `[path]`!
 
 ## Convert
 
-The **convert** comand is useful for converting a foreign format to DTFM. Currently only converting from the [Style Dictionary token format](https://amzn.github.io/style-dictionary) format is supported.
+The **convert** comand is useful for converting a foreign format to DTCG. Currently only converting from the [Style Dictionary token format](https://amzn.github.io/style-dictionary) format is supported.
 
 ### Style Dictionary Format
 
-To convert from the [Style Dictionary token format](https://amzn.github.io/style-dictionary) to DTFM, run:
+To convert from the [Style Dictionary token format](https://amzn.github.io/style-dictionary) to DTCG, run:
 
 ```sh
 npx co convert [input] --out [output]

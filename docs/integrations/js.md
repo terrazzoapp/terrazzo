@@ -4,7 +4,7 @@ title: JS + TS Integration
 
 # JavaScript + TypeScript Integration
 
-Generate JavaScript (with TypeScript declarations) from your Design Tokens Format Module (DTFM) tokens.
+Generate JavaScript (with TypeScript declarations) from your Design Tokens Community Group (DTCG) tokens.
 
 ## Setup
 

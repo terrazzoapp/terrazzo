@@ -1,6 +1,6 @@
 # @cobalt-ui/plugin-sass
 
-Generate `.scss` and `.sass` from your Design Tokens Format Module (DTFM) tokens.
+Generate `.scss` and `.sass` from your Design Tokens Community Group (DTCG) tokens.
 
 **Features**
 

@@ -252,7 +252,7 @@ function showHelp() {
     init            Create a starter tokens.json file
     bundle          Combine multiple tokens schemas into one
       --out [path]  Specify bundled tokens.json output
-    convert [file]  Convert Style Dictionary format to DTFM
+    convert [file]  Convert Style Dictionary format to DTCG
       --out [path]  Specify converted tokens.json output
 
   [options]
