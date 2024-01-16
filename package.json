@@ -8,12 +8,13 @@
   },
   "homepage": "https://cobalt-ui.pages.dev",
   "scripts": {
-    "build": "pnpm run -r --if-present \"build\"",
-    "build:examples": "pnpm run --parallel --if-present build:tokens",
+    "build": "pnpm run -r --if-present --filter \"@cobalt-ui/*\" \"build\"",
+    "build:docs": "pnpm run -r --if-present \"build\"",
+    "build:examples": "pnpm run -r --parallel --if-present build:tokens",
     "changeset": "changeset",
-    "dev": "pnpm run --parallel --if-present --filter \"@cobalt-ui/*\" dev",
+    "dev": "pnpm run -r --parallel --if-present --filter \"@cobalt-ui/*\" dev",
     "lint": "eslint \"packages/**/*.{ts,js,cjs,mjs}\"",
-    "test": "pnpm run --parallel --if-present test",
+    "test": "pnpm run -r --if-present --aggregate-output --parallel test",
     "prepublishOnly": "pnpm run build",
     "version": "pnpm run build && changeset version && pnpm i --no-frozen-lockfile"
   },

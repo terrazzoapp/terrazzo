@@ -30,7 +30,7 @@
     "build:ts": "tsc",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
     "dev": "tsc -w",
-    "test": "pnpm run --parallel \"/^test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

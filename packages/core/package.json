@@ -37,7 +37,7 @@
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
     "dev": "pnpm run --parallel \"/^dev:.*/\"",
     "dev:ts": "tsc --watch",
-    "test": "pnpm run --parallel \"/^test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

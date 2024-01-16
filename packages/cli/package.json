@@ -40,7 +40,7 @@
     "build:clean": "del dist",
     "build:ts": "tsc",
     "dev": "tsc -w",
-    "test": "pnpm run --parallel \"/^test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
