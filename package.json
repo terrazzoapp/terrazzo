@@ -11,7 +11,7 @@
     "build": "pnpm run -r --if-present \"build\"",
     "build:examples": "pnpm run --parallel --if-present build:tokens",
     "changeset": "changeset",
-    "dev": "pnpm run --parallel --if-present dev --filter \"@cobalt-ui/*\"",
+    "dev": "pnpm run --parallel --if-present --filter \"@cobalt-ui/*\" dev",
     "lint": "eslint \"packages/**/*.{ts,js,cjs,mjs}\"",
     "test": "pnpm run --parallel --if-present test",
     "prepublishOnly": "pnpm run build",
