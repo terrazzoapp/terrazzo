@@ -36,11 +36,11 @@
     "cobalt": "bin/cli.js"
   },
   "scripts": {
-    "build": "run-s -s build:*",
+    "build": "pnpm run build:clean && pnpm run build:ts",
     "build:clean": "del dist",
     "build:ts": "tsc",
     "dev": "tsc -w",
-    "test": "run-p -s test:*",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
@@ -59,8 +59,6 @@
     "@types/culori": "^2.0.4",
     "@types/node": "^20.9.3",
     "execa": "^7.2.0",
-    "figma-api": "^1.11.0",
-    "npm-run-all": "^4.1.5",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.0"
   }
 }

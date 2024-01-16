@@ -41,3 +41,7 @@ moderate:
 ## See also
 
 - Duration can also be used within a [transition token](/tokens/transition).
+
+## Tips & recommendations
+
+- Most UI animations should exist between `100ms` – `1s` ([source](https://www.nngroup.com/articles/response-times-3-important-limits/)), ideally on the faster end. Any faster and it seems glitchy or unintentional; any slower and it feels unresponsive.

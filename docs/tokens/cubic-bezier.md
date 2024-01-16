@@ -71,3 +71,8 @@ easeInOutCubic:
 ## See also
 
 - A Cubic Bézier can be used within a [transition token](/tokens/transition).
+
+## Tips & recommendations
+
+- For a list of common easing functions, refer to [easings.net](https://easings.net/).
+- For most UI animations, prefer [ease-out curves](https://pow.rs/blog/animation-easings/), though in some instances linear or ease-in curves help ([guide](https://pow.rs/blog/animation-easings/)).

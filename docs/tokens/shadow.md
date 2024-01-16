@@ -41,3 +41,7 @@ shadow-md:
 | `$type`        | `string` | **Required.** `"shadow"`                                                                                                                                                                                                            |
 | `$value`       | `object` | **Required.** Specify [`offsetX`](/tokens/dimension), [`offsetY`](/tokens/dimension), [`blur`](/tokens/dimension), [`spread`](/tokens/dimension), and [`color`](/tokens/color) to form a shadow. `color` is the only required prop. |
 | `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                                                                                                                      |
+
+## Tips & recommendations
+
+- For smoother shadows, try [layering multiple](https://shadows.brumm.af/).

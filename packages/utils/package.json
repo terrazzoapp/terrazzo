@@ -17,6 +17,6 @@
   "devDependencies": {
     "@types/node": "^20.9.3",
     "del-cli": "^5.1.0",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.0"
   }
 }

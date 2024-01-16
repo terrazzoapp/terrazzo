@@ -38,7 +38,3 @@ Assets such as icons, images, and logos are a critical part of any design system
 There’s also the image optimization plugin (coming soon) that can optimize image and icon assets.
 
 Refer to each plugin’s documentation to learn what special features are available for Link token types.
-
-```
-
-```

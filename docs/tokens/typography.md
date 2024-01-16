@@ -14,7 +14,7 @@ A composite type combining [fontFamily](/tokens/font-family), [dimension](/token
     "$type": "typography",
     "$value": {
       "fontFamily": ["Helvetica", "-system-ui", "sans-serif"],
-      "fontSize": "24px",
+      "fontSize": "1.5rem",
       "fontStyle": "normal",
       "fontWeight": 400,
       "letterSpacing": 0,
@@ -33,7 +33,7 @@ bodyText:
       - Helvetica
       - -system-ui
       - sans-serif
-    fontSize: 24px
+    fontSize: 1.5rem
     fontStyle: normal
     fontWeight: 400
     letterSpacing: 0
@@ -48,3 +48,7 @@ bodyText:
 | `$type`        | `string` | **Required.** `"typography"`                                                                                                                                                                                         |
 | `$value`       | `object` | **Required.** Specify any typographic CSS properties in _camelCase_ format. Although the spec limits the properties to only a few, Cobalt allows any valid attributes including `letterSpacing`, `fontVariant`, etc. |
 | `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                                                                                                       |
+
+## Tips & recommendations
+
+- Though the DTCG spec doesn’t technically allow it, declare any/all CSS typography properties on typography tokens. Without these, you couldn’t use things like [variable font properties](https://fonts.google.com/knowledge/introducing_type/introducing_variable_fonts) in your design system. Plugins may simply ignore properties that don’t apply for the given build target.
