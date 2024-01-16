@@ -1,5 +1,5 @@
 {
-  "name": "@cobalt-ui/docs",
+  "name": "cobalt-ui-docs",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,10 +9,10 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "vue": "^3.3.13"
+    "vue": "^3.4.14"
   },
   "devDependencies": {
-    "vite": "^5.0.10",
-    "vitepress": "1.0.0-rc.32"
+    "vite": "^5.0.11",
+    "vitepress": "1.0.0-rc.39"
   }
 }

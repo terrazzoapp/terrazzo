@@ -30,14 +30,14 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "run-s -s build:*",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:bundle && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc",
     "build:bundle": "esbuild --format=esm --bundle --minify dist/index.js --outfile=dist/index.min.js --sourcemap && cp dist/index.d.ts dist/index.min.d.ts",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js,dist/index.min.js",
-    "dev": "run-p -s dev:*",
+    "dev": "pnpm run --parallel \"/^dev:.*/\"",
     "dev:ts": "tsc --watch",
-    "test": "run-p -s test:*",
+    "test": "pnpm run --parallel \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
@@ -49,7 +49,6 @@
   "devDependencies": {
     "@types/node": "^20.9.3",
     "esbuild": "^0.19.7",
-    "npm-run-all": "^4.1.5",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.0"
   }
 }

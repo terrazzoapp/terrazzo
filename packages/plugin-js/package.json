@@ -25,13 +25,12 @@
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
-    "build": "run-s -s build:*",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-js dist/index.js",
     "dev": "tsc -w",
-    "pretest": "co build -c ./test/types.tokens.mjs",
-    "test": "run-p -s test:*",
+    "test": "co build -c ./test/types.tokens.mjs && pnpm run --parallel \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
@@ -45,7 +44,6 @@
     "@cobalt-ui/cli": "^1.6.2",
     "@cobalt-ui/core": "^1.6.1",
     "fast-glob": "^3.3.2",
-    "npm-run-all": "^4.1.5",
-    "vitest": "^1.1.0"
+    "vitest": "^1.2.0"
   }
 }
