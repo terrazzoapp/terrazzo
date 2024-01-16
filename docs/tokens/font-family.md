@@ -48,8 +48,12 @@ with-fallbacks:
 
 ## See also
 
-- [Typography tokens](/tokens/typography)
+- Font Family is a part of the [Typography](/tokens/typography) type
 
-```
+## Tips & recommendations
 
-```
+- The following universal fallback font stack is recommended for your base typography tokens:
+  ```
+  -apple-system, BlinkMacSystemFont, Segoe UI, Noto Sans, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji`
+  ```
+  This falls back to system fonts (if a glyph isn’t available) and enables emojis in every OS.

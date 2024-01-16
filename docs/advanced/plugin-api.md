@@ -8,7 +8,7 @@ Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript
 
 ## Plugin Format
 
-A Cobalt plugin is designed similarly to a Rollup or Vite plugin, if you’re familiar with those (no worries if you’re not). A plugin is essentially **any function that returns an object with the following keys**:
+A Cobalt plugin is designed similarly to a [Rollup](https://rollupjs.org/plugin-development/) or [Vite plugin](https://vitejs.dev/guide/api-plugin), if you’re familiar with those (no worries if you’re not). A plugin is essentially **any function that returns an object with the following keys**:
 
 | Key      |    Type    | Description                                                  |
 | :------- | :--------: | :----------------------------------------------------------- |
@@ -89,70 +89,9 @@ export default {
 
 You can then expand `options` to be whatever shape you need it to be.
 
-## `name`
+### `name`
 
 Naming your plugin helps identify it in case something goes wrong during the build. You can name your plugin anything.
-
-## `config()`
-
-The `config()` function is an optional callback that can read the final user config or modify it. Use it if you need to read a user’s setting. Though you _can_ mutate the config, don’t do so unless absolutely necessary!
-
-```ts
-import type {Plugin} from '@cobalt-ui/core';
-
-export default function myPlugin(): Plugin {
-  let outDir: URL | undefined;
-  return {
-    name: 'my-plugin',
-    config(config) {
-      outDir = config.outDir; // read the user’s outDir from the config, and save it
-      // return nothing to leave config unaltered
-    },
-    async build({tokens, rawSchema}) {
-      console.log(outDir); // now config info is accessible within the build() function
-
-      // (your plugin code here)
-
-      return [{filename: 'my-filename.json', contents: tokens}];
-    },
-  };
-}
-```
-
-`config()` will be fired _after_ the user’s config has been fully loaded and all plugins are instantiated, and _before_ any build happens.
-
-## `build()`
-
-The `build()` function takes one parameter object with 3 keys:
-
-| Name        |         Type          | Description                                                 |
-| :---------- | :-------------------: | :---------------------------------------------------------- |
-| `tokens`    |       `Token[]`       | An array of tokens with metadata ([docs](#token-structure)) |
-| `rawSchema` |      `DTCG JSON`      | The original `tokens.json` file, unedited.                  |
-| `metadata`  | `Record<string, any>` | (currently unused)                                          |
-
-After running, and formatting your output, the `build()` function should return an array of objects with the following properties:
-
-| Name       |         Type         | Description                                                         |
-| :--------- | :------------------: | :------------------------------------------------------------------ |
-| `filename` |       `string`       | Filename (relative to user’s `outDir` setting, default `./tokens/`) |
-| `contents` | `string` \| `Buffer` | File contents to be written to disk.                                |
-
-```ts
-export default function myPlugin(): Plugin {
-  return {
-    name: 'my-plugin',
-    async build({tokens, rawSchema}) {
-      // (your plugin code here)
-
-      return [
-        {filename: './output-1.json', contents: jsonContents},
-        {filename: './output-2.svg', contents: svgContents},
-      ];
-    },
-  };
-}
-```
 
 ### Token structure
 
@@ -188,6 +127,73 @@ Cobalt executes in the following order:
 3. **Build.** `build()` is called on every plugin, in parallel.
 4. **Write.** Cobalt writes each plugin’s file(s) to disk after it’s done. This also happens in parallel, and happens as soon as each plugin finishes.
 
+::: info
+
+In an upcoming release (TBD), Cobalt will add some build hooks soon from the [Rollup Plugin API](https://rollupjs.org/plugin-development/#build-hooks), including, but not limited to, [load](https://rollupjs.org/plugin-development/#load), [buildStart](https://rollupjs.org/plugin-development/#buildstart), and [buildEnd](https://rollupjs.org/plugin-development/#buildend).
+
+:::
+
+### `config()`
+
+The `config()` function is an optional callback that can read the final user config or modify it. Use it if you need to read a user’s setting. Though you _can_ mutate the config, don’t do so unless absolutely necessary!
+
+```ts
+import type {Plugin} from '@cobalt-ui/core';
+
+export default function myPlugin(): Plugin {
+  let outDir: URL | undefined;
+  return {
+    name: 'my-plugin',
+    config(config) {
+      outDir = config.outDir; // read the user’s outDir from the config, and save it
+      // return nothing to leave config unaltered
+    },
+    async build({tokens, rawSchema}) {
+      console.log(outDir); // now config info is accessible within the build() function
+
+      // (your plugin code here)
+
+      return [{filename: 'my-filename.json', contents: tokens}];
+    },
+  };
+}
+```
+
+`config()` will be fired _after_ the user’s config has been fully loaded and all plugins are instantiated, and _before_ any build happens.
+
+### `build()`
+
+The `build()` function is the equivalent of Rollup’s [transform](https://rollupjs.org/plugin-development/#transform) hook. It takes one parameter object with 3 keys:
+
+| Name        |         Type          | Description                                                 |
+| :---------- | :-------------------: | :---------------------------------------------------------- |
+| `tokens`    |       `Token[]`       | An array of tokens with metadata ([docs](#token-structure)) |
+| `rawSchema` |      `DTCG JSON`      | The original `tokens.json` file, unedited.                  |
+| `metadata`  | `Record<string, any>` | (currently unused)                                          |
+
+After running, and formatting your output, the `build()` function should return an array of objects with the following properties:
+
+| Name       |         Type         | Description                                                         |
+| :--------- | :------------------: | :------------------------------------------------------------------ |
+| `filename` |       `string`       | Filename (relative to user’s `outDir` setting, default `./tokens/`) |
+| `contents` | `string` \| `Buffer` | File contents to be written to disk.                                |
+
+```ts
+export default function myPlugin(): Plugin {
+  return {
+    name: 'my-plugin',
+    async build({tokens, rawSchema}) {
+      // (your plugin code here)
+
+      return [
+        {filename: './output-1.json', contents: jsonContents},
+        {filename: './output-2.svg', contents: svgContents},
+      ];
+    },
+  };
+}
+```
+
 ## Testing
 
 To test your plugin working on your design tokens, add it to your `tokens.config.mjs`:
@@ -202,6 +208,18 @@ export default {
 ```
 
 Now when you run `co build`, your plugin will run and you can see its output.
+
+## Working with Token Types
+
+See the **Tips & recommendations** section of token pages to learn more about working with each time:
+
+- [Color](/tokens/color#tips-recommendations)
+- [Dimension](/tokens/dimension#tips-recommendations)
+- [Font Family](/tokens/font-family#tips-recommendations)
+- [Duration](/tokens/duration#tips-recommendations)
+- [Cubic Bézier](/tokens/cubic-bezier#tips-recommendations)
+- [Gradient](/tokens/gradient#tips-recommendations)
+- [Shadow](/tokens/shadow#tips-recommendations)
 
 ## Examples
 

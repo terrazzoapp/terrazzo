@@ -61,4 +61,4 @@ A font weight can be a number from `1` (lightest) – `999` (heaviest), but the 
 
 ## See also
 
-- [Typography tokens](/tokens/typography)
+- Font Family is a part of the [Typography](/tokens/typography) type

@@ -54,6 +54,11 @@ Dimension is one of the most versatile token types, and can be used for:
 
 As such, organizing dimension tokens properly (and setting good `$description`s) is important!
 
-## See Also
+## See also
 
 Note that dimensions **must have units.** To specify a number without units, see [number](/tokens/number).
+
+## Tips & recommendations
+
+- Prefer `rem`s over `px` whenever possible. It’s not only [more accessible](https://www.joshwcomeau.com/css/surprising-truth-about-pixels-and-accessibility/#accessibility-considerations-5), it’s also easier to enforce consistent grids & spacing (e.g. `13px` doesn’t stand out as much as `0.8125rem`).
+- Prefer unitless [numbers](/tokens/number) for line heights.
