@@ -59,7 +59,6 @@
     "@types/culori": "^2.0.4",
     "@types/node": "^20.9.3",
     "execa": "^7.2.0",
-    "figma-api": "^1.11.0",
     "vitest": "^1.2.0"
   }
 }
