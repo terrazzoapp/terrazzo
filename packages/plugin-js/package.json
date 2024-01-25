@@ -44,6 +44,6 @@
     "@cobalt-ui/cli": "^1.6.2",
     "@cobalt-ui/core": "^1.6.1",
     "fast-glob": "^3.3.2",
-    "vitest": "^1.2.0"
+    "vitest": "^1.2.1"
   }
 }
