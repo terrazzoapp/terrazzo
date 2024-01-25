@@ -47,8 +47,8 @@
     "culori": "^3.3.0"
   },
   "devDependencies": {
-    "@types/node": "^20.9.3",
-    "esbuild": "^0.19.7",
-    "vitest": "^1.2.0"
+    "@types/node": "^20.11.6",
+    "esbuild": "^0.19.12",
+    "vitest": "^1.2.1"
   }
 }
