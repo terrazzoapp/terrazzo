@@ -44,11 +44,11 @@
   "dependencies": {
     "@cobalt-ui/utils": "^1.2.2",
     "@types/culori": "^2.0.4",
-    "culori": "^3.3.0"
+    "culori": "^4.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.6",
+    "@types/node": "^20.11.16",
     "esbuild": "^0.19.12",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   }
 }

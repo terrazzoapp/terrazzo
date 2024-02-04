@@ -5,17 +5,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": [
-    "cobalt",
-    "design tokens",
-    "design tokens community group",
-    "design tokens format module",
-    "design system",
-    "dtcg",
-    "w3c",
-    "tailwind",
-    "css"
-  ],
+  "keywords": ["cobalt", "design tokens", "design tokens community group", "design tokens format module", "design system", "dtcg", "w3c", "tailwind", "css"],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drwpow/cobalt-ui.git",
@@ -43,11 +33,11 @@
     "@cobalt-ui/utils": "^1.2.2"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^1.6.2",
-    "@cobalt-ui/core": "^1.6.1",
-    "@types/node": "^20.11.6",
+    "@cobalt-ui/cli": "workspace:^",
+    "@cobalt-ui/core": "workspace:^",
+    "@types/node": "^20.11.16",
     "js-yaml": "^4.1.0",
     "tailwindcss": "^3.4.1",
-    "vitest": "^1.2.1"
+    "vitest": "^1.2.2"
   }
 }
