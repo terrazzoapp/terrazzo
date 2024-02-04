@@ -18,7 +18,7 @@ describe('co check', () => {
   });
 
   it('URL', async () => {
-    const result = await execa('node', ['./bin/cli.js', 'check', 'https://raw.githubusercontent.com/drwpow/cobalt-ui/main/packages/cli/it/fixtures/check-default/tokens.json']);
+    const result = await execa('node', ['./bin/cli.js', 'check', 'https://raw.githubusercontent.com/drwpow/cobalt-ui/main/packages/cli/test/fixtures/check-default/tokens.json']);
     expect(result.exitCode).toBe(0);
   });
 

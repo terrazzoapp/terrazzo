@@ -1,4 +1,4 @@
-import {cloneDeep, FG_YELLOW, getAliasID, isAlias, RESET} from '@cobalt-ui/utils';
+import {cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET} from '@cobalt-ui/utils';
 import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
 import {isEmpty, isObj, splitType} from '../util.js';
 import {normalizeColorValue, ParseColorOptions} from './tokens/color.js';
@@ -16,6 +16,7 @@ import {normalizeTypographyValue} from './tokens/typography.js';
 import {normalizeFontWeightValue} from './tokens/fontWeight.js';
 import {normalizeNumberValue} from './tokens/number.js';
 import {convertTokensStudioFormat, isTokensStudioFormat} from './tokens-studio.js';
+import {convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions, FigmaVariableManifest} from './figma.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -29,6 +30,7 @@ export interface ParseResult {
 export interface ParseOptions {
   /** Configure transformations for color tokens */
   color: ParseColorOptions;
+  figma?: FigmaParseOptions;
 }
 
 interface InheritedGroup {
@@ -50,10 +52,18 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
     return result;
   }
 
-  // 0. handle Tokens Studio for Figma format
   let schema = rawTokens as Group;
 
-  if (isTokensStudioFormat(rawTokens)) {
+  // 0. handle Figma Variables format
+  if (isFigmaVariablesFormat(rawTokens)) {
+    const figmaTokensResult = convertFigmaVariablesFormat(rawTokens as FigmaVariableManifest, options?.figma);
+    errors.push(...(figmaTokensResult.errors ?? []));
+    warnings.push(...(figmaTokensResult.warnings ?? []));
+    schema = figmaTokensResult.result;
+  }
+
+  // 0. handle Tokens Studio for Figma format
+  else if (isTokensStudioFormat(rawTokens)) {
     const tokensStudioResult = convertTokensStudioFormat(rawTokens as Group);
     errors.push(...(tokensStudioResult.errors ?? []));
     warnings.push(...(tokensStudioResult.warnings ?? []));
@@ -69,8 +79,13 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         errors.push(`${k}: unexpected token format "${v}"`);
         continue;
       }
-      if (k.includes('.') || k.includes('{') || k.includes('}') || k.includes('#')) {
-        errors.push(`${k}: IDs can’t include any of the following: .{}#`);
+      const tokenValidationError = invalidTokenIDError(k);
+      if (tokenValidationError) {
+        errors.push(`${k}: tokenValidationError`);
+        continue;
+      }
+      if (k.includes('.')) {
+        errors.push(`${k}: IDs can’t contain periods`);
         continue;
       }
       if (!Object.keys(v).length) {

@@ -1,8 +1,8 @@
 import type {BuildResult, ParsedToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
-import {indent, FG_YELLOW, RESET} from '@cobalt-ui/utils';
+import {indent, isTokenMatch, FG_YELLOW, RESET} from '@cobalt-ui/utils';
 import {formatCss} from 'culori';
 import defaultTransformer, {type ColorFormat, toRGB} from './transform/index.js';
-import {CustomNameGenerator, isTokenMatch, makeNameGenerator} from './utils/token.js';
+import {CustomNameGenerator, makeNameGenerator} from './utils/token.js';
 import {encode} from './utils/encode.js';
 import generateUtilityCSS, {type UtilityCSSGroup} from './utils/utility-css.js';
 

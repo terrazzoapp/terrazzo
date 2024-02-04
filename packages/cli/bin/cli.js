@@ -57,7 +57,7 @@ const flags = parser(args, {
 });
 
 /** `tokens` CLI command */
-async function main() {
+export default async function main() {
   const start = performance.now();
 
   // ---
@@ -191,7 +191,6 @@ async function main() {
         process.exit(1);
       }
 
-      console.log(process.argv, args);
       const input = JSON.parse(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
       const {errors, warnings, result} = await convert(input);
       if (errors) {
@@ -294,12 +293,39 @@ async function loadTokens(tokenPaths) {
     const isYAMLExt = pathname.endsWith('.yaml') || pathname.endsWith('.yml');
     if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
       try {
-        const res = await globalThis.fetch(filepath, {method: 'GET', headers: {Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/116.0'}});
+        // if Figma URL
+        if (filepath.host === 'figma.com' || filepath.host === 'www.figma.com') {
+          const [_, fileKeyword, fileKey] = filepath.pathname.split('/');
+          if (fileKeyword !== 'file' || !fileKey) {
+            printErrors(`Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filepath.href}"`);
+            process.exit(1);
+          }
+          const headers = new Headers({Accept: '*/*', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0'});
+          if (process.env.FIGMA_ACCESS_TOKEN) {
+            headers.set('X-FIGMA-TOKEN', process.env.FIGMA_ACCESS_TOKEN);
+          } else {
+            printWarnings(`FIGMA_ACCESS_TOKEN not set`);
+          }
+          const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {method: 'GET', headers});
+          if (res.ok) {
+            const data = await res.json();
+            rawTokens.push(data.meta);
+            continue;
+          }
+          const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
+          printErrors(`Figma responded with ${res.status}${message ? `:\n${message}` : ''}`);
+          process.exit(1);
+          break;
+        }
+
+        // otherwise, expect YAML/JSON
+        const res = await fetch(filepath, {method: 'GET', headers: {Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0'}});
         const raw = await res.text();
-        if (isYAMLExt || res.headers.get('content-type').includes('yaml')) {
-          rawTokens.push(yaml.load(raw));
-        } else {
+        // if the 1st character is '{', it’s JSON (“if it’s dumb but it works…”)
+        if (raw[0].trim() === '{') {
           rawTokens.push(JSON.parse(raw));
+        } else {
+          rawTokens.push(yaml.load(raw));
         }
       } catch (err) {
         printErrors(`${filepath.href}: ${err}`);

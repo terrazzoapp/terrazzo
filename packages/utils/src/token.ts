@@ -1,3 +1,5 @@
+import wcmatch from './lib/wildcard-match.js';
+
 const ALIAS_RE = /^\{([^}]+)\}$/;
 const LAST_PART_RE = /([^.]+)$/;
 
@@ -14,6 +16,15 @@ export function isAlias(value: unknown): boolean {
   return ALIAS_RE.test(value);
 }
 
+/** match token against globs */
+export function isTokenMatch(tokenID: string, globPatterns: string[]): string | undefined {
+  for (const glob of globPatterns) {
+    if (wcmatch(glob)(tokenID)) {
+      return glob;
+    }
+  }
+}
+
 /** get last segment of a token ID */
 export function getLocalID(id: string): string {
   if (!id.includes('.')) {
@@ -21,4 +32,17 @@ export function getLocalID(id: string): string {
   }
   const matches = id.match(LAST_PART_RE);
   return (matches && matches[1]) || id;
+}
+
+/** validate token ID */
+export function invalidTokenIDError(id: string): string | undefined {
+  if (typeof id !== 'string') {
+    return 'Token ID must be a string';
+  }
+  if (!id) {
+    return 'Token ID can’t be empty';
+  }
+  if (id.includes('{') || id.includes('}') || id.includes('#') || id.includes('..')) {
+    return `Token IDs can’t contain {, }, or #, or multiple dots in a row`;
+  }
 }
