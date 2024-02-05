@@ -1,12 +1,21 @@
 {
   "name": "@cobalt-ui/plugin-css",
   "description": "Generate CSS from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["cobalt", "design tokens", "design tokens community group", "design tokens format module", "design system", "dtcg", "w3c design tokens", "css"],
+  "keywords": [
+    "cobalt",
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "design system",
+    "dtcg",
+    "w3c design tokens",
+    "css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drwpow/cobalt-ui.git",
@@ -27,10 +36,10 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.6.2"
+    "@cobalt-ui/cli": "^1.x"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^1.2.2",
+    "@cobalt-ui/utils": "^1.2.3",
     "@types/culori": "^2.0.4",
     "@types/mime": "^3.0.4",
     "culori": "^3.3.0",

@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.7.1
+
+### Patch Changes
+
+- [#189](https://github.com/drwpow/cobalt-ui/pull/189) [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42) Thanks [@drwpow](https://github.com/drwpow)! - Move glob matching to @cobalt-ui/utils
+
 ## 1.7.0
 
 ### Minor Changes

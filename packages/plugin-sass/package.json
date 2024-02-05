@@ -1,12 +1,21 @@
 {
   "name": "@cobalt-ui/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.3.3",
+  "version": "1.7.1",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["cobalt", "design tokens", "design tokens community group", "design system", "dtcg", "w3c", "css", "sass"],
+  "keywords": [
+    "cobalt",
+    "design tokens",
+    "design tokens community group",
+    "design system",
+    "dtcg",
+    "w3c",
+    "css",
+    "sass"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drwpow/cobalt-ui.git",
@@ -28,10 +37,10 @@
   },
   "peerDependencies": {
     "@cobalt-ui/cli": "^1.x",
-    "@cobalt-ui/plugin-css": "^1.7.0"
+    "@cobalt-ui/plugin-css": "^1.7.1"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^1.2.2",
+    "@cobalt-ui/utils": "^1.2.3",
     "@types/mime": "^3.0.4",
     "mime": "^3.0.0",
     "svgo": "^3.2.0"
