@@ -1,5 +1,19 @@
 # @cobalt-ui/cli
 
+## 1.7.0
+
+### Minor Changes
+
+- [#189](https://github.com/drwpow/cobalt-ui/pull/189) [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42) Thanks [@drwpow](https://github.com/drwpow)! - Add Figma Variable support natively
+
+### Patch Changes
+
+- [#189](https://github.com/drwpow/cobalt-ui/pull/189) [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42) Thanks [@drwpow](https://github.com/drwpow)! - Remove accidental console.log
+
+- Updated dependencies [[`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42), [`a395b21d017ae4b2f0a05bba6706b05a63850f69`](https://github.com/drwpow/cobalt-ui/commit/a395b21d017ae4b2f0a05bba6706b05a63850f69), [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42)]:
+  - @cobalt-ui/utils@1.2.3
+  - @cobalt-ui/core@1.7.0
+
 ## 1.6.2
 
 ### Patch Changes

@@ -7,7 +7,7 @@
     "build": "tailwind build -o tailwind.css"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "^1.6.2",
+    "@cobalt-ui/cli": "^1.7.0",
     "@cobalt-ui/plugin-tailwind": "workspace:*",
     "tailwindcss": "^3.3.5"
   }

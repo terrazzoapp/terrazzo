@@ -1,11 +1,21 @@
 {
   "name": "@cobalt-ui/plugin-tailwind",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["cobalt", "design tokens", "design tokens community group", "design tokens format module", "design system", "dtcg", "w3c", "tailwind", "css"],
+  "keywords": [
+    "cobalt",
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "design system",
+    "dtcg",
+    "w3c",
+    "tailwind",
+    "css"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drwpow/cobalt-ui.git",
@@ -29,8 +39,8 @@
     "tailwindcss": "*"
   },
   "dependencies": {
-    "@cobalt-ui/plugin-css": "^1.7.0",
-    "@cobalt-ui/utils": "^1.2.2"
+    "@cobalt-ui/plugin-css": "^2.0.0",
+    "@cobalt-ui/utils": "^1.2.3"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
