@@ -6,7 +6,15 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["cobalt", "design tokens", "design tokens community group", "design tokens format module", "design system", "dtcg", "w3c design tokens"],
+  "keywords": [
+    "cobalt",
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "design system",
+    "dtcg",
+    "w3c design tokens"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/drwpow/cobalt-ui.git",
@@ -30,7 +38,7 @@
     "@cobalt-ui/cli": "1.x"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^1.2.2"
+    "@cobalt-ui/utils": "^1.2.3"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
