@@ -1,0 +1,522 @@
+{
+  "status": 200,
+  "error": false,
+  "meta": {
+    "variables": {
+      "colorGray1ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray1ID",
+        "key": "colorGray1Key",
+        "name": "color/gray/1",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.9882352941176471,
+            "g": 0.9882352941176471,
+            "b": 0.9882352941176471,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.06666666666666667,
+            "g": 0.06666666666666667,
+            "b": 0.06666666666666667,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray2ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray2ID",
+        "key": "colorGray2Key",
+        "name": "color/gray/2",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.9764705882352941,
+            "g": 0.9764705882352941,
+            "b": 0.9764705882352941,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.09803921568627451,
+            "g": 0.09803921568627451,
+            "b": 0.09803921568627451,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray3ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray3ID",
+        "key": "colorGray3Key",
+        "name": "color/gray/3",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.9411764705882353,
+            "g": 0.9411764705882353,
+            "b": 0.9411764705882353,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.13333333333333333,
+            "g": 0.13333333333333333,
+            "b": 0.13333333333333333,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray4ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray4ID",
+        "key": "colorGray4Key",
+        "name": "color/gray/4",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.9098039215686274,
+            "g": 0.9098039215686274,
+            "b": 0.9098039215686274,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.16470588235294117,
+            "g": 0.16470588235294117,
+            "b": 0.16470588235294117,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray5ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray5ID",
+        "key": "colorGray5Key",
+        "name": "color/gray/5",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.8784313725490196,
+            "g": 0.8784313725490196,
+            "b": 0.8784313725490196,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.19215686274509805,
+            "g": 0.19215686274509805,
+            "b": 0.19215686274509805,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray6ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray6ID",
+        "key": "colorGray6Key",
+        "name": "color/gray/6",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.8509803921568627,
+            "g": 0.8509803921568627,
+            "b": 0.8509803921568627,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.22745098039215686,
+            "g": 0.22745098039215686,
+            "b": 0.22745098039215686,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray7ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray7ID",
+        "key": "colorGray7Key",
+        "name": "color/gray/7",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.807843137254902,
+            "g": 0.807843137254902,
+            "b": 0.807843137254902,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.2823529411764706,
+            "g": 0.2823529411764706,
+            "b": 0.2823529411764706,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray8ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray8ID",
+        "key": "color/gray/8",
+        "name": "color/gray/8",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.7333333333333333,
+            "g": 0.7333333333333333,
+            "b": 0.7333333333333333,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.3764705882352941,
+            "g": 0.3764705882352941,
+            "b": 0.3764705882352941,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray9ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray9ID",
+        "key": "colorGray9Key",
+        "name": "color/gray/9",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.5529411764705883,
+            "g": 0.5529411764705883,
+            "b": 0.5529411764705883,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.43137254901960786,
+            "g": 0.43137254901960786,
+            "b": 0.43137254901960786,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray10ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray10ID",
+        "key": "colorGray10Key",
+        "name": "color/gray/10",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.5137254901960784,
+            "g": 0.5137254901960784,
+            "b": 0.5137254901960784,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.4823529411764706,
+            "g": 0.4823529411764706,
+            "b": 0.4823529411764706,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray11ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray11ID",
+        "key": "colorGray11Key",
+        "name": "color/gray/11",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.39215686274509803,
+            "g": 0.39215686274509803,
+            "b": 0.39215686274509803,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.7058823529411765,
+            "g": 0.7058823529411765,
+            "b": 0.7058823529411765,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorGray12ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "colorGray12ID",
+        "key": "colorGray12Key",
+        "name": "color/gray/12",
+        "remote": false,
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "r": 0.12549019607843137,
+            "g": 0.12549019607843137,
+            "b": 0.12549019607843137,
+            "a": 1
+          },
+          "darkModeID": {
+            "r": 0.9333333333333333,
+            "g": 0.9333333333333333,
+            "b": 0.9333333333333333,
+            "a": 1
+          }
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorUIBGID": {
+        "id": "colorUIBGID",
+        "key": "colorUIBGKey",
+        "name": "color/ui/bg",
+        "description": "",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "type": "VARIABLE_ALIAS",
+            "id": "colorGray1ID"
+          },
+          "darkModeID": {
+            "type": "VARIABLE_ALIAS",
+            "id": "colorGray1ID"
+          }
+        },
+        "remote": false,
+        "hiddenFromPublishing": false,
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "colorUITextID": {
+        "id": "colorUITextID",
+        "key": "colorUITextKey",
+        "name": "color/ui/text",
+        "description": "",
+        "resolvedType": "COLOR",
+        "valuesByMode": {
+          "lightModeID": {
+            "type": "VARIABLE_ALIAS",
+            "id": "colorGray12ID"
+          },
+          "darkModeID": {
+            "type": "VARIABLE_ALIAS",
+            "id": "colorGray12ID"
+          }
+        },
+        "remote": false,
+        "hiddenFromPublishing": false,
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space1ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space1ID",
+        "key": "space1Key",
+        "name": "space/1",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 2,
+          "darkModeID": 2
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space2ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space2ID",
+        "key": "space2Key",
+        "name": "space/2",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 4,
+          "darkModeID": 4
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space3ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space3ID",
+        "key": "space3Key",
+        "name": "space/3",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 8,
+          "darkModeID": 8
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space4ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space4ID",
+        "key": "space4Key",
+        "name": "space/4",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 12,
+          "darkModeID": 12
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space5ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space5ID",
+        "key": "space5Key",
+        "name": "space/5",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 16,
+          "darkModeID": 16
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space6ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space6ID",
+        "key": "space6Key",
+        "name": "space/6",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 24,
+          "darkModeID": 24
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space7ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space7ID",
+        "key": "space7Key",
+        "name": "space/7",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 32,
+          "darkModeID": 32
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space8ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space8ID",
+        "key": "space8Key",
+        "name": "space/8",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 40,
+          "darkModeID": 40
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space9ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space9ID",
+        "key": "space9Key",
+        "name": "space/9",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 48,
+          "darkModeID": 48
+        },
+        "variableCollectionId": "defaultCollectionID"
+      },
+      "space10ID": {
+        "description": "",
+        "hiddenFromPublishing": false,
+        "id": "space10ID",
+        "key": "space10Key",
+        "name": "space/10",
+        "remote": false,
+        "resolvedType": "FLOAT",
+        "valuesByMode": {
+          "lightModeID": 64,
+          "darkModeID": 64
+        },
+        "variableCollectionId": "defaultCollectionID"
+      }
+    },
+    "variableCollections": {
+      "defaultCollectionID": {
+        "id": "defaultCollectionID",
+        "name": "Default",
+        "key": "defaultCollectionKey",
+        "modes": [
+          {
+            "modeId": "lightModeID",
+            "name": "light"
+          },
+          {
+            "modeId": "darkModeID",
+            "name": "dark"
+          }
+        ],
+        "defaultModeId": "lightModeID",
+        "remote": false,
+        "hiddenFromPublishing": false,
+        "variableIds": [
+          "colorGray1ID",
+          "colorGray2ID",
+          "colorGray3ID",
+          "colorGray4ID",
+          "colorGray5ID",
+          "colorGray6ID",
+          "colorGray7ID",
+          "colorGray8ID",
+          "colorGray9ID",
+          "colorGray10ID",
+          "colorGray11ID",
+          "colorUIBGID",
+          "colorUITextID",
+          "space1ID",
+          "space1ID",
+          "space2ID",
+          "space3ID",
+          "space4ID",
+          "space5ID",
+          "space6ID",
+          "space7ID",
+          "space8ID",
+          "space9ID",
+          "space10ID"
+        ]
+      }
+    }
+  }
+}

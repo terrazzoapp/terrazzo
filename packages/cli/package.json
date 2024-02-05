@@ -6,7 +6,20 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["design tokens", "design tokens community group", "design tokens format module", "dtcg", "cli", "w3c design tokens", "design system", "typescript", "sass", "css", "style tokens", "style system"],
+  "keywords": [
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "dtcg",
+    "cli",
+    "w3c design tokens",
+    "design system",
+    "typescript",
+    "sass",
+    "css",
+    "style tokens",
+    "style system"
+  ],
   "engines": {
     "node": ">=18.0.0"
   },
@@ -46,6 +59,7 @@
     "@types/culori": "^2.0.4",
     "@types/node": "^20.11.16",
     "execa": "^7.2.0",
+    "msw": "^2.1.5",
     "vitest": "^1.2.2"
   }
 }

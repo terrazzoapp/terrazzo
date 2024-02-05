@@ -1,0 +1,776 @@
+{
+  "tokens": {
+    "color.gray.1": "#fcfcfc",
+    "color.gray.2": "#f9f9f9",
+    "color.gray.3": "#f0f0f0",
+    "color.gray.4": "#e8e8e8",
+    "color.gray.5": "#e0e0e0",
+    "color.gray.6": "#d9d9d9",
+    "color.gray.7": "#cecece",
+    "color.gray.8": "#bbbbbb",
+    "color.gray.9": "#8d8d8d",
+    "color.gray.10": "#838383",
+    "color.gray.11": "#646464",
+    "color.gray.12": "#202020",
+    "color.ui.bg": "#fcfcfc",
+    "color.ui.text": "#202020",
+    "space.1": 2,
+    "space.2": 4,
+    "space.3": 8,
+    "space.4": 12,
+    "space.5": 16,
+    "space.6": 24,
+    "space.7": 32,
+    "space.8": 40,
+    "space.9": 48,
+    "space.10": 64
+  },
+  "meta": {
+    "color.gray.1": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#fcfcfc",
+            "dark": "#111111"
+          }
+        },
+        "$value": "#fcfcfc"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.1",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#fcfcfc",
+          "dark": "#111111"
+        }
+      },
+      "$value": "#fcfcfc"
+    },
+    "color.gray.2": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#f9f9f9",
+            "dark": "#191919"
+          }
+        },
+        "$value": "#f9f9f9"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.2",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#f9f9f9",
+          "dark": "#191919"
+        }
+      },
+      "$value": "#f9f9f9"
+    },
+    "color.gray.3": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#f0f0f0",
+            "dark": "#222222"
+          }
+        },
+        "$value": "#f0f0f0"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.3",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#f0f0f0",
+          "dark": "#222222"
+        }
+      },
+      "$value": "#f0f0f0"
+    },
+    "color.gray.4": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#e8e8e8",
+            "dark": "#2a2a2a"
+          }
+        },
+        "$value": "#e8e8e8"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.4",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#e8e8e8",
+          "dark": "#2a2a2a"
+        }
+      },
+      "$value": "#e8e8e8"
+    },
+    "color.gray.5": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#e0e0e0",
+            "dark": "#313131"
+          }
+        },
+        "$value": "#e0e0e0"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.5",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#e0e0e0",
+          "dark": "#313131"
+        }
+      },
+      "$value": "#e0e0e0"
+    },
+    "color.gray.6": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#d9d9d9",
+            "dark": "#3a3a3a"
+          }
+        },
+        "$value": "#d9d9d9"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.6",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#d9d9d9",
+          "dark": "#3a3a3a"
+        }
+      },
+      "$value": "#d9d9d9"
+    },
+    "color.gray.7": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#cecece",
+            "dark": "#484848"
+          }
+        },
+        "$value": "#cecece"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.7",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#cecece",
+          "dark": "#484848"
+        }
+      },
+      "$value": "#cecece"
+    },
+    "color.gray.8": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#bbbbbb",
+            "dark": "#606060"
+          }
+        },
+        "$value": "#bbbbbb"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.8",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#bbbbbb",
+          "dark": "#606060"
+        }
+      },
+      "$value": "#bbbbbb"
+    },
+    "color.gray.9": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#8d8d8d",
+            "dark": "#6e6e6e"
+          }
+        },
+        "$value": "#8d8d8d"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.9",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#8d8d8d",
+          "dark": "#6e6e6e"
+        }
+      },
+      "$value": "#8d8d8d"
+    },
+    "color.gray.10": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#838383",
+            "dark": "#7b7b7b"
+          }
+        },
+        "$value": "#838383"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.10",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#838383",
+          "dark": "#7b7b7b"
+        }
+      },
+      "$value": "#838383"
+    },
+    "color.gray.11": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#646464",
+            "dark": "#b4b4b4"
+          }
+        },
+        "$value": "#646464"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.11",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#646464",
+          "dark": "#b4b4b4"
+        }
+      },
+      "$value": "#646464"
+    },
+    "color.gray.12": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "#202020",
+            "dark": "#eeeeee"
+          }
+        },
+        "$value": "#202020"
+      },
+      "_group": {
+        "id": "color.gray",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.gray.12",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#202020",
+          "dark": "#eeeeee"
+        }
+      },
+      "$value": "#202020"
+    },
+    "color.ui.bg": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "{color.gray.1#light}",
+            "dark": "{color.gray.1#dark}"
+          }
+        },
+        "$value": "{color.gray.1}"
+      },
+      "_group": {
+        "id": "color.ui",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.ui.bg",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#fcfcfc",
+          "dark": "#111111"
+        }
+      },
+      "$value": "#fcfcfc"
+    },
+    "color.ui.text": {
+      "_original": {
+        "$type": "color",
+        "$extensions": {
+          "mode": {
+            "light": "{color.gray.12#light}",
+            "dark": "{color.gray.12#dark}"
+          }
+        },
+        "$value": "{color.gray.12}"
+      },
+      "_group": {
+        "id": "color.ui",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "color.ui.text",
+      "$type": "color",
+      "$extensions": {
+        "mode": {
+          "light": "#202020",
+          "dark": "#eeeeee"
+        }
+      },
+      "$value": "#202020"
+    },
+    "space.1": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 2,
+            "dark": 2
+          }
+        },
+        "$value": 2
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.1",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 2,
+          "dark": 2
+        }
+      },
+      "$value": 2
+    },
+    "space.2": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 4,
+            "dark": 4
+          }
+        },
+        "$value": 4
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.2",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 4,
+          "dark": 4
+        }
+      },
+      "$value": 4
+    },
+    "space.3": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 8,
+            "dark": 8
+          }
+        },
+        "$value": 8
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.3",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 8,
+          "dark": 8
+        }
+      },
+      "$value": 8
+    },
+    "space.4": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 12,
+            "dark": 12
+          }
+        },
+        "$value": 12
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.4",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 12,
+          "dark": 12
+        }
+      },
+      "$value": 12
+    },
+    "space.5": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 16,
+            "dark": 16
+          }
+        },
+        "$value": 16
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.5",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 16,
+          "dark": 16
+        }
+      },
+      "$value": 16
+    },
+    "space.6": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 24,
+            "dark": 24
+          }
+        },
+        "$value": 24
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.6",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 24,
+          "dark": 24
+        }
+      },
+      "$value": 24
+    },
+    "space.7": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 32,
+            "dark": 32
+          }
+        },
+        "$value": 32
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.7",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 32,
+          "dark": 32
+        }
+      },
+      "$value": 32
+    },
+    "space.8": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 40,
+            "dark": 40
+          }
+        },
+        "$value": 40
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.8",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 40,
+          "dark": 40
+        }
+      },
+      "$value": 40
+    },
+    "space.9": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 48,
+            "dark": 48
+          }
+        },
+        "$value": 48
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.9",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 48,
+          "dark": 48
+        }
+      },
+      "$value": 48
+    },
+    "space.10": {
+      "_original": {
+        "$type": "number",
+        "$extensions": {
+          "mode": {
+            "light": 64,
+            "dark": 64
+          }
+        },
+        "$value": 64
+      },
+      "_group": {
+        "id": "space",
+        "$extensions": {
+          "requiredModes": []
+        }
+      },
+      "id": "space.10",
+      "$type": "number",
+      "$extensions": {
+        "mode": {
+          "light": 64,
+          "dark": 64
+        }
+      },
+      "$value": 64
+    }
+  },
+  "modes": {
+    "color.gray.1": {
+      "light": "#fcfcfc",
+      "dark": "#111111"
+    },
+    "color.gray.2": {
+      "light": "#f9f9f9",
+      "dark": "#191919"
+    },
+    "color.gray.3": {
+      "light": "#f0f0f0",
+      "dark": "#222222"
+    },
+    "color.gray.4": {
+      "light": "#e8e8e8",
+      "dark": "#2a2a2a"
+    },
+    "color.gray.5": {
+      "light": "#e0e0e0",
+      "dark": "#313131"
+    },
+    "color.gray.6": {
+      "light": "#d9d9d9",
+      "dark": "#3a3a3a"
+    },
+    "color.gray.7": {
+      "light": "#cecece",
+      "dark": "#484848"
+    },
+    "color.gray.8": {
+      "light": "#bbbbbb",
+      "dark": "#606060"
+    },
+    "color.gray.9": {
+      "light": "#8d8d8d",
+      "dark": "#6e6e6e"
+    },
+    "color.gray.10": {
+      "light": "#838383",
+      "dark": "#7b7b7b"
+    },
+    "color.gray.11": {
+      "light": "#646464",
+      "dark": "#b4b4b4"
+    },
+    "color.gray.12": {
+      "light": "#202020",
+      "dark": "#eeeeee"
+    },
+    "color.ui.bg": {
+      "light": "#fcfcfc",
+      "dark": "#111111"
+    },
+    "color.ui.text": {
+      "light": "#202020",
+      "dark": "#eeeeee"
+    },
+    "space.1": {
+      "light": 2,
+      "dark": 2
+    },
+    "space.2": {
+      "light": 4,
+      "dark": 4
+    },
+    "space.3": {
+      "light": 8,
+      "dark": 8
+    },
+    "space.4": {
+      "light": 12,
+      "dark": 12
+    },
+    "space.5": {
+      "light": 16,
+      "dark": 16
+    },
+    "space.6": {
+      "light": 24,
+      "dark": 24
+    },
+    "space.7": {
+      "light": 32,
+      "dark": 32
+    },
+    "space.8": {
+      "light": 40,
+      "dark": 40
+    },
+    "space.9": {
+      "light": 48,
+      "dark": 48
+    },
+    "space.10": {
+      "light": 64,
+      "dark": 64
+    }
+  }
+}

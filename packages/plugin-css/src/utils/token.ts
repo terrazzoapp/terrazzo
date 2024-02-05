@@ -1,6 +1,7 @@
 import {ParsedToken} from '@cobalt-ui/core';
 import {isAlias} from '@cobalt-ui/utils';
-import wcmatch from '../wildcard-match.js';
+
+export {isTokenMatch} from '@cobalt-ui/utils';
 
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
@@ -16,15 +17,6 @@ export function getMode<T extends {id: string; $value: any; $extensions?: any; _
     };
   }
   return {value: token.$value, originalVal: token._original.$value};
-}
-
-/** match token against globs */
-export function isTokenMatch(tokenID: string, globPatterns: string[]): string | undefined {
-  for (const glob of globPatterns) {
-    if (wcmatch(glob)(tokenID)) {
-      return glob;
-    }
-  }
 }
 
 /**
