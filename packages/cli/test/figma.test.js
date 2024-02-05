@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import os from 'node:os';
 import {fileURLToPath} from 'node:url';
 import {http, HttpResponse} from 'msw';
 import {setupServer} from 'msw/node';
@@ -10,8 +11,10 @@ const FILE_KEY = 'OkPWSU0cusQTumCNno7dm8';
 // note: running execa like in the other tests doesn’t let us mock the fetch() call with msw.
 // so we mock the CLI variables first, then load the JS module in the text scope
 
+// bug in Node VM on Windows: importing module blows up (errs after `new Script node:vm:99:7, createScript node:vm:255:10, Object.runInThisContext node:vm:303:10`)
+
 describe('Figma import', () => {
-  it('parses valid syntax correctly', async () => {
+  it.skipIf(os.platform() === 'win32')('parses valid syntax correctly', async () => {
     const cwd = new URL('./fixtures/figma-success/', import.meta.url);
     const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json(FIGMA_VARIABLE_API_RESPONSE)));
     server.listen();
@@ -28,7 +31,7 @@ describe('Figma import', () => {
     server.close();
   });
 
-  it('throws errors on invalid response', async () => {
+  it.skipIf(os.platform() === 'win32')('throws errors on invalid response', async () => {
     const cwd = new URL('./fixtures/figma-error/', import.meta.url);
     const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json({status: 401, error: true}, {status: 401})));
     server.listen();

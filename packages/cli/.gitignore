@@ -1,3 +1,5 @@
 **/tokens/**/*
 test/fixtures/bundle-default/given
+test/fixtures/figma-error/given.json
+test/fixtures/figma-success/given.jso
 test/fixtures/style-dictionary/given.json
