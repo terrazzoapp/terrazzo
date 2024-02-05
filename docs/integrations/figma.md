@@ -7,7 +7,7 @@ title: Figma Integration
 Cobalt supports the following export methods from Figma:
 
 1. **Styles**: no support¹. Variables are recommended.
-2. **Variables**: [see docs](#variables)
+2. **Variables**: [see docs](#figma-variables)
 3. **Tokens Studio**: [see docs](#tokens-studio)
 
 ::: info
@@ -18,14 +18,20 @@ Cobalt supports the following export methods from Figma:
 
 ## Figma Variables
 
+::: warning
+
+Using the Figma Variables API currently [requires an Enterprise plan](https://www.figma.com/developers/api#variables) in Figma.
+
+:::
+
 [Figma Variables](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) are currently in beta, but were designed to match the DTCG token format 1:1, and are expected to follow changes. Currently, the supported token types are:
 
-|  Figma Type  |  DTCG Type   | Notes                           |
-| :----------: | :----------: | :------------------------------ |
-|   `color`    |   `color`    | Coverts to sRGB Hex by default. |
-|   `number`   | `dimension`  | Uses `px` by default.           |
-|   `string`   |              | Ignored if no `type` specified. |
-|  `boolean`   |              | Ignored if no `type` specified. |
+| Figma Type |  DTCG Type  | Notes                           |
+| :--------: | :---------: | :------------------------------ |
+|  `color`   |   `color`   | Coverts to sRGB Hex by default. |
+|  `number`  | `dimension` | Uses `px` by default.           |
+|  `string`  |             | Ignored if no `type` specified. |
+| `boolean`  |             | Ignored if no `type` specified. |
 
 _Note: [typography variables](https://help.figma.com/hc/en-us/articles/4406787442711#variables) have been announced, but aren’t released yet. Cobalt will add support when they arrive._
 
@@ -50,7 +56,7 @@ Then run `co build` as you would normally, and Cobalt will operate as if the Var
 
 ### Overrides
 
-Figma Variables can be a **Color**, **Number**, **String**, or **Boolean.**  Color translates directly to the DTCG [Color](/tokens/color) type, so those will work automatically. But for everything else, you’ll need to set up overrides to specify what token type each Figma Variable should be. To do so, specify selectors in a mapping in `figma.overrides` where the key is a glob pattern (or specific ID), and the value is an object with your desired DTCG type:
+Figma Variables can be a **Color**, **Number**, **String**, or **Boolean.** Color translates directly to the DTCG [Color](/tokens/color) type, so those will work automatically. But for everything else, you’ll need to set up overrides to specify what token type each Figma Variable should be. To do so, specify selectors in a mapping in `figma.overrides` where the key is a glob pattern (or specific ID), and the value is an object with your desired DTCG type:
 
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
@@ -58,7 +64,7 @@ export default {
   tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
   figma: {
     overrides: {
-      'size/*':   {$type: 'dimension'},
+      'size/*': {$type: 'dimension'},
       'timing/*': {$type: 'duration'},
     },
   },
@@ -89,10 +95,10 @@ export default {
         // rename color/base/purple → color/base/violet
         rename(id) {
           return id.replace('color/base/purple', 'color/base/violet');
-        }
+        },
       },
     },
-  }
+  },
 };
 ```
 
@@ -111,22 +117,23 @@ This is useful when either `$type` isn’t enough, or you want to provide additi
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'], figma: {
+  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
+  figma: {
     overrides: {
       'size/*': {
         $type: 'dimension',
         // convert px → rem
-        transform({ variable, collection, mode }) {
+        transform({variable, collection, mode}) {
           const rawValue = variable.valuesByMode[mode.modeId];
           if (typeof rawValue === 'number') {
             return `${rawValue / 16}rem`;
           }
-          // remember this may be an alias of another Variable!
-          // in which case `rawValue.type === 'VARIABLE_ALIAS'`
-        }
+          // remember rawValue may be an alias of another Variable!
+          // in that case, `typeof rawValue === "object" && rawValue.type === 'VARIABLE_ALIAS'`
+        },
       },
     },
-  }
+  },
 };
 ```
 
