@@ -45,6 +45,16 @@ describe('5. Group', () => {
 });
 
 describe('7. Alias', () => {
+  test('top-level', () => {
+    const json = {
+      a: {$type: 'number', $value: 2},
+      b: {$type: 'number', $value: '{a}'},
+    };
+    const tokens = getTokens(json);
+    expect(tokens.find((t) => t.id === 'a')?.$value).toBe(json.a.$value);
+    expect(tokens.find((t) => t.id === 'b')?.$value).toBe(json.a.$value);
+  });
+
   test('mode', () => {
     const json = {
       color: {

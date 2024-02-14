@@ -7,7 +7,8 @@
 :root {
   --ds-color-action: var(--ds-color-blue);
   --ds-color-blue: #218bff;
-  --ds-gradient: #218bff 0%, #e85aad 100%;
+  --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
+  --ds-gradient-default: var(--ds-gradient-blue-pink);
 }
 
 @media (prefers-color-scheme: light) {
@@ -62,7 +63,7 @@
 @supports (color: color(display-p3 1 1 1)) {
   :root {
     --ds-color-blue: color(display-p3 0.12941176470588237 0.5450980392156862 1);
-    --ds-gradient: color(display-p3 0.12941176470588237 0.5450980392156862 1) 0%, color(display-p3 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
+    --ds-gradient-blue-pink: color(display-p3 0.12941176470588237 0.5450980392156862 1) 0%, color(display-p3 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
   }
 
   @media (prefers-color-scheme: light) {
@@ -105,3 +106,4 @@
     --ds-color-blue: color(display-p3 0.2196078431372549 0.5450980392156862 0.9921568627450981);
   }
 }
+
