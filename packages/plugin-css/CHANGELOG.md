@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.7.2
+
+### Patch Changes
+
+- [#192](https://github.com/drwpow/cobalt-ui/pull/192) [`edd33ef5dce51c7b3a1f2d1e9fe78263467b14f8`](https://github.com/drwpow/cobalt-ui/commit/edd33ef5dce51c7b3a1f2d1e9fe78263467b14f8) Thanks [@drwpow](https://github.com/drwpow)! - Fix typography token aliases
+
 ## 1.7.1
 
 ### Patch Changes
