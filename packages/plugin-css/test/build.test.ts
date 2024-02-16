@@ -26,6 +26,7 @@ describe('@cobalt-ui/plugin-css', () => {
             {mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]']},
             {mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]']},
             {mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]']},
+            {mode: 'desktop', selectors: ['@media (width >= 600px)']},
           ],
         }),
       ],
