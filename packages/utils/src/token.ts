@@ -3,11 +3,22 @@ import wcmatch from './lib/wildcard-match.js';
 const ALIAS_RE = /^\{([^}]+)\}$/;
 const LAST_PART_RE = /([^.]+)$/;
 
-/** get the token ID of an alias */
-export function getAliasID(input: string): string {
+/** parse an alias */
+export function parseAlias(input: string): {id: string; mode?: string} {
   const match = input.match(ALIAS_RE);
-  if (!match) return input;
-  return match[1] ?? match[0];
+  if (!match) return {id: input};
+  const rawID = match[1] ?? match[0];
+  const hashI = rawID.indexOf('#');
+  return hashI === -1 ? {id: rawID} : {id: rawID.substring(0, hashI), mode: rawID.substring(hashI + 1)};
+}
+
+/** @deprecated use getAliasValue instead */
+export const getAliasID = getAliasValue;
+
+/** Unwrap an alias value */
+export function getAliasValue(input: string): string {
+  const {id, mode} = parseAlias(input);
+  return mode ? `${id}#${mode}` : id;
 }
 
 /** is this token an alias of another? */

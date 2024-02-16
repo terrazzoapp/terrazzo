@@ -1,5 +1,5 @@
 import {ParsedToken} from '@cobalt-ui/core';
-import {isAlias, kebabinate} from '@cobalt-ui/utils';
+import {isAlias, kebabinate, parseAlias} from '@cobalt-ui/utils';
 import transformColor, {type ColorFormat} from './color.js';
 import transformDimension from './dimension.js';
 import transformDuration from './duration.js';
@@ -158,13 +158,24 @@ export default function transform(
     }
     case 'typography': {
       const {value, originalVal} = getMode(token, mode);
-      if (typeof originalVal === 'string') {
-        return varRef(originalVal, {prefix, tokens, generateName});
-      }
       const output: Record<string, string> = {};
+      // full alias
+      if (typeof originalVal === 'string') {
+        const {id} = parseAlias(originalVal);
+        for (const k in value) {
+          output[kebabinate(k)] = varRef(id, {property: k, prefix, tokens, generateName});
+        }
+        return output;
+      }
       for (const [k, v] of Object.entries(value)) {
         const formatter = k === 'fontFamily' ? transformFontFamily : (val: any): string => String(val);
-        output[kebabinate(k)] = isAlias((originalVal as any)[k] as any) ? varRef((originalVal as any)[k], {prefix, tokens, generateName}) : formatter(v as any);
+        // partial alias (e.g. one property out of the set)
+        if (isAlias((originalVal as any)[k] as any)) {
+          const {id} = parseAlias((originalVal as any)[k]);
+          output[kebabinate(k)] = varRef(id, {property: k, prefix, tokens, generateName});
+        } else {
+          output[kebabinate(k)] = formatter(v as any);
+        }
       }
       return output;
     }

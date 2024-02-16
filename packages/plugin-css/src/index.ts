@@ -117,12 +117,8 @@ export default function pluginCSS(options?: Options): Plugin {
             break;
           }
           case 'typography': {
-            if (value && typeof value === 'object') {
-              for (const [k, v] of Object.entries(value)) {
-                tokenVals[generateName(`${token.id}-${k}`, token)] = v;
-              }
-            } else {
-              tokenVals[ref] = value;
+            for (const [k, v] of Object.entries(value)) {
+              tokenVals[generateName(`${token.id}-${k}`, token)] = v;
             }
             break;
           }

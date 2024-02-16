@@ -1,5 +1,5 @@
 import {ParsedToken} from '@cobalt-ui/core';
-import {isAlias} from '@cobalt-ui/utils';
+import {isAlias, kebabinate, parseAlias} from '@cobalt-ui/utils';
 
 export {isTokenMatch} from '@cobalt-ui/utils';
 
@@ -29,14 +29,14 @@ export function varRef(
     suffix?: string;
     // note: the following properties are optional to preserve backwards-compat without a breaking change
     tokens?: ParsedToken[];
+    /** target a sub-property of a $value; only needed for object tokens */
+    property?: string;
     generateName?: ReturnType<typeof makeNameGenerator>;
   },
 ): string {
   let refID = id;
   if (isAlias(id)) {
-    // unclear if mode is ever appended to id when passed here, but leaving for safety in case
-    const [rootID, _mode] = id.substring(1, id.length - 1).split('#');
-    refID = rootID!;
+    refID = parseAlias(id).id;
   }
 
   const token = options?.tokens?.find((t) => t.id === refID);
@@ -48,8 +48,8 @@ export function varRef(
   // suffix is only used internally (one place in plugin-sass), so handle it here rather than clutter the public API in defaultNameGenerator
   const normalizedSuffix = options?.suffix ? `-${options?.suffix.replace(DASH_PREFIX_RE, '')}` : '';
   const variableId = refID + normalizedSuffix;
-
-  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)})`;
+  const property = token && options?.property && typeof token.$value === 'object' && !!(token.$value as any)[options.property] ? options.property : undefined;
+  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)}${property ? `-${kebabinate(property)}` : ''})`;
 }
 
 function normalizeIdSegment(inputString: string): string {
