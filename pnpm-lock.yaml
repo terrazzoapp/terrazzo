@@ -274,7 +274,7 @@ importers:
   packages/plugin-css:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../utils
       '@types/culori':
         specifier: ^2.0.4
@@ -327,7 +327,7 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.3
+        specifier: ^1.2.4
         version: link:../utils
       '@types/mime':
         specifier: ^3.0.4
