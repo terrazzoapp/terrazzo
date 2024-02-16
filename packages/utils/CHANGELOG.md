@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.2.4
+
+### Patch Changes
+
+- [#196](https://github.com/drwpow/cobalt-ui/pull/196) [`030aba674d825d333c61ed2251b6355044098f1d`](https://github.com/drwpow/cobalt-ui/commit/030aba674d825d333c61ed2251b6355044098f1d) Thanks [@drwpow](https://github.com/drwpow)! - Update getAliasID to ignore modes
+
 ## 1.2.3
 
 ### Patch Changes
