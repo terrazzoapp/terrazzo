@@ -1,5 +1,21 @@
 # @cobalt-ui/plugin-sass
 
+## 1.8.0
+
+### Minor Changes
+
+- [#202](https://github.com/drwpow/cobalt-ui/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix collision of mode names if a user has a mode called `"default"`, changing the internal selector to `"."` (a single dot).
+
+  `"."` will be used more often in the upcoming [2.0 API](https://github.com/drwpow/cobalt-ui/issues/201), chosen because it’s easy to type/reference, uses illegal characters (therefore consumers can’t use it, but internally we know what it means), and also because it matches [Node’s ESM implementation for the default import](https://nodejs.org/docs/latest/api/esm.html#resolution-algorithm-specification), so it will be familiar/expected for some developers.
+
+### Patch Changes
+
+- [#202](https://github.com/drwpow/cobalt-ui/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix plugin-sass mode generation
+
+- Updated dependencies [[`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490)]:
+  - @cobalt-ui/cli@1.7.1
+  - @cobalt-ui/plugin-css@1.7.3
+
 ## 2.0.0
 
 ### Patch Changes
