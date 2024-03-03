@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.7.1
+
+### Patch Changes
+
+- [#202](https://github.com/drwpow/cobalt-ui/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Throw error on missing tokens.json
+
 ## 1.7.0
 
 ### Minor Changes
