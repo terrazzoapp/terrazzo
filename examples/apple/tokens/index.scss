@@ -9,145 +9,145 @@
 
 $__token-values: (
   "color.systemBlue": (
-    default: (#007aff),
+    ".": (#007aff),
     "light": (#007aff),
     "dark": (#0a84ff),
     "light_ax": (#0040dd),
     "dark_ax": (#409cff),
   ),
   "color.systemBrown": (
-    default: (#a2845e),
+    ".": (#a2845e),
     "light": (#a2845e),
     "dark": (#ac8e68),
     "light_ax": (#7f6545),
     "dark_ax": (#b59469),
   ),
   "color.systemCyan": (
-    default: (#32ade6),
+    ".": (#32ade6),
     "light": (#32ade6),
     "dark": (#64d2ff),
     "light_ax": (#0071a4),
     "dark_ax": (#70d7ff),
   ),
   "color.systemGray": (
-    default: (#8e8e93),
+    ".": (#8e8e93),
     "light": (#8e8e93),
     "dark": (#8e8e93),
     "light_ax": (#6c6c70),
     "dark_ax": (#aeaeb2),
   ),
   "color.systemGray2": (
-    default: (#aeaeb2),
+    ".": (#aeaeb2),
     "light": (#aeaeb2),
     "dark": (#636366),
     "light_ax": (#8e8e93),
     "dark_ax": (#7c7c80),
   ),
   "color.systemGray3": (
-    default: (#c7c7cc),
+    ".": (#c7c7cc),
     "light": (#c7c7cc),
     "dark": (#48484a),
     "light_ax": (#aeaeb2),
     "dark_ax": (#545456),
   ),
   "color.systemGray4": (
-    default: (#d1d1d6),
+    ".": (#d1d1d6),
     "light": (#d1d1d6),
     "dark": (#3a3a3c),
     "light_ax": (#bcbcc0),
     "dark_ax": (#444446),
   ),
   "color.systemGray5": (
-    default: (#e5e5ea),
+    ".": (#e5e5ea),
     "light": (#e5e5ea),
     "dark": (#2c2c2e),
     "light_ax": (#d8d8dc),
     "dark_ax": (#363638),
   ),
   "color.systemGray6": (
-    default: (#f2f2f7),
+    ".": (#f2f2f7),
     "light": (#f2f2f7),
     "dark": (#1c1c1e),
     "light_ax": (#ebebf0),
     "dark_ax": (#242426),
   ),
   "color.systemGreen": (
-    default: (#34c759),
+    ".": (#34c759),
     "light": (#34c759),
     "dark": (#30d158),
     "light_ax": (#248a3d),
     "dark_ax": (#30db5b),
   ),
   "color.systemIndigo": (
-    default: (#5856d6),
+    ".": (#5856d6),
     "light": (#5856d6),
     "dark": (#5e5ce6),
     "light_ax": (#3634a3),
     "dark_ax": (#7d7aff),
   ),
   "color.systemMint": (
-    default: (#00c7be),
+    ".": (#00c7be),
     "light": (#00c7be),
     "dark": (#66d4cf),
     "light_ax": (#0c817b),
     "dark_ax": (#66d4cf),
   ),
   "color.systemOrange": (
-    default: (#ff9500),
+    ".": (#ff9500),
     "light": (#ff9500),
     "dark": (#ff9f0a),
     "light_ax": (#c93400),
     "dark_ax": (#ffb340),
   ),
   "color.systemPink": (
-    default: (#ff2d55),
+    ".": (#ff2d55),
     "light": (#ff2d55),
     "dark": (#ff375f),
     "light_ax": (#d30f45),
     "dark_ax": (#ff6482),
   ),
   "color.systemPurple": (
-    default: (#af52de),
+    ".": (#af52de),
     "light": (#af52de),
     "dark": (#bf5af2),
     "light_ax": (#8944ab),
     "dark_ax": (#da8fff),
   ),
   "color.systemRed": (
-    default: (#ff3b30),
+    ".": (#ff3b30),
     "light": (#ff3b30),
     "dark": (#ff453a),
     "light_ax": (#d70015),
     "dark_ax": (#ff6961),
   ),
   "color.systemTeal": (
-    default: (#30b0c7),
+    ".": (#30b0c7),
     "light": (#30b0c7),
     "dark": (#40c8e0),
     "light_ax": (#008299),
     "dark_ax": (#5de6ff),
   ),
   "color.systemYellow": (
-    default: (#ffcc00),
+    ".": (#ffcc00),
     "light": (#ffcc00),
     "dark": (#ffd60a),
     "light_ax": (#b25000),
     "dark_ax": (#ffd426),
   ),
   "font.family.newYork": (
-    default: ("New York"),
+    ".": ("New York"),
   ),
   "font.family.sfCompact": (
-    default: ("SF Compact"),
+    ".": ("SF Compact"),
   ),
   "font.family.sfMono": (
-    default: ("SF Mono"),
+    ".": ("SF Mono"),
   ),
   "font.family.sfPro": (
-    default: ("SF Pro"),
+    ".": ("SF Pro"),
   ),
   "font.family.sfProRounded": (
-    default: ("SF Pro Rounded"),
+    ".": ("SF Pro Rounded"),
   ),
   "font.style.body": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"font.style.body\")` instead.",
@@ -186,7 +186,7 @@ $__token-values: (
 
 $__token-typography-mixins: (
   "font.style.body": (
-    default: (
+    ".": (
       "font-size": (17px),
       "font-weight": (400),
       "line-height": (22px),
@@ -221,7 +221,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.callout": (
-    default: (
+    ".": (
       "font-size": (16px),
       "font-weight": (400),
       "line-height": (21px),
@@ -256,7 +256,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.caption_2": (
-    default: (
+    ".": (
       "font-size": (11px),
       "font-weight": (400),
       "line-height": (13px),
@@ -291,7 +291,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.caption1": (
-    default: (
+    ".": (
       "font-size": (12px),
       "font-weight": (400),
       "line-height": (16px),
@@ -326,7 +326,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.footnote": (
-    default: (
+    ".": (
       "font-size": (13px),
       "font-weight": (400),
       "line-height": (18px),
@@ -361,7 +361,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.headline": (
-    default: (
+    ".": (
       "font-size": (17px),
       "font-weight": (600),
       "line-height": (22px),
@@ -396,7 +396,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.largeTitle": (
-    default: (
+    ".": (
       "font-size": (34px),
       "font-weight": (400),
       "line-height": (41px),
@@ -431,7 +431,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.subhead": (
-    default: (
+    ".": (
       "font-size": (15px),
       "font-weight": (400),
       "line-height": (20px),
@@ -466,7 +466,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.title1": (
-    default: (
+    ".": (
       "font-size": (28px),
       "font-weight": (400),
       "line-height": (34px),
@@ -501,7 +501,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.title2": (
-    default: (
+    ".": (
       "font-size": (22px),
       "font-weight": (400),
       "line-height": (25px),
@@ -536,7 +536,7 @@ $__token-typography-mixins: (
     ),
   ),
   "font.style.title3": (
-    default: (
+    ".": (
       "font-size": (20px),
       "font-weight": (400),
       "line-height": (25px),
@@ -583,7 +583,7 @@ $__token-typography-mixins: (
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
-    @return map.get($_token, default);
+    @return map.get($_token, ".");
   }
 }
 
@@ -593,19 +593,19 @@ $__token-typography-mixins: (
   }
   $_modes: ();
   @each $k in map.get($__token-values, $tokenName) {
-    @if $k != "default" {
+    @if $k != "." {
       $_modes: list.append($_modes, $k);
     }
   }
   @return $_modes;
 }
 
-@mixin typography($tokenName, $modeName: default) {
+@mixin typography($tokenName, $modeName: ".") {
   @if map.has-key($__token-typography-mixins, $tokenName) == false {
     @error "No typography mixin named \"#{$tokenName}\"";
   }
   $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_mixin, default);
+  $_properties: map.get($_mixin, ".");
   @if map.has-key($_mixin, $modeName) {
     $_properties: map.get($_mixin, $modeName);
   }

@@ -9,212 +9,212 @@
 
 $__token-values: (
   "color.black": (
-    default: (#000000),
+    ".": (#000000),
   ),
   "color.blue": (
-    default: (#006fbb),
+    ".": (#006fbb),
   ),
   "color.blueDark": (
-    default: (#084e8a),
+    ".": (#084e8a),
   ),
   "color.blueDarker": (
-    default: (#001429),
+    ".": (#001429),
   ),
   "color.blueLight": (
-    default: (#b4e1fa),
+    ".": (#b4e1fa),
   ),
   "color.blueLighter": (
-    default: (#ebf5fa),
+    ".": (#ebf5fa),
   ),
   "color.blueText": (
-    default: (#3e4e57),
+    ".": (#3e4e57),
   ),
   "color.green": (
-    default: (#50b83c),
+    ".": (#50b83c),
   ),
   "color.greenDark": (
-    default: (#108043),
+    ".": (#108043),
   ),
   "color.greenDarker": (
-    default: (#173630),
+    ".": (#173630),
   ),
   "color.greenLight": (
-    default: (#bbe5b3),
+    ".": (#bbe5b3),
   ),
   "color.greenLighter": (
-    default: (#e3f1df),
+    ".": (#e3f1df),
   ),
   "color.greenText": (
-    default: (#414f3e),
+    ".": (#414f3e),
   ),
   "color.indigo": (
-    default: (#5c6ac4),
+    ".": (#5c6ac4),
   ),
   "color.indigoDark": (
-    default: (#202e78),
+    ".": (#202e78),
   ),
   "color.indigoDarker": (
-    default: (#000639),
+    ".": (#000639),
   ),
   "color.indigoLight": (
-    default: (#b3bcf5),
+    ".": (#b3bcf5),
   ),
   "color.indigoLighter": (
-    default: (#f4f5fa),
+    ".": (#f4f5fa),
   ),
   "color.indigoText": (
-    default: (#3e4155),
+    ".": (#3e4155),
   ),
   "color.ink": (
-    default: (#212b36),
+    ".": (#212b36),
   ),
   "color.inkLight": (
-    default: (#454f5b),
+    ".": (#454f5b),
   ),
   "color.inkLighter": (
-    default: (#637381),
+    ".": (#637381),
   ),
   "color.inkLightest": (
-    default: (#919eab),
+    ".": (#919eab),
   ),
   "color.orange": (
-    default: (#f49342),
+    ".": (#f49342),
   ),
   "color.orangeDark": (
-    default: (#c05717),
+    ".": (#c05717),
   ),
   "color.orangeDarker": (
-    default: (#4a1504),
+    ".": (#4a1504),
   ),
   "color.orangeLight": (
-    default: (#ffc58b),
+    ".": (#ffc58b),
   ),
   "color.orangeLighter": (
-    default: (#fcebdb),
+    ".": (#fcebdb),
   ),
   "color.orangeText": (
-    default: (#594430),
+    ".": (#594430),
   ),
   "color.purple": (
-    default: (#9c6ade),
+    ".": (#9c6ade),
   ),
   "color.purpleDark": (
-    default: (#50248f),
+    ".": (#50248f),
   ),
   "color.purpleDarker": (
-    default: (#230051),
+    ".": (#230051),
   ),
   "color.purpleLight": (
-    default: (#e3d0ff),
+    ".": (#e3d0ff),
   ),
   "color.purpleLighter": (
-    default: (#f6f0fd),
+    ".": (#f6f0fd),
   ),
   "color.purpleText": (
-    default: (#50495a),
+    ".": (#50495a),
   ),
   "color.red": (
-    default: (#de3618),
+    ".": (#de3618),
   ),
   "color.redDark": (
-    default: (#bf0711),
+    ".": (#bf0711),
   ),
   "color.redDarker": (
-    default: (#330101),
+    ".": (#330101),
   ),
   "color.redLight": (
-    default: (#fead9a),
+    ".": (#fead9a),
   ),
   "color.redLighter": (
-    default: (#fbeae5),
+    ".": (#fbeae5),
   ),
   "color.redText": (
-    default: (#583c35),
+    ".": (#583c35),
   ),
   "color.sky": (
-    default: (#dfe3e8),
+    ".": (#dfe3e8),
   ),
   "color.skyDark": (
-    default: (#c4cdd5),
+    ".": (#c4cdd5),
   ),
   "color.skyLight": (
-    default: (#f4f6f8),
+    ".": (#f4f6f8),
   ),
   "color.skyLighter": (
-    default: (#f9fafb),
+    ".": (#f9fafb),
   ),
   "color.teal": (
-    default: (#47c1bf),
+    ".": (#47c1bf),
   ),
   "color.tealDark": (
-    default: (#00848e),
+    ".": (#00848e),
   ),
   "color.tealDarker": (
-    default: (#003135),
+    ".": (#003135),
   ),
   "color.tealLight": (
-    default: (#b7ecec),
+    ".": (#b7ecec),
   ),
   "color.tealLighter": (
-    default: (#e0f5f5),
+    ".": (#e0f5f5),
   ),
   "color.tealText": (
-    default: (#405352),
+    ".": (#405352),
   ),
   "color.white": (
-    default: (#ffffff),
+    ".": (#ffffff),
   ),
   "color.yellow": (
-    default: (#eec200),
+    ".": (#eec200),
   ),
   "color.yellowDark": (
-    default: (#8a6116),
+    ".": (#8a6116),
   ),
   "color.yellowDarker": (
-    default: (#573b00),
+    ".": (#573b00),
   ),
   "color.yellowLight": (
-    default: (#ffea8a),
+    ".": (#ffea8a),
   ),
   "color.yellowLighter": (
-    default: (#fcf1cd),
+    ".": (#fcf1cd),
   ),
   "color.yellowText": (
-    default: (#595130),
+    ".": (#595130),
   ),
   "font.family.base": (
-    default: (-apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif),
+    ".": (-apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif),
   ),
   "font.family.mono": (
-    default: (Monaco, Consolas, "Lucida Console", monospace),
+    ".": (Monaco, Consolas, "Lucida Console", monospace),
   ),
   "space.base": (
-    default: (16px),
+    ".": (16px),
   ),
   "space.baseTight": (
-    default: (12px),
+    ".": (12px),
   ),
   "space.extraLoose": (
-    default: (32px),
+    ".": (32px),
   ),
   "space.extraTight": (
-    default: (4px),
+    ".": (4px),
   ),
   "space.loose": (
-    default: (20px),
+    ".": (20px),
   ),
   "space.none": (
-    default: (0),
+    ".": (0),
   ),
   "space.tight": (
-    default: (8px),
+    ".": (8px),
   ),
 );
 
 $__token-typography-mixins: (
 );
 
-@function token($tokenName, $modeName: default) {
+@function token($tokenName, $modeName: ".") {
   @if map.has-key($__token-values, $tokenName) == false {
     @error "No token named \"#{$tokenName}\"";
   }
@@ -225,7 +225,7 @@ $__token-typography-mixins: (
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
-    @return map.get($_token, default);
+    @return map.get($_token, ".");
   }
 }
 
@@ -235,19 +235,19 @@ $__token-typography-mixins: (
   }
   $_modes: ();
   @each $k in map.get($__token-values, $tokenName) {
-    @if $k != "default" {
+    @if $k != "." {
       $_modes: list.append($_modes, $k);
     }
   }
   @return $_modes;
 }
 
-@mixin typography($tokenName, $modeName: default) {
+@mixin typography($tokenName, $modeName: ".") {
   @if map.has-key($__token-typography-mixins, $tokenName) == false {
     @error "No typography mixin named \"#{$tokenName}\"";
   }
   $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_mixin, default);
+  $_properties: map.get($_mixin, ".");
   @if map.has-key($_mixin, $modeName) {
     $_properties: map.get($_mixin, $modeName);
   }

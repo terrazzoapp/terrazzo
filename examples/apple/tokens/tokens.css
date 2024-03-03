@@ -34,9 +34,9 @@
   --font-style-callout-font-size: 16px;
   --font-style-callout-font-weight: 400;
   --font-style-callout-line-height: 21px;
-  --font-style-caption-2-font-size: 11px;
-  --font-style-caption-2-font-weight: 400;
-  --font-style-caption-2-line-height: 13px;
+  --font-style-caption_2-font-size: 11px;
+  --font-style-caption_2-font-weight: 400;
+  --font-style-caption_2-line-height: 13px;
   --font-style-caption1-font-size: 12px;
   --font-style-caption1-font-weight: 400;
   --font-style-caption1-line-height: 16px;
@@ -85,3 +85,4 @@
     --color-systemYellow: color(display-p3 1 0.8 0);
   }
 }
+
