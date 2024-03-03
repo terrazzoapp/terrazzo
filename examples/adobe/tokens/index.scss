@@ -9,7 +9,7 @@
 
 $__token-values: (
   "alias.appframe.border-color": (
-    default: (#d5d5d5),
+    ".": (#d5d5d5),
     "dark": (#ffffff),
     "darkest": (#ffffff),
     "light": (#d5d5d5),
@@ -18,7 +18,7 @@ $__token-values: (
     "midlight": (#d5d5d5),
   ),
   "alias.appframe.separator-color": (
-    default: (#d5d5d5),
+    ".": (#d5d5d5),
     "dark": (#ffffff),
     "darkest": (#ffffff),
     "light": (#d5d5d5),
@@ -27,7 +27,7 @@ $__token-values: (
     "midlight": (#d5d5d5),
   ),
   "alias.background-color-hover-overly": (
-    default: (#0000000a),
+    ".": (#0000000a),
     "dark": (#ffffff0f),
     "darkest": (#ffffff14),
     "light": (#0000000a),
@@ -36,7 +36,7 @@ $__token-values: (
     "midlight": (#0000000a),
   ),
   "alias.background-color-modal-overlay": (
-    default: (#00000066),
+    ".": (#00000066),
     "dark": (#00000080),
     "darkest": (#00000099),
     "light": (#00000066),
@@ -45,7 +45,7 @@ $__token-values: (
     "midlight": (#00000066),
   ),
   "alias.background-color-primary": (
-    default: (#ffffff),
+    ".": (#ffffff),
     "dark": (#f8f8f8),
     "darkest": (#f8f8f8),
     "light": (#ffffff),
@@ -54,7 +54,7 @@ $__token-values: (
     "midlight": (#ffffff),
   ),
   "alias.background-color-quickactions": (
-    default: (#f8f8f8e6),
+    ".": (#f8f8f8e6),
     "dark": (#323232e6),
     "darkest": (#1d1d1de6),
     "light": (#f8f8f8e6),
@@ -63,7 +63,7 @@ $__token-values: (
     "midlight": (#dbdbdbe6),
   ),
   "alias.background-color-secondary": (
-    default: (#f8f8f8),
+    ".": (#f8f8f8),
     "dark": (#fdfdfd),
     "darkest": (#fdfdfd),
     "light": (#f8f8f8),
@@ -72,7 +72,7 @@ $__token-values: (
     "midlight": (#f8f8f8),
   ),
   "alias.border-color-translucent": (
-    default: (#0000001a),
+    ".": (#0000001a),
     "dark": (#ffffff1a),
     "darkest": (#ffffff1a),
     "light": (#0000001a),
@@ -81,7 +81,7 @@ $__token-values: (
     "midlight": (#0000001a),
   ),
   "alias.dropshadow-color": (
-    default: (#00000026),
+    ".": (#00000026),
     "dark": (#00000080),
     "darkest": (#000000cc),
     "light": (#00000026),
@@ -90,7 +90,7 @@ $__token-values: (
     "midlight": (#00000026),
   ),
   "alias.highlight-down": (
-    default: (#0000001a),
+    ".": (#0000001a),
     "dark": (#ffffff1a),
     "darkest": (#ffffff26),
     "light": (#0000001a),
@@ -99,7 +99,7 @@ $__token-values: (
     "midlight": (#0000001a),
   ),
   "alias.highlight-hover": (
-    default: (#0000000f),
+    ".": (#0000000f),
     "dark": (#ffffff12),
     "darkest": (#ffffff14),
     "light": (#0000000f),
@@ -108,7 +108,7 @@ $__token-values: (
     "midlight": (#0000000f),
   ),
   "alias.highlight-selected": (
-    default: (#0265dc1a),
+    ".": (#0265dc1a),
     "dark": (#54a3f626),
     "darkest": (#4096f333),
     "light": (#0265dc1a),
@@ -117,7 +117,7 @@ $__token-values: (
     "midlight": (#0057be1a),
   ),
   "alias.highlight-selected-hover": (
-    default: (#0265dc33),
+    ".": (#0265dc33),
     "dark": (#54a3f640),
     "darkest": (#4096f34d),
     "light": (#0265dc33),
@@ -126,7 +126,7 @@ $__token-values: (
     "midlight": (#0057be33),
   ),
   "alias.pasteboard-background-color": (
-    default: (#d5d5d5),
+    ".": (#d5d5d5),
     "dark": (#ffffff),
     "darkest": (#ffffff),
     "light": (#d5d5d5),
@@ -135,10 +135,10 @@ $__token-values: (
     "midlight": (#d5d5d5),
   ),
   "alias.radial-reaction-color": (
-    default: (#22222299),
+    ".": (#22222299),
   ),
   "alias.text-highlight-color": (
-    default: (#0265dc33),
+    ".": (#0265dc33),
     "dark": (#54a3f640),
     "darkest": (#4096f34d),
     "light": (#0265dc33),
@@ -147,94 +147,94 @@ $__token-values: (
     "midlight": (#0057be33),
   ),
   "font.family.clean": (
-    default: ("Adobe Clean"),
+    ".": ("Adobe Clean"),
   ),
   "font.family.cleanHan": (
-    default: ("Adobe Clean Han"),
+    ".": ("Adobe Clean Han"),
   ),
   "font.family.cleanSerif": (
-    default: ("Adobe Clean Serif"),
+    ".": ("Adobe Clean Serif"),
   ),
   "font.family.sourceCode": (
-    default: ("Source Code Pro"),
+    ".": ("Source Code Pro"),
   ),
   "font.size.50": (
-    default: (11px),
+    ".": (11px),
     "desktop": (11px),
     "mobile": (13px),
   ),
   "font.size.75": (
-    default: (12px),
+    ".": (12px),
     "desktop": (12px),
     "mobile": (13px),
   ),
   "font.size.100": (
-    default: (14px),
+    ".": (14px),
     "desktop": (14px),
     "mobile": (17px),
   ),
   "font.size.200": (
-    default: (16px),
+    ".": (16px),
     "desktop": (16px),
     "mobile": (19px),
   ),
   "font.size.300": (
-    default: (18px),
+    ".": (18px),
     "desktop": (18px),
     "mobile": (22px),
   ),
   "font.size.400": (
-    default: (20px),
+    ".": (20px),
     "desktop": (20px),
     "mobile": (24px),
   ),
   "font.size.500": (
-    default: (22px),
+    ".": (22px),
     "desktop": (22px),
     "mobile": (27px),
   ),
   "font.size.600": (
-    default: (25px),
+    ".": (25px),
     "desktop": (25px),
     "mobile": (31px),
   ),
   "font.size.700": (
-    default: (28px),
+    ".": (28px),
     "desktop": (28px),
     "mobile": (34px),
   ),
   "font.size.800": (
-    default: (32px),
+    ".": (32px),
     "desktop": (32px),
     "mobile": (39px),
   ),
   "font.size.900": (
-    default: (36px),
+    ".": (36px),
     "desktop": (36px),
     "mobile": (44px),
   ),
   "font.size.1000": (
-    default: (40px),
+    ".": (40px),
     "desktop": (40px),
     "mobile": (49px),
   ),
   "font.size.1100": (
-    default: (45px),
+    ".": (45px),
     "desktop": (45px),
     "mobile": (55px),
   ),
   "font.size.1200": (
-    default: (50px),
+    ".": (50px),
     "desktop": (50px),
     "mobile": (62px),
   ),
   "font.size.1300": (
-    default: (60px),
+    ".": (60px),
     "desktop": (60px),
     "mobile": (70px),
   ),
   "global.color.blue.400": (
-    default: (#147af3),
+    ".": (#147af3),
     "dark": (#348ff4),
     "darkest": (#1d80f5),
     "light": (#147af3),
@@ -243,7 +243,7 @@ $__token-values: (
     "midlight": (#0468e1),
   ),
   "global.color.blue.500": (
-    default: (#0265dc),
+    ".": (#0265dc),
     "dark": (#54a3f6),
     "darkest": (#4096f3),
     "light": (#0265dc),
@@ -252,7 +252,7 @@ $__token-values: (
     "midlight": (#0057be),
   ),
   "global.color.blue.600": (
-    default: (#0054b6),
+    ".": (#0054b6),
     "dark": (#72b7f9),
     "darkest": (#5eaaf7),
     "light": (#0054b6),
@@ -261,7 +261,7 @@ $__token-values: (
     "midlight": (#004798),
   ),
   "global.color.blue.700": (
-    default: (#004491),
+    ".": (#004491),
     "dark": (#8fcafc),
     "darkest": (#7cbdfa),
     "light": (#004491),
@@ -270,7 +270,7 @@ $__token-values: (
     "midlight": (#003776),
   ),
   "global.color.celery.400": (
-    default: (#27bb36),
+    ".": (#27bb36),
     "dark": (#22b833),
     "darkest": (#0dab25),
     "light": (#27bb36),
@@ -279,7 +279,7 @@ $__token-values: (
     "midlight": (#07a721),
   ),
   "global.color.celery.500": (
-    default: (#07a721),
+    ".": (#07a721),
     "dark": (#44ca49),
     "darkest": (#2dbf3a),
     "light": (#07a721),
@@ -288,7 +288,7 @@ $__token-values: (
     "midlight": (#009413),
   ),
   "global.color.celery.600": (
-    default: (#009112),
+    ".": (#009112),
     "dark": (#69dc63),
     "darkest": (#50d052),
     "light": (#009112),
@@ -297,7 +297,7 @@ $__token-values: (
     "midlight": (#007f0f),
   ),
   "global.color.celery.700": (
-    default: (#007c0f),
+    ".": (#007c0f),
     "dark": (#8eeb7f),
     "darkest": (#73e06b),
     "light": (#007c0f),
@@ -306,7 +306,7 @@ $__token-values: (
     "midlight": (#006b0f),
   ),
   "global.color.chartreuse.400": (
-    default: (#98c50a),
+    ".": (#98c50a),
     "dark": (#94c008),
     "darkest": (#8ab403),
     "light": (#98c50a),
@@ -315,7 +315,7 @@ $__token-values: (
     "midlight": (#86af02),
   ),
   "global.color.chartreuse.500": (
-    default: (#87b103),
+    ".": (#87b103),
     "dark": (#a6d312),
     "darkest": (#9ac60b),
     "light": (#87b103),
@@ -324,7 +324,7 @@ $__token-values: (
     "midlight": (#779d00),
   ),
   "global.color.chartreuse.600": (
-    default: (#769c00),
+    ".": (#769c00),
     "dark": (#b8e525),
     "darkest": (#aad816),
     "light": (#769c00),
@@ -333,7 +333,7 @@ $__token-values: (
     "midlight": (#688a00),
   ),
   "global.color.chartreuse.700": (
-    default: (#678800),
+    ".": (#678800),
     "dark": (#cdf547),
     "darkest": (#bbe829),
     "light": (#678800),
@@ -342,7 +342,7 @@ $__token-values: (
     "midlight": (#5a7700),
   ),
   "global.color.fuchsia.400": (
-    default: (#cd3ace),
+    ".": (#cd3ace),
     "dark": (#cd39ce),
     "darkest": (#bf2bbf),
     "light": (#cd3ace),
@@ -351,7 +351,7 @@ $__token-values: (
     "midlight": (#ba26ba),
   ),
   "global.color.fuchsia.500": (
-    default: (#b622b7),
+    ".": (#b622b7),
     "dark": (#df51e0),
     "darkest": (#d341d5),
     "light": (#b622b7),
@@ -360,7 +360,7 @@ $__token-values: (
     "midlight": (#a309a3),
   ),
   "global.color.fuchsia.600": (
-    default: (#9d039e),
+    ".": (#9d039e),
     "dark": (#eb6eec),
     "darkest": (#e45be5),
     "light": (#9d039e),
@@ -369,7 +369,7 @@ $__token-values: (
     "midlight": (#860087),
   ),
   "global.color.fuchsia.700": (
-    default: (#800081),
+    ".": (#800081),
     "dark": (#f48cf2),
     "darkest": (#ef78ee),
     "light": (#800081),
@@ -378,7 +378,7 @@ $__token-values: (
     "midlight": (#680468),
   ),
   "global.color.gray.50": (
-    default: (#ffffff),
+    ".": (#ffffff),
     "dark": (#1d1d1d),
     "darkest": (#000000),
     "light": (#ffffff),
@@ -387,7 +387,7 @@ $__token-values: (
     "midlight": (#fafafa),
   ),
   "global.color.gray.75": (
-    default: (#fdfdfd),
+    ".": (#fdfdfd),
     "dark": (#262626),
     "darkest": (#0e0e0e),
     "light": (#fdfdfd),
@@ -396,7 +396,7 @@ $__token-values: (
     "midlight": (#efefef),
   ),
   "global.color.gray.100": (
-    default: (#f8f8f8),
+    ".": (#f8f8f8),
     "dark": (#323232),
     "darkest": (#1d1d1d),
     "light": (#f8f8f8),
@@ -405,7 +405,7 @@ $__token-values: (
     "midlight": (#dbdbdb),
   ),
   "global.color.gray.200": (
-    default: (#e6e6e6),
+    ".": (#e6e6e6),
     "dark": (#3f3f3f),
     "darkest": (#303030),
     "light": (#e6e6e6),
@@ -414,7 +414,7 @@ $__token-values: (
     "midlight": (#cfcfcf),
   ),
   "global.color.gray.300": (
-    default: (#d5d5d5),
+    ".": (#d5d5d5),
     "dark": (#545454),
     "darkest": (#4b4b4b),
     "light": (#d5d5d5),
@@ -423,7 +423,7 @@ $__token-values: (
     "midlight": (#c3c3c3),
   ),
   "global.color.gray.400": (
-    default: (#b1b1b1),
+    ".": (#b1b1b1),
     "dark": (#707070),
     "darkest": (#6a6a6a),
     "light": (#b1b1b1),
@@ -432,7 +432,7 @@ $__token-values: (
     "midlight": (#a6a6a6),
   ),
   "global.color.gray.500": (
-    default: (#909090),
+    ".": (#909090),
     "dark": (#909090),
     "darkest": (#8d8d8d),
     "light": (#909090),
@@ -441,7 +441,7 @@ $__token-values: (
     "midlight": (#8a8a8a),
   ),
   "global.color.gray.600": (
-    default: (#6d6d6d),
+    ".": (#6d6d6d),
     "dark": (#b2b2b2),
     "darkest": (#b0b0b0),
     "light": (#6d6d6d),
@@ -450,7 +450,7 @@ $__token-values: (
     "midlight": (#6a6a6a),
   ),
   "global.color.gray.700": (
-    default: (#464646),
+    ".": (#464646),
     "dark": (#d1d1d1),
     "darkest": (#d0d0d0),
     "light": (#464646),
@@ -459,7 +459,7 @@ $__token-values: (
     "midlight": (#454545),
   ),
   "global.color.gray.800": (
-    default: (#222222),
+    ".": (#222222),
     "dark": (#ebebeb),
     "darkest": (#ebebeb),
     "light": (#222222),
@@ -468,7 +468,7 @@ $__token-values: (
     "midlight": (#212121),
   ),
   "global.color.gray.900": (
-    default: (#000000),
+    ".": (#000000),
     "dark": (#ffffff),
     "darkest": (#ffffff),
     "light": (#000000),
@@ -477,7 +477,7 @@ $__token-values: (
     "midlight": (#000000),
   ),
   "global.color.green.400": (
-    default: (#008f5d),
+    ".": (#008f5d),
     "dark": (#12a26c),
     "darkest": (#009562),
     "light": (#008f5d),
@@ -486,7 +486,7 @@ $__token-values: (
     "midlight": (#007d4f),
   ),
   "global.color.green.500": (
-    default: (#007a4d),
+    ".": (#007a4d),
     "dark": (#2bb47d),
     "darkest": (#1ca872),
     "light": (#007a4d),
@@ -495,7 +495,7 @@ $__token-values: (
     "midlight": (#006941),
   ),
   "global.color.green.600": (
-    default: (#00653e),
+    ".": (#00653e),
     "dark": (#43c78f),
     "darkest": (#34bb84),
     "light": (#00653e),
@@ -504,7 +504,7 @@ $__token-values: (
     "midlight": (#005534),
   ),
   "global.color.green.700": (
-    default: (#005132),
+    ".": (#005132),
     "dark": (#5ed9a2),
     "darkest": (#4bcd95),
     "light": (#005132),
@@ -513,7 +513,7 @@ $__token-values: (
     "midlight": (#054128),
   ),
   "global.color.indigo.400": (
-    default: (#686df4),
+    ".": (#686df4),
     "dark": (#686df4),
     "darkest": (#5a60eb),
     "light": (#686df4),
@@ -522,7 +522,7 @@ $__token-values: (
     "midlight": (#565ce7),
   ),
   "global.color.indigo.500": (
-    default: (#5258e4),
+    ".": (#5258e4),
     "dark": (#7c81fb),
     "darkest": (#6e73f6),
     "light": (#5258e4),
@@ -531,7 +531,7 @@ $__token-values: (
     "midlight": (#4449d0),
   ),
   "global.color.indigo.600": (
-    default: (#4046ca),
+    ".": (#4046ca),
     "dark": (#9195ff),
     "darkest": (#8488fd),
     "light": (#4046ca),
@@ -540,7 +540,7 @@ $__token-values: (
     "midlight": (#3439b0),
   ),
   "global.color.indigo.700": (
-    default: (#3236a8),
+    ".": (#3236a8),
     "dark": (#a7aaff),
     "darkest": (#999dff),
     "light": (#3236a8),
@@ -549,7 +549,7 @@ $__token-values: (
     "midlight": (#272b8b),
   ),
   "global.color.magenta.400": (
-    default: (#de3d82),
+    ".": (#de3d82),
     "dark": (#de3d82),
     "darkest": (#d12b72),
     "light": (#de3d82),
@@ -558,7 +558,7 @@ $__token-values: (
     "midlight": (#cc276e),
   ),
   "global.color.magenta.500": (
-    default: (#c82269),
+    ".": (#c82269),
     "dark": (#ed5795),
     "darkest": (#e34589),
     "light": (#c82269),
@@ -567,7 +567,7 @@ $__token-values: (
     "midlight": (#b30f58),
   ),
   "global.color.magenta.600": (
-    default: (#ad0955),
+    ".": (#ad0955),
     "dark": (#f972a7),
     "darkest": (#f1619c),
     "light": (#ad0955),
@@ -576,7 +576,7 @@ $__token-values: (
     "midlight": (#950048),
   ),
   "global.color.magenta.700": (
-    default: (#8e0045),
+    ".": (#8e0045),
     "dark": (#ff8fb9),
     "darkest": (#fc7cad),
     "light": (#8e0045),
@@ -585,67 +585,67 @@ $__token-values: (
     "midlight": (#740039),
   ),
   "global.color.opacity.0": (
-    default: (0),
+    ".": (0),
   ),
   "global.color.opacity.4": (
-    default: (0.04),
+    ".": (0.04),
   ),
   "global.color.opacity.5": (
-    default: (0.05),
+    ".": (0.05),
   ),
   "global.color.opacity.6": (
-    default: (0.06),
+    ".": (0.06),
   ),
   "global.color.opacity.7": (
-    default: (0.07),
+    ".": (0.07),
   ),
   "global.color.opacity.8": (
-    default: (0.08),
+    ".": (0.08),
   ),
   "global.color.opacity.10": (
-    default: (0.1),
+    ".": (0.1),
   ),
   "global.color.opacity.15": (
-    default: (0.15),
+    ".": (0.15),
   ),
   "global.color.opacity.20": (
-    default: (0.2),
+    ".": (0.2),
   ),
   "global.color.opacity.25": (
-    default: (0.25),
+    ".": (0.25),
   ),
   "global.color.opacity.30": (
-    default: (0.3),
+    ".": (0.3),
   ),
   "global.color.opacity.40": (
-    default: (0.4),
+    ".": (0.4),
   ),
   "global.color.opacity.42": (
-    default: (0.42),
+    ".": (0.42),
   ),
   "global.color.opacity.50": (
-    default: (0.5),
+    ".": (0.5),
   ),
   "global.color.opacity.55": (
-    default: (0.55),
+    ".": (0.55),
   ),
   "global.color.opacity.60": (
-    default: (0.6),
+    ".": (0.6),
   ),
   "global.color.opacity.70": (
-    default: (0.7),
+    ".": (0.7),
   ),
   "global.color.opacity.80": (
-    default: (0.8),
+    ".": (0.8),
   ),
   "global.color.opacity.90": (
-    default: (0.9),
+    ".": (0.9),
   ),
   "global.color.opacity.100": (
-    default: (1),
+    ".": (1),
   ),
   "global.color.orange.400": (
-    default: (#f68511),
+    ".": (#f68511),
     "dark": (#f4810c),
     "darkest": (#e87400),
     "light": (#f68511),
@@ -654,7 +654,7 @@ $__token-values: (
     "midlight": (#e46f00),
   ),
   "global.color.orange.500": (
-    default: (#e46f00),
+    ".": (#e46f00),
     "dark": (#fe9a2e),
     "darkest": (#f98917),
     "light": (#e46f00),
@@ -663,7 +663,7 @@ $__token-values: (
     "midlight": (#cd5f00),
   ),
   "global.color.orange.600": (
-    default: (#cb5d00),
+    ".": (#cb5d00),
     "dark": (#ffb558),
     "darkest": (#ffa23b),
     "light": (#cb5d00),
@@ -672,7 +672,7 @@ $__token-values: (
     "midlight": (#b54f00),
   ),
   "global.color.orange.700": (
-    default: (#b14c00),
+    ".": (#b14c00),
     "dark": (#fdce88),
     "darkest": (#ffbc66),
     "light": (#b14c00),
@@ -681,7 +681,7 @@ $__token-values: (
     "midlight": (#9b4000),
   ),
   "global.color.purple.400": (
-    default: (#9d57f4),
+    ".": (#9d57f4),
     "dark": (#9d57f3),
     "darkest": (#9146ec),
     "light": (#9d57f4),
@@ -690,7 +690,7 @@ $__token-values: (
     "midlight": (#8d42e9),
   ),
   "global.color.purple.500": (
-    default: (#893de7),
+    ".": (#893de7),
     "dark": (#ac6ff9),
     "darkest": (#a25ef6),
     "light": (#893de7),
@@ -699,7 +699,7 @@ $__token-values: (
     "midlight": (#782ad8),
   ),
   "global.color.purple.600": (
-    default: (#7326d3),
+    ".": (#7326d3),
     "dark": (#bb87fb),
     "darkest": (#b277fa),
     "light": (#7326d3),
@@ -708,7 +708,7 @@ $__token-values: (
     "midlight": (#6116be),
   ),
   "global.color.purple.700": (
-    default: (#5d13b7),
+    ".": (#5d13b7),
     "dark": (#ca9ffc),
     "darkest": (#c08ffc),
     "light": (#5d13b7),
@@ -717,7 +717,7 @@ $__token-values: (
     "midlight": (#4a0c99),
   ),
   "global.color.red.400": (
-    default: (#ea3829),
+    ".": (#ea3829),
     "dark": (#ea3829),
     "darkest": (#dd2118),
     "light": (#ea3829),
@@ -726,7 +726,7 @@ $__token-values: (
     "midlight": (#d81a13),
   ),
   "global.color.red.500": (
-    default: (#d31510),
+    ".": (#d31510),
     "dark": (#f65843),
     "darkest": (#ee4331),
     "light": (#d31510),
@@ -735,7 +735,7 @@ $__token-values: (
     "midlight": (#bb0202),
   ),
   "global.color.red.600": (
-    default: (#b40000),
+    ".": (#b40000),
     "dark": (#ff755e),
     "darkest": (#f9634c),
     "light": (#b40000),
@@ -744,7 +744,7 @@ $__token-values: (
     "midlight": (#990000),
   ),
   "global.color.red.700": (
-    default: (#930000),
+    ".": (#930000),
     "dark": (#ff9581),
     "darkest": (#ff816b),
     "light": (#930000),
@@ -753,7 +753,7 @@ $__token-values: (
     "midlight": (#780000),
   ),
   "global.color.seafoam.400": (
-    default: (#00a19a),
+    ".": (#00a19a),
     "dark": (#009e98),
     "darkest": (#00928c),
     "light": (#00a19a),
@@ -762,7 +762,7 @@ $__token-values: (
     "midlight": (#008e88),
   ),
   "global.color.seafoam.500": (
-    default: (#008c87),
+    ".": (#008c87),
     "dark": (#03b2ab),
     "darkest": (#00a59f),
     "light": (#008c87),
@@ -771,7 +771,7 @@ $__token-values: (
     "midlight": (#007a75),
   ),
   "global.color.seafoam.600": (
-    default: (#007772),
+    ".": (#007772),
     "dark": (#36c5bd),
     "darkest": (#1ab9b2),
     "light": (#007772),
@@ -780,7 +780,7 @@ $__token-values: (
     "midlight": (#006763),
   ),
   "global.color.seafoam.700": (
-    default: (#00635f),
+    ".": (#00635f),
     "dark": (#5dd6cf),
     "darkest": (#42cac3),
     "light": (#00635f),
@@ -789,7 +789,7 @@ $__token-values: (
     "midlight": (#0a5350),
   ),
   "global.color.yellow.400": (
-    default: (#e8c600),
+    ".": (#e8c600),
     "dark": (#e4c200),
     "darkest": (#d8b500),
     "light": (#e8c600),
@@ -798,7 +798,7 @@ $__token-values: (
     "midlight": (#d3af00),
   ),
   "global.color.yellow.500": (
-    default: (#d7b300),
+    ".": (#d7b300),
     "dark": (#f4d500),
     "darkest": (#e9c700),
     "light": (#d7b300),
@@ -807,7 +807,7 @@ $__token-values: (
     "midlight": (#c29d00),
   ),
   "global.color.yellow.600": (
-    default: (#c49f00),
+    ".": (#c49f00),
     "dark": (#f9e85c),
     "darkest": (#f7d804),
     "light": (#c49f00),
@@ -816,7 +816,7 @@ $__token-values: (
     "midlight": (#b08c00),
   ),
   "global.color.yellow.700": (
-    default: (#b08c00),
+    ".": (#b08c00),
     "dark": (#fcf6bb),
     "darkest": (#f9e961),
     "light": (#b08c00),
@@ -825,7 +825,7 @@ $__token-values: (
     "midlight": (#9d7a00),
   ),
   "scrollbar.mac.l.track-background-color": (
-    default: (#fdfdfd),
+    ".": (#fdfdfd),
     "dark": (#f8f8f8),
     "darkest": (#f8f8f8),
     "light": (#fdfdfd),
@@ -833,7 +833,7 @@ $__token-values: (
     "midlight": (#00000000),
   ),
   "scrollbar.mac.m.track-background-color": (
-    default: (#fdfdfd),
+    ".": (#fdfdfd),
     "dark": (#f8f8f8),
     "darkest": (#f8f8f8),
     "light": (#fdfdfd),
@@ -841,7 +841,7 @@ $__token-values: (
     "midlight": (#00000000),
   ),
   "scrollbar.mac.s.track-background-color": (
-    default: (#fdfdfd),
+    ".": (#fdfdfd),
     "dark": (#f8f8f8),
     "darkest": (#f8f8f8),
     "light": (#fdfdfd),
@@ -849,7 +849,7 @@ $__token-values: (
     "midlight": (#00000000),
   ),
   "well.background-color": (
-    default: (#22222205),
+    ".": (#22222205),
     "dark": (#ebebeb05),
     "darkest": (#ebebeb05),
     "light": (#22222205),
@@ -872,7 +872,7 @@ $__token-typography-mixins: (
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
-    @return map.get($_token, default);
+    @return map.get($_token, ".");
   }
 }
 
@@ -882,19 +882,19 @@ $__token-typography-mixins: (
   }
   $_modes: ();
   @each $k in map.get($__token-values, $tokenName) {
-    @if $k != "default" {
+    @if $k != "." {
       $_modes: list.append($_modes, $k);
     }
   }
   @return $_modes;
 }
 
-@mixin typography($tokenName, $modeName: default) {
+@mixin typography($tokenName, $modeName: ".") {
   @if map.has-key($__token-typography-mixins, $tokenName) == false {
     @error "No typography mixin named \"#{$tokenName}\"";
   }
   $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_mixin, default);
+  $_properties: map.get($_mixin, ".");
   @if map.has-key($_mixin, $modeName) {
     $_properties: map.get($_mixin, $modeName);
   }

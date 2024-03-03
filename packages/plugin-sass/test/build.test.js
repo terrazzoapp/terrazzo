@@ -24,7 +24,7 @@ describe('@cobalt-ui/plugin-sass', () => {
     test('basic (indented)', async () => {
       const cwd = new URL(`./basic/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
-      await build(tokens, {
+      const {errors} = await build(tokens, {
         outDir: cwd,
         plugins: [
           pluginSass({
@@ -34,13 +34,14 @@ describe('@cobalt-ui/plugin-sass', () => {
         ],
         color: {},
       });
+      expect(errors).toBe(undefined);
       expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.sass', cwd)));
     });
 
     test('plugin-css', async () => {
       const cwd = new URL(`./plugin-css/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
-      await build(tokens, {
+      const {errors} = await build(tokens, {
         outDir: cwd,
         plugins: [
           pluginSass({
@@ -50,6 +51,7 @@ describe('@cobalt-ui/plugin-sass', () => {
         ],
         color: {},
       });
+      expect(errors).toBe(undefined);
       expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.scss', cwd)));
     });
   });

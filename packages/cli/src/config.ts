@@ -47,6 +47,8 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
         tokensPath = new URL('./tokens.yaml', cwd);
         if (fs.existsSync(tokensPath)) {
           config.tokens[i] = tokensPath;
+        } else {
+          throw new Error(`Can’t resolve ${config.tokens[i]}. Does the file or URL exist?`);
         }
       }
       // otherwise, attempt Node resolution (sometimes it do be like that)

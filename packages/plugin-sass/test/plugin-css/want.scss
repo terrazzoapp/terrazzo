@@ -9,23 +9,36 @@
 
 $__token-values: (
   "border.std": (
-    default: (var(--ds-border-std)),
+    ".": (var(--ds-border-std)),
     "light": (var(--ds-border-std)),
     "dark": (var(--ds-border-std)),
   ),
+  "color.blue": (
+    ".": (var(--ds-color-blue)),
+  ),
   "color.green": (
-    default: (var(--ds-color-green)),
+    ".": (var(--ds-color-green)),
+    "default": (var(--ds-color-green)),
     "light": (var(--ds-color-green)),
     "dark": (var(--ds-color-green)),
   ),
+  "color.red": (
+    ".": (var(--ds-color-red)),
+  ),
+  "color.redgreenblue": (
+    ".": (var(--ds-color-redgreenblue)),
+    "red": (var(--ds-color-red)),
+    "blue": (var(--ds-color-blue)),
+    "green": (var(--ds-color-green)),
+  ),
   "gradient.g-b": (
-    default: (var(--ds-gradient-g-b)),
+    ".": (var(--ds-gradient-g-b)),
   ),
   "shadow": (
-    default: (var(--ds-shadow)),
+    ".": (var(--ds-shadow)),
   ),
   "transition": (
-    default: (var(--ds-transition)),
+    ".": (var(--ds-transition)),
   ),
   "typography.body": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.body\")` instead.",
@@ -34,10 +47,10 @@ $__token-values: (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.callout\")` instead.",
   ),
   "typography.family.body": (
-    default: (var(--ds-typography-family-body)),
+    ".": (var(--ds-typography-family-body)),
   ),
   "typography.family.heading": (
-    default: (var(--ds-typography-family-heading)),
+    ".": (var(--ds-typography-family-heading)),
   ),
   "typography.page-title": (
     "__cobalt-error": "This is a typography mixin. Use `@include typography(\"typography.page-title\")` instead.",
@@ -49,7 +62,7 @@ $__token-values: (
 
 $__token-typography-mixins: (
   "typography.body": (
-    default: (
+    ".": (
       "font-family": (var(--ds-typography-body-font-family)),
       "font-size": (var(--ds-typography-body-font-size)),
       "font-weight": (var(--ds-typography-body-font-weight)),
@@ -57,7 +70,7 @@ $__token-typography-mixins: (
     ),
   ),
   "typography.callout": (
-    default: (
+    ".": (
       "font-family": (var(--ds-typography-callout-font-family)),
       "font-size": (var(--ds-typography-callout-font-size)),
       "font-style": (var(--ds-typography-callout-font-style)),
@@ -66,7 +79,7 @@ $__token-typography-mixins: (
     ),
   ),
   "typography.page-title": (
-    default: (
+    ".": (
       "font-family": (var(--ds-typography-page-title-font-family)),
       "font-size": (var(--ds-typography-page-title-font-size)),
       "font-weight": (var(--ds-typography-page-title-font-weight)),
@@ -75,7 +88,7 @@ $__token-typography-mixins: (
     ),
   ),
   "typography.subheading": (
-    default: (
+    ".": (
       "font-family": (var(--ds-typography-subheading-font-family)),
       "font-size": (var(--ds-typography-subheading-font-size)),
       "font-weight": (var(--ds-typography-subheading-font-weight)),
@@ -86,7 +99,7 @@ $__token-typography-mixins: (
   ),
 );
 
-@function token($tokenName, $modeName: default) {
+@function token($tokenName, $modeName: ".") {
   @if map.has-key($__token-values, $tokenName) == false {
     @error "No token named \"#{$tokenName}\"";
   }
@@ -97,7 +110,7 @@ $__token-typography-mixins: (
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName);
   } @else {
-    @return map.get($_token, default);
+    @return map.get($_token, ".");
   }
 }
 
@@ -107,19 +120,19 @@ $__token-typography-mixins: (
   }
   $_modes: ();
   @each $k in map.get($__token-values, $tokenName) {
-    @if $k != "default" {
+    @if $k != "." {
       $_modes: list.append($_modes, $k);
     }
   }
   @return $_modes;
 }
 
-@mixin typography($tokenName, $modeName: default) {
+@mixin typography($tokenName, $modeName: ".") {
   @if map.has-key($__token-typography-mixins, $tokenName) == false {
     @error "No typography mixin named \"#{$tokenName}\"";
   }
   $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_mixin, default);
+  $_properties: map.get($_mixin, ".");
   @if map.has-key($_mixin, $modeName) {
     $_properties: map.get($_mixin, $modeName);
   }

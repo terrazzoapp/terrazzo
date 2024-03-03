@@ -5,49 +5,46 @@
  */
 
 import {
-  ColorToken,
-  FontFamilyToken,
   ParsedColorToken,
   ParsedFontFamilyToken,
   ParsedTypographyToken,
-  TypographyToken,
 } from '@cobalt-ui/core';
 
 export declare const tokens: {
-  'color.systemBlue': ColorToken['$value'];
-  'color.systemBrown': ColorToken['$value'];
-  'color.systemCyan': ColorToken['$value'];
-  'color.systemGray': ColorToken['$value'];
-  'color.systemGray2': ColorToken['$value'];
-  'color.systemGray3': ColorToken['$value'];
-  'color.systemGray4': ColorToken['$value'];
-  'color.systemGray5': ColorToken['$value'];
-  'color.systemGray6': ColorToken['$value'];
-  'color.systemGreen': ColorToken['$value'];
-  'color.systemIndigo': ColorToken['$value'];
-  'color.systemMint': ColorToken['$value'];
-  'color.systemOrange': ColorToken['$value'];
-  'color.systemPink': ColorToken['$value'];
-  'color.systemPurple': ColorToken['$value'];
-  'color.systemRed': ColorToken['$value'];
-  'color.systemTeal': ColorToken['$value'];
-  'color.systemYellow': ColorToken['$value'];
-  'font.family.newYork': FontFamilyToken['$value'];
-  'font.family.sfCompact': FontFamilyToken['$value'];
-  'font.family.sfMono': FontFamilyToken['$value'];
-  'font.family.sfPro': FontFamilyToken['$value'];
-  'font.family.sfProRounded': FontFamilyToken['$value'];
-  'font.style.body': TypographyToken['$value'];
-  'font.style.callout': TypographyToken['$value'];
-  'font.style.caption_2': TypographyToken['$value'];
-  'font.style.caption1': TypographyToken['$value'];
-  'font.style.footnote': TypographyToken['$value'];
-  'font.style.headline': TypographyToken['$value'];
-  'font.style.largeTitle': TypographyToken['$value'];
-  'font.style.subhead': TypographyToken['$value'];
-  'font.style.title1': TypographyToken['$value'];
-  'font.style.title2': TypographyToken['$value'];
-  'font.style.title3': TypographyToken['$value'];
+  'color.systemBlue': ParsedColorToken['$value'];
+  'color.systemBrown': ParsedColorToken['$value'];
+  'color.systemCyan': ParsedColorToken['$value'];
+  'color.systemGray': ParsedColorToken['$value'];
+  'color.systemGray2': ParsedColorToken['$value'];
+  'color.systemGray3': ParsedColorToken['$value'];
+  'color.systemGray4': ParsedColorToken['$value'];
+  'color.systemGray5': ParsedColorToken['$value'];
+  'color.systemGray6': ParsedColorToken['$value'];
+  'color.systemGreen': ParsedColorToken['$value'];
+  'color.systemIndigo': ParsedColorToken['$value'];
+  'color.systemMint': ParsedColorToken['$value'];
+  'color.systemOrange': ParsedColorToken['$value'];
+  'color.systemPink': ParsedColorToken['$value'];
+  'color.systemPurple': ParsedColorToken['$value'];
+  'color.systemRed': ParsedColorToken['$value'];
+  'color.systemTeal': ParsedColorToken['$value'];
+  'color.systemYellow': ParsedColorToken['$value'];
+  'font.family.newYork': ParsedFontFamilyToken['$value'];
+  'font.family.sfCompact': ParsedFontFamilyToken['$value'];
+  'font.family.sfMono': ParsedFontFamilyToken['$value'];
+  'font.family.sfPro': ParsedFontFamilyToken['$value'];
+  'font.family.sfProRounded': ParsedFontFamilyToken['$value'];
+  'font.style.body': ParsedTypographyToken['$value'];
+  'font.style.callout': ParsedTypographyToken['$value'];
+  'font.style.caption_2': ParsedTypographyToken['$value'];
+  'font.style.caption1': ParsedTypographyToken['$value'];
+  'font.style.footnote': ParsedTypographyToken['$value'];
+  'font.style.headline': ParsedTypographyToken['$value'];
+  'font.style.largeTitle': ParsedTypographyToken['$value'];
+  'font.style.subhead': ParsedTypographyToken['$value'];
+  'font.style.title1': ParsedTypographyToken['$value'];
+  'font.style.title2': ParsedTypographyToken['$value'];
+  'font.style.title3': ParsedTypographyToken['$value'];
 };
 
 export declare const meta: {
@@ -89,211 +86,211 @@ export declare const meta: {
 
 export declare const modes: {
   'color.systemBlue': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemBrown': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemCyan': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray2': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray3': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray4': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray5': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGray6': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemGreen': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemIndigo': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemMint': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemOrange': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemPink': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemPurple': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemRed': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemTeal': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'color.systemYellow': {
-    light: ColorToken['$value'];
-    dark: ColorToken['$value'];
-    light_ax: ColorToken['$value'];
-    dark_ax: ColorToken['$value'];
+    light: ParsedColorToken['$value'];
+    dark: ParsedColorToken['$value'];
+    light_ax: ParsedColorToken['$value'];
+    dark_ax: ParsedColorToken['$value'];
   };
   'font.style.body': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.callout': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.caption_2': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.caption1': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.footnote': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.headline': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.largeTitle': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.subhead': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.title1': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.title2': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
   'font.style.title3': {
-    xSmall: TypographyToken['$value'];
-    Small: TypographyToken['$value'];
-    Medium: TypographyToken['$value'];
-    Large: TypographyToken['$value'];
-    xLarge: TypographyToken['$value'];
-    xxLarge: TypographyToken['$value'];
-    xxxLarge: TypographyToken['$value'];
+    xSmall: ParsedTypographyToken['$value'];
+    Small: ParsedTypographyToken['$value'];
+    Medium: ParsedTypographyToken['$value'];
+    Large: ParsedTypographyToken['$value'];
+    xLarge: ParsedTypographyToken['$value'];
+    xxLarge: ParsedTypographyToken['$value'];
+    xxxLarge: ParsedTypographyToken['$value'];
   };
 };
 

@@ -13,7 +13,7 @@ import pluginCSS, {
   transformStrokeStyle,
   varRef,
 } from '@cobalt-ui/plugin-css';
-import {indent, isAlias} from '@cobalt-ui/utils';
+import {indent, isAlias, parseAlias} from '@cobalt-ui/utils';
 import {encode, formatFontFamilyNames} from './util.js';
 
 const CAMELCASE_RE = /([^A-Z])([A-Z])/g;
@@ -22,6 +22,8 @@ const VAR_TYPOGRAPHY = '__token-typography-mixins';
 const VAR_ERROR = '__cobalt-error';
 const TRAILING_WS_RE = /\s+$/gm;
 const DEPENDENCIES = ['sass:list', 'sass:map'];
+
+const DEFAULT_KEY = '"."';
 
 export interface Options {
   /** output file (default: "./tokens/index.sass") */
@@ -51,7 +53,7 @@ export default function pluginSass(options?: Options): Plugin {
   const cbOpen = options?.indentedSyntax ? '' : ' {';
   const cbClose = options?.indentedSyntax ? '' : '} ';
 
-  const TOKEN_FN = `@function token($tokenName, $modeName: default)${cbOpen}
+  const TOKEN_FN = `@function token($tokenName, $modeName: ${DEFAULT_KEY})${cbOpen}
   @if map.has-key($${VAR_TOKENS}, $tokenName) == false${cbOpen}
     @error "No token named \\"#{$tokenName}\\""${semi}
   ${cbClose}
@@ -62,7 +64,7 @@ export default function pluginSass(options?: Options): Plugin {
   @if map.has-key($_token, $modeName) {
     @return map.get($_token, $modeName)${semi}
   ${cbClose}@else${cbOpen}
-    @return map.get($_token, default)${semi}
+    @return map.get($_token, ${DEFAULT_KEY})${semi}
   ${cbClose}
 ${cbClose}`
     .trim()
@@ -74,7 +76,7 @@ ${cbClose}`
   ${cbClose}
   $_modes: ();
   @each $k in map.get($${VAR_TOKENS}, $tokenName)${cbOpen}
-    @if $k != "default"${cbOpen}
+    @if $k != ${DEFAULT_KEY}${cbOpen}
       $_modes: list.append($_modes, $k);
     ${cbClose}
   ${cbClose}
@@ -83,12 +85,12 @@ ${cbClose}`
     .trim()
     .replace(TRAILING_WS_RE, '');
 
-  const TYPOGRAPHY_MIXIN = `@mixin typography($tokenName, $modeName: default)${cbOpen}
+  const TYPOGRAPHY_MIXIN = `@mixin typography($tokenName, $modeName: ${DEFAULT_KEY})${cbOpen}
   @if map.has-key($${VAR_TYPOGRAPHY}, $tokenName) == false${cbOpen}
     @error "No typography mixin named \\"#{$tokenName}\\""${semi}
   ${cbClose}
   $_mixin: map.get($${VAR_TYPOGRAPHY}, $tokenName)${semi}
-  $_properties: map.get($_mixin, default)${semi}
+  $_properties: map.get($_mixin, ${DEFAULT_KEY})${semi}
   @if map.has-key($_mixin, $modeName)${cbOpen}
     $_properties: map.get($_mixin, $modeName)${semi}
   ${cbClose}
@@ -145,20 +147,28 @@ ${cbClose}`
           }
         }
         if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
-        output.push(indent(`default: (${value}),`, 2));
+        output.push(indent(`${DEFAULT_KEY}: (${value}),`, 2));
 
         // modes
-        for (const modeName of Object.keys((token.$extensions && token.$extensions.mode) || {})) {
+        for (const modeName in (token.$extensions && token.$extensions.mode) || {}) {
           let modeValue: string | number | undefined | null;
           if (cssPlugin) {
-            modeValue = varRef(token.id, {tokens, generateName});
+            const rawValue = token._original.$extensions!.mode![modeName] as ParsedToken['$value'];
+            if (typeof rawValue === 'string' && isAlias(rawValue)) {
+              const {id: aliasID} = parseAlias(rawValue);
+              modeValue = varRef(aliasID, {tokens, generateName});
+            } else {
+              modeValue = varRef(token.id, {tokens, generateName});
+            }
           } else {
             modeValue = options?.transform?.(token, modeName);
             if (modeValue === undefined || modeValue === null) {
               modeValue = defaultTransformer(token, {colorFormat, mode: modeName});
             }
           }
-          if (token.$type === 'link' && options?.embedFiles) modeValue = encode(modeValue as string, config.outDir);
+          if (token.$type === 'link' && options?.embedFiles) {
+            modeValue = encode(modeValue as string, config.outDir);
+          }
           output.push(indent(`"${modeName}": (${modeValue}),`, 2));
         }
         output.push(indent('),', 1));
@@ -170,7 +180,7 @@ ${cbClose}`
       output.push(`$${VAR_TYPOGRAPHY}: (`);
       for (const token of typographyTokens) {
         output.push(indent(`"${token.id}": (`, 1));
-        output.push(indent(`default: (`, 2));
+        output.push(indent(`${DEFAULT_KEY}: (`, 2));
         const defaultProperties = Object.entries(token.$value); // legacy: support camelCase properties
         defaultProperties.sort(([a], [b]) => a.localeCompare(b));
         for (const [k, value] of defaultProperties) {
@@ -182,7 +192,8 @@ ${cbClose}`
           }
         }
         output.push(indent(`),`, 2));
-        for (const [mode, modeValue] of Object.entries((token.$extensions && token.$extensions.mode) || {})) {
+        for (const mode in (token.$extensions && token.$extensions.mode) || {}) {
+          const modeValue = token.$extensions?.mode?.[mode] || '';
           output.push(indent(`"${mode}": (`, 2));
           const modeProperties = Object.entries(modeValue);
           modeProperties.sort(([a], [b]) => a.localeCompare(b));
