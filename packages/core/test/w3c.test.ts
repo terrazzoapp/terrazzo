@@ -42,6 +42,15 @@ describe('5. Group', () => {
     const tokens = getTokens(json);
     expect(tokens.find((t) => t.id === 'color.blue')!.$type).toBe('color');
   });
+
+  test('allow empty', () => {
+    const json = {
+      color: {
+      },
+    };
+    const tokens = getTokens(json);
+    expect(tokens.length).toBe(0);
+  });
 });
 
 describe('7. Alias', () => {
