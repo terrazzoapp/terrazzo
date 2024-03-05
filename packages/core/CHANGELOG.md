@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.7.3
+
+### Patch Changes
+
+- [#208](https://github.com/drwpow/cobalt-ui/pull/208) [`12f41273b853b98c8da665552ab342df7b0baf9e`](https://github.com/drwpow/cobalt-ui/commit/12f41273b853b98c8da665552ab342df7b0baf9e) Thanks [@james-nash](https://github.com/james-nash)! - Allows DTCG files to contain empty groups. Previously they would cause a parsing error, now only a warning will be logged.
+
 ## 1.7.2
 
 ### Patch Changes
