@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/core",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
-  "version": "1.7.0",
+  "version": "1.7.2",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"

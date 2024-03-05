@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.7.2
+
+### Patch Changes
+
+- [#205](https://github.com/drwpow/cobalt-ui/pull/205) [`5f39eb577ce4ede00d479d2ecc73bd087aa584c2`](https://github.com/drwpow/cobalt-ui/commit/5f39eb577ce4ede00d479d2ecc73bd087aa584c2) Thanks [@drwpow](https://github.com/drwpow)! - Improve parsing of Tokens Studio files
+
 ## 1.7.0
 
 ### Minor Changes
