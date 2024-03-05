@@ -89,7 +89,7 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         continue;
       }
       if (!Object.keys(v).length) {
-        errors.push(`${k}: groups can’t be empty`);
+        warnings.push(`${k}: group is empty`);
       }
 
       // token
