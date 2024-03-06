@@ -12,7 +12,7 @@ export interface Options {
   js?: boolean | string;
   /** output JSON? (default: false) */
   json?: boolean | string;
-  /** output meta? (default: false) */
+  /** include meta object in output? (default: true) */
   meta?: boolean;
   /** modify values */
   transform?: TransformFn;
