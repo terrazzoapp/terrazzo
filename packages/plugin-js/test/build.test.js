@@ -58,6 +58,7 @@ describe('@cobalt-ui/plugin-js', () => {
           meta: false,
         }),
       ],
+      color: {},
     });
     expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `meta: JS`).toMatchFileSnapshot(fileURLToPath(new URL('want.js', cwd)));
     expect(fs.readFileSync(new URL('actual.d.ts', cwd), 'utf8'), `meta: TS`).toMatchFileSnapshot(fileURLToPath(new URL('want.d.ts', cwd)));
