@@ -45,4 +45,23 @@ describe('@cobalt-ui/plugin-js', () => {
       expect(fs.readFileSync(new URL('actual.json', cwd), 'utf8'), `nested: JSON`).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
     });
   });
+
+  test('exclude meta from output when options.meta is false', async () => {
+    const cwd = new URL(`./meta/`, import.meta.url);
+    const tokens = JSON.parse(fs.readFileSync(new URL('tokens.json', cwd)));
+    await build(tokens, {
+      outDir: cwd,
+      plugins: [
+        pluginJS({
+          js: 'actual.js',
+          json: 'actual.json',
+          meta: false,
+        }),
+      ],
+      color: {},
+    });
+    expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `meta: JS`).toMatchFileSnapshot(fileURLToPath(new URL('want.js', cwd)));
+    expect(fs.readFileSync(new URL('actual.d.ts', cwd), 'utf8'), `meta: TS`).toMatchFileSnapshot(fileURLToPath(new URL('want.d.ts', cwd)));
+    expect(fs.readFileSync(new URL('actual.json', cwd), 'utf8'), `meta: JSON`).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
+  });
 });

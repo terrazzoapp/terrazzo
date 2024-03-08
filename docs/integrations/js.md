@@ -100,6 +100,8 @@ export default {
       js: './index.js',
       /** output JSON? boolean or filename */
       json: false,
+      /** include meta object in output? */
+      meta: true,
       /** (optional) transform specific token values */
       transform: () => null,
     }),
@@ -109,7 +111,24 @@ export default {
 
 :::
 
-## Transform
+### Exclude Metadata
+
+In some cases the `meta` API object can become very large. Setting the `meta` option to `false` will remove it from the output JavaScript.
+
+```js
+/** @type {import('@cobalt-ui/core').Config} */
+export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
+  plugins: [
+    pluginJS({
+      meta: false,
+    }),
+  ],
+};
+```
+
+### Transform
 
 Inside plugin options, you can specify an optional `transform()` function.
 

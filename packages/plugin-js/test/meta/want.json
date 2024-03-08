@@ -1,0 +1,29 @@
+{
+  "tokens": {
+    "color.black": "#00193f",
+    "color.blue.00": "#00193f",
+    "color.blue.10": "#062053",
+    "color.blue.20": "#0f2868",
+    "color.blue.30": "#192f7d",
+    "color.blue.40": "#223793",
+    "color.blue.50": "#2b3faa",
+    "color.blue.60": "#3764ba",
+    "color.blue.70": "#4887c9",
+    "color.blue.80": "#5ca9d7",
+    "color.blue.90": "#72cce5",
+    "color.blue.100": "#89eff1",
+    "color.white": "#ffffff",
+    "ui.bg": "#ffffff",
+    "ui.fg": "#00193f"
+  },
+  "modes": {
+    "ui.bg": {
+      "light": "#ffffff",
+      "dark": "#00193f"
+    },
+    "ui.fg": {
+      "light": "#00193f",
+      "dark": "#ffffff"
+    }
+  }
+}
