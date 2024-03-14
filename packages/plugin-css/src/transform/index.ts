@@ -1,4 +1,4 @@
-import { ParsedToken } from '@cobalt-ui/core';
+import type { ParsedToken } from '@cobalt-ui/core';
 import { isAlias, kebabinate, parseAlias } from '@cobalt-ui/utils';
 import transformColor, { type ColorFormat } from './color.js';
 import transformDimension from './dimension.js';
@@ -118,8 +118,12 @@ export default function transform(
       }
 
       // handle backwards compat for previous versions that didn’t always return array
-      if (!Array.isArray(value)) value = [value];
-      if (!Array.isArray(originalVal)) originalVal = [originalVal];
+      if (!Array.isArray(value)) {
+        value = [value];
+      }
+      if (!Array.isArray(originalVal)) {
+        originalVal = [originalVal];
+      }
 
       return value
         .map((shadow, i) => {

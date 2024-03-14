@@ -23,7 +23,7 @@ export const STARTS_WITH_NUMBER_RE = /^[0-9]/;
 export const CASECHANGE_RE = /[a-zâ-ž][A-ZÀ-Ž]/g;
 export const KEBAB_COVERT_RE = /[_.]/g;
 export const CAMEL_CONVERT_RE = /[^-_.\s][-_.\s]+[^-_.\s]/g;
-/* eslint-disable-next-line no-misleading-character-class */
+
 export const VALID_KEY = new RegExp(`^[${CHARACTER_RE.join('')}]+$`);
 
 /** convert string to kebab-case */
@@ -36,7 +36,9 @@ export function kebabinate(input: string): string {
 
 /** convert input to camelCase */
 export function camelize(input: string): string {
-  if (input.length < 2) return input;
+  if (input.length < 2) {
+    return input;
+  }
   return input.replace(CAMEL_CONVERT_RE, (s) => `${s[0]!.toLocaleLowerCase()}${s[s.length - 1]!.toLocaleUpperCase()}`);
 }
 

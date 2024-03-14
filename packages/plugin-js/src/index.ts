@@ -71,7 +71,9 @@ export function serializeJS(value: unknown, options?: { comments?: Record<string
     throw new Error(`Cannot serialize function ${value}`);
   }
   if (typeof value === 'object') {
-    if (isEmptyObject(value)) return '{}';
+    if (isEmptyObject(value)) {
+      return '{}';
+    }
 
     return `{
 ${Object.entries(value)
@@ -104,7 +106,9 @@ export function serializeTS(value: unknown, options?: { indentLv?: number }): st
     throw new Error(`Cannot serialize function ${value}`);
   }
   if (typeof value === 'object') {
-    if (isEmptyObject(value)) return 'Record<string, never>';
+    if (isEmptyObject(value)) {
+      return 'Record<string, never>';
+    }
 
     return `{
 ${Object.entries(value)
@@ -137,21 +141,33 @@ function setToken<T extends Record<string, any>>(obj: T, id: keyof T, value: any
 }
 
 export default function pluginJS(options?: Options): Plugin {
-  if (options && options.js === false && options.json === false) throw new Error(`[plugin-js] Must output either JS or JSON. Received "js: false" and "json: false"`);
+  if (options && options.js === false && options.json === false) {
+    throw new Error(`[plugin-js] Must output either JS or JSON. Received "js: false" and "json: false"`);
+  }
 
   const tsImports = new Set<string>();
 
   // set default options
   let jsFilename: string | undefined = './index.js';
-  if (options?.js === false || (options?.js === undefined && options?.json !== undefined)) jsFilename = undefined;
-  else if (typeof options?.js === 'string' && options.js.length) jsFilename = options.js;
+  if (options?.js === false || (options?.js === undefined && options?.json !== undefined)) {
+    jsFilename = undefined;
+  } else if (typeof options?.js === 'string' && options.js.length) {
+    jsFilename = options.js;
+  }
   let jsonFilename: string | undefined;
-  if (options?.json === true) jsonFilename = './tokens.json';
-  else if (typeof options?.json === 'string' && options.json.length) jsonFilename = options.json;
+  if (options?.json === true) {
+    jsonFilename = './tokens.json';
+  } else if (typeof options?.json === 'string' && options.json.length) {
+    jsonFilename = options.json;
+  }
 
   // validate options
-  if (jsFilename && !JS_EXT_RE.test(jsFilename)) throw new Error(`JS filename must end in .js or .mjs`);
-  if (jsonFilename && !JSON_EXT_RE.test(jsonFilename)) throw new Error(`JSON filename must end in .json`);
+  if (jsFilename && !JS_EXT_RE.test(jsFilename)) {
+    throw new Error(`JS filename must end in .js or .mjs`);
+  }
+  if (jsonFilename && !JSON_EXT_RE.test(jsonFilename)) {
+    throw new Error(`JSON filename must end in .json`);
+  }
 
   return {
     name: '@cobalt-ui/plugin-js',
@@ -196,7 +212,9 @@ export default function pluginJS(options?: Options): Plugin {
         }
         if (token.$extensions?.mode) {
           setToken(js.modes, token.id, {}, options?.deep);
-          if (buildTS) setToken(ts.modes, token.id, {}, options?.deep);
+          if (buildTS) {
+            setToken(ts.modes, token.id, {}, options?.deep);
+          }
           for (const modeName of Object.keys(token.$extensions.mode)) {
             let modeResult = await options?.transform?.(token, modeName);
             if (modeResult === undefined || modeResult === null) {
@@ -244,7 +262,9 @@ export default function pluginJS(options?: Options): Plugin {
         sortedTypeImports.sort();
         const jsDoc: Record<string, string> = {};
         for (const token of tokens) {
-          if (token.$description) jsDoc[token.id] = token.$description;
+          if (token.$description) {
+            jsDoc[token.id] = token.$description;
+          }
         }
         files.push(
           {

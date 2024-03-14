@@ -15,7 +15,9 @@ export function encode(cssURL: string, cwd: URL): string {
   // https://css-tricks.com/probably-dont-base64-svg/
   if (type === 'image/svg+xml') {
     const svg = svgo.optimize(fs.readFileSync(filename, 'utf8'));
-    if (svg.data) return `url('${type};utf8,${svg.data}')`;
+    if (svg.data) {
+      return `url('${type};utf8,${svg.data}')`;
+    }
   }
 
   return `url('${type};base64,${fs.readFileSync(filename).toString('base64')}')`;

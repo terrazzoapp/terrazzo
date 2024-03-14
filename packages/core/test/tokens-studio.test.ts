@@ -4,7 +4,8 @@
 import { FG_RED, RESET } from '@cobalt-ui/utils';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
-import { parse, ParseOptions } from '../src/index.js';
+import type { ParseOptions } from '../src/index.js';
+import { parse } from '../src/index.js';
 
 /** parse schema and expect no errors */
 function getTokens(json, parseOptions: ParseOptions = { color: {} }) {

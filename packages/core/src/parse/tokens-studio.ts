@@ -285,8 +285,8 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             );
             let order = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TL, BR
             if (values.length === 3)
-              order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // TL, TR/BL, BR
-            else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // TL, TR, BR, BL
+              {order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];} // TL, TR/BL, BR
+            else if (values.length === 4) {order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];} // TL, TR, BR, BL
             addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}TopLeft`]);
             addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}TopRight`]);
             addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}BottomRight`]);
@@ -442,8 +442,8 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             warnings.push(`Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`);
             let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TB, RL
             if (values.length === 3)
-              order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // T, RL, B
-            else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // T, R, B, L
+              {order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];} // T, RL, B
+            else if (values.length === 4) {order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];} // T, R, B, L
             addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}Top`]);
             addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}Right`]);
             addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}Bottom`]);

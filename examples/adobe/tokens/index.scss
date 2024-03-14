@@ -861,7 +861,7 @@ $__token-values: (
 $__token-typography-mixins: (
 );
 
-@function token($tokenName, $modeName: default) {
+@function token($tokenName, $modeName: ".") {
   @if map.has-key($__token-values, $tokenName) == false {
     @error "No token named \"#{$tokenName}\"";
   }

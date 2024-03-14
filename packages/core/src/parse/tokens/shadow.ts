@@ -1,5 +1,6 @@
 import type { ParsedShadowToken } from '../../token.js';
-import { ParseColorOptions, normalizeColorValue } from './color.js';
+import type { ParseColorOptions } from './color.js';
+import { normalizeColorValue } from './color.js';
 import { normalizeDimensionValue } from './dimension.js';
 
 export interface ParseShadowOptions {
@@ -22,8 +23,12 @@ export interface ParseShadowOptions {
  * }
  */
 export function normalizeShadowValue(value: unknown, options: ParseShadowOptions): ParsedShadowToken['$value'] {
-  if (!value) throw new Error('missing value');
-  if (typeof value !== 'object' && !Array.isArray(value)) throw new Error(`expected object or array of objects, got ${typeof value}`);
+  if (!value) {
+    throw new Error('missing value');
+  }
+  if (typeof value !== 'object' && !Array.isArray(value)) {
+    throw new Error(`expected object or array of objects, got ${typeof value}`);
+  }
   const v = Array.isArray(value) ? value : [value];
   return v.map((shadow: any, i: number) => {
     for (const k of ['offsetX', 'offsetX', 'blur', 'spread', 'color']) {

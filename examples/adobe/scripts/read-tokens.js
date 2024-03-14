@@ -28,9 +28,15 @@ for (const theme of themes) {
       if (normalizedValue.includes(',') && !normalizedValue.startsWith('rgb(')) {
         normalizedValue = `rgb(${normalizedValue})`;
       }
-      if (theme === 'light') node.$value = normalizedValue; // just pick a random theme; doesn’t matter
-      if (!node.$extensions) node.$extensions = {};
-      if (!node.$extensions.mode) node.$extensions.mode = {};
+      if (theme === 'light') {
+        node.$value = normalizedValue;
+      } // just pick a random theme; doesn’t matter
+      if (!node.$extensions) {
+        node.$extensions = {};
+      }
+      if (!node.$extensions.mode) {
+        node.$extensions.mode = {};
+      }
       node.$extensions.mode[theme] = normalizedValue;
     }
   }

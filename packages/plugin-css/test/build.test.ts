@@ -195,7 +195,9 @@ describe('@cobalt-ui/plugin-css', () => {
             transform(token) {
               if (token.$type === 'color') {
                 const color = culori.parse(token.$value);
-                if (!color) throw new Error(`Could not parse color "${token.$value}"`);
+                if (!color) {
+                  throw new Error(`Could not parse color "${token.$value}"`);
+                }
                 const { r, g, b } = culori.rgb(color);
                 return `${Math.round(r * 255)} ${Math.round(g * 255)} ${Math.round(b * 255)}`;
               }

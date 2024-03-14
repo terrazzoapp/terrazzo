@@ -22,7 +22,9 @@ export default function transformColor(value: ParsedColorToken['$value'], colorF
     return String(value);
   }
   const parsed = parseColor(value);
-  if (!parsed) throw new Error(`invalid color "${value}"`);
+  if (!parsed) {
+    throw new Error(`invalid color "${value}"`);
+  }
   switch (colorFormat) {
     case 'rgb': {
       return formatRgb(clampChroma(toRGB(value)!, 'rgb'));

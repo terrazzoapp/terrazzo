@@ -120,7 +120,9 @@ export default async function main() {
 
       printErrors(result.errors);
       printWarnings(result.warnings);
-      if (result.errors) process.exit(1);
+      if (result.errors) {
+        process.exit(1);
+      }
 
       if (watch) {
         const tokenWatcher = chokidar.watch(config.tokens.map((filepath) => fileURLToPath(filepath)));
@@ -151,7 +153,7 @@ export default async function main() {
         });
 
         // keep process occupied
-        await new Promise(() => {}); // eslint-disable-line @typescript-eslint/no-empty-function
+        await new Promise(() => {});  
       } else {
         console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built ${time(start)}`);
       }
@@ -224,7 +226,9 @@ export default async function main() {
       break;
     }
     case 'init': {
-      if (fs.existsSync(config.tokens)) throw new Error(`${config.tokens} already exists`);
+      if (fs.existsSync(config.tokens)) {
+        throw new Error(`${config.tokens} already exists`);
+      }
       fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
       console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created ${time(start)}`);
       break;
@@ -265,21 +269,27 @@ function resolveConfig(filename) {
   // --config [configpath]
   if (filename) {
     const configPath = new URL(filename, cwd);
-    if (fs.existsSync(configPath)) return configPath;
+    if (fs.existsSync(configPath)) {
+      return configPath;
+    }
     return undefined;
   }
 
   // default: tokens.config.js
   for (const defaultFilename of ['./tokens.config.js', './tokens.config.mjs']) {
     const configPath = new URL(defaultFilename, cwd);
-    if (fs.existsSync(configPath)) return configPath;
+    if (fs.existsSync(configPath)) {
+      return configPath;
+    }
   }
 }
 
 /** load config */
 async function loadConfig(configPath) {
   let userConfig = {};
-  if (configPath) userConfig = (await import(configPath)).default;
+  if (configPath) {
+    userConfig = (await import(configPath)).default;
+  }
   return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
 }
 
@@ -389,12 +399,20 @@ function time(start) {
 
 /** Print errors */
 export function printErrors(errors) {
-  if (!errors || (typeof errors !== 'string' && !Array.isArray(errors))) return;
-  for (const err of Array.isArray(errors) ? errors : [errors]) console.error(`  ${FG_RED}✘  ${err}${RESET}`);
+  if (!errors || (typeof errors !== 'string' && !Array.isArray(errors))) {
+    return;
+  }
+  for (const err of Array.isArray(errors) ? errors : [errors]) {
+    console.error(`  ${FG_RED}✘  ${err}${RESET}`);
+  }
 }
 
 /** Print warnings */
 export function printWarnings(warnings) {
-  if (!warnings || (typeof warnings !== 'string' && !Array.isArray(warnings))) return;
-  for (const warn of Array.isArray(warnings) ? warnings : [warnings]) console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
+  if (!warnings || (typeof warnings !== 'string' && !Array.isArray(warnings))) {
+    return;
+  }
+  for (const warn of Array.isArray(warnings) ? warnings : [warnings]) {
+    console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
+  }
 }

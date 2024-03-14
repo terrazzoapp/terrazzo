@@ -17,56 +17,56 @@
   },
   "icon": {
     "$type": "link",
-    "3D-Cursor": {"$value": "/icon/3D-Cursor.svg"}
+    "3D-Cursor": { "$value": "/icon/3D-Cursor.svg" }
   },
   "font": {
     "family": {
       "$type": "fontFamily",
-      "sans": {"$value": ["IBM Plex Sans", "Helvetica Neue", "Arial", "sans-serif"]}
+      "sans": { "$value": ["IBM Plex Sans", "Helvetica Neue", "Arial", "sans-serif"] }
     }
   },
   "spacing": {
     "$type": "dimension",
-    "4xs": {"$value": "1px"},
-    "3xs": {"$value": "2px"},
-    "2xs": {"$value": "4px"},
-    "xs": {"$value": "8px"},
-    "sm": {"$value": "12px"},
-    "md": {"$value": "16px"},
-    "lg": {"$value": "24px"},
-    "xl": {"$value": "32px"},
-    "2xl": {"$value": "40px"},
-    "3xl": {"$value": "48px"},
+    "4xs": { "$value": "1px" },
+    "3xs": { "$value": "2px" },
+    "2xs": { "$value": "4px" },
+    "xs": { "$value": "8px" },
+    "sm": { "$value": "12px" },
+    "md": { "$value": "16px" },
+    "lg": { "$value": "24px" },
+    "xl": { "$value": "32px" },
+    "2xl": { "$value": "40px" },
+    "3xl": { "$value": "48px" },
     "layout": {
-      "2xs": {"$value": "16px"},
-      "xs": {"$value": "24px"},
-      "sm": {"$value": "32px"},
-      "md": {"$value": "48px"},
-      "lg": {"$value": "64px"},
-      "xl": {"$value": "96px"},
-      "2xl": {"$value": "160px"}
+      "2xs": { "$value": "16px" },
+      "xs": { "$value": "24px" },
+      "sm": { "$value": "32px" },
+      "md": { "$value": "48px" },
+      "lg": { "$value": "64px" },
+      "xl": { "$value": "96px" },
+      "2xl": { "$value": "160px" }
     }
   },
   "easing": {
     "$type": "cubicBezier",
-    "easeIn": {"$value": [0.25, 0, 1, 1]},
-    "easeOut": {"$value": [0, 0, 0.25, 1]},
-    "standard": {"$value": [0.5, 0, 0.1, 1]},
-    "standard--expressive": {"$value": [0.4, 0.14, 0.3, 1]},
-    "entrance": {"$value": [0, 0, 0.38, 0.9]},
-    "entrance--expressive": {"$value": [0, 0, 0.3, 1]},
-    "exit": {"$value": [0.2, 0, 1, 0.9]},
-    "exit--expressive": {"$value": [0.4, 0.14, 1, 1]}
+    "easeIn": { "$value": [0.25, 0, 1, 1] },
+    "easeOut": { "$value": [0, 0, 0.25, 1] },
+    "standard": { "$value": [0.5, 0, 0.1, 1] },
+    "standard--expressive": { "$value": [0.4, 0.14, 0.3, 1] },
+    "entrance": { "$value": [0, 0, 0.38, 0.9] },
+    "entrance--expressive": { "$value": [0, 0, 0.3, 1] },
+    "exit": { "$value": [0.2, 0, 1, 0.9] },
+    "exit--expressive": { "$value": [0.4, 0.14, 1, 1] }
   },
   "transition": {
     "$type": "duration",
-    "base": {"$value": "250ms"},
-    "expansion": {"$value": "300ms"},
-    "fast01": {"$value": "70ms"},
-    "fast02": {"$value": "110ms"},
-    "moderate01": {"$value": "150ms"},
-    "moderate02": {"$value": "240ms"},
-    "slow01": {"$value": "400ms"},
-    "slow02": {"$value": "720ms"}
+    "base": { "$value": "250ms" },
+    "expansion": { "$value": "300ms" },
+    "fast01": { "$value": "70ms" },
+    "fast02": { "$value": "110ms" },
+    "moderate01": { "$value": "150ms" },
+    "moderate02": { "$value": "240ms" },
+    "slow01": { "$value": "400ms" },
+    "slow02": { "$value": "720ms" }
   }
 }

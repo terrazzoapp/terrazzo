@@ -26,7 +26,7 @@ export default async function build(rawSchema: Group, config: ResolvedConfig): P
       try {
         // build()
         const results = await plugin.build({ tokens: result.tokens, metadata: result.metadata, rawSchema });
-        if (!results) return;
+        if (!results) {return;}
         if (!Array.isArray(results) || !results.every((r) => r.filename && r.contents)) {
           throw new Error(`[${plugin.name}] invalid build results`);
         }
