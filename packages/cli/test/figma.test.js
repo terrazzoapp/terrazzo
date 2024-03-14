@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import os from 'node:os';
-import {fileURLToPath} from 'node:url';
-import {http, HttpResponse} from 'msw';
-import {setupServer} from 'msw/node';
-import {describe, expect, it, vi} from 'vitest';
+import { fileURLToPath } from 'node:url';
+import { http, HttpResponse } from 'msw';
+import { setupServer } from 'msw/node';
+import { describe, expect, it, vi } from 'vitest';
 import FIGMA_VARIABLE_API_RESPONSE from './fixtures/figma-success/api_v1_response.json';
 
 const FILE_KEY = 'OkPWSU0cusQTumCNno7dm8';
@@ -33,7 +33,7 @@ describe('Figma import', () => {
 
   it.skipIf(os.platform() === 'win32')('throws errors on invalid response', async () => {
     const cwd = new URL('./fixtures/figma-error/', import.meta.url);
-    const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json({status: 401, error: true}, {status: 401})));
+    const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json({ status: 401, error: true }, { status: 401 })));
     server.listen();
 
     // run CLI

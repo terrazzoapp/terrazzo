@@ -1,5 +1,5 @@
-import type {BuildResult, Mode, ParsedToken, Plugin, Token} from '@cobalt-ui/core';
-import {cloneDeep, indent, objKey, set} from '@cobalt-ui/utils';
+import type { BuildResult, Mode, ParsedToken, Plugin, Token } from '@cobalt-ui/core';
+import { cloneDeep, indent, objKey, set } from '@cobalt-ui/utils';
 
 const JS_EXT_RE = /\.(mjs|js)$/i;
 const JSON_EXT_RE = /\.json$/i;
@@ -21,15 +21,15 @@ export interface Options {
 }
 
 interface JSResult {
-  tokens: {[id: string]: ParsedToken['$value'] | JSResult['tokens']};
-  meta?: {[id: string]: Token | JSResult['meta']};
-  modes: {[id: string]: Mode<ParsedToken['$value'] | JSResult['modes']>};
+  tokens: { [id: string]: ParsedToken['$value'] | JSResult['tokens'] };
+  meta?: { [id: string]: Token | JSResult['meta'] };
+  modes: { [id: string]: Mode<ParsedToken['$value'] | JSResult['modes']> };
 }
 
 interface TSResult {
-  tokens: {[id: string]: string | TSResult['tokens']};
-  meta?: {[id: string]: string | TSResult['meta']};
-  modes: {[id: string]: string | TSResult['modes']};
+  tokens: { [id: string]: string | TSResult['tokens'] };
+  meta?: { [id: string]: string | TSResult['meta'] };
+  modes: { [id: string]: string | TSResult['modes'] };
 }
 
 function isEmptyObject(obj: object): boolean {
@@ -54,7 +54,7 @@ const tokenTypes: Record<ParsedToken['$type'], string> = {
 };
 
 /** serialize JS ref into string */
-export function serializeJS(value: unknown, options?: {comments?: Record<string, string>; commentPath?: string; indentLv?: number}): string {
+export function serializeJS(value: unknown, options?: { comments?: Record<string, string>; commentPath?: string; indentLv?: number }): string {
   const comments = options?.comments || {};
   const commentPath = options?.commentPath ?? '';
   const indentLv = options?.indentLv || 0;
@@ -65,7 +65,7 @@ export function serializeJS(value: unknown, options?: {comments?: Record<string,
     return String(value);
   }
   if (Array.isArray(value)) {
-    return `[${value.map((item) => serializeJS(item, {indentLv})).join(', ')}]`;
+    return `[${value.map((item) => serializeJS(item, { indentLv })).join(', ')}]`;
   }
   if (typeof value === 'function') {
     throw new Error(`Cannot serialize function ${value}`);
@@ -92,13 +92,13 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
 }
 
 /** serialize TS ref into string */
-export function serializeTS(value: unknown, options?: {indentLv?: number}): string {
+export function serializeTS(value: unknown, options?: { indentLv?: number }): string {
   const indentLv = options?.indentLv || 0;
   if (typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean' || value === 'undefined' || value === null) {
     return String(value);
   }
   if (Array.isArray(value)) {
-    return `[${value.map((item) => serializeTS(item, {indentLv})).join(', ')}]`;
+    return `[${value.map((item) => serializeTS(item, { indentLv })).join(', ')}]`;
   }
   if (typeof value === 'function') {
     throw new Error(`Cannot serialize function ${value}`);
@@ -108,7 +108,7 @@ export function serializeTS(value: unknown, options?: {indentLv?: number}): stri
 
     return `{
 ${Object.entries(value)
-  .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, {indentLv: indentLv + 1})}`)
+  .map(([k, v]) => `${indent(objKey(k), indentLv + 1)}: ${serializeTS(v, { indentLv: indentLv + 1 })}`)
   .join(';\n')};
 ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
   }
@@ -123,7 +123,7 @@ export function defaultTransformer(token: ParsedToken, mode?: string): (typeof t
   if (typeof modeVal === 'string' || Array.isArray(modeVal) || typeof modeVal === 'number') {
     return modeVal;
   }
-  return {...(token.$value as typeof modeVal), ...modeVal};
+  return { ...(token.$value as typeof modeVal), ...modeVal };
 }
 
 function setToken<T extends Record<string, any>>(obj: T, id: keyof T, value: any, nest = false): T {
@@ -155,7 +155,7 @@ export default function pluginJS(options?: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-js',
-    async build({tokens, metadata}): Promise<BuildResult[]> {
+    async build({ tokens, metadata }): Promise<BuildResult[]> {
       let files: BuildResult[] = [];
       const buildTS = !!jsFilename; // should .d.ts be built?
       const includeMeta = options?.meta !== false; // should `meta` be included?
@@ -166,7 +166,7 @@ export default function pluginJS(options?: Options): Plugin {
         meta: {},
         modes: {},
       };
-      const ts: TSResult = {tokens: {}, meta: {}, modes: {}};
+      const ts: TSResult = { tokens: {}, meta: {}, modes: {} };
       for (const token of tokens) {
         let result = await options?.transform?.(token);
         if (result === undefined || result === null) {
@@ -183,7 +183,7 @@ export default function pluginJS(options?: Options): Plugin {
           token.id,
           {
             _original: cloneDeep(token._original),
-            ...((token._group && {_group: token._group}) || {}),
+            ...((token._group && { _group: token._group }) || {}),
             ...cloneDeep(token as any),
           },
           options?.deep,
@@ -252,7 +252,7 @@ export default function pluginJS(options?: Options): Plugin {
             contents: [
               comment,
               '',
-              `export const tokens = ${serializeJS(js.tokens, {comments: jsDoc})}`,
+              `export const tokens = ${serializeJS(js.tokens, { comments: jsDoc })}`,
               '',
               ...(js.meta ? [`export const meta = ${serializeJS(js.meta)}`, ''] : []),
               `export const modes = ${Object.keys(js.modes).length ? serializeJS(js.modes) : `{};`}`,

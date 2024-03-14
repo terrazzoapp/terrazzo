@@ -1,22 +1,22 @@
-import {cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET} from '@cobalt-ui/utils';
-import type {Group, ParsedToken, TokenType, TokenOrGroup} from '../token.js';
-import {isEmpty, isObj, splitType} from '../util.js';
-import {normalizeColorValue, ParseColorOptions} from './tokens/color.js';
-import {normalizeFontFamilyValue} from './tokens/fontFamily.js';
-import {normalizeDurationValue} from './tokens/duration.js';
-import {normalizeDimensionValue} from './tokens/dimension.js';
-import {normalizeCubicBezierValue} from './tokens/cubic-bezier.js';
-import {normalizeLinkValue} from './tokens/link.js';
-import {normalizeStrokeStyleValue} from './tokens/stroke-style.js';
-import {normalizeBorderValue} from './tokens/border.js';
-import {normalizeTransitionValue} from './tokens/transition.js';
-import {normalizeShadowValue} from './tokens/shadow.js';
-import {normalizeGradientValue} from './tokens/gradient.js';
-import {normalizeTypographyValue} from './tokens/typography.js';
-import {normalizeFontWeightValue} from './tokens/fontWeight.js';
-import {normalizeNumberValue} from './tokens/number.js';
-import {convertTokensStudioFormat, isTokensStudioFormat} from './tokens-studio.js';
-import {convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions, FigmaVariableManifest} from './figma.js';
+import { cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET } from '@cobalt-ui/utils';
+import type { Group, ParsedToken, TokenType, TokenOrGroup } from '../token.js';
+import { isEmpty, isObj, splitType } from '../util.js';
+import { normalizeColorValue, ParseColorOptions } from './tokens/color.js';
+import { normalizeFontFamilyValue } from './tokens/fontFamily.js';
+import { normalizeDurationValue } from './tokens/duration.js';
+import { normalizeDimensionValue } from './tokens/dimension.js';
+import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
+import { normalizeLinkValue } from './tokens/link.js';
+import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
+import { normalizeBorderValue } from './tokens/border.js';
+import { normalizeTransitionValue } from './tokens/transition.js';
+import { normalizeShadowValue } from './tokens/shadow.js';
+import { normalizeGradientValue } from './tokens/gradient.js';
+import { normalizeTypographyValue } from './tokens/typography.js';
+import { normalizeFontWeightValue } from './tokens/fontWeight.js';
+import { normalizeNumberValue } from './tokens/number.js';
+import { convertTokensStudioFormat, isTokensStudioFormat } from './tokens-studio.js';
+import { convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions, FigmaVariableManifest } from './figma.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -45,7 +45,7 @@ const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$ext
 export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
-  const result: ParseResult = {result: {metadata: {}, tokens: []}};
+  const result: ParseResult = { result: { metadata: {}, tokens: [] } };
   if (!rawTokens || typeof rawTokens !== 'object' || Array.isArray(rawTokens)) {
     errors.push(`Invalid schema type. Expected object, received "${Array.isArray(rawTokens) ? 'Array' : typeof rawTokens}"`);
     result.errors = errors;
@@ -72,7 +72,7 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
 
   // 1. collect tokens
   const tokens: Record<string, ParsedToken> = {};
-  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = {$extensions: {requiredModes: []}}): void {
+  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = { $extensions: { requiredModes: [] } }): void {
     if (!node || !isObj(node)) return;
     for (const [k, v] of Object.entries(node)) {
       if (!v || !isObj(v)) {
@@ -125,14 +125,14 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
       }
       // group
       else {
-        const nextGroup = {...group};
+        const nextGroup = { ...group };
 
         const groupTokens: Record<string, TokenOrGroup> = {};
         for (const propertyKey of Object.keys(v)) {
           // move all "$" properties to group
           if (propertyKey.startsWith('$')) {
             // merge $extensions; don’t overwrite them
-            if (propertyKey === '$extensions') nextGroup.$extensions = {...nextGroup.$extensions, ...v.$extensions};
+            if (propertyKey === '$extensions') nextGroup.$extensions = { ...nextGroup.$extensions, ...v.$extensions };
             else (nextGroup as any)[propertyKey] = v[propertyKey];
             if (!RESERVED_KEYS.has(propertyKey)) {
               if (!result.warnings) result.warnings = [];
@@ -157,11 +157,11 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
     }
   }
 
-  const group: InheritedGroup = {$extensions: {requiredModes: []}};
+  const group: InheritedGroup = { $extensions: { requiredModes: [] } };
   const topNodes: Record<string, TokenOrGroup> = {};
   for (const k of Object.keys(schema)) {
     if (k.startsWith('$')) {
-      if (k === '$extensions') group.$extensions = {...schema.$extensions, ...group.$extensions};
+      if (k === '$extensions') group.$extensions = { ...schema.$extensions, ...group.$extensions };
       else (group as any)[k] = schema[k];
       if (!RESERVED_KEYS.has(k)) {
         if (!result.warnings) result.warnings = [];
@@ -308,8 +308,8 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         }
         // 9.3 Border
         case 'border': {
-          tokens[id]!.$value = normalizeBorderValue(values[id], {color: options.color});
-          normalizeModes(id, (v) => normalizeBorderValue(v, {color: options.color}));
+          tokens[id]!.$value = normalizeBorderValue(values[id], { color: options.color });
+          normalizeModes(id, (v) => normalizeBorderValue(v, { color: options.color }));
           break;
         }
         // 9.4 Transition
@@ -320,14 +320,14 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         }
         // 9.5 Shadow
         case 'shadow': {
-          tokens[id]!.$value = normalizeShadowValue(values[id], {color: options.color});
-          normalizeModes(id, (v) => normalizeShadowValue(v, {color: options.color}));
+          tokens[id]!.$value = normalizeShadowValue(values[id], { color: options.color });
+          normalizeModes(id, (v) => normalizeShadowValue(v, { color: options.color }));
           break;
         }
         // 9.6 Gradient
         case 'gradient': {
-          tokens[id]!.$value = normalizeGradientValue(values[id], {color: options.color});
-          normalizeModes(id, (v) => normalizeGradientValue(v, {color: options.color}));
+          tokens[id]!.$value = normalizeGradientValue(values[id], { color: options.color });
+          normalizeModes(id, (v) => normalizeGradientValue(v, { color: options.color }));
           break;
         }
         // 9.7 Typography
@@ -352,7 +352,7 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
   if (errors.length) result.errors = errors;
   if (warnings.length) result.warnings = warnings;
   result.result.tokens = Object.values(tokens);
-  result.result.tokens.sort((a, b) => a.id.localeCompare(b.id, 'en-us', {numeric: true})); // sort alphabetically
+  result.result.tokens.sort((a, b) => a.id.localeCompare(b.id, 'en-us', { numeric: true })); // sort alphabetically
   return result;
 }
 

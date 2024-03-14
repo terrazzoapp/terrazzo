@@ -64,8 +64,8 @@ export default {
   tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
   figma: {
     overrides: {
-      'size/*': {$type: 'dimension'},
-      'timing/*': {$type: 'duration'},
+      'size/*': { $type: 'dimension' },
+      'timing/*': { $type: 'duration' },
     },
   },
 };
@@ -123,7 +123,7 @@ export default {
       'size/*': {
         $type: 'dimension',
         // convert px → rem
-        transform({variable, collection, mode}) {
+        transform({ variable, collection, mode }) {
           const rawValue = variable.valuesByMode[mode.modeId];
           if (typeof rawValue === 'number') {
             return `${rawValue / 16}rem`;

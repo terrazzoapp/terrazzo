@@ -1,7 +1,7 @@
-import type {BuildResult, ParsedToken, Plugin} from '@cobalt-ui/core';
-import {indent, objKey} from '@cobalt-ui/utils';
-import {defaultTransformer} from '@cobalt-ui/plugin-css';
-import type {Config} from 'tailwindcss';
+import type { BuildResult, ParsedToken, Plugin } from '@cobalt-ui/core';
+import { indent, objKey } from '@cobalt-ui/utils';
+import { defaultTransformer } from '@cobalt-ui/plugin-css';
+import type { Config } from 'tailwindcss';
 
 export interface Options {
   /** output file (default: "./tailwind-tokens.js") */
@@ -34,7 +34,7 @@ export default function pluginTailwind(options: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-tailwind',
-    async build({tokens, metadata}): Promise<BuildResult[]> {
+    async build({ tokens, metadata }): Promise<BuildResult[]> {
       /** walk through Tailwind’s theme object */
       function walk(node: any, path: (string | number)[] = []): string {
         const output: string[] = [];
@@ -54,7 +54,7 @@ export default function pluginTailwind(options: Options): Plugin {
             if (token.$type === 'fontFamily') {
               return JSON.stringify(token.$value);
             }
-            const nextValue = defaultTransformer(token, {colorFormat: 'none'});
+            const nextValue = defaultTransformer(token, { colorFormat: 'none' });
             if (typeof nextValue === 'object') {
               throw new Error(`Unsupported token type: "${token.$type}"`);
             }

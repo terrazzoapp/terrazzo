@@ -13,13 +13,13 @@ A composite type combining [color](/tokens/color) and [number](/tokens/number)(n
   "rainbow": {
     "$type": "gradient",
     "$value": [
-      {"color": "red", "position": 0},
-      {"color": "orange", "position": 0.175},
-      {"color": "yellow", "position": 0.325},
-      {"color": "lawngreen", "position": 0.5},
-      {"color": "blue", "position": 0.675},
-      {"color": "indigo", "position": 0.825},
-      {"color": "violet", "position": 1}
+      { "color": "red", "position": 0 },
+      { "color": "orange", "position": 0.175 },
+      { "color": "yellow", "position": 0.325 },
+      { "color": "lawngreen", "position": 0.5 },
+      { "color": "blue", "position": 0.675 },
+      { "color": "indigo", "position": 0.825 },
+      { "color": "violet", "position": 1 }
     ]
   }
 }

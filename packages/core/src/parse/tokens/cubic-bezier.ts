@@ -1,4 +1,4 @@
-import type {ParsedCubicBezierToken} from '../../token.js';
+import type { ParsedCubicBezierToken } from '../../token.js';
 
 /**
  * 8.5 Cubic Bezier

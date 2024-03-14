@@ -1,4 +1,4 @@
-import type {ParsedFontFamilyToken} from '../../token.js';
+import type { ParsedFontFamilyToken } from '../../token.js';
 
 /**
  * 8.3 Font name

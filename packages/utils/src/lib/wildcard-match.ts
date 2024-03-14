@@ -214,7 +214,7 @@ export default function wildcardMatch(pattern: string | string[], options?: stri
   }
 
   if (typeof options === 'string' || typeof options === 'boolean') {
-    options = {separator: options};
+    options = { separator: options };
   }
 
   if (arguments.length === 2 && !(typeof options === 'undefined' || (typeof options === 'object' && options !== null && !Array.isArray(options)))) {

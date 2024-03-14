@@ -6,7 +6,7 @@ export type Group = {
   $description?: string;
   /** Extensions for Cobalt */
   $extensions?: Record<string, unknown>;
-} & {[childNodes: string]: TokenOrGroup};
+} & { [childNodes: string]: TokenOrGroup };
 
 export type Mode<T = string> = Record<string, T>;
 

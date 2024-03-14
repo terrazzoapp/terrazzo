@@ -1,6 +1,6 @@
-import {formatHex, formatHex8, oklch} from 'culori';
-import type {Group, Token, TokenType} from '../token.js';
-import {invalidTokenIDError, isTokenMatch} from '@cobalt-ui/utils';
+import { formatHex, formatHex8, oklch } from 'culori';
+import type { Group, Token, TokenType } from '../token.js';
+import { invalidTokenIDError, isTokenMatch } from '@cobalt-ui/utils';
 
 export interface FigmaParseOptions {
   overrides: Record<string, FigmaOverride>;
@@ -12,7 +12,7 @@ export interface FigmaOverride {
   /** Rename a token (will also update aliases) */
   rename?: (id: string) => string | undefined | null;
   /** Convert value (e.g. from px to rem) */
-  transform?: (options: {variable: Variable; collection: VariableCollection; mode: VariableMode}) => Token['$value'] | undefined | null;
+  transform?: (options: { variable: Variable; collection: VariableCollection; mode: VariableMode }) => Token['$value'] | undefined | null;
 }
 
 /** sRGB color */
@@ -74,28 +74,28 @@ export interface BooleanVariable extends VariableBase {
   /** The resolved type of the variable. */
   resolvedType: 'BOOLEAN';
   /** The values for each mode of this variable. */
-  valuesByMode: {[modeId: string]: boolean | VariableAlias};
+  valuesByMode: { [modeId: string]: boolean | VariableAlias };
 }
 
 export interface NumberVariable extends VariableBase {
   /** The resolved type of the variable. */
   resolvedType: 'FLOAT';
   /** The values for each mode of this variable. */
-  valuesByMode: {[modeId: string]: number | VariableAlias};
+  valuesByMode: { [modeId: string]: number | VariableAlias };
 }
 
 export interface StringVariable extends VariableBase {
   /** The resolved type of the variable. */
   resolvedType: 'STRING';
   /** The values for each mode of this variable. */
-  valuesByMode: {[modeId: string]: string | VariableAlias};
+  valuesByMode: { [modeId: string]: string | VariableAlias };
 }
 
 export interface ColorVariable extends VariableBase {
   /** The resolved type of the variable. */
   resolvedType: 'COLOR';
   /** The values for each mode of this variable. */
-  valuesByMode: {[modeId: string]: FigmaColor | VariableAlias};
+  valuesByMode: { [modeId: string]: FigmaColor | VariableAlias };
 }
 
 export type Variable = BooleanVariable | NumberVariable | StringVariable | ColorVariable;
@@ -120,7 +120,7 @@ export const DEFAULT_OUTPUT_TYPE: Partial<Record<Variable['resolvedType'], Token
 };
 
 export function figmaColorToHex(color: FigmaColor): string {
-  const c = oklch({mode: 'rgb', r: color.r, g: color.g, b: color.b, alpha: color.a});
+  const c = oklch({ mode: 'rgb', r: color.r, g: color.g, b: color.b, alpha: color.a });
   if (!c.h) {
     c.h = 0;
   }
@@ -168,7 +168,7 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
       break;
     }
 
-    const transformResults = transformToken({variable, collection, override});
+    const transformResults = transformToken({ variable, collection, override });
     warnings.push(...(transformResults.warnings ?? []));
     errors.push(...(transformResults.errors ?? []));
     if (transformResults.result) {
@@ -226,7 +226,11 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
   };
 }
 
-export function transformToken({variable, collection, override}: {variable: Variable; collection: VariableCollection; override?: FigmaOverride}): {warnings?: string[]; errors?: string[]; result: Token | undefined} {
+export function transformToken({ variable, collection, override }: { variable: Variable; collection: VariableCollection; override?: FigmaOverride }): {
+  warnings?: string[];
+  errors?: string[];
+  result: Token | undefined;
+} {
   const token = {} as Token;
   const errors: string[] = [];
   if (variable.description) {
@@ -246,7 +250,7 @@ export function transformToken({variable, collection, override}: {variable: Vari
 
     // make sure $extensions.mode exists if there are multiple modes
     if (isMultiModal && !token.$extensions) {
-      token.$extensions = {mode: {}};
+      token.$extensions = { mode: {} };
     }
 
     const collectionMode = collection.modes.find((mode) => mode.modeId === modeId);
@@ -268,7 +272,7 @@ export function transformToken({variable, collection, override}: {variable: Vari
 
     // transform token
     try {
-      let transformedValue = override?.transform?.({variable, collection, mode: collectionMode});
+      let transformedValue = override?.transform?.({ variable, collection, mode: collectionMode });
       if (transformedValue === undefined || transformedValue == null) {
         switch ($type) {
           case 'color': {
@@ -311,5 +315,12 @@ export function transformToken({variable, collection, override}: {variable: Vari
 }
 
 export function isFigmaVariablesFormat(manifest: unknown): boolean {
-  return !!manifest && typeof manifest === 'object' && 'variables' in manifest && typeof manifest.variables === 'object' && 'variableCollections' in manifest && typeof manifest.variableCollections === 'object';
+  return (
+    !!manifest &&
+    typeof manifest === 'object' &&
+    'variables' in manifest &&
+    typeof manifest.variables === 'object' &&
+    'variableCollections' in manifest &&
+    typeof manifest.variableCollections === 'object'
+  );
 }

@@ -353,8 +353,8 @@ export default {
   plugins: [
     css({
       modeSelectors: [
-        {mode: 'mobile', tokens: ['typography.size.*'], selectors: ['@media (width < 600px)']},
-        {mode: 'desktop', tokens: ['typography.size.*'], selectors: ['@media (width >= 600px)']},
+        { mode: 'mobile', tokens: ['typography.size.*'], selectors: ['@media (width < 600px)'] },
+        { mode: 'desktop', tokens: ['typography.size.*'], selectors: ['@media (width >= 600px)'] },
       ],
     }),
   ],

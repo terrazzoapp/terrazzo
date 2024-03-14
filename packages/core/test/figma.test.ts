@@ -1,11 +1,11 @@
-import {rgb} from 'culori';
-import {describe, it, expect} from 'vitest';
-import {type FigmaColor, type FigmaVariableManifest} from '../src/parse/figma.js';
-import {parse} from '../src/parse/index.js';
+import { rgb } from 'culori';
+import { describe, it, expect } from 'vitest';
+import { type FigmaColor, type FigmaVariableManifest } from '../src/parse/figma.js';
+import { parse } from '../src/parse/index.js';
 
 function hexToRgb(hex: string): FigmaColor {
   const c = rgb(hex);
-  return c ? {r: c.r, g: c.g, b: c.b, a: c.alpha ?? 1} : {r: 0, g: 0, b: 0, a: 0};
+  return c ? { r: c.r, g: c.g, b: c.b, a: c.alpha ?? 1 } : { r: 0, g: 0, b: 0, a: 0 };
 }
 
 const TOKENS: FigmaVariableManifest = {
@@ -184,7 +184,7 @@ const TOKENS: FigmaVariableManifest = {
       name: 'color/ui/bg',
       description: '',
       resolvedType: 'COLOR',
-      valuesByMode: {lightModeID: {type: 'VARIABLE_ALIAS', id: 'colorGray1ID'}, darkModeID: {type: 'VARIABLE_ALIAS', id: 'colorGray1ID'}},
+      valuesByMode: { lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' }, darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' } },
       remote: false,
       hiddenFromPublishing: false,
       variableCollectionId: 'defaultCollectionID',
@@ -195,7 +195,7 @@ const TOKENS: FigmaVariableManifest = {
       name: 'color/ui/text',
       description: '',
       resolvedType: 'COLOR',
-      valuesByMode: {lightModeID: {type: 'VARIABLE_ALIAS', id: 'colorGray12ID'}, darkModeID: {type: 'VARIABLE_ALIAS', id: 'colorGray12ID'}},
+      valuesByMode: { lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' }, darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' } },
       remote: false,
       hiddenFromPublishing: false,
       variableCollectionId: 'defaultCollectionID',
@@ -347,8 +347,8 @@ const TOKENS: FigmaVariableManifest = {
       name: 'Default',
       key: 'defaultCollectionKey',
       modes: [
-        {modeId: 'lightModeID', name: 'light'},
-        {modeId: 'darkModeID', name: 'dark'},
+        { modeId: 'lightModeID', name: 'light' },
+        { modeId: 'darkModeID', name: 'dark' },
       ],
       defaultModeId: 'lightModeID',
       remote: false,
@@ -385,7 +385,7 @@ const TOKENS: FigmaVariableManifest = {
 
 describe('figma', () => {
   it('default values', () => {
-    const {result, warnings, errors} = parse(TOKENS, {color: {}});
+    const { result, warnings, errors } = parse(TOKENS, { color: {} });
 
     expect(warnings).toBeUndefined();
     expect(errors).toBeUndefined();
@@ -396,15 +396,15 @@ describe('figma', () => {
           id: 'color.gray.1',
           $type: 'color',
           $value: '#fcfcfc',
-          $extensions: {mode: {dark: '#111111', light: '#fcfcfc'}},
+          $extensions: { mode: { dark: '#111111', light: '#fcfcfc' } },
         }),
         expect.objectContaining({
           id: 'color.ui.text',
           $type: 'color',
           $value: '#202020',
-          $extensions: {mode: {dark: '#eeeeee', light: '#202020'}},
+          $extensions: { mode: { dark: '#eeeeee', light: '#202020' } },
           _original: {
-            $extensions: {mode: {dark: '{color.gray.12#dark}', light: '{color.gray.12#light}'}}, // check aliases generated correctly
+            $extensions: { mode: { dark: '{color.gray.12#dark}', light: '{color.gray.12#light}' } }, // check aliases generated correctly
             $type: 'color',
             $value: '{color.gray.12}',
           },
@@ -413,20 +413,20 @@ describe('figma', () => {
           id: 'space.1',
           $type: 'number',
           $value: 2,
-          $extensions: {mode: {dark: 2, light: 2}},
+          $extensions: { mode: { dark: 2, light: 2 } },
         }),
       ]),
     );
   });
 
   it('transforming values', () => {
-    const {result, warnings, errors} = parse(TOKENS, {
+    const { result, warnings, errors } = parse(TOKENS, {
       color: {},
       figma: {
         overrides: {
           'space/*': {
             $type: 'dimension',
-            transform({variable, collection, mode}) {
+            transform({ variable, collection, mode }) {
               const rawValue = variable.valuesByMode[mode.modeId];
               if (typeof rawValue === 'number') {
                 return `${rawValue / 16}rem`;
@@ -446,14 +446,14 @@ describe('figma', () => {
           id: 'space.5',
           $type: 'dimension',
           $value: '1rem',
-          $extensions: {mode: {dark: '1rem', light: '1rem'}},
+          $extensions: { mode: { dark: '1rem', light: '1rem' } },
         }),
       ]),
     );
   });
 
   it('renaming values', () => {
-    const {result, warnings, errors} = parse(TOKENS, {
+    const { result, warnings, errors } = parse(TOKENS, {
       color: {},
       figma: {
         overrides: {
@@ -477,7 +477,7 @@ describe('figma', () => {
           id: 'color.grey.5',
           $type: 'color',
           $value: '#e0e0e0',
-          $extensions: {mode: {dark: '#313131', light: '#e0e0e0'}},
+          $extensions: { mode: { dark: '#313131', light: '#e0e0e0' } },
         }),
       ]),
     );

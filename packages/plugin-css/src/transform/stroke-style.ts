@@ -1,4 +1,4 @@
-import type {ParsedStrokeStyleToken} from '@cobalt-ui/core';
+import type { ParsedStrokeStyleToken } from '@cobalt-ui/core';
 
 /** transform stroke style */
 export default function transformStrokeStyle(value: ParsedStrokeStyleToken['$value']): string {

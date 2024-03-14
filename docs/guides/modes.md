@@ -34,13 +34,13 @@ something like:
 {
   "color": {
     "$type": "color",
-    "red": {"$value": "#fa4549"},
-    "red-light": {"$value": "#fa4549"},
-    "red-lightHighContrast": {"$value": "#d5232c"},
-    "red-dark": {"$value": "#f85149"},
-    "red-darkHighContrast": {"$value": "#ff6a69"},
-    "red-darkDimmed": {"$value": "#f47067"},
-    "white": {"$value": "#ffffff"}
+    "red": { "$value": "#fa4549" },
+    "red-light": { "$value": "#fa4549" },
+    "red-lightHighContrast": { "$value": "#d5232c" },
+    "red-dark": { "$value": "#f85149" },
+    "red-darkHighContrast": { "$value": "#ff6a69" },
+    "red-darkDimmed": { "$value": "#f47067" },
+    "white": { "$value": "#ffffff" }
   }
 }
 ```
@@ -138,11 +138,11 @@ export default {
   plugins: [
     pluginCSS({
       modeSelectors: [
-        {mode: 'light', selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]']},
-        {mode: 'lightHighContrast', selectors: ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]']},
-        {mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]']},
-        {mode: 'darkHighContrast', selectors: ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]']},
-        {mode: 'darkDimmed', selectors: ['body[data-color-mode="darkDimmed"]']},
+        { mode: 'light', selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'] },
+        { mode: 'lightHighContrast', selectors: ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]'] },
+        { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'] },
+        { mode: 'darkHighContrast', selectors: ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]'] },
+        { mode: 'darkDimmed', selectors: ['body[data-color-mode="darkDimmed"]'] },
       ],
     }),
   ],
@@ -168,13 +168,13 @@ Another common example is **text size**. If users need to make the text bigger o
 {
   "typography": {
     "size": {
-      "title1-xSmall": {"$value": "25px"},
-      "title1-Small": {"$value": "26px"},
-      "title1-Medium": {"$value": "27px"},
-      "title1-Large": {"$value": "28px"},
-      "title1-xLarge": {"$value": "30px"},
-      "title1-xxLarge": {"$value": "32px"},
-      "title1-xxxLarge": {"$value": "32px"}
+      "title1-xSmall": { "$value": "25px" },
+      "title1-Small": { "$value": "26px" },
+      "title1-Medium": { "$value": "27px" },
+      "title1-Large": { "$value": "28px" },
+      "title1-xLarge": { "$value": "30px" },
+      "title1-xxLarge": { "$value": "32px" },
+      "title1-xxxLarge": { "$value": "32px" }
     }
   }
 }

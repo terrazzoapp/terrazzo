@@ -1,4 +1,4 @@
-import type {ParsedFontFamilyToken} from '@cobalt-ui/core';
+import type { ParsedFontFamilyToken } from '@cobalt-ui/core';
 
 /** transform font family */
 export default function transformFontFamily(value: ParsedFontFamilyToken['$value']): string {

@@ -1,5 +1,5 @@
-import type {ParsedColorToken} from '@cobalt-ui/core';
-import {formatCss, formatRgb, clampChroma, formatHex8, formatHex, formatHsl, converter, parse as parseColor} from 'culori';
+import type { ParsedColorToken } from '@cobalt-ui/core';
+import { formatCss, formatRgb, clampChroma, formatHex8, formatHex, formatHsl, converter, parse as parseColor } from 'culori';
 
 /** normalize all color outputs to format (default: "hex") or specify "none" to keep as-is */
 export type ColorFormat = 'none' | 'hex' | 'rgb' | 'hsl' | 'hwb' | 'srgb-linear' | 'p3' | 'lab' | 'lch' | 'oklab' | 'oklch' | 'xyz-d50' | 'xyz-d65';

@@ -1,5 +1,5 @@
-import {describe, expect, test} from 'vitest';
-import {getAliasID, getLocalID, isAlias} from '../src/token.js';
+import { describe, expect, test } from 'vitest';
+import { getAliasID, getLocalID, isAlias } from '../src/token.js';
 
 describe('getAliasID', () => {
   test('returns unwrapped ID for valid ID', () => {

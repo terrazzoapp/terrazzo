@@ -1,6 +1,6 @@
-import type {ParsedShadowToken} from '../../token.js';
-import {ParseColorOptions, normalizeColorValue} from './color.js';
-import {normalizeDimensionValue} from './dimension.js';
+import type { ParsedShadowToken } from '../../token.js';
+import { ParseColorOptions, normalizeColorValue } from './color.js';
+import { normalizeDimensionValue } from './dimension.js';
 
 export interface ParseShadowOptions {
   color: ParseColorOptions;

@@ -1,5 +1,5 @@
-import {describe, expect, test} from 'vitest';
-import {cloneDeep} from '../src/object.js';
+import { describe, expect, test } from 'vitest';
+import { cloneDeep } from '../src/object.js';
 
 describe('cloneDeep', () => {
   test('creates deep copies of all types', () => {
@@ -7,8 +7,8 @@ describe('cloneDeep', () => {
       string: 'string',
       boolean: true,
       number: 42,
-      object: {foo: 'bar'},
-      array: [{foo: 'bar'}],
+      object: { foo: 'bar' },
+      array: [{ foo: 'bar' }],
     };
     const clone = cloneDeep(original);
 

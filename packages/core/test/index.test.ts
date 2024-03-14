@@ -1,31 +1,31 @@
-import {describe, expect, test} from 'vitest';
-import {parse} from '../src/index.js';
+import { describe, expect, test } from 'vitest';
+import { parse } from '../src/index.js';
 
 describe('parse', () => {
   test('sorts tokens', () => {
     const {
-      result: {tokens},
+      result: { tokens },
     } = parse(
       {
         color: {
           $type: 'color',
           blue: {
-            '70': {$value: '#4887c9'},
-            '10': {$value: '#062053'},
-            '30': {$value: '#192f7d'},
-            '80': {$value: '#5ca9d7'},
-            '40': {$value: '#223793'},
-            '50': {$description: 'Medium blue', $value: '#2b3faa'},
-            '100': {$value: '#89eff1'},
-            '60': {$value: '#3764ba'},
-            '90': {$value: '#72cce5'},
-            '20': {$value: '#0f2868'},
-            '00': {$value: '{color.black}'},
+            '70': { $value: '#4887c9' },
+            '10': { $value: '#062053' },
+            '30': { $value: '#192f7d' },
+            '80': { $value: '#5ca9d7' },
+            '40': { $value: '#223793' },
+            '50': { $description: 'Medium blue', $value: '#2b3faa' },
+            '100': { $value: '#89eff1' },
+            '60': { $value: '#3764ba' },
+            '90': { $value: '#72cce5' },
+            '20': { $value: '#0f2868' },
+            '00': { $value: '{color.black}' },
           },
-          black: {$value: '#000000'},
+          black: { $value: '#000000' },
         },
       },
-      {color: {}},
+      { color: {} },
     );
     expect(tokens.map((t) => t.id)).toEqual([
       'color.black',

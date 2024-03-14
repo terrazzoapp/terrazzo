@@ -1,4 +1,4 @@
-import type {BuildResult, ParsedToken, ParsedTypographyToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
+import type { BuildResult, ParsedToken, ParsedTypographyToken, Plugin, ResolvedConfig } from '@cobalt-ui/core';
 import pluginCSS, {
   _INTERNAL_makeNameGenerator,
   type Options as PluginCSSOptions,
@@ -13,8 +13,8 @@ import pluginCSS, {
   transformStrokeStyle,
   varRef,
 } from '@cobalt-ui/plugin-css';
-import {indent, isAlias, parseAlias} from '@cobalt-ui/utils';
-import {encode, formatFontFamilyNames} from './util.js';
+import { indent, isAlias, parseAlias } from '@cobalt-ui/utils';
+import { encode, formatFontFamilyNames } from './util.js';
 
 const CAMELCASE_RE = /([^A-Z])([A-Z])/g;
 const VAR_TOKENS = '__token-values';
@@ -107,7 +107,7 @@ ${cbClose}`
       config = c;
       if (cssPlugin && typeof cssPlugin.config === 'function') cssPlugin.config(c);
     },
-    async build({tokens, metadata, rawSchema}): Promise<BuildResult[]> {
+    async build({ tokens, metadata, rawSchema }): Promise<BuildResult[]> {
       let output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
       const prefix = options?.pluginCSS?.prefix || '';
@@ -139,11 +139,11 @@ ${cbClose}`
 
         let value: string | number | undefined | null;
         if (cssPlugin) {
-          value = varRef(token.id, {prefix, tokens, generateName});
+          value = varRef(token.id, { prefix, tokens, generateName });
         } else {
           value = await options?.transform?.(token);
           if (value === undefined || value === null) {
-            value = defaultTransformer(token, {colorFormat});
+            value = defaultTransformer(token, { colorFormat });
           }
         }
         if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
@@ -155,15 +155,15 @@ ${cbClose}`
           if (cssPlugin) {
             const rawValue = token._original.$extensions!.mode![modeName] as ParsedToken['$value'];
             if (typeof rawValue === 'string' && isAlias(rawValue)) {
-              const {id: aliasID} = parseAlias(rawValue);
-              modeValue = varRef(aliasID, {tokens, generateName});
+              const { id: aliasID } = parseAlias(rawValue);
+              modeValue = varRef(aliasID, { tokens, generateName });
             } else {
-              modeValue = varRef(token.id, {tokens, generateName});
+              modeValue = varRef(token.id, { tokens, generateName });
             }
           } else {
             modeValue = options?.transform?.(token, modeName);
             if (modeValue === undefined || modeValue === null) {
-              modeValue = defaultTransformer(token, {colorFormat, mode: modeName});
+              modeValue = defaultTransformer(token, { colorFormat, mode: modeName });
             }
           }
           if (token.$type === 'link' && options?.embedFiles) {
@@ -186,7 +186,7 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, {prefix, generateName, suffix: property, tokens})}),`, 3));
+            output.push(indent(`"${property}": (${varRef(token.id, { prefix, generateName, suffix: property, tokens })}),`, 3));
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
@@ -222,61 +222,61 @@ ${cbClose}`
           contents: output.join('\n'),
         },
         // build pluginCSS (if used)
-        ...((cssPlugin && (await cssPlugin.build({tokens, metadata, rawSchema}))) || []),
+        ...((cssPlugin && (await cssPlugin.build({ tokens, metadata, rawSchema }))) || []),
       ];
     },
   };
 }
 
-export function defaultTransformer(token: ParsedToken, {colorFormat, mode}: {colorFormat: NonNullable<PluginCSSOptions['colorFormat']>; mode?: string}): string | number {
+export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { colorFormat: NonNullable<PluginCSSOptions['colorFormat']>; mode?: string }): string | number {
   switch (token.$type) {
     case 'color': {
-      const {value, originalVal} = getMode(token, mode);
+      const { value, originalVal } = getMode(token, mode);
       return transformColor(isAlias(originalVal) ? value : originalVal, colorFormat); // note: use original value because it may have been normalized to hex (which matters if it wasn’t in sRGB gamut to begin with)
     }
     case 'dimension': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformDimension(value);
     }
     case 'duration': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformDuration(value);
     }
     case 'font' as 'fontFamily':
     case 'fontFamily': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformFontFamily(value);
     }
     case 'fontWeight': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformFontWeight(value);
     }
     case 'cubicBezier': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformCubicBezier(value);
     }
     case 'number': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformNumber(value);
     }
     case 'link': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformLink(value);
     }
     case 'strokeStyle': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       return transformStrokeStyle(value);
     }
     // composite tokens
     case 'border': {
-      const {value, originalVal} = getMode(token, mode);
+      const { value, originalVal } = getMode(token, mode);
       const width = transformDimension(value.width);
       const color = transformColor(typeof originalVal === 'string' || isAlias(originalVal.color) ? value.color : originalVal.color, colorFormat);
       const style = transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
     case 'shadow': {
-      let {value, originalVal} = getMode(token, mode);
+      let { value, originalVal } = getMode(token, mode);
       // handle backwards compat for previous versions that didn’t always return array
       if (!Array.isArray(value)) value = [value];
       if (!Array.isArray(originalVal)) originalVal = [originalVal] as any;
@@ -294,7 +294,7 @@ export function defaultTransformer(token: ParsedToken, {colorFormat, mode}: {col
         .join(', ');
     }
     case 'gradient': {
-      const {value, originalVal} = getMode(token, mode);
+      const { value, originalVal } = getMode(token, mode);
       return value
         .map((gradient, i) => {
           const origGradient = originalVal[i]!;
@@ -305,7 +305,7 @@ export function defaultTransformer(token: ParsedToken, {colorFormat, mode}: {col
         .join(', ');
     }
     case 'transition': {
-      const {value} = getMode(token, mode);
+      const { value } = getMode(token, mode);
       const duration = transformDuration(value.duration);
       const delay = value.delay ? transformDuration(value.delay) : undefined;
       const timingFunction = transformCubicBezier(value.timingFunction);
@@ -317,7 +317,7 @@ export function defaultTransformer(token: ParsedToken, {colorFormat, mode}: {col
   }
 }
 
-function getMode<T extends {id: string; $value: any; $extensions?: any; _original: any}>(token: T, mode?: string): {value: T['$value']; originalVal: T['$value'] | string} {
+function getMode<T extends { id: string; $value: any; $extensions?: any; _original: any }>(token: T, mode?: string): { value: T['$value']; originalVal: T['$value'] | string } {
   if (mode) {
     if (!token.$extensions?.mode || !token.$extensions.mode[mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
     return {
@@ -325,5 +325,5 @@ function getMode<T extends {id: string; $value: any; $extensions?: any; _origina
       originalVal: token._original.$extensions.mode[mode]!,
     };
   }
-  return {value: token.$value, originalVal: token._original.$value};
+  return { value: token.$value, originalVal: token._original.$value };
 }

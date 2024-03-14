@@ -30,16 +30,16 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import {parse} from '@cobalt-ui/core';
-import {DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET} from '@cobalt-ui/utils';
+import { parse } from '@cobalt-ui/core';
+import { DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
 import yaml from 'js-yaml';
 import fs from 'node:fs';
-import {performance} from 'node:perf_hooks';
-import {fileURLToPath, URL} from 'node:url';
+import { performance } from 'node:perf_hooks';
+import { fileURLToPath, URL } from 'node:url';
 import parser from 'yargs-parser';
 import build from '../dist/build.js';
-import {init as initConfig} from '../dist/config.js';
+import { init as initConfig } from '../dist/config.js';
 import convert from '../dist/convert.js';
 
 const [, , cmd, ...args] = process.argv;
@@ -71,7 +71,7 @@ export default async function main() {
 
   // --version
   if (flags.version) {
-    const {version} = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+    const { version } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
     console.log(version);
     process.exit(0);
   }
@@ -92,7 +92,7 @@ export default async function main() {
   try {
     // if running `co check [tokens]`, don’t load config from file
     if (cmd === 'check' && args[0]) {
-      config = await initConfig({tokens: args[0]}, cwd);
+      config = await initConfig({ tokens: args[0] }, cwd);
     } else {
       config = await loadConfig(resolveConfig(configPath));
     }
@@ -170,7 +170,7 @@ export default async function main() {
       const tokens = await loadTokens(config.tokens);
 
       const resolvedOut = new URL(flags.out, cwd);
-      fs.mkdirSync(new URL('.', resolvedOut), {recursive: true});
+      fs.mkdirSync(new URL('.', resolvedOut), { recursive: true });
 
       const isYAML = resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
       fs.writeFileSync(resolvedOut, isYAML ? yaml.dump(tokens) : JSON.stringify(tokens, undefined, 2));
@@ -192,7 +192,7 @@ export default async function main() {
       }
 
       const input = JSON.parse(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
-      const {errors, warnings, result} = await convert(input);
+      const { errors, warnings, result } = await convert(input);
       if (errors) {
         printErrors(errors);
         process.exit(1);
@@ -214,7 +214,7 @@ export default async function main() {
       const rawSchema = await loadTokens(config.tokens);
       const filepath = config.tokens[0];
       console.log(`${UNDERLINE}${filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath}${RESET}`);
-      const {errors, warnings} = parse(rawSchema, config); // will throw if errors
+      const { errors, warnings } = parse(rawSchema, config); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
         printWarnings(warnings);
@@ -300,13 +300,13 @@ async function loadTokens(tokenPaths) {
             printErrors(`Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filepath.href}"`);
             process.exit(1);
           }
-          const headers = new Headers({Accept: '*/*', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0'});
+          const headers = new Headers({ Accept: '*/*', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0' });
           if (process.env.FIGMA_ACCESS_TOKEN) {
             headers.set('X-FIGMA-TOKEN', process.env.FIGMA_ACCESS_TOKEN);
           } else {
             printWarnings(`FIGMA_ACCESS_TOKEN not set`);
           }
-          const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {method: 'GET', headers});
+          const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, { method: 'GET', headers });
           if (res.ok) {
             const data = await res.json();
             rawTokens.push(data.meta);
@@ -319,7 +319,7 @@ async function loadTokens(tokenPaths) {
         }
 
         // otherwise, expect YAML/JSON
-        const res = await fetch(filepath, {method: 'GET', headers: {Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0'}});
+        const res = await fetch(filepath, { method: 'GET', headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' } });
         const raw = await res.text();
         // if the 1st character is '{', it’s JSON (“if it’s dumb but it works…”)
         if (raw[0].trim() === '{') {

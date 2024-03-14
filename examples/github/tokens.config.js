@@ -7,10 +7,10 @@ export default {
   plugins: [
     pluginCSS({
       modeSelectors: [
-        {mode: 'light', selectors: ['[data-color-theme="light"]']},
-        {mode: 'light_colorblind', selectors: ['[data-color-theme="light-colorblind"]']},
-        {mode: 'light_low_contrast', selectors: ['[data-color-theme="light-low-contrast"]']},
-        {mode: 'desktop', tokens: ['font.size.*'], selectors: ['@media (min-width: 600px)']},
+        { mode: 'light', selectors: ['[data-color-theme="light"]'] },
+        { mode: 'light_colorblind', selectors: ['[data-color-theme="light-colorblind"]'] },
+        { mode: 'light_low_contrast', selectors: ['[data-color-theme="light-low-contrast"]'] },
+        { mode: 'desktop', tokens: ['font.size.*'], selectors: ['@media (min-width: 600px)'] },
       ],
     }),
     pluginSass(),

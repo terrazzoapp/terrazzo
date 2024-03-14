@@ -49,7 +49,7 @@ npx co build
 You’ll then get generated JS with a `token()` function you can use to grab token values:
 
 ```js
-import {token} from './tokens/index.js';
+import { token } from './tokens/index.js';
 
 // get default token
 const red = token('color.red.10');

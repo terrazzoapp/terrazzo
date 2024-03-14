@@ -1,5 +1,5 @@
-import {describe, expect, test} from 'vitest';
-import {camelize, kebabinate, objKey} from '../src/string.js';
+import { describe, expect, test } from 'vitest';
+import { camelize, kebabinate, objKey } from '../src/string.js';
 
 describe('camelize', () => {
   test('basic', () => {

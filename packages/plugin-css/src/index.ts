@@ -1,12 +1,12 @@
-import type {BuildResult, ParsedToken, Plugin, ResolvedConfig} from '@cobalt-ui/core';
-import {indent, isTokenMatch, FG_YELLOW, RESET} from '@cobalt-ui/utils';
-import {formatCss} from 'culori';
-import defaultTransformer, {type ColorFormat, toRGB} from './transform/index.js';
-import {CustomNameGenerator, makeNameGenerator} from './utils/token.js';
-import {encode} from './utils/encode.js';
-import generateUtilityCSS, {type UtilityCSSGroup} from './utils/utility-css.js';
+import type { BuildResult, ParsedToken, Plugin, ResolvedConfig } from '@cobalt-ui/core';
+import { indent, isTokenMatch, FG_YELLOW, RESET } from '@cobalt-ui/utils';
+import { formatCss } from 'culori';
+import defaultTransformer, { type ColorFormat, toRGB } from './transform/index.js';
+import { CustomNameGenerator, makeNameGenerator } from './utils/token.js';
+import { encode } from './utils/encode.js';
+import generateUtilityCSS, { type UtilityCSSGroup } from './utils/utility-css.js';
 
-export {makeNameGenerator as _INTERNAL_makeNameGenerator, defaultTransformer};
+export { makeNameGenerator as _INTERNAL_makeNameGenerator, defaultTransformer };
 export * from './utils/utility-css.js';
 export * from './utils/token.js';
 export * from './transform/index.js';
@@ -53,10 +53,10 @@ export default function pluginCSS(options?: Options): Plugin {
   const prefix = options?.prefix || '';
   const generateName = makeNameGenerator(options?.generateName, prefix);
 
-  function makeVars({tokens, indentLv = 0, root = false}: {tokens: Record<string, string>; indentLv: number; root: boolean}): string[] {
+  function makeVars({ tokens, indentLv = 0, root = false }: { tokens: Record<string, string>; indentLv: number; root: boolean }): string[] {
     const output: string[] = [];
     if (root) output.push(indent(':root {', indentLv));
-    const sortedTokens = Object.entries(tokens).sort((a, b) => a[0].localeCompare(b[0], 'en-us', {numeric: true}));
+    const sortedTokens = Object.entries(tokens).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
     for (const [variableName, value] of sortedTokens) {
       output.push(indent(`${variableName}: ${value};`, indentLv + (root ? 1 : 0)));
     }
@@ -78,7 +78,7 @@ export default function pluginCSS(options?: Options): Plugin {
       for (const c of matches) {
         const rgb = toRGB(c);
         if (!rgb) throw new Error(`invalid color "${c}"`);
-        newVal = newVal.replace(c, formatCss({...rgb, mode: 'p3'}));
+        newVal = newVal.replace(c, formatCss({ ...rgb, mode: 'p3' }));
         hasValidColors = true; // keep track of whether or not actual colors have been generated (we also generate non-color output, so checking for output.length won’t work)
       }
       output.push(newVal);
@@ -95,16 +95,16 @@ export default function pluginCSS(options?: Options): Plugin {
     config(c): void {
       config = c;
     },
-    async build({tokens, metadata}): Promise<BuildResult[]> {
+    async build({ tokens, metadata }): Promise<BuildResult[]> {
       const tokenIdToRefs: Record<string, string> = {};
-      const tokenVals: {[variableName: string]: any} = {};
-      const modeVals: {[selector: string]: {[variableName: string]: any}} = {};
+      const tokenVals: { [variableName: string]: any } = {};
+      const modeVals: { [selector: string]: { [variableName: string]: any } } = {};
       const selectors: string[] = [];
       const colorFormat = options?.colorFormat ?? 'hex';
       for (const token of tokens) {
         let value: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token);
         if (value === undefined || value === null) {
-          value = defaultTransformer(token, {prefix, colorFormat, generateName, tokens});
+          value = defaultTransformer(token, { prefix, colorFormat, generateName, tokens });
         }
 
         const ref = generateName(token.id, token);
@@ -153,7 +153,7 @@ export default function pluginCSS(options?: Options): Plugin {
           else if (typeof options.modeSelectors === 'object') {
             for (const [modeID, selector] of Object.entries(options.modeSelectors)) {
               const [groupRoot, modeName] = parseLegacyModeSelector(modeID);
-              modeSelectors.push({mode: modeName, tokens: groupRoot ? [`${groupRoot}*`] : undefined, selectors: Array.isArray(selector) ? selector : [selector]});
+              modeSelectors.push({ mode: modeName, tokens: groupRoot ? [`${groupRoot}*`] : undefined, selectors: Array.isArray(selector) ? selector : [selector] });
             }
           }
 
@@ -167,7 +167,7 @@ export default function pluginCSS(options?: Options): Plugin {
               if (!modeVals[selector]) modeVals[selector] = {};
               let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token, modeSelector.mode);
               if (modeVal === undefined || modeVal === null) {
-                modeVal = defaultTransformer(token, {colorFormat, generateName, mode: modeSelector.mode, prefix, tokens});
+                modeVal = defaultTransformer(token, { colorFormat, generateName, mode: modeSelector.mode, prefix, tokens });
               }
               switch (token.$type) {
                 case 'link': {
@@ -199,7 +199,7 @@ export default function pluginCSS(options?: Options): Plugin {
       code.push(' * DO NOT EDIT!');
       code.push(' */');
       code.push('');
-      code.push(...makeVars({tokens: tokenVals, indentLv: 0, root: true}));
+      code.push(...makeVars({ tokens: tokenVals, indentLv: 0, root: true }));
 
       // modes
       for (const selector of selectors) {
@@ -211,7 +211,7 @@ export default function pluginCSS(options?: Options): Plugin {
         }
         const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
         if (modeVals[selector]) {
-          const vars = makeVars({tokens: modeVals[selector]!, indentLv: 1, root: wrapper.startsWith('@')});
+          const vars = makeVars({ tokens: modeVals[selector]!, indentLv: 1, root: wrapper.startsWith('@') });
           // don’t output empty selectors
           if (vars.length) {
             code.push(`${wrapper} {`, ...vars, '}');
@@ -227,10 +227,10 @@ export default function pluginCSS(options?: Options): Plugin {
       ) {
         code.push('');
         code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
-        code.push(...makeP3(makeVars({tokens: tokenVals, indentLv: 1, root: true})));
+        code.push(...makeP3(makeVars({ tokens: tokenVals, indentLv: 1, root: true })));
         for (const selector of selectors) {
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');
-          const vars = makeVars({tokens: modeVals[selector]!, indentLv: 2, root: wrapper.startsWith('@')});
+          const vars = makeVars({ tokens: modeVals[selector]!, indentLv: 2, root: wrapper.startsWith('@') });
           const p3colors = makeP3(vars);
           // don’t output empty selectors
           if (p3colors.length) {
@@ -244,7 +244,7 @@ export default function pluginCSS(options?: Options): Plugin {
 
       // Utility CSS
       if (options?.utility && Object.keys(options.utility).length) {
-        code.push(generateUtilityCSS(options.utility, {refs: tokenIdToRefs, tokens}));
+        code.push(generateUtilityCSS(options.utility, { refs: tokenIdToRefs, tokens }));
       }
 
       code.push('');
