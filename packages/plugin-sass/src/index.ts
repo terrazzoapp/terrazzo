@@ -105,7 +105,9 @@ ${cbClose}`
     name: '@cobalt-ui/plugin-sass',
     config(c): void {
       config = c;
-      if (cssPlugin && typeof cssPlugin.config === 'function') cssPlugin.config(c);
+      if (cssPlugin && typeof cssPlugin.config === 'function') {
+        cssPlugin.config(c);
+      }
     },
     async build({ tokens, metadata, rawSchema }): Promise<BuildResult[]> {
       let output: string[] = [];
@@ -146,7 +148,9 @@ ${cbClose}`
             value = defaultTransformer(token, { colorFormat });
           }
         }
-        if (token.$type === 'link' && options?.embedFiles) value = encode(value as string, config.outDir);
+        if (token.$type === 'link' && options?.embedFiles) {
+          value = encode(value as string, config.outDir);
+        }
         output.push(indent(`${DEFAULT_KEY}: (${value}),`, 2));
 
         // modes
@@ -278,8 +282,12 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
     case 'shadow': {
       let { value, originalVal } = getMode(token, mode);
       // handle backwards compat for previous versions that didn’t always return array
-      if (!Array.isArray(value)) value = [value];
-      if (!Array.isArray(originalVal)) originalVal = [originalVal] as any;
+      if (!Array.isArray(value)) {
+        value = [value];
+      }
+      if (!Array.isArray(originalVal)) {
+        originalVal = [originalVal] as any;
+      }
 
       return value
         .map((shadow, i) => {
@@ -319,7 +327,9 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
 
 function getMode<T extends { id: string; $value: any; $extensions?: any; _original: any }>(token: T, mode?: string): { value: T['$value']; originalVal: T['$value'] | string } {
   if (mode) {
-    if (!token.$extensions?.mode || !token.$extensions.mode[mode]) throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
+    if (!token.$extensions?.mode || !token.$extensions.mode[mode]) {
+      throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
+    }
     return {
       value: token.$extensions.mode[mode]!,
       originalVal: token._original.$extensions.mode[mode]!,

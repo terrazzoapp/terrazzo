@@ -6,7 +6,7 @@ const LAST_PART_RE = /([^.]+)$/;
 /** parse an alias */
 export function parseAlias(input: string): { id: string; mode?: string } {
   const match = input.match(ALIAS_RE);
-  if (!match) return { id: input };
+  if (!match) {return { id: input };}
   const rawID = match[1] ?? match[0];
   const hashI = rawID.indexOf('#');
   return hashI === -1 ? { id: rawID } : { id: rawID.substring(0, hashI), mode: rawID.substring(hashI + 1) };
@@ -23,7 +23,7 @@ export function getAliasValue(input: string): string {
 
 /** is this token an alias of another? */
 export function isAlias(value: unknown): boolean {
-  if (typeof value !== 'string') return false;
+  if (typeof value !== 'string') {return false;}
   return ALIAS_RE.test(value);
 }
 

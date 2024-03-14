@@ -4,10 +4,18 @@ export function isObj(value: unknown): boolean {
 
 /** return true for undefined/null, and empty strings, arrays, and objects (numbers aren’t empty) */
 export function isEmpty(value: unknown): boolean {
-  if (value === undefined || value === null) return true;
-  if (typeof value === 'string') return value.length === 0;
-  if (Array.isArray(value)) return (value as Array<unknown>).length === 0;
-  if (isObj(value)) return Object.keys(value as object).length === 0;
+  if (value === undefined || value === null) {
+    return true;
+  }
+  if (typeof value === 'string') {
+    return value.length === 0;
+  }
+  if (Array.isArray(value)) {
+    return (value as Array<unknown>).length === 0;
+  }
+  if (isObj(value)) {
+    return Object.keys(value as object).length === 0;
+  }
   return false;
 }
 

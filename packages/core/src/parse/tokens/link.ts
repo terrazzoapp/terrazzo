@@ -11,7 +11,9 @@ import type { ParsedLinkToken } from '../../token.js';
  * }
  */
 export function normalizeLinkValue(value: unknown): ParsedLinkToken['$value'] {
-  if (!value) throw new Error('missing value');
+  if (!value) {
+    throw new Error('missing value');
+  }
   if (typeof value === 'string') {
     return value;
   }

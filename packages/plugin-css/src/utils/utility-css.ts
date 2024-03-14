@@ -24,7 +24,9 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
         }
         if (token.$type === 'typography') {
           const value: Record<string, string> = {};
-          if (typeof token.$value === 'string') continue; // skip aliased token
+          if (typeof token.$value === 'string') {
+            continue;
+          } // skip aliased token
           for (const k of Object.keys(token.$value)) {
             const property = kebabinate(k);
             value[property] = `var(${refs[token.id]}-${property});`;
@@ -59,11 +61,17 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
         // ALL generic properties must come before specific properties
         for (const token of selectedTokens) {
           let property = '';
-          if (token.type === 'border') property = 'border';
-          else if (token.type === 'color') property = 'border-color';
-          else if (token.type === 'dimension') property = 'border-width';
-          else if (token.type === 'strokeStyle') property = 'border-style';
-          else continue; // skip invalid token types
+          if (token.type === 'border') {
+            property = 'border';
+          } else if (token.type === 'color') {
+            property = 'border-color';
+          } else if (token.type === 'dimension') {
+            property = 'border-width';
+          } else if (token.type === 'strokeStyle') {
+            property = 'border-style';
+          } else {
+            continue;
+          } // skip invalid token types
 
           output.push(`.border-${token.partialID} {
   ${property}: ${token.value};
@@ -72,11 +80,17 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
         for (const token of selectedTokens) {
           for (const dir of ['top', 'right', 'bottom', 'left']) {
             let property = '';
-            if (token.type === 'border') property = `border-${dir}`;
-            else if (token.type === 'color') property = `border-${dir}-color`;
-            else if (token.type === 'dimension') property = `border-${dir}-width`;
-            else if (token.type === 'strokeStyle') property = `border-${dir}-style`;
-            else continue; // skip invalid token types
+            if (token.type === 'border') {
+              property = `border-${dir}`;
+            } else if (token.type === 'color') {
+              property = `border-${dir}-color`;
+            } else if (token.type === 'dimension') {
+              property = `border-${dir}-width`;
+            } else if (token.type === 'strokeStyle') {
+              property = `border-${dir}-style`;
+            } else {
+              continue;
+            } // skip invalid token types
 
             output.push(`.border-${dir}-${token.partialID} {
   ${property}: ${token.value};
@@ -160,7 +174,9 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
       }
       case 'shadow': {
         for (const token of selectedTokens) {
-          if (token.type !== 'shadow') continue;
+          if (token.type !== 'shadow') {
+            continue;
+          }
           output.push(`.shadow-${token.partialID} {
   box-shadow: ${token.value};
 }`);

@@ -19,9 +19,15 @@ import { normalizeFontWeightValue } from './fontWeight.js';
  *  }
  */
 export function normalizeTypographyValue(value: unknown): Partial<ParsedTypographyValue> {
-  if (!value) throw new Error('missing value');
-  if (typeof value !== 'object' || Array.isArray(value)) throw new Error(`expected object, received ${Array.isArray(value) ? 'array' : typeof value}`);
-  if (!Object.keys(value).length) throw new Error('must specify at least 1 font property');
+  if (!value) {
+    throw new Error('missing value');
+  }
+  if (typeof value !== 'object' || Array.isArray(value)) {
+    throw new Error(`expected object, received ${Array.isArray(value) ? 'array' : typeof value}`);
+  }
+  if (!Object.keys(value).length) {
+    throw new Error('must specify at least 1 font property');
+  }
 
   const normalized = {} as ParsedTypographyValue;
   for (const [k, v] of Object.entries(value)) {

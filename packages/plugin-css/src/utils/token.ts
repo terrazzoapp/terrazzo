@@ -1,4 +1,4 @@
-import { ParsedToken } from '@cobalt-ui/core';
+import type { ParsedToken } from '@cobalt-ui/core';
 import { isAlias, kebabinate, parseAlias } from '@cobalt-ui/utils';
 
 export { isTokenMatch } from '@cobalt-ui/utils';

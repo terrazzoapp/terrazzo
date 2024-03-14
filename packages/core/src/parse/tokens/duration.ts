@@ -19,7 +19,9 @@ export function normalizeDurationValue(value: unknown): ParsedDurationToken['$va
     return `${value}ms`;
   }
   if (typeof value === 'string') {
-    if (parseFloat(value) === 0) return '0ms'; // allow '0', but throw on everything else
+    if (parseFloat(value) === 0) {
+      return '0ms';
+    } // allow '0', but throw on everything else
     if (DURATION_RE.test(value)) {
       return value;
     }

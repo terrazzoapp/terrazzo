@@ -80,13 +80,23 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
   // config.plugins
   // validate
   if (userConfig.plugins !== undefined) {
-    if (!Array.isArray(userConfig.plugins)) throw new Error(`[config] plugins must be array, received ${typeof userConfig.plugins}`);
-    if (!userConfig.plugins.length) throw new Error(`[config] plugins are empty`);
+    if (!Array.isArray(userConfig.plugins)) {
+      throw new Error(`[config] plugins must be array, received ${typeof userConfig.plugins}`);
+    }
+    if (!userConfig.plugins.length) {
+      throw new Error(`[config] plugins are empty`);
+    }
     for (let n = 0; n < userConfig.plugins.length; n++) {
       const plugin = userConfig.plugins[n];
-      if (typeof plugin !== 'object') throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(plugin)}`);
-      if (!plugin.name) throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
-      if (typeof plugin.build !== 'function') throw new Error(`[${plugin.name}] missing "build" function`);
+      if (typeof plugin !== 'object') {
+        throw new Error(`[plugin#${n}] invalid: expected output plugin, received ${JSON.stringify(plugin)}`);
+      }
+      if (!plugin.name) {
+        throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
+      }
+      if (typeof plugin.build !== 'function') {
+        throw new Error(`[${plugin.name}] missing "build" function`);
+      }
     }
   }
 
@@ -95,7 +105,9 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
     for (const plugin of config.plugins) {
       if (typeof plugin.config === 'function') {
         const newConfig = plugin.config(config); // if a plugin modified the config, alloawaitw it to
-        if (newConfig) config = newConfig;
+        if (newConfig) {
+          config = newConfig;
+        }
       }
     }
   }

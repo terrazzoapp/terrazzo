@@ -3,7 +3,8 @@
  */
 import { FG_RED, RESET } from '@cobalt-ui/utils';
 import { describe, expect, test } from 'vitest';
-import { ParseOptions, parse } from '../src/index.js';
+import type { ParseOptions } from '../src/index.js';
+import { parse } from '../src/index.js';
 
 const DEFAULT_PARSE_OPTIONS: ParseOptions = { color: {} };
 

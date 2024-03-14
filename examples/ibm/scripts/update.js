@@ -13,14 +13,14 @@ const schema = JSON.parse(fs.readFileSync(tokensPath));
 // colors
 const colorUpdates = [];
 for (const [colorName, value] of Object.entries(colors)) {
-  if (typeof value != 'string') continue;
+  if (typeof value != 'string') {continue;}
   colorUpdates.push([colorName, value]);
 }
 colorUpdates.sort((a, b) => {
   // sort "-Hover" colors to back
   if (a[0].match(TEXT_RE)[0] == b[0].match(TEXT_RE)[0]) {
-    if (a[0].endsWith('Hover') && !b[0].endsWith('Hover')) return 1;
-    if (!a[0].endsWith('Hover') && b[0].endsWith('Hover')) return -1;
+    if (a[0].endsWith('Hover') && !b[0].endsWith('Hover')) {return 1;}
+    if (!a[0].endsWith('Hover') && b[0].endsWith('Hover')) {return -1;}
   }
   return a[0].localeCompare(b[0], 'en-us', { numeric: true });
 });
@@ -30,7 +30,7 @@ for (const [colorName, value] of colorUpdates) {
 
 // icons (note: there is an svg/ folder inside @carbon/icons but it’s missing many from this array)
 for (const icon of Object.values(icons)) {
-  if (icon.elem != 'svg') continue;
+  if (icon.elem != 'svg') {continue;}
   const h = icon.attrs.height; // note: this is the only attr
   let code = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${h} ${h}">${toHTML(icon.content)}</svg>`;
   fs.writeFileSync(new URL(`../icon/${icon.name}.svg`, import.meta.url), code);

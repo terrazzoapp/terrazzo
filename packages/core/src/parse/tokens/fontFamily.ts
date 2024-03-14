@@ -16,8 +16,12 @@ import type { ParsedFontFamilyToken } from '../../token.js';
  * }
  */
 export function normalizeFontFamilyValue(value: unknown): ParsedFontFamilyToken['$value'] {
-  if (!value) throw new Error('missing value');
-  if (typeof value === 'string') return [value];
+  if (!value) {
+    throw new Error('missing value');
+  }
+  if (typeof value === 'string') {
+    return [value];
+  }
   if (Array.isArray(value)) {
     if (value.every((v) => !!v && typeof v === 'string')) {
       return value;

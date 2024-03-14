@@ -21,7 +21,9 @@ export default function convert(input: any): ConvertResult {
   const aliasedTokens: { id: string; $value: string }[] = [];
 
   function walk(node: any, ctx: { path: string[] }): void {
-    if (!node || typeof node !== 'object') return;
+    if (!node || typeof node !== 'object') {
+      return;
+    }
 
     if ('value' in node) {
       let type: ParsedToken['$type'] | undefined = undefined;
@@ -69,8 +71,12 @@ export default function convert(input: any): ConvertResult {
   }
 
   // only add errors/warnings if there were any
-  if (errors.length) result.errors = errors;
-  if (warnings.length) result.warnings = warnings;
+  if (errors.length) {
+    result.errors = errors;
+  }
+  if (warnings.length) {
+    result.warnings = warnings;
+  }
 
   // build core tokens
   for (const token of parsedTokens) {

@@ -1,6 +1,7 @@
-import { ParsedBorderToken, ParsedToken } from '@cobalt-ui/core';
+import type { ParsedBorderToken, ParsedToken } from '@cobalt-ui/core';
 import { isAlias } from '@cobalt-ui/utils';
-import { getMode, makeNameGenerator, varRef } from '../utils/token.js';
+import type { makeNameGenerator } from '../utils/token.js';
+import { getMode, varRef } from '../utils/token.js';
 import transformColor, { type ColorFormat } from './color.js';
 import transformDimension from './dimension.js';
 import transformStrokeStyle from './stroke-style.js';

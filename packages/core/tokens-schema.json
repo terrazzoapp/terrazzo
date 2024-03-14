@@ -18,45 +18,45 @@
     "border": {
       "description": "Represents a border style. (9.3)",
       "example": "{\n  \"$value\": \"#ff00ff\",\n  \"$type\": \"color\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["border"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/borderValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["border"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/borderValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "borderGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["border"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/border"}]}
+      "properties": { "$type": { "type": "string", "enum": ["border"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/border" }] }
     },
     "borderValue": {
       "type": "object",
       "required": ["color", "width", "style"],
       "properties": {
-        "color": {"oneOf": [{"$ref": "#/$defs/colorValue"}, {"$ref": "#/$defs/alias"}]},
-        "width": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]},
-        "style": {"oneOf": [{"$ref": "#/$defs/strokeStyleValue"}, {"$ref": "#/$defs/alias"}]}
+        "color": { "oneOf": [{ "$ref": "#/$defs/colorValue" }, { "$ref": "#/$defs/alias" }] },
+        "width": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] },
+        "style": { "oneOf": [{ "$ref": "#/$defs/strokeStyleValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "color": {
       "description": "Represents a 24bit RGB or 24+8bit RGBA color in the sRGB color space. (8.1)",
       "example": "{\n  \"$value\": {\n    \"color\": \"#36363600\",\n    \"width\": \"3px\",\n    \"style\": \"solid\"\n  },\n  \"$type\": \"border\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["color"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/colorValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["color"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/colorValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "colorGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["color"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/color"}]}
+      "properties": { "$type": { "type": "string", "enum": ["color"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/color" }] }
     },
     "colorValue": {
       "type": "string"
@@ -64,44 +64,44 @@
     "cubicBezier": {
       "description": "Represents how the value of an animated property progresses towards completion over the duration of an animation, effectively creating visual effects such as acceleration, deceleration, and bounce. (8.6)",
       "example": "{\n  \"$value\": [0, 0, 0.5, 1],\n  \"$type\": \"cubicBezier\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["cubicBezier"]},
+        "$type": { "type": "string", "enum": ["cubicBezier"] },
         "$value": {
-          "oneOf": [{"$ref": "#/$defs/cubicBezierValue"}, {"$ref": "#/$defs/alias"}]
+          "oneOf": [{ "$ref": "#/$defs/cubicBezierValue" }, { "$ref": "#/$defs/alias" }]
         }
       }
     },
     "cubicBezierGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["cubicBezier"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/cubicBezier"}]}
+      "properties": { "$type": { "type": "string", "enum": ["cubicBezier"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/cubicBezier" }] }
     },
     "cubicBezierValue": {
       "type": "array",
-      "items": {"type": "number"},
+      "items": { "type": "number" },
       "minItems": 4,
       "maxItems": 4
     },
     "dimension": {
       "description": "Represents an amount of distance in a single dimension in the UI, such as a position, width, height, radius, or thickness. (8.2)",
       "example": "{\n{  \"$value\": \"0.25rem\",\n  \"$type\": \"dimension\"}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["dimension"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["dimension"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "dimensionGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["dimension"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/dimension"}]}
+      "properties": { "$type": { "type": "string", "enum": ["dimension"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/dimension" }] }
     },
     "dimensionValue": {
       "type": "string",
@@ -110,19 +110,19 @@
     "duration": {
       "description": "Represents the length of time in milliseconds an animation or animation cycle takes to complete (8.5)",
       "example": "{\n  \"$value\": \"100ms\",\n  \"$type\": \"duration\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["duration"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/durationValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["duration"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/durationValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "durationGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["dimension"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/dimension"}]}
+      "properties": { "$type": { "type": "string", "enum": ["dimension"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/dimension" }] }
     },
     "durationValue": {
       "type": "string",
@@ -131,38 +131,38 @@
     "fontFamily": {
       "description": "Represents a font name or an array of font names (ordered from most to least preferred). (8.3)",
       "example": "{\n  \"$value\": [\"Helvetica\", \"Arial\", \"sans-serif\"],\n  \"$type\": \"fontFamily\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["fontFamily"]},
+        "$type": { "type": "string", "enum": ["fontFamily"] },
         "$value": {
-          "oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}, {"$ref": "#/$defs/alias"}]
+          "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }, { "$ref": "#/$defs/alias" }]
         }
       }
     },
     "fontFamilyGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["fontFamily"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/fontFamily"}]}
+      "properties": { "$type": { "type": "string", "enum": ["fontFamily"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/fontFamily" }] }
     },
     "fontWeight": {
       "description": "Represents a font weight (8.4)",
       "example": "{\n  \"$value\": 350,\n  \"$type\": \"fontWeight\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["fontWeight"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/fontWeightNumericValue"}, {"$ref": "#/$defs/fontWeightStringValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["fontWeight"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/fontWeightNumericValue" }, { "$ref": "#/$defs/fontWeightStringValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "fontWeightGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["fontWeight"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/fontWeight"}]}
+      "properties": { "$type": { "type": "string", "enum": ["fontWeight"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/fontWeight" }] }
     },
     "fontWeightNumericValue": {
       "type": "integer",
@@ -172,49 +172,68 @@
     "fontWeightStringValue": {
       "description": "Maps to a numeric value. Refer to https://design-tokens.github.io/community-group/format/#font-weight.",
       "type": "string",
-      "enum": ["thin", "hairline", "extra-light", "ultra-light", "light", "normal", "regular", "book", "medium", "semi-bold", "demi-bold", "bold", "extra-bold", "ultra-bold", "black", "heavy", "extra-black", "ultra-black"]
+      "enum": [
+        "thin",
+        "hairline",
+        "extra-light",
+        "ultra-light",
+        "light",
+        "normal",
+        "regular",
+        "book",
+        "medium",
+        "semi-bold",
+        "demi-bold",
+        "bold",
+        "extra-bold",
+        "ultra-bold",
+        "black",
+        "heavy",
+        "extra-black",
+        "ultra-black"
+      ]
     },
     "gradient": {
       "description": "Represents a color gradient. (9.6)",
       "example": "{\n  \"$value\": [{\"color\": \"#0000ff\", \"position\": 0}, {\"color\": \"#ff0000\", \"position\": 1}],\n  \"$type\": \"gradient\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["gradient"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/gradientValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["gradient"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/gradientValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "gradientGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["gradient"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/gradient"}]}
+      "properties": { "$type": { "type": "string", "enum": ["gradient"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/gradient" }] }
     },
     "gradientValue": {
       "type": "object",
       "required": ["color", "position"],
       "properties": {
-        "color": {"oneOf": [{"$ref": "#/$defs/colorValue"}, {"$ref": "#/$defs/alias"}]},
-        "position": {"oneOf": [{"type": "number"}, {"$ref": "#/$defs/alias"}]}
+        "color": { "oneOf": [{ "$ref": "#/$defs/colorValue" }, { "$ref": "#/$defs/alias" }] },
+        "position": { "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "group": {
       "description": "An arbitrary grouping of groups or tokens (6)",
       "oneOf": [
-        {"$ref": "#/$defs/borderGroup"},
-        {"$ref": "#/$defs/colorGroup"},
-        {"$ref": "#/$defs/cubicBezierGroup"},
-        {"$ref": "#/$defs/dimensionGroup"},
-        {"$ref": "#/$defs/durationGroup"},
-        {"$ref": "#/$defs/fontFamilyGroup"},
-        {"$ref": "#/$defs/fontWeightGroup"},
-        {"$ref": "#/$defs/gradientGroup"},
-        {"$ref": "#/$defs/numberGroup"},
-        {"$ref": "#/$defs/shadowGroup"},
-        {"$ref": "#/$defs/strokeStyleGroup"},
-        {"$ref": "#/$defs/transitionGroup"},
-        {"$ref": "#/$defs/typographyGroup"}
+        { "$ref": "#/$defs/borderGroup" },
+        { "$ref": "#/$defs/colorGroup" },
+        { "$ref": "#/$defs/cubicBezierGroup" },
+        { "$ref": "#/$defs/dimensionGroup" },
+        { "$ref": "#/$defs/durationGroup" },
+        { "$ref": "#/$defs/fontFamilyGroup" },
+        { "$ref": "#/$defs/fontWeightGroup" },
+        { "$ref": "#/$defs/gradientGroup" },
+        { "$ref": "#/$defs/numberGroup" },
+        { "$ref": "#/$defs/shadowGroup" },
+        { "$ref": "#/$defs/strokeStyleGroup" },
+        { "$ref": "#/$defs/transitionGroup" },
+        { "$ref": "#/$defs/typographyGroup" }
       ]
     },
     "groupCommon": {
@@ -237,67 +256,67 @@
     "number": {
       "description": "Represents a number. Numbers can be positive, negative and have fractions. (8.7)",
       "example": "{\n  \"$value\": \"2.3\",\n  \"$type\": \"number\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["number"]},
-        "$value": {"oneOf": [{"type": "number"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["number"] },
+        "$value": { "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "numberGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["number"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/number"}]}
+      "properties": { "$type": { "type": "string", "enum": ["number"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/number" }] }
     },
     "shadow": {
       "description": "Represents a shadow style. (9.5)",
       "example": "{\n  \"$value\": {\n    \"color\": \"#00000020\",\n    \"offsetX\": \"0.5rem\",\n    \"offsetY\": \"0.5rem\",\n    \"blur\": \"1.5rem\",\n    \"spread\": \"0rem\"\n  },\n  \"$type\": \"strokeStyle\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["shadow"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/shadowValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["shadow"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/shadowValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "shadowGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["shadow"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/shadow"}]}
+      "properties": { "$type": { "type": "string", "enum": ["shadow"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/shadow" }] }
     },
     "shadowValue": {
       "type": "object",
       "required": ["color", "offsetX", "offsetY", "blur", "spread"],
       "properties": {
-        "color": {"oneOf": [{"$ref": "#/$defs/colorValue"}, {"$ref": "#/$defs/alias"}]},
-        "offsetX": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]},
-        "offsetY": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]},
-        "blur": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]},
-        "spread": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]}
+        "color": { "oneOf": [{ "$ref": "#/$defs/colorValue" }, { "$ref": "#/$defs/alias" }] },
+        "offsetX": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] },
+        "offsetY": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] },
+        "blur": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] },
+        "spread": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "strokeStyle": {
       "description": "Represents the style applied to lines or borders. (9.2)",
       "example": "{\n  \"$value\": {\n    \"dashArray\": [\"0.5rem\", \"0.25rem\"],\n    \"lineCap\": \"round\"\n  },\n  \"$type\": \"strokeStyle\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["number"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/strokeStyleValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["number"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/strokeStyleValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "strokeStyleGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["strokeStyle"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/strokeStyle"}]}
+      "properties": { "$type": { "type": "string", "enum": ["strokeStyle"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/strokeStyle" }] }
     },
     "strokeStyleValue": {
-      "oneOf": [{"$ref": "#/$defs/strokeStyleStringValue"}, {"$ref": "#/$defs/strokeStyleObjectValue"}]
+      "oneOf": [{ "$ref": "#/$defs/strokeStyleStringValue" }, { "$ref": "#/$defs/strokeStyleObjectValue" }]
     },
     "strokeStyleStringValue": {
       "type": "string",
@@ -307,25 +326,25 @@
       "type": "object",
       "required": ["dashArray"],
       "properties": {
-        "dashArray": {"type": "array", "items": {"$ref": "#/$defs/dimensionValue"}},
-        "lineCap": {"type": "string", "enum": ["round", "butt", "square"]}
+        "dashArray": { "type": "array", "items": { "$ref": "#/$defs/dimensionValue" } },
+        "lineCap": { "type": "string", "enum": ["round", "butt", "square"] }
       }
     },
     "token": {
       "oneOf": [
-        {"$ref": "#/$defs/border"},
-        {"$ref": "#/$defs/color"},
-        {"$ref": "#/$defs/cubicBezier"},
-        {"$ref": "#/$defs/dimension"},
-        {"$ref": "#/$defs/duration"},
-        {"$ref": "#/$defs/fontFamily"},
-        {"$ref": "#/$defs/fontWeight"},
-        {"$ref": "#/$defs/gradient"},
-        {"$ref": "#/$defs/number"},
-        {"$ref": "#/$defs/shadow"},
-        {"$ref": "#/$defs/strokeStyle"},
-        {"$ref": "#/$defs/transition"},
-        {"$ref": "#/$defs/typography"}
+        { "$ref": "#/$defs/border" },
+        { "$ref": "#/$defs/color" },
+        { "$ref": "#/$defs/cubicBezier" },
+        { "$ref": "#/$defs/dimension" },
+        { "$ref": "#/$defs/duration" },
+        { "$ref": "#/$defs/fontFamily" },
+        { "$ref": "#/$defs/fontWeight" },
+        { "$ref": "#/$defs/gradient" },
+        { "$ref": "#/$defs/number" },
+        { "$ref": "#/$defs/shadow" },
+        { "$ref": "#/$defs/strokeStyle" },
+        { "$ref": "#/$defs/transition" },
+        { "$ref": "#/$defs/typography" }
       ],
       "discriminator": {
         "propertyName": "$type",
@@ -353,34 +372,34 @@
           "description": "A plain text description explaining the token's purpose can be provided via the optional $description property. (5.3)",
           "type": "string"
         },
-        "$extensions": {"$ref": "#/$defs/$extensions"}
+        "$extensions": { "$ref": "#/$defs/$extensions" }
       },
       "additionalProperties": true
     },
     "transition": {
       "description": "Represents a animated transition between two states. (9.4)",
       "example": "{\n  \"$value\": {\n    \"duration\": \"200ms\",\n    \"delay\": \"0ms\",\n    \"timingFunction\": [0.5, 0, 1, 1]\n  },\n  \"$type\": \"transition\"\n}",
-      "allOf": [{"$ref": "#/$defs/tokenCommon"}],
+      "allOf": [{ "$ref": "#/$defs/tokenCommon" }],
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["transition"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/transitionValue"}, {"$ref": "#/$defs/alias"}]}
+        "$type": { "type": "string", "enum": ["transition"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/transitionValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "transitionGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["transition"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/transition"}]}
+      "properties": { "$type": { "type": "string", "enum": ["transition"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/transition" }] }
     },
     "transitionValue": {
       "type": "object",
       "required": ["duration", "delay", "timingFunction"],
       "properties": {
-        "duration": {"oneOf": [{"$ref": "#/$defs/durationValue"}, {"$ref": "#/$defs/alias"}]},
-        "delay": {"oneOf": [{"$ref": "#/$defs/durationValue"}, {"$ref": "#/$defs/alias"}]},
-        "timingFunction": {"oneOf": [{"$ref": "#/$defs/cubicBezierValue"}, {"$ref": "#/$defs/alias"}]}
+        "duration": { "oneOf": [{ "$ref": "#/$defs/durationValue" }, { "$ref": "#/$defs/alias" }] },
+        "delay": { "oneOf": [{ "$ref": "#/$defs/durationValue" }, { "$ref": "#/$defs/alias" }] },
+        "timingFunction": { "oneOf": [{ "$ref": "#/$defs/cubicBezierValue" }, { "$ref": "#/$defs/alias" }] }
       }
     },
     "typography": {
@@ -389,27 +408,27 @@
       "type": "object",
       "required": ["$value"],
       "properties": {
-        "$type": {"type": "string", "enum": ["typography"]},
-        "$value": {"oneOf": [{"$ref": "#/$defs/typographyValue"}, {"$ref": "#/$defs/alias"}]},
-        "$extensions": {"$ref": "#/$defs/$extensions"}
+        "$type": { "type": "string", "enum": ["typography"] },
+        "$value": { "oneOf": [{ "$ref": "#/$defs/typographyValue" }, { "$ref": "#/$defs/alias" }] },
+        "$extensions": { "$ref": "#/$defs/$extensions" }
       },
       "additionalProperties": true
     },
     "typographyGroup": {
-      "allOf": [{"$ref": "#/$defs/groupCommon"}],
+      "allOf": [{ "$ref": "#/$defs/groupCommon" }],
       "type": "object",
-      "properties": {"$type": {"type": "string", "enum": ["typography"]}},
-      "additionalProperties": {"oneOf": [{"$ref": "#/$defs/group"}, {"$ref": "#/$defs/typography"}]}
+      "properties": { "$type": { "type": "string", "enum": ["typography"] } },
+      "additionalProperties": { "oneOf": [{ "$ref": "#/$defs/group" }, { "$ref": "#/$defs/typography" }] }
     },
     "typographyValue": {
       "type": "object",
       "required": ["fontFamily", "fontSize", "fontWeight", "letterSpacing", "lineHeight"],
       "properties": {
-        "fontFamily": {"oneOf": [{"$ref": "#/$defs/fontFamily"}, {"$ref": "#/$defs/alias"}]},
-        "fontSize": {"oneOf": [{"$ref": "#/$defs/dimensionValue"}, {"$ref": "#/$defs/alias"}]},
-        "fontWeight": {"oneOf": [{"type": "number"}, {"$ref": "#/$defs/alias"}]},
-        "letterSpacing": {"oneOf": [{"$ref": "#/$defs/duration"}, {"$ref": "#/$defs/alias"}]},
-        "lineHeight": {"oneOf": [{"type": "number"}, {"$ref": "#/$defs/alias"}]}
+        "fontFamily": { "oneOf": [{ "$ref": "#/$defs/fontFamily" }, { "$ref": "#/$defs/alias" }] },
+        "fontSize": { "oneOf": [{ "$ref": "#/$defs/dimensionValue" }, { "$ref": "#/$defs/alias" }] },
+        "fontWeight": { "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/alias" }] },
+        "letterSpacing": { "oneOf": [{ "$ref": "#/$defs/duration" }, { "$ref": "#/$defs/alias" }] },
+        "lineHeight": { "oneOf": [{ "type": "number" }, { "$ref": "#/$defs/alias" }] }
       }
     }
   }

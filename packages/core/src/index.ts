@@ -41,7 +41,8 @@ export type {
   TypographyValue,
 } from './token.js';
 
-import { ParseOptions, parse } from './parse/index.js';
+import type { ParseOptions} from './parse/index.js';
+import { parse } from './parse/index.js';
 export { parse, ParseOptions, ParseResult } from './parse/index.js';
 
 export interface BuildResult {

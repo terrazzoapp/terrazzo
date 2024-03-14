@@ -57,8 +57,12 @@ const fontWeightAliases: Record<FontWeightName, number> = {
  * }
  */
 export function normalizeFontWeightValue(value: unknown): ParsedFontWeightToken['$value'] {
-  if (!value) throw new Error('missing value');
-  if (typeof value === 'number') return value;
+  if (!value) {
+    throw new Error('missing value');
+  }
+  if (typeof value === 'number') {
+    return value;
+  }
   if (typeof value === 'string' && value in fontWeightAliases) {
     return fontWeightAliases[value as FontWeightName];
   }

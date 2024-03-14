@@ -8,8 +8,8 @@
   "typography": {
     "$type": "typography",
     "family": {
-      "base": {"$type": "fontFamily", "$value": ["system-ui", "sans-serif"]},
-      "mono": {"$type": "fontFamily", "$value": ["ui-monospace", "monospace"]}
+      "base": { "$type": "fontFamily", "$value": ["system-ui", "sans-serif"] },
+      "mono": { "$type": "fontFamily", "$value": ["ui-monospace", "monospace"] }
     },
     "base": {
       "$value": {
