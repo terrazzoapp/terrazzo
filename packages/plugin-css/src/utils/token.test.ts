@@ -1,6 +1,6 @@
-import type {ParsedColorToken} from '@cobalt-ui/core';
-import {describe, expect, test} from 'vitest';
-import {defaultNameGenerator, isTokenMatch, makeNameGenerator} from './token.js';
+import type { ParsedColorToken } from '@cobalt-ui/core';
+import { describe, expect, test } from 'vitest';
+import { defaultNameGenerator, isTokenMatch, makeNameGenerator } from './token.js';
 
 describe('isTokenMatch', () => {
   test('finds matching tokens', () => {
@@ -56,8 +56,8 @@ describe('makeNameGenerator', () => {
     id: 'color.blue.500',
     $type: 'color',
     $value: '#0000ff',
-    _original: {$type: 'color', $value: '#0000ff'},
-    _group: {id: 'color.blue'},
+    _original: { $type: 'color', $value: '#0000ff' },
+    _group: { id: 'color.blue' },
   };
 
   test('returns the default name generator if none is provided', () => {

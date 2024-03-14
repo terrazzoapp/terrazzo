@@ -1,7 +1,7 @@
 import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {URL, fileURLToPath} from 'node:url';
-import {describe, expect, test} from 'vitest';
+import { URL, fileURLToPath } from 'node:url';
+import { describe, expect, test } from 'vitest';
 import pluginJS from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-js', () => {

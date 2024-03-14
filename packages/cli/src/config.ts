@@ -1,13 +1,13 @@
-import type {ResolvedConfig, Config} from '@cobalt-ui/core';
+import type { ResolvedConfig, Config } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import mod from 'node:module';
-import {fileURLToPath, URL} from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 
 const require = mod.createRequire(`file://${process.cwd()}`);
 const TRAILING_SLASH_RE = /\/*$/;
 
 export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig> {
-  let config = {...(userConfig as any)} as ResolvedConfig;
+  let config = { ...(userConfig as any) } as ResolvedConfig;
 
   // config.tokens
   // default
@@ -53,7 +53,7 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
       }
       // otherwise, attempt Node resolution (sometimes it do be like that)
       else {
-        const nodeResolved = require.resolve(filepath, {paths: [fileURLToPath(cwd), process.cwd(), import.meta.url]});
+        const nodeResolved = require.resolve(filepath, { paths: [fileURLToPath(cwd), process.cwd(), import.meta.url] });
         if (!fs.existsSync(nodeResolved)) {
           throw new Error(`Can’t locate "${userConfig.tokens}". Does the path exist?`);
         }
@@ -103,7 +103,7 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
   // token type options
   for (const tokenType of ['color']) {
     // normalize
-    (config as any)[tokenType] = {...((userConfig as any)[tokenType] ?? {})};
+    (config as any)[tokenType] = { ...((userConfig as any)[tokenType] ?? {}) };
   }
 
   return config;

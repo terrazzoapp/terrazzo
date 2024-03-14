@@ -182,7 +182,7 @@ export default {
     pluginCSS({
       transform(token) {
         if (token.$type === 'color') {
-          const {r, g, b} = culori.rgb(culori.parse(token.$value));
+          const { r, g, b } = culori.rgb(culori.parse(token.$value));
           return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)].join(' ');
         }
       },

@@ -2,7 +2,7 @@ import colors from '@carbon/colors';
 import icons from '@carbon/icons';
 import typography from '@carbon/type';
 import fs from 'node:fs';
-import {URL} from 'node:url';
+import { URL } from 'node:url';
 
 const TEXT_RE = /^[A-Z]+/i;
 const SQ_PREFIX_RE = /^'/;
@@ -22,10 +22,10 @@ colorUpdates.sort((a, b) => {
     if (a[0].endsWith('Hover') && !b[0].endsWith('Hover')) return 1;
     if (!a[0].endsWith('Hover') && b[0].endsWith('Hover')) return -1;
   }
-  return a[0].localeCompare(b[0], 'en-us', {numeric: true});
+  return a[0].localeCompare(b[0], 'en-us', { numeric: true });
 });
 for (const [colorName, value] of colorUpdates) {
-  schema.tokens.color[colorName] = {type: 'color', value};
+  schema.tokens.color[colorName] = { type: 'color', value };
 }
 
 // icons (note: there is an svg/ folder inside @carbon/icons but it’s missing many from this array)

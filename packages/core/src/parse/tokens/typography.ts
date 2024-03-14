@@ -1,8 +1,8 @@
-import type {ParsedTypographyValue} from '../../token.js';
-import {camelize} from '@cobalt-ui/utils';
-import {normalizeFontFamilyValue} from './fontFamily.js';
-import {normalizeDimensionValue} from './dimension.js';
-import {normalizeFontWeightValue} from './fontWeight.js';
+import type { ParsedTypographyValue } from '../../token.js';
+import { camelize } from '@cobalt-ui/utils';
+import { normalizeFontFamilyValue } from './fontFamily.js';
+import { normalizeDimensionValue } from './dimension.js';
+import { normalizeFontWeightValue } from './fontWeight.js';
 
 /**
  * 9.7 Typography

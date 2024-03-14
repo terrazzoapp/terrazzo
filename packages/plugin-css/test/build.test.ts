@@ -1,10 +1,10 @@
 import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {URL, fileURLToPath} from 'node:url';
+import { URL, fileURLToPath } from 'node:url';
 import * as culori from 'culori';
-import {describe, expect, test} from 'vitest';
+import { describe, expect, test } from 'vitest';
 import yaml from 'js-yaml';
-import pluginCSS, {defaultNameGenerator} from '../dist/index.js';
+import pluginCSS, { defaultNameGenerator } from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
   test.each(['border', 'color', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
@@ -17,16 +17,16 @@ describe('@cobalt-ui/plugin-css', () => {
           filename: 'actual.css',
           prefix: 'ds-',
           modeSelectors: [
-            {mode: 'light', selectors: ['@media (prefers-color-scheme: light)']},
-            {mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)']},
-            {mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]']},
-            {mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]']},
-            {mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]']},
-            {mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]']},
-            {mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]']},
-            {mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]']},
-            {mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]']},
-            {mode: 'desktop', selectors: ['@media (width >= 600px)']},
+            { mode: 'light', selectors: ['@media (prefers-color-scheme: light)'] },
+            { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)'] },
+            { mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]'] },
+            { mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]'] },
+            { mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]'] },
+            { mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]'] },
+            { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
+            { mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]'] },
+            { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
+            { mode: 'desktop', selectors: ['@media (width >= 600px)'] },
           ],
         }),
       ],
@@ -46,8 +46,8 @@ describe('@cobalt-ui/plugin-css', () => {
         pluginCSS({
           filename: 'actual.css',
           modeSelectors: [
-            {mode: 'light', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]']},
-            {mode: 'dark', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]']},
+            { mode: 'light', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'] },
+            { mode: 'dark', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'] },
           ],
         }),
       ],
@@ -62,7 +62,7 @@ describe('@cobalt-ui/plugin-css', () => {
     const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
     await build(tokens, {
       outDir: cwd,
-      plugins: [pluginCSS({filename: 'actual.css'})],
+      plugins: [pluginCSS({ filename: 'actual.css' })],
       color: {},
       tokens: [],
     });
@@ -80,15 +80,15 @@ describe('@cobalt-ui/plugin-css', () => {
             filename: 'actual.css',
             colorFormat: 'oklch',
             modeSelectors: [
-              {mode: 'light', selectors: ['@media (prefers-color-scheme: light)']},
-              {mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)']},
-              {mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]']},
-              {mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]']},
-              {mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]']},
-              {mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]']},
-              {mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]']},
-              {mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]']},
-              {mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]']},
+              { mode: 'light', selectors: ['@media (prefers-color-scheme: light)'] },
+              { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)'] },
+              { mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]'] },
+              { mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]'] },
+              { mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]'] },
+              { mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]'] },
+              { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
+              { mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]'] },
+              { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
             ],
           }),
         ],
@@ -151,7 +151,7 @@ describe('@cobalt-ui/plugin-css', () => {
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
-        plugins: [pluginCSS({filename: 'actual.css', generateName: myGenerator})],
+        plugins: [pluginCSS({ filename: 'actual.css', generateName: myGenerator })],
         color: {},
         tokens: [],
       });
@@ -196,7 +196,7 @@ describe('@cobalt-ui/plugin-css', () => {
               if (token.$type === 'color') {
                 const color = culori.parse(token.$value);
                 if (!color) throw new Error(`Could not parse color "${token.$value}"`);
-                const {r, g, b} = culori.rgb(color);
+                const { r, g, b } = culori.rgb(color);
                 return `${Math.round(r * 255)} ${Math.round(g * 255)} ${Math.round(b * 255)}`;
               }
             },

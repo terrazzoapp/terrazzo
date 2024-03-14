@@ -19,7 +19,7 @@ A Cobalt plugin is designed similarly to a [Rollup](https://rollupjs.org/plugin-
 _Note: the following examples will be using TypeScript, but JavaScript will work just as well if you prefer!_
 
 ```ts
-import type {Plugin} from '@cobalt-ui/core';
+import type { Plugin } from '@cobalt-ui/core';
 
 export default function myPlugin(): Plugin {
   return {
@@ -27,7 +27,7 @@ export default function myPlugin(): Plugin {
     config(config) {
       // read final user config
     },
-    async build({tokens, metadata, rawSchema}) {
+    async build({ tokens, metadata, rawSchema }) {
       // (your plugin code here)
 
       return [
@@ -46,7 +46,7 @@ export default function myPlugin(): Plugin {
 Your plugin can accept options as the parameters of your main function. The structure is up to you and what makes sense of your plugin. Here’s an example of letting a user configure the `filename`:
 
 ```ts
-import type {Plugin} from '@cobalt-ui/core';
+import type { Plugin } from '@cobalt-ui/core';
 
 export interface MyPluginOptions {
   /** (Optional) Set the output filename */
@@ -58,7 +58,7 @@ export default function myPlugin(options: MyPluginOptions = {}): Plugin {
   const filename = options.filename || 'default-filename.json'; // be sure to always set a default!
   return {
     name: 'my-plugin',
-    async build({tokens, rawSchema}) {
+    async build({ tokens, rawSchema }) {
       // (your plugin code here)
 
       return [
@@ -138,7 +138,7 @@ In an upcoming release (TBD), Cobalt will add some build hooks soon from the [Ro
 The `config()` function is an optional callback that can read the final user config or modify it. Use it if you need to read a user’s setting. Though you _can_ mutate the config, don’t do so unless absolutely necessary!
 
 ```ts
-import type {Plugin} from '@cobalt-ui/core';
+import type { Plugin } from '@cobalt-ui/core';
 
 export default function myPlugin(): Plugin {
   let outDir: URL | undefined;
@@ -148,12 +148,12 @@ export default function myPlugin(): Plugin {
       outDir = config.outDir; // read the user’s outDir from the config, and save it
       // return nothing to leave config unaltered
     },
-    async build({tokens, rawSchema}) {
+    async build({ tokens, rawSchema }) {
       console.log(outDir); // now config info is accessible within the build() function
 
       // (your plugin code here)
 
-      return [{filename: 'my-filename.json', contents: tokens}];
+      return [{ filename: 'my-filename.json', contents: tokens }];
     },
   };
 }
@@ -182,12 +182,12 @@ After running, and formatting your output, the `build()` function should return 
 export default function myPlugin(): Plugin {
   return {
     name: 'my-plugin',
-    async build({tokens, rawSchema}) {
+    async build({ tokens, rawSchema }) {
       // (your plugin code here)
 
       return [
-        {filename: './output-1.json', contents: jsonContents},
-        {filename: './output-2.svg', contents: svgContents},
+        { filename: './output-1.json', contents: jsonContents },
+        { filename: './output-2.svg', contents: svgContents },
       ];
     },
   };

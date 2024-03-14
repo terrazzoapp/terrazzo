@@ -1,4 +1,4 @@
-import type {Group, ParsedToken} from './token.js';
+import type { Group, ParsedToken } from './token.js';
 export type {
   BorderToken,
   ColorToken,
@@ -41,8 +41,8 @@ export type {
   TypographyValue,
 } from './token.js';
 
-import {ParseOptions, parse} from './parse/index.js';
-export {parse, ParseOptions, ParseResult} from './parse/index.js';
+import { ParseOptions, parse } from './parse/index.js';
+export { parse, ParseOptions, ParseResult } from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
@@ -62,7 +62,7 @@ export interface Plugin {
   /** (optional) read config, and optionally modify */
   config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
   /** main build fn */
-  build(options: {tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group}): Promise<BuildResult[]>;
+  build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
 }
 
 export interface Config extends Partial<ParseOptions> {

@@ -1,8 +1,8 @@
-import type {BorderToken, ParsedBorderToken} from '../../token.js';
-import {isObj} from '../../util.js';
-import {ParseColorOptions, normalizeColorValue} from './color.js';
-import {normalizeDimensionValue} from './dimension.js';
-import {normalizeStrokeStyleValue} from './stroke-style.js';
+import type { BorderToken, ParsedBorderToken } from '../../token.js';
+import { isObj } from '../../util.js';
+import { ParseColorOptions, normalizeColorValue } from './color.js';
+import { normalizeDimensionValue } from './dimension.js';
+import { normalizeStrokeStyleValue } from './stroke-style.js';
 
 export interface ParseBorderOptions {
   color: ParseColorOptions;

@@ -1,5 +1,5 @@
-import type {GradientStop, ParsedGradientToken} from '../../token.js';
-import {ParseColorOptions, normalizeColorValue} from './color.js';
+import type { GradientStop, ParsedGradientToken } from '../../token.js';
+import { ParseColorOptions, normalizeColorValue } from './color.js';
 
 export interface ParseGradientOptions {
   color: ParseColorOptions;

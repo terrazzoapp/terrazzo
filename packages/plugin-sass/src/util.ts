@@ -1,6 +1,6 @@
 import mime from 'mime';
 import fs from 'node:fs';
-import {fileURLToPath, URL} from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
 import svgo from 'svgo';
 
 const LEADING_SLASH_RE = /^\//;

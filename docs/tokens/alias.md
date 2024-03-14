@@ -31,8 +31,8 @@ Types can be aliased by using dot-delimited path syntax, wrapped in curly braces
   "gradient": {
     "$type": "gradient",
     "$value": [
-      {"color": "{color.base.blue}", "position": 0},
-      {"color": "{color.base.green}", "position": 1}
+      { "color": "{color.base.blue}", "position": 0 },
+      { "color": "{color.base.green}", "position": 1 }
     ]
   }
 }

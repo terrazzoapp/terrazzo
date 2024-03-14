@@ -1,7 +1,7 @@
 import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {URL, fileURLToPath} from 'node:url';
-import {describe, expect, test} from 'vitest';
+import { URL, fileURLToPath } from 'node:url';
+import { describe, expect, test } from 'vitest';
 import pluginSass from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-sass', () => {
@@ -24,7 +24,7 @@ describe('@cobalt-ui/plugin-sass', () => {
     test('basic (indented)', async () => {
       const cwd = new URL(`./basic/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
-      const {errors} = await build(tokens, {
+      const { errors } = await build(tokens, {
         outDir: cwd,
         plugins: [
           pluginSass({
@@ -41,12 +41,12 @@ describe('@cobalt-ui/plugin-sass', () => {
     test('plugin-css', async () => {
       const cwd = new URL(`./plugin-css/`, import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
-      const {errors} = await build(tokens, {
+      const { errors } = await build(tokens, {
         outDir: cwd,
         plugins: [
           pluginSass({
             filename: 'actual.scss',
-            pluginCSS: {prefix: 'ds-'},
+            pluginCSS: { prefix: 'ds-' },
           }),
         ],
         color: {},

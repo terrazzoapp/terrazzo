@@ -1,12 +1,15 @@
-import {ParsedToken} from '@cobalt-ui/core';
-import {isAlias, kebabinate, parseAlias} from '@cobalt-ui/utils';
+import { ParsedToken } from '@cobalt-ui/core';
+import { isAlias, kebabinate, parseAlias } from '@cobalt-ui/utils';
 
-export {isTokenMatch} from '@cobalt-ui/utils';
+export { isTokenMatch } from '@cobalt-ui/utils';
 
 const DASH_PREFIX_RE = /^-+/;
 const DASH_SUFFIX_RE = /-+$/;
 
-export function getMode<T extends {id: string; $value: any; $extensions?: any; _original: any}>(token: T, mode?: string): {value: T['$value']; originalVal: T['$value'] | string} {
+export function getMode<T extends { id: string; $value: any; $extensions?: any; _original: any }>(
+  token: T,
+  mode?: string,
+): { value: T['$value']; originalVal: T['$value'] | string } {
   if (mode) {
     if (!token.$extensions?.mode || !token.$extensions.mode[mode]) {
       throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);
@@ -16,7 +19,7 @@ export function getMode<T extends {id: string; $value: any; $extensions?: any; _
       originalVal: token._original.$extensions.mode[mode]!,
     };
   }
-  return {value: token.$value, originalVal: token._original.$value};
+  return { value: token.$value, originalVal: token._original.$value };
 }
 
 /**

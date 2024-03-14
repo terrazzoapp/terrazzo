@@ -1,8 +1,8 @@
 import build from '@cobalt-ui/cli/dist/build.js';
 import fs from 'node:fs';
-import {fileURLToPath} from 'node:url';
+import { fileURLToPath } from 'node:url';
 import yaml from 'js-yaml';
-import {describe, test, expect} from 'vitest';
+import { describe, test, expect } from 'vitest';
 import pluginTailwind from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-tailwind', () => {

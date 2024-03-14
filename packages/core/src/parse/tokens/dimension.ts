@@ -1,4 +1,4 @@
-import type {ParsedDimensionToken} from '../../token.js';
+import type { ParsedDimensionToken } from '../../token.js';
 
 /**
  * 8.2 Dimension

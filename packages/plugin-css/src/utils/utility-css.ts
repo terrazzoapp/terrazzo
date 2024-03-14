@@ -1,20 +1,20 @@
-import type {ParsedToken} from '@cobalt-ui/core';
-import {getLocalID, kebabinate} from '@cobalt-ui/utils';
-import {defaultNameGenerator, isTokenMatch} from './token.js';
+import type { ParsedToken } from '@cobalt-ui/core';
+import { getLocalID, kebabinate } from '@cobalt-ui/utils';
+import { defaultNameGenerator, isTokenMatch } from './token.js';
 
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'gap' | 'margin' | 'padding' | 'shadow' | 'text';
 
 const ENDING_GLOB = /\.\*$/;
 const STARTING_DOT = /^\./;
 
-export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, string[]>, {refs, tokens}: {refs: Record<string, string>; tokens: ParsedToken[]}): string {
+export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, string[]>, { refs, tokens }: { refs: Record<string, string>; tokens: ParsedToken[] }): string {
   const output: string[] = [];
 
   const groupEntries = Object.entries(groups);
   groupEntries.sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [group, selectors] of groupEntries) {
-    const selectedTokens: {id: string; partialID: string; type: ParsedToken['$type']; value: string | Record<string, string>}[] = [];
+    const selectedTokens: { id: string; partialID: string; type: ParsedToken['$type']; value: string | Record<string, string> }[] = [];
     for (const token of tokens) {
       const globMatch = isTokenMatch(token.id, selectors);
       if (globMatch) {
@@ -29,9 +29,9 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
             const property = kebabinate(k);
             value[property] = `var(${refs[token.id]}-${property});`;
           }
-          selectedTokens.push({id: token.id, partialID, type: token.$type, value});
+          selectedTokens.push({ id: token.id, partialID, type: token.$type, value });
         } else {
-          selectedTokens.push({id: token.id, partialID, type: token.$type, value: `var(${refs[token.id]})`});
+          selectedTokens.push({ id: token.id, partialID, type: token.$type, value: `var(${refs[token.id]})` });
         }
       }
     }

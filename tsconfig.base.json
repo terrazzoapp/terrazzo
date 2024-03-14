@@ -2,15 +2,17 @@
   "compilerOptions": {
     "declaration": true,
     "esModuleInterop": true,
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "sourceMap": true,
     "strict": true,
     "target": "ESNext"
-  }
+  },
+  "exclude": ["**/dist/*"]
 }

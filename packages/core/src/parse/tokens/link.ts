@@ -1,4 +1,4 @@
-import type {ParsedLinkToken} from '../../token.js';
+import type { ParsedLinkToken } from '../../token.js';
 
 /**
  * 8.? Link

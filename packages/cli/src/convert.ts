@@ -1,6 +1,6 @@
-import type {ParsedToken} from '@cobalt-ui/core';
-import {isAlias, getLocalID, getAliasID} from '@cobalt-ui/utils';
-import {parse} from 'culori';
+import type { ParsedToken } from '@cobalt-ui/core';
+import { isAlias, getLocalID, getAliasID } from '@cobalt-ui/utils';
+import { parse } from 'culori';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -16,11 +16,11 @@ const DURATION_RE = /^[0-9]+(\.[0-9]+)?(s|ms)$/;
 export default function convert(input: any): ConvertResult {
   const errors: string[] = [];
   const warnings: string[] = [];
-  const result: ConvertResult = {result: {}};
-  const parsedTokens: {id: string; $type: ParsedToken['$type']; $value: string | number}[] = [];
-  const aliasedTokens: {id: string; $value: string}[] = [];
+  const result: ConvertResult = { result: {} };
+  const parsedTokens: { id: string; $type: ParsedToken['$type']; $value: string | number }[] = [];
+  const aliasedTokens: { id: string; $value: string }[] = [];
 
-  function walk(node: any, ctx: {path: string[]}): void {
+  function walk(node: any, ctx: { path: string[] }): void {
     if (!node || typeof node !== 'object') return;
 
     if ('value' in node) {
@@ -28,7 +28,7 @@ export default function convert(input: any): ConvertResult {
 
       if (typeof node.value === 'string') {
         if (isAlias(node.value)) {
-          aliasedTokens.push({id: ctx.path.join('.'), $value: node.value});
+          aliasedTokens.push({ id: ctx.path.join('.'), $value: node.value });
           return;
         }
         if (!type && String(Number(node.value)) === node.value) {
@@ -56,7 +56,7 @@ export default function convert(input: any): ConvertResult {
       }
     } else {
       for (const [k, v] of Object.entries(node)) {
-        walk(v, {path: [...ctx.path, k]});
+        walk(v, { path: [...ctx.path, k] });
       }
     }
   }
@@ -65,7 +65,7 @@ export default function convert(input: any): ConvertResult {
     errors.push(`Unexpected format for Style Dictionary, expected object, received ${Array.isArray(input) ? 'array' : typeof input}`);
   } else {
     // build base tokens
-    walk(input, {path: []});
+    walk(input, { path: [] });
   }
 
   // only add errors/warnings if there were any

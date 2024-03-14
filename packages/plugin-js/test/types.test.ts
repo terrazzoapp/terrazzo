@@ -1,5 +1,5 @@
-import {describe, expect, test} from 'vitest';
-import {token} from './types/index.js';
+import { describe, expect, test } from 'vitest';
+import { token } from './types/index.js';
 
 describe('TypeScript types', () => {
   // note: the type tests rely on unique prototype methods of specific types

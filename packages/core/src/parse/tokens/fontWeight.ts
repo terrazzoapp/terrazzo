@@ -1,4 +1,4 @@
-import type {ParsedFontWeightToken} from '../../token.js';
+import type { ParsedFontWeightToken } from '../../token.js';
 
 export type FontWeightName =
   | 'thin'

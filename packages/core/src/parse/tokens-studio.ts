@@ -3,8 +3,8 @@
  * This works by first converting the Tokens Studio format
  * into an equivalent DTCG result, then parsing that result
  */
-import {parseAlias} from '@cobalt-ui/utils';
-import type {GradientStop, Group, Token} from '../token.js';
+import { parseAlias } from '@cobalt-ui/utils';
+import type { GradientStop, Group, Token } from '../token.js';
 
 // I’m not sure this is comprehensive at all but better than nothing
 const FONT_WEIGHTS: Record<string, number> = {
@@ -168,7 +168,7 @@ export type TSToken =
   | TSTextDecorationToken
   | TSTypographyToken;
 
-export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {errors?: string[]; warnings?: string[]; result: Group} {
+export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): { errors?: string[]; warnings?: string[]; result: Group } {
   const errors: string[] = [];
   const warnings: string[] = [];
   const dtcgTokens: Group = {};
@@ -201,7 +201,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
 
     let resolved = alias;
     matchLoop: for (const match of matches) {
-      const {id} = parseAlias(match);
+      const { id } = parseAlias(match);
       const tokenAliasPath = id.split('.');
 
       if (get(rawTokens, tokenAliasPath)) {
@@ -277,18 +277,20 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             .map((s) => resolveAlias(s, path) || s)
             .filter(Boolean);
           if (values.length === 1) {
-            addToken({$type: 'dimension', $value: v.value.trim(), $description: v.description}, tokenPath);
+            addToken({ $type: 'dimension', $value: v.value.trim(), $description: v.description }, tokenPath);
           } else if (values.length === 2 || values.length === 3 || values.length === 4) {
             // Tokens Studio doesn’t support the "/" character … right?
-            warnings.push(`Token "${tokenID}" is a multi value borderRadius token. Expanding into ${tokenID}TopLeft, ${tokenID}TopRight, ${tokenID}BottomRight, and ${tokenID}BottomLeft.`);
+            warnings.push(
+              `Token "${tokenID}" is a multi value borderRadius token. Expanding into ${tokenID}TopLeft, ${tokenID}TopRight, ${tokenID}BottomRight, and ${tokenID}BottomLeft.`,
+            );
             let order = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TL, BR
             if (values.length === 3)
               order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // TL, TR/BL, BR
             else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // TL, TR, BR, BL
-            addToken({$type: 'dimension', $value: order[0], $description: v.description}, [...path, `${k}TopLeft`]);
-            addToken({$type: 'dimension', $value: order[1], $description: v.description}, [...path, `${k}TopRight`]);
-            addToken({$type: 'dimension', $value: order[2], $description: v.description}, [...path, `${k}BottomRight`]);
-            addToken({$type: 'dimension', $value: order[3], $description: v.description}, [...path, `${k}BottomLeft`]);
+            addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}TopLeft`]);
+            addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}TopRight`]);
+            addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}BottomRight`]);
+            addToken({ $type: 'dimension', $value: order[3], $description: v.description }, [...path, `${k}BottomLeft`]);
           } else {
             addToken(
               {
@@ -352,7 +354,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
                 position = parseFloat(positionRaw) / 100;
               }
               position = resolveAlias(position, path) || position;
-              stops.push({color, position: position as number});
+              stops.push({ color, position: position as number });
             }
             addToken(
               {
@@ -435,17 +437,17 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             .map((s) => resolveAlias(s, path) || s)
             .filter(Boolean);
           if (values.length === 1) {
-            addToken({$type: 'dimension', $value: v.value, $description: v.description}, tokenPath);
+            addToken({ $type: 'dimension', $value: v.value, $description: v.description }, tokenPath);
           } else if (values.length === 2 || values.length === 3 || values.length === 4) {
             warnings.push(`Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`);
             let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TB, RL
             if (values.length === 3)
               order = [values[0], values[1], values[2], values[1]] as [string, string, string, string]; // T, RL, B
             else if (values.length === 4) order = [values[0], values[1], values[2], values[3]] as [string, string, string, string]; // T, R, B, L
-            addToken({$type: 'dimension', $value: order[0], $description: v.description}, [...path, `${k}Top`]);
-            addToken({$type: 'dimension', $value: order[1], $description: v.description}, [...path, `${k}Right`]);
-            addToken({$type: 'dimension', $value: order[2], $description: v.description}, [...path, `${k}Bottom`]);
-            addToken({$type: 'dimension', $value: order[3], $description: v.description}, [...path, `${k}Left`]);
+            addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}Top`]);
+            addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}Right`]);
+            addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}Bottom`]);
+            addToken({ $type: 'dimension', $value: order[3], $description: v.description }, [...path, `${k}Left`]);
           } else {
             addToken(
               {
@@ -540,7 +542,14 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
 }
 
 export function isTokensStudioFormat(rawTokens: unknown): boolean {
-  return !!rawTokens && typeof rawTokens === 'object' && '$themes' in rawTokens && Array.isArray(rawTokens.$themes) && '$metadata' in rawTokens && typeof rawTokens.$metadata === 'object';
+  return (
+    !!rawTokens &&
+    typeof rawTokens === 'object' &&
+    '$themes' in rawTokens &&
+    Array.isArray(rawTokens.$themes) &&
+    '$metadata' in rawTokens &&
+    typeof rawTokens.$metadata === 'object'
+  );
 }
 
 function get(obj: Record<string, unknown>, path: string[]): unknown | undefined {

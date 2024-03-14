@@ -1,5 +1,5 @@
-import {formatHex, formatHex8, parse} from 'culori';
-import type {ParsedColorToken} from '../../token.js';
+import { formatHex, formatHex8, parse } from 'culori';
+import type { ParsedColorToken } from '../../token.js';
 
 export interface ParseColorOptions {
   /** Convert color to sRGB hex? (default: true) */
