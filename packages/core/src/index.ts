@@ -41,9 +41,10 @@ export type {
   TypographyValue,
 } from './token.js';
 
-import type { ParseOptions} from './parse/index.js';
+import type { LintRule, LintRuleSeverity, ParseOptions } from './parse/index.js';
 import { parse } from './parse/index.js';
-export { parse, ParseOptions, ParseResult } from './parse/index.js';
+
+export { parse, type LintRule, type ParseOptions, type ParseResult } from './parse/index.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */
@@ -52,27 +53,66 @@ export interface BuildResult {
   contents: string | Buffer;
 }
 
-export interface ResolvedConfig extends ParseOptions {
+export interface ResolvedConfig extends Omit<ParseOptions, 'lint'> {
   tokens: URL[];
   outDir: URL;
   plugins: Plugin[];
+  lint: {
+    rules: Record<string, LintRule>;
+  };
+}
+
+export interface BuildStageOptions {
+  /** Parsed, normalized, resolved tokens schema */
+  tokens: ParsedToken[];
+  metadata: Record<string, unknown>;
+  /** The user’s original schema, as-authored */
+  rawSchema: Group;
+}
+
+export interface LintStageOptions {
+  /** Parsed, normalized, resolved tokens schema */
+  tokens: ParsedToken[];
+  /** IDs of enabled rules to report on (warning: may be empty!) */
+  rules: LintRule[];
+  /** The user’s original schema, as-authored */
+  rawSchema: Group;
+}
+
+export interface LintNotice {
+  /** Must match a registered rule */
+  id: string;
+  // node?: SchemaNode // "node" will be added in 2.0;
+  /** Lint message shown to the user */
+  message: string;
 }
 
 export interface Plugin {
   name: string;
   /** (optional) read config, and optionally modify */
   config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
+  /** (optional) register lint rule IDs */
+  registerRules?(): Omit<LintRule, 'options'>[];
+  /** (optional) throw lint errors/warnings */
+  lint?(options: LintStageOptions): Promise<LintNotice[] | undefined>;
   /** main build fn */
-  build(options: { tokens: ParsedToken[]; metadata: Record<string, unknown>; rawSchema: Group }): Promise<BuildResult[]>;
+  build?(options: BuildStageOptions): Promise<BuildResult[]>;
 }
 
-export interface Config extends Partial<ParseOptions> {
+type LintRuleShorthand = LintRuleSeverity | 0 | 1 | 2;
+type LintRuleLonghand = [LintRuleSeverity | 0 | 1 | 2, any];
+
+export interface Config extends Partial<Omit<ParseOptions, 'lint'>> {
   /** path to tokens.json (default: "./tokens.json") */
   tokens?: string | string[];
   /** output directory (default: "./tokens/") */
   outDir?: string;
   /** specify plugins */
   plugins: Plugin[];
+  /** specify lint rules */
+  lint?: {
+    rules?: Record<string, LintRuleShorthand | LintRuleLonghand>;
+  };
 }
 
 export default {

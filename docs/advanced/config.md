@@ -111,10 +111,12 @@ The following official plugins are available. Refer to each’s documentation to
 - [@cobalt-ui/plugin-js](/integrations/json): Generate JSON for universal usage
 - [@cobalt-ui/plugin-sass](/integrations/sass): Generate Sass (compatible with the CSS plugin)
 - [@cobalt-ui/plugin-tailwind](/integrations/tailwind): Generate a Tailwind CSS theme (compatible with the CSS plugin)
+- [@cobalt-ui/lint-a11y](/integrations/a11y): Lint your schema for a11y errors (beta)
 - @cobalt-ui/plugin-img: TODO
 - @cobalt-ui/plugin-php: TODO
 - @cobalt-ui/plugin-python: TODO
 - @cobalt-ui/plugin-ruby: TODO
+- @cobalt-ui/plugin-swift: TODO
 - @cobalt-ui/plugin-elixir: TODO
 
 _If you’ve created a Cobalt plugin of your own, please [suggest yours](https://github.com/drwpow/cobalt-ui)!_
@@ -123,11 +125,54 @@ _If you’ve created a Cobalt plugin of your own, please [suggest yours](https:/
 
 Creating custom plugins is designed to be easy. Please [view the plugin guide](/advanced/plugin-api) to learn how to create your own.
 
+## `lint`
+
+This option can only be used if using plugin with a `lint()` step, such as [a11y](/integrations/a11y):
+
+```js
+// tokens.config.js
+import a11y from '@cobalt-ui/lint-a11y';
+
+/** @type {import('@cobalt-ui/core').Config} */
+export default {
+  tokens: './tokens.json',
+  outDir: './tokens/',
+  plugins: [a11y()],
+  lint: {
+    rules: {
+      'a11y/contrast': [
+        'error',
+        {
+          checks: [
+            {
+              tokens: {
+                foreground: '{color.semantic.text}',
+                background: '{color.semantic.bg}',
+                typography: '{typography.body}',
+                modes: ['light', 'dark'],
+              },
+              wcag2: 'AAA',
+              apca: 'silver',
+            },
+          ],
+        },
+      ],
+    },
+  },
+};
+```
+
+| Name    |   Type   | Description                             |
+| :------ | :------: | :-------------------------------------- |
+| `rules` | `Object` | Key-value map of rules to rule options. |
+
+Rules can either follow the format `[ruleID]: 'off' | 'warn' | 'error'` or `[ruleID]: ['error', { /* options }]`. The options depend on the plugin and rule used (similar to ESLint).
+
 ## Token Type Options
 
 Some token types allow for extra configuration.
 
-## Color
+### Color
 
 ::: code-group
 

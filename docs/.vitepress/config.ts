@@ -85,6 +85,7 @@ export default defineConfig({
           { text: 'Sass', link: '/integrations/sass' },
           { text: 'Style Dictionary', link: '/integrations/style-dictionary' },
           { text: 'Tailwind', link: '/integrations/tailwind' },
+          { text: 'a11y', link: '/integrations/a11y' },
           { text: 'Other', link: '/integrations/other' },
         ],
       },

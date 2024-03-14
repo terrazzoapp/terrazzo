@@ -1,0 +1,36 @@
+color:
+  $type: color
+  high-contrast-text:
+    $value: '#202020'
+    $extensions:
+      mode:
+        light: '#202020'
+        dark: '#d0d0d0'
+  high-contrast-bg:
+    $value: '#fff'
+    $extensions:
+      mode:
+        light: '#fff'
+        dark: '#101010'
+  failing-dark-text:
+    $value: '#202020'
+    $extensions:
+      mode:
+        light: '#202020'
+        dark: '#606060'
+  failing-dark-bg:
+    $value: '#fff'
+    $extensions:
+      mode:
+        light: '#fff'
+        dark: '#101010'
+typography:
+  $type: typography
+  large:
+    $value:
+      fontWeight: 400
+      fontSize: 18px
+  body:
+    $value:
+      fontWeight: 400
+      fontSize: 14px
