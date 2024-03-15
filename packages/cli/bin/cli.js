@@ -153,7 +153,7 @@ export default async function main() {
         });
 
         // keep process occupied
-        await new Promise(() => {});  
+        await new Promise(() => {});
       } else {
         console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built ${time(start)}`);
       }

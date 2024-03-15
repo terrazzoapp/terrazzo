@@ -10,11 +10,13 @@ Creating your own Cobalt plugins is easy if you’re comfortable with JavaScript
 
 A Cobalt plugin is designed similarly to a [Rollup](https://rollupjs.org/plugin-development/) or [Vite plugin](https://vitejs.dev/guide/api-plugin), if you’re familiar with those (no worries if you’re not). A plugin is essentially **any function that returns an object with the following keys**:
 
-| Key      |    Type    | Description                                                  |
-| :------- | :--------: | :----------------------------------------------------------- |
-| `name`   |  `string`  | **Required.** The name of your plugin (shown on errors)      |
-| `config` | `function` | (Optional) Read the user’s config, and optionally modify it. |
-| `build`  | `function` | **Required.** The build output of your plugin.               |
+| Key             |    Type    | Description                                                        |
+| :-------------- | :--------: | :----------------------------------------------------------------- |
+| `name`          |  `string`  | **Required.** The name of your plugin (shown on errors)            |
+| `config`        | `function` | (Optional) Read the user’s config, and optionally modify it.       |
+| `registerRules` | `string[]` | If running `lint()`, register the rules this plugin should handle. |
+| `lint`          | `function` | Lint tokens and throw errors.                                      |
+| `build`         | `function` | The build output of your plugin.                                   |
 
 _Note: the following examples will be using TypeScript, but JavaScript will work just as well if you prefer!_
 
@@ -122,14 +124,14 @@ Cobalt gives you more context when dealing with tokens. Inspecting each individu
 
 Cobalt executes in the following order:
 
-1. **Plugin instantiation.** All plugins are loaded, in array order, in the user’s config.
-2. **Config.** `config()` is called on every plugin (if present), also in array order. Note that if any plugin modifies the config, the changes will only be picked up by plugins that appear later in the array.
-3. **Build.** `build()` is called on every plugin, in parallel.
-4. **Write.** Cobalt writes each plugin’s file(s) to disk after it’s done. This also happens in parallel, and happens as soon as each plugin finishes.
+2. **config()**: called on every plugin (if present), also in array order. Note that if any plugin modifies the config, the changes will only be picked up by plugins that appear later in the array.
+3. **registerRules()**: if a plugin is linting output, register the lint rules this plugin handles.
+4. **lint()**: also if a plugin is linting output, execute the registered lint rules and report results.
+5. **build()**: called on every plugin, in parallel, and the end result is written to disk.
 
 ::: info
 
-In an upcoming release (TBD), Cobalt will add some build hooks soon from the [Rollup Plugin API](https://rollupjs.org/plugin-development/#build-hooks), including, but not limited to, [load](https://rollupjs.org/plugin-development/#load), [buildStart](https://rollupjs.org/plugin-development/#buildstart), and [buildEnd](https://rollupjs.org/plugin-development/#buildend).
+In an [upcoming release](https://github.com/drwpow/cobalt-ui/issues/201), Cobalt will add more stages to building so plugins can “chain” and work off one another.
 
 :::
 
@@ -160,6 +162,94 @@ export default function myPlugin(): Plugin {
 ```
 
 `config()` will be fired _after_ the user’s config has been fully loaded and all plugins are instantiated, and _before_ any build happens.
+
+### `registerRules()`
+
+If this plugin wants to lint the user’s output, register the rules your plugin wants to control. It’s recommended to namespace with a slash, like so: `[my-plugin]/rule`.
+
+```ts
+const RULES = {
+  ['enforce-kebab-case']: 'my-plugin/enforce-kebab-case',
+  ['use-color-module-4-colors']: 'my-plugin/use-color-module-4-colors',
+};
+
+export default function myPlugin(): Plugin {
+  return {
+    name: 'my-plugin',
+    registerRules({}) {
+      return [
+        {
+          id: RULES['enforce-kebab-case'],
+          severity: 'error', // default severity, unless user overrides it
+        },
+        {
+          id: RULES['use-color-module-4-colors'],
+          severity: 'error',
+        },
+      ];
+    },
+  };
+}
+```
+
+If a plugin hasn’t registered a rule, it won’t be notified of it in the next stage.
+
+### `lint()`
+
+If this plugin has registered rules, it’ll be returned in this stage:
+
+```ts
+import { type LintNotice } from '@cobalt-ui/core';
+
+const RULES = {
+  ['enforce-kebab-case']: 'my-plugin/enforce-kebab-case',
+  ['use-color-module-4-colors']: 'my-plugin/use-color-module-4-colors',
+};
+
+export default function myPlugin(): Plugin {
+  return {
+    name: 'my-plugin',
+    lint({ tokens, rules }) {
+      const notices: LintNotice = [];
+
+      for (const rule of rules) {
+        if (rule.severity === 'off') {
+          continue;
+        }
+        switch (rule.id) {
+          case RULES['enforce-kebab-case']: {
+            const failedKebabCaseIDs = myKebabCaseFunction(tokens);
+            if (failedKebabCaseIDs.length) {
+              notices.push(...failedKebabCaseIDs.map((id) => ({ id: RULES['enforce-kebab-case'], message: `Token IDs must be in kebab-case; found "${id}"` })));
+            }
+            break;
+          }
+          case RULES['use-color-module-4-colors']: {
+            const failedColorModule4Colors = myColorModule4Function(tokens);
+            if (failedColorModule4Colors.length) {
+              notices.push(
+                ...failedColorModule4Colors.map(({ id, value }) => ({
+                  id: RULES['use-color-module-4-colors'],
+                  message: `Colors must use the CSS Module 4 function \`color(…)\`, ${id} uses ${value}`,
+                })),
+              );
+            }
+            break;
+          }
+        }
+      }
+
+      return notices;
+    },
+  };
+}
+```
+
+::: tip
+
+You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `'off'` so we save work and execute faster.
+
+:::
 
 ### `build()`
 

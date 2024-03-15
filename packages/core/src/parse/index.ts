@@ -29,10 +29,22 @@ export interface ParseResult {
   };
 }
 
+export interface LintRule {
+  id: string;
+  severity: LintRuleSeverity;
+  options?: unknown;
+}
+
+export type LintRuleSeverity = 'error' | 'warn' | 'off' | number;
+
 export interface ParseOptions {
   /** Configure transformations for color tokens */
   color: ParseColorOptions;
   figma?: FigmaParseOptions;
+  /** Configure plugin lint rules (if any) */
+  lint: {
+    rules: Record<string, LintRule>;
+  };
 }
 
 interface InheritedGroup {

@@ -52,6 +52,12 @@ jobs:
 
 This will run `co build` on every code change, which validates your `tokens.json` and runs all plugins to make sure they’re all working as expected.
 
+## Linting tokens (beta)
+
+Cobalt can lint your tokens and fail if your tokens don’t meet minimum color contrast guidelines, and more. See any linting plugin to learn more:
+
+- [a11y plugin](/integrations/a11y)
+
 ## Publishing to npm
 
 You could then take the additional step of using a package versioning tool like [Changesets](https://github.com/changesets/changesets) to release npm packages from CI ([Cobalt does this!](https://github.com/drwpow/cobalt-ui/blob/main/.github/workflows/release.yml)).

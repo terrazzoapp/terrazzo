@@ -1,4 +1,4 @@
-import type { ResolvedConfig, Config } from '@cobalt-ui/core';
+import type { ResolvedConfig, Config, LintRule } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import mod from 'node:module';
 import { fileURLToPath, URL } from 'node:url';
@@ -94,8 +94,9 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
       if (!plugin.name) {
         throw new Error(`[plugin#${n}] invalid plugin: missing "name"`);
       }
-      if (typeof plugin.build !== 'function') {
-        throw new Error(`[${plugin.name}] missing "build" function`);
+      if (!plugin.config && !plugin.lint && !plugin.build) {
+        // eslint-disable-next-line no-console
+        console.warn(`[${plugin.name}] empty plugin: doesn’t lint or build`);
       }
     }
   }
@@ -107,6 +108,47 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
         const newConfig = plugin.config(config); // if a plugin modified the config, alloawaitw it to
         if (newConfig) {
           config = newConfig;
+        }
+      }
+    }
+  }
+
+  // lint options
+  if ('lint' in config && config.lint !== undefined) {
+    if (config.lint === null || typeof config.lint !== 'object' || Array.isArray(config.lint)) {
+      throw new Error(`[config] "lint" must be an object`);
+    }
+
+    if ('rules' in config.lint && config.lint.rules !== undefined) {
+      if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
+        throw new Error(`[config] "lint.rules" must be an object`);
+      }
+
+      for (const id in config.lint.rules) {
+        if (typeof id !== 'string') {
+          throw new Error(`[config] "lint.rules" expects string keys, received ${typeof id}`);
+        }
+        const value = config.lint.rules[id] as unknown;
+        let severity: number | string = 'off';
+        let options: unknown | undefined;
+        if (typeof value === 'number' || typeof value === 'string') {
+          severity = value;
+        } else if (Array.isArray(value)) {
+          severity = value[0];
+          options = value[1];
+        }
+        config.lint.rules[id] = { id, severity: severity as LintRule['severity'], options };
+        if (typeof severity === 'number') {
+          if (severity !== 0 && severity !== 1 && severity !== 2) {
+            throw new Error(`[config] lint rule "${id}" invalid number \`${severity}\`. Specify \`0\` for 'off', \`1\` for 'warn', or \`2\` for 'error'.`);
+          }
+          config.lint.rules[id]!.severity = (['off', 'warn', 'error'] as const)[severity];
+        } else if (typeof severity === 'string') {
+          if (severity !== 'off' && severity !== 'warn' && severity !== 'error') {
+            throw new Error(`[config] lint rule "${id}" invalid string \`${severity}\`. Specify 'off', 'warn', or 'error'.`);
+          }
+        } else if (value !== null) {
+          throw new Error(`[config] lint rule "${id}" expected string or number, received ${typeof value}`);
         }
       }
     }

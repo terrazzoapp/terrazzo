@@ -226,7 +226,7 @@ ${cbClose}`
           contents: output.join('\n'),
         },
         // build pluginCSS (if used)
-        ...((cssPlugin && (await cssPlugin.build({ tokens, metadata, rawSchema }))) || []),
+        ...((cssPlugin && (await cssPlugin.build?.({ tokens, metadata, rawSchema }))) || []),
       ];
     },
   };
