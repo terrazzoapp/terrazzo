@@ -125,9 +125,9 @@ _If you’ve created a Cobalt plugin of your own, please [suggest yours](https:/
 
 Creating custom plugins is designed to be easy. Please [view the plugin guide](/advanced/plugin-api) to learn how to create your own.
 
-## `lint`
+## `lint` (beta)
 
-This option can only be used if using plugin with a `lint()` step, such as [a11y](/integrations/a11y):
+This option can only be used if using plugin with a `lint()` step, such as [lint-a11y](/integrations/a11y):
 
 ```js
 // tokens.config.js
@@ -135,8 +135,6 @@ import a11y from '@cobalt-ui/lint-a11y';
 
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
   plugins: [a11y()],
   lint: {
     rules: {
@@ -166,7 +164,19 @@ export default {
 | :------ | :------: | :-------------------------------------- |
 | `rules` | `Object` | Key-value map of rules to rule options. |
 
-Rules can either follow the format `[ruleID]: 'off' | 'warn' | 'error'` or `[ruleID]: ['error', { /* options }]`. The options depend on the plugin and rule used (similar to ESLint).
+Similar to ESLint, `lint.rules` can follow any of the following formats:
+
+```js
+export default {
+  lint: {
+    rules: {
+      'rule/shorthand': 'warn', // 'error' | 'warn' | 'off'
+      'rule/shorthand-number': 2, // 2 = error, 1 = warn, 0 = off
+      'rule/with-options': ['error', { foo: 'bar' }], // [severity, options]
+    },
+  },
+};
+```
 
 ## Token Type Options
 

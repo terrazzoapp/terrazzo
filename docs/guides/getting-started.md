@@ -208,6 +208,7 @@ This covers the basics, but there’s a lot more you can do with your design tok
   - [JSON/Native](/integrations/json)
   - [Sass](/integrations/sass)
   - [Tailwind CSS](/integrations/tailwind)
+  - [a11y](/integrations/a11y)
 - View advanced guides
   - [All Config Options](/advanced/config)
   - [Plugin API](/advanced/plugin-api) for making your own plugins easily
