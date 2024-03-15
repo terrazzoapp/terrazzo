@@ -247,7 +247,7 @@ export default function myPlugin(): Plugin {
 
 ::: tip
 
-You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `'off'` so we save work and execute faster.
+You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `"off"` so we save work and execute faster.
 
 :::
 

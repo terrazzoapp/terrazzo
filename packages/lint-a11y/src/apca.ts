@@ -1,4 +1,4 @@
-import { dimensionToPx } from './lib.js';
+import { createXYInterpolator, dimensionToPx } from './lib.js';
 
 // https://github.com/Myndex/apca-w3
 //
@@ -184,12 +184,70 @@ export const APCA_FONT_LOOKUP_TABLE: [number, [number, number, number, number, n
   [ 10,   [ 999,  999,  999,  999,  999,  999,  999,  999,  999]], // prettier-ignore
 ];
 
+const APCA_BRONZE_LEVELS: { testers: ReturnType<typeof createXYInterpolator>[]; lc: number }[] = [
+  // Ordered in roughtly-increasing Lc
+  // Bronze doesn’t provide a complete table, only loose guidelines. So we
+  // have to do our best with the information given and try and “fill in the
+  // gaps” as best as possible (with testers). The multiple testers are due
+  // to some of the nonlinear guidelines where the math is obscured.
+
+  // createXYInterpolator() doesn’t care about units or ordering, so long as
+  // all “x” values are the same unit (here, font size in px) and all “y”
+  // values are the same unit (font weight).
+  {
+    testers: // prettier-ignore
+     ([
+        [18, 300, 14, 400],
+      ] as const).map(([x1, y1, x2, y2]) => createXYInterpolator([x1, y1], [x2, y2])),
+    lc: 90,
+  },
+  {
+    testers: // prettier-ignore
+    ([
+      [24, 300, 18, 400],
+      [18, 400, 16, 500],
+      [16, 500, 14, 700],
+    ] as const).map(([x1, y1, x2, y2]) => createXYInterpolator([x1, y1], [x2, y2])),
+    lc: 75,
+  },
+  {
+    testers: // prettier-ignore
+     ([
+        [48, 200, 36, 300],
+        [36, 300, 24, 400],
+        [24, 400, 21, 500],
+        [21, 500, 18, 600],
+        [18, 600, 16, 700],
+      ] as const).map(([x1, y1, x2, y2]) => createXYInterpolator([x1, y1], [x2, y2])),
+    lc: 60,
+  },
+  {
+    testers: // prettier-ignore
+     ([
+        [36, 400, 24, 700],
+      ] as const).map(([x1, y1, x2, y2]) => createXYInterpolator([x1, y1], [x2, y2])),
+    lc: 45,
+  },
+];
+
+export function getBronzeLc(fontSize: string | number, fontWeight: number, bodyText = true) {
+  for (const { testers, lc } of APCA_BRONZE_LEVELS) {
+    for (const test of testers) {
+      if (test(dimensionToPx(fontSize), fontWeight)) {
+        return lc + (bodyText ? 15 : 0); // take “lowest” passing score
+      }
+    }
+  }
+
+  return 30;
+}
+
 /**
  * 0 - 100: actual Lc
  *     777: non-text
  *     999: unacceptable
  */
-export function getMinimumLc(fontSize: string | number, fontWeight: number, bodyText = false): number {
+export function getSilverLc(fontSize: string | number, fontWeight: number, bodyText = true): number {
   if (!(fontWeight > 0 && fontWeight < 1000)) {
     throw new Error(`Invalid font weight: ${fontWeight}`);
   }
@@ -207,5 +265,5 @@ export function getMinimumLc(fontSize: string | number, fontWeight: number, body
   // with baseLc calculated, we may need to interpolate between font sizes; do so with simple linear interpolation
   const stepUpLc = sizeDelta > 0 ? APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![1][weightColI]! : baseLc;
   const finalLc = sizeDelta > 0 ? baseLc + sizeDelta * (stepUpLc - baseLc) : baseLc;
-  return bodyText ? finalLc + 15 : finalLc;
+  return finalLc + (bodyText ? 15 : 0);
 }

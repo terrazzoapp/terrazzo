@@ -2,7 +2,7 @@ import { type Plugin, type ParsedToken, type LintNotice, type ParsedColorToken, 
 import { blend, modeRgb, modeHsl, modeHsv, modeP3, modeOkhsl, modeOklch, modeOklab, modeXyz50, modeXyz65, modeLrgb, useMode, wcagContrast } from 'culori/fn';
 import { APCAcontrast } from 'apca-w3';
 import { isWCAG2LargeText, round } from './lib.js';
-import { getMinimumLc } from './apca.js';
+import { getSilverLc } from './apca.js';
 
 // register colorspaces for Culori to parse (these are side-effect-y)
 useMode(modeHsl);
@@ -45,7 +45,7 @@ export interface RuleContrastCheck {
   /** Enforce WCAG 2 contrast checking? (default: 'AA') */
   wcag2?: 'AA' | 'AAA' | number | false;
   /** Enforce APCA contrast checking? (default: false) @see https://www.myndex.com/APCA/ */
-  apca?: 'bronze' | 'bronze-body' | number | false;
+  apca?: 'bronze' | 'silver' | 'silver-nonbody' | number | false;
 }
 
 function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): LintNotice[] {
@@ -102,8 +102,11 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
 
     // APCA
     if (typeof apca === 'string' || (typeof apca === 'number' && Math.abs(apca) > 0)) {
-      if (typeof apca === 'string' && apca !== 'bronze' && apca !== 'bronze-body') {
-        throw new Error(`APCA: expected value \`'bronze'\` or \`'bronze-body'\`, received ${apca}`);
+      if ((apca as string) === 'gold') {
+        throw new Error(`APCA: "gold" not supported. Please use "silver" instead.`);
+      }
+      if (typeof apca === 'string' && apca !== 'bronze' && apca !== 'silver' && apca !== 'silver-nonbody') {
+        throw new Error(`APCA: expected value "bronze", "silver", or "silver-nonbody", received "${apca}"`);
       }
 
       const testSets: {
@@ -141,12 +144,22 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
         if (typeof apca === 'number') {
           minContrast = apca;
         } else if (fontSize && fontWeight) {
-          minContrast = getMinimumLc(fontSize, fontWeight, apca === 'bronze-body');
+          // "silver" / "silver-nonbody" + typography
+          if (apca === 'silver' || apca === 'silver-nonbody') {
+            minContrast = getSilverLc(fontSize, fontWeight, apca === 'silver');
+          }
+          // "bronze" + typography
+          else {
+          }
+        }
+        // no typography (color-only)
+        else {
+          // TODO: what should minContrast be?
         }
         if (Math.abs(lc) < minContrast) {
           notices.push({
             id: RULES.contrast,
-            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${mode === '.' ? '' : ` (mode: ${mode})`} failed contrast. Expected ${minContrast}, received ${round(Math.abs(lc))}.`,
+            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${mode === '.' ? '' : ` (mode: ${mode})`} failed contrast. Expected ${minContrast}${typeof apca === 'string' ? ` (set by "${apca}")` : ''}, received ${round(Math.abs(lc))}.`,
           });
         }
       }
