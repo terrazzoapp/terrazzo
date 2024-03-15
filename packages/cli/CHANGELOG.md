@@ -1,5 +1,20 @@
 # @cobalt-ui/cli
 
+## 1.8.0
+
+### Minor Changes
+
+- [#218](https://github.com/drwpow/cobalt-ui/pull/218) [`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458) Thanks [@drwpow](https://github.com/drwpow)! - Add `lint()` and `registerRules()` stages to plugins
+
+- [#218](https://github.com/drwpow/cobalt-ui/pull/218) [`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458) Thanks [@drwpow](https://github.com/drwpow)! - Support `lint` and lint rules in config
+
+### Patch Changes
+
+- [#218](https://github.com/drwpow/cobalt-ui/pull/218) [`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458) Thanks [@drwpow](https://github.com/drwpow)! - build() command is no longer required in types
+
+- Updated dependencies [[`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458), [`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458), [`041a8d070b74d2bca46e0c26c0c522f96b585458`](https://github.com/drwpow/cobalt-ui/commit/041a8d070b74d2bca46e0c26c0c522f96b585458)]:
+  - @cobalt-ui/core@1.8.0
+
 ## 1.7.1
 
 ### Patch Changes
