@@ -189,7 +189,7 @@ export const APCA_FONT_LOOKUP_TABLE: [number, [number, number, number, number, n
  *     777: non-text
  *     999: unacceptable
  */
-export function getMinimumLc(fontSize: string | number, fontWeight: number, bodyText = false): number {
+export function getMinimumSilverLc(fontSize: string | number, fontWeight: number, bodyText = true): number {
   if (!(fontWeight > 0 && fontWeight < 1000)) {
     throw new Error(`Invalid font weight: ${fontWeight}`);
   }
@@ -207,5 +207,7 @@ export function getMinimumLc(fontSize: string | number, fontWeight: number, body
   // with baseLc calculated, we may need to interpolate between font sizes; do so with simple linear interpolation
   const stepUpLc = sizeDelta > 0 ? APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![1][weightColI]! : baseLc;
   const finalLc = sizeDelta > 0 ? baseLc + sizeDelta * (stepUpLc - baseLc) : baseLc;
-  return bodyText ? finalLc + 15 : finalLc;
+
+  // note; the “add 15 Lc to body text” requirement is hard
+  return finalLc + (bodyText && finalLc <= 70 ? 15 : 0);
 }

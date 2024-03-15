@@ -2,7 +2,7 @@ import { type Plugin, type ParsedToken, type LintNotice, type ParsedColorToken, 
 import { blend, modeRgb, modeHsl, modeHsv, modeP3, modeOkhsl, modeOklch, modeOklab, modeXyz50, modeXyz65, modeLrgb, useMode, wcagContrast } from 'culori/fn';
 import { APCAcontrast } from 'apca-w3';
 import { isWCAG2LargeText, round } from './lib.js';
-import { getMinimumLc } from './apca.js';
+import { getMinimumSilverLc } from './apca.js';
 
 // register colorspaces for Culori to parse (these are side-effect-y)
 useMode(modeHsl);
@@ -45,7 +45,7 @@ export interface RuleContrastCheck {
   /** Enforce WCAG 2 contrast checking? (default: 'AA') */
   wcag2?: 'AA' | 'AAA' | number | false;
   /** Enforce APCA contrast checking? (default: false) @see https://www.myndex.com/APCA/ */
-  apca?: 'bronze' | 'bronze-body' | number | false;
+  apca?: 'silver' | 'silver-nonbody' | number | false;
 }
 
 function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): LintNotice[] {
@@ -92,9 +92,11 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
         const minContrast = typeof wcag2 === 'string' ? WCAG2_MIN_CONTRAST[wcag2][isLargeText ? 'large' : 'default'] : wcag2;
         const defaultResult = wcagContrast(fg, bg);
         if (defaultResult < minContrast) {
+          const modeText = mode === '.' ? '' : ` (mode: ${mode})`;
+          const levelText = typeof wcag2 === 'string' ? ` ("${wcag2}")` : '';
           notices.push({
             id: RULES.contrast,
-            message: `WCAG 2: Token pair ${fg}, ${bg}${mode === '.' ? '' : ` (mode: ${mode})`} failed contrast. Expected ${minContrast}:1, received ${round(defaultResult)}:1`,
+            message: `WCAG 2: Token pair ${fg}, ${bg}${modeText} failed contrast. Expected ${minContrast}:1${levelText}, received ${round(defaultResult)}:1`,
           });
         }
       }
@@ -102,8 +104,14 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
 
     // APCA
     if (typeof apca === 'string' || (typeof apca === 'number' && Math.abs(apca) > 0)) {
-      if (typeof apca === 'string' && apca !== 'bronze' && apca !== 'bronze-body') {
-        throw new Error(`APCA: expected value \`'bronze'\` or \`'bronze-body'\`, received ${apca}`);
+      if ((apca as string) === 'gold') {
+        throw new Error(`APCA: "gold" not implemented; specify "silver", "silver-nonbody", Lc \`number\`, or \`false\`.`);
+      }
+      if ((apca as string) === 'bronze') {
+        throw new Error(`APCA: "bronze" not supported; specify an Lc \`number\` manually.`);
+      }
+      if (typeof apca === 'string' && apca !== 'silver' && apca !== 'silver-nonbody') {
+        throw new Error(`APCA: expected value "silver" or "silver-nonbody", received "${apca}"`);
       }
 
       const testSets: {
@@ -133,20 +141,20 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
       }
 
       for (const { fgY, fgRaw, bgY, bgRaw, mode, fontSize, fontWeight } of testSets) {
+        if ((apca === 'silver' || apca === 'silver-nonbody') && (!fontSize || !fontWeight)) {
+          throw new Error(`APCA: "${apca}" compliance requires \`typography\` token. Use manual number if omitted.`);
+        }
         const lc = APCAcontrast(fgY, bgY);
         if (typeof lc === 'string') {
           throw new Error(`Internal error: expected number, APCA returned "${lc}"`); // types are wrong?
         }
-        let minContrast = 60;
-        if (typeof apca === 'number') {
-          minContrast = apca;
-        } else if (fontSize && fontWeight) {
-          minContrast = getMinimumLc(fontSize, fontWeight, apca === 'bronze-body');
-        }
+        const minContrast = typeof apca === 'number' ? apca : getMinimumSilverLc(fontSize!, fontWeight!, apca === 'silver');
         if (Math.abs(lc) < minContrast) {
+          const modeText = mode === '.' ? '' : ` (mode: ${mode})`;
+          const levelText = typeof apca === 'string' ? ` ("${apca}")` : '';
           notices.push({
             id: RULES.contrast,
-            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${mode === '.' ? '' : ` (mode: ${mode})`} failed contrast. Expected ${minContrast}, received ${round(Math.abs(lc))}.`,
+            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${modeText} failed contrast. Expected ${minContrast}${levelText}, received ${round(Math.abs(lc))}`,
           });
         }
       }

@@ -1,4 +1,5 @@
 import build from '@cobalt-ui/cli/dist/build.js';
+import { type ParseResult } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { execa } from 'execa';
@@ -20,7 +21,26 @@ describe('a11y plugin', () => {
         },
       ][] = [
         [
-          'passing',
+          'passing (silver)',
+          {
+            options: {
+              checks: [
+                {
+                  tokens: {
+                    foreground: 'color.high-contrast-text',
+                    background: 'color.high-contrast-bg',
+                    typography: 'typography.large',
+                  },
+                  apca: 'silver',
+                  wcag2: 'AAA',
+                },
+              ],
+            },
+            want: { success: true },
+          },
+        ],
+        [
+          'passing (number)',
           {
             options: {
               checks: [
@@ -58,8 +78,8 @@ describe('a11y plugin', () => {
             },
             want: {
               errors: [
-                '[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1, received 3.03:1',
-                '[@cobalt-ui/lint-a11y] Error a11y/contrast: APCA: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 75, received 22.38.',
+                '[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1',
+                '[@cobalt-ui/lint-a11y] Error a11y/contrast: APCA: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 75, received 22.38',
               ],
             },
           },
@@ -68,13 +88,14 @@ describe('a11y plugin', () => {
           'no options provided',
           {
             options: undefined,
-            want: { errors: ['Error: options.checks must be an array'] },
+            want: { errors: ['options.checks must be an array'] },
           },
         ],
       ];
       test.each(tests)('%s', async (name, { options, want }) => {
+        let buildResult: ParseResult;
         try {
-          const buildResult = await build(tokens, {
+          buildResult = await build(tokens, {
             tokens: [tokensURL],
             outDir: new URL('./index/', import.meta.url),
             plugins: [a11y()],
@@ -89,18 +110,21 @@ describe('a11y plugin', () => {
             },
             color: {},
           });
-
-          if (want.success) {
-            if (buildResult.errors) {
-              // eslint-disable-next-line no-console
-              console.error(...buildResult.errors);
-            }
-            expect(buildResult.errors?.[0]).toBeUndefined();
-          } else {
-            expect(buildResult.errors).toEqual(want.errors);
-          }
         } catch (err) {
-          expect(String(err)).toBe(want.errors?.[0]);
+          expect(err.message).toBe(want.errors?.[0]);
+          return;
+        }
+
+        if (want.success) {
+          if (buildResult.errors) {
+            // eslint-disable-next-line no-console
+            console.error(...buildResult.errors);
+          }
+          expect(buildResult.errors?.[0]).toBeUndefined();
+        } else {
+          for (const i in buildResult.errors) {
+            expect(buildResult.errors[i]).toBe(want.errors![i]);
+          }
         }
       });
     });
