@@ -1,13 +1,20 @@
-import { expect, test } from 'vitest';
-import { getMinimumLc } from '../src/apca.js';
+import { describe, expect, test } from 'vitest';
+import { getMinimumSilverLc } from '../src/apca.js';
 
-test('getMinimumLc', () => {
-  expect(getMinimumLc(16, 400)).toBe(90);
-  expect(getMinimumLc('1rem', 400, true)).toBe(105);
-  expect(getMinimumLc('18px', 700)).toBe(55);
-  expect(getMinimumLc(18, 300)).toBe(100);
-  expect(getMinimumLc(21, 300)).toBe(90);
-  expect(getMinimumLc('19.5px', 300)).toBe(95);
-  expect(getMinimumLc(28, 200)).toBe(100);
-  expect(getMinimumLc('96px', 900)).toBe(30);
+describe('getMinimumSilverLc', () => {
+  const tests: [string, { given: Parameters<typeof getMinimumSilverLc>; want: ReturnType<typeof getMinimumSilverLc> }][] = [
+    ['14px/400', { given: [14, 400, true], want: 100 }],
+    ['16px/400', { given: [16, 400, true], want: 90 }],
+    ['1rem/400', { given: ['1rem', 400, true], want: 90 }],
+    ['18px/700', { given: ['18px', 700, false], want: 55 }],
+    ['18px/300', { given: [18, 300, false], want: 100 }],
+    ['21px/300', { given: [21, 300, false], want: 90 }],
+    ['19.5px/300', { given: ['19.5px', 300, false], want: 95 }],
+    ['28px/200', { given: [28, 200, false], want: 100 }],
+    ['96px/900', { given: ['96px', 900, false], want: 30 }],
+  ];
+
+  test.each(tests)('%s', (_, { given, want }) => {
+    expect(getMinimumSilverLc(...given)).toBe(want);
+  });
 });
