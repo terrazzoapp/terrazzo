@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/lint-a11y",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -35,7 +35,7 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.7.1"
+    "@cobalt-ui/cli": "^1.8.0"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",

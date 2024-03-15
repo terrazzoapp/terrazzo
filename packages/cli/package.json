@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/cli",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
-  "version": "1.7.1",
+  "version": "1.8.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -45,7 +45,7 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^1.7.3",
+    "@cobalt-ui/core": "^1.8.0",
     "@cobalt-ui/utils": "^1.2.4",
     "chokidar": "^3.6.0",
     "culori": "^3.3.0",

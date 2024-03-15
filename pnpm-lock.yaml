@@ -197,7 +197,7 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.7.3
+        specifier: ^1.8.0
         version: link:../core
       '@cobalt-ui/utils':
         specifier: ^1.2.4
@@ -380,7 +380,7 @@ importers:
   packages/plugin-tailwind:
     dependencies:
       '@cobalt-ui/plugin-css':
-        specifier: ^1.7.3
+        specifier: ^2.0.0
         version: link:../plugin-css
       '@cobalt-ui/utils':
         specifier: ^1.2.4
