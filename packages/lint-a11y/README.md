@@ -12,12 +12,12 @@ Then add to your `tokens.config.js` file:
 
 ```js
 // tokens.config.js
-import a11y from '@cobalt-ui/lint-a11y';
+import a11y from "@cobalt-ui/lint-a11y";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [a11y()],
   lint: {
     // checks

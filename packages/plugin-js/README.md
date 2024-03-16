@@ -21,12 +21,12 @@ Then add to your `tokens.config.mjs` file:
 
 ```js
 // tokens.config.mjs
-import pluginJS from '@cobalt-ui/plugin-js';
+import pluginJS from "@cobalt-ui/plugin-js";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({
       /** output JS (with TS types)? boolean or filename (default: true) */
@@ -49,17 +49,17 @@ npx co build
 You’ll then get generated JS with a `token()` function you can use to grab token values:
 
 ```js
-import { token } from './tokens/index.js';
+import { token } from "./tokens/index.js";
 
 // get default token
-const red = token('color.red.10');
+const red = token("color.red.10");
 
 // get token for mode: dark
-const redDark = token('color.red.10', 'dark');
+const redDark = token("color.red.10", "dark");
 
 // cubicBezier + bezier-easing library
-import BezierEasing from 'bezier-easing';
-const easing = BezierEasing(...token('ease.cubic-in-out'));
+import BezierEasing from "bezier-easing";
+const easing = BezierEasing(...token("ease.cubic-in-out"));
 ```
 
 ## Docs

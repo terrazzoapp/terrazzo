@@ -1,12 +1,11 @@
 {
   "printWidth": 180,
-  "singleQuote": true,
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["*.md"],
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
       "options": {
-        "singleQuote": false
+        "singleQuote": true
       }
     }
   ]

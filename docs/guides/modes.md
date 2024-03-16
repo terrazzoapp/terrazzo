@@ -49,19 +49,19 @@ something like:
 color:
   $type: color
   red:
-    $value: '#fa4549'
+    $value: "#fa4549"
   red-light:
-    $value: '#fa4549'
+    $value: "#fa4549"
   red-lightHighContrast:
-    $value: '#d5232c'
+    $value: "#d5232c"
   red-dark:
-    $value: '#f85149'
+    $value: "#f85149"
   red-darkHighContrast:
-    $value: '#ff6a69'
+    $value: "#ff6a69"
   red-darkDimmed:
-    $value: '#f47067'
+    $value: "#f47067"
   white:
-    $value: '#ffffff'
+    $value: "#ffffff"
 ```
 
 :::
@@ -106,14 +106,14 @@ But off the bat we have some problems:
 color:
   $type: color
   red:
-    $value: '#fa4549'
+    $value: "#fa4549"
     $extensions:
       mode:
-        light: '#fa4549'
-        lightHighContrast: '#d5232c'
-        dark: '#f85149'
-        darkHighContrast: '#c38000'
-        darkDimmed: '#f85149'
+        light: "#fa4549"
+        lightHighContrast: "#d5232c"
+        dark: "#f85149"
+        darkHighContrast: "#c38000"
+        darkDimmed: "#f85149"
 ```
 
 :::
@@ -129,20 +129,20 @@ below to see the “how”).
 If using [@cobalt/plugin-css](/integrations/css), you could generate CSS to handle these modes. That would look something like:
 
 ```js
-import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginCSS from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginCSS({
       modeSelectors: [
-        { mode: 'light', selectors: ['@media (prefers-color-scheme: light)', 'body[data-color-mode="light"]'] },
-        { mode: 'lightHighContrast', selectors: ['@media (prefers-color-scheme: light) and (prefers-contrast: more)', 'body[data-color-mode="lightHighContrast"]'] },
-        { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)', 'body[data-color-mode="dark"]'] },
-        { mode: 'darkHighContrast', selectors: ['@media (prefers-color-scheme: dark) and (prefers-contrast: more)', 'body[data-color-mode="darkHighContrast"]'] },
-        { mode: 'darkDimmed', selectors: ['body[data-color-mode="darkDimmed"]'] },
+        { mode: "light", selectors: ["@media (prefers-color-scheme: light)", 'body[data-color-mode="light"]'] },
+        { mode: "lightHighContrast", selectors: ["@media (prefers-color-scheme: light) and (prefers-contrast: more)", 'body[data-color-mode="lightHighContrast"]'] },
+        { mode: "dark", selectors: ["@media (prefers-color-scheme: dark)", 'body[data-color-mode="dark"]'] },
+        { mode: "darkHighContrast", selectors: ["@media (prefers-color-scheme: dark) and (prefers-contrast: more)", 'body[data-color-mode="darkHighContrast"]'] },
+        { mode: "darkDimmed", selectors: ['body[data-color-mode="darkDimmed"]'] },
       ],
     }),
   ],
@@ -335,14 +335,14 @@ color:
       - dark
       - darkHighContrast
   red:
-    '4':
+    "4":
       $type: color
-      $value: '#fa4549'
+      $value: "#fa4549"
       $extensions:
         mode:
-          light: '#fa4549'
-          lightHighContrast: '#d5232c'
-          dark: '#f85149'
+          light: "#fa4549"
+          lightHighContrast: "#d5232c"
+          dark: "#f85149"
 ```
 
 :::

@@ -19,12 +19,12 @@ Then add to your `tokens.config.mjs` file:
 
 ```js
 // tokens.config.mjs
-import pluginSass from '@cobalt-ui/plugin-sass';
+import pluginSass from "@cobalt-ui/plugin-sass";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [pluginSass()],
 };
 ```
@@ -38,11 +38,11 @@ npx co build
 You’ll then generate a `./tokens/index.scss` file that exports a `token()` function you can use to grab tokens:
 
 ```scss
-@use '../tokens' as *; // update '../tokens' to match your location of tokens/index.scss
+@use "../tokens" as *; // update "../tokens" to match your location of tokens/index.scss
 
 .heading {
-  color: token('color.blue');
-  font-size: token('typography.size.xxl');
+  color: token("color.blue");
+  font-size: token("typography.size.xxl");
 }
 ```
 

@@ -30,7 +30,7 @@ Using the Figma Variables API [requires an Enterprise plan](https://www.figma.co
 In your `tokens.config.js` file, add the Figma [share URL](https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes) as a token source:
 
 ```ts
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
 };
@@ -49,7 +49,7 @@ Then run `co build` as you would normally, and Cobalt will operate as if the Var
 Figma Variables can be a **Color**, **Number**, **String**, or **Boolean.** Color translates directly to the DTCG [Color](/tokens/color) type, so those will work automatically. But for everything else, you’ll need to set up overrides to specify what token type each Figma Variable should be. To do so, specify selectors in a mapping in `figma.overrides` where the key is a glob pattern (or specific ID), and the value is an object with your desired DTCG type:
 
 ```ts
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
@@ -76,7 +76,7 @@ If both a glob pattern and specific ID are provided, the specific ID takes prior
 By default, tokens will keep the same name as your Figma Variables, but with `/` converted into `.`, e.g. `color/base/blue/500` → `color.base.blue.500`. But to rename certain tokens, you can provide a `transformID()` utility:
 
 ```ts
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
@@ -105,7 +105,7 @@ If you return `undefined` or an empty string, it’ll keep its original name.
 This is useful when either `$type` isn’t enough, or you want to provide additional conversions. Here, for example, is how you’d take `px`-based number Variables and convert to `rem`s:
 
 ```ts
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
@@ -119,7 +119,7 @@ export default {
             return `${rawValue / 16}rem`;
           }
           // remember rawValue may be an alias of another Variable!
-          // in that case, `typeof rawValue === "object" && rawValue.type === 'VARIABLE_ALIAS'`
+          // in that case, `typeof rawValue === "object" && rawValue.type === "VARIABLE_ALIAS"`
         },
       },
     },
@@ -146,7 +146,7 @@ If using [Tokens Studio](https://docs.tokens.studio/tokens/creating-tokens), you
 ```js
 import pluginCSS from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   tokens: "./tokens.json",
   outDir: "./tokens/",

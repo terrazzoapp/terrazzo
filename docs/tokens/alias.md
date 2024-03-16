@@ -43,20 +43,20 @@ color:
   base:
     blue:
       $type: color
-      $value: '#218bff'
+      $value: "#218bff"
     green:
       $type: color
-      $value: '#6fdd8b'
+      $value: "#6fdd8b"
   semantic:
     action:
       $type: color
-      $value: '{color.base.blue}'
+      $value: "{color.base.blue}"
 gradient:
   $type: gradient
   $value:
-    - color: '{color.base.blue}'
+    - color: "{color.base.blue}"
       position: 0
-    - color: '{color.base.green}'
+    - color: "{color.base.green}"
       position: 1
 ```
 

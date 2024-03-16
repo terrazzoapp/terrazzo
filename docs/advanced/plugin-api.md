@@ -21,11 +21,11 @@ A Cobalt plugin is designed similarly to a [Rollup](https://rollupjs.org/plugin-
 _Note: the following examples will be using TypeScript, but JavaScript will work just as well if you prefer!_
 
 ```ts
-import type { Plugin } from '@cobalt-ui/core';
+import type { Plugin } from "@cobalt-ui/core";
 
 export default function myPlugin(): Plugin {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     config(config) {
       // read final user config
     },
@@ -34,7 +34,7 @@ export default function myPlugin(): Plugin {
 
       return [
         {
-          filename: 'my-filename.json',
+          filename: "my-filename.json",
           contents: tokens,
         },
       ];
@@ -48,7 +48,7 @@ export default function myPlugin(): Plugin {
 Your plugin can accept options as the parameters of your main function. The structure is up to you and what makes sense of your plugin. Here’s an example of letting a user configure the `filename`:
 
 ```ts
-import type { Plugin } from '@cobalt-ui/core';
+import type { Plugin } from "@cobalt-ui/core";
 
 export interface MyPluginOptions {
   /** (Optional) Set the output filename */
@@ -57,9 +57,9 @@ export interface MyPluginOptions {
 }
 
 export default function myPlugin(options: MyPluginOptions = {}): Plugin {
-  const filename = options.filename || 'default-filename.json'; // be sure to always set a default!
+  const filename = options.filename || "default-filename.json"; // be sure to always set a default!
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     async build({ tokens, rawSchema }) {
       // (your plugin code here)
 
@@ -77,13 +77,13 @@ export default function myPlugin(options: MyPluginOptions = {}): Plugin {
 You’d then pass any options into `tokens.config.mjs`:
 
 ```js
-import myPlugin from './my-plugin.js';
+import myPlugin from "./my-plugin.js";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     myPlugin({
-      filename: 'custom.json',
+      filename: "custom.json",
     }),
   ],
 };
@@ -101,9 +101,9 @@ Cobalt gives you more context when dealing with tokens. Inspecting each individu
 
 ```js
 {
-  id: 'color.brand.green', // the full ID of the token
-  $type: 'color', // the original $type
-  $value: '#40c362', // the normalized $value
+  id: "color.brand.green", // the full ID of the token
+  $type: "color", // the original $type
+  $value: "#40c362", // the normalized $value
   $extensions: {
     mode: {…} // normalized modes
   },
@@ -140,12 +140,12 @@ In an [upcoming release](https://github.com/drwpow/cobalt-ui/issues/201), Cobalt
 The `config()` function is an optional callback that can read the final user config or modify it. Use it if you need to read a user’s setting. Though you _can_ mutate the config, don’t do so unless absolutely necessary!
 
 ```ts
-import type { Plugin } from '@cobalt-ui/core';
+import type { Plugin } from "@cobalt-ui/core";
 
 export default function myPlugin(): Plugin {
   let outDir: URL | undefined;
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     config(config) {
       outDir = config.outDir; // read the user’s outDir from the config, and save it
       // return nothing to leave config unaltered
@@ -155,7 +155,7 @@ export default function myPlugin(): Plugin {
 
       // (your plugin code here)
 
-      return [{ filename: 'my-filename.json', contents: tokens }];
+      return [{ filename: "my-filename.json", contents: tokens }];
     },
   };
 }
@@ -169,22 +169,22 @@ If this plugin wants to lint the user’s output, register the rules your plugin
 
 ```ts
 const RULES = {
-  ['enforce-kebab-case']: 'my-plugin/enforce-kebab-case',
-  ['use-color-module-4-colors']: 'my-plugin/use-color-module-4-colors',
+  ["enforce-kebab-case"]: "my-plugin/enforce-kebab-case",
+  ["use-color-module-4-colors"]: "my-plugin/use-color-module-4-colors",
 };
 
 export default function myPlugin(): Plugin {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     registerRules({}) {
       return [
         {
-          id: RULES['enforce-kebab-case'],
-          severity: 'error', // default severity, unless user overrides it
+          id: RULES["enforce-kebab-case"],
+          severity: "error", // default severity, unless user overrides it
         },
         {
-          id: RULES['use-color-module-4-colors'],
-          severity: 'error',
+          id: RULES["use-color-module-4-colors"],
+          severity: "error",
         },
       ];
     },
@@ -199,37 +199,37 @@ If a plugin hasn’t registered a rule, it won’t be notified of it in the next
 If this plugin has registered rules, it’ll be returned in this stage:
 
 ```ts
-import { type LintNotice } from '@cobalt-ui/core';
+import { type LintNotice } from "@cobalt-ui/core";
 
 const RULES = {
-  ['enforce-kebab-case']: 'my-plugin/enforce-kebab-case',
-  ['use-color-module-4-colors']: 'my-plugin/use-color-module-4-colors',
+  ["enforce-kebab-case"]: "my-plugin/enforce-kebab-case",
+  ["use-color-module-4-colors"]: "my-plugin/use-color-module-4-colors",
 };
 
 export default function myPlugin(): Plugin {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     lint({ tokens, rules }) {
       const notices: LintNotice = [];
 
       for (const rule of rules) {
-        if (rule.severity === 'off') {
+        if (rule.severity === "off") {
           continue;
         }
         switch (rule.id) {
-          case RULES['enforce-kebab-case']: {
+          case RULES["enforce-kebab-case"]: {
             const failedKebabCaseIDs = myKebabCaseFunction(tokens);
             if (failedKebabCaseIDs.length) {
-              notices.push(...failedKebabCaseIDs.map((id) => ({ id: RULES['enforce-kebab-case'], message: `Token IDs must be in kebab-case; found "${id}"` })));
+              notices.push(...failedKebabCaseIDs.map((id) => ({ id: RULES["enforce-kebab-case"], message: `Token IDs must be in kebab-case; found "${id}"` })));
             }
             break;
           }
-          case RULES['use-color-module-4-colors']: {
+          case RULES["use-color-module-4-colors"]: {
             const failedColorModule4Colors = myColorModule4Function(tokens);
             if (failedColorModule4Colors.length) {
               notices.push(
                 ...failedColorModule4Colors.map(({ id, value }) => ({
-                  id: RULES['use-color-module-4-colors'],
+                  id: RULES["use-color-module-4-colors"],
                   message: `Colors must use the CSS Module 4 function \`color(…)\`, ${id} uses ${value}`,
                 })),
               );
@@ -247,7 +247,7 @@ export default function myPlugin(): Plugin {
 
 ::: tip
 
-You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `'off'` so we save work and execute faster.
+You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `"off"` so we save work and execute faster.
 
 :::
 
@@ -271,13 +271,13 @@ After running, and formatting your output, the `build()` function should return 
 ```ts
 export default function myPlugin(): Plugin {
   return {
-    name: 'my-plugin',
+    name: "my-plugin",
     async build({ tokens, rawSchema }) {
       // (your plugin code here)
 
       return [
-        { filename: './output-1.json', contents: jsonContents },
-        { filename: './output-2.svg', contents: svgContents },
+        { filename: "./output-1.json", contents: jsonContents },
+        { filename: "./output-2.svg", contents: svgContents },
       ];
     },
   };
@@ -289,9 +289,9 @@ export default function myPlugin(): Plugin {
 To test your plugin working on your design tokens, add it to your `tokens.config.mjs`:
 
 ```js
-import myPlugin from './my-plugin.js';
+import myPlugin from "./my-plugin.js";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [myPlugin()],
 };

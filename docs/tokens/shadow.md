@@ -31,7 +31,7 @@ shadow-md:
     offsetY: 4px
     blur: 8px
     spread: 0
-    color: 'rgb(0, 0, 0, 0.15)'
+    color: "rgb(0, 0, 0, 0.15)"
 ```
 
 :::
