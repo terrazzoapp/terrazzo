@@ -4,27 +4,11 @@ title: Figma Integration
 
 # Figma Integration
 
-Cobalt supports the following export methods from Figma:
+There are plenty of options to get DTCG design tokens out of Figma.
 
-1. **Styles**: no support¹. Variables are recommended.
-2. **Variables**: [see docs](#figma-variables)
-3. **Tokens Studio**: [see docs](#tokens-studio)
+## Import Figma Variables
 
-::: info
-
-¹ Beta versions of Cobalt had Styles support, before Variables were announced. But Figma’s API made it not only difficult to convert Styles to DTCG, it also required more setup and headache for the designer and developer. However, Variables were built with the DTCG spec in mind, and couldn’t be easier.
-
-:::
-
-## Figma Variables
-
-::: warning
-
-Using the Figma Variables API currently [requires an Enterprise plan](https://www.figma.com/developers/api#variables) in Figma.
-
-:::
-
-[Figma Variables](https://help.figma.com/hc/en-us/articles/15339657135383-Guide-to-variables-in-Figma) are currently in beta, but were designed to match the DTCG token format 1:1, and are expected to follow changes. Currently, the supported token types are:
+Cobalt supports importing Figma variables directly:
 
 | Figma Type |  DTCG Type  | Notes                           |
 | :--------: | :---------: | :------------------------------ |
@@ -37,12 +21,18 @@ _Note: [typography variables](https://help.figma.com/hc/en-us/articles/440678744
 
 ### Setup
 
+::: info Note
+
+Using the Figma Variables API [requires an Enterprise plan](https://www.figma.com/developers/api#variables) in Figma.
+
+:::
+
 In your `tokens.config.js` file, add the Figma [share URL](https://help.figma.com/hc/en-us/articles/360040531773-Share-files-and-prototypes) as a token source:
 
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
+  tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
 };
 ```
 
@@ -61,11 +51,11 @@ Figma Variables can be a **Color**, **Number**, **String**, or **Boolean.** Colo
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
+  tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
     overrides: {
-      'size/*': { $type: 'dimension' },
-      'timing/*': { $type: 'duration' },
+      "size/*": { $type: "dimension" },
+      "timing/*": { $type: "duration" },
     },
   },
 };
@@ -88,13 +78,13 @@ By default, tokens will keep the same name as your Figma Variables, but with `/`
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
+  tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
     overrides: {
-      'color/*': {
+      "color/*": {
         // rename color/base/purple → color/base/violet
         rename(id) {
-          return id.replace('color/base/purple', 'color/base/violet');
+          return id.replace("color/base/purple", "color/base/violet");
         },
       },
     },
@@ -117,15 +107,15 @@ This is useful when either `$type` isn’t enough, or you want to provide additi
 ```ts
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: ['https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…'],
+  tokens: ["https://www.figma.com/file/OkPWSU0cusQTumCNno7dm8/Design-System?…"],
   figma: {
     overrides: {
-      'size/*': {
-        $type: 'dimension',
+      "size/*": {
+        $type: "dimension",
         // convert px → rem
         transform({ variable, collection, mode }) {
           const rawValue = variable.valuesByMode[mode.modeId];
-          if (typeof rawValue === 'number') {
+          if (typeof rawValue === "number") {
             return `${rawValue / 16}rem`;
           }
           // remember rawValue may be an alias of another Variable!
@@ -151,15 +141,15 @@ You can even create aliases on-the-fly by either returning a DTCG alias string `
 
 ## Tokens Studio
 
-Once your design tokens are in Tokens Studio ([docs](https://docs.tokens.studio/tokens/creating-tokens)), use [any of the approved sync methods](https://docs.tokens.studio/sync/sync) to export a `tokens.json` file. Then use Cobalt as you would normally:
+If using [Tokens Studio](https://docs.tokens.studio/tokens/creating-tokens), you can export JSON using [any of the approved sync methods](https://docs.tokens.studio/sync/sync). Once exported to a `tokens.json` file, Cobalt can translate the format to DTCG:
 
 ```js
-import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginCSS from "@cobalt-ui/plugin-css";
 
 /** @type {import('@cobalt-ui/core').Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [pluginCSS()],
 };
 ```
@@ -187,3 +177,9 @@ Once your sync method is set up, it should be a snap to re-export that `tokens.j
 
 - **Duration** and **Cubic Bézier** types aren’t supported by Tokens Studio (because Figma currently doesn’t support animations). So to use those types you’ll need to convert your tokens into DTCG.
 - Though Cobalt preserves your [Token Sets](https://docs.tokens.studio/themes/token-sets), which means most aliases will work, Token Studio’s [Advanced Themes](https://docs.tokens.studio/themes/themes-pro) is a paid feature and is therefore not supported. Though you could manually upconvert Token Studio themes to [modes](/guides/modes).
+
+## TokensBrücke Figma Plugin
+
+![TokensBrücke](/images/tokens-brucke.jpg)
+
+The [TokensBrücke plugin for Figma](https://www.figma.com/community/plugin/1254538877056388290/tokensbrucke) exports Figma Variables to DTCG JSON, and is fully-compatible with Cobalt.
