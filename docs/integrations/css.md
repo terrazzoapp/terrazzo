@@ -27,12 +27,12 @@ Then add to your `tokens.config.mjs` file:
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginCSS from '@cobalt-ui/plugin-css'; // [!code ++]
+import pluginCSS from "@cobalt-ui/plugin-css"; // [!code ++]
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [pluginCSS()], // [!code ++]
 };
 ```
@@ -68,16 +68,16 @@ Here are all plugin options, along with their default values
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginCSS from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginCSS({
       /** set the filename inside outDir */
-      filename: './tokens.css',
+      filename: "./tokens.css",
       /** create selector wrappers around modes */
       modeSelectors: [
         // …
@@ -87,11 +87,11 @@ export default {
       /** (optional) transform specific token values */
       transform: () => null,
       /** (deprecated, use generateName instead) add custom namespace to CSS vars */
-      prefix: '',
+      prefix: "",
       /** enable P3 support? */
       p3: true,
       /** normalize all colors */
-      colorFormat: 'hex',
+      colorFormat: "hex",
       /** used to generate the name of each CSS variable */
       generateName: defaultNameGenerator,
     }),
@@ -114,9 +114,9 @@ By default, **all groups are off**. to generate a group, pass its name as the ke
 ```js
 pluginCSS({
   utility: {
-    bg: ['color.semantic.*'],
-    text: ['color.semantic.*'],
-    margin: ['space.*'],
+    bg: ["color.semantic.*"],
+    text: ["color.semantic.*"],
+    margin: ["space.*"],
   },
 });
 ```
@@ -193,14 +193,14 @@ The `utility` mapping will use the remainder of the token ID, minus the selector
 
 | Selector                     | CSS Class                    |
 | :--------------------------- | :--------------------------- |
-| `['color.semantic.primary']` | `.bg-primary`                |
-| `['color.semantic.*']`       | `.bg-primary`                |
-| `['color.*']`                | `.bg-semantic-primary`       |
-| `['*']`                      | `.bg-color-semantic-primary` |
+| `["color.semantic.primary"]` | `.bg-primary`                |
+| `["color.semantic.*"]`       | `.bg-primary`                |
+| `["color.*"]`                | `.bg-semantic-primary`       |
+| `["*"]`                      | `.bg-color-semantic-primary` |
 
 You can use as much or as little of the token ID as you like, according to what makes sense to you.
 
-This comes up a lot with spacing ([Dimension](/tokens/dimension)) tokens: if, for example, you had a `space.layout.xs` token, you could specify `['space.*']` if you wanted the CSS class `.mt-layout-xs`, or `['space.layout.*']` if you wanted `.mt-xs`. Only you know your DS and what makes the most sense, and when a name is either too long or too short.
+This comes up a lot with spacing ([Dimension](/tokens/dimension)) tokens: if, for example, you had a `space.layout.xs` token, you could specify `["space.*"]` if you wanted the CSS class `.mt-layout-xs`, or `["space.layout.*"]` if you wanted `.mt-xs`. Only you know your DS and what makes the most sense, and when a name is either too long or too short.
 
 Note that **this utility does not let you rename token IDs** for ease of use. If you want to remap and/or mix and combine tokens into different class names, you’ll have to write your own CSS manually (using the generated CSS variables, of course).
 
@@ -235,17 +235,17 @@ To override specific or all CSS variable names yourself, use the `generateName()
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginCSS from '@cobalt-ui/plugin-css';
+import pluginCSS from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginCSS({
       generateName(variableId, token) {
-        if (variableId === 'my.special.token') {
-          return 'SUPER_IMPORTANT_VARIABLE';
+        if (variableId === "my.special.token") {
+          return "SUPER_IMPORTANT_VARIABLE";
         }
         // if nothing returned, fall back to default behavior
       },
@@ -271,28 +271,28 @@ To generate CSS for Modes, add a `modeSelectors` array to your config that speci
 ::: code-group
 
 ```js [tokens.config.mjs]
-import css from '@cobalt-ui/plugin-css';
+import css from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     css({
       modeSelectors: [
         {
-          mode: 'light', // match all tokens with $extensions.mode.light
-          selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'], // the following CSS selectors trigger the mode swap
-          tokens: ['color.*'], // (optional) limit to specific tokens, if desired (by default any tokens with this mode will be included)
+          mode: "light", // match all tokens with $extensions.mode.light
+          selectors: ["@media (prefers-color-scheme: light)", '[data-color-mode="light"]'], // the following CSS selectors trigger the mode swap
+          tokens: ["color.*"], // (optional) limit to specific tokens, if desired (by default any tokens with this mode will be included)
         },
         {
-          mode: 'dark',
-          selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'],
-          tokens: ['color.*'],
+          mode: "dark",
+          selectors: ["@media (prefers-color-scheme: dark)", '[data-color-mode="dark"]'],
+          tokens: ["color.*"],
         },
         {
-          mode: 'reduced',
-          selectors: ['@media (prefers-reduced-motion)'],
+          mode: "reduced",
+          selectors: ["@media (prefers-reduced-motion)"],
         },
       ],
     }),
@@ -315,7 +315,7 @@ This would generate the following CSS:
   }
 }
 
-[data-color-mode='light'] {
+[data-color-mode="light"] {
   /* (same) */
 }
 
@@ -326,7 +326,7 @@ This would generate the following CSS:
   }
 }
 
-[data-color-mode='dark'] {
+[data-color-mode="dark"] {
   /* (same) */
 }
 
@@ -344,17 +344,17 @@ Further, any valid CSS selector can be used (that’s why it’s called `modeSel
 ::: code-group
 
 ```js [tokens.config.mjs]
-import css from '@cobalt-ui/plugin-css';
+import css from "@cobalt-ui/plugin-css";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     css({
       modeSelectors: [
-        { mode: 'mobile', tokens: ['typography.size.*'], selectors: ['@media (width < 600px)'] },
-        { mode: 'desktop', tokens: ['typography.size.*'], selectors: ['@media (width >= 600px)'] },
+        { mode: "mobile", tokens: ["typography.size.*"], selectors: ["@media (width < 600px)"] },
+        { mode: "desktop", tokens: ["typography.size.*"], selectors: ["@media (width >= 600px)"] },
       ],
     }),
   ],
@@ -392,16 +392,16 @@ Inside plugin options, you can specify an optional `transform()` function.
 ::: code-group
 
 ```js [tokens.config.mjs] {7-13}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginCSS({
       transform(token, mode) {
-        const oldFont = 'sans-serif';
-        const newFont = 'Custom Sans';
-        if (token.$type === 'fontFamily') {
+        const oldFont = "sans-serif";
+        const newFont = "Custom Sans";
+        if (token.$type === "fontFamily") {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },
@@ -421,15 +421,15 @@ If you have your own custom token type, e.g. `my-custom-type`, you’ll have to 
 ::: code-group
 
 ```js [tokens.config.mjs] {8-13}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginCSS({
       transform(token, mode) {
         switch (token.$type) {
-          case 'my-custom-type': {
+          case "my-custom-type": {
             return String(token.$value);
             break;
           }
@@ -451,11 +451,11 @@ Helpful information for @cobalt-ui/plugin-css’ handling of specific token type
 ::: code-group
 
 ```js [tokens.config.mjs] {5}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     pluginCSS({
-      colorFormat: 'oklch',
+      colorFormat: "oklch",
     }),
   ],
 };
@@ -510,7 +510,7 @@ By default, consuming those will print values as-is:
 
 ```css
 :root {
-  --icon-alert: url('./icon/alert.svg');
+  --icon-alert: url("./icon/alert.svg");
 }
 
 .icon-alert {
@@ -522,7 +522,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 ```css
 :root {
-  --icon-alert: url('image/svg+xml;utf8,<svg …></svg>');
+  --icon-alert: url("image/svg+xml;utf8,<svg …></svg>");
 }
 
 .icon-alert {
@@ -548,17 +548,17 @@ To use this, replace this plugin with @cobalt-ui/plugin-sass in `tokens.config.m
 
 <!-- prettier-ignore -->
 ```js [tokens.config.mjs]
-import pluginCSS from '@cobalt-ui/plugin-css'; // [!code --]
-import pluginSass from '@cobalt-ui/plugin-sass'; // [!code ++]
+import pluginCSS from "@cobalt-ui/plugin-css"; // [!code --]
+import pluginSass from "@cobalt-ui/plugin-sass"; // [!code ++]
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
-    pluginCSS({filename: 'tokens.css'}), // [!code --]
+    pluginCSS({filename: "tokens.css"}), // [!code --]
     pluginSass({ // [!code ++]
-      pluginCSS: {filename: 'tokens.css'}, // [!code ++]
+      pluginCSS: {filename: "tokens.css"}, // [!code ++]
     }), // [!code ++]
   ],
 };

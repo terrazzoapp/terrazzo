@@ -34,7 +34,7 @@ color:
   $description: color palette
   red:
     $type: color
-    $value: '#fa4549'
+    $value: "#fa4549"
 typography:
   $description: Typographic styles
   family:

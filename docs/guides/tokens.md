@@ -28,8 +28,8 @@ The basic design token consists of a simple JSON object with `$type` and `$value
 ```yaml [YAML]
 tokenName:
   $description: (optional) A description of this token
-  $type: '[token type]'
-  $value: '[token value - different shape depending on $type]'
+  $type: "[token type]"
+  $value: "[token value - different shape depending on $type]"
   $extensions: (optional) Used by third-party tools
 ```
 
@@ -57,7 +57,7 @@ groupA:
   groupB:
     token:
       $type: color
-      $value: '#000'
+      $value: "#000"
 ```
 
 :::
@@ -120,9 +120,9 @@ With Cobalt, you can organize your tokens into separate files if you’d like, a
 ::: code-group
 
 ```js [tokens.config.mjs]
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: ['./token-src/colors.json', './token-src/typography.json', './token-src/icons.json', './token-src/spacing.json'],
+  tokens: ["./token-src/colors.json", "./token-src/typography.json", "./token-src/icons.json", "./token-src/spacing.json"],
 };
 ```
 

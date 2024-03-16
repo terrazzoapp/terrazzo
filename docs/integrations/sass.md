@@ -25,12 +25,12 @@ Then add to your `tokens.config.mjs` file:
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginSass from '@cobalt-ui/plugin-sass'; // [!code ++]
+import pluginSass from "@cobalt-ui/plugin-sass"; // [!code ++]
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [pluginSass()], // [!code ++]
 };
 ```
@@ -46,11 +46,11 @@ npx co build
 You’ll then generate a `./tokens/index.scss` file that exports a `token()` function you can use to grab tokens:
 
 ```scss
-@use '../tokens' as *; // update '../tokens' to match your location of tokens/index.scss
+@use "../tokens" as *; // update "../tokens" to match your location of tokens/index.scss
 
 .heading {
-  color: token('color.blue');
-  font-size: token('typography.size.xxl');
+  color: token("color.blue");
+  font-size: token("typography.size.xxl");
 }
 ```
 
@@ -67,15 +67,15 @@ The generated Sass outputs the following helpers:
 The main way you’ll use the token is by importing the `token()` function to grab a token by its ID (separated by dots):
 
 ```scss
-@use '../tokens' as *; // update '../tokens' to match your location of tokens/index.scss
+@use "../tokens" as *; // update "../tokens" to match your location of tokens/index.scss
 
 .heading {
-  color: token('color.blue');
-  font-size: token('typography.size.xxl');
+  color: token("color.blue");
+  font-size: token("typography.size.xxl");
 }
 
-body[color-mode='dark'] .heading {
-  color: token('color.blue', 'dark'); // pull "dark" mode variant
+body[color-mode="dark"] .heading {
+  color: token("color.blue", "dark"); // pull "dark" mode variant
 }
 ```
 
@@ -94,12 +94,12 @@ Note that a function has a few advantages over plain Sass variables:
 ```
 
 ```scss
-@use '../tokens' as *;
+@use "../tokens" as *;
 
 h2 {
-  @include typography('typography.heading-2');
+  @include typography("typography.heading-2");
 
-  font-size: token('typography.size.xxl'); // overrides can still be applied after the mixin!
+  font-size: token("typography.size.xxl"); // overrides can still be applied after the mixin!
 }
 ```
 
@@ -110,11 +110,11 @@ Note that you can override any individual property so long as it comes _after_ t
 The `listModes()` function lists all modes a token has defined. This returns a [Sass list](https://sass-lang.com/documentation/values/lists/). This can be used to generate styles for specific modes:
 
 ```scss
-@use '../tokens' as *;
+@use "../tokens" as *;
 
-@for $mode in listModes('color.blue') {
-  [data-color-mode='#{$mode}'] {
-    color: token('color.blue', $mode);
+@for $mode in listModes("color.blue") {
+  [data-color-mode="#{$mode}"] {
+    color: token("color.blue", $mode);
   }
 }
 ```
@@ -128,17 +128,17 @@ To use CSS variables instead of Sass variables, set the `pluginCSS` option (can 
 ::: code-group
 
 ```js [tokens.config.mjs] {7-14}
-import pluginSass from '@cobalt-ui/plugin-sass';
+import pluginSass from "@cobalt-ui/plugin-sass";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     pluginSass({
       pluginCSS: {
-        prefix: 'ds',
+        prefix: "ds",
         modeSelectors: [
-          {mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]']},
-          {mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]']},
+          {mode: "light", tokens: ["color.*"], selectors: ['[data-color-theme="light"]']},
+          {mode: "dark", tokens: ["color.*"], selectors: ['[data-color-theme="dark"]']},
         ],
       },
     }),
@@ -166,8 +166,8 @@ Though CSS variable mode is recommended, there may be some caveats to be aware o
 
 ```scss
 .text {
-  color: rgba(token('color.ui.foreground'), 0.75); // [!code --]
-  color: color-mix(in oklab, #{token('color.ui.foreground')}, 25% transparent); // [!code ++]
+  color: rgba(token("color.ui.foreground"), 0.75); // [!code --]
+  color: color-mix(in oklab, #{token("color.ui.foreground")}, 25% transparent); // [!code ++]
 }
 ```
 
@@ -175,8 +175,8 @@ You’ll also lose Sass’ ability to perform math on the values, however, CSS�
 
 ```scss
 .nav {
-  margin-left: -0.5 * token('space.sm'); // [!code --]
-  margin-left: calc(-0.5 * #{token('space.ms')}); // [!code ++]
+  margin-left: -0.5 * token("space.sm"); // [!code --]
+  margin-left: calc(-0.5 * #{token("space.ms")}); // [!code ++]
 }
 ```
 
@@ -195,16 +195,16 @@ Here are all plugin options, along with their default values:
 :::code-group
 
 ```js [tokens.config.mjs]
-import pluginSass from '@cobalt-ui/plugin-sass';
+import pluginSass from "@cobalt-ui/plugin-sass";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginSass({
       /** set the filename inside outDir */
-      filename: './index.scss',
+      filename: "./index.scss",
       /** output CSS vars generated by @cobalt-ui/plugin-css */
       pluginCSS: undefined,
       /** use indented syntax? (.sass format) */
@@ -214,8 +214,8 @@ export default {
       /** handle specific token types */
       transform(token, mode) {
         // Replace "sans-serif" with "Brand Sans" for font tokens
-        if (token.$type === 'fontFamily') {
-          return token.$value.replace('sans-serif', 'Brand Sans');
+        if (token.$type === "fontFamily") {
+          return token.$value.replace("sans-serif", "Brand Sans");
         }
       },
     }),
@@ -230,11 +230,11 @@ export default {
 ::: code-group
 
 ```js [tokens.config.mjs] {5}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     pluginSass({
-      colorFormat: 'oklch',
+      colorFormat: "oklch",
     }),
   ],
 };
@@ -289,7 +289,7 @@ By default, consuming those will print values as-is:
 
 ```scss
 .icon-alert {
-  background-image: token('icon.alert'); // url('./icon/alert.svg')
+  background-image: token("icon.alert"); // url("./icon/alert.svg")
 }
 ```
 
@@ -297,7 +297,7 @@ In some scenarios this is preferable, but in others, this may result in too many
 
 ```scss
 .icon-alert {
-  background-image: token('icon.alert'); // url('image/svg+xml;utf8,<svg …></svg>');
+  background-image: token("icon.alert"); // url("image/svg+xml;utf8,<svg …></svg>");
 }
 ```
 
@@ -316,16 +316,16 @@ Inside plugin options, you can specify an optional `transform()` function:
 ::: code-group
 
 ```js [tokens.config.mjs] {7-13}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginSass({
       transform(token, mode) {
-        const oldFont = 'sans-serif';
-        const newFont = 'Custom Sans';
-        if (token.$type === 'fontFamily') {
+        const oldFont = "sans-serif";
+        const newFont = "Custom Sans";
+        if (token.$type === "fontFamily") {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },
@@ -345,15 +345,15 @@ If you have your own custom token type, e.g. `my-custom-type`, you’ll have to 
 ::: code-group
 
 ```js [tokens.config.mjs] {8-13}
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginSass({
       transform(token, mode) {
         switch (token.$type) {
-          case 'my-custom-type': {
+          case "my-custom-type": {
             return String(token.$value);
             break;
           }

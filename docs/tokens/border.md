@@ -25,7 +25,7 @@ A composite type combining a [color](/tokens/color), [dimension](/tokens/dimensi
 heavy:
   $type: border
   $value:
-    color: '#36363600'
+    color: "#36363600"
     width: 3px
     style: solid
 ```

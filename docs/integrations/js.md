@@ -26,12 +26,12 @@ Then add to your `tokens.config.mjs` file:
 
 <!-- prettier-ignore -->
 ```js [tokens.config.mjs]
-import pluginJS from '@cobalt-ui/plugin-js'; // [!code ++]
+import pluginJS from "@cobalt-ui/plugin-js"; // [!code ++]
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({ // [!code ++]
       /** output JS (with TS types)? boolean or filename (default: true) */ // [!code ++]
@@ -52,17 +52,17 @@ npx co build
 You’ll then get generated JS with a `token()` function you can use to grab token values:
 
 ```js
-import { token } from './tokens/index.js';
+import { token } from "./tokens/index.js";
 
 // get default token
-const red = token('color.red.10');
+const red = token("color.red.10");
 
 // get token for mode: dark
-const redDark = token('color.red.10', 'dark');
+const redDark = token("color.red.10", "dark");
 
 // cubicBezier + bezier-easing library
-import BezierEasing from 'bezier-easing';
-const easing = BezierEasing(...token('ease.cubic-in-out'));
+import BezierEasing from "bezier-easing";
+const easing = BezierEasing(...token("ease.cubic-in-out"));
 ```
 
 ::: info
@@ -88,16 +88,16 @@ Here are all plugin options, along with their default values:
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginJS from '@cobalt-ui/plugin-js';
+import pluginJS from "@cobalt-ui/plugin-js";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({
       /** output JS? boolean or filename */
-      js: './index.js',
+      js: "./index.js",
       /** output JSON? boolean or filename */
       json: false,
       /** include meta object in output? */
@@ -116,10 +116,10 @@ export default {
 In some cases the `meta` API object can become very large. Setting the `meta` option to `false` will remove it from the output JavaScript.
 
 ```js
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({
       meta: false,
@@ -133,16 +133,16 @@ export default {
 Inside plugin options, you can specify an optional `transform()` function.
 
 ```js
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({
       transform(token, mode) {
-        const oldFont = 'sans-serif';
-        const newFont = 'Custom Sans';
-        if (token.$type === 'fontFamily') {
+        const oldFont = "sans-serif";
+        const newFont = "Custom Sans";
+        if (token.$type === "fontFamily") {
           return token.$value.map((value) => (value === oldFont ? newFont : value));
         }
       },

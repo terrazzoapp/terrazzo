@@ -79,52 +79,52 @@ color:
   $type: color
   base:
     gray:
-      '0':
-        $value: '#f6f8fa'
-      '1':
-        $value: '#eaeef2'
-      '2':
-        $value: '#d0d7de'
-      '3':
-        $value: '#afb8c1'
-      '4':
-        $value: '#8c959f'
-      '5':
-        $value: '#6e7781'
-      '6':
-        $value: '#57606a'
-      '7':
-        $value: '#424a53'
-      '8':
-        $value: '#32383f'
-      '9':
-        $value: '#24292f'
+      "0":
+        $value: "#f6f8fa"
+      "1":
+        $value: "#eaeef2"
+      "2":
+        $value: "#d0d7de"
+      "3":
+        $value: "#afb8c1"
+      "4":
+        $value: "#8c959f"
+      "5":
+        $value: "#6e7781"
+      "6":
+        $value: "#57606a"
+      "7":
+        $value: "#424a53"
+      "8":
+        $value: "#32383f"
+      "9":
+        $value: "#24292f"
     blue:
-      '0':
-        $value: '#ddf4ff'
-      '1':
-        $value: '#b6e3ff'
-      '2':
-        $value: '#80ccff'
-      '3':
-        $value: '#54aeff'
-      '4':
-        $value: '#218bff'
-      '5':
-        $value: '#0969da'
-      '6':
-        $value: '#0550ae'
-      '7':
-        $value: '#033d8b'
-      '8':
-        $value: '#0a3069'
-      '9':
-        $value: '#002155'
+      "0":
+        $value: "#ddf4ff"
+      "1":
+        $value: "#b6e3ff"
+      "2":
+        $value: "#80ccff"
+      "3":
+        $value: "#54aeff"
+      "4":
+        $value: "#218bff"
+      "5":
+        $value: "#0969da"
+      "6":
+        $value: "#0550ae"
+      "7":
+        $value: "#033d8b"
+      "8":
+        $value: "#0a3069"
+      "9":
+        $value: "#002155"
   semantic:
     action:
-      $value: '{color.base.blue.5}'
+      $value: "{color.base.blue.5}"
     textColor:
-      $value: '{color.base.gray.9}'
+      $value: "{color.base.gray.9}"
 fontStack:
   $type: fontFamily
   sansSerif:
@@ -161,13 +161,13 @@ Then we’ll configure our plugins. Create a `tokens.config.mjs` file ([docs](/a
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginCSS from '@cobalt-ui/plugin-css';
-import pluginJS from '@cobalt-ui/plugin-js';
+import pluginCSS from "@cobalt-ui/plugin-css";
+import pluginJS from "@cobalt-ui/plugin-js";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [pluginCSS(/* options */), pluginJS(/* options */)],
 };
 ```

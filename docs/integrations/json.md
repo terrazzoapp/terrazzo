@@ -26,12 +26,12 @@ Then add to your `tokens.config.mjs` file:
 
 <!-- prettier-ignore -->
 ```js [tokens.config.mjs]
-import pluginJS from '@cobalt-ui/plugin-js'; // [!code ++]
+import pluginJS from "@cobalt-ui/plugin-js"; // [!code ++]
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginJS({ // [!code ++]
       /** output JSON? boolean or filename (default: false) */  // [!code ++]

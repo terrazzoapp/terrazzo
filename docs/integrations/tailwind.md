@@ -23,38 +23,38 @@ Then add to your `tokens.config.mjs` file, configuring [theme](https://tailwindc
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginTailwind from '@cobalt-ui/plugin-tailwind';
+import pluginTailwind from "@cobalt-ui/plugin-tailwind";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     pluginTailwind({
       /** (optional) the path to the Tailwind preset */
-      output?: './tailwind-tokens.js',
+      output?: "./tailwind-tokens.js",
       /** (optional) module format to use (to match your Tailwind config) */
-      outputFormat?: 'esm' | 'cjs',
+      outputFormat?: "esm" | "cjs",
       tailwind: {
         theme: {
           /** @see https://tailwindcss.com/docs/configuration#theme */
           colors: {
             blue: {
-              100: 'color.blue.100',
-              200: 'color.blue.200',
+              100: "color.blue.100",
+              200: "color.blue.200",
               // …
             },
           },
           fontFamily: {
-            sans: 'typography.family.base',
+            sans: "typography.family.base",
             // …
           },
           extend: {
             spacing: {
-              1: 'token.size.s.space',
-              2: 'token.size.m.space',
+              1: "token.size.s.space",
+              2: "token.size.m.space",
               // …
             },
             borderRadius: {
-              m: 'token.size.m.borderRadius',
+              m: "token.size.m.borderRadius",
               // …
             },
           },
@@ -79,9 +79,9 @@ And you’ll generate a `./tokens/tailwind-tokens.js` file. Add it to your Tailw
 
 <!-- prettier-ignore -->
 ```js [tailwind.config.js]
-import tailwindTokens from './tokens/tailwind-tokens.js'; // [!code ++]
+import tailwindTokens from "./tokens/tailwind-tokens.js"; // [!code ++]
 
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 export default {
   presets: [  // [!code ++]
     tailwindTokens, // [!code ++]
@@ -103,27 +103,27 @@ Because the Tailwind config is “just JS,” you can automate the mapping by us
 ::: code-group
 
 ```js [tokens.config.mjs]
-import pluginTailwind from '@cobalt-ui/plugin-tailwind';
+import pluginTailwind from "@cobalt-ui/plugin-tailwind";
 
 function makeColor(colorName) {
   const output = {};
   for (const step of [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]) {
-    output[step] = [colorName, step].join('.'); // e.g. `color.blue.50`
+    output[step] = [colorName, step].join("."); // e.g. `color.blue.50`
   }
   return output;
 }
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginTailwind({
       tailwind: {
         theme: {
           colors: {
-            blue: makeColor('color.blue'), // { 50: 'color.blue.50', 100: 'color.blue.100', … }
-            green: makeColor('color.green'), // { 50: 'color.green.50', 100: 'color.green.100', … }
+            blue: makeColor("color.blue"), // { 50: "color.blue.50", 100: "color.blue.100", … }
+            green: makeColor("color.green"), // { 50: "color.green.50", 100: "color.green.100", … }
             // …
           },
         },
@@ -144,13 +144,13 @@ If you’re still using CommonJS (using `require("…")` rather than `import "�
 ::: code-group
 
 ```js [tokens.config.mjs] {7}
-import pluginTailwind from '@cobalt-ui/plugin-tailwind';
+import pluginTailwind from "@cobalt-ui/plugin-tailwind";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
   plugins: [
     pluginTailwind({
-      outputFormat: 'cjs',
+      outputFormat: "cjs",
     }),
   ],
 };
@@ -169,21 +169,21 @@ npm i -D @cobalt-ui/plugin-css culori
 ::: code-group
 
 ```js [tokens.config.js] {12-17}
-import pluginCSS from '@cobalt-ui/plugin-css';
-import pluginTailwind from '@cobalt-ui/plugin-tailwind';
-import * as culori from 'culori';
+import pluginCSS from "@cobalt-ui/plugin-css";
+import pluginTailwind from "@cobalt-ui/plugin-tailwind";
+import * as culori from "culori";
 
-/** @type {import('@cobalt-ui/core').Config} */
+/** @type {import("@cobalt-ui/core").Config} */
 export default {
-  tokens: './tokens.json',
-  outDir: './tokens/',
+  tokens: "./tokens.json",
+  outDir: "./tokens/",
   plugins: [
     pluginTailwind(),
     pluginCSS({
       transform(token) {
-        if (token.$type === 'color') {
+        if (token.$type === "color") {
           const { r, g, b } = culori.rgb(culori.parse(token.$value));
-          return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)].join(' ');
+          return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)].join(" ");
         }
       },
     }),
