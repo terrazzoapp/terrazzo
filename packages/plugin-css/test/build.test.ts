@@ -30,6 +30,7 @@ describe('@cobalt-ui/plugin-css', () => {
           ],
         }),
       ],
+      lint: { build: { enabled: true }, rules: {} },
       color: {},
       tokens: [],
     });
@@ -51,6 +52,7 @@ describe('@cobalt-ui/plugin-css', () => {
           ],
         }),
       ],
+      lint: { build: { enabled: true }, rules: {} },
       color: {},
       tokens: [],
     });
@@ -63,6 +65,7 @@ describe('@cobalt-ui/plugin-css', () => {
     await build(tokens, {
       outDir: cwd,
       plugins: [pluginCSS({ filename: 'actual.css' })],
+      lint: { build: { enabled: true }, rules: {} },
       color: {},
       tokens: [],
     });
@@ -92,6 +95,7 @@ describe('@cobalt-ui/plugin-css', () => {
             ],
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });
@@ -113,6 +117,7 @@ describe('@cobalt-ui/plugin-css', () => {
             },
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });
@@ -130,6 +135,7 @@ describe('@cobalt-ui/plugin-css', () => {
             p3: false,
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });
@@ -152,6 +158,7 @@ describe('@cobalt-ui/plugin-css', () => {
       await build(tokens, {
         outDir: cwd,
         plugins: [pluginCSS({ filename: 'actual.css', generateName: myGenerator })],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });
@@ -178,6 +185,7 @@ describe('@cobalt-ui/plugin-css', () => {
             },
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });
@@ -204,6 +212,7 @@ describe('@cobalt-ui/plugin-css', () => {
             },
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
         tokens: [],
       });

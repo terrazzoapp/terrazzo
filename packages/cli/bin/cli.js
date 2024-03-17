@@ -40,6 +40,7 @@ import { fileURLToPath, URL } from 'node:url';
 import parser from 'yargs-parser';
 import build from '../dist/build.js';
 import { init as initConfig } from '../dist/config.js';
+import lint from '../dist/lint.js';
 import convert from '../dist/convert.js';
 
 const [, , cmd, ...args] = process.argv;
@@ -93,6 +94,16 @@ export default async function main() {
     // if running `co check [tokens]`, don’t load config from file
     if (cmd === 'check' && args[0]) {
       config = await initConfig({ tokens: args[0] }, cwd);
+    } else if (cmd === 'lint') {
+      config = await loadConfig(
+        resolveConfig(configPath),
+        args[0]
+          ? {
+              // override config.tokens if passed as CLI arg
+              tokens: args[0],
+            }
+          : undefined,
+      );
     } else {
       config = await loadConfig(resolveConfig(configPath));
     }
@@ -225,6 +236,36 @@ export default async function main() {
       console.log(`  ${FG_GREEN}✔${RESET}  no errors ${time(start)}`);
       break;
     }
+    case 'lint': {
+      if (!Array.isArray(config.plugins) || !config.plugins.length) {
+        printErrors(`✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
+        process.exit(1);
+      }
+
+      const rawSchema = await loadTokens(config.tokens);
+      const parseResult = parse(rawSchema, config); // will throw if errors
+
+      if (parseResult.errors) {
+        printErrors(parseResult.errors);
+        printWarnings(parseResult.warnings);
+        process.exit(1);
+      }
+      if (parseResult.warnings) {
+        printWarnings(parseResult.warnings);
+      }
+      const lintResult = await lint({ config, tokens: parseResult.result.tokens, rawSchema, warnIfNoPlugins: true });
+      if (lintResult.errors) {
+        printErrors(lintResult.errors);
+        printWarnings(lintResult.warnings);
+        process.exit(1);
+      }
+      if (lintResult.warnings) {
+        printWarnings(lintResult.warnings);
+      } else {
+        console.log(`  ${FG_GREEN}✔${RESET}  all checks passed ${time(start)}`);
+      }
+      break;
+    }
     case 'init': {
       if (fs.existsSync(config.tokens)) {
         throw new Error(`${config.tokens} already exists`);
@@ -251,7 +292,9 @@ function showHelp() {
   [commands]
     build           Build token artifacts from tokens.json
       --watch, -w   Watch tokens.json for changes and recompile
-    check [path]    Check tokens.json for errors
+      --no-lint     Disable linters running on build
+    check [path]    Check tokens.json for syntax errors
+    lint [path]     Run linters
     init            Create a starter tokens.json file
     bundle          Combine multiple tokens schemas into one
       --out [path]  Specify bundled tokens.json output
@@ -285,10 +328,13 @@ function resolveConfig(filename) {
 }
 
 /** load config */
-async function loadConfig(configPath) {
+async function loadConfig(configPath, overrides) {
   let userConfig = {};
   if (configPath) {
     userConfig = (await import(configPath)).default;
+  }
+  if (overrides) {
+    merge(userConfig ?? {}, overrides);
   }
   return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
 }

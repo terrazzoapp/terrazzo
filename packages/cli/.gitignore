@@ -2,4 +2,8 @@
 test/fixtures/bundle-default/given
 test/fixtures/figma-error/given.json
 test/fixtures/figma-success/given.jso
+test/fixtures/lint-failing/tokens
+test/fixtures/lint-failing-disabled/tokens
+test/fixtures/lint-manual-path/tokens
+test/fixtures/lint-passing/tokens
 test/fixtures/style-dictionary/given.json

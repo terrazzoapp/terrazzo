@@ -119,6 +119,17 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
       throw new Error(`[config] "lint" must be an object`);
     }
 
+    if (!(('build' in config.lint) as any)) {
+      config.lint.build = { enabled: true };
+    }
+    if ('enabled' in config.lint.build && config.lint.build.enabled !== undefined) {
+      if (typeof config.lint.build.enabled !== 'boolean') {
+        throw new Error(`[config] "lint.build.enabled" expected boolean, received ${typeof config.lint.build}`);
+      }
+    } else {
+      config.lint.build.enabled = true;
+    }
+
     if ('rules' in config.lint && config.lint.rules !== undefined) {
       if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
         throw new Error(`[config] "lint.rules" must be an object`);
@@ -136,6 +147,8 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
         } else if (Array.isArray(value)) {
           severity = value[0];
           options = value[1];
+        } else if (value !== undefined) {
+          throw new Error(`[config] lint rule "${id}" invalid syntax. Expected string | number | array, received ${typeof value}`);
         }
         config.lint.rules[id] = { id, severity: severity as LintRule['severity'], options };
         if (typeof severity === 'number') {
@@ -152,6 +165,11 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
         }
       }
     }
+  } else {
+    config.lint = {
+      build: { enabled: true },
+      rules: {},
+    };
   }
 
   // token type options

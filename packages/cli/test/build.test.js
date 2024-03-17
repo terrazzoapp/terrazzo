@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import { execa } from 'execa';
 import { describe, expect, it } from 'vitest';
 
@@ -59,8 +60,32 @@ describe(
         await execa('node', [`../../${cmd}`, 'build'], { cwd });
 
         const builtTokens = await import('./fixtures/build-docs-examples/guides/getting-started/tokens/index.js');
-
         expect(Object.keys(builtTokens.meta).length).toBe(29);
+      });
+    });
+
+    describe('lint', () => {
+      it('Lint: doesn‘t block build if passing', async () => {
+        const cwd = new URL(`./fixtures/lint-passing/`, import.meta.url);
+        await execa('node', [cmd, 'build'], { cwd });
+
+        const builtTokens = await import('./fixtures/lint-passing/tokens/index.js');
+        expect(Object.keys(builtTokens.meta).length).toBeGreaterThan(50);
+      });
+
+      it('Lint: blocks build if failing', async () => {
+        const cwd = new URL(`./fixtures/lint-failing/`, import.meta.url);
+
+        expect(() => execa('node', [cmd, 'build'], { cwd })).rejects.toThrowError('Error a11y/contrast: WCAG 2: Token pair #ffcdc2, #fff8f7 failed contrast.');
+        expect(fs.existsSync(new URL('./tokens/index.js', cwd))).toBe(false);
+      });
+
+      it('Lint: can be disabled with `lint.build.enabled: false`', async () => {
+        const cwd = new URL(`./fixtures/lint-failing-disabled/`, import.meta.url);
+        await execa('node', [cmd, 'build'], { cwd });
+
+        const builtTokens = await import('./fixtures/lint-failing-disabled/tokens/index.js');
+        expect(Object.keys(builtTokens.meta).length).toBeGreaterThan(50);
       });
     });
   },
