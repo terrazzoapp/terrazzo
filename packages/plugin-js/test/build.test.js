@@ -17,6 +17,7 @@ describe('@cobalt-ui/plugin-js', () => {
             json: 'actual.json',
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
       });
       expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `${dir}: JS`).toMatchFileSnapshot(fileURLToPath(new URL('want.js', cwd)));
@@ -38,6 +39,7 @@ describe('@cobalt-ui/plugin-js', () => {
             deep: true,
           }),
         ],
+        lint: { build: { enabled: true }, rules: {} },
         color: {},
       });
       expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `nested: JS`).toMatchFileSnapshot(fileURLToPath(new URL('want.js', cwd)));
@@ -58,6 +60,7 @@ describe('@cobalt-ui/plugin-js', () => {
           meta: false,
         }),
       ],
+      lint: { build: { enabled: true }, rules: {} },
       color: {},
     });
     expect(fs.readFileSync(new URL('actual.js', cwd), 'utf8'), `meta: JS`).toMatchFileSnapshot(fileURLToPath(new URL('want.js', cwd)));

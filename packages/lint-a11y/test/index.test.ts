@@ -85,6 +85,25 @@ describe('a11y plugin', () => {
           },
         ],
         [
+          'failing (default settings)',
+          {
+            options: {
+              checks: [
+                {
+                  tokens: {
+                    foreground: 'color.failing-dark-text',
+                    background: 'color.failing-dark-bg',
+                    typography: 'typography.body',
+                  },
+                },
+              ],
+            },
+            want: {
+              errors: ['[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1'],
+            },
+          },
+        ],
+        [
           'no options provided',
           {
             options: undefined,
@@ -100,6 +119,7 @@ describe('a11y plugin', () => {
             outDir: new URL('./index/', import.meta.url),
             plugins: [a11y()],
             lint: {
+              build: { enabled: true },
               rules: {
                 'a11y/contrast': {
                   id: 'a11y/contrast',

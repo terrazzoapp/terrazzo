@@ -55,7 +55,7 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
   }
   for (const {
     wcag2 = 'AA',
-    apca = 'off',
+    apca = false,
     tokens: { foreground: foregroundID, background: backgroundID, typography: typographyID, modes },
   } of (options ?? {}).checks) {
     // resolve tokens

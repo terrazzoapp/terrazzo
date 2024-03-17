@@ -70,6 +70,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
           ],
           color: {},
           tokens: [],
+          lint: { build: { enabled: true }, rules: {} },
         });
 
         expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
@@ -88,6 +89,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
           ],
           color: {},
           tokens: [],
+          lint: { build: { enabled: true }, rules: {} },
         });
 
         expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));

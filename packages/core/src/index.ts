@@ -58,6 +58,7 @@ export interface ResolvedConfig extends Omit<ParseOptions, 'lint'> {
   outDir: URL;
   plugins: Plugin[];
   lint: {
+    build: { enabled: boolean };
     rules: Record<string, LintRule>;
   };
 }
@@ -109,8 +110,14 @@ export interface Config extends Partial<Omit<ParseOptions, 'lint'>> {
   outDir?: string;
   /** specify plugins */
   plugins: Plugin[];
-  /** specify lint rules */
+  /** specify linting settings */
   lint?: {
+    /** configure build behavior */
+    build?: {
+      /** should linters run with `co build`? (default: true) */
+      enabled?: boolean;
+    };
+    /** configure lint rules */
     rules?: Record<string, LintRuleShorthand | LintRuleLonghand>;
   };
 }

@@ -44,6 +44,14 @@ npx co check [path]
 
 This will show any errors and warnings in your schema. `[path]` can be ommitted if you only want to validate the file(s) set to [`token`](/advanced/config#token) in your [config file](/advanced/config).
 
+## Lint
+
+To lint your `tokens.json` and throw errors, run (requires linting plugins configured, such as [lint-a11y](/integrations/a11y)):
+
+```sh
+npx co lint [path]
+```
+
 ## Bundle
 
 To combine multiple `tokens.json` files into one, use the `bundle` command:
