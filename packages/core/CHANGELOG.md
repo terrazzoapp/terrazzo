@@ -1,5 +1,13 @@
 # @cobalt-ui/core
 
+## 1.8.1
+
+### Patch Changes
+
+- [#226](https://github.com/drwpow/cobalt-ui/pull/226) [`09e44f0efa0d025a2f1545abdc87ba107b7043e7`](https://github.com/drwpow/cobalt-ui/commit/09e44f0efa0d025a2f1545abdc87ba107b7043e7) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in linting via CLI
+
+- [#226](https://github.com/drwpow/cobalt-ui/pull/226) [`09e44f0efa0d025a2f1545abdc87ba107b7043e7`](https://github.com/drwpow/cobalt-ui/commit/09e44f0efa0d025a2f1545abdc87ba107b7043e7) Thanks [@drwpow](https://github.com/drwpow)! - Add `co lint` command and `lint.build.enabled` config flag
+
 ## 1.8.0
 
 ### Minor Changes
