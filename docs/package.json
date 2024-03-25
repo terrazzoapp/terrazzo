@@ -12,7 +12,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "vite": "^5.1.6",
-    "vitepress": "1.0.0-rc.45"
+    "vite": "^5.2.6",
+    "vitepress": "1.0.1"
   }
 }

@@ -191,12 +191,14 @@ Some token types allow for extra configuration.
 export default {
   color: {
     convertToHex: false, // Convert all colors to sRGB hexadecimal (default: false). By default, colors are kept in their formats
+    gamut: undefined, // 'srgb' | 'p3'
   },
 };
 ```
 
 :::
 
-| Name                 |   Type    | Description                                                                                                      |
-| :------------------- | :-------: | :--------------------------------------------------------------------------------------------------------------- |
-| `color.convertToHex` | `boolean` | Convert this color to sRGB hexadecimal. By default, colors are kept in the original formats they’re authored in. |
+| Name                 |       Type       | Description                                                                                |
+| :------------------- | :--------------: | :----------------------------------------------------------------------------------------- |
+| `color.convertToHex` |    `boolean`     | (optional) Convert colors to 8-bit sRGB hexadecimal.                                       |
+| `color.gamut`        | `'srgb' \| 'p3'` | (optional) Clamp colors to the `'srgb'` or `'p3'` gamut? (default: leave colors untouched) |

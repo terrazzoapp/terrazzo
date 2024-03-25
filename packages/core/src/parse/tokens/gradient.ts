@@ -3,7 +3,7 @@ import type { ParseColorOptions } from './color.js';
 import { normalizeColorValue } from './color.js';
 
 export interface ParseGradientOptions {
-  color: ParseColorOptions;
+  color?: ParseColorOptions;
 }
 
 /**

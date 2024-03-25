@@ -39,11 +39,11 @@ export type LintRuleSeverity = 'error' | 'warn' | 'off' | number;
 
 export interface ParseOptions {
   /** Configure transformations for color tokens */
-  color: ParseColorOptions;
+  color?: ParseColorOptions;
   figma?: FigmaParseOptions;
   /** Configure plugin lint rules (if any) */
-  lint: {
-    rules: Record<string, LintRule>;
+  lint?: {
+    rules?: Record<string, LintRule>;
   };
 }
 

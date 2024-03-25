@@ -43,6 +43,10 @@ Color is a frequently-used base token that can be aliased within the following c
 - [Shadow](/tokens/shadow)
 - [Gradient](/tokens/gradient)
 
+## Global options
+
+See [color-specific configuration options](/advanced/config#color)
+
 ## Tips & recommendations
 
 - [Culori](https://culorijs.org/) is the preferred library for working with color. It’s great both as an accurate, complete color science library that can parse & generate any format. But is also easy-to-use for simple color operations and is fast and [lightweight](https://culorijs.org/guides/tree-shaking/) (even on the client).
