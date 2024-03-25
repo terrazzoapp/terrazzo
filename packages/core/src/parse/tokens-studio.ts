@@ -3,7 +3,8 @@
  * This works by first converting the Tokens Studio format
  * into an equivalent DTCG result, then parsing that result
  */
-import { parseAlias } from '@cobalt-ui/utils';
+import { isAlias, parseAlias } from '@cobalt-ui/utils';
+import { parse as culoriParse, rgb } from 'culori';
 import type { GradientStop, Group, Token } from '../token.js';
 
 // I’m not sure this is comprehensive at all but better than nothing
@@ -284,9 +285,12 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
               `Token "${tokenID}" is a multi value borderRadius token. Expanding into ${tokenID}TopLeft, ${tokenID}TopRight, ${tokenID}BottomRight, and ${tokenID}BottomLeft.`,
             );
             let order = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TL, BR
-            if (values.length === 3)
-              {order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];} // TL, TR/BL, BR
-            else if (values.length === 4) {order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];} // TL, TR, BR, BL
+            if (values.length === 3) {
+              order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];
+            } // TL, TR/BL, BR
+            else if (values.length === 4) {
+              order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];
+            } // TL, TR, BR, BL
             addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}TopLeft`]);
             addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}TopRight`]);
             addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}BottomRight`]);
@@ -365,10 +369,65 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
               tokenPath,
             );
           } else {
+            let value: string | undefined = v.value;
+            // resolve inline aliases (e.g. `rgba({color.black}, 0.5)`)
+            if (value.includes('{') && !v.value.startsWith('{')) {
+              value = resolveAlias(value, path);
+
+              if (!value) {
+                errors.push(`Could not resolve "${v.value}"`);
+                continue;
+              }
+
+              // note: we did some work earlier to help resolve the aliases, but
+              // we need to REPLACE them in this scenario so we must do a 2nd pass
+              const matches = value.match(ALIAS_RE);
+              for (const match of matches ?? []) {
+                let currentAlias = parseAlias(match).id;
+                let resolvedValue: string | undefined;
+                const aliasHistory = new Set<string>([currentAlias]);
+                while (!resolvedValue) {
+                  const aliasNode: any = get(rawTokens, currentAlias.split('.'));
+                  // does this resolve to a $value?
+                  if (aliasNode && aliasNode.value) {
+                    // is this another alias?
+                    if (isAlias(aliasNode.value)) {
+                      currentAlias = parseAlias(aliasNode.value).id;
+                      if (aliasHistory.has(currentAlias)) {
+                        errors.push(`Couldn’t resolve circular alias "${v.value}"`);
+                        break;
+                      }
+                      aliasHistory.add(currentAlias);
+                      continue;
+                    }
+                    resolvedValue = aliasNode.value;
+                  }
+                  break;
+                }
+
+                if (resolvedValue) {
+                  value = value.replace(match, resolvedValue);
+                }
+              }
+
+              if (!culoriParse(value)) {
+                // fix `rgba(#000000, 0.3)` scenario specifically (common Tokens Studio version)
+                // but throw err otherwise
+                if (value.startsWith('rgb') && value.includes('#')) {
+                  const hexValue = value.match(/#[abcdef0-9]+/i);
+                  if (hexValue && hexValue[0]) {
+                    const rgbVal = rgb(hexValue[0]);
+                    if (rgbVal) {
+                      value = value.replace(hexValue[0], `${rgbVal.r * 100}%, ${rgbVal.g * 100}%, ${rgbVal.b * 100}%`);
+                    }
+                  }
+                }
+              }
+            }
             addToken(
               {
                 $type: 'color',
-                $value: v.value,
+                $value: value,
                 $description: v.description,
               },
               tokenPath,
@@ -441,9 +500,12 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
           } else if (values.length === 2 || values.length === 3 || values.length === 4) {
             warnings.push(`Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`);
             let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TB, RL
-            if (values.length === 3)
-              {order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];} // T, RL, B
-            else if (values.length === 4) {order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];} // T, R, B, L
+            if (values.length === 3) {
+              order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];
+            } // T, RL, B
+            else if (values.length === 4) {
+              order = [values[0], values[1], values[2], values[3]] as [string, string, string, string];
+            } // T, R, B, L
             addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}Top`]);
             addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}Right`]);
             addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}Bottom`]);
