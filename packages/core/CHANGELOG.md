@@ -1,5 +1,17 @@
 # @cobalt-ui/core
 
+## 1.9.0
+
+### Minor Changes
+
+- [#228](https://github.com/drwpow/cobalt-ui/pull/228) [`1e12d04fb24eebc1df152017935dd65a2c6d7618`](https://github.com/drwpow/cobalt-ui/commit/1e12d04fb24eebc1df152017935dd65a2c6d7618) Thanks [@drwpow](https://github.com/drwpow)! - Add gamut clipping for color tokens
+
+### Patch Changes
+
+- [#228](https://github.com/drwpow/cobalt-ui/pull/228) [`1e12d04fb24eebc1df152017935dd65a2c6d7618`](https://github.com/drwpow/cobalt-ui/commit/1e12d04fb24eebc1df152017935dd65a2c6d7618) Thanks [@drwpow](https://github.com/drwpow)! - Improve Tokens Studio inline aliasing
+
+- [#228](https://github.com/drwpow/cobalt-ui/pull/228) [`1e12d04fb24eebc1df152017935dd65a2c6d7618`](https://github.com/drwpow/cobalt-ui/commit/1e12d04fb24eebc1df152017935dd65a2c6d7618) Thanks [@drwpow](https://github.com/drwpow)! - Make parse options optional for easier use
+
 ## 1.8.1
 
 ### Patch Changes
