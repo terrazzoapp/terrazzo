@@ -6,7 +6,7 @@ import { normalizeDimensionValue } from './dimension.js';
 import { normalizeStrokeStyleValue } from './stroke-style.js';
 
 export interface ParseBorderOptions {
-  color: ParseColorOptions;
+  color?: ParseColorOptions;
 }
 
 /**

@@ -4,7 +4,7 @@ import { normalizeColorValue } from './color.js';
 import { normalizeDimensionValue } from './dimension.js';
 
 export interface ParseShadowOptions {
-  color: ParseColorOptions;
+  color?: ParseColorOptions;
 }
 
 /**
