@@ -3,7 +3,7 @@ import { type Group, type ParseResult } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { execa } from 'execa';
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 import a11y, { type RuleContrastOptions } from '../src/index.js';
 import { fileURLToPath } from 'node:url';
 
@@ -11,7 +11,7 @@ describe('a11y plugin', () => {
   describe('rules', () => {
     describe('a11y/contrast', () => {
       const tokensURL = new URL('./fixtures/tokens.yaml', import.meta.url);
-      const tokens = yaml.load(fs.readFileSync(tokensURL, 'utf8'));
+      const tokens = yaml.parse(fs.readFileSync(tokensURL, 'utf8'));
 
       const tests: [
         string,

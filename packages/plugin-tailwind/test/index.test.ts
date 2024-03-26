@@ -2,7 +2,7 @@ import build from '@cobalt-ui/cli/dist/build.js';
 import { type Group } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 import { describe, test, expect } from 'vitest';
 import pluginTailwind from '../dist/index.js';
 
@@ -59,7 +59,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
 
       test('cjs', async () => {
         const cwd = new URL('./cjs/', import.meta.url);
-        const tokens = yaml.load(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8')) as Group;
+        const tokens = yaml.parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8')) as Group;
         await build(tokens, {
           outDir: cwd,
           plugins: [
@@ -79,7 +79,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
 
       test('esm', async () => {
         const cwd = new URL('./esm/', import.meta.url);
-        const tokens = yaml.load(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
+        const tokens = yaml.parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
         await build(tokens as Group, {
           outDir: cwd,
           plugins: [

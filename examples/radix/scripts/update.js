@@ -1,6 +1,6 @@
 import * as colors from '@radix-ui/colors';
 import fs from 'node:fs';
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 
 // settings
 const ACTION_COLOR = 'iris';
@@ -133,4 +133,4 @@ tokens.border = {
 };
 
 // write to file
-fs.writeFileSync(new URL('../tokens-test.yaml', import.meta.url), yaml.dump(tokens));
+fs.writeFileSync(new URL('../tokens-test.yaml', import.meta.url), yaml.stringify(tokens));

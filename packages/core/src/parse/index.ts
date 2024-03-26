@@ -1,6 +1,6 @@
 import { cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET } from '@cobalt-ui/utils';
 import parseJSON from 'parse-json';
-import { parse as parseYAML } from 'yaml';
+import yaml from 'yaml';
 import type { Group, ParsedToken, TokenType, TokenOrGroup } from '../token.js';
 import { isEmpty, isJSON, isObj, splitType } from '../util.js';
 import { normalizeBorderValue } from './tokens/border.js';
@@ -73,7 +73,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
       }
     } else {
       try {
-        tokensObj = parseYAML(tokensObj);
+        tokensObj = yaml.parse(tokensObj);
       } catch (err) {
         result.errors = [String(err)];
         return result;

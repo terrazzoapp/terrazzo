@@ -33,7 +33,7 @@ dotenv.config();
 import { parse, isJSON } from '@cobalt-ui/core';
 import { DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
-import { parse as parseYAML } from 'yaml';
+import yaml from 'yaml';
 import fs from 'node:fs';
 import { performance } from 'node:perf_hooks';
 import parseJSON from 'parse-json';
@@ -187,7 +187,7 @@ export default async function main() {
       fs.mkdirSync(new URL('.', resolvedOut), { recursive: true });
 
       const isYAML = resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
-      fs.writeFileSync(resolvedOut, isYAML ? yaml.dump(tokens) : JSON.stringify(tokens, undefined, 2));
+      fs.writeFileSync(resolvedOut, isYAML ? yaml.stringify(tokens) : JSON.stringify(tokens, undefined, 2));
       console.log(`  ${FG_GREEN}✔${RESET} Bundled ${config.tokens.length} schemas ${time(start)}`);
       break;
     }
@@ -382,7 +382,7 @@ async function loadTokens(tokenPaths) {
         if (isJSON(raw)) {
           rawTokens.push(parseJSON(raw));
         } else {
-          rawTokens.push(parseYAML(raw));
+          rawTokens.push(yaml.parse(raw));
         }
       } catch (err) {
         printErrors(`${filepath.href}: ${err}`);
@@ -392,7 +392,7 @@ async function loadTokens(tokenPaths) {
         try {
           const raw = fs.readFileSync(filepath, 'utf8');
           if (isYAMLExt) {
-            rawTokens.push(yaml.load(raw));
+            rawTokens.push(yaml.parse(raw));
           } else {
             rawTokens.push(JSON.parse(raw));
           }

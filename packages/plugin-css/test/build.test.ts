@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
 import * as culori from 'culori';
 import { describe, expect, test } from 'vitest';
-import yaml from 'js-yaml';
+import yaml from 'yaml';
 import pluginCSS, { defaultNameGenerator } from '../dist/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
@@ -41,7 +41,7 @@ describe('@cobalt-ui/plugin-css', () => {
 
   test('doesn’t generate empty media queries', async () => {
     const cwd = new URL(`./no-empty-modes/`, import.meta.url);
-    const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
+    const tokens = yaml.parse(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
     await build(tokens as Group, {
       outDir: cwd,
       plugins: [
@@ -195,7 +195,7 @@ describe('@cobalt-ui/plugin-css', () => {
 
     test('tailwind alpha value', async () => {
       const cwd = new URL(`./color-transform-tw-alpha/`, import.meta.url);
-      const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
+      const tokens = yaml.parse(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
       await build(tokens as Group, {
         outDir: cwd,
         plugins: [

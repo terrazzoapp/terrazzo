@@ -20,9 +20,6 @@ importers:
       eslint:
         specifier: 9.0.0-rc.0
         version: 9.0.0-rc.0
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
       prettier:
         specifier: ^3.2.5
         version: 3.2.5
@@ -139,9 +136,9 @@ importers:
       '@cobalt-ui/plugin-sass':
         specifier: workspace:*
         version: link:../../packages/plugin-sass
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
+      yaml:
+        specifier: ^2.4.1
+        version: 2.4.1
 
   examples/salesforce:
     devDependencies:
@@ -292,18 +289,15 @@ importers:
       '@types/culori':
         specifier: ^2.1.0
         version: 2.1.0
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
       execa:
         specifier: ^8.0.1
         version: 8.0.1
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
       vitest:
         specifier: ^1.4.0
         version: 1.4.0
+      yaml:
+        specifier: ^2.4.1
+        version: 2.4.1
 
   packages/plugin-css:
     dependencies:
@@ -332,15 +326,15 @@ importers:
       '@cobalt-ui/core':
         specifier: workspace:^
         version: link:../core
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
       '@types/node':
         specifier: ^20.11.27
         version: 20.11.27
       vitest:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.11.27)
+      yaml:
+        specifier: ^2.4.1
+        version: 2.4.1
 
   packages/plugin-js:
     dependencies:
@@ -407,21 +401,18 @@ importers:
       '@cobalt-ui/core':
         specifier: workspace:^
         version: link:../core
-      '@types/js-yaml':
-        specifier: ^4.0.9
-        version: 4.0.9
       '@types/node':
         specifier: ^20.11.30
         version: 20.11.30
-      js-yaml:
-        specifier: ^4.1.0
-        version: 4.1.0
       tailwindcss:
         specifier: ^3.4.1
         version: 3.4.1
       vitest:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.11.30)
+      yaml:
+        specifier: ^2.4.1
+        version: 2.4.1
 
   packages/utils:
     devDependencies:
@@ -1732,10 +1723,6 @@ packages:
 
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
-    dev: true
-
-  /@types/js-yaml@4.0.9:
-    resolution: {integrity: sha512-k4MGaQl5TGo/iipqb2UDG2UwjXziSWkh0uysQelTlJpX1qGlpUZYm8PnO4DxG1qBomtJUdYJ6qR6xdIah10JLg==}
     dev: true
 
   /@types/json-schema@7.0.15:
