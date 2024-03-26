@@ -1,7 +1,7 @@
 {
   "name": "@cobalt-ui/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -37,8 +37,8 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.8.1",
-    "@cobalt-ui/plugin-css": "^1.7.3"
+    "@cobalt-ui/cli": "^1.10.0",
+    "@cobalt-ui/plugin-css": "^2.0.0"
   },
   "dependencies": {
     "@cobalt-ui/utils": "^1.2.4",

@@ -1,5 +1,17 @@
 # @cobalt-ui/core
 
+## 1.10.0
+
+### Minor Changes
+
+- [#231](https://github.com/drwpow/cobalt-ui/pull/231) [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19) Thanks [@drwpow](https://github.com/drwpow)! - Support YAML parsing in core
+
+### Patch Changes
+
+- [#231](https://github.com/drwpow/cobalt-ui/pull/231) [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Tiny breaking change: Remove index.min.js from package (not used by anything, and probably shouldn’t be used; just using default package entryfile will yield better results in all setups)
+
+- [#231](https://github.com/drwpow/cobalt-ui/pull/231) [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19) Thanks [@drwpow](https://github.com/drwpow)! - Improve JSON parsing errors with json-parse
+
 ## 1.9.0
 
 ### Minor Changes

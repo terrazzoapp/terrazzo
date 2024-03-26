@@ -1,5 +1,16 @@
 # @cobalt-ui/cli
 
+## 1.10.0
+
+### Patch Changes
+
+- [#231](https://github.com/drwpow/cobalt-ui/pull/231) [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19) Thanks [@drwpow](https://github.com/drwpow)! - Swap js-yaml package for yaml
+
+- [#231](https://github.com/drwpow/cobalt-ui/pull/231) [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19) Thanks [@drwpow](https://github.com/drwpow)! - Improve JSON parsing errors with json-parse
+
+- Updated dependencies [[`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19), [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19), [`6bd99785eb50af83c96a0d70bd78fe6c6ab88a19`](https://github.com/drwpow/cobalt-ui/commit/6bd99785eb50af83c96a0d70bd78fe6c6ab88a19)]:
+  - @cobalt-ui/core@1.10.0
+
 ## 1.8.1
 
 ### Patch Changes
