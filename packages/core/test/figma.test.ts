@@ -426,7 +426,7 @@ describe('figma', () => {
         overrides: {
           'space/*': {
             $type: 'dimension',
-            transform({ variable, collection, mode }) {
+            transform({ variable, mode }) {
               const rawValue = variable.valuesByMode[mode.modeId];
               if (typeof rawValue === 'number') {
                 return `${rawValue / 16}rem`;

@@ -38,8 +38,9 @@
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts",
     "build:clean": "del dist",
-    "build:ts": "tsc",
-    "dev": "tsc -w",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json -w",
+    "lint": "eslint \"{src,test}/**/*\"",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
@@ -60,6 +61,6 @@
     "@types/node": "^20.11.27",
     "execa": "^8.0.1",
     "msw": "^2.2.3",
-    "vitest": "^1.3.1"
+    "vitest": "^1.4.0"
   }
 }

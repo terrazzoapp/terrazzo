@@ -1,5 +1,5 @@
 import build from '@cobalt-ui/cli/dist/build.js';
-import { type ParseResult } from '@cobalt-ui/core';
+import { type Group, type ParseResult } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { execa } from 'execa';
@@ -111,10 +111,10 @@ describe('a11y plugin', () => {
           },
         ],
       ];
-      test.each(tests)('%s', async (name, { options, want }) => {
+      test.each(tests)('%s', async (_, { options, want }) => {
         let buildResult: ParseResult;
         try {
-          buildResult = await build(tokens, {
+          buildResult = await build(tokens as Group, {
             tokens: [tokensURL],
             outDir: new URL('./index/', import.meta.url),
             plugins: [a11y()],
@@ -131,7 +131,7 @@ describe('a11y plugin', () => {
             color: {},
           });
         } catch (err) {
-          expect(err.message).toBe(want.errors?.[0]);
+          expect((err as SyntaxError).message).toBe(want.errors?.[0]);
           return;
         }
 
@@ -142,8 +142,8 @@ describe('a11y plugin', () => {
           }
           expect(buildResult.errors?.[0]).toBeUndefined();
         } else {
-          for (const i in buildResult.errors) {
-            expect(buildResult.errors[i]).toBe(want.errors![i]);
+          for (let i = 0; i < (buildResult.errors?.length || 0); i++) {
+            expect(buildResult.errors?.[i]).toBe(want.errors![i]);
           }
         }
       });
