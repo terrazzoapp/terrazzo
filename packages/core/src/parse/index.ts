@@ -56,7 +56,7 @@ interface InheritedGroup {
 
 const RESERVED_KEYS = new Set(['$description', '$name', '$type', '$value', '$extensions']);
 
-export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
+export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const result: ParseResult = { result: { metadata: {}, tokens: [] } };
@@ -284,8 +284,8 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
       switch (token.$type) {
         // 8.1 Color
         case 'color': {
-          tokens[id]!.$value = normalizeColorValue(values[id], options.color);
-          normalizeModes(id, (v) => normalizeColorValue(v, options.color));
+          tokens[id]!.$value = normalizeColorValue(values[id], options?.color);
+          normalizeModes(id, (v) => normalizeColorValue(v, options?.color));
           break;
         }
         // 8.2 Dimension
@@ -342,8 +342,8 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         }
         // 9.3 Border
         case 'border': {
-          tokens[id]!.$value = normalizeBorderValue(values[id], { color: options.color });
-          normalizeModes(id, (v) => normalizeBorderValue(v, { color: options.color }));
+          tokens[id]!.$value = normalizeBorderValue(values[id], { color: options?.color });
+          normalizeModes(id, (v) => normalizeBorderValue(v, { color: options?.color }));
           break;
         }
         // 9.4 Transition
@@ -354,14 +354,14 @@ export function parse(rawTokens: unknown, options: ParseOptions): ParseResult {
         }
         // 9.5 Shadow
         case 'shadow': {
-          tokens[id]!.$value = normalizeShadowValue(values[id], { color: options.color });
-          normalizeModes(id, (v) => normalizeShadowValue(v, { color: options.color }));
+          tokens[id]!.$value = normalizeShadowValue(values[id], { color: options?.color });
+          normalizeModes(id, (v) => normalizeShadowValue(v, { color: options?.color }));
           break;
         }
         // 9.6 Gradient
         case 'gradient': {
-          tokens[id]!.$value = normalizeGradientValue(values[id], { color: options.color });
-          normalizeModes(id, (v) => normalizeGradientValue(v, { color: options.color }));
+          tokens[id]!.$value = normalizeGradientValue(values[id], { color: options?.color });
+          normalizeModes(id, (v) => normalizeGradientValue(v, { color: options?.color }));
           break;
         }
         // 9.7 Typography

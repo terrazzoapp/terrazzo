@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "del \"**/dist\" && vitepress build && cp _redirects .vitepress/dist",
+    "lint": "eslint \".vitepress/**/*.ts\"",
     "preview": "vitepress preview"
   },
   "dependencies": {

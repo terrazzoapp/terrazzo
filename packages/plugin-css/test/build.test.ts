@@ -1,4 +1,5 @@
 import build from '@cobalt-ui/cli/dist/build.js';
+import { type Group, type ParsedToken } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
 import * as culori from 'culori';
@@ -40,8 +41,8 @@ describe('@cobalt-ui/plugin-css', () => {
 
   test('doesn’t generate empty media queries', async () => {
     const cwd = new URL(`./no-empty-modes/`, import.meta.url);
-    const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd)));
-    await build(tokens, {
+    const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
+    await build(tokens as Group, {
       outDir: cwd,
       plugins: [
         pluginCSS({
@@ -143,11 +144,11 @@ describe('@cobalt-ui/plugin-css', () => {
     });
 
     test('generateName', async () => {
-      function myGenerator(variableId, token) {
+      function myGenerator(variableId: string, token: ParsedToken | undefined) {
         if (variableId === 'color.gray') {
           return 'super-special-variable';
         }
-        if (token.$type === 'border') {
+        if (token && token.$type === 'border') {
           return `rad-${defaultNameGenerator(variableId)}`;
         }
         return defaultNameGenerator(variableId);
@@ -195,7 +196,7 @@ describe('@cobalt-ui/plugin-css', () => {
     test('tailwind alpha value', async () => {
       const cwd = new URL(`./color-transform-tw-alpha/`, import.meta.url);
       const tokens = yaml.load(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
-      await build(tokens, {
+      await build(tokens as Group, {
         outDir: cwd,
         plugins: [
           pluginCSS({

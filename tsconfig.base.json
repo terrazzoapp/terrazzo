@@ -4,7 +4,6 @@
     "esModuleInterop": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
-    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
@@ -14,5 +13,5 @@
     "strict": true,
     "target": "ESNext"
   },
-  "exclude": ["**/dist/*"]
+  "exclude": ["**/dist/*", "**/node_modules/*"]
 }

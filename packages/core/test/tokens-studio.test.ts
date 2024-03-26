@@ -8,15 +8,16 @@ import type { ParseOptions } from '../src/index.js';
 import { parse } from '../src/index.js';
 
 /** parse schema and expect no errors */
-function getTokens(json, parseOptions: ParseOptions = { color: {} }) {
+function getTokens(json: NonNullable<unknown>, parseOptions: ParseOptions = { color: {} }) {
   // the presence of top-level "$themes" and "$metadata" is necessary to detect
   // Tokens Studio format, as it always outputs these, and these are invalid
   // for DTCG)
+
   if (!('$themes' in json)) {
-    json.$themes = [];
+    (json as any).$themes = [];
   }
   if (!('$metadata' in json)) {
-    json.$metadata = {};
+    (json as any).$metadata = {};
   }
 
   const { errors, result } = parse(json, parseOptions);
