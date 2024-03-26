@@ -19,6 +19,14 @@ export function isEmpty(value: unknown): boolean {
   return false;
 }
 
+/** determine using very advanced, sophisticated techniques whether a string is JSON or YAML */
+export function isJSON(value: unknown) {
+  if (typeof value !== 'string') {
+    return false;
+  }
+  return value.trim()[0] === '{';
+}
+
 /** perform a specific operation given an unknown type */
 export function splitType(
   input: unknown,

@@ -23,7 +23,6 @@
     "@changesets/cli": "^2.27.1",
     "del-cli": "^5.1.0",
     "eslint": "9.0.0-rc.0",
-    "js-yaml": "^4.1.0",
     "prettier": "^3.2.5",
     "typescript": "^5.4.3",
     "typescript-eslint": "^7.4.0"

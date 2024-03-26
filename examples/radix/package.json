@@ -15,6 +15,6 @@
     "@cobalt-ui/plugin-css": "workspace:*",
     "@cobalt-ui/plugin-js": "workspace:*",
     "@cobalt-ui/plugin-sass": "workspace:*",
-    "js-yaml": "^4.1.0"
+    "yaml": "^2.4.1"
   }
 }

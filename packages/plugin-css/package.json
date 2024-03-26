@@ -50,8 +50,8 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/core": "workspace:^",
-    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.11.27",
-    "vitest": "^1.4.0"
+    "vitest": "^1.4.0",
+    "yaml": "^2.4.1"
   }
 }
