@@ -45,6 +45,7 @@ import type { LintRule, LintRuleSeverity, ParseOptions } from './parse/index.js'
 import { parse } from './parse/index.js';
 
 export { parse, type LintRule, type ParseOptions, type ParseResult } from './parse/index.js';
+export * from './util.js';
 
 export interface BuildResult {
   /** File to output inside config.outDir (ex: ./tokens.sass) */

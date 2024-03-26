@@ -30,12 +30,13 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { parse } from '@cobalt-ui/core';
+import { parse, isJSON } from '@cobalt-ui/core';
 import { DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from '@cobalt-ui/utils';
 import chokidar from 'chokidar';
-import yaml from 'js-yaml';
+import { parse as parseYAML } from 'yaml';
 import fs from 'node:fs';
 import { performance } from 'node:perf_hooks';
+import parseJSON from 'parse-json';
 import { fileURLToPath, URL } from 'node:url';
 import parser from 'yargs-parser';
 import build from '../dist/build.js';
@@ -72,7 +73,7 @@ export default async function main() {
 
   // --version
   if (flags.version) {
-    const { version } = JSON.parse(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+    const { version } = parseJSON(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
     console.log(version);
     process.exit(0);
   }
@@ -204,7 +205,7 @@ export default async function main() {
         process.exit(1);
       }
 
-      const input = JSON.parse(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
+      const input = parseJSON(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
       const { errors, warnings, result } = await convert(input);
       if (errors) {
         printErrors(errors);
@@ -378,10 +379,10 @@ async function loadTokens(tokenPaths) {
         const res = await fetch(filepath, { method: 'GET', headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' } });
         const raw = await res.text();
         // if the 1st character is '{', it’s JSON (“if it’s dumb but it works…”)
-        if (raw[0].trim() === '{') {
-          rawTokens.push(JSON.parse(raw));
+        if (isJSON(raw)) {
+          rawTokens.push(parseJSON(raw));
         } else {
-          rawTokens.push(yaml.load(raw));
+          rawTokens.push(parseYAML(raw));
         }
       } catch (err) {
         printErrors(`${filepath.href}: ${err}`);

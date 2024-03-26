@@ -1,24 +1,24 @@
 import { cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET } from '@cobalt-ui/utils';
+import parseJSON from 'parse-json';
+import { parse as parseYAML } from 'yaml';
 import type { Group, ParsedToken, TokenType, TokenOrGroup } from '../token.js';
-import { isEmpty, isObj, splitType } from '../util.js';
-import type { ParseColorOptions } from './tokens/color.js';
-import { normalizeColorValue } from './tokens/color.js';
-import { normalizeFontFamilyValue } from './tokens/fontFamily.js';
-import { normalizeDurationValue } from './tokens/duration.js';
-import { normalizeDimensionValue } from './tokens/dimension.js';
-import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
-import { normalizeLinkValue } from './tokens/link.js';
-import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
+import { isEmpty, isJSON, isObj, splitType } from '../util.js';
 import { normalizeBorderValue } from './tokens/border.js';
-import { normalizeTransitionValue } from './tokens/transition.js';
-import { normalizeShadowValue } from './tokens/shadow.js';
-import { normalizeGradientValue } from './tokens/gradient.js';
-import { normalizeTypographyValue } from './tokens/typography.js';
+import { normalizeColorValue, type ParseColorOptions } from './tokens/color.js';
+import { normalizeCubicBezierValue } from './tokens/cubic-bezier.js';
+import { normalizeDimensionValue } from './tokens/dimension.js';
+import { normalizeDurationValue } from './tokens/duration.js';
+import { normalizeFontFamilyValue } from './tokens/fontFamily.js';
 import { normalizeFontWeightValue } from './tokens/fontWeight.js';
+import { normalizeGradientValue } from './tokens/gradient.js';
+import { normalizeLinkValue } from './tokens/link.js';
 import { normalizeNumberValue } from './tokens/number.js';
+import { normalizeShadowValue } from './tokens/shadow.js';
+import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
+import { normalizeTransitionValue } from './tokens/transition.js';
+import { normalizeTypographyValue } from './tokens/typography.js';
 import { convertTokensStudioFormat, isTokensStudioFormat } from './tokens-studio.js';
-import type { FigmaVariableManifest } from './figma.js';
-import { convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions } from './figma.js';
+import { convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions, type FigmaVariableManifest } from './figma.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -60,25 +60,46 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   const errors: string[] = [];
   const warnings: string[] = [];
   const result: ParseResult = { result: { metadata: {}, tokens: [] } };
-  if (!rawTokens || typeof rawTokens !== 'object' || Array.isArray(rawTokens)) {
-    errors.push(`Invalid schema type. Expected object, received "${Array.isArray(rawTokens) ? 'Array' : typeof rawTokens}"`);
+
+  let tokensObj = rawTokens;
+
+  if (typeof tokensObj === 'string') {
+    if (isJSON(tokensObj)) {
+      try {
+        tokensObj = parseJSON(tokensObj);
+      } catch (err) {
+        result.errors = [String(err)];
+        return result;
+      }
+    } else {
+      try {
+        tokensObj = parseYAML(tokensObj);
+      } catch (err) {
+        result.errors = [String(err)];
+        return result;
+      }
+    }
+  }
+
+  if (!tokensObj || typeof tokensObj !== 'object' || Array.isArray(tokensObj)) {
+    errors.push(`Invalid schema. Expected JSON or YAML, received "${Array.isArray(tokensObj) ? 'Array' : typeof tokensObj}"`);
     result.errors = errors;
     return result;
   }
 
-  let schema = rawTokens as Group;
+  let schema = tokensObj as Group;
 
   // 0. handle Figma Variables format
-  if (isFigmaVariablesFormat(rawTokens)) {
-    const figmaTokensResult = convertFigmaVariablesFormat(rawTokens as FigmaVariableManifest, options?.figma);
+  if (isFigmaVariablesFormat(tokensObj)) {
+    const figmaTokensResult = convertFigmaVariablesFormat(tokensObj as FigmaVariableManifest, options?.figma);
     errors.push(...(figmaTokensResult.errors ?? []));
     warnings.push(...(figmaTokensResult.warnings ?? []));
     schema = figmaTokensResult.result;
   }
 
   // 0. handle Tokens Studio for Figma format
-  else if (isTokensStudioFormat(rawTokens)) {
-    const tokensStudioResult = convertTokensStudioFormat(rawTokens as Group);
+  else if (isTokensStudioFormat(tokensObj)) {
+    const tokensStudioResult = convertTokensStudioFormat(tokensObj as Group);
     errors.push(...(tokensStudioResult.errors ?? []));
     warnings.push(...(tokensStudioResult.warnings ?? []));
     schema = tokensStudioResult.result;

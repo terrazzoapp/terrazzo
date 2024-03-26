@@ -45,7 +45,9 @@
   "dependencies": {
     "@cobalt-ui/utils": "^1.2.4",
     "@types/culori": "^2.1.0",
-    "culori": "^4.0.1"
+    "culori": "^4.0.1",
+    "parse-json": "^8.1.0",
+    "yaml": "^2.4.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.27",
