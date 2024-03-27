@@ -267,6 +267,9 @@ importers:
 
   packages/lint-a11y:
     dependencies:
+      '@cobalt-ui/utils':
+        specifier: workspace:^1.2.4
+        version: link:../utils
       apca-w3:
         specifier: ^0.1.9
         version: 0.1.9

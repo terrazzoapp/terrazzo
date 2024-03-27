@@ -1,4 +1,5 @@
 import type { Group, LintRule, ParsedToken, ResolvedConfig } from '@cobalt-ui/core';
+import { indentLine } from '@cobalt-ui/utils';
 
 export interface LintOptions {
   config: ResolvedConfig;
@@ -69,9 +70,13 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
             const { severity } = rules.find((rule) => rule.id === notification.id) ?? { severity: 'off' };
             // TODO: when node is added, show code line
             if (severity === 'error') {
-              errors.push(`[${plugin.name}] Error ${notification.id}: ${notification.message}`);
+              errors.push(
+                `${notification.id}: ERROR
+${indentLine(notification.message, 4)}`,
+              );
             } else if (severity === 'warn') {
-              warnings.push(`[${plugin.name}] Warning ${notification.id}: ${notification.message}`);
+              warnings.push(`${notification.id}: WARNING
+${indentLine(notification.message, 4)}`);
             }
           }
         }

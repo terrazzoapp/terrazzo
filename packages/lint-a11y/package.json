@@ -39,6 +39,7 @@
     "@cobalt-ui/cli": "^1.10.0"
   },
   "dependencies": {
+    "@cobalt-ui/utils": "^1.2.4",
     "apca-w3": "^0.1.9",
     "culori": "^4.0.1"
   },

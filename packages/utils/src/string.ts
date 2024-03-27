@@ -23,6 +23,7 @@ export const STARTS_WITH_NUMBER_RE = /^[0-9]/;
 export const CASECHANGE_RE = /[a-zâ-ž][A-ZÀ-Ž]/g;
 export const KEBAB_COVERT_RE = /[_.]/g;
 export const CAMEL_CONVERT_RE = /[^-_.\s][-_.\s]+[^-_.\s]/g;
+export const LB_RE = /\r?\n\s*/g;
 
 export const VALID_KEY = new RegExp(`^[${CHARACTER_RE.join('')}]+$`);
 
@@ -48,4 +49,39 @@ export function objKey(name: string, wrapper = "'"): string {
     return `${wrapper}${name}${wrapper}`; // keys that start with a number get wrapper
   }
   return VALID_KEY.test(name) ? name : `${wrapper}${name}${wrapper}`;
+}
+
+/** pad string lengths */
+export function padStr(input: string, length: number, alignment: 'left' | 'center' | 'right' = 'left'): string {
+  const d =
+    Math.min(length || 0, 1000) - // guard against NaNs and Infinity
+    input.length;
+  if (d > 0) {
+    switch (alignment) {
+      case 'left': {
+        return `${input}${' '.repeat(d)}`;
+      }
+      case 'right': {
+        return `${' '.repeat(d)}${input}`;
+      }
+      case 'center': {
+        const left = Math.floor(d / 2);
+        const right = d - left;
+        return `${' '.repeat(left)}${input}${' '.repeat(right)}`;
+      }
+    }
+  }
+  return input;
+}
+
+/** indent an individual line */
+export function indentLine(input: string, level = 0): string {
+  return `${' '.repeat(level || 0)}${input.trim()}`;
+}
+
+export { indentLine as indent };
+
+/** indent a block of text with spaces */
+export function indentBlock(input: string, spaces: number): string {
+  return `${' '.repeat(spaces)}${input.trim().replace(LB_RE, `\n${' '.repeat(spaces)}`)}`;
 }
