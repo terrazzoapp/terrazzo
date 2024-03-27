@@ -19,6 +19,9 @@ export const WCAG2_MIN_CONTRAST = {
   },
 };
 
+export const WCAG2_PRECISION = 2; // 2 decimal places
+export const APCA_PRECISION = 2; // 2 decimal places
+
 export interface RuleContrastOptions {
   checks: RuleContrastCheck[];
 }
@@ -101,12 +104,12 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
           typography?.$value.fontSize && typography?.$value.fontWeight ? isWCAG2LargeText(parseFloat(typography.$value.fontSize), typography.$value.fontWeight) : false;
         const minContrast = typeof wcag2 === 'string' ? WCAG2_MIN_CONTRAST[wcag2][isLargeText ? 'large' : 'default'] : wcag2;
         const defaultResult = wcagContrast(fg, bg);
-        if (defaultResult < minContrast) {
+        if (round(defaultResult, WCAG2_PRECISION) < minContrast) {
           const modeText = mode === '.' ? '' : ` (mode: ${mode})`;
           const levelText = typeof wcag2 === 'string' ? ` ("${wcag2}")` : '';
           notices.push({
             id: RULES.contrast,
-            message: `WCAG 2: Token pair ${fg}, ${bg}${modeText} failed contrast. Expected ${minContrast}:1${levelText}, received ${round(defaultResult)}:1`,
+            message: `WCAG 2: Token pair ${fg}, ${bg}${modeText} failed contrast. Expected ${minContrast}:1${levelText}, received ${round(defaultResult, WCAG2_PRECISION)}:1`,
           });
         }
       }
@@ -161,12 +164,12 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
           throw new Error(`Internal error: expected number, APCA returned "${lc}"`); // types are wrong?
         }
         const minContrast = typeof apca === 'number' ? apca : getMinimumSilverLc(fontSize!, fontWeight!, apca === 'silver');
-        if (Math.abs(lc) < minContrast) {
+        if (round(Math.abs(lc), APCA_PRECISION) < minContrast) {
           const modeText = mode === '.' ? '' : ` (mode: ${mode})`;
           const levelText = typeof apca === 'string' ? ` ("${apca}")` : '';
           notices.push({
             id: RULES.contrast,
-            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${modeText} failed contrast. Expected ${minContrast}${levelText}, received ${round(Math.abs(lc))}`,
+            message: `APCA: Token pair ${fgRaw}, ${bgRaw}${modeText} failed contrast. Expected ${minContrast}${levelText}, received ${round(Math.abs(lc), APCA_PRECISION)}`,
           });
         }
       }

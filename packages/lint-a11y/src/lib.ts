@@ -25,7 +25,7 @@ export function dimensionToPx(dimension: string | number) {
 }
 
 export function round(n: number, decimals = 2): number {
-  const precision = 10 ** decimals;
+  const precision = Math.max(10 ** decimals, 1);
   return Math.round(n * precision) / precision;
 }
 

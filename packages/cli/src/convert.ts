@@ -57,8 +57,8 @@ export default function convert(input: any): ConvertResult {
         });
       }
     } else {
-      for (const [k, v] of Object.entries(node)) {
-        walk(v, { path: [...ctx.path, k] });
+      for (const k in node) {
+        walk(node[k], { path: [...ctx.path, k] });
       }
     }
   }

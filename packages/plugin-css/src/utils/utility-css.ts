@@ -27,7 +27,7 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
           if (typeof token.$value === 'string') {
             continue;
           } // skip aliased token
-          for (const k of Object.keys(token.$value)) {
+          for (const k in token.$value) {
             const property = kebabinate(k);
             value[property] = `var(${refs[token.id]}-${property});`;
           }
@@ -103,8 +103,8 @@ export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, strin
         for (const token of selectedTokens) {
           if (token.type === 'typography' && token.value && typeof token.value === 'object') {
             output.push(`.font-${token.partialID} {`);
-            for (const [k, v] of Object.entries(token.value)) {
-              output.push(`  ${k}: ${v}`);
+            for (const k in token.value) {
+              output.push(`  ${k}: ${token.value[k]}`);
             }
             output.push('}');
           }

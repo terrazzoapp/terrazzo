@@ -148,7 +148,8 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
   const globs = Object.keys(options?.overrides ?? {}).map((glob) => glob.replace(SLASH_RE, '.'));
 
   // 1. build shallow token manifest of IDs -> Tokens (aliases will depend on IDs)
-  for (const [id, variable] of Object.entries(manifest.variables)) {
+  for (const id in manifest.variables) {
+    const variable = manifest.variables[id]!;
     // find best override, if any
     let override: FigmaOverride | undefined = undefined;
     // exact matches always take precedence
@@ -189,7 +190,8 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
 
   // 2. resolve IDs -> friendly names (including aliases—we didn’t want to resolve those before all the renaming had settled)
   const dtcgFlat: Record<string, Token> = {};
-  for (const [id, token] of Object.entries(tokens)) {
+  for (const id in tokens) {
+    const token = tokens[id]!;
     dtcgFlat[tokenIDToNameMap[id]!] = token;
 
     // resolve Figma aliases to DTCG aliases
@@ -197,7 +199,8 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
       token.$value = `{${tokenIDToNameMap[(token.$value as VariableAlias).id]}}`;
     }
     if (token.$extensions?.mode) {
-      for (const [k, v] of Object.entries(token.$extensions?.mode)) {
+      for (const k in token.$extensions?.mode) {
+        const v = token.$extensions.mode[k];
         if (typeof v === 'object' && 'type' in v && v.type === 'VARIABLE_ALIAS') {
           token.$extensions.mode[k] = `{${tokenIDToNameMap[(v as VariableAlias).id]}#${k}}`;
         }
@@ -206,7 +209,7 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
   }
 
   // 3. explode flat structure into nested structure
-  for (const [id, token] of Object.entries(dtcgFlat)) {
+  for (const id in dtcgFlat) {
     const parts = id.split('.');
     let node = dtcgTokens;
     const localName = parts.pop()!;
@@ -216,7 +219,7 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
       }
       node = node[p] as Group;
     }
-    node[localName] = token;
+    node[localName] = dtcgFlat[id]!;
   }
 
   return {
@@ -244,7 +247,8 @@ export function transformToken({ variable, collection, override }: { variable: V
     };
   }
   token.$type = $type;
-  for (const [modeId, rawValue] of Object.entries(variable.valuesByMode)) {
+  for (const modeId in variable.valuesByMode) {
+    const rawValue = variable.valuesByMode[modeId]!;
     const isDefaultMode = modeId === collection.defaultModeId;
     const isMultiModal = Object.values(variable.valuesByMode).length > 1;
 
@@ -262,10 +266,10 @@ export function transformToken({ variable, collection, override }: { variable: V
     // skip alias resolution till later
     if (typeof rawValue === 'object' && 'type' in rawValue && rawValue.type === 'VARIABLE_ALIAS') {
       if (isDefaultMode) {
-        token.$value = rawValue;
+        token.$value = rawValue as typeof token.$value;
       }
       if (isMultiModal) {
-        token.$extensions!.mode![collectionMode.name] = rawValue;
+        token.$extensions!.mode![collectionMode.name] = rawValue as typeof token.$value;
       }
       continue;
     }
@@ -292,7 +296,7 @@ export function transformToken({ variable, collection, override }: { variable: V
             break;
           }
           default: {
-            transformedValue = rawValue;
+            transformedValue = rawValue as string;
             break;
           }
         }

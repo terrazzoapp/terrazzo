@@ -2,7 +2,7 @@ import type { BuildResult, ParsedToken, Plugin, ResolvedConfig } from '@cobalt-u
 import { indent, isTokenMatch, FG_YELLOW, RESET } from '@cobalt-ui/utils';
 import { formatCss } from 'culori';
 import defaultTransformer, { type ColorFormat, toRGB } from './transform/index.js';
-import type { CustomNameGenerator} from './utils/token.js';
+import type { CustomNameGenerator } from './utils/token.js';
 import { makeNameGenerator } from './utils/token.js';
 import { encode } from './utils/encode.js';
 import generateUtilityCSS, { type UtilityCSSGroup } from './utils/utility-css.js';
@@ -56,12 +56,16 @@ export default function pluginCSS(options?: Options): Plugin {
 
   function makeVars({ tokens, indentLv = 0, root = false }: { tokens: Record<string, string>; indentLv: number; root: boolean }): string[] {
     const output: string[] = [];
-    if (root) {output.push(indent(':root {', indentLv));}
+    if (root) {
+      output.push(indent(':root {', indentLv));
+    }
     const sortedTokens = Object.entries(tokens).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
     for (const [variableName, value] of sortedTokens) {
       output.push(indent(`${variableName}: ${value};`, indentLv + (root ? 1 : 0)));
     }
-    if (root) {output.push(indent('}', indentLv));}
+    if (root) {
+      output.push(indent('}', indentLv));
+    }
     return output;
   }
 
@@ -74,11 +78,15 @@ export default function pluginCSS(options?: Options): Plugin {
         continue;
       }
       const matches = line.match(HEX_RE);
-      if (!matches || !matches.length) {continue;}
+      if (!matches || !matches.length) {
+        continue;
+      }
       let newVal = line;
       for (const c of matches) {
         const rgb = toRGB(c);
-        if (!rgb) {throw new Error(`invalid color "${c}"`);}
+        if (!rgb) {
+          throw new Error(`invalid color "${c}"`);
+        }
         newVal = newVal.replace(c, formatCss({ ...rgb, mode: 'p3' }));
         hasValidColors = true; // keep track of whether or not actual colors have been generated (we also generate non-color output, so checking for output.length won’t work)
       }
@@ -113,13 +121,15 @@ export default function pluginCSS(options?: Options): Plugin {
 
         switch (token.$type) {
           case 'link': {
-            if (options?.embedFiles) {value = encode(value as string, config.outDir);}
+            if (options?.embedFiles) {
+              value = encode(value as string, config.outDir);
+            }
             tokenVals[ref] = value;
             break;
           }
           case 'typography': {
-            for (const [k, v] of Object.entries(value)) {
-              tokenVals[generateName(`${token.id}-${k}`, token)] = v;
+            for (const k in value as Record<string, string>) {
+              tokenVals[generateName(`${token.id}-${k}`, token)] = (value as Record<string, string>)[k];
             }
             break;
           }
@@ -152,7 +162,8 @@ export default function pluginCSS(options?: Options): Plugin {
           }
           // normalize legacy mode selectors
           else if (typeof options.modeSelectors === 'object') {
-            for (const [modeID, selector] of Object.entries(options.modeSelectors)) {
+            for (const modeID in options.modeSelectors) {
+              const selector = options.modeSelectors[modeID]!;
               const [groupRoot, modeName] = parseLegacyModeSelector(modeID);
               modeSelectors.push({ mode: modeName, tokens: groupRoot ? [`${groupRoot}*`] : undefined, selectors: Array.isArray(selector) ? selector : [selector] });
             }
@@ -164,21 +175,27 @@ export default function pluginCSS(options?: Options): Plugin {
             }
 
             for (const selector of modeSelector.selectors) {
-              if (!selectors.includes(selector)) {selectors.push(selector);}
-              if (!modeVals[selector]) {modeVals[selector] = {};}
+              if (!selectors.includes(selector)) {
+                selectors.push(selector);
+              }
+              if (!modeVals[selector]) {
+                modeVals[selector] = {};
+              }
               let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token, modeSelector.mode);
               if (modeVal === undefined || modeVal === null) {
                 modeVal = defaultTransformer(token, { colorFormat, generateName, mode: modeSelector.mode, prefix, tokens });
               }
               switch (token.$type) {
                 case 'link': {
-                  if (options?.embedFiles) {modeVal = encode(modeVal as string, config.outDir);}
+                  if (options?.embedFiles) {
+                    modeVal = encode(modeVal as string, config.outDir);
+                  }
                   modeVals[selector]![generateName(token.id, token)] = modeVal;
                   break;
                 }
                 case 'typography': {
-                  for (const [k, v] of Object.entries(modeVal)) {
-                    modeVals[selector]![generateName(`${token.id}-${k}`, token)] = v;
+                  for (const k in modeVal as Record<string, string>) {
+                    modeVals[selector]![generateName(`${token.id}-${k}`, token)] = (modeVal as Record<string, string>)[k];
                   }
                   break;
                 }
@@ -262,8 +279,12 @@ export default function pluginCSS(options?: Options): Plugin {
 
 /** @deprecated parse legacy modeSelector */
 function parseLegacyModeSelector(modeID: string): [string, string] {
-  if (!modeID.includes('#')) {throw new Error(`modeSelector key must have "#" character`);}
+  if (!modeID.includes('#')) {
+    throw new Error(`modeSelector key must have "#" character`);
+  }
   const parts = modeID.split('#').map((s) => s.trim());
-  if (parts.length > 2) {throw new Error(`modeSelector key must have only 1 "#" character`);}
+  if (parts.length > 2) {
+    throw new Error(`modeSelector key must have only 1 "#" character`);
+  }
   return [parts[0]!, parts[1]!];
 }

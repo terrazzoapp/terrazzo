@@ -72,8 +72,8 @@ export default function pluginTailwind(options: Options): Plugin {
         }
         if (typeof node === 'object') {
           output.push('{');
-          for (const [k, v] of Object.entries(node)) {
-            output.push(indent(`${objKey(k)}: ${walk(v, [...path, k])},`, path.length + 1));
+          for (const k in node) {
+            output.push(indent(`${objKey(k)}: ${walk(node[k], [...path, k])},`, path.length + 1));
           }
           output.push(indent('}', path.length));
           return output.join('\n');

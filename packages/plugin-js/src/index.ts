@@ -215,7 +215,7 @@ export default function pluginJS(options?: Options): Plugin {
           if (buildTS) {
             setToken(ts.modes, token.id, {}, options?.deep);
           }
-          for (const modeName of Object.keys(token.$extensions.mode)) {
+          for (const modeName in token.$extensions.mode) {
             let modeResult = await options?.transform?.(token, modeName);
             if (modeResult === undefined || modeResult === null) {
               modeResult = defaultTransformer(token, modeName);
