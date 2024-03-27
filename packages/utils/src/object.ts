@@ -11,8 +11,8 @@ export function cloneDeep<T = unknown>(item: T): T {
     return newArr as T;
   }
   const newObj: Record<string, unknown> = {};
-  for (const [k, v] of Object.entries(item)) {
-    newObj[k] = cloneDeep(v);
+  for (const k in item) {
+    newObj[k] = cloneDeep(item[k]);
   }
   return newObj as T;
 }

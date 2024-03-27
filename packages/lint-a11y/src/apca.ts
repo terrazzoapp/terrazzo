@@ -193,17 +193,20 @@ export function getMinimumSilverLc(fontSize: string | number, fontWeight: number
   if (!(fontWeight > 0 && fontWeight < 1000)) {
     throw new Error(`Invalid font weight: ${fontWeight}`);
   }
+
   const sizePx = dimensionToPx(fontSize);
   const sizeRowI = APCA_FONT_LOOKUP_TABLE.findIndex(([size]) => sizePx >= size);
   if (sizeRowI === -1) {
     return 999;
   }
+
   const weightColI = Math.round(fontWeight / 100) - 1; // round weight
   const sizeDelta = sizeRowI > 0 ? (sizePx - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0]) / (APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![0] - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0] || 1) : 0;
   const baseLc = APCA_FONT_LOOKUP_TABLE[sizeRowI]![1][weightColI];
   if (baseLc === undefined || baseLc === 999) {
     return 999;
   }
+
   // with baseLc calculated, we may need to interpolate between font sizes; do so with simple linear interpolation
   const stepUpLc = sizeDelta > 0 ? APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![1][weightColI]! : baseLc;
   const finalLc = sizeDelta > 0 ? baseLc + sizeDelta * (stepUpLc - baseLc) : baseLc;

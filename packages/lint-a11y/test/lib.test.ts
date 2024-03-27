@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { dimensionToPx, isWCAG2LargeText } from '../src/lib.js';
+import { dimensionToPx, isWCAG2LargeText, round } from '../src/lib.js';
 
 test('isWCAGLargeText', () => {
   expect(isWCAG2LargeText(18 / 0.75, 400)).toBe(true);
@@ -20,4 +20,15 @@ test('dimensionToPx', () => {
   expect(dimensionToPx(16)).toBe(16);
 
   expect(() => dimensionToPx('25vw')).toThrowError('Can’t convert 25vw to px');
+});
+
+test('round', () => {
+  expect(round(1.0004)).toBe(1);
+  expect(round(45.56, 2)).toBe(45.56);
+  expect(round(3.025844118406322, 2)).toBe(3.03);
+  expect(round(20345.7842, 2)).toBe(20345.78);
+  expect(round(-0.499)).toBe(-0.5);
+  expect(round(0.49999, 3)).toBe(0.5);
+  expect(round(43, -1)).toBe(43);
+  expect(round(0.4444444, 4)).toBe(0.4444);
 });

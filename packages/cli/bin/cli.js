@@ -422,18 +422,18 @@ function merge(a, b) {
     process.exit(1);
     return;
   }
-  for (const [k, v] of Object.entries(b)) {
+  for (const k in b) {
     // overwrite if:
     // - this key doesn’t exist on a, or
     // - this is a token with a $value (don’t merge tokens! overwrite!), or
     // - this is a primitive value (it’s the user’s responsibility to merge these correctly)
-    if (!(k in a) || Array.isArray(v) || typeof v !== 'object' || (typeof v === 'object' && '$value' in v)) {
-      a[k] = v;
+    if (!(k in a) || Array.isArray(b[k]) || typeof b[k] !== 'object' || (typeof b[k] === 'object' && '$value' in b[k])) {
+      a[k] = b[k];
       continue;
     }
     // continue
-    if (typeof v === 'object' && !Array.isArray(v)) {
-      merge(a[k], v);
+    if (typeof b[k] === 'object' && !Array.isArray(b[k])) {
+      merge(a[k], b[k]);
     }
   }
 }

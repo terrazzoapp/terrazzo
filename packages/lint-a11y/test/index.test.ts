@@ -79,7 +79,7 @@ describe('a11y plugin', () => {
             want: {
               errors: [
                 '[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1',
-                '[@cobalt-ui/lint-a11y] Error a11y/contrast: APCA: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 75, received 22.38',
+                '[@cobalt-ui/lint-a11y] Error a11y/contrast: APCA: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 75, received 20.09',
               ],
             },
           },
@@ -108,6 +108,31 @@ describe('a11y plugin', () => {
           {
             options: undefined,
             want: { errors: ['options.checks must be an array'] },
+          },
+        ],
+        [
+          'blue test',
+          {
+            options: {
+              checks: [
+                {
+                  tokens: {
+                    background: 'color.blue.1200',
+                    foreground: 'color.blue.400',
+                  },
+                  apca: 88.04,
+                },
+                {
+                  tokens: {
+                    background: 'color.blue.100',
+                    foreground: 'color.blue.900',
+                  },
+                  wcag2: 2.95,
+                  apca: 42.98,
+                },
+              ],
+            },
+            want: { success: true },
           },
         ],
       ];

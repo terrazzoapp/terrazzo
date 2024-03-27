@@ -183,7 +183,8 @@ export default function transform(
         }
         return output;
       }
-      for (const [k, v] of Object.entries(value)) {
+      for (const k in value) {
+        const v = (value as Record<string, string>)[k]!;
         const formatter = k === 'fontFamily' ? transformFontFamily : (val: any): string => String(val);
         // partial alias (e.g. one property out of the set)
         if (isAlias((originalVal as any)[k] as any)) {

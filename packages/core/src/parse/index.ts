@@ -1,7 +1,7 @@
 import { cloneDeep, FG_YELLOW, getAliasID, invalidTokenIDError, isAlias, RESET } from '@cobalt-ui/utils';
 import parseJSON from 'parse-json';
 import yaml from 'yaml';
-import type { Group, ParsedToken, TokenType, TokenOrGroup } from '../token.js';
+import type { Group, ParsedToken, TokenType, TokenOrGroup, Token } from '../token.js';
 import { isEmpty, isJSON, isObj, splitType } from '../util.js';
 import { normalizeBorderValue } from './tokens/border.js';
 import { normalizeColorValue, type ParseColorOptions } from './tokens/color.js';
@@ -111,7 +111,8 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
     if (!node || !isObj(node)) {
       return;
     }
-    for (const [k, v] of Object.entries(node)) {
+    for (const k in node) {
+      const v = node[k as keyof typeof node];
       if (!v || !isObj(v)) {
         errors.push(`${k}: unexpected token format "${v}"`);
         continue;
@@ -130,6 +131,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
       }
 
       // token
+      const { $type = group.$type, ...tokenMetadata } = v as Token;
       const token = {
         _original: cloneDeep(v),
         _group: {
@@ -137,8 +139,8 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
           ...(group || {}),
         },
         id: chain.concat(k).join('.'),
-        $type: v.$type || group.$type,
-        ...v,
+        $type,
+        ...tokenMetadata,
       } as ParsedToken;
       const isToken = '$value' in token; // token MUST have $value, per the sepc
       if (isToken) {
@@ -167,14 +169,14 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
         const nextGroup = { ...group };
 
         const groupTokens: Record<string, TokenOrGroup> = {};
-        for (const propertyKey of Object.keys(v)) {
+        for (const propertyKey in v as Record<string, unknown>) {
           // move all "$" properties to group
           if (propertyKey.startsWith('$')) {
             // merge $extensions; don’t overwrite them
             if (propertyKey === '$extensions') {
-              nextGroup.$extensions = { ...nextGroup.$extensions, ...v.$extensions };
+              nextGroup.$extensions = { ...nextGroup.$extensions, ...(v as Group).$extensions };
             } else {
-              (nextGroup as any)[propertyKey] = v[propertyKey];
+              (nextGroup as any)[propertyKey] = v[propertyKey as keyof typeof v];
             }
             if (!RESERVED_KEYS.has(propertyKey)) {
               if (!result.warnings) {
@@ -185,7 +187,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
           }
           // everything else is a token or subgroup needing to be scanned
           else {
-            groupTokens[propertyKey] = v[propertyKey];
+            groupTokens[propertyKey] = v[propertyKey as keyof typeof v];
           }
         }
 
@@ -203,7 +205,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
 
   const group: InheritedGroup = { $extensions: { requiredModes: [] } };
   const topNodes: Record<string, TokenOrGroup> = {};
-  for (const k of Object.keys(schema)) {
+  for (const k in schema) {
     if (k.startsWith('$')) {
       if (k === '$extensions') {
         group.$extensions = { ...schema.$extensions, ...group.$extensions };
@@ -231,11 +233,12 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   const values: Record<string, unknown> = {};
 
   // 2a. pass 1: gather all IDs & values
-  for (const token of Object.values(tokens)) {
+  for (const id in tokens) {
+    const token = tokens[id]!;
     values[token.id] = token.$value;
     if (token.$extensions && token.$extensions.mode) {
-      for (const [k, v] of Object.entries(token.$extensions.mode || {})) {
-        values[`${token.id}#${k}`] = v;
+      for (const k in token.$extensions.mode || {}) {
+        values[`${token.id}#${k}`] = token.$extensions.mode[k];
       }
     }
   }
@@ -267,7 +270,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
         return arrVal.map((value) => resolveAliases(id, value));
       },
       object(objVal) {
-        for (const prop of Object.keys(objVal as Record<string, unknown>)) {
+        for (const prop in objVal as Record<string, unknown>) {
           objVal[prop] = resolveAliases(id, objVal[prop]);
         }
         return objVal;
@@ -276,8 +279,8 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   }
   while (unaliasedValues(values)) {
     try {
-      for (const [id, value] of Object.entries(values)) {
-        values[id] = resolveAliases(id, value);
+      for (const id in values) {
+        values[id] = resolveAliases(id, values[id]);
       }
     } catch (err: any) {
       errors.push(err.message || err);
@@ -295,12 +298,13 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
     if (!token.$extensions || !token.$extensions.mode) {
       return;
     }
-    for (const k of Object.keys(token.$extensions.mode || {})) {
+    for (const k in token.$extensions.mode || {}) {
       (tokens[id] as any).$extensions.mode[k] = validate(values[`${id}#${k}`]);
     }
   }
 
-  for (const [id, token] of Object.entries(tokens)) {
+  for (const id in tokens) {
+    const token = tokens[id]!;
     try {
       switch (token.$type) {
         // 8.1 Color
