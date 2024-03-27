@@ -1,20 +1,8 @@
 import { type Plugin, type ParsedToken, type LintNotice, type ParsedColorToken, type ParsedTypographyToken } from '@cobalt-ui/core';
-import { blend, modeRgb, modeHsl, modeHsv, modeP3, modeOkhsl, modeOklch, modeOklab, modeXyz50, modeXyz65, modeLrgb, useMode, wcagContrast } from 'culori/fn';
-import { APCAcontrast } from 'apca-w3';
+import { type A98, type P3, type Rgb, rgb, wcagContrast } from 'culori';
+import { APCAcontrast, adobeRGBtoY, alphaBlend, displayP3toY, sRGBtoY } from 'apca-w3';
 import { isWCAG2LargeText, round } from './lib.js';
 import { getMinimumSilverLc } from './apca.js';
-
-// register colorspaces for Culori to parse (these are side-effect-y)
-useMode(modeHsl);
-useMode(modeHsv);
-useMode(modeLrgb);
-useMode(modeOkhsl);
-useMode(modeOklab);
-useMode(modeOklch);
-useMode(modeP3);
-useMode(modeRgb);
-useMode(modeXyz50);
-const toXyz = useMode(modeXyz65);
 
 export const RULES = {
   contrast: 'a11y/contrast',
@@ -46,6 +34,28 @@ export interface RuleContrastCheck {
   wcag2?: 'AA' | 'AAA' | number | false;
   /** Enforce APCA contrast checking? (default: false) @see https://www.myndex.com/APCA/ */
   apca?: 'silver' | 'silver-nonbody' | number | false;
+}
+
+/** Note: sRGBToY uses a unique luminance. Even though this is converted to sRGB gamut, out-of-gamut colors are supported */
+function getY(primaryColor: A98 | Rgb | P3, blendColor?: A98 | Rgb | P3): number {
+  let { r, g, b } = primaryColor;
+  if (typeof primaryColor.alpha === 'number' && primaryColor.alpha < 1 && blendColor) {
+    const blended = alphaBlend([r, g, b, primaryColor.alpha], [blendColor.r, blendColor.g, blendColor.b], false);
+    r = blended[0];
+    g = blended[1];
+    b = blended[2];
+  }
+  switch (primaryColor.mode) {
+    case 'a98': {
+      return adobeRGBtoY([r, g, b]);
+    }
+    case 'p3': {
+      return displayP3toY([r, g, b]);
+    }
+    case 'rgb': {
+      return sRGBtoY([r * 255, b * 255, g * 255]);
+    }
+  }
 }
 
 function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): LintNotice[] {
@@ -128,23 +138,25 @@ function evaluateContrast(tokens: ParsedToken[], options: RuleContrastOptions): 
         const bgRaw = background.$extensions?.mode?.[mode] ?? background.$value;
         const typographyRaw = typography?.$extensions?.mode?.[mode] ?? typography?.$value;
 
-        // note: because modes can apply to color AND/OR typography, ignore mismatches (unlike WCAG2)
-        let { y: fgY = 0, alpha: falpha = 1 } = toXyz(fgRaw) ?? {};
-        // if foreground is slightly-transparent, calculate the displayed value
-        if (falpha < 1) {
-          const newFG = toXyz(blend([foreground.$value, background.$value], 'normal', 'lrgb'));
-          fgY = newFG.y;
-        }
-        const { y: bgY = 0 } = toXyz(bgRaw) ?? {};
-
-        testSets.push({ fgRaw, fgY, bgRaw, bgY, fontSize: typographyRaw?.fontSize, fontWeight: typographyRaw?.fontWeight, mode });
+        testSets.push({
+          fgRaw,
+          fgY: getY(rgb(fgRaw)!, rgb(bgRaw)),
+          bgRaw,
+          bgY: getY(rgb(bgRaw)!),
+          fontSize: typographyRaw?.fontSize,
+          fontWeight: typographyRaw?.fontWeight,
+          mode,
+        });
       }
 
       for (const { fgY, fgRaw, bgY, bgRaw, mode, fontSize, fontWeight } of testSets) {
         if ((apca === 'silver' || apca === 'silver-nonbody') && (!fontSize || !fontWeight)) {
           throw new Error(`APCA: "${apca}" compliance requires \`typography\` token. Use manual number if omitted.`);
         }
-        const lc = APCAcontrast(fgY, bgY);
+        const lc = APCAcontrast(
+          fgY, // First color MUST be text
+          bgY, // Second color MUST be the background.
+        );
         if (typeof lc === 'string') {
           throw new Error(`Internal error: expected number, APCA returned "${lc}"`); // types are wrong?
         }

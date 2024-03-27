@@ -12,6 +12,7 @@ describe('getMinimumSilverLc', () => {
     ['19.5px/300', { given: ['19.5px', 300, false], want: 95 }],
     ['28px/200', { given: [28, 200, false], want: 100 }],
     ['96px/900', { given: ['96px', 900, false], want: 30 }],
+    ['16.5px/400', { given: ['16.5px', 400, true], want: 86.25 }],
   ];
 
   test.each(tests)('%s', (_, { given, want }) => {
