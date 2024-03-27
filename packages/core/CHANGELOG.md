@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.10.1
+
+### Patch Changes
+
+- [#233](https://github.com/drwpow/cobalt-ui/pull/233) [`54bd5a31f01dd97dceb3808db7f3ff93d4342166`](https://github.com/drwpow/cobalt-ui/commit/54bd5a31f01dd97dceb3808db7f3ff93d4342166) Thanks [@drwpow](https://github.com/drwpow)! - Tiny parser performance bump
+
 ## 1.10.0
 
 ### Minor Changes

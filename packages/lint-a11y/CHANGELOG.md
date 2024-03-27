@@ -1,5 +1,11 @@
 # @cobalt-ui/lint-a11y
 
+## 0.0.2
+
+### Patch Changes
+
+- [#233](https://github.com/drwpow/cobalt-ui/pull/233) [`54bd5a31f01dd97dceb3808db7f3ff93d4342166`](https://github.com/drwpow/cobalt-ui/commit/54bd5a31f01dd97dceb3808db7f3ff93d4342166) Thanks [@drwpow](https://github.com/drwpow)! - Improve APCA implementation
+
 ## 0.0.1
 
 ### Patch Changes
