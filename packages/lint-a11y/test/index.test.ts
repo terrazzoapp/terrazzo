@@ -3,6 +3,7 @@ import { type Group, type ParseResult } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { execa } from 'execa';
+import stripAnsi from 'strip-ansi';
 import yaml from 'yaml';
 import a11y, { type RuleContrastOptions } from '../src/index.js';
 import { fileURLToPath } from 'node:url';
@@ -78,8 +79,18 @@ describe('a11y plugin', () => {
             },
             want: {
               errors: [
-                '[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1',
-                '[@cobalt-ui/lint-a11y] Error a11y/contrast: APCA: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 75, received 20.09',
+                `a11y/contrast: ERROR
+    [WCAG2] Failed contrast (AAA)
+      Foreground: color.failing-dark-text  →  #606060 (mode: dark)
+      Background: color.failing-dark-bg    →  #101010 (mode: dark)
+
+      Wanted: 7:1 / Actual: 3.03:1`,
+                `a11y/contrast: ERROR
+    [APCA] Failed contrast
+      Foreground: color.failing-dark-text  →  #606060 (mode: dark)
+      Background: color.failing-dark-bg    →  #101010 (mode: dark)
+
+      Wanted: 75 / Actual: 20.09`,
               ],
             },
           },
@@ -156,7 +167,7 @@ describe('a11y plugin', () => {
             color: {},
           });
         } catch (err) {
-          expect((err as SyntaxError).message).toBe(want.errors?.[0]);
+          expect(stripAnsi((err as SyntaxError).message)).toBe(want.errors?.[0]);
           return;
         }
 
@@ -168,7 +179,7 @@ describe('a11y plugin', () => {
           expect(buildResult.errors?.[0]).toBeUndefined();
         } else {
           for (let i = 0; i < (buildResult.errors?.length || 0); i++) {
-            expect(buildResult.errors?.[i]).toBe(want.errors![i]);
+            expect(stripAnsi(buildResult.errors?.[i] ?? '')).toBe(want.errors![i]);
           }
         }
       });
