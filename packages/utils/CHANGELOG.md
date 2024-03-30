@@ -1,5 +1,11 @@
 # @cobalt-ui/utils
 
+## 1.2.5
+
+### Patch Changes
+
+- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Add indentLine and indentBlock helpers
+
 ## 1.2.4
 
 ### Patch Changes

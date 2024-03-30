@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.10.2
+
+### Patch Changes
+
+- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Improve lint error outputs
+
 ## 1.10.0
 
 ### Patch Changes
