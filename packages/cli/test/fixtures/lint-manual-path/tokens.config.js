@@ -5,6 +5,7 @@ export default {
   plugins: [a11y()],
   lint: {
     rules: {
+      'duplicate-values': 'off',
       'a11y/contrast': [
         'error',
         {

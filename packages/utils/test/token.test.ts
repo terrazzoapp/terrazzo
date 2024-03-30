@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { getAliasID, getLocalID, isAlias } from '../src/token.js';
+import { getAliasID, getLocalID, hasSegment, isAlias } from '../src/token.js';
 
 describe('getAliasID', () => {
   test('returns unwrapped ID for valid ID', () => {
@@ -32,5 +32,19 @@ describe('localID', () => {
 
   test('returns entire token if no segments', () => {
     expect(getLocalID('token')).toBe('token');
+  });
+});
+
+describe('hasSegment', () => {
+  test('basic', () => {
+    expect(hasSegment('token.foo.bar', 'bar')).toBe(true);
+    expect(hasSegment('token.foo.bar', 'token.foo')).toBe(true);
+    expect(hasSegment('token.foo.bar', 'token.foo.bar')).toBe(true);
+    expect(hasSegment('token.foo.bar', 'foo.bar')).toBe(true);
+    expect(hasSegment('token.foo.bar', 'token.foo')).toBe(true);
+
+    expect(hasSegment('token.foo.', 'baz')).toBe(false); // don’t match bad dots
+    expect(hasSegment('token.foo.bar', 'baz')).toBe(false);
+    expect(hasSegment('token.foo.bar', 'oke')).toBe(false); // don’t match partial segments
   });
 });

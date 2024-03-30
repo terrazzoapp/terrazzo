@@ -1,18 +1,19 @@
 import type { Group, ParsedToken } from './token.js';
 export type {
   BorderToken,
+  BorderTokenValue,
   ColorToken,
   CubicBezierToken,
   DimensionToken,
   DurationToken,
   FontFamilyToken,
   FontWeightToken,
-  NumberToken,
   GradientStop,
   GradientToken,
   Group,
   LinkToken,
   Mode,
+  NumberToken,
   ParsedBorderToken,
   ParsedColorToken,
   ParsedCubicBezierToken,
@@ -20,9 +21,9 @@ export type {
   ParsedDurationToken,
   ParsedFontFamilyToken,
   ParsedFontWeightToken,
-  ParsedNumberToken,
   ParsedGradientToken,
   ParsedLinkToken,
+  ParsedNumberToken,
   ParsedShadowToken,
   ParsedStrokeStyleToken,
   ParsedToken,
@@ -32,19 +33,21 @@ export type {
   ShadowToken,
   ShadowValue,
   StrokeStyleToken,
+  StrokeStyleValue,
   Token,
   TokenBase,
   TokenOrGroup,
   TokenType,
   TransitionToken,
+  TransitionValue,
   TypographyToken,
   TypographyValue,
 } from './token.js';
+import { parse, type LintNotice, type LintRule, type LintRuleSeverity, type ParseOptions } from './parse/index.js';
 
-import type { LintRule, LintRuleSeverity, ParseOptions } from './parse/index.js';
-import { parse } from './parse/index.js';
-
-export { parse, type LintRule, type ParseOptions, type ParseResult } from './parse/index.js';
+export * from './parse/index.js';
+export { default as lintCore } from './lint-core/index.js';
+export * from './lint-core/index.js';
 export * from './util.js';
 
 export interface BuildResult {
@@ -79,14 +82,6 @@ export interface LintStageOptions {
   rules: LintRule[];
   /** The user’s original schema, as-authored */
   rawSchema: Group;
-}
-
-export interface LintNotice {
-  /** Must match a registered rule */
-  id: string;
-  // node?: SchemaNode // "node" will be added in 2.0;
-  /** Lint message shown to the user */
-  message: string;
 }
 
 export interface Plugin {

@@ -49,6 +49,7 @@ export default defineConfig({
           { text: 'tokens.json', link: '/guides/tokens' },
           { text: 'CLI', link: '/guides/cli' },
           { text: 'Modes', link: '/guides/modes' },
+          { text: 'Linting', link: '/guides/linting' },
         ],
       },
       {

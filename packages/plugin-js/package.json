@@ -44,7 +44,6 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/core": "workspace:^",
-    "fast-glob": "^3.3.2",
-    "vitest": "^1.4.0"
+    "fast-glob": "^3.3.2"
   }
 }

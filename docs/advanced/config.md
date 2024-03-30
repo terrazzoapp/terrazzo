@@ -139,7 +139,7 @@ export default {
   lint: {
     rules: {
       "a11y/contrast": [
-        "error",
+        "error", // or "warn"
         {
           checks: [
             {

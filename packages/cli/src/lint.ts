@@ -1,4 +1,4 @@
-import type { Group, LintRule, ParsedToken, ResolvedConfig } from '@cobalt-ui/core';
+import { CORE_LINT_RULES, CORE_LINT_RULES_DEFAULT_SEVERITY, lintCore, type Group, type LintRule, type ParsedToken, type ResolvedConfig } from '@cobalt-ui/core';
 import { indentLine } from '@cobalt-ui/utils';
 
 export interface LintOptions {
@@ -18,7 +18,7 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
   const errors: string[] = [];
   const warnings: string[] = [];
 
-  const ruleToPlugin = new Map<string, string>();
+  const ruleToPlugin = new Map<string, string>(Object.values(CORE_LINT_RULES).map((rule) => [rule, '@cobalt-ui/core']));
   const registeredRules = config.plugins.map((plugin) => {
     const finalRules: LintRule[] = [];
     if (typeof plugin.registerRules === 'function') {
@@ -45,6 +45,32 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
     warnings.push(`No lint plugins in config. Nothing to lint.`);
   }
 
+  // handle core lint rules first
+  const coreLintRules: LintRule[] = [];
+  const coreSeverity: Record<string, LintRule['severity']> = {};
+  for (const id in CORE_LINT_RULES) {
+    const severity = config.lint.rules?.[id]?.severity ?? CORE_LINT_RULES_DEFAULT_SEVERITY[id as keyof typeof CORE_LINT_RULES_DEFAULT_SEVERITY]!;
+    coreSeverity[id] = severity;
+    const rule: LintRule = { id, severity, options: config.lint.rules?.[id]?.options };
+    coreLintRules.push(rule);
+  }
+  const coreNotices = lintCore({ tokens, rules: coreLintRules, rawSchema });
+  if (coreNotices?.length) {
+    for (const notice of coreNotices) {
+      const severity = coreSeverity[notice.id];
+      if (severity === 'error') {
+        errors.push(
+          `${notice.id}: ERROR
+${indentLine(notice.message, 2)}`,
+        );
+      } else if (severity === 'warn') {
+        warnings.push(`${notice.id}: WARNING
+${indentLine(notice.message, 2)}`);
+      }
+    }
+  }
+
+  // then handle plugin lint rules
   await Promise.all(
     config.plugins.map(async (plugin, i) => {
       if (typeof plugin.lint !== 'function') {

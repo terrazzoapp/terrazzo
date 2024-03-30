@@ -9,9 +9,9 @@ contributing here.
 
 ## Setup
 
-This repo requires [pnpm]. Once installed, run:
+This repo requires [pnpm](https://pnpm.io/). Once installed, run:
 
-```
+```sh
 pnpm i
 ```
 
@@ -19,7 +19,7 @@ pnpm i
 
 To build TypeScript as you work, run:
 
-```
+```sh
 pnpm run dev
 ```
 
@@ -27,13 +27,37 @@ pnpm run dev
 
 Tests are written in [Vitest](https://vitest.dev), a modern replacement for Jest. To run tests:
 
-```
+```sh
 pnpm run build
 pnpm test
 ```
 
-## Opening a PR
+⚠️ **Be sure to build first!** Many tests test the _actual_ built files, not the source `.ts` files.
 
-All PRs are welcome! When opening a PR, be sure to complete the checklist within the template to make it easier on me 🙂.
+## Opening a Pull Request
 
-[pnpm]: https://pnpm.io/
+All PRs are welcome! But to save your time, here are some common PRs received and the best course of action to take:
+
+_✨ **Tip**: check out the [good first issue](https://github.com/drwpow/cobalt-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/drwpow/cobalt-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!_
+
+### 🐛 Bugfixes
+
+1. **Open the PR directly.** Always accepted, with or without an accompanying issue, as long as you also add tests. Thank you for fixing it!
+
+### 📖 Documentation Changes
+
+1. **Open an issue.** If this is a larger restructuring, or making huge content changes, we’re open to that! But it may need discussion first. However, if this is a **translation** (always accepted) or **fixing a typo** no issue is needed; just open the PR.
+2. **Open the PR.** This will be accepted 🙂.
+
+### ✨ New Feature
+
+1. **Open an issue to discuss.** Before opening a PR, the feature may need some discussion, and a clarifying design! Opening an issue makes sure no work is wasted when it’s time for a PR.
+2. **Open the PR.** With a clear goal for the PR, it’ll be easier to write and review, and will chip more quickly!
+
+### 💥 Breaking Change
+
+1. **Open an issue to discuss.** Sure, we never plan _directly_ on breaking the API, but usually it’s part of a larger desired change. Let’s discuss it **in an issue** before opening a PR!
+2. **Open a NON-BREAKING PR against `main`** Usually we can do some halfway workaround that somewhat solves the problem without breaking the existing API. But afterward, …
+3. **Open a BREAKING PR in the future when pinged**. Cobalt doesn’t have a defined release cycle yet, but at certain times, there will be a branch that contains breaking changes for a future major release. The core maintainers will coordinate with you on how to get the breaking changes in, if they’re accepted.
+
+For all PRs, **adding tests** are required, as is **filling out the description template** and adding a 🦋 **Changeset** if a new version needs to be released (Changeset instructions automatically appear as a PR comment).
