@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/lint-a11y",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -42,11 +42,11 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.10.2"
+    "@cobalt-ui/cli": "^1.11.0"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^1.10.2",
-    "@cobalt-ui/utils": "^1.2.5",
+    "@cobalt-ui/core": "^1.11.0",
+    "@cobalt-ui/utils": "^1.2.6",
     "apca-w3": "^0.1.9",
     "culori": "^4.0.1"
   },

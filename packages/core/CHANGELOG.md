@@ -1,5 +1,16 @@
 # @cobalt-ui/core
 
+## 1.11.0
+
+### Minor Changes
+
+- [#238](https://github.com/drwpow/cobalt-ui/pull/238) [`4b02c6bde0067950cbcb7b81163488c45bbc65c9`](https://github.com/drwpow/cobalt-ui/commit/4b02c6bde0067950cbcb7b81163488c45bbc65c9) Thanks [@drwpow](https://github.com/drwpow)! - Add core lint rules
+
+### Patch Changes
+
+- Updated dependencies [[`4b02c6bde0067950cbcb7b81163488c45bbc65c9`](https://github.com/drwpow/cobalt-ui/commit/4b02c6bde0067950cbcb7b81163488c45bbc65c9)]:
+  - @cobalt-ui/utils@1.2.6
+
 ## 1.10.2
 
 ### Patch Changes

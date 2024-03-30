@@ -200,10 +200,10 @@ importers:
   packages/cli:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.10.2
+        specifier: ^1.11.0
         version: link:../core
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
       chokidar:
         specifier: ^3.6.0
@@ -246,7 +246,7 @@ importers:
   packages/core:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
       '@types/culori':
         specifier: ^2.1.0
@@ -273,10 +273,10 @@ importers:
   packages/lint-a11y:
     dependencies:
       '@cobalt-ui/core':
-        specifier: ^1.10.2
+        specifier: ^1.11.0
         version: link:../core
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
       apca-w3:
         specifier: ^0.1.9
@@ -307,7 +307,7 @@ importers:
   packages/plugin-css:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
       '@types/culori':
         specifier: ^2.1.0
@@ -338,7 +338,7 @@ importers:
   packages/plugin-js:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
@@ -354,7 +354,7 @@ importers:
   packages/plugin-sass:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
       '@types/mime':
         specifier: ^3.0.4
@@ -379,10 +379,10 @@ importers:
   packages/plugin-tailwind:
     dependencies:
       '@cobalt-ui/plugin-css':
-        specifier: ^1.7.3
+        specifier: ^2.0.0
         version: link:../plugin-css
       '@cobalt-ui/utils':
-        specifier: ^1.2.5
+        specifier: ^1.2.6
         version: link:../utils
     devDependencies:
       '@cobalt-ui/cli':
