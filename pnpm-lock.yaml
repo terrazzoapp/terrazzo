@@ -379,7 +379,7 @@ importers:
   packages/plugin-tailwind:
     dependencies:
       '@cobalt-ui/plugin-css':
-        specifier: ^2.0.0
+        specifier: ^1.7.3
         version: link:../plugin-css
       '@cobalt-ui/utils':
         specifier: ^1.2.6

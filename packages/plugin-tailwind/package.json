@@ -1,6 +1,6 @@
 {
   "name": "@cobalt-ui/plugin-tailwind",
-  "version": "1.0.0",
+  "version": "0.0.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -40,7 +40,7 @@
     "tailwindcss": "*"
   },
   "dependencies": {
-    "@cobalt-ui/plugin-css": "^2.0.0",
+    "@cobalt-ui/plugin-css": "^1.7.3",
     "@cobalt-ui/utils": "^1.2.6"
   },
   "devDependencies": {
