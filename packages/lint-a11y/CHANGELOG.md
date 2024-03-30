@@ -1,5 +1,15 @@
 # @cobalt-ui/lint-a11y
 
+## 0.0.3
+
+### Patch Changes
+
+- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Improve lint error outputs
+
+- Updated dependencies [[`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414), [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414)]:
+  - @cobalt-ui/cli@1.10.2
+  - @cobalt-ui/utils@1.2.5
+
 ## 0.0.2
 
 ### Patch Changes

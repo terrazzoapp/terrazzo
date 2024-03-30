@@ -1,5 +1,14 @@
 # @cobalt-ui/core
 
+## 1.10.2
+
+### Patch Changes
+
+- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Improve lint error outputs
+
+- Updated dependencies [[`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414)]:
+  - @cobalt-ui/utils@1.2.5
+
 ## 1.10.1
 
 ### Patch Changes

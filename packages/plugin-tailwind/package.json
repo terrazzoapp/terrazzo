@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@cobalt-ui/plugin-css": "^1.7.3",
-    "@cobalt-ui/utils": "^1.2.4"
+    "@cobalt-ui/utils": "^1.2.5"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
