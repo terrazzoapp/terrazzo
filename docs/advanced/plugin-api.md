@@ -247,7 +247,15 @@ export default function myPlugin(): Plugin {
 
 ::: tip
 
-You don’t need to check for severity. Cobalt will handle warnings and errors for you. We only want to check for `"off"` so we save work and execute faster.
+Cobalt **WILL** handle severity for you, so there’s no need to check `rule.severity` for errors or warnings. When sending `notices` back, **report any and all failures**, and Cobalt will err or warn appropriately based on the user’s settings.
+
+`rule.severity` is mostly there so you can check for `"off"`, so your plugin can skip work and the linter can run faster.
+
+:::
+
+::: warning
+
+Cobalt **WON’T** handle defaults for you; it will only provide the user’s lint rules. It’s up to you to handle missing values and provide defaults for your plugin.
 
 :::
 

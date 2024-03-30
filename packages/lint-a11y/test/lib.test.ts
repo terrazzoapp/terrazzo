@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { dimensionToPx, isWCAG2LargeText, round } from '../src/lib.js';
+import { dimensionToPx, isWCAG2LargeText, round } from '../src/lib/index.js';
 
 test('isWCAGLargeText', () => {
   expect(isWCAG2LargeText(18 / 0.75, 400)).toBe(true);

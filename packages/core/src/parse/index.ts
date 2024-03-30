@@ -29,10 +29,18 @@ export interface ParseResult {
   };
 }
 
-export interface LintRule {
+export interface LintNotice {
+  /** Must match a registered rule */
+  id: string;
+  // node?: SchemaNode // "node" will be added in 2.0;
+  /** Lint message shown to the user */
+  message: string;
+}
+
+export interface LintRule<O = any> {
   id: string;
   severity: LintRuleSeverity;
-  options?: unknown;
+  options?: O;
 }
 
 export type LintRuleSeverity = 'error' | 'warn' | 'off' | number;

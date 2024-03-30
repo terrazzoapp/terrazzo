@@ -1,4 +1,4 @@
-import { dimensionToPx } from './lib.js';
+import { dimensionToPx } from './index.js';
 
 // https://github.com/Myndex/apca-w3
 //

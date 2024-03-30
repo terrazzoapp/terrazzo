@@ -299,6 +299,12 @@ Don’t use modes for things that can be used on the same page:
 
 ### Validation
 
+::: warning
+
+This is now deprecated; use the [required-modes lint rules](/guides/linting#required-modes) instead for more power and flexibility.
+
+:::
+
 To enforce all modes exist for a group. You can assert typechecking with `$extensions.requiredModes`:
 
 ::: code-group

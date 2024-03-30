@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { getMinimumSilverLc } from '../src/apca.js';
+import { getMinimumSilverLc } from '../src/lib/apca.js';
 
 describe('getMinimumSilverLc', () => {
   const tests: [string, { given: Parameters<typeof getMinimumSilverLc>; want: ReturnType<typeof getMinimumSilverLc> }][] = [

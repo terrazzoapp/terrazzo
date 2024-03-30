@@ -13,7 +13,13 @@
     "design system",
     "dtcg",
     "w3c design tokens",
-    "a11y"
+    "accessibility",
+    "contrast",
+    "wcag2",
+    "apca",
+    "a11y",
+    "lint",
+    "linting"
   ],
   "repository": {
     "type": "git",
@@ -39,13 +45,13 @@
     "@cobalt-ui/cli": "^1.10.2"
   },
   "dependencies": {
+    "@cobalt-ui/core": "^1.10.2",
     "@cobalt-ui/utils": "^1.2.5",
     "apca-w3": "^0.1.9",
     "culori": "^4.0.1"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
-    "@cobalt-ui/core": "workspace:^",
     "@types/apca-w3": "^0.1.3",
     "@types/culori": "^2.1.0",
     "execa": "^8.0.1",
