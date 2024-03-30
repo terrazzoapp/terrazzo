@@ -76,7 +76,7 @@ export function padStr(input: string, length: number, alignment: 'left' | 'cente
 
 /** indent an individual line */
 export function indentLine(input: string, level = 0): string {
-  return `${' '.repeat(level || 0)}${input.trim()}`;
+  return `${' '.repeat(2 * (level || 0))}${input.trim()}`;
 }
 
 export { indentLine as indent };

@@ -236,6 +236,9 @@ importers:
       msw:
         specifier: ^2.2.3
         version: 2.2.3(typescript@5.4.3)
+      strip-ansi:
+        specifier: ^7.1.0
+        version: 7.1.0
       vitest:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.11.27)
@@ -268,7 +271,7 @@ importers:
   packages/lint-a11y:
     dependencies:
       '@cobalt-ui/utils':
-        specifier: workspace:^1.2.4
+        specifier: ^1.2.4
         version: link:../utils
       apca-w3:
         specifier: ^0.1.9
@@ -292,6 +295,9 @@ importers:
       execa:
         specifier: ^8.0.1
         version: 8.0.1
+      strip-ansi:
+        specifier: ^7.1.0
+        version: 7.1.0
       vitest:
         specifier: ^1.4.0
         version: 1.4.0

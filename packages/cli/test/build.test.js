@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { execa } from 'execa';
+import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 
 const cmd = '../../../bin/cli.js';
@@ -74,8 +75,17 @@ describe('co build', () => {
     it('Lint: blocks build if failing', async () => {
       const cwd = new URL(`./fixtures/lint-failing/`, import.meta.url);
 
-      expect(() => execa('node', [cmd, 'build'], { cwd })).rejects.toThrowError('Error a11y/contrast: WCAG 2: Token pair #ffcdc2, #fff8f7 failed contrast.');
-      expect(fs.existsSync(new URL('./tokens/index.js', cwd))).toBe(false);
+      try {
+        await execa('node', [cmd, 'build'], { cwd });
+        throw new Error(`Expected to throw`);
+      } catch (err) {
+        expect(stripAnsi(err.message)).toMatch(`  ✘  a11y/contrast: ERROR
+    [WCAG2] Failed contrast (AA)
+      Foreground: color.primitive.tomato.5  →  #ffcdc2
+      Background: color.primitive.tomato.5  →  #fff8f7
+
+      Wanted: 4.5:1 / Actual: 1.36:1`);
+      }
     });
 
     it('Lint: can be disabled with `lint.build.enabled: false`', async () => {

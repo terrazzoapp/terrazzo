@@ -72,11 +72,11 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
             if (severity === 'error') {
               errors.push(
                 `${notification.id}: ERROR
-${indentLine(notification.message, 4)}`,
+${indentLine(notification.message, 2)}`,
               );
             } else if (severity === 'warn') {
               warnings.push(`${notification.id}: WARNING
-${indentLine(notification.message, 4)}`);
+${indentLine(notification.message, 2)}`);
             }
           }
         }
