@@ -36,10 +36,10 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "1.10.2"
+    "@cobalt-ui/cli": "1.11.0"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "^1.2.5"
+    "@cobalt-ui/utils": "^1.2.6"
   },
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
