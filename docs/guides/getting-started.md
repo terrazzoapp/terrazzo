@@ -202,6 +202,7 @@ This covers the basics, but there’s a lot more you can do with your design tok
 
 - [Learn about the DTCG format](/guides/tokens)
 - [Learn about Modes](/guides/modes) (unique to Cobalt!)
+- [Lint your tokens](/guides/linting)
 - See additional integrations:
   - [CSS](/integrations/css)
   - [JavaScript/TypeScript](/integrations/js)

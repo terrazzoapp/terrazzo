@@ -4,7 +4,7 @@ title: Linting
 
 # Linting
 
-Token linting is the same as code linting—you can catch common errors in your tokens during your build such as naming mismatches, duplicate values, and even a11y contrast checks. Cobalt’s powerful linting capabilities can help catch a multitude of issues in any tokens manifest cheaply and instantly, without complex and expensive testing setups.
+Token linting is the same as any other type of code linting—you can catch common errors in your tokens during your build such as naming mismatches, duplicate values, and even color contrast checks. Cobalt’s powerful linting capabilities can help catch a multitude of issues in any tokens manifest cheaply and instantly, without complex and expensive testing setups.
 
 You can configure the rules in `lint.rules` key in [tokens.config.js](/advanced/config).
 
