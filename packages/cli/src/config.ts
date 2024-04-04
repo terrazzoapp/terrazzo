@@ -84,7 +84,7 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
       throw new Error(`[config] plugins must be array, received ${typeof userConfig.plugins}`);
     }
     if (!userConfig.plugins.length) {
-      throw new Error(`[config] plugins are empty`);
+      throw new Error('[config] plugins are empty');
     }
     for (let n = 0; n < userConfig.plugins.length; n++) {
       const plugin = userConfig.plugins[n];
@@ -148,17 +148,23 @@ export async function init(userConfig: Config, cwd: URL): Promise<ResolvedConfig
           severity = value[0];
           options = value[1];
         } else if (value !== undefined) {
-          throw new Error(`[config] lint rule "${id}" invalid syntax. Expected string | number | array, received ${typeof value}`);
+          throw new Error(
+            `[config] lint rule "${id}" invalid syntax. Expected string | number | array, received ${typeof value}`,
+          );
         }
         config.lint.rules[id] = { id, severity: severity as LintRule['severity'], options };
         if (typeof severity === 'number') {
           if (severity !== 0 && severity !== 1 && severity !== 2) {
-            throw new Error(`[config] lint rule "${id}" invalid number \`${severity}\`. Specify \`0\` for 'off', \`1\` for 'warn', or \`2\` for 'error'.`);
+            throw new Error(
+              `[config] lint rule "${id}" invalid number \`${severity}\`. Specify \`0\` for 'off', \`1\` for 'warn', or \`2\` for 'error'.`,
+            );
           }
           config.lint.rules[id]!.severity = (['off', 'warn', 'error'] as const)[severity];
         } else if (typeof severity === 'string') {
           if (severity !== 'off' && severity !== 'warn' && severity !== 'error') {
-            throw new Error(`[config] lint rule "${id}" invalid string \`${severity}\`. Specify 'off', 'warn', or 'error'.`);
+            throw new Error(
+              `[config] lint rule "${id}" invalid string \`${severity}\`. Specify 'off', 'warn', or 'error'.`,
+            );
           }
         } else if (value !== null) {
           throw new Error(`[config] lint rule "${id}" expected string or number, received ${typeof value}`);

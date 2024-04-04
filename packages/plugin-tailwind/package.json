@@ -30,7 +30,7 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
     "dev": "tsc  -p tsconfig.build.json -w",
-    "lint": "eslint \"{src,test}/**/*\"",
+    "lint": "biome check .",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

@@ -23,6 +23,8 @@ To build TypeScript as you work, run:
 pnpm run dev
 ```
 
+This project uses [Biome](https://biomejs.dev/), a modern JS toolchain, for linting and formatting.
+
 ## Testing
 
 Tests are written in [Vitest](https://vitest.dev), a modern replacement for Jest. To run tests:

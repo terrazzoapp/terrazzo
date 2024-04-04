@@ -12,7 +12,10 @@ export interface FigmaOverride {
   /** Rename a token (will also update aliases) */
   rename?: (id: string) => string | undefined | null;
   /** Convert value (e.g. from px to rem) */
-  transform?: (options: { variable: Variable; collection: VariableCollection; mode: VariableMode }) => Token['$value'] | undefined | null;
+  transform?: (options: { variable: Variable; collection: VariableCollection; mode: VariableMode }) =>
+    | Token['$value']
+    | undefined
+    | null;
 }
 
 /** sRGB color */
@@ -139,7 +142,9 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
     throw new Error(`Expected ID:Variable mapping in manifest.variables; received "${typeof manifest?.variables}"`);
   }
   if (!('variableCollections' in manifest) || typeof manifest.variableCollections !== 'object') {
-    throw new Error(`Expected ID:Collection mapping in manifest.variableCollections; received "${typeof manifest.variableCollections}"`);
+    throw new Error(
+      `Expected ID:Collection mapping in manifest.variableCollections; received "${typeof manifest.variableCollections}"`,
+    );
   }
 
   const tokenIDToNameMap: Record<string, string> = {};
@@ -229,7 +234,11 @@ export function convertFigmaVariablesFormat(manifest: FigmaVariableManifest, opt
   };
 }
 
-export function transformToken({ variable, collection, override }: { variable: Variable; collection: VariableCollection; override?: FigmaOverride }): {
+export function transformToken({
+  variable,
+  collection,
+  override,
+}: { variable: Variable; collection: VariableCollection; override?: FigmaOverride }): {
   warnings?: string[];
   errors?: string[];
   result: Token | undefined;

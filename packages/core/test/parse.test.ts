@@ -2,7 +2,7 @@ import os from 'node:os';
 import { describe, expect, it } from 'vitest';
 import { parse } from '../src/parse/index.js';
 
-const COLOR_BLUE = `color(srgb 0 0.3 1.0)`;
+const COLOR_BLUE = 'color(srgb 0 0.3 1.0)';
 
 describe('parse', () => {
   describe('JSON', () => {

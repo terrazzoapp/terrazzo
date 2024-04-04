@@ -1,11 +1,14 @@
-import { type ParsedToken } from '../../../token.js';
+import type { ParsedToken } from '../../../token.js';
 
 export interface RuleTypographyRequiredPropertiesOptions {
   /** Required typography properties */
   properties: string[];
 }
 
-export default function ruleTypographyRequiredProperties(tokens: ParsedToken[], options?: RuleTypographyRequiredPropertiesOptions): string[] {
+export default function ruleTypographyRequiredProperties(
+  tokens: ParsedToken[],
+  options?: RuleTypographyRequiredPropertiesOptions,
+): string[] {
   const notices: string[] = [];
 
   if (!options) {

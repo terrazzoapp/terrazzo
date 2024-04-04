@@ -1,5 +1,5 @@
 import build from '@cobalt-ui/cli/dist/build.js';
-import { type Group } from '@cobalt-ui/core';
+import type { Group } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import yaml from 'yaml';
@@ -74,7 +74,9 @@ describe('@cobalt-ui/plugin-tailwind', () => {
           lint: { build: { enabled: true }, rules: {} },
         });
 
-        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
+          fileURLToPath(new URL('./want.js', cwd)),
+        );
       });
 
       test('esm', async () => {
@@ -93,7 +95,9 @@ describe('@cobalt-ui/plugin-tailwind', () => {
           lint: { build: { enabled: true }, rules: {} },
         });
 
-        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
+          fileURLToPath(new URL('./want.js', cwd)),
+        );
       });
     });
   });

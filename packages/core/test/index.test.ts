@@ -66,15 +66,24 @@ describe('parse', () => {
     });
 
     test('gamut', () => {
-      const { result: srgbResult } = parse({ color: { teal: { $type: 'color', $value: colorTealValue } } }, { color: { convertToHex: false, gamut: 'srgb' } });
+      const { result: srgbResult } = parse(
+        { color: { teal: { $type: 'color', $value: colorTealValue } } },
+        { color: { convertToHex: false, gamut: 'srgb' } },
+      );
       const srgbClamped = formatCss(clampChroma(colorTealValue, 'oklch', 'rgb'));
       expect(srgbResult.tokens.find((t) => t.id === colorTealID)?.$value, 'sRGB').toBe(srgbClamped);
 
-      const { result: p3Result } = parse({ color: { teal: { $type: 'color', $value: colorTealValue } } }, { color: { convertToHex: false, gamut: 'p3' } });
+      const { result: p3Result } = parse(
+        { color: { teal: { $type: 'color', $value: colorTealValue } } },
+        { color: { convertToHex: false, gamut: 'p3' } },
+      );
       const p3Clamped = formatCss(clampChroma(colorTealValue, 'oklch', 'p3'));
       expect(p3Result.tokens.find((t) => t.id === colorTealID)?.$value, 'P3').toBe(p3Clamped);
 
-      const { result: untouchedResult } = parse({ color: { teal: { $type: 'color', $value: colorTealValue } } }, { color: { convertToHex: false, gamut: undefined } });
+      const { result: untouchedResult } = parse(
+        { color: { teal: { $type: 'color', $value: colorTealValue } } },
+        { color: { convertToHex: false, gamut: undefined } },
+      );
       expect(untouchedResult.tokens.find((t) => t.id === colorTealID)?.$value, 'untouched').toBe(colorTealValue);
 
       // bonus: ignore invalid values (don’t bother warning)

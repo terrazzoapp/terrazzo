@@ -1,8 +1,30 @@
 import type { ParsedColorToken } from '@cobalt-ui/core';
-import { formatCss, formatRgb, clampChroma, formatHex8, formatHex, formatHsl, converter, parse as parseColor } from 'culori';
+import {
+  formatCss,
+  formatRgb,
+  clampChroma,
+  formatHex8,
+  formatHex,
+  formatHsl,
+  converter,
+  parse as parseColor,
+} from 'culori';
 
 /** normalize all color outputs to format (default: "hex") or specify "none" to keep as-is */
-export type ColorFormat = 'none' | 'hex' | 'rgb' | 'hsl' | 'hwb' | 'srgb-linear' | 'p3' | 'lab' | 'lch' | 'oklab' | 'oklch' | 'xyz-d50' | 'xyz-d65';
+export type ColorFormat =
+  | 'none'
+  | 'hex'
+  | 'rgb'
+  | 'hsl'
+  | 'hwb'
+  | 'srgb-linear'
+  | 'p3'
+  | 'lab'
+  | 'lch'
+  | 'oklab'
+  | 'oklch'
+  | 'xyz-d50'
+  | 'xyz-d65';
 
 /** ⚠️ Important! We do NOT want to parse as P3. We want to parse as sRGB, then expand 1:1 to P3. @see https://webkit.org/blog/10042/wide-gamut-color-in-css-with-display-p3/ */
 export const toHSL = converter('hsl');

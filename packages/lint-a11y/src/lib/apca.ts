@@ -162,26 +162,29 @@ import { dimensionToPx } from './index.js';
  * Table indexed by font size, then by weight ([100,200,300,400,500,600,700,800,900]).
  * @see https://www.myndex.com/APCA/
  */
-export const APCA_FONT_LOOKUP_TABLE: [number, [number, number, number, number, number, number, number, number, number]][] = [
+export const APCA_FONT_LOOKUP_TABLE: [
+  number,
+  [number, number, number, number, number, number, number, number, number],
+][] = [
   // size   100   200   300   400   500   600   700   800   900
-  [120,   [  40,   35,   25,   25,  999,  999,  999,  999,  999]], // prettier-ignore
-  [108,   [ 999,  999,   35,   30,   30,   25,  999,  999,  999]], // prettier-ignore
-  [ 96,   [  50,   45,   35,   33,   30,   30,   30,   30,   30]], // prettier-ignore
-  [ 72,   [  60,   50,   40,   35,   33,   30,   30,   30,   30]], // prettier-ignore
-  [ 60,   [  75,   55,   45,   38,   35,   33,   30,   30,   30]], // prettier-ignore
-  [ 48,   [  90,   60,   50,   40,   38,   35,   33,   33,   33]], // prettier-ignore
-  [ 42,   [ 100,   70,   55,   43,   40,   38,   35,   35,   35]], // prettier-ignore
-  [ 36,   [ 999,   75,   60,   45,   43,   40,   38,   38,   38]], // prettier-ignore
-  [ 32,   [ 999,   90,   65,   50,   45,   43,   40,   40,   40]], // prettier-ignore
-  [ 28,   [ 999,  100,   70,   55,   50,   45,   43,   43,   43]], // prettier-ignore
-  [ 24,   [ 999,  777,   75,   60,   55,   50,   45,   45,   45]], // prettier-ignore
-  [ 21,   [ 999,  777,   90,   70,   60,   55,   50,   50,   50]], // prettier-ignore
-  [ 18,   [ 999,  777,  100,   75,   70,   60,   55,   55,   55]], // prettier-ignore
-  [ 16,   [ 999,  999,  777,   90,   75,   70,   60,   60,  999]], // prettier-ignore
-  [ 15,   [ 999,  999,  777,  100,   90,   75,   70,  999,  999]], // prettier-ignore
-  [ 14,   [ 999,  999,  777,  100,  100,   90,   75,  999,  999]], // prettier-ignore
-  [ 12,   [ 999,  999,  999,  777,  777,  777,  777,  999,  999]], // prettier-ignore
-  [ 10,   [ 999,  999,  999,  999,  999,  999,  999,  999,  999]], // prettier-ignore
+  [120,   [  40,   35,   25,   25,  999,  999,  999,  999,  999]], // biome-ignore format: these are aligned
+  [108,   [ 999,  999,   35,   30,   30,   25,  999,  999,  999]], // biome-ignore format: these are aligned
+  [ 96,   [  50,   45,   35,   33,   30,   30,   30,   30,   30]], // biome-ignore format: these are aligned
+  [ 72,   [  60,   50,   40,   35,   33,   30,   30,   30,   30]], // biome-ignore format: these are aligned
+  [ 60,   [  75,   55,   45,   38,   35,   33,   30,   30,   30]], // biome-ignore format: these are aligned
+  [ 48,   [  90,   60,   50,   40,   38,   35,   33,   33,   33]], // biome-ignore format: these are aligned
+  [ 42,   [ 100,   70,   55,   43,   40,   38,   35,   35,   35]], // biome-ignore format: these are aligned
+  [ 36,   [ 999,   75,   60,   45,   43,   40,   38,   38,   38]], // biome-ignore format: these are aligned
+  [ 32,   [ 999,   90,   65,   50,   45,   43,   40,   40,   40]], // biome-ignore format: these are aligned
+  [ 28,   [ 999,  100,   70,   55,   50,   45,   43,   43,   43]], // biome-ignore format: these are aligned
+  [ 24,   [ 999,  777,   75,   60,   55,   50,   45,   45,   45]], // biome-ignore format: these are aligned
+  [ 21,   [ 999,  777,   90,   70,   60,   55,   50,   50,   50]], // biome-ignore format: these are aligned
+  [ 18,   [ 999,  777,  100,   75,   70,   60,   55,   55,   55]], // biome-ignore format: these are aligned
+  [ 16,   [ 999,  999,  777,   90,   75,   70,   60,   60,  999]], // biome-ignore format: these are aligned
+  [ 15,   [ 999,  999,  777,  100,   90,   75,   70,  999,  999]], // biome-ignore format: these are aligned
+  [ 14,   [ 999,  999,  777,  100,  100,   90,   75,  999,  999]], // biome-ignore format: these are aligned
+  [ 12,   [ 999,  999,  999,  777,  777,  777,  777,  999,  999]], // biome-ignore format: these are aligned
+  [ 10,   [ 999,  999,  999,  999,  999,  999,  999,  999,  999]], // biome-ignore format: these are aligned
 ];
 
 /**
@@ -201,7 +204,11 @@ export function getMinimumSilverLc(fontSize: string | number, fontWeight: number
   }
 
   const weightColI = Math.round(fontWeight / 100) - 1; // round weight
-  const sizeDelta = sizeRowI > 0 ? (sizePx - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0]) / (APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![0] - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0] || 1) : 0;
+  const sizeDelta =
+    sizeRowI > 0
+      ? (sizePx - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0]) /
+        (APCA_FONT_LOOKUP_TABLE[sizeRowI - 1]![0] - APCA_FONT_LOOKUP_TABLE[sizeRowI]![0] || 1)
+      : 0;
   const baseLc = APCA_FONT_LOOKUP_TABLE[sizeRowI]![1][weightColI];
   if (baseLc === undefined || baseLc === 999) {
     return 999;

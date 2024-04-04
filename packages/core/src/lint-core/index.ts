@@ -1,5 +1,5 @@
-import { type LintRule, type LintNotice } from '../parse/index.js';
-import { type LintStageOptions } from '../index.js';
+import type { LintRule, LintNotice } from '../parse/index.js';
+import type { LintStageOptions } from '../index.js';
 import duplicateValues from './rules/duplicate-values.js';
 import requiredChildren from './rules/required-children.js';
 import requiredModes from './rules/required-modes.js';
@@ -8,7 +8,15 @@ import colorFormat from './rules/color/format.js';
 import colorGamut from './rules/color/gamut.js';
 import typographyRequiredProperties from './rules/typography/required-properties.js';
 
-export { colorFormat, colorGamut, duplicateValues, requiredChildren, requiredModes, naming, typographyRequiredProperties };
+export {
+  colorFormat,
+  colorGamut,
+  duplicateValues,
+  requiredChildren,
+  requiredModes,
+  naming,
+  typographyRequiredProperties,
+};
 export * from './rules/duplicate-values.js';
 export * from './rules/required-children.js';
 export * from './rules/required-modes.js';

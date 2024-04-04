@@ -26,7 +26,12 @@ describe('TypeScript types', () => {
     });
 
     test('fontFamily', () => {
-      expect(token('font.family.sans').map((v) => v)).toEqual(['IBM Plex Sans', 'Helvetica Neue', 'Arial', 'sans-serif']);
+      expect(token('font.family.sans').map((v) => v)).toEqual([
+        'IBM Plex Sans',
+        'Helvetica Neue',
+        'Arial',
+        'sans-serif',
+      ]);
     });
   });
 

@@ -13,13 +13,13 @@ export function dimensionToPx(dimension: string | number) {
     return dimension;
   }
   if (dimension.endsWith('px')) {
-    return parseFloat(dimension);
+    return Number.parseFloat(dimension);
   }
   if (dimension.endsWith('em')) {
-    return parseFloat(dimension) * 16;
+    return Number.parseFloat(dimension) * 16;
   }
   if (dimension.endsWith('pt')) {
-    return ptToPx(parseFloat(dimension));
+    return ptToPx(Number.parseFloat(dimension));
   }
   throw new Error(`Can’t convert ${dimension} to px`);
 }

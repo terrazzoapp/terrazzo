@@ -210,21 +210,30 @@ function isMatch(regexp: RegExp, sample: string) {
  */
 export default function wildcardMatch(pattern: string | string[], options?: string | boolean | WildcardMatchOptions) {
   if (typeof pattern !== 'string' && !Array.isArray(pattern)) {
-    throw new TypeError(`The first argument must be a single pattern string or an array of patterns, but ${typeof pattern} given`);
+    throw new TypeError(
+      `The first argument must be a single pattern string or an array of patterns, but ${typeof pattern} given`,
+    );
   }
 
   if (typeof options === 'string' || typeof options === 'boolean') {
     options = { separator: options };
   }
 
-  if (arguments.length === 2 && !(typeof options === 'undefined' || (typeof options === 'object' && options !== null && !Array.isArray(options)))) {
-    throw new TypeError(`The second argument must be an options object or a string/boolean separator, but ${typeof options} given`);
+  if (
+    arguments.length === 2 &&
+    !(typeof options === 'undefined' || (typeof options === 'object' && options !== null && !Array.isArray(options)))
+  ) {
+    throw new TypeError(
+      `The second argument must be an options object or a string/boolean separator, but ${typeof options} given`,
+    );
   }
 
   options = options || {};
 
   if (options.separator === '\\') {
-    throw new Error('\\ is not a valid separator because it is used for escaping. Try setting the separator to `true` instead');
+    throw new Error(
+      '\\ is not a valid separator because it is used for escaping. Try setting the separator to `true` instead',
+    );
   }
 
   let regexpPattern = transform(pattern, options.separator);

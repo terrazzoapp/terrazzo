@@ -87,6 +87,7 @@ export interface LintStageOptions {
 export interface Plugin {
   name: string;
   /** (optional) read config, and optionally modify */
+  // biome-ignore lint/suspicious/noConfusingVoidType format: this helps plugins be a little looser on their typing
   config?(config: ResolvedConfig): void | ResolvedConfig | undefined;
   /** (optional) register lint rule IDs */
   registerRules?(): Omit<LintRule, 'options'>[];

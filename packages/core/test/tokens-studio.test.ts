@@ -44,9 +44,15 @@ describe('Sizing', () => {
     };
     const tokens = getTokens(json);
 
-    expect(tokens.find((t) => t.id === 'global.sizing.s')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.sizing.m')).toEqual(expect.objectContaining({ $type: 'number', $value: 16 }));
-    expect(tokens.find((t) => t.id === 'global.sizing.l')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '2rem' }));
+    expect(tokens.find((t) => t.id === 'global.sizing.s')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.sizing.m')).toEqual(
+      expect.objectContaining({ $type: 'number', $value: 16 }),
+    );
+    expect(tokens.find((t) => t.id === 'global.sizing.l')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '2rem' }),
+    );
   });
 });
 
@@ -58,7 +64,9 @@ describe('Spacing', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'global.spacing')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
+    expect(tokens.find((t) => t.id === 'global.spacing')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
   });
 
   test('multi', () => {
@@ -77,20 +85,44 @@ describe('Spacing', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'global.spacing.xyTop')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.xyRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.xyBottom')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.xyLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
+    expect(tokens.find((t) => t.id === 'global.spacing.xyTop')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.xyRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.xyBottom')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.xyLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
 
-    expect(tokens.find((t) => t.id === 'global.spacing.txbTop')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '6px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.txbRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.txbBottom')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.txbLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
+    expect(tokens.find((t) => t.id === 'global.spacing.txbTop')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '6px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.txbRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.txbBottom')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.txbLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
 
-    expect(tokens.find((t) => t.id === 'global.spacing.trblTop')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '6px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.trblRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.trblBottom')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.spacing.trblLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '12px' }));
+    expect(tokens.find((t) => t.id === 'global.spacing.trblTop')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '6px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.trblRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.trblBottom')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.spacing.trblLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '12px' }),
+    );
   });
 });
 
@@ -262,20 +294,44 @@ describe('Border Radius', () => {
     };
     const tokens = getTokens(json);
 
-    expect(tokens.find((t) => t.id === 'global.radius.xyTopLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.xyTopRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.xyBottomRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.xyBottomLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
+    expect(tokens.find((t) => t.id === 'global.radius.xyTopLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.xyTopRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.xyBottomRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.xyBottomLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
 
-    expect(tokens.find((t) => t.id === 'global.radius.txbTopLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '6px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.txbTopRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.txbBottomRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.txbBottomLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
+    expect(tokens.find((t) => t.id === 'global.radius.txbTopLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '6px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.txbTopRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.txbBottomRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.txbBottomLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
 
-    expect(tokens.find((t) => t.id === 'global.radius.trblTopLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '6px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.trblTopRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '16px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.trblBottomRight')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '8px' }));
-    expect(tokens.find((t) => t.id === 'global.radius.trblBottomLeft')).toEqual(expect.objectContaining({ $type: 'dimension', $value: '12px' }));
+    expect(tokens.find((t) => t.id === 'global.radius.trblTopLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '6px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.trblTopRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '16px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.trblBottomRight')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '8px' }),
+    );
+    expect(tokens.find((t) => t.id === 'global.radius.trblBottomLeft')).toEqual(
+      expect.objectContaining({ $type: 'dimension', $value: '12px' }),
+    );
   });
 });
 
@@ -409,8 +465,12 @@ describe('Alias', () => {
       },
     };
     const tokens = getTokens(json);
-    expect(tokens.find((t) => t.id === 'core.red.500')).toEqual(expect.objectContaining({ $type: 'color', $value: '#f56565' }));
-    expect(tokens.find((t) => t.id === 'semantic.error')).toEqual(expect.objectContaining({ $type: 'color', $value: '#f56565' }));
+    expect(tokens.find((t) => t.id === 'core.red.500')).toEqual(
+      expect.objectContaining({ $type: 'color', $value: '#f56565' }),
+    );
+    expect(tokens.find((t) => t.id === 'semantic.error')).toEqual(
+      expect.objectContaining({ $type: 'color', $value: '#f56565' }),
+    );
   });
 
   test('ignores top level', () => {

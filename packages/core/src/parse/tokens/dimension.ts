@@ -20,7 +20,7 @@ export function normalizeDimensionValue(value: unknown): ParsedDimensionToken['$
     throw new Error('missing units');
   }
   if (typeof value === 'string') {
-    if (parseFloat(value) === 0) {
+    if (Number.parseFloat(value) === 0) {
       return '0';
     }
     return value;

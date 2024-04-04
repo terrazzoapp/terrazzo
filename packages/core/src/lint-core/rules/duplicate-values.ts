@@ -1,6 +1,14 @@
 import { isAlias, isTokenMatch } from '@cobalt-ui/utils';
 import deepEqual from 'deep-equal';
-import { type BorderTokenValue, type GradientToken, type ParsedToken, type ShadowValue, type StrokeStyleValue, type TransitionValue, type TypographyValue } from '../../token.js';
+import type {
+  BorderTokenValue,
+  GradientToken,
+  ParsedToken,
+  ShadowValue,
+  StrokeStyleValue,
+  TransitionValue,
+  TypographyValue,
+} from '../../token.js';
 
 export interface RuleDuplicateValueOptions {
   /** (optional) Token IDs to ignore. Supports globs (`*`). */
@@ -33,7 +41,14 @@ export default function ruleDuplicateValues(tokens: ParsedToken[], options?: Rul
     }
 
     // primitives: direct comparison is easy
-    if (t.$type === 'color' || t.$type === 'dimension' || t.$type === 'duration' || t.$type === 'link' || t.$type === 'number' || t.$type === 'fontWeight') {
+    if (
+      t.$type === 'color' ||
+      t.$type === 'dimension' ||
+      t.$type === 'duration' ||
+      t.$type === 'link' ||
+      t.$type === 'number' ||
+      t.$type === 'fontWeight'
+    ) {
       // skip aliases (note: $value will be resolved)
       if (isAlias(t._original.$value)) {
         continue;

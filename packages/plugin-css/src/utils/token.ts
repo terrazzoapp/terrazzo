@@ -51,8 +51,13 @@ export function varRef(
   // suffix is only used internally (one place in plugin-sass), so handle it here rather than clutter the public API in defaultNameGenerator
   const normalizedSuffix = options?.suffix ? `-${options?.suffix.replace(DASH_PREFIX_RE, '')}` : '';
   const variableId = refID + normalizedSuffix;
-  const property = token && options?.property && typeof token.$value === 'object' && !!(token.$value as any)[options.property] ? options.property : undefined;
-  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)}${property ? `-${kebabinate(property)}` : ''})`;
+  const property =
+    token && options?.property && typeof token.$value === 'object' && !!(token.$value as any)[options.property]
+      ? options.property
+      : undefined;
+  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)}${
+    property ? `-${kebabinate(property)}` : ''
+  })`;
 }
 
 function normalizeIdSegment(inputString: string): string {
@@ -65,9 +70,8 @@ function normalizeIdSegment(inputString: string): string {
       .map((word, i) => {
         if (i === 0) {
           return word.toLocaleLowerCase();
-        } else {
-          return word[0]?.toLocaleUpperCase() + word.slice(1).toLocaleLowerCase();
         }
+        return word[0]?.toLocaleUpperCase() + word.slice(1).toLocaleLowerCase();
       })
       .join('');
   }

@@ -54,7 +54,10 @@ const tokenTypes: Record<ParsedToken['$type'], string> = {
 };
 
 /** serialize JS ref into string */
-export function serializeJS(value: unknown, options?: { comments?: Record<string, string>; commentPath?: string; indentLv?: number }): string {
+export function serializeJS(
+  value: unknown,
+  options?: { comments?: Record<string, string>; commentPath?: string; indentLv?: number },
+): string {
   const comments = options?.comments || {};
   const commentPath = options?.commentPath ?? '';
   const indentLv = options?.indentLv || 0;
@@ -96,7 +99,13 @@ ${indent(`}${indentLv === 0 ? ';' : ''}`, indentLv)}`;
 /** serialize TS ref into string */
 export function serializeTS(value: unknown, options?: { indentLv?: number }): string {
   const indentLv = options?.indentLv || 0;
-  if (typeof value === 'number' || typeof value === 'string' || typeof value === 'boolean' || value === 'undefined' || value === null) {
+  if (
+    typeof value === 'number' ||
+    typeof value === 'string' ||
+    typeof value === 'boolean' ||
+    value === 'undefined' ||
+    value === null
+  ) {
     return String(value);
   }
   if (Array.isArray(value)) {
@@ -163,16 +172,16 @@ export default function pluginJS(options?: Options): Plugin {
 
   // validate options
   if (jsFilename && !JS_EXT_RE.test(jsFilename)) {
-    throw new Error(`JS filename must end in .js or .mjs`);
+    throw new Error('JS filename must end in .js or .mjs');
   }
   if (jsonFilename && !JSON_EXT_RE.test(jsonFilename)) {
-    throw new Error(`JSON filename must end in .json`);
+    throw new Error('JSON filename must end in .json');
   }
 
   return {
     name: '@cobalt-ui/plugin-js',
     async build({ tokens, metadata }): Promise<BuildResult[]> {
-      let files: BuildResult[] = [];
+      const files: BuildResult[] = [];
       const buildTS = !!jsFilename; // should .d.ts be built?
       const includeMeta = options?.meta !== false; // should `meta` be included?
 
@@ -207,7 +216,12 @@ export default function pluginJS(options?: Options): Plugin {
         if (buildTS) {
           const t = `${tokenTypes[token.$type]}`;
           const modeAccessor = options?.deep ? token.id.replace('.', "']['") : token.id;
-          setToken(ts.meta!, token.id, `${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${modeAccessor}'] } }` : ''}`, options?.deep);
+          setToken(
+            ts.meta!,
+            token.id,
+            `${t}${token.$extensions?.mode ? ` & { $extensions: { mode: typeof modes['${modeAccessor}'] } }` : ''}`,
+            options?.deep,
+          );
           tsImports.add(t);
         }
         if (token.$extensions?.mode) {
@@ -275,7 +289,7 @@ export default function pluginJS(options?: Options): Plugin {
               `export const tokens = ${serializeJS(js.tokens, { comments: jsDoc })}`,
               '',
               ...(js.meta ? [`export const meta = ${serializeJS(js.meta)}`, ''] : []),
-              `export const modes = ${Object.keys(js.modes).length ? serializeJS(js.modes) : `{};`}`,
+              `export const modes = ${Object.keys(js.modes).length ? serializeJS(js.modes) : '{};'}`,
               '',
               `/** Get individual token */
 export function token(tokenID, modeName) {
@@ -297,10 +311,12 @@ export function token(tokenID, modeName) {
               `export declare const tokens: ${serializeTS(ts.tokens)}`,
               '',
               ...(ts.meta ? [`export declare const meta: ${serializeTS(ts.meta)}`, ''] : []),
-              `export declare const modes: ${Object.keys(ts.modes).length ? serializeTS(ts.modes) : 'Record<string, never>;'}`,
+              `export declare const modes: ${
+                Object.keys(ts.modes).length ? serializeTS(ts.modes) : 'Record<string, never>;'
+              }`,
               '',
-              `export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];`,
-              `export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];`,
+              'export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): typeof tokens[K];',
+              'export declare function token<K extends keyof typeof modes, M extends keyof typeof modes[K]>(tokenID: K, modeName: M): typeof modes[K][M];',
               '', // EOF newline
             ].join('\n'),
           },

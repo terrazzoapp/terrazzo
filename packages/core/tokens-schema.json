@@ -137,7 +137,11 @@
       "properties": {
         "$type": { "type": "string", "enum": ["fontFamily"] },
         "$value": {
-          "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }, { "$ref": "#/$defs/alias" }]
+          "oneOf": [
+            { "type": "string" },
+            { "type": "array", "items": { "type": "string" } },
+            { "$ref": "#/$defs/alias" }
+          ]
         }
       }
     },
@@ -155,7 +159,13 @@
       "required": ["$value"],
       "properties": {
         "$type": { "type": "string", "enum": ["fontWeight"] },
-        "$value": { "oneOf": [{ "$ref": "#/$defs/fontWeightNumericValue" }, { "$ref": "#/$defs/fontWeightStringValue" }, { "$ref": "#/$defs/alias" }] }
+        "$value": {
+          "oneOf": [
+            { "$ref": "#/$defs/fontWeightNumericValue" },
+            { "$ref": "#/$defs/fontWeightStringValue" },
+            { "$ref": "#/$defs/alias" }
+          ]
+        }
       }
     },
     "fontWeightGroup": {

@@ -36,7 +36,7 @@ export default function convert(input: any): ConvertResult {
         if (!type && String(Number(node.value)) === node.value) {
           type = 'number';
         }
-        if (!type && !isNaN(parseFloat(node.value))) {
+        if (!type && !Number.isNaN(Number.parseFloat(node.value))) {
           type = DURATION_RE.test(node.value) ? 'duration' : 'dimension';
         }
         if (!type && parse(node.value)) {
@@ -64,7 +64,11 @@ export default function convert(input: any): ConvertResult {
   }
 
   if (!input || typeof input !== 'object' || Array.isArray(input)) {
-    errors.push(`Unexpected format for Style Dictionary, expected object, received ${Array.isArray(input) ? 'array' : typeof input}`);
+    errors.push(
+      `Unexpected format for Style Dictionary, expected object, received ${
+        Array.isArray(input) ? 'array' : typeof input
+      }`,
+    );
   } else {
     // build base tokens
     walk(input, { path: [] });

@@ -25,23 +25,25 @@ const VALID_LINECAPS = new Set(['butt', 'round', 'square']);
 
 export function normalizeStrokeStyleValue(value: unknown): ParsedStrokeStyleToken['$value'] {
   if (!value) {
-    throw new Error(`Missing $value`);
+    throw new Error('Missing $value');
   }
   if (typeof value === 'string') {
     if (!VALID_STROKE_STYLES.has(value as any)) {
-      throw new Error(`Unsupported stroke type "${value}", expected be one of: \n  - ${[...VALID_STROKE_STYLES].join('\n  - ')}`);
+      throw new Error(
+        `Unsupported stroke type "${value}", expected be one of: \n  - ${[...VALID_STROKE_STYLES].join('\n  - ')}`,
+      );
     }
     return value as string;
   }
   if (Array.isArray(value)) {
-    throw new Error(`Unexpected $value type: expected string or object, got array`);
+    throw new Error('Unexpected $value type: expected string or object, got array');
   }
   if (typeof value === 'object') {
     if (!('dashArray' in value) || !value.dashArray) {
-      throw new Error(`$value.dashArray is required for object format`);
+      throw new Error('$value.dashArray is required for object format');
     }
     if (!Array.isArray(value.dashArray) || !value.dashArray.length) {
-      throw new Error(`$value.dashArray must be an array with at least 1 dimension`);
+      throw new Error('$value.dashArray must be an array with at least 1 dimension');
     }
     if (!('lineCap' in value) || typeof value.lineCap !== 'string' || !VALID_LINECAPS.has(value.lineCap)) {
       throw new Error(`Unsupported line cap "${value}", expected one of: \n  - ${[...VALID_LINECAPS].join('\n  - ')}`);

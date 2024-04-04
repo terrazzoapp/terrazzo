@@ -6,14 +6,14 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "del \"**/dist\" && vitepress build && cp _redirects .vitepress/dist",
-    "lint": "eslint \".vitepress/**/*.ts\"",
+    "lint": "biome check .",
     "preview": "vitepress preview"
   },
   "dependencies": {
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "vite": "^5.2.7",
+    "vite": "^5.2.8",
     "vitepress": "1.0.1"
   }
 }

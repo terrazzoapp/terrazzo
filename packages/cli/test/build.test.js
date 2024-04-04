@@ -65,7 +65,7 @@ describe('co build', () => {
 
   describe('lint', () => {
     it('Lint: doesn‘t block build if passing', async () => {
-      const cwd = new URL(`./fixtures/lint-passing/`, import.meta.url);
+      const cwd = new URL('./fixtures/lint-passing/', import.meta.url);
       await execa('node', [cmd, 'build'], { cwd });
 
       const builtTokens = await import('./fixtures/lint-passing/tokens/index.js');
@@ -73,11 +73,11 @@ describe('co build', () => {
     });
 
     it('Lint: blocks build if failing', async () => {
-      const cwd = new URL(`./fixtures/lint-failing/`, import.meta.url);
+      const cwd = new URL('./fixtures/lint-failing/', import.meta.url);
 
       try {
         await execa('node', [cmd, 'build'], { cwd });
-        throw new Error(`Expected to throw`);
+        throw new Error('Expected to throw');
       } catch (err) {
         expect(stripAnsi(err.message)).toMatch(`  ✘  a11y/contrast: ERROR
     [WCAG2] Failed contrast (AA)
@@ -89,7 +89,7 @@ describe('co build', () => {
     });
 
     it('Lint: can be disabled with `lint.build.enabled: false`', async () => {
-      const cwd = new URL(`./fixtures/lint-failing-disabled/`, import.meta.url);
+      const cwd = new URL('./fixtures/lint-failing-disabled/', import.meta.url);
       await execa('node', [cmd, 'build'], { cwd });
 
       const builtTokens = await import('./fixtures/lint-failing-disabled/tokens/index.js');
