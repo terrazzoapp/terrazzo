@@ -6,7 +6,11 @@ title: Linting
 
 Token linting is the same as any other type of code linting—you can catch common errors in your tokens during your build such as naming mismatches, duplicate values, and even color contrast checks. Cobalt’s powerful linting capabilities can help catch a multitude of issues in any tokens manifest cheaply and instantly, without complex and expensive testing setups.
 
-You can configure the rules in `lint.rules` key in [tokens.config.js](/advanced/config).
+You can configure the rules in `lint.rules` key in [tokens.config.js](/advanced/config). To run the linter, run:
+
+```sh
+co lint
+```
 
 The syntax is similar to many linters such as ESLint. First you declare a **rule**, then whether you want it to throw an **error**, **warn**, or to be **off** completely:
 
@@ -16,6 +20,7 @@ The syntax is similar to many linters such as ESLint. First you declare a **rule
 /** @type {import("@cobalt-ui/core").Config} */
 export default {
   lint: {
+    build: { enabled: true }, // set { enabled: "false" } to skip linting on build
     rules: {
       "my-lint-rule": "error", // throw an error for this rule
       "my-lint-rule": "warn", // throw a warning for this rule
@@ -32,6 +37,7 @@ Some rules allow for additional settings, depending on the rule. To set those, p
 ```js
 export default {
   lint: {
+    build: { enabled: true },
     rules: {
       "my-lint-rule": ["error", { foo: "bar" }], // throw an error AND configure settings only for this rule
     },
@@ -40,6 +46,8 @@ export default {
 ```
 
 Not all rules have options. Refer to each rule’s documentation to see what it can accept.
+
+But you
 
 ## Built-in Rules
 
@@ -555,3 +563,15 @@ export default {
 You can also build your own linter by [creating your own plugin and giving it a lint step](/advanced/plugin-api#lint). It’s easier than you might think!
 
 Have you built a plugin you’d like to add here? [Suggest it!](https://github.com/drwpow/cobalt-ui/blob/main/CONTRIBUTING.md)
+
+## Adding to CI
+
+Linting can be added to your project’s `package.json` by adding the `co lint` command:
+
+```json
+{
+  "scripts": {
+    "lint:tokens": "co lint"
+  }
+}
+```

@@ -16,7 +16,9 @@ export default {
   tokens: "./tokens.json",
   outDir: "./tokens/",
   plugins: [pluginJS()],
-
+  lint: {
+    rules: {},
+  },
   // token type options
 };
 ```
@@ -127,7 +129,7 @@ Creating custom plugins is designed to be easy. Please [view the plugin guide](/
 
 ## `lint` (beta)
 
-This option can only be used if using plugin with a `lint()` step, such as [lint-a11y](/integrations/a11y):
+Configure options for linters ([see docs](/guides/linting)).
 
 ```js
 // tokens.config.js
@@ -137,6 +139,9 @@ import a11y from "@cobalt-ui/lint-a11y";
 export default {
   plugins: [a11y()],
   lint: {
+    build: {
+      enabled: true, // set to "false" to skip linting on `co build`
+    },
     rules: {
       "a11y/contrast": [
         "error", // or "warn"
@@ -160,9 +165,10 @@ export default {
 };
 ```
 
-| Name    |   Type   | Description                             |
-| :------ | :------: | :-------------------------------------- |
-| `rules` | `Object` | Key-value map of rules to rule options. |
+| Name    |   Type   | Description                                           |
+| :------ | :------: | :---------------------------------------------------- |
+| `build` | `Object` | Set `{ enabled: false }` to disable linting on build. |
+| `rules` | `Object` | Key-value map of rules to rule options.               |
 
 Similar to ESLint, `lint.rules` can follow any of the following formats:
 
