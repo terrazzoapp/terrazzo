@@ -40,7 +40,7 @@
     "build:clean": "del dist",
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
-    "lint": "biome check .",
+    "lint": "biome check --changed .",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

@@ -31,7 +31,7 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-css dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
-    "lint": "biome check .",
+    "lint": "biome check --changed .",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

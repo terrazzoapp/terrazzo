@@ -6,6 +6,9 @@
   "files": {
     "ignore": ["**/dist/**"]
   },
+  "vcs": {
+    "defaultBranch": "main"
+  },
   "formatter": {
     "indentStyle": "space",
     "indentWidth": 2,

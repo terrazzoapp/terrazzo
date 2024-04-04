@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vitepress dev",
     "build": "del \"**/dist\" && vitepress build && cp _redirects .vitepress/dist",
-    "lint": "biome check .",
+    "lint": "biome check --changed .",
     "preview": "vitepress preview"
   },
   "dependencies": {
