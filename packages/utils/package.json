@@ -12,7 +12,7 @@
   "scripts": {
     "build": "del dist && tsc -p tsconfig.build.json",
     "dev": "tsc  -p tsconfig.build.json -w",
-    "lint": "eslint \"{src,test}/**/*\"",
+    "lint": "biome check .",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

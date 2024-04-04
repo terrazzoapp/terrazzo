@@ -9,12 +9,16 @@ describe('co bundle', () => {
   it('JSON', async () => {
     const cwd = new URL('./fixtures/bundle-default/', import.meta.url);
     await execa('node', [cmd, 'bundle', '--out', 'given/bundled.json'], { cwd });
-    expect(fs.readFileSync(new URL('./given/bundled.json', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want/bundled.json', cwd)));
+    expect(fs.readFileSync(new URL('./given/bundled.json', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want/bundled.json', cwd)),
+    );
   });
 
   it('YAML', async () => {
     const cwd = new URL('./fixtures/bundle-default/', import.meta.url);
     await execa('node', [cmd, 'bundle', '--out', 'given/bundled.yaml'], { cwd });
-    expect(fs.readFileSync(new URL('./given/bundled.yaml', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want/bundled.yaml', cwd)));
+    expect(fs.readFileSync(new URL('./given/bundled.yaml', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want/bundled.yaml', cwd)),
+    );
   });
 });

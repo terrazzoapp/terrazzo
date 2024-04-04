@@ -169,7 +169,11 @@ export type TSToken =
   | TSTextDecorationToken
   | TSTypographyToken;
 
-export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): { errors?: string[]; warnings?: string[]; result: Group } {
+export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
+  errors?: string[];
+  warnings?: string[];
+  result: Group;
+} {
   const errors: string[] = [];
   const warnings: string[] = [];
   const dtcgTokens: Group = {};
@@ -293,8 +297,14 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             } // TL, TR, BR, BL
             addToken({ $type: 'dimension', $value: order[0], $description: v.description }, [...path, `${k}TopLeft`]);
             addToken({ $type: 'dimension', $value: order[1], $description: v.description }, [...path, `${k}TopRight`]);
-            addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [...path, `${k}BottomRight`]);
-            addToken({ $type: 'dimension', $value: order[3], $description: v.description }, [...path, `${k}BottomLeft`]);
+            addToken({ $type: 'dimension', $value: order[2], $description: v.description }, [
+              ...path,
+              `${k}BottomRight`,
+            ]);
+            addToken({ $type: 'dimension', $value: order[3], $description: v.description }, [
+              ...path,
+              `${k}BottomLeft`,
+            ]);
           } else {
             addToken(
               {
@@ -347,7 +357,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
             const stops: GradientStop[] = [];
             const [_, ...rawStops] = v.value.replace(')', '').split(',');
             for (const s of rawStops) {
-              let [colorRaw = '', positionRaw = ''] = s.trim().split(' ');
+              const [colorRaw = '', positionRaw = ''] = s.trim().split(' ');
               let color = colorRaw;
               if (color.startsWith('$')) {
                 color = `{${color.replace('$', '')}}`;
@@ -355,7 +365,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
               color = resolveAlias(color, path) || color;
               let position: string | number = positionRaw;
               if (positionRaw.includes('%')) {
-                position = parseFloat(positionRaw) / 100;
+                position = Number.parseFloat(positionRaw) / 100;
               }
               position = resolveAlias(position, path) || position;
               stops.push({ color, position: position as number });
@@ -389,7 +399,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
                 while (!resolvedValue) {
                   const aliasNode: any = get(rawTokens, currentAlias.split('.'));
                   // does this resolve to a $value?
-                  if (aliasNode && aliasNode.value) {
+                  if (aliasNode?.value) {
                     // is this another alias?
                     if (isAlias(aliasNode.value)) {
                       currentAlias = parseAlias(aliasNode.value).id;
@@ -415,7 +425,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
                 // but throw err otherwise
                 if (value.startsWith('rgb') && value.includes('#')) {
                   const hexValue = value.match(/#[abcdef0-9]+/i);
-                  if (hexValue && hexValue[0]) {
+                  if (hexValue?.[0]) {
                     const rgbVal = rgb(hexValue[0]);
                     if (rgbVal) {
                       value = value.replace(hexValue[0], `${rgbVal.r * 100}%, ${rgbVal.g * 100}%, ${rgbVal.b * 100}%`);
@@ -454,7 +464,7 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
         case 'opacity':
         case 'paragraphSpacing':
         case 'sizing': {
-          const maybeNumber = parseFloat(String(v.value));
+          const maybeNumber = Number.parseFloat(String(v.value));
           const isNumber = typeof v.value === 'number' || String(maybeNumber) === String(v.value);
           addToken(
             {
@@ -470,7 +480,9 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
           addToken(
             {
               $type: 'fontWeight',
-              $value: (FONT_WEIGHTS[String(v.value).toLowerCase()] || parseInt(String(v.value), 10) || v.value) as number,
+              $value: (FONT_WEIGHTS[String(v.value).toLowerCase()] ||
+                Number.parseInt(String(v.value), 10) ||
+                v.value) as number,
               $description: v.description,
             },
             tokenPath,
@@ -498,8 +510,15 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
           if (values.length === 1) {
             addToken({ $type: 'dimension', $value: v.value, $description: v.description }, tokenPath);
           } else if (values.length === 2 || values.length === 3 || values.length === 4) {
-            warnings.push(`Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`);
-            let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [string, string, string, string]; // TB, RL
+            warnings.push(
+              `Token "${tokenID}" is a multi value spacing token. Expanding into ${tokenID}Top, ${tokenID}Right, ${tokenID}Bottom, and ${tokenID}Left.`,
+            );
+            let order: [string, string, string, string] = [values[0], values[1], values[0], values[1]] as [
+              string,
+              string,
+              string,
+              string,
+            ]; // TB, RL
             if (values.length === 3) {
               order = [values[0], values[1], values[2], values[1]] as [string, string, string, string];
             } // T, RL, B
@@ -569,9 +588,10 @@ export function convertTokensStudioFormat(rawTokens: Record<string, unknown>): {
                 }
               } else {
                 if (property === 'fontWeights') {
-                  v.value[property] = FONT_WEIGHTS[String(v.value[property]).toLowerCase()] || (v.value[property] as string);
+                  v.value[property] =
+                    FONT_WEIGHTS[String(v.value[property]).toLowerCase()] || (v.value[property] as string);
                 }
-                const maybeNumber = parseFloat(String(v.value[property]));
+                const maybeNumber = Number.parseFloat(String(v.value[property]));
                 if (String(maybeNumber) === v.value[property]) {
                   v.value[property] = maybeNumber;
                 }

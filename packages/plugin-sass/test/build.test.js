@@ -7,7 +7,7 @@ import pluginSass from '../dist/index.js';
 describe('@cobalt-ui/plugin-sass', () => {
   describe('fixtures', () => {
     test('basic', async () => {
-      const cwd = new URL(`./basic/`, import.meta.url);
+      const cwd = new URL('./basic/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
       await build(tokens, {
         outDir: cwd,
@@ -19,11 +19,13 @@ describe('@cobalt-ui/plugin-sass', () => {
         lint: { build: { enabled: true }, rules: {} },
         color: {},
       });
-      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.scss', cwd)));
+      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.scss', cwd)),
+      );
     });
 
     test('basic (indented)', async () => {
-      const cwd = new URL(`./basic/`, import.meta.url);
+      const cwd = new URL('./basic/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
       const { errors } = await build(tokens, {
         outDir: cwd,
@@ -37,11 +39,13 @@ describe('@cobalt-ui/plugin-sass', () => {
         color: {},
       });
       expect(errors).toBe(undefined);
-      expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.sass', cwd)));
+      expect(fs.readFileSync(new URL('./actual.sass', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.sass', cwd)),
+      );
     });
 
     test('plugin-css', async () => {
-      const cwd = new URL(`./plugin-css/`, import.meta.url);
+      const cwd = new URL('./plugin-css/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd)));
       const { errors } = await build(tokens, {
         outDir: cwd,
@@ -55,7 +59,9 @@ describe('@cobalt-ui/plugin-sass', () => {
         color: {},
       });
       expect(errors).toBe(undefined);
-      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.scss', cwd)));
+      expect(fs.readFileSync(new URL('./actual.scss', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.scss', cwd)),
+      );
     });
   });
 });

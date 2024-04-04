@@ -1,4 +1,4 @@
-import { type ParsedToken, type ParsedColorToken, type ParsedTypographyToken } from '@cobalt-ui/core';
+import type { ParsedToken, ParsedColorToken, ParsedTypographyToken } from '@cobalt-ui/core';
 import { BOLD, RESET, padStr } from '@cobalt-ui/utils';
 import { type A98, type P3, type Rgb, rgb, wcagContrast } from 'culori';
 import { APCAcontrast, adobeRGBtoY, alphaBlend, displayP3toY, sRGBtoY } from 'apca-w3';
@@ -68,12 +68,24 @@ export interface FormatContrastFailureOptions {
   mode?: string;
 }
 
-export function formatContrastFailure({ foreground, background, method, threshold, thresholdName, actual, mode }: FormatContrastFailureOptions): string {
+export function formatContrastFailure({
+  foreground,
+  background,
+  method,
+  threshold,
+  thresholdName,
+  actual,
+  mode,
+}: FormatContrastFailureOptions): string {
   const longerID = Math.max(foreground.id.length, background.id.length);
   const longerValue = Math.max(foreground.value.length, background.value.length);
   return `[${method}] Failed contrast${thresholdName ? ` (${thresholdName})` : ''}
-      Foreground: ${padStr(foreground.id, longerID)}  →  ${padStr(foreground.value, longerValue)}${mode && mode !== '.' ? ` (mode: ${mode})` : ''}
-      Background: ${padStr(background.id, longerID)}  →  ${padStr(background.value, longerValue)}${mode && mode !== '.' ? ` (mode: ${mode})` : ''}
+      Foreground: ${padStr(foreground.id, longerID)}  →  ${padStr(foreground.value, longerValue)}${
+        mode && mode !== '.' ? ` (mode: ${mode})` : ''
+      }
+      Background: ${padStr(background.id, longerID)}  →  ${padStr(background.value, longerValue)}${
+        mode && mode !== '.' ? ` (mode: ${mode})` : ''
+      }
 
       Wanted: ${threshold} / Actual: ${BOLD}${actual}${RESET}`;
 }
@@ -89,7 +101,7 @@ export default function evaluateContrast(tokens: ParsedToken[], options: RuleCon
     wcag2 = 'AA',
     apca = false,
     tokens: { foreground: foregroundID, background: backgroundID, typography: typographyID, modes },
-  } of (options ?? {}).checks) {
+  } of options?.checks ?? []) {
     // resolve tokens
     const foreground = tokens.find((token) => token.id === foregroundID) as ParsedColorToken | undefined;
     if (!foreground) {
@@ -99,7 +111,9 @@ export default function evaluateContrast(tokens: ParsedToken[], options: RuleCon
     if (!background) {
       throw new Error(`Couldn’t find background color "${backgroundID}"`);
     }
-    const typography = typographyID ? (tokens.find((token) => token.id === typographyID) as ParsedTypographyToken) : undefined;
+    const typography = typographyID
+      ? (tokens.find((token) => token.id === typographyID) as ParsedTypographyToken)
+      : undefined;
     if (typographyID && !typography) {
       throw new Error(`Couldn’t find typography token "${typographyID}"`);
     }
@@ -134,8 +148,11 @@ export default function evaluateContrast(tokens: ParsedToken[], options: RuleCon
       }
       for (const { foreground: fgMeasured, background: bgMeasured, mode } of colorPairs) {
         const isLargeText =
-          typography?.$value.fontSize && typography?.$value.fontWeight ? isWCAG2LargeText(parseFloat(typography.$value.fontSize), typography.$value.fontWeight) : false;
-        const minContrast = typeof wcag2 === 'string' ? WCAG2_MIN_CONTRAST[wcag2][isLargeText ? 'large' : 'default'] : wcag2;
+          typography?.$value.fontSize && typography?.$value.fontWeight
+            ? isWCAG2LargeText(Number.parseFloat(typography.$value.fontSize), typography.$value.fontWeight)
+            : false;
+        const minContrast =
+          typeof wcag2 === 'string' ? WCAG2_MIN_CONTRAST[wcag2][isLargeText ? 'large' : 'default'] : wcag2;
         const defaultResult = wcagContrast(fgMeasured.value, bgMeasured.value);
         if (round(defaultResult, WCAG2_PRECISION) < minContrast) {
           notices.push(
@@ -156,7 +173,9 @@ export default function evaluateContrast(tokens: ParsedToken[], options: RuleCon
     // APCA
     if (typeof apca === 'string' || (typeof apca === 'number' && Math.abs(apca) > 0)) {
       if ((apca as string) === 'gold') {
-        throw new Error(`APCA: "gold" not implemented; specify "silver", "silver-nonbody", Lc \`number\`, or \`false\`.`);
+        throw new Error(
+          `APCA: "gold" not implemented; specify "silver", "silver-nonbody", Lc \`number\`, or \`false\`.`,
+        );
       }
       if ((apca as string) === 'bronze') {
         throw new Error(`APCA: "bronze" not supported; specify an Lc \`number\` manually.`);
@@ -197,7 +216,8 @@ export default function evaluateContrast(tokens: ParsedToken[], options: RuleCon
         if (typeof lc === 'string') {
           throw new Error(`Internal error: expected number, APCA returned "${lc}"`); // types are wrong?
         }
-        const minContrast = typeof apca === 'number' ? apca : getMinimumSilverLc(fontSize!, fontWeight!, apca === 'silver');
+        const minContrast =
+          typeof apca === 'number' ? apca : getMinimumSilverLc(fontSize!, fontWeight!, apca === 'silver');
         if (round(Math.abs(lc), APCA_PRECISION) < minContrast) {
           notices.push(
             formatContrastFailure({

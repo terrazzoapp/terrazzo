@@ -12,19 +12,36 @@ export default defineConfig({
     ['link', { rel: 'shortcut icon', type: 'image/png', href: '/favicon-32.png' }],
     ['link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '128x128', href: '/favicon-128.png' }],
     ['link', { rel: 'apple-touch-icon', type: 'image/png', sizes: '512x512', href: '/favicon-512.png' }],
-    ['script', { defer: '', src: 'https://static.cloudflareinsights.com/beacon.min.js', 'data-cf-beacon': '{"token": "f5713e86f9aa43278151f2763d6b59ae"}' }],
+    [
+      'script',
+      {
+        defer: '',
+        src: 'https://static.cloudflareinsights.com/beacon.min.js',
+        'data-cf-beacon': '{"token": "f5713e86f9aa43278151f2763d6b59ae"}',
+      },
+    ],
   ],
   sitemap: {
     hostname: HOSTNAME,
   },
   transformHead(context) {
     return [
-      ['meta', { name: 'og:title', content: context.pageData.frontmatter.title ? `${context.pageData.frontmatter.title} | Cobalt` : 'Cobalt: CI for your Design Tokens' }],
+      [
+        'meta',
+        {
+          name: 'og:title',
+          content: context.pageData.frontmatter.title
+            ? `${context.pageData.frontmatter.title} | Cobalt`
+            : 'Cobalt: CI for your Design Tokens',
+        },
+      ],
       [
         'meta',
         {
           name: 'og:description',
-          content: context.pageData.frontmatter.description || 'Use Design Tokens Community Group tokens to generate CSS, Sass, JS/TS, universal JSON, and more.',
+          content:
+            context.pageData.frontmatter.description ||
+            'Use Design Tokens Community Group tokens to generate CSS, Sass, JS/TS, universal JSON, and more.',
         },
       ],
       ['meta', { name: 'og:image', content: `${HOSTNAME}/social.png` }],

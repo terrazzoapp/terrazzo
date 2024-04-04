@@ -131,11 +131,21 @@ export default function transform(
           if (typeof origShadow === 'string') {
             return varRef(origShadow, { prefix, tokens, generateName });
           }
-          const offsetX = isAlias(origShadow.offsetX) ? varRef(origShadow.offsetX, { prefix, tokens, generateName }) : transformDimension(shadow.offsetX);
-          const offsetY = isAlias(origShadow.offsetY) ? varRef(origShadow.offsetY, { prefix, tokens, generateName }) : transformDimension(shadow.offsetY);
-          const blur = isAlias(origShadow.blur) ? varRef(origShadow.blur, { prefix, tokens, generateName }) : transformDimension(shadow.blur);
-          const spread = isAlias(origShadow.spread) ? varRef(origShadow.spread, { prefix, tokens, generateName }) : transformDimension(shadow.spread);
-          const color = isAlias(origShadow.color) ? varRef(origShadow.color, { prefix, tokens, generateName }) : transformColor(origShadow.color, colorFormat);
+          const offsetX = isAlias(origShadow.offsetX)
+            ? varRef(origShadow.offsetX, { prefix, tokens, generateName })
+            : transformDimension(shadow.offsetX);
+          const offsetY = isAlias(origShadow.offsetY)
+            ? varRef(origShadow.offsetY, { prefix, tokens, generateName })
+            : transformDimension(shadow.offsetY);
+          const blur = isAlias(origShadow.blur)
+            ? varRef(origShadow.blur, { prefix, tokens, generateName })
+            : transformDimension(shadow.blur);
+          const spread = isAlias(origShadow.spread)
+            ? varRef(origShadow.spread, { prefix, tokens, generateName })
+            : transformDimension(shadow.spread);
+          const color = isAlias(origShadow.color)
+            ? varRef(origShadow.color, { prefix, tokens, generateName })
+            : transformColor(origShadow.color, colorFormat);
           return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
         })
         .join(', ');
@@ -151,8 +161,12 @@ export default function transform(
           if (typeof origGradient === 'string') {
             return varRef(origGradient, { prefix, tokens, generateName });
           }
-          const color = isAlias(origGradient.color) ? varRef(origGradient.color, { prefix, tokens, generateName }) : transformColor(origGradient.color, colorFormat);
-          const stop = isAlias(origGradient.position) ? varRef(origGradient.position as any, { prefix, tokens, generateName }) : `${100 * gradient.position}%`;
+          const color = isAlias(origGradient.color)
+            ? varRef(origGradient.color, { prefix, tokens, generateName })
+            : transformColor(origGradient.color, colorFormat);
+          const stop = isAlias(origGradient.position)
+            ? varRef(origGradient.position as any, { prefix, tokens, generateName })
+            : `${100 * gradient.position}%`;
           return `${color} ${stop}`;
         })
         .join(', ');
@@ -162,10 +176,14 @@ export default function transform(
       if (typeof originalVal === 'string') {
         return varRef(originalVal, { prefix, tokens, generateName });
       }
-      const duration = isAlias(originalVal.duration) ? varRef(originalVal.duration, { prefix, tokens, generateName }) : transformDuration(value.duration);
+      const duration = isAlias(originalVal.duration)
+        ? varRef(originalVal.duration, { prefix, tokens, generateName })
+        : transformDuration(value.duration);
       let delay: string | undefined = undefined;
       if (value.delay) {
-        delay = isAlias(originalVal.delay) ? varRef(originalVal.delay, { prefix, tokens, generateName }) : transformDuration(value.delay);
+        delay = isAlias(originalVal.delay)
+          ? varRef(originalVal.delay, { prefix, tokens, generateName })
+          : transformDuration(value.delay);
       }
       const timingFunction = isAlias(originalVal.timingFunction)
         ? varRef(originalVal.timingFunction as any, { prefix, tokens, generateName })

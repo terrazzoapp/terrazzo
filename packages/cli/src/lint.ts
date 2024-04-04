@@ -1,4 +1,12 @@
-import { CORE_LINT_RULES, CORE_LINT_RULES_DEFAULT_SEVERITY, lintCore, type Group, type LintRule, type ParsedToken, type ResolvedConfig } from '@cobalt-ui/core';
+import {
+  CORE_LINT_RULES,
+  CORE_LINT_RULES_DEFAULT_SEVERITY,
+  lintCore,
+  type Group,
+  type LintRule,
+  type ParsedToken,
+  type ResolvedConfig,
+} from '@cobalt-ui/core';
 import { indentLine } from '@cobalt-ui/utils';
 
 export interface LintOptions {
@@ -14,7 +22,12 @@ export interface LintResult {
   warnings?: string[];
 }
 
-export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins = false }: LintOptions): Promise<LintResult> {
+export default async function lint({
+  config,
+  tokens,
+  rawSchema,
+  warnIfNoPlugins = false,
+}: LintOptions): Promise<LintResult> {
   const errors: string[] = [];
   const warnings: string[] = [];
 
@@ -31,7 +44,11 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
       for (const rule of rules) {
         if (ruleToPlugin.has(rule.id)) {
           // eslint-disable-next-line no-console
-          console.error(`[${plugin.name}] attempted to register rule "${rule.id}" already registered by plugin ${ruleToPlugin.get(rule.id)}`);
+          console.error(
+            `[${plugin.name}] attempted to register rule "${rule.id}" already registered by plugin ${ruleToPlugin.get(
+              rule.id,
+            )}`,
+          );
           continue;
         }
         ruleToPlugin.set(rule.id, plugin.name);
@@ -42,14 +59,16 @@ export default async function lint({ config, tokens, rawSchema, warnIfNoPlugins 
   });
 
   if (warnIfNoPlugins && registeredRules.length === 0) {
-    warnings.push(`No lint plugins in config. Nothing to lint.`);
+    warnings.push('No lint plugins in config. Nothing to lint.');
   }
 
   // handle core lint rules first
   const coreLintRules: LintRule[] = [];
   const coreSeverity: Record<string, LintRule['severity']> = {};
   for (const id in CORE_LINT_RULES) {
-    const severity = config.lint.rules?.[id]?.severity ?? CORE_LINT_RULES_DEFAULT_SEVERITY[id as keyof typeof CORE_LINT_RULES_DEFAULT_SEVERITY]!;
+    const severity =
+      config.lint.rules?.[id]?.severity ??
+      CORE_LINT_RULES_DEFAULT_SEVERITY[id as keyof typeof CORE_LINT_RULES_DEFAULT_SEVERITY]!;
     coreSeverity[id] = severity;
     const rule: LintRule = { id, severity, options: config.lint.rules?.[id]?.options };
     coreLintRules.push(rule);

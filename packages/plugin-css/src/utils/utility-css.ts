@@ -7,18 +7,28 @@ export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'gap' | 'margin' | 'pad
 const ENDING_GLOB = /\.\*$/;
 const STARTING_DOT = /^\./;
 
-export default function generateUtilityCSS(groups: Record<UtilityCSSGroup, string[]>, { refs, tokens }: { refs: Record<string, string>; tokens: ParsedToken[] }): string {
+export default function generateUtilityCSS(
+  groups: Record<UtilityCSSGroup, string[]>,
+  { refs, tokens }: { refs: Record<string, string>; tokens: ParsedToken[] },
+): string {
   const output: string[] = [];
 
   const groupEntries = Object.entries(groups);
   groupEntries.sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [group, selectors] of groupEntries) {
-    const selectedTokens: { id: string; partialID: string; type: ParsedToken['$type']; value: string | Record<string, string> }[] = [];
+    const selectedTokens: {
+      id: string;
+      partialID: string;
+      type: ParsedToken['$type'];
+      value: string | Record<string, string>;
+    }[] = [];
     for (const token of tokens) {
       const globMatch = isTokenMatch(token.id, selectors);
       if (globMatch) {
-        let partialID = defaultNameGenerator(token.id.replace(globMatch.replace(ENDING_GLOB, ''), '').replace(STARTING_DOT, ''));
+        let partialID = defaultNameGenerator(
+          token.id.replace(globMatch.replace(ENDING_GLOB, ''), '').replace(STARTING_DOT, ''),
+        );
         if (!partialID) {
           partialID = getLocalID(token.id);
         }

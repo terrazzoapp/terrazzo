@@ -28,7 +28,7 @@ describe('lint', () => {
     const cwd = new URL('./fixtures/lint-builtin-rules/', import.meta.url);
     try {
       await execa('node', [cmd, 'lint'], { cwd });
-      throw new Error(`Expected to throw`);
+      throw new Error('Expected to throw');
     } catch (err) {
       expect(stripAnsi(err.message)).toMatch(`  ✘  required-children: ERROR
     Match 0: some groups missing required token "300"

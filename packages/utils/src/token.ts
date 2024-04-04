@@ -46,7 +46,7 @@ export function getLocalID(id: string): string {
     return id;
   }
   const matches = id.match(LAST_PART_RE);
-  return (matches && matches[1]) || id;
+  return matches?.[1] || id;
 }
 
 /** validate token ID */
@@ -58,7 +58,7 @@ export function invalidTokenIDError(id: string): string | undefined {
     return 'Token ID can’t be empty';
   }
   if (id.includes('{') || id.includes('}') || id.includes('#') || id.includes('..')) {
-    return `Token IDs can’t contain {, }, or #, or multiple dots in a row`;
+    return 'Token IDs can’t contain {, }, or #, or multiple dots in a row';
   }
 }
 

@@ -45,7 +45,8 @@ export function normalizeTypographyValue(value: unknown): Partial<ParsedTypograp
         break;
       }
       default: {
-        (normalized as any)[property] = typeof v === 'string' && parseFloat(v) >= 0 ? normalizeDimensionValue(v) : v;
+        (normalized as any)[property] =
+          typeof v === 'string' && Number.parseFloat(v) >= 0 ? normalizeDimensionValue(v) : v;
         break;
       }
     }

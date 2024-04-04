@@ -126,7 +126,7 @@ export default async function main() {
         hour: '2-digit',
         minute: '2-digit',
       });
-      let watch = args.includes('-w') || args.includes('--watch');
+      const watch = args.includes('-w') || args.includes('--watch');
 
       let result = await build(rawSchema, config);
 
@@ -146,7 +146,11 @@ export default async function main() {
               printErrors(result.errors);
               printWarnings(result.warnings);
             } else {
-              console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${filePath}${RESET} updated ${FG_GREEN}✔${RESET}`);
+              console.log(
+                `${DIM}${dt.format(
+                  new Date(),
+                )}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${filePath}${RESET} updated ${FG_GREEN}✔${RESET}`,
+              );
             }
           } catch (err) {
             printErrors([err.message || err]);
@@ -155,7 +159,11 @@ export default async function main() {
         const configWatcher = chokidar.watch(fileURLToPath(resolveConfig(configPath)));
         configWatcher.on('change', async (filePath) => {
           try {
-            console.log(`${DIM}${dt.format(new Date())}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`);
+            console.log(
+              `${DIM}${dt.format(
+                new Date(),
+              )}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`,
+            );
             config = await loadConfig(filePath);
             rawSchema = await loadTokens(config.tokens);
             result = await build(rawSchema, config);
@@ -167,7 +175,11 @@ export default async function main() {
         // keep process occupied
         await new Promise(() => {});
       } else {
-        console.log(`  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${result.result.tokens.length != 1 ? 's' : ''} built ${time(start)}`);
+        console.log(
+          `  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${
+            result.result.tokens.length !== 1 ? 's' : ''
+          } built ${time(start)}`,
+        );
       }
       break;
     }
@@ -177,7 +189,7 @@ export default async function main() {
         process.exit(1);
       }
       if (!flags.out) {
-        printErrors(`--out [file] is required to save bundle`);
+        printErrors('--out [file] is required to save bundle');
         process.exit(1);
       }
 
@@ -186,7 +198,8 @@ export default async function main() {
       const resolvedOut = new URL(flags.out, cwd);
       fs.mkdirSync(new URL('.', resolvedOut), { recursive: true });
 
-      const isYAML = resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
+      const isYAML =
+        resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
       fs.writeFileSync(resolvedOut, isYAML ? yaml.stringify(tokens) : JSON.stringify(tokens, undefined, 2));
       console.log(`  ${FG_GREEN}✔${RESET} Bundled ${config.tokens.length} schemas ${time(start)}`);
       break;
@@ -201,7 +214,7 @@ export default async function main() {
         process.exit(1);
       }
       if (!flags.out) {
-        printErrors(`--out [file] is required to convert`);
+        printErrors('--out [file] is required to convert');
         process.exit(1);
       }
 
@@ -354,16 +367,24 @@ async function loadTokens(tokenPaths) {
         if (filepath.host === 'figma.com' || filepath.host === 'www.figma.com') {
           const [_, fileKeyword, fileKey] = filepath.pathname.split('/');
           if (fileKeyword !== 'file' || !fileKey) {
-            printErrors(`Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filepath.href}"`);
+            printErrors(
+              `Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filepath.href}"`,
+            );
             process.exit(1);
           }
-          const headers = new Headers({ Accept: '*/*', 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0' });
+          const headers = new Headers({
+            Accept: '*/*',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:123.0) Gecko/20100101 Firefox/123.0',
+          });
           if (process.env.FIGMA_ACCESS_TOKEN) {
             headers.set('X-FIGMA-TOKEN', process.env.FIGMA_ACCESS_TOKEN);
           } else {
-            printWarnings(`FIGMA_ACCESS_TOKEN not set`);
+            printWarnings('FIGMA_ACCESS_TOKEN not set');
           }
-          const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, { method: 'GET', headers });
+          const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {
+            method: 'GET',
+            headers,
+          });
           if (res.ok) {
             const data = await res.json();
             rawTokens.push(data.meta);
@@ -376,7 +397,10 @@ async function loadTokens(tokenPaths) {
         }
 
         // otherwise, expect YAML/JSON
-        const res = await fetch(filepath, { method: 'GET', headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' } });
+        const res = await fetch(filepath, {
+          method: 'GET',
+          headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' },
+        });
         const raw = await res.text();
         // if the 1st character is '{', it’s JSON (“if it’s dumb but it works…”)
         if (isJSON(raw)) {
@@ -427,7 +451,12 @@ function merge(a, b) {
     // - this key doesn’t exist on a, or
     // - this is a token with a $value (don’t merge tokens! overwrite!), or
     // - this is a primitive value (it’s the user’s responsibility to merge these correctly)
-    if (!(k in a) || Array.isArray(b[k]) || typeof b[k] !== 'object' || (typeof b[k] === 'object' && '$value' in b[k])) {
+    if (
+      !(k in a) ||
+      Array.isArray(b[k]) ||
+      typeof b[k] !== 'object' ||
+      (typeof b[k] === 'object' && '$value' in b[k])
+    ) {
       a[k] = b[k];
       continue;
     }

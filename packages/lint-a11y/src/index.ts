@@ -1,4 +1,4 @@
-import { type Plugin, type LintNotice } from '@cobalt-ui/core';
+import type { Plugin, LintNotice } from '@cobalt-ui/core';
 import evaluateContrast, { type RuleContrastOptions } from './rules/contrast.js';
 
 export { evaluateContrast };
@@ -26,7 +26,7 @@ export default function PluginA11y(): Plugin {
         switch (rule.id) {
           case RULES.contrast: {
             if (!rule.options || !Array.isArray((rule.options as RuleContrastOptions)?.checks)) {
-              throw new Error(`options.checks must be an array`);
+              throw new Error('options.checks must be an array');
             }
 
             const violations = evaluateContrast(tokens, rule.options as RuleContrastOptions);

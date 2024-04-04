@@ -1,5 +1,5 @@
 import { isTokenMatch } from '@cobalt-ui/utils';
-import { type ParsedToken } from '../../token.js';
+import type { ParsedToken } from '../../token.js';
 
 export type RequiredModesMatch = {
   /** Glob of tokens/groups to match */
@@ -16,7 +16,7 @@ export default function ruleRequiredModes(tokens: ParsedToken[], options?: RuleR
   const notices: string[] = [];
 
   if (!options?.matches?.length) {
-    throw new Error(`Invalid config. Missing \`matches: […]\``);
+    throw new Error('Invalid config. Missing `matches: […]`');
   }
 
   // note: in many other rules, the operation can be completed in one iteration through all tokens
@@ -48,7 +48,6 @@ export default function ruleRequiredModes(tokens: ParsedToken[], options?: RuleR
 
       if (!tokensMatched) {
         notices.push(`Match "${matchI}": no tokens matched ${JSON.stringify(match)}`);
-        continue;
       }
     }
   }

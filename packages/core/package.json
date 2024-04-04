@@ -37,7 +37,7 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js",
     "dev": "pnpm run --parallel \"/^dev:.*/\"",
-    "lint": "eslint \"{src,test}/**/*\"",
+    "lint": "biome check .",
     "dev:ts": "tsc -p tsconfig.build.json --watch",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",

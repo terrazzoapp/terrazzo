@@ -9,7 +9,10 @@ export interface Options {
   /** (optional) module format to use (to match your Tailwind config) */
   format?: 'esm' | 'cjs';
   /** (optional) Transform token value */
-  transform?: <T extends ParsedToken>(token: T, metadata: Record<string, unknown>) => string | number | string[] | undefined;
+  transform?: <T extends ParsedToken>(
+    token: T,
+    metadata: Record<string, unknown>,
+  ) => string | number | string[] | undefined;
   /** @see https://tailwindcss.com/docs/theme */
   tailwind: {
     theme: Config['theme'];
@@ -26,10 +29,14 @@ const PREFIX = `/**
 
 export default function pluginTailwind(options: Options): Plugin {
   if (!options?.tailwind?.theme) {
-    throw new Error(`options.tailwind.theme is required`);
+    throw new Error('options.tailwind.theme is required');
   }
   if (Array.isArray(typeof options.tailwind.theme) || typeof options.tailwind.theme !== 'object') {
-    throw new Error(`options.tailwind.theme: expected object, received ${Array.isArray(options.tailwind.theme) ? 'array' : typeof options.tailwind.theme}`);
+    throw new Error(
+      `options.tailwind.theme: expected object, received ${
+        Array.isArray(options.tailwind.theme) ? 'array' : typeof options.tailwind.theme
+      }`,
+    );
   }
 
   return {
@@ -42,7 +49,9 @@ export default function pluginTailwind(options: Options): Plugin {
           return '';
         }
         if (typeof node === 'function') {
-          throw new Error(`Can’t use \`({ theme }) => theme(…)\` syntax inside @cobalt-ui/plugin-tailwind. Specify aliases in your Tailwind config instead.`);
+          throw new Error(
+            'Can’t use `({ theme }) => theme(…)` syntax inside @cobalt-ui/plugin-tailwind. Specify aliases in your Tailwind config instead.',
+          );
         }
         if (typeof node === 'string') {
           const token = tokens.find((t) => t.id === node);
@@ -84,7 +93,9 @@ export default function pluginTailwind(options: Options): Plugin {
       return [
         {
           filename: options?.filename ?? './tailwind-tokens.js',
-          contents: `${PREFIX}${options?.format === 'cjs' ? `module.exports = ` : `export default `}${walk(options.tailwind.theme)};
+          contents: `${PREFIX}${options?.format === 'cjs' ? 'module.exports = ' : 'export default '}${walk(
+            options.tailwind.theme,
+          )};
 `,
         },
       ];

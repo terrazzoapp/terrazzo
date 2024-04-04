@@ -18,7 +18,12 @@ import { normalizeStrokeStyleValue } from './tokens/stroke-style.js';
 import { normalizeTransitionValue } from './tokens/transition.js';
 import { normalizeTypographyValue } from './tokens/typography.js';
 import { convertTokensStudioFormat, isTokensStudioFormat } from './tokens-studio.js';
-import { convertFigmaVariablesFormat, isFigmaVariablesFormat, type FigmaParseOptions, type FigmaVariableManifest } from './figma.js';
+import {
+  convertFigmaVariablesFormat,
+  isFigmaVariablesFormat,
+  type FigmaParseOptions,
+  type FigmaVariableManifest,
+} from './figma.js';
 
 export interface ParseResult {
   errors?: string[];
@@ -90,7 +95,9 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   }
 
   if (!tokensObj || typeof tokensObj !== 'object' || Array.isArray(tokensObj)) {
-    errors.push(`Invalid schema. Expected JSON or YAML, received "${Array.isArray(tokensObj) ? 'Array' : typeof tokensObj}"`);
+    errors.push(
+      `Invalid schema. Expected JSON or YAML, received "${Array.isArray(tokensObj) ? 'Array' : typeof tokensObj}"`,
+    );
     result.errors = errors;
     return result;
   }
@@ -115,7 +122,11 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
 
   // 1. collect tokens
   const tokens: Record<string, ParsedToken> = {};
-  function walk(node: TokenOrGroup, chain: string[] = [], group: InheritedGroup = { $extensions: { requiredModes: [] } }): void {
+  function walk(
+    node: TokenOrGroup,
+    chain: string[] = [],
+    group: InheritedGroup = { $extensions: { requiredModes: [] } },
+  ): void {
     if (!node || !isObj(node)) {
       return;
     }
@@ -244,7 +255,7 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   for (const id in tokens) {
     const token = tokens[id]!;
     values[token.id] = token.$value;
-    if (token.$extensions && token.$extensions.mode) {
+    if (token.$extensions?.mode) {
       for (const k in token.$extensions.mode || {}) {
         values[`${token.id}#${k}`] = token.$extensions.mode[k];
       }
@@ -331,7 +342,9 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
         case 'font' as 'fontFamily': // @deprecated (but keep support for now)
         case 'fontFamily': {
           if ((token.$type as any) === 'font') {
-            warnings.push(`${FG_YELLOW}@cobalt-ui/core${RESET} $type: "font" is deprecated. Please use "fontFamily" instead.`);
+            warnings.push(
+              `${FG_YELLOW}@cobalt-ui/core${RESET} $type: "font" is deprecated. Please use "fontFamily" instead.`,
+            );
           }
           tokens[id]!.$value = normalizeFontFamilyValue(values[id]);
           normalizeModes(id, (v) => normalizeFontFamilyValue(v));
@@ -438,7 +451,7 @@ export function findAliases(input: string): string[] {
     switch (input[n]) {
       case '\\': {
         // if '\{' or '\}' encountered, skip
-        if (input[n + 1] == '{' || input[n + 1] == '}') {
+        if (input[n + 1] === '{' || input[n + 1] === '}') {
           n += 1;
         }
         break;

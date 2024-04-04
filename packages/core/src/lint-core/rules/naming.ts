@@ -1,9 +1,15 @@
 import { camelCase, kebabCase, pascalCase, snakeCase } from 'scule';
-import { type ParsedToken } from '../../token.js';
+import type { ParsedToken } from '../../token.js';
 
 export interface RuleNamingOptions {
   /** Specify format, or custom naming validator */
-  format: 'kebab-case' | 'camelCase' | 'PascalCase' | 'snake_case' | 'SCREAMING_SNAKE_CASE' | ((tokenID: string) => string | undefined);
+  format:
+    | 'kebab-case'
+    | 'camelCase'
+    | 'PascalCase'
+    | 'snake_case'
+    | 'SCREAMING_SNAKE_CASE'
+    | ((tokenID: string) => string | undefined);
   /** (optional) Token IDs to ignore. Supports globs (`*`). */
   ignore?: string[];
 }

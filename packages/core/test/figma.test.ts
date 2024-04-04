@@ -1,6 +1,6 @@
 import { rgb } from 'culori';
 import { describe, it, expect } from 'vitest';
-import { type FigmaColor, type FigmaVariableManifest } from '../src/parse/figma.js';
+import type { FigmaColor, FigmaVariableManifest } from '../src/parse/figma.js';
 import { parse } from '../src/parse/index.js';
 
 function hexToRgb(hex: string): FigmaColor {
@@ -184,7 +184,10 @@ const TOKENS: FigmaVariableManifest = {
       name: 'color/ui/bg',
       description: '',
       resolvedType: 'COLOR',
-      valuesByMode: { lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' }, darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' } },
+      valuesByMode: {
+        lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' },
+        darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray1ID' },
+      },
       remote: false,
       hiddenFromPublishing: false,
       variableCollectionId: 'defaultCollectionID',
@@ -195,7 +198,10 @@ const TOKENS: FigmaVariableManifest = {
       name: 'color/ui/text',
       description: '',
       resolvedType: 'COLOR',
-      valuesByMode: { lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' }, darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' } },
+      valuesByMode: {
+        lightModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' },
+        darkModeID: { type: 'VARIABLE_ALIAS', id: 'colorGray12ID' },
+      },
       remote: false,
       hiddenFromPublishing: false,
       variableCollectionId: 'defaultCollectionID',

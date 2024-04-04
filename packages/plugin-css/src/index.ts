@@ -50,11 +50,15 @@ export interface Options {
 
 export default function pluginCSS(options?: Options): Plugin {
   let config: ResolvedConfig;
-  let filename = options?.filename || './tokens.css';
+  const filename = options?.filename || './tokens.css';
   const prefix = options?.prefix || '';
   const generateName = makeNameGenerator(options?.generateName, prefix);
 
-  function makeVars({ tokens, indentLv = 0, root = false }: { tokens: Record<string, string>; indentLv: number; root: boolean }): string[] {
+  function makeVars({
+    tokens,
+    indentLv = 0,
+    root = false,
+  }: { tokens: Record<string, string>; indentLv: number; root: boolean }): string[] {
     const output: string[] = [];
     if (root) {
       output.push(indent(':root {', indentLv));
@@ -101,7 +105,7 @@ export default function pluginCSS(options?: Options): Plugin {
 
   return {
     name: '@cobalt-ui/plugin-css',
-    config(c): void {
+    config(c) {
       config = c;
     },
     async build({ tokens, metadata }): Promise<BuildResult[]> {
@@ -138,7 +142,7 @@ export default function pluginCSS(options?: Options): Plugin {
             break;
           }
         }
-        if (token.$extensions && token.$extensions.mode && options?.modeSelectors) {
+        if (token.$extensions?.mode && options?.modeSelectors) {
           const modeSelectors: ModeSelector[] = [];
 
           if (Array.isArray(options.modeSelectors)) {
@@ -151,7 +155,10 @@ export default function pluginCSS(options?: Options): Plugin {
               if (!modeSelector.mode) {
                 throw new Error(`modeSelectors[${i}] missing required "mode"}`);
               }
-              if (modeSelector.tokens && (!Array.isArray(modeSelector.tokens) || modeSelector.tokens.some((s) => typeof s !== 'string'))) {
+              if (
+                modeSelector.tokens &&
+                (!Array.isArray(modeSelector.tokens) || modeSelector.tokens.some((s) => typeof s !== 'string'))
+              ) {
                 throw new Error(`modeSelectors[${i}] tokens must be an array of strings`);
               }
               if (!Array.isArray(modeSelector.selectors) || modeSelector.selectors.some((s) => typeof s !== 'string')) {
@@ -165,12 +172,19 @@ export default function pluginCSS(options?: Options): Plugin {
             for (const modeID in options.modeSelectors) {
               const selector = options.modeSelectors[modeID]!;
               const [groupRoot, modeName] = parseLegacyModeSelector(modeID);
-              modeSelectors.push({ mode: modeName, tokens: groupRoot ? [`${groupRoot}*`] : undefined, selectors: Array.isArray(selector) ? selector : [selector] });
+              modeSelectors.push({
+                mode: modeName,
+                tokens: groupRoot ? [`${groupRoot}*`] : undefined,
+                selectors: Array.isArray(selector) ? selector : [selector],
+              });
             }
           }
 
           for (const modeSelector of modeSelectors) {
-            if (!token.$extensions.mode[modeSelector.mode] || (modeSelector.tokens && !isTokenMatch(token.id, modeSelector.tokens))) {
+            if (
+              !token.$extensions.mode[modeSelector.mode] ||
+              (modeSelector.tokens && !isTokenMatch(token.id, modeSelector.tokens))
+            ) {
               continue;
             }
 
@@ -181,9 +195,18 @@ export default function pluginCSS(options?: Options): Plugin {
               if (!modeVals[selector]) {
                 modeVals[selector] = {};
               }
-              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(token, modeSelector.mode);
+              let modeVal: ReturnType<typeof defaultTransformer> | undefined | null = await options?.transform?.(
+                token,
+                modeSelector.mode,
+              );
               if (modeVal === undefined || modeVal === null) {
-                modeVal = defaultTransformer(token, { colorFormat, generateName, mode: modeSelector.mode, prefix, tokens });
+                modeVal = defaultTransformer(token, {
+                  colorFormat,
+                  generateName,
+                  mode: modeSelector.mode,
+                  prefix,
+                  tokens,
+                });
               }
               switch (token.$type) {
                 case 'link': {
@@ -195,7 +218,9 @@ export default function pluginCSS(options?: Options): Plugin {
                 }
                 case 'typography': {
                   for (const k in modeVal as Record<string, string>) {
-                    modeVals[selector]![generateName(`${token.id}-${k}`, token)] = (modeVal as Record<string, string>)[k];
+                    modeVals[selector]![generateName(`${token.id}-${k}`, token)] = (modeVal as Record<string, string>)[
+                      k
+                    ];
                   }
                   break;
                 }
@@ -210,7 +235,7 @@ export default function pluginCSS(options?: Options): Plugin {
       }
 
       // :root vars
-      let code: string[] = [];
+      const code: string[] = [];
       code.push('/**');
       code.push(` * ${metadata.name || 'Design Tokens'}`);
       code.push(' * Autogenerated from tokens.json.');
@@ -241,10 +266,12 @@ export default function pluginCSS(options?: Options): Plugin {
       if (
         options?.p3 !== false &&
         (colorFormat === 'hex' || colorFormat === 'rgb' || colorFormat === 'hsl' || colorFormat === 'hwb') && // only transform for the smaller gamuts
-        tokens.some((t) => t.$type === 'color' || t.$type === 'border' || t.$type === 'gradient' || t.$type === 'shadow')
+        tokens.some(
+          (t) => t.$type === 'color' || t.$type === 'border' || t.$type === 'gradient' || t.$type === 'shadow',
+        )
       ) {
         code.push('');
-        code.push(indent(`@supports (color: color(display-p3 1 1 1)) {`, 0)); // note: @media (color-gamut: p3) is problematic in most browsers
+        code.push(indent('@supports (color: color(display-p3 1 1 1)) {', 0)); // note: @media (color-gamut: p3) is problematic in most browsers
         code.push(...makeP3(makeVars({ tokens: tokenVals, indentLv: 1, root: true })));
         for (const selector of selectors) {
           const wrapper = selector.trim().replace(SELECTOR_BRACKET_RE, '');

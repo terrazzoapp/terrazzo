@@ -1,6 +1,6 @@
 import { isTokenMatch } from '@cobalt-ui/utils';
 import { parse } from 'culori';
-import { type ParsedToken } from '../../../token.js';
+import type { ParsedToken } from '../../../token.js';
 
 export type ColorFormat =
   | 'a98-rgb'
@@ -21,7 +21,10 @@ export type ColorFormat =
   | 'xyz50'
   | 'xyz65';
 
-export const CULORI_MODE_TO_COLOR_FORMAT: Record<'a98' | 'lrgb' | 'rgb' | 'p3' | 'prophoto' | 'xyz50' | 'xyz65', ColorFormat> = {
+export const CULORI_MODE_TO_COLOR_FORMAT: Record<
+  'a98' | 'lrgb' | 'rgb' | 'p3' | 'prophoto' | 'xyz50' | 'xyz65',
+  ColorFormat
+> = {
   a98: 'a98-rgb',
   lrgb: 'srgb-linear',
   p3: 'display-p3',

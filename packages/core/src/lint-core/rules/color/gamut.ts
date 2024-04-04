@@ -1,5 +1,5 @@
 import { type Color, clampChroma, parse } from 'culori';
-import { type ParsedToken } from '../../../token.js';
+import type { ParsedToken } from '../../../token.js';
 
 export interface RuleColorGamutOptions {
   /** Gamut to constrain color tokens to */

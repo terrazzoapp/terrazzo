@@ -210,7 +210,11 @@ describe('rules', () => {
           tokens: {
             typography: {
               size: {
-                body: { $type: 'dimension', $value: '16px', $extensions: { mode: { mobile: '16px', desktop: '16px' } } },
+                body: {
+                  $type: 'dimension',
+                  $value: '16px',
+                  $extensions: { mode: { mobile: '16px', desktop: '16px' } },
+                },
               },
             },
           },
@@ -360,7 +364,11 @@ describe('rules', () => {
 
   test.each(tests)('%s', (_, { given, want }) => {
     const result = parse(given.tokens);
-    const notices = lintCore({ tokens: result.result.tokens, rawSchema: given.tokens, rules: [{ id: given.rule, severity: 'error', options: given.options }] });
+    const notices = lintCore({
+      tokens: result.result.tokens,
+      rawSchema: given.tokens,
+      rules: [{ id: given.rule, severity: 'error', options: given.options }],
+    });
     if (notices?.length) {
       if (want.success || !want.errors) {
         throw new Error(`Expected no errors; received ${notices.length}`);

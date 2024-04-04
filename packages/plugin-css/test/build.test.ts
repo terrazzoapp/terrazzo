@@ -1,5 +1,5 @@
+import type { Group, ParsedToken } from '@cobalt-ui/core';
 import build from '@cobalt-ui/cli/dist/build.js';
-import { type Group, type ParsedToken } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { URL, fileURLToPath } from 'node:url';
 import * as culori from 'culori';
@@ -23,7 +23,11 @@ describe('@cobalt-ui/plugin-css', () => {
             { mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]'] },
             { mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]'] },
             { mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]'] },
-            { mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]'] },
+            {
+              mode: 'light-high-contrast',
+              tokens: ['color.*'],
+              selectors: ['[data-color-theme="light-high-contrast"]'],
+            },
             { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
             { mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]'] },
             { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
@@ -36,11 +40,13 @@ describe('@cobalt-ui/plugin-css', () => {
       tokens: [],
     });
 
-    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want.css', cwd)),
+    );
   });
 
   test('doesn’t generate empty media queries', async () => {
-    const cwd = new URL(`./no-empty-modes/`, import.meta.url);
+    const cwd = new URL('./no-empty-modes/', import.meta.url);
     const tokens = yaml.parse(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
     await build(tokens as Group, {
       outDir: cwd,
@@ -48,8 +54,16 @@ describe('@cobalt-ui/plugin-css', () => {
         pluginCSS({
           filename: 'actual.css',
           modeSelectors: [
-            { mode: 'light', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'] },
-            { mode: 'dark', tokens: ['color.*'], selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'] },
+            {
+              mode: 'light',
+              tokens: ['color.*'],
+              selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'],
+            },
+            {
+              mode: 'dark',
+              tokens: ['color.*'],
+              selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'],
+            },
           ],
         }),
       ],
@@ -57,11 +71,13 @@ describe('@cobalt-ui/plugin-css', () => {
       color: {},
       tokens: [],
     });
-    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want.css', cwd)),
+    );
   });
 
   test('handles whitespace and camelCases names', async () => {
-    const cwd = new URL(`./whitespace-and-casing/`, import.meta.url);
+    const cwd = new URL('./whitespace-and-casing/', import.meta.url);
     const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
     await build(tokens, {
       outDir: cwd,
@@ -70,12 +86,14 @@ describe('@cobalt-ui/plugin-css', () => {
       color: {},
       tokens: [],
     });
-    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want.css', cwd)),
+    );
   });
 
   describe('options', () => {
     test('colorFormat', async () => {
-      const cwd = new URL(`./color-format/`, import.meta.url);
+      const cwd = new URL('./color-format/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
@@ -89,9 +107,17 @@ describe('@cobalt-ui/plugin-css', () => {
               { mode: 'light', tokens: ['color.*'], selectors: ['[data-color-theme="light"]'] },
               { mode: 'dark', tokens: ['color.*'], selectors: ['[data-color-theme="dark"]'] },
               { mode: 'light-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="light-colorblind"]'] },
-              { mode: 'light-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="light-high-contrast"]'] },
+              {
+                mode: 'light-high-contrast',
+                tokens: ['color.*'],
+                selectors: ['[data-color-theme="light-high-contrast"]'],
+              },
               { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
-              { mode: 'dark-high-contrast', tokens: ['color.*'], selectors: ['[data-color-theme="dark-high-contrast"]'] },
+              {
+                mode: 'dark-high-contrast',
+                tokens: ['color.*'],
+                selectors: ['[data-color-theme="dark-high-contrast"]'],
+              },
               { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
             ],
           }),
@@ -100,11 +126,13 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
 
     test('transform', async () => {
-      const cwd = new URL(`./transform/`, import.meta.url);
+      const cwd = new URL('./transform/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
@@ -122,11 +150,13 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
 
     test('p3', async () => {
-      const cwd = new URL(`./p3/`, import.meta.url);
+      const cwd = new URL('./p3/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
@@ -140,7 +170,9 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
 
     test('generateName', async () => {
@@ -154,7 +186,7 @@ describe('@cobalt-ui/plugin-css', () => {
         return defaultNameGenerator(variableId);
       }
 
-      const cwd = new URL(`./generate-name/`, import.meta.url);
+      const cwd = new URL('./generate-name/', import.meta.url);
       const tokens = JSON.parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'));
       await build(tokens, {
         outDir: cwd,
@@ -163,7 +195,9 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
 
     test('utility', async () => {
@@ -190,11 +224,13 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
 
     test('tailwind alpha value', async () => {
-      const cwd = new URL(`./color-transform-tw-alpha/`, import.meta.url);
+      const cwd = new URL('./color-transform-tw-alpha/', import.meta.url);
       const tokens = yaml.parse(fs.readFileSync(new URL('./tokens.yaml', cwd), 'utf8'));
       await build(tokens as Group, {
         outDir: cwd,
@@ -217,7 +253,9 @@ describe('@cobalt-ui/plugin-css', () => {
         color: {},
         tokens: [],
       });
-      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
   });
 });

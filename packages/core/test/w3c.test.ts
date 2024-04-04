@@ -231,7 +231,9 @@ describe('8. Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.family.heading')?.$value).toEqual(json.typography.family.base.$value);
+      expect(tokens.find((t) => t.id === 'typography.family.heading')?.$value).toEqual(
+        json.typography.family.base.$value,
+      );
     });
   });
 
@@ -324,7 +326,10 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'stroke')?.$value).toEqual({ dashArray: ['10px', '0.25rem'], lineCap: 'butt' });
+      expect(tokens.find((t) => t.id === 'stroke')?.$value).toEqual({
+        dashArray: ['10px', '0.25rem'],
+        lineCap: 'butt',
+      });
     });
 
     test('validates', () => {
@@ -345,7 +350,11 @@ describe('9. Composite Type', () => {
         },
       };
       const tokens = getTokens(json, DEFAULT_PARSE_OPTIONS);
-      expect(tokens.find((t) => t.id === 'heavy')?.$value).to.deep.equal({ color: '#363636', width: '3px', style: 'solid' });
+      expect(tokens.find((t) => t.id === 'heavy')?.$value).to.deep.equal({
+        color: '#363636',
+        width: '3px',
+        style: 'solid',
+      });
     });
 
     test('validates', () => {
@@ -482,7 +491,11 @@ describe('9. Composite Type', () => {
 
     test('alias: color', () => {
       const json = {
-        color: { blue: { $type: 'color', $value: '#0000ff' }, green: { $type: 'color', $value: '#00ff00' }, yellow: { $type: 'color', $value: '#ffc000' } },
+        color: {
+          blue: { $type: 'color', $value: '#0000ff' },
+          green: { $type: 'color', $value: '#00ff00' },
+          yellow: { $type: 'color', $value: '#ffc000' },
+        },
         gradient: {
           'b-g': {
             $type: 'gradient',
@@ -541,12 +554,19 @@ describe('9. Composite Type', () => {
         typography: {
           pageTitle: {
             $type: 'typography',
-            $value: { fontFamily: ['Helvetica', 'system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25 },
+            $value: {
+              fontFamily: ['Helvetica', 'system-ui'],
+              fontSize: '64px',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.25,
+            },
           },
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.pageTitle')?.$value).to.deep.equal(json.typography['pageTitle'].$value);
+      expect(tokens.find((t) => t.id === 'typography.pageTitle')?.$value).to.deep.equal(
+        json.typography.pageTitle.$value,
+      );
     });
 
     test('fontWeight: string', () => {
@@ -594,13 +614,18 @@ describe('9. Composite Type', () => {
         typography: {
           pageTitle: {
             $type: 'typography',
-            $value: { fontFamily: ['Helvetica', '-system-ui'], fontSize: '64px', letterSpacing: '-0.01em', lineHeight: 1.25 },
+            $value: {
+              fontFamily: ['Helvetica', '-system-ui'],
+              fontSize: '64px',
+              letterSpacing: '-0.01em',
+              lineHeight: 1.25,
+            },
           },
           lgTitle: { $type: 'typography', $value: '{typography.pageTitle}' },
         },
       };
       const tokens = getTokens(json);
-      expect(tokens.find((t) => t.id === 'typography.lgTitle')?.$value).to.deep.equal(json.typography['pageTitle'].$value);
+      expect(tokens.find((t) => t.id === 'typography.lgTitle')?.$value).to.deep.equal(json.typography.pageTitle.$value);
     });
   });
 });

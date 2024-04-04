@@ -42,8 +42,8 @@ export interface Options {
 
 export default function pluginSass(options?: Options): Plugin {
   let config: ResolvedConfig;
-  let ext = options?.indentedSyntax ? '.sass' : '.scss';
-  let filename = `${options?.filename?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
+  const ext = options?.indentedSyntax ? '.sass' : '.scss';
+  const filename = `${options?.filename?.replace(/(\.(sass|scss))?$/, '') || 'index'}${ext}`;
 
   const colorFormat = options?.colorFormat ?? 'hex';
 
@@ -110,7 +110,7 @@ ${cbClose}`
       }
     },
     async build({ tokens, metadata, rawSchema }): Promise<BuildResult[]> {
-      let output: string[] = [];
+      const output: string[] = [];
       const typographyTokens: ParsedTypographyToken[] = [];
       const prefix = options?.pluginCSS?.prefix || '';
       const generateName = _INTERNAL_makeNameGenerator(options?.pluginCSS?.generateName, prefix);
@@ -132,8 +132,13 @@ ${cbClose}`
         if (token.$type === 'typography') {
           typographyTokens.push(token);
           output.push(indent(`"${token.id}": (`, 1));
-          output.push(indent(`"${VAR_ERROR}": "This is a typography mixin. Use \`@include typography(\\"${token.id}\\")\` instead.",`, 2));
-          output.push(indent(`),`, 1));
+          output.push(
+            indent(
+              `"${VAR_ERROR}": "This is a typography mixin. Use \`@include typography(\\"${token.id}\\")\` instead.",`,
+              2,
+            ),
+          );
+          output.push(indent('),', 1));
           continue;
         }
 
@@ -154,7 +159,7 @@ ${cbClose}`
         output.push(indent(`${DEFAULT_KEY}: (${value}),`, 2));
 
         // modes
-        for (const modeName in (token.$extensions && token.$extensions.mode) || {}) {
+        for (const modeName in token.$extensions?.mode || {}) {
           let modeValue: string | number | undefined | null;
           if (cssPlugin) {
             const rawValue = token._original.$extensions!.mode![modeName] as ParsedToken['$value'];
@@ -190,13 +195,15 @@ ${cbClose}`
         for (const [k, value] of defaultProperties) {
           const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
           if (cssPlugin) {
-            output.push(indent(`"${property}": (${varRef(token.id, { prefix, generateName, suffix: property, tokens })}),`, 3));
+            output.push(
+              indent(`"${property}": (${varRef(token.id, { prefix, generateName, suffix: property, tokens })}),`, 3),
+            );
           } else {
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
         }
-        output.push(indent(`),`, 2));
-        for (const mode in (token.$extensions && token.$extensions.mode) || {}) {
+        output.push(indent('),', 2));
+        for (const mode in token.$extensions?.mode || {}) {
           const modeValue = token.$extensions?.mode?.[mode] || '';
           output.push(indent(`"${mode}": (`, 2));
           const modeProperties = Object.entries(modeValue);
@@ -205,9 +212,9 @@ ${cbClose}`
             const property = k.replace(CAMELCASE_RE, '$1-$2').toLocaleLowerCase();
             output.push(indent(`"${property}": (${Array.isArray(value) ? formatFontFamilyNames(value) : value}),`, 3));
           }
-          output.push(indent(`),`, 2));
+          output.push(indent('),', 2));
         }
-        output.push(indent(`),`, 1));
+        output.push(indent('),', 1));
       }
       output.push(`)${semi}`);
       output.push('');
@@ -232,7 +239,10 @@ ${cbClose}`
   };
 }
 
-export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { colorFormat: NonNullable<PluginCSSOptions['colorFormat']>; mode?: string }): string | number {
+export function defaultTransformer(
+  token: ParsedToken,
+  { colorFormat, mode }: { colorFormat: NonNullable<PluginCSSOptions['colorFormat']>; mode?: string },
+): string | number {
   switch (token.$type) {
     case 'color': {
       const { value, originalVal } = getMode(token, mode);
@@ -275,7 +285,10 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
     case 'border': {
       const { value, originalVal } = getMode(token, mode);
       const width = transformDimension(value.width);
-      const color = transformColor(typeof originalVal === 'string' || isAlias(originalVal.color) ? value.color : originalVal.color, colorFormat);
+      const color = transformColor(
+        typeof originalVal === 'string' || isAlias(originalVal.color) ? value.color : originalVal.color,
+        colorFormat,
+      );
       const style = transformStrokeStyle(value.style);
       return `${width} ${style} ${color}`;
     }
@@ -296,7 +309,10 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
           const offsetY = transformDimension(shadow.offsetY);
           const blur = transformDimension(shadow.blur);
           const spread = transformDimension(shadow.spread);
-          const color = transformColor(typeof origShadow === 'string' || isAlias(origShadow.color) ? shadow.color : origShadow.color, colorFormat);
+          const color = transformColor(
+            typeof origShadow === 'string' || isAlias(origShadow.color) ? shadow.color : origShadow.color,
+            colorFormat,
+          );
           return `${shadow.inset ? 'inset ' : ''}${offsetX} ${offsetY} ${blur} ${spread} ${color}`;
         })
         .join(', ');
@@ -306,7 +322,10 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
       return value
         .map((gradient, i) => {
           const origGradient = originalVal[i]!;
-          const color = transformColor(typeof origGradient === 'string' || isAlias(origGradient.color) ? gradient.color : origGradient.color, colorFormat);
+          const color = transformColor(
+            typeof origGradient === 'string' || isAlias(origGradient.color) ? gradient.color : origGradient.color,
+            colorFormat,
+          );
           const stop = `${100 * gradient.position}%`;
           return `${color} ${stop}`;
         })
@@ -325,7 +344,10 @@ export function defaultTransformer(token: ParsedToken, { colorFormat, mode }: { 
   }
 }
 
-function getMode<T extends { id: string; $value: any; $extensions?: any; _original: any }>(token: T, mode?: string): { value: T['$value']; originalVal: T['$value'] | string } {
+function getMode<T extends { id: string; $value: any; $extensions?: any; _original: any }>(
+  token: T,
+  mode?: string,
+): { value: T['$value']; originalVal: T['$value'] | string } {
   if (mode) {
     if (!token.$extensions?.mode || !token.$extensions.mode[mode]) {
       throw new Error(`Token ${token.id} missing "$extensions.mode.${mode}"`);

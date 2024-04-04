@@ -1,5 +1,5 @@
 import build from '@cobalt-ui/cli/dist/build.js';
-import { type Group, type ParseResult } from '@cobalt-ui/core';
+import type { Group, ParseResult } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { describe, expect, test } from 'vitest';
 import { execa } from 'execa';
@@ -110,7 +110,9 @@ describe('a11y plugin', () => {
               ],
             },
             want: {
-              errors: ['[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1'],
+              errors: [
+                '[@cobalt-ui/lint-a11y] Error a11y/contrast: WCAG 2: Token pair #606060, #101010 (mode: dark) failed contrast. Expected 7:1 ("AAA"), received 3.03:1',
+              ],
             },
           },
         ],

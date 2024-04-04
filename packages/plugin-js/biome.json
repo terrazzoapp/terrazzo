@@ -1,0 +1,15 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.6.4/schema.json",
+  "extends": ["../../biome.json"],
+  "files": {
+    "include": ["./src/", "./test/"],
+    "ignore": [
+      "./test/fixtures/**/*.js",
+      "./test/fixtures/**/*.json",
+      "./test/fixtures/**/*.d.ts",
+      "./test/**/actual.*",
+      "./test/**/want.*",
+      "./test/types/"
+    ]
+  }
+}

@@ -16,7 +16,11 @@ const FILE_KEY = 'OkPWSU0cusQTumCNno7dm8';
 describe('Figma import', () => {
   it.skipIf(os.platform() === 'win32')('parses valid syntax correctly', async () => {
     const cwd = new URL('./fixtures/figma-success/', import.meta.url);
-    const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json(FIGMA_VARIABLE_API_RESPONSE)));
+    const server = setupServer(
+      http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () =>
+        HttpResponse.json(FIGMA_VARIABLE_API_RESPONSE),
+      ),
+    );
     server.listen();
 
     // run CLI
@@ -25,7 +29,9 @@ describe('Figma import', () => {
     const mod = await import('../bin/cli.js');
     await mod.default();
 
-    expect(fs.readFileSync(new URL('./given.json', cwd), 'utf8')).toMatchFileSnapshot(fileURLToPath(new URL('./want.json', cwd)));
+    expect(fs.readFileSync(new URL('./given.json', cwd), 'utf8')).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want.json', cwd)),
+    );
 
     // clean up
     server.close();
@@ -33,7 +39,11 @@ describe('Figma import', () => {
 
   it.skipIf(os.platform() === 'win32')('throws errors on invalid response', async () => {
     const cwd = new URL('./fixtures/figma-error/', import.meta.url);
-    const server = setupServer(http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () => HttpResponse.json({ status: 401, error: true }, { status: 401 })));
+    const server = setupServer(
+      http.get(`https://api.figma.com/v1/files/${FILE_KEY}/variables/local`, () =>
+        HttpResponse.json({ status: 401, error: true }, { status: 401 }),
+      ),
+    );
     server.listen();
 
     // run CLI
