@@ -1,8 +1,14 @@
-import { type AnyNode, parse as parseJSON, traverse, type DocumentNode } from '@humanwhocodes/momoa';
+import {
+  type AnyNode,
+  parse as parseJSON,
+  traverse,
+  type DocumentNode,
+  type ParseOptions as MomoaParseOptions,
+} from '@humanwhocodes/momoa';
 import type { Config } from '../config.js';
 import lintRunner from '../lint/index.js';
 import coreLintPlugin from '../lint/plugin-core/index.js';
-import { Logger } from '../logger.js';
+import Logger from '../logger.js';
 import type { TokenNormalized } from '../types.js';
 import parseYAML from './yaml.js';
 import validate from './validate.js';
@@ -28,7 +34,9 @@ export default async function parse(
   if (typeof input === 'string' && !maybeJSONString(input)) {
     ast = parseYAML(input, { logger }); // if string, but not JSON, attempt YAML
   } else {
-    ast = parseJSON(typeof input === 'string' ? input : JSON.stringify(input, undefined, 2)); // everything else: assert it’s JSON-serializable
+    ast = parseJSON(typeof input === 'string' ? input : JSON.stringify(input, undefined, 2), {
+      mode: 'jsonc',
+    } as MomoaParseOptions); // everything else: assert it’s JSON-serializable
   }
   logger.debug({
     group: 'core',

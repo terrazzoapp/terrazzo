@@ -177,7 +177,16 @@ export interface StrokeStyleToken extends TokenCore {
   $value: StrokeStyleValue | AliasValue;
 }
 
-export type StrokeStyleValue = string | StrokeStyleValueExpanded;
+export type StrokeStyleValue =
+  | 'solid'
+  | 'dashed'
+  | 'dotted'
+  | 'double'
+  | 'groove'
+  | 'ridge'
+  | 'outset'
+  | 'inset'
+  | StrokeStyleValueExpanded;
 
 export interface StrokeStyleValueExpanded {
   dashArray: DimensionValue[];

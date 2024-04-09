@@ -1,6 +1,6 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
 import { Composer, Parser } from 'yaml';
-import type { Logger } from '../logger.js';
+import type Logger from '../logger.js';
 
 export interface ParseYAMLOptions {
   logger: Logger;

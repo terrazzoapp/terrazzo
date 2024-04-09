@@ -1,7 +1,7 @@
 import type { traverse } from '@humanwhocodes/momoa';
 import { merge } from 'merge-anything';
 import type { LintRuleShorthand, LintRuleLonghand, LintNotice, LintRule } from './lint/index.js';
-import { Logger } from './logger.js';
+import Logger from './logger.js';
 
 const TRAILING_SLASH_RE = /\/*$/;
 
