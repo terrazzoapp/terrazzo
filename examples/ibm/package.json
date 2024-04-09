@@ -11,9 +11,9 @@
     "@carbon/colors": "^11.17.1",
     "@carbon/icons": "^11.22.1",
     "@carbon/type": "^11.20.1",
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/plugin-css": "workspace:*",
-    "@cobalt-ui/plugin-js": "workspace:*",
-    "@cobalt-ui/plugin-sass": "workspace:*"
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/plugin-css": "workspace:*",
+    "@terrazzo/plugin-js": "workspace:*",
+    "@terrazzo/plugin-sass": "workspace:*"
   }
 }

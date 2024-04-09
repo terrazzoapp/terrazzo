@@ -1,6 +1,7 @@
 {
-  "name": "@terrazzo/plugin-tailwind",
-  "version": "0.0.3",
+  "name": "@terrazzo/token-tools",
+  "description": "Various utilities for token types",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -9,37 +10,36 @@
     "design tokens",
     "design tokens community group",
     "design tokens format module",
-    "design system",
     "dtcg",
-    "w3c",
-    "tailwind",
-    "css"
+    "cli",
+    "w3c design tokens",
+    "design system",
+    "typescript",
+    "sass",
+    "css",
+    "style tokens",
+    "style system",
+    "linting",
+    "lint"
   ],
+  "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
-    "dev": "tsc  -p tsconfig.build.json -w",
+    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js",
+    "dev": "pnpm run --parallel \"/^dev:.*/\"",
     "lint": "biome check .",
+    "dev:ts": "tsc -p tsconfig.build.json --watch",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
-  "peerDependencies": {
-    "@terrazzo/cli": "*",
-    "tailwindcss": "*"
-  },
   "dependencies": {
-    "@terrazzo/plugin-css": "^1.7.3",
-    "@terrazzo/token-tools": "^0.0.0"
-  },
-  "devDependencies": {
-    "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
-    "tailwindcss": "^3.4.1",
-    "yaml": "^2.4.1"
+    "@types/culori": "^2.1.0",
+    "culori": "^4.0.1",
+    "wildcard-match": "^5.1.3"
   }
 }

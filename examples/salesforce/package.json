@@ -8,10 +8,10 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/plugin-css": "workspace:*",
-    "@cobalt-ui/plugin-js": "workspace:*",
-    "@cobalt-ui/plugin-sass": "workspace:*",
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/plugin-css": "workspace:*",
+    "@terrazzo/plugin-js": "workspace:*",
+    "@terrazzo/plugin-sass": "workspace:*",
     "@salesforce-ux/design-system": "^2.22.0",
     "culori": "^4.0.1",
     "postcss": "^8.4.31"

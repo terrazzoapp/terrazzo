@@ -1,27 +1,12 @@
 {
-  "name": "@cobalt-ui/plugin-sass",
+  "name": "@terrazzo/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.8.1",
+  "version": "1.8.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": [
-    "cobalt",
-    "design tokens",
-    "design tokens community group",
-    "design system",
-    "dtcg",
-    "w3c",
-    "css",
-    "sass"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
-    "directory": "packages/plugin-sass"
-  },
-  "homepage": "https://cobalt-ui.pages.dev",
+  "keywords": ["design tokens", "design tokens community group", "design system", "dtcg", "w3c", "css", "sass"],
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -37,18 +22,18 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.11.0",
-    "@cobalt-ui/plugin-css": "^1.7.0"
+    "@terrazzo/cli": "^1.11.0",
+    "@terrazzo/plugin-css": "^1.7.3"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "workspace:^",
+    "@terrazzo/token-tools": "^0.0.0",
     "@types/mime": "^3.0.4",
     "mime": "^3.0.0",
-    "svgo": "^3.3.2"
+    "svgo": "^3.2.0"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:^",
-    "@cobalt-ui/core": "workspace:^",
-    "@cobalt-ui/plugin-css": "workspace:^"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^"
   }
 }

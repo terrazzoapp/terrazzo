@@ -7,10 +7,10 @@
     "build:tokens": "co build"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/plugin-css": "workspace:*",
-    "@cobalt-ui/plugin-js": "workspace:*",
-    "@cobalt-ui/plugin-sass": "workspace:*",
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/plugin-css": "workspace:*",
+    "@terrazzo/plugin-js": "workspace:*",
+    "@terrazzo/plugin-sass": "workspace:*",
     "@primer/octicons": "^16.3.1",
     "@primer/primitives": "^7.9.0"
   }

@@ -7,8 +7,8 @@
     "build": "tailwind build -o tailwind.css"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/plugin-tailwind": "workspace:*",
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/plugin-tailwind": "workspace:*",
     "tailwindcss": "^3.3.5"
   }
 }
