@@ -27,7 +27,7 @@ describe('config', () => {
         'lint.rules: bad severity number',
         {
           given: { lint: { rules: { 'foo-bar': 42 } } },
-          want: 'config.lint.rule:foo-bar: Invalid number `42`. `0` = "off", `1` = "warn", or `2` = "error".',
+          want: 'config.lint.rule:foo-bar: Invalid number 42. Specify 0 (off), 1 (warn), or 2 (error).',
         },
       ],
       [

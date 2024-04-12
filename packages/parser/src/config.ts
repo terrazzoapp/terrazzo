@@ -201,7 +201,7 @@ export default function validateAndNormalizeConfig(
           if (severity !== 0 && severity !== 1 && severity !== 2) {
             logger.error({
               label: `config.lint.rule:${id}`,
-              message: `Invalid number ${severity}. Specify 0 = "off", 1 = "warn", or 2 = "error".`,
+              message: `Invalid number ${severity}. Specify 0 (off), 1 (warn), or 2 (error).`,
             });
             return config;
           }

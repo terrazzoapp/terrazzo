@@ -1,17 +1,18 @@
 import {
-  type AnyNode,
+  type StringNode,
   parse as parseJSON,
-  traverse,
   type DocumentNode,
   type ParseOptions as MomoaParseOptions,
+  evaluate,
 } from '@humanwhocodes/momoa';
 import type { Config } from '../config.js';
 import lintRunner from '../lint/index.js';
 import coreLintPlugin from '../lint/plugin-core/index.js';
 import Logger from '../logger.js';
-import type { TokenNormalized } from '../types.js';
+import type { Token, TokenNormalized } from '../types.js';
 import parseYAML from './yaml.js';
 import validate from './validate.js';
+import { getObjMembers, traverse } from './json.js';
 
 export * from './validate.js';
 
@@ -51,10 +52,20 @@ export default async function parse(
   const startValidation = performance.now();
   logger.debug({ group: 'core', task: 'parse', message: 'Start tokens validation' });
   traverse(ast, {
-    enter(node: AnyNode) {
+    enter(node, parent, path) {
       if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
-        if (node.value.members.some((m) => m.name.value === '$value')) {
+        const members = getObjMembers(node.value);
+        if (members.$value) {
           validate(node, { ast, logger });
+          const id = path.join('.');
+          tokens[id] = {
+            $description: (members.$description as StringNode | undefined)?.value,
+            $type: (members.$type as StringNode).value as Token['$type'],
+            $value: members.$value,
+            id,
+            _original: evaluate(parent) as unknown as Token,
+            _group: parent,
+          };
         }
       }
     },
@@ -66,7 +77,9 @@ export default async function parse(
     timing: performance.now() - startValidation,
   });
 
-  // 3. Execute lint runner with loaded plugins
+  // 3. Walk AST again to resolve aliases
+
+  // 4. Execute lint runner with loaded plugins
   if (!skipLint && plugins?.length) {
     const lintStart = performance.now();
     logger.debug({

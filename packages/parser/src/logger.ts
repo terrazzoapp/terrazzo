@@ -26,6 +26,8 @@ export interface LogEntry {
   ast?: DocumentNode;
   /** (optional) To highlight a specifc part of the code frame, provide line no. (1-based) and col. no. */
   loc?: SourceLocation['start'];
+  /** (optional) MANUAL codeFrame override (only use for non-JSON errors, like YAML) */
+  code?: string;
 }
 
 export interface DebugEntry {
@@ -51,8 +53,10 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity as keyof typeof MESSAGE_COLOR](message);
   }
-  if (entry.ast) {
-    message = `${message}\n\n${codeFrameColumns(print(entry.ast, { indent: 2 }), { start: entry.loc ?? { line: 1 } })}`;
+  if (entry.ast || entry.code) {
+    message = `${message}\n\n${codeFrameColumns(entry.ast ? print(entry.ast, { indent: 2 }) : entry.code!, {
+      start: entry.loc ?? { line: 1 },
+    })}`;
   }
   return message;
 }

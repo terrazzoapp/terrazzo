@@ -440,7 +440,7 @@ export interface ShadowValueNormalized {
 }
 
 export interface StringTokenNormalized {
-  $type: 'strokeStyle';
+  $type: 'string';
   $value: StringValue;
   alias?: StringTokenNormalized;
   mode: Record<string, StringTokenNormalized | undefined>;

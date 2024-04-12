@@ -2,12 +2,15 @@ import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import type { TokensJSONError } from '../src/logger.js';
 import parse from '../src/parse/index.js';
+import type { TokenNormalized } from '../src/types.js';
 
 type Test = [
   string,
   {
     given: any;
-    want: { success: true; error?: never } | { success?: never; error: string };
+    want:
+      | { success: true; error?: never; tokens?: Record<string, TokenNormalized> }
+      | { success?: never; error: string; tokens?: never };
   },
 ];
 
@@ -25,7 +28,13 @@ async function runTest({ given, want }: Test[1]) {
       expect(err.node?.loc?.start?.line).toBeGreaterThanOrEqual(1);
     }
   } else {
-    await expect(parse(given)).resolves.not.toThrow();
+    const result = await parse(given);
+    expect(() => result).not.toThrow();
+    if (want.tokens) {
+      for (const id in want.tokens) {
+        expect(result[id]).toEqual(want.tokens[id]);
+      }
+    }
   }
 }
 
@@ -39,9 +48,26 @@ describe('7 Alias', () => {
       },
     ],
     [
+      'valid: primitive (YAML)',
+      {
+        given: `color:
+  $value: "{color.base.blue.500}"`,
+        want: { success: true },
+      },
+    ],
+    [
       'valid: Font Weight',
       {
         given: { bold: { $type: 'fontWeight', $value: '{font.weight.700}' } },
+        want: { success: true },
+      },
+    ],
+    [
+      'valid: Font Weight (YAML)',
+      {
+        given: `bold:
+  $type: fontWeight
+  $value: "{font.weight.700}"`,
         want: { success: true },
       },
     ],
@@ -137,7 +163,17 @@ describe('8.1 Color', () => {
       'valid: color()',
       {
         given: { color: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } },
-        want: { success: true },
+        want: {
+          success: true,
+          tokens: {
+            color: {
+              _original: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' },
+              $type: 'color',
+              $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 1 },
+              mode: {},
+            },
+          },
+        },
       },
     ],
     [

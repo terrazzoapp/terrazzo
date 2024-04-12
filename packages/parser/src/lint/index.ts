@@ -1,6 +1,6 @@
 import { type DocumentNode, iterator } from '@humanwhocodes/momoa';
 import type { Plugin } from '../config';
-import type { Logger } from '../logger';
+import type Logger from '../logger';
 
 export interface LintNotice {
   /** Must match a registered rule */
@@ -16,7 +16,7 @@ export interface LintRule<O = any> {
   options?: O;
 }
 
-export type LintRuleSeverity = 'error' | 'warn' | 'off' | number;
+export type LintRuleSeverity = 'error' | 'warn' | 'off';
 export type LintRuleShorthand = LintRuleSeverity | 0 | 1 | 2;
 export type LintRuleLonghand = [LintRuleSeverity | 0 | 1 | 2, any];
 

@@ -11,6 +11,7 @@ import {
 } from '@humanwhocodes/momoa';
 import { isAlias } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
+import { getObjMembers } from './json.js';
 
 const listFormat = new Intl.ListFormat('en-us', { type: 'disjunction' });
 
@@ -65,22 +66,7 @@ function isMaybeAlias(node: AnyNode | undefined): boolean {
   return false;
 }
 
-/** Get ObjectNode members as object */
-function getObjMembers(node: ObjectNode): Record<string | number, ValueNode | undefined> {
-  const members: Record<string, ValueNode | undefined> = {};
-  if (node.type !== 'Object') {
-    return members;
-  }
-  for (const m of node.members) {
-    if (m.name.type !== 'String' && m.name.type !== 'Number') {
-      continue;
-    }
-    members[m.name.value] = m.value;
-  }
-  return members;
-}
-
-/**  */
+/** Assert object members match given types */
 function validateMembersAs(
   $value: ObjectNode,
   properties: Record<string, { validator: typeof validateAlias; required?: boolean }>,
