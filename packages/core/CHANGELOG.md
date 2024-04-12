@@ -1,5 +1,11 @@
 # @cobalt-ui/core
 
+## 1.11.1
+
+### Patch Changes
+
+- [#247](https://github.com/drwpow/cobalt-ui/pull/247) [`743b26f`](https://github.com/drwpow/cobalt-ui/commit/743b26fea3d1348ba0fe639bf0726528c08c69e3) Thanks [@drwpow](https://github.com/drwpow)! - Fix duplicate value check failing on custom token types
+
 ## 1.11.0
 
 ### Minor Changes
