@@ -85,6 +85,25 @@ describe('rules', () => {
       },
     ],
     [
+      '[duplicate-values] custom tokens ignored',
+      {
+        given: {
+          rule: 'duplicate-values',
+          options: { ignore: ['color.*'] },
+          tokens: {
+            foo: {
+              $type: 'bar',
+              baz: {
+                bat: { $value: '123' },
+                boz: { $value: '456' },
+              },
+            },
+          },
+        },
+        want: { errors: ['Bad'] },
+      },
+    ],
+    [
       '[naming] kebab-case (success)',
       {
         given: {
