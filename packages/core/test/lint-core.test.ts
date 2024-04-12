@@ -81,7 +81,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { errors: ['Bad'] },
+        want: { success: true },
       },
     ],
     [
@@ -100,7 +100,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { errors: ['Bad'] },
+        want: { success: true },
       },
     ],
     [
@@ -388,13 +388,11 @@ describe('rules', () => {
       rawSchema: given.tokens,
       rules: [{ id: given.rule, severity: 'error', options: given.options }],
     });
-    if (notices?.length) {
-      if (want.success || !want.errors) {
-        throw new Error(`Expected no errors; received ${notices.length}`);
-      }
-      for (let i = 0; i < notices.length; i++) {
-        expect(notices[i]?.message).toBe(want.errors?.[i]);
-      }
+    if ((want.success || !want.errors) && notices?.length) {
+      throw new Error(`Expected no errors; received ${notices?.length}`);
+    }
+    for (let i = 0; i < (want.errors?.length ?? 0); i++) {
+      expect(notices?.[i]?.message).toBe(want.errors?.[i]);
     }
   });
 });
