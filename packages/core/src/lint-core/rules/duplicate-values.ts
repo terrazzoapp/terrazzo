@@ -1,14 +1,6 @@
 import { isAlias, isTokenMatch } from '@cobalt-ui/utils';
 import deepEqual from 'deep-equal';
-import type {
-  BorderTokenValue,
-  GradientToken,
-  ParsedToken,
-  ShadowValue,
-  StrokeStyleValue,
-  TransitionValue,
-  TypographyValue,
-} from '../../token.js';
+import type { ParsedToken } from '../../token.js';
 
 export interface RuleDuplicateValueOptions {
   /** (optional) Token IDs to ignore. Supports globs (`*`). */
@@ -17,27 +9,16 @@ export interface RuleDuplicateValueOptions {
 
 export default function ruleDuplicateValues(tokens: ParsedToken[], options?: RuleDuplicateValueOptions): string[] {
   const notices: string[] = [];
-  const values = {
-    border: new Set<BorderTokenValue>(),
-    color: new Set<string>(),
-    cubicBezier: new Set<[number, number, number, number]>(),
-    dimension: new Set<string>(),
-    duration: new Set<string>(),
-    fontFamily: new Set<string[]>(),
-    fontWeight: new Set<number>(),
-    gradient: new Set<GradientToken['$value']>(),
-    link: new Set<string>(),
-    number: new Set<number>(),
-    shadow: new Set<ShadowValue>(),
-    strokeStyle: new Set<StrokeStyleValue>(),
-    transition: new Set<TransitionValue>(),
-    typography: new Set<TypographyValue>(),
-  };
+  const values: Record<string, Set<any>> = {};
 
   for (const t of tokens) {
     // skip ignored tokens
     if (options?.ignore && isTokenMatch(t.id, options.ignore)) {
       continue;
+    }
+
+    if (!values[t.$type]) {
+      values[t.$type] = new Set();
     }
 
     // primitives: direct comparison is easy
@@ -55,19 +36,19 @@ export default function ruleDuplicateValues(tokens: ParsedToken[], options?: Rul
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((values[t.$type] as Set<any>).has(t.$value)) {
+      if (values[t.$type]?.has(t.$value)) {
         notices.push(`Duplicated value: "${t.$value as unknown as string}" (${t.id})`);
         continue;
       }
 
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (values[t.$type] as Set<any>).add(t.$value);
+      values[t.$type]?.add(t.$value);
       continue;
     }
 
     // everything else: use deepEqual
     let isDuplicate = false;
-    for (const v of values[t.$type].values()) {
+    for (const v of values[t.$type]?.values() ?? []) {
       if (deepEqual(t.$value, v)) {
         notices.push(`Duplicated value (${t.id})`);
         isDuplicate = true;
@@ -79,7 +60,7 @@ export default function ruleDuplicateValues(tokens: ParsedToken[], options?: Rul
       continue;
     }
 
-    values[t.$type].add(t.$value as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+    values[t.$type]?.add(t.$value as any); // eslint-disable-line @typescript-eslint/no-explicit-any
   }
 
   return notices;
