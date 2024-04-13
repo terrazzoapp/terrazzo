@@ -1,19 +1,15 @@
-import type { SourceLocation } from '@babel/code-frame';
-import {
-  type AnyNode,
-  type ArrayNode,
-  type DocumentNode,
-  type MemberNode,
-  type ObjectNode,
-  print,
-  type StringNode,
-  type ValueNode,
-} from '@humanwhocodes/momoa';
+import { print } from '@humanwhocodes/momoa';
 import { isAlias } from '@terrazzo/token-tools';
-import type Logger from '../logger.js';
 import { getObjMembers } from './json.js';
 
 const listFormat = new Intl.ListFormat('en-us', { type: 'disjunction' });
+
+/**
+ * @typedef {import("@humanwhocodes/momoa").AnyNode} AnyNode
+ * @typedef {import("@humanwhocodes/momoa").ObjectNode} ObjectNode
+ * @typedef {import("@humanwhocodes/momoa").ValueNode} ValueNode
+ * @typedef {import("@babel/code-frame").SourceLocation} SourceLocation
+ */
 
 export const FONT_WEIGHT_VALUES = new Set([
   'thin',
@@ -48,41 +44,46 @@ export const STROKE_STYLE_VALUES = new Set([
 ]);
 export const STROKE_STYLE_LINE_CAP_VALUES = new Set(['round', 'butt', 'square']);
 
-export interface ValidateOptions {
-  ast: DocumentNode;
-  logger: Logger;
-}
-
-/** Get the location of a JSON node */
-function getLoc(node: AnyNode): SourceLocation['start'] {
+/**
+ * Get the location of a JSON node
+ * @param {AnyNode} node
+ * @return {SourceLocation}
+ */
+function getLoc(node) {
   return { line: node.loc?.start.line ?? 1, column: node.loc?.start.column };
 }
 
-/** Distinct from isAlias() in that this accepts malformed aliases */
-function isMaybeAlias(node: AnyNode | undefined): boolean {
+/**
+ * Distinct from isAlias() in that this accepts malformed aliases
+ * @param {AnyNode} node
+ * @return {boolean}
+ */
+function isMaybeAlias(node) {
   if (node?.type === 'String') {
     return node.value.startsWith('{');
   }
   return false;
 }
 
-/** Assert object members match given types */
-function validateMembersAs(
-  $value: ObjectNode,
-  properties: Record<string, { validator: typeof validateAlias; required?: boolean }>,
-  node: AnyNode,
-  { ast, logger }: ValidateOptions,
-) {
+/**
+ * Assert object members match given types
+ * @param {ObjectNode} $value
+ * @param {Record<string, { validator: typeof validateAlias; required?: boolean }>} properties
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+function validateMembersAs($value, properties, node, { ast, logger }) {
   const members = getObjMembers($value);
   for (const property in properties) {
-    const { validator, required } = properties[property]!;
+    const { validator, required } = properties[property];
     if (!members[property]) {
       if (required) {
         logger.error({ message: `Missing required property "${property}"`, node, ast, loc: getLoc($value) });
       }
       continue;
     }
-    const value = members[property]!;
+    const value = members[property];
     if (isMaybeAlias(value)) {
       validateAlias(value, node, { ast, logger });
     } else {
@@ -91,13 +92,27 @@ function validateMembersAs(
   }
 }
 
-export function validateAlias($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify an Alias node is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateAlias($value, node, { ast, logger }) {
   if ($value.type !== 'String' || !isAlias($value.value)) {
     logger.error({ message: `Invalid alias: ${print($value)}`, node, ast, loc: getLoc($value) });
   }
 }
 
-export function validateColor($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Color token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateColor($value, node, { ast, logger }) {
   if ($value.type !== 'String') {
     logger.error({ message: `Expected string, received ${$value.type}`, node, ast, loc: getLoc($value) });
   } else if ($value.value === '') {
@@ -105,7 +120,14 @@ export function validateColor($value: ValueNode, node: AnyNode, { ast, logger }:
   }
 }
 
-export function validateCubicBézier($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Cubic Bézier token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateCubicBézier($value, node, { ast, logger }) {
   if ($value.type !== 'Array') {
     logger.error({
       message: `Expected array of strings, received ${print($value)}`,
@@ -114,9 +136,7 @@ export function validateCubicBézier($value: ValueNode, node: AnyNode, { ast, lo
       loc: getLoc($value),
     });
   } else if (
-    !($value as ArrayNode).elements.every(
-      (e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)),
-    )
+    !$value.elements.every((e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)))
   ) {
     logger.error({
       message: 'Expected an array of 4 numbers, received some non-numbers',
@@ -124,9 +144,9 @@ export function validateCubicBézier($value: ValueNode, node: AnyNode, { ast, lo
       ast,
       loc: getLoc($value),
     });
-  } else if (($value as ArrayNode).elements.length !== 4) {
+  } else if ($value.elements.length !== 4) {
     logger.error({
-      message: `Expected an array of 4 numbers, received ${($value as ArrayNode).elements.length}`,
+      message: `Expected an array of 4 numbers, received ${$value.elements.length}`,
       node,
       ast,
       loc: getLoc($value),
@@ -134,7 +154,14 @@ export function validateCubicBézier($value: ValueNode, node: AnyNode, { ast, lo
   }
 }
 
-export function validateDimension($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Dimension token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateDimension($value, node, { ast, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
@@ -154,7 +181,14 @@ export function validateDimension($value: ValueNode, node: AnyNode, { ast, logge
   }
 }
 
-export function validateDuration($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Duration token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateDuration($value, node, { ast, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
@@ -174,7 +208,14 @@ export function validateDuration($value: ValueNode, node: AnyNode, { ast, logger
   }
 }
 
-export function validateFontFamily($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Font Family token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateFontFamily($value, node, { ast, logger }) {
   if ($value.type !== 'String' && $value.type !== 'Array') {
     logger.error({
       message: `Expected string or array of strings, received ${$value.type}`,
@@ -196,7 +237,14 @@ export function validateFontFamily($value: ValueNode, node: AnyNode, { ast, logg
   }
 }
 
-export function validateFontWeight($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Font Weight token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateFontWeight($value, node, { ast, logger }) {
   if ($value.type !== 'String' && $value.type !== 'Number') {
     logger.error({
       message: `Expected a font weight name or number 0–1000, received ${$value.type}`,
@@ -218,7 +266,14 @@ export function validateFontWeight($value: ValueNode, node: AnyNode, { ast, logg
   }
 }
 
-export function validateNumber($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Number token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateNumber($value, node, { ast, logger }) {
   if ($value.type !== 'Number') {
     logger.error({
       message: `Expected number, received ${$value.type}`,
@@ -229,7 +284,14 @@ export function validateNumber($value: ValueNode, node: AnyNode, { ast, logger }
   }
 }
 
-export function validateShadowLayer($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Shadow token’s value is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateShadowLayer($value, node, { ast, logger }) {
   if ($value.type !== 'Object') {
     logger.error({ message: `Expected Object, received ${$value.type}`, node, ast, loc: getLoc($value) });
     return;
@@ -248,7 +310,14 @@ export function validateShadowLayer($value: ValueNode, node: AnyNode, { ast, log
   );
 }
 
-export function validateStrokeStyle($value: ValueNode, node: AnyNode, { ast, logger }: ValidateOptions) {
+/**
+ * Verify a Stroke Style token is valid.
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateStrokeStyle($value, node, { ast, logger }) {
   // note: strokeStyle’s values are NOT aliasable (unless by string, but that breaks validations)
   if ($value.type === 'String') {
     if (!STROKE_STYLE_VALUES.has($value.value)) {
@@ -276,7 +345,7 @@ export function validateStrokeStyle($value: ValueNode, node: AnyNode, { ast, log
     const { lineCap, dashArray } = strokeMembers;
     if (lineCap?.type !== 'String' || !STROKE_STYLE_LINE_CAP_VALUES.has(lineCap.value)) {
       logger.error({
-        message: `Unknown lineCap value ${print(lineCap!)}. Expected one of: ${listFormat.format([
+        message: `Unknown lineCap value ${print(lineCap)}. Expected one of: ${listFormat.format([
           ...STROKE_STYLE_LINE_CAP_VALUES,
         ])}.`,
       });
@@ -300,7 +369,7 @@ export function validateStrokeStyle($value: ValueNode, node: AnyNode, { ast, log
       }
     } else {
       logger.error({
-        message: `Expected array of strings, received ${dashArray!.type}`,
+        message: `Expected array of strings, received ${dashArray.type}`,
         node,
         ast,
         loc: getLoc($value),
@@ -314,11 +383,14 @@ export function validateStrokeStyle($value: ValueNode, node: AnyNode, { ast, log
 /**
  * Validate a MemberNode (the entire token object, plus its key in the parent object) to see if it’s a valid DTCG token or not.
  * Keeping the parent key really helps in debug messages.
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
  */
-export default function validate(node: MemberNode, { ast, logger }: ValidateOptions) {
+export default function validate(node, { ast, logger }) {
   if (node.type !== 'Member' && node.type !== 'Object') {
     logger.error({
-      message: `Expected Object, received ${JSON.stringify((node as AnyNode).type)}`,
+      message: `Expected Object, received ${JSON.stringify(node.type)}`,
       node,
       ast,
       loc: { line: 1 },
@@ -327,8 +399,8 @@ export default function validate(node: MemberNode, { ast, logger }: ValidateOpti
   }
 
   const rootMembers = node.value.type === 'Object' ? getObjMembers(node.value) : {};
-  const $value = rootMembers.$value as ValueNode | undefined;
-  const $type = rootMembers.$type as StringNode | undefined;
+  const $value = rootMembers.$value;
+  const $type = rootMembers.$type;
 
   if (!$value) {
     logger.error({ message: 'Token missing $value', node, ast, loc: getLoc(node) });
@@ -444,7 +516,7 @@ export default function validate(node: MemberNode, { ast, logger }: ValidateOpti
         break;
       }
       for (let i = 0; i < $value.elements.length; i++) {
-        const element = $value.elements[i]!;
+        const element = $value.elements[i];
         if (element.value.type !== 'Object') {
           logger.error({
             message: `Stop #${i + 1}: Expected gradient stop, received ${element.value.type}`,

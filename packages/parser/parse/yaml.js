@@ -1,14 +1,16 @@
-import type { SourceLocation } from '@babel/code-frame';
-import type { DocumentNode } from '@humanwhocodes/momoa';
-import { Composer, Parser, type YAMLError } from 'yaml';
-import type Logger from '../logger.js';
+import { Composer, Parser } from 'yaml';
 
-export interface ParseYAMLOptions {
-  logger: Logger;
-}
+/**
+ * @typedef {import("yaml").YAMLError} YAMLError
+ */
 
-/** Convert YAML position to line, column */
-function posToLoc(input: string, pos: YAMLError['pos']): SourceLocation['start'] {
+/**
+ * Convert YAML position to line, column
+ * @param {string} input
+ * @param {YAMLError{"pos"]} pos
+ * @return {import("@babel/code-frame").SourceLocation["start"]}
+ */
+function posToLoc(input, pos) {
   let line = 1;
   let column = 0;
   for (let i = 0; i <= (pos[0] || 0); i++) {
@@ -25,7 +27,7 @@ function posToLoc(input: string, pos: YAMLError['pos']): SourceLocation['start']
 /**
  * Take a YAML document and create a Momoa JSON AST from it
  */
-export default function yamlToAST(input: string, { logger }: ParseYAMLOptions): DocumentNode {
+export default function yamlToAST(input, { logger }) {
   const parser = new Parser();
   const composer = new Composer();
   for (const node of composer.compose(parser.parse(input))) {

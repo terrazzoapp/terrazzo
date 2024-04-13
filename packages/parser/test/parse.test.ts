@@ -1,5 +1,5 @@
 import stripAnsi from 'strip-ansi';
-import parse from '../src/parse/index.js';
+import parse from '../parse/index.js';
 import { describe, expect, it } from 'vitest';
 
 describe('parser', () => {

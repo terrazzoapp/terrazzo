@@ -1,3 +1,5 @@
+import type { ObjectNode } from '@humanwhocodes/momoa';
+
 export interface TokenCore<E extends {} = Record<string, unknown>> {
   $description?: string;
   $extensions?: E;
@@ -266,7 +268,8 @@ export interface TokenNormalizedCore {
   $description?: string;
   $extensions?: Record<string, unknown>;
   id: string;
-  _group: {
+  sourceNode: ObjectNode;
+  group: {
     $description?: string;
     $extensions?: Record<string, unknown>;
     id: string;
@@ -297,7 +300,7 @@ export interface BooleanTokenNormalized extends TokenNormalizedCore {
   $value: BooleanValue;
   alias?: BooleanTokenNormalized;
   mode: Record<string, BooleanTokenNormalized | undefined>;
-  _original: BooleanToken;
+  originalValue: BooleanToken;
 }
 
 export interface BorderTokenNormalized extends TokenNormalizedCore {
@@ -305,7 +308,7 @@ export interface BorderTokenNormalized extends TokenNormalizedCore {
   alias?: BorderTokenNormalized;
   $value: BorderValueNormalized;
   mode: Record<string, BorderTokenNormalized | undefined>;
-  _original: BorderToken;
+  originalValue: BorderToken;
 }
 
 export interface BorderValueNormalized {
@@ -314,12 +317,12 @@ export interface BorderValueNormalized {
   style: StrokeStyleValueExpanded;
 }
 
-export interface ColorTokenNormalized {
+export interface ColorTokenNormalized extends TokenNormalizedCore {
   alias?: ColorTokenNormalized;
   $type: 'color';
   $value: ColorValueNormalized;
   mode: Record<string, ColorTokenNormalized | undefined>;
-  _original: ColorToken;
+  originalValue: ColorToken;
 }
 
 export interface ColorValueNormalized {
@@ -353,7 +356,7 @@ export interface CubicBézierTokenNormalized extends TokenNormalizedCore {
   $value: CubicBézierValue;
   alias?: CubicBézierToken;
   mode: Record<string, CubicBézierTokenNormalized | undefined>;
-  _original: CubicBézierToken;
+  originalValue: CubicBézierToken;
 }
 
 export interface DimensionTokenNormalized extends TokenNormalizedCore {
@@ -361,7 +364,7 @@ export interface DimensionTokenNormalized extends TokenNormalizedCore {
   $value: DimensionValue;
   alias?: Record<string, DimensionTokenNormalized | undefined>;
   mode: Record<string, DimensionTokenNormalized | undefined>;
-  _original: DimensionToken;
+  originalValue: DimensionToken;
 }
 
 export interface DurationTokenNormalized extends TokenNormalizedCore {
@@ -369,7 +372,7 @@ export interface DurationTokenNormalized extends TokenNormalizedCore {
   $value: DurationValue;
   alias?: DurationTokenNormalized;
   mode: Record<string, DurationTokenNormalized | undefined>;
-  _original: DurationToken;
+  originalValue: DurationToken;
 }
 
 export interface FontFamilyTokenNormalized extends TokenNormalizedCore {
@@ -377,7 +380,7 @@ export interface FontFamilyTokenNormalized extends TokenNormalizedCore {
   $value: FontFamilyValueNormalized;
   alias?: FontFamilyTokenNormalized;
   mode: Record<string, FontFamilyTokenNormalized | undefined>;
-  _original: FontFamilyToken;
+  originalValue: FontFamilyToken;
 }
 
 export type FontFamilyValueNormalized = string[];
@@ -387,7 +390,7 @@ export interface FontWeightTokenNormalized extends TokenNormalizedCore {
   $value: FontWeightValueNormalized;
   alias?: FontWeightTokenNormalized;
   mode: Record<string, FontWeightTokenNormalized | undefined>;
-  _original: FontWeightToken;
+  originalValue: FontWeightToken;
 }
 
 export type FontWeightValueNormalized = number;
@@ -397,7 +400,7 @@ export interface GradientTokenNormalized extends TokenNormalizedCore {
   $value: GradientValueNormalized;
   alias?: GradientTokenNormalized;
   mode: Record<string, GradientTokenNormalized | undefined>;
-  _original: GradientTokenNormalized;
+  originalValue: GradientTokenNormalized;
 }
 
 export type GradientValueNormalized = GradientStopNormalized[];
@@ -412,7 +415,7 @@ export interface LinkTokenNormalized extends TokenNormalizedCore {
   $value: LinkValue;
   $alias?: LinkTokenNormalized;
   mode: Record<string, LinkTokenNormalized | undefined>;
-  _original: LinkToken;
+  originalValue: LinkToken;
 }
 
 export interface NumberTokenNormalized extends TokenNormalizedCore {
@@ -420,7 +423,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore {
   $value: NumberValue;
   alias?: NumberTokenNormalized;
   mode: Record<string, NumberTokenNormalized | undefined>;
-  _original: NumberToken;
+  originalValue: NumberToken;
 }
 
 export interface ShadowTokenNormalized extends TokenNormalizedCore {
@@ -428,7 +431,7 @@ export interface ShadowTokenNormalized extends TokenNormalizedCore {
   $value: ShadowValueNormalized;
   alias?: ShadowTokenNormalized;
   mode: Record<string, ShadowTokenNormalized | undefined>;
-  _original: ShadowToken;
+  originalValue: ShadowToken;
 }
 
 export interface ShadowValueNormalized {
@@ -439,20 +442,20 @@ export interface ShadowValueNormalized {
   spread: DimensionValue;
 }
 
-export interface StringTokenNormalized {
+export interface StringTokenNormalized extends TokenNormalizedCore {
   $type: 'string';
   $value: StringValue;
   alias?: StringTokenNormalized;
   mode: Record<string, StringTokenNormalized | undefined>;
-  _original: StringTokenNormalized;
+  originalValue: StringTokenNormalized;
 }
 
-export interface StrokeStyleTokenNormalized {
+export interface StrokeStyleTokenNormalized extends TokenNormalizedCore {
   $type: 'strokeStyle';
   $value: StrokeStyleValueExpanded;
   alias?: StrokeStyleTokenNormalized;
   mode: Record<string, StrokeStyleTokenNormalized | undefined>;
-  _original: StrokeStyleToken;
+  originalValue: StrokeStyleToken;
 }
 
 export interface TransitionTokenNormalized extends TokenNormalizedCore {
@@ -460,7 +463,7 @@ export interface TransitionTokenNormalized extends TokenNormalizedCore {
   $value: TransitionValueNormalized;
   alias?: TransitionTokenNormalized;
   mode: Record<string, TransitionTokenNormalized | undefined>;
-  _original: TransitionToken;
+  originalValue: TransitionToken;
 }
 
 export interface TransitionValueNormalized {
@@ -474,7 +477,7 @@ export interface TypographyTokenNormalized extends TokenNormalizedCore {
   $value: TypographyValueNormalized;
   alias?: TypographyTokenNormalized;
   mode: Record<string, TypographyTokenNormalized | undefined>;
-  _original: TypographyToken;
+  originalValue: TypographyToken;
 }
 
 export interface TypographyValueNormalized {

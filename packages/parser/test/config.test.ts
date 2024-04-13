@@ -1,6 +1,6 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-import validateAndNormalizeConfig from '../src/config.js';
+import validateAndNormalizeConfig from '../config.js';
 
 describe('config', () => {
   describe('validation error', () => {

@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "type": "module",
-  "main": "./dist/index.js",
+  "main": "./index.js",
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",

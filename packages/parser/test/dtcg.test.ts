@@ -1,8 +1,8 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-import type { TokensJSONError } from '../src/logger.js';
-import parse from '../src/parse/index.js';
-import type { TokenNormalized } from '../src/types.js';
+import type { TokensJSONError } from '../logger.js';
+import parse from '../parse/index.js';
+import type { TokenNormalized } from '../types.js';
 
 type Test = [
   string,

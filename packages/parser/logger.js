@@ -1,60 +1,31 @@
-import { codeFrameColumns, type SourceLocation } from '@babel/code-frame';
-import { print, type AnyNode, type DocumentNode } from '@humanwhocodes/momoa';
+import { codeFrameColumns } from '@babel/code-frame';
+import { print } from '@humanwhocodes/momoa';
 import color from 'picocolors';
 import wcmatch from 'wildcard-match';
 
-export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
+export const LOG_ORDER = ['error', 'warn', 'info', 'debug'];
 
-const DEBUG_GROUP_COLOR: Record<LogGroup, typeof color.green> = { core: color.green, plugin: color.magenta };
+const DEBUG_GROUP_COLOR = { core: color.green, plugin: color.magenta };
 
-const MESSAGE_COLOR: Record<'error' | 'warn', typeof color.green> = { error: color.red, warn: color.yellow };
-
-export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
-
-export type LogLevel = LogSeverity | 'silent';
-
-export type LogGroup = 'core' | 'plugin';
-
-export interface LogEntry {
-  /** Error message to be logged */
-  message: string;
-  /** (optional) Prefix message with label */
-  label?: string;
-  /** (optional) Show a code frame for the erring node */
-  node?: AnyNode;
-  /** (optional) To show code frame, provide entire AST to show which line erred (otherwise it’s floating in space) */
-  ast?: DocumentNode;
-  /** (optional) To highlight a specifc part of the code frame, provide line no. (1-based) and col. no. */
-  loc?: SourceLocation['start'];
-  /** (optional) MANUAL codeFrame override (only use for non-JSON errors, like YAML) */
-  code?: string;
-}
-
-export interface DebugEntry {
-  /** `core` | `plugin` */
-  group: 'core' | 'plugin';
-  /** Current subtask or submodule */
-  task: string;
-  /** Error message to be logged */
-  message: string;
-  /** (optional) Show code below message */
-  codeFrame?: { code: string; line: number; column: number };
-  /** (optional) Display performance timing */
-  timing?: number;
-}
+const MESSAGE_COLOR = { error: color.red, warn: color.yellow };
 
 const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
 
-export function formatMessage(entry: LogEntry, severity: LogSeverity) {
+/**
+ * @param {Entry} entry
+ * @param {Severity} severity
+ * @return {string}
+ */
+export function formatMessage(entry, severity) {
   let message = entry.message;
   if (entry.label) {
     message = `${color.bold(`${entry.label}:`)} ${message}`;
   }
   if (severity in MESSAGE_COLOR) {
-    message = MESSAGE_COLOR[severity as keyof typeof MESSAGE_COLOR](message);
+    message = MESSAGE_COLOR[severity](message);
   }
   if (entry.ast || entry.code) {
-    message = `${message}\n\n${codeFrameColumns(entry.ast ? print(entry.ast, { indent: 2 }) : entry.code!, {
+    message = `${message}\n\n${codeFrameColumns(entry.ast ? print(entry.ast, { indent: 2 }) : entry.code, {
       start: entry.loc ?? { line: 1 },
     })}`;
   }
@@ -62,10 +33,10 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
 }
 
 export default class Logger {
-  level: LogLevel = 'info';
+  level = 'info';
   debugScope = '*';
 
-  constructor(options?: { level?: LogLevel; debugScope: string }) {
+  constructor(options) {
     if (options?.level) {
       this.level = options.level;
     }
@@ -74,12 +45,12 @@ export default class Logger {
     }
   }
 
-  setLevel(level: LogLevel) {
+  setLevel(level) {
     this.level = level;
   }
 
   /** Log an error message (always; can’t be silenced) */
-  error(entry: LogEntry) {
+  error(entry) {
     const message = formatMessage(entry, 'error');
     if (entry.node) {
       throw new TokensJSONError(message, entry.node);
@@ -89,7 +60,7 @@ export default class Logger {
   }
 
   /** Log an info message (if logging level permits) */
-  info(entry: LogEntry) {
+  info(entry) {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
       return;
     }
@@ -97,7 +68,7 @@ export default class Logger {
   }
 
   /** Log a warning message (if logging level permits) */
-  warn(entry: LogEntry) {
+  warn(entry) {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
       return;
     }
@@ -105,7 +76,7 @@ export default class Logger {
   }
 
   /** Log a diagnostics message (if logging level permits) */
-  debug(entry: DebugEntry) {
+  debug(entry) {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
       return;
     }
@@ -120,7 +91,7 @@ export default class Logger {
       timeFormatter.format(new Date()),
     )} ${message}`;
     if (typeof entry.timing === 'number') {
-      let timing: string | number = Math.round(entry.timing);
+      let timing = Math.round(entry.timing);
       if (timing < 1_000) {
         timing = `${timing}ms`;
       } else if (timing < 60_000) {
@@ -135,9 +106,9 @@ export default class Logger {
 
 export class TokensJSONError extends Error {
   /** Erring JSON node */
-  node: AnyNode;
+  node;
 
-  constructor(message: string, node: AnyNode) {
+  constructor(message, node) {
     super(message);
     this.name = 'TokensJSONError';
     this.node = node;
