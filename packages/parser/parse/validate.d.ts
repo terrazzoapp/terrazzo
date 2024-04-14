@@ -25,10 +25,16 @@ export function validateFontFamily($value: ValueNode, node: AnyNode, options: Va
 
 export function validateFontWeight($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
+export function validateGradient($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+
 export function validateNumber($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export function validateShadowLayer($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export function validateStrokeStyle($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+
+export function validateTransition($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+
+export function validateTypography($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export default function validate(node: MemberNode, options: ValidateOptions): void;

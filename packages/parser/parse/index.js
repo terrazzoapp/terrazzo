@@ -1,11 +1,13 @@
 import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias } from '@terrazzo/token-tools';
+import { merge } from 'merge-anything';
 import lintRunner from '../lint/index.js';
 import coreLintPlugin from '../lint/plugin-core/index.js';
 import Logger from '../logger.js';
+import normalize from './normalize.js';
 import parseYAML from './yaml.js';
 import validate from './validate.js';
-import { getObjMembers, traverse } from './json.js';
+import { getObjMembers, injectObjMembers, traverse } from './json.js';
 
 export * from './validate.js';
 
@@ -24,7 +26,9 @@ export * from './validate.js';
  * @param {ParseOptions} options
  * @return {Promise<Record<string, TokenNormalized>>}
  */
-export default async function parse(input, { logger = new Logger(), skipLint = false, ...config }) {
+export default async function parse(input, { logger = new Logger(), skipLint = false, ...config } = {}) {
+  const { plugins } = config;
+
   const totalStart = performance.now();
 
   // 1. Build AST
@@ -50,29 +54,51 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   // 2. Walk AST once to validate tokens
   const startValidation = performance.now();
   logger.debug({ group: 'core', task: 'parse', message: 'Start tokens validation' });
+  let last$Type;
   traverse(ast, {
     enter(node, parent, path) {
+      if (!node) {
+        console.log({ node, parent, path });
+      }
       if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
         const members = getObjMembers(node.value);
+
+        // keep track of closest-scoped $type
+        // note: this is only reliable in a synchronous, single-pass traversal;
+        // otherwise we’d have to do something more complicated
+        if (members.$type && members.$type.type === 'String') {
+          last$Type = node.value.members.find((m) => m.name.value === '$type');
+        }
+
         if (members.$value) {
           const extensions = members.$extensions ? getObjMembers(members.$extensions) : undefined;
-          validate(node, { ast, logger });
+          const sourceNode = merge({}, node);
+          if (last$Type && !members.$type) {
+            sourceNode.value = injectObjMembers(sourceNode.value, [last$Type]);
+          }
+          validate(sourceNode, { ast, logger });
+
           const id = path.join('.');
           const token = {
-            $description: members.$description?.value,
-            $type: members.$type.value,
-            $value: members.$value,
+            $type: members.$type?.value ?? last$Type?.value.value,
+            $value: evaluate(members.$value),
             id,
             mode: {},
-            originalValue: evaluate(parent),
+            originalValue: evaluate(node.value),
             group: {
               id: path.slice(0, path.length - 1).join('.'),
-              tokens: [],
+              tokens: {},
             },
-            sourceNode: node.value,
+            sourceNode: sourceNode.value,
           };
+          if (members.$description?.value) {
+            token.$description = members.$description.value;
+          }
           token.mode['.'] = token.$value;
-          token.group.tokens.push({ ...token });
+
+          // TODO: modes
+          // TODO: group + group tokens
+
           tokens[id] = token;
         }
       }
@@ -88,13 +114,13 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   // 3. Resolve aliases, and finalize modes
   for (const id in tokens) {
     const token = tokens[id];
+    const node = token.sourceNode;
 
     if (isAlias(token.$value)) {
-      const node = token.sourceNode;
       const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
       const aliasOf = tokens[aliasOfID];
-      token.aliasOf = { ...aliasOf };
-      token.$value = { ...aliasOf.$value };
+      token.aliasOf = merge({}, aliasOf);
+      token.$value = merge({}, aliasOf.$value);
       if (token.$type !== aliasOf.$type) {
         logger.warn({
           message: `Token ${id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
@@ -102,6 +128,18 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           ast,
         });
         token.$type = aliasOf.$type;
+      }
+    } else if (Array.isArray(token.$value)) {
+      for (let i = 0; i < token.$value.length; i++) {
+        if (isAlias(token.$value[i])) {
+          token.$value[i] = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+        }
+      }
+    } else if (typeof token.$value === 'object') {
+      for (const property in token.$value) {
+        if (isAlias(token.$value[property])) {
+          token.$value[property] = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+        }
       }
     }
 
@@ -123,6 +161,11 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       message: 'Finish token linting',
       timing: performance.now() - lintStart,
     });
+  }
+
+  // 5. normalize values
+  for (const id in tokens) {
+    tokens[id].$value = normalize(tokens[id]);
   }
 
   logger.debug({

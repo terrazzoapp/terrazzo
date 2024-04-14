@@ -15,25 +15,24 @@ export interface OutputFile {
   contents: string | Buffer;
 }
 
+export interface TokenFormatValue {
+  /** Final value (to be used in output files) */
+  value: string | Record<string, string>;
+  /** Token’s format-unique ID */
+  formatID: string;
+  /** (optional) Mode values for this token */
+  mode?: Record<string, string | Record<string, string>>;
+  /** (optional) Arbitrary metadata that can be used in the final build step */
+  metadata?: Record<string, unknown>;
+}
+
 export interface Formatter {
   /** Get a token by ID */
-  getToken(id: string): TokenNormalized | undefined;
+  getToken(id: string): TokenFormatValue;
   /** Get a map of tokens that match a glob */
   getAllTokens(glob: string): Record<string, TokenNormalized>;
   /** Set a token value */
-  setTokenValue(
-    id: string,
-    newValue: {
-      /** Final value (to be used in output files) */
-      value: string;
-      /** How this token will be aliased internally */
-      alias: string;
-      /** (optional) Provide mode values for this token */
-      mode?: Record<string, string>;
-      /** (optional) Arbitrary metadata that can be used in the final build step */
-      metadata?: Record<string, unknown>;
-    },
-  ): void;
+  setTokenValue(id: string, value: TokenFormatValue): void;
 }
 
 export interface TransformHookOptions {

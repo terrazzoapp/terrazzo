@@ -1,4 +1,5 @@
 import { type Color, formatCss } from 'culori';
+import { kebabCase } from 'scule';
 import { CSS_TO_CULORI, parseColor } from '../color';
 
 export type ColorValue = string | { colorSpace: string; channels: [number, number, number]; alpha: number };
@@ -14,12 +15,18 @@ export function transformBooleanValue(value: boolean): string {
 export type BorderValue = { color: ColorValue; width: DimensionValue; style: StrokeStyleValue };
 
 /** Convert border value to CSS string */
-export function transformBorderValue(value: BorderValue): string {
-  return [
-    transformDimensionValue(value.width),
-    transformStrokeStyleValue(value.style),
-    transformColorValue(value.color),
-  ].join(' ');
+export function transformBorderValue(value: BorderValue, expanded?: string) {
+  const width = transformDimensionValue(value.width);
+  const style = transformStrokeStyleValue(value.style);
+  const color = transformColorValue(value.color);
+  if (expanded) {
+    return {
+      [`${expanded}-color`]: color,
+      [`${expanded}-style`]: style,
+      [`${expanded}-width`]: width,
+    };
+  }
+  return [width, style, color].join(' ');
 }
 
 /** Convert color value to CSS string */
@@ -107,15 +114,34 @@ export type DurationValue = string;
 
 /** Convert duration value to CSS */
 export function transformDurationValue(value: number | string): string {
-  if (typeof value === 'number') {
-    return value === 0 ? '0' : `${value}ms`;
+  if (typeof value === 'number' || String(Number.parseFloat(value)) === value) {
+    return `${value}ms`;
   }
   return value;
 }
 
 /** Convert gradient value to CSS */
 export function transformGradientValue(value: GradientStop[]): string {
-  return value.map((s) => `${transformColorValue(s.color)} ${100 * s.position}%`).join(', ');
+  return value.map((s) => [transformColorValue(s.color), `${100 * s.position}%`].join(' ')).join(', ');
+}
+
+export interface ShadowLayer {
+  color: ColorValue;
+  offsetX: string;
+  offsetY: string;
+  blur: string;
+  spread: string;
+}
+
+/** Convert shadow value to CSS */
+export function transformShadowLayer(value: ShadowLayer): string {
+  return [
+    transformDimensionValue(value.offsetX),
+    transformDimensionValue(value.offsetY),
+    transformDimensionValue(value.blur),
+    transformDimensionValue(value.spread),
+    transformColorValue(value.color),
+  ].join(' ');
 }
 
 export type StrokeStyleValue =
@@ -134,23 +160,51 @@ export function transformStrokeStyleValue(value: StrokeStyleValue): string {
   if (typeof value === 'string') {
     return value;
   }
-  return 'dashed';
+  return 'dashed'; // CSS doesn’t have `dash-array`; it’s just "dashed"
 }
 
 export interface TransitionValue {
   duration: DurationValue | number;
-  delay?: DurationValue | number;
+  delay: DurationValue | number;
   timingFunction: CubicBézierValue;
 }
 
 /** Convert transition value to CSS */
-export function transformTransitionValue(value: TransitionValue): string {
-  const output: string[] = [transformDurationValue(value.duration)];
-  if (value.delay && Number.parseFloat(String(value.delay)) > 0) {
-    output.push(transformDurationValue(value.delay));
+export function transformTransitionValue(value: TransitionValue, expanded?: string) {
+  const duration = transformDurationValue(value.duration);
+  const timingFunction = transformCubicBézierValue(value.timingFunction);
+  const delay = transformDurationValue(value.delay);
+
+  if (expanded) {
+    return {
+      [`${expanded}-duration`]: duration,
+      [`${expanded}-delay`]: delay,
+      [`${expanded}-timing-function`]: timingFunction,
+    };
   }
-  output.push(transformCubicBézierValue(value.timingFunction));
-  return output.join(' ');
+
+  return [duration, delay, timingFunction].join(' ');
+}
+
+const FONT_FAMILY_KEYWORDS = new Set([
+  'sans-serif',
+  'serif',
+  'monospace',
+  'system-ui',
+  'ui-monospace',
+  '-apple-system',
+]);
+
+/** Convert typography tokens to CSS */
+export function transformTypographyValue(value: Record<string, string | string[]>): Record<string, string> {
+  const output: Record<string, string> = {};
+  for (const k in value) {
+    const property = value[k];
+    output[kebabCase(k)] = Array.isArray(property)
+      ? property.map((name) => (FONT_FAMILY_KEYWORDS.has(name) ? name : `"${name}"`)).join(', ')
+      : property!;
+  }
+  return output;
 }
 
 /** Test for invalid CSS */

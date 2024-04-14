@@ -17,7 +17,7 @@ type Test = [
 async function runTest({ given, want }: Test[1]) {
   if (want.error) {
     try {
-      const result = await parse(given);
+      const result = await parse(given, { plugins: [] });
       expect(() => result).toThrow();
     } catch (e) {
       const err = e as TokensJSONError;
@@ -28,11 +28,13 @@ async function runTest({ given, want }: Test[1]) {
       expect(err.node?.loc?.start?.line).toBeGreaterThanOrEqual(1);
     }
   } else {
-    const result = await parse(given);
+    const result = await parse(given, { plugins: [] });
     expect(() => result).not.toThrow();
     if (want.tokens) {
       for (const id in want.tokens) {
-        expect(result[id]).toEqual(want.tokens[id]);
+        const { sourceNode, ...token } = result[id]!;
+        expect(sourceNode).not.toBeFalsy();
+        expect(token).toEqual(want.tokens[id]);
       }
     }
   }
@@ -43,7 +45,12 @@ describe('7 Alias', () => {
     [
       'valid: primitive',
       {
-        given: { color: { $value: '{color.base.blue.500}' } },
+        given: {
+          color: {
+            base: { blue: { 500: { $type: 'color', value: 'color(srgb 0 0.2 1)' } } },
+            semantic: { $value: '{color.base.blue.500}' },
+          },
+        },
         want: { success: true },
       },
     ],
@@ -58,7 +65,10 @@ describe('7 Alias', () => {
     [
       'valid: Font Weight',
       {
-        given: { bold: { $type: 'fontWeight', $value: '{font.weight.700}' } },
+        given: {
+          font: { weight: { bold: { $type: 'fontWeight', $value: 700 } } },
+          bold: { $type: 'fontWeight', $value: '{font.weight.bold}' },
+        },
         want: { success: true },
       },
     ],
@@ -87,6 +97,11 @@ describe('7 Alias', () => {
       'valid: Border',
       {
         given: {
+          color: { $type: 'color', semantic: { subdued: { $value: 'color(srgb 0 0 0 / 0.1)' } } },
+          border: {
+            size: { $type: 'dimension', default: { $value: '1px' } },
+            style: { $type: 'strokeStyle', default: { $value: 'solid' } },
+          },
           buttonBorder: {
             $type: 'border',
             $value: {
@@ -162,16 +177,23 @@ describe('8.1 Color', () => {
     [
       'valid: color()',
       {
-        given: { color: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } },
+        given: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
         want: {
           success: true,
           tokens: {
-            color: {
-              _original: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' },
+            'color.cobalt': {
+              id: 'color.cobalt',
+              originalValue: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' },
               $type: 'color',
               $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 1 },
-              mode: {},
-            },
+              group: {
+                id: 'color',
+                tokens: {},
+              },
+              mode: {
+                '.': 'color(srgb 0.3 0.6 1)',
+              },
+            } as any,
           },
         },
       },
@@ -894,6 +916,90 @@ describe('9.5 Shadow', () => {
   5 |       "offsetX": 0,
   6 |       "offsetY": "0.25rem",
   7 |       "blur": "0.5rem"`,
+        },
+      },
+    ],
+  ];
+
+  it.each(tests)('%s', (_, testCase) => runTest(testCase));
+});
+
+describe('9.6 Gradient', () => {
+  const tests: Test[] = [
+    [
+      'valid',
+      {
+        given: {
+          gradient: {
+            $type: 'gradient',
+            $value: [
+              { color: '#663399', position: 0 },
+              { color: '#ff9900', position: 1 },
+            ],
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      'invalid: bad color',
+      {
+        given: {
+          gradient: {
+            $type: 'gradient',
+            $value: [
+              { color: 'foo', position: 0 },
+              { color: '#ff9900', position: 1 },
+            ],
+          },
+        },
+        want: { error: `` },
+      },
+    ],
+    [
+      'invalid: bad position',
+      {
+        given: {
+          gradient: {
+            $type: 'gradient',
+            $value: [
+              { color: 'foo', position: 0 },
+              { color: '#ff9900', position: '12px' },
+            ],
+          },
+        },
+        want: {
+          error: `Expected number, received String
+
+   9 |       {
+  10 |         "color": "#ff9900",
+> 11 |         "position": "12px"
+     |                     ^
+  12 |       }
+  13 |     ]
+  14 |   }`,
+        },
+      },
+    ],
+    [
+      'invalid: missing position',
+      {
+        given: {
+          gradient: {
+            $type: 'gradient',
+            $value: [{ color: 'foo', position: 0 }, { color: '#ff9900' }],
+          },
+        },
+        want: {
+          error: `Missing required property "position"
+
+   7 |         "position": 0
+   8 |       },
+>  9 |       {
+     |       ^
+  10 |         "color": "#ff9900"
+  11 |       }
+  12 |     ]`,
         },
       },
     ],

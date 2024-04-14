@@ -267,6 +267,46 @@ export function validateFontWeight($value, node, { ast, logger }) {
 }
 
 /**
+ * Verify a Gradient token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateGradient($value, node, { ast, logger }) {
+  if ($value.type !== 'Array') {
+    logger.error({
+      message: `Expected array of gradient stops, received ${$value.type}`,
+      node,
+      ast,
+      loc: getLoc($value),
+    });
+    return;
+  }
+  for (let i = 0; i < $value.elements.length; i++) {
+    const element = $value.elements[i];
+    if (element.value.type !== 'Object') {
+      logger.error({
+        message: `Stop #${i + 1}: Expected gradient stop, received ${element.value.type}`,
+        node,
+        ast,
+        loc: getLoc(element),
+      });
+      break;
+    }
+    validateMembersAs(
+      element.value,
+      {
+        color: { validator: validateColor, required: true },
+        position: { validator: validateNumber, required: true },
+      },
+      node,
+      { ast, logger },
+    );
+  }
+}
+
+/**
  * Verify a Number token is valid
  * @param {ValueNode} $value
  * @param {AnyNode} node
@@ -275,12 +315,7 @@ export function validateFontWeight($value, node, { ast, logger }) {
  */
 export function validateNumber($value, node, { ast, logger }) {
   if ($value.type !== 'Number') {
-    logger.error({
-      message: `Expected number, received ${$value.type}`,
-      node,
-      ast,
-      loc: getLoc($value),
-    });
+    logger.error({ message: `Expected number, received ${$value.type}`, node, ast, loc: getLoc($value) });
   }
 }
 
@@ -378,6 +413,41 @@ export function validateStrokeStyle($value, node, { ast, logger }) {
   } else {
     logger.error({ message: `Expected string or object, received ${$value.type}`, node, ast, loc: getLoc($value) });
   }
+}
+
+/**
+ * Verify a Transition token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateTransition($value, node, { ast, logger }) {
+  if ($value.type !== 'Object') {
+    logger.error({ message: `Expected object, received ${$value.type}`, node, ast, loc: getLoc($value) });
+    return;
+  }
+  const transitionMembers = getObjMembers($value);
+  for (const property of ['duration', 'delay', 'timingFunction']) {
+    if (!transitionMembers[property]) {
+      logger.error({
+        message: `Missing required property "${property}"`,
+        node,
+        ast,
+        loc: getLoc($value),
+      });
+    }
+  }
+  validateMembersAs(
+    $value,
+    {
+      duration: { validator: validateDuration, required: true },
+      delay: { validator: validateDuration, required: true },
+      timingFunction: { validator: validateCubicBézier, required: true },
+    },
+    node,
+    { ast, logger },
+  );
 }
 
 /**
@@ -506,36 +576,7 @@ export default function validate(node, { ast, logger }) {
       break;
     }
     case 'gradient': {
-      if ($value.type !== 'Array') {
-        logger.error({
-          message: `Expected array of gradient stops, received ${$value.type}`,
-          node,
-          ast,
-          loc: getLoc($value),
-        });
-        break;
-      }
-      for (let i = 0; i < $value.elements.length; i++) {
-        const element = $value.elements[i];
-        if (element.value.type !== 'Object') {
-          logger.error({
-            message: `Stop #${i + 1}: Expected gradient stop, received ${element.value.type}`,
-            node,
-            ast,
-            loc: getLoc(element),
-          });
-          break;
-        }
-        validateMembersAs(
-          element.value,
-          {
-            color: { validator: validateColor, required: true },
-            position: { validator: validateNumber, required: true },
-          },
-          node,
-          { ast, logger },
-        );
-      }
+      validateGradient($value, node, { ast, logger });
       break;
     }
     case 'strokeStyle': {
@@ -543,31 +584,7 @@ export default function validate(node, { ast, logger }) {
       break;
     }
     case 'transition': {
-      if ($value.type !== 'Object') {
-        logger.error({ message: `Expected object, received ${$value.type}`, node, ast, loc: getLoc($value) });
-        break;
-      }
-      const transitionMembers = getObjMembers($value);
-      for (const property of ['duration', 'delay', 'timingFunction']) {
-        if (!transitionMembers[property]) {
-          logger.error({
-            message: `Missing required property "${property}"`,
-            node,
-            ast,
-            loc: getLoc($value),
-          });
-        }
-      }
-      validateMembersAs(
-        $value,
-        {
-          duration: { validator: validateDuration, required: true },
-          delay: { validator: validateDuration, required: true },
-          timingFunction: { validator: validateCubicBézier, required: true },
-        },
-        node,
-        { ast, logger },
-      );
+      validateTransition($value, node, { ast, logger });
       break;
     }
     case 'typography': {

@@ -428,7 +428,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore {
 
 export interface ShadowTokenNormalized extends TokenNormalizedCore {
   $type: 'shadow';
-  $value: ShadowValueNormalized;
+  $value: ShadowValueNormalized[];
   aliasOf?: ShadowTokenNormalized;
   mode: Record<string, ShadowTokenNormalized | undefined>;
   originalValue: ShadowToken;

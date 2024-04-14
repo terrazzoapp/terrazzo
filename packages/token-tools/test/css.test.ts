@@ -5,8 +5,11 @@ import {
   transformBorderValue,
   transformColorValue,
   transformCubicBézierValue,
+  transformDimensionValue,
+  transformDurationValue,
   transformGradientValue,
   transformTransitionValue,
+  transformTypographyValue,
 } from '../src/css/index.js';
 
 type Test<Given = any, Want = any> = [
@@ -29,7 +32,7 @@ describe('makeCSSVar', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -52,7 +55,7 @@ describe('transformBooleanValue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -65,6 +68,24 @@ describe('transformBorderalue', () => {
         want: { success: '1px dashed color(srgb 0 0 0 / 0.1)' },
       },
     ],
+    [
+      'expanded (border)',
+      {
+        given: [{ width: '2px', style: 'solid', color: '#663399' }, 'border'],
+        want: {
+          success: { 'border-width': '2px', 'border-style': 'solid', 'border-color': 'color(srgb 0.4 0.2 0.6)' },
+        },
+      },
+    ],
+    [
+      'expanded (outline)',
+      {
+        given: [{ width: '2px', style: 'solid', color: '#663399' }, 'outline'],
+        want: {
+          success: { 'outline-width': '2px', 'outline-style': 'solid', 'outline-color': 'color(srgb 0.4 0.2 0.6)' },
+        },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -73,7 +94,7 @@ describe('transformBorderalue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -96,7 +117,7 @@ describe('transformColorValue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -111,7 +132,43 @@ describe('transformCubicBézierValue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformDimensionValue', () => {
+  const tests: Test<Parameters<typeof transformDimensionValue>, ReturnType<typeof transformDimensionValue>>[] = [
+    ['10px', { given: ['10px'], want: { success: '10px' } }],
+    ['1.5rem', { given: ['1.5rem'], want: { success: '1.5rem' } }],
+    ['0', { given: [0 as any], want: { success: '0' } }],
+    ['32', { given: [32 as any], want: { success: '32px' } }],
+  ];
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformDimensionValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformDurationValue', () => {
+  const tests: Test<Parameters<typeof transformDurationValue>, ReturnType<typeof transformDurationValue>>[] = [
+    ['100ms', { given: ['100ms'], want: { success: '100ms' } }],
+    ['0.25s', { given: ['0.25s'], want: { success: '0.25s' } }],
+    ['0', { given: ['0'], want: { success: '0ms' } }],
+    ['500', { given: [500 as any], want: { success: '500ms' } }],
+  ];
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformDurationValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -138,7 +195,7 @@ describe('transformGradientValue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
   });
 });
 
@@ -155,7 +212,33 @@ describe('transformTransitionValue', () => {
       'missing delay',
       {
         given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }],
-        want: { success: '100ms cubic-bezier(0, 0, 1, 1)' },
+        want: { success: '100ms 0ms cubic-bezier(0, 0, 1, 1)' },
+      },
+    ],
+    [
+      'expanded (transition)',
+      {
+        given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }, 'transition'],
+        want: {
+          success: {
+            'transition-duration': '100ms',
+            'transition-delay': '0ms',
+            'transition-timing-function': 'cubic-bezier(0, 0, 1, 1)',
+          },
+        },
+      },
+    ],
+    [
+      'expanded (animation)',
+      {
+        given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }, 'animation'],
+        want: {
+          success: {
+            'animation-duration': '100ms',
+            'animation-delay': '0ms',
+            'animation-timing-function': 'cubic-bezier(0, 0, 1, 1)',
+          },
+        },
       },
     ],
   ];
@@ -166,6 +249,45 @@ describe('transformTransitionValue', () => {
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
-    expect(result).toBe(want.success);
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformTypographyValue', () => {
+  const tests: Test<Parameters<typeof transformTypographyValue>, ReturnType<typeof transformTypographyValue>>[] = [
+    [
+      'basic',
+      {
+        given: [
+          {
+            fontFamily: ['Helvetica', 'sans-serif', 'Apple Color Emoji', 'Noto Color Emoji'],
+            fontSize: '15px',
+            lineHeight: '20px',
+            fontStyle: 'normal',
+            letterSpacing: '0',
+            fontVariantNumeric: 'tabular-nums',
+          },
+        ],
+        want: {
+          success: {
+            'font-family': '"Helvetica", sans-serif, "Apple Color Emoji", "Noto Color Emoji"',
+            'font-size': '15px',
+            'font-style': 'normal',
+            'font-variant-numeric': 'tabular-nums',
+            'letter-spacing': '0',
+            'line-height': '20px',
+          },
+        },
+      },
+    ],
+  ];
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformTypographyValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
   });
 });

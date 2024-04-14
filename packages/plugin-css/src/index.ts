@@ -1,5 +1,10 @@
 import type { Plugin } from '@terrazzo/parser';
-import { makeCssVar, transformColorToken } from '@terrazzo/token-tools/css';
+import {
+  makeCssVar,
+  transformColorToken,
+  tranformGradientValue,
+  transformShadowValue,
+} from '@terrazzo/token-tools/css';
 
 export default function cssPlugin(): Plugin {
   return {
@@ -7,19 +12,26 @@ export default function cssPlugin(): Plugin {
     async transform({ tokens, format }) {
       const css = format('css');
       for (const id in tokens) {
-        const token = tokens[id];
-        let value: string;
+        const token = tokens[id]!;
+        let value: string | Record<string, string>;
         switch (token.$type) {
           case 'color': {
             value = transformColorToken(token.$value);
             break;
           }
+          case 'gradient': {
+            value = transformGradientValue(token.$value);
+            break;
+          }
+          case 'shadow': {
+            value = transformShadowValue(token.$value);
+            break;
+          }
         }
-
         if (value) {
           css.setTokenValue(id, {
             value,
-            alias: makeCssVar(id),
+            formatID: makeCssVar(id),
           });
         }
       }

@@ -1,3 +1,11 @@
+import { merge } from 'merge-anything';
+
+/**
+ * @typedef {import("@humanwhocodes/momoa").AnyNode} AnyNode
+ * @typedef {import("@humanwhocodes/momoa").ObjectNode} ObjectNode
+ * @typedef {import("@humanwhocodes/momoa").ValueNode} ValueNode
+ */
+
 export const CHILD_KEYS = {
   Document: ['body'],
   Object: ['members'],
@@ -15,7 +23,11 @@ export function isNode(value) {
   return value && typeof value === 'object' && 'type' in value && typeof value.type === 'string';
 }
 
-/** Get ObjectNode members as object */
+/**
+ * Get ObjectNode members as object
+ * @param {ObjectNode} node
+ * @return {Record<string, ValueNode}
+ */
 export function getObjMembers(node) {
   const members = {};
   if (node.type !== 'Object') {
@@ -31,14 +43,29 @@ export function getObjMembers(node) {
 }
 
 /**
+ * Inject members to ObjectNode and return a clone
+ * @param {ObjectNode} node
+ * @param {MemberNode[]} members
+ * @return {ObjectNode}
+ */
+export function injectObjMembers(node, members = []) {
+  if (node.type !== 'Object') {
+    return node;
+  }
+  const newNode = merge({}, node);
+  newNode.members.push(...members);
+  return newNode;
+}
+
+/**
  * Variation of Momoa’s traverse(), which keeps track of global path
  */
 export function traverse(root, visitor) {
   /**
    * Recursively visits a node.
-   * @param {Node} node The node to visit.
-   * @param {Node} [parent] The parent of the node to visit.
-   * @returns {void}
+   * @param {AnyNode} node The node to visit.
+   * @param {AnyNode} [parent] The parent of the node to visit.
+   * @return {void}
    */
   function visitNode(node, parent, path = []) {
     const nextPath = [...path];
