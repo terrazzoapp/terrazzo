@@ -33,6 +33,7 @@
     "@terrazzo/cli": "^1.11.0"
   },
   "dependencies": {
+    "@terrazzo/parser": "^0.0.0",
     "@terrazzo/token-tools": "^0.0.0",
     "@types/culori": "^2.1.0",
     "@types/mime": "^3.0.4",
@@ -42,7 +43,6 @@
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
     "yaml": "^2.4.1"
   }
 }

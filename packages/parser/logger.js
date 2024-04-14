@@ -52,6 +52,10 @@ export default class Logger {
   /** Log an error message (always; can’t be silenced) */
   error(entry) {
     const message = formatMessage(entry, 'error');
+    if (entry.continueOnError) {
+      console.error(message);
+      return;
+    }
     if (entry.node) {
       throw new TokensJSONError(message, entry.node);
     } else {

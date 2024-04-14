@@ -275,6 +275,9 @@ importers:
 
   packages/plugin-css:
     dependencies:
+      '@terrazzo/parser':
+        specifier: ^0.0.0
+        version: link:../parser
       '@terrazzo/token-tools':
         specifier: ^0.0.0
         version: link:../token-tools
@@ -297,9 +300,6 @@ importers:
       '@terrazzo/cli':
         specifier: workspace:^
         version: link:../cli
-      '@terrazzo/parser':
-        specifier: workspace:^
-        version: link:../parser
       yaml:
         specifier: ^2.4.1
         version: 2.4.1

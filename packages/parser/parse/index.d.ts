@@ -10,6 +10,9 @@ export interface ParseOptions extends Config {
   skipLint?: boolean;
 }
 
+/**
+ * Parse and validate Tokens JSON, and lint it
+ */
 export default function parse(input: string | object, options: ParseOptions): Promise<Record<string, TokenNormalized>>;
 
 /** Determine if an input is likely a JSON string */

@@ -26,13 +26,7 @@
   "type": "module",
   "main": "./index.js",
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
-    "build:clean": "del dist",
-    "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js",
-    "dev": "pnpm run --parallel \"/^dev:.*/\"",
     "lint": "biome check .",
-    "dev:ts": "tsc -p tsconfig.build.json --watch",
     "test": "pnpm run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

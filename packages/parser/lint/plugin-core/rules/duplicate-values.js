@@ -1,15 +1,9 @@
 import { isAlias, isTokenMatch } from '@terrazzo/token-tools';
 import deepEqual from 'deep-equal';
-import type { ParsedToken } from '../../token.js';
 
-export interface RuleDuplicateValueOptions {
-  /** (optional) Token IDs to ignore. Supports globs (`*`). */
-  ignore?: string[];
-}
-
-export default function ruleDuplicateValues(node: GroupOrToken, options?: RuleDuplicateValueOptions): string {
-  const notices: string[] = [];
-  const values: Record<string, Set<any>> = {};
+export default function ruleDuplicateValues({ ast, tokens, severity }) {
+  const notices = [];
+  const values = {};
 
   // skip ignored tokens
   if (options?.ignore && isTokenMatch(node.id, options.ignore)) {
@@ -31,18 +25,16 @@ export default function ruleDuplicateValues(node: GroupOrToken, options?: RuleDu
   ) {
     // skip aliases (note: $value will be resolved)
     if (isAlias(t._original.$value)) {
-      continue;
+      return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (values[t.$type]?.has(t.$value)) {
-      notices.push(`Duplicated value: "${t.$value as unknown as string}" (${t.id})`);
-      continue;
+      notices.push(`Duplicated value: "${t.$value}" (${t.id})`);
+      return;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     values[t.$type]?.add(t.$value);
-    continue;
+    return;
   }
 
   // everything else: use deepEqual
@@ -56,8 +48,8 @@ export default function ruleDuplicateValues(node: GroupOrToken, options?: RuleDu
   }
 
   if (isDuplicate) {
-    continue;
+    return;
   }
 
-  values[t.$type]?.add(t.$value as any); // eslint-disable-line @typescript-eslint/no-explicit-any
+  values[t.$type]?.add(t.$value);
 }

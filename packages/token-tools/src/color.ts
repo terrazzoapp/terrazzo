@@ -1,4 +1,5 @@
-import culori, { type Color } from 'culori';
+import 'culori/css';
+import { type Color, parse } from 'culori/fn';
 
 export interface ColorValueNormalized {
   /** Colorspace (default: `srgb`) @see https://www.w3.org/TR/css-color-4/#predefined */
@@ -27,7 +28,7 @@ export type ColorSpace =
   | 'xyz-d50'
   | 'xyz-d65';
 
-export const CULORI_MAPPING: Record<
+export const CULORI_TO_CSS: Record<
   Extract<
     Color['mode'],
     | 'a98'
@@ -65,16 +66,21 @@ export const CULORI_MAPPING: Record<
   xyz65: 'xyz-d65',
 };
 
+export const CSS_TO_CULORI: Record<string, string> = {};
+for (const k in CULORI_TO_CSS) {
+  CSS_TO_CULORI[CULORI_TO_CSS[k as keyof typeof CULORI_TO_CSS]] = k;
+}
+
 /** Parse any color */
 export function parseColor(color: string): ColorValueNormalized {
-  const result = culori.parse(color);
+  const result = parse(color);
   if (!result) {
-    throw new Error(`Unabled to parse color "${color}"`);
+    throw new Error(`Unable to parse color "${color}"`);
   }
-  if (!(result.mode in CULORI_MAPPING)) {
+  if (!(result.mode in CULORI_TO_CSS)) {
     throw new Error(`Unsupported color space: ${result.mode}`);
   }
-  const colorSpace = CULORI_MAPPING[result.mode as keyof typeof CULORI_MAPPING];
+  const colorSpace = CULORI_TO_CSS[result.mode as keyof typeof CULORI_TO_CSS];
   let channels: [number, number, number] = [0, 0, 0];
   switch (result.mode) {
     case 'a98':

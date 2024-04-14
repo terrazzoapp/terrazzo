@@ -79,15 +79,16 @@ export default function validateAndNormalizeConfig(rawConfig, { logger = new Log
       }
     }
   }
-  if (Array.isArray(config.plugins) && config.plugins.length) {
-    for (const plugin of config.plugins) {
-      if (typeof plugin.config === 'function') {
-        const newConfig = plugin.config(config); // if a plugin modified the config, allow it to
-        if (newConfig) {
-          config = newConfig;
-        }
+  if (Array.isArray(config.plugins)) {
+    // order plugins with "enforce"
+    config.plugins.sort((a, b) => {
+      if (a.enforce === 'pre' && b.enforce !== 'pre') {
+        return -1;
+      } else if (a.enforce === 'post' && b.enforce !== 'post') {
+        return 1;
       }
-    }
+      return 0;
+    });
   }
 
   // config.lint
@@ -167,6 +168,11 @@ export default function validateAndNormalizeConfig(rawConfig, { logger = new Log
       build: { enabled: true },
       rules: {},
     };
+  }
+
+  // call plugin.config()
+  for (const plugin of config.plugins) {
+    plugin.config?.({ ...config });
   }
 
   logger.debug({

@@ -14,6 +14,8 @@ export interface LogEntry {
   message: string;
   /** (optional) Prefix message with label */
   label?: string;
+  /** Continue on error? (default: false) */
+  continueOnError?: boolean;
   /** (optional) Show a code frame for the erring node */
   node?: AnyNode;
   /** (optional) To show code frame, provide entire AST to show which line erred (otherwise it’s floating in space) */

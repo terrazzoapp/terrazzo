@@ -25,6 +25,12 @@ pnpm run dev
 
 This project uses [Biome](https://biomejs.dev/), a modern JS toolchain, for linting and formatting.
 
+### `.ts` vs. `.js` + `.d.ts`
+
+Some packages (such as `parser`) are written in raw `.js` and `.d.ts`. The reason is the types are written strictly for the benefit of the user, however, the runtime needs to handle invalid and unexpected input that TypeScript may think is impossible or unnecessary, and it usually gets confused. One way to solve this is typing almost everything as `unknown`, however, that’s essentially the same as just writing `.js` anyway. Another way to look at it is for these packages, `.d.ts` are what’s _expected_ from the user, but often reality won’t match that.
+
+Packages that are wrtitten in `.ts` follow more expected TypeScript conventions.
+
 ## Testing
 
 Tests are written in [Vitest](https://vitest.dev), a modern replacement for Jest. To run tests:

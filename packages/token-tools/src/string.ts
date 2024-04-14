@@ -20,3 +20,8 @@ export function padStr(input: string, length: number, alignment: 'left' | 'cente
   }
   return input;
 }
+
+/** Pluralize strings */
+export function pluralize<T = string>(count: number, singular: T, plural: T): T {
+  return count === 1 ? singular : plural;
+}

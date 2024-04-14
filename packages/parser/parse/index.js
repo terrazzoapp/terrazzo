@@ -1,4 +1,5 @@
 import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
+import { isAlias, parseAlias } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import coreLintPlugin from '../lint/plugin-core/index.js';
 import Logger from '../logger.js';
@@ -11,18 +12,19 @@ export * from './validate.js';
 /**
  * @typedef {import("../config.js").Plugin} Plugin
  * @typedef {import("../types.js").TokenNormalized} TokenNormalized
- * @typedef {Object} ParseOptions
+ * @typedef {object} ParseOptions
  * @typedef {Logger} ParseOptions.logger
  * @typedef {boolean=false} ParseOptions.skipLint
  * @typedef {Plugin[]} ParseOptions.plugins
  */
 
 /**
+ * Parse
  * @param {string | object} input
  * @param {ParseOptions} options
  * @return {Promise<Record<string, TokenNormalized>>}
  */
-export default async function parse(input, { logger = new Logger(), skipLint = false, plugins }) {
+export default async function parse(input, { logger = new Logger(), skipLint = false, ...config }) {
   const totalStart = performance.now();
 
   // 1. Build AST
@@ -61,13 +63,13 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
             $type: members.$type.value,
             $value: members.$value,
             id,
-            sourceNode: node.value,
             mode: {},
             originalValue: evaluate(parent),
             group: {
               id: path.slice(0, path.length - 1).join('.'),
               tokens: [],
             },
+            sourceNode: node.value,
           };
           token.mode['.'] = token.$value;
           token.group.tokens.push({ ...token });
@@ -85,6 +87,25 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
   // 3. Resolve aliases, and finalize modes
   for (const id in tokens) {
+    const token = tokens[id];
+
+    if (isAlias(token.$value)) {
+      const node = token.sourceNode;
+      const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
+      const aliasOf = tokens[aliasOfID];
+      token.aliasOf = { ...aliasOf };
+      token.$value = { ...aliasOf.$value };
+      if (token.$type !== aliasOf.$type) {
+        logger.warn({
+          message: `Token ${id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
+          node,
+          ast,
+        });
+        token.$type = aliasOf.$type;
+      }
+    }
+
+    // TODO: modes
   }
 
   // 4. Execute lint runner with loaded plugins
@@ -93,13 +114,13 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     logger.debug({
       group: 'core',
       task: 'parse',
-      message: 'Hand off tokens to lint runner',
+      message: 'Start token linting',
     });
-    await lintRunner(ast, { logger, plugins });
+    await lintRunner({ ast, config, logger });
     logger.debug({
       group: 'core',
       task: 'validate',
-      message: 'Start tokens validation',
+      message: 'Finish token linting',
       timing: performance.now() - lintStart,
     });
   }
@@ -129,6 +150,22 @@ export function maybeJSONString(input) {
  * @param {Object} options
  * @param {Record<string, TokenNormalized>} options.tokens
  * @param {Logger} options.logger
- * @param {string[]=[]} options.path
+ * @param {AnyNode | undefined} options.node
+ * @param {DocumentNode | undefined} options.ast
+ * @param {string[]=[]} options.scanned
+ * @param {string}
  */
-export function resolveAlias(alias, { tokens, logger, path = [] }) {}
+export function resolveAlias(alias, { tokens, logger, ast, node, scanned = [] }) {
+  const { id } = parseAlias(alias);
+  if (!(id in tokens)) {
+    logger.error({ message: `Alias "${alias}" not found`, ast, node });
+  }
+  if (scanned.includes(id)) {
+    logger.error({ message: `Circular alias detected from "${alias}"`, ast, node });
+  }
+  const token = tokens[id];
+  if (!isAlias(token.$value)) {
+    return id;
+  }
+  return resolveAlias(alias, { tokens, logger, ast, node, scanned: [...scanned, id] });
+}
