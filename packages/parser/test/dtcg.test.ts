@@ -47,7 +47,7 @@ describe('7 Alias', () => {
       {
         given: {
           color: {
-            base: { blue: { 500: { $type: 'color', value: 'color(srgb 0 0.2 1)' } } },
+            base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
             semantic: { $value: '{color.base.blue.500}' },
           },
         },

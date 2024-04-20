@@ -2,7 +2,6 @@ import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import lintRunner from '../lint/index.js';
-import coreLintPlugin from '../lint/plugin-core/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
 import parseYAML from './yaml.js';
@@ -100,6 +99,8 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           // TODO: group + group tokens
 
           tokens[id] = token;
+        } else if (members.value) {
+          logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, node, ast });
         }
       }
     },
@@ -132,13 +133,15 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     } else if (Array.isArray(token.$value)) {
       for (let i = 0; i < token.$value.length; i++) {
         if (isAlias(token.$value[i])) {
-          token.$value[i] = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+          const aliasID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+          token.$value[i] = tokens[aliasID].$value; // this is guaranteed to exist at this point
         }
       }
     } else if (typeof token.$value === 'object') {
       for (const property in token.$value) {
         if (isAlias(token.$value[property])) {
-          token.$value[property] = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+          const aliasID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+          token.$value[property] = merge({}, tokens[aliasID].$value); // this is guaranteed to exist at this poin
         }
       }
     }
@@ -200,7 +203,7 @@ export function maybeJSONString(input) {
  */
 export function resolveAlias(alias, { tokens, logger, ast, node, scanned = [] }) {
   const { id } = parseAlias(alias);
-  if (!(id in tokens)) {
+  if (!tokens[id]) {
     logger.error({ message: `Alias "${alias}" not found`, ast, node });
   }
   if (scanned.includes(id)) {

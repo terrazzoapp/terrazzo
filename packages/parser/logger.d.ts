@@ -46,6 +46,7 @@ export default class Logger {
 export class TokensJSONError extends Error {
   level: LogLevel;
   debugScope: string;
+  node?: AnyNode;
 
   constructor(message: string, node: AnyNode);
 

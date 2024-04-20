@@ -1,5 +1,5 @@
 import type { Config } from '../config.js';
-import type { Group, Token, TokenNormalized } from '../types.js';
+import type { TokenNormalized } from '../types.js';
 import type Logger from '../logger.js';
 
 export * from './validate.js';
