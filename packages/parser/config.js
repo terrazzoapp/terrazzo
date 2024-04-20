@@ -1,4 +1,5 @@
 import { merge } from 'merge-anything';
+import coreLintPlugin from './lint/plugin-core/index.js';
 import Logger from './logger.js';
 
 const TRAILING_SLASH_RE = /\/*$/;
@@ -10,12 +11,12 @@ const TRAILING_SLASH_RE = /\/*$/;
  * @param {Logger} options.logger
  * @param {URL} options.cwd
  */
-export default function validateAndNormalizeConfig(rawConfig, { logger = new Logger(), cwd }) {
+export default function defineConfig(rawConfig, { logger = new Logger(), cwd = import.meta.url } = {}) {
   const configStart = performance.now();
 
   logger.debug({ group: 'core', task: 'config', message: 'Start config validation' });
 
-  let config = { ...rawConfig };
+  const config = { ...rawConfig };
 
   // config.tokens
   if (rawConfig.tokens === undefined) {
@@ -53,43 +54,43 @@ export default function validateAndNormalizeConfig(rawConfig, { logger = new Log
   }
 
   // config.outDir
-  if (rawConfig.outDir === undefined) {
+  if (typeof config.outDir === 'undefined') {
     config.outDir = new URL('./tokens/', cwd);
-  } else if (typeof rawConfig.outDir !== 'string') {
-    logger.error({ label: 'config.outDir', message: `Expected string, received ${JSON.stringify(rawConfig.outDir)}` });
+  } else if (typeof config.outDir !== 'string') {
+    logger.error({ label: 'config.outDir', message: `Expected string, received ${JSON.stringify(config.outDir)}` });
   } else {
     // note: always add trailing slash so URL treats it as a directory
-    config.outDir = new URL(rawConfig.outDir.replace(TRAILING_SLASH_RE, '/'), cwd);
+    config.outDir = new URL(config.outDir.replace(TRAILING_SLASH_RE, '/'), cwd);
   }
 
   // config.plugins
-  if (rawConfig.plugins !== undefined) {
-    if (!Array.isArray(rawConfig.plugins)) {
-      logger.error({
-        label: 'config.plugins',
-        message: `Expected array of plugins, received ${JSON.stringify(config.plugins)}`,
-      });
-    }
-    for (let n = 0; n < rawConfig.plugins.length; n++) {
-      const plugin = rawConfig.plugins[n];
-      if (typeof plugin !== 'object') {
-        logger.error({ label: `plugin[${n}]`, message: `Expected output plugin, received ${JSON.stringify(plugin)}` });
-      } else if (!plugin.name) {
-        logger.error({ label: `plugin[${n}]`, message: `Missing "name"` });
-      }
-    }
+  if (typeof config.plugins === 'undefined') {
+    config.plugins = [];
   }
-  if (Array.isArray(config.plugins)) {
-    // order plugins with "enforce"
-    config.plugins.sort((a, b) => {
-      if (a.enforce === 'pre' && b.enforce !== 'pre') {
-        return -1;
-      } else if (a.enforce === 'post' && b.enforce !== 'post') {
-        return 1;
-      }
-      return 0;
+  if (!Array.isArray(config.plugins)) {
+    logger.error({
+      label: 'config.plugins',
+      message: `Expected array of plugins, received ${JSON.stringify(config.plugins)}`,
     });
   }
+  config.plugins.push(coreLintPlugin());
+  for (let n = 0; n < config.plugins.length; n++) {
+    const plugin = config.plugins[n];
+    if (typeof plugin !== 'object') {
+      logger.error({ label: `plugin[${n}]`, message: `Expected output plugin, received ${JSON.stringify(plugin)}` });
+    } else if (!plugin.name) {
+      logger.error({ label: `plugin[${n}]`, message: `Missing "name"` });
+    }
+  }
+  // order plugins with "enforce"
+  config.plugins.sort((a, b) => {
+    if (a.enforce === 'pre' && b.enforce !== 'pre') {
+      return -1;
+    } else if (a.enforce === 'post' && b.enforce !== 'post') {
+      return 1;
+    }
+    return 0;
+  });
 
   // config.lint
   if ('lint' in config && config.lint !== undefined) {

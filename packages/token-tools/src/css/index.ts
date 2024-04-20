@@ -91,7 +91,7 @@ export function transformColorValue(value: ColorValue): string {
 export type CubicBézierValue = [number, number, number, number];
 
 /** Convert cubicBezier value to CSS */
-export function transformCubicBézierValue(value: CubicBézierValue): string {
+export function transformCubicBezierValue(value: CubicBézierValue): string {
   return `cubic-bezier(${value.join(', ')})`;
 }
 
@@ -133,7 +133,12 @@ export interface ShadowLayer {
   spread: string;
 }
 
-/** Convert shadow value to CSS */
+/** Convert number value to CSS */
+export function transformNumberValue(value: number): string {
+  return String(value);
+}
+
+/** Convert shadow subvalue to CSS */
 export function transformShadowLayer(value: ShadowLayer): string {
   return [
     transformDimensionValue(value.offsetX),
@@ -142,6 +147,18 @@ export function transformShadowLayer(value: ShadowLayer): string {
     transformDimensionValue(value.spread),
     transformColorValue(value.color),
   ].join(' ');
+}
+
+/** Convert shadow value to CSS */
+export function transformShadowValue(value: ShadowLayer | ShadowLayer[]): string {
+  return Array.isArray(value) ? value.map((v) => transformShadowLayer(v)).join(', ') : transformShadowLayer(value);
+}
+
+/** Convert string value to CSS */
+export function transformStringValue(value: string): string {
+  // this seems like a useless function—because it is—but this is a placeholder
+  // that can handle unexpected values in the future should any arise
+  return String(value);
 }
 
 export type StrokeStyleValue =
@@ -172,7 +189,7 @@ export interface TransitionValue {
 /** Convert transition value to CSS */
 export function transformTransitionValue(value: TransitionValue, expanded?: string) {
   const duration = transformDurationValue(value.duration);
-  const timingFunction = transformCubicBézierValue(value.timingFunction);
+  const timingFunction = transformCubicBezierValue(value.timingFunction);
   const delay = transformDurationValue(value.delay);
 
   if (expanded) {
@@ -207,67 +224,22 @@ export function transformTypographyValue(value: Record<string, string | string[]
   return output;
 }
 
-/** Test for invalid CSS */
-export function isInvalidCSSVarChar(name: string): boolean {
-  return /[\./\\\(\)\[\]\{\}]/g.test(name);
+const CSS_VAR_RE =
+  /(?:(\p{Uppercase_Letter}?\p{Lowercase_Letter}+|\p{Uppercase_Letter}+|\p{Number}+|[\u{80}-\u{10FFFF}]+|_)|.)/u;
+
+export interface MakeCSSVarOptions {
+  /** Prefix with string */
+  prefix?: string;
+  /** Wrap with `var(…)` (default: false) */
+  wrapVar?: boolean;
 }
 
-/** Generate a valid CSS variable from any string */
-export function makeCSSVar(input: string, prefix?: string): string {
-  const segments: string[] = [];
-  if (prefix) {
-    segments.push(prefix);
-  }
-
-  if (input === undefined || input === null || input === '') {
-    throw new Error('Can’t make CSS variable from empty input');
-  }
-
-  let segment = '';
-  const chars = Array.from(String(input)); // handle unicode
-  for (let i = 0; i < chars.length; i++) {
-    const c = chars[i]!;
-    const nextC = chars[i + 1];
-    const cLower = c.toLocaleLowerCase();
-
-    // skip over special characters
-    if (c === '-' || isInvalidCSSVarChar(c)) {
-      if (segment) {
-        segments.push(segment);
-      }
-      segment = '';
-      continue;
-    }
-    // add numbers and continue
-    if (/[0-9]/.test(c)) {
-      segment += c;
-      continue;
-    } else if (nextC && /[0-9]/.test(nextC)) {
-      segment += cLower;
-      segments.push(segment);
-      segment = nextC;
-      i += 1;
-      continue;
-    }
-    // separate camelCase
-    const isCurrentLowercase = cLower === c;
-    if (isCurrentLowercase) {
-      const isNextUppercase =
-        nextC && nextC !== '-' && !isInvalidCSSVarChar(nextC) && nextC.toLocaleUpperCase() === nextC;
-      if (isNextUppercase) {
-        segment += cLower;
-        segments.push(segment);
-        segment = nextC.toLocaleLowerCase();
-        i += 1;
-        continue;
-      }
-    }
-
-    segment += cLower;
-  }
-  if (segment.length) {
-    segments.push(segment);
-  }
-
-  return `--${segments.join('-')}`;
+/**
+ * Generate a valid CSS variable from any string
+ * Code by @dfrankland
+ */
+export function makeCSSVar(name: string, { prefix, wrapVar = false }: MakeCSSVarOptions = {}): string {
+  const property = [...(prefix ? [prefix] : []), ...name.split(CSS_VAR_RE).filter(Boolean)].join('-');
+  const finalProperty = `--${property}`.toLocaleLowerCase();
+  return wrapVar ? `var(${finalProperty})` : finalProperty;
 }

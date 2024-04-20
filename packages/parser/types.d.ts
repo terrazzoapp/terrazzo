@@ -299,6 +299,7 @@ export interface BooleanTokenNormalized extends TokenNormalizedCore {
   $type: 'boolean';
   $value: BooleanValue;
   aliasOf?: BooleanTokenNormalized;
+  partialAliasOf?: never;
   mode: Record<string, BooleanTokenNormalized | undefined>;
   originalValue: BooleanToken;
 }
@@ -307,6 +308,7 @@ export interface BorderTokenNormalized extends TokenNormalizedCore {
   $type: 'border';
   $value: BorderValueNormalized;
   aliasOf?: BorderTokenNormalized;
+  partialAliasOf?: (ColorTokenNormalized | DimensionTokenNormalized | StrokeStyleTokenNormalized)[];
   mode: Record<string, BorderTokenNormalized | undefined>;
   originalValue: BorderToken;
 }
@@ -321,6 +323,7 @@ export interface ColorTokenNormalized extends TokenNormalizedCore {
   $type: 'color';
   $value: ColorValueNormalized;
   aliasOf?: ColorTokenNormalized;
+  partialAliasOf?: never;
   mode: Record<string, ColorTokenNormalized | undefined>;
   originalValue: ColorToken;
 }

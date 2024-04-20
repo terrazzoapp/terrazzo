@@ -59,6 +59,6 @@ export interface ConfigOptions {
 /**
  * Validate and normalize a config
  */
-export default function validateAndNormalizeConfig(rawConfig: Config, options: ConfigOptions): ConfigInit;
+export default function defineConfig(rawConfig: Config, options: ConfigOptions): ConfigInit;
 
 export function mergeConfigs(a: Config, b: Config): Config;

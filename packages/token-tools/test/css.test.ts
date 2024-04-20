@@ -4,10 +4,12 @@ import {
   transformBooleanValue,
   transformBorderValue,
   transformColorValue,
-  transformCubicBézierValue,
+  transformCubicBezierValue,
   transformDimensionValue,
   transformDurationValue,
   transformGradientValue,
+  transformNumberValue,
+  transformShadowValue,
   transformTransitionValue,
   transformTypographyValue,
 } from '../src/css/index.js';
@@ -23,7 +25,7 @@ describe('makeCSSVar', () => {
     ['camelCase', { given: ['myCssVariable'], want: { success: '--my-css-variable' } }],
     ['extra dashes', { given: ['my-css---var'], want: { success: '--my-css-var' } }],
     ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡-_' } }],
-    ['prefix', { given: ['typography.body', 'tz'], want: { success: '--tz-typography-body' } }],
+    ['prefix', { given: ['typography.body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -121,14 +123,14 @@ describe('transformColorValue', () => {
   });
 });
 
-describe('transformCubicBézierValue', () => {
-  const tests: Test<Parameters<typeof transformCubicBézierValue>, ReturnType<typeof transformCubicBézierValue>>[] = [
+describe('transformCubicBezierValue', () => {
+  const tests: Test<Parameters<typeof transformCubicBezierValue>, ReturnType<typeof transformCubicBezierValue>>[] = [
     ['basic', { given: [[0.33, 1, 0.68, 1]], want: { success: 'cubic-bezier(0.33, 1, 0.68, 1)' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformCubicBézierValue(...given);
+      result = transformCubicBezierValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -192,6 +194,56 @@ describe('transformGradientValue', () => {
     let result: typeof want.success;
     try {
       result = transformGradientValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformNumberValue', () => {
+  const tests: Test<Parameters<typeof transformNumberValue>, ReturnType<typeof transformNumberValue>>[] = [
+    ['basic', { given: [42], want: { success: '42' } }],
+  ];
+
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformNumberValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformShadowValue', () => {
+  const tests: Test<Parameters<typeof transformShadowValue>, ReturnType<typeof transformShadowValue>>[] = [
+    [
+      'basic',
+      {
+        given: [{ color: 'color(srgb 0 0 0 / 0.1)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' }],
+        want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
+      },
+    ],
+    [
+      'array',
+      {
+        given: [
+          [
+            { color: 'color(srgb 0 0 0 / 0.05)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' },
+            { color: 'color(srgb 0 0 0 / 0.05)', offsetX: '0', offsetY: '0.5rem', blur: '1rem', spread: '0' },
+          ],
+        ],
+        want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)' },
+      },
+    ],
+  ];
+
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformShadowValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }

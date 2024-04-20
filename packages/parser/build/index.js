@@ -1,5 +1,6 @@
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
+import Logger from '../logger.js';
 
 /**
  * @typedef {object} BuildRunnerOptions
@@ -24,7 +25,7 @@ import { merge } from 'merge-anything';
  * @param {BuildOptions} options
  * @return {Promise<BuildResult>}
  */
-export default async function build({ tokens, ast, logger, config }) {
+export default async function build({ tokens, ast, logger = new Logger(), config }) {
   const formats = {};
   const result = { outputFiles: [] };
 
@@ -81,7 +82,8 @@ export default async function build({ tokens, ast, logger, config }) {
         ast,
         format: (formatID) => createFormatter(formatID),
         outputFile(filename, contents) {
-          if (result.outputFiles.some((f) => f.filename === filename)) {
+          const resolved = new URL(filename, config.outDir);
+          if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
             logger.error({ message: `Can’t overwrite file "${filename}"`, label: plugin.name });
           }
           result.outputFiles.push(filename, contents);
@@ -101,7 +103,12 @@ export default async function build({ tokens, ast, logger, config }) {
   logger.debug({ group: 'core', task: 'build', message: 'Start buildEnd' });
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
-      await plugin.buildEnd(result);
+      await plugin.buildEnd({
+        tokens,
+        ast,
+        format: (formatID) => createFormatter(formatID),
+        outputFiles: merge([], result.outputFiles),
+      });
     }
   }
   logger.debug({ group: 'core', task: 'build', message: 'Finish buildEnd', timing: performance.now() - startBuildEnd });

@@ -11,21 +11,25 @@ import { getObjMembers, injectObjMembers, traverse } from './json.js';
 export * from './validate.js';
 
 /**
+ * @typedef {import("@humanwhocodes/momoa").DocumentNode} DocumentNode
  * @typedef {import("../config.js").Plugin} Plugin
  * @typedef {import("../types.js").TokenNormalized} TokenNormalized
  * @typedef {object} ParseOptions
  * @typedef {Logger} ParseOptions.logger
  * @typedef {boolean=false} ParseOptions.skipLint
  * @typedef {Plugin[]} ParseOptions.plugins
+ * @typedef {object} ParseResult
+ * @typedef {Record<string, TokenNormalized} ParseResult.tokens
+ * @typedef {DocumentNode} ParseResult.ast
  */
 
 /**
  * Parse
  * @param {string | object} input
  * @param {ParseOptions} options
- * @return {Promise<Record<string, TokenNormalized>>}
+ * @return {Promise<ParseResult>}
  */
-export default async function parse(input, { logger = new Logger(), skipLint = false, ...config } = {}) {
+export default async function parse(input, { logger = new Logger(), skipLint = false, config } = {}) {
   const { plugins } = config;
 
   const totalStart = performance.now();
@@ -119,7 +123,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
     if (isAlias(token.$value)) {
       const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
-      const aliasOf = tokens[aliasOfID];
+      const aliasOf = merge({}, tokens[aliasOfID]);
       token.aliasOf = merge({}, aliasOf);
       token.$value = merge({}, aliasOf.$value);
       if (token.$type !== aliasOf.$type) {
@@ -133,15 +137,25 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     } else if (Array.isArray(token.$value)) {
       for (let i = 0; i < token.$value.length; i++) {
         if (isAlias(token.$value[i])) {
-          const aliasID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
-          token.$value[i] = tokens[aliasID].$value; // this is guaranteed to exist at this point
+          if (!token.partialAliasOf) {
+            token.partialAliasOf = [];
+          }
+          const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+          const aliasOf = tokens[aliasOfID];
+          token.partialAliasOf.push(merge({}, aliasOf));
+          token.$value[i] = typeof aliasOf.$value === 'object' ? merge({}, aliasOf.$value) : aliasOf.$value;
         }
       }
     } else if (typeof token.$value === 'object') {
       for (const property in token.$value) {
         if (isAlias(token.$value[property])) {
-          const aliasID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
-          token.$value[property] = merge({}, tokens[aliasID].$value); // this is guaranteed to exist at this poin
+          if (!token.partialAliasOf) {
+            token.partialAliasOf = [];
+          }
+          const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+          const aliasOf = tokens[aliasOfID];
+          token.partialAliasOf.push(merge({}, aliasOf));
+          token.$value[property] = typeof aliasOf.$value === 'object' ? merge({}, aliasOf.$value) : aliasOf.$value;
         }
       }
     }
@@ -178,7 +192,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     timing: performance.now() - totalStart,
   });
 
-  return tokens;
+  return {
+    tokens,
+    ast,
+  };
 }
 
 /**

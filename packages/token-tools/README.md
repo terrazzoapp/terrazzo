@@ -1,6 +1,5 @@
 # @cobalt-ui/token-tools
 
-
 ## Install
 
 ```sh

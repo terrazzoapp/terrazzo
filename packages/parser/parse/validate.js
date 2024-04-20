@@ -93,7 +93,7 @@ function validateMembersAs($value, properties, node, { ast, logger }) {
 }
 
 /**
- * Verify an Alias node is valid
+ * Verify an Alias token is valid
  * @param {ValueNode} $value
  * @param {AnyNode} node
  * @param {ValidateOptions} options
@@ -103,6 +103,30 @@ export function validateAlias($value, node, { ast, logger }) {
   if ($value.type !== 'String' || !isAlias($value.value)) {
     logger.error({ message: `Invalid alias: ${print($value)}`, node, ast, loc: getLoc($value) });
   }
+}
+
+/**
+ * Verify a Border token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateBorder($value, node, { ast, logger }) {
+  if ($value.type !== 'Object') {
+    logger.error({ message: `Expected object, received ${$value.type}`, node, ast, loc: getLoc($value) });
+    return;
+  }
+  validateMembersAs(
+    $value,
+    {
+      color: { validator: validateColor, required: true },
+      style: { validator: validateStrokeStyle, required: true },
+      width: { validator: validateDimension, required: true },
+    },
+    node,
+    { ast, logger },
+  );
 }
 
 /**
@@ -559,20 +583,7 @@ export default function validate(node, { ast, logger }) {
 
     // composite types
     case 'border': {
-      if ($value.type !== 'Object') {
-        logger.error({ message: `Expected object, received ${$value.type}`, node, ast, loc: getLoc($value) });
-        break;
-      }
-      validateMembersAs(
-        $value,
-        {
-          color: { validator: validateColor, required: true },
-          style: { validator: validateStrokeStyle, required: true },
-          width: { validator: validateDimension, required: true },
-        },
-        node,
-        { ast, logger },
-      );
+      validateBorder($value, node, { ast, logger });
       break;
     }
     case 'gradient': {

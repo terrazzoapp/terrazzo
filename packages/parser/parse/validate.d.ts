@@ -13,6 +13,8 @@ export interface ValidateOptions {
 
 export function validateAlias($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
+export function validateBorder($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+
 export function validateColor($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export function validateCubicBézier($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
