@@ -93,16 +93,16 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
   });
 
   // config.lint
-  if ('lint' in config && config.lint !== undefined) {
+  if (config.lint !== undefined) {
     if (config.lint === null || typeof config.lint !== 'object' || Array.isArray(config.lint)) {
       logger.error({ label: 'config.lint', message: 'Must be an object' });
       return config;
     }
 
-    if (!('build' in config.lint)) {
+    if (!config.lint.build) {
       config.lint.build = { enabled: true };
     }
-    if ('enabled' in config.lint.build && config.lint.build.enabled !== undefined) {
+    if (config.lint.build.enabled !== undefined) {
       if (typeof config.lint.build.enabled !== 'boolean') {
         logger.error({
           label: 'config.lint.build.enabled',
@@ -113,7 +113,7 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
       config.lint.build.enabled = true;
     }
 
-    if ('rules' in config.lint && config.lint.rules !== undefined) {
+    if (config.lint.rules !== undefined) {
       if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
         logger.error({
           label: 'config.lint.rules',
@@ -122,6 +122,9 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
       }
 
       for (const id in config.lint.rules) {
+        if (!Object.hasOwn(config.lint.rules, id)) {
+          continue;
+        }
         if (typeof id !== 'string') {
           logger.error({ label: 'config.lint.rules', message: `Expects string keys, received ${JSON.stringify(id)}` });
         }

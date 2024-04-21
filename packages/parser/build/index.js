@@ -37,6 +37,9 @@ export default async function build({ tokens, ast, logger = new Logger(), config
       getAllTokenValues(glob) {
         const matches = {};
         for (const id in tokens) {
+          if (!Object.hasOwn(tokens, id)) {
+            continue;
+          }
           if (isTokenMatch(id, [glob])) {
             matches[id] = { ...tokens[id] };
           }

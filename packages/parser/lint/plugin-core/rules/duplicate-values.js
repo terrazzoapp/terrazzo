@@ -1,55 +1,69 @@
 import { isAlias, isTokenMatch } from '@terrazzo/token-tools';
 import deepEqual from 'deep-equal';
 
-export default function ruleDuplicateValues({ ast, tokens, severity }) {
+export default function ruleDuplicateValues({ tokens, rule: { severity }, options }) {
+  if (severity === 'off') {
+    return;
+  }
+
   const notices = [];
   const values = {};
 
-  // skip ignored tokens
-  if (options?.ignore && isTokenMatch(node.id, options.ignore)) {
-    return;
-  }
+  for (const id in tokens) {
+    if (!Object.hasOwn(tokens, id)) {
+      continue;
+    }
 
-  if (!values[t.$type]) {
-    values[t.$type] = new Set();
-  }
+    const t = tokens[id];
 
-  // primitives: direct comparison is easy
-  if (
-    t.$type === 'color' ||
-    t.$type === 'dimension' ||
-    t.$type === 'duration' ||
-    t.$type === 'link' ||
-    t.$type === 'number' ||
-    t.$type === 'fontWeight'
-  ) {
-    // skip aliases (note: $value will be resolved)
-    if (isAlias(t._original.$value)) {
+    // skip ignored tokens
+    if (options?.ignore && isTokenMatch(id, options.ignore)) {
       return;
     }
 
-    if (values[t.$type]?.has(t.$value)) {
-      notices.push(`Duplicated value: "${t.$value}" (${t.id})`);
+    if (!values[t.$type]) {
+      values[t.$type] = new Set();
+    }
+
+    // primitives: direct comparison is easy
+    if (
+      t.$type === 'color' ||
+      t.$type === 'dimension' ||
+      t.$type === 'duration' ||
+      t.$type === 'link' ||
+      t.$type === 'number' ||
+      t.$type === 'fontWeight'
+    ) {
+      // skip aliases (note: $value will be resolved)
+      if (isAlias(t._original.$value)) {
+        return;
+      }
+
+      if (values[t.$type]?.has(t.$value)) {
+        notices.push({ message: `Duplicated value: "${t.$value}" (${t.id})`, node: t.sourceNode });
+        return;
+      }
+
+      values[t.$type]?.add(t.$value);
       return;
+    }
+
+    // everything else: use deepEqual
+    let isDuplicate = false;
+    for (const v of values[t.$type]?.values() ?? []) {
+      if (deepEqual(t.$value, v)) {
+        notices.push({ message: `Duplicated value (${t.id})`, node: t.sourceNode });
+        isDuplicate = true;
+        break;
+      }
+    }
+
+    if (isDuplicate) {
+      continue;
     }
 
     values[t.$type]?.add(t.$value);
-    return;
   }
 
-  // everything else: use deepEqual
-  let isDuplicate = false;
-  for (const v of values[t.$type]?.values() ?? []) {
-    if (deepEqual(t.$value, v)) {
-      notices.push(`Duplicated value (${t.id})`);
-      isDuplicate = true;
-      break;
-    }
-  }
-
-  if (isDuplicate) {
-    return;
-  }
-
-  values[t.$type]?.add(t.$value);
+  return notices;
 }

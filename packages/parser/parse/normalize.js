@@ -34,7 +34,7 @@ export default function normalizeValue(token) {
       const output = [];
       for (let i = 0; i < token.$value.length; i++) {
         const stop = { ...token.$value[i] };
-        if (!('position' in stop)) {
+        if (typeof stop.position !== 'number') {
           stop.position = i / (token.$value.length - 1);
         }
         output.push(stop);

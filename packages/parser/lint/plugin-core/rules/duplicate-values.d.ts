@@ -5,4 +5,6 @@ export interface RuleDuplicateValueOptions {
   ignore?: string[];
 }
 
-export default function ruleDuplicateValues(options: LinterOptions): Promise<LintNotice[] | undefined>;
+export default function ruleDuplicateValues(
+  options: LinterOptions<RuleDuplicateValueOptions>,
+): Promise<LintNotice[] | undefined>;

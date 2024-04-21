@@ -118,6 +118,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
   // 3. Resolve aliases, and finalize modes
   for (const id in tokens) {
+    if (!Object.hasOwn(tokens, id)) {
+      continue;
+    }
+
     const token = tokens[id];
     const node = token.sourceNode;
 
@@ -148,6 +152,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       }
     } else if (typeof token.$value === 'object') {
       for (const property in token.$value) {
+        if (!Object.hasOwn(token.$value, property)) {
+          continue;
+        }
+
         if (isAlias(token.$value[property])) {
           if (!token.partialAliasOf) {
             token.partialAliasOf = [];
@@ -182,6 +190,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
   // 5. normalize values
   for (const id in tokens) {
+    if (!Object.hasOwn(tokens, id)) {
+      continue;
+    }
+
     tokens[id].$value = normalize(tokens[id]);
   }
 

@@ -16,8 +16,9 @@ export default async function lintRunner({ tokens, ast, config = {}, logger }) {
       const warnEntries = [];
       await Promise.all(
         Object.entries(rules).map(async ([id, linter]) => {
-          const { severity } = lint.rules[id]?.severity ?? 'warn';
-          const results = await linter({ tokens, ast, severity });
+          console.log({ id, linter, lint });
+          const { severity = 'warn' } = lint.rules[id];
+          const results = await linter({ tokens, ast, rule: { id, severity } });
           for (const result of results ?? []) {
             const noticeList = severity === 'error' ? errorEntries : warnEntries;
             noticeList.push({

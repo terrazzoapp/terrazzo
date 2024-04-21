@@ -52,7 +52,7 @@ export interface Plugin {
 
 export interface ConfigOptions {
   logger?: Logger;
-  /** Configs need CWD so this can be run without Node.js */
+  /** @terrazzo/parser needs cwd so this can be run without Node.js. Importing defineConfig from @terrazzo/cli doesn’t need this. */
   cwd: URL;
 }
 
