@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { isAlias } from '../src/alias.js';
+import { isAlias, makeAlias, parseAlias } from '../src/alias.js';
 
 describe('isAlias', () => {
   test('returns true for valid ID', () => {
@@ -12,5 +12,29 @@ describe('isAlias', () => {
 
   test('ignores invalid values', () => {
     expect(isAlias([])).toBe(false);
+  });
+});
+
+describe('makeAlias', () => {
+  test('turns ID into alias', () => {
+    expect(makeAlias('color.blue.60')).toBe('{color.blue.60}');
+  });
+
+  test('existing aliases are kept', () => {
+    expect(makeAlias('{color.blue.60}')).toBe('{color.blue.60}');
+  });
+});
+
+describe('parseAlias', () => {
+  test('standard', () => {
+    expect(parseAlias('{color.blue.60}')).toEqual({ id: 'color.blue.60' });
+  });
+
+  test('with mode', () => {
+    expect(parseAlias('{color.blue.60#dark}')).toEqual({ id: 'color.blue.60', mode: 'dark' });
+  });
+
+  test('invalid', () => {
+    expect(parseAlias('color.blue.60')).toEqual({ id: 'color.blue.60' });
   });
 });

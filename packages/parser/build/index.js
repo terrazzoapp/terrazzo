@@ -1,5 +1,4 @@
 import { isTokenMatch } from '@terrazzo/token-tools';
-import { merge } from 'merge-anything';
 import Logger from '../logger.js';
 
 /**
@@ -20,6 +19,49 @@ import Logger from '../logger.js';
  * @typedef {string | Buffer} OutputFile.contents
  */
 
+export const SINGLE_VALUE = 'SINGLE_VALUE';
+export const MULTI_VALUE = 'MULTI_VALUE';
+
+/** Validate plugin setTransform() calls for immediate feedback */
+function validateTransformParams({ params, token, logger, pluginName }) {
+  const baseEntry = { group: 'plugin', task: pluginName };
+
+  // validate ID
+  if (!token) {
+    logger.error({
+      ...baseEntry,
+      message: `setTransform() tried to transform token "${id}" but it doesn’t exist.`,
+    });
+  }
+  // validate mode
+  if (params.mode && !token.mode[params.mode]) {
+    // Adding a mode is allowed, but comes with a warning
+    logger.warn({
+      ...baseEntry,
+      message: `setTransform() tried to transform mode "${params.mode}" on token "${id}" but it doesn’t exist.`,
+    });
+  }
+  // validate value is valid for SINGLE_VALUE or MULTI_VALUE
+  if (
+    !params.value ||
+    (typeof params.value !== 'string' && typeof params.value !== 'object') ||
+    Array.isArray(params.value)
+  ) {
+    logger.error({
+      ...baseEntry,
+      message: `setTransform() value expected string or object of strings, received ${
+        Array.isArray(params.value) ? 'Array' : typeof params.value
+      }`,
+    });
+  }
+  if (typeof params.value === 'object' && Object.values(params.value).some((v) => !v || typeof v !== 'string')) {
+    logger.error({
+      ...baseEntry,
+      message: 'setTransform() value expected object of strings, received some non-string values',
+    });
+  }
+}
+
 /**
  * Run build stage
  * @param {BuildOptions} options
@@ -29,47 +71,62 @@ export default async function build({ tokens, ast, logger = new Logger(), config
   const formats = {};
   const result = { outputFiles: [] };
 
-  function createFormatter(formatID, readonly = true) {
-    const formatter = {
-      getTokenValue(tokenID) {
-        return formats[formatID][tokenID];
-      },
-      getAllTokenValues(glob) {
-        const matches = {};
-        for (const id in tokens) {
-          if (!Object.hasOwn(tokens, id)) {
-            continue;
-          }
-          if (isTokenMatch(id, [glob])) {
-            matches[id] = { ...tokens[id] };
-          }
-        }
-        return matches;
-      },
-      setTokenValue(tokenID, value) {
-        if (readonly) {
-          return; // don’t throw error; just ignore calls
-        }
-        formats[formatID][tokenID] = merge(formats[formatID][tokenID] ?? {}, value);
-      },
-    };
-    return formatter;
+  function getTransforms(params) {
+    return (formats[params.format] ?? []).filter((token) => {
+      if (params.select && params.select !== '*' && !isTokenMatch(token.token.id, [params.select])) {
+        return false;
+      }
+      return (!params.mode || params.mode === token.mode) && (!params.variant || params.variant === token.variant);
+    });
   }
 
   // transform()
+  let transformsLocked = false; // prevent plugins from transforming after stage has ended
   const startTransform = performance.now();
-  logger.debug({ group: 'core', task: 'transform', message: 'Start transform' });
+  logger.debug({ group: 'parser', task: 'transform', message: 'Start transform' });
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
-      await transform({
+      await plugin.transform({
         tokens,
         ast,
-        format: (formatID) => createFormatter(formatID, false),
+        getTransforms,
+        setTransform(id, params) {
+          if (transformsLocked) {
+            logger.warn({
+              message: 'Attempted to call setTransform() after transform step has completed.',
+              group: 'plugin',
+              task: plugin.name,
+            });
+            return;
+          }
+          const token = tokens[id];
+          validateTransformParams({ token, logger, params, pluginName: plugin.name });
+
+          // upsert
+          if (!formats[params.format]) {
+            formats[params.format] = [];
+          }
+          const foundTokenI = formats[params.format].findIndex(
+            (t) => (!params.mode || params.mode === t.mode) && (!params.variant || params.variant === t.variant),
+          );
+          if (foundTokenI === -1) {
+            formats[params.format].push({
+              ...params,
+              type: typeof value === 'string' ? SINGLE_VALUE : MULTI_VALUE,
+              mode: params.mode || '.',
+              token: structuredClone(token),
+            });
+          } else {
+            formats[params.format][foundTokenI].value = params.value;
+            formats[params.format][foundTokenI].type = typeof params.value === 'string' ? SINGLE_VALUE : MULTI_VALUE;
+          }
+        },
       });
     }
   }
+  transformsLocked = true;
   logger.debug({
-    group: 'core',
+    group: 'parser',
     task: 'transform',
     message: 'Finish transform',
     timing: performance.now() - startTransform,
@@ -77,25 +134,25 @@ export default async function build({ tokens, ast, logger = new Logger(), config
 
   // build()
   const startBuild = performance.now();
-  logger.debug({ group: 'core', task: 'build', message: 'Start build' });
+  logger.debug({ group: 'parser', task: 'build', message: 'Start build' });
   for (const plugin of config.plugins) {
     if (typeof plugin.build === 'function') {
       await plugin.build({
         tokens,
         ast,
-        format: (formatID) => createFormatter(formatID),
+        getTransforms,
         outputFile(filename, contents) {
           const resolved = new URL(filename, config.outDir);
           if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
             logger.error({ message: `Can’t overwrite file "${filename}"`, label: plugin.name });
           }
-          result.outputFiles.push(filename, contents);
+          result.outputFiles.push({ filename, contents });
         },
       });
     }
   }
   logger.debug({
-    group: 'core',
+    group: 'parser',
     task: 'build',
     message: 'Finish build',
     timing: performance.now() - startBuild,
@@ -103,18 +160,23 @@ export default async function build({ tokens, ast, logger = new Logger(), config
 
   // buildEnd()
   const startBuildEnd = performance.now();
-  logger.debug({ group: 'core', task: 'build', message: 'Start buildEnd' });
+  logger.debug({ group: 'parser', task: 'build', message: 'Start buildEnd' });
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
       await plugin.buildEnd({
         tokens,
         ast,
         format: (formatID) => createFormatter(formatID),
-        outputFiles: merge([], result.outputFiles),
+        outputFiles: structruedClone(result.outputFiles),
       });
     }
   }
-  logger.debug({ group: 'core', task: 'build', message: 'Finish buildEnd', timing: performance.now() - startBuildEnd });
+  logger.debug({
+    group: 'parser',
+    task: 'build',
+    message: 'Finish buildEnd',
+    timing: performance.now() - startBuildEnd,
+  });
 
   return result;
 }

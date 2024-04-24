@@ -14,7 +14,7 @@ const TRAILING_SLASH_RE = /\/*$/;
 export default function defineConfig(rawConfig, { logger = new Logger(), cwd = import.meta.url } = {}) {
   const configStart = performance.now();
 
-  logger.debug({ group: 'core', task: 'config', message: 'Start config validation' });
+  logger.debug({ group: 'parser', task: 'config', message: 'Start config validation' });
 
   const config = { ...rawConfig };
 
@@ -180,7 +180,7 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
   }
 
   logger.debug({
-    group: 'core',
+    group: 'parser',
     task: 'config',
     message: 'Finish config validation',
     timing: performance.now() - configStart,

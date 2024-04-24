@@ -22,11 +22,11 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "^1.11.0",
-    "@terrazzo/plugin-css": "^1.7.3"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^"
   },
   "dependencies": {
-    "@terrazzo/token-tools": "^0.0.0",
+    "@terrazzo/token-tools": "workspace:^",
     "@types/mime": "^3.0.4",
     "mime": "^3.0.0",
     "svgo": "^3.2.0"

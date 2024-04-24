@@ -1,6 +1,5 @@
 import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias } from '@terrazzo/token-tools';
-import { merge } from 'merge-anything';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
@@ -36,7 +35,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
   // 1. Build AST
   const startParsing = performance.now();
-  logger.debug({ group: 'core', task: 'parse', message: 'Start tokens parsing' });
+  logger.debug({ group: 'parser', task: 'parse', message: 'Start tokens parsing' });
   let ast;
   if (typeof input === 'string' && !maybeJSONString(input)) {
     ast = parseYAML(input, { logger }); // if string, but not JSON, attempt YAML
@@ -46,7 +45,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     }); // everything else: assert it’s JSON-serializable
   }
   logger.debug({
-    group: 'core',
+    group: 'parser',
     task: 'parse',
     message: 'Finish tokens parsing',
     timing: performance.now() - startParsing,
@@ -56,13 +55,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
   // 2. Walk AST once to validate tokens
   const startValidation = performance.now();
-  logger.debug({ group: 'core', task: 'parse', message: 'Start tokens validation' });
+  logger.debug({ group: 'parser', task: 'validate', message: 'Start tokens validation' });
   let last$Type;
   traverse(ast, {
     enter(node, parent, path) {
-      if (!node) {
-        console.log({ node, parent, path });
-      }
       if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
         const members = getObjMembers(node.value);
 
@@ -75,7 +71,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
         if (members.$value) {
           const extensions = members.$extensions ? getObjMembers(members.$extensions) : undefined;
-          const sourceNode = merge({}, node);
+          const sourceNode = structuredClone(node);
           if (last$Type && !members.$type) {
             sourceNode.value = injectObjMembers(sourceNode.value, [last$Type]);
           }
@@ -97,9 +93,17 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           if (members.$description?.value) {
             token.$description = members.$description.value;
           }
-          token.mode['.'] = token.$value;
 
-          // TODO: modes
+          // handle modes: note: avoid circular refs here, such as not duplicating `modes`
+          const modeValues = extensions?.mode ? getObjMembers(extensions.mode) : {};
+          for (const mode of ['.', ...Object.keys(modeValues)]) {
+            token.mode[mode] = { id: token.id, $type: token.$type };
+            if (token.$description) {
+              token.mode[mode].$description = token.$description;
+            }
+            token.mode[mode].$value = mode === '.' ? structuredClone(token.$value) : evaluate(modeValues[mode]);
+          }
+
           // TODO: group + group tokens
 
           tokens[id] = token;
@@ -110,7 +114,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     },
   });
   logger.debug({
-    group: 'core',
+    group: 'parser',
     task: 'validate',
     message: 'Finish tokens validation',
     timing: performance.now() - startValidation,
@@ -127,9 +131,8 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
     if (isAlias(token.$value)) {
       const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
-      const aliasOf = merge({}, tokens[aliasOfID]);
-      token.aliasOf = merge({}, aliasOf);
-      token.$value = merge({}, aliasOf.$value);
+      const aliasOf = aliasOfID;
+      token.$value = structuredClone(tokens[aliasOfID].$value);
       if (token.$type !== aliasOf.$type) {
         logger.warn({
           message: `Token ${id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
@@ -145,9 +148,22 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
             token.partialAliasOf = [];
           }
           const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
-          const aliasOf = tokens[aliasOfID];
-          token.partialAliasOf.push(merge({}, aliasOf));
-          token.$value[i] = typeof aliasOf.$value === 'object' ? merge({}, aliasOf.$value) : aliasOf.$value;
+          token.partialAliasOf[i] = aliasOfID;
+          token.$value[i] = structuredClone(tokens[aliasOfID].$value);
+        } else if (typeof token.$value[i] === 'object') {
+          for (const property in token.$value[i]) {
+            if (isAlias(token.$value[i][property])) {
+              if (!token.partialAliasOf) {
+                token.partialAliasOf = [];
+              }
+              if (!token.partialAliasOf[i]) {
+                token.partialAliasOf[i] = {};
+              }
+              const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, node, ast });
+              token.$value[i][property] = tokens[aliasOfID].$value[i][property];
+              token.partialAliasOf[i][property] = aliasOfID;
+            }
+          }
         }
       }
     } else if (typeof token.$value === 'object') {
@@ -158,30 +174,76 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
         if (isAlias(token.$value[property])) {
           if (!token.partialAliasOf) {
-            token.partialAliasOf = [];
+            token.partialAliasOf = {};
           }
           const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
-          const aliasOf = tokens[aliasOfID];
-          token.partialAliasOf.push(merge({}, aliasOf));
-          token.$value[property] = typeof aliasOf.$value === 'object' ? merge({}, aliasOf.$value) : aliasOf.$value;
+          token.partialAliasOf[property] = aliasOfID;
+          token.$value[property] = structuredClone(tokens[aliasOfID].$value);
         }
       }
     }
 
-    // TODO: modes
+    for (const mode in token.modes) {
+      const modeValue = token.modes[mode];
+      if (isAlias(modeValue.$value)) {
+        const aliasOfID = resolveAlias(modeValue.$value, { tokens, logger, node, ast });
+        token.modes[mode].aliasOf = aliasOfID;
+        token.modes[mode].$value = tokens[aliasOfID].$value;
+      } else if (Array.isArray(modeValue)) {
+        for (let i = 0; i < modeValue.length; i++) {
+          if (isAlias(modeValue.$value[i])) {
+            if (!modeValue.partialAliasOf) {
+              modeValue.partialAliasOf = [];
+            }
+            const aliasOfID = resolveAlias(modeValue.$value[i], { tokens, logger, node, ast });
+            modeValue.partialAliasOf[i] = aliasOfID;
+            modeValue.$value[i] = structuredClone(tokens[aliasOfID].$value);
+          } else if (typeof modeValue.$value[i] === 'object') {
+            for (const property in modeValue.$value[i]) {
+              if (isAlias(modeValue.$value[i][property])) {
+                if (!modeValue.partialAliasOf) {
+                  modeValue.partialAliasOf = [];
+                }
+                if (!modeValue.partialAliasOf[i]) {
+                  modeValue.partialAliasOf[i] = {};
+                }
+                const aliasOfID = resolveAlias(modeValue.$value[i][property], { tokens, logger, node, ast });
+                modeValue.$value[i][property] = tokens[aliasOfID].$value[i][property];
+                modeValue.partialAliasOf[i][property] = aliasOfID;
+              }
+            }
+          }
+        }
+      } else if (typeof modeValue === 'object') {
+        for (const property in modeValue.$value) {
+          if (!Object.hasOwn(modeValue.$value, property)) {
+            continue;
+          }
+
+          if (isAlias(modeValue.$value[property])) {
+            if (!modeValue.partialAliasOf) {
+              modeValue.partialAliasOf = {};
+            }
+            const aliasOfID = resolveAlias(modeValue.$value[property], { tokens, logger, node, ast });
+            modeValue.partialAliasOf[property] = aliasOfID;
+            modeValue.$value[property] = structuredClone(tokens[aliasOfID].$value);
+          }
+        }
+      }
+    }
   }
 
   // 4. Execute lint runner with loaded plugins
   if (!skipLint && plugins?.length) {
     const lintStart = performance.now();
     logger.debug({
-      group: 'core',
-      task: 'parse',
+      group: 'parser',
+      task: 'validate',
       message: 'Start token linting',
     });
     await lintRunner({ ast, config, logger });
     logger.debug({
-      group: 'core',
+      group: 'parser',
       task: 'validate',
       message: 'Finish token linting',
       timing: performance.now() - lintStart,
@@ -198,8 +260,8 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   }
 
   logger.debug({
-    group: 'core',
-    task: 'parser',
+    group: 'parser',
+    task: 'core',
     message: 'Finish all parser tasks',
     timing: performance.now() - totalStart,
   });

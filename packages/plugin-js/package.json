@@ -29,10 +29,10 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "1.11.0"
+    "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
-    "@terrazzo/token-tools": "^0.0.0"
+    "@terrazzo/token-tools": "workspace:^"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",

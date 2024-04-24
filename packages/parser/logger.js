@@ -68,6 +68,7 @@ export default class Logger {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
       return;
     }
+    // biome-ignore lint/suspicious/noConsoleLog: this is its job
     console.log(formatMessage(entry, 'info'));
   }
 

@@ -451,22 +451,11 @@ export function validateTransition($value, node, { ast, logger }) {
     logger.error({ message: `Expected object, received ${$value.type}`, node, ast, loc: getLoc($value) });
     return;
   }
-  const transitionMembers = getObjMembers($value);
-  for (const property of ['duration', 'delay', 'timingFunction']) {
-    if (!transitionMembers[property]) {
-      logger.error({
-        message: `Missing required property "${property}"`,
-        node,
-        ast,
-        loc: getLoc($value),
-      });
-    }
-  }
   validateMembersAs(
     $value,
     {
       duration: { validator: validateDuration, required: true },
-      delay: { validator: validateDuration, required: true },
+      delay: { validator: validateDuration, required: false }, // note: spec says delay is required, but Terrazzo makes delay optional
       timingFunction: { validator: validateCubicBézier, required: true },
     },
     node,

@@ -19,6 +19,11 @@ export function isTokenMatch(tokenID: string, globPatterns: string[]): string | 
   }
 }
 
+/** Make an alias */
+export function makeAlias(input: string): string {
+  return input.replace(/^\{?([^}]+)\}?$/, '{$1}');
+}
+
 /** Parse an alias */
 export function parseAlias(input: string): { id: string; mode?: string } {
   const match = input.match(ALIAS_RE);

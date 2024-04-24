@@ -3,40 +3,40 @@ import { describe, expect, it } from 'vitest';
 import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
 import type { TokenNormalized } from '../types.js';
+import defineConfig from '../config.js';
 
 type Test = [
   string,
   {
     given: any;
     want:
-      | { success: true; error?: never; tokens?: Record<string, TokenNormalized> }
+      | { success: true; error?: never; tokens?: Record<string, TokenNormalized['$value']> }
       | { success?: never; error: string; tokens?: never };
   },
 ];
 
 async function runTest({ given, want }: Test[1]) {
-  if (want.error) {
-    try {
-      const result = await parse(given, { plugins: [] });
-      expect(() => result).toThrow();
-    } catch (e) {
-      const err = e as TokensJSONError;
-      expect(stripAnsi(err.message)).toBe(want.error);
+  const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+  try {
+    const result = await parse(given, { config });
 
-      // ensure TokenValidationError contains necessary properties
-      expect(err.node?.type?.length).toBeGreaterThan(0);
-      expect(err.node?.loc?.start?.line).toBeGreaterThanOrEqual(1);
-    }
-  } else {
-    const result = await parse(given, { plugins: [] });
     expect(() => result).not.toThrow();
+    expect(want.success).toBe(true);
+    expect(want.error).toBeUndefined();
     if (want.tokens) {
       for (const id in want.tokens) {
-        const { sourceNode, ...token } = result[id]!;
+        const { sourceNode, ...token } = result.tokens[id]!;
         expect(sourceNode).not.toBeFalsy();
-        expect(token).toEqual(want.tokens[id]);
+        expect(token.$value).toEqual(want.tokens[id]);
       }
     }
+  } catch (e) {
+    const err = e as TokensJSONError;
+    expect(stripAnsi(err.message)).toBe(want.error);
+
+    // ensure TokenValidationError contains necessary properties
+    expect(err.node?.type?.length).toBeGreaterThan(0);
+    expect(err.node?.loc?.start?.line).toBeGreaterThanOrEqual(1);
   }
 }
 
@@ -181,19 +181,7 @@ describe('8.1 Color', () => {
         want: {
           success: true,
           tokens: {
-            'color.cobalt': {
-              id: 'color.cobalt',
-              originalValue: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' },
-              $type: 'color',
-              $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 1 },
-              group: {
-                id: 'color',
-                tokens: {},
-              },
-              mode: {
-                '.': 'color(srgb 0.3 0.6 1)',
-              },
-            } as any,
+            'color.cobalt': { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 1 },
           },
         },
       },
@@ -552,6 +540,25 @@ describe('8.6 Cubic Bézier', () => {
       },
     ],
     [
+      'valid: aliases',
+      {
+        given: {
+          cubic: { $type: 'cubicBezier', $value: ['{number.a}', '{number.b}', '{number.c}', '{number.d}'] },
+          number: { $type: 'number', a: { $value: 0.33 }, b: { $value: 1 }, c: { $value: 0.68 }, d: { $value: 1 } },
+        },
+        want: {
+          success: true,
+          tokens: {
+            cubic: [0.33, 1, 0.68, 1],
+            'number.a': 0.33,
+            'number.b': 1,
+            'number.c': 0.68,
+            'number.d': 1,
+          },
+        },
+      },
+    ],
+    [
       'invalid: length',
       {
         given: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } },
@@ -868,6 +875,105 @@ describe('9.3 Border', () => {
   it.each(tests)('%s', (_, testCase) => runTest(testCase));
 });
 
+describe('9.4 Transition', () => {
+  const tests: Test[] = [
+    [
+      'valid',
+      {
+        given: {
+          transition: {
+            'ease-in-out': {
+              $type: 'transition',
+              $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}', delay: '0ms' },
+            },
+          },
+          timing: {
+            $type: 'duration',
+            quick: { $value: '150ms' },
+          },
+          ease: {
+            $type: 'cubicBezier',
+            'in-out': { $value: [0.42, 0, 0.58, 1] },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      'valid (missing delay)',
+      {
+        given: {
+          transition: {
+            'ease-in-out': {
+              $type: 'transition',
+              $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}' },
+            },
+          },
+          timing: {
+            $type: 'duration',
+            quick: { $value: '150ms' },
+          },
+          ease: {
+            $type: 'cubicBezier',
+            'in-out': { $value: [0.42, 0, 0.58, 1] },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      'invalid: missing duration',
+      {
+        given: {
+          transition: {
+            'ease-in-out': {
+              $type: 'transition',
+              $value: { timingFunction: [0.42, 0, 0.58, 1] },
+            },
+          },
+        },
+        want: {
+          error: `Missing required property "duration"
+
+  3 |     "ease-in-out": {
+  4 |       "$type": "transition",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "timingFunction": [
+  7 |           0.42,
+  8 |           0,`,
+        },
+      },
+    ],
+    [
+      'invalid: missing timingFunction',
+      {
+        given: {
+          transition: {
+            'ease-in-out': {
+              $type: 'transition',
+              $value: { duration: '150ms' },
+            },
+          },
+        },
+        want: {
+          error: `Missing required property "timingFunction"
+
+  3 |     "ease-in-out": {
+  4 |       "$type": "transition",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "duration": "150ms"
+  7 |       }
+  8 |     }`,
+        },
+      },
+    ],
+  ];
+
+  it.each(tests)('%s', (_, testCase) => runTest(testCase));
+});
+
 describe('9.5 Shadow', () => {
   const tests: Test[] = [
     [
@@ -953,7 +1059,7 @@ describe('9.6 Gradient', () => {
             ],
           },
         },
-        want: { error: `` },
+        want: { error: 'Expected color, received String' },
       },
     ],
     [

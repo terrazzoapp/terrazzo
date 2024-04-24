@@ -29,12 +29,12 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "*",
+    "@terrazzo/cli": "workspace:^",
     "tailwindcss": "*"
   },
   "dependencies": {
-    "@terrazzo/plugin-css": "^1.7.3",
-    "@terrazzo/token-tools": "^0.0.0"
+    "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",

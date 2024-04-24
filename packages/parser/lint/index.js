@@ -4,7 +4,7 @@ const listFormat = new Intl.ListFormat('en-us');
 
 export default async function lintRunner({ tokens, ast, config = {}, logger }) {
   const { plugins = [], lint = { rules: {} } } = config;
-  const unusedLintRules = Object.keys(lint);
+  const unusedLintRules = Object.keys(lint?.rules ?? {});
 
   for (const plugin of plugins) {
     if (typeof plugin.lint === 'function') {
@@ -16,8 +16,7 @@ export default async function lintRunner({ tokens, ast, config = {}, logger }) {
       const warnEntries = [];
       await Promise.all(
         Object.entries(rules).map(async ([id, linter]) => {
-          console.log({ id, linter, lint });
-          const { severity = 'warn' } = lint.rules[id];
+          const { severity = 'warn' } = lint.rules[id] || {};
           const results = await linter({ tokens, ast, rule: { id, severity } });
           for (const result of results ?? []) {
             const noticeList = severity === 'error' ? errorEntries : warnEntries;
@@ -30,9 +29,9 @@ export default async function lintRunner({ tokens, ast, config = {}, logger }) {
           }
 
           // tick off used rule
-          const unusedLintRulesI = unusedLintRule.indexOf(id);
+          const unusedLintRuleI = unusedLintRules.indexOf(id);
           if (unusedLintRuleI !== -1) {
-            unusedLintRules.splice(unusedLintRulesI, 1);
+            unusedLintRules.splice(unusedLintRuleI, 1);
           }
         }),
       );
@@ -43,7 +42,7 @@ export default async function lintRunner({ tokens, ast, config = {}, logger }) {
         logger.warn(entry);
       }
       logger.debug({ group: 'plugin', task: plugin.name, message: 'Finish linting', timing: performance.now() - s });
-      if (logger.errorEntries.length) {
+      if (errorEntries.length) {
         const counts = [pluralize(errorEntries.length, 'error', 'errors')];
         if (warnEntries.length) {
           counts.push(pluralize(warnEntries.length, 'warning', 'warnings'));
@@ -54,7 +53,7 @@ export default async function lintRunner({ tokens, ast, config = {}, logger }) {
   }
 
   // warn user if they have unused lint rules (they might have meant to configure something!)
-  for (const unusedRule of unusedLintRules.length) {
-    logger.warn({ group: 'core', task: 'lint', message: `Unknown lint rule "${unusedRule}"` });
+  for (const unusedRule of unusedLintRules) {
+    logger.warn({ group: 'parser', task: 'lint', message: `Unknown lint rule "${unusedRule}"` });
   }
 }

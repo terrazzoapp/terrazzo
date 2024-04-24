@@ -1,5 +1,5 @@
 import type { BuildHookOptions, BuildRunnerResult, TransformHookOptions } from './build/index.js';
-import type { LintRuleShorthand, LintRuleLonghand, LintRule, Linter } from './lint/index.js';
+import type { LintRuleShorthand, LintRuleLonghand, Linter } from './lint/index.js';
 import type Logger from './logger.js';
 
 export interface Config {
@@ -27,7 +27,7 @@ export interface ConfigInit {
   plugins: Plugin[];
   lint: {
     build: NonNullable<NonNullable<Config['lint']>['build']>;
-    rules: Record<string, LintRule>;
+    rules: Record<string, LintRuleLonghand>;
   };
 }
 

@@ -1,5 +1,3 @@
-import { merge } from 'merge-anything';
-
 /**
  * @typedef {import("@humanwhocodes/momoa").AnyNode} AnyNode
  * @typedef {import("@humanwhocodes/momoa").ObjectNode} ObjectNode
@@ -52,7 +50,7 @@ export function injectObjMembers(node, members = []) {
   if (node.type !== 'Object') {
     return node;
   }
-  const newNode = merge({}, node);
+  const newNode = structuredClone(node);
   newNode.members.push(...members);
   return newNode;
 }

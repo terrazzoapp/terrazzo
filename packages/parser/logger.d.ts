@@ -27,8 +27,8 @@ export interface LogEntry {
 }
 
 export interface DebugEntry {
-  /** `core` | `plugin` */
-  group: 'core' | 'plugin';
+  /** `parser` | `plugin` */
+  group: 'parser' | 'plugin';
   /** Current subtask or submodule */
   task: string;
   /** Error message to be logged */

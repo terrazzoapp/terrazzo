@@ -40,8 +40,8 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@terrazzo/parser": "^0.0.0",
-    "@terrazzo/token-tools": "^0.0.0",
+    "@terrazzo/parser": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^",
     "chokidar": "^3.6.0",
     "culori": "^3.3.0",
     "dotenv": "^16.4.5",

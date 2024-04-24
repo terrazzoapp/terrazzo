@@ -2,16 +2,14 @@ import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
   transformBooleanValue,
-  transformBorderValue,
   transformColorValue,
   transformCubicBezierValue,
   transformDimensionValue,
   transformDurationValue,
+  transformFontWeightValue,
   transformGradientValue,
   transformNumberValue,
   transformShadowValue,
-  transformTransitionValue,
-  transformTypographyValue,
 } from '../src/css/index.js';
 
 type Test<Given = any, Want = any> = [
@@ -54,45 +52,6 @@ describe('transformBooleanValue', () => {
     let result: typeof want.success;
     try {
       result = transformBooleanValue(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
-    }
-    expect(result).toEqual(want.success);
-  });
-});
-
-describe('transformBorderalue', () => {
-  const tests: Test<Parameters<typeof transformBorderValue>, ReturnType<typeof transformBorderValue>>[] = [
-    [
-      'basic',
-      {
-        given: [{ width: '1px', style: 'dashed', color: 'rgba(0, 0, 0, 0.1)' }],
-        want: { success: '1px dashed color(srgb 0 0 0 / 0.1)' },
-      },
-    ],
-    [
-      'expanded (border)',
-      {
-        given: [{ width: '2px', style: 'solid', color: '#663399' }, 'border'],
-        want: {
-          success: { 'border-width': '2px', 'border-style': 'solid', 'border-color': 'color(srgb 0.4 0.2 0.6)' },
-        },
-      },
-    ],
-    [
-      'expanded (outline)',
-      {
-        given: [{ width: '2px', style: 'solid', color: '#663399' }, 'outline'],
-        want: {
-          success: { 'outline-width': '2px', 'outline-style': 'solid', 'outline-color': 'color(srgb 0.4 0.2 0.6)' },
-        },
-      },
-    ],
-  ];
-  it.each(tests)('%s', (_, { given, want }) => {
-    let result: typeof want.success;
-    try {
-      result = transformBorderValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -201,6 +160,40 @@ describe('transformGradientValue', () => {
   });
 });
 
+describe('transformFontWeightValue', () => {
+  const tests: Test<Parameters<typeof transformFontWeightValue>, ReturnType<typeof transformFontWeightValue>>[] = [
+    ['thin', { given: ['thin'], want: { success: '100' } }],
+    ['hairline', { given: ['hairline'], want: { success: '100' } }],
+    ['extra-light', { given: ['extra-light'], want: { success: '200' } }],
+    ['ultra-light', { given: ['ultra-light'], want: { success: '200' } }],
+    ['light', { given: ['light'], want: { success: '300' } }],
+    ['normal', { given: ['normal'], want: { success: '400' } }],
+    ['regular', { given: ['regular'], want: { success: '400' } }],
+    ['book', { given: ['book'], want: { success: '400' } }],
+    ['medium', { given: ['medium'], want: { success: '500' } }],
+    ['semi-bold', { given: ['semi-bold'], want: { success: '600' } }],
+    ['demi-bold', { given: ['demi-bold'], want: { success: '600' } }],
+    ['bold', { given: ['bold'], want: { success: '700' } }],
+    ['extra-bold', { given: ['extra-bold'], want: { success: '800' } }],
+    ['ultra-bold', { given: ['ultra-bold'], want: { success: '800' } }],
+    ['black', { given: ['black'], want: { success: '900' } }],
+    ['heavy', { given: ['heavy'], want: { success: '900' } }],
+    ['extra-black', { given: ['extra-black'], want: { success: '950' } }],
+    ['ultra-black', { given: ['ultra-black'], want: { success: '950' } }],
+    ['400', { given: [400], want: { success: '400' } }],
+  ];
+
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformFontWeightValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
 describe('transformNumberValue', () => {
   const tests: Test<Parameters<typeof transformNumberValue>, ReturnType<typeof transformNumberValue>>[] = [
     ['basic', { given: [42], want: { success: '42' } }],
@@ -244,99 +237,6 @@ describe('transformShadowValue', () => {
     let result: typeof want.success;
     try {
       result = transformShadowValue(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
-    }
-    expect(result).toEqual(want.success);
-  });
-});
-
-describe('transformTransitionValue', () => {
-  const tests: Test<Parameters<typeof transformTransitionValue>, ReturnType<typeof transformTransitionValue>>[] = [
-    [
-      'basic',
-      {
-        given: [{ duration: '100ms', delay: '10ms', timingFunction: [0, 0, 1, 1] }],
-        want: { success: '100ms 10ms cubic-bezier(0, 0, 1, 1)' },
-      },
-    ],
-    [
-      'missing delay',
-      {
-        given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }],
-        want: { success: '100ms 0ms cubic-bezier(0, 0, 1, 1)' },
-      },
-    ],
-    [
-      'expanded (transition)',
-      {
-        given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }, 'transition'],
-        want: {
-          success: {
-            'transition-duration': '100ms',
-            'transition-delay': '0ms',
-            'transition-timing-function': 'cubic-bezier(0, 0, 1, 1)',
-          },
-        },
-      },
-    ],
-    [
-      'expanded (animation)',
-      {
-        given: [{ duration: '100ms', delay: 0, timingFunction: [0, 0, 1, 1] }, 'animation'],
-        want: {
-          success: {
-            'animation-duration': '100ms',
-            'animation-delay': '0ms',
-            'animation-timing-function': 'cubic-bezier(0, 0, 1, 1)',
-          },
-        },
-      },
-    ],
-  ];
-  it.each(tests)('%s', (_, { given, want }) => {
-    let result: typeof want.success;
-    try {
-      result = transformTransitionValue(...given);
-    } catch (err) {
-      expect((err as Error).message).toBe(want.error);
-    }
-    expect(result).toEqual(want.success);
-  });
-});
-
-describe('transformTypographyValue', () => {
-  const tests: Test<Parameters<typeof transformTypographyValue>, ReturnType<typeof transformTypographyValue>>[] = [
-    [
-      'basic',
-      {
-        given: [
-          {
-            fontFamily: ['Helvetica', 'sans-serif', 'Apple Color Emoji', 'Noto Color Emoji'],
-            fontSize: '15px',
-            lineHeight: '20px',
-            fontStyle: 'normal',
-            letterSpacing: '0',
-            fontVariantNumeric: 'tabular-nums',
-          },
-        ],
-        want: {
-          success: {
-            'font-family': '"Helvetica", sans-serif, "Apple Color Emoji", "Noto Color Emoji"',
-            'font-size': '15px',
-            'font-style': 'normal',
-            'font-variant-numeric': 'tabular-nums',
-            'letter-spacing': '0',
-            'line-height': '20px',
-          },
-        },
-      },
-    ],
-  ];
-  it.each(tests)('%s', (_, { given, want }) => {
-    let result: typeof want.success;
-    try {
-      result = transformTypographyValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }

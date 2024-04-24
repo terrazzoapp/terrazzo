@@ -1,4 +1,5 @@
 import { build, defineConfig, parse } from '@terrazzo/parser';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, test } from 'vitest';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -12,6 +13,7 @@ describe('@cobalt-ui/plugin-css', () => {
         plugins: [
           pluginCSS({
             filename: 'actual.css',
+            variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
             modeSelectors: [
               { mode: 'light', selectors: ['@media (prefers-color-scheme: light)'] },
               { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)'] },
@@ -38,7 +40,7 @@ describe('@cobalt-ui/plugin-css', () => {
       { cwd },
     );
     const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
-    const { outputFiles } = await build({ tokens, ast, config });
-    expect(outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    const result = await build({ tokens, ast, config });
+    expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 });

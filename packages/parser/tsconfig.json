@@ -2,8 +2,7 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "checkJs": true,
-    "outDir": "./dist/"
+    "checkJs": true
   },
   "include": ["**/*.js", "**/*.ts"],
   "exclude": ["node_modules"]

@@ -1,7 +1,7 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
 import type { ConfigInit } from '../config.js';
-import type { TokenNormalized } from '../types.js';
 import type Logger from '../logger.js';
+import type { TokenNormalized } from '../types.js';
 
 export interface BuildRunnerOptions {
   tokens: Record<string, TokenNormalized>;
@@ -15,31 +15,63 @@ export interface OutputFile {
   contents: string | Buffer;
 }
 
-export interface TokenFormatValue {
-  /** Final value (to be used in output files) */
-  value: string | Record<string, string>;
-  /** Token’s format-unique ID */
-  formatID: string;
-  /** (optional) Mode values for this token */
-  mode?: Record<string, string | Record<string, string>>;
-  /** (optional) Arbitrary metadata that can be used in the final build step */
-  metadata?: Record<string, unknown>;
+/** Transformed token with a single value. Note that this may be any type! */
+export interface TokenTransformedSingleValue {
+  /** ID unique to this format. If missing, use `token.id`. */
+  localID?: string;
+  type: 'SINGLE_VALUE';
+  value: string;
+  /** The mode of this value (default: `"."`) */
+  mode: string;
+  /** The variant of this value, if this token + format uses variants (e.g. "srgb" vs "p3" color for CSS color variants) */
+  variant?: string;
+  /** The original token */
+  token: TokenNormalized;
 }
 
-export interface Formatter {
-  /** Get a token by ID */
-  getToken(id: string): TokenFormatValue;
-  /** Get a map of tokens that match a glob */
-  getAllTokens(glob?: string): Record<string, TokenFormatValue>;
-  /** Set a token value */
-  setTokenValue(id: string, value: TokenFormatValue): void;
+/** Transformed token with multiple values. Note that this may be any type! */
+export interface TokenTransformedMultiValue {
+  /** ID unique to this format. If missing, use `token.id` */
+  localID?: string;
+  type: 'MULTI_VALUE';
+  value: Record<string, string>;
+  /** The mode of this value (default: `"."`) */
+  mode: string;
+  /** The variant of this value, if this token + format uses variants (some do not) */
+  variant?: string;
+  /** The original token */
+  token: TokenNormalized;
+}
+
+export type TokenTransformed = TokenTransformedSingleValue | TokenTransformedMultiValue;
+
+export interface TransformParams {
+  /** ID of an existing format */
+  format: string;
+  /** Glob of tokens to select (e.g. `"color.*"` to select all tokens starting with `"color."`) */
+  select?: string;
+  /** Mode name, if selecting a mode (default: `"."`) */
+  mode?: string;
+  /** Variant, if this transform supports variants (default: `undefined`) */
+  variant?: string | undefined;
 }
 
 export interface TransformHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
-  /** Format API */
-  format: (formatID: string) => Formatter;
+  /** Query transformed values */
+  getTransforms(params: TransformParams): TokenTransformed;
+  /** Update transformed values */
+  setTransform(
+    id: string,
+    params: {
+      format: string;
+      localID?: string;
+      value: string | Record<string, string>;
+      mode?: string;
+      variant?: string;
+    },
+  ): void;
   /** Momoa document */
   ast: DocumentNode;
 }
@@ -47,8 +79,8 @@ export interface TransformHookOptions {
 export interface BuildHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
-  /** Format API */
-  format: (formatID: string) => Omit<Formatter, 'setTokenValue'>;
+  /** Query transformed values */
+  getTransforms(params: TransformParams): TokenTransformed[];
   /** Momoa document */
   ast: DocumentNode;
   outputFile: (

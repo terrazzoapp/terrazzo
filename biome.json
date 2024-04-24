@@ -32,6 +32,7 @@
         "noDelete": "off"
       },
       "suspicious": {
+        "noConsoleLog": "error",
         "noExplicitAny": "warn"
       }
     }
