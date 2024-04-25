@@ -273,7 +273,8 @@ export interface TokenNormalizedCore {
     $description?: string;
     $extensions?: Record<string, unknown>;
     id: string;
-    tokens: TokenNormalized[];
+    /** IDs of all tokens contained in this group */
+    tokens: string[];
   };
 }
 

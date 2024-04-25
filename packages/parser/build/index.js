@@ -107,12 +107,15 @@ export default async function build({ tokens, ast, logger = new Logger(), config
             formats[params.format] = [];
           }
           const foundTokenI = formats[params.format].findIndex(
-            (t) => (!params.mode || params.mode === t.mode) && (!params.variant || params.variant === t.variant),
+            (t) =>
+              params.localID === t.localID &&
+              (!params.mode || params.mode === t.mode) &&
+              (!params.variant || params.variant === t.variant),
           );
           if (foundTokenI === -1) {
             formats[params.format].push({
               ...params,
-              type: typeof value === 'string' ? SINGLE_VALUE : MULTI_VALUE,
+              type: typeof params.value === 'string' ? SINGLE_VALUE : MULTI_VALUE,
               mode: params.mode || '.',
               token: structuredClone(token),
             });

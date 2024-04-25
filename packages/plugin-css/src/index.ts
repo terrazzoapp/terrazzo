@@ -1,6 +1,5 @@
 import type { Plugin, Token } from '@terrazzo/parser';
 import { isTokenMatch, makeAlias } from '@terrazzo/token-tools';
-import { transformGradientValue, transformTransitionValue, transformTypographyValue } from '@terrazzo/token-tools/css';
 import {
   makeCSSVar,
   transformBooleanValue,
@@ -11,10 +10,13 @@ import {
   transformDurationValue,
   transformFontFamilyValue,
   transformFontWeightValue,
+  transformGradientValue,
   transformLinkValue,
   transformNumberValue,
   transformStringValue,
   transformStrokeStyleValue,
+  transformTransitionValue,
+  transformTypographyValue,
 } from '@terrazzo/token-tools/css';
 
 export interface ModeSelector {
@@ -61,6 +63,11 @@ export default function cssPlugin({ filename = './index.css', exclude, variableN
         const token = tokens[id]!;
         const localID = transformName(id);
 
+        if (token.aliasOf) {
+          setTransform(id, { format: FORMAT_ID, localID, value: transformAlias(makeAlias(token.aliasOf)) });
+          continue;
+        }
+
         switch (token.$type) {
           case 'boolean': {
             for (const mode in token.mode) {
@@ -78,20 +85,30 @@ export default function cssPlugin({ filename = './index.css', exclude, variableN
             for (const mode in token.mode) {
               const baseValue = { format: FORMAT_ID, mode };
               const currentMode = token.mode[mode]!;
-              const value = { ...currentMode.$value };
-              for (const property in value) {
-                // @ts-expect-error satisfying TS causes too much indirection here, but this is safe
-                if (currentMode.partialAliasOf?.[property]) {
+              const value = currentMode.$value;
+              if (currentMode.partialAliasOf) {
+                for (const property in value) {
                   // @ts-expect-error satisfying TS causes too much indirection here, but this is safe
-                  value[property] = makeAlias(currentMode.partialAliasOf[property]);
+                  if (currentMode.partialAliasOf?.[property]) {
+                    // @ts-expect-error satisfying TS causes too much indirection here, but this is safe
+                    value[property] = makeAlias(currentMode.partialAliasOf[property]);
+                  }
                 }
               }
               const output = transformBorderValue(value, { transformAlias });
               if (typeof output === 'string') {
                 setTransform(id, { ...baseValue, localID, value: output });
               } else {
-                const { width, color, style, all } = output;
-                setTransform(id, { ...baseValue, localID, value: all });
+                const { width, color, style } = output;
+                setTransform(id, {
+                  ...baseValue,
+                  localID,
+                  value: [
+                    transformAlias(`${localID}-width}`),
+                    transformAlias(`${localID}-color}`),
+                    transformAlias(`${localID}-style}`),
+                  ].join(' '),
+                });
                 setTransform(id, { ...baseValue, localID: `${localID}-width`, value: width });
                 setTransform(id, { ...baseValue, localID: `${localID}-color`, value: color });
                 setTransform(id, { ...baseValue, localID: `${localID}-style`, value: style });
@@ -201,21 +218,48 @@ export default function cssPlugin({ filename = './index.css', exclude, variableN
           case 'link': {
             for (const mode in token.mode) {
               const currentMode = token.mode[mode]!;
-              setTransform(id, { format: FORMAT_ID, localID, value: transformLinkValue(currentMode.$value), mode });
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformLinkValue(currentMode.$value, { transformAlias }),
+                mode,
+              });
             }
             break;
           }
           case 'number': {
             for (const mode in token.mode) {
               const currentMode = token.mode[mode]!;
-              setTransform(id, { format: FORMAT_ID, localID, value: transformNumberValue(currentMode.$value), mode });
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformNumberValue(currentMode.$value, { transformAlias }),
+                mode,
+              });
             }
             break;
           }
           case 'string': {
             for (const mode in token.mode) {
               const currentMode = token.mode[mode]!;
-              setTransform(id, { format: FORMAT_ID, localID, value: transformStringValue(currentMode.$value), mode });
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformStringValue(currentMode.$value, { transformAlias }),
+                mode,
+              });
+            }
+            break;
+          }
+          case 'strokeStyle': {
+            for (const mode in token.mode) {
+              const currentMode = token.mode[mode]!;
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformStrokeStyleValue(currentMode.$value, { transformAlias }),
+                mode,
+              });
             }
             break;
           }
@@ -235,13 +279,19 @@ export default function cssPlugin({ filename = './index.css', exclude, variableN
               if (typeof output === 'string') {
                 setTransform(id, { ...baseValue, localID, value: output });
               } else {
-                for (const property in output) {
-                  setTransform(id, {
-                    ...baseValue,
-                    localID: `${localID}-${property}`,
-                    value: output[property as keyof typeof output]!,
-                  });
-                }
+                const { duration, delay, timingFunction } = output;
+                setTransform(id, {
+                  ...baseValue,
+                  localID,
+                  value: [
+                    transformAlias(`${localID}-duration}`),
+                    transformAlias(`${localID}-delay}`),
+                    transformAlias(`${localID}-timingFunction}`),
+                  ].join(' '),
+                });
+                setTransform(id, { ...baseValue, localID: `${localID}-duration`, value: duration });
+                setTransform(id, { ...baseValue, localID: `${localID}-delay`, value: delay });
+                setTransform(id, { ...baseValue, localID: `${localID}-timingFunction`, value: timingFunction });
               }
             }
             break;
@@ -273,34 +323,38 @@ export default function cssPlugin({ filename = './index.css', exclude, variableN
     async build({ getTransforms, outputFile }) {
       const output: string[] = [FILE_PREFIX, ''];
 
-      const rootTokens = getTransforms({
-        format: 'css',
-        mode: '.',
-        // filter: '*',
-        variant: 'srgb',
-      });
-
+      // :root
       output.push(':root {');
-
+      const rootTokens = getTransforms({ format: 'css', mode: '.' });
       for (const token of rootTokens) {
         if (isTokenMatch(token.token.id, exclude ?? [])) {
           continue;
         }
         const localID = token.localID ?? token.token.id;
         if (token.type === 'SINGLE_VALUE') {
-          output.push(`  ${localID}: ${token.value}`);
+          if (!token.variant || token.variant === 'srgb') {
+            output.push(`  ${localID}: ${token.value};`);
+          }
         } else if (token.type === 'MULTI_VALUE') {
           for (const [name, value] of Object.entries(token.value)) {
-            output.push(`  ${localID}-${name}: ${value}`);
+            output.push(`  ${localID}-${name}: ${value};`);
           }
         }
       }
-
       output.push('}');
 
-      if (output.length) {
-        outputFile(filename, output.join('\n'));
+      // P3
+      const p3Tokens = getTransforms({ format: 'css', mode: '.', variant: 'p3' });
+      if (p3Tokens.length) {
+        output.push('@supports (color(display-p3 0 0 0)) {');
+        for (const token of p3Tokens) {
+          const localID = token.localID ?? token.token.id;
+          output.push(`  ${localID}: ${token.value};`);
+        }
+        output.push('}');
       }
+
+      outputFile(filename, output.join('\n'));
     },
   };
 }

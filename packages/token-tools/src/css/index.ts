@@ -40,7 +40,6 @@ export function transformBorderValue(
       width: ReturnType<typeof transformDimensionValue>;
       color: ReturnType<typeof transformColorValue>;
       style: ReturnType<typeof transformStrokeStyleValue>;
-      all: string;
     } {
   if (typeof value === 'string') {
     return isAlias(value) ? transformAlias(parseAlias(value).id) : value;
@@ -48,12 +47,7 @@ export function transformBorderValue(
   const width = transformDimensionValue(value.width, { transformAlias });
   const color = transformColorValue(value.color, { transformAlias });
   const style = transformStrokeStyleValue(value.style, { transformAlias });
-  return {
-    width,
-    color,
-    style,
-    all: [width, style, color].join(' '),
-  };
+  return { width, color, style };
 }
 
 /** Convert color value to CSS string */
@@ -138,9 +132,12 @@ export type CubicBézierValue = [string | number, string | number, string | numb
 
 /** Convert cubicBezier value to CSS */
 export function transformCubicBezierValue(
-  value: CubicBézierValue,
+  value: string | CubicBézierValue,
   { transformAlias = defaultAliasTransform }: { transformAlias?: IDGenerator } = {},
 ): string {
+  if (typeof value === 'string') {
+    return isAlias(value) ? transformAlias(parseAlias(value).id) : value;
+  }
   return `cubic-bezier(${value
     .map((v) => (typeof v === 'string' && isAlias(v) ? transformAlias(parseAlias(v).id) : v))
     .join(', ')})`;
@@ -209,27 +206,6 @@ export function transformFontFamilyValue(
     .join(', ');
 }
 
-export const FONT_WEIGHT_MAP = {
-  thin: 100,
-  hairline: 100,
-  'extra-light': 200,
-  'ultra-light': 200,
-  light: 300,
-  normal: 400,
-  regular: 400,
-  book: 400,
-  medium: 500,
-  'semi-bold': 600,
-  'demi-bold': 600,
-  bold: 700,
-  'extra-bold': 800,
-  'ultra-bold': 800,
-  black: 900,
-  heavy: 900,
-  'extra-black': 950,
-  'ultra-black': 950,
-};
-
 /** Convert fontWeight value to CSS */
 export function transformFontWeightValue(
   value: number | string,
@@ -238,7 +214,7 @@ export function transformFontWeightValue(
   if (typeof value === 'string' && isAlias(value)) {
     return transformAlias(parseAlias(value).id);
   }
-  return String((typeof value === 'string' && FONT_WEIGHT_MAP[value as keyof typeof FONT_WEIGHT_MAP]) || value);
+  return String(value);
 }
 
 /** Convert gradient value to CSS */
@@ -388,10 +364,6 @@ export function transformTypographyValue(
         break;
       }
       case 'fontSize':
-      case 'lineHeight': {
-        transformedValue = transformDimensionValue(subvalue as string, { transformAlias });
-        break;
-      }
       case 'fontWeight': {
         transformedValue = transformFontWeightValue(subvalue as string, { transformAlias });
         break;

@@ -162,24 +162,6 @@ describe('transformGradientValue', () => {
 
 describe('transformFontWeightValue', () => {
   const tests: Test<Parameters<typeof transformFontWeightValue>, ReturnType<typeof transformFontWeightValue>>[] = [
-    ['thin', { given: ['thin'], want: { success: '100' } }],
-    ['hairline', { given: ['hairline'], want: { success: '100' } }],
-    ['extra-light', { given: ['extra-light'], want: { success: '200' } }],
-    ['ultra-light', { given: ['ultra-light'], want: { success: '200' } }],
-    ['light', { given: ['light'], want: { success: '300' } }],
-    ['normal', { given: ['normal'], want: { success: '400' } }],
-    ['regular', { given: ['regular'], want: { success: '400' } }],
-    ['book', { given: ['book'], want: { success: '400' } }],
-    ['medium', { given: ['medium'], want: { success: '500' } }],
-    ['semi-bold', { given: ['semi-bold'], want: { success: '600' } }],
-    ['demi-bold', { given: ['demi-bold'], want: { success: '600' } }],
-    ['bold', { given: ['bold'], want: { success: '700' } }],
-    ['extra-bold', { given: ['extra-bold'], want: { success: '800' } }],
-    ['ultra-bold', { given: ['ultra-bold'], want: { success: '800' } }],
-    ['black', { given: ['black'], want: { success: '900' } }],
-    ['heavy', { given: ['heavy'], want: { success: '900' } }],
-    ['extra-black', { given: ['extra-black'], want: { success: '950' } }],
-    ['ultra-black', { given: ['ultra-black'], want: { success: '950' } }],
     ['400', { given: [400], want: { success: '400' } }],
   ];
 

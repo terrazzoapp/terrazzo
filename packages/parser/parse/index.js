@@ -1,5 +1,5 @@
 import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
-import { isAlias, parseAlias } from '@terrazzo/token-tools';
+import { isAlias, parseAlias, splitID } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
@@ -57,16 +57,23 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   const startValidation = performance.now();
   logger.debug({ group: 'parser', task: 'validate', message: 'Start tokens validation' });
   let last$Type;
+  let last$TypePath = '';
   traverse(ast, {
     enter(node, parent, path) {
+      // reset last$Type if not in a direct ancestor tree
+      if (!last$TypePath || !path.join('.').startsWith(last$TypePath)) {
+        last$Type = undefined;
+      }
+
       if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
         const members = getObjMembers(node.value);
 
         // keep track of closest-scoped $type
         // note: this is only reliable in a synchronous, single-pass traversal;
         // otherwise we’d have to do something more complicated
-        if (members.$type && members.$type.type === 'String') {
+        if (members.$type && members.$type.type === 'String' && !members.$value) {
           last$Type = node.value.members.find((m) => m.name.value === '$type');
+          last$TypePath = path.join('.');
         }
 
         if (members.$value) {
@@ -78,33 +85,45 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           validate(sourceNode, { ast, logger });
 
           const id = path.join('.');
+          const group = { id: splitID(id).group, tokens: [] };
+          if (last$Type) {
+            group.$type = last$Type.value.value;
+          }
+          // note: this will also include sibling tokens, so be selective about only accessing group-specific properties
+          const groupMembers = getObjMembers(parent);
+          if (groupMembers.$description) {
+            group.$description = evaluate(groupMembers.$description);
+          }
+          if (groupMembers.$extensions) {
+            group.$extensions = evaluate(groupMembers.$extensions);
+          }
           const token = {
             $type: members.$type?.value ?? last$Type?.value.value,
             $value: evaluate(members.$value),
             id,
             mode: {},
             originalValue: evaluate(node.value),
-            group: {
-              id: path.slice(0, path.length - 1).join('.'),
-              tokens: {},
-            },
+            group,
             sourceNode: sourceNode.value,
           };
           if (members.$description?.value) {
             token.$description = members.$description.value;
           }
 
-          // handle modes: note: avoid circular refs here, such as not duplicating `modes`
+          // handle modes
+          // note that circular refs are avoided here, such as not duplicating `modes`
           const modeValues = extensions?.mode ? getObjMembers(extensions.mode) : {};
           for (const mode of ['.', ...Object.keys(modeValues)]) {
-            token.mode[mode] = { id: token.id, $type: token.$type };
+            token.mode[mode] = {
+              id: token.id,
+              $type: token.$type,
+              $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
+              sourceNode: mode === '.' ? structuredClone(token.sourceNode) : modeValues[mode],
+            };
             if (token.$description) {
               token.mode[mode].$description = token.$description;
             }
-            token.mode[mode].$value = mode === '.' ? structuredClone(token.$value) : evaluate(modeValues[mode]);
           }
-
-          // TODO: group + group tokens
 
           tokens[id] = token;
         } else if (members.value) {
@@ -120,120 +139,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     timing: performance.now() - startValidation,
   });
 
-  // 3. Resolve aliases, and finalize modes
-  for (const id in tokens) {
-    if (!Object.hasOwn(tokens, id)) {
-      continue;
-    }
-
-    const token = tokens[id];
-    const node = token.sourceNode;
-
-    if (isAlias(token.$value)) {
-      const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
-      const aliasOf = aliasOfID;
-      token.$value = structuredClone(tokens[aliasOfID].$value);
-      if (token.$type !== aliasOf.$type) {
-        logger.warn({
-          message: `Token ${id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
-          node,
-          ast,
-        });
-        token.$type = aliasOf.$type;
-      }
-    } else if (Array.isArray(token.$value)) {
-      for (let i = 0; i < token.$value.length; i++) {
-        if (isAlias(token.$value[i])) {
-          if (!token.partialAliasOf) {
-            token.partialAliasOf = [];
-          }
-          const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
-          token.partialAliasOf[i] = aliasOfID;
-          token.$value[i] = structuredClone(tokens[aliasOfID].$value);
-        } else if (typeof token.$value[i] === 'object') {
-          for (const property in token.$value[i]) {
-            if (isAlias(token.$value[i][property])) {
-              if (!token.partialAliasOf) {
-                token.partialAliasOf = [];
-              }
-              if (!token.partialAliasOf[i]) {
-                token.partialAliasOf[i] = {};
-              }
-              const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, node, ast });
-              token.$value[i][property] = tokens[aliasOfID].$value[i][property];
-              token.partialAliasOf[i][property] = aliasOfID;
-            }
-          }
-        }
-      }
-    } else if (typeof token.$value === 'object') {
-      for (const property in token.$value) {
-        if (!Object.hasOwn(token.$value, property)) {
-          continue;
-        }
-
-        if (isAlias(token.$value[property])) {
-          if (!token.partialAliasOf) {
-            token.partialAliasOf = {};
-          }
-          const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
-          token.partialAliasOf[property] = aliasOfID;
-          token.$value[property] = structuredClone(tokens[aliasOfID].$value);
-        }
-      }
-    }
-
-    for (const mode in token.modes) {
-      const modeValue = token.modes[mode];
-      if (isAlias(modeValue.$value)) {
-        const aliasOfID = resolveAlias(modeValue.$value, { tokens, logger, node, ast });
-        token.modes[mode].aliasOf = aliasOfID;
-        token.modes[mode].$value = tokens[aliasOfID].$value;
-      } else if (Array.isArray(modeValue)) {
-        for (let i = 0; i < modeValue.length; i++) {
-          if (isAlias(modeValue.$value[i])) {
-            if (!modeValue.partialAliasOf) {
-              modeValue.partialAliasOf = [];
-            }
-            const aliasOfID = resolveAlias(modeValue.$value[i], { tokens, logger, node, ast });
-            modeValue.partialAliasOf[i] = aliasOfID;
-            modeValue.$value[i] = structuredClone(tokens[aliasOfID].$value);
-          } else if (typeof modeValue.$value[i] === 'object') {
-            for (const property in modeValue.$value[i]) {
-              if (isAlias(modeValue.$value[i][property])) {
-                if (!modeValue.partialAliasOf) {
-                  modeValue.partialAliasOf = [];
-                }
-                if (!modeValue.partialAliasOf[i]) {
-                  modeValue.partialAliasOf[i] = {};
-                }
-                const aliasOfID = resolveAlias(modeValue.$value[i][property], { tokens, logger, node, ast });
-                modeValue.$value[i][property] = tokens[aliasOfID].$value[i][property];
-                modeValue.partialAliasOf[i][property] = aliasOfID;
-              }
-            }
-          }
-        }
-      } else if (typeof modeValue === 'object') {
-        for (const property in modeValue.$value) {
-          if (!Object.hasOwn(modeValue.$value, property)) {
-            continue;
-          }
-
-          if (isAlias(modeValue.$value[property])) {
-            if (!modeValue.partialAliasOf) {
-              modeValue.partialAliasOf = {};
-            }
-            const aliasOfID = resolveAlias(modeValue.$value[property], { tokens, logger, node, ast });
-            modeValue.partialAliasOf[property] = aliasOfID;
-            modeValue.$value[property] = structuredClone(tokens[aliasOfID].$value);
-          }
-        }
-      }
-    }
-  }
-
-  // 4. Execute lint runner with loaded plugins
+  // 3. Execute lint runner with loaded plugins
   if (!skipLint && plugins?.length) {
     const lintStart = performance.now();
     logger.debug({
@@ -250,14 +156,87 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     });
   }
 
-  // 5. normalize values
+  // 4. normalize values
+  const normalizeStart = performance.now();
+  logger.debug({
+    group: 'parser',
+    task: 'normalize',
+    message: 'Start token normalization',
+  });
   for (const id in tokens) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
     }
-
-    tokens[id].$value = normalize(tokens[id]);
+    try {
+      tokens[id].$value = normalize(tokens[id]);
+    } catch (err) {
+      logger.error({ message: err.message, ast, node: tokens[id].sourceNode });
+    }
+    for (const mode in tokens[id].mode) {
+      if (mode === '.') {
+        continue;
+      }
+      try {
+        tokens[id].mode[mode].$value = normalize(tokens[id].mode[mode]);
+      } catch (err) {
+        logger.error({ message: err.message, ast, node: tokens[id].mode[mode].sourceNode });
+      }
+    }
   }
+  logger.debug({
+    group: 'parser',
+    task: 'normalize',
+    message: 'Finish token normalization',
+    timing: performance.now() - normalizeStart,
+  });
+
+  // 5. Resolve aliases and populate groups
+  for (const id in tokens) {
+    if (!Object.hasOwn(tokens, id)) {
+      continue;
+    }
+    const token = tokens[id];
+    applyAliases(token, { tokens, ast, node: token.sourceNode, logger });
+    token.mode['.'].$value = token.$value;
+    if (token.aliasOf) {
+      token.mode['.'].aliasOf = token.aliasOf;
+    }
+    if (token.partialAliasOf) {
+      token.mode['.'].partialAliasOf = token.partialAliasOf;
+    }
+    const { group: parentGroup } = splitID(id);
+    for (const siblingID in tokens) {
+      const { group: siblingGroup } = splitID(siblingID);
+      if (siblingGroup?.startsWith(parentGroup)) {
+        token.group.tokens.push(siblingID);
+      }
+    }
+  }
+
+  // 6. resolve mode aliases
+  const modesStart = performance.now();
+  logger.debug({
+    group: 'parser',
+    task: 'modes',
+    message: 'Start mode resolution',
+  });
+  for (const id in tokens) {
+    if (!Object.hasOwn(tokens, id)) {
+      continue;
+    }
+    for (const mode in tokens[id].mode) {
+      if (mode === '.') {
+        continue; // skip shadow of root value
+      }
+      applyAliases(tokens[id].mode[mode], { tokens, ast, node: tokens[id].mode[mode].sourceNode, logger });
+    }
+  }
+  logger.debug({
+    group: 'parser',
+    task: 'modes',
+    message: 'Finish token modes',
+    timing: performance.now() - modesStart,
+  });
 
   logger.debug({
     group: 'parser',
@@ -305,4 +284,89 @@ export function resolveAlias(alias, { tokens, logger, ast, node, scanned = [] })
     return id;
   }
   return resolveAlias(alias, { tokens, logger, ast, node, scanned: [...scanned, id] });
+}
+
+/** Resolve aliases, update values, and mutate `token` to add `aliasOf` / `partialAliasOf` */
+function applyAliases(token, { tokens, logger, ast, node }) {
+  // handle simple aliases
+  if (isAlias(token.$value)) {
+    const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
+    const { mode: aliasMode } = parseAlias(token.$value);
+    const aliasOf = tokens[aliasOfID];
+    token.aliasOf = aliasOfID;
+    token.$value = aliasOf.mode[aliasMode]?.$value || aliasOf.$value;
+    if (token.$type && token.$type !== aliasOf.$type) {
+      logger.warn({
+        message: `Token ${token.id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
+        node,
+        ast,
+      });
+      token.$type = aliasOf.$type;
+    }
+  }
+  // handle aliases within array values (e.g. cubicBezier, gradient)
+  else if (Array.isArray(token.$value)) {
+    // some arrays are primitives, some are objects. handle both
+    for (let i = 0; i < token.$value.length; i++) {
+      if (isAlias(token.$value[i])) {
+        if (!token.partialAliasOf) {
+          token.partialAliasOf = [];
+        }
+        const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+        const { mode: aliasMode } = parseAlias(token.$value[i]);
+        token.partialAliasOf[i] = aliasOfID;
+        token.$value[i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+      } else if (typeof token.$value[i] === 'object') {
+        for (const property in token.$value[i]) {
+          if (isAlias(token.$value[i][property])) {
+            if (!token.partialAliasOf) {
+              token.partialAliasOf = [];
+            }
+            if (!token.partialAliasOf[i]) {
+              token.partialAliasOf[i] = {};
+            }
+            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, node, ast });
+            const { mode: aliasMode } = parseAlias(token.$value[i][property]);
+            token.$value[i][property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+            token.partialAliasOf[i][property] = aliasOfID;
+          }
+        }
+      }
+    }
+  }
+  // handle aliases within object (composite) values (e.g. border, typography, transition)
+  else if (typeof token.$value === 'object') {
+    for (const property in token.$value) {
+      if (!Object.hasOwn(token.$value, property)) {
+        continue;
+      }
+
+      if (isAlias(token.$value[property])) {
+        if (!token.partialAliasOf) {
+          token.partialAliasOf = {};
+        }
+        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+        const { mode: aliasMode } = parseAlias(token.$value[property]);
+        token.partialAliasOf[property] = aliasOfID;
+        token.$value[property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+      }
+      // strokeStyle has an array within an object
+      else if (Array.isArray(token.$value[property])) {
+        for (let i = 0; i < token.$value[property].length; i++) {
+          if (isAlias(token.$value[property][i])) {
+            const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, node, ast });
+            if (!token.partialAliasOf) {
+              token.partialAliasOf = {};
+            }
+            if (!token.partialAliasOf[property]) {
+              token.partialAliasOf[property] = [];
+            }
+            const { mode: aliasMode } = parseAlias(token.$value[property][i]);
+            token.partialAliasOf[property][i] = aliasOfID;
+            token.$value[property][i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+          }
+        }
+      }
+    }
+  }
 }
