@@ -23,8 +23,6 @@ export interface TokenTransformedSingleValue {
   value: string;
   /** The mode of this value (default: `"."`) */
   mode: string;
-  /** The variant of this value, if this token + format uses variants (e.g. "srgb" vs "p3" color for CSS color variants) */
-  variant?: string;
   /** The original token */
   token: TokenNormalized;
 }
@@ -37,8 +35,6 @@ export interface TokenTransformedMultiValue {
   value: Record<string, string>;
   /** The mode of this value (default: `"."`) */
   mode: string;
-  /** The variant of this value, if this token + format uses variants (some do not) */
-  variant?: string;
   /** The original token */
   token: TokenNormalized;
 }
@@ -49,11 +45,9 @@ export interface TransformParams {
   /** ID of an existing format */
   format: string;
   /** Glob of tokens to select (e.g. `"color.*"` to select all tokens starting with `"color."`) */
-  select?: string;
+  select?: string | string[];
   /** Mode name, if selecting a mode (default: `"."`) */
-  mode?: string;
-  /** Variant, if this transform supports variants (default: `undefined`) */
-  variant?: string | undefined;
+  mode?: string | string[];
 }
 
 export interface TransformHookOptions {
@@ -69,7 +63,6 @@ export interface TransformHookOptions {
       localID?: string;
       value: string | Record<string, string>;
       mode?: string;
-      variant?: string;
     },
   ): void;
   /** Momoa document */
@@ -98,8 +91,8 @@ export interface BuildRunnerResult {
 export interface BuildEndHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
-  /** Format API */
-  format: (formatID: string) => Omit<Formatter, 'setTokenValue'>;
+  /** Query transformed values */
+  getTransforms(params: TransformParams): TokenTransformed[];
   /** Momoa document */
   ast: DocumentNode;
   /** Final files to be written */

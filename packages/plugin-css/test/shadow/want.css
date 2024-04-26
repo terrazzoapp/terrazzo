@@ -4,15 +4,7 @@
 
 :root {
   --ds-shadow-base: var(--ds-shadow-simple);
-  --ds-shadow-inset: inset 0 4px 8px 0 #00000026;
-  --ds-shadow-layered: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
-  --ds-shadow-simple: 0 4px 8px 0 #00000026;
-}
-
-@supports (color: color(display-p3 1 1 1)) {
-  :root {
-    --ds-shadow-inset: inset 0 4px 8px 0 color(display-p3 0 0 0 / 0.14901960784313725);
-    --ds-shadow-layered: 0 1px 1px 0 color(display-p3 0 0 0 / 0.12156862745098039), 0 2px 2px 0 color(display-p3 0 0 0 / 0.12156862745098039), 0 4px 4px 0 color(display-p3 0 0 0 / 0.12156862745098039), 0 8px 8px 0 color(display-p3 0 0 0 / 0.12156862745098039), 0 16px 16px 0 color(display-p3 0 0 0 / 0.12156862745098039);
-    --ds-shadow-simple: 0 4px 8px 0 color(display-p3 0 0 0 / 0.14901960784313725);
-  }
+  --ds-shadow-simple: 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
+  --ds-shadow-inset: 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
+  --ds-shadow-layered: 0 1px 1px  color(srgb 0 0 0 / 0.12), 0 2px 2px  color(srgb 0 0 0 / 0.12), 0 4px 4px  color(srgb 0 0 0 / 0.12), 0 8px 8px  color(srgb 0 0 0 / 0.12), 0 16px 16px  color(srgb 0 0 0 / 0.12);
 }

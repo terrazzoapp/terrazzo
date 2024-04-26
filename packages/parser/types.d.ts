@@ -309,7 +309,7 @@ export interface BorderTokenNormalized extends TokenNormalizedCore {
   $type: 'border';
   $value: BorderValueNormalized;
   aliasOf?: string;
-  partialAliasOf?: { width?: string; color?: string; style?: string };
+  partialAliasOf?: Partial<Record<keyof BorderValueNormalized, string>>;
   mode: Record<string, BorderTokenNormalized | undefined>;
   originalValue: BorderToken;
 }
@@ -408,7 +408,7 @@ export interface GradientTokenNormalized extends TokenNormalizedCore {
   $type: 'gradient';
   $value: GradientValueNormalized;
   aliasOf?: string;
-  partialAliasOf?: { color?: string; position?: string }[];
+  partialAliasOf?: Partial<Record<keyof GradientStopNormalized, string>>[];
   mode: Record<string, GradientTokenNormalized | undefined>;
   originalValue: GradientTokenNormalized;
 }
@@ -442,7 +442,7 @@ export interface ShadowTokenNormalized extends TokenNormalizedCore {
   $type: 'shadow';
   $value: ShadowValueNormalized[];
   aliasOf?: string;
-  partialAliasOf?: { color?: string; offsetX?: string; offsetY?: string; blur?: string; spread?: string }[];
+  partialAliasOf?: Partial<Record<keyof ShadowValueNormalized, string>>[];
   mode: Record<string, ShadowTokenNormalized | undefined>;
   originalValue: ShadowToken;
 }
@@ -477,7 +477,7 @@ export interface TransitionTokenNormalized extends TokenNormalizedCore {
   $type: 'transition';
   $value: TransitionValueNormalized;
   aliasOf?: string;
-  partialAliasOf?: { duration?: string; delay?: string; timingFunction?: string };
+  partialAliasOf?: Partial<Record<keyof TransitionValueNormalized, string>>;
   mode: Record<string, TransitionTokenNormalized | undefined>;
   originalValue: TransitionToken;
 }
@@ -492,15 +492,7 @@ export interface TypographyTokenNormalized extends TokenNormalizedCore {
   $type: 'typography';
   $value: TypographyValueNormalized;
   aliasOf?: string;
-  partialAliasOf?: {
-    fontFamily?: string;
-    fontSize?: string;
-    fontStyle?: string;
-    fontWeight?: string;
-    letterSpacing?: string;
-    lineHeight?: string;
-    [key: string]: string | undefined;
-  };
+  partialAliasOf?: Record<string, string>;
   mode: Record<string, TypographyTokenNormalized | undefined>;
   originalValue: TypographyToken;
 }

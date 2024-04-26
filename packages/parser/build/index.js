@@ -1,4 +1,5 @@
 import { isTokenMatch } from '@terrazzo/token-tools';
+import wcmatch from 'wildcard-match';
 import Logger from '../logger.js';
 
 /**
@@ -33,14 +34,6 @@ function validateTransformParams({ params, token, logger, pluginName }) {
       message: `setTransform() tried to transform token "${id}" but it doesn’t exist.`,
     });
   }
-  // validate mode
-  if (params.mode && !token.mode[params.mode]) {
-    // Adding a mode is allowed, but comes with a warning
-    logger.warn({
-      ...baseEntry,
-      message: `setTransform() tried to transform mode "${params.mode}" on token "${id}" but it doesn’t exist.`,
-    });
-  }
   // validate value is valid for SINGLE_VALUE or MULTI_VALUE
   if (
     !params.value ||
@@ -73,10 +66,14 @@ export default async function build({ tokens, ast, logger = new Logger(), config
 
   function getTransforms(params) {
     return (formats[params.format] ?? []).filter((token) => {
-      if (params.select && params.select !== '*' && !isTokenMatch(token.token.id, [params.select])) {
+      if (
+        params.select &&
+        params.select !== '*' &&
+        !isTokenMatch(token.token.id, Array.isArray(params.select) ? params.select : [params.select])
+      ) {
         return false;
       }
-      return (!params.mode || params.mode === token.mode) && (!params.variant || params.variant === token.variant);
+      return !params.mode || wcmatch(params.mode)(token.mode);
     });
   }
 
