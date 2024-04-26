@@ -29,10 +29,25 @@ export interface BorderValue {
   style: string | StrokeStyleValue;
 }
 
+/** Generate shorthand CSS for select token types */
+export function generateShorthand({ $type, localID }: { $type: string; localID: string }): string | undefined {
+  switch ($type) {
+    case 'border': {
+      return ['width', 'style', 'color'].map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true })).join(' ');
+    }
+    case 'transition': {
+      return ['duration', 'delay', 'timing-function']
+        .map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true }))
+        .join(' ');
+    }
+    // note: "typography" is not set in shorthand because it can often unset values unintentionally.
+    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/font
+  }
+}
+
 /** Convert border value to multiple CSS values */
 export function transformBorderValue(
   value: BorderValue,
-
   {
     aliasOf,
     partialAliasOf,
@@ -40,15 +55,19 @@ export function transformBorderValue(
   }: {
     aliasOf?: string;
     partialAliasOf?: Partial<Record<keyof typeof value, string>>;
-    transformAlias?: IDGenerator;
-  } = {},
+    transformAlias: IDGenerator;
+  },
 ): {
   width: ReturnType<typeof transformDimensionValue>;
   color: ReturnType<typeof transformColorValue>;
   style: ReturnType<typeof transformStrokeStyleValue>;
 } {
   if (aliasOf) {
-    return transformCompositeAlias(value, { aliasOf, transformAlias });
+    return transformCompositeAlias(value, { aliasOf, transformAlias }) as {
+      width: ReturnType<typeof transformDimensionValue>;
+      color: ReturnType<typeof transformColorValue>;
+      style: ReturnType<typeof transformStrokeStyleValue>;
+    };
   }
   return {
     width: partialAliasOf?.width
@@ -170,7 +189,7 @@ export function transformCubicBezierValue(
 export function transformCompositeAlias<T extends {}>(
   value: T,
   { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf: string; transformAlias?: IDGenerator },
-): Record<keyof T, string> {
+): Record<string, string> {
   const output: Record<string, string> = {};
   for (const key in value) {
     output[kebabCase(key)] = transformAlias(`${aliasOf}-${key}`);
@@ -409,10 +428,14 @@ export function transformTransitionValue(
 ): {
   duration: ReturnType<typeof transformDurationValue>;
   delay: ReturnType<typeof transformDurationValue>;
-  timingFunction: ReturnType<typeof transformCubicBezierValue>;
+  'timing-function': ReturnType<typeof transformCubicBezierValue>;
 } {
   if (aliasOf) {
-    return transformCompositeAlias(value, { aliasOf, transformAlias });
+    return transformCompositeAlias(value, { aliasOf, transformAlias }) as {
+      duration: ReturnType<typeof transformDurationValue>;
+      delay: ReturnType<typeof transformDurationValue>;
+      'timing-function': ReturnType<typeof transformCubicBezierValue>;
+    };
   }
   return {
     duration: partialAliasOf?.duration
@@ -421,7 +444,7 @@ export function transformTransitionValue(
     delay: partialAliasOf?.delay
       ? transformAlias(partialAliasOf.delay)
       : transformDurationValue(value.delay, { transformAlias }),
-    timingFunction: partialAliasOf?.timingFunction
+    'timing-function': partialAliasOf?.timingFunction
       ? transformAlias(partialAliasOf.timingFunction)
       : transformCubicBezierValue(value.timingFunction, { transformAlias }),
   };
@@ -481,7 +504,10 @@ export interface MakeCSSVarOptions {
  * Code by @dfrankland
  */
 export function makeCSSVar(name: string, { prefix, wrapVar = false }: MakeCSSVarOptions = {}): string {
-  const property = [...(prefix ? [prefix] : []), ...name.split(CSS_VAR_RE).filter(Boolean)].join('-');
+  let property = name.split(CSS_VAR_RE).filter(Boolean).join('-');
+  if (prefix && !property.startsWith(`${prefix}-`)) {
+    property = `${prefix}-${property}`;
+  }
   const finalProperty = `--${property}`.toLocaleLowerCase();
   return wrapVar ? `var(${finalProperty})` : finalProperty;
 }

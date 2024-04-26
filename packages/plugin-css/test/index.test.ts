@@ -40,7 +40,7 @@ describe('@cobalt-ui/plugin-css', () => {
       { cwd },
     );
     const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
-    const result = await build({ tokens, ast, config });
+    const result = await build(tokens, { ast, config });
     expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 });

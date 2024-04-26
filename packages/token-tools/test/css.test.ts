@@ -24,6 +24,10 @@ describe('makeCSSVar', () => {
     ['extra dashes', { given: ['my-css---var'], want: { success: '--my-css-var' } }],
     ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡-_' } }],
     ['prefix', { given: ['typography.body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } }],
+    [
+      'prefix (already prefixed)',
+      { given: ['--tz-typography-body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -197,7 +201,7 @@ describe('transformShadowValue', () => {
     [
       'basic',
       {
-        given: [{ color: 'color(srgb 0 0 0 / 0.1)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' }],
+        given: [[{ color: 'color(srgb 0 0 0 / 0.1)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' }]],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
       },
     ],

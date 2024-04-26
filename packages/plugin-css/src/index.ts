@@ -19,6 +19,7 @@ import {
   transformTransitionValue,
   transformTypographyValue,
 } from '@terrazzo/token-tools/css';
+import { generateShorthand } from '@terrazzo/token-tools/src/css/index.js';
 
 export interface ModeSelector {
   /** The name of the mode to match */
@@ -80,22 +81,13 @@ export default function cssPlugin({
           }
           case 'border': {
             for (const mode in token.mode) {
-              const baseValue = { format: FORMAT_ID, mode };
               const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-              const output = transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias });
-              if (typeof output === 'string') {
-                setTransform(id, { ...baseValue, localID, value: output });
-              } else {
-                const { width, color, style } = output;
-                setTransform(id, {
-                  ...baseValue,
-                  localID,
-                  value: [`var(${localID}-width)`, `var(${localID}-color)`, `var(${localID}-style)`].join(' '),
-                });
-                setTransform(id, { ...baseValue, localID: `${localID}-width`, value: width });
-                setTransform(id, { ...baseValue, localID: `${localID}-color`, value: color });
-                setTransform(id, { ...baseValue, localID: `${localID}-style`, value: style });
-              }
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias }),
+                mode,
+              });
             }
             break;
           }
@@ -247,33 +239,25 @@ export default function cssPlugin({
           }
           case 'transition': {
             for (const mode in token.mode) {
-              const baseValue = { format: FORMAT_ID, mode };
               const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-              const output = transformTransitionValue($value, { aliasOf, partialAliasOf, transformAlias });
-              if (typeof output === 'string') {
-                setTransform(id, { ...baseValue, localID, value: output });
-              } else {
-                const { duration, delay, timingFunction } = output;
-                setTransform(id, {
-                  ...baseValue,
-                  localID,
-                  value: [`var(${localID}-duration)`, `var(${localID}-delay)`, `var(${localID}-timingFunction)`].join(
-                    ' ',
-                  ),
-                });
-                setTransform(id, { ...baseValue, localID: `${localID}-duration`, value: duration });
-                setTransform(id, { ...baseValue, localID: `${localID}-delay`, value: delay });
-                setTransform(id, { ...baseValue, localID: `${localID}-timingFunction`, value: timingFunction });
-              }
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformTransitionValue($value, { aliasOf, partialAliasOf, transformAlias }),
+                mode,
+              });
             }
             break;
           }
           case 'typography': {
             for (const mode in token.mode) {
-              const baseValue = { format: FORMAT_ID, mode };
               const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-              const output = transformTypographyValue($value, { aliasOf, partialAliasOf, transformAlias });
-              setTransform(id, { ...baseValue, localID, value: output });
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value: transformTypographyValue($value, { aliasOf, partialAliasOf, transformAlias }),
+                mode,
+              });
             }
             break;
           }
@@ -294,8 +278,12 @@ export default function cssPlugin({
         if (token.type === 'SINGLE_VALUE') {
           output.push(`  ${localID}: ${token.value};`);
         } else if (token.type === 'MULTI_VALUE') {
+          const shorthand = generateShorthand({ $type: token.token.$type, localID });
+          if (shorthand) {
+            output.push(`  ${token.localID ?? token.token.id}: ${shorthand};`);
+          }
           for (const [name, value] of Object.entries(token.value)) {
-            output.push(`  ${localID}-${name}: ${value};`);
+            output.push(`  ${name === '.' ? localID : [localID, name].join('-')}: ${value};`);
           }
         }
       }
@@ -318,12 +306,16 @@ export default function cssPlugin({
             if (token.token.aliasOf) {
               continue;
             }
-
+            const localID = token.localID ?? token.token.id;
             if (token.type === 'SINGLE_VALUE') {
-              output.push(`${indent}${token.localID ?? token.token.id}: ${token.value};`);
+              output.push(`${indent}${localID}: ${token.value};`);
             } else {
+              const shorthand = generateShorthand({ $type: token.token.$type, localID });
+              if (shorthand) {
+                output.push(`${indent}${localID}: ${shorthand};`);
+              }
               for (const [name, subvalue] of Object.entries(token.value)) {
-                output.push(`${indent}${token.localID ?? token.token.id}-${name}: ${subvalue};`);
+                output.push(`${indent}${localID}-${name}: ${subvalue};`);
               }
             }
           }

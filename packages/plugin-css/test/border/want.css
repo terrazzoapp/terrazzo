@@ -5,22 +5,22 @@
 :root {
   --ds-color-gray: color(srgb 0.32941176470588235 0.2784313725490196 0.2549019607843137);
   --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
-  --ds-border-solid: var(--ds-border-solid-width) var(--ds-border-solid-color) var(--ds-border-solid-style);
+  --ds-border-solid: var(--ds-border-solid-width) var(--ds-border-solid-style) var(--ds-border-solid-color);
   --ds-border-solid-width: 1px;
   --ds-border-solid-color: var(--ds-border-color);
   --ds-border-solid-style: solid;
-  --ds-border-dashed: var(--ds-border-dashed-width) var(--ds-border-dashed-color) var(--ds-border-dashed-style);
+  --ds-border-dashed: var(--ds-border-dashed-width) var(--ds-border-dashed-style) var(--ds-border-dashed-color);
   --ds-border-dashed-width: 1.5px;
   --ds-border-dashed-color: var(--ds-border-color);
   --ds-border-dashed-style: dashed;
-  --ds-border-gray: var(--ds-border-gray-width) var(--ds-border-gray-color) var(--ds-border-gray-style);
+  --ds-border-gray: var(--ds-border-gray-width) var(--ds-border-gray-style) var(--ds-border-gray-color);
   --ds-border-gray-width: 1px;
   --ds-border-gray-color: var(--ds-color-gray);
   --ds-border-gray-style: solid;
-  --ds-border-default: var(--ds-border-default-width) var(--ds-border-default-color) var(--ds-border-default-style);
-  --ds-border-default-width: var(--ds-border-solid-width);
+  --ds-border-default: var(--ds-border-default-width) var(--ds-border-default-style) var(--ds-border-default-color);
   --ds-border-default-color: var(--ds-border-solid-color);
   --ds-border-default-style: var(--ds-border-solid-style);
+  --ds-border-default-width: var(--ds-border-solid-width);
 }
 
 @media (prefers-color-scheme: light) {
