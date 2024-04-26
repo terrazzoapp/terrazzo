@@ -60,7 +60,7 @@ function validateTransformParams({ params, token, logger, pluginName }) {
  * @param {BuildOptions} options
  * @return {Promise<BuildResult>}
  */
-export default async function build({ tokens, ast, logger = new Logger(), config }) {
+export default async function build(tokens, { ast, logger = new Logger(), config }) {
   const formats = {};
   const result = { outputFiles: [] };
 

@@ -1,6 +1,6 @@
 import { type Color, formatCss, clampChroma } from 'culori';
 import { kebabCase } from 'scule';
-import { CSS_TO_CULORI, parseColor } from '../color';
+import { CSS_TO_CULORI, parseColor } from '../color.js';
 
 /** Function that generates a var(…) statement */
 export type IDGenerator = (id: string) => string;

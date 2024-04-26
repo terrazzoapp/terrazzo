@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-sass",
-  "description": "Generate scss/sass from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.8.0",
+  "description": "Generate scss/sass from your design tokens schema (requires @terrazzo/cli)",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -14,7 +14,7 @@
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-sass dist/index.js",
+    "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-sass dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "pnpm run \"/^test:.*/\"",

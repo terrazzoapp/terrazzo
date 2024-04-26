@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-js",
-  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.4.3",
+  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -21,7 +21,7 @@
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-js dist/index.js",
+    "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-js dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "co build -c ./test/types.tokens.mjs && pnpm run \"/^test:.*/\"",

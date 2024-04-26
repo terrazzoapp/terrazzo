@@ -43,13 +43,10 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
   }
   for (let i = 0; i < config.tokens.length; i++) {
     const filepath = config.tokens[i];
-    const isRemote = filepath.startsWith('//') || filepath.startsWith('http:') || filepath.startsWith('https:');
-    if (isRemote) {
-      try {
-        config.tokens[i] = new URL(filepath);
-      } catch {
-        logger.error({ label: 'config.tokens', message: `Invalid URL ${filepath}` });
-      }
+    try {
+      config.tokens[i] = new URL(filepath, cwd);
+    } catch {
+      logger.error({ label: 'config.tokens', message: `Invalid URL ${filepath}` });
     }
   }
 

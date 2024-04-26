@@ -4,7 +4,6 @@ import type Logger from '../logger.js';
 import type { TokenNormalized } from '../types.js';
 
 export interface BuildRunnerOptions {
-  tokens: Record<string, TokenNormalized>;
   ast: DocumentNode;
   config: ConfigInit;
   logger?: Logger;
@@ -99,4 +98,7 @@ export interface BuildEndHookOptions {
   outputFiles: OutputFile[];
 }
 
-export default function build(options: BuildRunnerOptions): Promise<BuildRunnerResult>;
+export default function build(
+  tokens: Record<string, TokenNormalized>,
+  options: BuildRunnerOptions,
+): Promise<BuildRunnerResult>;

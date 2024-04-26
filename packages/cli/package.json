@@ -25,6 +25,7 @@
   },
   "license": "MIT",
   "type": "module",
+  "main": "./dist/index.js",
   "bin": {
     "tz": "bin/cli.js",
     "terrazzo": "bin/cli.js"
@@ -43,18 +44,14 @@
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "chokidar": "^3.6.0",
-    "culori": "^3.3.0",
     "dotenv": "^16.4.5",
-    "parse-json": "^8.1.0",
-    "piscina": "^3.2.0",
-    "svgo": "^3.2.0",
-    "yaml": "^2.4.1",
+    "merge-anything": "^5.1.7",
+    "picocolors": "^1.0.0",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/culori": "^2.1.0",
+    "@types/node": "^20.12.7",
     "execa": "^8.0.1",
-    "msw": "^2.2.13",
-    "strip-ansi": "^7.1.0"
+    "vitest": "^1.5.2"
   }
 }

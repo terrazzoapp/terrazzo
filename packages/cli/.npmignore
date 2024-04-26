@@ -1,3 +1,4 @@
+biome.json
 test/**
-tsconfig.build.json
-tsconfig.json
+tsconfig.*
+vitest.*
