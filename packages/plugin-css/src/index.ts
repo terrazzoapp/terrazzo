@@ -1,6 +1,7 @@
 import type { Plugin } from '@terrazzo/parser';
 import { isTokenMatch, makeAlias } from '@terrazzo/token-tools';
 import {
+  generateShorthand,
   makeCSSVar,
   transformBooleanValue,
   transformBorderValue,
@@ -19,7 +20,6 @@ import {
   transformTransitionValue,
   transformTypographyValue,
 } from '@terrazzo/token-tools/css';
-import { generateShorthand } from '@terrazzo/token-tools/src/css/index.js';
 
 export interface ModeSelector {
   /** The name of the mode to match */
