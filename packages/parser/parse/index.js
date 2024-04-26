@@ -302,6 +302,8 @@ function applyAliases(token, { tokens, logger, ast, node }) {
         ast,
       });
       token.$type = aliasOf.$type;
+    } else {
+      token.$type = aliasOf.$type;
     }
   }
   // handle aliases within array values (e.g. cubicBezier, gradient)

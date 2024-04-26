@@ -5,6 +5,7 @@
 :root {
   --ds-color-blue: color(srgb 0.12941176470588237 0.5450980392156862 1);
   --ds-color-action: var(--ds-color-blue);
+  --ds-semantic-inline-link: var(--ds-color-blue);
   --ds-gradient-blue-pink: color(srgb 0.12941176470588237 0.5450980392156862 1) 0%, color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
 }
@@ -48,4 +49,3 @@
 [data-color-theme="dark-colorblind"] {
   --ds-color-blue: color(srgb 0.2196078431372549 0.5450980392156862 0.9921568627450981);
 }
-

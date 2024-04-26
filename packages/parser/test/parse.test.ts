@@ -1302,6 +1302,21 @@ describe('Additional cases', () => {
     }
   });
 
+  it('$type', async () => {
+    const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+    const result = await parse(
+      {
+        color: {
+          base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+          semantic: { $value: '{color.base.blue.500}' },
+        },
+      },
+      { config },
+    );
+    expect(result.tokens['color.base.blue.500']?.$type).toBe('color');
+    expect(result.tokens['color.semantic']?.$type).toBe('color');
+  });
+
   describe('values', () => {
     const tests: [string, { given: any; want: any }][] = [
       [
