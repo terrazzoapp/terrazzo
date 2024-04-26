@@ -1302,19 +1302,70 @@ describe('Additional cases', () => {
     }
   });
 
-  it('$type', async () => {
-    const config = defineConfig({}, { cwd: new URL(import.meta.url) });
-    const result = await parse(
-      {
-        color: {
-          base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
-          semantic: { $value: '{color.base.blue.500}' },
+  describe('$type', () => {
+    it('aliases get updated', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const result = await parse(
+        {
+          color: {
+            base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+            semantic: { $value: '{color.base.blue.500}' },
+          },
         },
-      },
-      { config },
-    );
-    expect(result.tokens['color.base.blue.500']?.$type).toBe('color');
-    expect(result.tokens['color.semantic']?.$type).toBe('color');
+        { config },
+      );
+      expect(result.tokens['color.base.blue.500']?.$type).toBe('color');
+      expect(result.tokens['color.semantic']?.$type).toBe('color');
+    });
+
+    it('inheritance works', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const result = await parse(
+        {
+          $type: 'color',
+          typography: {
+            $type: 'typography',
+            family: {
+              $type: 'fontFamily',
+              sans: {
+                $value: [
+                  'Instrument Sans',
+                  'system-ui',
+                  '-apple-system',
+                  'Aptos',
+                  'Helvetica Neue',
+                  'Helvetica',
+                  'Arial',
+                  'Noto Sans',
+                  'sans-serif',
+                  'Helvetica',
+                  'Apple Color Emoji',
+                  'Segoe UI Emoji',
+                  'Noto Color Emoji',
+                ],
+              },
+              mono: { $value: ['Fragment Mono', 'ui-monospace', 'monospace'] },
+            },
+            base: {
+              $value: {
+                fontFamily: '{typography.family.sans}',
+                fontWeight: 400,
+                fontSize: '0.75rem',
+                lineHeight: 1.25,
+                letterSpacing: '0.0024999999rem',
+              },
+            },
+          },
+          lime: {
+            400: { $value: '#dfffad' },
+          },
+        },
+        { config },
+      );
+      expect(result.tokens['typography.family.sans']?.$type).toBe('fontFamily');
+      expect(result.tokens['typography.base']?.$type).toBe('typography');
+      expect(result.tokens['lime.400']?.$type).toBe('color');
+    });
   });
 
   describe('values', () => {

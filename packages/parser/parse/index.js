@@ -56,38 +56,41 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   // 2. Walk AST once to validate tokens
   const startValidation = performance.now();
   logger.debug({ group: 'parser', task: 'validate', message: 'Start tokens validation' });
-  let last$Type;
-  let last$TypePath = '';
+  const $typeInheritance = {};
   traverse(ast, {
     enter(node, parent, path) {
-      // reset last$Type if not in a direct ancestor tree
-      if (!last$TypePath || !path.join('.').startsWith(last$TypePath)) {
-        last$Type = undefined;
-      }
-
       if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
         const members = getObjMembers(node.value);
 
-        // keep track of closest-scoped $type
-        // note: this is only reliable in a synchronous, single-pass traversal;
-        // otherwise we’d have to do something more complicated
+        // keep track of $types
         if (members.$type && members.$type.type === 'String' && !members.$value) {
-          last$Type = node.value.members.find((m) => m.name.value === '$type');
-          last$TypePath = path.join('.');
+          $typeInheritance[path.join('.') || '.'] = node.value.members.find((m) => m.name.value === '$type');
         }
 
         if (members.$value) {
           const extensions = members.$extensions ? getObjMembers(members.$extensions) : undefined;
           const sourceNode = structuredClone(node);
-          if (last$Type && !members.$type) {
-            sourceNode.value = injectObjMembers(sourceNode.value, [last$Type]);
+          const id = path.join('.');
+
+          // get parent type by taking the closest-scoped $type (length === closer)
+          let parent$type;
+          let longestPath = '';
+          for (const [k, v] of Object.entries($typeInheritance)) {
+            if (k === '.' || id.startsWith(k)) {
+              if (k.length > longestPath.length) {
+                parent$type = v;
+                longestPath = k;
+              }
+            }
+          }
+          if (parent$type && !members.$type) {
+            sourceNode.value = injectObjMembers(sourceNode.value, [parent$type]);
           }
           validate(sourceNode, { ast, logger });
 
-          const id = path.join('.');
           const group = { id: splitID(id).group, tokens: [] };
-          if (last$Type) {
-            group.$type = last$Type.value.value;
+          if (parent$type) {
+            group.$type = parent$type.value.value;
           }
           // note: this will also include sibling tokens, so be selective about only accessing group-specific properties
           const groupMembers = getObjMembers(parent);
@@ -98,7 +101,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
             group.$extensions = evaluate(groupMembers.$extensions);
           }
           const token = {
-            $type: members.$type?.value ?? last$Type?.value.value,
+            $type: members.$type?.value ?? parent$type?.value.value,
             $value: evaluate(members.$value),
             id,
             mode: {},
@@ -128,6 +131,14 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           tokens[id] = token;
         } else if (members.value) {
           logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, node, ast });
+        }
+      }
+
+      // edge case: if $type appears at root of tokens.json, collect it
+      if (node.type === 'Document' && node.body.type === 'Object' && node.body.members) {
+        const members = getObjMembers(node.body);
+        if (members.$type && members.$type.type === 'String' && !members.$value) {
+          $typeInheritance['.'] = node.body.members.find((m) => m.name.value === '$type');
         }
       }
     },
