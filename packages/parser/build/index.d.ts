@@ -14,6 +14,13 @@ export interface OutputFile {
   contents: string | Buffer;
 }
 
+export interface OutputFileExpanded extends OutputFile {
+  /** The `name` of the plugin that produced this file. */
+  plugin: string;
+  /** How long this output took to make. */
+  time: number;
+}
+
 /** Transformed token with a single value. Note that this may be any type! */
 export interface TokenTransformedSingleValue {
   /** ID unique to this format. If missing, use `token.id`. */
@@ -95,7 +102,7 @@ export interface BuildEndHookOptions {
   /** Momoa document */
   ast: DocumentNode;
   /** Final files to be written */
-  outputFiles: OutputFile[];
+  outputFiles: OutputFileExpanded[];
 }
 
 export default function build(

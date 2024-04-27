@@ -137,6 +137,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
   logger.debug({ group: 'parser', task: 'build', message: 'Start build' });
   for (const plugin of config.plugins) {
     if (typeof plugin.build === 'function') {
+      const pluginBuildStart = performance.now();
       await plugin.build({
         tokens,
         ast,
@@ -146,7 +147,12 @@ export default async function build(tokens, { ast, logger = new Logger(), config
           if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
             logger.error({ message: `Can’t overwrite file "${filename}"`, label: plugin.name });
           }
-          result.outputFiles.push({ filename, contents });
+          result.outputFiles.push({
+            filename,
+            contents,
+            plugin: plugin.name,
+            time: performance.now() - pluginBuildStart,
+          });
         },
       });
     }
@@ -166,6 +172,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
       await plugin.buildEnd({
         tokens,
         ast,
+        getTransforms,
         format: (formatID) => createFormatter(formatID),
         outputFiles: structruedClone(result.outputFiles),
       });
