@@ -51,7 +51,9 @@ export interface TransformParams {
   /** ID of an existing format */
   format: string;
   /** Glob of tokens to select (e.g. `"color.*"` to select all tokens starting with `"color."`) */
-  select?: string | string[];
+  id?: string | string[];
+  /** $type(s) to filter for */
+  $type?: string | string[];
   /** Mode name, if selecting a mode (default: `"."`) */
   mode?: string | string[];
 }

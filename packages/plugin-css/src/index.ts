@@ -290,7 +290,7 @@ export default function cssPlugin({
       output.push('}');
 
       for (const { selectors, tokens, mode } of modeSelectors ?? []) {
-        const selectorTokens = getTransforms({ format: 'css', select: tokens, mode });
+        const selectorTokens = getTransforms({ format: 'css', id: tokens, mode });
         if (!selectorTokens.length) {
           continue;
         }

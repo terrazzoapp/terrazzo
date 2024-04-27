@@ -66,14 +66,24 @@ export default async function build(tokens, { ast, logger = new Logger(), config
 
   function getTransforms(params) {
     return (formats[params.format] ?? []).filter((token) => {
+      if (params.$type) {
+        if (typeof params.$type === 'string' && token.$type !== params.$type) {
+          return false;
+        } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.type === $type)) {
+          return false;
+        }
+      }
       if (
-        params.select &&
-        params.select !== '*' &&
-        !isTokenMatch(token.token.id, Array.isArray(params.select) ? params.select : [params.select])
+        params.id &&
+        params.id !== '*' &&
+        !isTokenMatch(token.token.id, Array.isArray(params.id) ? params.id : [params.id])
       ) {
         return false;
       }
-      return !params.mode || wcmatch(params.mode)(token.mode);
+      if (params.mode && !wcmatch(params.mode)(token.mode)) {
+        return false;
+      }
+      return true;
     });
   }
 
