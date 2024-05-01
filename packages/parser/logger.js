@@ -54,7 +54,9 @@ export default class Logger {
       return;
     }
     if (entry.node) {
-      throw new TokensJSONError(message, entry.node);
+      const e = new TokensJSONError(message);
+      e.node = entry.node; // set node on instance, but don’t print to console in constructor
+      throw e;
     } else {
       throw new Error(message);
     }
@@ -111,9 +113,8 @@ export class TokensJSONError extends Error {
   /** Erring JSON node */
   node;
 
-  constructor(message, node) {
+  constructor(message) {
     super(message);
     this.name = 'TokensJSONError';
-    this.node = node;
   }
 }

@@ -26,7 +26,7 @@
 import { parse, build } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import dotenv from 'dotenv';
-import fs, { write } from 'node:fs';
+import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import pc from 'picocolors';
 import parser from 'yargs-parser';

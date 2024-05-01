@@ -311,7 +311,7 @@ export function resolveAlias(alias, { tokens, logger, source, node, scanned = []
   if (!isAlias(token.$value)) {
     return id;
   }
-  return resolveAlias(alias, { tokens, logger, node, source, scanned: [...scanned, id] });
+  return resolveAlias(token.$value, { tokens, logger, node, source, scanned: [...scanned, id] });
 }
 
 /** Resolve aliases, update values, and mutate `token` to add `aliasOf` / `partialAliasOf` */

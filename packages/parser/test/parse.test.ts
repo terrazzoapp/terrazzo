@@ -4,7 +4,6 @@ import defineConfig from '../config.js';
 import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
 import type { TokenNormalized } from '../types.js';
-import Logger from '../logger.js';
 
 describe('Tokens', () => {
   type Test = [
@@ -214,6 +213,56 @@ font:
         },
       ],
       [
+        'valid: deep, but noncircular',
+        {
+          given: {
+            alias: {
+              $type: 'color',
+              a: { $value: '{alias.b}' },
+              b: { $value: '{alias.c}' },
+              c: { $value: '{alias.d}' },
+              d: { $value: '{alias.e}' },
+              e: { $value: '{alias.f}' },
+              f: { $value: '#808080' },
+            },
+          },
+          want: {
+            tokens: {
+              'alias.a': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+              'alias.b': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+              'alias.c': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+              'alias.d': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+              'alias.e': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+              'alias.f': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+              },
+            },
+          },
+        },
+      ],
+      [
         'invalid: bad syntax',
         {
           given: { alias: { $value: '{foo.bar' } },
@@ -248,6 +297,29 @@ font:
   7 |         "position": "{perc.0}"
   8 |       }
   9 |     ]`,
+          },
+        },
+      ],
+      [
+        'invalid: circular',
+        {
+          given: {
+            color: {
+              $type: 'color',
+              primary: { $value: '{color.text.primary}' },
+              text: { primary: { $value: '{color.primary}' } },
+            },
+          },
+          want: {
+            error: `Circular alias detected from "{color.text.primary}"
+
+  2 |   "color": {
+  3 |     "$type": "color",
+> 4 |     "primary": {
+    |                ^
+  5 |       "$value": "{color.text.primary}"
+  6 |     },
+  7 |     "text": {`,
           },
         },
       ],
