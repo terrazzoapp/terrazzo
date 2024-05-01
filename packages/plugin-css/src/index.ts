@@ -1,5 +1,5 @@
 import type { Plugin } from '@terrazzo/parser';
-import { isTokenMatch, makeAlias } from '@terrazzo/token-tools';
+import { isTokenMatch } from '@terrazzo/token-tools';
 import {
   generateShorthand,
   makeCSSVar,
@@ -117,14 +117,11 @@ export default function cssPlugin({
           }
           case 'dimension': {
             for (const mode in token.mode) {
-              const currentMode = token.mode[mode]!;
+              const { $value, aliasOf } = token.mode[mode]!;
               setTransform(id, {
                 format: FORMAT_ID,
                 localID,
-                value: transformDimensionValue(
-                  currentMode.aliasOf ? makeAlias(currentMode.aliasOf) : currentMode.$value,
-                  { transformAlias },
-                ),
+                value: transformDimensionValue($value, { aliasOf, transformAlias }),
                 mode,
               });
             }

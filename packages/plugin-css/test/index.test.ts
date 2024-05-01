@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import pluginCSS from '../src/index.js';
 
 describe('@cobalt-ui/plugin-css', () => {
-  test.each(['border', 'color', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
+  test.each(['border', 'color', 'dimension', 'shadow', 'typography', 'transition'])('%s', async (dir) => {
     const cwd = new URL(`./${dir}/`, import.meta.url);
     const config = defineConfig(
       {
