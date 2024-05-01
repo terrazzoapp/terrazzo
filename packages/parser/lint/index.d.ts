@@ -27,6 +27,7 @@ export interface LinterOptions<O = any> {
     severity: LintRuleSeverity;
   };
   ast: DocumentNode;
+  source?: string;
   /** Any options the user has declared for this plugin */
   options?: O;
 }

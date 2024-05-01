@@ -1,5 +1,4 @@
 import { codeFrameColumns } from '@babel/code-frame';
-import { print } from '@humanwhocodes/momoa';
 import color from 'picocolors';
 import wcmatch from 'wildcard-match';
 
@@ -24,10 +23,8 @@ export function formatMessage(entry, severity) {
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity](message);
   }
-  if (entry.ast || entry.code) {
-    message = `${message}\n\n${codeFrameColumns(entry.ast ? print(entry.ast, { indent: 2 }) : entry.code, {
-      start: entry.loc ?? { line: 1 },
-    })}`;
+  if (entry.source) {
+    message = `${message}\n\n${codeFrameColumns(entry.source, { start: entry.node?.loc?.start })}`;
   }
   return message;
 }
@@ -89,10 +86,10 @@ export default class Logger {
     let message = formatMessage(entry, 'debug');
 
     const debugPrefix = `${entry.group}:${entry.task}`;
-    if (!wcmatch(this.debugScope)(debugPrefix)) {
+    if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
       return;
     }
-    message = `${DEBUG_GROUP_COLOR[entry.group || 'core'](debugPrefix)} ${color.dim(
+    message = `${(DEBUG_GROUP_COLOR[entry.group] || color.white)(debugPrefix)} ${color.dim(
       timeFormatter.format(new Date()),
     )} ${message}`;
     if (typeof entry.timing === 'number') {
@@ -105,7 +102,8 @@ export default class Logger {
       message = `${message} ${color.dim(`[${timing}]`)}`;
     }
 
-    console.debug(message);
+    // biome-ignore lint/suspicious/noConsoleLog: this is its job
+    console.log(message);
   }
 }
 

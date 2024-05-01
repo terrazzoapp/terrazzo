@@ -36,8 +36,8 @@ export default function yamlToAST(input, { logger }) {
         logger.error({
           label: 'parse:yaml',
           message: `${error.code} ${error.message}`,
-          code: input,
-          loc: posToLoc(input, error.pos),
+          node: { loc: { start: posToLoc(input, error.pos) } },
+          source: input,
         });
       }
     }

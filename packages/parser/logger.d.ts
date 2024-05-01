@@ -18,12 +18,8 @@ export interface LogEntry {
   continueOnError?: boolean;
   /** (optional) Show a code frame for the erring node */
   node?: AnyNode;
-  /** (optional) To show code frame, provide entire AST to show which line erred (otherwise it’s floating in space) */
-  ast?: DocumentNode;
-  /** (optional) To highlight a specifc part of the code frame, provide line no. (1-based) and col. no. */
-  loc?: SourceLocation['start'];
-  /** (optional) MANUAL codeFrame override (only use for non-JSON errors, like YAML) */
-  code?: string;
+  /** (optional) To show a code frame, provide the original source code */
+  source?: string;
 }
 
 export interface DebugEntry {
@@ -34,7 +30,7 @@ export interface DebugEntry {
   /** Error message to be logged */
   message: string;
   /** (optional) Show code below message */
-  codeFrame?: { code: string; line: number; column: number };
+  codeFrame?: { source: string; line: number; column: number };
   /** (optional) Display performance timing */
   timing?: number;
 }

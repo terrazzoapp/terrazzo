@@ -1,4 +1,4 @@
-import { evaluate, parse as parseJSON } from '@humanwhocodes/momoa';
+import { evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias, splitID } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
@@ -34,6 +34,10 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
   const totalStart = performance.now();
 
   // 1. Build AST
+  let source;
+  if (typeof input === 'string') {
+    source = input;
+  }
   const startParsing = performance.now();
   logger.debug({ group: 'parser', task: 'parse', message: 'Start tokens parsing' });
   let ast;
@@ -43,6 +47,9 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     ast = parseJSON(typeof input === 'string' ? input : JSON.stringify(input, undefined, 2), {
       mode: 'jsonc',
     }); // everything else: assert it’s JSON-serializable
+  }
+  if (!source) {
+    source = print(ast, { indent: 2 });
   }
   logger.debug({
     group: 'parser',
@@ -86,7 +93,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
           if (parent$type && !members.$type) {
             sourceNode.value = injectObjMembers(sourceNode.value, [parent$type]);
           }
-          validate(sourceNode, { ast, logger });
+          validate(sourceNode, { source, logger });
 
           const group = { id: splitID(id).group, tokens: [] };
           if (parent$type) {
@@ -130,7 +137,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
 
           tokens[id] = token;
         } else if (members.value) {
-          logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, node, ast });
+          logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, node, source });
         }
       }
 
@@ -158,7 +165,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       task: 'validate',
       message: 'Start token linting',
     });
-    await lintRunner({ ast, config, logger });
+    await lintRunner({ ast, source, config, logger });
     logger.debug({
       group: 'parser',
       task: 'validate',
@@ -181,7 +188,12 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     try {
       tokens[id].$value = normalize(tokens[id]);
     } catch (err) {
-      logger.error({ message: err.message, ast, node: tokens[id].sourceNode });
+      let node = tokens[id].sourceNode;
+      const members = getObjMembers(node);
+      if (members.$value) {
+        node = members.$value;
+      }
+      logger.error({ message: err.message, source, node });
     }
     for (const mode in tokens[id].mode) {
       if (mode === '.') {
@@ -190,7 +202,12 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       try {
         tokens[id].mode[mode].$value = normalize(tokens[id].mode[mode]);
       } catch (err) {
-        logger.error({ message: err.message, ast, node: tokens[id].mode[mode].sourceNode });
+        let node = tokens[id].sourceNode;
+        const members = getObjMembers(node);
+        if (members.$value) {
+          node = members.$value;
+        }
+        logger.error({ message: err.message, source, node: tokens[id].mode[mode].sourceNode });
       }
     }
   }
@@ -207,7 +224,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       continue;
     }
     const token = tokens[id];
-    applyAliases(token, { tokens, ast, node: token.sourceNode, logger });
+    applyAliases(token, { tokens, source, node: token.sourceNode, logger });
     token.mode['.'].$value = token.$value;
     if (token.aliasOf) {
       token.mode['.'].aliasOf = token.aliasOf;
@@ -239,7 +256,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       if (mode === '.') {
         continue; // skip shadow of root value
       }
-      applyAliases(tokens[id].mode[mode], { tokens, ast, node: tokens[id].mode[mode].sourceNode, logger });
+      applyAliases(tokens[id].mode[mode], { tokens, source, node: tokens[id].mode[mode].sourceNode, logger });
     }
   }
   logger.debug({
@@ -277,31 +294,31 @@ export function maybeJSONString(input) {
  * @param {Object} options
  * @param {Record<string, TokenNormalized>} options.tokens
  * @param {Logger} options.logger
- * @param {AnyNode | undefined} options.node
- * @param {DocumentNode | undefined} options.ast
+ * @param {AnyNode} [options.node]
+ * @param {string} [options.string]
  * @param {string[]=[]} options.scanned
  * @param {string}
  */
-export function resolveAlias(alias, { tokens, logger, ast, node, scanned = [] }) {
+export function resolveAlias(alias, { tokens, logger, source, node, scanned = [] }) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found`, ast, node });
+    logger.error({ message: `Alias "${alias}" not found`, source, node });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}"`, ast, node });
+    logger.error({ message: `Circular alias detected from "${alias}"`, source, node });
   }
   const token = tokens[id];
   if (!isAlias(token.$value)) {
     return id;
   }
-  return resolveAlias(alias, { tokens, logger, ast, node, scanned: [...scanned, id] });
+  return resolveAlias(alias, { tokens, logger, node, source, scanned: [...scanned, id] });
 }
 
 /** Resolve aliases, update values, and mutate `token` to add `aliasOf` / `partialAliasOf` */
-function applyAliases(token, { tokens, logger, ast, node }) {
+function applyAliases(token, { tokens, logger, source, node }) {
   // handle simple aliases
   if (isAlias(token.$value)) {
-    const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, ast });
+    const aliasOfID = resolveAlias(token.$value, { tokens, logger, node, source });
     const { mode: aliasMode } = parseAlias(token.$value);
     const aliasOf = tokens[aliasOfID];
     token.aliasOf = aliasOfID;
@@ -310,7 +327,6 @@ function applyAliases(token, { tokens, logger, ast, node }) {
       logger.warn({
         message: `Token ${token.id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
         node,
-        ast,
       });
       token.$type = aliasOf.$type;
     } else {
@@ -325,7 +341,7 @@ function applyAliases(token, { tokens, logger, ast, node }) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = [];
         }
-        const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, ast });
+        const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, node, source });
         const { mode: aliasMode } = parseAlias(token.$value[i]);
         token.partialAliasOf[i] = aliasOfID;
         token.$value[i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
@@ -338,7 +354,7 @@ function applyAliases(token, { tokens, logger, ast, node }) {
             if (!token.partialAliasOf[i]) {
               token.partialAliasOf[i] = {};
             }
-            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, node, ast });
+            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, node, source });
             const { mode: aliasMode } = parseAlias(token.$value[i][property]);
             token.$value[i][property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
             token.partialAliasOf[i][property] = aliasOfID;
@@ -358,7 +374,7 @@ function applyAliases(token, { tokens, logger, ast, node }) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = {};
         }
-        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, ast });
+        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, node, source });
         const { mode: aliasMode } = parseAlias(token.$value[property]);
         token.partialAliasOf[property] = aliasOfID;
         token.$value[property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
@@ -367,7 +383,7 @@ function applyAliases(token, { tokens, logger, ast, node }) {
       else if (Array.isArray(token.$value[property])) {
         for (let i = 0; i < token.$value[property].length; i++) {
           if (isAlias(token.$value[property][i])) {
-            const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, node, ast });
+            const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, node, source });
             if (!token.partialAliasOf) {
               token.partialAliasOf = {};
             }
