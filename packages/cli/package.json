@@ -46,12 +46,12 @@
     "chokidar": "^3.6.0",
     "dotenv": "^16.4.5",
     "merge-anything": "^5.1.7",
-    "picocolors": "^1.0.0",
+    "picocolors": "^1.0.1",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.12.7",
+    "@types/node": "^20.12.12",
     "execa": "^8.0.1",
-    "vitest": "^1.5.2"
+    "vitest": "^1.6.0"
   }
 }
