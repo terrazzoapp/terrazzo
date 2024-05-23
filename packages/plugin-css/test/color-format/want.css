@@ -5,8 +5,8 @@
  */
 
 :root {
-  --border-heavy: 3px solid oklch(0.332889981838499 0 0);
+  --border-heavy: 3px solid oklch(0.332889981838499 0 none);
   --color-blue: oklch(0.6417644680341144 0.19507618434109797 254.9761894488772);
   --gradient: oklch(0.6417644680341144 0.19507618434109797 254.9761894488772) 0%, oklch(0.6758651948287796 0.19530567236823002 347.4630536462303) 100%;
-  --shadow-simple: 0 4px 8px 0 oklch(0 0 0 / 0.15);
+  --shadow-simple: 0 4px 8px 0 oklch(0 0 none / 0.15);
 }

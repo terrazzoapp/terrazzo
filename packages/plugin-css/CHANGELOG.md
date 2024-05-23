@@ -1,5 +1,14 @@
 # @cobalt-ui/plugin-css
 
+## 1.7.4
+
+### Patch Changes
+
+- [#253](https://github.com/drwpow/cobalt-ui/pull/253) [`2dec1cb`](https://github.com/drwpow/cobalt-ui/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517) Thanks [@drwpow](https://github.com/drwpow)! - Bump deps
+
+- Updated dependencies [[`2dec1cb`](https://github.com/drwpow/cobalt-ui/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517)]:
+  - @cobalt-ui/cli@1.11.2
+
 ## 1.7.3
 
 ### Patch Changes

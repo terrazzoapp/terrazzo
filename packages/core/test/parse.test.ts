@@ -34,17 +34,17 @@ describe('parse', () => {
     "blue": {
       "$type": "color",
       "$value": "${COLOR_BLUE}"
-    }
+    },
   }`);
 
       if (os.platform() === 'darwin') {
         expect(errors?.[0]).toMatchInlineSnapshot(`
-          "JSONError: Expected ',' or '}' after property value in JSON at position 102 (line 7 column 4)
+          "JSONError: Unexpected token "}"(\\u{7d}) in JSON at position 102
 
             5 |       "$value": "color(srgb 0 0.3 1.0)"
-            6 |     }
+            6 |     },
           > 7 |   }
-              |    ^
+              |   ^
           "
         `);
       } else {
