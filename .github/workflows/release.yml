@@ -11,12 +11,12 @@ jobs:
     steps:
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
-      - run: pnpm i
+          version: latest
+          run_install: true
       - run: pnpm run build
       - uses: changesets/action@v1
         with:
