@@ -13,7 +13,7 @@
     "@cobalt-ui/plugin-js": "workspace:*",
     "@cobalt-ui/plugin-sass": "workspace:*",
     "@salesforce-ux/design-system": "^2.22.0",
-    "culori": "^3.2.0",
+    "culori": "^4.0.1",
     "postcss": "^8.4.31"
   }
 }

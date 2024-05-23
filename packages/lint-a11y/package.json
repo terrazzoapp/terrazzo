@@ -45,8 +45,8 @@
     "@cobalt-ui/cli": "^1.11.0"
   },
   "dependencies": {
-    "@cobalt-ui/core": "^1.11.0",
-    "@cobalt-ui/utils": "^1.2.6",
+    "@cobalt-ui/core": "workspace:^",
+    "@cobalt-ui/utils": "workspace:^",
     "apca-w3": "^0.1.9",
     "culori": "^4.0.1"
   },
