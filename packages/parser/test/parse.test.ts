@@ -338,6 +338,13 @@ font:
         },
       ],
       [
+        'valid: object',
+        {
+          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
+          want: { tokens: { 'color.cobalt': { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } },
+        },
+      ],
+      [
         'invalid: empty string',
         {
           given: { color: { $type: 'color', $value: '' } },
@@ -358,7 +365,7 @@ font:
         {
           given: { color: { $type: 'color', $value: 0x000000 } },
           want: {
-            error: `Expected string, received Number
+            error: `Expected object, received Number
 
   2 |   "color": {
   3 |     "$type": "color",
@@ -366,6 +373,118 @@ font:
     |               ^
   5 |   }
   6 | }`,
+          },
+        },
+      ],
+      [
+        'invalid: missing colorSpace',
+        {
+          given: { color: { cobalt: { $type: 'color', $value: { channels: [0.3, 0.6, 1] } } } },
+          want: {
+            error: `Missing required property "colorSpace"
+
+  3 |     "cobalt": {
+  4 |       "$type": "color",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "channels": [
+  7 |           0.3,
+  8 |           0.6,`,
+          },
+        },
+      ],
+      [
+        'invalid: missing channels',
+        {
+          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb' } } } },
+          want: {
+            error: `Missing required property "channels"
+
+  3 |     "cobalt": {
+  4 |       "$type": "color",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "colorSpace": "srgb"
+  7 |       }
+  8 |     }`,
+          },
+        },
+      ],
+      [
+        'invalid: wrong number of channels',
+        {
+          given: {
+            color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1, 0.2] } } },
+          },
+          want: {
+            error: `Expected 3 channels, received 4
+
+   5 |       "$value": {
+   6 |         "colorSpace": "srgb",
+>  7 |         "channels": [
+     |                     ^
+   8 |           0.3,
+   9 |           0.6,
+  10 |           1,`,
+          },
+        },
+      ],
+      [
+        'invalid: unknown colorSpace',
+        {
+          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', channels: [0.3, 0.6, 1] } } } },
+          want: {
+            error: `Unsupported colorspace "mondrian"
+
+  4 |       "$type": "color",
+  5 |       "$value": {
+> 6 |         "colorSpace": "mondrian",
+    |                       ^
+  7 |         "channels": [
+  8 |           0.3,
+  9 |           0.6,`,
+          },
+        },
+      ],
+      [
+        'invalid: bad alpha value',
+        {
+          given: {
+            color: {
+              cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 'quack' } },
+            },
+          },
+          want: {
+            error: `Expected number, received String
+
+  10 |           1
+  11 |         ],
+> 12 |         "alpha": "quack"
+     |                  ^
+  13 |       }
+  14 |     }
+  15 |   }`,
+          },
+        },
+      ],
+      [
+        'invalid: bad hex fallback',
+        {
+          given: {
+            color: {
+              cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', channels: [0.3, 0.6, 1] } },
+            },
+          },
+          want: {
+            error: `Invalid hex color "#abcde"
+
+   5 |       "$value": {
+   6 |         "colorSpace": "srgb",
+>  7 |         "hex": "#abcde",
+     |                ^
+   8 |         "channels": [
+   9 |           0.3,
+  10 |           0.6,`,
           },
         },
       ],

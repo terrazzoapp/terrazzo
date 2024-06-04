@@ -37,7 +37,10 @@ export default function normalizeValue(token) {
       };
     }
     case 'color': {
-      return typeof token.$value === 'string' ? parseColor(token.$value) : token.$value;
+      if (typeof token.$value === 'string') {
+        return parseColor(token.$value);
+      }
+      return 'alpha' in token.$value ? token.$value : { ...token.$value, alpha: 1 };
     }
     case 'cubicBezier': {
       return token.$value.map((value) =>

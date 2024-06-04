@@ -267,12 +267,20 @@ export default function cssPlugin({
       // :root
       output.push(':root {');
       const rootTokens = getTransforms({ format: 'css', mode: '.' });
+      const rootGamutValues: { srgb: string[]; p3: string[]; rec2020: string[] } = { srgb: [], p3: [], rec2020: [] };
       for (const token of rootTokens) {
         if (isTokenMatch(token.token.id, exclude ?? [])) {
           continue;
         }
         const localID = token.localID ?? token.token.id;
-        if (token.type === 'SINGLE_VALUE') {
+        if (token.token.$type === 'color' && token.type === 'MULTI_VALUE') {
+          output.push(`  ${localID}: ${token.value['.']}`);
+          for (const gamut of ['srgb', 'p3', 'rec2020'] as const) {
+            if (token.value[gamut] !== token.value['.']) {
+              rootGamutValues[gamut].push(`  ${localID}: ${token.value[gamut]};`);
+            }
+          }
+        } else if (token.type === 'SINGLE_VALUE') {
           output.push(`  ${localID}: ${token.value};`);
         } else if (token.type === 'MULTI_VALUE') {
           const shorthand = generateShorthand({ $type: token.token.$type, localID });
@@ -285,6 +293,18 @@ export default function cssPlugin({
         }
       }
       output.push('}');
+
+      // color clamping
+      for (const [gamut, values] of Object.entries(rootGamutValues)) {
+        if (!values.length) {
+          continue;
+        }
+        output.push(`@media (color-gamut: ${gamut}) {`);
+        for (const value of values) {
+          output.push(value);
+        }
+        output.push('}');
+      }
 
       for (const { selectors, tokens, mode } of modeSelectors ?? []) {
         const selectorTokens = getTransforms({ format: 'css', id: tokens, mode });
@@ -299,12 +319,20 @@ export default function cssPlugin({
             output.push('  :root {');
             indent = '    ';
           }
+          const gamutValues: { srgb: string[]; p3: string[]; rec2020: string[] } = { srgb: [], p3: [], rec2020: [] };
           for (const token of selectorTokens) {
             if (token.token.aliasOf) {
               continue;
             }
             const localID = token.localID ?? token.token.id;
-            if (token.type === 'SINGLE_VALUE') {
+            if (token.token.$type === 'color' && token.type === 'MULTI_VALUE') {
+              output.push(`${indent}${localID}: ${token.value['.']}`);
+              for (const gamut of ['srgb', 'p3', 'rec2020'] as const) {
+                if (token.value[gamut] !== token.value['.']) {
+                  gamutValues[gamut].push(`${indent}${localID}: ${token.value[gamut]};`);
+                }
+              }
+            } else if (token.type === 'SINGLE_VALUE') {
               output.push(`${indent}${localID}: ${token.value};`);
             } else {
               const shorthand = generateShorthand({ $type: token.token.$type, localID });
@@ -315,7 +343,21 @@ export default function cssPlugin({
                 output.push(`${indent}${localID}-${name}: ${subvalue};`);
               }
             }
+
+            for (const [gamut, values] of Object.entries(gamutValues)) {
+              if (!values.length) {
+                continue;
+              }
+              output.push(`${indent}@media-query (color-gamut: ${gamut}) {`);
+              if (values.length) {
+                for (const value of values) {
+                  output.push(`${indent}${value};`);
+                }
+              }
+              output.push(`${indent}}`);
+            }
           }
+
           if (selector.startsWith('@')) {
             output.push('  }');
           }

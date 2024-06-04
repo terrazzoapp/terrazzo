@@ -26,14 +26,12 @@
 @media (prefers-color-scheme: light) {
   :root {
     --ds-color-gray: color(srgb 0.32941176470588235 0.2784313725490196 0.2549019607843137);
-    --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --ds-color-gray: color(srgb 0.7333333333333333 0.7137254901960784 0.7019607843137254);
-    --ds-border-color: color(srgb 0.0784313725490196 0.09019607843137255 0.10588235294117647);
   }
 }
 

@@ -11,6 +11,24 @@ const listFormat = new Intl.ListFormat('en-us', { type: 'disjunction' });
  * @typedef {import("@babel/code-frame").SourceLocation} SourceLocation
  */
 
+export const VALID_COLORSPACES = new Set([
+  'adobe-rgb',
+  'display-p3',
+  'hsl',
+  'hwb',
+  'lab',
+  'lch',
+  'oklab',
+  'oklch',
+  'prophoto',
+  'rec2020',
+  'srgb',
+  'srgb-linear',
+  'xyz',
+  'xyz-d50',
+  'xyz-d65',
+]);
+
 export const FONT_WEIGHT_VALUES = new Set([
   'thin',
   'hairline',
@@ -128,10 +146,69 @@ export function validateBorder($value, node, { source, logger }) {
  * @return {void}
  */
 export function validateColor($value, node, { source, logger }) {
-  if ($value.type !== 'String') {
-    logger.error({ message: `Expected string, received ${$value.type}`, node: $value, source });
-  } else if ($value.value === '') {
-    logger.error({ message: 'Expected color, received empty string', node: $value, source });
+  if ($value.type === 'String') {
+    logger.warn({
+      message: 'String colors are no longer recommended; please use the object notation instead.',
+      node: $value,
+      source,
+    });
+    if ($value.value === '') {
+      logger.error({ message: 'Expected color, received empty string', node: $value, source });
+    }
+  } else if ($value.type === 'Object') {
+    validateMembersAs(
+      $value,
+      {
+        colorSpace: {
+          validator: (v) => {
+            if (v.type !== 'String') {
+              logger.error({ message: `Expected string, received ${print(v)}`, node: v, source });
+            }
+            if (!VALID_COLORSPACES.has(v.value)) {
+              logger.error({ message: `Unsupported colorspace ${print(v)}`, node: v, source });
+            }
+          },
+          required: true,
+        },
+        channels: {
+          validator: (v, node) => {
+            if (v.type !== 'Array') {
+              logger.error({ message: `Expected array, received ${print(v)}`, node: v, source });
+            }
+            if (v.elements?.length !== 3) {
+              logger.error({ message: `Expected 3 channels, received ${v.elements?.length ?? 0}`, node: v, source });
+            }
+            for (const element of v.elements) {
+              if (element.value.type !== 'Number') {
+                logger.error({ message: `Expected number, received ${print(element.value)}`, node: element, source });
+              }
+            }
+          },
+          required: true,
+        },
+        hex: {
+          validator: (v) => {
+            if (
+              v.type !== 'String' ||
+              // this is a weird one—with the RegEx we test, it will work for
+              // lengths of 3, 4, 6, and 8 (but not 5 or 7). So we check length
+              // here, to keep the RegEx simple and readable. The "+ 1" is just
+              // accounting for the '#' prefix character.
+              v.value.length === 5 + 1 ||
+              v.value.length === 7 + 1 ||
+              !/^#[a-f0-9]{3,8}$/i.test(v.value)
+            ) {
+              logger.error({ message: `Invalid hex color ${print(v)}`, node: v, source });
+            }
+          },
+        },
+        alpha: { validator: validateNumber },
+      },
+      node,
+      { source, logger },
+    );
+  } else {
+    logger.error({ message: `Expected object, received ${$value.type}`, node: $value, source });
   }
 }
 

@@ -85,23 +85,14 @@ export function transformBorderValue(
 /** Convert color value to CSS string */
 export function transformColorValue(
   value: string | ColorValue,
-  /** (optional) Clamp gamut to `srgb` or `p3` gamut (default: don’t clamp) */
-  {
-    aliasOf,
-    gamut,
-    transformAlias = defaultAliasTransform,
-  }: {
-    aliasOf?: string;
-    gamut?: 'srgb' | 'p3';
-    transformAlias?: IDGenerator;
-  } = {},
-): string {
+  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
+): string | { '.': string; srgb: string; p3: string; rec2020: string } {
   if (aliasOf) {
     return transformAlias(aliasOf);
   }
 
   const { colorSpace, channels, alpha } = typeof value === 'string' ? parseColor(value) : value;
-  let color = { mode: CSS_TO_CULORI[colorSpace], alpha } as Color;
+  const color = { mode: CSS_TO_CULORI[colorSpace], alpha } as Color;
   switch (color.mode) {
     case 'a98':
     case 'rec2020':
@@ -154,12 +145,12 @@ export function transformColorValue(
       break;
     }
   }
-  if (gamut === 'srgb') {
-    color = clampChroma(color, color.mode, 'rgb');
-  } else if (gamut === 'p3') {
-    color = clampChroma(color, color.mode, 'p3');
-  }
-  return formatCss(color);
+  return {
+    '.': formatCss(color),
+    srgb: formatCss(clampChroma(color, color.mode, 'rgb')),
+    p3: formatCss(clampChroma(color, color.mode, 'p3')),
+    rec2020: formatCss(clampChroma(color, color.mode, 'rec2020')),
+  };
 }
 
 export type CubicBézierValue = [string | number, string | number, string | number, string | number];
