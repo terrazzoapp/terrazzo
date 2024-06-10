@@ -58,7 +58,9 @@ export interface ColorToken extends TokenCore {
   $value: ColorValue | AliasValue;
 }
 
-export type ColorValue = AliasValue | string;
+export type ColorValue =
+  | string
+  | { colorSpace: ColorSpace; channels: [number, number, number]; alpha?: number; hex?: string };
 
 export interface CubicBézierToken extends TokenCore {
   $type: 'cubicBezier';
@@ -336,6 +338,8 @@ export interface ColorValueNormalized {
   channels: [number, number, number];
   /** Alpha channel, normalized from 0 – 1 */
   alpha: number;
+  /** Hex fallback (for sRGB) */
+  hex?: string;
 }
 
 export type ColorSpace =

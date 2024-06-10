@@ -147,11 +147,12 @@ export function validateBorder($value, node, { source, logger }) {
  */
 export function validateColor($value, node, { source, logger }) {
   if ($value.type === 'String') {
-    logger.warn({
-      message: 'String colors are no longer recommended; please use the object notation instead.',
-      node: $value,
-      source,
-    });
+    // TODO: enable when object notation is finalized
+    // logger.warn({
+    //   message: 'String colors are no longer recommended; please use the object notation instead.',
+    //   node: $value,
+    //   source,
+    // });
     if ($value.value === '') {
       logger.error({ message: 'Expected color, received empty string', node: $value, source });
     }

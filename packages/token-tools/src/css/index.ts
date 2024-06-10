@@ -1,11 +1,17 @@
-import { type Color, formatCss, clampChroma } from 'culori';
+import { clampChroma, type Color, formatCss, displayable } from 'culori';
 import { kebabCase } from 'scule';
 import { CSS_TO_CULORI, parseColor } from '../color.js';
 
 /** Function that generates a var(…) statement */
 export type IDGenerator = (id: string) => string;
 
-export type ColorValue = string | { colorSpace: string; channels: [number, number, number]; alpha: number };
+// note: this is the lowest-level package, so this type has to be redeclared
+// here rather than create a circular dep with @terrazzo/parser
+export type ColorValue =
+  | string
+  | { colorSpace: string; channels: [number, number, number]; alpha: number; hex?: string };
+
+export type WideGamutColorValue = { '.': string; srgb: string; p3: string; rec2020: string };
 
 export const defaultAliasTransform = (id: string) => `var(${makeCSSVar(id)})`;
 
@@ -32,9 +38,6 @@ export interface BorderValue {
 /** Generate shorthand CSS for select token types */
 export function generateShorthand({ $type, localID }: { $type: string; localID: string }): string | undefined {
   switch ($type) {
-    case 'border': {
-      return ['width', 'style', 'color'].map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true })).join(' ');
-    }
     case 'transition': {
       return ['duration', 'delay', 'timing-function']
         .map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true }))
@@ -57,36 +60,39 @@ export function transformBorderValue(
     partialAliasOf?: Partial<Record<keyof typeof value, string>>;
     transformAlias: IDGenerator;
   },
-): {
-  width: ReturnType<typeof transformDimensionValue>;
-  color: ReturnType<typeof transformColorValue>;
-  style: ReturnType<typeof transformStrokeStyleValue>;
-} {
+) {
   if (aliasOf) {
-    return transformCompositeAlias(value, { aliasOf, transformAlias }) as {
-      width: ReturnType<typeof transformDimensionValue>;
-      color: ReturnType<typeof transformColorValue>;
-      style: ReturnType<typeof transformStrokeStyleValue>;
-    };
+    return transformAlias(aliasOf);
   }
-  return {
-    width: partialAliasOf?.width
-      ? transformAlias(partialAliasOf.width)
-      : transformDimensionValue(value.width, { transformAlias }),
-    color: partialAliasOf?.color
-      ? transformAlias(partialAliasOf.color)
-      : transformColorValue(value.color, { transformAlias }),
-    style: partialAliasOf?.style
-      ? transformAlias(partialAliasOf.style)
-      : transformStrokeStyleValue(value.style, { transformAlias }),
-  };
+
+  const width = partialAliasOf?.width
+    ? transformAlias(partialAliasOf.width)
+    : transformDimensionValue(value.width, { transformAlias });
+  const color = partialAliasOf?.color
+    ? transformAlias(partialAliasOf.color)
+    : transformColorValue(value.color, { transformAlias });
+  const style = partialAliasOf?.style
+    ? transformAlias(partialAliasOf.style)
+    : transformStrokeStyleValue(value.style, { transformAlias });
+
+  const formatBorder = (colorKey: string) =>
+    [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(' ');
+
+  return typeof color === 'string' || displayable(color.p3)
+    ? formatBorder('.')
+    : {
+        '.': formatBorder('.'),
+        srgb: formatBorder('srgb'),
+        p3: formatBorder('p3'),
+        rec2020: formatBorder('rec2020'),
+      };
 }
 
 /** Convert color value to CSS string */
 export function transformColorValue(
   value: string | ColorValue,
   { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
-): string | { '.': string; srgb: string; p3: string; rec2020: string } {
+): string | WideGamutColorValue {
   if (aliasOf) {
     return transformAlias(aliasOf);
   }
@@ -145,12 +151,15 @@ export function transformColorValue(
       break;
     }
   }
-  return {
-    '.': formatCss(color),
-    srgb: formatCss(clampChroma(color, color.mode, 'rgb')),
-    p3: formatCss(clampChroma(color, color.mode, 'p3')),
-    rec2020: formatCss(clampChroma(color, color.mode, 'rec2020')),
-  };
+
+  return displayable(color)
+    ? formatCss(color)
+    : {
+        '.': formatCss(color),
+        srgb: (typeof value === 'object' && value.hex) || formatCss(clampChroma(color, color.mode, 'rgb')),
+        p3: formatCss(clampChroma(color, color.mode, 'p3')),
+        rec2020: formatCss(clampChroma(color, color.mode, 'rec2020')),
+      };
 }
 
 export type CubicBézierValue = [string | number, string | number, string | number, string | number];
@@ -279,18 +288,31 @@ export function transformGradientValue(
     partialAliasOf?: Partial<Record<keyof GradientStop, string>>[];
     transformAlias?: IDGenerator;
   } = {},
-): string {
+): string | WideGamutColorValue {
   if (aliasOf) {
     return transformAlias(aliasOf);
   }
-  return value
-    .map(({ color, position }, i) =>
-      [
-        partialAliasOf?.[i]?.color ? transformAlias(partialAliasOf[i]!.color as string) : transformColorValue(color),
-        partialAliasOf?.[i]?.position ? transformAlias(String(partialAliasOf[i]!.position)) : `${100 * position}%`,
-      ].join(' '),
-    )
-    .join(', ');
+  const colors = value.map(({ color }, i) =>
+    partialAliasOf?.[i]?.color ? transformAlias(partialAliasOf[i]!.color as string) : transformColorValue(color),
+  );
+  const positions = value.map(({ position }, i) =>
+    partialAliasOf?.[i]?.position ? transformAlias(String(partialAliasOf[i]!.position)) : `${100 * position}%`,
+  );
+  const isHDR = colors.some((c) => typeof c === 'object');
+  const formatStop = (index: number, colorKey = '.') =>
+    [
+      typeof colors[index] === 'string' ? colors[index] : colors[index]![colorKey as keyof (typeof colors)[number]],
+      positions[index]!,
+    ].join(' ');
+
+  return !isHDR
+    ? value.map((_, i) => formatStop(i, positions[i]!)).join(', ')
+    : {
+        '.': value.map((_, i) => formatStop(i, '.')).join(', '),
+        srgb: value.map((_, i) => formatStop(i, 'srgb')).join(', '),
+        p3: value.map((_, i) => formatStop(i, 'p3')).join(', '),
+        rec2020: value.map((_, i) => formatStop(i, 'rec2020')).join(', '),
+      };
 }
 
 export interface ShadowLayer {
@@ -324,25 +346,29 @@ export function transformNumberValue(
 export function transformShadowLayer(
   value: ShadowLayer,
   {
+    color,
     partialAliasOf,
     transformAlias = defaultAliasTransform,
-  }: { partialAliasOf?: Partial<Record<keyof ShadowLayer, string>>; transformAlias?: IDGenerator } = {},
-): string {
-  return [
-    partialAliasOf?.offsetX
-      ? transformAlias(partialAliasOf.offsetX)
-      : transformDimensionValue(value.offsetX, { transformAlias }),
-    partialAliasOf?.offsetY
-      ? transformAlias(partialAliasOf.offsetY)
-      : transformDimensionValue(value.offsetY, { transformAlias }),
-    partialAliasOf?.blur
-      ? transformAlias(partialAliasOf.blur)
-      : transformDimensionValue(value.blur, { transformAlias }),
-    partialAliasOf?.spread
-      ? transformAlias(partialAliasOf.spread)
-      : transformDimensionValue(value.spread, { transformAlias }),
-    partialAliasOf?.color ? transformAlias(partialAliasOf.color) : transformColorValue(value.color, { transformAlias }),
-  ].join(' ');
+  }: {
+    color: string;
+    partialAliasOf?: Partial<Record<keyof ShadowLayer, string>>;
+    transformAlias?: IDGenerator;
+  },
+): string | Record<string, string> {
+  const offsetX = partialAliasOf?.offsetX
+    ? transformAlias(partialAliasOf.offsetX)
+    : transformDimensionValue(value.offsetX, { transformAlias });
+  const offsetY = partialAliasOf?.offsetY
+    ? transformAlias(partialAliasOf.offsetY)
+    : transformDimensionValue(value.offsetY, { transformAlias });
+  const blur = partialAliasOf?.blur
+    ? transformAlias(partialAliasOf.blur)
+    : transformDimensionValue(value.blur, { transformAlias });
+  const spread = partialAliasOf?.spread
+    ? transformAlias(partialAliasOf.spread)
+    : transformDimensionValue(value.spread, { transformAlias });
+
+  return [offsetX, offsetY, blur, spread, color].join(' ');
 }
 
 /** Convert shadow value to CSS */
@@ -357,13 +383,34 @@ export function transformShadowValue(
     partialAliasOf?: Partial<Record<keyof ShadowLayer, string>>[];
     transformAlias?: IDGenerator;
   } = {},
-): string {
+): string | Record<string, string> {
   if (aliasOf) {
     return transformAlias(aliasOf);
   }
-  return value
-    .map((v, i) => transformShadowLayer(v, { partialAliasOf: partialAliasOf?.[i], transformAlias }))
-    .join(', ');
+  const colors = value.map(({ color }, i) =>
+    partialAliasOf?.[i]?.color
+      ? transformAlias(partialAliasOf[i]!.color!)
+      : transformColorValue(color, { transformAlias }),
+  );
+  const isHDR = colors.some((c) => typeof c === 'object');
+
+  const formatShadow = (colorKey: string) =>
+    value
+      .map((v, i) =>
+        transformShadowLayer(v, {
+          color:
+            typeof colors[i] === 'string'
+              ? (colors[i] as string)
+              : colors[i]![colorKey as keyof (typeof colors)[number]]!,
+          partialAliasOf: partialAliasOf?.[i],
+          transformAlias,
+        }),
+      )
+      .join(', ');
+
+  return !isHDR
+    ? formatShadow('.')
+    : { '.': formatShadow('.'), srgb: formatShadow('srgb'), p3: formatShadow('p3'), rec2020: formatShadow('rec2020') };
 }
 
 /** Convert string value to CSS */
