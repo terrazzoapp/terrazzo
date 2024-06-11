@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-css",
   "description": "Generate CSS from your design tokens schema (requires @terrazzo/cli)",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
