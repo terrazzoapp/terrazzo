@@ -100,6 +100,7 @@ export default defineConfig({
           { text: 'Figma', link: '/integrations/figma' },
           { text: 'JS/TS', link: '/integrations/js' },
           { text: 'JSON/Native', link: '/integrations/json' },
+          { text: '.NET', link: '/integrations/dot-net' },
           { text: 'Sass', link: '/integrations/sass' },
           { text: 'Style Dictionary', link: '/integrations/style-dictionary' },
           { text: 'Tailwind', link: '/integrations/tailwind' },
