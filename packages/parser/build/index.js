@@ -67,9 +67,9 @@ export default async function build(tokens, { ast, logger = new Logger(), config
   function getTransforms(params) {
     return (formats[params.format] ?? []).filter((token) => {
       if (params.$type) {
-        if (typeof params.$type === 'string' && token.$type !== params.$type) {
+        if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
           return false;
-        } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.type === $type)) {
+        } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.type === $type)) {
           return false;
         }
       }

@@ -1,4 +1,4 @@
-# 💠 @terrazzo/plugin-css
+# ⛋ @terrazzo/plugin-css
 
 CSS codegen plugin for @terrazzo/cli. Generate CSS using DTCG tokens.
 

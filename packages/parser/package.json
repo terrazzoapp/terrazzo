@@ -45,8 +45,5 @@
     "picocolors": "^1.0.1",
     "wildcard-match": "^5.1.3",
     "yaml": "^2.4.3"
-  },
-  "devDependencies": {
-    "strip-ansi": "^7.1.0"
   }
 }
