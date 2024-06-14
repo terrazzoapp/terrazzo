@@ -10,10 +10,10 @@
     "preview": "vitepress preview"
   },
   "dependencies": {
-    "vue": "^3.4.27"
+    "vue": "^3.4.29"
   },
   "devDependencies": {
-    "vite": "^5.2.11",
+    "vite": "^5.3.1",
     "vitepress": "1.0.1"
   }
 }
