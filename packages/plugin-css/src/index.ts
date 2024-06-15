@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import { FILE_PREFIX, type CSSPluginOptions } from './lib.js';
+import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
 import transformValue from './transform.js';
 import buildFormat from './build.js';
 
@@ -11,18 +11,31 @@ export default function cssPlugin({
   exclude,
   variableName,
   modeSelectors,
+  transform: customTransform,
 }: CSSPluginOptions = {}): Plugin {
   const transformName = (id: string) => variableName?.(id) || makeCSSVar(id);
   const transformAlias = (id: string) => `var(${transformName(id)})`;
 
   return {
     name: '@terrazzo/plugin-css',
-    async transform({ tokens, setTransform }) {
+    async transform({ tokens, getTransforms, setTransform }) {
+      // skip work if another .css plugin has already run
+      const cssTokens = getTransforms({ format: FORMAT_ID, id: '*', mode: '*' });
+      if (cssTokens.length) {
+        return;
+      }
+
       for (const id in tokens) {
         if (!Object.hasOwn(tokens, id)) {
           continue;
         }
-        transformValue(tokens[id]!, { id, localID: transformName(id), setTransform, transformAlias });
+        transformValue(tokens[id]!, {
+          id,
+          localID: transformName(id),
+          setTransform,
+          transformAlias,
+          customTransform,
+        });
       }
     },
     async build({ getTransforms, outputFile }) {

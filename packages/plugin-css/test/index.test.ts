@@ -13,12 +13,13 @@ describe('@terrazzo/plugin-css', () => {
   test.each(['boolean', 'border', 'color', 'dimension', 'gradient', 'shadow', 'string', 'typography', 'transition'])(
     '%s',
     async (dir) => {
+      const filename = 'actual.css';
       const cwd = new URL(`./${dir}/`, import.meta.url);
       const config = defineConfig(
         {
           plugins: [
             css({
-              filename: 'actual.css',
+              filename,
               variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
               modeSelectors: [
                 {
@@ -53,7 +54,9 @@ describe('@terrazzo/plugin-css', () => {
       );
       const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
       const result = await build(tokens, { ast, config });
-      expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     },
   );
 });

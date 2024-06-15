@@ -1,3 +1,5 @@
+import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
+
 export const FORMAT_ID = 'css';
 
 export const FILE_PREFIX = `/* -------------------------------------------
@@ -13,6 +15,8 @@ export interface CSSPluginOptions {
   modeSelectors?: ModeSelector[];
   /** Control the final CSS variable name */
   variableName?: (name: string) => string;
+  /** Override certain token values */
+  transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
 }
 
 export interface ModeSelector {

@@ -1,6 +1,7 @@
 import { isTokenMatch } from '@terrazzo/token-tools';
-import { defaultAliasTransform } from '@terrazzo/token-tools/css';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 import type { BuildHookOptions } from '@terrazzo/parser';
+import { FORMAT_ID } from '@terrazzo/plugin-css';
 import { FILE_HEADER, MIXIN_TOKEN, MIXIN_TYPOGRAPHY, type SassPluginOptions } from './lib.js';
 
 export interface BuildParams {
@@ -9,7 +10,7 @@ export interface BuildParams {
 }
 
 export default function build({ getTransforms, options }: BuildParams): string {
-  const tokens = getTransforms({ format: 'css', id: '*', mode: '.' });
+  const tokens = getTransforms({ format: FORMAT_ID, id: '*', mode: '.' });
 
   const output: string[] = [FILE_HEADER, ''];
 
@@ -26,7 +27,7 @@ export default function build({ getTransforms, options }: BuildParams): string {
   ),`);
     } else {
       const name = token.localID ?? token.token.id;
-      output.push(`  "${token.token.id}": (${defaultAliasTransform(name)}),`);
+      output.push(`  "${token.token.id}": (${makeCSSVar(name)}),`);
     }
   }
   output.push(');', '');
@@ -39,7 +40,7 @@ export default function build({ getTransforms, options }: BuildParams): string {
     output.push(`  "${token.token.id}": (`);
     for (const property of Object.keys(token.value)) {
       const name = `${token.localID ?? token.token.id}-${property}`;
-      output.push(`    "${property}": (${defaultAliasTransform(name)}),`);
+      output.push(`    "${property}": (${makeCSSVar(name)}),`);
     }
     output.push('  ),');
   }

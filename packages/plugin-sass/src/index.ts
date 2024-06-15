@@ -2,6 +2,8 @@ import type { Plugin } from '@terrazzo/parser';
 import build from './build.js';
 import type { SassPluginOptions } from './lib.js';
 
+export * from './lib.js';
+
 export default function pluginSass(options?: SassPluginOptions): Plugin {
   const filename = options?.filename ?? 'index.scss';
 

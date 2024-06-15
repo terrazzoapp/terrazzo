@@ -62,14 +62,14 @@ export interface TransformHookOptions {
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
-  getTransforms(params: TransformParams): TokenTransformed;
+  getTransforms(params: TransformParams): TokenTransformed[];
   /** Update transformed values */
   setTransform(
     id: string,
     params: {
       format: string;
       localID?: string;
-      value: string | Record<string, string>;
+      value: TokenTransformed['value'];
       mode?: string;
     },
   ): void;

@@ -1,4 +1,4 @@
-import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
+import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
 import {
   transformBooleanValue,
   transformBorderValue,
@@ -17,19 +17,43 @@ import {
   transformTransitionValue,
   transformTypographyValue,
 } from '@terrazzo/token-tools/css';
-import { FORMAT_ID } from './lib.js';
+import { type CSSPluginOptions, FORMAT_ID } from './lib.js';
 
 export interface TransformValueOptions {
   transformAlias: (id: string) => string;
   id: string;
   localID: string;
+  customTransform?: CSSPluginOptions['transform'];
   setTransform: TransformHookOptions['setTransform'];
 }
 
 export default function transformValue(
   token: TokenNormalized,
-  { id, localID, transformAlias, setTransform }: TransformValueOptions,
+  { id, localID, customTransform, transformAlias, setTransform }: TransformValueOptions,
 ): void {
+  if (customTransform) {
+    for (const mode in token.mode) {
+      const value = customTransform(token, mode);
+      if (value) {
+        if ((typeof value !== 'string' && typeof value !== 'object') || Array.isArray(value)) {
+          throw new Error(
+            `transform(): expected string or Object of strings, received ${Array.isArray(value) ? 'Array' : typeof value}`,
+          );
+        }
+        switch (token.$type) {
+          case 'typography': {
+            if (typeof value !== 'object') {
+              throw new Error('transform(): typography tokens must be an object of keys');
+            }
+            break;
+          }
+        }
+        setTransform(id, { format: FORMAT_ID, localID, value, mode });
+        return;
+      }
+    }
+  }
+
   switch (token.$type) {
     case 'boolean': {
       for (const mode in token.mode) {

@@ -1,7 +1,7 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { generateShorthand } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, type CSSRule, printRules } from './lib.js';
+import { type CSSPluginOptions, type CSSRule, printRules, FORMAT_ID } from './lib.js';
 
 const P3_MQ = '@media (color-gamut: p3)';
 const REC2020_MQ = '@media (color-gamut: rec2020)';
@@ -16,7 +16,7 @@ export default function buildFormat({ getTransforms, exclude, modeSelectors }: B
   const rules: CSSRule[] = [];
 
   // :root
-  const rootTokens = getTransforms({ format: 'css', mode: '.' });
+  const rootTokens = getTransforms({ format: FORMAT_ID, mode: '.' });
   if (rootTokens.length) {
     const rootRule: CSSRule = { selectors: [':root'], declarations: {} };
     // note: "nestedQuery" was designed specifically for higher-gamut colors to

@@ -1,0 +1,65 @@
+{
+  "tokens": {
+    "border.solid": {
+      ".": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.65, 0.69, 0.71]
+        },
+        "width": "1px",
+        "style": "solid"
+      },
+      "light": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.65, 0.69, 0.71]
+        },
+        "width": "1px",
+        "style": "solid"
+      },
+      "dark": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.08, 0.09, 0.11]
+        },
+        "width": "1px",
+        "style": "solid"
+      }
+    },
+    "border.dashed": {
+      ".": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.65, 0.69, 0.71]
+        },
+        "width": "1.5px",
+        "style": {
+          "dashArray": ["0.5rem", "0.25rem"],
+          "lineCap": "round"
+        }
+      },
+      "light": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.65, 0.69, 0.71]
+        },
+        "width": "1.5px",
+        "style": {
+          "dashArray": ["0.5rem", "0.25rem"],
+          "lineCap": "round"
+        }
+      },
+      "dark": {
+        "color": {
+          "colorSpace": "srgb",
+          "channels": [0.08, 0.09, 0.11]
+        },
+        "width": "1.5px",
+        "style": {
+          "dashArray": ["0.5rem", "0.25rem"],
+          "lineCap": "round"
+        }
+      }
+    }
+  }
+}

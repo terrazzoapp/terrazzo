@@ -9,6 +9,7 @@ import sass from '../src/index.js';
 
 describe('@terrazzo/plugin-scss', () => {
   test.each(['basic'])('%s', async (dir) => {
+    const filename = 'actual.scss';
     const cwd = new URL(`./${dir}/`, import.meta.url);
     const config = defineConfig(
       {
@@ -18,7 +19,7 @@ describe('@terrazzo/plugin-scss', () => {
             variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
           }),
           sass({
-            filename: 'actual.scss',
+            filename,
           }),
         ],
       },
@@ -26,7 +27,7 @@ describe('@terrazzo/plugin-scss', () => {
     );
     const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
     const result = await build(tokens, { ast, config });
-    expect(result.outputFiles.find((f) => f.filename.endsWith('.scss'))?.contents).toMatchFileSnapshot(
+    expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.scss', cwd)),
     );
   });

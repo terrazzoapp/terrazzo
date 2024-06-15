@@ -109,6 +109,14 @@ export default async function build(tokens, { ast, logger = new Logger(), config
           const token = tokens[id];
           validateTransformParams({ token, logger, params, pluginName: plugin.name });
 
+          if ((typeof params.value !== 'string' && typeof params.value !== 'object') || Array.isArray(params.value)) {
+            logger.error({
+              message: `setTransform(): Invalid value. Expected string or Object of strings, received ${Array.isArray(params.value) ? 'Array' : typeof params.value}.`,
+              group: 'plugin',
+              task: plugin.name,
+            });
+          }
+
           // upsert
           if (!formats[params.format]) {
             formats[params.format] = [];
