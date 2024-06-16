@@ -3,70 +3,109 @@
  * ------------------------------------------- */
 
 export const tokens = {
-  'border.solid': {
-    '.': {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.65, 0.69, 0.71],
+  "border.solid": {
+    ".": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
       },
-      width: '1px',
-      style: 'solid',
+      "style": "solid",
+      "width": "1px"
     },
-    light: {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.65, 0.69, 0.71],
+    "light": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
       },
-      width: '1px',
-      style: 'solid',
+      "style": "solid",
+      "width": "1px"
     },
-    dark: {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.08, 0.09, 0.11],
+    "dark": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.08,
+          0.09,
+          0.11
+        ],
+        "alpha": 1
       },
-      width: '1px',
-      style: 'solid',
+      "style": "solid",
+      "width": "1px"
     },
   },
-  'border.dashed': {
-    '.': {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.65, 0.69, 0.71],
+  "border.dashed": {
+    ".": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
       },
-      width: '1.5px',
-      style: {
-        dashArray: ['0.5rem', '0.25rem'],
-        lineCap: 'round',
+      "style": {
+        "dashArray": [
+          "0.5rem",
+          "0.25rem"
+        ],
+        "lineCap": "round"
       },
+      "width": "1.5px"
     },
-    light: {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.65, 0.69, 0.71],
+    "light": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
       },
-      width: '1.5px',
-      style: {
-        dashArray: ['0.5rem', '0.25rem'],
-        lineCap: 'round',
+      "style": {
+        "dashArray": [
+          "0.5rem",
+          "0.25rem"
+        ],
+        "lineCap": "round"
       },
+      "width": "1.5px"
     },
-    dark: {
-      color: {
-        colorSpace: 'srgb',
-        channels: [0.08, 0.09, 0.11],
+    "dark": {
+      "color": {
+        "colorSpace": "srgb",
+        "channels": [
+          0.08,
+          0.09,
+          0.11
+        ],
+        "alpha": 1
       },
-      width: '1.5px',
-      style: {
-        dashArray: ['0.5rem', '0.25rem'],
-        lineCap: 'round',
+      "style": {
+        "dashArray": [
+          "0.5rem",
+          "0.25rem"
+        ],
+        "lineCap": "round"
       },
+      "width": "1.5px"
     },
   },
 };
 
 /** Get individual token */
-export function token(tokenID, modeName = '.') {
+export function token(tokenID, modeName = ".") {
   return tokens[tokenID]?.[modeName];
 }

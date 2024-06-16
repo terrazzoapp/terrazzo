@@ -1,4 +1,4 @@
-import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
+import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
 export const FORMAT_ID = 'css';
 

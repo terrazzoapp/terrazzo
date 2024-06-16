@@ -1,7 +1,7 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
+import type { TokenNormalized } from '@terrazzo/token-tools';
 import type { ConfigInit } from '../config.js';
 import type Logger from '../logger.js';
-import type { TokenNormalized } from '../types.js';
 
 export interface BuildRunnerOptions {
   ast: DocumentNode;
@@ -69,7 +69,7 @@ export interface TransformHookOptions {
     params: {
       format: string;
       localID?: string;
-      value: TokenTransformed['value'];
+      value: string | Record<string, string | undefined>; // allow looser type for input (`undefined` will just get stripped)
       mode?: string;
     },
   ): void;

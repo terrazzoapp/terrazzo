@@ -1,6 +1,6 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
+import type { TokenNormalized } from '@terrazzo/token-tools';
 import type { ConfigInit } from '../config.js';
-import type { TokenNormalized } from '../types.js';
 import type Logger from '../logger.js';
 
 export * from './validate.js';

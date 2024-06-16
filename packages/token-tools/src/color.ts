@@ -1,32 +1,6 @@
 import 'culori/css';
 import { type Color, parse } from 'culori/fn';
-
-export interface ColorValueNormalized {
-  /** Colorspace (default: `srgb`) @see https://www.w3.org/TR/css-color-4/#predefined */
-  colorSpace: ColorSpace;
-  /** Color channels. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
-  channels: [number, number, number];
-  /** Alpha channel, normalized from 0 – 1 */
-  alpha: number;
-}
-
-export type ColorSpace =
-  | 'a98'
-  | 'display-p3'
-  | 'hsb'
-  | 'hsl'
-  | 'hsv'
-  | 'hwb'
-  | 'lab'
-  | 'lch'
-  | 'oklab'
-  | 'oklch'
-  | 'prophoto-rgb'
-  | 'rec2020'
-  | 'srgb-linear'
-  | 'srgb'
-  | 'xyz-d50'
-  | 'xyz-d65';
+import type { ColorSpace, ColorValueNormalized } from './types.js';
 
 export const CULORI_TO_CSS: Record<
   Extract<

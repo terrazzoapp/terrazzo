@@ -36,7 +36,6 @@
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
-    "fast-glob": "^3.3.2"
+    "@terrazzo/parser": "workspace:^"
   }
 }

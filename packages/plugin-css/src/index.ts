@@ -1,9 +1,10 @@
 import type { Plugin } from '@terrazzo/parser';
-import { makeCSSVar } from '@terrazzo/token-tools/css';
+import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
-import transformValue from './transform.js';
 import buildFormat from './build.js';
+import { validateCustomTransform } from '@terrazzo/token-tools';
 
+export * from './build.js';
 export * from './lib.js';
 
 export default function cssPlugin({
@@ -26,16 +27,23 @@ export default function cssPlugin({
       }
 
       for (const id in tokens) {
-        if (!Object.hasOwn(tokens, id)) {
-          continue;
+        const token = tokens[id]!;
+        const localID = transformName(id);
+        for (const mode in token.mode) {
+          if (customTransform) {
+            const value = customTransform(token, mode);
+            if (value !== undefined && value !== null) {
+              validateCustomTransform(value, { $type: token.$type });
+              setTransform(id, { format: FORMAT_ID, localID, value, mode });
+              continue;
+            }
+          }
+
+          const transformedValue = transformCSSValue(token, { mode, transformAlias });
+          if (transformedValue !== undefined) {
+            setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
+          }
         }
-        transformValue(tokens[id]!, {
-          id,
-          localID: transformName(id),
-          setTransform,
-          transformAlias,
-          customTransform,
-        });
       }
     },
     async build({ getTransforms, outputFile }) {

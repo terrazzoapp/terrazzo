@@ -1,7 +1,7 @@
 import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
+import type { Group } from '@terrazzo/token-tools';
 import type { ConfigInit } from '../config.js';
 import type Logger from '../logger.js';
-import type { Group } from '../types.js';
 
 export interface LintNotice {
   /** Lint message shown to the user */

@@ -47,7 +47,7 @@ function validateTransformParams({ params, token, logger, pluginName }) {
       }`,
     });
   }
-  if (typeof params.value === 'object' && Object.values(params.value).some((v) => !v || typeof v !== 'string')) {
+  if (typeof params.value === 'object' && Object.values(params.value).some((v) => typeof v !== 'string')) {
     logger.error({
       ...baseEntry,
       message: 'setTransform() value expected object of strings, received some non-string values',
@@ -107,15 +107,20 @@ export default async function build(tokens, { ast, logger = new Logger(), config
             return;
           }
           const token = tokens[id];
-          validateTransformParams({ token, logger, params, pluginName: plugin.name });
 
-          if ((typeof params.value !== 'string' && typeof params.value !== 'object') || Array.isArray(params.value)) {
-            logger.error({
-              message: `setTransform(): Invalid value. Expected string or Object of strings, received ${Array.isArray(params.value) ? 'Array' : typeof params.value}.`,
-              group: 'plugin',
-              task: plugin.name,
-            });
+          // allow `undefined` values, but remove them here
+          const cleanValue = typeof params.value === 'string' ? params.value : { ...params.value };
+          if (typeof cleanValue === 'object') {
+            for (const k in cleanValue) {
+              if (Object.hasOwn(cleanValue, k)) {
+                if (cleanValue[k] === undefined) {
+                  delete cleanValue[k];
+                }
+              }
+            }
           }
+
+          validateTransformParams({ token, logger, params: { ...params, value: cleanValue }, pluginName: plugin.name });
 
           // upsert
           if (!formats[params.format]) {
@@ -123,6 +128,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
           }
           const foundTokenI = formats[params.format].findIndex(
             (t) =>
+              id === t.id &&
               params.localID === t.localID &&
               (!params.mode || params.mode === t.mode) &&
               (!params.variant || params.variant === t.variant),
@@ -130,13 +136,14 @@ export default async function build(tokens, { ast, logger = new Logger(), config
           if (foundTokenI === -1) {
             formats[params.format].push({
               ...params,
-              type: typeof params.value === 'string' ? SINGLE_VALUE : MULTI_VALUE,
+              value: cleanValue,
+              type: typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE,
               mode: params.mode || '.',
               token: structuredClone(token),
             });
           } else {
-            formats[params.format][foundTokenI].value = params.value;
-            formats[params.format][foundTokenI].type = typeof params.value === 'string' ? SINGLE_VALUE : MULTI_VALUE;
+            formats[params.format][foundTokenI].value = cleanValue;
+            formats[params.format][foundTokenI].type = typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
           }
         },
       });

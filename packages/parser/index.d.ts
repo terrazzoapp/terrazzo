@@ -13,4 +13,4 @@ export * from './logger.js';
 export { default as parse } from './parse/index.js';
 export * from './parse/index.js';
 
-export * from './types.js';
+export * from '@terrazzo/token-tools/dist/types.js';

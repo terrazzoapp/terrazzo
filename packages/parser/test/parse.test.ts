@@ -1,9 +1,9 @@
+import type { TokenNormalized } from '@terrazzo/token-tools';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import defineConfig from '../config.js';
 import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
-import type { TokenNormalized } from '../types.js';
 
 describe('Tokens', () => {
   type Test = [

@@ -144,9 +144,9 @@ describe('transformGradientValue', () => {
       {
         given: [
           [
-            { color: '#f0f', position: 0 },
-            { color: '#0f0', position: 0.5 },
-            { color: '#f00', position: 1 },
+            { color: { colorSpace: 'srgb', channels: [1, 0, 1], alpha: 1 }, position: 0 },
+            { color: { colorSpace: 'srgb', channels: [0, 1, 0], alpha: 1 }, position: 0.5 },
+            { color: { colorSpace: 'srgb', channels: [1, 0, 0], alpha: 1 }, position: 1 },
           ],
         ],
         want: { success: 'color(srgb 1 0 1) 0%, color(srgb 0 1 0) 50%, color(srgb 1 0 0) 100%' },
@@ -201,7 +201,17 @@ describe('transformShadowValue', () => {
     [
       'basic',
       {
-        given: [[{ color: 'color(srgb 0 0 0 / 0.1)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' }]],
+        given: [
+          [
+            {
+              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+              offsetX: '0px',
+              offsetY: '0.25rem',
+              blur: '0.5rem',
+              spread: '0px',
+            },
+          ],
+        ],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
       },
     ],
@@ -210,8 +220,20 @@ describe('transformShadowValue', () => {
       {
         given: [
           [
-            { color: 'color(srgb 0 0 0 / 0.05)', offsetX: '0', offsetY: '0.25rem', blur: '0.5rem', spread: '0' },
-            { color: 'color(srgb 0 0 0 / 0.05)', offsetX: '0', offsetY: '0.5rem', blur: '1rem', spread: '0' },
+            {
+              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+              offsetX: '0px',
+              offsetY: '0.25rem',
+              blur: '0.5rem',
+              spread: '0px',
+            },
+            {
+              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+              offsetX: '0px',
+              offsetY: '0.5rem',
+              blur: '1rem',
+              spread: '0px',
+            },
           ],
         ],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)' },

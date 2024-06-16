@@ -1,19 +1,41 @@
-import { defineConfig } from "@terrazzo/cli";
-import { describe, expect, test } from 'vitest'
-import js from '../src/index.js'
+import { build, defineConfig, parse } from '@terrazzo/parser';
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { describe, expect, test } from 'vitest';
+import js from '../src/index.js';
 
-describe('@terrazzo/plugin-css', () => {
-  test.each([])(
-    '%s',
-    async (dir) => {
+describe('@terrazzo/plugin-js', () => {
+  describe('snapshots', () => {
+    test.each(['border', 'color', 'shadow', 'transition', 'typography'])('%s', async (dir) => {
+      const filename = 'actual.js';
       const cwd = new URL(`./${dir}/`, import.meta.url);
-      const config = defineConfig({
-        plugins: [js({
-          js: 'actual.js',
-          json: 'actual.json',
-          ts: true,
-        })]
-      }, {cwd});
-    })
-  })
+      const config = defineConfig(
+        {
+          plugins: [
+            js({
+              js: filename,
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
+      const result = await build(tokens, { ast, config });
+      expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.js', cwd)),
+      );
+      expect(
+        result.outputFiles.find((f) => f.filename === filename.replace(/\.js$/, '.d.ts'))?.contents,
+      ).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
+
+      // unique to plugin-js: we can also test that each runtime is valid by
+      // importing the snapshot
+      const mod = await import(fileURLToPath(new URL('./want.js', cwd)));
+      const firstToken = Object.keys(mod.tokens)[0];
+      expect(mod.token(firstToken)).toBeDefined();
+      expect(mod.token(firstToken, '.')).toBeDefined();
+      expect(mod.token(firstToken, 'bad-mode-wont-exist')).toBeUndefined();
+      expect(mod.token('unequivocably.fake.token.value')).toBeUndefined();
+    });
+  });
 });

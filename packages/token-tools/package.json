@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/token-tools",
   "description": "Various utilities for token types",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -28,6 +28,7 @@
   "exports": {
     ".": "./dist/index.js",
     "./css": "./dist/css/index.js",
+    "./js": "./dist/js/index.js",
     "./*": "./*"
   },
   "scripts": {
@@ -43,11 +44,12 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "culori": "^4.0.1",
-    "scule": "^1.3.0",
-    "wildcard-match": "^5.1.3"
+    "@humanwhocodes/momoa": "^3.0",
+    "culori": "^4.0",
+    "scule": "^1.3",
+    "wildcard-match": "^5.1"
   },
   "devDependencies": {
-    "@types/culori": "^2.1.0"
+    "@types/culori": "^2.1"
   }
 }

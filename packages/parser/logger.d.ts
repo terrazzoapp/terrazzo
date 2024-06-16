@@ -1,5 +1,4 @@
-import type { SourceLocation } from '@babel/code-frame';
-import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
+import type { AnyNode } from '@humanwhocodes/momoa';
 
 declare const LOG_ORDER: readonly ['error', 'warn', 'info', 'debug'];
 
