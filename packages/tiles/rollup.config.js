@@ -41,5 +41,6 @@ export default {
   ],
   output: {
     dir: './dist/',
+    sourcemap: true,
   },
 };

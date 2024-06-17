@@ -30,5 +30,6 @@ export default {
   external: ['clsx', 'react', 'react-dom'],
   output: {
     dir: './dist/',
+    sourcemap: true,
   },
 };
