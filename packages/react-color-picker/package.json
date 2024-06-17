@@ -8,15 +8,7 @@
   },
   "license": "MIT",
   "type": "module",
-  "keywords": [
-    "color",
-    "wcg",
-    "p3",
-    "oklab",
-    "oklch",
-    "hsl",
-    "picker"
-  ],
+  "keywords": ["color", "wcg", "p3", "oklab", "oklch", "hsl", "picker"],
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
@@ -49,8 +41,8 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@testing-library/jest-dom": "^6.4.5",
-    "@testing-library/react": "^15.0.7",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
     "@types/culori": "^2.1.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",

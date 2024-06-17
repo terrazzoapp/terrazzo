@@ -1,8 +1,11 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "jsx": "preserve",
+    "lib": ["DOM", "ESNext"],
     "noEmit": true,
+    "skipLibCheck": true,
     "outDir": "dist"
   },
   "include": ["src", "*.{js,ts}", "index.test.tsx"]

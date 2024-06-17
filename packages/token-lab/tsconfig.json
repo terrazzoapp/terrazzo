@@ -1,7 +1,9 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
+    "lib": ["DOM", "ESNext"],
+    "jsx": "preserve",
     "outDir": "dist"
   },
   "include": ["src"]
