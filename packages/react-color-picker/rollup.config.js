@@ -22,6 +22,11 @@ export default {
             topLevelAwait: true,
           },
           target: 'esnext',
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
         },
       },
     }),
