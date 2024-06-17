@@ -13,7 +13,7 @@ export interface Config {
   lint?: {
     /** Configure build behavior */
     build?: {
-      /** Should linters run with `co build`? (default: true) */
+      /** Should linters run with `tz build`? (default: true) */
       enabled?: boolean;
     };
     /** Configure lint rules */

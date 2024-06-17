@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build",
+    "build:tokens": "tz build",
     "update": "node scripts/update"
   },
   "devDependencies": {
+    "@salesforce-ux/design-system": "^2.24.3",
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",
     "@terrazzo/plugin-sass": "workspace:*",
-    "@salesforce-ux/design-system": "^2.22.0",
     "culori": "^4.0.1",
-    "postcss": "^8.4.31"
+    "postcss": "^8.4.38"
   }
 }

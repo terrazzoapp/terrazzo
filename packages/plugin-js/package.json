@@ -24,7 +24,7 @@
     "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-js dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "co build -c ./test/types.tokens.mjs && pnpm run \"/^test:.*/\"",
+    "test": "pnpm run --parallel \"/^test:*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

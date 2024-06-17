@@ -4,7 +4,7 @@ import { execa } from 'execa';
 
 const cmd = '../../../bin/cli.js';
 
-describe('co build', () => {
+describe('tz build', () => {
   it('default', async () => {
     const cwd = new URL('./fixtures/build-default/', import.meta.url);
     await execa('node', [cmd, 'build'], { cwd });

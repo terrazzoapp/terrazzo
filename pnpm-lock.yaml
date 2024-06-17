@@ -69,11 +69,11 @@ importers:
   examples/github:
     devDependencies:
       '@primer/octicons':
-        specifier: ^16.3.1
-        version: 16.3.1
+        specifier: ^19.9.0
+        version: 19.9.0
       '@primer/primitives':
-        specifier: ^7.9.0
-        version: 7.17.1
+        specifier: ^8.2.2
+        version: 8.2.2
       '@terrazzo/cli':
         specifier: workspace:*
         version: link:../../packages/cli
@@ -90,13 +90,13 @@ importers:
   examples/ibm:
     devDependencies:
       '@carbon/colors':
-        specifier: ^11.17.1
+        specifier: ^11.22.0
         version: 11.22.0
       '@carbon/icons':
-        specifier: ^11.22.1
+        specifier: ^11.43.0
         version: 11.43.0
       '@carbon/type':
-        specifier: ^11.20.1
+        specifier: ^11.27.0
         version: 11.27.0
       '@terrazzo/cli':
         specifier: workspace:*
@@ -130,13 +130,13 @@ importers:
         specifier: workspace:*
         version: link:../../packages/plugin-sass
       yaml:
-        specifier: ^2.4.1
+        specifier: ^2.4.5
         version: 2.4.5
 
   examples/salesforce:
     devDependencies:
       '@salesforce-ux/design-system':
-        specifier: ^2.22.0
+        specifier: ^2.24.3
         version: 2.24.3(postcss@8.4.38)
       '@terrazzo/cli':
         specifier: workspace:*
@@ -151,10 +151,10 @@ importers:
         specifier: workspace:*
         version: link:../../packages/plugin-sass
       culori:
-        specifier: ^3.2.0
-        version: 3.3.0
+        specifier: ^4.0.1
+        version: 4.0.1
       postcss:
-        specifier: ^8.4.31
+        specifier: ^8.4.38
         version: 8.4.38
 
   examples/shopify:
@@ -181,7 +181,7 @@ importers:
         specifier: workspace:*
         version: link:../../packages/plugin-tailwind
       tailwindcss:
-        specifier: ^3.3.5
+        specifier: ^3.4.4
         version: 3.4.4
 
   packages/cli:
@@ -712,11 +712,11 @@ packages:
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
 
-  '@primer/octicons@16.3.1':
-    resolution: {integrity: sha512-J3IlK0Ok88RQZVB//af7Lnl1Vw2buyyr5G3oEvK1wRSYTJi/E/HBm5JZUihmDAtm/unr85FC534DwA5e+4LR2w==}
+  '@primer/octicons@19.9.0':
+    resolution: {integrity: sha512-uAZa9cMgWkzbEsZnYWB7tg0vt7QprubD7ljtprz2fBJ8CjyqoxFRRsFvH4UiJdjK/3o87ODgDkhiflyJXDh+Lg==}
 
-  '@primer/primitives@7.17.1':
-    resolution: {integrity: sha512-SiPzEb+up1nDpV2NGwNiY8m6sGnF3OUqRb0has5s6T40vq6Li/g3cYVgl+oolEa4DUoNygEPs09jwJt24f/3zg==}
+  '@primer/primitives@8.2.2':
+    resolution: {integrity: sha512-naDC//liOAtxDR0U83IrO9sFH8vsAlE0/X/Yldxrazg3TGjwXBFJw+TSrIe9JUCSSEgL00mW067bHNiLhoSwCw==}
 
   '@radix-ui/colors@3.0.0':
     resolution: {integrity: sha512-FUOsGBkHrYJwCSEtWRCIfQbZG7q1e6DgxCIOe1SUQzDe/7rXXeA47s8yCn6fuTNQAj1Zq4oTFi9Yjp3wzElcxg==}
@@ -2946,11 +2946,11 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@primer/octicons@16.3.1':
+  '@primer/octicons@19.9.0':
     dependencies:
       object-assign: 4.1.1
 
-  '@primer/primitives@7.17.1': {}
+  '@primer/primitives@8.2.2': {}
 
   '@radix-ui/colors@3.0.0': {}
 

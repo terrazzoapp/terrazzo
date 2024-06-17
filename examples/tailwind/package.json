@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build",
+    "build:tokens": "tz build",
     "build": "tailwind build -o tailwind.css"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-tailwind": "workspace:*",
-    "tailwindcss": "^3.3.5"
+    "tailwindcss": "^3.4.4"
   }
 }

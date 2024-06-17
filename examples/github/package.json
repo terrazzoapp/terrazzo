@@ -4,14 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build"
+    "build:tokens": "tz build"
   },
   "devDependencies": {
+    "@primer/octicons": "^19.9.0",
+    "@primer/primitives": "^8.2.2",
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",
-    "@terrazzo/plugin-sass": "workspace:*",
-    "@primer/octicons": "^16.3.1",
-    "@primer/primitives": "^7.9.0"
+    "@terrazzo/plugin-sass": "workspace:*"
   }
 }

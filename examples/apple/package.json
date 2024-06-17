@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build",
-    "check": "co check"
+    "build:tokens": "tz build",
+    "check": "tz check"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
