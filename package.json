@@ -3,11 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "pnpm run -r --if-present --filter \"@terrazzo/*\" \"build\"",
-    "build:docs": "pnpm run -r --if-present \"build\"",
+    "build": "pnpm run -r --if-present build",
     "build:examples": "pnpm run -r --parallel --if-present build:tokens",
     "changeset": "changeset",
-    "dev": "pnpm run -r --parallel --if-present --filter \"@terrazzo/*\" dev",
+    "dev": "pnpm run -r --parallel --if-present dev",
     "lint": "pnpm run -r --parallel --if-present lint",
     "format": "pnpm run -r --parallel --if-present format",
     "test": "pnpm run -r --if-present --aggregate-output --parallel test",
