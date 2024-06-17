@@ -1,0 +1,61 @@
+{
+  "name": "@terrazzo/tiles",
+  "description": "Terrazzo’s component library",
+  "version": "0.0.3",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+terrazzoapp/terrazzo.git",
+    "directory": "./packages/tiles"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "del dist && pnpm run build:css && pnpm run build:ts",
+    "build:css": "cpy \"src/**/*.css\" dist",
+    "build:ts": "tsc -p tsconfig.build.json && size-limit",
+    "dev": "pnpm run build && pnpm run --parallel \"/^dev:.*/\"",
+    "dev:css": "chokidar \"src/**/*.css\" -c \"pnpm run build:css\"",
+    "dev:ts": "tsc --watch",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:css": "stylelint .",
+    "test": "pnpm run \"/^test.*/\"",
+    "test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@terrazzo/fonts": "workspace:^",
+    "@terrazzo/icons": "workspace:^",
+    "@terrazzo/tokens": "workspace:^",
+    "@terrazzo/use-color": "workspace:^",
+    "clsx": "^2.1.1",
+    "culori": "^4.0.1",
+    "nanoid": "^4.0.2"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.4",
+    "@types/culori": "^2.1.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "chokidar-cli": "^3.0.0",
+    "cpy-cli": "^5.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "size-limit": "^11.1.4",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "vitest-axe": "^0.1.0"
+  }
+}

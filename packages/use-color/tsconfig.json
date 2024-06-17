@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "noEmit": true,
+    "outDir": "dist"
+  },
+  "include": ["src", "*.{js,ts}", "index.test.tsx"]
+}

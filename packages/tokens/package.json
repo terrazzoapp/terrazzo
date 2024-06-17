@@ -1,0 +1,17 @@
+{
+  "name": "@terrazzo/tokens",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "del dist && tz build",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:tokens": "tz lint",
+    "lint:js": "biome check",
+    "dev": "tz build --watch"
+  },
+  "devDependencies": {
+    "@terrazzo/cli": "^0.0.5",
+    "@terrazzo/plugin-css": "^0.0.3",
+    "@terrazzo/token-tools": "^0.0.1"
+  }
+}

@@ -1,0 +1,22 @@
+.wrapper {
+  border-collapse: collapse;
+}
+
+.td {
+  padding: var(--tz-space-300) var(--tz-space-200);
+  text-align: center;
+}
+
+.th {
+  color: var(--tz-text-secondary);
+  font-family: var(--tz-typography-family-mono);
+  font-size: var(--tz-typography-100-regular-font-size);
+  font-weight: var(--tz-typography-100-regular-font-weight);
+  letter-spacing: var(--tz-typography-100-regular-letter-spacing);
+  line-height: var(--tz-typography-100-regular-line-height);
+  padding: var(--tz-space-100) var(--tz-space-200);
+
+  &[scope="row"] {
+    text-align: left;
+  }
+}

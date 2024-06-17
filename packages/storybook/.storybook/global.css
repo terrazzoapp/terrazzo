@@ -1,0 +1,24 @@
+body {
+  font-family: var(--tz-typography-200-regular-font-family);
+  font-size: var(--tz-typography-200-regular-font-size);
+  font-weight: var(--tz-typography-200-regular-font-weight);
+  line-height: 1;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.sb-show-main {
+  background: color(srgb 1 1 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .sb-show-main {
+    background: color(srgb 0 0 0);
+    color: color(srgb 1 1 1);
+  }
+}

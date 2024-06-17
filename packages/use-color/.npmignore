@@ -1,0 +1,5 @@
+*.test.*
+.size-limit.js
+biome.*
+vite.*
+vitest.*

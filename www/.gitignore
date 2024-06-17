@@ -1,0 +1,4 @@
+/.astro
+/.cache
+/build
+.env

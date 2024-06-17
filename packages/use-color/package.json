@@ -1,0 +1,50 @@
+{
+  "name": "@terrazzo/use-color",
+  "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "license": "MIT",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+terrazzoapp/terrazzo.git",
+    "directory": "./packages/use-color"
+  },
+  "main": "./index.js",
+  "keywords": [
+    "color",
+    "color-module-4",
+    "culori",
+    "react",
+    "hooks"
+  ],
+  "scripts": {
+    "build": "tsc && size-limit",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:css": "stylelint .",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "react": "*"
+  },
+  "dependencies": {
+    "@types/culori": "^2.1.0",
+    "culori": "^4.0.1"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.4",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "react": "18.3.1",
+    "react-dom": "^18.3.1",
+    "size-limit": "^11.1.4",
+    "vitest": "^1.6.0"
+  }
+}
