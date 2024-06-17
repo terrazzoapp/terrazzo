@@ -1,0 +1,49 @@
+{
+  "name": "@terrazzo/parser",
+  "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
+  "version": "0.0.7",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "keywords": [
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "dtcg",
+    "cli",
+    "w3c design tokens",
+    "design system",
+    "typescript",
+    "sass",
+    "css",
+    "style tokens",
+    "style system",
+    "linting",
+    "lint"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./index.js",
+  "scripts": {
+    "lint": "biome check .",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@babel/code-frame": "^7.24",
+    "@humanwhocodes/momoa": "^3.0",
+    "@terrazzo/token-tools": "workspace:^",
+    "@types/babel__code-frame": "^7.0",
+    "@types/culori": "^2.1",
+    "@types/deep-equal": "^1.0",
+    "culori": "^4.0",
+    "deep-equal": "^2.2",
+    "is-what": "^4.1",
+    "merge-anything": "^5.1",
+    "picocolors": "^1.0",
+    "wildcard-match": "^5.1",
+    "yaml": "^2.4"
+  }
+}

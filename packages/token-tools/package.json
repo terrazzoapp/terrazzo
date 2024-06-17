@@ -1,0 +1,55 @@
+{
+  "name": "@terrazzo/token-tools",
+  "description": "Various utilities for token types",
+  "version": "0.0.3",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "keywords": [
+    "design tokens",
+    "design tokens community group",
+    "design tokens format module",
+    "dtcg",
+    "cli",
+    "w3c design tokens",
+    "design system",
+    "typescript",
+    "sass",
+    "css",
+    "style tokens",
+    "style system",
+    "linting",
+    "lint"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./css": "./dist/css/index.js",
+    "./js": "./dist/js/index.js",
+    "./*": "./*"
+  },
+  "scripts": {
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
+    "build:clean": "del dist",
+    "build:ts": "tsc -p tsconfig.build.json",
+    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js",
+    "dev": "pnpm run --parallel \"/^dev:.*/\"",
+    "lint": "biome check .",
+    "dev:ts": "tsc -p tsconfig.build.json --watch",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@humanwhocodes/momoa": "^3.0",
+    "culori": "^4.0",
+    "scule": "^1.3",
+    "wildcard-match": "^5.1"
+  },
+  "devDependencies": {
+    "@types/culori": "^2.1"
+  }
+}

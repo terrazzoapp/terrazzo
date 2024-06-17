@@ -1,7 +1,5 @@
-#!/usr/bin/env node
-
 /**
- * @module @cobalt-ui/cli
+ * @module @terrazzo/cli
  * @license MIT License
  *
  * Copyright (c) 2021 Drew Powers
@@ -25,27 +23,20 @@
  * SOFTWARE.
  */
 
-/* eslint-disable no-console */
-
-import dotenv from 'dotenv';
-dotenv.config();
-
-import { parse, isJSON } from '@cobalt-ui/core';
-import { DIM, FG_BLUE, FG_RED, FG_GREEN, FG_YELLOW, UNDERLINE, RESET } from '@cobalt-ui/utils';
+import { parse, build } from '@terrazzo/parser';
 import chokidar from 'chokidar';
-import yaml from 'yaml';
+import dotenv from 'dotenv';
 import fs from 'node:fs';
-import { performance } from 'node:perf_hooks';
-import parseJSON from 'parse-json';
-import { fileURLToPath, URL } from 'node:url';
+import { fileURLToPath } from 'node:url';
+import pc from 'picocolors';
 import parser from 'yargs-parser';
-import build from '../dist/build.js';
-import { init as initConfig } from '../dist/config.js';
-import lint from '../dist/lint.js';
-import convert from '../dist/convert.js';
+
+dotenv.config();
 
 const [, , cmd, ...args] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
+
+const GREEN_CHECK = pc.green('✔');
 
 const flags = parser(args, {
   boolean: ['help', 'watch', 'version'],
@@ -58,7 +49,6 @@ const flags = parser(args, {
   },
 });
 
-/** `tokens` CLI command */
 export default async function main() {
   const start = performance.now();
 
@@ -92,22 +82,7 @@ export default async function main() {
   }
   let config;
   try {
-    // if running `co check [tokens]`, don’t load config from file
-    if (cmd === 'check' && args[0]) {
-      config = await initConfig({ tokens: args[0] }, cwd);
-    } else if (cmd === 'lint') {
-      config = await loadConfig(
-        resolveConfig(configPath),
-        args[0]
-          ? {
-              // override config.tokens if passed as CLI arg
-              tokens: args[0],
-            }
-          : undefined,
-      );
-    } else {
-      config = await loadConfig(resolveConfig(configPath));
-    }
+    config = (await import(resolveConfig(configPath))).default;
   } catch (err) {
     printErrors(err.message || err);
     process.exit(1);
@@ -116,7 +91,7 @@ export default async function main() {
   switch (cmd) {
     case 'build': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
-        printErrors(`✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
+        printErrors(`No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`);
         process.exit(1);
       }
 
@@ -128,30 +103,25 @@ export default async function main() {
       });
       const watch = args.includes('-w') || args.includes('--watch');
 
-      let result = await build(rawSchema, config);
+      let { tokens, ast } = await parse(rawSchema, { config });
+      let result = await build(tokens, { ast, config });
+      writeFiles(result, config);
 
       printErrors(result.errors);
       printWarnings(result.warnings);
-      if (result.errors) {
-        process.exit(1);
-      }
 
       if (watch) {
         const tokenWatcher = chokidar.watch(config.tokens.map((filepath) => fileURLToPath(filepath)));
         tokenWatcher.on('change', async (filePath) => {
           try {
             rawSchema = await loadTokens(config.tokens);
-            result = await build(rawSchema, config);
-            if (result.errors || result.warnings) {
-              printErrors(result.errors);
-              printWarnings(result.warnings);
-            } else {
-              console.log(
-                `${DIM}${dt.format(
-                  new Date(),
-                )}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}${filePath}${RESET} updated ${FG_GREEN}✔${RESET}`,
-              );
-            }
+            const parseResult = await parse(tokens, { config });
+            tokens = parseResult.tokens;
+            ast = parseResult.ast;
+            result = await build(tokens, { ast, config });
+            console.log(
+              `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')}} ${pc.yellow(filePath)} updated ${GREEN_CHECK}`,
+            );
           } catch (err) {
             printErrors([err.message || err]);
           }
@@ -160,13 +130,15 @@ export default async function main() {
         configWatcher.on('change', async (filePath) => {
           try {
             console.log(
-              `${DIM}${dt.format(
-                new Date(),
-              )}${RESET} ${FG_BLUE}Cobalt${RESET} ${FG_YELLOW}Config updated. Reloading…${RESET}`,
+              `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')} ${pc.yellow('Config updated. Reloading…')}`,
             );
-            config = await loadConfig(filePath);
+            config = (await import(filePath)).default;
             rawSchema = await loadTokens(config.tokens);
-            result = await build(rawSchema, config);
+            const parseResult = await parse(tokens, { config });
+            tokens = parseResult.tokens;
+            ast = parseResult.ast;
+            result = await build(tokens, { ast, config });
+            writeFiles(result, config);
           } catch (err) {
             printErrors([err.message || err]);
           }
@@ -175,79 +147,23 @@ export default async function main() {
         // keep process occupied
         await new Promise(() => {});
       } else {
-        console.log(
-          `  ${FG_GREEN}✔${RESET}  ${result.result.tokens.length} token${
-            result.result.tokens.length !== 1 ? 's' : ''
-          } built ${time(start)}`,
+        printSuccess(
+          `${Object.keys(tokens).length} token${Object.keys(tokens).length !== 1 ? 's' : ''} built ${time(start)}`,
         );
       }
-      break;
-    }
-    case 'bundle': {
-      if (config.tokens.length < 2) {
-        printErrors(`co bundle requires multiple inputs, but only found ${config.tokens.length} files in config.`);
-        process.exit(1);
-      }
-      if (!flags.out) {
-        printErrors('--out [file] is required to save bundle');
-        process.exit(1);
-      }
-
-      const tokens = await loadTokens(config.tokens);
-
-      const resolvedOut = new URL(flags.out, cwd);
-      fs.mkdirSync(new URL('.', resolvedOut), { recursive: true });
-
-      const isYAML =
-        resolvedOut.pathname.toLowerCase().endsWith('.yaml') || resolvedOut.pathname.toLowerCase().endsWith('.yml');
-      fs.writeFileSync(resolvedOut, isYAML ? yaml.stringify(tokens) : JSON.stringify(tokens, undefined, 2));
-      console.log(`  ${FG_GREEN}✔${RESET} Bundled ${config.tokens.length} schemas ${time(start)}`);
-      break;
-    }
-    case 'convert': {
-      if (!args[0]) {
-        printErrors(`Expected format "co convert [input] --out [output]"`);
-        process.exit(1);
-      }
-      if (!fs.existsSync(new URL(args[0], cwd))) {
-        printErrors(`Could not find "${args[0]}". Does the file exist?`);
-        process.exit(1);
-      }
-      if (!flags.out) {
-        printErrors('--out [file] is required to convert');
-        process.exit(1);
-      }
-
-      const input = parseJSON(fs.readFileSync(new URL(args[0], cwd), 'utf8'));
-      const { errors, warnings, result } = await convert(input);
-      if (errors) {
-        printErrors(errors);
-        process.exit(1);
-      }
-      if (warnings) {
-        printWarnings(warnings);
-      }
-      console.log(`  ${FG_GREEN}✔${RESET}  converted ${args[0]} → ${flags.out} ${time(start)}`);
-      fs.writeFileSync(new URL(flags.out, cwd), JSON.stringify(result, undefined, 2));
-
-      break;
-    }
-    case 'sync': {
-      printWarnings('"co sync" was deprecated. See https://cobalt-ui.pages.dev/docs/guides/figma');
-      process.exit(1);
       break;
     }
     case 'check': {
       const rawSchema = await loadTokens(config.tokens);
       const filepath = config.tokens[0];
-      console.log(`${UNDERLINE}${filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath}${RESET}`);
+      console.log(pc.underline(filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath));
       const { errors, warnings } = parse(rawSchema, config); // will throw if errors
       if (errors || warnings) {
         printErrors(errors);
         printWarnings(warnings);
         process.exit(1);
       }
-      console.log(`  ${FG_GREEN}✔${RESET}  no errors ${time(start)}`);
+      printSuccess(`no errors ${time(start)}`);
       break;
     }
     case 'lint': {
@@ -276,7 +192,7 @@ export default async function main() {
       if (lintResult.warnings) {
         printWarnings(lintResult.warnings);
       } else {
-        console.log(`  ${FG_GREEN}✔${RESET}  all checks passed ${time(start)}`);
+        printSuccess(`all checks passed ${time(start)}`);
       }
       break;
     }
@@ -285,7 +201,7 @@ export default async function main() {
         throw new Error(`${config.tokens} already exists`);
       }
       fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
-      console.log(`  ${FG_GREEN}✔${RESET} ${config.tokens} created ${time(start)}`);
+      printSuccess(`${config.tokens} created ${time(start)}`);
       break;
     }
     default: {
@@ -302,7 +218,7 @@ main();
 
 /** Show help */
 function showHelp() {
-  console.log(`cobalt
+  console.log(`tz
   [commands]
     build           Build token artifacts from tokens.json
       --watch, -w   Watch tokens.json for changes and recompile
@@ -321,46 +237,13 @@ function showHelp() {
 `);
 }
 
-/** resolve config */
-function resolveConfig(filename) {
-  // --config [configpath]
-  if (filename) {
-    const configPath = new URL(filename, cwd);
-    if (fs.existsSync(configPath)) {
-      return configPath;
-    }
-    return undefined;
-  }
-
-  // default: tokens.config.js
-  for (const defaultFilename of ['./tokens.config.js', './tokens.config.mjs']) {
-    const configPath = new URL(defaultFilename, cwd);
-    if (fs.existsSync(configPath)) {
-      return configPath;
-    }
-  }
-}
-
-/** load config */
-async function loadConfig(configPath, overrides) {
-  let userConfig = {};
-  if (configPath) {
-    userConfig = (await import(configPath)).default;
-  }
-  if (overrides) {
-    merge(userConfig ?? {}, overrides);
-  }
-  return await initConfig(userConfig, configPath instanceof URL ? configPath : `file://${process.cwd()}/`);
-}
-
 /** load tokens */
 async function loadTokens(tokenPaths) {
-  const rawTokens = [];
+  // TODO: allow merging of tokens
 
   // download/read
   for (const filepath of tokenPaths) {
     const pathname = filepath.pathname.toLowerCase();
-    const isYAMLExt = pathname.endsWith('.yaml') || pathname.endsWith('.yml');
     if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
       try {
         // if Figma URL
@@ -386,9 +269,7 @@ async function loadTokens(tokenPaths) {
             headers,
           });
           if (res.ok) {
-            const data = await res.json();
-            rawTokens.push(data.meta);
-            continue;
+            return await res.text();
           }
           const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
           printErrors(`Figma responded with ${res.status}${message ? `:\n${message}` : ''}`);
@@ -401,68 +282,37 @@ async function loadTokens(tokenPaths) {
           method: 'GET',
           headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' },
         });
-        const raw = await res.text();
-        // if the 1st character is '{', it’s JSON (“if it’s dumb but it works…”)
-        if (isJSON(raw)) {
-          rawTokens.push(parseJSON(raw));
-        } else {
-          rawTokens.push(yaml.parse(raw));
-        }
+        return await res.text();
       } catch (err) {
         printErrors(`${filepath.href}: ${err}`);
       }
     } else {
       if (fs.existsSync(filepath)) {
-        try {
-          const raw = fs.readFileSync(filepath, 'utf8');
-          if (isYAMLExt) {
-            rawTokens.push(yaml.parse(raw));
-          } else {
-            rawTokens.push(JSON.parse(raw));
-          }
-        } catch (err) {
-          printErrors(`${filepath.href}: ${err}`);
-        }
+        return fs.readFileSync(filepath, 'utf8');
       } else {
         printErrors(`Could not locate ${filepath}. To create one, run \`npx cobalt init\`.`);
         process.exit(1);
       }
     }
   }
-
-  // combine
-  const tokens = {};
-  for (const subtokens of rawTokens) {
-    merge(tokens, subtokens);
-  }
-
-  return tokens;
 }
 
-/** Merge JSON B into A */
-function merge(a, b) {
-  if (Array.isArray(b)) {
-    printErrors('Internal error parsing tokens file.'); // oops
-    process.exit(1);
-    return;
-  }
-  for (const k in b) {
-    // overwrite if:
-    // - this key doesn’t exist on a, or
-    // - this is a token with a $value (don’t merge tokens! overwrite!), or
-    // - this is a primitive value (it’s the user’s responsibility to merge these correctly)
-    if (
-      !(k in a) ||
-      Array.isArray(b[k]) ||
-      typeof b[k] !== 'object' ||
-      (typeof b[k] === 'object' && '$value' in b[k])
-    ) {
-      a[k] = b[k];
-      continue;
+/** resolve config */
+function resolveConfig(filename) {
+  // --config [configpath]
+  if (filename) {
+    const configPath = new URL(filename, cwd);
+    if (fs.existsSync(configPath)) {
+      return fileURLToPath(configPath);
     }
-    // continue
-    if (typeof b[k] === 'object' && !Array.isArray(b[k])) {
-      merge(a[k], b[k]);
+    return undefined;
+  }
+
+  // default: terrazzo.config.js
+  for (const defaultFilename of ['./terrazzo.config.js', './terrazzo.config.mjs']) {
+    const configPath = new URL(defaultFilename, cwd);
+    if (fs.existsSync(configPath)) {
+      return fileURLToPath(configPath);
     }
   }
 }
@@ -470,7 +320,12 @@ function merge(a, b) {
 /** Print time elapsed */
 function time(start) {
   const diff = performance.now() - start;
-  return `${DIM}${diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`}${RESET}`;
+  return pc.dim(diff < 750 ? `${Math.round(diff)}ms` : `${(diff / 1000).toFixed(1)}s`);
+}
+
+/** Print success */
+export function printSuccess(message) {
+  console.log(`  ${GREEN_CHECK}  ${message}`);
 }
 
 /** Print errors */
@@ -479,7 +334,7 @@ export function printErrors(errors) {
     return;
   }
   for (const err of Array.isArray(errors) ? errors : [errors]) {
-    console.error(`  ${FG_RED}✘  ${err}${RESET}`);
+    console.error(`  ${pc.red(`✘  ${err}`)}`);
   }
 }
 
@@ -489,6 +344,15 @@ export function printWarnings(warnings) {
     return;
   }
   for (const warn of Array.isArray(warnings) ? warnings : [warnings]) {
-    console.warn(`  ${FG_YELLOW}!  ${warn}${RESET}`);
+    console.warn(`  ${pc.yellow(`!  ${warn}`)}`);
+  }
+}
+
+/** Write files */
+export function writeFiles(result, config) {
+  for (const { filename, contents } of result.outputFiles) {
+    const filepath = new URL(filename, config.outDir);
+    fs.mkdirSync(new URL('.', filepath), { recursive: true });
+    fs.writeFileSync(filepath, contents);
   }
 }

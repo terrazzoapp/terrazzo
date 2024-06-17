@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "lib": ["DOM"],
-    "outDir": "./dist/"
-  },
-  "include": ["src", "test"]
-}

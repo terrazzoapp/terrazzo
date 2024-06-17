@@ -4,12 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:tokens": "co build"
+    "build:tokens": "tz build"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:*",
-    "@cobalt-ui/plugin-css": "workspace:*",
-    "@cobalt-ui/plugin-js": "workspace:*",
-    "@cobalt-ui/plugin-sass": "workspace:*"
+    "@terrazzo/cli": "workspace:*",
+    "@terrazzo/plugin-css": "workspace:*",
+    "@terrazzo/plugin-js": "workspace:*",
+    "@terrazzo/plugin-sass": "workspace:*"
   }
 }

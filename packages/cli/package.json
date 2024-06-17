@@ -1,7 +1,7 @@
 {
-  "name": "@cobalt-ui/cli",
+  "name": "@terrazzo/cli",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
-  "version": "1.11.2",
+  "version": "0.0.7",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -23,17 +23,12 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
-    "directory": "packages/cli"
-  },
-  "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/index.js",
   "bin": {
-    "co": "bin/cli.js",
-    "cobalt": "bin/cli.js"
+    "tz": "bin/cli.js",
+    "terrazzo": "bin/cli.js"
   },
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts",
@@ -46,20 +41,16 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@cobalt-ui/core": "workspace:^",
-    "@cobalt-ui/utils": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^",
     "chokidar": "^3.6.0",
-    "culori": "^4.0.1",
     "dotenv": "^16.4.5",
-    "parse-json": "^8.1.0",
-    "svgo": "^3.3.2",
-    "yaml": "^2.4.2",
+    "merge-anything": "^5.1.7",
+    "picocolors": "^1.0.1",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/culori": "^2.1.0",
-    "execa": "^8.0.1",
-    "msw": "^2.3.0",
-    "strip-ansi": "^7.1.0"
+    "@types/node": "^20.14.2",
+    "execa": "^8.0.1"
   }
 }

@@ -1,10 +1,8 @@
-import build from '@cobalt-ui/cli/dist/build.js';
-import type { Group } from '@cobalt-ui/core';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import yaml from 'yaml';
 import { describe, test, expect } from 'vitest';
-import pluginTailwind from '../dist/index.js';
+import pluginTailwind from '../src/index.js';
+import { build, defineConfig, parse } from '@terrazzo/parser';
 
 describe('@cobalt-ui/plugin-tailwind', () => {
   describe('options', () => {
@@ -59,20 +57,21 @@ describe('@cobalt-ui/plugin-tailwind', () => {
 
       test('cjs', async () => {
         const cwd = new URL('./cjs/', import.meta.url);
-        const tokens = yaml.parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8')) as Group;
-        await build(tokens, {
-          outDir: cwd,
-          plugins: [
-            pluginTailwind({
-              ...baseConfig,
-              filename: './actual.js',
-              format: 'cjs',
-            }),
-          ],
-          color: {},
-          tokens: [],
-          lint: { build: { enabled: true }, rules: {} },
-        });
+        const config = defineConfig(
+          {
+            outDir: './cjs/',
+            plugins: [
+              pluginTailwind({
+                ...baseConfig,
+                filename: './actual.js',
+                format: 'cjs',
+              }),
+            ],
+          },
+          { cwd },
+        );
+        const { tokens, ast } = await parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
+        await build(tokens, { ast, config });
 
         expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL('./want.js', cwd)),
@@ -81,19 +80,21 @@ describe('@cobalt-ui/plugin-tailwind', () => {
 
       test('esm', async () => {
         const cwd = new URL('./esm/', import.meta.url);
-        const tokens = yaml.parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
-        await build(tokens as Group, {
-          outDir: cwd,
-          plugins: [
-            pluginTailwind({
-              ...baseConfig,
-              filename: './actual.js',
-            }),
-          ],
-          color: {},
-          tokens: [],
-          lint: { build: { enabled: true }, rules: {} },
-        });
+        const config = defineConfig(
+          {
+            outDir: './cjs/',
+            plugins: [
+              pluginTailwind({
+                ...baseConfig,
+                filename: './actual.js',
+                format: 'esm',
+              }),
+            ],
+          },
+          { cwd },
+        );
+        const { tokens, ast } = await parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
+        await build(tokens, { ast, config });
 
         expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL('./want.js', cwd)),

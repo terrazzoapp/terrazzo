@@ -1,13 +1,12 @@
 {
-  "name": "@cobalt-ui/plugin-js",
-  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @cobalt-ui/cli)",
-  "version": "1.4.4",
+  "name": "@terrazzo/plugin-js",
+  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
   "keywords": [
-    "cobalt",
     "design tokens",
     "design tokens community group",
     "design tokens format module",
@@ -15,12 +14,6 @@
     "dtcg",
     "w3c design tokens"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
-    "directory": "packages/plugin-js"
-  },
-  "homepage": "https://cobalt-ui.pages.dev",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",
@@ -28,22 +21,21 @@
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-js dist/index.js",
+    "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-js dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "co build -c ./test/types.tokens.mjs && pnpm run \"/^test:.*/\"",
+    "test": "pnpm run --parallel \"/^test:*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.11.0"
+    "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
-    "@cobalt-ui/utils": "workspace:^"
+    "@terrazzo/token-tools": "workspace:^"
   },
   "devDependencies": {
-    "@cobalt-ui/cli": "workspace:^",
-    "@cobalt-ui/core": "workspace:^",
-    "fast-glob": "^3.3.2"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^"
   }
 }

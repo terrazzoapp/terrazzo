@@ -25,12 +25,14 @@
       },
       "style": {
         "noNonNullAssertion": "off",
-        "noUselessElse": "off"
+        "noUselessElse": "off",
+        "useBlockStatements": "error"
       },
       "performance": {
         "noDelete": "off"
       },
       "suspicious": {
+        "noConsoleLog": "error",
         "noExplicitAny": "warn"
       }
     }

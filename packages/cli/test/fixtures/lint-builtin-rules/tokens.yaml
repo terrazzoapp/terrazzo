@@ -1,8 +1,0 @@
-color:
-  blue:
-    "100":
-      $type: color
-      $value: "#3c3c43"
-    "200":
-      $type: color
-      $value: "#3c3c43"

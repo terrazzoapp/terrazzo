@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": ".",
-    "noEmit": true
-  },
-  "include": ["**/*.{js,ts}", ".vitepress/**/*.ts"],
-  "exclude": [".vitepress/cache"]
-}

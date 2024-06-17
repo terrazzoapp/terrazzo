@@ -1,18 +1,13 @@
 {
-  "name": "cobalt-monorepo",
+  "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/drwpow/cobalt-ui.git"
-  },
-  "homepage": "https://cobalt-ui.pages.dev",
   "scripts": {
-    "build": "pnpm run -r --if-present --filter \"@cobalt-ui/*\" \"build\"",
+    "build": "pnpm run -r --if-present --filter \"@terrazzo/*\" \"build\"",
     "build:docs": "pnpm run -r --if-present \"build\"",
     "build:examples": "pnpm run -r --parallel --if-present build:tokens",
     "changeset": "changeset",
-    "dev": "pnpm run -r --parallel --if-present --filter \"@cobalt-ui/*\" dev",
+    "dev": "pnpm run -r --parallel --if-present --filter \"@terrazzo/*\" dev",
     "lint": "pnpm run -r --parallel --if-present lint",
     "test": "pnpm run -r --if-present --aggregate-output --parallel test",
     "prepublishOnly": "pnpm run build",
@@ -24,6 +19,8 @@
     "@changesets/cli": "^2.27.5",
     "@types/node": "^20.14.2",
     "del-cli": "^5.1.0",
+    "prettier": "^3.3.2",
+    "strip-ansi": "^7.1.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   }

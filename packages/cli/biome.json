@@ -4,5 +4,12 @@
   "files": {
     "include": ["./src/", "./test/"],
     "ignore": ["./test/fixtures/**/*.json", "./test/fixtures/**/*.js", "./test/fixtures/**/*.d.ts"]
+  },
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noConsoleLog": "off"
+      }
+    }
   }
 }
