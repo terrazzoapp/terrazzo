@@ -5,6 +5,7 @@
     "lib": ["ESNext"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
+    "noEmitOnError": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,

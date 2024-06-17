@@ -1,25 +1,30 @@
+// @ts-expect-error
 import { inGamut } from 'culori/fn';
+
+// TODO: remove
+// biome-ignore lint/suspicious/noRedeclare: upstream type issue
+declare function inGamut(color: Color, mode: 'rgb' | 'p3' | 'rec2020'): boolean;
 
 export { inGamut };
 
 // note: redeclared color types are compatible with Culori, but stricter (for our purposes)
-export type A98 =      readonly { readonly mode: 'a98';      readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Hsl =      readonly { readonly mode: 'hsl';      readonly h: number; readonly s: number; readonly l: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Hsv =      readonly { readonly mode: 'hsv';      readonly h: number; readonly s: number; readonly v: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Hwb =      readonly { readonly mode: 'hwb';      readonly h: number; readonly w: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Lab =      readonly { readonly mode: 'lab';      readonly l: number; readonly a: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Lch =      readonly { readonly mode: 'lch';      readonly l: number; readonly c: number; readonly h: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Lrgb =     readonly { readonly mode: 'lrgb';     readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Okhsl =    readonly { readonly mode: 'okhsl';    readonly h: number; readonly s: number; readonly l: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Okhsv =    readonly { readonly mode: 'okhsv';    readonly h: number; readonly s: number; readonly v: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Oklab =    readonly { readonly mode: 'oklab';    readonly l: number; readonly a: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Oklch =    readonly { readonly mode: 'oklch';    readonly l: number; readonly c: number; readonly h: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type P3 =       readonly { readonly mode: 'p3';       readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Prophoto = readonly { readonly mode: 'prophoto'; readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Rec2020 =  readonly { readonly mode: 'rec2020';  readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Rgb =      readonly { readonly mode: 'rgb';      readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Xyz50 =    readonly { readonly mode: 'xyz50';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Xyz65 =    readonly { readonly mode: 'xyz65';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type A98 =      { mode: 'a98';      readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Hsl =      { mode: 'hsl';      readonly h: number; readonly s: number; readonly l: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Hsv =      { mode: 'hsv';      readonly h: number; readonly s: number; readonly v: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Hwb =      { mode: 'hwb';      readonly h: number; readonly w: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Lab =      { mode: 'lab';      readonly l: number; readonly a: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Lch =      { mode: 'lch';      readonly l: number; readonly c: number; readonly h: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Lrgb =     { mode: 'lrgb';     readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Okhsl =    { mode: 'okhsl';    readonly h: number; readonly s: number; readonly l: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Okhsv =    { mode: 'okhsv';    readonly h: number; readonly s: number; readonly v: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Oklab =    { mode: 'oklab';    readonly l: number; readonly a: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Oklch =    { mode: 'oklch';    readonly l: number; readonly c: number; readonly h: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type P3 =       { mode: 'p3';       readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Prophoto = { mode: 'prophoto'; readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Rec2020 =  { mode: 'rec2020';  readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Rgb =      { mode: 'rgb';      readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Xyz50 =    { mode: 'xyz50';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
+export type Xyz65 =    { mode: 'xyz65';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 
 export type Color = A98 | Hsl | Hsv | Hwb | Lab | Lch | Lrgb | Okhsl | Okhsv | Oklab | Oklch | P3 | Prophoto | Rec2020 | Rgb | Xyz50 | Xyz65; // biome-ignore format: repetitive strings
 
@@ -96,4 +101,4 @@ export declare function formatCss(
 /** memoize Culori colors and reduce unnecessary updates */
 export default function useColor(
   color: string | Color,
-): [ColorOutput, (newColor: string | Color | ((value: ColorOutpt) => string | Color)) => void];
+): [ColorOutput, (newColor: string | Color | ((value: ColorOutput) => string | Color)) => void];

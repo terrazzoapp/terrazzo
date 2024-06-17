@@ -1,7 +1,7 @@
-import { type ComponentProps, useEffect, useRef, useState, memo } from 'react';
-import { HueWheel as HueWheelWebGL } from '../lib/webgl.js';
+import { type ComponentProps, useEffect, useRef, useState, memo } from "react";
+import { HueWheel as HueWheelWebGL } from "../lib/webgl.js";
 
-export type HueWheelProps = ComponentProps<'canvas'>;
+export type HueWheelProps = ComponentProps<"canvas">;
 
 function HueWheel({ ...rest }: HueWheelProps) {
   const canvasEl = useRef<HTMLCanvasElement>(null);
@@ -13,7 +13,7 @@ function HueWheel({ ...rest }: HueWheelProps) {
       return;
     }
     setWebgl(new HueWheelWebGL({ canvas: canvasEl.current }));
-  }, [canvasEl.current, webgl]);
+  }, [webgl]);
 
   return <canvas ref={canvasEl} {...rest} />;
 }
