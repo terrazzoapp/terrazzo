@@ -22,6 +22,11 @@ export default {
             topLevelAwait: true,
           },
           target: 'esnext',
+          transform: {
+            react: {
+              runtime: 'automatic',
+            },
+          },
         },
       },
     }),
@@ -42,5 +47,10 @@ export default {
   output: {
     dir: './dist/',
     sourcemap: true,
+    globals: {
+      'react/jsx-runtime': 'jsxRuntime',
+      'react-dom/client': 'ReactDOM',
+      react: 'React',
+    },
   },
 };
