@@ -12,8 +12,7 @@
     "build": "del dist && pnpm run build:ts",
     "build:ts": "tsc",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint ."
+    "lint:js": "biome check ."
   },
   "peerDependencies": {
     "react": "*",

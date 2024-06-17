@@ -13,13 +13,7 @@
     "directory": "./packages/use-color"
   },
   "main": "./index.js",
-  "keywords": [
-    "color",
-    "color-module-4",
-    "culori",
-    "react",
-    "hooks"
-  ],
+  "keywords": ["color", "color-module-4", "culori", "react", "hooks"],
   "scripts": {
     "build": "tsc && size-limit",
     "lint": "pnpm run \"/^lint:.*/\"",
