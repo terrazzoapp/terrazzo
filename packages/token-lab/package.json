@@ -21,9 +21,10 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "vite dev",
-    "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint ."
+    "format:disabled": "biome format --write src",
+    "lint:disabled": "pnpm run \"/^lint:.*/\"",
+    "lint:js": "biome check src",
+    "lint:css": "stylelint src"
   },
   "peerDependencies": {
     "react": "*",

@@ -21,13 +21,13 @@ export const Overview = {
         }
       >
         <SelectGroup>
-          <SelectItem value="rgb" icon={<ColorFilterOutline />}>
+          <SelectItem value='rgb' icon={<ColorFilterOutline />}>
             RGB
           </SelectItem>
-          <SelectItem value="oklab" icon={<ColorFilterOutline />}>
+          <SelectItem value='oklab' icon={<ColorFilterOutline />}>
             Oklab
           </SelectItem>
-          <SelectItem value="oklch" icon={<ColorFilterOutline />}>
+          <SelectItem value='oklch' icon={<ColorFilterOutline />}>
             Oklch
           </SelectItem>
         </SelectGroup>

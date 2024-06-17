@@ -17,8 +17,9 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
     "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
+    "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
+    "lint:js": "biome check src",
     "lint:css": "stylelint .",
     "test": "pnpm run \"/^test.*/\"",
     "test:js": "vitest run",

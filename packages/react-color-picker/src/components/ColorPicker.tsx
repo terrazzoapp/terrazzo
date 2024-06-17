@@ -115,12 +115,12 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
       }}
       {...rest}
     >
-      <div className="tz-color-picker-preview">
-        <div className="tz-color-picker-swatch" />
-        <div className="tz-color-picker-code">
+      <div className='tz-color-picker-preview'>
+        <div className='tz-color-picker-swatch' />
+        <div className='tz-color-picker-code'>
           <input
-            type="text"
-            className="tz-color-picker-code-input"
+            type='text'
+            className='tz-color-picker-code-input'
             value={inputBuffer}
             onChange={(evt) => {
               setInputBuffer(evt.target.value);
@@ -131,8 +131,8 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
             }}
           />
           <button
-            type="button"
-            className="tz-color-picker-code-copy-btn"
+            type='button'
+            className='tz-color-picker-code-copy-btn'
             onClick={async () => {
               await navigator.clipboard.writeText(color.css);
               clearTimeout(copiedTO.current);
@@ -142,12 +142,12 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
               }, 1000);
             }}
           >
-            {copied ? <Check /> : <Copy aria-label="Copy value" />}
+            {copied ? <Check /> : <Copy aria-label='Copy value' />}
           </button>
         </div>
       </div>
-      <details className="tz-color-picker-colorspace">
-        <summary className="tz-color-picker-colorspace-summary">
+      <details className='tz-color-picker-colorspace'>
+        <summary className='tz-color-picker-colorspace-summary'>
           <Select
             value={normalizedColorMode}
             trigger={color.original.mode}
@@ -160,47 +160,47 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
               }
             }}
           >
-            <SelectItem value="rgb" icon={<ColorFilterOutline />}>
+            <SelectItem value='rgb' icon={<ColorFilterOutline />}>
               RGB
             </SelectItem>
-            <SelectItem value="oklab" icon={<ColorFilterOutline />}>
+            <SelectItem value='oklab' icon={<ColorFilterOutline />}>
               Oklab
             </SelectItem>
-            <SelectItem value="oklch" icon={<ColorFilterOutline />}>
+            <SelectItem value='oklch' icon={<ColorFilterOutline />}>
               Oklch
             </SelectItem>
-            <SelectItem value="okhsl" icon={<ColorFilterOutline />}>
+            <SelectItem value='okhsl' icon={<ColorFilterOutline />}>
               Okhsl
             </SelectItem>
-            <SelectItem value="okhsv" icon={<ColorFilterOutline />}>
+            <SelectItem value='okhsv' icon={<ColorFilterOutline />}>
               Okhsv
             </SelectItem>
-            <SelectItem value="xyz65" icon={<ColorFilterOutline />}>
+            <SelectItem value='xyz65' icon={<ColorFilterOutline />}>
               XYZ
             </SelectItem>
           </Select>
-          <span className="tz-color-picker-colorspace-chevron">
+          <span className='tz-color-picker-colorspace-chevron'>
             <ChevronDown aria-hidden />
           </span>
         </summary>
-        <div className="tz-color-picker-colorspace-gamut">
-          <Fieldset label="Colorspace options">
+        <div className='tz-color-picker-colorspace-gamut'>
+          <Fieldset label='Colorspace options'>
             <Switch
               label={
-                <span className="tz-color-picker-colorspace-gamut-label">
+                <span className='tz-color-picker-colorspace-gamut-label'>
                   P3
                   <Tooltip
                     content={
-                      <span className="tz-color-picker-colorspace-gamut-tooltip">
+                      <span className='tz-color-picker-colorspace-gamut-tooltip'>
                         P3 is supported in all major browsers, but your users may not have P3-capable monitors (
-                        <a href="https://terrazzo.ds/docs/colorspaces#p3" target="_blank" rel="noopener noreferrer">
+                        <a href='https://terrazzo.ds/docs/colorspaces#p3' target='_blank' rel='noopener noreferrer'>
                           docs
                         </a>
                         )
                       </span>
                     }
                   >
-                    <InfoCircled className="tz-color-picker-tooltip-icon" />
+                    <InfoCircled className='tz-color-picker-tooltip-icon' />
                   </Tooltip>
                 </span>
               }
@@ -213,20 +213,20 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
             />
             <Switch
               label={
-                <span className="tz-color-picker-colorspace-gamut-label">
+                <span className='tz-color-picker-colorspace-gamut-label'>
                   Rec2020
                   <Tooltip
                     content={
-                      <span className="tz-color-picker-colorspace-gamut-tooltip">
+                      <span className='tz-color-picker-colorspace-gamut-tooltip'>
                         Rec2020 is the current standard for TV & movies, but isn’t supported for the web yet (
-                        <a href="https://terrazzo.ds/docs/colorspaces#p3" target="_blank" rel="noopener noreferrer">
+                        <a href='https://terrazzo.ds/docs/colorspaces#p3' target='_blank' rel='noopener noreferrer'>
                           docs
                         </a>
                         )
                       </span>
                     }
                   >
-                    <InfoCircled className="tz-color-picker-tooltip-icon" />
+                    <InfoCircled className='tz-color-picker-tooltip-icon' />
                   </Tooltip>
                 </span>
               }
@@ -240,7 +240,7 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
           </Fieldset>
         </div>
       </details>
-      <div className="tz-color-picker-sliders">
+      <div className='tz-color-picker-sliders'>
         {channelOrder(color.original).map((channel) => {
           if (channel === 'mode') {
             return null;

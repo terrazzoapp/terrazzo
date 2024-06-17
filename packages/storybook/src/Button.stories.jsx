@@ -16,34 +16,40 @@ export const Overview = {
         columns={['size="m"', 'size="s"']}
         rows={['primary', 'primary (disabled)', 'secondary', 'secondary (disabled)', 'tertiary', 'tertiary (disabled)']}
         variants={[
-          <Button variant="primary">Primary</Button>,
-          <Button variant="primary" size="s">
-            Primary (S)
-          </Button>,
-          <Button variant="primary" disabled>
+          <Button key='primary' variant='primary'>
             Primary
           </Button>,
-          <Button variant="primary" disabled size="s">
+          <Button key='primary-s' variant='primary' size='s'>
             Primary (S)
           </Button>,
-          <Button variant="secondary">Secondary</Button>,
-          <Button variant="secondary" size="s">
-            Secondary (S)
+          <Button key='primary-disabled' variant='primary' disabled>
+            Primary
           </Button>,
-          <Button variant="secondary" disabled>
+          <Button key='primary-s-disabled' variant='primary' disabled size='s'>
+            Primary (S)
+          </Button>,
+          <Button key='secondary' variant='secondary'>
             Secondary
           </Button>,
-          <Button variant="secondary" disabled size="s">
+          <Button key='secondary-s' variant='secondary' size='s'>
             Secondary (S)
           </Button>,
-          <Button variant="tertiary">Tertiary</Button>,
-          <Button variant="tertiary" size="s">
-            Tertiary (S)
+          <Button key='secondary-disabled' variant='secondary' disabled>
+            Secondary
           </Button>,
-          <Button variant="tertiary" disabled>
+          <Button key='secondary-s-disabled' variant='secondary' disabled size='s'>
+            Secondary (S)
+          </Button>,
+          <Button key='tertiary' variant='tertiary'>
             Tertiary
           </Button>,
-          <Button variant="tertiary" disabled size="s">
+          <Button key='tertiary-s' variant='tertiary' size='s'>
+            Tertiary (S)
+          </Button>,
+          <Button key='tertiary-disabled' variant='tertiary' disabled>
+            Tertiary
+          </Button>,
+          <Button key='tertiary-s-disabled' variant='tertiary' disabled size='s'>
             Tertiary (S)
           </Button>,
         ]}

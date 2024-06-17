@@ -144,16 +144,16 @@ const ColorChannelBG = memo(function ColorChannelBG({
 }: ColorChannelBGProps) {
   if (channel === 'h') {
     return (
-      <div className="tz-color-channel-slider-bg-wrapper">
-        <HueWheel className="tz-color-channel-slider-bg" />
+      <div className='tz-color-channel-slider-bg-wrapper'>
+        <HueWheel className='tz-color-channel-slider-bg' />
       </div>
     );
   }
   if (channel === 'alpha') {
     return (
-      <div className="tz-color-channel-slider-bg-wrapper">
+      <div className='tz-color-channel-slider-bg-wrapper'>
         <div
-          className="tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha"
+          className='tz-color-channel-slider-bg tz-color-channel-slider-bg__alpha'
           style={{
             // don’t use "transparent" to prevent the “fade to black” problem that could exist in some browsers in higher colorspaces
             '--left-color': formatCss({
@@ -181,17 +181,17 @@ const ColorChannelBG = memo(function ColorChannelBG({
   }
 
   return (
-    <div className="tz-color-channel-slider-bg-wrapper">
-      <TrueGradient className="tz-color-channel-slider-bg" start={leftColor} end={rightColor} />
+    <div className='tz-color-channel-slider-bg-wrapper'>
+      <TrueGradient className='tz-color-channel-slider-bg' start={leftColor} end={rightColor} />
       {typeof displayMin === 'number' && displayMin < min && (
         <div
-          className="tz-color-channel-slider-overlay tz-color-channel-slider-overlay__min"
+          className='tz-color-channel-slider-overlay tz-color-channel-slider-overlay__min'
           style={{ '--width': `${(100 * (min - displayMin)) / range}%` }}
         />
       )}
       {typeof displayMax === 'number' && displayMax > max && (
         <div
-          className="tz-color-channel-slider-overlay tz-color-channel-slider-overlay__max"
+          className='tz-color-channel-slider-overlay tz-color-channel-slider-overlay__max'
           style={{ '--width': `${(100 * (displayMax - max)) / range}%` }}
         />
       )}
@@ -285,7 +285,7 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
   }, []);
 
   return (
-    <div className="tz-color-channel-slider-wrapper">
+    <div className='tz-color-channel-slider-wrapper'>
       <ColorChannelBG
         channel={channel}
         color={color}
@@ -296,7 +296,7 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
       />
       <div
         ref={wrapperEl}
-        className="tz-color-channel-slider-bounds"
+        className='tz-color-channel-slider-bounds'
         style={{ '--left': min, '--right': `${100 * (((displayMax ?? max) - max) / (displayRange ?? range))}%` }}
         onPointerDown={(evt) => {
           if (!setColor) {
@@ -306,7 +306,7 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
         }}
       >
         <div
-          className="tz-color-channel-slider-handle"
+          className='tz-color-channel-slider-handle'
           // drag start
           onPointerDown={(evt) => {
             evt.preventDefault();
@@ -381,17 +381,17 @@ export default function ColorChannelSlider({
         range={range}
         setColor={setColor}
       />
-      <div className="tz-color-channel-slider-inputpair">
-        <label className="tz-color-channel-slider-label" htmlFor={id}>
+      <div className='tz-color-channel-slider-inputpair'>
+        <label className='tz-color-channel-slider-label' htmlFor={id}>
           {color.original.mode.includes('lab') && channel === 'b'
             ? 'B' // literally the one conflict: Lab vs RGB (blue)
             : CHANNEL_LABEL[channel] ?? channel.toUpperCase()}
         </label>
         <SubtleInput
           id={id}
-          className="tz-color-channel-slider-input"
+          className='tz-color-channel-slider-input'
           // @ts-expect-error React was a mistake
-          type="number"
+          type='number'
           min={showPerc ? 100 * min : min}
           max={showPerc ? 100 * max : max}
           step={CHANNEL_STEP}

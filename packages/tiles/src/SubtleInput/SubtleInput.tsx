@@ -19,8 +19,8 @@ export interface SubtleInputProps extends ComponentProps<'input'> {
 export default function SubtleInput({ className, suffix, ref, ...rest }: SubtleInputProps) {
   return (
     <div className={clsx('tz-subtle-input', className)}>
-      <input ref={ref} className="tz-subtle-input-field" inputMode={INPUT_MODE[rest.type]} {...rest} />
-      <span className="tz-subtle-input-suffix">{suffix}</span>
+      <input ref={ref} className='tz-subtle-input-field' inputMode={INPUT_MODE[rest.type]} {...rest} />
+      <span className='tz-subtle-input-suffix'>{suffix}</span>
     </div>
   );
 }

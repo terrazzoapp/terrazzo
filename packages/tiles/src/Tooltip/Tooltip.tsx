@@ -33,13 +33,13 @@ export default function Tooltip({
   return (
     <Provider delayDuration={0} {...providerProps}>
       <Root {...rest}>
-        <Trigger asChild {...triggerProps} className="tz-tooltip-trigger">
+        <Trigger asChild {...triggerProps} className='tz-tooltip-trigger'>
           {children}
         </Trigger>
         <Portal {...portalProps}>
-          <Content sideOffset={5} {...contentProps} className="tz-tooltip-content">
+          <Content sideOffset={5} {...contentProps} className='tz-tooltip-content'>
             {content}
-            <Arrow {...arrowProps} className="tz-tooltip-arrow" />
+            <Arrow {...arrowProps} className='tz-tooltip-arrow' />
           </Content>
         </Portal>
       </Root>

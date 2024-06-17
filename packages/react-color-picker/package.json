@@ -26,9 +26,10 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
     "dev": "pnpm run build && chokidar \"./src/**/*\" -c \"rollup -c rollup.config.js\"",
+    "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint .",
+    "lint:js": "biome check src",
+    "lint:css": "stylelint src",
     "test": "vitest run"
   },
   "peerDependencies": {

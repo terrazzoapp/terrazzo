@@ -15,12 +15,12 @@ function ColorChannelTest({
 describe('ColorChannelSlider', () => {
   describe('display', () => {
     it('percentage', () => {
-      render(<ColorChannelTest defaultColor="#663399" channel="r" min={0} max={1} />);
+      render(<ColorChannelTest defaultColor='#663399' channel='r' min={0} max={1} />);
       expect(screen.getByRole<HTMLInputElement>('spinbutton').value).toBe('40.000');
     });
 
     it('nonpercentange', () => {
-      render(<ColorChannelTest defaultColor="oklch(0.5 0.2 120)" channel="c" min={0} max={0.4} />);
+      render(<ColorChannelTest defaultColor='oklch(0.5 0.2 120)' channel='c' min={0} max={0.4} />);
       expect(screen.getByRole<HTMLInputElement>('spinbutton').value).toBe('0.200');
     });
   });

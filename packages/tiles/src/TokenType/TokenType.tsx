@@ -78,7 +78,7 @@ export default function TokenType({ className, children, showIcon = true, type, 
   const Icon = TOKEN_TYPE_ICON[type];
   return (
     <div className={clsx('tz-tokentype', className)} ref={ref} {...rest}>
-      {showIcon && <Icon role="graphics-symbol" className="tz-tokentype-icon" aria-hidden="true" />}
+      {showIcon && <Icon role='graphics-symbol' className='tz-tokentype-icon' aria-hidden='true' />}
       {TOKEN_TYPE_DISPLAY_NAME[type]}
       {children}
     </div>

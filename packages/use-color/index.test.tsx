@@ -35,12 +35,12 @@ function UseColorTester({
           setColor((evt.target as any).elements.color.value); // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
         }}
       >
-        <label htmlFor="color-input">Update color</label>
-        <input id="color-input" name="color" />
-        <button type="submit">Save</button>
+        <label htmlFor='color-input'>Update color</label>
+        <input id='color-input' name='color' />
+        <button type='submit'>Save</button>
       </form>
 
-      <div data-testid="color-display">{JSON.stringify(color[display])}</div>
+      <div data-testid='color-display'>{JSON.stringify(color[display])}</div>
     </>
   );
 }
@@ -83,7 +83,7 @@ describe('useColor', () => {
       render(
         <UseColorTester
           value={color}
-          display="srgb"
+          display='srgb'
           onChange={() => {}}
           onRerender={() => {
             renderCount++;
@@ -121,7 +121,7 @@ describe('useColor', () => {
       render(
         <UseColorTester
           value={color}
-          display="srgb"
+          display='srgb'
           onChange={(value) => {
             color = value.css;
             onChangeCount++;
@@ -164,7 +164,7 @@ describe('useColor', () => {
         },
       };
 
-      const { rerender } = render(<UseColorTester {...props} display="css" />);
+      const { rerender } = render(<UseColorTester {...props} display='css' />);
 
       const colorspaces = ['original', 'css', 'a98', 'srgb', 'rgb', 'oklab', 'oklch', 'xyz', 'xyz50', 'xyz65'] as const;
       for (const c of colorspaces) {

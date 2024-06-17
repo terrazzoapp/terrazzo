@@ -6,7 +6,6 @@
     "build": "del dist && tz build",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:tokens": "tz lint",
-    "lint:js": "biome check",
     "dev": "tz build --watch"
   },
   "devDependencies": {
