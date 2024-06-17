@@ -1,0 +1,80 @@
+---
+import DocsHeaderNav from "../components/docs-header-nav.astro";
+import DocsSidenav from "../components/docs-sidenav.astro";
+import HeadMeta from "../components/head-meta.astro";
+import "../styles/docs.css";
+
+const { frontmatter } = Astro.props;
+---
+
+<html>
+  <head>
+    <HeadMeta title={frontmatter.title} description={frontmatter.description} />
+    <style>
+      .docs {
+        --sidebar-width: 16rem;
+
+        display: grid;
+        grid-template-areas: "sidenav" "header-nav" "toc" "main";
+        grid-template-columns: auto;
+
+        @media (width >= 900px) {
+          grid-template-areas: "sidenav header-nav header-nav" "sidenav main toc";
+          grid-template-columns: var(--sidebar-width) auto var(--sidebar-width);
+          grid-template-rows: min-content 1fr;
+        }
+      }
+
+      .docs-header-nav {
+        grid-area: header-nav;
+
+        @media (width >= 900px) {
+          position: sticky;
+          top: 0;
+          z-index: var(--tz-layer-nav);
+        }
+      }
+
+      .docs-sidenav {
+        display: flex;
+        grid-area: sidenav;
+
+        @media (width >= 900px) {
+          height: 100vh;
+          overflow-y: auto;
+          position: sticky;
+          top: 0;
+        }
+      }
+
+      .main {
+        grid-area: main;
+      }
+
+      .content {
+        margin-inline: auto;
+        max-width: 40rem;
+        padding-block-end: 6rem;
+        padding-inline: var(--tz-space-600);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="docs">
+      <div class="docs-sidenav">
+        <DocsSidenav />
+      </div>
+      <div class="docs-header-nav">
+        <DocsHeaderNav />
+      </div>
+      <main class="main">
+        <div class="content md-content">
+          <slot />
+        </div>
+      </main>
+    </div>
+    <script src="../scripts/copy-code.js"></script>
+    <script src="../scripts/tabs.js"></script>
+    <script src="../scripts/toc.js"></script>
+  </body>
+</html>

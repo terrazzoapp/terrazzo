@@ -1,0 +1,119 @@
+.tz-select {
+  --select-text: var(--tz-color-base-gray-1100);
+  --select-border: var(--tz-color-base-gray-400);
+  --select-bg: var(--tz-color-base);
+
+  color: var(--select-text);
+  font-family: var(--tz-typography-300-regular-family);
+  font-size: var(--tz-typography-300-regular-font-size);
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: var(--tz-typography-300-regular-line-height);
+  position: relative;
+  z-index: var(--tz-layer-tooltip);
+}
+
+.tz-select-item {
+  align-items: center;
+  border-radius: 3px;
+  color: var(--tz-color-ui-base-text);
+  display: flex;
+  font-family: var(--tz-typography-300-regular-family);
+  font-size: var(--tz-typography-300-regular-font-size);
+  height: var(--tz-control-default-size);
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: 1;
+  padding: 0 var(--tz-space-200);
+  position: relative;
+  user-select: none;
+
+  &[data-disabled] {
+    color: var(--tz-color-base-gray-700);
+    pointer-events: none;
+  }
+
+  &[data-highlighted] {
+    background-color: var(--tz-nav-secondary-selected-bg);
+    color: var(--tz-nav-secondary-selected-text);
+    outline: none;
+  }
+}
+
+.tz-select-item-inner {
+  --icon-size: 1rem;
+
+  display: grid;
+  gap: var(--tz-space-300);
+  grid-template-columns: var(--icon-size) max-content;
+}
+
+.tz-select-item-icon {
+  align-self: center;
+}
+
+.tz-select-item-label {
+  display: block;
+  white-space: nowrap;
+}
+
+.tz-select-item-indicator {
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  width: var(--tz-control-default-size);
+}
+
+.tz-select-options {
+  background: var(--tz-button-secondary-bg);
+  border-radius: var(--tz-radius-200);
+  box-shadow: var(--tz-shadow-300);
+  color: var(--tz-text-secondary);
+  overflow: hidden;
+  padding-bottom: var(--tz-space-200);
+  padding-top: var(--tz-space-200);
+  position: relative;
+  z-index: var(--tz-layer-popover);
+}
+
+.tz-select-scroll-button {
+  align-items: center;
+  background-color: var(--tz-button-secondary-bg);
+  color: var(--tz-icon-secondary);
+  cursor: default;
+  display: flex;
+  height: var(--tz-control-default-size);
+  justify-content: center;
+}
+
+.tz-select-trigger {
+  align-items: center;
+  background-color: var(--tz-button-secondary-bg);
+  border: none;
+  border-radius: var(--tz-radius-300);
+  color: var(--tz-button-secondary-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: var(--tz-typography-300-regular-font-family);
+  font-size: var(--tz-typography-300-regular-font-size);
+  font-weight: var(--tz-typography-300-regular-font-weight);
+  gap: var(--tz-space-200);
+  height: var(--tz-control-default-size);
+  justify-content: center;
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: 1;
+  outline: 1px solid transparent;
+  padding: 0 var(--tz-space-200);
+
+  &:hover,
+  &:focus-visible {
+    outline-color: var(--tz-button-secondary-hover-border);
+  }
+}
+
+.tz-select-trigger-inner {
+  align-items: center;
+  display: inline-flex;
+  gap: var(--tz-space-300);
+  white-space: nowrap;
+}

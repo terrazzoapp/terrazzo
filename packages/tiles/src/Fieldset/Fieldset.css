@@ -1,0 +1,19 @@
+.tz-fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--tz-space-300);
+  padding: 0;
+}
+
+.tz-fieldset-legend {
+  color: var(--tz-text-secondary);
+  display: flex;
+  font-family: var(--tz-typography-200-regular-font-family);
+  font-size: var(--tz-typography-200-regular-font-size);
+  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+  line-height: var(--tz-typography-200-regular-line-height);
+  margin-bottom: var(--tz-space-300);
+  position: static;
+  width: 100%;
+}

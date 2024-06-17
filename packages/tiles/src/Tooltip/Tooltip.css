@@ -1,0 +1,25 @@
+.tz-tooltip-content {
+  animation-duration: 400ms;
+  background: var(--tz-surface-primary-bg);
+  border: 1px solid var(--tz-surface-primary-border);
+  border-radius: var(--tz-radius-2);
+  box-shadow: var(--tz-shadow-300);
+  color: var(--tz-text-secondary);
+  font-family: var(--tz-typography-200-regular-font-family);
+  font-size: var(--tz-typography-200-regular-font-size);
+  font-weight: var(--tz-typography-200-regular-font-weight);
+  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+  line-height: var(--tz-typography-200-regular-line-height);
+  padding: var(--tz-space-300);
+  user-select: none;
+  will-change: transform, opacity;
+  z-index: var(--tz-layer-popover);
+
+  a {
+    color: var(--tz-text-link-primary);
+  }
+}
+
+.tz-tooltip-arrow {
+  fill: var(--tz-surface-primary-bg);
+}

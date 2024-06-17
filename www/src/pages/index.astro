@@ -1,0 +1,134 @@
+---
+import { ButtonLink } from "@terrazzo/tiles";
+import DefaultLayout from "../layouts/default.astro";
+---
+
+<DefaultLayout>
+  <main>
+    <div class="logo-wrapper">
+      <svg
+        class="logo"
+        fill="none"
+        viewBox="0 0 121 24"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="Terrazzo Logo"
+        ><path
+          d="m19.9333 21.792s0 1.5596-1.7302 1.5596h-16.47285c-1.73025 0-1.73025-1.5596-1.73025-1.5596z"
+          fill="#8cd10c"></path><g fill="var(--tz-color-base-gray-1200)"
+          ><path
+            d="m8.9733.5h-8.747783c-.124035 0-.225517.101495-.225517.225544v8.748856c0 .20074.24243.3011.384506.15901l8.748914-8.748857c.14207-.142093.04172-.384553-.15899-.384553z"
+          ></path><path
+            d="m19.9334 9.4744v-8.748856c0-.124049-.1015-.225544-.2255-.225544h-8.7489c-.2007 0-.3011.24246-.159.384553l8.7488 8.748857c.1421.14209.3846.04173.3846-.15901z"
+          ></path><path
+            d="m10.959 20.4333h8.7489c.124 0 .2255-.1015.2255-.2255v-8.7489c0-.2007-.2425-.3011-.3846-.159l-8.7488 8.7489c-.1421.1421-.0417.3845.159.3845z"
+          ></path><path
+            d="m8.9744 20.4333h-8.748856c-.124049 0-.225544-.1015-.225544-.2255v-8.7489c0-.2007.24246-.3011.384553-.159l8.748857 8.7489c.14209.1421.04173.3845-.15901.3845z"
+          ></path><path
+            d="m36.6995 10.162h-1.6973v-2.78242h1.6973v-3.15351h3.1622v3.15351h2.5345v2.78242h-2.5345v5.7458c0 .1121.0908.2026.2032.2026h2.2335v2.9091h-3.5971c-1.1053 0-2.0018-.8941-2.0018-1.9963z"
+          ></path><path
+            d="m43.7026 13.1999c0-3.59428 2.3949-6.21443 5.9061-6.21443 3.5113 0 5.6038 2.34163 5.6038 5.98253 0 .3941-.023.7186-.0698 1.1127h-8.4168c.2792 1.5304 1.3489 2.6201 2.9296 2.6201 1.2554 0 2.2091-.603 2.7202-1.7393l2.5813 1.1823c-1.0229 2.1564-2.9527 3.2461-5.3713 3.2461-3.4875 0-5.8824-2.5742-5.8824-6.1914zm8.5796-1.2986c-.3023-1.3912-1.1856-2.29568-2.6742-2.29568-1.4885 0-2.4178.95048-2.79 2.29568z"
+          ></path><path
+            d="m56.6411 7.37953h3.0693c0 .62597 0 1.13635-.0468 1.76232l.1627.02297c.6507-1.32156 1.7902-1.87789 3.0225-1.87789.2095 0 .4182.02297.6507.06963v2.85204h-1.1157c-1.6973 0-2.6043 1.0437-2.6043 2.7823v6.0285h-3.1391v-11.63987z"
+          ></path><path
+            d="m64.7031 7.37953h3.0693c0 .62597 0 1.13635-.0468 1.76232l.1627.02297c.6507-1.32156 1.7902-1.87789 3.0225-1.87789.2095 0 .4183.02297.6508.06963v2.85204h-1.1158c-1.6973 0-2.6043 1.0437-2.6043 2.7823v6.0285h-3.1391v-11.63987z"
+          ></path><path
+            d="m72.2937 13.1998c0-3.45496 2.0695-6.07511 5.2547-6.07511 1.5116 0 2.6971.62597 3.5343 1.97121l.1627-.02298c-.0468-.58001-.0468-1.0897-.0468-1.69269h3.0923v11.64057h-3.0923c0-.6489 0-1.0667.0468-1.6927l-.1627-.0466c-.8602 1.3912-2.1623 2.0172-3.6502 2.0172-3.1391 0-5.1388-2.7128-5.1388-6.0982zm8.9286 0c0-1.9245-1.1394-3.26975-2.9296-3.26975s-2.8599 1.41415-2.8599 3.26975c0 1.8557 1.0927 3.2698 2.8599 3.2698 1.7671 0 2.9296-1.3452 2.9296-3.2698z"
+          ></path><path
+            d="m85.5637 18.8579 5.5801-8.7419h-4.8826v-2.73642h9.7658l.0698.13926-5.6038 8.74196h5.511v2.7594h-10.3705z"
+          ></path><path
+            d="m96.5789 18.8579 5.5801-8.7419h-4.8826v-2.73642h9.7656l.07.13926-5.604 8.74196h5.511v2.7594h-10.3703z"
+          ></path><path
+            d="m107.75 13.1999c0-3.59428 2.464-6.21443 6.045-6.21443 3.58 0 6.046 2.59717 6.046 6.19143 0 3.5943-2.465 6.2144-6.046 6.2144s-6.045-2.5972-6.045-6.1914zm8.998-.023c0-1.8779-1.139-3.38537-2.952-3.38537-1.814 0-2.953 1.50747-2.953 3.40837 0 1.9008 1.116 3.3853 2.953 3.3853 1.836 0 2.952-1.5074 2.952-3.4083z"
+          ></path></g
+        ></svg
+      >
+      <span class="beta">beta</span>
+    </div>
+    <p class="tagline">The next generation of design system tooling</p>
+    <p>
+      Terrazzo is in beta, and is a suite of tools for building and managing
+      your design system. Terrazzo follows the <a
+        href="https://designtokens.org"
+        target="_blank">W3C Community Group Design Token spec</a
+      > and is built by <a class="gh-user" href="https://github.com/drwpow"
+        ><img
+          class="gh-avatar"
+          src="https://avatars.githubusercontent.com/u/1369770?v=4"
+          aria-hidden
+        />@drwpow</a
+      >, <a class="gh-user" href="https://github.com/natassone"
+        ><img
+          class="gh-avatar"
+          src="https://avatars.githubusercontent.com/u/1572205?v=4"
+          aria-hidden
+        />@ntassone</a
+      >, and other contributors.
+    </p>
+    <p></p>
+    <div class="actions">
+      <ButtonLink href="/docs">Get Started</ButtonLink>
+      <ButtonLink
+        href="https://github.com/terrazzoapp/terrazzo"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary">View GitHub</ButtonLink
+      >
+    </div>
+  </main>
+</DefaultLayout>
+
+<style>
+  .logo {
+    height: 3rem;
+  }
+
+  .logo-wrapper {
+    align-items: flex-start;
+    display: flex;
+    gap: var(--tz-space-300);
+    margin-block: var(--tz-space-900);
+  }
+
+  .tagline {
+    font-size: var(--tz-typography-800-regular-font-size);
+    font-weight: var(--tz-typography-800-regular-font-weight);
+    letter-spacing: var(--tz-typography-800-regular-letter-spacing);
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: var(--tz-space-600);
+  }
+
+  .beta {
+    background-color: var(--tz-color-base-gray-300);
+    border: 1px solid var(--tz-surface-secondary-border);
+    border-radius: var(--tz-radius-300);
+    color: var(--tz-surface-secondary-text);
+    display: inline-block;
+    font-family: var(--tz-typography-family-mono);
+    font-size: var(--tz-typography-200-regular-font-size);
+    line-height: 1;
+    padding: var(--tz-space-100);
+  }
+
+  .actions {
+    display: flex;
+    gap: var(--tz-space-300);
+    margin-top: var(--tz-space-800);
+  }
+
+  main {
+    margin-inline: auto;
+    max-width: 100%;
+    padding-inline: var(--tz-space-700);
+    padding-block: var(--tz-space-800);
+    width: 60rem;
+  }
+
+  p {
+    font-size: var(--tz-typography-200-regular-font-size);
+    font-weight: var(--tz-typography-200-regular-font-weight);
+    letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+    line-height: var(--tz-typography-200-regular-line-height);
+  }
+</style>

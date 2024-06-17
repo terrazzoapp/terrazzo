@@ -1,0 +1,25 @@
+import clsx from 'clsx';
+import type { ComponentProps } from 'react';
+import '../Button/Button.css'; // note: a component should NEVER import another’s styles, but this is a special case
+
+export interface ButtonLinkProps extends ComponentProps<'a'> {
+  /** default: "m" */
+  size?: 's' | 'm';
+  /** default: "primary" */
+  variant?: 'primary' | 'secondary' | 'tertiary';
+}
+
+export default function ButtonLink({
+  className,
+  children,
+  size = 'm',
+  variant = 'primary',
+  ref,
+  ...rest
+}: ButtonLinkProps) {
+  return (
+    <a className={clsx('tz-button', className)} ref={ref} data-size={size} data-variant={variant} {...rest}>
+      {children}
+    </a>
+  );
+}

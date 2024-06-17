@@ -1,0 +1,19 @@
+.tz-kbd {
+  align-items: center;
+  background-color: var(--tz-surface-primary-bg);
+  border: 1px solid var(--tz-surface-primary-border);
+  border-radius: var(--tz-radius-200);
+  color: var(--tz-text-primary);
+  cursor: default;
+  display: inline-flex;
+  font-family: var(--tz-typography-family-mono);
+  font-size: inherit;
+  font-weight: var(--tz-typography-300-regular-font-weight);
+  height: 1.5em;
+  justify-content: center;
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: inherit;
+  padding: 0;
+  user-select: none;
+  width: 1.5em;
+}

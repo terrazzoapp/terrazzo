@@ -1,0 +1,92 @@
+.tz-switch {
+  --tz-switch-height: 1.125rem;
+  --tz-switch-width: 1.875rem;
+  --tz-switch-inner-padding: 0.125rem;
+  --tz-switch-handle-size: calc(
+    var(--tz-switch-height) - 2 * var(--tz-switch-inner-padding)
+  );
+
+  cursor: pointer;
+  display: flex;
+  position: relative;
+  user-select: none;
+  z-index: var(--tz-layer-base);
+}
+
+.tz-switch-field {
+  cursor: pointer;
+  height: var(--tz-switch-height);
+  left: 0;
+  margin: 0;
+  opacity: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: var(--tz-switch-width);
+  z-index: 1;
+}
+
+.tz-switch-label {
+  border-radius: var(--tz-radius-1);
+  cursor: pointer;
+  display: flex;
+  flex: 1 0 auto;
+  font-family: var(--tz-typography-300-regular-font-family);
+  font-size: var(--tz-typography-300-regular-font-size);
+  font-weight: var(--tz-typography-300-regular-font-weight);
+  gap: var(--tz-space-300);
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: 1;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+
+  &::before {
+    background-color: var(--tz-color-base-gray-800);
+    border-radius: var(--tz-switch-width);
+    content: "";
+    height: var(--tz-switch-height);
+    pointer-events: none;
+    position: relative;
+    width: var(--tz-switch-width);
+    z-index: calc(var(--tz-layer-base) + 1);
+  }
+
+  &::after {
+    background-color: var(--tz-color-base-gray-000);
+    border-radius: var(--tz-switch-width);
+    content: "";
+    height: var(--tz-switch-handle-size);
+    left: 0;
+    position: absolute;
+    top: var(--tz-switch-inner-padding);
+    transform: translate3d(var(--tz-switch-inner-padding), 0, 0);
+    width: var(--tz-switch-handle-size);
+    z-index: calc(var(--tz-layer-base) + 2);
+  }
+}
+
+.tz-switch-field:focus-visible ~ .tz-switch-label {
+  outline-color: var(--tz-nav-primary-highlight);
+}
+
+.tz-switch-field:checked ~ .tz-switch-label {
+  &::before {
+    background-color: var(--tz-color-base-lime-1000);
+  }
+
+  &::after {
+    transform: translate3d(
+      calc(
+        var(--tz-switch-inner-padding) + var(--tz-switch-width) -
+          var(--tz-switch-height)
+      ),
+      0,
+      0
+    );
+  }
+}
+
+.tz-switch-label-text {
+  display: block;
+  line-height: var(--tz-switch-height);
+}

@@ -1,0 +1,72 @@
+---
+import { GitHubLogo } from "@terrazzo/icons";
+import DocsSearch from "./SearchBox.tsx";
+---
+
+<header class="header-nav">
+  <div class="search">
+    <DocsSearch client:only="react" />
+  </div>
+  <nav class="nav">
+    <ul>
+      <li>
+        <a
+          href="https://github.com/terrazzo/terrazzo"
+          title="Terrazzo on GitHub"
+        >
+          <GitHubLogo />
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .header-nav {
+    align-items: center;
+    background-color: var(--tz-surface-primary-bg);
+    border-bottom: 1px solid var(--tz-color-base-gray-400);
+    color: var(--tz-surface-secondary-text);
+    display: flex;
+    max-height: var(--tz-space-900);
+    justify-content: space-between;
+    padding-inline: var(--tz-space-500);
+    width: 100%;
+  }
+
+  .search {
+    flex: 1 0 auto;
+  }
+
+  .nav {
+    align-items: center;
+    flex-grow: 0 0 auto;
+    display: flex;
+
+    ul {
+      align-items: center;
+      display: flex;
+      gap: var(--tz-space-300);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      align-items: center;
+      display: flex;
+      font-size: var(--tz-typography-300-regular-font-size);
+      font-weight: var(--tz-typography-300-regular-font-weight);
+      gap: var(--tz-space-200);
+      height: var(--tz-space-900);
+      line-height: 1;
+      padding-inline: var(--tz-space-100);
+      text-decoration: none;
+
+      &[aria-current] {
+        color: var(----tz-text-link-primary);
+        font-weight: var(--tz-typography-300-medium-font-weight);
+      }
+    }
+  }
+</style>

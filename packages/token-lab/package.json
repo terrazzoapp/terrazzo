@@ -1,0 +1,46 @@
+{
+  "name": "@terrazzo/token-lab",
+  "description": "Create, edit, and safe tokens.json in DTCG format",
+  "version": "0.0.0",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "license": "MIT",
+  "keywords": [
+    "dtcg",
+    "design tokens",
+    "tokens.json"
+  ],
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+terrazzoapp/terrazzo.git",
+    "directory": "./packages/token-lab"
+  },
+  "main": "./dist/index.js",
+  "scripts": {
+    "dev": "vite dev",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:css": "stylelint ."
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  },
+  "dependencies": {
+    "@terrazzo/fonts": "workspace:^",
+    "@terrazzo/react-color-picker": "workspace:^",
+    "@terrazzo/tiles": "workspace:^",
+    "@terrazzo/tokens": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "vite": "^5.3.1"
+  }
+}

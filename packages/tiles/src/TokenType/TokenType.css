@@ -1,0 +1,16 @@
+.tz-tokentype {
+  align-items: center;
+  display: flex;
+  font-family: var(--tz-typography-300-regular-font-family);
+  font-size: var(--tz-typography-300-regular-font-size);
+  font-weight: var(--tz-typography-300-regular-font-weight);
+  gap: var(--tz-space-300);
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: 1;
+}
+
+.tz-tokentype-icon {
+  color: var(--tz-icon-secondary);
+  height: 1em;
+  width: 1em;
+}

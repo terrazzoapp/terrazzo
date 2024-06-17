@@ -1,0 +1,28 @@
+---
+title: React Color Picker
+layout: ../../../layouts/docs.astro
+---
+
+import ColorPickerDemo from "../../../components/ColorPickerDemo";
+
+# React Color Picker
+
+Terrazzo’s colorpicker is pretty special: it not only supports all of [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) colorspaces like OKLAB/OKLCH, XYZ, P3, and more (thanks to [Culori](https://culorijs.org/), a fast and accurate color science library). It also renders colors using WebGL for pixel-perfect accuracy in any monitor.
+
+## Demo
+
+<ColorPickerDemo client:load />
+
+## Setup
+
+:::code-group
+
+```sh npm
+npm i @terrazzo/react-color-picker
+```
+
+```sh pnpm
+pnpm i @terrazzo/react-color-picker
+```
+
+:::

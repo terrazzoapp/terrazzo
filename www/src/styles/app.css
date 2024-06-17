@@ -1,0 +1,102 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--tz-surface-primary-bg);
+  color: var(--tz-text-primary);
+  font-family: var(--tz-typography-family-sans);
+  font-size: 100%;
+  line-height: 1;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: 1px solid transparent;
+
+  &:focus-visible {
+    outline-color: color-mix(
+      in oklab,
+      var(--tz-color-brand-lime),
+      transparent 50%
+    );
+  }
+}
+
+:root {
+  --global-gutter: 1rem;
+}
+
+::selection {
+  background-color: var(--tz-color-brand-lime);
+}
+
+h1 {
+  font-size: var(--tz-typography-700-medium-font-size);
+  font-style: var(--tz-typography-700-medium-font-style);
+  font-weight: var(--tz-typography-700-medium-font-weight);
+  letter-spacing: var(--tz-typography-700-medium-letter-spacing);
+  line-height: var(--tz-typography-700-medium-line-height);
+}
+
+h2 {
+  font-size: var(--tz-typography-600-medium-font-size);
+  font-style: var(--tz-typography-600-medium-font-style);
+  font-weight: var(--tz-typography-600-medium-font-weight);
+  letter-spacing: var(--tz-typography-600-medium-letter-spacing);
+  line-height: var(--tz-typography-600-medium-line-height);
+}
+
+h3 {
+  font-size: var(--tz-typography-500-medium-font-size);
+  font-style: var(--tz-typography-500-medium-font-style);
+  font-weight: var(--tz-typography-500-medium-font-weight);
+  letter-spacing: var(--tz-typography-500-medium-letter-spacing);
+  line-height: var(--tz-typography-500-medium-line-height);
+}
+
+p,
+li,
+blockquote {
+  font-size: var(--tz-typography-300-regular-font-size);
+  font-style: var(--tz-typography-300-regular-font-style);
+  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  line-height: var(--tz-typography-300-regular-line-height);
+}
+
+pre,
+code {
+  font-family: var(--tz-typography-family-mono);
+  font-size: var(--tz-typography-100-regular-font-size);
+  font-style: var(--tz-typography-100-regular-font-style);
+  font-variant-ligatures: none;
+  line-height: var(--tz-typography-100-regular-line-height);
+  text-decoration: var(--tz-typography-100-regular-text-decoration);
+}
+
+a {
+  color: var(--tz-text-link-primary);
+}
+
+mark {
+  background-color: var(--tz-nav-primary-selected-bg);
+  color: var(--tz-nav-primary-selected-text);
+}
+
+.gh-user {
+  align-items: center;
+  border-radius: 4rem;
+  display: inline-flex;
+  font-weight: var(--tz-typography-300-medium-font-weight);
+  gap: 0.375em;
+  vertical-align: -8.75%;
+}
+
+.gh-avatar {
+  border-radius: 50%;
+  height: 1em;
+  width: 1em;
+}

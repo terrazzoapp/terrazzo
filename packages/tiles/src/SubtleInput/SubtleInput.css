@@ -1,0 +1,66 @@
+.tz-subtle-input {
+  --input-text: var(--tz-input-primary-text);
+  --input-border: transparent;
+
+  background-color: transparent;
+  border-radius: var(--tz-radius-200);
+  color: var(--tz-input-primary-text);
+  display: flex;
+  font-family: var(--tz-typography-family-mono);
+  font-size: var(--tz-typography-200-regular-font-size);
+  font-weight: var(--tz-typography-200-regular-font-weight);
+  gap: var(--tz-space-200);
+  letter-spacing: 0;
+  outline: 1px solid var(--input-border);
+  position: relative;
+
+  &:hover {
+    --input-border: var(--tz-input-primary-hover-border);
+    --input-text: var(--tz-input-primary-hover-text);
+  }
+
+  &:focus-within {
+    --input-border: var(--tz-input-primary-focus-border);
+    --input-text: var(--tz-input-primary-focus-text);
+  }
+}
+
+.tz-subtle-input-field {
+  --height: var(--tz-control-default-size);
+
+  -moz-appearance: textfield;
+  background: none;
+  border: none;
+  color: inherit;
+  flex: 1 0 auto;
+  font-family: var(--tz-typography-family-mono);
+  font-size: var(--tz-typography-200-regular-font-size);
+  font-variant-ligatures: none;
+  font-weight: var(--tz-typography-200-regular-font-weight);
+  line-height: var(--height);
+  min-width: calc(4 * var(--height));
+  outline: none;
+  padding: 0;
+  text-indent: var(--tz-space-200);
+
+  &[type="number"] {
+    text-align: right;
+    text-indent: 0;
+  }
+}
+
+.tz-subtle-input-field[type="number"]::-webkit-inner-spin-button,
+.tz-subtle-input-field[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+.tz-subtle-input-suffix {
+  align-self: center;
+  pointer-events: none;
+
+  &:empty {
+    display: none;
+  }
+}

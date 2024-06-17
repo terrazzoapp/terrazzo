@@ -1,0 +1,163 @@
+.tz-color-picker {
+  background-color: var(--tz-surface-primary-bg);
+  color: var(--tz-text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--tz-space-200);
+}
+
+.tz-color-picker-code {
+  --copy-btn-width: 2rem;
+
+  display: flex;
+  padding: 0;
+  position: relative;
+}
+
+.tz-color-picker-code-copy-btn {
+  --btn-text: var(--tz-icon-secondary);
+
+  background-color: transparent;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    var(--tz-color-base-gray-200) 50%
+  );
+  border: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: var(--tz-radius-300);
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  bottom: 0;
+  color: var(--btn-text);
+  cursor: pointer;
+  outline: 2px solid transparent;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: outline-color var(--tz-timing-default) var(--tz-ease-linear);
+  width: var(--copy-btn-width);
+  z-index: 2;
+
+  &:hover {
+    background-color: var(--tz-color-base-gray-300);
+  }
+
+  &:focus-visible {
+    outline-color: var(--tz-nav-primary-highlight);
+  }
+}
+
+.tz-color-picker-code-input {
+  --input-bg: var(--tz-input-primary-bg);
+  --input-border: var(--tz-input-primary-border);
+  --input-text: var(--tz-input-primary-text);
+
+  background-color: var(--input-bg);
+  border: none;
+  border-bottom-left-radius: var(--tz-radius-200);
+  border-bottom-right-radius: var(--tz-radius-200);
+  color: var(--input-text);
+  flex: 1 0 auto;
+  font-family: var(--tz-typography-family-mono);
+  font-size: var(--tz-typography-100-regular-font-size);
+  font-variant-ligatures: none;
+  font-weight: var(--tz-typography-100-regular-font-weight);
+  height: var(--tz-control-default-size);
+  letter-spacing: 0;
+  line-height: var(--tz-control-default-size);
+  outline: none;
+  padding: 0 calc(0.5 * var(--copy-btn-width)) 0 0;
+  text-indent: var(--tz-space-200);
+
+  &:hover {
+    --input-bg: var(--tz-input-primary-hover-bg);
+    --input-border: var(--tz-input-primary-hover-border);
+    --input-text: var(--tz-input-primary-hover-text);
+  }
+
+  &:focus {
+    --input-bg: var(--tz-input-primary-focus-bg);
+    --input-border: var(--tz-input-primary-focus-border);
+    --input-text: var(--tz-input-primary-focus-text);
+  }
+}
+
+.tz-color-picker-colorspace-summary {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.tz-color-picker-colorspace-chevron {
+  --tz-color-picker-colorspace-chevron-borderColor: transparent;
+
+  align-items: center;
+  border-color: var(--tz-color-picker-colorspace-chevron-borderColor);
+  border-radius: var(--tz-radius-300);
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: inline-flex;
+  height: var(--tz-control-small-size);
+  justify-content: center;
+  width: var(--tz-control-small-size);
+
+  &:hover {
+    --tz-color-picker-colorspace-chevron-borderColor: var(
+      --tz-surface-primary-border
+    );
+  }
+}
+
+.tz-color-picker-colorspace[open] .tz-color-picker-colorspace-chevron {
+  transform: rotate(0.5turn);
+}
+
+.tz-color-picker-colorspace-gamut {
+  border-bottom: 1px solid var(--tz-color-base-gray-400);
+  padding-bottom: var(--tz-space-200);
+  padding-top: var(--tz-space-200);
+}
+
+.tz-color-picker-colorspace-gamut-label {
+  align-items: center;
+  display: flex;
+  gap: var(--tz-space-200);
+  justify-content: flex-start;
+}
+
+.tz-color-picker-colorspace-gamut-tooltip {
+  display: inline-block;
+  max-width: 20rem;
+}
+
+.tz-color-picker-preview {
+  border: 1px solid var(--tz-button-secondary-border);
+  border-radius: var(--tz-radius-300);
+  display: flex;
+  flex-direction: column;
+}
+
+.tz-color-picker-sliders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--tz-space-200);
+}
+
+.tz-color-picker-swatch {
+  background-image: linear-gradient(var(--current-color), var(--current-color)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23dad9d6' width='32' height='32'/><rect fill='%23dad9d6' x='32' y='32' width='32' height='32'/></svg>");
+  background-repeat: no-repeat, repeat;
+  background-size:
+    100% 100%,
+    10px;
+  border-top-left-radius: var(--tz-radius-300);
+  border-top-right-radius: var(--tz-radius-300);
+  height: 6rem;
+}
+
+.tz-color-picker-tooltip-icon {
+  color: var(--tz-color-base-gray-900);
+}

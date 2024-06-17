@@ -1,0 +1,44 @@
+{
+  "name": "@terrazzo/www",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "astro build",
+    "dev": "astro dev",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:css": "stylelint .",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@cobalt-ui/core": "^1.11.2",
+    "@terrazzo/fonts": "workspace:^",
+    "@terrazzo/icons": "workspace:^",
+    "@terrazzo/react-color-picker": "workspace:^",
+    "@terrazzo/tiles": "workspace:^",
+    "@terrazzo/token-lab": "workspace:^",
+    "@terrazzo/tokens": "workspace:^",
+    "@terrazzo/use-color": "workspace:^",
+    "algoliasearch": "^4.23.3",
+    "nanoid": "^5.0.7",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-instantsearch": "^7.11.1"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^3.1.0",
+    "@astrojs/react": "3.5.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "astro": "^4.10.2",
+    "json5": "^2.2.3",
+    "rehype-autolink-headings": "^7.1.0",
+    "rehype-slug": "^6.0.0",
+    "remark-directive": "^3.0.0",
+    "typescript": "^5.4.5",
+    "unist-util-visit": "^5.0.0",
+    "vite": "^5.3.1",
+    "vite-plugin-sass-dts": "^1.3.22",
+    "vite-tsconfig-paths": "^4.3.2"
+  }
+}
