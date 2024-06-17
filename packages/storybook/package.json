@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run sb",
-    "build": "sb build",
+    "build-storybook": "sb build",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check .",
     "lint:css": "stylelint .",
