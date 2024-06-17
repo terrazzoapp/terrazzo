@@ -26,7 +26,7 @@ export default function StickerSheet({ columns, rows, variants }: StickerSheetPr
           const rowVariants = variants.slice(start, start + columns.length);
           return (
             <tr key={row}>
-              <th className={c.th} scope="row">
+              <th className={c.th} scope='row'>
                 {row}
               </th>
               {rowVariants.map((variant, i) => (

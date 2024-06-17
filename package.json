@@ -9,6 +9,7 @@
     "changeset": "changeset",
     "dev": "pnpm run -r --parallel --if-present --filter \"@terrazzo/*\" dev",
     "lint": "pnpm run -r --parallel --if-present lint",
+    "format": "pnpm run -r --parallel --if-present format",
     "test": "pnpm run -r --if-present --aggregate-output --parallel test",
     "prepublishOnly": "pnpm run build",
     "version": "pnpm run build && changeset version && pnpm i --no-frozen-lockfile"
@@ -21,6 +22,7 @@
     "del-cli": "^5.1.0",
     "prettier": "^3.3.2",
     "strip-ansi": "^7.1.0",
+    "stylelint": "^16.6.1",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0"
   }

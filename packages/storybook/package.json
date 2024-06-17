@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run sb",
-    "build": "sb build",
+    "build-storybook": "sb build",
+    "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint .",
+    "lint:js": "biome check src",
+    "lint:css": "stylelint src",
     "sb": "sb dev -p 9009"
   },
   "devDependencies": {

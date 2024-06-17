@@ -13,7 +13,7 @@ function HueWheel({ ...rest }: HueWheelProps) {
       return;
     }
     setWebgl(new HueWheelWebGL({ canvas: canvasEl.current }));
-  }, [canvasEl.current, webgl]);
+  }, [webgl]);
 
   return <canvas ref={canvasEl} {...rest} />;
 }

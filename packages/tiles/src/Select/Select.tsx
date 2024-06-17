@@ -33,12 +33,12 @@ export function SelectItem({ className, children, icon, ref, ...rest }: SelectIt
   return (
     <RadixSelectItem ref={ref} className={clsx('tz-select-item', className)} {...rest}>
       <SelectItemText>
-        <span className="tz-select-item-inner">
-          <span className="tz-select-item-icon">{icon}</span>
-          <span className="tz-select-item-label">{children}</span>
+        <span className='tz-select-item-inner'>
+          <span className='tz-select-item-icon'>{icon}</span>
+          <span className='tz-select-item-label'>{children}</span>
         </span>
       </SelectItemText>
-      <SelectItemIndicator className="tz-select-item-indicator">
+      <SelectItemIndicator className='tz-select-item-indicator'>
         <Check />
       </SelectItemIndicator>
     </RadixSelectItem>
@@ -77,16 +77,16 @@ export default function Select({
   return (
     <Root {...rest}>
       <Trigger className={clsx('tz-select-trigger', className)} style={style}>
-        <Value placeholder={<span className="tz-select-trigger-inner">{trigger}</span>} />
-        <Icon className="tz-select-icon">{triggerIcon ?? <CaretSort />}</Icon>
+        <Value placeholder={<span className='tz-select-trigger-inner'>{trigger}</span>} />
+        <Icon className='tz-select-icon'>{triggerIcon ?? <CaretSort />}</Icon>
       </Trigger>
       <Portal>
-        <Content className="tz-select-options">
-          <ScrollUpButton className="tz-select-scroll-button tz-select-scroll-button__up">
+        <Content className='tz-select-options'>
+          <ScrollUpButton className='tz-select-scroll-button tz-select-scroll-button__up'>
             {scrollUpIcon ?? <ChevronUp />}
           </ScrollUpButton>
-          <Viewport className="tz-select-viewport">{children}</Viewport>
-          <ScrollDownButton className="tz-select-scroll-button tz-select-scroll-button__down">
+          <Viewport className='tz-select-viewport'>{children}</Viewport>
+          <ScrollDownButton className='tz-select-scroll-button tz-select-scroll-button__down'>
             {scrollDownIcon ?? <ChevronDown />}
           </ScrollDownButton>
         </Content>
