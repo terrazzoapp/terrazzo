@@ -342,7 +342,7 @@ importers:
         specifier: workspace:^
         version: link:../parser
       tailwindcss:
-        specifier: ^3.4.1
+        specifier: ^3.4.4
         version: 3.4.4
       yaml:
         specifier: ^2.4.1
