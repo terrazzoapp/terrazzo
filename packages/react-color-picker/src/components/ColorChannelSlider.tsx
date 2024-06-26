@@ -8,6 +8,7 @@ import {
   inGamut,
   type Oklch,
 } from '@terrazzo/use-color';
+import { useDrag } from '@use-gesture/react';
 import clsx from 'clsx';
 import {
   type ComponentProps,
@@ -68,10 +69,12 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
     case 'lab':
     case 'oklab': {
       if (channel === 'a' || channel === 'b') {
-        min = -100;
-        const clamped = clampChroma(color, color.mode, gamut);
-        max = clamped[channel as keyof Omit<Color, 'mode'>] || 100;
-        displayMax = 100;
+        min = -1.5;
+        max = 1.5;
+        const clampedMin = clampChroma({ ...color, [channel]: -2 }, color.mode, gamut);
+        const clampedMax = clampChroma({ ...color, [channel]: 2 }, color.mode, gamut);
+        displayMin = clampedMin[channel as keyof Omit<Color, 'mode'>];
+        displayMax = clampedMax[channel as keyof Omit<Color, 'mode'>];
       }
       break;
     }
@@ -223,66 +226,58 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
   setColor,
 }: ColorChannelDragProps) {
   const wrapperEl = useRef<HTMLDivElement | null>(null);
-  const [wrapperLeft, setWrapperLeft] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
   const [wrapperWidth, setWrapperWidth] = useState(240);
-  const isDragging = useRef(false);
-  const isShifting = useRef(false);
-  const dragOrigin = useRef(0);
+  const [innerValue, setInnerValue] = useState(color.original[channel as keyof typeof color.original] as number);
+  const prevValue = useRef(innerValue);
+  const draggable = useDrag(({ dragging, offset, shiftKey }) => {
+    if (isDragging !== dragging) {
+      setIsDragging(!!dragging);
+      if (dragging) {
+        console.log({ innerValue });
+        prevValue.current = innerValue; // store ref to initial value on drag start to reduce rounding errors
+      }
+    }
+    const [offsetX] = offset;
+    const xRaw = (offsetX * (shiftKey ? SHIFT_FACTOR : 1)) / wrapperWidth;
+    const nextValue = clamp(prevValue.current + (xRaw * max - min), min, max);
+    if (nextValue !== innerValue) {
+      setInnerValue(nextValue);
+      setColor((value) => ({ ...value.original, [channel]: nextValue }));
+    }
+  });
 
-  const value = color.original[channel as keyof typeof color.original] as number;
+  // Update bounds
+  function updateWrapperEl(el?: HTMLElement | null): void {
+    if (!el) {
+      return;
+    }
+    const { width } = el.getBoundingClientRect();
+    setWrapperWidth(width);
+  }
 
-  // initial paint
+  // Effects on drag state change
   useLayoutEffect(() => {
-    if (wrapperEl.current) {
-      const { left, width } = wrapperEl.current.getBoundingClientRect();
-      setWrapperWidth(width);
-      setWrapperLeft(left);
-    }
-  }, [wrapperEl.current, setWrapperWidth]);
-
-  // drag behavior
-  useEffect(() => {
-    function handlePointermove(evt: PointerEvent) {
-      if (!isDragging.current || !setColor) {
-        return;
-      }
-      evt.preventDefault();
-      const x =
-        ((evt.clientX - dragOrigin.current) * (isShifting.current ? SHIFT_FACTOR : 1) +
-          (dragOrigin.current - wrapperLeft)) /
-        wrapperWidth;
-      setColor((value) => ({ ...value.original, [channel]: clamp(min + x * (max - min), min, max) }));
-    }
-    addEventListener('pointermove', handlePointermove);
-    return () => removeEventListener('pointermove', handlePointermove);
-  }, [channel, min, max, setColor, wrapperLeft, wrapperWidth]);
-  useEffect(() => {
-    function handlePointerup() {
+    // update bounding el
+    updateWrapperEl(wrapperEl.current);
+    // handle body class
+    if (isDragging) {
+      document.body.classList.add(BODY_DRAGGING_CLASS);
+    } else {
       document.body.classList.remove(BODY_DRAGGING_CLASS);
-      isDragging.current = false;
     }
-    addEventListener('pointerup', handlePointerup);
-    return () => removeEventListener('pointerup', handlePointerup);
-  }, []);
+  }, [isDragging]);
 
-  // Shift key behavior
+  // bubble up updates
   useEffect(() => {
-    function handleKeydown(evt: KeyboardEvent) {
-      if (isDragging.current && evt.key === 'Shift') {
-        evt.preventDefault();
-        isShifting.current = true;
-      }
-    }
-    addEventListener('keydown', handleKeydown);
-    return () => removeEventListener('keydown', handleKeydown);
-  }, []);
+    setColor((value) => ({ ...value.original, [channel]: innerValue }));
+  }, [innerValue]);
+
+  // handle colorspace resets
+  // note: do NOT update inner value on channel changes—that could lead to an infinite loop!
   useEffect(() => {
-    function handleKeyup() {
-      isShifting.current = false;
-    }
-    addEventListener('keyup', handleKeyup);
-    return () => removeEventListener('keyup', handleKeyup);
-  }, []);
+    setInnerValue(clamp(color.original[channel as keyof typeof color.original] as number, min, max));
+  }, [channel, color.original.mode]);
 
   return (
     <div className='tz-color-channel-slider-wrapper'>
@@ -298,35 +293,23 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
         ref={wrapperEl}
         className='tz-color-channel-slider-bounds'
         style={{ '--left': min, '--right': `${100 * (((displayMax ?? max) - max) / (displayRange ?? range))}%` }}
-        onPointerDown={(evt) => {
-          if (!setColor) {
-            return;
-          }
-          setColor({ ...color.original, [channel]: (max * (evt.clientX - wrapperLeft)) / wrapperWidth + min });
-        }}
       >
         <div
-          className='tz-color-channel-slider-handle'
-          // drag start
+          className='tz-color-channel-slider-track'
           onPointerDown={(evt) => {
-            evt.preventDefault();
-            evt.stopPropagation();
-            isDragging.current = true;
-            if (wrapperEl.current) {
-              const { left, width } = wrapperEl.current.getBoundingClientRect();
-              if (width !== wrapperWidth) {
-                setWrapperWidth(width);
-              }
-              if (left !== wrapperLeft) {
-                setWrapperLeft(left);
-              }
+            const nextValue =
+              (min + (evt.clientX - evt.currentTarget.offsetLeft) / evt.currentTarget.offsetWidth) * (max - min);
+            if (nextValue !== innerValue) {
+              setInnerValue(nextValue);
             }
-            dragOrigin.current = evt.clientX;
-            document.body.classList.add(BODY_DRAGGING_CLASS);
           }}
+        />
+        <div
+          {...draggable()}
+          className='tz-color-channel-slider-handle'
           style={{
             '--x': `${clamp(
-              ((value - min) / range) * wrapperWidth,
+              ((innerValue - min) / range) * wrapperWidth,
               TRACK_PADDING,
               wrapperWidth - 2 * TRACK_PADDING,
             )}px`,
@@ -355,7 +338,7 @@ export default function ColorChannelSlider({
   const id = useId();
   const { min, max, range, displayMin, displayMax, displayRange } = useMemo(
     () => calculateBounds(color.original, channel, gamut),
-    [color.original, gamut],
+    [color.original, channel, gamut],
   );
   const showPerc = max === 1 && min === 0;
 

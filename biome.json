@@ -24,6 +24,9 @@
       "complexity": {
         "useArrowFunction": "off"
       },
+      "correctness": {
+        "useExhaustiveDependencies": "off"
+      },
       "style": {
         "noNonNullAssertion": "off",
         "noUselessElse": "off",

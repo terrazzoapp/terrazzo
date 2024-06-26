@@ -32,17 +32,7 @@ export default {
     }),
   ],
   input: 'src/index.ts',
-  external: [
-    '@terrazzo/fonts',
-    '@terrazzo/icons',
-    '@terrazzo/tiles',
-    '@terrazzo/tokens',
-    '@terrazzo/use-color',
-    'clsx',
-    'culori',
-    'react',
-    'react-dom',
-  ],
+  external: ['*'],
   output: {
     dir: './dist/',
     sourcemap: true,
