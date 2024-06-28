@@ -234,7 +234,6 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
     if (isDragging !== dragging) {
       setIsDragging(!!dragging);
       if (dragging) {
-        console.log({ innerValue });
         prevValue.current = innerValue; // store ref to initial value on drag start to reduce rounding errors
       }
     }
@@ -292,7 +291,10 @@ const ColorChannelDrag = memo(function ColorChannelDrag({
       <div
         ref={wrapperEl}
         className='tz-color-channel-slider-bounds'
-        style={{ '--left': min, '--right': `${100 * (((displayMax ?? max) - max) / (displayRange ?? range))}%` }}
+        style={{
+          '--left': displayMin ?? min,
+          '--right': `${100 * (((displayMax ?? max) - max) / (displayRange ?? range))}%`,
+        }}
       >
         <div
           className='tz-color-channel-slider-track'

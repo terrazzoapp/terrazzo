@@ -15,19 +15,25 @@
     "lint:js": "biome check ."
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "19.x",
+    "react-dom": "19.x"
   },
   "devDependencies": {
     "@rollup/plugin-swc": "^0.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
+    "react": "19.0.0-rc-e02baf6c92-20240627",
+    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
+    "types-react": "19.0.0-alpha.3",
+    "types-react-dom": "19.0.0-alpha.3",
     "typescript": "^5.5.2"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }

@@ -8,15 +8,7 @@
   },
   "license": "MIT",
   "type": "module",
-  "keywords": [
-    "color",
-    "wcg",
-    "p3",
-    "oklab",
-    "oklch",
-    "hsl",
-    "picker"
-  ],
+  "keywords": ["color", "wcg", "p3", "oklab", "oklch", "hsl", "picker"],
   "main": "./dist/index.js",
   "repository": {
     "type": "git",
@@ -52,19 +44,25 @@
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@types/culori": "^2.1.0",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "chokidar-cli": "^3.0.0",
     "culori": "^4.0.1",
     "jsdom": "^24.1.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "19.0.0-rc-e02baf6c92-20240627",
+    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
     "size-limit": "^11.1.4",
+    "types-react": "19.0.0-alpha.3",
+    "types-react-dom": "19.0.0-alpha.3",
     "vitest": "^1.6.0",
     "vitest-axe": "^0.1.0"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }

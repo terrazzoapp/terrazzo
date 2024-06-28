@@ -7,11 +7,7 @@
     "email": "drew@pow.rs"
   },
   "license": "MIT",
-  "keywords": [
-    "dtcg",
-    "design tokens",
-    "tokens.json"
-  ],
+  "keywords": ["dtcg", "design tokens", "tokens.json"],
   "type": "module",
   "repository": {
     "type": "git",
@@ -37,11 +33,15 @@
     "@terrazzo/tokens": "workspace:^"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "vite": "^5.3.1"
+    "react": "19.0.0-rc-e02baf6c92-20240627",
+    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
+    "vite": "^5.3.2"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }

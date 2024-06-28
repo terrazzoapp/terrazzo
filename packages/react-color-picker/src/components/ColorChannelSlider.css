@@ -19,6 +19,12 @@
   z-index: 3;
 }
 
+.tz-color-channel-slider-track {
+  inset: 0;
+  position: absolute;
+  z-index: 3;
+}
+
 .tz-color-channel-slider-wrapper {
   height: var(--tz-color-channel-slider-track-height);
   position: relative;
