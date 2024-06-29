@@ -5,9 +5,10 @@
   "scripts": {
     "build": "astro build",
     "dev": "astro dev",
+    "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint .",
+    "lint:js": "biome check src",
+    "lint:css": "stylelint src",
     "preview": "astro preview"
   },
   "dependencies": {

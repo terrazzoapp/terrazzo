@@ -1,3 +1,6 @@
 {
-  "extends": ["../biome.json"]
+  "extends": ["../biome.json"],
+  "linter": {
+    "ignore": ["src/themes/**/*"]
+  }
 }
