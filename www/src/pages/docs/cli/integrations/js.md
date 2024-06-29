@@ -23,7 +23,7 @@ pnpm i -D @terrazzo/plugin-js
 
 :::code-group
 
-```js [terrazzo.config.mjs]
+```js [terrazzo.config.js]
 import pluginJS from "@terrazzo/plugin-js";
 
 /** @type {import("@terrazzo/cli").Config} */
@@ -52,11 +52,11 @@ token("color.blue.500");
 
 ## Config
 
-Configure options in [terrazzo.config.mjs](/docs/cli/config):
+Configure options in [terrazzo.config.js](/docs/cli/config):
 
 :::code-group
 
-```js [terrazzo.config.mjs]
+```js [terrazzo.config.js]
 import pluginJS from "@terrazzo/plugin-js";
 
 /** @type {import("@terrazzo/cli").Config} */

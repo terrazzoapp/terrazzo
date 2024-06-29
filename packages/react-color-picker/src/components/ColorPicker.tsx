@@ -1,21 +1,25 @@
 import { Check, ChevronDown, ColorFilterOutline, Copy, InfoCircled } from '@terrazzo/icons';
 import { Fieldset, Select, SelectItem, Switch, Tooltip } from '@terrazzo/tiles';
-import {
-  clampChroma,
-  COLORSPACES,
-  type default as useColor,
-  type ColorInput,
-  type Color,
-  parse,
-  formatCss,
-} from '@terrazzo/use-color';
+import { COLORSPACES, type default as useColor, parse, formatCss } from '@terrazzo/use-color';
 import clsx from 'clsx';
 import { useEffect, type ComponentProps, useState, useRef, useMemo } from 'react';
 import ColorChannelSlider from './ColorChannelSlider.js';
 import './ColorPicker.css';
+import { channelOrder, updateColor } from '../lib/color.js';
 
 /** sRGB → P3 → Rec2020 */
 export type Gamut = 'rgb' | 'p3' | 'rec2020';
+
+export const COLOR_PICKER_SPACES = {
+  rgb: 'RGB',
+  oklab: 'Oklab',
+  lab: 'Lab',
+  oklch: 'Oklch',
+  lch: 'Lch',
+  okhsl: 'Okhsl',
+  xyz50: 'XYZ (D50)',
+  xyz65: 'XYZ (D65)',
+};
 
 export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
   /** value from useColor() */
@@ -23,79 +27,11 @@ export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
   setColor: ReturnType<typeof useColor>[1];
 }
 
-/** Handle color gamut clamping */
-function updateColor(color: Color, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb'): ColorInput {
-  switch (gamut) {
-    // encompasses P3
-    case 'rec2020': {
-      // no clamping necessary
-      if (color.mode === 'rgb' || color.mode === 'p3' || color.mode === 'hsl' || color.mode === 'hsv') {
-        return COLORSPACES.rec2020.converter(color); // if this is in a non-Rec2020-compatible colorspace, convert it
-      }
-      break;
-    }
-    case 'p3': {
-      const clamped = clampChroma(color, color.mode, 'p3'); // clamp color to P3 gamut
-      if (color.mode === 'rec2020' || color.mode === 'rgb' || color.mode === 'hsl' || color.mode === 'hsv') {
-        return COLORSPACES.p3.converter(clamped); // if this is in a non-P3-compatible colorspace, convert it
-      }
-      break;
-    }
-    default: {
-      const clamped = clampChroma(color, color.mode, 'rgb'); // clamp to sRGB gamut
-      if (color.mode === 'a98' || color.mode === 'rec2020' || color.mode === 'p3' || color.mode === 'prophoto') {
-        return COLORSPACES.srgb.converter(clamped); // if this is in a non-sRGB-compatible colorspace, convert it
-      }
-      break;
-    }
-  }
-  return color;
-}
-
-/** Order color channels in proper order */
-function channelOrder(color: Color): string[] {
-  switch (color.mode) {
-    case 'rgb':
-    case 'rec2020':
-    case 'lrgb':
-    case 'a98':
-    case 'prophoto': {
-      return ['r', 'g', 'b', 'alpha'];
-    }
-    case 'hsl':
-    case 'okhsl': {
-      return ['h', 's', 'l', 'alpha'];
-    }
-    case 'hsv':
-    case 'okhsv': {
-      return ['h', 's', 'v', 'alpha'];
-    }
-    case 'hwb': {
-      return ['h', 'w', 'b', 'alpha'];
-    }
-    case 'lab':
-    case 'oklab': {
-      return ['l', 'a', 'b', 'alpha'];
-    }
-    case 'lch':
-    case 'oklch': {
-      return ['l', 'c', 'h', 'alpha'];
-    }
-    case 'xyz50':
-    case 'xyz65': {
-      return ['x', 'y', 'z', 'alpha'];
-    }
-    default: {
-      return Object.keys(color).filter((k) => k !== 'mode');
-    }
-  }
-}
-
 export default function ColorPicker({ className, color, setColor, ...rest }: ColorPickerProps) {
   const [inputBuffer, setInputBuffer] = useState(color.css);
   const [maxGamut, setMaxGamut] = useState<Gamut>('rgb');
   const [copied, setCopied] = useState(false);
-  const copiedTO = useRef<number | undefined>();
+  const copiedTO = useRef<number | undefined>(undefined);
   const normalizedColorMode = useMemo(
     () => (['p3', 'rec2020', 'lrgb'].includes(color.original.mode) ? 'rgb' : color.original.mode),
     [color],
@@ -160,24 +96,11 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
               }
             }}
           >
-            <SelectItem value='rgb' icon={<ColorFilterOutline />}>
-              RGB
-            </SelectItem>
-            <SelectItem value='oklab' icon={<ColorFilterOutline />}>
-              Oklab
-            </SelectItem>
-            <SelectItem value='oklch' icon={<ColorFilterOutline />}>
-              Oklch
-            </SelectItem>
-            <SelectItem value='okhsl' icon={<ColorFilterOutline />}>
-              Okhsl
-            </SelectItem>
-            <SelectItem value='okhsv' icon={<ColorFilterOutline />}>
-              Okhsv
-            </SelectItem>
-            <SelectItem value='xyz65' icon={<ColorFilterOutline />}>
-              XYZ
-            </SelectItem>
+            {Object.entries(COLOR_PICKER_SPACES).map(([id, label]) => (
+              <SelectItem key={id} value={id} icon={<ColorFilterOutline />}>
+                {label}
+              </SelectItem>
+            ))}
           </Select>
           <span className='tz-color-picker-colorspace-chevron'>
             <ChevronDown aria-hidden />

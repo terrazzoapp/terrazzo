@@ -27,7 +27,7 @@ And add it to `terrazzo.config.js` under `plugins`:
 
 :::code-group
 
-```js [terrazzo.config.mjs]
+```js [terrazzo.config.js]
 import pluginCSS from "@terrazzo/plugin-css";
 
 /** @type {import("@terrazzo/cli").Config} */
@@ -100,7 +100,7 @@ You’d get:
 
 The result is color that “just works” in any browser and hardware type automatically (and, yes, additional code is generated for modes, so this applies for all color modes you’re using!).
 
-This is achieved using the [clampChroma() method of Culori](https://culorijs.org/api/#clampChroma) which is also a method recommended in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) research. This produces the best results for most applications on the web, using the best-available color research.
+This is achieved using the [toGamut() method of Culori](https://culorijs.org/api/#toGamut) which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
 
 This is an improvement over Cobalt 1.0’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
 

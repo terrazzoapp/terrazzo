@@ -3,13 +3,13 @@ title: Terrazzo (Beta)
 layout: ../../layouts/docs.astro
 ---
 
-# Terrazzo (Beta)
+# Terrazzo Token Tools (Beta)
 
-Terrazzo is a suite of tools to help you build and manage design tokens:
+Terrazzo is a work-in-progress, but comprises:
 
-## Tokens Lab (coming soon!)
-
-Create a `tokens.json` file either by forking your favorite open source design system, or create it from scratch using color & typography tools. Look forward to a beta release in June 2024!
+- ✅ CLI for working with the [<abbr title="Design Tokens Community Group">DTCG</abbr>](https://designtokens.org) specification (formerly known as “Cobalt UI”)
+- ✅ Components for documenting / working with tokens
+- ✅ (Coming Soon) Token Lab for generating & managing design systems
 
 ## CLI
 

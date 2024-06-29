@@ -45,7 +45,7 @@ function DocsSearchHit({ hit, ...rest }: DocsSearchHitProps) {
 
   return (
     <OmniBarResult key={hit.objectID} {...rest}>
-      <a className="tz-searchbox-link" href={hit.url}>
+      <a className='tz-searchbox-link' href={hit.url}>
         {HitComponent ? <HitComponent hit={hit} /> : JSON.stringify(hit)}
       </a>
     </OmniBarResult>
@@ -54,11 +54,11 @@ function DocsSearchHit({ hit, ...rest }: DocsSearchHitProps) {
 
 function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
   return (
-    <span className="tz-searchbox-result-pair">
-      <Document className="tz-searchbox-result-icon" />
-      <span className="tz-searchbox-result-overflow">
+    <span className='tz-searchbox-result-pair'>
+      <Document className='tz-searchbox-result-icon' />
+      <span className='tz-searchbox-result-overflow'>
         <span
-          className="tz-searchbox-result-title"
+          className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1.value ?? hit.hierarchy?.lvl1 }}
         />
@@ -69,16 +69,16 @@ function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
   return (
-    <span className="tz-searchbox-result-pair">
-      <Heading className="tz-searchbox-result-icon" />
-      <span className="tz-searchbox-result-overflow">
+    <span className='tz-searchbox-result-pair'>
+      <Heading className='tz-searchbox-result-icon' />
+      <span className='tz-searchbox-result-overflow'>
         <span
-          className="tz-searchbox-result-title"
+          className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl2?.value ?? hit.hierarchy?.lvl2 }}
         />
         <span
-          className="tz-searchbox-result-desc"
+          className='tz-searchbox-result-desc'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
         />
@@ -89,16 +89,16 @@ function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
   return (
-    <span className="tz-searchbox-result-pair">
-      <Heading className="tz-searchbox-result-icon" />
-      <span className="tz-searchbox-result-overflow">
+    <span className='tz-searchbox-result-pair'>
+      <Heading className='tz-searchbox-result-icon' />
+      <span className='tz-searchbox-result-overflow'>
         <span
-          className="tz-searchbox-result-title"
+          className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl3?.value ?? hit.hierarchy?.lvl3 }}
         />
         <span
-          className="tz-searchbox-result-desc"
+          className='tz-searchbox-result-desc'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
         />
@@ -109,15 +109,15 @@ function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
 
 function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
   return (
-    <span className="tz-searchbox-result-pair">
-      <Heading className="tz-searchbox-result-icon" />
-      <span className="tz-searchbox-result-overflow">
+    <span className='tz-searchbox-result-pair'>
+      <Heading className='tz-searchbox-result-icon' />
+      <span className='tz-searchbox-result-overflow'>
         <span
-          className="tz-searchbox-result-title" // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl4?.value ?? hit.hierarchy?.lvl4 }}
         />
         <span
-          className="tz-searchbox-result-desc" // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
         />
       </span>
@@ -127,15 +127,15 @@ function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
 
 function DocsSearchContent({ hit }: { hit: Hit }) {
   return (
-    <span className="tz-searchbox-result-pair">
-      <Pilcrow className="tz-searchbox-result-icon" />
-      <span className="tz-searchbox-result-overflow">
+    <span className='tz-searchbox-result-pair'>
+      <Pilcrow className='tz-searchbox-result-icon' />
+      <span className='tz-searchbox-result-overflow'>
         <span
-          className="tz-searchbox-result-title" // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.content?.value }}
         />
         <span
-          className="tz-searchbox-result-desc" // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
         />
       </span>
@@ -150,9 +150,9 @@ function DocsSearchResults() {
 
   return (
     <OmniBar
-      aria-label="Search Docs"
-      placeholder="Find…"
-      keyCommand="F"
+      aria-label='Search Docs'
+      placeholder='Find…'
+      keyCommand='F'
       value={query}
       onChange={(evt) => setQuery(evt.currentTarget.value)}
       onEnter={(i) => {
@@ -183,7 +183,7 @@ function DocsSearchResults() {
 
 export default function DocsSearch() {
   return (
-    <InstantSearch searchClient={searchClient} indexName="cobalt-ui">
+    <InstantSearch searchClient={searchClient} indexName='cobalt-ui'>
       <DocsSearchResults />
     </InstantSearch>
   );

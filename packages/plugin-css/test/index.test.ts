@@ -6,8 +6,8 @@ import { fileURLToPath } from 'node:url';
 import css from '../src/index.js';
 
 // note: many colors’ hex fallbacks are intentionally different from what Culori
-// clamps to with clampChroma. this is done intentionally to test the users’
-// fallbacks are respected
+// clamps to. this is done intentionally to test the users’ fallbacks are
+// respected
 
 describe('@terrazzo/plugin-css', () => {
   describe('snapshots', () => {

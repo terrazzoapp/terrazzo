@@ -32,8 +32,6 @@ export type ColorInput = string | Color;
 
 export declare function parse(color: ColorInput): Color | undefined;
 
-export declare function clampChroma(color: ColorInput, mode: Color['mode'], gamut: 'rgb' | 'p3' | 'rec2020'): Color;
-
 // biome-ignore format: repetitive strings
 export declare const COLORSPACES: {
   a98:      { converter: (color: ColorInput) => A98 }; // biome-ignore format: repetitive strings

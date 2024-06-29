@@ -55,7 +55,6 @@ export function OmniBar({
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [activeItem, setActiveItem] = useState(0);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we actually want this to refresh yo
   const getOptions = useCallback(() => {
     if (listboxEl.current) {
       return listboxEl.current.querySelectorAll('[role=option]');
@@ -64,7 +63,6 @@ export function OmniBar({
   }, [expanded, listboxEl.current]);
 
   // expand reactivity
-  // biome-ignore lint/correctness/useExhaustiveDependencies: this is incorrect
   useEffect(() => {
     if (!keyCommand) {
       return;
@@ -123,7 +121,6 @@ export function OmniBar({
   }, [expanded, onExpand]);
 
   // apply activeItem
-  // biome-ignore lint/correctness/useExhaustiveDependencies: this is incorrect
   useEffect(() => {
     if (listboxEl.current) {
       listboxEl.current.querySelectorAll('[role=option]').forEach((el, i) => {

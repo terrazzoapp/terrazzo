@@ -1,4 +1,10 @@
-import { clampChroma, type Color, formatCss, displayable } from 'culori';
+import {
+  type Color,
+  displayable,
+  formatCss,
+  // @ts-expect-error: types missing
+  toGamut,
+} from 'culori';
 import { CSS_TO_CULORI, parseColor } from '../color.js';
 import type { ColorValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
@@ -73,8 +79,8 @@ export function transformColorValue(
     ? formatCss(color)
     : {
         '.': formatCss(color),
-        srgb: (typeof value === 'object' && value.hex) || formatCss(clampChroma(color, color.mode, 'rgb')),
-        p3: formatCss(clampChroma(color, color.mode, 'p3')),
-        rec2020: formatCss(clampChroma(color, color.mode, 'rec2020')),
+        srgb: (typeof value === 'object' && value.hex) || formatCss(toGamut('rgb')(color) as Color),
+        p3: formatCss(toGamut('p3')(color) as Color),
+        rec2020: formatCss(toGamut('rec2020')(color) as Color),
       };
 }
