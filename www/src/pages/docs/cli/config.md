@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Config
 
-The Terrazzo CLI needs a `terrazzo.config.mjs` file in your project root for most tasks. Here’s an example file, with all defaults:
+The Terrazzo CLI needs a `terrazzo.config.js` file in your project root for most tasks. Here’s an example file, with all defaults:
 
 :::code-group
 

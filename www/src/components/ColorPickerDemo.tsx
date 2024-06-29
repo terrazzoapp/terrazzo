@@ -4,5 +4,9 @@ import useColor from '@terrazzo/use-color';
 export default function ColorPickerDemo() {
   const [color, setColor] = useColor('#663399');
 
-  return <ColorPicker color={color} setColor={setColor} />;
+  return (
+    <div style={{ marginInline: 'auto', width: '15rem' }}>
+      <ColorPicker color={color} setColor={setColor} />
+    </div>
+  );
 }

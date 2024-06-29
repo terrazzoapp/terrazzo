@@ -11,6 +11,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
   let displayMin: number | undefined;
   let displayMax: number | undefined;
   const clampGamut = toGamut(gamut);
+
   switch (color.mode) {
     case 'hsl':
     case 'hwb':
@@ -25,16 +26,23 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
       break;
     }
     case 'lab': {
-      if (channel === 'l') {
-        max = 100;
-        displayMax = 100;
-      } else {
-        displayMin = -125;
-        displayMax = 125;
-        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: -150 }));
-        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: 150 }));
-        min = clampedMin[channel as keyof Omit<Color, 'mode'>];
-        max = clampedMax[channel as keyof Omit<Color, 'mode'>];
+      switch (channel) {
+        case 'l': {
+          max = 100;
+          displayMax = 100;
+          break;
+        }
+        case 'a':
+        case 'b': {
+          displayMin = -125;
+          displayMax = 125;
+          // TODO: this is wrong
+          const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }));
+          const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }));
+          min = clampedMin[channel];
+          max = clampedMax[channel];
+          break;
+        }
       }
       break;
     }
@@ -45,9 +53,9 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
           break;
         }
         case 'c': {
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: 150 }));
-          max = clamped.c;
           displayMax = 150;
+          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }));
+          max = clamped.c;
           break;
         }
         case 'h': {
@@ -59,12 +67,12 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
     }
     case 'oklab': {
       if (channel === 'a' || channel === 'b') {
-        displayMin = -1.25;
-        displayMax = 1.25;
-        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: -2 }));
-        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: 2 }));
-        min = clampedMin[channel as keyof Omit<Color, 'mode'>];
-        max = clampedMax[channel as keyof Omit<Color, 'mode'>];
+        displayMin = -0.4;
+        displayMax = 0.4;
+        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }));
+        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }));
+        min = clampedMin[channel];
+        max = clampedMax[channel];
       }
       break;
     }
@@ -75,9 +83,9 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
           break;
         }
         case 'c': {
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: 0.4 }));
-          max = clamped.c;
           displayMax = 0.4;
+          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }));
+          max = clamped.c;
           break;
         }
       }

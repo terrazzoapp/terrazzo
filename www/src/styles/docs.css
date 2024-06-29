@@ -58,10 +58,10 @@
   }
 
   li {
-    font-size: var(--tz-typography-300-regular-font-size);
-    letter-spacing: var(--tz-typography-300-regular-letter-spacing);
-    line-height: var(--tz-typography-300-regular-line-height);
-    margin-block: var(--tz-space-300);
+    font-size: var(--tz-typography-400-regular-font-size);
+    letter-spacing: var(--tz-typography-400-regular-letter-spacing);
+    line-height: var(--tz-typography-400-regular-line-height);
+    margin-block: var(--tz-space-400);
     padding-inline-start: var(--tz-space-200);
   }
 
@@ -95,9 +95,9 @@
   }
 
   p {
-    font-size: var(--tz-typography-300-regular-font-size);
-    letter-spacing: var(--tz-typography-300-regular-letter-spacing);
-    line-height: var(--tz-typography-300-regular-line-height);
+    font-size: var(--tz-typography-400-regular-font-size);
+    letter-spacing: var(--tz-typography-400-regular-letter-spacing);
+    line-height: 1.75;
   }
 
   > details > summary {

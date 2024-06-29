@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   // },
   {
     title: "Guides",
-    items: [{ url: "/guides/tokens", title: "What are Design Tokens?" }],
+    items: [{ url: "/guides/tokens", title: "Design Tokens" }],
   },
   {
     title: "CLI",
@@ -42,8 +42,16 @@ const NAV_ITEMS = [
   {
     title: "Components",
     items: [
+      { url: "/components/button", title: "Button" },
+      { url: "/components/button-link", title: "ButtonLink" },
       { url: "/components/color-picker", title: "ColorPicker" },
-      { url: "/components/tiles", title: "Tiles DS" },
+      { url: "/components/fieldset", title: "Fieldset" },
+      { url: "/components/kbd", title: "Kbd" },
+      { url: "/components/omni-bar", title: "OmniBar" },
+      { url: "/components/subtle-input", title: "SubtleInput" },
+      { url: "/components/switch", title: "Switch" },
+      { url: "/components/token-type", title: "TokenType" },
+      { url: "/components/tooltip", title: "Tooltip" },
     ],
   },
   {
@@ -161,7 +169,6 @@ const NAV_ITEMS = [
   .sidenav {
     --grid: var(--tz-space-500);
 
-    background-color: var(--tz-surface-secondary-bg);
     color: var(--tz-surface-secondary-text);
     display: flex;
     flex-direction: column;

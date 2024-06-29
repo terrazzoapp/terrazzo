@@ -90,11 +90,11 @@ All of this creates a “database” for the `css` format that can be queried in
 
 The build step can run as many queries as it wants, requesting the tokens in any order, so that the output file can be built in any order. When the file is complete, calling `buildFile(filename, contents)` will save the file and Terrazzo will write the file to disk. The build step can output as many files as it wants.
 
-Lastly, you can test your own plugin out locally! Simply add it to `terrazzo.config.mjs`:
+Lastly, you can test your own plugin out locally! Simply add it to `terrazzo.config.js`:
 
 :::code-group
 
-```js [terrazzo.config.mjs]
+```js [terrazzo.config.js]
 import { defineConfig } from "@terrazzo/cli";
 import myCssPlugin from "./my-css-plugin.js";
 

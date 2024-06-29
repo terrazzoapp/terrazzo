@@ -1,6 +1,7 @@
 {
   "name": "@terrazzo/use-color",
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
+  "version": "0.0.0",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"

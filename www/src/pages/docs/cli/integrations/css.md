@@ -27,7 +27,7 @@ And add it to `terrazzo.config.js` under `plugins`:
 
 :::code-group
 
-```js [terrazzo.config.mjs]
+```js [terrazzo.config.js]
 import pluginCSS from "@terrazzo/plugin-css";
 
 /** @type {import("@terrazzo/cli").Config} */

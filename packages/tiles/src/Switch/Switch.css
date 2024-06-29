@@ -19,6 +19,7 @@
   left: 0;
   margin: 0;
   opacity: 0;
+
   padding: 0;
   position: absolute;
   top: 0;
@@ -37,14 +38,14 @@
   gap: var(--tz-space-300);
   letter-spacing: var(--tz-typography-300-regular-letter-spacing);
   line-height: 1;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 
   &::before {
     background-color: var(--tz-color-base-gray-800);
     border-radius: var(--tz-switch-width);
     content: "";
     height: var(--tz-switch-height);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
     pointer-events: none;
     position: relative;
     width: var(--tz-switch-width);
@@ -65,7 +66,7 @@
   }
 }
 
-.tz-switch-field:focus-visible ~ .tz-switch-label {
+.tz-switch-field:focus-visible ~ .tz-switch-label::before {
   outline-color: var(--tz-nav-primary-highlight);
 }
 

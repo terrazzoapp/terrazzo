@@ -1,45 +1,71 @@
 ---
-title: What are Design Tokens?
+title: Design Tokens
 layout: ../../../layouts/docs.astro
 ---
 
-# What are Design Tokens?
+# Design Tokens
 
-Design Tokens are just _one part_ of a design system, including, but not limited to components, patterns, icons, guidelines, principles, accessibility standards, and more. Tokens typically represent **color** and **typography** to keep designs consistent and on-brand across all media, but can even extend to things like grid systems, styling, animations, and more.
+Design Tokens are an essential part of managing a design system. But until recently, what shape design tokens took—and how they were managed—varied wildly.
 
-[UXLord](https://www.youtube.com/@uxlordsimplifyingdesignpro5544) has a great 6-minute explainer video if you’re new to the concept:
+Terrazzo is a project that builds off the [DTCG Tokens Spec](/docs/reference/tokens) to help build a standardized practice around managing & deploying design tokens. In this document, you’ll gain a practical introduction to how Terrazzo views design tokens.
 
-<div class="yt-embed"><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/wtTstdiBuUk?si=K74YVh9yXJFpXj8d" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+## To standardize, or not?
 
-If you’ve ever sunk time into syncing colors, typography, borders, spacing, and other values from Figma to code and vice-versa, an automated **Design Token System** can speed up that process while reducing errors and reducing manual labor. Terrazzo is an open-source, MIT-licensed system for managing your design tokens built on the open standard [W3C Design Tokens Community Group (DTCG)](https://www.designtokens.org/) format.
+Whether you view your design tokens as standard or nonstandard will affect whether you use Terrazzo, some other tool, or build your own. Terrazzo takes the same stance as the DTCG format: **design tokens should be standardized.** This means that colors, typography, spacing, and more should be expressed in predictable ways.
 
-## The Workflow
+The advantage of using a standard tokens format is you can get up-and-running faster because the tooling already exists. But the downside is potentially having restrictions on how your design system thinks about tokens.
 
-The main idea is your tokens get saved in a [JSON](https://en.wikipedia.org/wiki/JSON) format (DTCG) we’ll refer to as **tokens.json** on this site. The main flow is:
+Conversely, defining your own custom format can be freeing in some ways, while creating a ton of work and maintenance for your entire design system team. Be sure to weigh the advantages and disadvantages carefully before continuing!
 
-1. **Export tokens.json from Figma** (or whatever design program you use)
-2. **Import tokens.json into [Token Lab](/lab)**: powerful color and typography tools to polish your design system
-3. **Save your new tokens.json**: keep it safe!
-4. **Use the Terrazzo CLI to generate code**: make your developers happy in any language of your stack.
+## Starting with DTCG
 
-### 1. Export tokens.json from Figma
+DTCG encourages having tokens in a central `tokens.json` file (or you can split it up into multiple files if you prefer, e.g. `colors.json`). Inside that file, you’ll create something like the following:
 
-[Figma supports DTCG natively](https://www.youtube.com/watch?v=KA2WwX7qlYA) if you are keen to write code yourself, but if not, the open-source [TokensBrücke plugin](https://www.figma.com/community/plugin/1254538877056388290/tokensbrucke) (German for “bridge”) can export `tokens.json` file for you (just be sure to turn the “Use DTCG keys Format” switch on).
+:::code-group
 
-Once you have that `.json` file on your computer, you’re ready for the next step!
+```json [tokens.json]
+{
+  "color": {
+    "$type": "color",
+    "core": {
+      "blue": {
+        "100": {
+          "$value": {
+            "colorSpace": "oklch",
+            "channels": [0.9931, 0.0034, 247.8571]
+          }
+        },
+        "200": {
+          "$value": {
+            "colorSpace": "oklch",
+            "channels": [0.982, 0.0092, 242.8346]
+          }
+        },
+        "300": {
+          "$value": {
+            "colorSpace": "oklch",
+            "channels": [0.9597, 0.0201, 238.6626]
+          }
+        }
+        // …
+      }
+    }
+  }
+}
+```
 
-#### PenPot
+:::
 
-If using [PenPot](https://penpot.app/), an open-source Figma alternative, the [penpot-export](https://github.com/penpot/penpot-export) extension can output `tokens.json` in DTCG format.
+You want to organize your tokens into a “tree,” grouping them into specific groups that describe what they do.
 
-### 2. Import tokens.json into Token Lab
+In this example, we have a `color → core → blue` hierarchy, within which we have `100`, `200`, `300`, … tokens. These are marked as `$type: "color"` tokens (tokens will take the closest `$type`; you can declare it once on the top-level group to save repetition). And each color declares its color within `$value`.
 
-Drag-and-drop `tokens.json` into the code editor on the [Token Lab](/lab) sidepanel and get to work. As you work, this will automatically be updated for you. Be sure to **save often** since Terrazzo won’t handle versions / unlimited undos (yet).
+:::tip
 
-### 3. Save your tokens.json
+The `$` sign is special, and marks reserved words such as `$type` and `$value`.
 
-Click the **Save** button in the top menu, or hit <kbd>⌘</kbd> + <kbd>S</kbd> to open a save dialog. Save the `tokens.json` file in a safe place (also use this to keep versions, e.g. `tokens-2024-01-18.json`).
+:::
 
-### 4. Use the Terrazzo CLI to generate code
+Though color tokens are usually the largest part of a design system, you can also use [Dimension](/docs/reference/tokens#dimension) (spacing), [Typography](http://localhost:4321/docs/reference/tokens#typography), [Border](/docs/reference/tokens#border), [and more](/docs/reference/tokens).
 
-The [Terrazzo CLI](/docs/cli) can generate [CSS](/docs/cli/integrations/css), [Sass](/docs/cli/integrations/sass), [JavaScript/TypeScript](/docs/cli/integrations/js), [JSON](/docs/cli/integrations/json), [Tailwind](/docs/cli/integrations/tailwind), and more. You can also [write your own plugin easily](/docs/cli/api/plugin-development) to generate any type of format you need.
+Once your tokens are defined as JSON, you can convert your tokens to any language, such as [CSS](/docs/cli/integrations/css), [JS](/docs/cli/integrations/js), and more.

@@ -68,7 +68,7 @@
   letter-spacing: 0;
   line-height: var(--tz-control-default-size);
   outline: none;
-  padding: 0 calc(0.5 * var(--copy-btn-width)) 0 0;
+  padding: 0 var(--copy-btn-width) 0 0;
   text-indent: var(--tz-space-200);
 
   &:hover {
@@ -86,8 +86,14 @@
 
 .tz-color-picker-colorspace-summary {
   align-items: center;
+  border-radius: var(--tz-radius-200);
   display: flex;
   justify-content: space-between;
+  outline: 2px solid transparent;
+
+  &:focus-visible {
+    outline-color: var(--tz-nav-primary-highlight);
+  }
 }
 
 .tz-color-picker-colorspace-chevron {
