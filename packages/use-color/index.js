@@ -1,6 +1,6 @@
 import {
-  clampChroma as culoriClampChroma,
   inGamut,
+  toGamut,
   useMode,
   modeA98,
   modeHsl,
@@ -73,10 +73,6 @@ export function parse(color) {
     return withAlpha(COLORSPACES.rgb.converter(color));
   }
   throw new Error(`Expected string or color object, received ${typeof color}`);
-}
-
-export function clampChroma(color, mode, gamut) {
-  return withAlpha(culoriClampChroma(color, mode, gamut));
 }
 
 // re-export a lighterweight version of Culori tools with all the proper colorspaces loaded
@@ -201,8 +197,8 @@ export function formatCss(color, { precision = 0.0001 } = {}) {
   }
 }
 
-const inSRGBGamut = inGamut('rgb');
-const inP3Gamut = inGamut('p3');
+const p3Clamper = toGamut('p3');
+const srgbClamper = toGamut('rgb');
 
 /**
  * Given a color string, create a Proxy that converts colors to any desired
@@ -225,17 +221,17 @@ export function createMemoizedColor(color) {
     },
     get hsl() {
       delete this.hsl;
-      this.hsl = COLORSPACES.hsl.converter(clampChroma(color, 'hsl', 'rgb'));
+      this.hsl = COLORSPACES.hsl.converter(srgbClamper(color));
       return this.hsl;
     },
     get hsv() {
       delete this.hsv;
-      this.hsv = COLORSPACES.hsv.converter(clampChroma(color, 'hsv', 'rgb'));
+      this.hsv = COLORSPACES.hsv.converter(srgbClamper(color));
       return this.hsv;
     },
     get hwb() {
       delete this.hwb;
-      this.hwb = COLORSPACES.hwb.converter(clampChroma(color, 'hwb', 'rgb'));
+      this.hwb = COLORSPACES.hwb.converter(srgbClamper(color));
       return this.hwb;
     },
     get lab() {
@@ -276,8 +272,7 @@ export function createMemoizedColor(color) {
     },
     get p3() {
       delete this.p3;
-      const clamped = inP3Gamut(color) ? color : clampChroma(color, color.mode, 'p3');
-      this.p3 = COLORSPACES.p3.converter(clamped);
+      this.p3 = COLORSPACES.p3.converter(p3Clamper(color));
       return this.p3;
     },
     get prophoto() {
@@ -297,8 +292,7 @@ export function createMemoizedColor(color) {
     },
     get srgb() {
       delete this.srgb;
-      const clamped = inSRGBGamut(color) ? color : clampChroma(color, color.mode, 'rgb');
-      this.srgb = COLORSPACES.srgb.converter(clamped);
+      this.srgb = COLORSPACES.srgb.converter(srgbClamper(color));
       return this.srgb;
     },
     get xyz50() {

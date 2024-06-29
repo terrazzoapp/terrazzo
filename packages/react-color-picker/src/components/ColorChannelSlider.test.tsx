@@ -1,7 +1,8 @@
+import useColor from '@terrazzo/use-color';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ColorChannelSlider, { calculateBounds, type ColorChannelSliderProps } from './ColorChannelSlider';
-import useColor from '@terrazzo/use-color';
+import ColorChannelSlider, { type ColorChannelSliderProps } from './ColorChannelSlider';
+import { calculateBounds } from '../lib/color.js';
 
 function ColorChannelTest({
   defaultColor,
@@ -28,10 +29,7 @@ describe('ColorChannelSlider', () => {
 
 describe('calculateBounds', () => {
   const tests: [string, { given: Parameters<typeof calculateBounds>; want: ReturnType<typeof calculateBounds> }][] = [
-    [
-      'srgb',
-      { given: [{ mode: 'rgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 }, 'r', 'rgb'], want: { min: 0, max: 1, range: 1 } },
-    ],
+    ['srgb', { given: [{ mode: 'rgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 }, 'r', 'rgb'], want: { min: 0, max: 1 } }],
     [
       'oklch',
       {
@@ -39,7 +37,6 @@ describe('calculateBounds', () => {
         want: {
           min: 0,
           max: 0.19277343750000003,
-          range: 0.19277343750000003,
           displayMax: 0.4,
           displayRange: 0.4,
         },

@@ -17,7 +17,8 @@ export const COLOR_PICKER_SPACES = {
   oklch: 'Oklch',
   lch: 'Lch',
   okhsl: 'Okhsl',
-  xyz: 'XYZ',
+  xyz50: 'XYZ (D50)',
+  xyz65: 'XYZ (D65)',
 };
 
 export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
