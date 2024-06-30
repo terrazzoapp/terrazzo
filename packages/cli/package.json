@@ -19,13 +19,14 @@
     "style tokens",
     "style system"
   ],
+  "main": "./dist/index.js",
+  "homepage": "https://terrazzoapp.com/docs/cli/integrations/cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/cli/"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
   "bin": {
     "tz": "bin/cli.js",
     "terrazzo": "bin/cli.js"

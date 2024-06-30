@@ -7,7 +7,17 @@ import ColorPickerDemo from "./demos/color-picker-basic.tsx";
 
 # React Color Picker
 
-Terrazzo’s colorpicker is pretty special: it not only supports all of [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) colorspaces like OKLAB/OKLCH, XYZ, P3, and more (thanks to [Culori](https://culorijs.org/), a fast and accurate color science library). It also renders colors using WebGL for pixel-perfect accuracy in any monitor.
+Most color pickers are steeped in the past with limited gamuts and colorspaces. Now that [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) and higher-gamut colors are widely-available to users, color pickers need to update.
+
+But not only that, in order to display colors in non-sRGB colorspaces, WebGL is needed to recreate colors accurately. Most colorpickers use CSS Gradients to simulate colors, which can achieve “good enough” accuracy for sRGB, but not for anything else.
+
+| Feature       | Terrazzo | react-color | @rc-component/color-picker | react-colorful | react-aria |
+| :------------ | :------: | :---------: | :------------------------: | :------------: | :--------: |
+| WebGL         |    ✅    |     ❌      |             ❌             |       ❌       |     ❌     |
+| > 8bit depth  |    ✅    |     ❌      |             ❌             |       ❌       |     ❌     |
+| P3 Gamut      |    ✅    |     ❌      |             ❌             |       ❌       |     ❌     |
+| Rec2020 Gamut |    ✅    |     ❌      |             ❌             |       ❌       |     ❌     |
+| OKLAB/OKLCH   |    ✅    |     ❌      |             ❌             |       ❌       |     ❌     |
 
 ## Demo
 
@@ -26,3 +36,125 @@ pnpm i @terrazzo/react-color-picker @terrazzo/use-color
 ```
 
 :::
+
+:::code-group
+
+```tsx MyComponent.tsx
+import ColorPicker from "@terrazo/react-color-picker";
+import useColor from "@terrazzo/use-color";
+
+export default function MyComponent() {
+  const [color, setColor] = useColor("#ff0000");
+
+  return <ColorPicker color={color} setColor={setColor} />;
+}
+```
+
+:::
+
+## Methodology
+
+The following decisions went into making Terrazzo’s color picker as good as it can be.
+
+### Sliders: accuracy
+
+As pointed out in Björn Ottosen’s—the creator of OKLAB/OKLCH—fantastic [article about color pickers](https://bottosson.github.io/posts/colorpicker/), there’s a tension between accurate colorpickers being hard to use, while user-friendly colorpickers aren’t precise.
+
+While his solution of an OKHSL colorpicker is a great compromise, it limits colorpicking to that colorspace alone. In order to be universally-usable for all colorspaces, per-channel sliders are needed for control.
+
+### Percentages: higher bit depth
+
+[Bit depth](https://en.wikipedia.org/wiki/Color_depth) is different than gamut. A higher _gamut_ color is more vibrant; a higher _bit depth_ color is **more precise.**
+
+Even people that have worked with RGB color a long time may not realize that **integers `0-255` can’t support higher bit depth** (in fact, 2<sup>8</sup>, or 256, is what locks the colors into 8 bit depth).
+
+This matters because in between, say, `rgb(0, 0, 0)` and `rgb(1, 1, 1)`, users may have a monitor that can display `rgb(0.5, 0.5, 0.5)`, but you won’t be able to access that color without expressing it as a percentage: `rgb(0.2% 0.2% 0.2%)`. Why simply not use half the colors a user’s monitor can display, just because of your color tools?
+
+:::warning
+
+Hex codes are also locked into 8 bit depth, because they’re still the 2<sup>8</sup> colors just shortened into hexadecimal. Currently the only way to express higher bit depth is with percentages.
+
+:::
+
+The Terrazzo color picker uses **percentages** so it’s future-proof and can express colors with any degree of accuracy needed for any monitor.
+
+### Toggles: gamut
+
+<figure>
+  <img src="/assets/gamut.svg" alt="Gamut triangles" width="500" />
+<figcaption>
+
+sRGB, Display P3, and Rec 2020 (upcoming) gamuts in comparison. Each is significantly larger than the last. [From Wikipedia](https://en.wikipedia.org/wiki/DCI-P3).
+
+</figcaption>
+
+</figure>
+
+By default, all colorspaces are clamped to the sRGB gamut, which is the smallest but is available for all users on all devices. The expanded Display P3 gamut—common but not quite 100% of all users and devices—has to be manually-enabled in the expanded options. The Rec2020 gamut, the largest one, isn’t yet available on the web, but it’s included for futureproofing this colorpicker for the day when it does become available.
+
+<figure>
+  <img src="/assets/colorpicker-gamut.png" alt="Gamut toggles" width="300" />
+</figure>
+
+Any gamuts that are toggled **off** won’t be reachable with the sliders. This ensures you’re not selecting colors outside the range of what’s intended.
+
+## API
+
+### Props
+
+| Name       |           Type           | Description                               |
+| :--------- | :----------------------: | :---------------------------------------- |
+| `color`    |         `Color`          | A color object from `@terrazzo/use-color` |
+| `setColor` | `(color: Color) => void` | A setter function for the color object    |
+
+### use-color
+
+The `@terrazzo/use-color` hook lets you memoize a color using [Culori](https://culorijs.org/) for fast, scientifically-accurate color operations.
+
+:::code-group
+
+```tsx MyComponent.tsx
+import useColor, { formatCss } from "@terrazzo/use-color";
+
+const [color, setColor] = useColor("#ff0000");
+
+console.log(color.original); // { mode: "rgb", r: 1, g: 0, b: 0 }
+console.log(color.css); // color(srgb 1 0 0)
+console.log(color.p3); // { mode: "p3", r 0.9175, g: 0.2003, b: 0.1386 }
+console.log(color.oklab); // { mode: "oklab", r: 0.628, g: 0.22, b: 0.13 }
+console.log(color.oklch); // { mode: "oklch", r: 0.628, g: 0.257, b: 29.234 }
+
+console.log(formatCss(color.oklab)); // color(oklab 0.628 0.22 0.13)
+```
+
+:::
+
+### Colorspaces
+
+The `color` object can convert to any [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) colorspace using a memoized [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) (meaning the work isn’t done until the colorspace is requested, and subequent requests are cached).
+
+| Name             |   Type   | Description                       |
+| :--------------- | :------: | :-------------------------------- |
+| `color.original` | `object` | A Culori Color object             |
+| `color.css`      | `string` | A CSS Color Module 4 color string |
+| `color.a98`      | `object` | Culori Adobe RGB 98 object        |
+| `color.hsl`      | `object` | Culori HSL object                 |
+| `color.hsv`      | `object` | Culori HSV object                 |
+| `color.hwb`      | `object` | Culori HWB object                 |
+| `color.lab`      | `object` | Culori CIEL\*a\*b\* object        |
+| `color.lch`      | `object` | Culori CIEL\*c\*h\* object        |
+| `color.lrgb`     | `object` | Culori Linear RGB object          |
+| `color.okhsl`    | `object` | Culori Okhsl object               |
+| `color.okhsv`    | `object` | Culori Okhsv object               |
+| `color.oklab`    | `object` | Culori Oklab object               |
+| `color.oklch`    | `object` | Culori Oklch object               |
+| `color.p3`       | `object` | Culori P3 object                  |
+| `color.prophoto` | `object` | Culori Protophoto RGB object      |
+| `color.rec2020`  | `object` | Culori Rec2020 RGB object         |
+| `color.rgb`      | `object` | (alias for `srgb`)                |
+| `color.srgb`     | `object` | Culori sRGB object                |
+| `color.xyz`      | `object` | (alias for `xyz65`)               |
+| `color.xyz50`    | `object` | Culori XYZ D50 object             |
+| `color.xyz65`    | `object` | Culori XYZ D65 object             |
+
+There’s also a `formatCss()` helper that’s [similar to Culori’s](https://culorijs.org/api/#formatCss) but rounds numbers slightly (without losing accuracy) for a cleaner, easier-to-copy string.

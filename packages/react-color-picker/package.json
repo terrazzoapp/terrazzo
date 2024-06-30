@@ -10,6 +10,7 @@
   "type": "module",
   "keywords": ["color", "wcg", "p3", "oklab", "oklch", "hsl", "picker"],
   "main": "./dist/index.js",
+  "homepage": "https://terrazzoapp.com/docs/components/color-picker",
   "repository": {
     "type": "git",
     "url": "git+terrazzoapp/terrazzo.git",

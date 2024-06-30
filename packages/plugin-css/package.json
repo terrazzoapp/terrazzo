@@ -8,13 +8,14 @@
     "email": "drew@pow.rs"
   },
   "keywords": ["design tokens", "design system", "dtcg", "w3c", "css"],
+  "main": "./dist/index.js",
+  "homepage": "https://terrazzoapp.com/docs/cli/integrations/css",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/plugin-css/"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",

@@ -21,13 +21,14 @@
     "linting",
     "lint"
   ],
+  "main": "./index.js",
+  "homepage": "https://terrazzoapp.com/docs/cli/api/js",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/parser/"
   },  
   "license": "MIT",
-  "main": "./index.js",
   "scripts": {
     "lint": "biome check .",
     "test": "pnpm run \"/^test:.*/\"",

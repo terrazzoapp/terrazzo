@@ -3,18 +3,19 @@
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
   "version": "0.0.0",
   "type": "module",
+  "keywords": ["color", "color-module-4", "culori", "react", "hooks"],
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "main": "./index.js",
+  "homepage": "https://terrazzoapp.com/docs/components/color-picker",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/use-color/"
   },
   "license": "MIT",
-  "main": "./index.js",
-  "keywords": ["color", "color-module-4", "culori", "react", "hooks"],
   "scripts": {
     "build": "tsc && size-limit",
     "format": "biome format --write .",

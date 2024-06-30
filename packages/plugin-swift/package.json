@@ -9,6 +9,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "homepage": "https://terrazzoapp.com/docs/cli/integrations/swift",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
