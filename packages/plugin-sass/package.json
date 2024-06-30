@@ -2,19 +2,20 @@
   "name": "@terrazzo/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @terrazzo/cli)",
   "version": "0.0.0",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
   "keywords": ["design tokens", "dtcg", "w3c", "css", "sass"],
+  "main": "./dist/index.js",
+  "homepage": "https://terrazzoapp.com/docs/cli/integrations/sass",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/plugin-sass"
   },
   "license": "MIT",
-  "type": "module",
-  "main": "./dist/index.js",
   "scripts": {
     "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
     "build:clean": "del dist",

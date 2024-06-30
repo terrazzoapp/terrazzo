@@ -18,6 +18,7 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
+  "homepage": "https://terrazzoapp.com/docs/cli/linting",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

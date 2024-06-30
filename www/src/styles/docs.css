@@ -65,6 +65,11 @@
     padding-inline-start: var(--tz-space-200);
   }
 
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
   ol,
   ul {
     padding-inline-start: var(--tz-space-400);
@@ -91,6 +96,36 @@
       font-size: 0.875em;
       margin-inline: 0.125em;
       padding: 0.125em;
+    }
+  }
+
+  figure {
+    background-color: var(--tz-surface-secondary-bg);
+    border: 1px solid var(--tz-surface-secondary-border);
+    border-radius: var(--tz-radius-400);
+    margin-inline: 0;
+    padding: var(--tz-space-400);
+
+    img {
+      margin-inline: auto;
+    }
+  }
+
+  figcaption,
+  figcaption p {
+    font-size: var(--tz-typography-200-regular-font-size);
+    letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+    line-height: var(--tz-typography-200-regular-line-height);
+    margin-top: var(--tz-space-200);
+    opacity: 0.75;
+    text-align: center;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
     }
   }
 
@@ -290,7 +325,9 @@
 
 .code-block-wrapper {
   position: relative;
+}
 
+.md-content > .code-block-wrapper {
   &[data-language="sh"],
   &[data-language="bash"] {
     --chrome-border-color: var(--tz-surface-primary-border);
