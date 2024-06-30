@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm run sb",
-    "build-storybook": "sb build",
+    "build": "sb build -o storybook",
     "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
