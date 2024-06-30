@@ -5,6 +5,8 @@ layout: ../../../layouts/docs.astro
 
 # Types
 
+This is a complete reference for all token types supported by Terrazzo. This includes all of the [DTCG Format](https://design-tokens.github.io/community-group/format/), as well as Terrazzo extensions like link, boolean, string, etc.
+
 ## Color
 
 Any [CSS Module 4](https://www.w3.org/TR/css-color-4/#predefined) color as defined in [DTCG 8.1](https://design-tokens.github.io/community-group/format/#color).
@@ -318,11 +320,11 @@ Refer to each plugin’s documentation to learn what special features are availa
 
 ## Boolean
 
-TBD
+**Terrazzo extension**. TODO
 
-## String
+## String (extension)
 
-TBD
+**Terrazzo extension**. TODO
 
 ## Stroke Style
 

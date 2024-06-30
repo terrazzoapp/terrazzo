@@ -1,18 +1,17 @@
 {
   "name": "@terrazzo/cli",
-  "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
   "version": "0.0.7",
+  "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
   "keywords": [
     "design tokens",
-    "design tokens community group",
-    "design tokens format module",
     "dtcg",
     "cli",
-    "w3c design tokens",
+    "w3c",
     "design system",
     "typescript",
     "sass",
@@ -20,11 +19,12 @@
     "style tokens",
     "style system"
   ],
-  "engines": {
-    "node": ">=18.0.0"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/cli/"
   },
   "license": "MIT",
-  "type": "module",
   "main": "./dist/index.js",
   "bin": {
     "tz": "bin/cli.js",

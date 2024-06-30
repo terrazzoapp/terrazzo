@@ -2,12 +2,16 @@
   "name": "@terrazzo/icons",
   "version": "0.0.1",
   "type": "module",
-  "main": "./dist/index.js",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
-    "directory": "./packages/icons"
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/icons/"
   },
+  "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "format": "biome format --write src",
@@ -29,8 +33,7 @@
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
     "types-react": "19.0.0-alpha.3",
-    "types-react-dom": "19.0.0-alpha.3",
-    "typescript": "^5.5.2"
+    "types-react-dom": "19.0.0-alpha.3"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

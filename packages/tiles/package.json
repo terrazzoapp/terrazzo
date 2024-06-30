@@ -31,13 +31,14 @@
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.1.1",
-    "@radix-ui/react-tooltip": "^1.1.1",
+    "@radix-ui/react-tooltip": "^1.1.2",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
-    "culori": "^4.0.1"
+    "culori": "^4.0.1",
+    "shiki": "^1.10.0"
   },
   "devDependencies": {
     "@rollup/plugin-swc": "^0.3.1",
@@ -54,8 +55,6 @@
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
     "size-limit": "^11.1.4",
-    "typescript": "^5.5.2",
-    "vitest": "^1.6.0",
     "vitest-axe": "^0.1.0"
   },
   "overrides": {

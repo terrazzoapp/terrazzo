@@ -2,6 +2,15 @@
   "name": "@terrazzo/tokens",
   "version": "0.0.0",
   "type": "module",
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/tokens/"
+  },
   "scripts": {
     "build": "del dist && tz build",
     "lint": "pnpm run \"/^lint:.*/\"",

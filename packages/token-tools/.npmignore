@@ -1,4 +1,4 @@
 biome.json
-test/
+test/**
 tsconfig.*
 vitest.*

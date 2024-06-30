@@ -2,17 +2,17 @@
   "name": "@terrazzo/use-color",
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
   "version": "0.0.0",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
-    "directory": "./packages/use-color"
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/use-color/"
   },
+  "license": "MIT",
   "main": "./index.js",
   "keywords": ["color", "color-module-4", "culori", "react", "hooks"],
   "scripts": {
@@ -40,8 +40,7 @@
     "@vitejs/plugin-react-swc": "^3.7.0",
     "react": "19.0.0-rc-e02baf6c92-20240627",
     "react-dom": "19.0.0-rc-e02baf6c92-20240627",
-    "size-limit": "^11.1.4",
-    "vitest": "^1.6.0"
+    "size-limit": "^11.1.4"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

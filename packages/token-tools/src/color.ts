@@ -1,6 +1,6 @@
 import 'culori/css';
 import { type Color, parse } from 'culori/fn';
-import type { ColorSpace, ColorValueNormalized } from './types.js';
+import type { ColorSpace, ColorTokenNormalized, ColorValueNormalized } from './types.js';
 
 export const CULORI_TO_CSS: Record<
   Extract<
@@ -40,10 +40,23 @@ export const CULORI_TO_CSS: Record<
   xyz65: 'xyz-d65',
 };
 
-export const CSS_TO_CULORI: Record<string, string> = {};
-for (const k in CULORI_TO_CSS) {
-  CSS_TO_CULORI[CULORI_TO_CSS[k as keyof typeof CULORI_TO_CSS]] = k;
-}
+export const CSS_TO_CULORI = {
+  a98: 'a98',
+  'display-p3': 'p3',
+  hsl: 'hsl',
+  hsv: 'hsv',
+  hwb: 'hwb',
+  lab: 'lab',
+  lch: 'lch',
+  oklab: 'oklab',
+  oklch: 'oklch',
+  'prophoto-rgb': 'prophoto',
+  rec2020: 'rec2020',
+  srgb: 'rgb',
+  'srgb-linear': 'lrgb',
+  'xyz-d50': 'xyz50',
+  'xyz-d65': 'xyz65',
+};
 
 /** Parse any color */
 export function parseColor(color: string): ColorValueNormalized {
@@ -99,4 +112,59 @@ export function parseColor(color: string): ColorValueNormalized {
     channels,
     alpha: result.alpha ?? 1,
   };
+}
+
+/** Convert a color token to a Culori color */
+export function tokenToCulori(token: ColorTokenNormalized): Color | undefined {
+  if (token.$type !== 'color') {
+    return undefined;
+  }
+
+  switch (token.$value.colorSpace) {
+    case 'a98':
+    case 'display-p3':
+    case 'prophoto-rgb':
+    case 'rec2020':
+    case 'srgb':
+    case 'srgb-linear': {
+      const [r, g, b] = token.$value.channels;
+      return {
+        mode: CSS_TO_CULORI[token.$value.colorSpace] || token.$value.colorSpace,
+        r,
+        g,
+        b,
+        alpha: token.$value.alpha,
+      } as Color;
+    }
+    case 'hsl': {
+      const [h, s, l] = token.$value.channels;
+      return { mode: 'hsl', h, s, l, alpha: token.$value.alpha };
+    }
+    case 'hsv': {
+      const [h, s, v] = token.$value.channels;
+      return { mode: 'hsv', h, s, v, alpha: token.$value.alpha };
+    }
+    case 'hwb': {
+      const [h, w, b] = token.$value.channels;
+      return { mode: 'hwb', h, w, b, alpha: token.$value.alpha };
+    }
+    case 'lab':
+    case 'oklab': {
+      const [l, a, b] = token.$value.channels;
+      return { mode: token.$value.colorSpace, l, a, b, alpha: token.$value.alpha };
+    }
+    case 'lch':
+    case 'oklch': {
+      const [l, c, h] = token.$value.channels;
+      return { mode: token.$value.colorSpace, l, c, h, alpha: token.$value.alpha };
+    }
+    case 'xyz-d50': {
+      const [x, y, z] = token.$value.channels;
+      return { mode: 'xyz50', x, y, z, alpha: token.$value.alpha };
+    }
+    case 'xyz-d65': {
+      const [x, y, z] = token.$value.channels;
+      return { mode: 'xyz65', x, y, z, alpha: token.$value.alpha };
+    }
+  }
 }
