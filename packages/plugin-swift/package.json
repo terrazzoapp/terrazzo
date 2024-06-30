@@ -18,8 +18,8 @@
   "keywords": ["design tokens", "dtcg", "dtfm", "w3c", "swift", "ios"],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "lint": "biome check src",
-    "format": "biome format --write src",
+    "format": "biome format --write .",
+    "lint": "biome check .",
     "test": "vitest run"
   },
   "dependencies": {

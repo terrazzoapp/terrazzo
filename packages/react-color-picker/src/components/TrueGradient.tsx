@@ -11,7 +11,6 @@ function TrueGradient({ start, end, ...rest }: TrueGradientProps) {
   const [webgl, setWebgl] = useState<GradientRGB | undefined>();
 
   // initialize
-  // biome-ignore lint/correctness/useExhaustiveDependencies: this initializer only needs to fire once; that’s what the other useEffect is for
   useEffect(() => {
     if (webgl || !canvasEl.current) {
       return;

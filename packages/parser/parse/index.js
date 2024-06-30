@@ -193,7 +193,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       if (members.$value) {
         node = members.$value;
       }
-      logger.error({ message: err.message, source, node });
+      logger.error({ message: err.message, source, node, continueOnError: true });
     }
     for (const mode in tokens[id].mode) {
       if (mode === '.') {
@@ -207,7 +207,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
         if (members.$value) {
           node = members.$value;
         }
-        logger.error({ message: err.message, source, node: tokens[id].mode[mode].sourceNode });
+        logger.error({ message: err.message, source, node: tokens[id].mode[mode].sourceNode, continueOnError: true });
       }
     }
   }
@@ -302,10 +302,10 @@ export function maybeJSONString(input) {
 export function resolveAlias(alias, { tokens, logger, source, node, scanned = [] }) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found`, source, node });
+    logger.error({ message: `Alias "${alias}" not found`, source, node, continueOnError: true });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}"`, source, node });
+    logger.error({ message: `Circular alias detected from "${alias}"`, source, node, continueOnError: true });
   }
   const token = tokens[id];
   if (!isAlias(token.$value)) {

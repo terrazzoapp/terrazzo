@@ -43,13 +43,7 @@ describe('makeCSSVar', () => {
 describe('transformBooleanValue', () => {
   const tests: Test<Parameters<typeof transformBooleanValue>, ReturnType<typeof transformBooleanValue>>[] = [
     ['true', { given: [true], want: { success: '1' } }],
-    [
-      'false',
-      {
-        given: [false],
-        want: { success: '0' },
-      },
-    ],
+    ['false', { given: [false], want: { success: '0' } }],
     ['invalid', { given: ['true' as any], want: { error: 'Expected boolean, received string "true"' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {

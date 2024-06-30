@@ -1500,7 +1500,7 @@ describe('Additional cases', () => {
   it('error messages', async () => {
     try {
       const config = defineConfig({}, { cwd: new URL(import.meta.url) });
-      const result = await parse(
+      await parse(
         `{
   "color": {
     "$type": "color",

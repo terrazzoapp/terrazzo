@@ -19,9 +19,7 @@
   "scripts": {
     "build": "tsc && size-limit",
     "format": "biome format --write .",
-    "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:js": "biome check .",
-    "lint:css": "stylelint .",
+    "lint": "biome check .",
     "test": "vitest run"
   },
   "peerDependencies": {

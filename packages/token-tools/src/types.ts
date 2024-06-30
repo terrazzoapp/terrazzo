@@ -253,7 +253,7 @@ export interface TypographyValue {
   lineHeight?: DimensionValue | NumberValue | AliasValue;
   textDecoration?: string;
   textTransform?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface GroupCore {
@@ -520,5 +520,5 @@ export interface TypographyValueNormalized {
   lineHeight?: DimensionValue | NumberValue;
   textDecoration?: string;
   textTransform?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }

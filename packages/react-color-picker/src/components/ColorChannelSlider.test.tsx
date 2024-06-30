@@ -10,7 +10,7 @@ function ColorChannelTest({
 }: Omit<ColorChannelSliderProps, 'color' | 'setColor'> & { defaultColor: string }) {
   const [color, setColor] = useColor(defaultColor);
 
-  return <ColorChannelSlider {...rest} color={color} setColor={setColor} />;
+  return <ColorChannelSlider {...rest} channel={rest.channel} color={color} setColor={setColor} />;
 }
 
 describe('ColorChannelSlider', () => {

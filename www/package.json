@@ -3,12 +3,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "astro build",
+    "build": "astro build && cp -r ../packages/storybook/storybook dist",
     "dev": "astro dev",
     "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
-    "lint:css": "stylelint src",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -30,6 +30,7 @@
     "@astrojs/mdx": "^3.1.2",
     "@astrojs/react": "3.6.0",
     "@astrojs/starlight": "^0.24.5",
+    "@terrazzo/storybook": "workspace:^",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "astro": "^4.11.3",

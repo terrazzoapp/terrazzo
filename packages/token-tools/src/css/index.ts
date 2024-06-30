@@ -111,7 +111,7 @@ export function transformCSSValue<T extends TokenNormalized>(
     }
     case 'typography': {
       const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-      return transformTypographyValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformTypographyValue($value as Record<string, string>, { aliasOf, partialAliasOf, transformAlias });
     }
   }
 }

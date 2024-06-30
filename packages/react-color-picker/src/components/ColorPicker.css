@@ -97,10 +97,10 @@
 }
 
 .tz-color-picker-colorspace-chevron {
-  --tz-color-picker-colorspace-chevron-borderColor: transparent;
+  --tz-color-picker-colorspace-chevron-border-color: transparent;
 
   align-items: center;
-  border-color: var(--tz-color-picker-colorspace-chevron-borderColor);
+  border-color: var(--tz-color-picker-colorspace-chevron-border-color);
   border-radius: var(--tz-radius-300);
   border-style: solid;
   border-width: 1px;
@@ -111,7 +111,7 @@
   width: var(--tz-control-small-size);
 
   &:hover {
-    --tz-color-picker-colorspace-chevron-borderColor: var(
+    --tz-color-picker-colorspace-chevron-border-color: var(
       --tz-surface-primary-border
     );
   }

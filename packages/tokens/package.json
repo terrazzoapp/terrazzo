@@ -14,7 +14,7 @@
   "scripts": {
     "build": "del dist && tz build",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:tokens": "tz lint",
+    "lint:tokens": "tz check",
     "dev": "tz build --watch"
   },
   "devDependencies": {
