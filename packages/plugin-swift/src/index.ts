@@ -12,6 +12,21 @@ export interface SwiftPluginOptions {
   catalogName?: string;
 }
 
+export interface ColorData {
+  colors?: {
+    appearances?: { appearance: string; value: string }[];
+    color: {
+      'color-space'?: string;
+      components?: Record<string, string>;
+    };
+    idiom?: string;
+  }[];
+  info?: {
+    author: string;
+    version: number;
+  };
+}
+
 const toP3 = toGamut('p3');
 
 export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptions = {}): Plugin {
@@ -46,10 +61,10 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
     async build({ getTransforms, outputFile }) {
       const catalog = `${catalogName.replace(/\.xcassets$/, '')}.xcassets`;
       for (const token of getTransforms({ id: '*', format: FORMAT, mode: '.' })) {
-        const colorData: any = {
+        const colorData: ColorData = {
           colors: [
             {
-              color: { 'color-space': 'display-p3', components: token.value },
+              color: { 'color-space': 'display-p3', components: token.value as Record<string, string> },
               idiom: 'universal',
             },
           ],
@@ -57,13 +72,16 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
         };
         const [darkToken] = getTransforms({ id: token.token.id, format: FORMAT, mode: 'dark' });
         if (darkToken) {
-          colorData.colors.push({
+          colorData.colors!.push({
             appearances: [{ appearance: 'luminosity', value: 'dark' }],
-            color: { 'color-space': 'display-p3', components: darkToken.value },
+            color: { 'color-space': 'display-p3', components: darkToken.value as Record<string, string> },
             idiom: 'universal',
           });
         }
-        outputFile(`${catalog}/${token.token.id}.colorset/Contents.json`, JSON.stringify(colorData, undefined, 2));
+        outputFile(
+          `${catalog}/${token.token.id}.colorset/Contents.json`,
+          `${JSON.stringify(colorData, undefined, 2)}\n`,
+        );
       }
     },
   };

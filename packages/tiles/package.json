@@ -57,6 +57,8 @@
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
     "size-limit": "^11.1.4",
+    "types-react": "19.0.0-rc.1",
+    "types-react-dom": "19.0.0-rc.1",
     "vitest-axe": "^0.1.0"
   },
   "overrides": {

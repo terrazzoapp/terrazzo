@@ -32,8 +32,8 @@
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
-    "types-react": "19.0.0-alpha.3",
-    "types-react-dom": "19.0.0-alpha.3"
+    "types-react": "19.0.0-rc.1",
+    "types-react-dom": "19.0.0-rc.1"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

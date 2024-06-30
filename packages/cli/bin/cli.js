@@ -80,11 +80,17 @@ export default async function main() {
     }
     configPath = resolveConfig(flags.config);
   }
-  let config;
-  try {
-    config = (await import(resolveConfig(configPath))).default;
-  } catch (err) {
-    printErrors(err.message || err);
+  let config = { tokens: [new URL('./tokens.json', cwd)], outDir: new URL('./tokens/', cwd), plugins: [] };
+  const resolvedConfigPath = resolveConfig(configPath);
+  if (resolvedConfigPath) {
+    try {
+      config = (await import(resolvedConfigPath)).default;
+    } catch (err) {
+      printErrors(err.message || err);
+      process.exit(1);
+    }
+  } else if (cmd !== 'init' && cmd !== 'check') {
+    printErrors('No config file found. Create one with `npx terrazzo init`.');
     process.exit(1);
   }
 
@@ -154,54 +160,39 @@ export default async function main() {
       break;
     }
     case 'check': {
-      const rawSchema = await loadTokens(config.tokens);
-      const filepath = config.tokens[0];
+      const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
+      const filepath = flags._[0] || config.tokens[0];
       console.log(pc.underline(filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath));
-      const { errors, warnings } = parse(rawSchema, config); // will throw if errors
-      if (errors || warnings) {
-        printErrors(errors);
-        printWarnings(warnings);
-        process.exit(1);
-      }
-      printSuccess(`no errors ${time(start)}`);
+      await parse(rawSchema, { config }); // will throw if errors
+      printSuccess(`No errors ${time(start)}`);
       break;
     }
     case 'lint': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
-        printErrors(`✘  No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
+        printErrors(`No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
         process.exit(1);
       }
 
-      const rawSchema = await loadTokens(config.tokens);
-      const parseResult = parse(rawSchema, config); // will throw if errors
+      const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
+      const parseResult = await parse(rawSchema, { config }); // will throw if errors
 
-      if (parseResult.errors) {
-        printErrors(parseResult.errors);
-        printWarnings(parseResult.warnings);
-        process.exit(1);
-      }
-      if (parseResult.warnings) {
-        printWarnings(parseResult.warnings);
-      }
-      const lintResult = await lint({ config, tokens: parseResult.result.tokens, rawSchema, warnIfNoPlugins: true });
-      if (lintResult.errors) {
-        printErrors(lintResult.errors);
-        printWarnings(lintResult.warnings);
-        process.exit(1);
-      }
-      if (lintResult.warnings) {
-        printWarnings(lintResult.warnings);
-      } else {
-        printSuccess(`all checks passed ${time(start)}`);
-      }
+      // TODO
+
       break;
     }
     case 'init': {
-      if (fs.existsSync(config.tokens)) {
-        throw new Error(`${config.tokens} already exists`);
+      if (
+        !fs.existsSync(new URL('./terrazzo.config.js', cwd)) &&
+        !fs.existsSync(new URL('./terrazzo.config.mjs', cwd)) &&
+        !fs.existsSync(new URL('./terrazzo.config.cjs', cwd))
+      ) {
+        fs.cpSync(new URL('../terrazzo.config.js', import.meta.url), new URL('./terrazzo.config.js', cwd));
+        printSuccess('terrazzo.config.js created');
       }
-      fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config.tokens, cwd));
-      printSuccess(`${config.tokens} created ${time(start)}`);
+      if (!fs.existsSync(config.tokens[0])) {
+        fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config?.tokens, cwd));
+        printSuccess(`${config.tokens} created ${time(start)}`);
+      }
       break;
     }
     default: {
@@ -232,8 +223,8 @@ function showHelp() {
       --out [path]  Specify converted tokens.json output
 
   [options]
-    --help         Show this message
-    --config, -c   Path to config (default: ./tokens.config.js)
+    --help          Show this message
+    --config, -c    Path to config (default: ./tokens.config.js)
 `);
 }
 
@@ -315,6 +306,20 @@ function resolveConfig(filename) {
       return fileURLToPath(configPath);
     }
   }
+}
+
+/** Resolve tokens.json path (for lint command) */
+function resolveTokenPath(filepath) {
+  const tokensPath = new URL(filepath, cwd);
+  if (!fs.existsSync(tokensPath)) {
+    printErrors(`Could not locate ${filepath}. Does the file exist?`);
+    process.exit(1);
+  }
+  if (!fs.statSync(tokensPath).isFile()) {
+    printErrors(`Expected JSON or YAML file, received ${filepath}.`);
+    process.exit(1);
+  }
+  return tokensPath;
 }
 
 /** Print time elapsed */

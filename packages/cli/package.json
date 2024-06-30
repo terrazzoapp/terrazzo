@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/cli",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
   "type": "module",
   "author": {
@@ -20,7 +20,7 @@
     "style system"
   ],
   "main": "./dist/index.js",
-  "homepage": "https://terrazzoapp.com/docs/cli/integrations/cli",
+  "homepage": "https://terrazzoapp.com/docs/cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
@@ -52,6 +52,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
-    "execa": "^8.0.1"
+    "execa": "^9.3.0"
   }
 }
