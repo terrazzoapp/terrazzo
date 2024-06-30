@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
   "type": "module",
   "author": {
@@ -27,7 +27,7 @@
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/parser/"
-  },  
+  },
   "license": "MIT",
   "scripts": {
     "lint": "biome check .",

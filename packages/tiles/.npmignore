@@ -1,5 +1,6 @@
 *.test.*
 .size-limit.js
 biome.*
+src/**
 vite.*
 vitest.*
