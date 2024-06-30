@@ -4,7 +4,14 @@ import validateAndNormalizeConfig from '../config.js';
 
 describe('config', () => {
   describe('validation error', () => {
-    const tests: [string, { given: any; want: string }][] = [
+    const tests: [
+      string,
+      {
+        // biome-ignore lint/suspicious/noExplicitAny: we want to test unexpected types here
+        given: any;
+        want: string;
+      },
+    ][] = [
       [
         'tokens: URL',
         {

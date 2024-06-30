@@ -30,7 +30,7 @@ export default function StickerSheet({ columns, rows, variants }: StickerSheetPr
                 {row}
               </th>
               {rowVariants.map((variant, i) => (
-                <td key={i} className={c.td}>
+                <td key={`${variant.title}-${i}`} className={c.td}>
                   {variant}
                 </td>
               ))}
