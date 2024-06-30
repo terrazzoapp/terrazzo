@@ -17,10 +17,12 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
     "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
-    "format": "biome format --write src",
+    "format": "pnpm run \"/&lint:.*/\"",
+    "format:js": "biome format --write \"src/**/*.js\"",
+    "format:css": "stylelint --fix \"src/**/*.css\"",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
-    "lint:css": "stylelint .",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "test": "pnpm run \"/^test.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"

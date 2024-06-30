@@ -51,8 +51,8 @@
 }
 
 .tz-select-item-icon {
-  align-self: center;
   align-content: center;
+  align-self: center;
   display: flex;
   opacity: 0.5;
 }

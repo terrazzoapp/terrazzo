@@ -32,7 +32,10 @@ function UseColorTester({
       <form
         onSubmit={(evt) => {
           evt.preventDefault();
-          setColor((evt.target as any).elements.color.value); // eslint-disable-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+          setColor(
+            // @ts-expect-error: TS has no clue what this is; this is in a test anyway
+            evt.target.elements.color.value,
+          );
         }}
       >
         <label htmlFor='color-input'>Update color</label>
@@ -51,7 +54,6 @@ describe('useColor', () => {
   });
 
   describe('parse', () => {
-    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const formatTests: [string, { given: any; want: Color }][] = [
       ['hex', { given: '#663399', want: { mode: 'rgb', r: 0.4, g: 0.2, b: 0.6, alpha: 1 } }],
       ['hsl', { given: 'hsl(270 50% 40%)', want: { mode: 'hsl', h: 270, s: 0.5, l: 0.4, alpha: 1 } }],
