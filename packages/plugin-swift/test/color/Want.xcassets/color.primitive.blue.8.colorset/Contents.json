@@ -1,0 +1,38 @@
+{
+  "colors": [
+    {
+      "color": {
+        "color-space": "display-p3",
+        "components": {
+          "red": "0.4493472380669719",
+          "green": "0.6863379927169785",
+          "blue": "0.9161077085265298",
+          "alpha": "1"
+        }
+      },
+      "idiom": "universal"
+    },
+    {
+      "appearances": [
+        {
+          "appearance": "luminosity",
+          "value": "dark"
+        }
+      ],
+      "color": {
+        "color-space": "display-p3",
+        "components": {
+          "red": "0.23803842782286488",
+          "green": "0.43322463113208826",
+          "blue": "0.71894276694965",
+          "alpha": "1"
+        }
+      },
+      "idiom": "universal"
+    }
+  ],
+  "info": {
+    "author": "Terrazzo",
+    "version": 1
+  }
+}

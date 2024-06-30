@@ -95,10 +95,7 @@ export default function remarkVitepress() {
       if (node.type === 'code' && !node.data?.processed) {
         const code = { ...node, data: { processed: true } };
         node.type = 'paragraph';
-        node.data = { hName: 'div', hProperties: { className: ['code-block-wrapper'] } };
-        delete node.lang;
-        delete node.meta;
-        delete node.value;
+        node.data = { hName: 'div', hProperties: { className: ['code-block-wrapper'], 'data-language': node.lang } };
         node.children = [
           code,
           {

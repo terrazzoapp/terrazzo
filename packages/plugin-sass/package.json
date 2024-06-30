@@ -6,7 +6,12 @@
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["design tokens", "design tokens community group", "design system", "dtcg", "w3c", "css", "sass"],
+  "keywords": ["design tokens", "dtcg", "w3c", "css", "sass"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "packages/plugin-sass"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",

@@ -5,9 +5,9 @@ layout: ../../../layouts/docs.astro
 
 # CLI
 
-:::warn
+:::warning
 
-The Terrazzo CLI is in **beta**, which means breaking changes may occur before the final release! This is merely a _preview_, not the final product (and as always, [feedback is welcome](https://github.com/drwpow/cobalt-ui/issues/201)
+The CLI is in beta. Breaking changes may occur before the stable release.
 
 :::
 
@@ -21,7 +21,7 @@ Migrating from Cobalt? Check out the [Migration Guide](/docs/cli/migrating)
 
 ## Quickstart
 
-First install the package using your package manager of choice:
+First, install the package using your package manager of choice:
 
 :::code-group
 
@@ -49,7 +49,7 @@ pnpm i -D @terrazzo/plugin-css @terrazzo/plugin-js
 
 :::
 
-Create a `terrazzo.config.js` file in the root of your repo:
+Third, create a `terrazzo.config.js` file in the root of your repo:
 
 :::code-group
 
@@ -67,13 +67,29 @@ export default defineConfig({
 
 :::
 
-And to finish it up, run
+And finally, run:
 
 ```sh
 npx tz build
 ```
 
 from your project root to generate code using your plugins.
+
+## Comparison
+
+Whether you view your design tokens as **standard or nonstandard** will affect whether you use Terrazzo, some other tool like [Style Dictionary](https://amzn.github.io/style-dictionary/), or build your own. Terrazzo takes the same opinion as the DTCG format: **design tokens should be standardized.** This means that colors, typography, spacing, and more should be expressed in predictable ways.
+
+The advantage of using a standard format is you can get up-and-running faster because the tooling already exists. There’s more shared collaboration and tooling around the same problem, and knowledge sharing is easier. But the downside is it may not work well for nonstandard design systems, especially if your team approaches color, theming, or design systems in general in a unique way.
+
+### VS. Style Dictionary
+
+Style Dictionary is the path of nonstandard (custom) tokens. It allows your team to approach design systems in your own unique way… but at the cost of building your own tooling from scratch, and having to frontload investment before you get any value.
+
+:::warning
+
+While it’s tempting to lean toward _“flexibility,”_ that term is often indecision (or procrastination) in disguise! Make sure you’re prioritizing your **real needs today** rather than your potential needs tomorrow.
+
+:::
 
 ## Next Steps
 

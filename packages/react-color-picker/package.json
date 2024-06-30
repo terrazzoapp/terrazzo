@@ -58,7 +58,6 @@
     "size-limit": "^11.1.4",
     "types-react": "19.0.0-alpha.3",
     "types-react-dom": "19.0.0-alpha.3",
-    "vitest": "^1.6.0",
     "vitest-axe": "^0.1.0"
   },
   "overrides": {

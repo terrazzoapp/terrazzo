@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # Migrating from Cobalt
 
-Cobalt 2.0 has been renamed to the Terrazzo CLI ([_why?_](/docs/about)). Same project, same folks, same code, but an all-around improvement.
+Cobalt 2.0 [has been renamed _Terrazzo._](/docs/reference/about) Same project, same code, still open-source, but an all-around improvement.
 
 For **users**, upgrading should be easy. Some plugin output may differ slightly, but you won’t find huge sweeping changes (ideally you’ll get a lot of invisible fixes and improvements without even noticing!).
 

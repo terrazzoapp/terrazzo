@@ -1,0 +1,7 @@
+.tz-demo {
+  display: flex;
+}
+
+.tz-demo-canvas {
+  padding: var(--tz-space-400);
+}

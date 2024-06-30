@@ -137,6 +137,10 @@ export default {
         },
         { mode: "mobile", selectors: ["@media (width < 600px)"] },
         { mode: "desktop", selectors: ["@media (width >= 600px)"] },
+        {
+          mode: "reduced-motion",
+          selectors: ["@media (prefers-reduced-motion)"],
+        },
       ],
       variableName: (id) => kebabCase(id),
     }),

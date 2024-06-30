@@ -8,11 +8,9 @@
   },
   "keywords": [
     "design tokens",
-    "design tokens community group",
-    "design tokens format module",
     "dtcg",
     "cli",
-    "w3c design tokens",
+    "w3c",
     "design system",
     "typescript",
     "sass",
@@ -22,6 +20,11 @@
     "linting",
     "lint"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/token-tools/"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.js",

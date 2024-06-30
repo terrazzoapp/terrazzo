@@ -2,6 +2,8 @@ export { default as Button } from './Button/Button.js';
 export * from './Button/Button.js';
 export { default as ButtonLink } from './ButtonLink/ButtonLink.js';
 export * from './ButtonLink/ButtonLink.js';
+export { default as Demo } from './Demo/Demo.js';
+export * from './Demo/Demo.js';
 export { default as Fieldset } from './Fieldset/Fieldset.js';
 export { default as Kbd } from './Kbd/Kbd.js';
 export * from './Kbd/Kbd.js';

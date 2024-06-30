@@ -290,6 +290,73 @@
 
 .code-block-wrapper {
   position: relative;
+
+  &[data-language="sh"],
+  &[data-language="bash"] {
+    --chrome-border-color: var(--tz-surface-primary-border);
+    --chrome-height: var(--tz-space-600);
+
+    margin-top: calc(var(--tz-space-600) + var(--chrome-height));
+
+    &::before {
+      background-color: #141414; /* same as theme */
+      border-bottom: 1px solid var(--chrome-border-color);
+      border-top-left-radius: var(--tz-radius-500);
+      border-top-right-radius: var(--tz-radius-500);
+      bottom: 100%;
+      content: "";
+      display: block;
+      height: var(--tz-space-600);
+      left: 0;
+      position: absolute;
+      width: 100%;
+    }
+
+    &::after {
+      --chrome-button-size: calc(0.375 * var(--chrome-height));
+      --chrome-button-gap: calc(0.5 * var(--chrome-button-size));
+      --y: calc(0.5 * var(--chrome-button-size));
+      --x1: calc(0.5 * var(--chrome-button-size));
+      --x2: calc(
+        var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap)
+      );
+      --x3: calc(
+        var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap)
+      );
+
+      background-image: radial-gradient(
+          circle at var(--x1) var(--y),
+          transparent 0,
+          transparent calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size)),
+          transparent calc(0.5 * var(--chrome-button-size))
+        ),
+        radial-gradient(
+          circle at var(--x2) var(--y),
+          transparent 0,
+          transparent calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size)),
+          transparent calc(0.5 * var(--chrome-button-size))
+        ),
+        radial-gradient(
+          circle at var(--x3) var(--y),
+          transparent 0,
+          transparent calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size) - 1px),
+          var(--chrome-border-color) calc(0.5 * var(--chrome-button-size)),
+          transparent calc(0.5 * var(--chrome-button-size))
+        );
+      bottom: calc(100%);
+      content: "";
+      height: var(--chrome-button-size);
+      left: var(--tz-space-400);
+      position: absolute;
+      transform: translateY(-87.5%);
+      width: calc(3 * var(--chrome-button-size) + 2 * var(--chrome-button-gap));
+    }
+  }
 }
 
 .code-block-copy-btn {

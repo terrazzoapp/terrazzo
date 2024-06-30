@@ -1,0 +1,36 @@
+{
+  "name": "@terrazzo/plugin-lint-a11y",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Add accessibility linting checks for your DTCG design tokens",
+  "keywords": [
+    "wcag",
+    "apca",
+    "contract",
+    "accessibility",
+    "a11y",
+    "design tokens",
+    "dtcg",
+    "design system",
+    "css"
+  ],
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-lint-a11y/"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "format": "biome format --write src",
+    "lint": "biome check src",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@terrazzo/parser": "workspace:^"
+  }
+}

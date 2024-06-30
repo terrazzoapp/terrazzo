@@ -1,6 +1,6 @@
 ---
-import { ButtonLink } from '@terrazzo/tiles';
-import DefaultLayout from '../layouts/default.astro';
+import { ButtonLink } from "@terrazzo/tiles";
+import DefaultLayout from "../layouts/default.astro";
 ---
 
 <DefaultLayout>
@@ -45,37 +45,37 @@ import DefaultLayout from '../layouts/default.astro';
       >
       <span class="beta">beta</span>
     </div>
-    <p class="tagline">The next generation of design system tooling</p>
+    <p class="tagline">Open source tooling for design systems</p>
     <p>
-      Terrazzo is in beta, and is a suite of tools for building and managing
-      your design system. Terrazzo follows the <a
-        href="https://designtokens.org"
-        target="_blank">W3C Community Group Design Token spec</a
-      > and is built by <a class="gh-user" href="https://github.com/drwpow"
-        ><img
-          class="gh-avatar"
-          src="https://avatars.githubusercontent.com/u/1369770?v=4"
-          aria-hidden
-        />@drwpow</a
-      >, <a class="gh-user" href="https://github.com/natassone"
-        ><img
-          class="gh-avatar"
-          src="https://avatars.githubusercontent.com/u/1572205?v=4"
-          aria-hidden
-        />@ntassone</a
-      >, and other contributors.
+      Terrazzo (formerly “Cobalt UI”) is a suite of MIT-licensed open-source
+      tools for generating code from tokens.
     </p>
-    <p></p>
     <div class="actions">
-      <ButtonLink href="/docs">Get Started</ButtonLink>
+      <ButtonLink href="/docs">Try the Beta</ButtonLink>
       <ButtonLink
         href="https://github.com/terrazzoapp/terrazzo"
         target="_blank"
         rel="noopener noreferrer"
-        variant="secondary">View GitHub</ButtonLink
+        variant="secondary">View on GitHub</ButtonLink
       >
     </div>
   </main>
+
+  <footer>
+    Built by <a class="gh-user" href="https://github.com/drwpow"
+      ><img
+        class="gh-avatar"
+        src="https://avatars.githubusercontent.com/u/1369770?v=4"
+        aria-hidden
+      />@drwpow</a
+    >, <a class="gh-user" href="https://github.com/ntassone"
+      ><img
+        class="gh-avatar"
+        src="https://avatars.githubusercontent.com/u/1572205?v=4"
+        aria-hidden
+      />@ntassone</a
+    >, and <a href="https://github.com/terrazzoapp/terrazzo">others</a>.
+  </footer>
 </DefaultLayout>
 
 <style>
@@ -87,7 +87,7 @@ import DefaultLayout from '../layouts/default.astro';
     align-items: flex-start;
     display: flex;
     gap: var(--tz-space-300);
-    margin-block: var(--tz-space-900);
+    margin-block: var(--tz-space-700);
   }
 
   .tagline {
@@ -96,7 +96,8 @@ import DefaultLayout from '../layouts/default.astro';
     letter-spacing: var(--tz-typography-800-regular-letter-spacing);
     line-height: 1;
     margin-top: 0;
-    margin-bottom: var(--tz-space-600);
+    margin-bottom: var(--tz-space-500);
+    text-wrap: balance;
   }
 
   .beta {
@@ -126,9 +127,22 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   p {
+    font-size: var(--tz-typography-400-regular-font-size);
+    font-weight: var(--tz-typography-400-regular-font-weight);
+    letter-spacing: var(--tz-typography-400-regular-letter-spacing);
+    line-height: 1.8;
+    margin-block: var(--tz-space-600);
+    max-width: 40rem;
+  }
+
+  footer {
     font-size: var(--tz-typography-200-regular-font-size);
     font-weight: var(--tz-typography-200-regular-font-weight);
     letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-    line-height: var(--tz-typography-200-regular-line-height);
+    margin-top: 20vh;
+    margin-inline: auto;
+    max-width: 40rem;
+    padding-inline: var(--tz-space-400);
+    text-align: center;
   }
 </style>

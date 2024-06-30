@@ -5,8 +5,8 @@ import {
   // @ts-expect-error: types missing
   toGamut,
 } from 'culori';
-import { CSS_TO_CULORI, parseColor } from '../color.js';
-import type { ColorValue } from '../types.js';
+import { parseColor, tokenToCulori } from '../color.js';
+import type { ColorTokenNormalized, ColorValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 export type WideGamutColorValue = { '.': string; srgb: string; p3: string; rec2020: string };
@@ -20,59 +20,15 @@ export function transformColorValue(
     return transformAlias(aliasOf);
   }
 
-  const { colorSpace, channels, alpha } = typeof value === 'string' ? parseColor(value) : value;
-  const color = { mode: CSS_TO_CULORI[colorSpace], alpha } as Color;
-  switch (color.mode) {
-    case 'a98':
-    case 'rec2020':
-    case 'p3':
-    case 'prophoto':
-    case 'lrgb':
-    case 'rgb': {
-      color.r = channels[0];
-      color.g = channels[1];
-      color.b = channels[2];
-      break;
-    }
-    case 'hsl': {
-      color.h = channels[0];
-      color.s = channels[1];
-      color.l = channels[2];
-      break;
-    }
-    case 'hsv': {
-      color.h = channels[0];
-      color.s = channels[1];
-      color.v = channels[2];
-      break;
-    }
-    case 'hwb': {
-      color.h = channels[0];
-      color.w = channels[1];
-      color.b = channels[2];
-      break;
-    }
-    case 'lab':
-    case 'oklab': {
-      color.l = channels[0];
-      color.a = channels[1];
-      color.b = channels[2];
-      break;
-    }
-    case 'lch':
-    case 'oklch': {
-      color.l = channels[0];
-      color.c = channels[1];
-      color.h = channels[2];
-      break;
-    }
-    case 'xyz50':
-    case 'xyz65': {
-      color.x = channels[0];
-      color.y = channels[1];
-      color.z = channels[2];
-      break;
-    }
+  const { colorSpace, channels, alpha = 1 } = typeof value === 'string' ? parseColor(value) : value;
+  const color = tokenToCulori({
+    $type: 'color',
+    $value: { colorSpace, channels, alpha },
+    mode: { '.': { $type: 'color', $value: { colorSpace, channels, alpha } } },
+  } as unknown as ColorTokenNormalized);
+
+  if (!color) {
+    throw new Error(`Can’t convert color ${JSON.stringify(value)} to Culori color`);
   }
 
   return displayable(color)

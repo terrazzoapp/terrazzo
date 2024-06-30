@@ -5,7 +5,7 @@
   "license": "OFL-1.1",
   "repository": {
     "type": "git",
-    "url": "git+terrazzoapp/terrazzo.git",
-    "directory": "./packages/fonts"
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/fonts/"
   }
 }
