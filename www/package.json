@@ -8,7 +8,7 @@
     "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
-    "lint:css": "stylelint src",
+    "lint:css": "stylelint \"src/**/*.css\"",
     "preview": "astro preview"
   },
   "dependencies": {
