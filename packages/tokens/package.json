@@ -1,6 +1,7 @@
 {
   "name": "@terrazzo/tokens",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Internal design tokens for @terrazzo/tiles",
   "type": "module",
   "author": {
     "name": "Drew Powers",

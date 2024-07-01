@@ -1,6 +1,9 @@
 *.test.*
 .size-limit.js
-src/**
 biome.*
+rollup.*
+src/**
+stylelint.*
 vite.*
 vitest.*
+tsconfig.*

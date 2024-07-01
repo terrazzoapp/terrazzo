@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect, useRef, useState, memo } from 'react';
+import { type ComponentProps, useEffect, useRef, useState } from 'react';
 import { HueWheel as HueWheelWebGL } from '../lib/webgl.js';
 
 export type HueWheelProps = ComponentProps<'canvas'>;
@@ -18,4 +18,4 @@ function HueWheel({ ...rest }: HueWheelProps) {
   return <canvas ref={canvasEl} {...rest} />;
 }
 
-export default memo(HueWheel);
+export default HueWheel;

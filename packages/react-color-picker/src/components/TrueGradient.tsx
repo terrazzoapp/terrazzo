@@ -1,4 +1,4 @@
-import { type ComponentProps, useEffect, useRef, useState, memo } from 'react';
+import { type ComponentProps, useEffect, useRef, useState } from 'react';
 import { GradientRGB, type WebGLColor } from '../lib/webgl.js';
 
 export interface TrueGradientProps extends ComponentProps<'canvas'> {
@@ -28,4 +28,4 @@ function TrueGradient({ start, end, ...rest }: TrueGradientProps) {
   return <canvas ref={canvasEl} {...rest} />;
 }
 
-export default memo(TrueGradient);
+export default TrueGradient;

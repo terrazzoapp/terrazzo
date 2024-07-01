@@ -8,7 +8,15 @@
   },
   "license": "MIT",
   "type": "module",
-  "keywords": ["color", "wcg", "p3", "oklab", "oklch", "hsl", "picker"],
+  "keywords": [
+    "color",
+    "wcg",
+    "p3",
+    "oklab",
+    "oklch",
+    "hsl",
+    "picker"
+  ],
   "main": "./dist/index.js",
   "homepage": "https://terrazzoapp.com/docs/components/color-picker",
   "repository": {
@@ -53,8 +61,8 @@
     "chokidar-cli": "^3.0.0",
     "culori": "^4.0.1",
     "jsdom": "^24.1.0",
-    "react": "19.0.0-rc-e02baf6c92-20240627",
-    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
+    "react": "19.0.0-rc-58af67a8f8-20240628",
+    "react-dom": "19.0.0-rc-58af67a8f8-20240628",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",

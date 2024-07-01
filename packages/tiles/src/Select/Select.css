@@ -81,7 +81,7 @@
   padding-bottom: var(--tz-space-200);
   padding-top: var(--tz-space-200);
   position: relative;
-  z-index: var(--tz-layer-popover);
+  z-index: var(--tz-layer-menu);
 }
 
 .tz-select-scroll-button {

@@ -3,9 +3,9 @@ import { type ComponentProps, useCallback, useEffect, useId, useRef, useState, t
 import Kbd from '../Kbd/Kbd.js';
 import './OmniBar.css';
 
-export interface OmniBarResult extends ComponentProps<'li'> {}
+export interface OmniBarResultProps extends ComponentProps<'li'> {}
 
-export function OmniBarResult({ className, children, ...rest }: OmniBarResult) {
+export function OmniBarResult({ className, children, ...rest }: OmniBarResultProps) {
   return (
     <li
       className={clsx('tz-omnibar-result', className)}
@@ -40,7 +40,7 @@ export function OmniBar({
   children,
   defaultExpanded = false,
   placeholder,
-  keyCommand = 'F',
+  keyCommand = '/',
   onExpand,
   onEnter,
   onChange,
