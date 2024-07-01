@@ -1,6 +1,7 @@
 ---
 import { GitHubLogo } from '@terrazzo/icons';
 import DocsSearch from './SearchBox.tsx';
+import ThemeSwitcher from './ThemeSwitcher.tsx';
 ---
 
 <header class="header-nav">
@@ -9,6 +10,9 @@ import DocsSearch from './SearchBox.tsx';
   </div>
   <nav class="nav">
     <ul>
+      <li>
+        <ThemeSwitcher client:load />
+      </li>
       <li>
         <a
           href="https://github.com/terrazzo/terrazzo"
@@ -42,6 +46,7 @@ import DocsSearch from './SearchBox.tsx';
     align-items: center;
     flex-grow: 0 0 auto;
     display: flex;
+    position: relative;
 
     ul {
       align-items: center;
@@ -50,6 +55,10 @@ import DocsSearch from './SearchBox.tsx';
       list-style: none;
       margin: 0;
       padding: 0;
+    }
+
+    li {
+      z-index: 50;
     }
 
     a {
@@ -66,6 +75,11 @@ import DocsSearch from './SearchBox.tsx';
       &[aria-current] {
         color: var(----tz-text-link-primary);
         font-weight: var(--tz-typography-300-medium-font-weight);
+      }
+
+      svg {
+        height: 1.25rem;
+        width: 1.25rem;
       }
     }
   }

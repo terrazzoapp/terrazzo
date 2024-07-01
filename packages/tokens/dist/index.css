@@ -271,9 +271,9 @@
   --tz-typography-900-bold-letter-spacing: -0.0250000004rem;
   --tz-layer-base: 10;
   --tz-layer-tooltip: 20;
-  --tz-layer-popover: 30;
-  --tz-layer-menu: 40;
-  --tz-layer-nav: 50;
+  --tz-layer-nav: 30;
+  --tz-layer-popover: 40;
+  --tz-layer-menu: 50;
   --tz-layer-modal: 100;
   --tz-space-000: 0.125rem;
   --tz-space-100: 0.25rem;

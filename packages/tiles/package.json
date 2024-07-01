@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/tiles",
   "description": "Terrazzo’s component library",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -46,13 +46,13 @@
     "@rollup/plugin-swc": "^0.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "chokidar-cli": "^3.0.0",
-    "react": "19.0.0-rc-e02baf6c92-20240627",
-    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
+    "react": "19.0.0-rc-58af67a8f8-20240628",
+    "react-dom": "19.0.0-rc-58af67a8f8-20240628",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",

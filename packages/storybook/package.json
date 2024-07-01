@@ -16,7 +16,7 @@
   "dependencies": {
     "culori": "^4.0.1",
     "react": "19.0.0-rc-58af67a8f8-20240628",
-    "react-dom": "19.0.0-rc-e02baf6c92-20240627"
+    "react-dom": "19.0.0-rc-58af67a8f8-20240628"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.1.11",
@@ -29,7 +29,7 @@
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",

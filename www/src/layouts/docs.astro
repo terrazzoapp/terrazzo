@@ -10,6 +10,13 @@ const { frontmatter } = Astro.props;
 <html>
   <head>
     <HeadMeta title={frontmatter.title} description={frontmatter.description} />
+    <script is:inline>
+      const LS_THEME_KEY = 'tz-www-theme'
+      const initialValue = typeof localStorage !== 'undefined' ? localStorage.getItem(LS_THEME_KEY) : undefined;
+      if (initialValue === 'light' || initialValue === 'dark') {
+        document.documentElement.setAttribute('data-color-mode', initialValue);
+      }
+    </script>
     <style>
       .docs {
         --sidebar-width: 16rem;

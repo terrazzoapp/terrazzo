@@ -1,9 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { tokenToCulori } from '@terrazzo/token-tools';
-import {
-  // @ts-expect-error: types missing
-  toGamut,
-} from 'culori';
+import { toGamut } from 'culori';
 
 export const FORMAT = 'swift';
 
@@ -27,7 +24,7 @@ export interface ColorData {
   };
 }
 
-const toP3 = toGamut('p3');
+const toP3 = toGamut('p3', 'oklch');
 
 export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptions = {}): Plugin {
   return {

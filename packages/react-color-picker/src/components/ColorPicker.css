@@ -14,39 +14,19 @@
   position: relative;
 }
 
-.tz-color-picker-code-copy-btn {
-  --btn-text: var(--tz-icon-secondary);
-
-  background-color: transparent;
-  background-image: linear-gradient(
-    to right,
-    transparent,
-    var(--tz-color-base-gray-200) 50%
-  );
-  border: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: var(--tz-radius-300);
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  bottom: 0;
-  color: var(--btn-text);
-  cursor: pointer;
-  outline: 2px solid transparent;
+.tz-color-picker-copy-btn-wrapper {
+  margin: 0;
   padding: 0;
   position: absolute;
   right: 0;
   top: 0;
-  transition: outline-color var(--tz-timing-default) var(--tz-ease-linear);
-  width: var(--copy-btn-width);
-  z-index: 2;
+}
 
-  &:hover {
-    background-color: var(--tz-color-base-gray-300);
-  }
-
-  &:focus-visible {
-    outline-color: var(--tz-nav-primary-highlight);
-  }
+.tz-color-picker-copy-btn {
+  border: none;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 
 .tz-color-picker-code-input {

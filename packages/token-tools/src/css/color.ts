@@ -1,10 +1,4 @@
-import {
-  type Color,
-  displayable,
-  formatCss,
-  // @ts-expect-error: types missing
-  toGamut,
-} from 'culori';
+import { type Color, displayable, formatCss, toGamut } from 'culori';
 import { parseColor, tokenToCulori } from '../color.js';
 import type { ColorTokenNormalized, ColorValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
@@ -35,8 +29,8 @@ export function transformColorValue(
     ? formatCss(color)
     : {
         '.': formatCss(color),
-        srgb: (typeof value === 'object' && value.hex) || formatCss(toGamut('rgb')(color) as Color),
-        p3: formatCss(toGamut('p3')(color) as Color),
-        rec2020: formatCss(toGamut('rec2020')(color) as Color),
+        srgb: (typeof value === 'object' && value.hex) || formatCss(toGamut('rgb', 'oklch')(color) as Color),
+        p3: formatCss(toGamut('p3', 'oklch')(color) as Color),
+        rec2020: formatCss(toGamut('rec2020', 'oklch')(color) as Color),
       };
 }

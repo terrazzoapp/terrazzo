@@ -62,6 +62,7 @@
   z-index: calc(var(--tz-layer-base) + 5);
 
   .tz-kbd {
+    pointer-events: none;
     position: absolute;
     right: var(--tz-space-100);
     top: 50%;

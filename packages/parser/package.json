@@ -40,7 +40,7 @@
     "@humanwhocodes/momoa": "^3.0.6",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/deep-equal": "^1.0.4",
     "culori": "^4.0.1",
     "deep-equal": "^2.2.3",

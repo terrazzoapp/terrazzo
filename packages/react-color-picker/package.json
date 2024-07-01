@@ -1,14 +1,22 @@
 {
   "name": "@terrazzo/react-color-picker",
   "description": "React color picker that supports Color Module 4, wide color gamut (WCG), and Display-P3 using WebGL for monitor-accurate colors. Powered by Culori.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
   "license": "MIT",
   "type": "module",
-  "keywords": ["color", "wcg", "p3", "oklab", "oklch", "hsl", "picker"],
+  "keywords": [
+    "color",
+    "wcg",
+    "p3",
+    "oklab",
+    "oklch",
+    "hsl",
+    "picker"
+  ],
   "main": "./dist/index.js",
   "homepage": "https://terrazzoapp.com/docs/components/color-picker",
   "repository": {
@@ -46,15 +54,15 @@
     "@size-limit/preset-small-lib": "^11.1.4",
     "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "chokidar-cli": "^3.0.0",
     "culori": "^4.0.1",
     "jsdom": "^24.1.0",
-    "react": "19.0.0-rc-e02baf6c92-20240627",
-    "react-dom": "19.0.0-rc-e02baf6c92-20240627",
+    "react": "19.0.0-rc-58af67a8f8-20240628",
+    "react-dom": "19.0.0-rc-58af67a8f8-20240628",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",

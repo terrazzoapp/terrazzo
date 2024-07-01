@@ -146,13 +146,13 @@ function DocsSearchContent({ hit }: { hit: Hit }) {
 function DocsSearchResults() {
   const hits = useHits();
   const [query, setQuery] = useState('');
-  const isQuerying = query.length > 2;
+  const isQuerying = !!query.length;
 
   return (
     <OmniBar
       aria-label='Search Docs'
       placeholder='Find…'
-      keyCommand='F'
+      keyCommand='/'
       value={query}
       onChange={(evt) => setQuery(evt.currentTarget.value)}
       onEnter={(i) => {

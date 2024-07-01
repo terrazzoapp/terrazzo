@@ -1,0 +1,6 @@
+biome.json
+src/**
+rollup.*
+tsconfig.*
+vite.*
+vitest.*
