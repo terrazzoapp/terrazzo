@@ -1,4 +1,3 @@
-// @ts-expect-error
 import { inGamut } from 'culori/fn';
 
 // TODO: remove

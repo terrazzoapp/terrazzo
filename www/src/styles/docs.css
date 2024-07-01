@@ -397,12 +397,15 @@
 }
 
 .code-block-copy-btn {
+  align-items: center;
   background: transparent;
   border: 1px solid color(srgb 1 1 1 / 0.2);
-  border-radius: var(--tz-radius-200);
+  border-radius: var(--tz-radius-300);
   color: color(srgb 1 1 1 / 0.75);
   cursor: pointer;
+  display: inline-flex;
   height: var(--tz-control-default-size);
+  justify-content: center;
   position: absolute;
   right: var(--tz-space-400);
   top: var(--tz-space-400);

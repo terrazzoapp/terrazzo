@@ -1,8 +1,8 @@
-import { Check, ChevronDown, ColorFilterOutline, Copy, InfoCircled } from '@terrazzo/icons';
-import { Fieldset, Select, SelectItem, Switch, Tooltip } from '@terrazzo/tiles';
+import { ChevronDown, ColorFilterOutline, InfoCircled } from '@terrazzo/icons';
+import { CopyButton, Fieldset, Select, SelectItem, Switch, Tooltip } from '@terrazzo/tiles';
 import { COLORSPACES, type default as useColor, parse, formatCss } from '@terrazzo/use-color';
 import clsx from 'clsx';
-import { useEffect, type ComponentProps, useState, useRef, useMemo } from 'react';
+import { useEffect, type ComponentProps, useState, useMemo } from 'react';
 import ColorChannelSlider from './ColorChannelSlider.js';
 import './ColorPicker.css';
 import { channelOrder, updateColor } from '../lib/color.js';
@@ -30,8 +30,6 @@ export interface ColorPickerProps extends Omit<ComponentProps<'div'>, 'color'> {
 export default function ColorPicker({ className, color, setColor, ...rest }: ColorPickerProps) {
   const [inputBuffer, setInputBuffer] = useState(color.css);
   const [maxGamut, setMaxGamut] = useState<Gamut>('rgb');
-  const [copied, setCopied] = useState(false);
-  const copiedTO = useRef<number | undefined>(undefined);
   const normalizedColorMode = useMemo(
     () => (['p3', 'rec2020', 'lrgb'].includes(color.original.mode) ? 'rgb' : color.original.mode),
     [color],
@@ -66,20 +64,9 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
               }
             }}
           />
-          <button
-            type='button'
-            className='tz-color-picker-code-copy-btn'
-            onClick={async () => {
-              await navigator.clipboard.writeText(color.css);
-              clearTimeout(copiedTO.current);
-              setCopied(true);
-              copiedTO.current = window.setTimeout(() => {
-                setCopied(false);
-              }, 1000);
-            }}
-          >
-            {copied ? <Check /> : <Copy aria-label='Copy value' />}
-          </button>
+          <menu className='tz-color-picker-copy-btn-wrapper'>
+            <CopyButton className='tz-color-picker-copy-btn' clipboardText={color.css} />
+          </menu>
         </div>
       </div>
       <details className='tz-color-picker-colorspace'>

@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/tiles",
   "description": "Terrazzo’s component library",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -46,7 +46,7 @@
     "@rollup/plugin-swc": "^0.3.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",

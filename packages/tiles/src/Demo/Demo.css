@@ -3,5 +3,28 @@
 }
 
 .tz-demo-canvas {
+  flex: 1 1 auto;
   padding: var(--tz-space-400);
+}
+
+.tz-demo-code {
+  flex: 1 1 auto;
+  position: relative;
+}
+
+.tz-demo-code-copy-wrapper {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: var(--tz-space-300);
+  top: var(--tz-space-200);
+  z-index: var(--tz-layer-nav);
+}
+
+.tz-demo-code-icon {
+  opacity: 0.75;
+}
+
+.tz-demo-code-overflow {
+  overflow-x: auto;
 }

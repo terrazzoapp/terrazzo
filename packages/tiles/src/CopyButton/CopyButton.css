@@ -1,0 +1,27 @@
+.tz-copy-button {
+  --tz-copy-btn-size: 2rem;
+
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--tz-button-secondary-border);
+  border-radius: var(--tz-radius-300);
+  color: var(--tz-icon-secondary);
+  cursor: pointer;
+  display: inline-flex;
+  height: var(--tz-control-default-size);
+  justify-content: center;
+  min-width: var(--tz-control-default-size);
+  outline: 2px solid transparent;
+  padding: 0;
+  transition: outline-color var(--tz-timing-default) var(--tz-ease-linear);
+  width: var(--tz-control-default-size);
+  z-index: 2;
+
+  &:hover {
+    background-color: var(--tz-color-base-gray-300);
+  }
+
+  &:focus-visible {
+    outline-color: var(--tz-nav-primary-highlight);
+  }
+}

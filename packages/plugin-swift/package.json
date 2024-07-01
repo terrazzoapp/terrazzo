@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "@terrazzo/parser": "workspace:^",
-    "@types/culori": "^2.1.0"
+    "@types/culori": "^2.1.1"
   }
 }

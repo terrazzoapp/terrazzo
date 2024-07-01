@@ -1,8 +1,5 @@
-import { COLORSPACES, type Color, type ColorInput } from '@terrazzo/use-color';
-import {
-  // @ts-expect-error
-  toGamut,
-} from 'culori';
+import { COLORSPACES, type P3, type Color, type ColorInput, type Rgb } from '@terrazzo/use-color';
+import { toGamut } from 'culori';
 
 /** Calculate min, max, displayMin, and displayMax for a given color/colorspace/gamut */
 export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb') {
@@ -10,7 +7,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
   let max = 1;
   let displayMin: number | undefined;
   let displayMax: number | undefined;
-  const clampGamut = toGamut(gamut);
+  const clampGamut = toGamut(gamut, 'oklch');
 
   switch (color.mode) {
     case 'hsl':
@@ -37,8 +34,12 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
           displayMin = -125;
           displayMax = 125;
           // TODO: this is wrong
-          const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }));
-          const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }));
+          const clampedMin = COLORSPACES[color.mode].converter(
+            clampGamut({ ...color, [channel]: displayMin }) as Color,
+          );
+          const clampedMax = COLORSPACES[color.mode].converter(
+            clampGamut({ ...color, [channel]: displayMax }) as Color,
+          );
           min = clampedMin[channel];
           max = clampedMax[channel];
           break;
@@ -54,7 +55,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
         }
         case 'c': {
           displayMax = 150;
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }));
+          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }) as Color);
           max = clamped.c;
           break;
         }
@@ -69,8 +70,8 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
       if (channel === 'a' || channel === 'b') {
         displayMin = -0.4;
         displayMax = 0.4;
-        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }));
-        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }));
+        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }) as Color);
+        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }) as Color);
         min = clampedMin[channel];
         max = clampedMax[channel];
       }
@@ -84,7 +85,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
         }
         case 'c': {
           displayMax = 0.4;
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }));
+          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }) as Color);
           max = clamped.c;
           break;
         }
@@ -123,16 +124,16 @@ export function updateColor(color: Color, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb
       break;
     }
     case 'p3': {
-      const clamped = toGamut('p3')(color); // clamp color to P3 gamut
       if (color.mode === 'rec2020' || color.mode === 'rgb' || color.mode === 'hsl' || color.mode === 'hsv') {
-        return COLORSPACES.p3.converter(clamped); // if this is in a non-P3-compatible colorspace, convert it
+        const clamped = toGamut('p3', 'oklch')(color); // clamp color to P3 gamut
+        return COLORSPACES.p3.converter(clamped as P3); // if this is in a non-P3-compatible colorspace, convert it
       }
       break;
     }
     default: {
-      const clamped = toGamut('rgb')(color); // clamp to sRGB gamut
       if (color.mode === 'a98' || color.mode === 'rec2020' || color.mode === 'p3' || color.mode === 'prophoto') {
-        return COLORSPACES.srgb.converter(clamped); // if this is in a non-sRGB-compatible colorspace, convert it
+        const clamped = toGamut('rgb', 'oklch')(color); // clamp to sRGB gamut
+        return COLORSPACES.srgb.converter(clamped as Rgb); // if this is in a non-sRGB-compatible colorspace, convert it
       }
       break;
     }
