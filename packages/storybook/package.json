@@ -1,12 +1,12 @@
 {
-  "name": "@terrazzo-internal/storybook",
+  "name": "@terrazzo/storybook",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
     "dev": "pnpm run sb",
-    "build": "sb build -o storybook",
+    "build:app": "sb build -o storybook",
     "format": "biome format --write src",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
