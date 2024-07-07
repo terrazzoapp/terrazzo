@@ -1,8 +1,9 @@
 {
-  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
   "changelog": ["@changesets/changelog-github", { "repo": "terrazzoapp/terrazzo" }],
   "commit": false,
   "linked": [["@terrazzo/cli", "@terrazzo/parser"]],
   "access": "public",
-  "baseBranch": "main"
+  "baseBranch": "main",
+  "ignore": ["@terrazzo/plugin-lint-a11y", "@terrazzo/token-lab", "@terrazzo/plugin-tailwind"]
 }
