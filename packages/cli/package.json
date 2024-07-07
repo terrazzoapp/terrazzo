@@ -51,7 +51,6 @@
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.10",
     "execa": "^9.3.0"
   }
 }
