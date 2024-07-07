@@ -5,5 +5,12 @@
   "linked": [["@terrazzo/cli", "@terrazzo/parser"]],
   "access": "public",
   "baseBranch": "main",
-  "ignore": ["@terrazzo/plugin-lint-a11y", "@terrazzo/token-lab", "@terrazzo/plugin-tailwind"]
+  "ignore": [
+    "@terrazzo/monorepo",
+    "@terrazzo/plugin-lint-a11y",
+    "@terrazzo/plugin-tailwind",
+    "@terrazzo/storybook",
+    "@terrazzo/token-lab",
+    "@terrazzo/www"
+  ]
 }
