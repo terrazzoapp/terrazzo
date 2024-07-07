@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "build": "pnpm run -r --if-present build",
+    "build:packages": "pnpm --filter \"@terrazzo/*\" run -r build ",
     "build:examples": "pnpm run -r --parallel --if-present build:tokens",
     "changeset": "changeset",
     "dev": "pnpm run -r --parallel --if-present dev",

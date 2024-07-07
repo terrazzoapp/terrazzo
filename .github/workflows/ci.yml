@@ -22,6 +22,7 @@ jobs:
         with:
           version: latest
           run_install: true
+      - run: pnpm run build:packages
       - run: pnpm run lint
   test:
     strategy:
@@ -38,5 +39,5 @@ jobs:
         with:
           version: latest
           run_install: true
-      - run: pnpm run build
+      - run: pnpm run build:packages
       - run: pnpm test
