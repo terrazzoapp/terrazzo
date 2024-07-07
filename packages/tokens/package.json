@@ -19,8 +19,8 @@
     "dev": "tz build --watch"
   },
   "devDependencies": {
-    "@terrazzo/cli": "^0.0.5",
-    "@terrazzo/plugin-css": "^0.0.3",
-    "@terrazzo/token-tools": "^0.0.1"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
   }
 }
