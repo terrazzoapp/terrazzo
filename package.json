@@ -16,15 +16,15 @@
   "devDependencies": {
     "@biomejs/biome": "^1.8.3",
     "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.6",
-    "@types/node": "^20.14.9",
+    "@changesets/cli": "^2.27.7",
+    "@types/node": "^20.14.10",
     "del-cli": "^5.1.0",
     "prettier": "^3.3.2",
     "strip-ansi": "^7.1.0",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
-    "typescript": "^5.5.2",
+    "typescript": "^5.5.3",
     "vitest": "^1.6.0"
   }
 }

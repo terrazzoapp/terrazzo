@@ -11,8 +11,15 @@ describe('tz check', () => {
       cwd: fileURLToPath(new URL('../', import.meta.url)),
     });
     const output = stripAnsi(stdout);
-
     expect(output).toMatch('test/fixtures/check-valid/tokens.json');
+    expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
+  });
+
+  it('valid (config)', async () => {
+    const cwd = new URL('./fixtures/check-config/', import.meta.url);
+    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd: fileURLToPath(cwd) });
+    const output = stripAnsi(stdout);
+    expect(output).toMatch('styles/tokens.json');
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
   });
 

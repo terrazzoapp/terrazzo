@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/parser",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
   "type": "module",
   "author": {
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/code-frame": "^7.24.7",
-    "@humanwhocodes/momoa": "^3.0.6",
+    "@humanwhocodes/momoa": "^3.1.1",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
     "@types/culori": "^2.1.1",
