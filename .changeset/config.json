@@ -4,13 +4,5 @@
   "commit": false,
   "linked": [["@terrazzo/cli", "@terrazzo/parser"]],
   "access": "public",
-  "baseBranch": "main",
-  "ignore": [
-    "@terrazzo/monorepo",
-    "@terrazzo/plugin-lint-a11y",
-    "@terrazzo/plugin-tailwind",
-    "@terrazzo/storybook",
-    "@terrazzo/token-lab",
-    "@terrazzo/www"
-  ]
+  "baseBranch": "main"
 }
