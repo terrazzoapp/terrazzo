@@ -1,6 +1,7 @@
 {
   "name": "@terrazzo/plugin-lint-a11y",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "description": "Add accessibility linting checks for your DTCG design tokens",
   "keywords": [
