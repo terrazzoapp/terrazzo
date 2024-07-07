@@ -220,6 +220,9 @@ importers:
       execa:
         specifier: ^9.3.0
         version: 9.3.0
+      typescript:
+        specifier: ^5.5.3
+        version: 5.5.3
 
   packages/fonts: {}
 
@@ -777,7 +780,7 @@ importers:
       '@astrojs/starlight':
         specifier: ^0.24.5
         version: 0.24.5(astro@4.11.3(@types/node@20.14.10)(sass@1.77.5)(typescript@5.5.3))
-      '@terrazzo/storybook':
+      '@terrazzo-internal/storybook':
         specifier: workspace:^
         version: link:../packages/storybook
       '@types/react':
