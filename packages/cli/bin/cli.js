@@ -234,7 +234,6 @@ async function loadTokens(tokenPaths) {
 
   // download/read
   for (const filepath of tokenPaths) {
-    const pathname = filepath.pathname.toLowerCase();
     if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
       try {
         // if Figma URL
