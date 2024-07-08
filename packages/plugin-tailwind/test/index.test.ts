@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { describe, test, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import pluginTailwind from '../src/index.js';
 import { build, defineConfig, parse } from '@terrazzo/parser';
 
@@ -55,7 +55,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
         },
       };
 
-      test('cjs', async () => {
+      it('cjs', async () => {
         const cwd = new URL('./cjs/', import.meta.url);
         const config = defineConfig(
           {
@@ -78,7 +78,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
         );
       });
 
-      test('esm', async () => {
+      it('esm', async () => {
         const cwd = new URL('./esm/', import.meta.url);
         const config = defineConfig(
           {

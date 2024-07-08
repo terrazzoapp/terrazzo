@@ -1,6 +1,6 @@
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import css from '../src/index.js';
@@ -9,13 +9,13 @@ import css from '../src/index.js';
 // clamps to. this is done intentionally to test the users’ fallbacks are
 // respected
 
-describe('@terrazzo/plugin-css', () => {
-  describe('snapshots', () => {
-    test.each(['boolean', 'border', 'color', 'dimension', 'gradient', 'shadow', 'string', 'typography', 'transition'])(
+describe('Node.js API', () => {
+  describe('token types', () => {
+    it.each(['boolean', 'border', 'color', 'dimension', 'gradient', 'shadow', 'string', 'typography', 'transition'])(
       '%s',
       async (dir) => {
         const filename = 'actual.css';
-        const cwd = new URL(`./${dir}/`, import.meta.url);
+        const cwd = new URL(`./fixtures/type-${dir}/`, import.meta.url);
         const config = defineConfig(
           {
             plugins: [

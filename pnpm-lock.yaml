@@ -23,6 +23,9 @@ importers:
       del-cli:
         specifier: ^5.1.0
         version: 5.1.0
+      execa:
+        specifier: ^9.3.0
+        version: 9.3.0
       prettier:
         specifier: ^3.3.2
         version: 3.3.2
@@ -217,9 +220,6 @@ importers:
         specifier: ^21.1.1
         version: 21.1.1
     devDependencies:
-      execa:
-        specifier: ^9.3.0
-        version: 9.3.0
       typescript:
         specifier: ^5.5.3
         version: 5.5.3

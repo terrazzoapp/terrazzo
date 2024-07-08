@@ -2,15 +2,15 @@ import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import css from '@terrazzo/plugin-css';
 import stripAnsi from 'strip-ansi';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import sass from '../src/index.js';
 
 describe('@terrazzo/plugin-scss', () => {
-  test.each(['basic'])('%s', async (dir) => {
+  it.each(['basic'])('%s', async (dir) => {
     const filename = 'actual.scss';
-    const cwd = new URL(`./${dir}/`, import.meta.url);
+    const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
     const config = defineConfig(
       {
         plugins: [
@@ -32,7 +32,7 @@ describe('@terrazzo/plugin-scss', () => {
     );
   });
 
-  test('config', async () => {
+  it('config', async () => {
     try {
       defineConfig(
         {
