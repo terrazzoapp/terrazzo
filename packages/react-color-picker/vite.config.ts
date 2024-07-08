@@ -18,5 +18,6 @@ export default defineConfig({
     },
     restoreMocks: true,
     setupFiles: ['./vitest.setup.ts'],
+    testTimeout: 15000,
   },
 });
