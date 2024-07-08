@@ -36,14 +36,6 @@ export interface DebugEntry {
 
 export default class Logger {
   constructor(options?: { level?: LogLevel; debugScope: string });
-}
-
-export class TokensJSONError extends Error {
-  level: LogLevel;
-  debugScope: string;
-  node?: AnyNode;
-
-  constructor(message: string, node: AnyNode);
 
   setLevel(level: LogLevel): void;
 
@@ -58,4 +50,20 @@ export class TokensJSONError extends Error {
 
   /** Log a diagnostics message (if logging level permits) */
   debug(entry: DebugEntry): void;
+
+  /** Get current stats for logger instance */
+  stats(): {
+    errorCount: number;
+    infoCount: number;
+    warnCount: number;
+    debugCount: number;
+  };
+}
+
+export class TokensJSONError extends Error {
+  level: LogLevel;
+  debugScope: string;
+  node?: AnyNode;
+
+  constructor(message: string, node: AnyNode);
 }

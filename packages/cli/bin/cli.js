@@ -171,7 +171,7 @@ export default async function main() {
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
       const filepath = flags._[0] || config.tokens[0];
       console.log(pc.underline(filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath));
-      await parse(rawSchema, { config }); // will throw if errors
+      await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
       break;
     }
@@ -182,7 +182,7 @@ export default async function main() {
       }
 
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config }); // will throw if errors
+      const parseResult = await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
 
       // TODO
 

@@ -32,6 +32,10 @@ export function formatMessage(entry, severity) {
 export default class Logger {
   level = 'info';
   debugScope = '*';
+  errorCount = 0;
+  warnCount = 0;
+  infoCount = 0;
+  debugCount = 0;
 
   constructor(options) {
     if (options?.level) {
@@ -48,6 +52,7 @@ export default class Logger {
 
   /** Log an error message (always; can’t be silenced) */
   error(entry) {
+    this.errorCount++;
     const message = formatMessage(entry, 'error');
     if (entry.continueOnError) {
       console.error(message);
@@ -64,6 +69,7 @@ export default class Logger {
 
   /** Log an info message (if logging level permits) */
   info(entry) {
+    this.infoCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
       return;
     }
@@ -73,6 +79,7 @@ export default class Logger {
 
   /** Log a warning message (if logging level permits) */
   warn(entry) {
+    this.warnCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
       return;
     }
@@ -81,6 +88,7 @@ export default class Logger {
 
   /** Log a diagnostics message (if logging level permits) */
   debug(entry) {
+    this.debugCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
       return;
     }
@@ -106,6 +114,16 @@ export default class Logger {
 
     // biome-ignore lint/suspicious/noConsoleLog: this is its job
     console.log(message);
+  }
+
+  /** Get stats for current logger instance */
+  stats() {
+    return {
+      errorCount: this.errorCount,
+      warnCount: this.warnCount,
+      infoCount: this.infoCount,
+      debugCount: this.debugCount,
+    };
   }
 }
 

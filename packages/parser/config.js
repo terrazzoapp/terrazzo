@@ -60,7 +60,7 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd } =
   // config.outDir
   if (config.outDir instanceof URL) {
     // noop
-  } else if (typeof config.outDir === 'undefined' || config.outDir === null) {
+  } else if (typeof config.outDir === 'undefined') {
     config.outDir = new URL('./tokens/', cwd);
   } else if (typeof config.outDir !== 'string') {
     logger.error({ label: 'config.outDir', message: `Expected string, received ${JSON.stringify(config.outDir)}` });

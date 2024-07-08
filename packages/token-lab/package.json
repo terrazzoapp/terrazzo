@@ -40,9 +40,9 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "19.0.0-rc-58af67a8f8-20240628",
-    "react-dom": "19.0.0-rc-58af67a8f8-20240628",
-    "vite": "^5.3.2"
+    "react": "19.0.0-rc-f38c22b244-20240704",
+    "react-dom": "19.0.0-rc-f38c22b244-20240704",
+    "vite": "^5.3.3"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

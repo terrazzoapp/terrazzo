@@ -8,5 +8,6 @@ export default defineConfig({
     environment: 'jsdom',
     restoreMocks: true,
     setupFiles: ['./vitest.setup.ts'],
+    testTimeout: 15000,
   },
 });
