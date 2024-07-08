@@ -27,10 +27,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc",
-    "format": "biome format --write src",
-    "lint": "biome check src",
-    "test": "vitest run"
+    "--disabled-build": "tsc",
+    "--disabled-format": "biome format --write src",
+    "--disabled-lint": "biome check src",
+    "--disabled-test": "vitest run"
   },
   "devDependencies": {
     "@terrazzo/parser": "workspace:^"

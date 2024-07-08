@@ -11,12 +11,16 @@ const TRAILING_SLASH_RE = /\/*$/;
  * @param {Logger} options.logger
  * @param {URL} options.cwd
  */
-export default function defineConfig(rawConfig, { logger = new Logger(), cwd = import.meta.url } = {}) {
+export default function defineConfig(rawConfig, { logger = new Logger(), cwd } = {}) {
   const configStart = performance.now();
+
+  if (!cwd) {
+    logger.error({ label: 'core', message: 'defineConfig() missing `cwd` for JS API' });
+  }
 
   logger.debug({ group: 'parser', task: 'config', message: 'Start config validation' });
 
-  const config = { ...rawConfig };
+  const config = merge({}, rawConfig);
 
   // config.tokens
   if (rawConfig.tokens === undefined) {
@@ -26,7 +30,7 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
   } else if (Array.isArray(rawConfig.tokens)) {
     config.tokens = [];
     for (const file of rawConfig.tokens) {
-      if (typeof file === 'string') {
+      if (typeof file === 'string' || file instanceof URL) {
         config.tokens.push(file); // will be normalized in next step
       } else {
         logger.error({
@@ -43,15 +47,20 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
   }
   for (let i = 0; i < config.tokens.length; i++) {
     const filepath = config.tokens[i];
+    if (filepath instanceof URL) {
+      continue; // skip if already resolved
+    }
     try {
       config.tokens[i] = new URL(filepath, cwd);
-    } catch {
+    } catch (err) {
       logger.error({ label: 'config.tokens', message: `Invalid URL ${filepath}` });
     }
   }
 
   // config.outDir
-  if (typeof config.outDir === 'undefined') {
+  if (config.outDir instanceof URL) {
+    // noop
+  } else if (typeof config.outDir === 'undefined') {
     config.outDir = new URL('./tokens/', cwd);
   } else if (typeof config.outDir !== 'string') {
     logger.error({ label: 'config.outDir', message: `Expected string, received ${JSON.stringify(config.outDir)}` });
@@ -95,7 +104,6 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
       logger.error({ label: 'config.lint', message: 'Must be an object' });
       return config;
     }
-
     if (!config.lint.build) {
       config.lint.build = { enabled: true };
     }
@@ -109,15 +117,15 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd = i
     } else {
       config.lint.build.enabled = true;
     }
-
-    if (config.lint.rules !== undefined) {
+    if (config.lint.rules === undefined) {
+      config.lint.rules = {};
+    } else {
       if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
         logger.error({
           label: 'config.lint.rules',
           message: `Expected object, received ${JSON.stringify(config.lint.rules)}`,
         });
       }
-
       for (const id in config.lint.rules) {
         if (!Object.hasOwn(config.lint.rules, id)) {
           continue;

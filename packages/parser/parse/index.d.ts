@@ -10,6 +10,8 @@ export interface ParseOptions {
   /** Skip lint step (default: false) */
   skipLint?: boolean;
   config: ConfigInit;
+  /** Continue on error? (Useful for `tz check`) (default: false) */
+  continueOnError?: boolean;
 }
 
 export interface ParseResult {

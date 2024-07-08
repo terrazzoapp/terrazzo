@@ -27,7 +27,7 @@ export default function build({ getTransforms, options }: BuildParams): string {
   ),`);
     } else {
       const name = token.localID ?? token.token.id;
-      output.push(`  "${token.token.id}": (${makeCSSVar(name)}),`);
+      output.push(`  "${token.token.id}": (${makeCSSVar(name, { wrapVar: true })}),`);
     }
   }
   output.push(');', '');
@@ -40,7 +40,7 @@ export default function build({ getTransforms, options }: BuildParams): string {
     output.push(`  "${token.token.id}": (`);
     for (const property of Object.keys(token.value)) {
       const name = `${token.localID ?? token.token.id}-${property}`;
-      output.push(`    "${property}": (${makeCSSVar(name)}),`);
+      output.push(`    "${property}": (${makeCSSVar(name, { wrapVar: true })}),`);
     }
     output.push('  ),');
   }

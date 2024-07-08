@@ -1,6 +1,7 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import validateAndNormalizeConfig from '../config.js';
+import defineConfig from '../config.js';
 
 describe('config', () => {
   describe('validation error', () => {
@@ -45,6 +46,13 @@ describe('config', () => {
       } catch (err) {
         expect(stripAnsi((err as Error).message)).toBe(want);
       }
+    });
+  });
+
+  describe('options', () => {
+    it('outDir', () => {
+      const config = defineConfig({ outDir: './custom-output/' }, { cwd: new URL(import.meta.url) });
+      expect(config.outDir.href).toMatch(/^file:\/\/\/.*\/packages\/parser\/test\/custom-output\/$/);
     });
   });
 });

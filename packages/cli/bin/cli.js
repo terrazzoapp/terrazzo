@@ -23,10 +23,11 @@
  * SOFTWARE.
  */
 
-import { parse, build } from '@terrazzo/parser';
+import { parse, build, defineConfig } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import dotenv from 'dotenv';
 import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pc from 'picocolors';
 import parser from 'yargs-parser';
@@ -84,7 +85,14 @@ export default async function main() {
   const resolvedConfigPath = resolveConfig(configPath);
   if (resolvedConfigPath) {
     try {
-      config = (await import(resolvedConfigPath)).default;
+      const mod = await import(resolvedConfigPath);
+      if (!mod.default) {
+        printErrors(
+          `No default export found in ${path.relative(fileURLToPath(cwd), resolvedConfigPath)}. See https://terrazzo.dev/docs/cli for instructions.`,
+        );
+        process.exit(1);
+      }
+      config = defineConfig(mod.default, { cwd });
     } catch (err) {
       printErrors(err.message || err);
       process.exit(1);
@@ -103,10 +111,6 @@ export default async function main() {
 
       let rawSchema = await loadTokens(config.tokens);
 
-      const dt = new Intl.DateTimeFormat('en-us', {
-        hour: '2-digit',
-        minute: '2-digit',
-      });
       const watch = args.includes('-w') || args.includes('--watch');
 
       let { tokens, ast } = await parse(rawSchema, { config });
@@ -117,6 +121,10 @@ export default async function main() {
       printWarnings(result.warnings);
 
       if (watch) {
+        const dt = new Intl.DateTimeFormat('en-us', {
+          hour: '2-digit',
+          minute: '2-digit',
+        });
         const tokenWatcher = chokidar.watch(config.tokens.map((filepath) => fileURLToPath(filepath)));
         tokenWatcher.on('change', async (filePath) => {
           try {
@@ -163,7 +171,7 @@ export default async function main() {
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
       const filepath = flags._[0] || config.tokens[0];
       console.log(pc.underline(filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath));
-      await parse(rawSchema, { config }); // will throw if errors
+      await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
       break;
     }
@@ -174,7 +182,7 @@ export default async function main() {
       }
 
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config }); // will throw if errors
+      const parseResult = await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
 
       // TODO
 
@@ -230,10 +238,13 @@ function showHelp() {
 
 /** load tokens */
 async function loadTokens(tokenPaths) {
-  // TODO: allow merging of tokens
+  // TODO: merge tokens
+
+  const allTokens = [];
 
   // download/read
-  for (const filepath of tokenPaths) {
+  for (let i = 0; i < tokenPaths.length; i++) {
+    const filepath = tokenPaths[i];
     if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
       try {
         // if Figma URL
@@ -259,7 +270,7 @@ async function loadTokens(tokenPaths) {
             headers,
           });
           if (res.ok) {
-            return await res.text();
+            allTokens.push(await res.text());
           }
           const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
           printErrors(`Figma responded with ${res.status}${message ? `:\n${message}` : ''}`);
@@ -272,19 +283,23 @@ async function loadTokens(tokenPaths) {
           method: 'GET',
           headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' },
         });
-        return await res.text();
+        allTokens.push(await res.text());
       } catch (err) {
         printErrors(`${filepath.href}: ${err}`);
       }
     } else {
       if (fs.existsSync(filepath)) {
-        return fs.readFileSync(filepath, 'utf8');
+        allTokens.push(fs.readFileSync(filepath, 'utf8'));
       } else {
-        printErrors(`Could not locate ${filepath}. To create one, run \`npx cobalt init\`.`);
+        printErrors(
+          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(filepath))}. To create one, run \`npx tz init\`.`,
+        );
         process.exit(1);
       }
     }
   }
+
+  return allTokens[0];
 }
 
 /** resolve config */

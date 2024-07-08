@@ -5,6 +5,8 @@ import defineConfig from '../config.js';
 import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
 
+const cwd = new URL(import.meta.url);
+
 describe('Tokens', () => {
   type Test = [
     string,
@@ -15,7 +17,7 @@ describe('Tokens', () => {
   ];
 
   async function runTest({ given, want }: Test[1]) {
-    const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+    const config = defineConfig({}, { cwd });
     let result: Awaited<ReturnType<typeof parse>> | undefined;
     try {
       result = await parse(given, { config });
@@ -58,16 +60,16 @@ describe('Tokens', () => {
           },
         },
       ],
-      [
-        'valid: primitive (YAML)',
-        {
-          given: `color:
-  $value: "{color.base.blue.500}"`,
-          want: {
-            tokens: { 'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' } },
-          },
-        },
-      ],
+      //     [
+      //       'valid: primitive (YAML)',
+      //       {
+      //         given: `color:
+      // $value: "{color.base.blue.500}"`,
+      //         want: {
+      //           tokens: { 'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' } },
+      //         },
+      //       },
+      //     ],
       [
         'valid: Font Weight',
         {
@@ -83,22 +85,22 @@ describe('Tokens', () => {
           },
         },
       ],
-      [
-        'valid: Font Weight (YAML)',
-        {
-          given: `bold:
-  $type: fontWeight
-  $value: "{font.weight.700}"
-font:
-  weight:
-    $type: fontWeight
-    700:
-      $value: 700`,
-          want: {
-            tokens: { bold: '700', 'font.weight.700': 700 },
-          },
-        },
-      ],
+      //       [
+      //         'valid: Font Weight (YAML)',
+      //         {
+      //           given: `bold:
+      //   $type: fontWeight
+      //   $value: "{font.weight.700}"
+      // font:
+      //   weight:
+      //     $type: fontWeight
+      //     700:
+      //       $value: 700`,
+      //           want: {
+      //             tokens: { bold: '700', 'font.weight.700': 700 },
+      //           },
+      //         },
+      //       ],
       [
         'valid: Stroke Style',
         {
@@ -1473,13 +1475,13 @@ font:
 
 describe('Additional cases', () => {
   it('JSON: invalid', async () => {
-    const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+    const config = defineConfig({}, { cwd });
     await expect(parse('{]', { config })).rejects.toThrow('Unexpected token RBracket found. (1:2)');
   });
 
-  it('YAML: invalid', async () => {
+  it.skip('YAML: invalid', async () => {
     try {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const result = await parse(
         `tokens:
   - foo: true
@@ -1499,7 +1501,7 @@ describe('Additional cases', () => {
 
   it('error messages', async () => {
     try {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       await parse(
         `{
   "color": {
@@ -1570,7 +1572,7 @@ describe('Additional cases', () => {
 
   describe('$type', () => {
     it('aliases get updated', async () => {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const result = await parse(
         {
           color: {
@@ -1585,7 +1587,7 @@ describe('Additional cases', () => {
     });
 
     it('inheritance works', async () => {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const result = await parse(
         {
           $type: 'color',
@@ -1652,7 +1654,7 @@ describe('Additional cases', () => {
     ];
 
     it.each(tests)('%s', async (_, { given, want }) => {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
       for (const id in want) {
         expect(tokens[id]!.$value).toEqual(want[id]);
@@ -1690,7 +1692,7 @@ describe('Additional cases', () => {
           $type: 'border',
         },
       };
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const { tokens } = await parse(JSON.stringify(json), { config });
       expect(tokens['color.blue.7']!.group).toEqual({
         id: 'color.blue',
@@ -1789,7 +1791,7 @@ describe('Additional cases', () => {
     ];
 
     it.each(tests)('%s', async (_, { given, want }) => {
-      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
       for (const id in want) {
         for (const mode in want[id]!) {

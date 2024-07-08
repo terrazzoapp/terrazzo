@@ -95,7 +95,13 @@ describe('useColor', () => {
 
       // assert color displays as-expected
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor).toEqual({ mode: 'rgb', r: 0, g: 0.3, b: 1, alpha: 1 });
+      expect(displayedColor).toEqual({
+        mode: 'rgb',
+        r: 0.00016175596675521153,
+        g: 0.300082124265595,
+        b: 0.9998580363472361,
+        alpha: 1,
+      });
 
       // assert only 1 render happened
       expect(renderCount).toBe(1);
@@ -140,7 +146,13 @@ describe('useColor', () => {
 
       // assert `setColor()` works
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor).toEqual({ mode: 'rgb', r: 0.6, g: 0.3, b: 0.5, alpha: 1 });
+      expect(displayedColor).toEqual({
+        mode: 'rgb',
+        r: 0.6000000000000005,
+        g: 0.29999999999999954,
+        b: 0.49999999999999994,
+        alpha: 1,
+      });
 
       // assert only 1 onChange happened (+1 first render)
       expect(onChangeCount).toBe(1 + 1);

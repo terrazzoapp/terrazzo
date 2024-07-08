@@ -1,5 +1,5 @@
 import { evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
-import { isAlias, parseAlias, splitID } from '@terrazzo/token-tools';
+import { isAlias, parseAlias, pluralize, splitID } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
@@ -28,7 +28,10 @@ export * from './validate.js';
  * @param {ParseOptions} options
  * @return {Promise<ParseResult>}
  */
-export default async function parse(input, { logger = new Logger(), skipLint = false, config } = {}) {
+export default async function parse(
+  input,
+  { logger = new Logger(), skipLint = false, config, continueOnError = false } = {},
+) {
   const { plugins } = config;
 
   const totalStart = performance.now();
@@ -193,7 +196,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
       if (members.$value) {
         node = members.$value;
       }
-      logger.error({ message: err.message, source, node, continueOnError: true });
+      logger.error({ message: err.message, source, node, continueOnError });
     }
     for (const mode in tokens[id].mode) {
       if (mode === '.') {
@@ -207,7 +210,7 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
         if (members.$value) {
           node = members.$value;
         }
-        logger.error({ message: err.message, source, node: tokens[id].mode[mode].sourceNode, continueOnError: true });
+        logger.error({ message: err.message, source, node: tokens[id].mode[mode].sourceNode, continueOnError });
       }
     }
   }
@@ -273,6 +276,15 @@ export default async function parse(input, { logger = new Logger(), skipLint = f
     timing: performance.now() - totalStart,
   });
 
+  if (continueOnError) {
+    const { errorCount } = logger.stats();
+    if (errorCount > 0) {
+      logger.error({
+        message: `Parser encountered ${errorCount} ${pluralize(errorCount, 'error', 'errors')}. Exiting.`,
+      });
+    }
+  }
+
   return {
     tokens,
     ast,
@@ -302,10 +314,10 @@ export function maybeJSONString(input) {
 export function resolveAlias(alias, { tokens, logger, source, node, scanned = [] }) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found`, source, node, continueOnError: true });
+    logger.error({ message: `Alias "${alias}" not found`, source, node });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}"`, source, node, continueOnError: true });
+    logger.error({ message: `Circular alias detected from "${alias}"`, source, node });
   }
   const token = tokens[id];
   if (!isAlias(token.$value)) {

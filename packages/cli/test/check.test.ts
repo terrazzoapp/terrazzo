@@ -8,7 +8,7 @@ const CMD = './bin/cli.js';
 describe('tz check', () => {
   it('valid', async () => {
     const { stdout } = await execa('node', [CMD, 'check', 'test/fixtures/check-valid/tokens.json'], {
-      cwd: fileURLToPath(new URL('../', import.meta.url)),
+      cwd: new URL('../', import.meta.url),
     });
     const output = stripAnsi(stdout);
     expect(output).toMatch('test/fixtures/check-valid/tokens.json');
@@ -17,7 +17,7 @@ describe('tz check', () => {
 
   it('valid (config)', async () => {
     const cwd = new URL('./fixtures/check-config/', import.meta.url);
-    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd: fileURLToPath(cwd) });
+    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd });
     const output = stripAnsi(stdout);
     expect(output).toMatch('styles/tokens.json');
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
@@ -30,7 +30,7 @@ describe('tz check', () => {
       });
       expect(true).toBe(false);
     } catch (err) {
-      expect(stripAnsi(String(err))).toMatch(`Expected array, received "[0, 0.2, 1]"
+      expect(stripAnsi((err as Error).message)).toMatch(`Expected array, received "[0, 0.2, 1]"
 
   4 |       "100": {
   5 |         "$type": "color",

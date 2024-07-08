@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "culori": "^4.0.1",
-    "react": "19.0.0-rc-58af67a8f8-20240628",
-    "react-dom": "19.0.0-rc-58af67a8f8-20240628"
+    "react": "19.0.0-rc-f38c22b244-20240704",
+    "react-dom": "19.0.0-rc-f38c22b244-20240704"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^8.1.11",

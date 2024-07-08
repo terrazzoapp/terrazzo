@@ -1,50 +1,50 @@
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {
-  test('returns true for valid ID', () => {
+  it('returns true for valid ID', () => {
     expect(isAlias('{color.blue.60}')).toBe(true);
   });
 
-  test('returns false for invalid ID', () => {
+  it('returns false for invalid ID', () => {
     expect(isAlias('{color}.{blue}.{60}')).toBe(false);
   });
 
-  test('ignores invalid values', () => {
+  it('ignores invalid values', () => {
     expect(isAlias([])).toBe(false);
   });
 });
 
 describe('makeAlias', () => {
-  test('turns ID into alias', () => {
+  it('turns ID into alias', () => {
     expect(makeAlias('color.blue.60')).toBe('{color.blue.60}');
   });
 
-  test('existing aliases are kept', () => {
+  it('existing aliases are kept', () => {
     expect(makeAlias('{color.blue.60}')).toBe('{color.blue.60}');
   });
 });
 
 describe('parseAlias', () => {
-  test('standard', () => {
+  it('standard', () => {
     expect(parseAlias('{color.blue.60}')).toEqual({ id: 'color.blue.60' });
   });
 
-  test('with mode', () => {
+  it('with mode', () => {
     expect(parseAlias('{color.blue.60#dark}')).toEqual({ id: 'color.blue.60', mode: 'dark' });
   });
 
-  test('invalid', () => {
+  it('invalid', () => {
     expect(parseAlias('color.blue.60')).toEqual({ id: 'color.blue.60' });
   });
 });
 
 describe('splitID', () => {
-  test('token ID', () => {
+  it('token ID', () => {
     expect(splitID('color.blue.60')).toEqual({ local: '60', group: 'color.blue' });
   });
 
-  test('string', () => {
+  it('string', () => {
     expect(splitID('color')).toEqual({ local: 'color' });
   });
 });
