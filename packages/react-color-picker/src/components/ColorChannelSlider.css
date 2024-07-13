@@ -37,7 +37,7 @@
 }
 
 .tz-color-channel-slider-bg-wrapper {
-  border-radius: var(--tz-color-channel-slider-track-height);
+  border-radius: var(--tz-radius-1000);
   display: flex;
   height: 100%;
   left: 0;

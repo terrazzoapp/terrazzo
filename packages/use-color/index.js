@@ -34,15 +34,6 @@ export function withAlpha(color) {
   return color;
 }
 
-/** Snap a number to n decimal places */
-function snap(value, precision) {
-  if (typeof value !== 'number' || precision <= 0 || precision > 1 || value % 1 === 0) {
-    return value;
-  }
-  const p = 1 / precision;
-  return Math.round(value * p) / p;
-}
-
 export function parse(color) {
   if (color && typeof color === 'object') {
     if (!color.mode) {
@@ -124,7 +115,7 @@ COLORSPACES.rgb = COLORSPACES.srgb;
 COLORSPACES['xyz-d50'] = COLORSPACES.xyz50;
 COLORSPACES['xyz-d65'] = COLORSPACES.xyz65;
 
-export function formatCss(color, { precision = 0.0001 } = {}) {
+export function formatCss(color, { precision = 3 } = {}) {
   const alpha = color.alpha < 1 ? ` / ${color.alpha}` : '';
   switch (color.mode) {
     // rgb
@@ -144,54 +135,64 @@ export function formatCss(color, { precision = 0.0001 } = {}) {
           rgb: 'srgb',
           srgb: 'srgb',
         }[color.mode] || color.mode;
-      return `color(${colorSpace} ${[snap(color.r, precision), snap(color.g, precision), snap(color.b, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(${colorSpace} ${[
+        color.r.toPrecision(precision),
+        color.g.toPrecision(precision),
+        color.b.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'hsl': {
-      return `hsl(${snap(color.h, precision)} ${100 * snap(color.s, precision)}% ${
-        100 * snap(color.l, precision)
-      }%${alpha})`;
+      return `hsl(${color.h.toPrecision(precision)} ${100 * color.s.toPrecision(precision)}% ${(100 * color.l).toPrecision(precision)}%${alpha})`;
     }
     case 'hsv': {
-      return `color(--hsv ${[snap(color.h, precision), snap(color.s, precision), snap(color.v, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--hsv ${[
+        color.h.toPrecision(precision),
+        color.s.toPrecision(precision),
+        color.v.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'hwb': {
-      return `hwb(${snap(color.h, precision)} ${100 * snap(color.w, precision)}% ${
-        100 * snap(color.b, precision)
-      }%${alpha})`;
+      return `hwb(${color.h.toPrecision(precision)} ${100 * color.w.toPrecision(precision)}% ${(
+        100 * color.b
+      ).toPrecision(precision)}%${alpha})`;
     }
     case 'okhsl': {
-      return `color(--okhsl ${[snap(color.h, precision), snap(color.s, precision), snap(color.l, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--okhsl ${[
+        color.h.toPrecision(precision),
+        color.s.toPrecision(precision),
+        color.l.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'okhsv': {
-      return `color(--okhsv ${[snap(color.h, precision), snap(color.s, precision), snap(color.v, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--okhsv ${[
+        color.h.toPrecision(precision),
+        color.s.toPrecision(precision),
+        color.v.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'lab':
     case 'oklab': {
-      return `${color.mode}(${[snap(color.l, precision), snap(color.a, precision), snap(color.b, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `${color.mode}(${[
+        color.l.toPrecision(precision),
+        color.a.toPrecision(precision),
+        color.b.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'lch':
     case 'oklch': {
-      return `${color.mode}(${[snap(color.l, precision), snap(color.c, precision), snap(color.h, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `${color.mode}(${[
+        color.l.toPrecision(precision),
+        color.c.toPrecision(precision),
+        color.h.toPrecision(precision),
+      ].join(' ')}${alpha})`;
     }
     case 'xyz':
     case 'xyz50':
     case 'xyz65': {
       return `color(${color.mode === 'xyz50' ? 'xyz-d50' : 'xyz-d65'} ${[
-        snap(color.x, precision),
-        snap(color.y, precision),
-        snap(color.z, precision),
+        color.x.toPrecision(precision),
+        color.y.toPrecision(precision),
+        color.z.toPrecision(precision),
       ].join(' ')}${alpha})`;
     }
   }

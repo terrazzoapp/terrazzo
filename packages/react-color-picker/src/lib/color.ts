@@ -2,12 +2,9 @@ import { COLORSPACES, type P3, type Color, type ColorInput, type Rgb } from '@te
 import { toGamut } from 'culori';
 
 /** Calculate min, max, displayMin, and displayMax for a given color/colorspace/gamut */
-export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb') {
+export function calculateBounds(color: Color, channel: string) {
   let min = 0;
   let max = 1;
-  let displayMin: number | undefined;
-  let displayMax: number | undefined;
-  const clampGamut = toGamut(gamut, 'oklch');
 
   switch (color.mode) {
     case 'hsl':
@@ -26,22 +23,12 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
       switch (channel) {
         case 'l': {
           max = 100;
-          displayMax = 100;
           break;
         }
         case 'a':
         case 'b': {
-          displayMin = -125;
-          displayMax = 125;
-          // TODO: this is wrong
-          const clampedMin = COLORSPACES[color.mode].converter(
-            clampGamut({ ...color, [channel]: displayMin }) as Color,
-          );
-          const clampedMax = COLORSPACES[color.mode].converter(
-            clampGamut({ ...color, [channel]: displayMax }) as Color,
-          );
-          min = clampedMin[channel];
-          max = clampedMax[channel];
+          min = -125;
+          max = 125;
           break;
         }
       }
@@ -54,9 +41,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
           break;
         }
         case 'c': {
-          displayMax = 150;
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }) as Color);
-          max = clamped.c;
+          max = 150;
           break;
         }
         case 'h': {
@@ -68,12 +53,8 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
     }
     case 'oklab': {
       if (channel === 'a' || channel === 'b') {
-        displayMin = -0.4;
-        displayMax = 0.4;
-        const clampedMin = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMin }) as Color);
-        const clampedMax = COLORSPACES[color.mode].converter(clampGamut({ ...color, [channel]: displayMax }) as Color);
-        min = clampedMin[channel];
-        max = clampedMax[channel];
+        min = -0.4;
+        max = 0.4;
       }
       break;
     }
@@ -84,9 +65,7 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
           break;
         }
         case 'c': {
-          displayMax = 0.4;
-          const clamped = COLORSPACES[color.mode].converter(clampGamut({ ...color, c: displayMax }) as Color);
-          max = clamped.c;
+          max = 0.4;
           break;
         }
       }
@@ -101,13 +80,6 @@ export function calculateBounds(color: Color, channel: string, gamut: 'rgb' | 'p
     displayMax?: number;
     displayRange?: number;
   } = { min, max };
-  if (typeof displayMin === 'number') {
-    result.displayMin = displayMin;
-  }
-  if (typeof displayMax === 'number') {
-    result.displayMax = displayMax;
-    result.displayRange = displayMax - (displayMin ?? min);
-  }
 
   return result;
 }

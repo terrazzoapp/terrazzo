@@ -57,6 +57,7 @@
 .tz-subtle-input-suffix {
   align-self: center;
   pointer-events: none;
+  user-select: none;
 
   &:empty {
     display: none;

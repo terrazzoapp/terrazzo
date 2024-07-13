@@ -1,10 +1,11 @@
-import { COLORSPACES, type default as useColor, formatCss } from '@terrazzo/use-color';
-import { type ComponentProps, type ReactElement, useMemo } from 'react';
+import { Slider } from '@terrazzo/tiles';
+import { COLORSPACES, type ColorOutput, type default as useColor, formatCss } from '@terrazzo/use-color';
+import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import type { WebGLColor } from '../lib/webgl.js';
-import './ColorChannelSlider.css';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
+import './ColorChannelSlider.css';
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -25,11 +26,24 @@ const CHANNEL_LABEL: Record<string, string | undefined> = {
   v: 'Value',
 };
 
-const CHANNEL_STEP = 0.001; // TODO: do some colorspaces/channels need different values?
+const CHANNEL_PRECISION = 5;
 
 const RGB_COLORSPACES = ['a98', 'lrgb', 'p3', 'rgb', 'prophoto', 'rec2020'];
 // const SRGB_COLORSPACES = ['rgb', 'hsv', 'hsl', 'hwb'];
 // const P3_COLORSPACES = ['p3'];
+
+function isPerc(color: ColorOutput, channel: string): boolean {
+  if (RGB_COLORSPACES.includes(color.original.mode)) {
+    return true;
+  }
+  if (channel === 'l' || channel === 'c' || channel === 's' || channel === 'v' || channel === 'alpha') {
+    return true;
+  }
+  if (channel === 'h') {
+    return false;
+  }
+  return false;
+}
 
 export interface ColorChannelBGProps {
   channel: string;
@@ -98,18 +112,9 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   );
 }
 
-interface ColorChannelDragProps {
+export interface ColorChannelSliderProps {
   channel: string;
-  color: ReturnType<typeof useColor>[0];
-  displayMax?: number;
-  displayMin?: number;
-  max: number;
-  min: number;
-  setColor: ReturnType<typeof useColor>[1];
-}
-
-export interface ColorChannelSliderProps extends Omit<ComponentProps<'input'>, 'color' | 'onChange' | 'value'> {
-  channel: string;
+  className?: string;
   color: ReturnType<typeof useColor>[0];
   gamut?: 'rgb' | 'p3' | 'rec2020';
   setColor: ReturnType<typeof useColor>[1];
@@ -119,29 +124,28 @@ export default function ColorChannelSlider({
   channel,
   className,
   color,
-  gamut = 'rgb',
+  // gamut = 'rgb',
   setColor,
-  ...rest
 }: ColorChannelSliderProps): ReactElement {
-  const { min, max, displayMin, displayMax } = useMemo(
-    () => calculateBounds(color.original, channel, gamut),
-    [color.original, channel, gamut],
-  );
+  const { min, max } = useMemo(() => calculateBounds(color.original, channel), [color.original, channel]);
+  let value = color.original[channel as keyof typeof color.original] as number;
+  // chroma adjustment
+  if (channel === 'c') {
+    value = value / max;
+  }
 
   return (
     <Slider
-      bg={
-        <ColorChannelBG
-          channel={channel}
-          color={color}
-          min={min}
-          max={max}
-          displayMin={displayMin}
-          displayMax={displayMax}
-        />
-      }
-      label={CHANNEL_LABEL[channel]}
-      {...rest}
+      bg={<ColorChannelBG channel={channel} color={color} min={min} max={max} />}
+      className={className}
+      handleColor={color.css}
+      label={CHANNEL_LABEL[channel] ?? channel}
+      max={max}
+      min={min}
+      onChange={(newValue: number) => setColor({ ...color.original, [channel]: newValue })}
+      percentage={isPerc(color, channel)}
+      step={1 / 10 ** CHANNEL_PRECISION}
+      value={value}
     />
   );
 }

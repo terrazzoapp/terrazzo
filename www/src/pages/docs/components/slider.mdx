@@ -1,0 +1,62 @@
+---
+title: Slider
+layout: ../../../layouts/docs.astro
+---
+
+import DemoSlider from "./demos/slider.tsx";
+
+# Slider
+
+A simple slider component.
+
+## Demo
+
+<DemoSlider client:load />
+
+## Setup
+
+:::code-group
+
+```sh npm
+npm i @terrazzo/use-color
+```
+
+```sh pnpm
+pnpm i @terrazzo/use-color
+```
+
+:::
+
+:::code-group
+
+```tsx MyComponent.tsx
+import { Slider } from "@terrazzo/tiles";
+import { useState } from "react";
+
+function MyComponent() {
+  const [value, setValue] = useState(50);
+
+  return (
+    <Slider
+      label="My slider"
+      value={value}
+      onChange={setValue}
+      min={0}
+      step={1}
+      max={100}
+      orientation="horizontal"
+    />
+  );
+}
+```
+
+## API
+
+| Prop            |             Type             | Description                     |
+| :-------------- | :--------------------------: | :------------------------------ |
+| **value**       |           `number`           | The value of the slider         |
+| **onChange**    | `(newValue: number) => void` | Value update callback           |
+| **min**         |           `number`           | The minimum value of the slider |
+| **max**         |           `number`           | The maximum value of the slider |
+| **step**        |           `number`           | The step value of the slider    |
+| **orientation** | `"horizontal" \| "vertical"` | The orientation of the slider   |

@@ -11,6 +11,7 @@ export default {
 
 export const Overview = {
   args: {
+    label: 'My Slider',
     orientation: 'horizontal',
     min: 0,
     max: 100,
@@ -23,8 +24,8 @@ export const Overview = {
       options: ['horizontal', 'vertical'],
     },
   },
-  render(args) {
-    const [value, setValue] = useState(args.defaultValue);
+  render({ defaultValue, ...args }) {
+    const [value, setValue] = useState(defaultValue);
 
     return (
       <div style={{ display: 'flex', justifyContent: 'center', width: '300px' }}>
