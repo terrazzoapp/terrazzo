@@ -404,9 +404,6 @@ importers:
       '@terrazzo/use-color':
         specifier: workspace:^
         version: link:../use-color
-      '@use-gesture/react':
-        specifier: ^10.3.1
-        version: 10.3.1(react@19.0.0-rc-85acf2d195-20240711)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -9423,7 +9420,7 @@ snapshots:
 
   '@testing-library/react@16.0.0(@testing-library/dom@10.1.0)(react-dom@19.0.0-rc-85acf2d195-20240711(react@19.0.0-rc-85acf2d195-20240711))(react@19.0.0-rc-85acf2d195-20240711)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)':
     dependencies:
-      '@babel/runtime': 7.24.7
+      '@babel/runtime': 7.24.8
       '@testing-library/dom': 10.1.0
       react: 19.0.0-rc-85acf2d195-20240711
       react-dom: 19.0.0-rc-85acf2d195-20240711(react@19.0.0-rc-85acf2d195-20240711)

@@ -68,14 +68,20 @@
   --tz-color-brand-orange-secondary: color(srgb 0.8156862745098039 0.21568627450980393 0);
   --tz-color-content-bg: var(--tz-color-base-gray-000);
   --tz-color-content-bg-aside: var(--tz-color-base-gray-050);
+  --tz-color-content-bg-info: var(--tz-color-base-blue-100);
   --tz-color-content-bg-elevated: var(--tz-color-base-gray-000);
   --tz-color-content-bg-highlighted: var(--tz-color-base-lime-300);
+  --tz-color-content-bg-warn: var(--tz-color-base-orange-400);
   --tz-color-content-border: var(--tz-color-base-gray-100);
   --tz-color-content-border-aside: var(--tz-color-base-gray-300);
+  --tz-color-content-border-info: var(--tz-color-base-blue-200);
   --tz-color-content-border-elevated: var(--tz-color-base-gray-100);
+  --tz-color-content-border-warn: var(--tz-color-base-orange-1100);
   --tz-color-content-text: var(--tz-color-base-gray-800);
   --tz-color-content-text-aside: var(--tz-color-base-gray-600);
+  --tz-color-content-text-info: var(--tz-color-base-blue-800);
   --tz-color-content-text-elevated: var(--tz-color-base-gray-800);
+  --tz-color-content-text-warn: var(--tz-color-base-orange-1200);
   --tz-color-control-bg: var(--tz-color-base-gray-000);
   --tz-color-control-bg-selected: var(--tz-color-base-lime-300);
   --tz-color-control-bg-track: var(--tz-color-base-gray-100);
@@ -304,28 +310,34 @@
     --tz-color-base-lime-900: color(srgb 0.19215686274509805 0.3254901960784314 0.050980392156862744);
     --tz-color-base-lime-1000: color(srgb 0.12156862745098039 0.23137254901960785 0.06274509803921569);
     --tz-color-base-lime-1100: color(srgb 0 0.1568627450980392 0);
-    --tz-color-base-orange-100: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
-    --tz-color-base-orange-200: color(srgb 0.8 0.3058823529411765 0);
-    --tz-color-base-orange-300: color(srgb 0.9372549019607843 0.37254901960784315 0);
-    --tz-color-base-orange-400: color(srgb 0.9686274509803922 0.4196078431372549 0.08235294117647059);
-    --tz-color-base-orange-500: color(srgb 0.9254901960784314 0.5803921568627451 0.3333333333333333);
-    --tz-color-base-orange-600: color(srgb 0.9607843137254902 0.6823529411764706 0.45098039215686275);
-    --tz-color-base-orange-700: color(srgb 1 0.7568627450980392 0.5098039215686274);
-    --tz-color-base-orange-800: color(srgb 1 0.8196078431372549 0.6039215686274509);
-    --tz-color-base-orange-900: color(srgb 1 0.8745098039215686 0.7098039215686275);
-    --tz-color-base-orange-1000: color(srgb 1 0.9372549019607843 0.8392156862745098);
-    --tz-color-base-orange-1100: color(srgb 1 0.9686274509803922 0.9294117647058824);
-    --tz-color-base-orange-1200: color(srgb 0.996078431372549 0.9882352941176471 0.984313725490196);
+    --tz-color-base-orange-100: color(srgb 0.996078431372549 0.9882352941176471 0.984313725490196);
+    --tz-color-base-orange-200: color(srgb 1 0.9686274509803922 0.9294117647058824);
+    --tz-color-base-orange-300: color(srgb 1 0.9372549019607843 0.8392156862745098);
+    --tz-color-base-orange-400: color(srgb 1 0.8745098039215686 0.7098039215686275);
+    --tz-color-base-orange-500: color(srgb 1 0.8196078431372549 0.6039215686274509);
+    --tz-color-base-orange-600: color(srgb 1 0.7568627450980392 0.5098039215686274);
+    --tz-color-base-orange-700: color(srgb 0.9607843137254902 0.6823529411764706 0.45098039215686275);
+    --tz-color-base-orange-800: color(srgb 0.9254901960784314 0.5803921568627451 0.3333333333333333);
+    --tz-color-base-orange-900: color(srgb 0.9686274509803922 0.4196078431372549 0.08235294117647059);
+    --tz-color-base-orange-1000: color(srgb 0.9372549019607843 0.37254901960784315 0);
+    --tz-color-base-orange-1100: color(srgb 0.8 0.3058823529411765 0);
+    --tz-color-base-orange-1200: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
     --tz-color-content-bg: var(--tz-color-base-gray-000);
     --tz-color-content-bg-aside: var(--tz-color-base-gray-050);
+    --tz-color-content-bg-info: var(--tz-color-base-blue-100);
     --tz-color-content-bg-elevated: var(--tz-color-base-gray-000);
     --tz-color-content-bg-highlighted: var(--tz-color-base-lime-300);
+    --tz-color-content-bg-warn: var(--tz-color-base-orange-400);
     --tz-color-content-border: var(--tz-color-base-gray-100);
     --tz-color-content-border-aside: var(--tz-color-base-gray-300);
+    --tz-color-content-border-info: var(--tz-color-base-blue-400);
     --tz-color-content-border-elevated: var(--tz-color-base-gray-100);
+    --tz-color-content-border-warn: var(--tz-color-base-orange-1100);
     --tz-color-content-text: var(--tz-color-base-gray-800);
     --tz-color-content-text-aside: var(--tz-color-base-gray-600);
+    --tz-color-content-text-info: var(--tz-color-base-blue-800);
     --tz-color-content-text-elevated: var(--tz-color-base-gray-800);
+    --tz-color-content-text-warn: var(--tz-color-base-orange-1200);
     --tz-color-control-bg: var(--tz-color-base-gray-000);
     --tz-color-control-bg-selected: var(--tz-color-base-lime-300);
     --tz-color-control-bg-track: var(--tz-color-base-gray-100);
@@ -338,7 +350,7 @@
   }
 }
 
-[data-color-mode="light"] {
+[data-color-mode="light"][data-color-mode="light"] {
   --tz-color-base-blue-100: color(srgb 0.7137254901960784 0.9254901960784314 0.9686274509803922);
   --tz-color-base-blue-200: color(srgb 0.12549019607843137 0.8156862745098039 0.9529411764705882);
   --tz-color-base-blue-300: color(srgb 0.07450980392156863 0.7176470588235294 0.8470588235294118);
@@ -387,28 +399,34 @@
   --tz-color-base-lime-900: color(srgb 0.19215686274509805 0.3254901960784314 0.050980392156862744);
   --tz-color-base-lime-1000: color(srgb 0.12156862745098039 0.23137254901960785 0.06274509803921569);
   --tz-color-base-lime-1100: color(srgb 0 0.1568627450980392 0);
-  --tz-color-base-orange-100: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
-  --tz-color-base-orange-200: color(srgb 0.8 0.3058823529411765 0);
-  --tz-color-base-orange-300: color(srgb 0.9372549019607843 0.37254901960784315 0);
-  --tz-color-base-orange-400: color(srgb 0.9686274509803922 0.4196078431372549 0.08235294117647059);
-  --tz-color-base-orange-500: color(srgb 0.9254901960784314 0.5803921568627451 0.3333333333333333);
-  --tz-color-base-orange-600: color(srgb 0.9607843137254902 0.6823529411764706 0.45098039215686275);
-  --tz-color-base-orange-700: color(srgb 1 0.7568627450980392 0.5098039215686274);
-  --tz-color-base-orange-800: color(srgb 1 0.8196078431372549 0.6039215686274509);
-  --tz-color-base-orange-900: color(srgb 1 0.8745098039215686 0.7098039215686275);
-  --tz-color-base-orange-1000: color(srgb 1 0.9372549019607843 0.8392156862745098);
-  --tz-color-base-orange-1100: color(srgb 1 0.9686274509803922 0.9294117647058824);
-  --tz-color-base-orange-1200: color(srgb 0.996078431372549 0.9882352941176471 0.984313725490196);
+  --tz-color-base-orange-100: color(srgb 0.996078431372549 0.9882352941176471 0.984313725490196);
+  --tz-color-base-orange-200: color(srgb 1 0.9686274509803922 0.9294117647058824);
+  --tz-color-base-orange-300: color(srgb 1 0.9372549019607843 0.8392156862745098);
+  --tz-color-base-orange-400: color(srgb 1 0.8745098039215686 0.7098039215686275);
+  --tz-color-base-orange-500: color(srgb 1 0.8196078431372549 0.6039215686274509);
+  --tz-color-base-orange-600: color(srgb 1 0.7568627450980392 0.5098039215686274);
+  --tz-color-base-orange-700: color(srgb 0.9607843137254902 0.6823529411764706 0.45098039215686275);
+  --tz-color-base-orange-800: color(srgb 0.9254901960784314 0.5803921568627451 0.3333333333333333);
+  --tz-color-base-orange-900: color(srgb 0.9686274509803922 0.4196078431372549 0.08235294117647059);
+  --tz-color-base-orange-1000: color(srgb 0.9372549019607843 0.37254901960784315 0);
+  --tz-color-base-orange-1100: color(srgb 0.8 0.3058823529411765 0);
+  --tz-color-base-orange-1200: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
   --tz-color-content-bg: var(--tz-color-base-gray-000);
   --tz-color-content-bg-aside: var(--tz-color-base-gray-050);
+  --tz-color-content-bg-info: var(--tz-color-base-blue-100);
   --tz-color-content-bg-elevated: var(--tz-color-base-gray-000);
   --tz-color-content-bg-highlighted: var(--tz-color-base-lime-300);
+  --tz-color-content-bg-warn: var(--tz-color-base-orange-400);
   --tz-color-content-border: var(--tz-color-base-gray-100);
   --tz-color-content-border-aside: var(--tz-color-base-gray-300);
+  --tz-color-content-border-info: var(--tz-color-base-blue-400);
   --tz-color-content-border-elevated: var(--tz-color-base-gray-100);
+  --tz-color-content-border-warn: var(--tz-color-base-orange-1100);
   --tz-color-content-text: var(--tz-color-base-gray-800);
   --tz-color-content-text-aside: var(--tz-color-base-gray-600);
+  --tz-color-content-text-info: var(--tz-color-base-blue-800);
   --tz-color-content-text-elevated: var(--tz-color-base-gray-800);
+  --tz-color-content-text-warn: var(--tz-color-base-orange-1200);
   --tz-color-control-bg: var(--tz-color-base-gray-000);
   --tz-color-control-bg-selected: var(--tz-color-base-lime-300);
   --tz-color-control-bg-track: var(--tz-color-base-gray-100);
@@ -484,14 +502,20 @@
     --tz-color-base-orange-1200: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
     --tz-color-content-bg: var(--tz-color-base-gray-1000);
     --tz-color-content-bg-aside: var(--tz-color-base-gray-800);
+    --tz-color-content-bg-info: var(--tz-color-base-blue-1100);
     --tz-color-content-bg-elevated: var(--tz-color-base-gray-800);
     --tz-color-content-bg-highlighted: var(--tz-color-base-lime-700);
+    --tz-color-content-bg-warn: var(--tz-color-base-orange-1200);
     --tz-color-content-border: var(--tz-color-base-gray-800);
     --tz-color-content-border-aside: var(--tz-color-base-gray-600);
+    --tz-color-content-border-info: var(--tz-color-base-blue-400);
     --tz-color-content-border-elevated: var(--tz-color-base-gray-600);
+    --tz-color-content-border-warn: var(--tz-color-base-orange-900);
     --tz-color-content-text: var(--tz-color-base-gray-100);
     --tz-color-content-text-aside: var(--tz-color-base-gray-400);
+    --tz-color-content-text-info: var(--tz-color-base-blue-100);
     --tz-color-content-text-elevated: var(--tz-color-base-gray-000);
+    --tz-color-content-text-warn: var(--tz-color-base-orange-200);
     --tz-color-control-bg: var(--tz-color-base-gray-1000);
     --tz-color-control-bg-selected: var(--tz-color-base-lime-800);
     --tz-color-control-bg-track: var(--tz-color-base-gray-700);
@@ -504,7 +528,7 @@
   }
 }
 
-[data-color-mode="dark"] {
+[data-color-mode="dark"][data-color-mode="dark"] {
   --tz-color-base-blue-100: color(srgb 0.7137254901960784 0.9254901960784314 0.9686274509803922);
   --tz-color-base-blue-200: color(srgb 0.12549019607843137 0.8156862745098039 0.9529411764705882);
   --tz-color-base-blue-300: color(srgb 0.07450980392156863 0.7176470588235294 0.8470588235294118);
@@ -567,14 +591,20 @@
   --tz-color-base-orange-1200: color(srgb 0.34509803921568627 0.17647058823529413 0.11372549019607843);
   --tz-color-content-bg: var(--tz-color-base-gray-1000);
   --tz-color-content-bg-aside: var(--tz-color-base-gray-800);
+  --tz-color-content-bg-info: var(--tz-color-base-blue-1100);
   --tz-color-content-bg-elevated: var(--tz-color-base-gray-800);
   --tz-color-content-bg-highlighted: var(--tz-color-base-lime-700);
+  --tz-color-content-bg-warn: var(--tz-color-base-orange-1200);
   --tz-color-content-border: var(--tz-color-base-gray-800);
   --tz-color-content-border-aside: var(--tz-color-base-gray-600);
+  --tz-color-content-border-info: var(--tz-color-base-blue-400);
   --tz-color-content-border-elevated: var(--tz-color-base-gray-600);
+  --tz-color-content-border-warn: var(--tz-color-base-orange-900);
   --tz-color-content-text: var(--tz-color-base-gray-100);
   --tz-color-content-text-aside: var(--tz-color-base-gray-400);
+  --tz-color-content-text-info: var(--tz-color-base-blue-100);
   --tz-color-content-text-elevated: var(--tz-color-base-gray-000);
+  --tz-color-content-text-warn: var(--tz-color-base-orange-200);
   --tz-color-control-bg: var(--tz-color-base-gray-1000);
   --tz-color-control-bg-selected: var(--tz-color-base-lime-800);
   --tz-color-control-bg-track: var(--tz-color-base-gray-700);

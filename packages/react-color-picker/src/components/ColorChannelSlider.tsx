@@ -1,7 +1,5 @@
-import {  clamp,  } from '@terrazzo/tiles';
 import { COLORSPACES, type default as useColor, formatCss } from '@terrazzo/use-color';
-import { useDrag } from '@use-gesture/react';
-import { type ComponentProps, type ReactElement,  useRef, useState, useEffect, useMemo } from 'react';
+import { type ComponentProps, type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import type { WebGLColor } from '../lib/webgl.js';
 import './ColorChannelSlider.css';
@@ -110,87 +108,6 @@ interface ColorChannelDragProps {
   setColor: ReturnType<typeof useColor>[1];
 }
 
-function ColorChannelDrag({ channel, color, displayMax, displayMin, max, min, setColor }: ColorChannelDragProps) {
-  const wrapperEl = useRef<HTMLDivElement | null>(null);
-  const [wrapperWidth, setWrapperWidth] = useState(240);
-  const [innerValue, setInnerValue] = useState(color.original[channel as keyof typeof color.original] as number);
-  const prevValue = useRef(innerValue);
-  const range = (displayMax ?? max) - (displayMin ?? min);
-  const draggable = useDrag(({ first, last, movement, shiftKey }) => {
-    if (first) {
-      prevValue.current = innerValue;
-      document.body.classList.add(BODY_DRAGGING_CLASS);
-      if (wrapperEl.current) {
-        const { width } = wrapperEl.current.getBoundingClientRect();
-        setWrapperWidth(width);
-      }
-    }
-    if (last) {
-      document.body.classList.remove(BODY_DRAGGING_CLASS);
-    }
-    const [movementX] = movement;
-    const xRaw = (movementX * (shiftKey ? SHIFT_FACTOR : 1)) / wrapperWidth;
-    const nextValue = clamp(prevValue.current + xRaw * range, min, max);
-    if (nextValue !== innerValue) {
-      setInnerValue(nextValue);
-      setColor((value) => ({ ...value.original, [channel]: nextValue }));
-    }
-  });
-
-  // bubble up updates
-  useEffect(() => {
-    setColor((value) => ({ ...value.original, [channel]: innerValue }));
-  }, [innerValue]);
-
-  // update inner value (safely) on channel, mode, or min/max change
-  useEffect(() => {
-    setInnerValue(clamp(color.original[channel as keyof typeof color.original] as number, min, max));
-  }, [channel, color.original.mode, min, max]);
-  // update inner value (dangerously) if > CHANNEL_STEP
-  useEffect(() => {
-    if (Math.abs((color.original[channel as keyof typeof color.original] as number) - innerValue) > CHANNEL_STEP) {
-      setInnerValue(color.original[channel as keyof typeof color.original] as number);
-    }
-  }, [color.original[channel as keyof typeof color.original]]);
-
-  return (
-    <div className='tz-color-channel-slider-wrapper'>
-      <ColorChannelBG
-        channel={channel}
-        color={color}
-        min={min}
-        max={max}
-        displayMin={displayMin}
-        displayMax={displayMax}
-      />
-      <div ref={wrapperEl} className='tz-color-channel-slider-bounds'>
-        <div
-          className='tz-color-channel-slider-track'
-          onPointerDown={(evt) => {
-            const { left, width } = evt.currentTarget.getBoundingClientRect();
-            const nextValue = clamp((displayMin ?? min) + ((evt.clientX - left) / width) * range, min, max);
-            if (nextValue !== innerValue) {
-              setInnerValue(nextValue);
-              prevValue.current = nextValue;
-            }
-          }}
-        />
-        <div
-          {...draggable()}
-          className='tz-color-channel-slider-handle'
-          style={{
-            '--x': `${clamp(
-              ((innerValue - (displayMin ?? min)) / range) * wrapperWidth,
-              TRACK_PADDING,
-              wrapperWidth - 2 * TRACK_PADDING,
-            )}px`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
 export interface ColorChannelSliderProps extends Omit<ComponentProps<'input'>, 'color' | 'onChange' | 'value'> {
   channel: string;
   color: ReturnType<typeof useColor>[0];
@@ -223,6 +140,7 @@ export default function ColorChannelSlider({
           displayMax={displayMax}
         />
       }
+      label={CHANNEL_LABEL[channel]}
       {...rest}
     />
   );

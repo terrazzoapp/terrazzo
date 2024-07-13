@@ -1,5 +1,6 @@
 .tz-slider {
-  --tz-slider-track-height: 10px;
+  --tz-slider-track-size-block: 10px;
+  --tz-slider-track-size-inline: 15rem;
   --tz-slider-handle-size: 1rem;
 
   color: var(--tz-text-secondary);
@@ -7,11 +8,11 @@
   flex-direction: column;
   gap: var(--tz-space-100);
   max-width: 100%;
-  width: 15rem;
+  width: var(--tz-slider-track-size-inline);
 
   &[data-orientation="vertical"] {
-    height: 15rem;
-    width: auto;
+    --tz-slider-track-size-block: 15rem;
+    --tz-slider-track-size-inline: 10px;
   }
 }
 
@@ -97,6 +98,25 @@
   inset: 0;
   position: absolute;
   z-index: 3;
+}
+
+.tz-slider-track-bg {
+  background: var(--tz-color-control-bg-track);
+  inset: 0;
+  position: absolute;
+  z-index: 1;
+}
+
+.tz-slider-track-wrapper {
+  height: var(--tz-slider-track-size-block);
+  position: relative;
+  width: var(--tz-slider-track-size-inline);
+  z-index: var(--tz-layer-base);
+}
+
+.tz-slider[data-orientation="vertical"] .tz-slider-track-wrapper {
+  height: var(--tz-slider-track-size-block);
+  width: var(--tz-slider-track-size-inline);
 }
 
 body.tz-slider-is-grabbing,

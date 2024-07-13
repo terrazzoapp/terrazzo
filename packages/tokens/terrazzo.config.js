@@ -11,8 +11,14 @@ export default defineConfig({
     css({
       variableName: (name) => makeCSSVar(name, { prefix: 'tz' }),
       modeSelectors: [
-        { mode: 'light', selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]'] },
-        { mode: 'dark', selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]'] },
+        {
+          mode: 'light',
+          selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"][data-color-mode="light"]'],
+        },
+        {
+          mode: 'dark',
+          selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"][data-color-mode="dark"]'],
+        },
       ],
     }),
   ],

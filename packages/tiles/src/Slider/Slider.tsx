@@ -97,7 +97,6 @@ export default function Slider({
   const id = useId();
   const trackEl = useRef<HTMLDivElement>(null);
   const [containerRect, setContainerRect] = useState<DOMRect>({ width: 200, top: 0, left: 0, height: 32 } as DOMRect);
-
   const [innerValue, setInnerValue] = useState(value);
   useLayoutEffect(() => {
     if (trackEl.current) {
@@ -142,8 +141,8 @@ export default function Slider({
           className='tz-slider-input'
           // @ts-expect-error React was a mistake
           type='number'
-          min={percentage ? 100 * min : min}
-          max={percentage ? 100 * max : max}
+          min={(percentage ? 100 : 1) * min}
+          max={(percentage ? 100 : 1) * max}
           step={step}
           value={innerValue}
           onChange={(evt) => setInnerValue(Number(evt.currentTarget.value))}

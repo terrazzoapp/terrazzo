@@ -329,7 +329,6 @@ Also as with colors, modes dramatically reduces the overall number of tokens we 
 :root {
   --typography-size-title1: 27px;
 }
-
 .type-mode-xsmall {
   --typography-size-title1: 25px;
 }
@@ -348,7 +347,7 @@ Also as with colors, modes dramatically reduces the overall number of tokens we 
 .type-mode-xxlarge {
   --typography-size-title1: 32px;
 }
-.type-mode-xxxlarge .heading {
+.type-mode-xxxlarge {
   --typography-size-title1: 32px;
 }
 ```
@@ -362,8 +361,6 @@ A mode is best used for 2 variations that are never used together.
 Back to the color example, if a user has requested high contrast colors, we’d never want to show them the default (non-high contrast) green; we’d want to preserve their preferences.
 
 So following that, here are some common scenarios for when modes should—or shouldn’t—be used.
-
-:::
 
 ### ✅ Do
 

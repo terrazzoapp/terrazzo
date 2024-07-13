@@ -3,7 +3,12 @@
   flex-direction: column;
 
   > * {
+    margin-block: var(--tz-space-400);
     order: 99;
+
+    @media (width >= 1600px) {
+      margin-block: var(--tz-space-600);
+    }
   }
 
   h1,
@@ -57,14 +62,6 @@
     &:hover,
     &:focus-visible {
       background-color: var(--tz-color-control-bg-selected);
-    }
-  }
-
-  > * {
-    margin-block: var(--tz-space-400);
-
-    @media (width >= 1600px) {
-      margin-block: var(--tz-space-600);
     }
   }
 
@@ -131,7 +128,9 @@
     margin-top: var(--tz-space-200);
     opacity: 0.75;
     text-align: center;
+  }
 
+  figcaption p {
     &:first-of-type {
       margin-top: 0;
     }
@@ -254,21 +253,21 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: var(--tz-color-base-blue-100);
-  color: var(--tz-color-base-blue-1200);
+  background-color: var(--tz-color-content-bg-info);
+  color: var(--tz-color-content-text-info);
 
   .callout-indicator {
-    color: var(--tz-color-base-blue-900);
+    color: var(--tz-color-content-border-info);
   }
 }
 
-.callout-caution,
-.callout-warn {
-  background-color: var(--tz-color-base-orange-200);
-  color: var(--tz-color-base-orange-1200);
+.callout--caution,
+.callout--warning {
+  background-color: var(--tz-color-content-bg-warn);
+  color: var(--tz-color-content-text-warn);
 
   .callout-indicator {
-    color: var(--tz-color-base-orange-900);
+    color: var(--tz-color-content-border-warn);
   }
 }
 
@@ -496,7 +495,7 @@
 
   a {
     border-left: 1px solid var(--tz-color-content-border);
-    color: var(--tz-color-base-gray-900);
+    color: var(--tz-color-content-text-aside);
     display: block;
     max-width: 100%;
     overflow: hidden;
