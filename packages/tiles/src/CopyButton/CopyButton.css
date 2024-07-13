@@ -8,13 +8,13 @@
   color: var(--tz-icon-secondary);
   cursor: pointer;
   display: inline-flex;
-  height: var(--tz-control-default-size);
+  height: var(--tz-space-control-m);
   justify-content: center;
-  min-width: var(--tz-control-default-size);
+  min-width: var(--tz-space-control-m);
   outline: 2px solid transparent;
   padding: 0;
   transition: outline-color var(--tz-timing-default) var(--tz-ease-linear);
-  width: var(--tz-control-default-size);
+  width: var(--tz-space-control-m);
   z-index: 2;
 
   &:hover {

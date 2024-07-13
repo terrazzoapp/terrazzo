@@ -30,7 +30,6 @@ function highlightNavItem(index = 0) {
   content.querySelectorAll('.toc a').forEach((el, i) => {
     if (i === index) {
       el.setAttribute('aria-current', 'location');
-      el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     } else {
       el.removeAttribute('aria-current');
     }

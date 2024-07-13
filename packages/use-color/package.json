@@ -43,9 +43,11 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "19.0.0-rc-f38c22b244-20240704",
-    "react-dom": "19.0.0-rc-f38c22b244-20240704",
-    "size-limit": "^11.1.4"
+    "react": "19.0.0-rc-85acf2d195-20240711",
+    "react-dom": "19.0.0-rc-85acf2d195-20240711",
+    "size-limit": "^11.1.4",
+    "types-react": "19.0.0-rc.1",
+    "types-react-dom": "19.0.0-rc.1"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

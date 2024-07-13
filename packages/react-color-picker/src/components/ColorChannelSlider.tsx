@@ -1,8 +1,7 @@
-import { SubtleInput, clamp, zeroPad, snap } from '@terrazzo/tiles';
+import {  clamp,  } from '@terrazzo/tiles';
 import { COLORSPACES, type default as useColor, formatCss } from '@terrazzo/use-color';
 import { useDrag } from '@use-gesture/react';
-import clsx from 'clsx';
-import { type ComponentProps, type ReactElement, useId, useRef, useState, useEffect, useMemo } from 'react';
+import { type ComponentProps, type ReactElement,  useRef, useState, useEffect, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import type { WebGLColor } from '../lib/webgl.js';
 import './ColorChannelSlider.css';
@@ -207,68 +206,24 @@ export default function ColorChannelSlider({
   setColor,
   ...rest
 }: ColorChannelSliderProps): ReactElement {
-  const id = useId();
   const { min, max, displayMin, displayMax } = useMemo(
     () => calculateBounds(color.original, channel, gamut),
     [color.original, channel, gamut],
   );
-  const showPerc = (max === 1 || max === 100) && min === 0;
-
-  // input
-  const value = color.original[channel as keyof typeof color.original] as number;
-  const displayValue = showPerc && max === 1 ? 100 * value : value;
-  // desync input value so user can type (updates onBlur)
-  const [inputBuffer, setInputBuffer] = useState(zeroPad(clamp(displayValue, min, max), 3));
-  useEffect(() => {
-    setInputBuffer(zeroPad(displayValue, 3)); // on upstream change, keep input updated
-  }, [displayValue]);
 
   return (
-    <div className={clsx('tz-color-channel-slider', className)} style={{ '--current-color': color.css }}>
-      <ColorChannelDrag
-        channel={channel}
-        color={color}
-        displayMax={displayMax}
-        displayMin={displayMin}
-        max={max}
-        min={min}
-        setColor={setColor}
-      />
-      <div className='tz-color-channel-slider-inputpair'>
-        <label className='tz-color-channel-slider-label' htmlFor={id}>
-          {color.original.mode.includes('lab') && channel === 'b'
-            ? 'B' // literally the one conflict: Lab vs RGB (blue)
-            : CHANNEL_LABEL[channel] ?? channel.toUpperCase()}
-        </label>
-        <SubtleInput
-          id={id}
-          className='tz-color-channel-slider-input'
-          // @ts-expect-error React was a mistake
-          type='number'
-          min={showPerc ? 100 * min : min}
-          max={showPerc ? 100 * max : max}
-          step={CHANNEL_STEP}
-          value={inputBuffer}
-          onChange={(evt) => {
-            setInputBuffer(evt.currentTarget.value);
-          }}
-          onBlur={() => {
-            const nextValue = clamp(showPerc ? Number(inputBuffer) / 100 : Number(inputBuffer), min, max);
-            setColor({ ...color.original, [channel]: nextValue });
-          }}
-          onKeyUp={(evt) => {
-            if (['Enter', 'Tab', 'ArrowUp', 'ArrowDown'].includes(evt.key)) {
-              const nextValue = clamp(showPerc ? Number(inputBuffer) / 100 : Number(inputBuffer), min, max);
-              setColor({
-                ...color.original,
-                [channel]: evt.key === 'ArrowUp' || evt.key === 'ArrowDown' ? snap(nextValue, CHANNEL_STEP) : nextValue,
-              });
-            }
-          }}
-          suffix={showPerc ? '%' : undefined}
-          {...rest}
+    <Slider
+      bg={
+        <ColorChannelBG
+          channel={channel}
+          color={color}
+          min={min}
+          max={max}
+          displayMin={displayMin}
+          displayMax={displayMax}
         />
-      </div>
-    </div>
+      }
+      {...rest}
+    />
   );
 }

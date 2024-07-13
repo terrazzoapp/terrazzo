@@ -1,32 +1,30 @@
 .tz-subtle-input {
-  --input-text: var(--tz-input-primary-text);
-  --input-border: transparent;
+  --tz-subtle-input-text: var(--tz-color-control-text);
+  --tz-subtle-input-border: transparent;
 
   background-color: transparent;
   border-radius: var(--tz-radius-200);
-  color: var(--tz-input-primary-text);
+  color: var(--tz-subtle-input-text);
   display: flex;
   font-family: var(--tz-typography-family-mono);
   font-size: var(--tz-typography-200-regular-font-size);
   font-weight: var(--tz-typography-200-regular-font-weight);
   gap: var(--tz-space-200);
   letter-spacing: 0;
-  outline: 1px solid var(--input-border);
+  outline: 1px solid var(--tz-subtle-input-border);
   position: relative;
 
   &:hover {
-    --input-border: var(--tz-input-primary-hover-border);
-    --input-text: var(--tz-input-primary-hover-text);
+    --tz-subtle-input-border: var(--tz-color-control-border);
   }
 
   &:focus-within {
-    --input-border: var(--tz-input-primary-focus-border);
-    --input-text: var(--tz-input-primary-focus-text);
+    --tz-subtle-input-border: var(--tz-color-control-border-focus);
   }
 }
 
 .tz-subtle-input-field {
-  --height: var(--tz-control-default-size);
+  --height: var(--tz-space-control-m);
 
   -moz-appearance: textfield;
   background: none;

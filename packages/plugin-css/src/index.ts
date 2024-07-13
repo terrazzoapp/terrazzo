@@ -1,8 +1,8 @@
 import type { Plugin } from '@terrazzo/parser';
-import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
-import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
-import buildFormat from './build.js';
 import { validateCustomTransform } from '@terrazzo/token-tools';
+import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
+import buildFormat from './build.js';
+import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
 
 export * from './build.js';
 export * from './lib.js';

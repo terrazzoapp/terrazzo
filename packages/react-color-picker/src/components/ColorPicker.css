@@ -1,5 +1,5 @@
 .tz-color-picker {
-  background-color: var(--tz-surface-primary-bg);
+  background-color: var(--tz-color-control-bg);
   color: var(--tz-text-primary);
   display: flex;
   flex-direction: column;
@@ -30,37 +30,29 @@
 }
 
 .tz-color-picker-code-input {
-  --input-bg: var(--tz-input-primary-bg);
-  --input-border: var(--tz-input-primary-border);
-  --input-text: var(--tz-input-primary-text);
+  --tz-color-picker-input-bg: var(--tz-color-control-bg);
+  --tz-color-picker-input-border: var(--tz-color-control-border);
+  --tz-color-picker-input-text: var(--tz-color-control-text);
 
-  background-color: var(--input-bg);
+  background-color: var(--tz-color-picker-input-bg);
   border: none;
   border-bottom-left-radius: var(--tz-radius-200);
   border-bottom-right-radius: var(--tz-radius-200);
-  color: var(--input-text);
+  color: var(--tz-color-picker-input-text);
   flex: 1 0 auto;
   font-family: var(--tz-typography-family-mono);
   font-size: var(--tz-typography-100-regular-font-size);
   font-variant-ligatures: none;
   font-weight: var(--tz-typography-100-regular-font-weight);
-  height: var(--tz-control-default-size);
+  height: var(--space-control-m);
   letter-spacing: 0;
-  line-height: var(--tz-control-default-size);
+  line-height: var(--space-control-m);
   outline: none;
   padding: 0 var(--copy-btn-width) 0 0;
   text-indent: var(--tz-space-200);
 
-  &:hover {
-    --input-bg: var(--tz-input-primary-hover-bg);
-    --input-border: var(--tz-input-primary-hover-border);
-    --input-text: var(--tz-input-primary-hover-text);
-  }
-
   &:focus {
-    --input-bg: var(--tz-input-primary-focus-bg);
-    --input-border: var(--tz-input-primary-focus-border);
-    --input-text: var(--tz-input-primary-focus-text);
+    --tz-color-picker-input-border: var(--tz-color-control-border-focus);
   }
 }
 
@@ -86,13 +78,13 @@
   border-width: 1px;
   cursor: pointer;
   display: inline-flex;
-  height: var(--tz-control-small-size);
+  height: var(--space-control-s);
   justify-content: center;
-  width: var(--tz-control-small-size);
+  width: var(--space-control-s);
 
   &:hover {
     --tz-color-picker-colorspace-chevron-border-color: var(
-      --tz-surface-primary-border
+      --tz-color-control-border
     );
   }
 }
