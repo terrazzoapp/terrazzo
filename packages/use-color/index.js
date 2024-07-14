@@ -34,15 +34,6 @@ export function withAlpha(color) {
   return color;
 }
 
-/** Snap a number to n decimal places */
-function snap(value, precision) {
-  if (typeof value !== 'number' || precision <= 0 || precision > 1 || value % 1 === 0) {
-    return value;
-  }
-  const p = 1 / precision;
-  return Math.round(value * p) / p;
-}
-
 export function parse(color) {
   if (color && typeof color === 'object') {
     if (!color.mode) {
@@ -89,10 +80,10 @@ const toOkhsl = useMode(modeOkhsl);
 const toOkhsv = useMode(modeOkhsv);
 const toOklab = useMode(modeOklab);
 const toOklch = useMode(modeOklch);
-const toP3 = useMode(modeP3);
+useMode(modeP3);
 const toProphoto = useMode(modeProphoto);
 const toRec2020 = useMode(modeRec2020);
-const toRgb = useMode(modeRgb);
+useMode(modeRgb);
 const toXyz50 = useMode(modeXyz50);
 const toXyz65 = useMode(modeXyz65);
 
@@ -108,10 +99,10 @@ export const COLORSPACES = {
   okhsv: { converter: (color) => withAlpha(toOkhsv(color)) },
   oklab: { converter: (color) => withAlpha(toOklab(color)) },
   oklch: { converter: (color) => withAlpha(toOklch(color)) },
-  p3: { converter: (color) => withAlpha(toP3(color)) },
+  p3: { converter: (color) => withAlpha(toGamut('p3')(color)) },
   prophoto: { converter: (color) => withAlpha(toProphoto(color)) },
   rec2020: { converter: (color) => withAlpha(toRec2020(color)) },
-  srgb: { converter: (color) => withAlpha(toRgb(color)) },
+  srgb: { converter: (color) => withAlpha(toGamut('rgb')(color)) },
   xyz: { converter: (color) => withAlpha(toXyz65(color)) },
   xyz50: { converter: (color) => withAlpha(toXyz50(color)) },
   xyz65: { converter: (color) => withAlpha(toXyz65(color)) },
@@ -124,7 +115,7 @@ COLORSPACES.rgb = COLORSPACES.srgb;
 COLORSPACES['xyz-d50'] = COLORSPACES.xyz50;
 COLORSPACES['xyz-d65'] = COLORSPACES.xyz65;
 
-export function formatCss(color, { precision = 0.0001 } = {}) {
+export function formatCss(color, { precision: p = 3 } = {}) {
   const alpha = color.alpha < 1 ? ` / ${color.alpha}` : '';
   switch (color.mode) {
     // rgb
@@ -144,55 +135,41 @@ export function formatCss(color, { precision = 0.0001 } = {}) {
           rgb: 'srgb',
           srgb: 'srgb',
         }[color.mode] || color.mode;
-      return `color(${colorSpace} ${[snap(color.r, precision), snap(color.g, precision), snap(color.b, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(${colorSpace} ${color.r.toPrecision(p)} ${color.g.toPrecision(
+        p,
+      )} ${color.b.toPrecision(p)}${alpha})`;
     }
     case 'hsl': {
-      return `hsl(${snap(color.h, precision)} ${100 * snap(color.s, precision)}% ${
-        100 * snap(color.l, precision)
-      }%${alpha})`;
+      return `hsl(${color.h.toPrecision(p)} ${100 * color.s.toPrecision(p)}% ${(100 * color.l).toPrecision(p)}%${alpha})`;
     }
     case 'hsv': {
-      return `color(--hsv ${[snap(color.h, precision), snap(color.s, precision), snap(color.v, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--hsv ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.v.toPrecision(p)}
+    }${alpha})`;
     }
     case 'hwb': {
-      return `hwb(${snap(color.h, precision)} ${100 * snap(color.w, precision)}% ${
-        100 * snap(color.b, precision)
-      }%${alpha})`;
+      return `hwb(${color.h.toPrecision(p)} ${100 * color.w.toPrecision(p)}% ${(100 * color.b).toPrecision(p)}%${alpha})`;
     }
     case 'okhsl': {
-      return `color(--okhsl ${[snap(color.h, precision), snap(color.s, precision), snap(color.l, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--okhsl ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.l.toPrecision(p)}}${alpha})`;
     }
     case 'okhsv': {
-      return `color(--okhsv ${[snap(color.h, precision), snap(color.s, precision), snap(color.v, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `color(--okhsv ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.v.toPrecision(p)}
+      }${alpha})`;
     }
     case 'lab':
     case 'oklab': {
-      return `${color.mode}(${[snap(color.l, precision), snap(color.a, precision), snap(color.b, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `${color.mode}(${color.l.toPrecision(p)} ${color.a.toPrecision(p)} ${color.b.toPrecision(p)}${alpha})`;
     }
     case 'lch':
     case 'oklch': {
-      return `${color.mode}(${[snap(color.l, precision), snap(color.c, precision), snap(color.h, precision)].join(
-        ' ',
-      )}${alpha})`;
+      return `${color.mode}(${color.l.toPrecision(p)} ${color.c.toPrecision(p)} ${color.h.toPrecision(p)}${alpha})`;
     }
     case 'xyz':
     case 'xyz50':
     case 'xyz65': {
-      return `color(${color.mode === 'xyz50' ? 'xyz-d50' : 'xyz-d65'} ${[
-        snap(color.x, precision),
-        snap(color.y, precision),
-        snap(color.z, precision),
-      ].join(' ')}${alpha})`;
+      return `color(${color.mode === 'xyz50' ? 'xyz-d50' : 'xyz-d65'} ${color.x.toPrecision(
+        p,
+      )} ${color.y.toPrecision(p)} ${color.z.toPrecision(p)}${alpha})`;
     }
   }
 }

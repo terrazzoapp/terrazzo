@@ -8,7 +8,7 @@ export default {
   plugins: [
     cleandir(),
     css({
-      output: 'styles.css',
+      output: 'all-components.css',
     }),
     ts(),
     swc({

@@ -3,8 +3,8 @@ html {
 }
 
 body {
-  background-color: var(--tz-surface-primary-bg);
-  color: var(--tz-text-primary);
+  background-color: var(--tz-color-content-bg);
+  color: var(--tz-color-content-text);
   font-family: var(--tz-typography-family-sans);
   font-size: 100%;
   line-height: 1;
@@ -31,7 +31,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--tz-color-brand-lime);
+  background-color: var(--tz-color-content-bg-highlighted);
 }
 
 h1 {

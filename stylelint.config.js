@@ -5,6 +5,7 @@ export default {
   rules: {
     'alpha-value-notation': 'number',
     'declaration-block-no-redundant-longhand-properties': null, // this is fine
+    'hue-degree-notation': 'number',
     'lightness-notation': 'number',
     'no-descending-specificity': null, // this often leads to unsolvable riddles
     'number-max-precision': null, // in the running for dumbest rule ever created

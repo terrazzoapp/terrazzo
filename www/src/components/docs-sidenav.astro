@@ -11,6 +11,7 @@ const NAV_ITEMS = [
     items: [
       { url: '/guides/dtcg', title: 'DTCG Tokens' },
       { url: '/guides/modes', title: 'Modes + Theming' },
+      { url: '/guides/styleguide', title: 'DS Styleguide' },
     ],
   },
   {
@@ -47,6 +48,7 @@ const NAV_ITEMS = [
     items: [
       { url: '/components/color-picker', title: 'ColorPicker' },
       { url: '/components/demo', title: 'Demo' },
+      { url: '/components/slider', title: 'Slider' },
     ],
   },
   {
@@ -68,7 +70,7 @@ const NAV_ITEMS = [
       xmlns="http://www.w3.org/2000/svg"
       ><path
         d="m19.9333 21.792s0 1.5596-1.7302 1.5596h-16.47285c-1.73025 0-1.73025-1.5596-1.73025-1.5596z"
-        fill="#8cd10c"></path><g fill="var(--tz-color-base-gray-1200)"
+        fill="#8cd10c"></path><g fill="var(--tz-color-content-text)"
         ><path
           d="m8.9733.5h-8.747783c-.124035 0-.225517.101495-.225517.225544v8.748856c0 .20074.24243.3011.384506.15901l8.748914-8.748857c.14207-.142093.04172-.384553-.15899-.384553z"
         ></path><path
@@ -109,7 +111,7 @@ const NAV_ITEMS = [
               return (
                 <li class="nav-item">
                   {item.items ? (
-                    <details class="details">
+                    <details class="details" open={!!getAriaCurrent(url, Astro.request.url) || undefined}>
                       <summary class="summary">
                         <a
                           class="nav-link"
@@ -132,9 +134,7 @@ const NAV_ITEMS = [
                                   Astro.request.url
                                 )}
                               >
-                                <span class="nav-link-highlight">
-                                  {subitem.title}
-                                </span>
+                                {subitem.title}
                               </a>
                             </li>
                           );
@@ -147,7 +147,7 @@ const NAV_ITEMS = [
                       href={url}
                       aria-current={getAriaCurrent(url, Astro.request.url)}
                     >
-                      <span class="nav-link-highlight">{item.title}</span>
+                      {item.title}
                     </a>
                   )}
                 </li>
@@ -164,7 +164,8 @@ const NAV_ITEMS = [
   .sidenav {
     --grid: var(--tz-space-500);
 
-    color: var(--tz-surface-secondary-text);
+    background: var(--tz-color-content-bg-aside);
+    color: var(--tz-color-content-text-aside);
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -199,7 +200,7 @@ const NAV_ITEMS = [
   }
 
   .section-title {
-    color: var(--tz-text-primary);
+    color: var(--tz-color-content-text);
     font-size: var(--tz-typography-300-medium-font-size);
     font-weight: var(--tz-typography-300-medium-font-weight);
     line-height: var(--tz-typography-300-medium-line-height);
@@ -209,37 +210,38 @@ const NAV_ITEMS = [
   .nav-link,
   .nav-sublink {
     align-items: center;
-    color: var(--tz-color-base-gray-1000);
+    color: var(--tz-color-content-text);
     display: flex;
     font-size: var(--tz-typography-200-regular-font-size);
-    height: var(--tz-size-s-height);
+    height: var(--tz-space-control-s);
     text-decoration: none;
     padding-inline: var(--grid);
+    position: relative;
 
-    &:hover {
-      background-color: transparent;
+    &::before {
+      background-color: var(--tz-color-base-lime-400);
+      content: '';
+      display: block;
+      left: var(--tz-space-300);
+      height: 100%;
+      top: 0;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      width: 2px;
+    }
 
-      .nav-link-highlight {
-        background-color: color-mix(
-          in oklab,
-          var(--tz-nav-primary-selected-bg),
-          transparent 50%
-        );
-        color: var(--tz-nav-primary-selected-text);
+    &:hover::before {
+      opacity: 0.5
+    }
+
+    &[aria-current="page"] {
+      color: var(--tz-color-control-text-selected);
+
+      &::before {
+        opacity: 1;
       }
     }
-
-    &[aria-current="page"] > .nav-link-highlight {
-      background-color: var(--tz-nav-primary-selected-bg);
-      color: var(--tz-nav-primary-selected-text);
-    }
-  }
-
-  .nav-link-highlight {
-    display: flex;
-    margin-inline-start: calc(-0.5 * var(--grid));
-    padding-block: calc(0.25 * var(--grid));
-    padding-inline: calc(0.5 * var(--grid));
   }
 
   .nav-sublink {
@@ -253,17 +255,11 @@ const NAV_ITEMS = [
       padding-block: calc(0.25 * var(--grid));
     }
 
-    &:hover {
-      border-color: var(--tz-color-ui-nav-active);
-      opacity: 1;
-
-      > .nav-link-highlight {
-        border-color: var(--tz-nav-primary-selected-text);
-      }
+    &:hover::before {
+      opacity: 0.5;
     }
 
-    &[aria-current] {
-      border-color: var(--tz-color-ui-nav-active);
+    &[aria-current]::before {
       opacity: 1;
     }
   }
@@ -273,10 +269,6 @@ const NAV_ITEMS = [
     gap: var(--tz-space-200);
     padding: 0;
     position: relative;
-
-    &:hover {
-      background-color: var(--tz-color-base-gray-300);
-    }
 
     &::marker,
     &::-webkit-details-marker {
@@ -300,6 +292,10 @@ const NAV_ITEMS = [
       margin-inline-start: var(--tz-space-300);
       padding-inline: var(--tz-space-300);
       width: min-content;
+
+      &::before {
+        left: 0;
+      }
     }
   }
 

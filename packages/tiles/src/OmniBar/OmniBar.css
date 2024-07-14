@@ -11,20 +11,20 @@
 }
 
 .tz-omnibar-input {
-  --input-bg: var(--tz-input-primary-bg);
-  --input-border: var(--tz-input-primary-border);
-  --input-text: var(--tz-input-primary-text);
+  --tz-omnibar-input-bg: var(--tz-color-control-bg);
+  --tz-omnibar-input-border: var(--tz-color-control-border);
+  --tz-omnibar-input-text: var(--tz-color-control-text);
 
-  background-color: var(--input-bg);
-  border: 1px solid var(--input-border);
+  background-color: var(--tz-omnibar-input-bg);
+  border: 1px solid var(--tz-omnibar-input-border);
   border-radius: var(--tz-radius-200);
-  color: var(--tz-input-text);
+  color: var(--tz-omnibar-input-text);
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
   font-weight: var(--tz-typography-200-regular-font-weight);
-  height: var(--tz-control-default-size);
+  height: var(--tz-space-control-m);
   letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-control-default-size);
+  line-height: var(--tz-space-control-m);
   min-width: 5rem;
   outline: none;
   padding-block-end: 0;
@@ -41,17 +41,9 @@
   }
 
   &:focus {
-    --input-border: var(--tz-input-primary-focus-border);
-    --input-gg: var(--tz-input-primary-focus-gg);
-    --input-text: var(--tz-input-primary-focus-text);
+    --tz-omnibar-input-border: var(--tz-color-control-border-focus);
 
     width: 20rem;
-  }
-
-  &:hover {
-    --input-border: var(--tz-input-primary-hover-border);
-    --input-gg: var(--tz-input-primary-hover-gg);
-    --input-text: var(--tz-input-primary-hover-text);
   }
 }
 
@@ -84,8 +76,8 @@
 .tz-omnibar-listboxwrapper {
   --padding: var(--tz-space-300);
 
-  background-color: var(--tz-surface-secondary-bg);
-  border: 1px solid var(--tz-surface-secondary-border);
+  background-color: var(--tz-color-content-bg-elevated);
+  border: 1px solid var(--tz-color-content-border-elevated);
   border-radius: var(--tz-radius-300);
   box-shadow: var(--tz-shadow-300);
   display: flex;
@@ -93,7 +85,7 @@
   left: calc(-1 * var(--padding));
   padding-block-end: 0;
   padding-block-start: calc(
-    var(--padding) + var(--tz-control-default-size) + var(--padding)
+    var(--padding) + var(--tz-space-control-m) + var(--padding)
   );
   padding-inline: 0;
   position: absolute;
@@ -117,7 +109,7 @@
 }
 
 .tz-omnibar-resultdesc {
-  border-bottom: 1px solid var(--tz-surface-secondary-border);
+  border-bottom: 1px solid var(--tz-color-content-border);
   color: var(--tz-text-secondary);
   font-family: var(--tz-typography-100-regular-font-family);
   font-size: var(--tz-typography-100-regular-font-size);

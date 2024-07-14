@@ -1,7 +1,7 @@
 .tz-kbd {
   align-items: center;
-  background-color: var(--tz-surface-primary-bg);
-  border: 1px solid var(--tz-surface-primary-border);
+  background-color: var(--tz-color-content-bg);
+  border: 1px solid var(--tz-color-content-border);
   border-radius: var(--tz-radius-200);
   color: var(--tz-text-primary);
   cursor: default;

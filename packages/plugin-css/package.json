@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-css",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Generate CSS from your design tokens schema (requires @terrazzo/cli)",
   "type": "module",
   "author": {

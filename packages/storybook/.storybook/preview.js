@@ -1,8 +1,8 @@
 import '@terrazzo/tokens/dist/index.css';
 import '@terrazzo/fonts/fragment-mono.css';
 import '@terrazzo/fonts/instrument-sans.css';
-import '@terrazzo/tiles/dist/styles.css';
-import '@terrazzo/react-color-picker/dist/styles.css';
+import '@terrazzo/tiles/dist/all-components.css';
+import '@terrazzo/react-color-picker/dist/all-components.css';
 import './global.css';
 
 /** @type { import('@storybook/react').Preview } */

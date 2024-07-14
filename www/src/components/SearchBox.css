@@ -11,7 +11,7 @@
 }
 
 .tz-searchbox-link {
-  border-bottom: 1px solid var(--tz-surface-secondary-border);
+  border-bottom: 1px solid var(--tz-color-content-border);
   display: flex;
   flex-direction: column;
   padding: var(--tz-space-300);
@@ -19,7 +19,7 @@
 }
 
 .tz-searchbox-result-title {
-  color: var(--tz-text-primary);
+  color: var(--tz-color-content-text);
   display: block;
   font-family: var(--tz-typography-300-medium-font-family);
   font-size: var(--tz-typography-300-medium-font-size);
@@ -32,7 +32,7 @@
 }
 
 .tz-searchbox-result-desc {
-  color: var(--tz-text-secondary);
+  color: var(--tz-color-content-text-aside);
   display: block;
   font-family: var(--tz-typography-100-regular-font-family);
   font-size: var(--tz-typography-100-regular-font-size);
@@ -56,7 +56,7 @@
 }
 
 .tz-searchbox-result-icon {
-  color: var(--tz-icon-secondary);
+  color: var(--tz-color-content-text-aside);
   flex-grow: 0;
   flex-shrink: 0;
 }

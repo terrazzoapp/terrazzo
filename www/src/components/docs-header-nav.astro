@@ -28,9 +28,9 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
 <style>
   .header-nav {
     align-items: center;
-    background-color: var(--tz-surface-primary-bg);
-    border-bottom: 1px solid var(--tz-color-base-gray-400);
-    color: var(--tz-surface-secondary-text);
+    background-color: var(--tz-color-content-bg);
+    border-bottom: 1px solid var(--tz-color-content-border);
+    color: var(--tz-color-content-text);
     display: flex;
     max-height: var(--tz-space-900);
     justify-content: space-between;
@@ -73,7 +73,7 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
       text-decoration: none;
 
       &[aria-current] {
-        color: var(----tz-text-link-primary);
+        color: var(--tz-color-control-text-selected);
         font-weight: var(--tz-typography-300-medium-font-weight);
       }
 

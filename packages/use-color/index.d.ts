@@ -90,7 +90,7 @@ export declare function createMemoizedColor(color: ColorInput): ColorOutput;
 export declare function formatCss(
   color: ColorInput,
   options?: {
-    /** Round values to a certain precision (default: 0.001) */
+    /** Number.toPrecision() parameter (default: 3) */
     precision: number;
   },
 ): string | undefined;

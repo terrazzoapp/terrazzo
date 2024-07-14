@@ -243,7 +243,7 @@ void main() {
   // 3 = projection toward point, hue dependent
   // 4 = adaptive Lightness, hue independent
   // 5 = adaptive Lightness, hue dependent
-  int clamp_mode = 3;
+  int clamp_mode = 2;
 
   float hue_norm = vec2(gl_FragCoord.xy / v_resolution).x;
   float hue = 360.0 * hue_norm;

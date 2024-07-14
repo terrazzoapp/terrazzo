@@ -6,7 +6,7 @@ export interface ButtonProps extends Omit<ComponentProps<'button'>, 'size'> {
   /** default: "m" */
   size?: 's' | 'm';
   /** default: "primary" */
-  variant?: 'primary' | 'secondary' | 'teritary';
+  variant?: 'primary' | 'secondary';
 }
 
 export default function Button({

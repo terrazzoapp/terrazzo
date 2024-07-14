@@ -15,6 +15,8 @@ export { default as SubtleInput } from './SubtleInput/SubtleInput.js';
 export * from './SubtleInput/SubtleInput.js';
 export { default as Select } from './Select/Select.js';
 export * from './Select/Select.js';
+export { default as Slider } from './Slider/Slider.js';
+export * from './Slider/Slider.js';
 export { default as Switch } from './Switch/Switch.js';
 export * from './Switch/Switch.js';
 export { default as TokenType } from './TokenType/TokenType.js';

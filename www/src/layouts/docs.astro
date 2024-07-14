@@ -27,8 +27,12 @@ const { frontmatter } = Astro.props;
 
         @media (width >= 900px) {
           grid-template-areas: "sidenav header-nav header-nav" "sidenav main toc";
-          grid-template-columns: var(--sidebar-width) auto var(--sidebar-width);
+          grid-template-columns: var(--sidebar-width) auto;
           grid-template-rows: min-content 1fr;
+        }
+
+        @media (width >= 1200px) {
+          grid-template-columns: var(--sidebar-width) auto var(--sidebar-width);
         }
       }
 
@@ -43,7 +47,7 @@ const { frontmatter } = Astro.props;
       }
 
       .docs-sidenav {
-        background-color: var(--tz-surface-secondary-bg);
+        background-color: var(--tz-color-content-bg-aside);
         display: flex;
         grid-area: sidenav;
 

@@ -35,5 +35,11 @@
 @media (width >= 600px) {
   :root {
     --ds-typography-body-font-size: 14px;
+    --ds-typography-label-font-family: var(--ds-typography-subheading-font-family);
+    --ds-typography-label-font-size: var(--ds-typography-subheading-font-size);
+    --ds-typography-label-font-weight: var(--ds-typography-subheading-font-weight);
+    --ds-typography-label-line-height: var(--ds-typography-subheading-line-height);
+    --ds-typography-label-letter-spacing: var(--ds-typography-subheading-letter-spacing);
+    --ds-typography-label-text-transform: var(--ds-typography-subheading-text-transform);
   }
 }

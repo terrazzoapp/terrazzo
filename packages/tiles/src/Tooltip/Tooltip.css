@@ -1,7 +1,7 @@
 .tz-tooltip-content {
   animation-duration: 400ms;
-  background: var(--tz-surface-primary-bg);
-  border: 1px solid var(--tz-surface-primary-border);
+  background: var(--tz-color-content-bg-elevated);
+  border: 1px solid var(--tz-color-content-border-elevated);
   border-radius: var(--tz-radius-2);
   box-shadow: var(--tz-shadow-300);
   color: var(--tz-text-secondary);
@@ -21,5 +21,5 @@
 }
 
 .tz-tooltip-arrow {
-  fill: var(--tz-surface-primary-bg);
+  fill: var(--tz-color-content-bg-elevated);
 }

@@ -38,6 +38,7 @@
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
+    "@use-gesture/react": "^10.3.1",
     "clsx": "^2.1.1",
     "culori": "^4.0.1",
     "shiki": "^1.10.0"
@@ -51,8 +52,8 @@
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "chokidar-cli": "^3.0.0",
-    "react": "19.0.0-rc-f38c22b244-20240704",
-    "react-dom": "19.0.0-rc-f38c22b244-20240704",
+    "react": "19.0.0-rc-85acf2d195-20240711",
+    "react-dom": "19.0.0-rc-85acf2d195-20240711",
     "rollup": "^4.18.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",

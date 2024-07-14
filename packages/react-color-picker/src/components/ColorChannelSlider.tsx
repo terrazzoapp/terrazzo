@@ -1,13 +1,11 @@
-import { SubtleInput, clamp, zeroPad, snap } from '@terrazzo/tiles';
-import { COLORSPACES, type default as useColor, formatCss } from '@terrazzo/use-color';
-import { useDrag } from '@use-gesture/react';
-import clsx from 'clsx';
-import { type ComponentProps, type ReactElement, useId, useRef, useState, useEffect, useMemo } from 'react';
+import { Slider } from '@terrazzo/tiles';
+import { COLORSPACES, type ColorOutput, type default as useColor, formatCss } from '@terrazzo/use-color';
+import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import type { WebGLColor } from '../lib/webgl.js';
-import './ColorChannelSlider.css';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
+import './ColorChannelSlider.css';
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -28,11 +26,24 @@ const CHANNEL_LABEL: Record<string, string | undefined> = {
   v: 'Value',
 };
 
-const CHANNEL_STEP = 0.001; // TODO: do some colorspaces/channels need different values?
+const CHANNEL_PRECISION = 5;
 
 const RGB_COLORSPACES = ['a98', 'lrgb', 'p3', 'rgb', 'prophoto', 'rec2020'];
 // const SRGB_COLORSPACES = ['rgb', 'hsv', 'hsl', 'hwb'];
 // const P3_COLORSPACES = ['p3'];
+
+function isPerc(color: ColorOutput, channel: string): boolean {
+  if (RGB_COLORSPACES.includes(color.original.mode)) {
+    return true;
+  }
+  if (channel === 'l' || channel === 'c' || channel === 's' || channel === 'v' || channel === 'alpha') {
+    return true;
+  }
+  if (channel === 'h') {
+    return false;
+  }
+  return false;
+}
 
 export interface ColorChannelBGProps {
   channel: string;
@@ -75,11 +86,11 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   const range = (displayMax ?? max) - (displayMin ?? min);
   let leftColor = { ...color.original, [channel]: min, alpha: 1 } as WebGLColor;
   if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    leftColor = COLORSPACES.p3.converter(leftColor);
+    leftColor = COLORSPACES.rec2020.converter(leftColor);
   }
   let rightColor = { ...color.original, [channel]: max, alpha: 1 } as WebGLColor;
   if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    rightColor = COLORSPACES.p3.converter(rightColor);
+    rightColor = COLORSPACES.rec2020.converter(rightColor);
   }
 
   return (
@@ -101,99 +112,9 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   );
 }
 
-interface ColorChannelDragProps {
+export interface ColorChannelSliderProps {
   channel: string;
-  color: ReturnType<typeof useColor>[0];
-  displayMax?: number;
-  displayMin?: number;
-  max: number;
-  min: number;
-  setColor: ReturnType<typeof useColor>[1];
-}
-
-function ColorChannelDrag({ channel, color, displayMax, displayMin, max, min, setColor }: ColorChannelDragProps) {
-  const wrapperEl = useRef<HTMLDivElement | null>(null);
-  const [wrapperWidth, setWrapperWidth] = useState(240);
-  const [innerValue, setInnerValue] = useState(color.original[channel as keyof typeof color.original] as number);
-  const prevValue = useRef(innerValue);
-  const range = (displayMax ?? max) - (displayMin ?? min);
-  const draggable = useDrag(({ first, last, movement, shiftKey }) => {
-    if (first) {
-      prevValue.current = innerValue;
-      document.body.classList.add(BODY_DRAGGING_CLASS);
-      if (wrapperEl.current) {
-        const { width } = wrapperEl.current.getBoundingClientRect();
-        setWrapperWidth(width);
-      }
-    }
-    if (last) {
-      document.body.classList.remove(BODY_DRAGGING_CLASS);
-    }
-    const [movementX] = movement;
-    const xRaw = (movementX * (shiftKey ? SHIFT_FACTOR : 1)) / wrapperWidth;
-    const nextValue = clamp(prevValue.current + xRaw * range, min, max);
-    if (nextValue !== innerValue) {
-      setInnerValue(nextValue);
-      setColor((value) => ({ ...value.original, [channel]: nextValue }));
-    }
-  });
-
-  // bubble up updates
-  useEffect(() => {
-    setColor((value) => ({ ...value.original, [channel]: innerValue }));
-  }, [innerValue]);
-
-  // update inner value (safely) on channel, mode, or min/max change
-  useEffect(() => {
-    setInnerValue(clamp(color.original[channel as keyof typeof color.original] as number, min, max));
-  }, [channel, color.original.mode, min, max]);
-  // update inner value (dangerously) if > CHANNEL_STEP
-  useEffect(() => {
-    if (Math.abs((color.original[channel as keyof typeof color.original] as number) - innerValue) > CHANNEL_STEP) {
-      setInnerValue(color.original[channel as keyof typeof color.original] as number);
-    }
-  }, [color.original[channel as keyof typeof color.original]]);
-
-  return (
-    <div className='tz-color-channel-slider-wrapper'>
-      <ColorChannelBG
-        channel={channel}
-        color={color}
-        min={min}
-        max={max}
-        displayMin={displayMin}
-        displayMax={displayMax}
-      />
-      <div ref={wrapperEl} className='tz-color-channel-slider-bounds'>
-        <div
-          className='tz-color-channel-slider-track'
-          onPointerDown={(evt) => {
-            const { left, width } = evt.currentTarget.getBoundingClientRect();
-            const nextValue = clamp((displayMin ?? min) + ((evt.clientX - left) / width) * range, min, max);
-            if (nextValue !== innerValue) {
-              setInnerValue(nextValue);
-              prevValue.current = nextValue;
-            }
-          }}
-        />
-        <div
-          {...draggable()}
-          className='tz-color-channel-slider-handle'
-          style={{
-            '--x': `${clamp(
-              ((innerValue - (displayMin ?? min)) / range) * wrapperWidth,
-              TRACK_PADDING,
-              wrapperWidth - 2 * TRACK_PADDING,
-            )}px`,
-          }}
-        />
-      </div>
-    </div>
-  );
-}
-
-export interface ColorChannelSliderProps extends Omit<ComponentProps<'input'>, 'color' | 'onChange' | 'value'> {
-  channel: string;
+  className?: string;
   color: ReturnType<typeof useColor>[0];
   gamut?: 'rgb' | 'p3' | 'rec2020';
   setColor: ReturnType<typeof useColor>[1];
@@ -203,72 +124,23 @@ export default function ColorChannelSlider({
   channel,
   className,
   color,
-  gamut = 'rgb',
+  // gamut = 'rgb',
   setColor,
-  ...rest
 }: ColorChannelSliderProps): ReactElement {
-  const id = useId();
-  const { min, max, displayMin, displayMax } = useMemo(
-    () => calculateBounds(color.original, channel, gamut),
-    [color.original, channel, gamut],
-  );
-  const showPerc = (max === 1 || max === 100) && min === 0;
-
-  // input
-  const value = color.original[channel as keyof typeof color.original] as number;
-  const displayValue = showPerc && max === 1 ? 100 * value : value;
-  // desync input value so user can type (updates onBlur)
-  const [inputBuffer, setInputBuffer] = useState(zeroPad(clamp(displayValue, min, max), 3));
-  useEffect(() => {
-    setInputBuffer(zeroPad(displayValue, 3)); // on upstream change, keep input updated
-  }, [displayValue]);
+  const { min, max } = useMemo(() => calculateBounds(color.original, channel), [color.original, channel]);
 
   return (
-    <div className={clsx('tz-color-channel-slider', className)} style={{ '--current-color': color.css }}>
-      <ColorChannelDrag
-        channel={channel}
-        color={color}
-        displayMax={displayMax}
-        displayMin={displayMin}
-        max={max}
-        min={min}
-        setColor={setColor}
-      />
-      <div className='tz-color-channel-slider-inputpair'>
-        <label className='tz-color-channel-slider-label' htmlFor={id}>
-          {color.original.mode.includes('lab') && channel === 'b'
-            ? 'B' // literally the one conflict: Lab vs RGB (blue)
-            : CHANNEL_LABEL[channel] ?? channel.toUpperCase()}
-        </label>
-        <SubtleInput
-          id={id}
-          className='tz-color-channel-slider-input'
-          // @ts-expect-error React was a mistake
-          type='number'
-          min={showPerc ? 100 * min : min}
-          max={showPerc ? 100 * max : max}
-          step={CHANNEL_STEP}
-          value={inputBuffer}
-          onChange={(evt) => {
-            setInputBuffer(evt.currentTarget.value);
-          }}
-          onBlur={() => {
-            const nextValue = clamp(showPerc ? Number(inputBuffer) / 100 : Number(inputBuffer), min, max);
-            setColor({ ...color.original, [channel]: nextValue });
-          }}
-          onKeyUp={(evt) => {
-            if (['Enter', 'Tab', 'ArrowUp', 'ArrowDown'].includes(evt.key)) {
-              const nextValue = clamp(showPerc ? Number(inputBuffer) / 100 : Number(inputBuffer), min, max);
-              setColor({
-                ...color.original,
-                [channel]: evt.key === 'ArrowUp' || evt.key === 'ArrowDown' ? snap(nextValue, CHANNEL_STEP) : nextValue,
-              });
-            }
-          }}
-          suffix={showPerc ? '%' : undefined}
-          {...rest}
-        />
-      </div>
-    </div>
+    <Slider
+      bg={<ColorChannelBG channel={channel} color={color} min={min} max={max} />}
+      className={className}
+      handleColor={color.css}
+      label={CHANNEL_LABEL[channel] ?? channel}
+      max={max}
+      min={min}
+      onChange={(newValue: number) => setColor({ ...color.original, [channel]: newValue })}
+      percentage={isPerc(color, channel)}
+      step={1 / 10 ** CHANNEL_PRECISION}
+      value={color.original[channel as keyof typeof color.original] as number}
+    />
   );
 }
