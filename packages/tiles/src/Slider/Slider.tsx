@@ -115,7 +115,11 @@ export default function Slider({
 }: SliderProps): ReactElement {
   const id = useId();
   const trackEl = useRef<HTMLDivElement>(null);
-  const [containerRect, setContainerRect] = useState<DOMRect>(new DOMRect(0, 0, 240, 10));
+  const [containerRect, setContainerRect] = useState<DOMRect>(
+    typeof DOMRect !== 'undefined'
+      ? new DOMRect(0, 0, 240, 10)
+      : ({ left: 0, top: 0, width: 240, height: 10 } as DOMRect),
+  );
   const [intermediaryInputValue, setIntermediaryInputValue] = useState(value);
   const percModifier = percentage ? 100 / Math.max(max - min, 0.0001) : 1;
 
@@ -133,7 +137,7 @@ export default function Slider({
   const range = max - min;
   const minNorm = min * percModifier;
   const maxNorm = max * percModifier;
-  const precision = Math.log10((percentage ? 0.01 : 1) / step);
+  const precision = Math.log10((percentage ? 0.01 : 1) / step) || 1;
 
   return (
     <div className={clsx('tz-slider', className)} data-orientation={orientation}>
