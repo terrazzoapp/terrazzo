@@ -86,11 +86,11 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   const range = (displayMax ?? max) - (displayMin ?? min);
   let leftColor = { ...color.original, [channel]: min, alpha: 1 } as WebGLColor;
   if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    leftColor = COLORSPACES.p3.converter(leftColor);
+    leftColor = COLORSPACES.rec2020.converter(leftColor);
   }
   let rightColor = { ...color.original, [channel]: max, alpha: 1 } as WebGLColor;
   if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    rightColor = COLORSPACES.p3.converter(rightColor);
+    rightColor = COLORSPACES.rec2020.converter(rightColor);
   }
 
   return (
@@ -128,11 +128,6 @@ export default function ColorChannelSlider({
   setColor,
 }: ColorChannelSliderProps): ReactElement {
   const { min, max } = useMemo(() => calculateBounds(color.original, channel), [color.original, channel]);
-  let value = color.original[channel as keyof typeof color.original] as number;
-  // chroma adjustment
-  if (channel === 'c') {
-    value = value / max;
-  }
 
   return (
     <Slider
@@ -145,7 +140,7 @@ export default function ColorChannelSlider({
       onChange={(newValue: number) => setColor({ ...color.original, [channel]: newValue })}
       percentage={isPerc(color, channel)}
       step={1 / 10 ** CHANNEL_PRECISION}
-      value={value}
+      value={color.original[channel as keyof typeof color.original] as number}
     />
   );
 }

@@ -21,8 +21,8 @@
 }
 
 .tz-color-channel-slider-bg__alpha {
-  --square-color: var(--tz-color-base-gray-800);
-  --square-size: calc(0.625 * var(--tz-color-channel-slider-track-height));
+  --tz-square-color: var(--tz-color-base-gray-800);
+  --tz-square-size: calc(0.625 * var(--tz-color-channel-slider-track-height));
 
   background-image: linear-gradient(
       to right,
@@ -33,7 +33,7 @@
   background-repeat: no-repeat, repeat;
   background-size:
     100% 100%,
-    var(--square-size) var(--square-size);
+    var(--tz-square-size) var(--tz-square-size);
 }
 
 .tz-color-channel-slider-bg-wrapper {

@@ -523,7 +523,7 @@
     --tz-color-control-border-focus: var(--tz-color-base-blue-400);
     --tz-color-control-border-selected: var(--tz-color-base-lime-600);
     --tz-color-control-label: var(--tz-color-base-gray-500);
-    --tz-color-control-text: var(--tz-color-base-gray-400);
+    --tz-color-control-text: var(--tz-color-base-gray-200);
     --tz-color-control-text-selected: var(--tz-color-base-lime-300);
   }
 }
@@ -612,7 +612,7 @@
   --tz-color-control-border-focus: var(--tz-color-base-blue-400);
   --tz-color-control-border-selected: var(--tz-color-base-lime-600);
   --tz-color-control-label: var(--tz-color-base-gray-500);
-  --tz-color-control-text: var(--tz-color-base-gray-400);
+  --tz-color-control-text: var(--tz-color-base-gray-200);
   --tz-color-control-text-selected: var(--tz-color-base-lime-300);
 }
 

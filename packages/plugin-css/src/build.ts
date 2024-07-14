@@ -75,9 +75,6 @@ export default function buildFormat({ getTransforms, exclude, modeSelectors }: B
     rules.push(selectorRule, selectorP3Rule, selectorRec2020Rule);
 
     for (const token of selectorTokens) {
-      // if (token.token.aliasOf) {
-      //   continue;
-      // }
       const localID = token.localID ?? token.token.id;
       // single-value token
       if (token.type === 'SINGLE_VALUE') {

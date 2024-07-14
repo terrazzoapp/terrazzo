@@ -27,12 +27,13 @@
   user-select: none;
 
   &[data-disabled] {
-    color: var(--tz-color-base-gray-700);
+    opacity: 0.7;
     pointer-events: none;
   }
 
   &[data-highlighted] {
-    background-color: var(--tz-color-content-text-highlighted);
+    background-color: var(--tz-color-control-bg-selected);
+    color: var(--tz-color-control-text-selected);
     outline: none;
 
     .tz-select-item-indicator {
