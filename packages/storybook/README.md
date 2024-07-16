@@ -1,4 +1,4 @@
-# @terrazzo/storybook
+# ⛋ @terrazzo/storybook
 
 Internal package.
 

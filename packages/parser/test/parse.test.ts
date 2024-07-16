@@ -579,7 +579,7 @@ describe('Tokens', () => {
         'valid: 0',
         {
           given: { '00': { $type: 'dimension', $value: 0 } },
-          want: { tokens: { '00': 0 } },
+          want: { tokens: { '00': '0' } },
         },
       ],
     ];
@@ -837,7 +837,7 @@ describe('Tokens', () => {
         'valid: 0',
         {
           given: { '00': { $type: 'dimension', $value: 0 } },
-          want: { tokens: { '00': 0 } },
+          want: { tokens: { '00': '0' } },
         },
       ],
     ];
@@ -1319,7 +1319,19 @@ describe('Tokens', () => {
               $value: { color: '#000000', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
             },
           },
-          want: { tokens: { shadowBase: [{ color: '#000000', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' }] } },
+          want: {
+            tokens: {
+              shadowBase: [
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1 },
+                  offsetX: '0',
+                  offsetY: '0.25rem',
+                  blur: '0.5rem',
+                  spread: '0',
+                },
+              ],
+            },
+          },
         },
       ],
       [
@@ -1329,16 +1341,40 @@ describe('Tokens', () => {
             shadowBase: {
               $type: 'shadow',
               $value: [
-                { color: '#00000020', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem', spread: 0 },
-                { color: '#00000020', offsetX: 0, offsetY: '0.5rem', blur: '1rem', spread: 0 },
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                  offsetX: 0,
+                  offsetY: '0.25rem',
+                  blur: '0.5rem',
+                  spread: 0,
+                },
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                  offsetX: 0,
+                  offsetY: '0.5rem',
+                  blur: '1rem',
+                  spread: 0,
+                },
               ],
             },
           },
           want: {
             tokens: {
               shadowBase: [
-                { color: '#00000020', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem', spread: 0 },
-                { color: '#00000020', offsetX: 0, offsetY: '0.5rem', blur: '1rem', spread: 0 },
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                  offsetX: '0',
+                  offsetY: '0.25rem',
+                  blur: '0.5rem',
+                  spread: '0',
+                },
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                  offsetX: '0',
+                  offsetY: '0.5rem',
+                  blur: '1rem',
+                  spread: '0',
+                },
               ],
             },
           },

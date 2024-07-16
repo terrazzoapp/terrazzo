@@ -22,9 +22,9 @@
     "@terrazzo/use-color": "workspace:^",
     "algoliasearch": "^4.24.0",
     "nanoid": "^5.0.7",
-    "react": "19.0.0-rc-85acf2d195-20240711",
-    "react-dom": "19.0.0-rc-85acf2d195-20240711",
-    "react-instantsearch": "^7.12.1"
+    "react": "19.0.0-rc-01172397-20240716",
+    "react-dom": "19.0.0-rc-01172397-20240716",
+    "react-instantsearch": "^7.12.2"
   },
   "devDependencies": {
     "@astrojs/mdx": "^3.1.2",
@@ -41,7 +41,7 @@
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1",
     "unist-util-visit": "^5.0.0",
-    "vite": "^5.3.3",
+    "vite": "^5.3.4",
     "vite-plugin-sass-dts": "^1.3.24",
     "vite-tsconfig-paths": "^4.3.2"
   },

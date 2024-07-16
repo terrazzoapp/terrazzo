@@ -14,7 +14,7 @@
   },
   "scripts": {
     "build": "del dist && tz build",
-    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/tokens run \"/^lint:.*/\"",
     "lint:tokens": "tz check",
     "dev": "tz build --watch"
   },

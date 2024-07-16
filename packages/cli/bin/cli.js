@@ -140,7 +140,7 @@ export default async function main() {
             printErrors([err.message || err]);
           }
         });
-        const configWatcher = chokidar.watch(fileURLToPath(resolveConfig(configPath)));
+        const configWatcher = chokidar.watch(resolveConfig(configPath));
         configWatcher.on('change', async (filePath) => {
           try {
             console.log(
@@ -302,7 +302,10 @@ async function loadTokens(tokenPaths) {
   return allTokens[0];
 }
 
-/** resolve config */
+/**
+ * resolve config
+ * @return {string | undefined} resolvedPath
+ */
 function resolveConfig(filename) {
   // --config [configpath]
   if (filename) {

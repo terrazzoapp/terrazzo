@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-css",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Generate CSS from your design tokens schema (requires @terrazzo/cli)",
   "type": "module",
   "author": {
@@ -23,7 +23,7 @@
     "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-css dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "pnpm run \"/^test:.*/\"",
+    "test": "pnpm --filter @terrazzo/plugin-css run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

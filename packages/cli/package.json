@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/cli",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
   "type": "module",
   "author": {
@@ -37,7 +37,7 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "pnpm run \"/^test:.*/\"",
+    "test": "pnpm --filter @terrazzo/cli run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

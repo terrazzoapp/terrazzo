@@ -1,4 +1,4 @@
-import type { AnyNode, DocumentNode, MemberNode, ValueNode } from '@humanwhocodes/momoa';
+import type { AnyNode, MemberNode, ValueNode } from '@humanwhocodes/momoa';
 import type Logger from '../logger.js';
 
 declare const FONT_WEIGHT_VALUES: Set<string>;
@@ -17,7 +17,7 @@ export function validateBorder($value: ValueNode, node: AnyNode, options: Valida
 
 export function validateColor($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
-export function validateCubicBézier($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+export function validateCubicBezier($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export function validateDimension($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 

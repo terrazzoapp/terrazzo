@@ -33,7 +33,9 @@
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "vitest run"
+    "test": "pnpm --filter @terrazzo/react-color-picker run \"/^test:.*/\"",
+    "--disabled--test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "culori": "4.x",
@@ -60,8 +62,8 @@
     "chokidar-cli": "^3.0.0",
     "culori": "^4.0.1",
     "jsdom": "^24.1.0",
-    "react": "19.0.0-rc-85acf2d195-20240711",
-    "react-dom": "19.0.0-rc-85acf2d195-20240711",
+    "react": "19.0.0-rc-01172397-20240716",
+    "react-dom": "19.0.0-rc-01172397-20240716",
     "rollup": "^4.18.1",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",

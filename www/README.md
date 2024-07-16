@@ -1,4 +1,4 @@
-# www + docs
+# ⛋ www + docs
 
 ```sh
 pnpm i
