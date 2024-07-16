@@ -21,7 +21,7 @@ export interface TooltipProps extends RadixTooltipProps {
 
 // copied; not exported
 interface TooltipProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
   /**
    * The duration from when the pointer enters the trigger until the tooltip gets opened.
    * @defaultValue 700
