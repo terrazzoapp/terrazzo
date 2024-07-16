@@ -7,7 +7,7 @@
   --ds-shadow-simple: 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
   --ds-shadow-neon: 0 0 0 0.5rem color(srgb 7.440992266793955e-15 0.8754887001262557 0.2255527763219426);
   --ds-shadow-inset: 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
-  --ds-shadow-layered: 0 1px 1px  color(srgb 0 0 0 / 0.12), 0 2px 2px  color(srgb 0 0 0 / 0.12), 0 4px 4px  color(srgb 0 0 0 / 0.12), 0 8px 8px  color(srgb 0 0 0 / 0.12), 0 16px 16px  color(srgb 0 0 0 / 0.12);
+  --ds-shadow-layered: 0 1px 1px 0 color(srgb 0 0 0 / 0.12), 0 2px 2px 0 color(srgb 0 0 0 / 0.12), 0 4px 4px 0 color(srgb 0 0 0 / 0.12), 0 8px 8px 0 color(srgb 0 0 0 / 0.12), 0 16px 16px 0 color(srgb 0 0 0 / 0.12);
 }
 
 @media (color-gamut: p3) {

@@ -40,10 +40,10 @@ export declare function withAlpha(color: Color): Color;
  * depending on the value type.
  *
  * @param {number} value
- * @param {number} precision - number of significant digits
- * @param {boolean} normalized - is this value normalized to 1? (`false` for hue and LAB/LCH values)
+ * @param {number=5} precision - number of significant digits
+ * @param {boolean=true} normalized - is this value normalized to 1? (`false` for hue and LAB/LCH values)
  */
-export declare function cleanValue(value, normalized = true, precision = 5): string;
+export declare function cleanValue(value: number, normalized?: boolean, precision?: number): string;
 
 /** Primary parse logic */
 export declare function parse(color: ColorInput): Color | undefined;
