@@ -1,4 +1,4 @@
-# 💠 @terrazzo/parser
+# ⛋ @terrazzo/parser
 
 JS API for parsing / validating / transforming DTCG tokens.
 
