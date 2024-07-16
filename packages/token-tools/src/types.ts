@@ -77,7 +77,7 @@ export interface DimensionToken extends TokenCore {
   $value: string | AliasValue;
 }
 
-export type DimensionValue = `${number}px` | `${number}em` | `${number}rem`;
+export type DimensionValue = `${number}px` | `${number}em` | `${number}rem` | '0';
 
 /**
  * 8.5 Duration

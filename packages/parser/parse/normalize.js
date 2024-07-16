@@ -49,7 +49,7 @@ export default function normalizeValue(token) {
     }
     case 'dimension': {
       if (token.$value === 0) {
-        return 0;
+        return '0';
       }
       return typeof token.$value === 'number' ? `${token.$value}px` : token.$value;
     }
@@ -84,7 +84,13 @@ export default function normalizeValue(token) {
       return typeof token.$value === 'number' ? token.$value : Number.parseFloat(token.$value);
     }
     case 'shadow': {
-      return Array.isArray(token.$value) ? token.$value : [token.$value];
+      return (Array.isArray(token.$value) ? token.$value : [token.$value]).map((layer) => ({
+        color: normalizeValue({ $type: 'color', $value: layer.color }),
+        offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? 0 }),
+        offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? 0 }),
+        blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? 0 }),
+        spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? 0 }),
+      }));
     }
     case 'strokeStyle': {
       return token.$value;
