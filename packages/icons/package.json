@@ -15,7 +15,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "format": "biome format --write src",
-    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/icons run \"/^lint:.*/\"",
     "lint:js": "biome check ."
   },
   "peerDependencies": {

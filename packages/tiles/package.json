@@ -23,7 +23,7 @@
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "pnpm run \"/^test.*/\"",
+    "test": "pnpm --filter @terrazzo/tiles run \"/^test.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

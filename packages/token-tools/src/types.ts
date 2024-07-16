@@ -9,7 +9,7 @@ export type Token =
   | BooleanToken
   | BorderToken
   | ColorToken
-  | CubicBézierToken
+  | CubicBezierToken
   | DimensionToken
   | DurationToken
   | FontFamilyToken
@@ -62,12 +62,12 @@ export type ColorValue =
   | string
   | { colorSpace: ColorSpace; channels: [number, number, number]; alpha?: number; hex?: string };
 
-export interface CubicBézierToken extends TokenCore {
+export interface CubicBezierToken extends TokenCore {
   $type: 'cubicBezier';
-  $value: CubicBézierValue | AliasValue;
+  $value: CubicBezierValue | AliasValue;
 }
 
-export type CubicBézierValue = [number, number, number, number];
+export type CubicBezierValue = [number, number, number, number];
 
 /**
  * 8.2 Dimension
@@ -224,7 +224,7 @@ export interface TransitionToken extends TokenCore {
 export interface TransitionValue {
   duration: DurationValue | AliasValue;
   delay: DurationValue | AliasValue;
-  timingFunction: CubicBézierValue | AliasValue;
+  timingFunction: CubicBezierValue | AliasValue;
 }
 
 /**
@@ -284,7 +284,7 @@ export type TokenNormalized =
   | BooleanTokenNormalized
   | BorderTokenNormalized
   | ColorTokenNormalized
-  | CubicBézierTokenNormalized
+  | CubicBezierTokenNormalized
   | DimensionTokenNormalized
   | DurationTokenNormalized
   | FontFamilyTokenNormalized
@@ -360,13 +360,13 @@ export type ColorSpace =
   | 'xyz-d50'
   | 'xyz-d65';
 
-export interface CubicBézierTokenNormalized extends TokenNormalizedCore {
+export interface CubicBezierTokenNormalized extends TokenNormalizedCore {
   $type: 'cubicBezier';
-  $value: CubicBézierValue;
+  $value: CubicBezierValue;
   aliasOf?: string;
   partialAliasOf?: [string | undefined, string | undefined, string | undefined, string | undefined];
-  mode: Record<string, CubicBézierTokenNormalized | undefined>;
-  originalValue: CubicBézierToken;
+  mode: Record<string, CubicBezierTokenNormalized | undefined>;
+  originalValue: CubicBezierToken;
 }
 
 export interface DimensionTokenNormalized extends TokenNormalizedCore {
@@ -490,7 +490,7 @@ export interface TransitionTokenNormalized extends TokenNormalizedCore {
 export interface TransitionValueNormalized {
   duration: DurationValue;
   delay: DurationValue;
-  timingFunction: CubicBézierValue;
+  timingFunction: CubicBezierValue;
 }
 
 export interface TypographyTokenNormalized extends TokenNormalizedCore {

@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "vite dev",
     "format:disabled": "biome format --write src",
-    "lint:disabled": "pnpm run \"/^lint:.*/\"",
+    "lint:disabled": "pnpm run --filter @terrazzo/token-lab \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint src"
   },

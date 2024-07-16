@@ -220,7 +220,7 @@ export function validateColor($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateCubicBézier($value, node, { source, logger }) {
+export function validateCubicBezier($value, node, { source, logger }) {
   if ($value.type !== 'Array') {
     logger.error({ message: `Expected array of strings, received ${print($value)}`, node: $value, source });
   } else if (
@@ -494,7 +494,7 @@ export function validateTransition($value, node, { source, logger }) {
     {
       duration: { validator: validateDuration, required: true },
       delay: { validator: validateDuration, required: false }, // note: spec says delay is required, but Terrazzo makes delay optional
-      timingFunction: { validator: validateCubicBézier, required: true },
+      timingFunction: { validator: validateCubicBezier, required: true },
     },
     node,
     { source, logger },
@@ -544,7 +544,7 @@ export default function validate(node, { source, logger }) {
       break;
     }
     case 'cubicBezier': {
-      validateCubicBézier($value, node, { logger, source });
+      validateCubicBezier($value, node, { logger, source });
       break;
     }
     case 'dimension': {

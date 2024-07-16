@@ -37,7 +37,7 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "pnpm run \"/^test:.*/\"",
+    "test": "pnpm --filter @terrazzo/cli run \"/^test:.*/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },

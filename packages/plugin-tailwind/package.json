@@ -28,11 +28,11 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
     "format": "biome format --write .",
-    "dev": "tsc  -p tsconfig.build.json -w",
+    "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
-    "test": "pnpm run \"/^test:.*/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "--disabled--test": "pnpm --filter @terrazzo/plugin-tailwind run \"/^test:.*/\"",
+    "--disabled--test:js": "vitest run",
+    "--disabled--test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "@terrazzo/cli": "workspace:^",

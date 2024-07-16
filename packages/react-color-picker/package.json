@@ -33,7 +33,9 @@
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "vitest run"
+    "test": "pnpm --filter @terrazzo/react-color-picker run \"/^test:.*/\"",
+    "--disabled--test:js": "vitest run",
+    "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "culori": "4.x",

@@ -22,6 +22,7 @@ import {
 } from 'culori/fn';
 import { useCallback, useState } from 'react';
 
+/** Culori omits alpha if 1; this adds it */
 export function withAlpha(color) {
   if (color && typeof color.alpha !== 'number') {
     color.alpha = 1;
@@ -34,6 +35,29 @@ export function withAlpha(color) {
   return color;
 }
 
+/**
+ * Clean decimal value by clamping to a certain number of digits, while also
+ * avoiding the dreaded JS floating point bug. Also avoids heavy/slow-ish
+ * packages like number-precision by just using Number.toFixed() / Number.toPrecision().
+ *
+ * We don’t want to _just_ use Number.toFixed() because some colorspaces normalize values
+ * too 100 or more (LAB/LCH for lightness, or any hue degree). Likewise, we don’t want to
+ * just use Number.toPrecision() because for values < 0.01 it just adds inconsistent
+ * precision. This method uses a balance of both such that you’ll get equal `precision`
+ * depending on the value type.
+ *
+ * @param {number} value
+ * @param {number} precision - number of significant digits
+ * @param {boolean} normalized - is this value normalized to 1? (`false` for hue and LAB/LCH values)
+ */
+export function cleanValue(value, precision = 5, normalized = true) {
+  if (typeof value !== 'number') {
+    return value;
+  }
+  return normalized ? value.toFixed(precision) : value.toFixed(Math.max(precision - 3, 0));
+}
+
+/** Primary parse logic */
 export function parse(color) {
   if (color && typeof color === 'object') {
     if (!color.mode) {
@@ -115,8 +139,9 @@ COLORSPACES.rgb = COLORSPACES.srgb;
 COLORSPACES['xyz-d50'] = COLORSPACES.xyz50;
 COLORSPACES['xyz-d65'] = COLORSPACES.xyz65;
 
-export function formatCss(color, { precision: p = 3 } = {}) {
-  const alpha = color.alpha < 1 ? ` / ${color.alpha}` : '';
+/** Format a Color as a CSS string */
+export function formatCss(color, { precision: p = 5 } = {}) {
+  const alpha = color.alpha < 1 ? ` / ${cleanValue(color.alpha, p)}` : '';
   switch (color.mode) {
     // rgb
     case 'a98':
@@ -135,41 +160,41 @@ export function formatCss(color, { precision: p = 3 } = {}) {
           rgb: 'srgb',
           srgb: 'srgb',
         }[color.mode] || color.mode;
-      return `color(${colorSpace} ${color.r.toPrecision(p)} ${color.g.toPrecision(
-        p,
-      )} ${color.b.toPrecision(p)}${alpha})`;
+      return `color(${colorSpace} ${cleanValue(color.r, p)} ${cleanValue(color.g, p)} ${cleanValue(color.b, p)}${alpha})`;
     }
     case 'hsl': {
-      return `hsl(${color.h.toPrecision(p)} ${100 * color.s.toPrecision(p)}% ${(100 * color.l).toPrecision(p)}%${alpha})`;
+      return `hsl(${cleanValue(color.h, p, false)} ${cleanValue(100 * color.s, p, false)}% ${cleanValue(100 * color.l, p, false)}%${alpha})`;
     }
     case 'hsv': {
-      return `color(--hsv ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.v.toPrecision(p)}
-    }${alpha})`;
+      return `color(--hsv ${cleanValue(color.h, p, false)} ${cleanValue(color.s, p)} ${cleanValue(color.v, p)}${alpha})`;
     }
     case 'hwb': {
-      return `hwb(${color.h.toPrecision(p)} ${100 * color.w.toPrecision(p)}% ${(100 * color.b).toPrecision(p)}%${alpha})`;
+      return `hwb(${cleanValue(color.h, p, false)} ${cleanValue(100 * color.w, p, false)}% ${cleanValue(100 * color.b, p, false)}%${alpha})`;
+    }
+    case 'lab': {
+      // note: LAB isn’t normalized to `1` like OKLAB is
+      return `${color.mode}(${cleanValue(color.l, p, false)} ${cleanValue(color.a, p, false)} ${cleanValue(color.b, p, false)}${alpha})`;
+    }
+    case 'lch': {
+      // note: LCH isn’t normalized to `1` like OKLCH is
+      return `${color.mode}(${cleanValue(color.l, p, false)} ${cleanValue(color.c, p, false)} ${cleanValue(color.h, p, false)}${alpha})`;
     }
     case 'okhsl': {
-      return `color(--okhsl ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.l.toPrecision(p)}}${alpha})`;
+      return `color(--okhsl ${cleanValue(color.h, p, false)} ${cleanValue(color.s, p)} ${cleanValue(color.l, p)}${alpha})`;
     }
     case 'okhsv': {
-      return `color(--okhsv ${color.h.toPrecision(p)} ${color.s.toPrecision(p)} ${color.v.toPrecision(p)}
-      }${alpha})`;
+      return `color(--okhsv ${cleanValue(color.h, p, false)} ${cleanValue(color.s, p)} ${cleanValue(color.v, p)}${alpha})`;
     }
-    case 'lab':
     case 'oklab': {
-      return `${color.mode}(${color.l.toPrecision(p)} ${color.a.toPrecision(p)} ${color.b.toPrecision(p)}${alpha})`;
+      return `${color.mode}(${cleanValue(color.l, p)} ${cleanValue(color.a, p)} ${cleanValue(color.b, p)}${alpha})`;
     }
-    case 'lch':
     case 'oklch': {
-      return `${color.mode}(${color.l.toPrecision(p)} ${color.c.toPrecision(p)} ${color.h.toPrecision(p)}${alpha})`;
+      return `${color.mode}(${cleanValue(color.l, p)} ${cleanValue(color.c, p)} ${cleanValue(color.h, p, false)}${alpha})`;
     }
     case 'xyz':
     case 'xyz50':
     case 'xyz65': {
-      return `color(${color.mode === 'xyz50' ? 'xyz-d50' : 'xyz-d65'} ${color.x.toPrecision(
-        p,
-      )} ${color.y.toPrecision(p)} ${color.z.toPrecision(p)}${alpha})`;
+      return `color(${color.mode === 'xyz50' ? 'xyz-d50' : 'xyz-d65'} ${cleanValue(color.x, p)} ${cleanValue(color.y, p)} ${cleanValue(color.z, p)}${alpha})`;
     }
   }
 }

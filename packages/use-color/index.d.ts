@@ -1,9 +1,5 @@
 import { inGamut } from 'culori/fn';
 
-// TODO: remove
-// biome-ignore lint/suspicious/noRedeclare: upstream type issue
-declare function inGamut(color: Color, mode: 'rgb' | 'p3' | 'rec2020'): boolean;
-
 export { inGamut };
 
 // note: redeclared color types are compatible with Culori, but stricter (for our purposes)
@@ -29,6 +25,27 @@ export type Color = A98 | Hsl | Hsv | Hwb | Lab | Lch | Lrgb | Okhsl | Okhsv | O
 
 export type ColorInput = string | Color;
 
+/** Culori omits alpha if 1; this adds it */
+export declare function withAlpha(color: Color): Color;
+
+/**
+ * Clean decimal value by clamping to a certain number of digits, while also
+ * avoiding the dreaded JS floating point bug. Also avoids heavy/slow-ish
+ * packages like number-precision by just using Number.toFixed() / Number.toPrecision().
+ *
+ * We don’t want to _just_ use Number.toFixed() because some colorspaces normalize values
+ * too 100 or more (LAB/LCH for lightness, or any hue degree). Likewise, we don’t want to
+ * just use Number.toPrecision() because for values < 0.01 it just adds inconsistent
+ * precision. This method uses a balance of both such that you’ll get equal `precision`
+ * depending on the value type.
+ *
+ * @param {number} value
+ * @param {number} precision - number of significant digits
+ * @param {boolean} normalized - is this value normalized to 1? (`false` for hue and LAB/LCH values)
+ */
+export declare function cleanValue(value, normalized = true, precision = 5): string;
+
+/** Primary parse logic */
 export declare function parse(color: ColorInput): Color | undefined;
 
 // biome-ignore format: repetitive strings
@@ -78,13 +95,6 @@ export interface ColorOutput {
 }
 
 /**
- * Given a color string, create a Proxy that converts colors to any desired
- * format once, and only once. Also, yes! You can use this outside of React
- * context.
- */
-export declare function createMemoizedColor(color: ColorInput): ColorOutput;
-
-/**
  * Format a Color as a CSS string
  */
 export declare function formatCss(
@@ -94,6 +104,13 @@ export declare function formatCss(
     precision: number;
   },
 ): string | undefined;
+
+/**
+ * Given a color string, create a Proxy that converts colors to any desired
+ * format once, and only once. Also, yes! You can use this outside of React
+ * context.
+ */
+export declare function createMemoizedColor(color: ColorInput): ColorOutput;
 
 /** memoize Culori colors and reduce unnecessary updates */
 export default function useColor(

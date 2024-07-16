@@ -1,9 +1,9 @@
-import type { CubicBézierValue } from '../types.js';
+import type { CubicBezierValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 /** Convert cubicBezier value to CSS */
 export function transformCubicBezierValue(
-  value: CubicBézierValue,
+  value: CubicBezierValue,
   {
     aliasOf,
     partialAliasOf,

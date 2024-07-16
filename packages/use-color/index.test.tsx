@@ -55,7 +55,13 @@ describe('useColor', () => {
 
   describe('parse', () => {
     const formatTests: [string, { given: any; want: Color }][] = [
-      ['hex', { given: '#663399', want: { mode: 'rgb', r: 0.4, g: 0.2, b: 0.6, alpha: 1 } }],
+      [
+        'hex',
+        {
+          given: '#663399',
+          want: { mode: 'rgb', r: 0.40000000000000013, g: 0.20000000000000018, b: 0.5999999999999999, alpha: 1 },
+        },
+      ],
       ['hsl', { given: 'hsl(270 50% 40%)', want: { mode: 'hsl', h: 270, s: 0.5, l: 0.4, alpha: 1 } }],
       ['oklab', { given: 'oklab(0.7 0.3 0.4)', want: { mode: 'oklab', l: 0.7, a: 0.3, b: 0.4, alpha: 1 } }],
       ['oklch', { given: 'oklch(0.7 0.2 150)', want: { mode: 'oklch', l: 0.7, c: 0.2, h: 150, alpha: 1 } }],
@@ -63,11 +69,26 @@ describe('useColor', () => {
       ['okhsl', { given: 'color(--okhsl 150 0.8 0.5)', want: { mode: 'okhsl', h: 150, s: 0.8, l: 0.5, alpha: 1 } }],
       [
         'display-p3',
-        { given: 'color(display-p3 0.3 0.1 0.6)', want: { mode: 'p3', r: 0.3, g: 0.1, b: 0.6, alpha: 1 } },
+        {
+          given: 'color(display-p3 0.3 0.1 0.6)',
+          want: { mode: 'p3', r: 0.29999999999999977, g: 0.10000000000000009, b: 0.6000000000000002, alpha: 1 },
+        },
       ],
       ['lrgb', { given: 'color(srgb-linear 0.3 0.1 0.6)', want: { mode: 'lrgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 } }],
-      ['rgb', { given: 'rgb(30% 10% 60%)', want: { mode: 'rgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 } }],
-      ['srgb', { given: 'color(srgb 0.3 0.1 0.6)', want: { mode: 'rgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 } }],
+      [
+        'rgb',
+        {
+          given: 'rgb(30% 10% 60%)',
+          want: { mode: 'rgb', r: 0.30000000000000027, g: 0.0999999999999994, b: 0.6, alpha: 1 },
+        },
+      ],
+      [
+        'srgb',
+        {
+          given: 'color(srgb 0.3 0.1 0.6)',
+          want: { mode: 'rgb', r: 0.30000000000000027, g: 0.0999999999999994, b: 0.6, alpha: 1 },
+        },
+      ],
       ['xyz50', { given: 'color(xyz-d50 0.7 0.3 -0.05)', want: { mode: 'xyz50', x: 0.7, y: 0.3, z: -0.05, alpha: 1 } }],
       ['xyz65', { given: 'color(xyz-d65 0.7 0.3 -0.05)', want: { mode: 'xyz65', x: 0.7, y: 0.3, z: -0.05, alpha: 1 } }],
     ];
@@ -148,9 +169,9 @@ describe('useColor', () => {
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
       expect(displayedColor).toEqual({
         mode: 'rgb',
-        r: 0.6000000000000005,
-        g: 0.29999999999999954,
-        b: 0.49999999999999994,
+        r: 0.6000000000000015,
+        g: 0.2999999999999985,
+        b: 0.4999999999999997,
         alpha: 1,
       });
 
@@ -197,23 +218,23 @@ describe('useColor', () => {
 describe('formatCss', () => {
   const source = createMemoizedColor('#663399');
   const tests: [string, string][] = [
-    ['a98', 'color(a98-rgb 0.358 0.2123 0.5843)'],
-    ['hsl', 'hsl(270 50% 40%)'],
-    ['hsv', 'color(--hsv 270 0.6667 0.6)'],
-    ['hwb', 'hwb(270 20% 40%)'],
-    ['lab', 'lab(32.3927 38.423 -47.6911)'],
-    ['lrgb', 'color(srgb-linear 0.1329 0.0331 0.3185)'],
-    ['okhsl', 'color(--okhsl 303.373 0.7292 0.3533)'],
-    ['okhsv', 'color(--okhsv 303.373 0.8057 0.6082)'],
-    ['oklab', 'oklab(0.4403 0.0882 -0.1339)'],
-    ['oklch', 'oklch(0.4403 0.1603 303.373)'],
-    ['p3', 'color(display-p3 0.3737 0.2103 0.5791)'],
-    ['prophoto', 'color(prophoto-rgb 0.3164 0.1913 0.4948)'],
-    ['rec2020', 'color(rec2020 0.3046 0.1682 0.5309)'],
-    ['rgb', 'color(srgb 0.4 0.2 0.6)'],
-    ['srgb', 'color(srgb 0.4 0.2 0.6)'],
-    ['xyz50', 'color(xyz-d50 0.1163 0.0726 0.2325)'],
-    ['xyz65', 'color(xyz-d65 0.1241 0.0749 0.3093)'],
+    ['a98', 'color(a98-rgb 0.35800 0.21232 0.58434)'],
+    ['hsl', 'hsl(270.00 50.00% 40.00%)'],
+    ['hsv', 'color(--hsv 270.00 0.66667 0.60000)'],
+    ['hwb', 'hwb(270.00 20.00% 40.00%)'],
+    ['lab', 'lab(32.39 38.42 -47.69)'],
+    ['lrgb', 'color(srgb-linear 0.13287 0.03310 0.31855)'],
+    ['okhsl', 'color(--okhsl 303.37 0.72916 0.35328)'],
+    ['okhsv', 'color(--okhsv 303.37 0.80572 0.60825)'],
+    ['oklab', 'oklab(0.44027 0.08818 -0.13386)'],
+    ['oklch', 'oklch(0.44027 0.16030 303.37)'],
+    ['p3', 'color(display-p3 0.37367 0.21033 0.57911)'],
+    ['prophoto', 'color(prophoto-rgb 0.31642 0.19133 0.49481)'],
+    ['rec2020', 'color(rec2020 0.30459 0.16817 0.53086)'],
+    ['rgb', 'color(srgb 0.40000 0.20000 0.60000)'],
+    ['srgb', 'color(srgb 0.40000 0.20000 0.60000)'],
+    ['xyz50', 'color(xyz-d50 0.11627 0.07260 0.23254)'],
+    ['xyz65', 'color(xyz-d65 0.12412 0.07493 0.30930)'],
   ];
   it.each(tests)('%s', (key, want) => {
     expect(formatCss(source[key as keyof typeof source])).toBe(want);
