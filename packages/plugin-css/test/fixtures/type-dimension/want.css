@@ -17,3 +17,18 @@
   --ds-space-900: 4rem;
 }
 
+@media (width >= 600px) {
+  :root {
+    --ds-space-000: 0.25rem;
+    --ds-space-100: 0.375rem;
+    --ds-space-200: 0.75rem;
+    --ds-space-300: 1.25rem;
+    --ds-space-400: 1.25rem;
+    --ds-space-500: 1.75rem;
+    --ds-space-600: 2.5rem;
+    --ds-space-700: 3.5rem;
+    --ds-space-800: 4rem;
+    --ds-space-900: 6rem;
+  }
+}
+

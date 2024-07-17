@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/token-tools",
   "description": "Various utilities for token types",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"

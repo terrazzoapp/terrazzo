@@ -5,20 +5,20 @@ layout: ../../../../layouts/docs.astro
 
 # CSS
 
-Terrazzo’s CSS plugin converts tokens into CSS variables for use in any web application.
+Convert DTCG tokens into CSS variables for use in any web application or native app with webview. Convert your modes into any CSS selector for complete flexibility.
 
 ## Setup
 
-With your preferred package manager, install the plugin:
+Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
 
 :::code-group
 
 ```sh [npm]
-npm i -D @terrazzo/plugin-css
+npm i -D @terrazzo/cli @terrazzo/plugin-css
 ```
 
 ```sh [pnpm]
-pnpm i -D @terrazzo/plugin-css
+pnpm i -D @terrazzo/cli @terrazzo/plugin-css
 ```
 
 :::
@@ -34,7 +34,7 @@ import pluginCSS from "@terrazzo/plugin-css";
 export default {
   plugins: [
     pluginCSS({
-      /* options */
+      fileName: "tokens.css",
     }),
   ],
 };
@@ -42,13 +42,21 @@ export default {
 
 :::
 
-Then when you run `tz build` , you’ll output a `tokens/tokens.css` file (unless you renamed it) in your project. Import that anywhere in your project and use the CSS variables like you would normally!
+Lastly, run:
+
+```sh
+npx tz build
+```
+
+And you’ll output a `tokens/tokens.css` file (unless you renamed it) in your project. Import that anywhere in your project and use the CSS variables like you would normally!
 
 ## Usage
 
 This plugin outputs standard CSS variables that correspond directly to your token IDs. Use them as you would any CSS variable:
 
-```css
+:::code-group
+
+```css [button.css]
 .button {
   color: var(--color-action-primary);
   font-family: var(--typography-family-default);
@@ -56,13 +64,19 @@ This plugin outputs standard CSS variables that correspond directly to your toke
 }
 ```
 
+:::
+
 ## Features
 
 ### CSS Color Module 4 support
 
-This plugin handles [higher-gamut colorspaces](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) P3 and Rec2020 automatically as-needed with no configuration on your part. By default, if all your tokens are in `srgb` color space, they’ll generate as expected. But if you have a color which is out of range for most monitors, e.g.:
+This plugin lets you pick out-of-band colors in [higher-gamut colorspaces](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) like P3 and Rec2020 and automatically downconverts them to displayable colors using media queries. Use the colors you wanna; this plugin will just keep up.
 
-```jsonc
+If all your tokens are in the “safe” `srgb` color space, no extra code is generated. But when using colors in the P3 or Rec2020 gamut (or beyond), the CSS plugin automatically downconverts colors so they’re displayable on all hardware:
+
+:::code-group
+
+```jsonc [tokens.json]
 {
   "color": {
     "blue": {
@@ -78,9 +92,7 @@ This plugin handles [higher-gamut colorspaces](https://developer.mozilla.org/en-
 }
 ```
 
-You’d get:
-
-```css
+```css [tokens/tokens.css]
 :root {
   --color-blue-600: oklch(0.5618 0.1686 252.19); /* srgb safe color */
 }
@@ -98,11 +110,130 @@ You’d get:
 }
 ```
 
+:::
+
 The result is color that “just works” in any browser and hardware type automatically (and, yes, additional code is generated for modes, so this applies for all color modes you’re using!).
 
-This is achieved using the [toGamut() method of Culori](https://culorijs.org/api/#toGamut) which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
+<details>
 
-This is an improvement over Cobalt 1.0’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
+<summary>Color nerd info</summary>
+
+Colors are downconverted using Culori’s [toGamut()](https://culorijs.org/api/#toGamut) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
+
+This is an improvement over Cobalt 1.x’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
+
+</details>
+
+### Utility CSS
+
+Using the [Tailwind integration](/docs/cli/integrations/tailwind) isn’t necessary if you want to just have utility classes generated from your tokens. You can generate Tailwind-like utility CSS with minimal config.
+
+Rather than scanning your code like Tailwind does, this takes a simpler approach by **requiring you to manually specify your output groups.** This keeps generated CSS minimal while outputting enough for you to handle all your styling needs from your tokens. Add a `utility` option to your config, and specify an object with key–value pairs of `group: tokens`:
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+import { kebabCase } from "scule";
+
+/** @type {import("@terrazzo/cli").Config} */
+export default defineConfig({
+  plugins: [
+    css({
+      utility: {
+        border: ["border.*"],
+        bg: ["color.*", "gradient.*"],
+        text: ["color.*", "gradient.*"],
+        font: ["typography.*"],
+        gap: ["space.*"],
+        margin: ["space.*"],
+        padding: ["space.*"],
+      },
+    }),
+  ],
+});
+```
+
+:::
+
+Each of the keys are “groups,” which cut down on total CSS size. For example, consider all the possible values `dimension` tokens could generate: `margin`, `padding`, `gap`, `inset`, `font-size`, to name a few! Rather than generate every possible property and every possible token (which would be a ton of CSS), you instead specify which tokens should belong to which groups (and they can belong to multiple).
+
+:::tip
+
+Only specifying the specific groups and tokens you need results in minimal CSS generated.
+:::
+
+Group names are predefined, and only the following values are accepted. Each “group” will generate several CSS properties:
+
+#### Border groups
+
+Border groups accept [border](/docs/reference/tokens#border) tokens.
+
+| Group name | Class              | CSS                      |
+| :--------- | :----------------- | :----------------------- |
+| **border** | `.border-*`        | `border: [value]`        |
+|            | `.border-top-*`    | `border-top: [value]`    |
+|            | `.border-right-*`  | `border-right: [value]`  |
+|            | `.border-bottom-*` | `border-bottom: [value]` |
+|            | `.border-left-*`   | `border-left: [value]`   |
+
+#### Color groups
+
+Color groups accept [color](/docs/reference/tokens#color) and [gradient](/docs/reference/tokens#gradient) tokens.
+
+| Group name | Class     | CSS                         |
+| :--------- | :-------- | :-------------------------- |
+| **bg**     | `.bg-*`   | `background-color: [value]` |
+| **text**   | `.text-*` | `color: [value]`            |
+
+#### Typography groups
+
+Typographic groups accept [font family](/docs/reference/tokens#font-size), [dimension](/docs/reference/tokens#dimension) (font size), [font weight](/docs/reference/tokens#font-weight), and [typography](/docs/reference/tokens#typography) tokens.
+
+| Group name | Class     | CSS                                                                        |
+| :--------- | :-------- | :------------------------------------------------------------------------- |
+| **font**   | `.font-*` | (all properties of [Typography](/docs/reference/tokens#typography) tokens) |
+
+:::note
+
+The `.font-*` group is the most flexible! Be sure to pay attention to your token naming structure.
+
+:::
+
+#### Spacing groups
+
+Spacing groups accept [dimension](/docs/reference/tokens#dimension) tokens.
+
+| Group name  | Class        | CSS                                             |
+| :---------- | :----------- | :---------------------------------------------- |
+| **gap**     | `.gap-*`     | `gap: [value]`                                  |
+|             | `.gap-col-*` | `column-gap: [value]`                           |
+|             | `.gap-row-*` | `row-gap: [value]`                              |
+| **margin**  | `.mt-*`      | `margin-top: [value]`                           |
+|             | `.mr-*`      | `margin-right: [value]`                         |
+|             | `.mb-*`      | `margin-bottom: [value]`                        |
+|             | `.ml-*`      | `margin-left: [value]`                          |
+|             | `.ms-*`      | `margin-inline-start: [value]`                  |
+|             | `.me-*`      | `margin-inline-end: [value]`                    |
+|             | `.mx-*`      | `margin-left: [value]; margin-right: [value]`   |
+|             | `.my-*`      | `margin-top: [value]; margin-bottom: [value]`   |
+|             | `.ma-*`      | `margin: [value]`                               |
+| **padding** | `.pt-*`      | `padding-top: [value]`                          |
+|             | `.pr-*`      | `padding-right: [value]`                        |
+|             | `.pb-*`      | `padding-bottom: [value]`                       |
+|             | `.pl-*`      | `padding-left: [value]`                         |
+|             | `.px-*`      | `padding-left: [value]; padding-right: [value]` |
+|             | `.py-*`      | `padding-top: [value]; padding-bottom: [value]` |
+|             | `.pa-*`      | `padding: [value]`                              |
+
+#### Differences from Tailwind
+
+While the general philosophy is similar to Tailwind, this approach differs:
+
+- **In naming.** This plugin doesn’t map 1:1 with Tailwind names; it basically keeps your token names as-is and merely prefixes them. This results in a closer 1:1 mapping to your original design token names.
+- **In mode support.** This takes advantage of your [mode selectors](#mode-selectors) which need less configuration if modes are defined in `tokens.json`.
+- **In simplicity.** No code scanning is needed, and no heavy dependencies of PostCSS are needed. It generates only what you tell it to from your tokens.
 
 ## Config
 
@@ -111,13 +242,13 @@ Configure options in [terrazzo.config.js](/docs/cli/config):
 :::code-group
 
 ```js [terrazzo.config.js]
-import pluginCSS from "@terrazzo/plugin-css";
+import css from "@terrazzo/plugin-css";
 import { kebabCase } from "scule";
 
 /** @type {import("@terrazzo/cli").Config} */
 export default {
   plugins: [
-    pluginCSS({
+    css({
       filename: "tokens.css",
       exclude: [], // ex: ["beta.*"] will exclude all tokens in the "beta" top-level group
       modeSelectors: [
@@ -157,39 +288,48 @@ export default {
 | `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                             |
 | `variableName`  | `(id: string) => string`                                       | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way. |
 | `transform`     | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                 |
+| `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                      |
 
 ### Mode Selectors
 
-Mode selectors are the most powerful part of tokens: they let you trigger different values based on any conditions you set.
+Mode selectors is the most powerful feature of the CSS plugin. It lets you convert your token [modes](/docs/guides/modes) into CSS media queries, classnames, or any CSS selector. To start, add a `modeSelectors` array to the CSS options. Every entry needs 2 things:
 
-You configure them by adding a `modeSelectors` array to the CSS options. Every selector needs 2 things:
+1. The `mode` you’re targeting (this accepts globs, e.g. `"*-light"`!)
+2. The CSS `selectors` that enable these modes
 
-1. The `mode` you’re targeting (this accepts globs!)
-2. The `selectors` that should trigger these modes (takes an array, but can only be 1 item if that’s all you need)
+For example, a common pattern for `light` and `dark` mode, with the following config, will generate the respective CSS:
 
-For example, a common pattern for `light` and `dark` mode is:
+:::code-group
 
-```js
-pluginCSS({
-  modeSelectors: [
-    {
-      mode: "light",
-      selectors: [
-        "@media (prefers-color-scheme: light)",
-        '[data-mode="light"]',
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      modeSelectors: [
+        {
+          mode: "light",
+          selectors: [
+            "@media (prefers-color-scheme: light)",
+            '[data-mode="light"]',
+          ],
+        },
+        {
+          mode: "dark",
+          selectors: [
+            "@media (prefers-color-scheme: dark)",
+            '[data-mode="dark"]',
+          ],
+        },
       ],
-    },
-    {
-      mode: "dark",
-      selectors: ["@media (prefers-color-scheme: dark)", '[data-mode="dark"]'],
-    },
+    }),
   ],
 });
 ```
 
-This will generate the following CSS:
-
-```css
+```css [tokens/tokens.css]
 :root {
   --color-blue-600: #0588f0;
 }
@@ -215,35 +355,72 @@ This will generate the following CSS:
 }
 ```
 
+:::
+
 Now, in your code, whenever you reference `var(--color-blue-600)`, the value will depend on which media query is active, and/or which other selectors apply.
 
-Experiment with `modeSelectors` and you’ll unlock some pretty powerful design system control with minimal configuration!
+:::tip
+
+The sky is the limit with mode selectors, but some popular patterns are:
+
+- `color`: [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme), [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast)
+- `duration`: [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
+- `typography`: viewport width (responsive styles)
+
+:::
 
 ### transform()
 
 `transform()` is a powerful tool that lets you override certain token values.
 
-Its usage has changed slightly from Cobalt 1.0, because now it must return either a `string` or `Record<string, string>` value:
+:::code-group
 
-- `string` values generate one CSS variable, e.g. `--duration-quick: 100ms;`
-- `Record<string, string>` generates one CSS variable per-key, e.g. for then token `typography.base` and the keys `fontFamily`, `fontSize`, it would generate:
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      transform(token, mode) {
+        if (token.id === "token.i.want" && mode === ".") {
+          return "my-custom-value"; // generates `--token-i-want: my-custom-value;`
+        }
+      },
+    }),
+  ],
+});
+```
+
+:::
+
+Its usage has changed slightly from Cobalt 1.x, because now it must return either a `string` or `Record<string, string>` value ([docs](/docs/cli/api/plugin-development)):
+
+- Return a string to generate a single variable, e.g.
+  ```css
+  :root {
+    --duration-quick: 100ms;
+  }
+  ```
+- Return an object of strings to generate multiple variables, e.g. for then token `typography.base` and the keys `fontFamily`, `fontSize`, it would generate:
   ```css
   :root {
     --typography-base-font-family: Inter;
     --typography-base-font-size: 1rem;
   }
   ```
+- Return `undefined` or `null` to fall back to the plugin’s default transformer (note that `0` and `""` will take). You can also do this per-mode!
 
-Return `undefined` or `null` to fall back to the plugin’s default transformer (note that `0` and `""` will take). You can also do this per-mode!
+:::warning
 
-```ts
-pluginCSS({
-  transform: (token, mode) => {
-    if (token.id === "token.i.want" && mode === ".") {
-      return "my-custom-value"; // generates `--token-i-want: my-custom-value;`
-    }
-  },
-});
-```
+Some token types that require multiple values (like [typography](http://localhost:4321/docs/reference/tokens#typography)) must return an object.
 
-Some token types, like `typography`, **must return an object** otherwise you’ll get errors.
+:::
+
+## Migrating from Cobalt 1.x
+
+For the most part, the 2.x version doesn’t have significant breaking changes and only improvements. But you’ll find the following minor differences:
+
+- sRGB colors don’t automatically expand into P3, which resulted in oversaturated (and innaccurate) colors. See [CSS Color Module 4 Support](#css-color-module-4-support) for more details
+- The mode alias `#` character (`{color.base.blue.600#dark}`) has been deprecated (because it generated unpredictable CSS)
+- Colors now use [the `color()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color) so that it’s future-proof (supports deep color, wide color gamuts, and is overall a more future-friendly standard) while still maintaining good support (all modern browsers have great support).

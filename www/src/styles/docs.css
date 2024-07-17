@@ -94,18 +94,17 @@
     font-weight: var(--tz-typography-300-bold-font-weight);
   }
 
-  p,
-  li,
-  td {
-    code {
-      background-color: var(--tz-color-content-bg-aside);
-      border: 1px solid var(--tz-color-content-border-aside);
-      border-radius: var(--tz-radius-200);
-      display: inline-block;
-      font-size: 0.875em;
-      margin-inline: 0.125em;
-      padding: 0.125em;
-    }
+  p > code,
+  li > code,
+  li > p > code,
+  td > code {
+    background-color: var(--tz-color-content-bg-aside);
+    border: 1px solid var(--tz-color-content-border-aside);
+    border-radius: var(--tz-radius-200);
+    display: inline-block;
+    font-size: 0.875em;
+    margin-inline: 0.125em;
+    padding: 0.125em;
   }
 
   figure {
@@ -346,7 +345,7 @@
 .md-content > .code-block-wrapper {
   &[data-language="sh"],
   &[data-language="bash"] {
-    --chrome-border-color: var(--tz-color-content-border);
+    --chrome-border-color: var(--tz-color-content-border-elevated);
     --chrome-height: var(--tz-space-600);
 
     margin-top: calc(var(--tz-space-600) + var(--chrome-height));
@@ -507,7 +506,7 @@
     &:hover,
     &:focus-visible {
       background-color: transparent;
-      color: var(--tz-color-base-gray-1000);
+      color: var(--tz-color-content-text);
     }
 
     @media (width >= 1200px) {

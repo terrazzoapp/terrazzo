@@ -5,11 +5,11 @@ layout: ../../../../layouts/docs.astro
 
 # Sass
 
-The Sass plugin is an extension of [the CSS plugin](/docs/integrations/css) that adds the typesafety of Sass while keeping all the flexibility and functionality of CSS.
+Convert DTCG tokens into Sass for use in any web application or native app with webview. Uses [the CSS plugin](/docs/integrations/css) under the hood that lets you use all of CSS’ features with the typesafety of Sass.
 
 ## Setup
 
-Install this alongside the CSS plugin with your package manager of choice:
+Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
 
 :::code-group
 
@@ -30,7 +30,7 @@ And add both to your `terrazzo.config.js` under `plugins` (order doesn’t matte
 ```js [terrazzo.config.js]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
-import css from "@terrazzo/plugin-sass";
+import sass from "@terrazzo/plugin-sass";
 
 export default defineConfig({
   plugins: [
@@ -84,11 +84,11 @@ export default defineConfg({
 | `filename` | `string`   | Rename the output `.scss` file (default: `index.scss`) |
 | `exclude`  | `string[]` | (optional) Glob pattern(s) of token IDs to exclude.    |
 
-## Migrating from Cobalt 1.0
+## Migrating from Cobalt 1.x
 
-The original Cobalt 1.0 Sass plugin allowed you to use it in “hardcoded mode” or “CSS variable mode.” The hardcoded mode was limiting because it lacked all the dynamism that CSS allows with variables and media queries. And as the default behavior, it seemed to encourage an increasingly less-ideal output.
+The original Cobalt 1.x Sass plugin allowed you to use it in “hardcoded mode” or “CSS variable mode.” The hardcoded mode was limiting because it lacked all the dynamism that CSS allows with variables and media queries. And as the default behavior, it seemed to encourage an increasingly less-ideal output.
 
-The CSS variable mode was much better by comparison, but the limiting 1.0 plugin API resulted in some hacky workarounds that were ultimately unwieldy and buggy, especially with modes.
+The CSS variable mode was much better by comparison, but the limiting 1.x plugin API resulted in some hacky workarounds that were ultimately unwieldy and buggy, especially with modes.
 
 In the latest version, the CSS plugin has been improved and enhanced even further (it’s arguably the most mature out of all plugins), and takes advantage of the rapid development of CSS over the past few years. Since Sass ultimately _must_ compile to CSS anyway, it just made sense to encourage users to take advantage of the CSS plugin’s power, and make the Sass plugin a thin typechecking layer on top of that. This should result in more features and flexibility, and smoother interop between the two.
 

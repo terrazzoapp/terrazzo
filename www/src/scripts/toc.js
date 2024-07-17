@@ -17,7 +17,7 @@ function debounce(cb, timeout) {
 
 function calculateYs() {
   ys = [];
-  for (const el of content.querySelectorAll('h2,h3,h4')) {
+  for (const el of content.querySelectorAll('h2,h3')) {
     // skip over ToC heading
     if (el.parentElement.classList.contains('toc')) {
       continue;

@@ -312,6 +312,9 @@ importers:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
+      scule:
+        specifier: ^1.3.0
+        version: 1.3.0
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
