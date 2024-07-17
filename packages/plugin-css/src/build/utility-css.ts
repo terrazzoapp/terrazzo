@@ -1,8 +1,8 @@
 import { isTokenMatch } from '@terrazzo/token-tools';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 import type { TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from 'scule';
 import type { CSSRule, UtilityCSSGroup } from '../lib.js';
-import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
 const GROUP_REGEX: Record<UtilityCSSGroup, RegExp> = {
