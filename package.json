@@ -7,6 +7,7 @@
     "build:apps": "pnpm run build && pnpm run -r --if-present build:app",
     "build:examples": "pnpm run -r --parallel --if-present build:tokens",
     "changeset": "changeset",
+    "inject-license": "node scripts/inject-license.js",
     "dev": "pnpm run -r --parallel --if-present dev",
     "lint": "pnpm run -r --parallel --if-present lint",
     "format": "pnpm run -r --parallel --if-present format",

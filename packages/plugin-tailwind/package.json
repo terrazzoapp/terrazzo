@@ -23,10 +23,9 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
-    "build:clean": "del dist",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-tailwind dist/index.js",
+    "build:clean": "del-cli dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/plugin-tailwind dist/index.js",
     "format": "biome format --write .",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",

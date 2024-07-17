@@ -1,15 +1,11 @@
 import swc from '@rollup/plugin-swc';
 import ts from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-import-css';
 import { cleandir } from 'rollup-plugin-cleandir';
 
 /** @type {import("rollup").InputOptions} */
 export default {
   plugins: [
     cleandir(),
-    css({
-      output: 'all-icons.css',
-    }),
     ts(),
     swc({
       swc: {

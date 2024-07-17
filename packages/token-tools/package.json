@@ -35,10 +35,9 @@
     "./*": "./*"
   },
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
-    "build:clean": "del dist",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/token-tools dist/index.js",
+    "build:clean": "del-cli dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @cobalt-ui/core dist/index.js",
     "dev": "pnpm --filter @terrazzo/token-tools run --parallel \"/^dev:.*/\"",
     "lint": "biome check .",
     "dev:ts": "tsc -p tsconfig.build.json --watch",

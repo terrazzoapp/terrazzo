@@ -10,7 +10,7 @@ const license = fs
   .replace(LB_RE, '\n * ');
 
 // run
-const cwd = new URL(`file://${process.cwd()}/`);
+const cwd = new URL(`file://${process.env.INIT_CWD ?? process.cwd()}/`);
 const [, , module, targets] = process.argv;
 
 for (const target of targets.split(',')) {
