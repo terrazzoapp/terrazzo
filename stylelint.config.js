@@ -2,6 +2,7 @@
 export default {
   extends: ['stylelint-config-standard'],
   plugins: ['stylelint-order'],
+  ignoreFiles: ['**/*.js', '**/*.ts', '**/*.tsx', '**/test/**/*'],
   rules: {
     'alpha-value-notation': 'number',
     'declaration-block-no-redundant-longhand-properties': null, // this is fine

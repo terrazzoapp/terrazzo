@@ -15,6 +15,15 @@ export function isTokenMatch(tokenID: string, globPatterns: string[]): boolean {
   return wcmatch(globPatterns)(tokenID);
 }
 
+/** Same as isTokenMatch but returns the matching pattern */
+export function getTokenMatch(tokenId: string, globPatterns: string[]): string | undefined {
+  for (const pattern of globPatterns) {
+    if (wcmatch(pattern)(tokenId)) {
+      return pattern;
+    }
+  }
+}
+
 /** Make an alias */
 export function makeAlias(input: string): string {
   return input.replace(/^\{?([^}]+)\}?$/, '{$1}');

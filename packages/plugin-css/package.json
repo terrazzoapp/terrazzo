@@ -1,13 +1,19 @@
 {
   "name": "@terrazzo/plugin-css",
-  "version": "0.0.7",
-  "description": "Generate CSS from your design tokens schema (requires @terrazzo/cli)",
+  "version": "0.0.8",
+  "description": "Convert DTCG tokens into CSS variables for use in any web application or native app with webview.",
   "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["design tokens", "design system", "dtcg", "w3c", "css"],
+  "keywords": [
+    "design tokens",
+    "design system",
+    "dtcg",
+    "w3c",
+    "css"
+  ],
   "main": "./dist/index.js",
   "homepage": "https://terrazzoapp.com/docs/cli/integrations/css",
   "repository": {
@@ -17,10 +23,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
-    "build:clean": "del dist",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-css dist/index.js",
+    "build:clean": "del-cli dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-css dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/plugin-css run \"/^test:.*/\"",
@@ -32,7 +37,8 @@
   },
   "dependencies": {
     "@terrazzo/parser": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^"
+    "@terrazzo/token-tools": "workspace:^",
+    "scule": "^1.3.0"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^"

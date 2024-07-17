@@ -1,16 +1,16 @@
 # ⛋ @terrazzo/plugin-css
 
-Generate CSS from DTCG tokens.
+Convert DTCG tokens into CSS variables for use in any web application or native app with webview. Convert your modes into CSS media queries for complete flexibility.
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs/cli). With both installed, run:
 
 ```sh
-npm i -D @terrazzo/cli @terrazzo/plugin-css
+npm i -D @terrazzo/plugin-css
 ```
 
-Add a `terrazzo.config.js` to the root of your project with:
+Add a `terrazzo.config.js` to the root of your project:
 
 ```ts
 import { defineConfig } from "@terrazzo/cli";

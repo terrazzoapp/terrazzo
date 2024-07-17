@@ -17,10 +17,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm run build:license",
-    "build:clean": "del dist",
+    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-js dist/index.js",
+    "build:clean": "del-cli dist",
     "build:ts": "tsc -p tsconfig.build.json",
-    "build:license": "node ../../scripts/inject-license.js @terrazzo/plugin-js dist/index.js",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/plugin-js run \"/^test:*/\"",

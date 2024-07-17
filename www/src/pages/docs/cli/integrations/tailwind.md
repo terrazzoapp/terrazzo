@@ -5,16 +5,8 @@ layout: ../../../../layouts/docs.astro
 
 # Tailwind
 
-## Setup
+:::warning
 
-:::code-group
-
-```sh [npm]
-npm i -D @terrazzo/plugin-tailwind
-```
-
-```sh [pnpm]
-pnpm i -D @terrazzo/plugin-tailwind
-```
+The Tailwind plugin for Terrazzo isn’t ready yet! To use Tailwind you’ll need to use [version 1.x](https://cobalt-ui.pages.dev/integrations/tailwind).
 
 :::

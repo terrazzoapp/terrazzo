@@ -5,7 +5,7 @@ React hook for memoizing and transforming any web-compatible color. Only 12 kB (
 ## Setup
 
 ```sh
-pnpm i @terrazzo/use-color
+npm i @terrazzo/use-color
 ```
 
 ```tsx

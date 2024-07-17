@@ -1,7 +1,8 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { generateShorthand } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, type CSSRule, printRules, FORMAT_ID } from './lib.js';
+import { type CSSPluginOptions, type CSSRule, printRules, FORMAT_ID } from '../lib.js';
+import generateUtilityCSS from './utility-css.js';
 
 const P3_MQ = '@media (color-gamut: p3)';
 const REC2020_MQ = '@media (color-gamut: rec2020)';
@@ -10,9 +11,10 @@ export interface BuildFormatOptions {
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
+  utility: CSSPluginOptions['utility'];
 }
 
-export default function buildFormat({ getTransforms, exclude, modeSelectors }: BuildFormatOptions): string {
+export default function buildFormat({ getTransforms, exclude, utility, modeSelectors }: BuildFormatOptions): string {
   const rules: CSSRule[] = [];
 
   // :root
@@ -64,7 +66,7 @@ export default function buildFormat({ getTransforms, exclude, modeSelectors }: B
     if (!selectors.length) {
       continue;
     }
-    const selectorTokens = getTransforms({ format: 'css', id: tokens, mode });
+    const selectorTokens = getTransforms({ format: FORMAT_ID, id: tokens, mode });
     if (!selectorTokens.length) {
       continue;
     }
@@ -99,6 +101,11 @@ export default function buildFormat({ getTransforms, exclude, modeSelectors }: B
         }
       }
     }
+  }
+
+  // add utility CSS
+  if (utility && Object.keys(utility).length) {
+    rules.push(...generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' })));
   }
 
   return printRules(rules);

@@ -1,10 +1,10 @@
 import type { Plugin } from '@terrazzo/parser';
 import { validateCustomTransform } from '@terrazzo/token-tools';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
-import buildFormat from './build.js';
+import buildFormat from './build/index.js';
 import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
 
-export * from './build.js';
+export * from './build/index.js';
 export * from './lib.js';
 
 export default function cssPlugin({
@@ -13,6 +13,7 @@ export default function cssPlugin({
   variableName,
   modeSelectors,
   transform: customTransform,
+  utility,
 }: CSSPluginOptions = {}): Plugin {
   const transformName = (id: string) => variableName?.(id) || makeCSSVar(id);
   const transformAlias = (id: string) => `var(${transformName(id)})`;
@@ -49,7 +50,7 @@ export default function cssPlugin({
     async build({ getTransforms, outputFile }) {
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
-        buildFormat({ exclude, getTransforms, modeSelectors }),
+        buildFormat({ exclude, getTransforms, modeSelectors, utility }),
         '\n', // EOF newline
       );
       outputFile(filename, output.join('\n'));

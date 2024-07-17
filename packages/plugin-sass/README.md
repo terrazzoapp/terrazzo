@@ -1,19 +1,20 @@
 # ⛋ @terrazzo/plugin-sass
 
-Generate Sass code from DTCG tokens.
+Convert DTCG tokens into Sass for use in any web application or native app with webview. Uses [the CSS plugin](/docs/integrations/css) under the hood that lets you use all of CSS’ features with the typesafety of Sass.
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs/cli). With both installed, run:
 
 ```sh
-npm i -D @terrazzo/cli @terrazzo/plugin-css @terrazzo/plugin-sass
+npm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
 ```
 
-Add a `terrazzo.config.js` to the root of your project with:
+Add a `terrazzo.config.js` to the root of your project:
 
 ```ts
 import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
 import sass from "@terrazzo/plugin-sass";
 
 export default defineConfig({

@@ -1,5 +1,7 @@
 import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
+export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'gap' | 'margin' | 'padding' | 'shadow' | 'text';
+
 export const FORMAT_ID = 'css';
 
 export const FILE_PREFIX = `/* -------------------------------------------
@@ -17,6 +19,8 @@ export interface CSSPluginOptions {
   variableName?: (name: string) => string;
   /** Override certain token values */
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
+  /** Generate utility CSS from groups */
+  utility?: Record<UtilityCSSGroup, string[]>;
 }
 
 export interface ModeSelector {
@@ -28,9 +32,9 @@ export interface ModeSelector {
   selectors: string[];
 }
 
-// note: this is NOT an adequate replacement for a CSS AST; this just performs
-// basic deduplication and allows some limited parsing/reformatting before
-// flattening to a CSS string.
+// A CSSRule is a sort of “we have AST at home” shortcut that provides the benefit of normalized formatting
+// but without the overhead/complexity of a full AST. It’s useful because we only generate a limited CSS
+// syntax, and is a good balance between spec-compliance vs ease-of-use.
 export interface CSSRule {
   selectors: string[];
   nestedQuery?: string;

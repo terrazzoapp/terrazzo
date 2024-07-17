@@ -65,4 +65,36 @@ describe('Node.js API', () => {
       },
     );
   });
+
+  it('Utility CSS', async () => {
+    const filename = 'actual.css';
+    const cwd = new URL('./fixtures/utility-css/', import.meta.url);
+    const config = defineConfig(
+      {
+        plugins: [
+          css({
+            filename,
+            variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
+            utility: {
+              bg: ['color.semantic.*', 'color.gradient.*'],
+              border: ['border.*'],
+              font: ['typography.*'],
+              gap: ['space.*'],
+              margin: ['space.*'],
+              padding: ['space.*'],
+              shadow: ['shadow.*'],
+              text: ['color.semantic.*', 'color.gradient.*'],
+            },
+            modeSelectors: [{ mode: 'desktop', selectors: ['@media (width >= 600px)'] }],
+          }),
+        ],
+      },
+      { cwd },
+    );
+    const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
+    const result = await build(tokens, { ast, config });
+    expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+      fileURLToPath(new URL('./want.css', cwd)),
+    );
+  });
 });
