@@ -36,5 +36,10 @@ export default {
   output: {
     dir: './dist/',
     sourcemap: true,
+    globals: {
+      'react/jsx-runtime': 'jsxRuntime',
+      'react-dom/client': 'ReactDOM',
+      react: 'React',
+    },
   },
 };

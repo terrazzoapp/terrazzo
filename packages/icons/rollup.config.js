@@ -32,9 +32,14 @@ export default {
     }),
   ],
   input: 'src/index.tsx',
-  external: ['clsx', 'react', 'react-dom'],
+  external: ['*'],
   output: {
     dir: './dist/',
     sourcemap: true,
+    globals: {
+      'react/jsx-runtime': 'jsxRuntime',
+      'react-dom/client': 'ReactDOM',
+      react: 'React',
+    },
   },
 };
