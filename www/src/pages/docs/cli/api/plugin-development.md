@@ -40,7 +40,7 @@ export default function clampColor(userOptions) {
     name: "my-css-plugin",
     async transform({ tokens, setTransform }) {
       for (const [id, token] of Object.entries(tokens)) {
-        switch (token.type) {
+        switch (token.$type) {
           case "color": {
             setTransform(id, {
               format: "css",

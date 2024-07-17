@@ -2,35 +2,23 @@ import { isTokenMatch } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import type { TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from 'scule';
-import type { CSSRule, UtilityCSSGroup } from '../lib.js';
+import type { CSSRule, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
-const GROUP_REGEX: Record<UtilityCSSGroup, RegExp> = {
+const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
   bg: /(^bg-|-bg-)/,
   border: /(^border-|-border-)/,
   font: /(^font-|-font-)/,
   gap: /(^gap-|-gap-)/,
-  margin: /(^m-|-m-)/,
-  padding: /(^p-|-p-)/,
+  m: /(^margin-|-margin-|)/,
+  p: /(^padding-|-padding-|)/,
   shadow: /(^shadow-|-shadow-)/,
   text: /(^text-|-text-)/,
 };
 
 /** Make CSS class name from transformed token */
-function makeSelector(group: UtilityCSSGroup, token: TokenTransformed, subgroup?: string): string {
-  let prefix: string = group;
-  // inconsistency: margin/padding are more abbreviated because of their commonality. handle that here.
-  if (group === 'margin' || group === 'padding') {
-    prefix = group[0]!;
-    if (subgroup) {
-      prefix += subgroup;
-    }
-  } else {
-    if (subgroup) {
-      prefix += `-${subgroup}`;
-    }
-  }
-  return `.${prefix}-${kebabCase(token.token.id).replace(GROUP_REGEX[group], '')}`;
+function makeSelector(token: TokenTransformed, prefix: UtilityCSSPrefix, subgroup?: string): string {
+  return `.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`;
 }
 
 function makeVarValue(token: TokenTransformed): string {
@@ -55,7 +43,7 @@ export default function generateUtilityCSS(
     switch (group) {
       case 'bg': {
         for (const token of matchingTokens) {
-          const selector = makeSelector('bg', token);
+          const selector = makeSelector(token, 'bg');
           switch (token.token.$type) {
             case 'color': {
               output.push({ selectors: [selector], declarations: { 'background-color': makeVarValue(token) } });
@@ -68,7 +56,6 @@ export default function generateUtilityCSS(
                   'background-image': `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
                 },
               });
-              break;
             }
           }
         }
@@ -85,7 +72,7 @@ export default function generateUtilityCSS(
           }[token.token.$type as string];
           if (property) {
             output.push({
-              selectors: [makeSelector('border', token)],
+              selectors: [makeSelector(token, 'border')],
               declarations: { [property]: makeVarValue(token) },
             });
           }
@@ -101,7 +88,7 @@ export default function generateUtilityCSS(
             }[token.token.$type as string];
             if (property) {
               output.push({
-                selectors: [makeSelector('border', token, side)],
+                selectors: [makeSelector(token, 'border', `-${side}`)],
                 declarations: { [property]: makeVarValue(token) },
               });
             }
@@ -111,7 +98,7 @@ export default function generateUtilityCSS(
       }
       case 'font': {
         for (const token of matchingTokens) {
-          const selector = makeSelector('font', token);
+          const selector = makeSelector(token, 'font');
 
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
             const declarations: Record<string, string> = {};
@@ -135,69 +122,67 @@ export default function generateUtilityCSS(
         }
         break;
       }
-      case 'gap': {
+      case 'layout': {
         const filteredTokens = matchingTokens.filter((t) => t.token.$type === 'dimension'); // only dimension tokens here
-
+        // gap
         // ALL generic properties (gap) must come before specific properties (column-gap)
         for (const token of filteredTokens) {
-          output.push({ selectors: [makeSelector('gap', token)], declarations: { gap: makeVarValue(token) } });
+          output.push({ selectors: [makeSelector(token, 'gap')], declarations: { gap: makeVarValue(token) } });
         }
         // specific properties
         for (const token of filteredTokens) {
           output.push({
-            selectors: [makeSelector('gap', token, 'col')],
+            selectors: [makeSelector(token, 'gap', '-col')],
             declarations: { 'column-gap': makeVarValue(token) },
           });
         }
         // specific properties
         for (const token of filteredTokens) {
           output.push({
-            selectors: [makeSelector('gap', token, 'row')],
+            selectors: [makeSelector(token, 'gap', '-row')],
             declarations: { 'row-gap': makeVarValue(token) },
           });
         }
-        break;
-      }
-      case 'margin':
-      case 'padding': {
-        const filteredTokens = matchingTokens.filter((t) => t.token.$type === 'dimension'); // only dimension tokens here
-        const property = group === 'margin' ? 'margin' : 'padding';
 
-        // note: ALL generic properties (margin: [value]) MUST come before specific properties (margin-top: [value])
-        // this is why we loop through all tokens so many times
-        for (const token of filteredTokens) {
-          output.push({
-            selectors: [makeSelector(group, token, 'a')],
-            declarations: { [property]: makeVarValue(token) },
-          });
-        }
-        for (const token of filteredTokens) {
-          const value = makeVarValue(token);
-          output.push(
-            {
-              selectors: [makeSelector(group, token, 'x')],
-              declarations: { [`${property}-left`]: value, [`${property}-right`]: value },
-            },
-            {
-              selectors: [makeSelector(group, token, 'y')],
-              declarations: { [`${property}-bottom`]: value, [`${property}-top`]: value },
-            },
-          );
-        }
-        for (const side of ['top', 'right', 'bottom', 'left']) {
+        // margin/padding
+        for (const prefix of ['m', 'p'] as const) {
+          const property = prefix === 'm' ? 'margin' : 'padding';
+          // note: ALL generic properties (margin: [value]) MUST come before specific properties (margin-top: [value])
+          // this is why we loop through all tokens so many times
           for (const token of filteredTokens) {
             output.push({
-              selectors: [makeSelector(group, token, side[0])],
-              declarations: { [`${property}-${side}`]: makeVarValue(token) },
+              selectors: [makeSelector(token, prefix, 'a')],
+              declarations: { [property]: makeVarValue(token) },
             });
           }
-        }
-        for (const token of filteredTokens) {
-          const value = makeVarValue(token);
-          output.push(
-            { selectors: [makeSelector(group, token, 's')], declarations: { [`${property}-inline-start`]: value } },
-            { selectors: [makeSelector(group, token, 'e')], declarations: { [`${property}-inline-end`]: value } },
-          );
+          for (const token of filteredTokens) {
+            const value = makeVarValue(token);
+            output.push(
+              {
+                selectors: [makeSelector(token, prefix, 'x')],
+                declarations: { [`${property}-left`]: value, [`${property}-right`]: value },
+              },
+              {
+                selectors: [makeSelector(token, prefix, 'y')],
+                declarations: { [`${property}-bottom`]: value, [`${property}-top`]: value },
+              },
+            );
+          }
+          for (const side of ['top', 'right', 'bottom', 'left']) {
+            for (const token of filteredTokens) {
+              output.push({
+                selectors: [makeSelector(token, prefix, side[0])],
+                declarations: { [`${property}-${side}`]: makeVarValue(token) },
+              });
+            }
+          }
+          for (const token of filteredTokens) {
+            const value = makeVarValue(token);
+            output.push(
+              { selectors: [makeSelector(token, prefix, 's')], declarations: { [`${property}-inline-start`]: value } },
+              { selectors: [makeSelector(token, prefix, 'e')], declarations: { [`${property}-inline-end`]: value } },
+            );
+          }
         }
         break;
       }
@@ -205,7 +190,7 @@ export default function generateUtilityCSS(
         for (const token of matchingTokens) {
           if (token.token.$type === 'shadow') {
             output.push({
-              selectors: [makeSelector('shadow', token)],
+              selectors: [makeSelector(token, 'shadow')],
               declarations: { 'box-shadow': makeVarValue(token) },
             });
           }
@@ -214,7 +199,7 @@ export default function generateUtilityCSS(
       }
       case 'text': {
         for (const token of matchingTokens) {
-          const selector = makeSelector('text', token);
+          const selector = makeSelector(token, 'text');
           const value = makeVarValue(token);
           switch (token.token.$type) {
             case 'color': {

@@ -142,13 +142,12 @@ export default defineConfig({
   plugins: [
     css({
       utility: {
+        bg: ["color.*-bg", "gradient.*"],
         border: ["border.*"],
-        bg: ["color.*", "gradient.*"],
-        text: ["color.*", "gradient.*"],
         font: ["typography.*"],
-        gap: ["space.*"],
-        margin: ["space.*"],
-        padding: ["space.*"],
+        layout: ["space.*"],
+        shadow: ["shadow.*"],
+        text: ["color.*-text", "gradient.*"],
       },
     }),
   ],
@@ -157,7 +156,7 @@ export default defineConfig({
 
 :::
 
-Each of the keys are “groups,” which cut down on total CSS size. For example, consider all the possible values `dimension` tokens could generate: `margin`, `padding`, `gap`, `inset`, `font-size`, to name a few! Rather than generate every possible property and every possible token (which would be a ton of CSS), you instead specify which tokens should belong to which groups (and they can belong to multiple).
+Each of the keys are “groups,” which cut down on total CSS size. For example, consider all the possible ways [dimension tokens](/docs/reference/tokens#dimension) could be used in CSS: `margin`, `padding`, `gap`, `inset`, `font-size`, to name a few! Rather than generate every possible property and every possible token (which would be a ton of CSS), you instead specify which tokens should belong to which groups (and they can belong to multiple).
 
 :::tip
 
@@ -166,9 +165,9 @@ Only specifying the specific groups and tokens you need results in minimal CSS 
 
 Group names are predefined, and only the following values are accepted. Each “group” will generate several CSS properties:
 
-#### Border groups
+#### Border group
 
-Border groups accept [border](/docs/reference/tokens#border) tokens.
+The border group accepts [border](/docs/reference/tokens#border) tokens.
 
 | Group name | Class              | CSS                      |
 | :--------- | :----------------- | :----------------------- |
@@ -180,16 +179,22 @@ Border groups accept [border](/docs/reference/tokens#border) tokens.
 
 #### Color groups
 
-Color groups accept [color](/docs/reference/tokens#color) and [gradient](/docs/reference/tokens#gradient) tokens.
+The color groups of `bg` and `text` accept [color](/docs/reference/tokens#color) and [gradient](/docs/reference/tokens#gradient) tokens.
 
 | Group name | Class     | CSS                         |
 | :--------- | :-------- | :-------------------------- |
 | **bg**     | `.bg-*`   | `background-color: [value]` |
 | **text**   | `.text-*` | `color: [value]`            |
 
-#### Typography groups
+:::tip
 
-Typographic groups accept [font family](/docs/reference/tokens#font-size), [dimension](/docs/reference/tokens#dimension) (font size), [font weight](/docs/reference/tokens#font-weight), and [typography](/docs/reference/tokens#typography) tokens.
+Improve your contrast by being more selective with what colors are allowed as background, and which as text colors (e.g. `bg: ["color.*-bg"]`). This can save lots of headaches when enforcing proper contrast!
+
+:::
+
+#### Font group
+
+The font group accepts [font family](/docs/reference/tokens#font-size), [dimension](/docs/reference/tokens#dimension) (font size), [font weight](/docs/reference/tokens#font-weight), and [typography](/docs/reference/tokens#typography) tokens.
 
 | Group name | Class     | CSS                                                                        |
 | :--------- | :-------- | :------------------------------------------------------------------------- |
@@ -201,31 +206,45 @@ The `.font-*` group is the most flexible! Be sure to pay attention to your token
 
 :::
 
-#### Spacing groups
+#### Layout group
 
-Spacing groups accept [dimension](/docs/reference/tokens#dimension) tokens.
+The layout group accepts [dimension](/docs/reference/tokens#dimension) tokens.
 
-| Group name  | Class        | CSS                                             |
-| :---------- | :----------- | :---------------------------------------------- |
-| **gap**     | `.gap-*`     | `gap: [value]`                                  |
-|             | `.gap-col-*` | `column-gap: [value]`                           |
-|             | `.gap-row-*` | `row-gap: [value]`                              |
-| **margin**  | `.mt-*`      | `margin-top: [value]`                           |
-|             | `.mr-*`      | `margin-right: [value]`                         |
-|             | `.mb-*`      | `margin-bottom: [value]`                        |
-|             | `.ml-*`      | `margin-left: [value]`                          |
-|             | `.ms-*`      | `margin-inline-start: [value]`                  |
-|             | `.me-*`      | `margin-inline-end: [value]`                    |
-|             | `.mx-*`      | `margin-left: [value]; margin-right: [value]`   |
-|             | `.my-*`      | `margin-top: [value]; margin-bottom: [value]`   |
-|             | `.ma-*`      | `margin: [value]`                               |
-| **padding** | `.pt-*`      | `padding-top: [value]`                          |
-|             | `.pr-*`      | `padding-right: [value]`                        |
-|             | `.pb-*`      | `padding-bottom: [value]`                       |
-|             | `.pl-*`      | `padding-left: [value]`                         |
-|             | `.px-*`      | `padding-left: [value]; padding-right: [value]` |
-|             | `.py-*`      | `padding-top: [value]; padding-bottom: [value]` |
-|             | `.pa-*`      | `padding: [value]`                              |
+| Group name | Class        | CSS                                             |
+| :--------- | :----------- | :---------------------------------------------- |
+| **layout** | `.gap-*`     | `gap: [value]`                                  |
+|            | `.gap-col-*` | `column-gap: [value]`                           |
+|            | `.gap-row-*` | `row-gap: [value]`                              |
+|            | `.mt-*`      | `margin-top: [value]`                           |
+|            | `.mr-*`      | `margin-right: [value]`                         |
+|            | `.mb-*`      | `margin-bottom: [value]`                        |
+|            | `.ml-*`      | `margin-left: [value]`                          |
+|            | `.ms-*`      | `margin-inline-start: [value]`                  |
+|            | `.me-*`      | `margin-inline-end: [value]`                    |
+|            | `.mx-*`      | `margin-left: [value]; margin-right: [value]`   |
+|            | `.my-*`      | `margin-top: [value]; margin-bottom: [value]`   |
+|            | `.ma-*`      | `margin: [value]`                               |
+|            | `.pt-*`      | `padding-top: [value]`                          |
+|            | `.pr-*`      | `padding-right: [value]`                        |
+|            | `.pb-*`      | `padding-bottom: [value]`                       |
+|            | `.pl-*`      | `padding-left: [value]`                         |
+|            | `.px-*`      | `padding-left: [value]; padding-right: [value]` |
+|            | `.py-*`      | `padding-top: [value]; padding-bottom: [value]` |
+|            | `.pa-*`      | `padding: [value]`                              |
+
+#### Shadow group
+
+The shadow group accepts [shadow tokens](/docs/reference/tokens#shadow).
+
+| Group name | Class       | CSS                   |
+| :--------- | :---------- | :-------------------- |
+| **shadow** | `.shadow-*` | `box-shadow: [value]` |
+
+:::note
+
+All shadows will be interpreted as `linear-gradient()`s.
+
+:::
 
 #### Differences from Tailwind
 
