@@ -7,7 +7,7 @@ Convert DTCG tokens into CSS variables for use in any web application or native 
 Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs/cli). With both installed, run:
 
 ```sh
-npm i @terrazzo/plugin-css
+npm i -D @terrazzo/plugin-css
 ```
 
 Add a `terrazzo.config.js` to the root of your project:

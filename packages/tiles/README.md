@@ -5,7 +5,7 @@ Terrazzo’s component library. Sizes enforced by [size-limit](https://www.npmjs
 ## Setup
 
 ```sh
-pnpm i @terrazzo/tiles
+npm i @terrazzo/tiles
 ```
 
 ```tsx
