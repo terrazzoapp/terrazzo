@@ -68,11 +68,11 @@ For the most part the CLI works exactly the same as it did before, but see [the 
 
 ## 3. Update tokens.config.js
 
-First, rename `tokens.config.js` to `terrazzo.config.js`.
+First, rename `tokens.config.js` → `terrazzo.config.js`.
 
 Next, you can use the wrapper to fully type the config and provide helpful validation:
 
-:::code-block
+:::code-group
 
 ```diff [terrazzo.config.js]
 + import { defineConfig } from "@terrazzo/cli";
@@ -92,10 +92,9 @@ See [the Config docs](/docs/cli/config/) for more info.
 
 Plugins will need to update to [the new Plugin API](/docs/cli/api/plugin-development/) in order to run. The same basic format is kept, but the plugin hooks have changed and have more features to make working with tokens even easier (hopefully it empowers even better workflows while reducing code!). In a nutshell:
 
-- The [build() hook](/docs/cli/api/plugin-development/#build) still builds files, but you should move most of your work into [the new transform()` hook](/docs/cli/api/plugin-development#api)
-- The [new `transform()` hook](/docs/cli/api/plugin-development#api) is where you can calculate token values and expose them to other plugins (so long as they query the right `format`)
-- There are other minor changes such as:
-  - Plugins used to get `tokens` as an array; now it’s an object keyed by token ID (use [Object.entries](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) to iterate over it)
-  - The Linting API has been changed to be simpler and allow for throwing code errors on specific lines/columns.
+- There’s a new concept of calling `getTransform()` and `setTransform()` to “query” for tokens/modes. This is how plugins share more work than they could before!
+- The [build() hook](/docs/cli/api/plugin-development/#build) still builds files, but you should move most of your work into [the new transform() hook](/docs/cli/api/plugin-development#api)
+- The [new transform() hook](/docs/cli/api/plugin-development#api) is where you can calculate token values and expose them to other plugins (so long as they query the right `format`)
+- The Linting API has been changed to be simpler and allow for throwing code errors on specific lines/columns.
 
 See [the Plugin API docs](/docs/cli/api/plugin-development) for more detailed info.

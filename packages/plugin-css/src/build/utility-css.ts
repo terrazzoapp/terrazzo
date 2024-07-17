@@ -41,8 +41,7 @@ export default function generateUtilityCSS(
       break;
     }
     switch (group) {
-      case 'color': {
-        // bg
+      case 'bg': {
         for (const token of matchingTokens) {
           const selector = makeSelector(token, 'bg');
           switch (token.token.$type) {
@@ -57,29 +56,6 @@ export default function generateUtilityCSS(
                   'background-image': `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
                 },
               });
-              break;
-            }
-          }
-        }
-        // text
-        for (const token of matchingTokens) {
-          const selector = makeSelector(token, 'text');
-          const value = makeVarValue(token);
-          switch (token.token.$type) {
-            case 'color': {
-              output.push({ selectors: [selector], declarations: { color: value } });
-              break;
-            }
-            case 'gradient': {
-              output.push({
-                selectors: [selector],
-                declarations: {
-                  background: `-webkit-linear-gradient(${value})`,
-                  '-webkit-background-clip': 'text',
-                  '-webkit-text-fill-color': 'transparent',
-                },
-              });
-              break;
             }
           }
         }
@@ -217,6 +193,30 @@ export default function generateUtilityCSS(
               selectors: [makeSelector(token, 'shadow')],
               declarations: { 'box-shadow': makeVarValue(token) },
             });
+          }
+        }
+        break;
+      }
+      case 'text': {
+        for (const token of matchingTokens) {
+          const selector = makeSelector(token, 'text');
+          const value = makeVarValue(token);
+          switch (token.token.$type) {
+            case 'color': {
+              output.push({ selectors: [selector], declarations: { color: value } });
+              break;
+            }
+            case 'gradient': {
+              output.push({
+                selectors: [selector],
+                declarations: {
+                  background: `-webkit-linear-gradient(${value})`,
+                  '-webkit-background-clip': 'text',
+                  '-webkit-text-fill-color': 'transparent',
+                },
+              });
+              break;
+            }
           }
         }
         break;

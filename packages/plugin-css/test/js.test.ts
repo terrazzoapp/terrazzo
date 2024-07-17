@@ -76,11 +76,12 @@ describe('Node.js API', () => {
             filename,
             variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
             utility: {
-              color: ['color.semantic.*', 'color.gradient.*'],
+              bg: ['color.semantic.*', 'color.gradient.*'],
               border: ['border.*'],
               font: ['typography.*'],
               layout: ['space.*'],
               shadow: ['shadow.*'],
+              text: ['color.semantic.*', 'color.gradient.*'],
             },
             modeSelectors: [{ mode: 'desktop', selectors: ['@media (width >= 600px)'] }],
           }),

@@ -1,6 +1,6 @@
 import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
-export type UtilityCSSGroup = 'border' | 'color' | 'font' | 'layout' | 'shadow';
+export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
 
 export type UtilityCSSPrefix = 'bg' | 'border' | 'font' | 'gap' | 'm' | 'p' | 'shadow' | 'text';
 
