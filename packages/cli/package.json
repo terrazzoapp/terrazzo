@@ -25,7 +25,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/cli"
   },
   "homepage": "https://cobalt-ui.pages.dev",
@@ -53,13 +53,13 @@
     "dotenv": "^16.4.5",
     "parse-json": "^8.1.0",
     "svgo": "^3.3.2",
-    "yaml": "^2.4.2",
+    "yaml": "^2.4.5",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "execa": "^8.0.1",
-    "msw": "^2.3.0",
+    "msw": "^2.3.2",
     "strip-ansi": "^7.1.0"
   }
 }

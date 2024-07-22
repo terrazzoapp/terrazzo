@@ -1,4 +1,5 @@
 import os from 'node:os';
+import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import { parse } from '../src/parse/index.js';
 
@@ -38,8 +39,8 @@ describe('parse', () => {
   }`);
 
       if (os.platform() === 'darwin') {
-        expect(errors?.[0]).toMatchInlineSnapshot(`
-          "JSONError: Unexpected token "}"(\\u{7d}) in JSON at position 102
+        expect(stripAnsi(errors?.[0] ?? '')).toMatchInlineSnapshot(`
+          "JSONError: Expected double-quoted property name in JSON at position 102 (line 7 column 3)
 
             5 |       "$value": "color(srgb 0 0.3 1.0)"
             6 |     },

@@ -4,9 +4,9 @@
 
 ### Patch Changes
 
-- [#253](https://github.com/drwpow/cobalt-ui/pull/253) [`2dec1cb`](https://github.com/drwpow/cobalt-ui/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517) Thanks [@drwpow](https://github.com/drwpow)! - Bump deps
+- [#253](https://github.com/terrazzoapp/terrazzo/pull/253) [`2dec1cb`](https://github.com/terrazzoapp/terrazzo/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517) Thanks [@drwpow](https://github.com/drwpow)! - Bump deps
 
-- Updated dependencies [[`2dec1cb`](https://github.com/drwpow/cobalt-ui/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517)]:
+- Updated dependencies [[`2dec1cb`](https://github.com/terrazzoapp/terrazzo/commit/2dec1cb427715d6b7eb3c719f3eba8e3bb263517)]:
   - @cobalt-ui/plugin-css@1.7.4
   - @cobalt-ui/cli@1.11.2
 
@@ -14,15 +14,15 @@
 
 ### Minor Changes
 
-- [#202](https://github.com/drwpow/cobalt-ui/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix collision of mode names if a user has a mode called `"default"`, changing the internal selector to `"."` (a single dot).
+- [#202](https://github.com/terrazzoapp/terrazzo/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/terrazzoapp/terrazzo/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix collision of mode names if a user has a mode called `"default"`, changing the internal selector to `"."` (a single dot).
 
-  `"."` will be used more often in the upcoming [2.0 API](https://github.com/drwpow/cobalt-ui/issues/201), chosen because it’s easy to type/reference, uses illegal characters (therefore consumers can’t use it, but internally we know what it means), and also because it matches [Node’s ESM implementation for the default import](https://nodejs.org/docs/latest/api/esm.html#resolution-algorithm-specification), so it will be familiar/expected for some developers.
+  `"."` will be used more often in the upcoming [2.0 API](https://github.com/terrazzoapp/terrazzo/issues/201), chosen because it’s easy to type/reference, uses illegal characters (therefore consumers can’t use it, but internally we know what it means), and also because it matches [Node’s ESM implementation for the default import](https://nodejs.org/docs/latest/api/esm.html#resolution-algorithm-specification), so it will be familiar/expected for some developers.
 
 ### Patch Changes
 
-- [#202](https://github.com/drwpow/cobalt-ui/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix plugin-sass mode generation
+- [#202](https://github.com/terrazzoapp/terrazzo/pull/202) [`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/terrazzoapp/terrazzo/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490) Thanks [@drwpow](https://github.com/drwpow)! - Fix plugin-sass mode generation
 
-- Updated dependencies [[`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/drwpow/cobalt-ui/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490)]:
+- Updated dependencies [[`eecdee6dd67315fcf087c9daa70d703bff6c7490`](https://github.com/terrazzoapp/terrazzo/commit/eecdee6dd67315fcf087c9daa70d703bff6c7490)]:
   - @cobalt-ui/cli@1.7.1
   - @cobalt-ui/plugin-css@1.7.3
 
@@ -30,7 +30,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [[`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42), [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42), [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42)]:
+- Updated dependencies [[`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/terrazzoapp/terrazzo/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42), [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/terrazzoapp/terrazzo/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42), [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/terrazzoapp/terrazzo/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42)]:
   - @cobalt-ui/plugin-css@2.0.0
   - @cobalt-ui/utils@1.2.3
   - @cobalt-ui/cli@1.7.0
@@ -39,73 +39,73 @@
 
 ### Patch Changes
 
-- Updated dependencies [[`6020c15`](https://github.com/drwpow/cobalt-ui/commit/6020c15dae130ffd30a21c844e7e1a6277c7106d)]:
+- Updated dependencies [[`6020c15`](https://github.com/terrazzoapp/terrazzo/commit/6020c15dae130ffd30a21c844e7e1a6277c7106d)]:
   - @cobalt-ui/plugin-css@1.7.0
 
 ## 1.3.2
 
 ### Patch Changes
 
-- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix TypeScript signature for transform() plugin option
+- [#150](https://github.com/terrazzoapp/terrazzo/pull/150) [`8c6893d`](https://github.com/terrazzoapp/terrazzo/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix TypeScript signature for transform() plugin option
 
-- [#150](https://github.com/drwpow/cobalt-ui/pull/150) [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: mismatched versions of plugin-css and plugin-sass (if either were on `latest`) were broken.
+- [#150](https://github.com/terrazzoapp/terrazzo/pull/150) [`8c6893d`](https://github.com/terrazzoapp/terrazzo/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: mismatched versions of plugin-css and plugin-sass (if either were on `latest`) were broken.
 
-- Updated dependencies [[`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/drwpow/cobalt-ui/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629)]:
+- Updated dependencies [[`8c6893d`](https://github.com/terrazzoapp/terrazzo/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/terrazzoapp/terrazzo/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629), [`8c6893d`](https://github.com/terrazzoapp/terrazzo/commit/8c6893d008e41f54c44fbc9a80a52576dc7e3629)]:
   - @cobalt-ui/plugin-css@1.6.2
 
 ## 1.3.2
 
 ### Patch Changes
 
-- [#131](https://github.com/drwpow/cobalt-ui/pull/131) [`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - Handle whitespace in token ids when creating CSS variables
+- [#131](https://github.com/terrazzoapp/terrazzo/pull/131) [`6628a8c`](https://github.com/terrazzoapp/terrazzo/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480) Thanks [@dev-nicolaos](https://github.com/dev-nicolaos)! - Handle whitespace in token ids when creating CSS variables
 
-- Updated dependencies [[`6628a8c`](https://github.com/drwpow/cobalt-ui/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480)]:
+- Updated dependencies [[`6628a8c`](https://github.com/terrazzoapp/terrazzo/commit/6628a8cfe9adf20e9a6b437a82c7f6c1b28e1480)]:
   - @cobalt-ui/plugin-css@1.6.0
 
 ## 1.3.1
 
 ### Patch Changes
 
-- [#132](https://github.com/drwpow/cobalt-ui/pull/132) [`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c) Thanks [@drwpow](https://github.com/drwpow)! - Allow options?.transformer() to return `undefined` and fall back to default
+- [#132](https://github.com/terrazzoapp/terrazzo/pull/132) [`97274f4`](https://github.com/terrazzoapp/terrazzo/commit/97274f4be83966d178f3a06524ead926bcdd649c) Thanks [@drwpow](https://github.com/drwpow)! - Allow options?.transformer() to return `undefined` and fall back to default
 
-- Updated dependencies [[`97274f4`](https://github.com/drwpow/cobalt-ui/commit/97274f4be83966d178f3a06524ead926bcdd649c)]:
+- Updated dependencies [[`97274f4`](https://github.com/terrazzoapp/terrazzo/commit/97274f4be83966d178f3a06524ead926bcdd649c)]:
   - @cobalt-ui/plugin-css@1.5.1
 
 ## 1.3.0
 
 ### Minor Changes
 
-- [#113](https://github.com/drwpow/cobalt-ui/pull/113) [`cc078a7`](https://github.com/drwpow/cobalt-ui/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91) Thanks [@drwpow](https://github.com/drwpow)! - Add colorFormat option
+- [#113](https://github.com/terrazzoapp/terrazzo/pull/113) [`cc078a7`](https://github.com/terrazzoapp/terrazzo/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91) Thanks [@drwpow](https://github.com/drwpow)! - Add colorFormat option
 
-- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Add "inset" property for shadows
+- [#114](https://github.com/terrazzoapp/terrazzo/pull/114) [`9f62035`](https://github.com/terrazzoapp/terrazzo/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Add "inset" property for shadows
 
-- [#114](https://github.com/drwpow/cobalt-ui/pull/114) [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Support arrays of shadows
+- [#114](https://github.com/terrazzoapp/terrazzo/pull/114) [`9f62035`](https://github.com/terrazzoapp/terrazzo/commit/9f620359ee6c426279645a29edc5854085dd6045) Thanks [@drwpow](https://github.com/drwpow)! - Support arrays of shadows
 
 ### Patch Changes
 
-- Updated dependencies [[`cc078a7`](https://github.com/drwpow/cobalt-ui/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91), [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045), [`9f62035`](https://github.com/drwpow/cobalt-ui/commit/9f620359ee6c426279645a29edc5854085dd6045)]:
+- Updated dependencies [[`cc078a7`](https://github.com/terrazzoapp/terrazzo/commit/cc078a7582b313bfa5337ad48d2abb2ff1613c91), [`9f62035`](https://github.com/terrazzoapp/terrazzo/commit/9f620359ee6c426279645a29edc5854085dd6045), [`9f62035`](https://github.com/terrazzoapp/terrazzo/commit/9f620359ee6c426279645a29edc5854085dd6045)]:
   - @cobalt-ui/plugin-css@1.5.0
 
 ## 1.2.5
 
 ### Patch Changes
 
-- [#99](https://github.com/drwpow/cobalt-ui/pull/99) [`e660687`](https://github.com/drwpow/cobalt-ui/commit/e66068772654c1432fa5a5d87c44b50ca8d19ac8) Thanks [@drwpow](https://github.com/drwpow)! - Make plugin-css a peerDep
+- [#99](https://github.com/terrazzoapp/terrazzo/pull/99) [`e660687`](https://github.com/terrazzoapp/terrazzo/commit/e66068772654c1432fa5a5d87c44b50ca8d19ac8) Thanks [@drwpow](https://github.com/drwpow)! - Make plugin-css a peerDep
 
-- Updated dependencies [[`adfe228`](https://github.com/drwpow/cobalt-ui/commit/adfe2280718244a3a25086e3f3b47e963993bca2)]:
+- Updated dependencies [[`adfe228`](https://github.com/terrazzoapp/terrazzo/commit/adfe2280718244a3a25086e3f3b47e963993bca2)]:
   - @cobalt-ui/plugin-css@1.4.1
 
 ## 1.2.4
 
 ### Patch Changes
 
-- [#94](https://github.com/drwpow/cobalt-ui/pull/94) [`01d1d31`](https://github.com/drwpow/cobalt-ui/commit/01d1d3139dcdc25c2883378522f349c817e9fc1f) Thanks [@drwpow](https://github.com/drwpow)! - Bump @cobalt-ui/utils
+- [#94](https://github.com/terrazzoapp/terrazzo/pull/94) [`01d1d31`](https://github.com/terrazzoapp/terrazzo/commit/01d1d3139dcdc25c2883378522f349c817e9fc1f) Thanks [@drwpow](https://github.com/drwpow)! - Bump @cobalt-ui/utils
 
 ## 1.2.3
 
 ### Patch Changes
 
-- Updated dependencies [[`432029f`](https://github.com/drwpow/cobalt-ui/commit/432029f78130bec264fbdb26e83a6980fb923b0e)]:
+- Updated dependencies [[`432029f`](https://github.com/terrazzoapp/terrazzo/commit/432029f78130bec264fbdb26e83a6980fb923b0e)]:
   - @cobalt-ui/cli@1.2.0
   - @cobalt-ui/plugin-css@1.3.0
 
@@ -113,9 +113,9 @@
 
 ### Patch Changes
 
-- [#45](https://github.com/drwpow/cobalt-ui/pull/45) [`4e4e2c0`](https://github.com/drwpow/cobalt-ui/commit/4e4e2c03ed0750306633fe757396733b8f6db385) Thanks [@drwpow](https://github.com/drwpow)! - Fix release script
+- [#45](https://github.com/terrazzoapp/terrazzo/pull/45) [`4e4e2c0`](https://github.com/terrazzoapp/terrazzo/commit/4e4e2c03ed0750306633fe757396733b8f6db385) Thanks [@drwpow](https://github.com/drwpow)! - Fix release script
 
-- Updated dependencies [[`4e4e2c0`](https://github.com/drwpow/cobalt-ui/commit/4e4e2c03ed0750306633fe757396733b8f6db385)]:
+- Updated dependencies [[`4e4e2c0`](https://github.com/terrazzoapp/terrazzo/commit/4e4e2c03ed0750306633fe757396733b8f6db385)]:
   - @cobalt-ui/cli@1.1.3
   - @cobalt-ui/plugin-css@1.2.2
   - @cobalt-ui/utils@1.1.1
@@ -124,9 +124,9 @@
 
 ### Patch Changes
 
-- [#33](https://github.com/drwpow/cobalt-ui/pull/33) [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f) Thanks [@drwpow](https://github.com/drwpow)! - Remove unused deps
+- [#33](https://github.com/terrazzoapp/terrazzo/pull/33) [`eb942a7`](https://github.com/terrazzoapp/terrazzo/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f) Thanks [@drwpow](https://github.com/drwpow)! - Remove unused deps
 
-- Updated dependencies [[`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`482f5cd`](https://github.com/drwpow/cobalt-ui/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f), [`eb942a7`](https://github.com/drwpow/cobalt-ui/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f)]:
+- Updated dependencies [[`482f5cd`](https://github.com/terrazzoapp/terrazzo/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`482f5cd`](https://github.com/terrazzoapp/terrazzo/commit/482f5cd4dfd7dd5bf71b64ae1f103322e6709717), [`152f666`](https://github.com/terrazzoapp/terrazzo/commit/152f66661de125e1c4b9d872794bbcff8b51de8f), [`eb942a7`](https://github.com/terrazzoapp/terrazzo/commit/eb942a7c50a7afd48e73c0f652f34f71f01db68f)]:
   - @cobalt-ui/cli@1.1.0
   - @cobalt-ui/utils@1.1.0
   - @cobalt-ui/plugin-css@1.2.1

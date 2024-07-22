@@ -249,14 +249,17 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
   }
 
   // 2. resolve aliases
+  const resolvedTypes: Record<string, TokenType> = {};
   const values: Record<string, unknown> = {};
 
   // 2a. pass 1: gather all IDs & values
   for (const id in tokens) {
     const token = tokens[id]!;
     values[token.id] = token.$value;
+    resolvedTypes[token.id] = token.$type;
     if (token.$extensions?.mode) {
       for (const k in token.$extensions.mode || {}) {
+        resolvedTypes[`${token.id}#${k}`] = token.$type;
         values[`${token.id}#${k}`] = token.$extensions.mode[k];
       }
     }
@@ -282,7 +285,9 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
         if (typeof ref === 'string' && isAlias(ref) && id === getAliasID(ref)) {
           throw new Error(`${id}: can’t reference circular alias ${strVal}`);
         }
-
+        if (resolvedTypes[nextID]) {
+          resolvedTypes[id] = resolvedTypes[nextID];
+        }
         return values[nextID];
       },
       array(arrVal) {
@@ -324,6 +329,11 @@ export function parse(rawTokens: unknown, options?: ParseOptions): ParseResult {
 
   for (const id in tokens) {
     const token = tokens[id]!;
+    // aliases are allowed to omit $type
+    if (!token.$type && resolvedTypes[id]) {
+      (token as any).$type = resolvedTypes[id];
+    }
+
     try {
       switch (token.$type) {
         // 8.1 Color

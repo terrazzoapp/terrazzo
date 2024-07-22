@@ -54,7 +54,9 @@ export default defineConfig({
     nav: [
       {
         text: `v${packageJSON.version}`,
-        items: [{ text: 'Changelog', link: 'https://github.com/drwpow/cobalt-ui/blob/main/packages/cli/CHANGELOG.md' }],
+        items: [
+          { text: 'Changelog', link: 'https://github.com/terrazzoapp/terrazzo/blob/1.x/packages/cli/CHANGELOG.md' },
+        ],
       },
     ],
     sidebar: [
@@ -128,6 +130,6 @@ export default defineConfig({
         indexName: 'cobalt-ui',
       },
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/drwpow/cobalt-ui' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/terrazzoapp/terrazzo/tree/1.x' }],
   },
 });

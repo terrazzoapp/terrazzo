@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/plugin-sass"
   },
   "homepage": "https://cobalt-ui.pages.dev",
@@ -37,8 +37,8 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@cobalt-ui/cli": "^1.11.0",
-    "@cobalt-ui/plugin-css": "^1.7.0"
+    "@cobalt-ui/cli": "workspace:^",
+    "@cobalt-ui/plugin-css": "workspace:^"
   },
   "dependencies": {
     "@cobalt-ui/utils": "workspace:^",

@@ -38,6 +38,8 @@ export type Token =
   | GradientToken
   | TypographyToken;
 
+export type AliasToken = TokenBase;
+
 export type TokenOrGroup = Token | Group;
 export type TokenType = Token['$type'];
 export interface ParsedTokenBase<T = string> extends TokenBase<T> {
@@ -70,7 +72,7 @@ export interface ColorToken extends TokenBase<string> {
 }
 export interface ParsedColorToken extends ParsedTokenBase<string> {
   $type: 'color';
-  _original: ColorToken;
+  _original: AliasToken | ColorToken;
 }
 
 // 8.2 Dimension
@@ -80,7 +82,7 @@ export interface DimensionToken extends TokenBase<string> {
 }
 export interface ParsedDimensionToken extends ParsedTokenBase<string> {
   $type: 'dimension';
-  _original: DimensionToken;
+  _original: AliasToken | DimensionToken;
 }
 
 // 8.3 FontFamily
@@ -90,7 +92,7 @@ export interface FontFamilyToken extends TokenBase<string | string[]> {
 }
 export interface ParsedFontFamilyToken extends ParsedTokenBase<string[]> {
   $type: 'fontFamily';
-  _original: FontFamilyToken;
+  _original: AliasToken | FontFamilyToken;
 }
 
 // 8.4 fontWeight
@@ -101,7 +103,7 @@ export interface FontWeightToken extends TokenBase<number> {
 
 export interface ParsedFontWeightToken extends ParsedTokenBase<number> {
   $type: 'fontWeight';
-  _original: FontWeightToken;
+  _original: AliasToken | FontWeightToken;
 }
 
 // 8.5 Duration
@@ -111,7 +113,7 @@ export interface DurationToken extends TokenBase<string> {
 }
 export interface ParsedDurationToken extends ParsedTokenBase<string> {
   $type: 'duration';
-  _original: DurationToken;
+  _original: AliasToken | DurationToken;
 }
 
 // 8.6 Cubic Bezier
@@ -121,7 +123,7 @@ export interface CubicBezierToken extends TokenBase<[number, number, number, num
 }
 export interface ParsedCubicBezierToken extends ParsedTokenBase<[number, number, number, number]> {
   $type: 'cubicBezier';
-  _original: CubicBezierToken;
+  _original: AliasToken | CubicBezierToken;
 }
 
 // 8.7 Number
@@ -132,7 +134,7 @@ export interface NumberToken extends TokenBase<number> {
 
 export interface ParsedNumberToken extends ParsedTokenBase<number> {
   $type: 'number';
-  _original: NumberToken;
+  _original: AliasToken | NumberToken;
 }
 
 // 8.? Link
@@ -142,7 +144,7 @@ export interface LinkToken extends TokenBase<string> {
 }
 export interface ParsedLinkToken extends ParsedTokenBase<string> {
   $type: 'link';
-  _original: LinkToken;
+  _original: AliasToken | LinkToken;
 }
 
 // 9.2 Stroke style
@@ -153,7 +155,7 @@ export interface StrokeStyleToken extends TokenBase<StrokeStyleValue> {
 
 export interface ParsedStrokeStyleToken extends ParsedTokenBase<StrokeStyleValue> {
   $type: 'strokeStyle';
-  _original: StrokeStyleToken;
+  _original: AliasToken | StrokeStyleToken;
 }
 
 export type StrokeStyleValue =
@@ -177,7 +179,7 @@ export interface BorderToken extends TokenBase<Partial<BorderTokenValue>> {
 
 export interface ParsedBorderToken extends ParsedTokenBase<BorderTokenValue> {
   $type: 'border';
-  _original: BorderToken;
+  _original: AliasToken | BorderToken;
 }
 
 // 9.4 Transition
@@ -192,7 +194,7 @@ export interface TransitionToken extends TokenBase<Partial<TransitionValue>> {
 }
 export interface ParsedTransitionToken extends ParsedTokenBase<TransitionValue> {
   $type: 'transition';
-  _original: TransitionToken;
+  _original: AliasToken | TransitionToken;
 }
 
 // 9.5 Shadow
@@ -211,7 +213,7 @@ export interface ShadowToken extends TokenBase<Partial<ShadowValue> | Partial<Sh
 }
 export interface ParsedShadowToken extends ParsedTokenBase<ShadowValue[]> {
   $type: 'shadow';
-  _original: ShadowToken;
+  _original: AliasToken | ShadowToken;
 }
 
 // 9.6 Gradient
@@ -225,7 +227,7 @@ export interface GradientToken extends TokenBase<Partial<GradientStop>[]> {
 }
 export interface ParsedGradientToken extends ParsedTokenBase<GradientStop[]> {
   $type: 'gradient';
-  _original: GradientToken;
+  _original: AliasToken | GradientToken;
 }
 
 // 9.7 Typography
@@ -246,5 +248,5 @@ export interface TypographyToken extends TokenBase<Partial<TypographyValue>> {
 }
 export interface ParsedTypographyToken extends ParsedTokenBase<Partial<ParsedTypographyValue>> {
   $type: 'typography';
-  _original: TypographyToken;
+  _original: AliasToken | TypographyToken;
 }

@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/lint-a11y"
   },
   "homepage": "https://cobalt-ui.pages.dev",
@@ -53,9 +53,9 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@types/apca-w3": "^0.1.3",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "execa": "^8.0.1",
     "strip-ansi": "^7.1.0",
-    "yaml": "^2.4.1"
+    "yaml": "^2.4.5"
   }
 }

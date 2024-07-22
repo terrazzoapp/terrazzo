@@ -21,7 +21,7 @@ describe('co check', () => {
     const result = await execa('node', [
       './bin/cli.js',
       'check',
-      'https://raw.githubusercontent.com/drwpow/cobalt-ui/main/packages/cli/test/fixtures/check-default/tokens.json',
+      'https://raw.githubusercontent.com/terrazzoapp/terrazzo/1.x/packages/cli/test/fixtures/check-default/tokens.json',
     ]);
     expect(result.exitCode).toBe(0);
   });

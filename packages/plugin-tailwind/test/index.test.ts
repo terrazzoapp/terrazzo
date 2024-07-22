@@ -13,6 +13,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
         tailwind: {
           theme: {
             color: {
+              bg: 'color.bg',
               blue: {
                 50: 'color.blue.0',
                 100: 'color.blue.1',
@@ -39,6 +40,7 @@ describe('@cobalt-ui/plugin-tailwind', () => {
                 900: 'color.blue.9',
                 950: 'color.blue.9',
               },
+              text: 'color.text',
             },
             fontFamily: {
               sans: 'font.family.system',

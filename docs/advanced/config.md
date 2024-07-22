@@ -121,7 +121,7 @@ The following official plugins are available. Refer to each’s documentation to
 - @cobalt-ui/plugin-swift: TODO
 - @cobalt-ui/plugin-elixir: TODO
 
-_If you’ve created a Cobalt plugin of your own, please [suggest yours](https://github.com/drwpow/cobalt-ui)!_
+_If you’ve created a Cobalt plugin of your own, please [suggest yours](https://github.com/terrazzoapp/terrazzo/tree/1.x)!_
 
 ### Custom Plugins
 
