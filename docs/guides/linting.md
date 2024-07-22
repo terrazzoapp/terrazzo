@@ -562,7 +562,7 @@ export default {
 
 You can also build your own linter by [creating your own plugin and giving it a lint step](/advanced/plugin-api#lint). It’s easier than you might think!
 
-Have you built a plugin you’d like to add here? [Suggest it!](https://github.com/drwpow/cobalt-ui/blob/main/CONTRIBUTING.md)
+Have you built a plugin you’d like to add here? [Suggest it!](https://github.com/terrazzoapp/terrazzo/blob/1.x/CONTRIBUTING.md)
 
 ## Adding to CI
 

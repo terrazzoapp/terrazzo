@@ -40,7 +40,7 @@ pnpm test
 
 All PRs are welcome! But to save your time, here are some common PRs received and the best course of action to take:
 
-_✨ **Tip**: check out the [good first issue](https://github.com/drwpow/cobalt-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/drwpow/cobalt-ui/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!_
+_✨ **Tip**: check out the [good first issue](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!_
 
 ### 🐛 Bugfixes
 

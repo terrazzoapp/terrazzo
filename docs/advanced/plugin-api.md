@@ -131,7 +131,7 @@ Cobalt executes in the following order:
 
 ::: info
 
-In an [upcoming release](https://github.com/drwpow/cobalt-ui/issues/201), Cobalt will add more stages to building so plugins can “chain” and work off one another.
+In an [upcoming release](https://github.com/terrazzoapp/terrazzo/issues/201), Cobalt will add more stages to building so plugins can “chain” and work off one another.
 
 :::
 
@@ -321,4 +321,4 @@ See the **Tips & recommendations** section of token pages to learn more about wo
 
 ## Examples
 
-Examples of plugins may be found [in the original source repo](https://github.com/drwpow/cobalt-ui/tree/main/packages).
+Examples of plugins may be found [in the original source repo](https://github.com/terrazzoapp/terrazzo/tree/1.x/packages).

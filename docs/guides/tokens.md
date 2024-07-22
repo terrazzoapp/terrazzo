@@ -105,7 +105,7 @@ Cobalt **is NOT** its own format; it is an implementation of DTCG as close to th
   - Typography: any CSS text property is accepted (the spec doesn’t allow things like `font-variant`).
 - [Modes](/guides/modes) are allowed.
 
-Any other deviations are considered unintentional. Please [file an issue](https://github.com/drwpow/cobalt-ui/issues) if you run across any!
+Any other deviations are considered unintentional. Please [file an issue](https://github.com/terrazzoapp/terrazzo/issues) if you run across any!
 
 ## JSON or YAML?
 

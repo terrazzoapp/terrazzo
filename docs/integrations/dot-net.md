@@ -6,7 +6,7 @@ title: .NET
 
 There is no official Cobalt integration for the .NET platform, but here are some community plugins to try:
 
-Have your own plugin to share? [Add it!](https://github.com/drwpow/cobalt-ui/pull)
+Have your own plugin to share? [Add it!](https://github.com/terrazzoapp/terrazzo/pull)
 
 ## MAUI
 

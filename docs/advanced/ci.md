@@ -60,4 +60,4 @@ Cobalt can lint your tokens and fail if your tokens don’t meet minimum color c
 
 ## Publishing to npm
 
-You could then take the additional step of using a package versioning tool like [Changesets](https://github.com/changesets/changesets) to release npm packages from CI ([Cobalt does this!](https://github.com/drwpow/cobalt-ui/blob/main/.github/workflows/release.yml)).
+You could then take the additional step of using a package versioning tool like [Changesets](https://github.com/changesets/changesets) to release npm packages from CI ([Cobalt does this!](https://github.com/terrazzoapp/terrazzo/blob/1lx/.github/workflows/release.yml)).

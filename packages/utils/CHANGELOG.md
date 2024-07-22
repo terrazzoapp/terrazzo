@@ -4,55 +4,55 @@
 
 ### Patch Changes
 
-- [#238](https://github.com/drwpow/cobalt-ui/pull/238) [`4b02c6bde0067950cbcb7b81163488c45bbc65c9`](https://github.com/drwpow/cobalt-ui/commit/4b02c6bde0067950cbcb7b81163488c45bbc65c9) Thanks [@drwpow](https://github.com/drwpow)! - Add additional helper utils
+- [#238](https://github.com/terrazzoapp/terrazzo/pull/238) [`4b02c6bde0067950cbcb7b81163488c45bbc65c9`](https://github.com/terrazzoapp/terrazzo/commit/4b02c6bde0067950cbcb7b81163488c45bbc65c9) Thanks [@drwpow](https://github.com/drwpow)! - Add additional helper utils
 
 ## 1.2.5
 
 ### Patch Changes
 
-- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/drwpow/cobalt-ui/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Add indentLine and indentBlock helpers
+- [`a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414`](https://github.com/terrazzoapp/terrazzo/commit/a00e3c6d8ffb4ab8e4473a2c0152b3cd199a8414) Thanks [@drwpow](https://github.com/drwpow)! - Add indentLine and indentBlock helpers
 
 ## 1.2.4
 
 ### Patch Changes
 
-- [#196](https://github.com/drwpow/cobalt-ui/pull/196) [`030aba674d825d333c61ed2251b6355044098f1d`](https://github.com/drwpow/cobalt-ui/commit/030aba674d825d333c61ed2251b6355044098f1d) Thanks [@drwpow](https://github.com/drwpow)! - Update getAliasID to ignore modes
+- [#196](https://github.com/terrazzoapp/terrazzo/pull/196) [`030aba674d825d333c61ed2251b6355044098f1d`](https://github.com/terrazzoapp/terrazzo/commit/030aba674d825d333c61ed2251b6355044098f1d) Thanks [@drwpow](https://github.com/drwpow)! - Update getAliasID to ignore modes
 
 ## 1.2.3
 
 ### Patch Changes
 
-- [#189](https://github.com/drwpow/cobalt-ui/pull/189) [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/drwpow/cobalt-ui/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42) Thanks [@drwpow](https://github.com/drwpow)! - Move glob matching to @cobalt-ui/utils
+- [#189](https://github.com/terrazzoapp/terrazzo/pull/189) [`a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42`](https://github.com/terrazzoapp/terrazzo/commit/a2afdc48a9cda210eafc59c4f4f9af1e5bb3dc42) Thanks [@drwpow](https://github.com/drwpow)! - Move glob matching to @cobalt-ui/utils
 
 ## 1.2.2
 
 ### Patch Changes
 
-- [#104](https://github.com/drwpow/cobalt-ui/pull/104) [`c391da1`](https://github.com/drwpow/cobalt-ui/commit/c391da12ddb342e6bea90197d53052ef6d6fdbfe) Thanks [@drwpow](https://github.com/drwpow)! - Add getLocalID util
+- [#104](https://github.com/terrazzoapp/terrazzo/pull/104) [`c391da1`](https://github.com/terrazzoapp/terrazzo/commit/c391da12ddb342e6bea90197d53052ef6d6fdbfe) Thanks [@drwpow](https://github.com/drwpow)! - Add getLocalID util
 
 ## 1.2.1
 
 ### Patch Changes
 
-- [#92](https://github.com/drwpow/cobalt-ui/pull/92) [`e859bef`](https://github.com/drwpow/cobalt-ui/commit/e859bef2dea05c5087c4205f3ef89dc8273361a3) Thanks [@drwpow](https://github.com/drwpow)! - Fix JS objKey utility
+- [#92](https://github.com/terrazzoapp/terrazzo/pull/92) [`e859bef`](https://github.com/terrazzoapp/terrazzo/commit/e859bef2dea05c5087c4205f3ef89dc8273361a3) Thanks [@drwpow](https://github.com/drwpow)! - Fix JS objKey utility
 
 ## 1.2.0
 
 ### Minor Changes
 
-- [#79](https://github.com/drwpow/cobalt-ui/pull/79) [`2963b21`](https://github.com/drwpow/cobalt-ui/commit/2963b215e31096290acadd247963105646248bb2) Thanks [@mike-engel](https://github.com/mike-engel)! - Allow JS plugin output to be nested
+- [#79](https://github.com/terrazzoapp/terrazzo/pull/79) [`2963b21`](https://github.com/terrazzoapp/terrazzo/commit/2963b215e31096290acadd247963105646248bb2) Thanks [@mike-engel](https://github.com/mike-engel)! - Allow JS plugin output to be nested
 
 ## 1.1.1
 
 ### Patch Changes
 
-- [#45](https://github.com/drwpow/cobalt-ui/pull/45) [`4e4e2c0`](https://github.com/drwpow/cobalt-ui/commit/4e4e2c03ed0750306633fe757396733b8f6db385) Thanks [@drwpow](https://github.com/drwpow)! - Fix release script
+- [#45](https://github.com/terrazzoapp/terrazzo/pull/45) [`4e4e2c0`](https://github.com/terrazzoapp/terrazzo/commit/4e4e2c03ed0750306633fe757396733b8f6db385) Thanks [@drwpow](https://github.com/drwpow)! - Fix release script
 
 ## 1.1.0
 
 ### Minor Changes
 
-- [#32](https://github.com/drwpow/cobalt-ui/pull/32) [`152f666`](https://github.com/drwpow/cobalt-ui/commit/152f66661de125e1c4b9d872794bbcff8b51de8f) Thanks [@drwpow](https://github.com/drwpow)! - Move getAliasID to utils
+- [#32](https://github.com/terrazzoapp/terrazzo/pull/32) [`152f666`](https://github.com/terrazzoapp/terrazzo/commit/152f66661de125e1c4b9d872794bbcff8b51de8f) Thanks [@drwpow](https://github.com/drwpow)! - Move getAliasID to utils
 
 ## 1.0.0
 

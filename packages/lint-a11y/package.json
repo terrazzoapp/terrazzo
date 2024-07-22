@@ -23,7 +23,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/drwpow/cobalt-ui.git",
+    "url": "git+https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/lint-a11y"
   },
   "homepage": "https://cobalt-ui.pages.dev",

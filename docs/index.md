@@ -15,7 +15,7 @@ hero:
       link: /guides/getting-started
     - theme: alt
       text: View on GitHub
-      link: https://github.com/drwpow/cobalt-ui
+      link: https://github.com/terrazzoapp/terrazzo/tree/1.x
 features:
   - title: Supports DTCG format
     details: Use the universal design token standard for the widest compatibility and no vendor lock-in
