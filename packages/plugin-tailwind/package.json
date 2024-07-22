@@ -46,7 +46,7 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/core": "workspace:^",
-    "tailwindcss": "^3.4.1",
-    "yaml": "^2.4.1"
+    "tailwindcss": "^3.4.6",
+    "yaml": "^2.4.5"
   }
 }

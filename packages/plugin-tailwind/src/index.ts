@@ -64,6 +64,7 @@ export default function pluginTailwind(options: Options): Plugin {
               return JSON.stringify(token.$value);
             }
             const nextValue = defaultTransformer(token, { colorFormat: 'none' });
+            console.log({ nextValue });
             if (typeof nextValue === 'object') {
               throw new Error(`Unsupported token type: "${token.$type}"`);
             }

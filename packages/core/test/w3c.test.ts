@@ -57,7 +57,7 @@ describe('7. Alias', () => {
   test('top-level', () => {
     const json = {
       a: { $type: 'number', $value: 2 },
-      b: { $type: 'number', $value: '{a}' },
+      b: { $value: '{a}' },
     };
     const tokens = getTokens(json);
     expect(tokens.find((t) => t.id === 'a')?.$value).toBe(json.a.$value);
@@ -68,7 +68,7 @@ describe('7. Alias', () => {
     const json = {
       color: {
         blue: { $type: 'color', $value: '#218bff', $extensions: { mode: { dark: '#388bfd' } } },
-        darkBlue: { $type: 'color', $value: '{color.blue#dark}' },
+        darkBlue: { $value: '{color.blue#dark}' },
       },
     };
     const tokens = getTokens(json);
@@ -78,7 +78,7 @@ describe('7. Alias', () => {
   test('missing', () => {
     const json = {
       color: {
-        green: { $type: 'color', $value: '{color.emerald}' },
+        green: { $value: '{color.emerald}' },
       },
     };
     const { errors } = parse(json, DEFAULT_PARSE_OPTIONS);
@@ -87,9 +87,9 @@ describe('7. Alias', () => {
 
   test('circular', () => {
     const json = {
-      a: { $type: 'color', $value: '{b}' },
-      b: { $type: 'color', $value: '{c}' },
-      c: { $type: 'color', $value: '{a}' },
+      a: { $value: '{b}' },
+      b: { $value: '{c}' },
+      c: { $value: '{a}' },
     };
     const { errors } = parse(json, DEFAULT_PARSE_OPTIONS);
     expect(errors).to.deep.equal(['c: can’t reference circular alias {a}']);

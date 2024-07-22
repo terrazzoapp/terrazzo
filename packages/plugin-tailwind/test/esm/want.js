@@ -6,6 +6,7 @@
 
 export default {
   color: {
+    bg: "var(--color-gray-0)",
     blue: {
       '50': "#ddf4ff",
       '100': "#b6e3ff",
@@ -32,6 +33,7 @@ export default {
       '900': "#002155",
       '950': "#002155",
     },
+    text: "var(--color-gray-9)",
   },
   fontFamily: {
     sans: ["-apple-system,","BlinkMacSystemFont","Segoe UI","Helvetica","Arial","sans-serif","Apple Color Emoji","Segoe UI Emoji"],

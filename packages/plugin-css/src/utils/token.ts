@@ -55,9 +55,8 @@ export function varRef(
     token && options?.property && typeof token.$value === 'object' && !!(token.$value as any)[options.property]
       ? options.property
       : undefined;
-  return `var(${options?.generateName?.(variableId, token) ?? defaultNameGenerator(variableId, options?.prefix)}${
-    property ? `-${kebabinate(property)}` : ''
-  })`;
+  const name = options?.generateName?.(variableId, token) ?? `--${defaultNameGenerator(variableId, options?.prefix)}`;
+  return `var(${name}${property ? `-${kebabinate(property)}` : ''})`;
 }
 
 function normalizeIdSegment(inputString: string): string {

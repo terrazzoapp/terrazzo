@@ -50,6 +50,6 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/core": "workspace:^",
-    "yaml": "^2.4.2"
+    "yaml": "^2.4.5"
   }
 }
