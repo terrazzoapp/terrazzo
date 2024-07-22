@@ -1,5 +1,11 @@
 # @cobalt-ui/plugin-css
 
+## 1.7.5
+
+### Patch Changes
+
+- Fix issue with alias tokens and default name transformer (generates bad CSS)
+
 ## 1.7.4
 
 ### Patch Changes

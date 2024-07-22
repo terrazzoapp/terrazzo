@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.11.3
+
+### Patch Changes
+
+- Aliases don’t need `$type`s
+
 ## 1.11.2
 
 ### Patch Changes
