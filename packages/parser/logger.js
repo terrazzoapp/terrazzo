@@ -1,5 +1,6 @@
 import { codeFrameColumns } from '@babel/code-frame';
 import color from 'picocolors';
+import { fileURLToPath } from 'node:url';
 import wcmatch from 'wildcard-match';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'];
@@ -24,7 +25,7 @@ export function formatMessage(entry, severity) {
     message = MESSAGE_COLOR[severity](message);
   }
   if (entry.source) {
-    message = `${message}\n\n${codeFrameColumns(entry.source, { start: entry.node?.loc?.start })}`;
+    message = `${message}\n\n${entry.filename ? `${fileURLToPath(entry.filename)}\n` : ''}${codeFrameColumns(entry.source, { start: entry.node?.loc?.start })}`;
   }
   return message;
 }

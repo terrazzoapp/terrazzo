@@ -6,6 +6,7 @@ import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
 
 const cwd = new URL(import.meta.url);
+const DEFAULT_FILENAME = new URL('file:///tokens.json');
 
 describe('Tokens', () => {
   type Test = [
@@ -46,12 +47,17 @@ describe('Tokens', () => {
       [
         'valid: primitive',
         {
-          given: {
-            color: {
-              base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
-              semantic: { $value: '{color.base.blue.500}' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                  semantic: { $value: '{color.base.blue.500}' },
+                },
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
@@ -73,10 +79,15 @@ describe('Tokens', () => {
       [
         'valid: Font Weight',
         {
-          given: {
-            font: { weight: { bold: { $type: 'fontWeight', $value: 700 } } },
-            bold: { $type: 'fontWeight', $value: '{font.weight.bold}' },
-          },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                font: { weight: { bold: { $type: 'fontWeight', $value: 700 } } },
+                bold: { $type: 'fontWeight', $value: '{font.weight.bold}' },
+              },
+            },
+          ],
           want: {
             tokens: {
               'font.weight.bold': 700,
@@ -104,17 +115,22 @@ describe('Tokens', () => {
       [
         'valid: Stroke Style',
         {
-          given: {
-            buttonStroke: {
-              $type: 'strokeStyle',
-              $value: { lineCap: 'round', dashArray: ['{size.2}', '{size.3}'] },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                buttonStroke: {
+                  $type: 'strokeStyle',
+                  $value: { lineCap: 'round', dashArray: ['{size.2}', '{size.3}'] },
+                },
+                size: {
+                  $type: 'dimension',
+                  '2': { $value: '0.125rem' },
+                  '3': { $value: '0.25rem' },
+                },
+              },
             },
-            size: {
-              $type: 'dimension',
-              '2': { $value: '0.125rem' },
-              '3': { $value: '0.25rem' },
-            },
-          },
+          ],
           want: {
             tokens: {
               buttonStroke: { lineCap: 'round', dashArray: ['0.125rem', '0.25rem'] },
@@ -127,21 +143,26 @@ describe('Tokens', () => {
       [
         'valid: Border',
         {
-          given: {
-            color: { $type: 'color', semantic: { subdued: { $value: 'color(srgb 0 0 0 / 0.1)' } } },
-            border: {
-              size: { $type: 'dimension', default: { $value: '1px' } },
-              style: { $type: 'strokeStyle', default: { $value: 'solid' } },
-            },
-            buttonBorder: {
-              $type: 'border',
-              $value: {
-                color: '{color.semantic.subdued}',
-                width: '{border.size.default}',
-                style: '{border.style.default}',
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: { $type: 'color', semantic: { subdued: { $value: 'color(srgb 0 0 0 / 0.1)' } } },
+                border: {
+                  size: { $type: 'dimension', default: { $value: '1px' } },
+                  style: { $type: 'strokeStyle', default: { $value: 'solid' } },
+                },
+                buttonBorder: {
+                  $type: 'border',
+                  $value: {
+                    color: '{color.semantic.subdued}',
+                    width: '{border.size.default}',
+                    style: '{border.style.default}',
+                  },
+                },
               },
             },
-          },
+          ],
           want: {
             tokens: {
               'color.semantic.subdued': { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
@@ -159,25 +180,30 @@ describe('Tokens', () => {
       [
         'valid: Gradient',
         {
-          given: {
-            color: {
-              $type: 'color',
-              blue: { 500: { $value: 'rgb(2, 101, 220)' } },
-              purple: { 800: { $value: 'rgb(93, 19, 183)' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  $type: 'color',
+                  blue: { 500: { $value: 'rgb(2, 101, 220)' } },
+                  purple: { 800: { $value: 'rgb(93, 19, 183)' } },
+                },
+                perc: {
+                  $type: 'number',
+                  0: { $value: 0 },
+                  100: { $value: 1 },
+                },
+                gradient: {
+                  $type: 'gradient',
+                  $value: [
+                    { color: '{color.blue.500}', position: '{perc.0}' },
+                    { color: '{color.purple.800}', position: '{perc.100}' },
+                  ],
+                },
+              },
             },
-            perc: {
-              $type: 'number',
-              0: { $value: 0 },
-              100: { $value: 1 },
-            },
-            gradient: {
-              $type: 'gradient',
-              $value: [
-                { color: '{color.blue.500}', position: '{perc.0}' },
-                { color: '{color.purple.800}', position: '{perc.100}' },
-              ],
-            },
-          },
+          ],
           want: {
             tokens: {
               'color.blue.500': {
@@ -217,17 +243,22 @@ describe('Tokens', () => {
       [
         'valid: deep, but noncircular',
         {
-          given: {
-            alias: {
-              $type: 'color',
-              a: { $value: '{alias.b}' },
-              b: { $value: '{alias.c}' },
-              c: { $value: '{alias.d}' },
-              d: { $value: '{alias.e}' },
-              e: { $value: '{alias.f}' },
-              f: { $value: '#808080' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                alias: {
+                  $type: 'color',
+                  a: { $value: '{alias.b}' },
+                  b: { $value: '{alias.c}' },
+                  c: { $value: '{alias.d}' },
+                  d: { $value: '{alias.e}' },
+                  e: { $value: '{alias.f}' },
+                  f: { $value: '#808080' },
+                },
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               'alias.a': {
@@ -265,9 +296,73 @@ describe('Tokens', () => {
         },
       ],
       [
+        'invalid: not found',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                  semantic: { $value: '{color.base.blue.600}' },
+                },
+              },
+            },
+          ],
+          want: {
+            error: `Alias "{color.base.blue.600}" not found
+
+   9 |       }
+  10 |     },
+> 11 |     "semantic": {
+     |                 ^
+  12 |       "$value": "{color.base.blue.600}"
+  13 |     }
+  14 |   }`,
+          },
+        },
+      ],
+      [
+        'invalid: not found (multiple files)',
+        {
+          given: [
+            {
+              filename: new URL('file:///a.json'),
+              src: {
+                color: {
+                  base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                },
+              },
+            },
+            {
+              filename: new URL('file:///b.json'),
+              src: {
+                semantic: { $value: '{color.base.blue.600}' },
+              },
+            },
+          ],
+          want: {
+            error: `Alias "{color.base.blue.600}" not found
+
+   9 |       }
+  10 |     },
+> 11 |     "semantic": {
+     |                 ^
+  12 |       "$value": "{color.base.blue.600}"
+  13 |     }
+  14 |   }`,
+          },
+        },
+      ],
+      [
         'invalid: bad syntax',
         {
-          given: { alias: { $value: '{foo.bar' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { alias: { $value: '{foo.bar' } },
+            },
+          ],
           want: {
             error: `Invalid alias: "{foo.bar"
 
@@ -283,12 +378,17 @@ describe('Tokens', () => {
       [
         'invalid: Gradient (bad syntax)',
         {
-          given: {
-            gradient: {
-              $type: 'gradient',
-              $value: [{ color: '{color.blue.500', position: '{perc.0}' }],
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                gradient: {
+                  $type: 'gradient',
+                  $value: [{ color: '{color.blue.500', position: '{perc.0}' }],
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Invalid alias: "{color.blue.500"
 
@@ -305,13 +405,18 @@ describe('Tokens', () => {
       [
         'invalid: circular',
         {
-          given: {
-            color: {
-              $type: 'color',
-              primary: { $value: '{color.text.primary}' },
-              text: { primary: { $value: '{color.primary}' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  $type: 'color',
+                  primary: { $value: '{color.text.primary}' },
+                  text: { primary: { $value: '{color.primary}' } },
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Circular alias detected from "{color.text.primary}"
 
@@ -335,21 +440,36 @@ describe('Tokens', () => {
       [
         'valid: color()',
         {
-          given: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
+            },
+          ],
           want: { tokens: { 'color.cobalt': { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } },
         },
       ],
       [
         'valid: object',
         {
-          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
+            },
+          ],
           want: { tokens: { 'color.cobalt': { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } },
         },
       ],
       [
         'invalid: empty string',
         {
-          given: { color: { $type: 'color', $value: '' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { $type: 'color', $value: '' } },
+            },
+          ],
           want: {
             error: `Expected color, received empty string
 
@@ -365,7 +485,12 @@ describe('Tokens', () => {
       [
         'invalid: number',
         {
-          given: { color: { $type: 'color', $value: 0x000000 } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { $type: 'color', $value: 0x000000 } },
+            },
+          ],
           want: {
             error: `Expected object, received Number
 
@@ -381,7 +506,12 @@ describe('Tokens', () => {
       [
         'invalid: missing colorSpace',
         {
-          given: { color: { cobalt: { $type: 'color', $value: { channels: [0.3, 0.6, 1] } } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { cobalt: { $type: 'color', $value: { channels: [0.3, 0.6, 1] } } } },
+            },
+          ],
           want: {
             error: `Missing required property "colorSpace"
 
@@ -398,7 +528,12 @@ describe('Tokens', () => {
       [
         'invalid: missing channels',
         {
-          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb' } } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb' } } } },
+            },
+          ],
           want: {
             error: `Missing required property "channels"
 
@@ -415,9 +550,19 @@ describe('Tokens', () => {
       [
         'invalid: wrong number of channels',
         {
-          given: {
-            color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1, 0.2] } } },
-          },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                filename: DEFAULT_FILENAME,
+                src: [
+                  {
+                    color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1, 0.2] } } },
+                  },
+                ],
+              },
+            },
+          ],
           want: {
             error: `Expected 3 channels, received 4
 
@@ -434,7 +579,14 @@ describe('Tokens', () => {
       [
         'invalid: unknown colorSpace',
         {
-          given: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', channels: [0.3, 0.6, 1] } } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', channels: [0.3, 0.6, 1] } } },
+              },
+            },
+          ],
           want: {
             error: `Unsupported colorspace "mondrian"
 
@@ -451,11 +603,16 @@ describe('Tokens', () => {
       [
         'invalid: bad alpha value',
         {
-          given: {
-            color: {
-              cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 'quack' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 'quack' } },
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Expected number, received String
 
@@ -472,11 +629,16 @@ describe('Tokens', () => {
       [
         'invalid: bad hex fallback',
         {
-          given: {
-            color: {
-              cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', channels: [0.3, 0.6, 1] } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', channels: [0.3, 0.6, 1] } },
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Invalid hex color "#abcde"
 
@@ -500,21 +662,31 @@ describe('Tokens', () => {
       [
         'valid: rem',
         {
-          given: { xs: { $type: 'dimension', $value: '0.5rem' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { xs: { $type: 'dimension', $value: '0.5rem' } },
+            },
+          ],
           want: { tokens: { xs: '0.5rem' } },
         },
       ],
       [
         'valid: px',
         {
-          given: { xs: { $type: 'dimension', $value: '12px' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { xs: { $type: 'dimension', $value: '12px' } },
+            },
+          ],
           want: { tokens: { xs: '12px' } },
         },
       ],
       [
         'invalid: empty string',
         {
-          given: { xs: { $type: 'dimension', $value: '' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '' } } }],
           want: {
             error: `Expected dimension, received empty string
 
@@ -530,7 +702,7 @@ describe('Tokens', () => {
       [
         'invalid: no number',
         {
-          given: { xs: { $type: 'dimension', $value: 'rem' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: 'rem' } } }],
           want: {
             error: `Expected dimension with units, received "rem"
 
@@ -546,7 +718,7 @@ describe('Tokens', () => {
       [
         'invalid: no units',
         {
-          given: { xs: { $type: 'dimension', $value: '16' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '16' } } }],
           want: {
             error: `Missing units
 
@@ -562,7 +734,7 @@ describe('Tokens', () => {
       [
         'invalid: number',
         {
-          given: { xs: { $type: 'dimension', $value: 42 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: 42 } } }],
           want: {
             error: `Expected string, received Number
 
@@ -578,7 +750,7 @@ describe('Tokens', () => {
       [
         'valid: 0',
         {
-          given: { '00': { $type: 'dimension', $value: 0 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: 0 } } }],
           want: { tokens: { '00': '0' } },
         },
       ],
@@ -592,21 +764,26 @@ describe('Tokens', () => {
       [
         'valid: string',
         {
-          given: { base: { $type: 'fontFamily', $value: 'Helvetica' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 'Helvetica' } } }],
           want: { tokens: { base: ['Helvetica'] } },
         },
       ],
       [
         'valid: string[]',
         {
-          given: { base: { $type: 'fontFamily', $value: ['Helvetica', 'system-ui', 'sans-serif'] } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { base: { $type: 'fontFamily', $value: ['Helvetica', 'system-ui', 'sans-serif'] } },
+            },
+          ],
           want: { tokens: { base: ['Helvetica', 'system-ui', 'sans-serif'] } },
         },
       ],
       [
         'invalid: empty string',
         {
-          given: { base: { $type: 'fontFamily', $value: '' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: '' } } }],
           want: {
             error: `Expected font family name, received empty string
 
@@ -622,7 +799,7 @@ describe('Tokens', () => {
       [
         'invalid: empty string in array',
         {
-          given: { base: { $type: 'fontFamily', $value: [''] } },
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: [''] } } }],
           want: {
             error: `Expected an array of strings, received some non-strings or empty strings
 
@@ -639,7 +816,7 @@ describe('Tokens', () => {
       [
         'invalid: number',
         {
-          given: { base: { $type: 'fontFamily', $value: 200 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 200 } } }],
           want: {
             error: `Expected string or array of strings, received Number
 
@@ -662,36 +839,41 @@ describe('Tokens', () => {
       [
         'valid: number',
         {
-          given: { bold: { $type: 'fontWeight', $value: 700 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { bold: { $type: 'fontWeight', $value: 700 } } }],
           want: { tokens: { bold: 700 } },
         },
       ],
       [
         'valid: weight name',
         {
-          given: {
-            fontWeight: {
-              $type: 'fontWeight',
-              thin: { $value: 'thin' },
-              hairline: { $value: 'hairline' },
-              'extra-light': { $value: 'extra-light' },
-              'ultra-light': { $value: 'ultra-light' },
-              light: { $value: 'light' },
-              normal: { $value: 'normal' },
-              regular: { $value: 'regular' },
-              book: { $value: 'book' },
-              medium: { $value: 'medium' },
-              'semi-bold': { $value: 'semi-bold' },
-              'demi-bold': { $value: 'demi-bold' },
-              bold: { $value: 'bold' },
-              'extra-bold': { $value: 'extra-bold' },
-              'ultra-bold': { $value: 'ultra-bold' },
-              black: { $value: 'black' },
-              heavy: { $value: 'heavy' },
-              'extra-black': { $value: 'extra-black' },
-              'ultra-black': { $value: 'ultra-black' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                fontWeight: {
+                  $type: 'fontWeight',
+                  thin: { $value: 'thin' },
+                  hairline: { $value: 'hairline' },
+                  'extra-light': { $value: 'extra-light' },
+                  'ultra-light': { $value: 'ultra-light' },
+                  light: { $value: 'light' },
+                  normal: { $value: 'normal' },
+                  regular: { $value: 'regular' },
+                  book: { $value: 'book' },
+                  medium: { $value: 'medium' },
+                  'semi-bold': { $value: 'semi-bold' },
+                  'demi-bold': { $value: 'demi-bold' },
+                  bold: { $value: 'bold' },
+                  'extra-bold': { $value: 'extra-bold' },
+                  'ultra-bold': { $value: 'ultra-bold' },
+                  black: { $value: 'black' },
+                  heavy: { $value: 'heavy' },
+                  'extra-black': { $value: 'extra-black' },
+                  'ultra-black': { $value: 'ultra-black' },
+                },
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               'fontWeight.thin': 100,
@@ -719,7 +901,7 @@ describe('Tokens', () => {
       [
         'invalid: unknown string',
         {
-          given: { thinnish: { $type: 'fontWeight', $value: 'thinnish' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { thinnish: { $type: 'fontWeight', $value: 'thinnish' } } }],
           want: {
             error: `Unknown font weight "thinnish". Expected one of: thin, hairline, extra-light, ultra-light, light, normal, regular, book, medium, semi-bold, demi-bold, bold, extra-bold, ultra-bold, black, heavy, extra-black, or ultra-black.
 
@@ -735,7 +917,7 @@ describe('Tokens', () => {
       [
         'invalid: number out of range',
         {
-          given: { kakarot: { $type: 'fontWeight', $value: 9001 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { kakarot: { $type: 'fontWeight', $value: 9001 } } }],
           want: {
             error: `Expected number 0–1000, received 9001
 
@@ -758,21 +940,21 @@ describe('Tokens', () => {
       [
         'valid: ms',
         {
-          given: { quick: { $type: 'duration', $value: '100ms' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: '100ms' } } }],
           want: { tokens: { quick: '100ms' } },
         },
       ],
       [
         'valid: s',
         {
-          given: { moderate: { $type: 'duration', $value: '0.25s' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '0.25s' } } }],
           want: { tokens: { moderate: '0.25s' } },
         },
       ],
       [
         'invalid: empty string',
         {
-          given: { moderate: { $type: 'duration', $value: '' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '' } } }],
           want: {
             error: `Expected duration, received empty string
 
@@ -788,7 +970,7 @@ describe('Tokens', () => {
       [
         'invalid: no number',
         {
-          given: { moderate: { $type: 'duration', $value: 'ms' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: 'ms' } } }],
           want: {
             error: `Expected duration in \`ms\` or \`s\`, received "ms"
 
@@ -804,7 +986,7 @@ describe('Tokens', () => {
       [
         'invalid: no units',
         {
-          given: { moderate: { $type: 'duration', $value: '250' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '250' } } }],
           want: {
             error: `Missing unit "ms" or "s"
 
@@ -820,7 +1002,7 @@ describe('Tokens', () => {
       [
         'invalid: number',
         {
-          given: { moderate: { $type: 'duration', $value: 250 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: 250 } } }],
           want: {
             error: `Expected string, received Number
 
@@ -836,7 +1018,7 @@ describe('Tokens', () => {
       [
         'valid: 0',
         {
-          given: { '00': { $type: 'dimension', $value: 0 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: 0 } } }],
           want: { tokens: { '00': '0' } },
         },
       ],
@@ -850,17 +1032,28 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1] } },
+          given: [{ filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1] } } }],
           want: { tokens: { cubic: [0.33, 1, 0.68, 1] } },
         },
       ],
       [
         'valid: aliases',
         {
-          given: {
-            cubic: { $type: 'cubicBezier', $value: ['{number.a}', '{number.b}', '{number.c}', '{number.d}'] },
-            number: { $type: 'number', a: { $value: 0.33 }, b: { $value: 1 }, c: { $value: 0.68 }, d: { $value: 1 } },
-          },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                cubic: { $type: 'cubicBezier', $value: ['{number.a}', '{number.b}', '{number.c}', '{number.d}'] },
+                number: {
+                  $type: 'number',
+                  a: { $value: 0.33 },
+                  b: { $value: 1 },
+                  c: { $value: 0.68 },
+                  d: { $value: 1 },
+                },
+              },
+            },
+          ],
           want: {
             tokens: {
               cubic: [0.33, 1, 0.68, 1],
@@ -875,7 +1068,9 @@ describe('Tokens', () => {
       [
         'invalid: length',
         {
-          given: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } },
+          given: [
+            { filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } } },
+          ],
           want: {
             error: `Expected an array of 4 numbers, received 5
 
@@ -892,7 +1087,12 @@ describe('Tokens', () => {
       [
         'invalid: type',
         {
-          given: { cubic: { $type: 'cubicBezier', $value: ['33%', '100%', '68%', '100%'] } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { cubic: { $type: 'cubicBezier', $value: ['33%', '100%', '68%', '100%'] } },
+            },
+          ],
           want: {
             error: `Expected an array of 4 numbers, received some non-numbers
 
@@ -916,14 +1116,14 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: { number: { $type: 'number', $value: 42 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: 42 } } }],
           want: { tokens: { number: 42 } },
         },
       ],
       [
         'invalid',
         {
-          given: { number: { $type: 'number', $value: '100' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: '100' } } }],
           want: {
             error: `Expected number, received String
 
@@ -939,7 +1139,12 @@ describe('Tokens', () => {
       [
         'invalid: type',
         {
-          given: { cubic: { $type: 'cubicBezier', $value: ['33%', '100%', '68%', '100%'] } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { cubic: { $type: 'cubicBezier', $value: ['33%', '100%', '68%', '100%'] } },
+            },
+          ],
           want: {
             error: `Expected an array of 4 numbers, received some non-numbers
 
@@ -963,21 +1168,21 @@ describe('Tokens', () => {
       [
         'valid: true',
         {
-          given: { myBool: { $type: 'boolean', $value: true } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: true } } }],
           want: { tokens: { myBool: true } },
         },
       ],
       [
         'valid: false',
         {
-          given: { myBool: { $type: 'boolean', $value: false } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: false } } }],
           want: { tokens: { myBool: false } },
         },
       ],
       [
         'invalid: string',
         {
-          given: { myBool: { $type: 'boolean', $value: 'true' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: 'true' } } }],
           want: {
             error: `Expected boolean, received String
 
@@ -993,7 +1198,7 @@ describe('Tokens', () => {
       [
         'invalid: binary',
         {
-          given: { myBool: { $type: 'boolean', $value: 0 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: 0 } } }],
           want: {
             error: `Expected boolean, received Number
 
@@ -1016,14 +1221,16 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: { iconStar: { $type: 'link', $value: '/assets/icons/star.svg' } },
+          given: [
+            { filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: '/assets/icons/star.svg' } } },
+          ],
           want: { tokens: { iconStar: '/assets/icons/star.svg' } },
         },
       ],
       [
         'invalid: empty string',
         {
-          given: { iconStar: { $type: 'link', $value: '' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: '' } } }],
           want: {
             error: `Expected URL, received empty string
 
@@ -1039,7 +1246,7 @@ describe('Tokens', () => {
       [
         'invalid: number',
         {
-          given: { iconStar: { $type: 'link', $value: 100 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: 100 } } }],
           want: {
             error: `Expected string, received Number
 
@@ -1062,21 +1269,21 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: { myString: { $type: 'string', $value: 'foobar' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 'foobar' } } }],
           want: { tokens: { myString: 'foobar' } },
         },
       ],
       [
         'valid: empty string',
         {
-          given: { myString: { $type: 'string', $value: '' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: '' } } }],
           want: { tokens: { myString: '' } },
         },
       ],
       [
         'invalid: number',
         {
-          given: { myString: { $type: 'string', $value: 99 } },
+          given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 99 } } }],
           want: {
             error: `Expected string, received Number
 
@@ -1099,26 +1306,31 @@ describe('Tokens', () => {
       [
         'valid: string',
         {
-          given: { borderStyle: { $type: 'strokeStyle', $value: 'double' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { borderStyle: { $type: 'strokeStyle', $value: 'double' } } }],
           want: { tokens: { borderStyle: 'double' } },
         },
       ],
       [
         'valid: object',
         {
-          given: {
-            borderStyle: {
-              $type: 'strokeStyle',
-              $value: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                borderStyle: {
+                  $type: 'strokeStyle',
+                  $value: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] },
+                },
+              },
             },
-          },
+          ],
           want: { tokens: { borderStyle: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] } } },
         },
       ],
       [
         'invalid: unknown string',
         {
-          given: { borderStyle: { $type: 'strokeStyle', $value: 'thicc' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { borderStyle: { $type: 'strokeStyle', $value: 'thicc' } } }],
           want: {
             error: `Unknown stroke style "thicc". Expected one of: solid, dashed, dotted, double, groove, ridge, outset, or inset.
 
@@ -1134,12 +1346,17 @@ describe('Tokens', () => {
       [
         'invalid: bad dashArray',
         {
-          given: {
-            borderStyle: {
-              $type: 'strokeStyle',
-              $value: { lineCap: 'round', dashArray: [300, 500] },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                borderStyle: {
+                  $type: 'strokeStyle',
+                  $value: { lineCap: 'round', dashArray: [300, 500] },
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Expected array of strings, recieved some non-strings or empty strings.
 
@@ -1163,7 +1380,12 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: { border: { $type: 'border', $value: { color: '#00000020', style: 'solid', width: '1px' } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { border: { $type: 'border', $value: { color: '#00000020', style: 'solid', width: '1px' } } },
+            },
+          ],
           want: {
             tokens: {
               border: {
@@ -1178,7 +1400,12 @@ describe('Tokens', () => {
       [
         'invalid: missing color',
         {
-          given: { border: { $type: 'border', $value: { style: 'solid', width: '1px' } } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { border: { $type: 'border', $value: { style: 'solid', width: '1px' } } },
+            },
+          ],
           want: {
             error: `Missing required property "color"
 
@@ -1202,22 +1429,27 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: {
-            transition: {
-              'ease-in-out': {
-                $type: 'transition',
-                $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}', delay: '0ms' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                transition: {
+                  'ease-in-out': {
+                    $type: 'transition',
+                    $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}', delay: '0ms' },
+                  },
+                },
+                timing: {
+                  $type: 'duration',
+                  quick: { $value: '150ms' },
+                },
+                ease: {
+                  $type: 'cubicBezier',
+                  'in-out': { $value: [0.42, 0, 0.58, 1] },
+                },
               },
             },
-            timing: {
-              $type: 'duration',
-              quick: { $value: '150ms' },
-            },
-            ease: {
-              $type: 'cubicBezier',
-              'in-out': { $value: [0.42, 0, 0.58, 1] },
-            },
-          },
+          ],
           want: {
             tokens: {
               'transition.ease-in-out': { duration: '150ms', timingFunction: [0.42, 0, 0.58, 1], delay: '0ms' },
@@ -1230,22 +1462,27 @@ describe('Tokens', () => {
       [
         'valid: optional delay',
         {
-          given: {
-            transition: {
-              'ease-in-out': {
-                $type: 'transition',
-                $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                transition: {
+                  'ease-in-out': {
+                    $type: 'transition',
+                    $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}' },
+                  },
+                },
+                timing: {
+                  $type: 'duration',
+                  quick: { $value: '150ms' },
+                },
+                ease: {
+                  $type: 'cubicBezier',
+                  'in-out': { $value: [0.42, 0, 0.58, 1] },
+                },
               },
             },
-            timing: {
-              $type: 'duration',
-              quick: { $value: '150ms' },
-            },
-            ease: {
-              $type: 'cubicBezier',
-              'in-out': { $value: [0.42, 0, 0.58, 1] },
-            },
-          },
+          ],
           want: {
             tokens: {
               'transition.ease-in-out': { duration: '150ms', timingFunction: [0.42, 0, 0.58, 1], delay: 0 },
@@ -1258,14 +1495,19 @@ describe('Tokens', () => {
       [
         'invalid: missing duration',
         {
-          given: {
-            transition: {
-              'ease-in-out': {
-                $type: 'transition',
-                $value: { timingFunction: [0.42, 0, 0.58, 1] },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                transition: {
+                  'ease-in-out': {
+                    $type: 'transition',
+                    $value: { timingFunction: [0.42, 0, 0.58, 1] },
+                  },
+                },
               },
             },
-          },
+          ],
           want: {
             error: `Missing required property "duration"
 
@@ -1282,14 +1524,19 @@ describe('Tokens', () => {
       [
         'invalid: missing timingFunction',
         {
-          given: {
-            transition: {
-              'ease-in-out': {
-                $type: 'transition',
-                $value: { duration: '150ms' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                transition: {
+                  'ease-in-out': {
+                    $type: 'transition',
+                    $value: { duration: '150ms' },
+                  },
+                },
               },
             },
-          },
+          ],
           want: {
             error: `Missing required property "timingFunction"
 
@@ -1313,12 +1560,17 @@ describe('Tokens', () => {
       [
         'valid: single',
         {
-          given: {
-            shadowBase: {
-              $type: 'shadow',
-              $value: { color: '#000000', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                shadowBase: {
+                  $type: 'shadow',
+                  $value: { color: '#000000', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+                },
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               shadowBase: [
@@ -1337,27 +1589,32 @@ describe('Tokens', () => {
       [
         'valid: array',
         {
-          given: {
-            shadowBase: {
-              $type: 'shadow',
-              $value: [
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: 0,
-                  offsetY: '0.25rem',
-                  blur: '0.5rem',
-                  spread: 0,
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                shadowBase: {
+                  $type: 'shadow',
+                  $value: [
+                    {
+                      color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                      offsetX: 0,
+                      offsetY: '0.25rem',
+                      blur: '0.5rem',
+                      spread: 0,
+                    },
+                    {
+                      color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                      offsetX: 0,
+                      offsetY: '0.5rem',
+                      blur: '1rem',
+                      spread: 0,
+                    },
+                  ],
                 },
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: 0,
-                  offsetY: '0.5rem',
-                  blur: '1rem',
-                  spread: 0,
-                },
-              ],
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               shadowBase: [
@@ -1383,12 +1640,17 @@ describe('Tokens', () => {
       [
         'invalid: missing color',
         {
-          given: {
-            shadowBase: {
-              $type: 'shadow',
-              $value: { offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                shadowBase: {
+                  $type: 'shadow',
+                  $value: { offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Missing required property "color"
 
@@ -1412,15 +1674,20 @@ describe('Tokens', () => {
       [
         'valid',
         {
-          given: {
-            gradient: {
-              $type: 'gradient',
-              $value: [
-                { color: '#663399', position: 0 },
-                { color: '#ff9900', position: 1 },
-              ],
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                gradient: {
+                  $type: 'gradient',
+                  $value: [
+                    { color: '#663399', position: 0 },
+                    { color: '#ff9900', position: 1 },
+                  ],
+                },
+              },
             },
-          },
+          ],
           want: {
             tokens: {
               gradient: [
@@ -1434,15 +1701,20 @@ describe('Tokens', () => {
       [
         'invalid: bad color',
         {
-          given: {
-            gradient: {
-              $type: 'gradient',
-              $value: [
-                { color: 'foo', position: 0 },
-                { color: '#ff9900', position: 1 },
-              ],
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                gradient: {
+                  $type: 'gradient',
+                  $value: [
+                    { color: 'foo', position: 0 },
+                    { color: '#ff9900', position: 1 },
+                  ],
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Unable to parse color "foo"
 
@@ -1459,15 +1731,20 @@ describe('Tokens', () => {
       [
         'invalid: bad position',
         {
-          given: {
-            gradient: {
-              $type: 'gradient',
-              $value: [
-                { color: 'foo', position: 0 },
-                { color: '#ff9900', position: '12px' },
-              ],
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                gradient: {
+                  $type: 'gradient',
+                  $value: [
+                    { color: 'foo', position: 0 },
+                    { color: '#ff9900', position: '12px' },
+                  ],
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Expected number, received String
 
@@ -1484,12 +1761,17 @@ describe('Tokens', () => {
       [
         'invalid: missing position',
         {
-          given: {
-            gradient: {
-              $type: 'gradient',
-              $value: [{ color: 'foo', position: 0 }, { color: '#ff9900' }],
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                gradient: {
+                  $type: 'gradient',
+                  $value: [{ color: 'foo', position: 0 }, { color: '#ff9900' }],
+                },
+              },
             },
-          },
+          ],
           want: {
             error: `Missing required property "position"
 
@@ -1512,16 +1794,31 @@ describe('Tokens', () => {
 describe('Additional cases', () => {
   it('JSON: invalid', async () => {
     const config = defineConfig({}, { cwd });
-    await expect(parse('{]', { config })).rejects.toThrow('Unexpected token RBracket found. (1:2)');
+    await expect(
+      parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: '{]',
+          },
+        ],
+        { config },
+      ),
+    ).rejects.toThrow('Unexpected token RBracket found. (1:2)');
   });
 
   it.skip('YAML: invalid', async () => {
     try {
       const config = defineConfig({}, { cwd });
       const result = await parse(
-        `tokens:
+        [
+          {
+            filename: 'tokens.yaml',
+            src: `tokens:
   - foo: true
   false`,
+          },
+        ],
         { config },
       );
       expect(() => result).toThrow();
@@ -1539,7 +1836,10 @@ describe('Additional cases', () => {
     try {
       const config = defineConfig({}, { cwd });
       await parse(
-        `{
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: `{
   "color": {
     "$type": "color",
     "base": {
@@ -1590,6 +1890,8 @@ describe('Additional cases', () => {
     }
   }
 }`,
+          },
+        ],
         { config },
       );
       expect(true).toBe(false);
@@ -1610,12 +1912,17 @@ describe('Additional cases', () => {
     it('aliases get updated', async () => {
       const config = defineConfig({}, { cwd });
       const result = await parse(
-        {
-          color: {
-            base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
-            semantic: { $value: '{color.base.blue.500}' },
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                semantic: { $value: '{color.base.blue.500}' },
+              },
+            },
           },
-        },
+        ],
         { config },
       );
       expect(result.tokens['color.base.blue.500']?.$type).toBe('color');
@@ -1625,45 +1932,50 @@ describe('Additional cases', () => {
     it('inheritance works', async () => {
       const config = defineConfig({}, { cwd });
       const result = await parse(
-        {
-          $type: 'color',
-          typography: {
-            $type: 'typography',
-            family: {
-              $type: 'fontFamily',
-              sans: {
-                $value: [
-                  'Instrument Sans',
-                  'system-ui',
-                  '-apple-system',
-                  'Aptos',
-                  'Helvetica Neue',
-                  'Helvetica',
-                  'Arial',
-                  'Noto Sans',
-                  'sans-serif',
-                  'Helvetica',
-                  'Apple Color Emoji',
-                  'Segoe UI Emoji',
-                  'Noto Color Emoji',
-                ],
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              $type: 'color',
+              typography: {
+                $type: 'typography',
+                family: {
+                  $type: 'fontFamily',
+                  sans: {
+                    $value: [
+                      'Instrument Sans',
+                      'system-ui',
+                      '-apple-system',
+                      'Aptos',
+                      'Helvetica Neue',
+                      'Helvetica',
+                      'Arial',
+                      'Noto Sans',
+                      'sans-serif',
+                      'Helvetica',
+                      'Apple Color Emoji',
+                      'Segoe UI Emoji',
+                      'Noto Color Emoji',
+                    ],
+                  },
+                  mono: { $value: ['Fragment Mono', 'ui-monospace', 'monospace'] },
+                },
+                base: {
+                  $value: {
+                    fontFamily: '{typography.family.sans}',
+                    fontWeight: 400,
+                    fontSize: '0.75rem',
+                    lineHeight: 1.25,
+                    letterSpacing: '0.0024999999rem',
+                  },
+                },
               },
-              mono: { $value: ['Fragment Mono', 'ui-monospace', 'monospace'] },
-            },
-            base: {
-              $value: {
-                fontFamily: '{typography.family.sans}',
-                fontWeight: 400,
-                fontSize: '0.75rem',
-                lineHeight: 1.25,
-                letterSpacing: '0.0024999999rem',
+              lime: {
+                400: { $value: '#dfffad' },
               },
             },
           },
-          lime: {
-            400: { $value: '#dfffad' },
-          },
-        },
+        ],
         { config },
       );
       expect(result.tokens['typography.family.sans']?.$type).toBe('fontFamily');
@@ -1677,13 +1989,18 @@ describe('Additional cases', () => {
       [
         'fontFamily',
         {
-          given: {
-            fontFamily: {
-              $type: 'fontFamily',
-              base: { $value: 'Helvetica' },
-              sans: { $value: '{fontFamily.base}' },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                fontFamily: {
+                  $type: 'fontFamily',
+                  base: { $value: 'Helvetica' },
+                  sans: { $value: '{fontFamily.base}' },
+                },
+              },
             },
-          },
+          ],
           want: { 'fontFamily.base': ['Helvetica'], 'fontFamily.sans': ['Helvetica'] },
         },
       ],
@@ -1729,7 +2046,15 @@ describe('Additional cases', () => {
         },
       };
       const config = defineConfig({}, { cwd });
-      const { tokens } = await parse(JSON.stringify(json), { config });
+      const { tokens } = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: JSON.stringify(json),
+          },
+        ],
+        { config },
+      );
       expect(tokens['color.blue.7']!.group).toEqual({
         id: 'color.blue',
         $type: 'color',
@@ -1745,20 +2070,25 @@ describe('Additional cases', () => {
       [
         'color',
         {
-          given: {
-            color: {
-              $type: 'color',
-              semantic: {
-                bg: {
-                  $value: '{color.blue.7}',
-                  $extensions: { mode: { light: '{color.blue.7#light}', dark: '{color.blue.7#dark}' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  $type: 'color',
+                  semantic: {
+                    bg: {
+                      $value: '{color.blue.7}',
+                      $extensions: { mode: { light: '{color.blue.7#light}', dark: '{color.blue.7#dark}' } },
+                    },
+                  },
+                  blue: {
+                    '7': { $value: '#8ec8f6', $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } } },
+                  },
                 },
               },
-              blue: {
-                '7': { $value: '#8ec8f6', $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } } },
-              },
             },
-          },
+          ],
           want: {
             'color.blue.7': {
               '.': {
