@@ -26,7 +26,8 @@ export interface LinterOptions<O = any> {
     id: string;
     severity: LintRuleSeverity;
   };
-  ast: DocumentNode;
+  document: DocumentNode;
+  filename?: URL;
   source?: string;
   /** Any options the user has declared for this plugin */
   options?: O;
@@ -34,7 +35,8 @@ export interface LinterOptions<O = any> {
 export type Linter = (options: LinterOptions) => Promise<LintNotice[] | undefined>;
 
 export interface LintRunnerOptions {
-  ast: DocumentNode;
+  document: DocumentNode;
+  filename?: URL;
   config: ConfigInit;
   logger: Logger;
 }

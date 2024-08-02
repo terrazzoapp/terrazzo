@@ -270,7 +270,10 @@ export interface TokenNormalizedCore {
   $description?: string;
   $extensions?: Record<string, unknown>;
   id: string;
-  sourceNode: ObjectNode;
+  source: {
+    loc?: string;
+    node: ObjectNode;
+  };
   group: {
     $description?: string;
     $extensions?: Record<string, unknown>;

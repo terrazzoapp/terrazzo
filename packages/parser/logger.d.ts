@@ -13,6 +13,8 @@ export interface LogEntry {
   message: string;
   /** (optional) Prefix message with label */
   label?: string;
+  /** (optional) File in disk */
+  filename?: URL;
   /** Continue on error? (default: false) */
   continueOnError?: boolean;
   /** (optional) Show a code frame for the erring node */
