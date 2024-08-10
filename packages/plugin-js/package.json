@@ -1,13 +1,20 @@
 {
   "name": "@terrazzo/plugin-js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
   "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "keywords": ["design tokens", "design system", "dtcg", "w3c", "ts", "typescript"],
+  "keywords": [
+    "design tokens",
+    "design system",
+    "dtcg",
+    "w3c",
+    "ts",
+    "typescript"
+  ],
   "main": "./dist/index.js",
   "homepage": "https://terrazzoapp.com/docs/cli/integrations/js",
   "repository": {
