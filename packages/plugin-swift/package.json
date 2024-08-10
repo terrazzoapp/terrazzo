@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-swift",
   "description": "Generate Swift code using DTCG tokens.",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -15,7 +15,14 @@
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/plugin-swift/"
   },
-  "keywords": ["design tokens", "dtcg", "dtfm", "w3c", "swift", "ios"],
+  "keywords": [
+    "design tokens",
+    "dtcg",
+    "dtfm",
+    "w3c",
+    "swift",
+    "ios"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "format": "biome format --write .",
