@@ -20,7 +20,7 @@ export interface LogEntry {
   /** (optional) Show a code frame for the erring node */
   node?: AnyNode;
   /** (optional) To show a code frame, provide the original source code */
-  source?: string;
+  src?: string;
 }
 
 export interface DebugEntry {
@@ -31,7 +31,7 @@ export interface DebugEntry {
   /** Error message to be logged */
   message: string;
   /** (optional) Show code below message */
-  codeFrame?: { source: string; line: number; column: number };
+  codeFrame?: { src: string; line: number; column: number };
   /** (optional) Display performance timing */
   timing?: number;
 }

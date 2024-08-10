@@ -19,8 +19,11 @@ describe('@terrazzo/plugin-js', () => {
         },
         { cwd },
       );
-      const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
-      const result = await build(tokens, { ast, config });
+      const tokensJSON = new URL('./tokens.json', cwd);
+      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+        config,
+      });
+      const result = await build(tokens, { sources, config });
       expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.js', cwd)),
       );

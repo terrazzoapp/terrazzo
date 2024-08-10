@@ -24,7 +24,7 @@ export interface ParseOptions {
 export interface ParseResult {
   tokens: Record<string, TokenNormalized>;
   /** ASTs are returned in order of input array */
-  sources: { filename?: string; source: string; document: DocumentNode }[];
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
 }
 
 /**

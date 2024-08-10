@@ -16,7 +16,7 @@ export * from './validate.js';
 /**
  * @typedef {object} ParseResult
  * @property {Record<string, TokenNormalized} tokens
- * @property {Object[]} sources
+ * @property {Object[]} src
  */
 /**
  * @typedef {object} ParseInput
@@ -79,7 +79,7 @@ export default async function parse(
     if (input[i].filename) {
       sources[input[i].filename.protocol === 'file:' ? fileURLToPath(input[i].filename) : input[i].filename.href] = {
         filename: input[i].filename,
-        source: result.source,
+        src: result.src,
         document: result.document,
       };
     }
@@ -96,7 +96,7 @@ export default async function parse(
     applyAliases(token, {
       tokens,
       filename: sources[token.source.loc]?.filename,
-      source: sources[token.source.loc]?.source,
+      src: sources[token.source.loc]?.src,
       node: token.source.node,
       logger,
     });
@@ -174,9 +174,9 @@ export default async function parse(
  */
 async function parseSingle(input, { filename, logger, config, skipLint, continueOnError = false }) {
   // 1. Build AST
-  let source;
+  let src;
   if (typeof input === 'string') {
-    source = input;
+    src = input;
   }
   const startParsing = performance.now();
   logger.debug({ group: 'parser', task: 'parse', message: 'Start tokens parsing' });
@@ -191,8 +191,8 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
       },
     );
   }
-  if (!source) {
-    source = print(document, { indent: 2 });
+  if (!src) {
+    src = print(document, { indent: 2 });
   }
   logger.debug({
     group: 'parser',
@@ -237,7 +237,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
             sourceNode.value = injectObjMembers(sourceNode.value, [parent$type]);
           }
 
-          validate(sourceNode, { filename, source, logger });
+          validate(sourceNode, { filename, src, logger });
 
           const group = { id: splitID(id).group, tokens: [] };
           if (parent$type) {
@@ -287,7 +287,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
 
           tokens[id] = token;
         } else if (members.value) {
-          logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, filename, node, source });
+          logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, filename, node, src });
         }
       }
 
@@ -315,7 +315,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
       task: 'validate',
       message: 'Start token linting',
     });
-    await lintRunner({ document, filename, source, config, logger });
+    await lintRunner({ document, filename, src, config, logger });
     logger.debug({
       group: 'parser',
       task: 'validate',
@@ -343,7 +343,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
       if (members.$value) {
         node = members.$value;
       }
-      logger.error({ message: err.message, filename, source, node, continueOnError });
+      logger.error({ message: err.message, filename, src, node, continueOnError });
     }
     for (const mode in tokens[id].mode) {
       if (mode === '.') {
@@ -360,7 +360,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
         logger.error({
           message: err.message,
           filename,
-          source,
+          src,
           node: tokens[id].mode[mode].source.node,
           continueOnError,
         });
@@ -374,7 +374,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
     timing: performance.now() - normalizeStart,
   });
 
-  return { tokens, document, source };
+  return { tokens, document, src };
 }
 
 /**
@@ -398,26 +398,26 @@ export function maybeJSONString(input) {
  * @param {string} [options.scanned=[]]
  * @param {string}
  */
-export function resolveAlias(alias, { tokens, logger, filename, source, node, scanned = [] }) {
+export function resolveAlias(alias, { tokens, logger, filename, src, node, scanned = [] }) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found`, filename, source, node });
+    logger.error({ message: `Alias "${alias}" not found`, filename, src, node });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}"`, filename, source, node });
+    logger.error({ message: `Circular alias detected from "${alias}"`, filename, src, node });
   }
   const token = tokens[id];
   if (!isAlias(token.$value)) {
     return id;
   }
-  return resolveAlias(token.$value, { tokens, logger, filename, node, source, scanned: [...scanned, id] });
+  return resolveAlias(token.$value, { tokens, logger, filename, node, src, scanned: [...scanned, id] });
 }
 
 /** Resolve aliases, update values, and mutate `token` to add `aliasOf` / `partialAliasOf` */
-function applyAliases(token, { tokens, logger, filename, source, node }) {
+function applyAliases(token, { tokens, logger, filename, src, node }) {
   // handle simple aliases
   if (isAlias(token.$value)) {
-    const aliasOfID = resolveAlias(token.$value, { tokens, logger, filename, node, source });
+    const aliasOfID = resolveAlias(token.$value, { tokens, logger, filename, node, src });
     const { mode: aliasMode } = parseAlias(token.$value);
     const aliasOf = tokens[aliasOfID];
     token.aliasOf = aliasOfID;
@@ -440,7 +440,7 @@ function applyAliases(token, { tokens, logger, filename, source, node }) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = [];
         }
-        const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, filename, node, source });
+        const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, filename, node, src });
         const { mode: aliasMode } = parseAlias(token.$value[i]);
         token.partialAliasOf[i] = aliasOfID;
         token.$value[i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
@@ -453,7 +453,7 @@ function applyAliases(token, { tokens, logger, filename, source, node }) {
             if (!token.partialAliasOf[i]) {
               token.partialAliasOf[i] = {};
             }
-            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, filename, node, source });
+            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, filename, node, src });
             const { mode: aliasMode } = parseAlias(token.$value[i][property]);
             token.$value[i][property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
             token.partialAliasOf[i][property] = aliasOfID;
@@ -473,7 +473,7 @@ function applyAliases(token, { tokens, logger, filename, source, node }) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = {};
         }
-        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, filename, node, source });
+        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, filename, node, src });
         const { mode: aliasMode } = parseAlias(token.$value[property]);
         token.partialAliasOf[property] = aliasOfID;
         token.$value[property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
@@ -482,7 +482,7 @@ function applyAliases(token, { tokens, logger, filename, source, node }) {
       else if (Array.isArray(token.$value[property])) {
         for (let i = 0; i < token.$value[property].length; i++) {
           if (isAlias(token.$value[property][i])) {
-            const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, filename, node, source });
+            const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, filename, node, src });
             if (!token.partialAliasOf) {
               token.partialAliasOf = {};
             }

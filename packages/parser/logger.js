@@ -24,9 +24,9 @@ export function formatMessage(entry, severity) {
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity](message);
   }
-  if (entry.source) {
+  if (entry.src) {
     const start = entry.node?.loc?.start;
-    message = `${message}\n\n${entry.filename ? `${fileURLToPath(entry.filename)}:${start?.line ?? 0}:${start?.column ?? 0}\n\n` : ''}${codeFrameColumns(entry.source, { start })}`;
+    message = `${message}\n\n${entry.filename ? `${fileURLToPath(entry.filename)}:${start?.line ?? 0}:${start?.column ?? 0}\n\n` : ''}${codeFrameColumns(entry.src, { start })}`;
   }
   return message;
 }
