@@ -15,6 +15,6 @@
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",
     "@terrazzo/plugin-sass": "workspace:*",
-    "yaml": "^2.4.5"
+    "yaml": "^2.5.0"
   }
 }

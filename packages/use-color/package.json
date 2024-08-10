@@ -37,14 +37,14 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.4",
-    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "19.0.0-rc-01172397-20240716",
-    "react-dom": "19.0.0-rc-01172397-20240716",
+    "react": "19.0.0-rc-2d2cc042-20240809",
+    "react-dom": "19.0.0-rc-2d2cc042-20240809",
     "size-limit": "^11.1.4",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"

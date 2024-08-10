@@ -7,8 +7,8 @@
     "build:tokens": "tz build"
   },
   "devDependencies": {
-    "@primer/octicons": "^19.9.0",
-    "@primer/primitives": "^8.2.2",
+    "@primer/octicons": "^19.11.0",
+    "@primer/primitives": "^8.2.4",
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",

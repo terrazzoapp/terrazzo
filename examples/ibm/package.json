@@ -8,9 +8,9 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@carbon/colors": "^11.22.0",
-    "@carbon/icons": "^11.43.0",
-    "@carbon/type": "^11.27.0",
+    "@carbon/colors": "^11.24.0",
+    "@carbon/icons": "^11.46.0",
+    "@carbon/type": "^11.29.0",
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",
