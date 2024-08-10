@@ -41,7 +41,7 @@
     "@use-gesture/react": "^10.3.1",
     "clsx": "^2.1.1",
     "culori": "^4.0.1",
-    "shiki": "^1.10.0"
+    "shiki": "^1.12.1"
   },
   "devDependencies": {
     "@rollup/plugin-swc": "^0.3.1",
@@ -52,9 +52,9 @@
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "chokidar-cli": "^3.0.0",
-    "react": "19.0.0-rc-01172397-20240716",
-    "react-dom": "19.0.0-rc-01172397-20240716",
-    "rollup": "^4.18.0",
+    "react": "19.0.0-rc-2d2cc042-20240809",
+    "react-dom": "19.0.0-rc-2d2cc042-20240809",
+    "rollup": "^4.20.0",
     "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.0",
     "size-limit": "^11.1.4",

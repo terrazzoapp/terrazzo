@@ -44,7 +44,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "tailwindcss": "^3.4.4",
-    "yaml": "^2.4.1"
+    "tailwindcss": "^3.4.9",
+    "yaml": "^2.5.0"
   }
 }
