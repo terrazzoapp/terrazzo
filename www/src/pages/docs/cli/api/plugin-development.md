@@ -307,14 +307,14 @@ Though `outputFile()` takes a string, you are free to use an [AST](https://astex
 
 The [Terrazzo parser](/docs/cli/api/node) will create **normalized tokens** that have lots of additional metadata. Each normalized token has the following:
 
-| Property        | Type                              | Description                                                                                                                                       |
-| :-------------- | :-------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`            | `string`                          | This token’s global ID.                                                                                                                           |
-| `$type`         | `TokenType`                       | A valid token `$type` ([docs](/docs/tokens)).                                                                                                     |
-| `$description`  | `string \| undefined`             | The token `$description`, if provided.                                                                                                            |
-| `$value`        | `TokenValue`                      | The token `$value` ([docs](/docs/tokens)). This will always be the final value (even if this is an [alias](/docs/tokens/alias) of another token). |
-| `aliasOf`       | `TokenNormalized \| undefined`    | The token this aliases, if any (or `undefined` if this is its original value).                                                                    |
-| `group`         | `Group`                           | Information about this token’s immediate parent group (including sibling tokens).                                                                 |
-| `mode`          | `Record<string, TokenNormalized>` | A key–value map of mode name → mode value. _Note: the mode `"."` will always exist, and will always point to the default value._                  |
-| `originalValue` | `Token`                           | This token’s original value from the source file.                                                                                                 |
-| `sourceNode`    | `ObjectNode`                      | A [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node from the original source file (including line number).                     |
+| Property        | Type                                   | Description                                                                                                                                       |
+| :-------------- | :------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `id`            | `string`                               | This token’s global ID.                                                                                                                           |
+| `$type`         | `TokenType`                            | A valid token `$type` ([docs](/docs/tokens)).                                                                                                     |
+| `$description`  | `string \| undefined`                  | The token `$description`, if provided.                                                                                                            |
+| `$value`        | `TokenValue`                           | The token `$value` ([docs](/docs/tokens)). This will always be the final value (even if this is an [alias](/docs/tokens/alias) of another token). |
+| `aliasOf`       | `TokenNormalized \| undefined`         | The token this aliases, if any (or `undefined` if this is its original value).                                                                    |
+| `group`         | `Group`                                | Information about this token’s immediate parent group (including sibling tokens).                                                                 |
+| `mode`          | `Record<string, TokenNormalized>`      | A key–value map of mode name → mode value. _Note: the mode `"."` will always exist, and will always point to the default value._                  |
+| `originalValue` | `Token`                                | This token’s original value from the source file.                                                                                                 |
+| `source`        | `{ node: ObjectNode, filename?: URL }` | Points to a file on disk as well as a [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node (including line number).               |

@@ -4,12 +4,10 @@ import { getObjMembers } from './json.js';
 
 const listFormat = new Intl.ListFormat('en-us', { type: 'disjunction' });
 
-/**
- * @typedef {import("@humanwhocodes/momoa").AnyNode} AnyNode
- * @typedef {import("@humanwhocodes/momoa").ObjectNode} ObjectNode
- * @typedef {import("@humanwhocodes/momoa").ValueNode} ValueNode
- * @typedef {import("@babel/code-frame").SourceLocation} SourceLocation
- */
+/** @typedef {import("@humanwhocodes/momoa").AnyNode} AnyNode */
+/** @typedef {import("@humanwhocodes/momoa").ObjectNode} ObjectNode */
+/** @typedef {import("@humanwhocodes/momoa").ValueNode} ValueNode */
+/** @typedef {import("@babel/code-frame").SourceLocation} SourceLocation */
 
 export const VALID_COLORSPACES = new Set([
   'adobe-rgb',
@@ -82,21 +80,21 @@ function isMaybeAlias(node) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-function validateMembersAs($value, properties, node, { source, logger }) {
+function validateMembersAs($value, properties, node, { filename, src, logger }) {
   const members = getObjMembers($value);
   for (const property in properties) {
     const { validator, required } = properties[property];
     if (!members[property]) {
       if (required) {
-        logger.error({ message: `Missing required property "${property}"`, node: $value, source });
+        logger.error({ message: `Missing required property "${property}"`, filename, node: $value, src });
       }
       continue;
     }
     const value = members[property];
     if (isMaybeAlias(value)) {
-      validateAlias(value, node, { source, logger });
+      validateAlias(value, node, { filename, src, logger });
     } else {
-      validator(value, node, { source, logger });
+      validator(value, node, { filename, src, logger });
     }
   }
 }
@@ -108,9 +106,9 @@ function validateMembersAs($value, properties, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateAlias($value, node, { source, logger }) {
+export function validateAlias($value, node, { filename, src, logger }) {
   if ($value.type !== 'String' || !isAlias($value.value)) {
-    logger.error({ message: `Invalid alias: ${print($value)}`, node: $value, source });
+    logger.error({ message: `Invalid alias: ${print($value)}`, filename, node: $value, src });
   }
 }
 
@@ -121,9 +119,9 @@ export function validateAlias($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateBorder($value, node, { source, logger }) {
+export function validateBorder($value, node, { filename, src, logger }) {
   if ($value.type !== 'Object') {
-    logger.error({ message: `Expected object, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected object, received ${$value.type}`, filename, node: $value, src });
     return;
   }
   validateMembersAs(
@@ -134,7 +132,7 @@ export function validateBorder($value, node, { source, logger }) {
       width: { validator: validateDimension, required: true },
     },
     node,
-    { source, logger },
+    { filename, src, logger },
   );
 }
 
@@ -145,16 +143,17 @@ export function validateBorder($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateColor($value, node, { source, logger }) {
+export function validateColor($value, node, { filename, src, logger }) {
   if ($value.type === 'String') {
     // TODO: enable when object notation is finalized
     // logger.warn({
+    //   filename,
     //   message: 'String colors are no longer recommended; please use the object notation instead.',
     //   node: $value,
-    //   source,
+    //   src,
     // });
     if ($value.value === '') {
-      logger.error({ message: 'Expected color, received empty string', node: $value, source });
+      logger.error({ message: 'Expected color, received empty string', filename, node: $value, src });
     }
   } else if ($value.type === 'Object') {
     validateMembersAs(
@@ -163,10 +162,10 @@ export function validateColor($value, node, { source, logger }) {
         colorSpace: {
           validator: (v) => {
             if (v.type !== 'String') {
-              logger.error({ message: `Expected string, received ${print(v)}`, node: v, source });
+              logger.error({ message: `Expected string, received ${print(v)}`, filename, node: v, src });
             }
             if (!VALID_COLORSPACES.has(v.value)) {
-              logger.error({ message: `Unsupported colorspace ${print(v)}`, node: v, source });
+              logger.error({ message: `Unsupported colorspace ${print(v)}`, filename, node: v, src });
             }
           },
           required: true,
@@ -174,14 +173,24 @@ export function validateColor($value, node, { source, logger }) {
         channels: {
           validator: (v, node) => {
             if (v.type !== 'Array') {
-              logger.error({ message: `Expected array, received ${print(v)}`, node: v, source });
+              logger.error({ message: `Expected array, received ${print(v)}`, filename, node: v, src });
             }
             if (v.elements?.length !== 3) {
-              logger.error({ message: `Expected 3 channels, received ${v.elements?.length ?? 0}`, node: v, source });
+              logger.error({
+                message: `Expected 3 channels, received ${v.elements?.length ?? 0}`,
+                filename,
+                node: v,
+                src,
+              });
             }
             for (const element of v.elements) {
               if (element.value.type !== 'Number') {
-                logger.error({ message: `Expected number, received ${print(element.value)}`, node: element, source });
+                logger.error({
+                  message: `Expected number, received ${print(element.value)}`,
+                  filename,
+                  node: element,
+                  src,
+                });
               }
             }
           },
@@ -199,17 +208,17 @@ export function validateColor($value, node, { source, logger }) {
               v.value.length === 7 + 1 ||
               !/^#[a-f0-9]{3,8}$/i.test(v.value)
             ) {
-              logger.error({ message: `Invalid hex color ${print(v)}`, node: v, source });
+              logger.error({ message: `Invalid hex color ${print(v)}`, filename, node: v, src });
             }
           },
         },
         alpha: { validator: validateNumber },
       },
       node,
-      { source, logger },
+      { filename, src, logger },
     );
   } else {
-    logger.error({ message: `Expected object, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected object, received ${$value.type}`, filename, node: $value, src });
   }
 }
 
@@ -220,22 +229,24 @@ export function validateColor($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateCubicBezier($value, node, { source, logger }) {
+export function validateCubicBezier($value, node, { filename, src, logger }) {
   if ($value.type !== 'Array') {
-    logger.error({ message: `Expected array of strings, received ${print($value)}`, node: $value, source });
+    logger.error({ message: `Expected array of strings, received ${print($value)}`, filename, node: $value, src });
   } else if (
     !$value.elements.every((e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)))
   ) {
     logger.error({
       message: 'Expected an array of 4 numbers, received some non-numbers',
+      filename,
       node: $value,
-      source,
+      src,
     });
   } else if ($value.elements.length !== 4) {
     logger.error({
       message: `Expected an array of 4 numbers, received ${$value.elements.length}`,
+      filename,
       node: $value,
-      source,
+      src,
     });
   }
 }
@@ -247,18 +258,18 @@ export function validateCubicBezier($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateDimension($value, node, { source, logger }) {
+export function validateDimension($value, node, { filename, src, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
   if ($value.type !== 'String') {
-    logger.error({ message: `Expected string, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
   } else if ($value.value === '') {
-    logger.error({ message: 'Expected dimension, received empty string', node: $value, source });
+    logger.error({ message: 'Expected dimension, received empty string', filename, node: $value, src });
   } else if (String(Number($value.value)) === $value.value) {
-    logger.error({ message: 'Missing units', node: $value, source });
+    logger.error({ message: 'Missing units', filename, node: $value, src });
   } else if (!/^[0-9]+/.test($value.value)) {
-    logger.error({ message: `Expected dimension with units, received ${print($value)}`, node: $value, source });
+    logger.error({ message: `Expected dimension with units, received ${print($value)}`, filename, node: $value, src });
   }
 }
 
@@ -269,18 +280,23 @@ export function validateDimension($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateDuration($value, node, { source, logger }) {
+export function validateDuration($value, node, { filename, src, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
   if ($value.type !== 'String') {
-    logger.error({ message: `Expected string, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
   } else if ($value.value === '') {
-    logger.error({ message: 'Expected duration, received empty string', node: $value, source });
+    logger.error({ message: 'Expected duration, received empty string', filename, node: $value, src });
   } else if (!/m?s$/.test($value.value)) {
-    logger.error({ message: 'Missing unit "ms" or "s"', node: $value, source });
+    logger.error({ message: 'Missing unit "ms" or "s"', filename, node: $value, src });
   } else if (!/^[0-9]+/.test($value.value)) {
-    logger.error({ message: `Expected duration in \`ms\` or \`s\`, received ${print($value)}`, node: $value, source });
+    logger.error({
+      message: `Expected duration in \`ms\` or \`s\`, received ${print($value)}`,
+      filename,
+      node: $value,
+      src,
+    });
   }
 }
 
@@ -291,18 +307,24 @@ export function validateDuration($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateFontFamily($value, node, { source, logger }) {
+export function validateFontFamily($value, node, { filename, src, logger }) {
   if ($value.type !== 'String' && $value.type !== 'Array') {
-    logger.error({ message: `Expected string or array of strings, received ${$value.type}`, node: $value, source });
+    logger.error({
+      message: `Expected string or array of strings, received ${$value.type}`,
+      filename,
+      node: $value,
+      src,
+    });
   }
   if ($value.type === 'String' && $value.value === '') {
-    logger.error({ message: 'Expected font family name, received empty string', node: $value, source });
+    logger.error({ message: 'Expected font family name, received empty string', filename, node: $value, src });
   }
   if ($value.type === 'Array' && !$value.elements.every((e) => e.value.type === 'String' && e.value.value !== '')) {
     logger.error({
       message: 'Expected an array of strings, received some non-strings or empty strings',
+      filename,
       node: $value,
-      source,
+      src,
     });
   }
 }
@@ -314,23 +336,25 @@ export function validateFontFamily($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateFontWeight($value, node, { source, logger }) {
+export function validateFontWeight($value, node, { filename, src, logger }) {
   if ($value.type !== 'String' && $value.type !== 'Number') {
     logger.error({
       message: `Expected a font weight name or number 0–1000, received ${$value.type}`,
+      filename,
       node: $value,
-      source,
+      src,
     });
   }
   if ($value.type === 'String' && !FONT_WEIGHT_VALUES.has($value.value)) {
     logger.error({
       message: `Unknown font weight ${print($value)}. Expected one of: ${listFormat.format([...FONT_WEIGHT_VALUES])}.`,
+      filename,
       node: $value,
-      source,
+      src,
     });
   }
   if ($value.type === 'Number' && ($value.value < 0 || $value.value > 1000)) {
-    logger.error({ message: `Expected number 0–1000, received ${print($value)}`, node: $value, source });
+    logger.error({ message: `Expected number 0–1000, received ${print($value)}`, filename, node: $value, src });
   }
 }
 
@@ -341,9 +365,14 @@ export function validateFontWeight($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateGradient($value, node, { source, logger }) {
+export function validateGradient($value, node, { filename, src, logger }) {
   if ($value.type !== 'Array') {
-    logger.error({ message: `Expected array of gradient stops, received ${$value.type}`, node: $value, source });
+    logger.error({
+      message: `Expected array of gradient stops, received ${$value.type}`,
+      filename,
+      node: $value,
+      src,
+    });
     return;
   }
   for (let i = 0; i < $value.elements.length; i++) {
@@ -351,8 +380,9 @@ export function validateGradient($value, node, { source, logger }) {
     if (element.value.type !== 'Object') {
       logger.error({
         message: `Stop #${i + 1}: Expected gradient stop, received ${element.value.type}`,
+        filename,
         node: element,
-        source,
+        src,
       });
       break;
     }
@@ -363,7 +393,7 @@ export function validateGradient($value, node, { source, logger }) {
         position: { validator: validateNumber, required: true },
       },
       element,
-      { source, logger },
+      { filename, src, logger },
     );
   }
 }
@@ -375,9 +405,9 @@ export function validateGradient($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateNumber($value, node, { source, logger }) {
+export function validateNumber($value, node, { filename, src, logger }) {
   if ($value.type !== 'Number') {
-    logger.error({ message: `Expected number, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected number, received ${$value.type}`, filename, node: $value, src });
   }
 }
 
@@ -388,9 +418,9 @@ export function validateNumber($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateShadowLayer($value, node, { source, logger }) {
+export function validateShadowLayer($value, node, { filename, src, logger }) {
   if ($value.type !== 'Object') {
-    logger.error({ message: `Expected Object, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected Object, received ${$value.type}`, filename, node: $value, src });
     return;
   }
   validateMembersAs(
@@ -403,7 +433,7 @@ export function validateShadowLayer($value, node, { source, logger }) {
       spread: { validator: validateDimension },
     },
     node,
-    { source, logger },
+    { filename, src, logger },
   );
 }
 
@@ -414,7 +444,7 @@ export function validateShadowLayer($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateStrokeStyle($value, node, { source, logger }) {
+export function validateStrokeStyle($value, node, { filename, src, logger }) {
   // note: strokeStyle’s values are NOT aliasable (unless by string, but that breaks validations)
   if ($value.type === 'String') {
     if (!STROKE_STYLE_VALUES.has($value.value)) {
@@ -422,19 +452,16 @@ export function validateStrokeStyle($value, node, { source, logger }) {
         message: `Unknown stroke style ${print($value)}. Expected one of: ${listFormat.format([
           ...STROKE_STYLE_VALUES,
         ])}.`,
+        filename,
         node: $value,
-        source,
+        src,
       });
     }
   } else if ($value.type === 'Object') {
     const strokeMembers = getObjMembers($value);
     for (const property of ['dashArray', 'lineCap']) {
       if (!strokeMembers[property]) {
-        logger.error({
-          message: `Missing required property "${property}"`,
-          node: $value,
-          source,
-        });
+        logger.error({ message: `Missing required property "${property}"`, filename, node: $value, src });
       }
     }
     const { lineCap, dashArray } = strokeMembers;
@@ -449,31 +476,24 @@ export function validateStrokeStyle($value, node, { source, logger }) {
       for (const element of dashArray.elements) {
         if (element.value.type === 'String' && element.value.value !== '') {
           if (isMaybeAlias(element.value)) {
-            validateAlias(element.value, node, { logger, source });
+            validateAlias(element.value, node, { logger, src });
           } else {
-            validateDimension(element.value, node, { logger, source });
+            validateDimension(element.value, node, { logger, src });
           }
         } else {
           logger.error({
             message: 'Expected array of strings, recieved some non-strings or empty strings.',
+            filename,
             node: element,
-            source,
+            src,
           });
         }
       }
     } else {
-      logger.error({
-        message: `Expected array of strings, received ${dashArray.type}`,
-        node: $value,
-        source,
-      });
+      logger.error({ message: `Expected array of strings, received ${dashArray.type}`, filename, node: $value, src });
     }
   } else {
-    logger.error({
-      message: `Expected string or object, received ${$value.type}`,
-      node: $value,
-      source,
-    });
+    logger.error({ message: `Expected string or object, received ${$value.type}`, filename, node: $value, src });
   }
 }
 
@@ -484,9 +504,9 @@ export function validateStrokeStyle($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateTransition($value, node, { source, logger }) {
+export function validateTransition($value, node, { filename, src, logger }) {
   if ($value.type !== 'Object') {
-    logger.error({ message: `Expected object, received ${$value.type}`, node: $value, source });
+    logger.error({ message: `Expected object, received ${$value.type}`, filename, node: $value, src });
     return;
   }
   validateMembersAs(
@@ -497,7 +517,7 @@ export function validateTransition($value, node, { source, logger }) {
       timingFunction: { validator: validateCubicBezier, required: true },
     },
     node,
-    { source, logger },
+    { filename, src, logger },
   );
 }
 
@@ -508,12 +528,13 @@ export function validateTransition($value, node, { source, logger }) {
  * @param {ValidateOptions} options
  * @return {void}
  */
-export default function validate(node, { source, logger }) {
+export default function validate(node, { filename, src, logger }) {
   if (node.type !== 'Member' && node.type !== 'Object') {
     logger.error({
       message: `Expected Object, received ${JSON.stringify(node.type)}`,
+      filename,
       node,
-      source,
+      src,
     });
     return;
   }
@@ -523,62 +544,63 @@ export default function validate(node, { source, logger }) {
   const $type = rootMembers.$type;
 
   if (!$value) {
-    logger.error({ message: 'Token missing $value', node, source });
+    logger.error({ message: 'Token missing $value', filename, node, src });
     return;
   }
   // If top-level value is a valid alias, this is valid (no need for $type)
   // ⚠️ Important: ALL Object and Array nodes below will need to check for aliases within!
   if (isMaybeAlias($value)) {
-    validateAlias($value, node, { logger, source });
+    validateAlias($value, node, { logger, src });
     return;
   }
 
   if (!$type) {
-    logger.error({ message: 'Token missing $type', node, source });
+    logger.error({ message: 'Token missing $type', filename, node, src });
     return;
   }
 
   switch ($type.value) {
     case 'color': {
-      validateColor($value, node, { logger, source });
+      validateColor($value, node, { logger, src });
       break;
     }
     case 'cubicBezier': {
-      validateCubicBezier($value, node, { logger, source });
+      validateCubicBezier($value, node, { logger, src });
       break;
     }
     case 'dimension': {
-      validateDimension($value, node, { logger, source });
+      validateDimension($value, node, { logger, src });
       break;
     }
     case 'duration': {
-      validateDuration($value, node, { logger, source });
+      validateDuration($value, node, { logger, src });
       break;
     }
     case 'fontFamily': {
-      validateFontFamily($value, node, { logger, source });
+      validateFontFamily($value, node, { logger, src });
       break;
     }
     case 'fontWeight': {
-      validateFontWeight($value, node, { logger, source });
+      validateFontWeight($value, node, { logger, src });
       break;
     }
     case 'number': {
-      validateNumber($value, node, { logger, source });
+      validateNumber($value, node, { logger, src });
       break;
     }
     case 'shadow': {
       if ($value.type === 'Object') {
-        validateShadowLayer($value, node, { logger, source });
+        validateShadowLayer($value, node, { logger, src });
       } else if ($value.type === 'Array') {
         for (const element of $value.elements) {
-          validateShadowLayer(element.value, $value, { logger, source });
+          validateShadowLayer(element.value, $value, { logger, src });
         }
       } else {
         logger.error({
           message: `Expected shadow object or array of shadow objects, received ${$value.type}`,
+          filename,
           node: $value,
-          source,
+          src,
         });
       }
       break;
@@ -587,49 +609,54 @@ export default function validate(node, { source, logger }) {
     // extensions
     case 'boolean': {
       if ($value.type !== 'Boolean') {
-        logger.error({ message: `Expected boolean, received ${$value.type}`, node: $value, source });
+        logger.error({ message: `Expected boolean, received ${$value.type}`, filename, node: $value, src });
       }
       break;
     }
     case 'link': {
       if ($value.type !== 'String') {
-        logger.error({ message: `Expected string, received ${$value.type}`, node: $value, source });
+        logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
       } else if ($value.value === '') {
-        logger.error({ message: 'Expected URL, received empty string', node: $value, source });
+        logger.error({ message: 'Expected URL, received empty string', filename, node: $value, src });
       }
       break;
     }
     case 'string': {
       if ($value.type !== 'String') {
-        logger.error({ message: `Expected string, received ${$value.type}`, node: $value, source });
+        logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
       }
       break;
     }
 
     // composite types
     case 'border': {
-      validateBorder($value, node, { source, logger });
+      validateBorder($value, node, { filename, src, logger });
       break;
     }
     case 'gradient': {
-      validateGradient($value, node, { source, logger });
+      validateGradient($value, node, { filename, src, logger });
       break;
     }
     case 'strokeStyle': {
-      validateStrokeStyle($value, node, { source, logger });
+      validateStrokeStyle($value, node, { filename, src, logger });
       break;
     }
     case 'transition': {
-      validateTransition($value, node, { source, logger });
+      validateTransition($value, node, { filename, src, logger });
       break;
     }
     case 'typography': {
       if ($value.type !== 'Object') {
-        logger.error({ message: `Expected object, received ${$value.type}`, node: $value, source });
+        logger.error({ message: `Expected object, received ${$value.type}`, filename, node: $value, src });
         break;
       }
       if ($value.members.length === 0) {
-        logger.error({ message: 'Empty typography token. Must contain at least 1 property.', node: $value, source });
+        logger.error({
+          message: 'Empty typography token. Must contain at least 1 property.',
+          filename,
+          node: $value,
+          src,
+        });
       }
       validateMembersAs(
         $value,
@@ -638,7 +665,7 @@ export default function validate(node, { source, logger }) {
           fontWeight: { validator: validateFontWeight },
         },
         node,
-        { source, logger },
+        { filename, src, logger },
       );
       break;
     }

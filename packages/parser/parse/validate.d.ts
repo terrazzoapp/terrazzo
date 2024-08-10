@@ -7,7 +7,8 @@ declare const STROKE_STYLE_VALUES: Set<string>;
 declare const STROKE_STYLE_LINE_CAP_VALUES: Set<string>;
 
 export interface ValidateOptions {
-  source: string;
+  filename?: URL;
+  src: string;
   logger: Logger;
 }
 

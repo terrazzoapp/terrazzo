@@ -5,24 +5,32 @@ import type Logger from '../logger.js';
 
 export * from './validate.js';
 
+export interface ParseInput {
+  /** Source filename (if read from disk) */
+  filename?: URL;
+  /** JSON/YAML string, or JSON-serializable object (if already in memory) */
+  src: string | object;
+}
+
 export interface ParseOptions {
   logger?: Logger;
+  config: ConfigInit;
   /** Skip lint step (default: false) */
   skipLint?: boolean;
-  config: ConfigInit;
   /** Continue on error? (Useful for `tz check`) (default: false) */
   continueOnError?: boolean;
 }
 
 export interface ParseResult {
   tokens: Record<string, TokenNormalized>;
-  ast: DocumentNode;
+  /** ASTs are returned in order of input array */
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
 }
 
 /**
  * Parse and validate Tokens JSON, and lint it
  */
-export default function parse(input: string | object, options?: ParseOptions): Promise<ParseResult>;
+export default function parse(input: ParseInput[], options?: ParseOptions): Promise<ParseResult>;
 
 /** Determine if an input is likely a JSON string */
 export function maybeJSONString(input: unknown): boolean;

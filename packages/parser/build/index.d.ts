@@ -4,7 +4,7 @@ import type { ConfigInit } from '../config.js';
 import type Logger from '../logger.js';
 
 export interface BuildRunnerOptions {
-  ast: DocumentNode;
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
   config: ConfigInit;
   logger?: Logger;
 }
@@ -73,8 +73,8 @@ export interface TransformHookOptions {
       mode?: string;
     },
   ): void;
-  /** Momoa document */
-  ast: DocumentNode;
+  /** Momoa documents */
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
 }
 
 export interface BuildHookOptions {
@@ -82,8 +82,8 @@ export interface BuildHookOptions {
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
   getTransforms(params: TransformParams): TokenTransformed[];
-  /** Momoa document */
-  ast: DocumentNode;
+  /** Momoa documents */
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
   outputFile: (
     /** Filename to output (relative to outDir) */
     filename: string,
@@ -101,8 +101,8 @@ export interface BuildEndHookOptions {
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
   getTransforms(params: TransformParams): TokenTransformed[];
-  /** Momoa document */
-  ast: DocumentNode;
+  /** Momoa documents */
+  sources: { filename?: URL; src: string; document: DocumentNode }[];
   /** Final files to be written */
   outputFiles: OutputFileExpanded[];
 }

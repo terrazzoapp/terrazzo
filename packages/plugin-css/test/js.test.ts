@@ -14,13 +14,13 @@ describe('Node.js API', () => {
     it.each(['boolean', 'border', 'color', 'dimension', 'gradient', 'shadow', 'string', 'typography', 'transition'])(
       '%s',
       async (dir) => {
-        const filename = 'actual.css';
+        const output = 'actual.css';
         const cwd = new URL(`./fixtures/type-${dir}/`, import.meta.url);
         const config = defineConfig(
           {
             plugins: [
               css({
-                filename,
+                filename: output,
                 variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
                 modeSelectors: [
                   {
@@ -57,9 +57,12 @@ describe('Node.js API', () => {
           },
           { cwd },
         );
-        const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
-        const result = await build(tokens, { ast, config });
-        expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+        const tokensJSON = new URL('./tokens.json', cwd);
+        const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+          config,
+        });
+        const result = await build(tokens, { sources, config });
+        expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
           fileURLToPath(new URL('./want.css', cwd)),
         );
       },
@@ -67,13 +70,13 @@ describe('Node.js API', () => {
   });
 
   it('Utility CSS', async () => {
-    const filename = 'actual.css';
+    const output = 'actual.css';
     const cwd = new URL('./fixtures/utility-css/', import.meta.url);
     const config = defineConfig(
       {
         plugins: [
           css({
-            filename,
+            filename: output,
             variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
             utility: {
               bg: ['color.semantic.*', 'color.gradient.*'],
@@ -89,9 +92,12 @@ describe('Node.js API', () => {
       },
       { cwd },
     );
-    const { tokens, ast } = await parse(fs.readFileSync(new URL('./tokens.json', cwd), 'utf8'), { config });
-    const result = await build(tokens, { ast, config });
-    expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+    const tokensJSON = new URL('./tokens.json', cwd);
+    const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+      config,
+    });
+    const result = await build(tokens, { sources, config });
+    expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.css', cwd)),
     );
   });

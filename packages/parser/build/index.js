@@ -5,7 +5,7 @@ import Logger from '../logger.js';
 /**
  * @typedef {object} BuildRunnerOptions
  * @typedef {Record<string, TokenNormalized>} BuildRunnerOptions.tokens
- * @typedef {DocumentNode} BuildRunnerOptions.ast
+ * @typedef {Array} BuildRunnerOptions.sources
  * @typedef {ConfigInit} BuildRunnerOptions.config
  * @typedef {Logger} BuildRunnerOptions.logger
  * @typedef {import("@humanwhocodes/momoa").DocumentNode} DocumentNode
@@ -60,7 +60,7 @@ function validateTransformParams({ params, token, logger, pluginName }) {
  * @param {BuildOptions} options
  * @return {Promise<BuildResult>}
  */
-export default async function build(tokens, { ast, logger = new Logger(), config }) {
+export default async function build(tokens, { sources, logger = new Logger(), config }) {
   const formats = {};
   const result = { outputFiles: [] };
 
@@ -95,7 +95,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
     if (typeof plugin.transform === 'function') {
       await plugin.transform({
         tokens,
-        ast,
+        sources,
         getTransforms,
         setTransform(id, params) {
           if (transformsLocked) {
@@ -165,7 +165,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
       const pluginBuildStart = performance.now();
       await plugin.build({
         tokens,
-        ast,
+        sources,
         getTransforms,
         outputFile(filename, contents) {
           const resolved = new URL(filename, config.outDir);
@@ -196,7 +196,7 @@ export default async function build(tokens, { ast, logger = new Logger(), config
     if (typeof plugin.buildEnd === 'function') {
       await plugin.buildEnd({
         tokens,
-        ast,
+        sources,
         getTransforms,
         format: (formatID) => createFormatter(formatID),
         outputFiles: structruedClone(result.outputFiles),
