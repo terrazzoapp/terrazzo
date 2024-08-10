@@ -67,7 +67,13 @@ export default async function parse(
       });
     }
 
-    const result = await parseSingle(input[i].src, { filename: input[i].filename, logger, config, skipLint });
+    const result = await parseSingle(input[i].src, {
+      filename: input[i].filename,
+      logger,
+      config,
+      skipLint,
+      continueOnError,
+    });
 
     tokens = Object.assign(tokens, result.tokens);
     if (input[i].filename) {
@@ -89,6 +95,7 @@ export default async function parse(
     const token = tokens[id];
     applyAliases(token, {
       tokens,
+      filename: sources[token.source.loc]?.filename,
       source: sources[token.source.loc]?.source,
       node: token.source.node,
       logger,
@@ -165,7 +172,7 @@ export default async function parse(
  * @param {import("../config.js").Config} [options.config]
  * @param {boolean} [options.skipLint]
  */
-async function parseSingle(input, { filename, logger, config, skipLint }) {
+async function parseSingle(input, { filename, logger, config, skipLint, continueOnError = false }) {
   // 1. Build AST
   let source;
   if (typeof input === 'string') {

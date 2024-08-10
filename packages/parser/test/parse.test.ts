@@ -35,8 +35,8 @@ describe('Tokens', () => {
       expect(want.tokens).toBeTruthy();
       expect(want.error).toBeUndefined();
       for (const id in result.tokens) {
-        const { sourceNode, ...token } = result.tokens[id]!;
-        expect(sourceNode).not.toBeFalsy();
+        const { source, ...token } = result.tokens[id]!;
+        expect(source).not.toBeFalsy();
         expect(token.$value).toEqual(want.tokens![id]);
       }
     }
@@ -312,6 +312,8 @@ describe('Tokens', () => {
           want: {
             error: `Alias "{color.base.blue.600}" not found
 
+/tokens.json:11:17
+
    9 |       }
   10 |     },
 > 11 |     "semantic": {
@@ -344,13 +346,14 @@ describe('Tokens', () => {
           want: {
             error: `Alias "{color.base.blue.600}" not found
 
-   9 |       }
-  10 |     },
-> 11 |     "semantic": {
-     |                 ^
-  12 |       "$value": "{color.base.blue.600}"
-  13 |     }
-  14 |   }`,
+/b.json:2:15
+
+  1 | {
+> 2 |   "semantic": {
+    |               ^
+  3 |     "$value": "{color.base.blue.600}"
+  4 |   }
+  5 | }`,
           },
         },
       ],
@@ -392,6 +395,8 @@ describe('Tokens', () => {
           want: {
             error: `Invalid alias: "{color.blue.500"
 
+/tokens.json:6:18
+
   4 |     "$value": [
   5 |       {
 > 6 |         "color": "{color.blue.500",
@@ -419,6 +424,8 @@ describe('Tokens', () => {
           ],
           want: {
             error: `Circular alias detected from "{color.text.primary}"
+
+/tokens.json:4:16
 
   2 |   "color": {
   3 |     "$type": "color",
@@ -566,13 +573,13 @@ describe('Tokens', () => {
           want: {
             error: `Expected 3 channels, received 4
 
-   5 |       "$value": {
-   6 |         "colorSpace": "srgb",
->  7 |         "channels": [
-     |                     ^
-   8 |           0.3,
-   9 |           0.6,
-  10 |           1,`,
+   8 |           "$value": {
+   9 |             "colorSpace": "srgb",
+> 10 |             "channels": [
+     |                         ^
+  11 |               0.3,
+  12 |               0.6,
+  13 |               1,`,
           },
         },
       ],
@@ -1186,6 +1193,8 @@ describe('Tokens', () => {
           want: {
             error: `Expected boolean, received String
 
+/tokens.json:4:15
+
   2 |   "myBool": {
   3 |     "$type": "boolean",
 > 4 |     "$value": "true"
@@ -1201,6 +1210,8 @@ describe('Tokens', () => {
           given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: 0 } } }],
           want: {
             error: `Expected boolean, received Number
+
+/tokens.json:4:15
 
   2 |   "myBool": {
   3 |     "$type": "boolean",
@@ -1234,6 +1245,8 @@ describe('Tokens', () => {
           want: {
             error: `Expected URL, received empty string
 
+/tokens.json:4:15
+
   2 |   "iconStar": {
   3 |     "$type": "link",
 > 4 |     "$value": ""
@@ -1249,6 +1262,8 @@ describe('Tokens', () => {
           given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: 100 } } }],
           want: {
             error: `Expected string, received Number
+
+/tokens.json:4:15
 
   2 |   "iconStar": {
   3 |     "$type": "link",
@@ -1286,6 +1301,8 @@ describe('Tokens', () => {
           given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 99 } } }],
           want: {
             error: `Expected string, received Number
+
+/tokens.json:4:15
 
   2 |   "myString": {
   3 |     "$type": "string",
@@ -1334,6 +1351,8 @@ describe('Tokens', () => {
           want: {
             error: `Unknown stroke style "thicc". Expected one of: solid, dashed, dotted, double, groove, ridge, outset, or inset.
 
+/tokens.json:4:15
+
   2 |   "borderStyle": {
   3 |     "$type": "strokeStyle",
 > 4 |     "$value": "thicc"
@@ -1359,6 +1378,8 @@ describe('Tokens', () => {
           ],
           want: {
             error: `Expected array of strings, recieved some non-strings or empty strings.
+
+/tokens.json:7:9
 
    5 |       "lineCap": "round",
    6 |       "dashArray": [
@@ -1408,6 +1429,8 @@ describe('Tokens', () => {
           ],
           want: {
             error: `Missing required property "color"
+
+/tokens.json:4:15
 
   2 |   "border": {
   3 |     "$type": "border",
@@ -1511,6 +1534,8 @@ describe('Tokens', () => {
           want: {
             error: `Missing required property "duration"
 
+/tokens.json:5:17
+
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
 > 5 |       "$value": {
@@ -1539,6 +1564,8 @@ describe('Tokens', () => {
           ],
           want: {
             error: `Missing required property "timingFunction"
+
+/tokens.json:5:17
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
@@ -1718,6 +1745,8 @@ describe('Tokens', () => {
           want: {
             error: `Unable to parse color "foo"
 
+/tokens.json:4:15
+
   2 |   "gradient": {
   3 |     "$type": "gradient",
 > 4 |     "$value": [
@@ -1748,6 +1777,8 @@ describe('Tokens', () => {
           want: {
             error: `Expected number, received String
 
+/tokens.json:11:21
+
    9 |       {
   10 |         "color": "#ff9900",
 > 11 |         "position": "12px"
@@ -1774,6 +1805,8 @@ describe('Tokens', () => {
           ],
           want: {
             error: `Missing required property "position"
+
+/tokens.json:9:7
 
    7 |         "position": 0
    8 |       },
@@ -1813,7 +1846,7 @@ describe('Additional cases', () => {
       const result = await parse(
         [
           {
-            filename: 'tokens.yaml',
+            filename: new URL('file:///tokens.yaml'),
             src: `tokens:
   - foo: true
   false`,
@@ -1897,6 +1930,8 @@ describe('Additional cases', () => {
       expect(true).toBe(false);
     } catch (err) {
       expect(stripAnsi(String(err))).toBe(`TokensJSONError: Unable to parse color "#646464)"
+
+/tokens.json:45:29
 
   43 |         "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
   44 |         "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
@@ -2161,8 +2196,8 @@ describe('Additional cases', () => {
       const { tokens } = await parse(given, { config });
       for (const id in want) {
         for (const mode in want[id]!) {
-          const { sourceNode, ...modeValue } = tokens[id]!.mode[mode]!;
-          expect(sourceNode).not.toBeFalsy();
+          const { source, ...modeValue } = tokens[id]!.mode[mode]!;
+          expect(source).not.toBeFalsy();
           expect(modeValue).toEqual(want[id][mode]);
         }
       }

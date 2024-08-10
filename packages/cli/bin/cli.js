@@ -109,11 +109,11 @@ export default async function main() {
         process.exit(1);
       }
 
-      let rawSchema = await loadTokens(config.tokens);
+      let rawSchemas = await loadTokens(config.tokens);
 
       const watch = args.includes('-w') || args.includes('--watch');
 
-      let { tokens, ast } = await parse(rawSchema, { config });
+      let { tokens, ast } = await parse(rawSchemas, { config });
       let result = await build(tokens, { ast, config });
       writeFiles(result, config);
 
@@ -125,28 +125,28 @@ export default async function main() {
           hour: '2-digit',
           minute: '2-digit',
         });
-        const tokenWatcher = chokidar.watch(config.tokens.map((filepath) => fileURLToPath(filepath)));
-        tokenWatcher.on('change', async (filePath) => {
+        const tokenWatcher = chokidar.watch(config.tokens.map((filename) => fileURLToPath(filename)));
+        tokenWatcher.on('change', async (filename) => {
           try {
-            rawSchema = await loadTokens(config.tokens);
-            const parseResult = await parse(tokens, { config });
+            rawSchemas = await loadTokens(config.tokens);
+            const parseResult = await parse(rawSchemas, { config });
             tokens = parseResult.tokens;
             ast = parseResult.ast;
             result = await build(tokens, { ast, config });
             console.log(
-              `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')}} ${pc.yellow(filePath)} updated ${GREEN_CHECK}`,
+              `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')}} ${pc.yellow(filename)} updated ${GREEN_CHECK}`,
             );
           } catch (err) {
             printErrors([err.message || err]);
           }
         });
         const configWatcher = chokidar.watch(resolveConfig(configPath));
-        configWatcher.on('change', async (filePath) => {
+        configWatcher.on('change', async (filename) => {
           try {
             console.log(
               `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')} ${pc.yellow('Config updated. Reloading…')}`,
             );
-            config = (await import(filePath)).default;
+            config = (await import(filename)).default;
             rawSchema = await loadTokens(config.tokens);
             const parseResult = await parse(tokens, { config });
             tokens = parseResult.tokens;
@@ -168,10 +168,10 @@ export default async function main() {
       break;
     }
     case 'check': {
-      const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const filepath = flags._[0] || config.tokens[0];
-      console.log(pc.underline(filepath.protocol === 'file:' ? fileURLToPath(filepath) : filepath));
-      await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
+      const rawSchemas = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
+      const filename = flags._[0] || config.tokens[0];
+      console.log(pc.underline(filename.protocol === 'file:' ? fileURLToPath(filename) : filename));
+      await parse(rawSchemas, { config, continueOnError: true }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
       break;
     }
@@ -238,21 +238,30 @@ function showHelp() {
 
 /** load tokens */
 async function loadTokens(tokenPaths) {
-  // TODO: merge tokens
-
   const allTokens = [];
+
+  if (!Array.isArray(tokenPaths)) {
+    printErrors(`loadTokens: Expected array, received ${typeof tokenPaths}`);
+    process.exit(1);
+  }
 
   // download/read
   for (let i = 0; i < tokenPaths.length; i++) {
-    const filepath = tokenPaths[i];
-    if (filepath.protocol === 'http:' || filepath.protocol === 'https:') {
+    const filename = tokenPaths[i];
+
+    if (!(filename instanceof URL)) {
+      printErrors(`loadTokens[${i}]: Expected URL, received ${filename}`);
+      process.exit(1);
+    }
+
+    if (filename.protocol === 'http:' || filename.protocol === 'https:') {
       try {
         // if Figma URL
-        if (filepath.host === 'figma.com' || filepath.host === 'www.figma.com') {
-          const [_, fileKeyword, fileKey] = filepath.pathname.split('/');
+        if (filename.host === 'figma.com' || filename.host === 'www.figma.com') {
+          const [_, fileKeyword, fileKey] = filename.pathname.split('/');
           if (fileKeyword !== 'file' || !fileKey) {
             printErrors(
-              `Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filepath.href}"`,
+              `Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filename.href}"`,
             );
             process.exit(1);
           }
@@ -270,7 +279,7 @@ async function loadTokens(tokenPaths) {
             headers,
           });
           if (res.ok) {
-            allTokens.push(await res.text());
+            allTokens.push({ filename, src: await res.text() });
           }
           const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
           printErrors(`Figma responded with ${res.status}${message ? `:\n${message}` : ''}`);
@@ -279,27 +288,27 @@ async function loadTokens(tokenPaths) {
         }
 
         // otherwise, expect YAML/JSON
-        const res = await fetch(filepath, {
+        const res = await fetch(filename, {
           method: 'GET',
           headers: { Accept: '*/*', 'User-Agent': 'Mozilla/5.0 Gecko/20100101 Firefox/123.0' },
         });
-        allTokens.push(await res.text());
+        allTokens.push({ filename, src: await res.text() });
       } catch (err) {
-        printErrors(`${filepath.href}: ${err}`);
+        printErrors(`${filename.href}: ${err}`);
       }
     } else {
-      if (fs.existsSync(filepath)) {
-        allTokens.push(fs.readFileSync(filepath, 'utf8'));
+      if (fs.existsSync(filename)) {
+        allTokens.push({ filename, src: fs.readFileSync(filename, 'utf8') });
       } else {
         printErrors(
-          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(filepath))}. To create one, run \`npx tz init\`.`,
+          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(filename))}. To create one, run \`npx tz init\`.`,
         );
         process.exit(1);
       }
     }
   }
 
-  return allTokens[0];
+  return allTokens;
 }
 
 /**
@@ -326,14 +335,14 @@ function resolveConfig(filename) {
 }
 
 /** Resolve tokens.json path (for lint command) */
-function resolveTokenPath(filepath) {
-  const tokensPath = new URL(filepath, cwd);
+function resolveTokenPath(filename) {
+  const tokensPath = new URL(filename, cwd);
   if (!fs.existsSync(tokensPath)) {
-    printErrors(`Could not locate ${filepath}. Does the file exist?`);
+    printErrors(`Could not locate ${filename}. Does the file exist?`);
     process.exit(1);
   }
   if (!fs.statSync(tokensPath).isFile()) {
-    printErrors(`Expected JSON or YAML file, received ${filepath}.`);
+    printErrors(`Expected JSON or YAML file, received ${filename}.`);
     process.exit(1);
   }
   return tokensPath;
@@ -373,8 +382,8 @@ export function printWarnings(warnings) {
 /** Write files */
 export function writeFiles(result, config) {
   for (const { filename, contents } of result.outputFiles) {
-    const filepath = new URL(filename, config.outDir);
-    fs.mkdirSync(new URL('.', filepath), { recursive: true });
-    fs.writeFileSync(filepath, contents);
+    const output = new URL(filename, config.outDir);
+    fs.mkdirSync(new URL('.', output), { recursive: true });
+    fs.writeFileSync(output, contents);
   }
 }
