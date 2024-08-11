@@ -34,8 +34,8 @@ const config = defineConfig(
 );
 
 const rawTokens = "(any JSON or YAML)";
-const { tokens, ast } = await parse(rawTokens, { config });
-const buildResult = await build(tokens, { ast, config });
+const { tokens, sources } = await parse(rawTokens, { config });
+const buildResult = await build(tokens, { sources, config });
 ```
 
 It’s worth noting the JS API is a little more manual work than the [CLI](/docs/cli):
@@ -75,4 +75,33 @@ const { tokens, ast } = await parse(rawTokens, {
   config,
   logger: new MyLogger(),
 });
+```
+
+## YAML support
+
+Though the [CLI](/docs/cli) ships with YAML support, the parser does not to cut down on package size (saves ~100kb, which is over double the existing weight). To support YAML in the JS API, first install the `yaml-to-momoa` package:
+
+:::code-group
+
+```sh [npm]
+npm i -D yaml-to-momoa
+```
+
+```sh [pnpm]
+pnpm i -D yaml-to-momoa
+```
+
+:::
+
+Then add it as an option to `parse()`:
+
+```ts
+import { parse } from "@terrazzo/parser";
+import { yamlToMomoa } from "yaml-to-momoa";
+
+const yaml = `color:
+  blue:
+    $type: color
+    $value: '#8ec8f6`;
+const { tokens, sources } = await parse(yaml, { config, yamlToMomoa });
 ```

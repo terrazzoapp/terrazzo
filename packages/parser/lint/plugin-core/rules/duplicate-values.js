@@ -1,5 +1,4 @@
 import { isAlias, isTokenMatch } from '@terrazzo/token-tools';
-import deepEqual from 'deep-equal';
 
 export default function ruleDuplicateValues({ tokens, rule: { severity }, options }) {
   if (severity === 'off') {
@@ -51,7 +50,7 @@ export default function ruleDuplicateValues({ tokens, rule: { severity }, option
     // everything else: use deepEqual
     let isDuplicate = false;
     for (const v of values[t.$type]?.values() ?? []) {
-      if (deepEqual(t.$value, v)) {
+      if (JSON.stringify(t.$value) === JSON.stringify(v)) {
         notices.push({ message: `Duplicated value (${t.id})`, node: t.sourceNode });
         isDuplicate = true;
         break;

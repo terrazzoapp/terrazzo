@@ -1,7 +1,6 @@
-import { codeFrameColumns } from '@babel/code-frame';
 import color from 'picocolors';
-import { fileURLToPath } from 'node:url';
 import wcmatch from 'wildcard-match';
+import { codeFrameColumns } from './lib/code-frame.js';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'];
 
@@ -26,7 +25,8 @@ export function formatMessage(entry, severity) {
   }
   if (entry.src) {
     const start = entry.node?.loc?.start;
-    message = `${message}\n\n${entry.filename ? `${fileURLToPath(entry.filename)}:${start?.line ?? 0}:${start?.column ?? 0}\n\n` : ''}${codeFrameColumns(entry.src, { start })}`;
+    // note: strip "file://" protocol, but not href
+    message = `${message}\n\n${entry.filename ? `${entry.filename.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n` : ''}${codeFrameColumns(entry.src, { start }, { highlightCode: false })}`;
   }
   return message;
 }

@@ -1,0 +1,2372 @@
+color:
+  $type: color
+  primitive:
+    gray:
+      "1":
+        $value: "#fcfcfc"
+        $extensions:
+          mode:
+            light: "#fcfcfc"
+            dark: "#111111"
+      "2":
+        $value: "#f9f9f9"
+        $extensions:
+          mode:
+            light: "#f9f9f9"
+            dark: "#191919"
+      "3":
+        $value: "#f0f0f0"
+        $extensions:
+          mode:
+            light: "#f0f0f0"
+            dark: "#222222"
+      "4":
+        $value: "#e8e8e8"
+        $extensions:
+          mode:
+            light: "#e8e8e8"
+            dark: "#2a2a2a"
+      "5":
+        $value: "#e0e0e0"
+        $extensions:
+          mode:
+            light: "#e0e0e0"
+            dark: "#313131"
+      "6":
+        $value: "#d9d9d9"
+        $extensions:
+          mode:
+            light: "#d9d9d9"
+            dark: "#3a3a3a"
+      "7":
+        $value: "#cecece"
+        $extensions:
+          mode:
+            light: "#cecece"
+            dark: "#484848"
+      "8":
+        $value: "#bbbbbb"
+        $extensions:
+          mode:
+            light: "#bbbbbb"
+            dark: "#606060"
+      "9":
+        $value: "#8d8d8d"
+        $extensions:
+          mode:
+            light: "#8d8d8d"
+            dark: "#6e6e6e"
+      "10":
+        $value: "#838383"
+        $extensions:
+          mode:
+            light: "#838383"
+            dark: "#7b7b7b"
+      "11":
+        $value: "#646464"
+        $extensions:
+          mode:
+            light: "#646464"
+            dark: "#b4b4b4"
+      "12":
+        $value: "#202020"
+        $extensions:
+          mode:
+            light: "#202020"
+            dark: "#eeeeee"
+    mauve:
+      "1":
+        $value: "#fdfcfd"
+        $extensions:
+          mode:
+            light: "#fdfcfd"
+            dark: "#121113"
+      "2":
+        $value: "#faf9fb"
+        $extensions:
+          mode:
+            light: "#faf9fb"
+            dark: "#1a191b"
+      "3":
+        $value: "#f2eff3"
+        $extensions:
+          mode:
+            light: "#f2eff3"
+            dark: "#232225"
+      "4":
+        $value: "#eae7ec"
+        $extensions:
+          mode:
+            light: "#eae7ec"
+            dark: "#2b292d"
+      "5":
+        $value: "#e3dfe6"
+        $extensions:
+          mode:
+            light: "#e3dfe6"
+            dark: "#323035"
+      "6":
+        $value: "#dbd8e0"
+        $extensions:
+          mode:
+            light: "#dbd8e0"
+            dark: "#3c393f"
+      "7":
+        $value: "#d0cdd7"
+        $extensions:
+          mode:
+            light: "#d0cdd7"
+            dark: "#49474e"
+      "8":
+        $value: "#bcbac7"
+        $extensions:
+          mode:
+            light: "#bcbac7"
+            dark: "#625f69"
+      "9":
+        $value: "#8e8c99"
+        $extensions:
+          mode:
+            light: "#8e8c99"
+            dark: "#6f6d78"
+      "10":
+        $value: "#84828e"
+        $extensions:
+          mode:
+            light: "#84828e"
+            dark: "#7c7a85"
+      "11":
+        $value: "#65636d"
+        $extensions:
+          mode:
+            light: "#65636d"
+            dark: "#b5b2bc"
+      "12":
+        $value: "#211f26"
+        $extensions:
+          mode:
+            light: "#211f26"
+            dark: "#eeeef0"
+    slate:
+      "1":
+        $value: "#fcfcfd"
+        $extensions:
+          mode:
+            light: "#fcfcfd"
+            dark: "#111113"
+      "2":
+        $value: "#f9f9fb"
+        $extensions:
+          mode:
+            light: "#f9f9fb"
+            dark: "#18191b"
+      "3":
+        $value: "#f0f0f3"
+        $extensions:
+          mode:
+            light: "#f0f0f3"
+            dark: "#212225"
+      "4":
+        $value: "#e8e8ec"
+        $extensions:
+          mode:
+            light: "#e8e8ec"
+            dark: "#272a2d"
+      "5":
+        $value: "#e0e1e6"
+        $extensions:
+          mode:
+            light: "#e0e1e6"
+            dark: "#2e3135"
+      "6":
+        $value: "#d9d9e0"
+        $extensions:
+          mode:
+            light: "#d9d9e0"
+            dark: "#363a3f"
+      "7":
+        $value: "#cdced6"
+        $extensions:
+          mode:
+            light: "#cdced6"
+            dark: "#43484e"
+      "8":
+        $value: "#b9bbc6"
+        $extensions:
+          mode:
+            light: "#b9bbc6"
+            dark: "#5a6169"
+      "9":
+        $value: "#8b8d98"
+        $extensions:
+          mode:
+            light: "#8b8d98"
+            dark: "#696e77"
+      "10":
+        $value: "#80838d"
+        $extensions:
+          mode:
+            light: "#80838d"
+            dark: "#777b84"
+      "11":
+        $value: "#60646c"
+        $extensions:
+          mode:
+            light: "#60646c"
+            dark: "#b0b4ba"
+      "12":
+        $value: "#1c2024"
+        $extensions:
+          mode:
+            light: "#1c2024"
+            dark: "#edeef0"
+    sage:
+      "1":
+        $value: "#fbfdfc"
+        $extensions:
+          mode:
+            light: "#fbfdfc"
+            dark: "#101211"
+      "2":
+        $value: "#f7f9f8"
+        $extensions:
+          mode:
+            light: "#f7f9f8"
+            dark: "#171918"
+      "3":
+        $value: "#eef1f0"
+        $extensions:
+          mode:
+            light: "#eef1f0"
+            dark: "#202221"
+      "4":
+        $value: "#e6e9e8"
+        $extensions:
+          mode:
+            light: "#e6e9e8"
+            dark: "#272a29"
+      "5":
+        $value: "#dfe2e0"
+        $extensions:
+          mode:
+            light: "#dfe2e0"
+            dark: "#2e3130"
+      "6":
+        $value: "#d7dad9"
+        $extensions:
+          mode:
+            light: "#d7dad9"
+            dark: "#373b39"
+      "7":
+        $value: "#cbcfcd"
+        $extensions:
+          mode:
+            light: "#cbcfcd"
+            dark: "#444947"
+      "8":
+        $value: "#b8bcba"
+        $extensions:
+          mode:
+            light: "#b8bcba"
+            dark: "#5b625f"
+      "9":
+        $value: "#868e8b"
+        $extensions:
+          mode:
+            light: "#868e8b"
+            dark: "#63706b"
+      "10":
+        $value: "#7c8481"
+        $extensions:
+          mode:
+            light: "#7c8481"
+            dark: "#717d79"
+      "11":
+        $value: "#5f6563"
+        $extensions:
+          mode:
+            light: "#5f6563"
+            dark: "#adb5b2"
+      "12":
+        $value: "#1a211e"
+        $extensions:
+          mode:
+            light: "#1a211e"
+            dark: "#eceeed"
+    olive:
+      "1":
+        $value: "#fcfdfc"
+        $extensions:
+          mode:
+            light: "#fcfdfc"
+            dark: "#111210"
+      "2":
+        $value: "#f8faf8"
+        $extensions:
+          mode:
+            light: "#f8faf8"
+            dark: "#181917"
+      "3":
+        $value: "#eff1ef"
+        $extensions:
+          mode:
+            light: "#eff1ef"
+            dark: "#212220"
+      "4":
+        $value: "#e7e9e7"
+        $extensions:
+          mode:
+            light: "#e7e9e7"
+            dark: "#282a27"
+      "5":
+        $value: "#dfe2df"
+        $extensions:
+          mode:
+            light: "#dfe2df"
+            dark: "#2f312e"
+      "6":
+        $value: "#d7dad7"
+        $extensions:
+          mode:
+            light: "#d7dad7"
+            dark: "#383a36"
+      "7":
+        $value: "#cccfcc"
+        $extensions:
+          mode:
+            light: "#cccfcc"
+            dark: "#454843"
+      "8":
+        $value: "#b9bcb8"
+        $extensions:
+          mode:
+            light: "#b9bcb8"
+            dark: "#5c625b"
+      "9":
+        $value: "#898e87"
+        $extensions:
+          mode:
+            light: "#898e87"
+            dark: "#687066"
+      "10":
+        $value: "#7f847d"
+        $extensions:
+          mode:
+            light: "#7f847d"
+            dark: "#767d74"
+      "11":
+        $value: "#60655f"
+        $extensions:
+          mode:
+            light: "#60655f"
+            dark: "#afb5ad"
+      "12":
+        $value: "#1d211c"
+        $extensions:
+          mode:
+            light: "#1d211c"
+            dark: "#eceeec"
+    sand:
+      "1":
+        $value: "#fdfdfc"
+        $extensions:
+          mode:
+            light: "#fdfdfc"
+            dark: "#111110"
+      "2":
+        $value: "#f9f9f8"
+        $extensions:
+          mode:
+            light: "#f9f9f8"
+            dark: "#191918"
+      "3":
+        $value: "#f1f0ef"
+        $extensions:
+          mode:
+            light: "#f1f0ef"
+            dark: "#222221"
+      "4":
+        $value: "#e9e8e6"
+        $extensions:
+          mode:
+            light: "#e9e8e6"
+            dark: "#2a2a28"
+      "5":
+        $value: "#e2e1de"
+        $extensions:
+          mode:
+            light: "#e2e1de"
+            dark: "#31312e"
+      "6":
+        $value: "#dad9d6"
+        $extensions:
+          mode:
+            light: "#dad9d6"
+            dark: "#3b3a37"
+      "7":
+        $value: "#cfceca"
+        $extensions:
+          mode:
+            light: "#cfceca"
+            dark: "#494844"
+      "8":
+        $value: "#bcbbb5"
+        $extensions:
+          mode:
+            light: "#bcbbb5"
+            dark: "#62605b"
+      "9":
+        $value: "#8d8d86"
+        $extensions:
+          mode:
+            light: "#8d8d86"
+            dark: "#6f6d66"
+      "10":
+        $value: "#82827c"
+        $extensions:
+          mode:
+            light: "#82827c"
+            dark: "#7c7b74"
+      "11":
+        $value: "#63635e"
+        $extensions:
+          mode:
+            light: "#63635e"
+            dark: "#b5b3ad"
+      "12":
+        $value: "#21201c"
+        $extensions:
+          mode:
+            light: "#21201c"
+            dark: "#eeeeec"
+    gold:
+      "1":
+        $value: "#fdfdfc"
+        $extensions:
+          mode:
+            light: "#fdfdfc"
+            dark: "#121211"
+      "2":
+        $value: "#faf9f2"
+        $extensions:
+          mode:
+            light: "#faf9f2"
+            dark: "#1b1a17"
+      "3":
+        $value: "#f2f0e7"
+        $extensions:
+          mode:
+            light: "#f2f0e7"
+            dark: "#24231f"
+      "4":
+        $value: "#eae6db"
+        $extensions:
+          mode:
+            light: "#eae6db"
+            dark: "#2d2b26"
+      "5":
+        $value: "#e1dccf"
+        $extensions:
+          mode:
+            light: "#e1dccf"
+            dark: "#38352e"
+      "6":
+        $value: "#d8d0bf"
+        $extensions:
+          mode:
+            light: "#d8d0bf"
+            dark: "#444039"
+      "7":
+        $value: "#cbc0aa"
+        $extensions:
+          mode:
+            light: "#cbc0aa"
+            dark: "#544f46"
+      "8":
+        $value: "#b9a88d"
+        $extensions:
+          mode:
+            light: "#b9a88d"
+            dark: "#696256"
+      "9":
+        $value: "#978365"
+        $extensions:
+          mode:
+            light: "#978365"
+            dark: "#978365"
+      "10":
+        $value: "#8c7a5e"
+        $extensions:
+          mode:
+            light: "#8c7a5e"
+            dark: "#a39073"
+      "11":
+        $value: "#71624b"
+        $extensions:
+          mode:
+            light: "#71624b"
+            dark: "#cbb99f"
+      "12":
+        $value: "#3b352b"
+        $extensions:
+          mode:
+            light: "#3b352b"
+            dark: "#e8e2d9"
+    bronze:
+      "1":
+        $value: "#fdfcfc"
+        $extensions:
+          mode:
+            light: "#fdfcfc"
+            dark: "#141110"
+      "2":
+        $value: "#fdf7f5"
+        $extensions:
+          mode:
+            light: "#fdf7f5"
+            dark: "#1c1917"
+      "3":
+        $value: "#f6edea"
+        $extensions:
+          mode:
+            light: "#f6edea"
+            dark: "#262220"
+      "4":
+        $value: "#efe4df"
+        $extensions:
+          mode:
+            light: "#efe4df"
+            dark: "#302a27"
+      "5":
+        $value: "#e7d9d3"
+        $extensions:
+          mode:
+            light: "#e7d9d3"
+            dark: "#3b3330"
+      "6":
+        $value: "#dfcdc5"
+        $extensions:
+          mode:
+            light: "#dfcdc5"
+            dark: "#493e3a"
+      "7":
+        $value: "#d3bcb3"
+        $extensions:
+          mode:
+            light: "#d3bcb3"
+            dark: "#5a4c47"
+      "8":
+        $value: "#c2a499"
+        $extensions:
+          mode:
+            light: "#c2a499"
+            dark: "#6f5f58"
+      "9":
+        $value: "#a18072"
+        $extensions:
+          mode:
+            light: "#a18072"
+            dark: "#a18072"
+      "10":
+        $value: "#957468"
+        $extensions:
+          mode:
+            light: "#957468"
+            dark: "#ae8c7e"
+      "11":
+        $value: "#7d5e54"
+        $extensions:
+          mode:
+            light: "#7d5e54"
+            dark: "#d4b3a5"
+      "12":
+        $value: "#43302b"
+        $extensions:
+          mode:
+            light: "#43302b"
+            dark: "#ede0d9"
+    brown:
+      "1":
+        $value: "#fefdfc"
+        $extensions:
+          mode:
+            light: "#fefdfc"
+            dark: "#12110f"
+      "2":
+        $value: "#fcf9f6"
+        $extensions:
+          mode:
+            light: "#fcf9f6"
+            dark: "#1c1816"
+      "3":
+        $value: "#f6eee7"
+        $extensions:
+          mode:
+            light: "#f6eee7"
+            dark: "#28211d"
+      "4":
+        $value: "#f0e4d9"
+        $extensions:
+          mode:
+            light: "#f0e4d9"
+            dark: "#322922"
+      "5":
+        $value: "#ebdaca"
+        $extensions:
+          mode:
+            light: "#ebdaca"
+            dark: "#3e3128"
+      "6":
+        $value: "#e4cdb7"
+        $extensions:
+          mode:
+            light: "#e4cdb7"
+            dark: "#4d3c2f"
+      "7":
+        $value: "#dcbc9f"
+        $extensions:
+          mode:
+            light: "#dcbc9f"
+            dark: "#614a39"
+      "8":
+        $value: "#cea37e"
+        $extensions:
+          mode:
+            light: "#cea37e"
+            dark: "#7c5f46"
+      "9":
+        $value: "#ad7f58"
+        $extensions:
+          mode:
+            light: "#ad7f58"
+            dark: "#ad7f58"
+      "10":
+        $value: "#a07553"
+        $extensions:
+          mode:
+            light: "#a07553"
+            dark: "#b88c67"
+      "11":
+        $value: "#815e46"
+        $extensions:
+          mode:
+            light: "#815e46"
+            dark: "#dbb594"
+      "12":
+        $value: "#3e332e"
+        $extensions:
+          mode:
+            light: "#3e332e"
+            dark: "#f2e1ca"
+    yellow:
+      "1":
+        $value: "#fdfdf9"
+        $extensions:
+          mode:
+            light: "#fdfdf9"
+            dark: "#14120b"
+      "2":
+        $value: "#fefce9"
+        $extensions:
+          mode:
+            light: "#fefce9"
+            dark: "#1b180f"
+      "3":
+        $value: "#fffab8"
+        $extensions:
+          mode:
+            light: "#fffab8"
+            dark: "#2d2305"
+      "4":
+        $value: "#fff394"
+        $extensions:
+          mode:
+            light: "#fff394"
+            dark: "#362b00"
+      "5":
+        $value: "#ffe770"
+        $extensions:
+          mode:
+            light: "#ffe770"
+            dark: "#433500"
+      "6":
+        $value: "#f3d768"
+        $extensions:
+          mode:
+            light: "#f3d768"
+            dark: "#524202"
+      "7":
+        $value: "#e4c767"
+        $extensions:
+          mode:
+            light: "#e4c767"
+            dark: "#665417"
+      "8":
+        $value: "#d5ae39"
+        $extensions:
+          mode:
+            light: "#d5ae39"
+            dark: "#836a21"
+      "9":
+        $value: "#ffe629"
+        $extensions:
+          mode:
+            light: "#ffe629"
+            dark: "#ffe629"
+      "10":
+        $value: "#ffdc00"
+        $extensions:
+          mode:
+            light: "#ffdc00"
+            dark: "#ffff57"
+      "11":
+        $value: "#9e6c00"
+        $extensions:
+          mode:
+            light: "#9e6c00"
+            dark: "#f5e147"
+      "12":
+        $value: "#473b1f"
+        $extensions:
+          mode:
+            light: "#473b1f"
+            dark: "#f6eeb4"
+    amber:
+      "1":
+        $value: "#fefdfb"
+        $extensions:
+          mode:
+            light: "#fefdfb"
+            dark: "#16120c"
+      "2":
+        $value: "#fefbe9"
+        $extensions:
+          mode:
+            light: "#fefbe9"
+            dark: "#1d180f"
+      "3":
+        $value: "#fff7c2"
+        $extensions:
+          mode:
+            light: "#fff7c2"
+            dark: "#302008"
+      "4":
+        $value: "#ffee9c"
+        $extensions:
+          mode:
+            light: "#ffee9c"
+            dark: "#3f2700"
+      "5":
+        $value: "#fbe577"
+        $extensions:
+          mode:
+            light: "#fbe577"
+            dark: "#4d3000"
+      "6":
+        $value: "#f3d673"
+        $extensions:
+          mode:
+            light: "#f3d673"
+            dark: "#5c3d05"
+      "7":
+        $value: "#e9c162"
+        $extensions:
+          mode:
+            light: "#e9c162"
+            dark: "#714f19"
+      "8":
+        $value: "#e2a336"
+        $extensions:
+          mode:
+            light: "#e2a336"
+            dark: "#8f6424"
+      "9":
+        $value: "#ffc53d"
+        $extensions:
+          mode:
+            light: "#ffc53d"
+            dark: "#ffc53d"
+      "10":
+        $value: "#ffba18"
+        $extensions:
+          mode:
+            light: "#ffba18"
+            dark: "#ffd60a"
+      "11":
+        $value: "#ab6400"
+        $extensions:
+          mode:
+            light: "#ab6400"
+            dark: "#ffca16"
+      "12":
+        $value: "#4f3422"
+        $extensions:
+          mode:
+            light: "#4f3422"
+            dark: "#ffe7b3"
+    orange:
+      "1":
+        $value: "#fefcfb"
+        $extensions:
+          mode:
+            light: "#fefcfb"
+            dark: "#17120e"
+      "2":
+        $value: "#fff7ed"
+        $extensions:
+          mode:
+            light: "#fff7ed"
+            dark: "#1e160f"
+      "3":
+        $value: "#ffefd6"
+        $extensions:
+          mode:
+            light: "#ffefd6"
+            dark: "#331e0b"
+      "4":
+        $value: "#ffdfb5"
+        $extensions:
+          mode:
+            light: "#ffdfb5"
+            dark: "#462100"
+      "5":
+        $value: "#ffd19a"
+        $extensions:
+          mode:
+            light: "#ffd19a"
+            dark: "#562800"
+      "6":
+        $value: "#ffc182"
+        $extensions:
+          mode:
+            light: "#ffc182"
+            dark: "#66350c"
+      "7":
+        $value: "#f5ae73"
+        $extensions:
+          mode:
+            light: "#f5ae73"
+            dark: "#7e451d"
+      "8":
+        $value: "#ec9455"
+        $extensions:
+          mode:
+            light: "#ec9455"
+            dark: "#a35829"
+      "9":
+        $value: "#f76b15"
+        $extensions:
+          mode:
+            light: "#f76b15"
+            dark: "#f76b15"
+      "10":
+        $value: "#ef5f00"
+        $extensions:
+          mode:
+            light: "#ef5f00"
+            dark: "#ff801f"
+      "11":
+        $value: "#cc4e00"
+        $extensions:
+          mode:
+            light: "#cc4e00"
+            dark: "#ffa057"
+      "12":
+        $value: "#582d1d"
+        $extensions:
+          mode:
+            light: "#582d1d"
+            dark: "#ffe0c2"
+    tomato:
+      "1":
+        $value: "#fffcfc"
+        $extensions:
+          mode:
+            light: "#fffcfc"
+            dark: "#181111"
+      "2":
+        $value: "#fff8f7"
+        $extensions:
+          mode:
+            light: "#fff8f7"
+            dark: "#1f1513"
+      "3":
+        $value: "#feebe7"
+        $extensions:
+          mode:
+            light: "#feebe7"
+            dark: "#391714"
+      "4":
+        $value: "#ffdcd3"
+        $extensions:
+          mode:
+            light: "#ffdcd3"
+            dark: "#4e1511"
+      "5":
+        $value: "#ffcdc2"
+        $extensions:
+          mode:
+            light: "#ffcdc2"
+            dark: "#5e1c16"
+      "6":
+        $value: "#fdbdaf"
+        $extensions:
+          mode:
+            light: "#fdbdaf"
+            dark: "#6e2920"
+      "7":
+        $value: "#f5a898"
+        $extensions:
+          mode:
+            light: "#f5a898"
+            dark: "#853a2d"
+      "8":
+        $value: "#ec8e7b"
+        $extensions:
+          mode:
+            light: "#ec8e7b"
+            dark: "#ac4d39"
+      "9":
+        $value: "#e54d2e"
+        $extensions:
+          mode:
+            light: "#e54d2e"
+            dark: "#e54d2e"
+      "10":
+        $value: "#dd4425"
+        $extensions:
+          mode:
+            light: "#dd4425"
+            dark: "#ec6142"
+      "11":
+        $value: "#d13415"
+        $extensions:
+          mode:
+            light: "#d13415"
+            dark: "#ff977d"
+      "12":
+        $value: "#5c271f"
+        $extensions:
+          mode:
+            light: "#5c271f"
+            dark: "#fbd3cb"
+    red:
+      "1":
+        $value: "#fffcfc"
+        $extensions:
+          mode:
+            light: "#fffcfc"
+            dark: "#191111"
+      "2":
+        $value: "#fff7f7"
+        $extensions:
+          mode:
+            light: "#fff7f7"
+            dark: "#201314"
+      "3":
+        $value: "#feebec"
+        $extensions:
+          mode:
+            light: "#feebec"
+            dark: "#3b1219"
+      "4":
+        $value: "#ffdbdc"
+        $extensions:
+          mode:
+            light: "#ffdbdc"
+            dark: "#500f1c"
+      "5":
+        $value: "#ffcdce"
+        $extensions:
+          mode:
+            light: "#ffcdce"
+            dark: "#611623"
+      "6":
+        $value: "#fdbdbe"
+        $extensions:
+          mode:
+            light: "#fdbdbe"
+            dark: "#72232d"
+      "7":
+        $value: "#f4a9aa"
+        $extensions:
+          mode:
+            light: "#f4a9aa"
+            dark: "#8c333a"
+      "8":
+        $value: "#eb8e90"
+        $extensions:
+          mode:
+            light: "#eb8e90"
+            dark: "#b54548"
+      "9":
+        $value: "#e5484d"
+        $extensions:
+          mode:
+            light: "#e5484d"
+            dark: "#e5484d"
+      "10":
+        $value: "#dc3e42"
+        $extensions:
+          mode:
+            light: "#dc3e42"
+            dark: "#ec5d5e"
+      "11":
+        $value: "#ce2c31"
+        $extensions:
+          mode:
+            light: "#ce2c31"
+            dark: "#ff9592"
+      "12":
+        $value: "#641723"
+        $extensions:
+          mode:
+            light: "#641723"
+            dark: "#ffd1d9"
+    ruby:
+      "1":
+        $value: "#fffcfd"
+        $extensions:
+          mode:
+            light: "#fffcfd"
+            dark: "#191113"
+      "2":
+        $value: "#fff7f8"
+        $extensions:
+          mode:
+            light: "#fff7f8"
+            dark: "#1e1517"
+      "3":
+        $value: "#feeaed"
+        $extensions:
+          mode:
+            light: "#feeaed"
+            dark: "#3a141e"
+      "4":
+        $value: "#ffdce1"
+        $extensions:
+          mode:
+            light: "#ffdce1"
+            dark: "#4e1325"
+      "5":
+        $value: "#ffced6"
+        $extensions:
+          mode:
+            light: "#ffced6"
+            dark: "#5e1a2e"
+      "6":
+        $value: "#f8bfc8"
+        $extensions:
+          mode:
+            light: "#f8bfc8"
+            dark: "#6f2539"
+      "7":
+        $value: "#efacb8"
+        $extensions:
+          mode:
+            light: "#efacb8"
+            dark: "#883447"
+      "8":
+        $value: "#e592a3"
+        $extensions:
+          mode:
+            light: "#e592a3"
+            dark: "#b3445a"
+      "9":
+        $value: "#e54666"
+        $extensions:
+          mode:
+            light: "#e54666"
+            dark: "#e54666"
+      "10":
+        $value: "#dc3b5d"
+        $extensions:
+          mode:
+            light: "#dc3b5d"
+            dark: "#ec5a72"
+      "11":
+        $value: "#ca244d"
+        $extensions:
+          mode:
+            light: "#ca244d"
+            dark: "#ff949d"
+      "12":
+        $value: "#64172b"
+        $extensions:
+          mode:
+            light: "#64172b"
+            dark: "#fed2e1"
+    crimson:
+      "1":
+        $value: "#fffcfd"
+        $extensions:
+          mode:
+            light: "#fffcfd"
+            dark: "#191114"
+      "2":
+        $value: "#fef7f9"
+        $extensions:
+          mode:
+            light: "#fef7f9"
+            dark: "#201318"
+      "3":
+        $value: "#ffe9f0"
+        $extensions:
+          mode:
+            light: "#ffe9f0"
+            dark: "#381525"
+      "4":
+        $value: "#fedce7"
+        $extensions:
+          mode:
+            light: "#fedce7"
+            dark: "#4d122f"
+      "5":
+        $value: "#facedd"
+        $extensions:
+          mode:
+            light: "#facedd"
+            dark: "#5c1839"
+      "6":
+        $value: "#f3bed1"
+        $extensions:
+          mode:
+            light: "#f3bed1"
+            dark: "#6d2545"
+      "7":
+        $value: "#eaacc3"
+        $extensions:
+          mode:
+            light: "#eaacc3"
+            dark: "#873356"
+      "8":
+        $value: "#e093b2"
+        $extensions:
+          mode:
+            light: "#e093b2"
+            dark: "#b0436e"
+      "9":
+        $value: "#e93d82"
+        $extensions:
+          mode:
+            light: "#e93d82"
+            dark: "#e93d82"
+      "10":
+        $value: "#df3478"
+        $extensions:
+          mode:
+            light: "#df3478"
+            dark: "#ee518a"
+      "11":
+        $value: "#cb1d63"
+        $extensions:
+          mode:
+            light: "#cb1d63"
+            dark: "#ff92ad"
+      "12":
+        $value: "#621639"
+        $extensions:
+          mode:
+            light: "#621639"
+            dark: "#fdd3e8"
+    pink:
+      "1":
+        $value: "#fffcfe"
+        $extensions:
+          mode:
+            light: "#fffcfe"
+            dark: "#191117"
+      "2":
+        $value: "#fef7fb"
+        $extensions:
+          mode:
+            light: "#fef7fb"
+            dark: "#21121d"
+      "3":
+        $value: "#fee9f5"
+        $extensions:
+          mode:
+            light: "#fee9f5"
+            dark: "#37172f"
+      "4":
+        $value: "#fbdcef"
+        $extensions:
+          mode:
+            light: "#fbdcef"
+            dark: "#4b143d"
+      "5":
+        $value: "#f6cee7"
+        $extensions:
+          mode:
+            light: "#f6cee7"
+            dark: "#591c47"
+      "6":
+        $value: "#efbfdd"
+        $extensions:
+          mode:
+            light: "#efbfdd"
+            dark: "#692955"
+      "7":
+        $value: "#e7acd0"
+        $extensions:
+          mode:
+            light: "#e7acd0"
+            dark: "#833869"
+      "8":
+        $value: "#dd93c2"
+        $extensions:
+          mode:
+            light: "#dd93c2"
+            dark: "#a84885"
+      "9":
+        $value: "#d6409f"
+        $extensions:
+          mode:
+            light: "#d6409f"
+            dark: "#d6409f"
+      "10":
+        $value: "#cf3897"
+        $extensions:
+          mode:
+            light: "#cf3897"
+            dark: "#de51a8"
+      "11":
+        $value: "#c2298a"
+        $extensions:
+          mode:
+            light: "#c2298a"
+            dark: "#ff8dcc"
+      "12":
+        $value: "#651249"
+        $extensions:
+          mode:
+            light: "#651249"
+            dark: "#fdd1ea"
+    plum:
+      "1":
+        $value: "#fefcff"
+        $extensions:
+          mode:
+            light: "#fefcff"
+            dark: "#181118"
+      "2":
+        $value: "#fdf7fd"
+        $extensions:
+          mode:
+            light: "#fdf7fd"
+            dark: "#201320"
+      "3":
+        $value: "#fbebfb"
+        $extensions:
+          mode:
+            light: "#fbebfb"
+            dark: "#351a35"
+      "4":
+        $value: "#f7def8"
+        $extensions:
+          mode:
+            light: "#f7def8"
+            dark: "#451d47"
+      "5":
+        $value: "#f2d1f3"
+        $extensions:
+          mode:
+            light: "#f2d1f3"
+            dark: "#512454"
+      "6":
+        $value: "#e9c2ec"
+        $extensions:
+          mode:
+            light: "#e9c2ec"
+            dark: "#5e3061"
+      "7":
+        $value: "#deade3"
+        $extensions:
+          mode:
+            light: "#deade3"
+            dark: "#734079"
+      "8":
+        $value: "#cf91d8"
+        $extensions:
+          mode:
+            light: "#cf91d8"
+            dark: "#92549c"
+      "9":
+        $value: "#ab4aba"
+        $extensions:
+          mode:
+            light: "#ab4aba"
+            dark: "#ab4aba"
+      "10":
+        $value: "#a144af"
+        $extensions:
+          mode:
+            light: "#a144af"
+            dark: "#b658c4"
+      "11":
+        $value: "#953ea3"
+        $extensions:
+          mode:
+            light: "#953ea3"
+            dark: "#e796f3"
+      "12":
+        $value: "#53195d"
+        $extensions:
+          mode:
+            light: "#53195d"
+            dark: "#f4d4f4"
+    purple:
+      "1":
+        $value: "#fefcfe"
+        $extensions:
+          mode:
+            light: "#fefcfe"
+            dark: "#18111b"
+      "2":
+        $value: "#fbf7fe"
+        $extensions:
+          mode:
+            light: "#fbf7fe"
+            dark: "#1e1523"
+      "3":
+        $value: "#f7edfe"
+        $extensions:
+          mode:
+            light: "#f7edfe"
+            dark: "#301c3b"
+      "4":
+        $value: "#f2e2fc"
+        $extensions:
+          mode:
+            light: "#f2e2fc"
+            dark: "#3d224e"
+      "5":
+        $value: "#ead5f9"
+        $extensions:
+          mode:
+            light: "#ead5f9"
+            dark: "#48295c"
+      "6":
+        $value: "#e0c4f4"
+        $extensions:
+          mode:
+            light: "#e0c4f4"
+            dark: "#54346b"
+      "7":
+        $value: "#d1afec"
+        $extensions:
+          mode:
+            light: "#d1afec"
+            dark: "#664282"
+      "8":
+        $value: "#be93e4"
+        $extensions:
+          mode:
+            light: "#be93e4"
+            dark: "#8457aa"
+      "9":
+        $value: "#8e4ec6"
+        $extensions:
+          mode:
+            light: "#8e4ec6"
+            dark: "#8e4ec6"
+      "10":
+        $value: "#8347b9"
+        $extensions:
+          mode:
+            light: "#8347b9"
+            dark: "#9a5cd0"
+      "11":
+        $value: "#8145b5"
+        $extensions:
+          mode:
+            light: "#8145b5"
+            dark: "#d19dff"
+      "12":
+        $value: "#402060"
+        $extensions:
+          mode:
+            light: "#402060"
+            dark: "#ecd9fa"
+    violet:
+      "1":
+        $value: "#fdfcfe"
+        $extensions:
+          mode:
+            light: "#fdfcfe"
+            dark: "#14121f"
+      "2":
+        $value: "#faf8ff"
+        $extensions:
+          mode:
+            light: "#faf8ff"
+            dark: "#1b1525"
+      "3":
+        $value: "#f4f0fe"
+        $extensions:
+          mode:
+            light: "#f4f0fe"
+            dark: "#291f43"
+      "4":
+        $value: "#ebe4ff"
+        $extensions:
+          mode:
+            light: "#ebe4ff"
+            dark: "#33255b"
+      "5":
+        $value: "#e1d9ff"
+        $extensions:
+          mode:
+            light: "#e1d9ff"
+            dark: "#3c2e69"
+      "6":
+        $value: "#d4cafe"
+        $extensions:
+          mode:
+            light: "#d4cafe"
+            dark: "#473876"
+      "7":
+        $value: "#c2b5f5"
+        $extensions:
+          mode:
+            light: "#c2b5f5"
+            dark: "#56468b"
+      "8":
+        $value: "#aa99ec"
+        $extensions:
+          mode:
+            light: "#aa99ec"
+            dark: "#6958ad"
+      "9":
+        $value: "#6e56cf"
+        $extensions:
+          mode:
+            light: "#6e56cf"
+            dark: "#6e56cf"
+      "10":
+        $value: "#654dc4"
+        $extensions:
+          mode:
+            light: "#654dc4"
+            dark: "#7d66d9"
+      "11":
+        $value: "#6550b9"
+        $extensions:
+          mode:
+            light: "#6550b9"
+            dark: "#baa7ff"
+      "12":
+        $value: "#2f265f"
+        $extensions:
+          mode:
+            light: "#2f265f"
+            dark: "#e2ddfe"
+    iris:
+      "1":
+        $value: "#fdfdff"
+        $extensions:
+          mode:
+            light: "#fdfdff"
+            dark: "#13131e"
+      "2":
+        $value: "#f8f8ff"
+        $extensions:
+          mode:
+            light: "#f8f8ff"
+            dark: "#171625"
+      "3":
+        $value: "#f0f1fe"
+        $extensions:
+          mode:
+            light: "#f0f1fe"
+            dark: "#202248"
+      "4":
+        $value: "#e6e7ff"
+        $extensions:
+          mode:
+            light: "#e6e7ff"
+            dark: "#262a65"
+      "5":
+        $value: "#dadcff"
+        $extensions:
+          mode:
+            light: "#dadcff"
+            dark: "#303374"
+      "6":
+        $value: "#cbcdff"
+        $extensions:
+          mode:
+            light: "#cbcdff"
+            dark: "#3d3e82"
+      "7":
+        $value: "#b8baf8"
+        $extensions:
+          mode:
+            light: "#b8baf8"
+            dark: "#4a4a95"
+      "8":
+        $value: "#9b9ef0"
+        $extensions:
+          mode:
+            light: "#9b9ef0"
+            dark: "#5958b1"
+      "9":
+        $value: "#5b5bd6"
+        $extensions:
+          mode:
+            light: "#5b5bd6"
+            dark: "#5b5bd6"
+      "10":
+        $value: "#5151cd"
+        $extensions:
+          mode:
+            light: "#5151cd"
+            dark: "#6e6ade"
+      "11":
+        $value: "#5753c6"
+        $extensions:
+          mode:
+            light: "#5753c6"
+            dark: "#b1a9ff"
+      "12":
+        $value: "#272962"
+        $extensions:
+          mode:
+            light: "#272962"
+            dark: "#e0dffe"
+    indigo:
+      "1":
+        $value: "#fdfdfe"
+        $extensions:
+          mode:
+            light: "#fdfdfe"
+            dark: "#11131f"
+      "2":
+        $value: "#f7f9ff"
+        $extensions:
+          mode:
+            light: "#f7f9ff"
+            dark: "#141726"
+      "3":
+        $value: "#edf2fe"
+        $extensions:
+          mode:
+            light: "#edf2fe"
+            dark: "#182449"
+      "4":
+        $value: "#e1e9ff"
+        $extensions:
+          mode:
+            light: "#e1e9ff"
+            dark: "#1d2e62"
+      "5":
+        $value: "#d2deff"
+        $extensions:
+          mode:
+            light: "#d2deff"
+            dark: "#253974"
+      "6":
+        $value: "#c1d0ff"
+        $extensions:
+          mode:
+            light: "#c1d0ff"
+            dark: "#304384"
+      "7":
+        $value: "#abbdf9"
+        $extensions:
+          mode:
+            light: "#abbdf9"
+            dark: "#3a4f97"
+      "8":
+        $value: "#8da4ef"
+        $extensions:
+          mode:
+            light: "#8da4ef"
+            dark: "#435db1"
+      "9":
+        $value: "#3e63dd"
+        $extensions:
+          mode:
+            light: "#3e63dd"
+            dark: "#3e63dd"
+      "10":
+        $value: "#3358d4"
+        $extensions:
+          mode:
+            light: "#3358d4"
+            dark: "#5472e4"
+      "11":
+        $value: "#3a5bc7"
+        $extensions:
+          mode:
+            light: "#3a5bc7"
+            dark: "#9eb1ff"
+      "12":
+        $value: "#1f2d5c"
+        $extensions:
+          mode:
+            light: "#1f2d5c"
+            dark: "#d6e1ff"
+    blue:
+      "1":
+        $value: "#fbfdff"
+        $extensions:
+          mode:
+            light: "#fbfdff"
+            dark: "#0d1520"
+      "2":
+        $value: "#f4faff"
+        $extensions:
+          mode:
+            light: "#f4faff"
+            dark: "#111927"
+      "3":
+        $value: "#e6f4fe"
+        $extensions:
+          mode:
+            light: "#e6f4fe"
+            dark: "#0d2847"
+      "4":
+        $value: "#d5efff"
+        $extensions:
+          mode:
+            light: "#d5efff"
+            dark: "#003362"
+      "5":
+        $value: "#c2e5ff"
+        $extensions:
+          mode:
+            light: "#c2e5ff"
+            dark: "#004074"
+      "6":
+        $value: "#acd8fc"
+        $extensions:
+          mode:
+            light: "#acd8fc"
+            dark: "#104d87"
+      "7":
+        $value: "#8ec8f6"
+        $extensions:
+          mode:
+            light: "#8ec8f6"
+            dark: "#205d9e"
+      "8":
+        $value: "#5eb1ef"
+        $extensions:
+          mode:
+            light: "#5eb1ef"
+            dark: "#2870bd"
+      "9":
+        $value: "#0090ff"
+        $extensions:
+          mode:
+            light: "#0090ff"
+            dark: "#0090ff"
+      "10":
+        $value: "#0588f0"
+        $extensions:
+          mode:
+            light: "#0588f0"
+            dark: "#3b9eff"
+      "11":
+        $value: "#0d74ce"
+        $extensions:
+          mode:
+            light: "#0d74ce"
+            dark: "#70b8ff"
+      "12":
+        $value: "#113264"
+        $extensions:
+          mode:
+            light: "#113264"
+            dark: "#c2e6ff"
+    cyan:
+      "1":
+        $value: "#fafdfe"
+        $extensions:
+          mode:
+            light: "#fafdfe"
+            dark: "#0b161a"
+      "2":
+        $value: "#f2fafb"
+        $extensions:
+          mode:
+            light: "#f2fafb"
+            dark: "#101b20"
+      "3":
+        $value: "#def7f9"
+        $extensions:
+          mode:
+            light: "#def7f9"
+            dark: "#082c36"
+      "4":
+        $value: "#caf1f6"
+        $extensions:
+          mode:
+            light: "#caf1f6"
+            dark: "#003848"
+      "5":
+        $value: "#b5e9f0"
+        $extensions:
+          mode:
+            light: "#b5e9f0"
+            dark: "#004558"
+      "6":
+        $value: "#9ddde7"
+        $extensions:
+          mode:
+            light: "#9ddde7"
+            dark: "#045468"
+      "7":
+        $value: "#7dcedc"
+        $extensions:
+          mode:
+            light: "#7dcedc"
+            dark: "#12677e"
+      "8":
+        $value: "#3db9cf"
+        $extensions:
+          mode:
+            light: "#3db9cf"
+            dark: "#11809c"
+      "9":
+        $value: "#00a2c7"
+        $extensions:
+          mode:
+            light: "#00a2c7"
+            dark: "#00a2c7"
+      "10":
+        $value: "#0797b9"
+        $extensions:
+          mode:
+            light: "#0797b9"
+            dark: "#23afd0"
+      "11":
+        $value: "#107d98"
+        $extensions:
+          mode:
+            light: "#107d98"
+            dark: "#4ccce6"
+      "12":
+        $value: "#0d3c48"
+        $extensions:
+          mode:
+            light: "#0d3c48"
+            dark: "#b6ecf7"
+    teal:
+      "1":
+        $value: "#fafefd"
+        $extensions:
+          mode:
+            light: "#fafefd"
+            dark: "#0d1514"
+      "2":
+        $value: "#f3fbf9"
+        $extensions:
+          mode:
+            light: "#f3fbf9"
+            dark: "#111c1b"
+      "3":
+        $value: "#e0f8f3"
+        $extensions:
+          mode:
+            light: "#e0f8f3"
+            dark: "#0d2d2a"
+      "4":
+        $value: "#ccf3ea"
+        $extensions:
+          mode:
+            light: "#ccf3ea"
+            dark: "#023b37"
+      "5":
+        $value: "#b8eae0"
+        $extensions:
+          mode:
+            light: "#b8eae0"
+            dark: "#084843"
+      "6":
+        $value: "#a1ded2"
+        $extensions:
+          mode:
+            light: "#a1ded2"
+            dark: "#145750"
+      "7":
+        $value: "#83cdc1"
+        $extensions:
+          mode:
+            light: "#83cdc1"
+            dark: "#1c6961"
+      "8":
+        $value: "#53b9ab"
+        $extensions:
+          mode:
+            light: "#53b9ab"
+            dark: "#207e73"
+      "9":
+        $value: "#12a594"
+        $extensions:
+          mode:
+            light: "#12a594"
+            dark: "#12a594"
+      "10":
+        $value: "#0d9b8a"
+        $extensions:
+          mode:
+            light: "#0d9b8a"
+            dark: "#0eb39e"
+      "11":
+        $value: "#008573"
+        $extensions:
+          mode:
+            light: "#008573"
+            dark: "#0bd8b6"
+      "12":
+        $value: "#0d3d38"
+        $extensions:
+          mode:
+            light: "#0d3d38"
+            dark: "#adf0dd"
+    jade:
+      "1":
+        $value: "#fbfefd"
+        $extensions:
+          mode:
+            light: "#fbfefd"
+            dark: "#0d1512"
+      "2":
+        $value: "#f4fbf7"
+        $extensions:
+          mode:
+            light: "#f4fbf7"
+            dark: "#121c18"
+      "3":
+        $value: "#e6f7ed"
+        $extensions:
+          mode:
+            light: "#e6f7ed"
+            dark: "#0f2e22"
+      "4":
+        $value: "#d6f1e3"
+        $extensions:
+          mode:
+            light: "#d6f1e3"
+            dark: "#0b3b2c"
+      "5":
+        $value: "#c3e9d7"
+        $extensions:
+          mode:
+            light: "#c3e9d7"
+            dark: "#114837"
+      "6":
+        $value: "#acdec8"
+        $extensions:
+          mode:
+            light: "#acdec8"
+            dark: "#1b5745"
+      "7":
+        $value: "#8bceb6"
+        $extensions:
+          mode:
+            light: "#8bceb6"
+            dark: "#246854"
+      "8":
+        $value: "#56ba9f"
+        $extensions:
+          mode:
+            light: "#56ba9f"
+            dark: "#2a7e68"
+      "9":
+        $value: "#29a383"
+        $extensions:
+          mode:
+            light: "#29a383"
+            dark: "#29a383"
+      "10":
+        $value: "#26997b"
+        $extensions:
+          mode:
+            light: "#26997b"
+            dark: "#27b08b"
+      "11":
+        $value: "#208368"
+        $extensions:
+          mode:
+            light: "#208368"
+            dark: "#1fd8a4"
+      "12":
+        $value: "#1d3b31"
+        $extensions:
+          mode:
+            light: "#1d3b31"
+            dark: "#adf0d4"
+    green:
+      "1":
+        $value: "#fbfefc"
+        $extensions:
+          mode:
+            light: "#fbfefc"
+            dark: "#0e1512"
+      "2":
+        $value: "#f4fbf6"
+        $extensions:
+          mode:
+            light: "#f4fbf6"
+            dark: "#121b17"
+      "3":
+        $value: "#e6f6eb"
+        $extensions:
+          mode:
+            light: "#e6f6eb"
+            dark: "#132d21"
+      "4":
+        $value: "#d6f1df"
+        $extensions:
+          mode:
+            light: "#d6f1df"
+            dark: "#113b29"
+      "5":
+        $value: "#c4e8d1"
+        $extensions:
+          mode:
+            light: "#c4e8d1"
+            dark: "#174933"
+      "6":
+        $value: "#adddc0"
+        $extensions:
+          mode:
+            light: "#adddc0"
+            dark: "#20573e"
+      "7":
+        $value: "#8eceaa"
+        $extensions:
+          mode:
+            light: "#8eceaa"
+            dark: "#28684a"
+      "8":
+        $value: "#5bb98b"
+        $extensions:
+          mode:
+            light: "#5bb98b"
+            dark: "#2f7c57"
+      "9":
+        $value: "#30a46c"
+        $extensions:
+          mode:
+            light: "#30a46c"
+            dark: "#30a46c"
+      "10":
+        $value: "#2b9a66"
+        $extensions:
+          mode:
+            light: "#2b9a66"
+            dark: "#33b074"
+      "11":
+        $value: "#218358"
+        $extensions:
+          mode:
+            light: "#218358"
+            dark: "#3dd68c"
+      "12":
+        $value: "#193b2d"
+        $extensions:
+          mode:
+            light: "#193b2d"
+            dark: "#b1f1cb"
+    grass:
+      "1":
+        $value: "#fbfefb"
+        $extensions:
+          mode:
+            light: "#fbfefb"
+            dark: "#0e1511"
+      "2":
+        $value: "#f5fbf5"
+        $extensions:
+          mode:
+            light: "#f5fbf5"
+            dark: "#141a15"
+      "3":
+        $value: "#e9f6e9"
+        $extensions:
+          mode:
+            light: "#e9f6e9"
+            dark: "#1b2a1e"
+      "4":
+        $value: "#daf1db"
+        $extensions:
+          mode:
+            light: "#daf1db"
+            dark: "#1d3a24"
+      "5":
+        $value: "#c9e8ca"
+        $extensions:
+          mode:
+            light: "#c9e8ca"
+            dark: "#25482d"
+      "6":
+        $value: "#b2ddb5"
+        $extensions:
+          mode:
+            light: "#b2ddb5"
+            dark: "#2d5736"
+      "7":
+        $value: "#94ce9a"
+        $extensions:
+          mode:
+            light: "#94ce9a"
+            dark: "#366740"
+      "8":
+        $value: "#65ba74"
+        $extensions:
+          mode:
+            light: "#65ba74"
+            dark: "#3e7949"
+      "9":
+        $value: "#46a758"
+        $extensions:
+          mode:
+            light: "#46a758"
+            dark: "#46a758"
+      "10":
+        $value: "#3e9b4f"
+        $extensions:
+          mode:
+            light: "#3e9b4f"
+            dark: "#53b365"
+      "11":
+        $value: "#2a7e3b"
+        $extensions:
+          mode:
+            light: "#2a7e3b"
+            dark: "#71d083"
+      "12":
+        $value: "#203c25"
+        $extensions:
+          mode:
+            light: "#203c25"
+            dark: "#c2f0c2"
+    lime:
+      "1":
+        $value: "#fcfdfa"
+        $extensions:
+          mode:
+            light: "#fcfdfa"
+            dark: "#11130c"
+      "2":
+        $value: "#f8faf3"
+        $extensions:
+          mode:
+            light: "#f8faf3"
+            dark: "#151a10"
+      "3":
+        $value: "#eef6d6"
+        $extensions:
+          mode:
+            light: "#eef6d6"
+            dark: "#1f2917"
+      "4":
+        $value: "#e2f0bd"
+        $extensions:
+          mode:
+            light: "#e2f0bd"
+            dark: "#29371d"
+      "5":
+        $value: "#d3e7a6"
+        $extensions:
+          mode:
+            light: "#d3e7a6"
+            dark: "#334423"
+      "6":
+        $value: "#c2da91"
+        $extensions:
+          mode:
+            light: "#c2da91"
+            dark: "#3d522a"
+      "7":
+        $value: "#abc978"
+        $extensions:
+          mode:
+            light: "#abc978"
+            dark: "#496231"
+      "8":
+        $value: "#8db654"
+        $extensions:
+          mode:
+            light: "#8db654"
+            dark: "#577538"
+      "9":
+        $value: "#bdee63"
+        $extensions:
+          mode:
+            light: "#bdee63"
+            dark: "#bdee63"
+      "10":
+        $value: "#b0e64c"
+        $extensions:
+          mode:
+            light: "#b0e64c"
+            dark: "#d4ff70"
+      "11":
+        $value: "#5c7c2f"
+        $extensions:
+          mode:
+            light: "#5c7c2f"
+            dark: "#bde56c"
+      "12":
+        $value: "#37401c"
+        $extensions:
+          mode:
+            light: "#37401c"
+            dark: "#e3f7ba"
+    mint:
+      "1":
+        $value: "#f9fefd"
+        $extensions:
+          mode:
+            light: "#f9fefd"
+            dark: "#0e1515"
+      "2":
+        $value: "#f2fbf9"
+        $extensions:
+          mode:
+            light: "#f2fbf9"
+            dark: "#0f1b1b"
+      "3":
+        $value: "#ddf9f2"
+        $extensions:
+          mode:
+            light: "#ddf9f2"
+            dark: "#092c2b"
+      "4":
+        $value: "#c8f4e9"
+        $extensions:
+          mode:
+            light: "#c8f4e9"
+            dark: "#003a38"
+      "5":
+        $value: "#b3ecde"
+        $extensions:
+          mode:
+            light: "#b3ecde"
+            dark: "#004744"
+      "6":
+        $value: "#9ce0d0"
+        $extensions:
+          mode:
+            light: "#9ce0d0"
+            dark: "#105650"
+      "7":
+        $value: "#7ecfbd"
+        $extensions:
+          mode:
+            light: "#7ecfbd"
+            dark: "#1e685f"
+      "8":
+        $value: "#4cbba5"
+        $extensions:
+          mode:
+            light: "#4cbba5"
+            dark: "#277f70"
+      "9":
+        $value: "#86ead4"
+        $extensions:
+          mode:
+            light: "#86ead4"
+            dark: "#86ead4"
+      "10":
+        $value: "#7de0cb"
+        $extensions:
+          mode:
+            light: "#7de0cb"
+            dark: "#a8f5e5"
+      "11":
+        $value: "#027864"
+        $extensions:
+          mode:
+            light: "#027864"
+            dark: "#58d5ba"
+      "12":
+        $value: "#16433c"
+        $extensions:
+          mode:
+            light: "#16433c"
+            dark: "#c4f5e1"
+    sky:
+      "1":
+        $value: "#f9feff"
+        $extensions:
+          mode:
+            light: "#f9feff"
+            dark: "#0d141f"
+      "2":
+        $value: "#f1fafd"
+        $extensions:
+          mode:
+            light: "#f1fafd"
+            dark: "#111a27"
+      "3":
+        $value: "#e1f6fd"
+        $extensions:
+          mode:
+            light: "#e1f6fd"
+            dark: "#112840"
+      "4":
+        $value: "#d1f0fa"
+        $extensions:
+          mode:
+            light: "#d1f0fa"
+            dark: "#113555"
+      "5":
+        $value: "#bee7f5"
+        $extensions:
+          mode:
+            light: "#bee7f5"
+            dark: "#154467"
+      "6":
+        $value: "#a9daed"
+        $extensions:
+          mode:
+            light: "#a9daed"
+            dark: "#1b537b"
+      "7":
+        $value: "#8dcae3"
+        $extensions:
+          mode:
+            light: "#8dcae3"
+            dark: "#1f6692"
+      "8":
+        $value: "#60b3d7"
+        $extensions:
+          mode:
+            light: "#60b3d7"
+            dark: "#197cae"
+      "9":
+        $value: "#7ce2fe"
+        $extensions:
+          mode:
+            light: "#7ce2fe"
+            dark: "#7ce2fe"
+      "10":
+        $value: "#74daf8"
+        $extensions:
+          mode:
+            light: "#74daf8"
+            dark: "#a8eeff"
+      "11":
+        $value: "#00749e"
+        $extensions:
+          mode:
+            light: "#00749e"
+            dark: "#75c7f0"
+      "12":
+        $value: "#1d3e56"
+        $extensions:
+          mode:
+            light: "#1d3e56"
+            dark: "#c2f3ff"
+  overlay:
+    black:
+      "1":
+        $value: rgba(0, 0, 0, 0.05)
+      "2":
+        $value: rgba(0, 0, 0, 0.1)
+      "3":
+        $value: rgba(0, 0, 0, 0.15)
+      "4":
+        $value: rgba(0, 0, 0, 0.2)
+      "5":
+        $value: rgba(0, 0, 0, 0.3)
+      "6":
+        $value: rgba(0, 0, 0, 0.4)
+      "7":
+        $value: rgba(0, 0, 0, 0.5)
+      "8":
+        $value: rgba(0, 0, 0, 0.6)
+      "9":
+        $value: rgba(0, 0, 0, 0.7)
+      "10":
+        $value: rgba(0, 0, 0, 0.8)
+      "11":
+        $value: rgba(0, 0, 0, 0.9)
+      "12":
+        $value: rgba(0, 0, 0, 0.95)
+    white:
+      "1":
+        $value: rgba(255, 255, 255, 0.05)
+      "2":
+        $value: rgba(255, 255, 255, 0.1)
+      "3":
+        $value: rgba(255, 255, 255, 0.15)
+      "4":
+        $value: rgba(255, 255, 255, 0.2)
+      "5":
+        $value: rgba(255, 255, 255, 0.3)
+      "6":
+        $value: rgba(255, 255, 255, 0.4)
+      "7":
+        $value: rgba(255, 255, 255, 0.5)
+      "8":
+        $value: rgba(255, 255, 255, 0.6)
+      "9":
+        $value: rgba(255, 255, 255, 0.7)
+      "10":
+        $value: rgba(255, 255, 255, 0.8)
+      "11":
+        $value: rgba(255, 255, 255, 0.9)
+      "12":
+        $value: rgba(255, 255, 255, 0.95)
+  bg:
+    default:
+      $value: "{color.primitive.gray.1}"
+    subtle:
+      $value: "{color.primitive.gray.2}"
+    ui:
+      $value: "{color.primitive.gray.3}"
+    hover:
+      $value: "{color.primitive.gray.4}"
+    active:
+      $value: "{color.primitive.gray.5}"
+    action:
+      default:
+        $value: "{color.primitive.iris.9}"
+      hover:
+        $value: "{color.primitive.iris.10}"
+    error:
+      default:
+        $value: "{color.primitive.ruby.9}"
+      hover:
+        $value: "{color.primitive.ruby.10}"
+    success:
+      default:
+        $value: "{color.primitive.grass.9}"
+      hover:
+        $value: "{color.primitive.grass.10}"
+    warn:
+      default:
+        $value: "{color.primitive.amber.9}"
+      hover:
+        $value: "{color.primitive.amber.10}"
+  text:
+    default:
+      $value: "{color.primitive.gray.12}"
+    subtle:
+      $value: "{color.primitive.gray.11}"
+    action:
+      default:
+        $value: "{color.primitive.gray.1}"
+    error:
+      default:
+        $value: "{color.primitive.gray.1}"
+    success:
+      default:
+        $value: "{color.primitive.gray.1}"
+    warn:
+      default:
+        $value: "{color.primitive.gray.1}"
+border:
+  color:
+    $type: color
+    default:
+      $value: "{color.primitive.gray.6}"
+    hover:
+      $value: "{color.primitive.gray.7}"

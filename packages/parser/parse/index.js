@@ -1,10 +1,8 @@
 import { evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias, pluralize, splitID } from '@terrazzo/token-tools';
-import { fileURLToPath } from 'node:url';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
-import parseYAML from './yaml.js';
 import validate from './validate.js';
 import { getObjMembers, injectObjMembers, traverse } from './json.js';
 
@@ -27,6 +25,7 @@ export * from './validate.js';
  * @typedef {object} ParseOptions
  * @property {Logger} logger
  * @property {import("../config.js").Config} config
+ * @property {import("yamlToMomoa")} yamlToMomoa
  * @property {boolean} [skipLint=false]
  * @property {boolean} [continueOnError=false]
  */
@@ -38,7 +37,7 @@ export * from './validate.js';
  */
 export default async function parse(
   input,
-  { logger = new Logger(), skipLint = false, config = {}, continueOnError = false } = {},
+  { logger = new Logger(), skipLint = false, config = {}, continueOnError = false, yamlToMomoa } = {},
 ) {
   let tokens = {};
   // note: only keeps track of sources with locations on disk; in-memory sources are discarded
@@ -73,11 +72,12 @@ export default async function parse(
       config,
       skipLint,
       continueOnError,
+      yamlToMomoa,
     });
 
     tokens = Object.assign(tokens, result.tokens);
     if (input[i].filename) {
-      sources[input[i].filename.protocol === 'file:' ? fileURLToPath(input[i].filename) : input[i].filename.href] = {
+      sources[input[i].filename.protocol === 'file:' ? input[i].filename.href : input[i].filename.href] = {
         filename: input[i].filename,
         src: result.src,
         document: result.document,
@@ -172,7 +172,7 @@ export default async function parse(
  * @param {import("../config.js").Config} [options.config]
  * @param {boolean} [options.skipLint]
  */
-async function parseSingle(input, { filename, logger, config, skipLint, continueOnError = false }) {
+async function parseSingle(input, { filename, logger, config, skipLint, continueOnError = false, yamlToMomoa }) {
   // 1. Build AST
   let src;
   if (typeof input === 'string') {
@@ -182,7 +182,25 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
   logger.debug({ group: 'parser', task: 'parse', message: 'Start tokens parsing' });
   let document;
   if (typeof input === 'string' && !maybeJSONString(input)) {
-    document = parseYAML(input, { logger }); // if string, but not JSON, attempt YAML
+    if (yamlToMomoa) {
+      try {
+        document = yamlToMomoa(input); // if string, but not JSON, attempt YAML
+      } catch (err) {
+        logger.error({ message: String(err), filename, src: input, continueOnError });
+      }
+    } else {
+      logger.error({
+        group: 'parser',
+        task: 'parse',
+        message: `Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+
+    import { parse } from '@terrazzo/parser';
+    import yamlToMomoa from 'yaml-to-momoa';
+
+    parse(yamlString, { yamlToMomoa });`,
+        continueOnError: false, // fail here; no point in continuing
+      });
+    }
   } else {
     document = parseJSON(
       typeof input === 'string' ? input : JSON.stringify(input, undefined, 2), // everything else: assert it’s JSON-serializable
@@ -259,7 +277,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
             originalValue: evaluate(node.value),
             group,
             source: {
-              loc: filename ? fileURLToPath(filename) : undefined,
+              loc: filename ? filename.href : undefined,
               node: sourceNode.value,
             },
           };
@@ -276,7 +294,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
               $type: token.$type,
               $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
               source: {
-                loc: filename ? fileURLToPath(filename) : undefined,
+                loc: filename ? filename.href : undefined,
                 node: mode === '.' ? structuredClone(token.source.node) : modeValues[mode],
               },
             };

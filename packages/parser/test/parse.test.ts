@@ -1,6 +1,7 @@
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+import yamlToMomoa from 'yaml-to-momoa';
 import defineConfig from '../config.js';
 import type { TokensJSONError } from '../logger.js';
 import parse from '../parse/index.js';
@@ -21,7 +22,7 @@ describe('Tokens', () => {
     const config = defineConfig({}, { cwd });
     let result: Awaited<ReturnType<typeof parse>> | undefined;
     try {
-      result = await parse(given, { config });
+      result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
       const err = e as TokensJSONError;
       expect(stripAnsi(err.message)).toBe(want.error);
@@ -66,16 +67,30 @@ describe('Tokens', () => {
           },
         },
       ],
-      //     [
-      //       'valid: primitive (YAML)',
-      //       {
-      //         given: `color:
-      // $value: "{color.base.blue.500}"`,
-      //         want: {
-      //           tokens: { 'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' } },
-      //         },
-      //       },
-      //     ],
+      [
+        'valid: primitive (YAML)',
+        {
+          given: [
+            {
+              filename: new URL('file:///tokens.yaml'),
+              src: `color:
+  base:
+    blue:
+      500:
+        $type: color
+        $value: color(srgb 0 0.2 1)
+  semantic:
+    $value: "{color.base.blue.500}"`,
+            },
+          ],
+          want: {
+            tokens: {
+              'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+              'color.semantic': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+            },
+          },
+        },
+      ],
       [
         'valid: Font Weight',
         {
@@ -96,22 +111,27 @@ describe('Tokens', () => {
           },
         },
       ],
-      //       [
-      //         'valid: Font Weight (YAML)',
-      //         {
-      //           given: `bold:
-      //   $type: fontWeight
-      //   $value: "{font.weight.700}"
-      // font:
-      //   weight:
-      //     $type: fontWeight
-      //     700:
-      //       $value: 700`,
-      //           want: {
-      //             tokens: { bold: '700', 'font.weight.700': 700 },
-      //           },
-      //         },
-      //       ],
+      [
+        'valid: Font Weight (YAML)',
+        {
+          given: [
+            {
+              filename: new URL('file:///tokens.yaml'),
+              src: `bold:
+  $type: fontWeight
+  $value: "{font.weight.700}"
+font:
+  weight:
+    $type: fontWeight
+    700:
+      $value: 700`,
+            },
+          ],
+          want: {
+            tokens: { bold: 700, 'font.weight.700': 700 },
+          },
+        },
+      ],
       [
         'valid: Stroke Style',
         {
@@ -1827,20 +1847,29 @@ describe('Tokens', () => {
 describe('Additional cases', () => {
   it('JSON: invalid', async () => {
     const config = defineConfig({}, { cwd });
-    await expect(
-      parse(
-        [
-          {
-            filename: DEFAULT_FILENAME,
-            src: '{]',
-          },
-        ],
-        { config },
-      ),
-    ).rejects.toThrow('Unexpected token RBracket found. (1:2)');
+    await expect(parse([{ filename: DEFAULT_FILENAME, src: '{]' }], { config })).rejects.toThrow(
+      'Unexpected token RBracket found. (1:2)',
+    );
   });
 
-  it.skip('YAML: invalid', async () => {
+  it('YAML: plugin not installed', async () => {
+    try {
+      const config = defineConfig({}, { cwd });
+      const result = await parse([{ filename: new URL('file:///tokens.yaml'), src: 'foo: bar' }], { config });
+      expect(() => result).toThrow;
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
+        "Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+
+            import { parse } from '@terrazzo/parser';
+            import yamlToMomoa from 'yaml-to-momoa';
+
+            parse(yamlString, { yamlToMomoa });"
+      `);
+    }
+  });
+
+  it('YAML: invalid', async () => {
     try {
       const config = defineConfig({}, { cwd });
       const result = await parse(
@@ -1852,16 +1881,24 @@ describe('Additional cases', () => {
   false`,
           },
         ],
-        { config },
+        { config, yamlToMomoa },
       );
       expect(() => result).toThrow();
     } catch (err) {
-      expect(stripAnsi((err as Error).message)).toBe(`parse:yaml: BAD_INDENT All mapping items must start at the same column
+      expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
+        "YAMLParseError: All mapping items must start at the same column at line 3, column 1:
 
-  1 | tokens:
-  2 |   - foo: true
-> 3 |   false
-    |  ^`);
+          - foo: true
+          false
+        ^
+
+
+        /tokens.yaml:0:0
+
+          1 | tokens:
+          2 |   - foo: true
+          3 |   false"
+      `);
     }
   });
 
@@ -1929,17 +1966,19 @@ describe('Additional cases', () => {
       );
       expect(true).toBe(false);
     } catch (err) {
-      expect(stripAnsi(String(err))).toBe(`TokensJSONError: Unable to parse color "#646464)"
+      expect(stripAnsi(String(err))).toMatchInlineSnapshot(`
+        "TokensJSONError: Unable to parse color "#646464)"
 
-/tokens.json:45:29
+        /tokens.json:45:29
 
-  43 |         "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
-  44 |         "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
-> 45 |         "1100": { "$value": "#646464)", "$extensions": { "mode": { "light": "#646464)", "dark": "#eeeeee" } } },
-     |                             ^
-  46 |         "1200": { "$value": "#202020", "$extensions": { "mode": { "light": "#202020", "dark": "#fdfdfc" } } },
-  47 |         "1300": { "$value": "#000000", "$extensions": { "mode": { "light": "#000000", "dark": "#ffffff" } } }
-  48 |       }`);
+          43 |         "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
+          44 |         "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
+        > 45 |         "1100": { "$value": "#646464)", "$extensions": { "mode": { "light": "#646464)", "dark": "#eeeeee" } } },
+             |                             ^
+          46 |         "1200": { "$value": "#202020", "$extensions": { "mode": { "light": "#202020", "dark": "#fdfdfc" } } },
+          47 |         "1300": { "$value": "#000000", "$extensions": { "mode": { "light": "#000000", "dark": "#ffffff" } } }
+          48 |       }"
+      `);
     }
   });
 
