@@ -1,6 +1,5 @@
 import { evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
 import { isAlias, parseAlias, pluralize, splitID } from '@terrazzo/token-tools';
-import { fileURLToPath } from 'node:url';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import normalize from './normalize.js';
@@ -78,7 +77,7 @@ export default async function parse(
 
     tokens = Object.assign(tokens, result.tokens);
     if (input[i].filename) {
-      sources[input[i].filename.protocol === 'file:' ? fileURLToPath(input[i].filename) : input[i].filename.href] = {
+      sources[input[i].filename.protocol === 'file:' ? input[i].filename.href : input[i].filename.href] = {
         filename: input[i].filename,
         src: result.src,
         document: result.document,
@@ -278,7 +277,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
             originalValue: evaluate(node.value),
             group,
             source: {
-              loc: filename ? fileURLToPath(filename) : undefined,
+              loc: filename ? filename.href : undefined,
               node: sourceNode.value,
             },
           };
@@ -295,7 +294,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
               $type: token.$type,
               $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
               source: {
-                loc: filename ? fileURLToPath(filename) : undefined,
+                loc: filename ? filename.href : undefined,
                 node: mode === '.' ? structuredClone(token.source.node) : modeValues[mode],
               },
             };
