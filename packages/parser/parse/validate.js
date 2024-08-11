@@ -266,9 +266,9 @@ export function validateDimension($value, node, { filename, src, logger }) {
     logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
   } else if ($value.value === '') {
     logger.error({ message: 'Expected dimension, received empty string', filename, node: $value, src });
-  } else if (String(Number($value.value)) === $value.value) {
+  } else if (String(Number.parseFloat($value.value)) === $value.value) {
     logger.error({ message: 'Missing units', filename, node: $value, src });
-  } else if (!/^[0-9]+/.test($value.value)) {
+  } else if (!/^-?[0-9]+(\.[0-9]+)?/.test($value.value)) {
     logger.error({ message: `Expected dimension with units, received ${print($value)}`, filename, node: $value, src });
   }
 }
