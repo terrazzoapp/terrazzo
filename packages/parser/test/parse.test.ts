@@ -711,6 +711,13 @@ font:
         },
       ],
       [
+        'valid: negative',
+        {
+          given: [{ filename: DEFAULT_FILENAME, src: { space: { 1: { $type: 'dimension', $value: '-0.25rem' } } } }],
+          want: { tokens: { 'space.1': '-0.25rem' } },
+        },
+      ],
+      [
         'invalid: empty string',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '' } } }],
