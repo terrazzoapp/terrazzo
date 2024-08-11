@@ -49,5 +49,8 @@
     "picocolors": "^1.0.1",
     "wildcard-match": "^5.1.3",
     "yaml": "^2.5.0"
+  },
+  "devDependencies": {
+    "yaml-to-momoa": "^0.0.1"
   }
 }

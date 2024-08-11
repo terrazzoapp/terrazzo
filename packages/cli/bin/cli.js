@@ -30,6 +30,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import pc from 'picocolors';
+import yamlToMomoa from 'yaml-to-momoa';
 import parser from 'yargs-parser';
 
 dotenv.config();
@@ -113,7 +114,7 @@ export default async function main() {
 
       const watch = args.includes('-w') || args.includes('--watch');
 
-      let { tokens, ast } = await parse(rawSchemas, { config });
+      let { tokens, ast } = await parse(rawSchemas, { config, yamlToMomoa });
       let result = await build(tokens, { ast, config });
       writeFiles(result, config);
 
@@ -129,7 +130,7 @@ export default async function main() {
         tokenWatcher.on('change', async (filename) => {
           try {
             rawSchemas = await loadTokens(config.tokens);
-            const parseResult = await parse(rawSchemas, { config });
+            const parseResult = await parse(rawSchemas, { config, yamlToMomoa });
             tokens = parseResult.tokens;
             ast = parseResult.ast;
             result = await build(tokens, { ast, config });
@@ -148,7 +149,7 @@ export default async function main() {
             );
             config = (await import(filename)).default;
             rawSchema = await loadTokens(config.tokens);
-            const parseResult = await parse(tokens, { config });
+            const parseResult = await parse(tokens, { config, yamlToMomoa });
             tokens = parseResult.tokens;
             ast = parseResult.ast;
             result = await build(tokens, { ast, config });
@@ -171,7 +172,7 @@ export default async function main() {
       const rawSchemas = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
       const filename = flags._[0] || config.tokens[0];
       console.log(pc.underline(filename.protocol === 'file:' ? fileURLToPath(filename) : filename));
-      await parse(rawSchemas, { config, continueOnError: true }); // will throw if errors
+      await parse(rawSchemas, { config, continueOnError: true, yamlToMomoa }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
       break;
     }
@@ -182,7 +183,7 @@ export default async function main() {
       }
 
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config, continueOnError: true }); // will throw if errors
+      const parseResult = await parse(rawSchema, { config, continueOnError: true, yamlToMomoa }); // will throw if errors
 
       // TODO
 
@@ -243,6 +244,21 @@ async function loadTokens(tokenPaths) {
   if (!Array.isArray(tokenPaths)) {
     printErrors(`loadTokens: Expected array, received ${typeof tokenPaths}`);
     process.exit(1);
+  }
+
+  // if this is the default value, also check for tokens.yaml
+  if (tokenPaths.length === 1 && tokenPaths[0].href === new URL('./tokens.json', cwd).href) {
+    if (!fs.existsSync(tokenPaths[0])) {
+      const yamlPath = new URL('./tokens.yaml', cwd);
+      if (fs.existsSync(yamlPath)) {
+        tokenPaths[0] = yamlPath;
+      } else {
+        printErrors(
+          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(tokenPaths[0]))}. To create one, run \`npx tz init\`.`,
+        );
+        process.exit(1);
+      }
+    }
   }
 
   // download/read

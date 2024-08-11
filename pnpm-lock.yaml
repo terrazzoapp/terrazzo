@@ -216,6 +216,9 @@ importers:
       picocolors:
         specifier: ^1.0.1
         version: 1.0.1
+      yaml-to-momoa:
+        specifier: ^0.0.1
+        version: 0.0.1
       yargs-parser:
         specifier: ^21.1.1
         version: 21.1.1
@@ -303,6 +306,10 @@ importers:
       yaml:
         specifier: ^2.5.0
         version: 2.5.0
+    devDependencies:
+      yaml-to-momoa:
+        specifier: ^0.0.1
+        version: 0.0.1
 
   packages/plugin-css:
     dependencies:
@@ -6851,6 +6858,9 @@ packages:
 
   yallist@4.0.0:
     resolution: {integrity: sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==}
+
+  yaml-to-momoa@0.0.1:
+    resolution: {integrity: sha512-veT3zMQSdVv/YRCEOBFtoxTcI7Y5OtC78i6rUiaFXHxTNemyMq5ARf8UJkfdkdf77DrMdSyUPfCvVW0Qk49PZQ==}
 
   yaml@2.5.0:
     resolution: {integrity: sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==}
@@ -14039,6 +14049,11 @@ snapshots:
   yallist@3.1.1: {}
 
   yallist@4.0.0: {}
+
+  yaml-to-momoa@0.0.1:
+    dependencies:
+      '@humanwhocodes/momoa': 3.2.0
+      yaml: 2.5.0
 
   yaml@2.5.0: {}
 

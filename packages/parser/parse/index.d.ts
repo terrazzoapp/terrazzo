@@ -1,5 +1,6 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
+import type yamlToMomoa from 'yaml-to-momoa';
 import type { ConfigInit } from '../config.js';
 import type Logger from '../logger.js';
 
@@ -19,6 +20,8 @@ export interface ParseOptions {
   skipLint?: boolean;
   /** Continue on error? (Useful for `tz check`) (default: false) */
   continueOnError?: boolean;
+  /** Provide yamlToMomoa module to parse YAML (by default, this isn’t shipped to cut down on package weight) */
+  yamlToMomoa?: typeof yamlToMomoa;
 }
 
 export interface ParseResult {
