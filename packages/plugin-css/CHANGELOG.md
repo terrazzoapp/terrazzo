@@ -1,5 +1,13 @@
 # @terrazzo/plugin-css
 
+## 0.0.11
+
+### Patch Changes
+
+- Updated dependencies [[`0fc9738`](https://github.com/terrazzoapp/terrazzo/commit/0fc9738bb3dfecb680d225e4bd3970f21cfe8079), [`6a875b1`](https://github.com/terrazzoapp/terrazzo/commit/6a875b163539dba8111911851a7819732056b3aa)]:
+  - @terrazzo/parser@0.0.13
+  - @terrazzo/cli@0.0.13
+
 ## 0.0.10
 
 ### Patch Changes
