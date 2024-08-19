@@ -43,8 +43,8 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "19.0.0-rc-2d2cc042-20240809",
-    "react-dom": "19.0.0-rc-2d2cc042-20240809",
+    "react": "19.0.0-rc-1eaccd82-20240816",
+    "react-dom": "19.0.0-rc-1eaccd82-20240816",
     "size-limit": "^11.1.4",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"

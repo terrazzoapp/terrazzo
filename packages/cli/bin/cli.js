@@ -23,7 +23,7 @@
  * SOFTWARE.
  */
 
-import { parse, build, defineConfig } from '@terrazzo/parser';
+import { parse, build, defineConfig, Logger } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import dotenv from 'dotenv';
 import fs from 'node:fs';
@@ -37,6 +37,10 @@ dotenv.config();
 
 const [, , cmd, ...args] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
+const PKG_ROOT = new URL('../', import.meta.url);
+const logger = new Logger(
+  // TODO: listen for env vars for debugging, log level, etc
+);
 
 const GREEN_CHECK = pc.green('✔');
 
@@ -65,7 +69,7 @@ export default async function main() {
 
   // --version
   if (flags.version) {
-    const { version } = parseJSON(fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
+    const { version } = parseJSON(fs.readFileSync(new URL('./package.json', PKG_ROOT), 'utf8'));
     console.log(version);
     process.exit(0);
   }
@@ -89,11 +93,11 @@ export default async function main() {
       const mod = await import(resolvedConfigPath);
       if (!mod.default) {
         printErrors(
-          `No default export found in ${path.relative(fileURLToPath(cwd), resolvedConfigPath)}. See https://terrazzo.dev/docs/cli for instructions.`,
+          `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs/cli for instructions.`,
         );
         process.exit(1);
       }
-      config = defineConfig(mod.default, { cwd });
+      config = defineConfig(mod.default, { cwd, logger });
     } catch (err) {
       printErrors(err.message || err);
       process.exit(1);
@@ -114,8 +118,8 @@ export default async function main() {
 
       const watch = args.includes('-w') || args.includes('--watch');
 
-      let { tokens, ast } = await parse(rawSchemas, { config, yamlToMomoa });
-      let result = await build(tokens, { ast, config });
+      let { tokens, ast } = await parse(rawSchemas, { config, logger, yamlToMomoa });
+      let result = await build(tokens, { ast, config, logger });
       writeFiles(result, config);
 
       printErrors(result.errors);
@@ -130,10 +134,10 @@ export default async function main() {
         tokenWatcher.on('change', async (filename) => {
           try {
             rawSchemas = await loadTokens(config.tokens);
-            const parseResult = await parse(rawSchemas, { config, yamlToMomoa });
+            const parseResult = await parse(rawSchemas, { config, logger, yamlToMomoa });
             tokens = parseResult.tokens;
             ast = parseResult.ast;
-            result = await build(tokens, { ast, config });
+            result = await build(tokens, { ast, config, logger });
             console.log(
               `${pc.dim(dt.format(new Date()))} ${pc.green('Tz')}} ${pc.yellow(filename)} updated ${GREEN_CHECK}`,
             );
@@ -149,10 +153,10 @@ export default async function main() {
             );
             config = (await import(filename)).default;
             rawSchema = await loadTokens(config.tokens);
-            const parseResult = await parse(tokens, { config, yamlToMomoa });
+            const parseResult = await parse(tokens, { config, logger, yamlToMomoa });
             tokens = parseResult.tokens;
             ast = parseResult.ast;
-            result = await build(tokens, { ast, config });
+            result = await build(tokens, { ast, config, logger });
             writeFiles(result, config);
           } catch (err) {
             printErrors([err.message || err]);
@@ -171,19 +175,18 @@ export default async function main() {
     case 'check': {
       const rawSchemas = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
       const filename = flags._[0] || config.tokens[0];
-      console.log(pc.underline(filename.protocol === 'file:' ? fileURLToPath(filename) : filename));
-      await parse(rawSchemas, { config, continueOnError: true, yamlToMomoa }); // will throw if errors
+      console.log(pc.underline(filename.protocol === 'file:' ? filename.href : filename));
+      await parse(rawSchemas, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
       break;
     }
     case 'lint': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
         printErrors(`No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
-        process.exit(1);
       }
 
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config, continueOnError: true, yamlToMomoa }); // will throw if errors
+      const parseResult = await parse(rawSchema, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
 
       // TODO
 
@@ -195,11 +198,11 @@ export default async function main() {
         !fs.existsSync(new URL('./terrazzo.config.mjs', cwd)) &&
         !fs.existsSync(new URL('./terrazzo.config.cjs', cwd))
       ) {
-        fs.cpSync(new URL('../terrazzo.config.js', import.meta.url), new URL('./terrazzo.config.js', cwd));
+        fs.cpSync(new URL('./terrazzo.config.js', PKG_ROOT), new URL('./terrazzo.config.js', cwd));
         printSuccess('terrazzo.config.js created');
       }
       if (!fs.existsSync(config.tokens[0])) {
-        fs.cpSync(new URL('../tokens-example.json', import.meta.url), new URL(config?.tokens, cwd));
+        fs.cpSync(new URL('./tokens-example.json', PKG_ROOT), new URL(config?.tokens, cwd));
         printSuccess(`${config.tokens} created ${time(start)}`);
       }
       break;
@@ -254,7 +257,7 @@ async function loadTokens(tokenPaths) {
         tokenPaths[0] = yamlPath;
       } else {
         printErrors(
-          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(tokenPaths[0]))}. To create one, run \`npx tz init\`.`,
+          `Could not locate ${path.relative(cwd.href, tokenPaths[0].href)}. To create one, run \`npx tz init\`.`,
         );
         process.exit(1);
       }
@@ -316,9 +319,7 @@ async function loadTokens(tokenPaths) {
       if (fs.existsSync(filename)) {
         allTokens.push({ filename, src: fs.readFileSync(filename, 'utf8') });
       } else {
-        printErrors(
-          `Could not locate ${path.relative(fileURLToPath(cwd), fileURLToPath(filename))}. To create one, run \`npx tz init\`.`,
-        );
+        printErrors(`Could not locate ${path.relative(cwd.href, filename.href)}. To create one, run \`npx tz init\`.`);
         process.exit(1);
       }
     }
@@ -336,16 +337,19 @@ function resolveConfig(filename) {
   if (filename) {
     const configPath = new URL(filename, cwd);
     if (fs.existsSync(configPath)) {
-      return fileURLToPath(configPath);
+      return configPath.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.
     }
     return undefined;
   }
 
   // default: terrazzo.config.js
-  for (const defaultFilename of ['./terrazzo.config.js', './terrazzo.config.mjs']) {
+  for (const defaultFilename of [
+    './terrazzo.config.mjs', // .mjs takes precedence (it suggestes .js is CJS)
+    './terrazzo.config.js',
+  ]) {
     const configPath = new URL(defaultFilename, cwd);
     if (fs.existsSync(configPath)) {
-      return fileURLToPath(configPath);
+      return configPath.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.
     }
   }
 }

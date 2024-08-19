@@ -65,8 +65,10 @@ export default function defineConfig(rawConfig, { logger = new Logger(), cwd } =
   } else if (typeof config.outDir !== 'string') {
     logger.error({ label: 'config.outDir', message: `Expected string, received ${JSON.stringify(config.outDir)}` });
   } else {
-    // note: always add trailing slash so URL treats it as a directory
-    config.outDir = new URL(config.outDir.replace(TRAILING_SLASH_RE, '/'), cwd);
+    config.outDir = new URL(config.outDir, cwd);
+    // always add trailing slash so URL treats it as a directory.
+    // do AFTER it has been normalized to POSIX paths with `href` (don’t use Node internals here! This may run in the browser)
+    config.outDir = new URL(config.outDir.href.replace(TRAILING_SLASH_RE, '/'));
   }
 
   // config.plugins

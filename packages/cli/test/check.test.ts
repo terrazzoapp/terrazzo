@@ -1,15 +1,16 @@
 import { execa } from 'execa';
-import { fileURLToPath } from 'node:url';
+import os from 'node:os';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+
+const PLATFORM = os.platform();
 
 const CMD = './bin/cli.js';
 
 describe('tz check', () => {
   it('valid', async () => {
-    const { stdout } = await execa('node', [CMD, 'check', 'test/fixtures/check-valid/tokens.json'], {
-      cwd: new URL('../', import.meta.url),
-    });
+    const cwd = new URL('../', import.meta.url);
+    const { stdout } = await execa('node', [CMD, 'check', 'test/fixtures/check-valid/tokens.json'], { cwd });
     const output = stripAnsi(stdout);
     expect(output).toMatch('test/fixtures/check-valid/tokens.json');
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
@@ -24,13 +25,16 @@ describe('tz check', () => {
   });
 
   it('invalid', async () => {
-    try {
-      await execa('node', [CMD, 'check', 'test/fixtures/check-invalid/tokens.json'], {
-        cwd: fileURLToPath(new URL('../', import.meta.url)),
-      });
-      expect(true).toBe(false);
-    } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`Expected array, received "[0, 0.2, 1]"
+    const command = async () => {
+      const cwd = new URL('../', import.meta.url);
+      await execa('node', [CMD, 'check', 'test/fixtures/check-invalid/tokens.json'], { cwd });
+    };
+
+    if (PLATFORM === 'win32') {
+      await expect(command).rejects.toThrow(); // don’t test error snapshot on Windows; it formats too differently
+      return;
+    }
+    await expect(command).rejects.toThrowError(`Expected array, received "[0, 0.2, 1]"
 
   4 |       "100": {
   5 |         "$type": "color",
@@ -39,6 +43,5 @@ describe('tz check', () => {
   7 |       }
   8 |     }
   9 |   }`);
-    }
   });
 });
