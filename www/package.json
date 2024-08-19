@@ -22,8 +22,8 @@
     "@terrazzo/use-color": "workspace:^",
     "algoliasearch": "^4.24.0",
     "nanoid": "^5.0.7",
-    "react": "19.0.0-rc-2d2cc042-20240809",
-    "react-dom": "19.0.0-rc-2d2cc042-20240809",
+    "react": "19.0.0-rc-1eaccd82-20240816",
+    "react-dom": "19.0.0-rc-1eaccd82-20240816",
     "react-instantsearch": "^7.12.4"
   },
   "devDependencies": {

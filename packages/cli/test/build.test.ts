@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { execa } from 'execa';
-import stripAnsi from 'strip-ansi';
 
 const cmd = '../../../bin/cli.js';
 
@@ -51,12 +50,10 @@ describe('tz build', () => {
     ];
 
     it.each(errors)('%s', async (_, { cwd, want }) => {
-      try {
+      await expect(async () => {
         await execa('node', [cmd, 'build'], { cwd: new URL(`./fixtures/${cwd}/`, import.meta.url) });
         expect(true).toBe(false);
-      } catch (err) {
-        expect(stripAnsi((err as Error).message)).toMatch(want);
-      }
+      }).rejects.toThrowError(want);
     });
   });
 

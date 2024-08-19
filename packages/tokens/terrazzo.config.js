@@ -2,8 +2,6 @@ import { defineConfig } from '@terrazzo/cli';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import css from '@terrazzo/plugin-css';
 
-const DOT_RE = /\./g;
-
 export default defineConfig({
   tokens: './tokens.json',
   outDir: './dist/',

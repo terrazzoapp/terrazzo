@@ -1,6 +1,5 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
-import validateAndNormalizeConfig from '../config.js';
 import defineConfig from '../config.js';
 
 describe('config', () => {
@@ -41,7 +40,7 @@ describe('config', () => {
     ];
     it.each(tests)('%s', (_, { given, want }) => {
       try {
-        const result = validateAndNormalizeConfig(given, { cwd: new URL('file:///') });
+        const result = defineConfig(given, { cwd: new URL('file:///') });
         expect(result).toThrow();
       } catch (err) {
         expect(stripAnsi((err as Error).message)).toBe(want);
