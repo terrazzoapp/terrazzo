@@ -192,7 +192,7 @@ export type StrokeStyleValue =
   | StrokeStyleValueExpanded;
 
 export interface StrokeStyleValueExpanded {
-  dashArray: DimensionValue[];
+  dashArray: (DimensionValue | AliasValue)[];
   lineCap: 'round' | 'butt' | 'square';
 }
 
