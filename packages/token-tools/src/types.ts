@@ -19,7 +19,6 @@ export type Token =
   | NumberToken
   | ShadowToken
   | StringToken
-  | StringToken
   | TransitionToken
   | TypographyToken
   | StrokeStyleToken;
