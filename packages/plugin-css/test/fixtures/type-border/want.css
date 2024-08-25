@@ -4,34 +4,54 @@
 
 :root {
   --ds-color-red: color(srgb 0.9999999999999997 4.751476989639514e-15 0.3193497659355717);
+  --ds-color-base-gray-10: oklch(0.1 0.002 270);
+  --ds-color-base-gray-15: oklch(0.15 0.001577 290);
+  --ds-color-base-gray-20: oklch(0.2 0.001422 310);
+  --ds-color-base-gray-25: oklch(0.25 0.001614 340);
+  --ds-color-base-gray-30: oklch(0.3 0.002057 0);
+  --ds-color-base-gray-40: oklch(0.4 0.003261 18);
+  --ds-color-base-gray-50: oklch(0.5 0.004607 27);
+  --ds-color-base-gray-60: oklch(0.6 0.006 31);
+  --ds-color-base-gray-70: oklch(0.7 0.00575 31);
+  --ds-color-base-gray-80: oklch(0.8 0.0055 31);
+  --ds-color-base-gray-85: oklch(0.85 0.005375 31);
+  --ds-color-base-gray-90: oklch(0.9 0.00525 31);
+  --ds-color-base-gray-95: oklch(0.94 0.005125 31);
+  --ds-color-base-gray-100: color(srgb 1 1 1);
+  --ds-color-border: var(--ds-color-base-gray-20);
   --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
   --ds-border-solid: 1px solid var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-red: 1px solid var(--ds-color-red);
   --ds-border-default: var(--ds-border-solid);
+  --ds-border-thick: 2.5px solid var(--ds-color-border);
 }
 
 @media (color-gamut: p3) {
   :root {
     --ds-color-red: color(display-p3 0.9687140511663811 -3.067728363004285e-15 0.30842906766751704);
+    --ds-color-base-gray-100: color(display-p3 1 1 1);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
     --ds-color-red: color(rec2020 0.8889194395496498 -8.811311055789695e-16 0.19457967229051437);
+    --ds-color-base-gray-100: color(rec2020 1 1 1);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --ds-color-red: color(srgb 0.9999999999999997 4.751476989639514e-15 0.3193497659355717);
+    --ds-color-border: var(--ds-color-base-gray-20);
   }
 }
 
 [data-color-theme="light"] {
   --ds-color-red: color(srgb 0.9999999999999997 4.751476989639514e-15 0.3193497659355717);
+  --ds-color-border: var(--ds-color-base-gray-20);
 }
 
 @media (prefers-color-scheme: light) {
@@ -65,11 +85,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --ds-color-red: color(srgb 0.4527538511103291 1.0085682289329156e-15 0.11300483444936946);
+    --ds-color-border: var(--ds-color-base-gray-80);
   }
 }
 
 [data-color-theme="dark"] {
   --ds-color-red: color(srgb 0.4527538511103291 1.0085682289329156e-15 0.11300483444936946);
+  --ds-color-border: var(--ds-color-base-gray-80);
 }
 
 @media (prefers-color-scheme: dark) {
