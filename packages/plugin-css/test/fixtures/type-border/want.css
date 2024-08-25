@@ -3,6 +3,13 @@
  * ------------------------------------------- */
 
 :root {
+  --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
+  --ds-border-solid: 1px solid var(--ds-border-color);
+  --ds-border-ridge: 1px ridge var(--ds-border-color);
+  --ds-border-dashed: 1.5px dashed var(--ds-border-color);
+  --ds-border-red: 1px solid var(--ds-color-red);
+  --ds-border-default: var(--ds-border-solid);
+  --ds-border-thick: 2.5px solid var(--ds-color-border);
   --ds-color-red: color(srgb 0.9999999999999997 4.751476989639514e-15 0.3193497659355717);
   --ds-color-base-gray-10: oklch(0.1 0.002 270);
   --ds-color-base-gray-15: oklch(0.15 0.001577 290);
@@ -19,13 +26,6 @@
   --ds-color-base-gray-95: oklch(0.94 0.005125 31);
   --ds-color-base-gray-100: color(srgb 1 1 1);
   --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
-  --ds-border-solid: 1px solid var(--ds-border-color);
-  --ds-border-ridge: 1px ridge var(--ds-border-color);
-  --ds-border-dashed: 1.5px dashed var(--ds-border-color);
-  --ds-border-red: 1px solid var(--ds-color-red);
-  --ds-border-default: var(--ds-border-solid);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
 }
 
 @media (color-gamut: p3) {
