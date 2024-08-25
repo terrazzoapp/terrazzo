@@ -1,5 +1,11 @@
 # @terrazzo/parser
 
+## 0.0.17
+
+### Patch Changes
+
+- [#302](https://github.com/terrazzoapp/terrazzo/pull/302) [`d0a9df4`](https://github.com/terrazzoapp/terrazzo/commit/d0a9df43ccabd10ea338e12cbfcfbd7e00952d28) Thanks [@drwpow](https://github.com/drwpow)! - Fix parser bug with partialAliasOf that would lead to incorrect final values when aliasing
+
 ## 0.0.13
 
 ### Patch Changes
