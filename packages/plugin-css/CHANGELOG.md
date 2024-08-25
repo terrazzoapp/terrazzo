@@ -1,5 +1,15 @@
 # @terrazzo/plugin-css
 
+## 0.0.11
+
+### Patch Changes
+
+- [#302](https://github.com/terrazzoapp/terrazzo/pull/302) [`d0a9df4`](https://github.com/terrazzoapp/terrazzo/commit/d0a9df43ccabd10ea338e12cbfcfbd7e00952d28) Thanks [@drwpow](https://github.com/drwpow)! - Fix parser bug with partialAliasOf that would lead to incorrect final values when aliasing
+
+- Updated dependencies [[`d0a9df4`](https://github.com/terrazzoapp/terrazzo/commit/d0a9df43ccabd10ea338e12cbfcfbd7e00952d28)]:
+  - @terrazzo/parser@0.0.17
+  - @terrazzo/cli@0.0.17
+
 ## 0.0.10
 
 ### Patch Changes
