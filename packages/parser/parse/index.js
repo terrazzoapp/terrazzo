@@ -459,8 +459,8 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
           token.partialAliasOf = [];
         }
         const aliasOfID = resolveAlias(token.$value[i], { tokens, logger, filename, node, src });
-        const { mode: aliasMode } = parseAlias(token.$value[i]);
-        token.partialAliasOf[i] = aliasOfID;
+        const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i]);
+        token.partialAliasOf[i] = aliasID;
         token.$value[i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
       } else if (typeof token.$value[i] === 'object') {
         for (const property in token.$value[i]) {
@@ -472,9 +472,9 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
               token.partialAliasOf[i] = {};
             }
             const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, filename, node, src });
-            const { mode: aliasMode } = parseAlias(token.$value[i][property]);
+            const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i][property]);
+            token.partialAliasOf[i][property] = aliasID; // also keep the shallow alias here, too!
             token.$value[i][property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
-            token.partialAliasOf[i][property] = aliasOfID;
           }
         }
       }
@@ -492,8 +492,8 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
           token.partialAliasOf = {};
         }
         const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, filename, node, src });
-        const { mode: aliasMode } = parseAlias(token.$value[property]);
-        token.partialAliasOf[property] = aliasOfID;
+        const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property]);
+        token.partialAliasOf[property] = aliasID; // keep the shallow alias!
         token.$value[property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
       }
       // strokeStyle has an array within an object
@@ -507,8 +507,8 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
             if (!token.partialAliasOf[property]) {
               token.partialAliasOf[property] = [];
             }
-            const { mode: aliasMode } = parseAlias(token.$value[property][i]);
-            token.partialAliasOf[property][i] = aliasOfID;
+            const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property][i]);
+            token.partialAliasOf[property][i] = aliasID; // keep the shallow alias!
             token.$value[property][i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
           }
         }
