@@ -103,6 +103,204 @@ export const tokens = {
       "width": "1.5px"
     },
   },
+  "border.default": {
+    ".": {
+      "color": {
+        "colorSpace": "oklch",
+        "channels": [
+          0.2,
+          0.001422,
+          310
+        ],
+        "alpha": 1
+      },
+      "style": "solid",
+      "width": "2.5px"
+    },
+  },
+  "color.base.gray.10": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.1,
+        0.002,
+        270
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.15": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.15,
+        0.001577,
+        290
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.20": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.2,
+        0.001422,
+        310
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.25": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.25,
+        0.001614,
+        340
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.30": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.3,
+        0.002057,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.40": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.4,
+        0.003261,
+        18
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.50": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.5,
+        0.004607,
+        27
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.60": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.6,
+        0.006,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.70": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.7,
+        0.00575,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.80": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.8,
+        0.0055,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.85": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.85,
+        0.005375,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.90": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.9,
+        0.00525,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.95": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.94,
+        0.005125,
+        31
+      ],
+      "alpha": 1
+    },
+  },
+  "color.base.gray.100": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        1,
+        0,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "color.border": {
+    ".": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.2,
+        0.001422,
+        310
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.2,
+        0.001422,
+        310
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "oklch",
+      "channels": [
+        0.8,
+        0.0055,
+        31
+      ],
+      "alpha": 1
+    },
+  },
 };
 
 /** Get individual token */
