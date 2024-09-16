@@ -4,7 +4,7 @@ export interface Props {
   style?: string;
 }
 
-const { color = "var(--tz-color-base-gray-100)", style } = Astro.props;
+const { color = 'var(--tz-color-base-gray-100)', style } = Astro.props;
 ---
 
 <span class="tri" style={`--color:${color};${style}`} aria-hidden></span>

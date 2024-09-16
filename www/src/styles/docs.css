@@ -251,11 +251,7 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: color-mix(
-    in oklab,
-    var(--tz-color-base-blue-800),
-    transparent 62.5%
-  );
+  background-color: color-mix(in oklab, var(--tz-color-base-blue-800), transparent 62.5%);
 
   .callout-indicator {
     color: var(--tz-color-base-blue-300);
@@ -264,11 +260,7 @@
 
 .callout--caution,
 .callout--warning {
-  background-color: color-mix(
-    in oklab,
-    var(--tz-color-base-orange-800),
-    transparent 62.5%
-  );
+  background-color: color-mix(in oklab, var(--tz-color-base-orange-800), transparent 62.5%);
 
   .callout-indicator {
     color: var(--tz-color-base-orange-300);
@@ -374,12 +366,8 @@
       --chrome-button-gap: calc(0.5 * var(--chrome-button-size));
       --y: calc(0.5 * var(--chrome-button-size));
       --x1: calc(0.5 * var(--chrome-button-size));
-      --x2: calc(
-        var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap)
-      );
-      --x3: calc(
-        var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap)
-      );
+      --x2: calc(var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap));
+      --x3: calc(var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap));
 
       background-image: radial-gradient(
           circle at var(--x1) var(--y),
@@ -429,9 +417,8 @@
   position: absolute;
   right: var(--tz-space-400);
   top: var(--tz-space-400);
-  transition:
-    background-color var(--tz-timing-default) var(--tz-ease-linear),
-    color var(--tz-timing-default) var(--tz-ease-linear);
+  transition: background-color var(--tz-timing-default) var(--tz-ease-linear), color var(--tz-timing-default)
+    var(--tz-ease-linear);
   width: var(--tz-space-control-m);
   z-index: var(--tz-layer-base);
 

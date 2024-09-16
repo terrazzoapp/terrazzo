@@ -3,11 +3,7 @@ html {
 }
 
 body {
-  --grid-color: color-mix(
-    in oklab,
-    var(--tz-color-base-blue-600),
-    transparent 62.5%
-  );
+  --grid-color: color-mix(in oklab, var(--tz-color-base-blue-600), transparent 62.5%);
   --grid-size: 2.5rem;
 
   background-color: var(--tz-color-bg-1);
@@ -17,12 +13,7 @@ body {
       var(--grid-color) calc(1 / 16 * 1rem),
       transparent calc(1 / 16 * 1rem)
     ),
-    linear-gradient(
-      to right,
-      var(--grid-color),
-      var(--grid-color) calc(1 / 16 * 1rem),
-      transparent calc(1 / 16 * 1rem)
-    );
+    linear-gradient(to right, var(--grid-color), var(--grid-color) calc(1 / 16 * 1rem), transparent calc(1 / 16 * 1rem));
   background-position: center calc(-1 / 16 * 1rem);
   background-repeat: repeat;
   background-size: var(--grid-size) var(--grid-size);
@@ -46,11 +37,7 @@ body {
   outline: 1px solid transparent;
 
   &:focus-visible {
-    outline-color: color-mix(
-      in oklab,
-      var(--tz-color-base-lime-800),
-      transparent 50%
-    );
+    outline-color: color-mix(in oklab, var(--tz-color-base-lime-800), transparent 50%);
   }
 }
 
