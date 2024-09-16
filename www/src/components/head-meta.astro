@@ -1,14 +1,14 @@
 ---
-import "@terrazzo/tokens/dist/index.css";
-import "@terrazzo/fonts/fragment-mono.css";
-import "@terrazzo/fonts/instrument-sans.css";
-import "@terrazzo/tiles/dist/all-components.css";
-import "@terrazzo/react-color-picker/dist/all-components.css";
-import "../styles/app.css";
+import '@terrazzo/tokens/dist/index.css';
+import '@terrazzo/fonts/fragment-mono.css';
+import '@terrazzo/fonts/instrument-sans.css';
+import '@terrazzo/tiles/dist/all-components.css';
+import '@terrazzo/react-color-picker/dist/all-components.css';
+import '../styles/app.css';
 
 const {
   title,
-  description = "Design systems for everyone. MIT Licensed tools for developing and managing design systems. Use the W3C design token format to build multi-platform apps quickly and easily.",
+  description = 'Design systems for everyone. MIT Licensed tools for developing and managing design systems. Use the W3C design token format to build multi-platform apps quickly and easily.',
   socialImage,
 } = Astro.props;
 ---
@@ -23,5 +23,6 @@ const {
   }
 </title>
 <link rel="icon" href="/favicon.svg" />
+<link rel="canonical" href={`${Astro.site?.origin}${Astro.url.pathname}`} />
 <meta name="description" content={description} />
 {socialImage && <meta name="og:image" content={socialImage} />}

@@ -12,7 +12,7 @@ import remarkVitepress from './src/plugins/remark-vitepress.js';
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), mdx()],
-  site: 'https://terrazzo.ds',
+  site: 'https://terrazzo.app',
   markdown: {
     shikiConfig: {
       theme: json5.parse(fs.readFileSync(new URL('./src/themes/citree.json', import.meta.url), 'utf8')),
