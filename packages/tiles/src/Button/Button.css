@@ -1,27 +1,28 @@
 .tz-button {
-  --tz-button-text: var(--tz-color-content-bg);
-  --tz-button-bg: var(--tz-color-content-text);
+  --tz-button-text: var(--tz-color-bg-1);
+  --tz-button-bg: var(--tz-color-text-1);
   --tz-button-border: var(--tz-button-bg);
-  --tz-button-height: var(--tz-space-control-m);
+  --tz-button-height: 3rem;
   --tz-button-gap: var(--tz-space-200);
-  --tz-button-padding: var(--tz-space-300);
+  --tz-button-padding: 1em;
 
   align-items: center;
   background-color: var(--tz-button-bg);
   border-color: var(--tz-button-border);
-  border-radius: var(--tz-radius-400);
+  border-radius: 0;
   border-style: solid;
   border-width: 1px;
   color: var(--tz-button-text);
   cursor: pointer;
   display: inline-flex;
-  font-family: var(--tz-typography-300-medium-font-family);
-  font-size: var(--tz-typography-300-medium-font-size);
-  font-weight: var(--tz-typography-300-medium-font-weight);
+  font-family: var(--tz-typography-200-medium-font-family);
+  font-size: var(--tz-typography-200-medium-font-size);
+  font-weight: var(--tz-typography-200-medium-font-weight);
   gap: var(--tz-button-gap);
+  height: var(--tz-button-height);
   justify-content: center;
-  letter-spacing: var(--tz-typography-300-medium-letter-spacing);
-  line-height: var(--tz-button-height);
+  letter-spacing: var(--tz-typography-200-medium-letter-spacing);
+  line-height: 1;
   outline-color: transparent;
   outline-offset: 2px;
   outline-style: solid;
@@ -33,7 +34,7 @@
   text-decoration: none;
 
   &:focus-visible {
-    outline-color: var(--tz-color-control-border-focus);
+    outline-color: var(--tz-color-base-lime-800);
   }
 
   &[data-size="s"] {
@@ -43,10 +44,28 @@
     letter-spacing: var(--tz-typography-200-medium-letter-spacing);
   }
 
+  &[data-variant="lime"] {
+    --tz-button-bg: var(--tz-color-base-lime-800);
+    --tz-button-text: var(--tz-color-base-lime-200);
+    --tz-button-border: var(--tz-color-base-lime-300);
+  }
+
+  &[data-variant="blue"] {
+    --tz-button-bg: var(--tz-color-base-blue-800);
+    --tz-button-text: var(--tz-color-base-blue-200);
+    --tz-button-border: var(--tz-color-base-blue-300);
+  }
+
+  &[data-variant="orange"] {
+    --tz-button-bg: var(--tz-color-base-orange-800);
+    --tz-button-text: var(--tz-color-base-orange-200);
+    --tz-button-border: var(--tz-color-base-orange-300);
+  }
+
   &[data-variant="secondary"] {
-    --tz-button-bg: var(--tz-color-control-bg);
-    --tz-button-border: var(--tz-color-control-border);
-    --tz-button-text: var(--tz-color-control-text);
+    --tz-button-bg: var(--tz-color-bg-1);
+    --tz-button-border: var(--tz-color-border-1);
+    --tz-button-text: var(--tz-color-text-1);
   }
 
   &:disabled {

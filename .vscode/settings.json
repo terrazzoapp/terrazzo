@@ -1,6 +1,6 @@
 {
   "[astro]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "astro-build.astro-vscode"
   },
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"

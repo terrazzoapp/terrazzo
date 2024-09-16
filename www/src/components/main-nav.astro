@@ -1,0 +1,116 @@
+---
+import { GitHubLogo } from "@terrazzo/icons";
+import { ButtonLink } from "@terrazzo/tiles";
+import fs from "node:fs";
+import Terrazzo from "./terrazzo.astro";
+
+const pkgInfo = JSON.parse(
+  fs.readFileSync(
+    new URL("../../../packages/cli/package.json", import.meta.url),
+    "utf8"
+  )
+);
+const { version } = pkgInfo;
+---
+
+<nav class="nav" aria-label="Main nav">
+  <ul class="nav-list">
+    <li class="nav-item">
+      <a class="logo-link" href="/"><Terrazzo size="1.25rem" /></a>
+    </li>
+    <li class="nav-item"><a href="/docs/cli">Docs</a></li>
+    <li class="nav-item nav-item--sub">
+      <ButtonLink href="/docs/cli" variant="lime">Get Started</ButtonLink>
+    </li>
+    <li class="nav-item nav-item--sub">
+      <code class="version">v{version}</code>
+    </li>
+    <li class="nav-item nav-item--sub">
+      <a
+        class="icon-link"
+        href="https://github.com/terrazzoapp/terrazzo"
+        target="_blank"
+        aria-label="Terrazzo on GitHub"><GitHubLogo /></a
+      >
+    </li>
+  </ul>
+
+  <style>
+    .nav {
+      --nav-height: var(--grid-size);
+
+      background: var(--tz-color-bg-1);
+      border-bottom: var(--tz-border-1);
+      color: var(--tz-color-text-1);
+      height: var(--height);
+
+      a {
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    .nav-list {
+      align-items: center;
+      display: flex;
+      height: var(--nav-height);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      justify-content: center;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+    }
+
+    .nav-item a {
+      height: 100%;
+      padding-inline: 0.5rem;
+    }
+
+    .nav-item .tz-button {
+      height: var(--grid-size);
+      width: calc(2.5 * var(--grid-size));
+    }
+
+    .nav-items code {
+      color: var(--tz-text-3);
+    }
+
+    .version {
+      min-width: calc(2 * var(--grid-size));
+      text-align: center;
+    }
+
+    .nav-item:not(.nav-item--sub) + .nav-item--sub {
+      margin-left: auto;
+    }
+
+    .icon-link {
+      padding-inline: 0.5rem;
+      text-align: center;
+      width: var(--grid-size);
+
+      svg {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+
+    .nav-item:first-of-type a {
+      padding-inline-start: 1.5rem;
+    }
+
+    .nav-item:last-of-type a {
+      padding-inline-end: 1.5rem;
+    }
+
+    .logo-link {
+      align-items: center;
+      display: flex;
+    }
+  </style>
+</nav>

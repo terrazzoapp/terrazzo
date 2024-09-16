@@ -3,12 +3,40 @@ html {
 }
 
 body {
-  background-color: var(--tz-color-content-bg);
-  color: var(--tz-color-content-text);
+  --grid-color: color-mix(
+    in oklab,
+    var(--tz-color-base-blue-600),
+    transparent 62.5%
+  );
+  --grid-size: 2.5rem;
+
+  background-color: var(--tz-color-bg-1);
+  background-image: linear-gradient(
+      to bottom,
+      var(--grid-color),
+      var(--grid-color) calc(1 / 16 * 1rem),
+      transparent calc(1 / 16 * 1rem)
+    ),
+    linear-gradient(
+      to right,
+      var(--grid-color),
+      var(--grid-color) calc(1 / 16 * 1rem),
+      transparent calc(1 / 16 * 1rem)
+    );
+  background-position: center calc(-1 / 16 * 1rem);
+  background-repeat: repeat;
+  background-size: var(--grid-size) var(--grid-size);
+  color: var(--tz-color-text-1);
   font-family: var(--tz-typography-family-sans);
   font-size: 100%;
   line-height: 1;
   margin: 0;
+}
+
+@media (width >= 900px) {
+  body {
+    --grid-size: 3rem;
+  }
 }
 
 *,
@@ -20,7 +48,7 @@ body {
   &:focus-visible {
     outline-color: color-mix(
       in oklab,
-      var(--tz-color-brand-lime),
+      var(--tz-color-base-lime-800),
       transparent 50%
     );
   }
@@ -31,7 +59,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--tz-color-content-bg-highlighted);
+  background-color: var(--tz-color-base-lime-800);
 }
 
 h1 {

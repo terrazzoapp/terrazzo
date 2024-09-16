@@ -61,7 +61,7 @@
   a {
     &:hover,
     &:focus-visible {
-      background-color: var(--tz-color-control-bg-selected);
+      background-color: var(--tz-color-base-lime-800);
     }
   }
 
@@ -98,8 +98,8 @@
   li > code,
   li > p > code,
   td > code {
-    background-color: var(--tz-color-content-bg-aside);
-    border: 1px solid var(--tz-color-content-border-aside);
+    background-color: var(--tz-color-bg-2);
+    border: 1px solid var(--tz-color-border-3);
     border-radius: var(--tz-radius-200);
     display: inline-block;
     font-size: 0.875em;
@@ -108,8 +108,8 @@
   }
 
   figure {
-    background-color: var(--tz-color-content-bg);
-    border: 1px solid var(--tz-color-content-border);
+    background-color: var(--tz-color-bg-1);
+    border: var(--tz-border-3);
     border-radius: var(--tz-radius-400);
     margin-inline: 0;
     padding: var(--tz-space-400);
@@ -160,7 +160,7 @@
     position: relative;
 
     &:hover {
-      background-color: var(--tz-color-content-bg-aside);
+      background-color: var(--tz-color-bg-2);
     }
 
     &::after {
@@ -187,7 +187,7 @@
   }
 
   details[open] summary {
-    border-bottom-color: var(--tz-color-content-border);
+    border-bottom-color: var(--tz-color-border-2);
 
     &::after {
       transform: rotate(0.5turn);
@@ -199,13 +199,13 @@
   }
 
   th {
-    border-bottom: 1px solid var(--tz-color-content-border);
+    border-bottom: var(--tz-border-2);
     font-weight: 700;
   }
 
   th,
   td {
-    border: 1px solid var(--tz-color-content-border);
+    border: var(--tz-border-2);
     font-size: var(--tz-typography-200-regular-font-size);
     letter-spacing: var(--tz-typography-200-regular-letter-spacing);
     line-height: var(--tz-typography-200-regular-line-height);
@@ -213,7 +213,7 @@
   }
 
   kbd {
-    border: 1px solid var(--tz-color-content-border);
+    border: var(--tz-border-3);
     border-radius: var(--tz-radius-300);
     display: inline-block;
     line-height: 1;
@@ -222,15 +222,14 @@
   }
 
   tr:nth-of-type(even) td {
-    background-color: var(--tz-color-content-bg-aside);
+    background-color: var(--tz-color-bg-2);
   }
 }
 
 .callout {
   --padding: var(--tz-space-400);
 
-  background-color: var(--tz-color-content-bg-aside);
-  border-radius: var(--tz-radius-300);
+  background-color: var(--tz-color-bg-2);
   color: var(--tz-text-secondary);
   margin-left: calc(-1 * var(--padding));
   padding: var(--padding);
@@ -252,21 +251,27 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: var(--tz-color-content-bg-info);
-  color: var(--tz-color-content-text-info);
+  background-color: color-mix(
+    in oklab,
+    var(--tz-color-base-blue-800),
+    transparent 62.5%
+  );
 
   .callout-indicator {
-    color: var(--tz-color-content-border-info);
+    color: var(--tz-color-base-blue-300);
   }
 }
 
 .callout--caution,
 .callout--warning {
-  background-color: var(--tz-color-content-bg-warn);
-  color: var(--tz-color-content-text-warn);
+  background-color: color-mix(
+    in oklab,
+    var(--tz-color-base-orange-800),
+    transparent 62.5%
+  );
 
   .callout-indicator {
-    color: var(--tz-color-content-border-warn);
+    color: var(--tz-color-base-orange-300);
   }
 }
 
@@ -324,11 +329,11 @@
 
   &[aria-selected="true"] {
     background-color: var(--code-bg);
-    border-top-color: var(--tz-color-brand-orange);
+    border-top-color: var(--tz-color-base-orange-600);
   }
 
   &:focus-visible {
-    outline-color: var(--tz-color-brand-orange);
+    outline-color: var(--tz-color-base-orange-600);
   }
 }
 
@@ -345,7 +350,7 @@
 .md-content > .code-block-wrapper {
   &[data-language="sh"],
   &[data-language="bash"] {
-    --chrome-border-color: var(--tz-color-content-border-elevated);
+    --chrome-border-color: var(--tz-color-border-2);
     --chrome-height: var(--tz-space-600);
 
     margin-top: calc(var(--tz-space-600) + var(--chrome-height));
@@ -437,12 +442,18 @@
 }
 
 .toc {
+  background: var(--tz-color-bg-1);
+  border: 1px solid var(--grid-color);
   bottom: calc(-1 * var(--tz-space-500));
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
+  height: min-content;
   letter-spacing: var(--tz-typography-200-regular-letter-spacing);
   line-height: var(--tz-typography-200-regular-line-height);
+  margin: 0;
   order: 1;
+  padding-block: calc(0.5 * var(--grid-size));
+  padding-inline: calc(0.5 * var(--grid-size));
 
   @media (width >= 1200px) {
     overflow-y: auto;
@@ -454,10 +465,9 @@
 
   h4#contents {
     margin-bottom: var(--tz-space-300);
-    padding-top: 0;
 
     @media (width >= 1200px) {
-      padding-top: var(--tz-space-900);
+      padding-top: var(--grid-size);
     }
   }
 
@@ -493,8 +503,8 @@
   }
 
   a {
-    border-left: 1px solid var(--tz-color-content-border);
-    color: var(--tz-color-content-text-aside);
+    border-left: var(--tz-border-3);
+    color: var(--tz-color-text-3);
     display: block;
     max-width: 100%;
     overflow: hidden;
@@ -506,13 +516,13 @@
     &:hover,
     &:focus-visible {
       background-color: transparent;
-      color: var(--tz-color-content-text);
+      color: var(--tz-color-text-1);
     }
 
     @media (width >= 1200px) {
       &[aria-current] {
-        border-color: var(--tz-nav-secondary-highlight);
-        color: var(--tz-nav-secondary-selected-text);
+        border-color: var(--tz-color-base-lime-300);
+        color: var(--tz-color-base-lime-200);
       }
     }
   }

@@ -1,5 +1,7 @@
 ---
-import HeadMeta from '../components/head-meta.astro';
+import HeadMeta from "../components/head-meta.astro";
+import MainFooter from "../components/main-footer.astro";
+import MainNav from "../components/main-nav.astro";
 
 const { title, description, socialImage } = Astro.props;
 ---
@@ -11,8 +13,20 @@ const { title, description, socialImage } = Astro.props;
       description={description}
       socialImage={socialImage}
     />
+    <script is:inline>
+      const LS_THEME_KEY = "tz-www-theme";
+      const initialValue =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem(LS_THEME_KEY)
+          : undefined;
+      if (initialValue === "light" || initialValue === "dark") {
+        document.documentElement.setAttribute("data-color-mode", initialValue);
+      }
+    </script>
   </head>
   <body>
+    <MainNav />
     <slot />
+    <MainFooter />
   </body>
 </html>

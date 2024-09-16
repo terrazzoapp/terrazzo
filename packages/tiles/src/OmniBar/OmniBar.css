@@ -11,9 +11,9 @@
 }
 
 .tz-omnibar-input {
-  --tz-omnibar-input-bg: var(--tz-color-control-bg);
-  --tz-omnibar-input-border: var(--tz-color-control-border);
-  --tz-omnibar-input-text: var(--tz-color-control-text);
+  --tz-omnibar-input-bg: var(--tz-color-bg-1);
+  --tz-omnibar-input-border: var(--tz-color-border-3);
+  --tz-omnibar-input-text: var(--tz-color-text-1);
 
   background-color: var(--tz-omnibar-input-bg);
   border: 1px solid var(--tz-omnibar-input-border);
@@ -22,9 +22,9 @@
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
   font-weight: var(--tz-typography-200-regular-font-weight);
-  height: var(--tz-space-control-m);
+  height: 2rem;
   letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-space-control-m);
+  line-height: 1;
   min-width: 5rem;
   outline: none;
   padding-block-end: 0;
@@ -41,7 +41,7 @@
   }
 
   &:focus {
-    --tz-omnibar-input-border: var(--tz-color-control-border-focus);
+    --tz-omnibar-input-border: var(--tz-color-border-2);
 
     width: 20rem;
   }
@@ -76,8 +76,8 @@
 .tz-omnibar-listboxwrapper {
   --padding: var(--tz-space-300);
 
-  background-color: var(--tz-color-content-bg-elevated);
-  border: 1px solid var(--tz-color-content-border-elevated);
+  background-color: var(--tz-color-bg-1);
+  border: var(--border-2);
   border-radius: var(--tz-radius-300);
   box-shadow: var(--tz-shadow-300);
   display: flex;
@@ -103,8 +103,8 @@
   &[aria-selected="true"],
   &:hover,
   &:focus-within {
-    background-color: var(--tz-nav-primary-selected-bg);
-    color: var(--tz-nav-primary-selected-tet);
+    background-color: var(--tz-color-base-lime-800);
+    color: var(--tz-color-base-lime-200);
   }
 }
 

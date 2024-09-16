@@ -1,5 +1,5 @@
 .tz-color-picker {
-  background-color: var(--tz-color-control-bg);
+  background-color: var(--tz-color-bg-1);
   color: var(--tz-text-primary);
   display: flex;
   flex-direction: column;
@@ -15,9 +15,9 @@
 }
 
 .tz-color-picker-code-input {
-  --tz-color-picker-input-bg: var(--tz-color-control-bg);
-  --tz-color-picker-input-border: var(--tz-color-control-border);
-  --tz-color-picker-input-text: var(--tz-color-control-text);
+  --tz-color-picker-input-bg: var(--tz-color-bg-1);
+  --tz-color-picker-input-border: var(--tz-color-border-3);
+  --tz-color-picker-input-text: var(--tz-color-text-1);
 
   background-color: var(--tz-color-picker-input-bg);
   border: 1px solid var(--tz-color-picker-input-border);
