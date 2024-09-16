@@ -1,5 +1,14 @@
 # @terrazzo/cli
 
+## 0.0.18
+
+### Patch Changes
+
+- [#305](https://github.com/terrazzoapp/terrazzo/pull/305) [`9ce829c`](https://github.com/terrazzoapp/terrazzo/commit/9ce829c37c8a068f7d7157b615d4a00472c33156) Thanks [@drwpow](https://github.com/drwpow)! - Don’t log AST node on error
+
+- Updated dependencies [[`9ce829c`](https://github.com/terrazzoapp/terrazzo/commit/9ce829c37c8a068f7d7157b615d4a00472c33156)]:
+  - @terrazzo/parser@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes
