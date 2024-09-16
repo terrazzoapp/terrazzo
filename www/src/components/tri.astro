@@ -1,0 +1,26 @@
+---
+export interface Props {
+  color?: string;
+  style?: string;
+}
+
+const { color = 'var(--tz-color-base-gray-100)', style } = Astro.props;
+---
+
+<span class="tri" style={`--color:${color};${style}`} aria-hidden></span>
+
+<style>
+  .tri {
+    background-image: linear-gradient(
+      to bottom right,
+      var(--color),
+      var(--color) 50%,
+      transparent 50%
+    );
+    display: block;
+    height: var(--grid-size);
+    pointer-events: none;
+    position: absolute;
+    width: var(--grid-size);
+  }
+</style>

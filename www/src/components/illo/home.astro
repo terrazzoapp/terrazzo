@@ -1,0 +1,97 @@
+---
+import Tri from '../tri.astro';
+---
+
+<div class="illo" aria-hidden>
+  <div class="square">
+    <Tri
+      color="var(--tz-color-base-blue-300)"
+      style="left:0;bottom:0;transform:rotate(180deg)"
+    />
+    <Tri
+      color="var(--tz-color-base-blue-300)"
+      style="left:calc(1 * var(--grid-size));bottom:0;transform:rotate(180deg)"
+    />
+    <Tri
+      color="var(--tz-color-base-orange-600)"
+      style="right:0;bottom:0;transform:rotate(-90deg)"
+    />
+  </div>
+  <div class="rect">
+    <div class="vector-box"></div>
+    <div class="vector-box"></div>
+    <div class="vector-box"></div>
+    <div class="vector-box"></div>
+    <Tri color="var(--tz-color-base-lime-600)" style="top:0;left:0;" />
+  </div>
+  <div class="circle"></div>
+</div>
+
+<style>
+  .illo {
+    pointer-events: none;
+    position: relative;
+  }
+
+  .rect {
+    background-color: var(--tz-color-base-orange-600);
+    border: 2px solid var(--tz-color-base-blue-600);
+    height: calc(3 * var(--grid-size));
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: calc(5 * var(--grid-size));
+  }
+
+  .vector-box {
+    background: var(--tz-color-bg-1);
+    border: 2px solid var(--tz-color-base-blue-600);
+    height: 1rem;
+    position: absolute;
+    width: 1rem;
+    z-index: 2;
+
+    &:nth-child(1) {
+      left: 0;
+      top: 0;
+      transform: translate3d(-50%, -50%, 0);
+    }
+
+    &:nth-child(2) {
+      right: 0;
+      top: 0;
+      transform: translate3d(50%, -50%, 0);
+    }
+
+    &:nth-child(3) {
+      left: 0;
+      bottom: 0;
+      transform: translate3d(-50%, 50%, 0);
+    }
+
+    &:nth-child(4) {
+      right: 0;
+      bottom: 0;
+      transform: translate3d(50%, 50%, 0);
+    }
+  }
+
+  .square {
+    background: var(--tz-color-base-blue-800);
+    height: calc(4 * var(--grid-size));
+    left: calc(2 * var(--grid-size));
+    position: absolute;
+    top: calc(1 * var(--grid-size));
+    width: calc(4 * var(--grid-size));
+  }
+
+  .circle {
+    background: var(--tz-color-base-lime-600);
+    border-radius: 50%;
+    height: calc(3 * var(--grid-size));
+    position: absolute;
+    right: calc(2 * var(--grid-size));
+    top: 0;
+    width: calc(3 * var(--grid-size));
+  }
+</style>

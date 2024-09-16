@@ -1,0 +1,124 @@
+---
+import { GitHubLogo } from '@terrazzo/icons';
+import Terrazzo from './terrazzo.astro';
+---
+
+<footer class="footer">
+  <nav class="nav">
+    <ul class="grid">
+      <li>
+        <a href="/"><Terrazzo size="1.25rem" /></a>
+        <div class="colophon">MIT License</div>
+      </li>
+      <li>
+        <h4 class="cat-heading">Design Lab</h4>
+        <ul class="cat">
+          <li>Coming soon!</li>
+        </ul>
+      </li>
+      <li>
+        <h4 class="cat-heading">CLI</h4>
+        <ul class="cat">
+          <li><a href="/docs/cli">Docs</a></li>
+          <li><a href="/docs/cli/integrations">Plugins</a></li>
+        </ul>
+      </li>
+      <li>
+        <h4 class="cat-heading">About</h4>
+        <ul class="cat">
+          <li><a href="/docs/reference/about">About</a></li>
+          <li>
+            <a href="https://github.com/terrazzoapp/terrazzo" target="_blank"
+              >GitHub</a
+            >
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a
+          class="github-link"
+          href="https://github.com/terrazzoapp/terrazzo"
+          target="_blank"
+          aria-label="Terrazzo on GitHub"><GitHubLogo /></a
+        >
+      </li>
+    </ul>
+  </nav>
+</footer>
+
+<style>
+  .footer {
+    border-top: var(--tz-border-2);
+    background: var(--tz-color-bg-1);
+    padding-inline: var(--grid-size);
+    padding-block-end: calc(2 * var(--grid-size));
+    padding-block-start: var(--grid-size);
+  }
+
+  .nav {
+    margin-inline: auto;
+    position: relative;
+    width: calc(21 * var(--grid-size));
+    max-width: 100%;
+  }
+
+  .grid {
+    display: grid;
+    list-style: none;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(calc(3 * var(--grid-size)), 1fr)
+    );
+    margin: 0;
+    padding: 0;
+  }
+
+  .cat {
+    color: var(--tz-color-text-3);
+    font-size: var(--tz-typography-200-regular-font-size);
+    list-style: none;
+    margin-block: 1.5rem;
+    margin-inline: 0;
+    padding: 0;
+
+    a {
+      color: var(--tz-color-text-1);
+      text-decoration: none;
+
+      &:hover,
+      &:focus-visible {
+        color: var(--tz-color-base-lime-300);
+      }
+    }
+
+    li {
+      font-size: var(--tz-typography-200-regular-font-size);
+      margin-block: 0.5rem;
+    }
+  }
+
+  .cat-heading {
+    font-family: var(--tz-typography-family-mono);
+    font-size: var(--tz-typography-200-regular-font-size);
+    letter-spacing: calc(1 / 8 * 1em);
+    margin: 0;
+    opacity: 0.7;
+    text-transform: uppercase;
+  }
+
+  .github-link {
+    align-items: center;
+    display: flex;
+    height: var(--grid-size);
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: calc(-0.5 * var(--grid-size));
+    width: var(--grid-size);
+  }
+
+  .colophon {
+    font-size: var(--tz-typography-200-regular-font-size);
+    opacity: 0.6;
+  }
+</style>

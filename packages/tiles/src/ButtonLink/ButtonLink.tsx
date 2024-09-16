@@ -6,14 +6,14 @@ export interface ButtonLinkProps extends ComponentProps<'a'> {
   /** default: "m" */
   size?: 's' | 'm';
   /** default: "primary" */
-  variant?: 'primary' | 'secondary' | 'tertiary';
+  variant?: 'lime' | 'blue' | 'orange' | 'secondary' | 'tertiary';
 }
 
 export default function ButtonLink({
   className,
   children,
   size = 'm',
-  variant = 'primary',
+  variant = 'secondary',
   ref,
   ...rest
 }: ButtonLinkProps) {

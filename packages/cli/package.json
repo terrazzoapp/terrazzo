@@ -47,11 +47,11 @@
     "chokidar": "^3.6.0",
     "dotenv": "^16.4.5",
     "merge-anything": "^5.1.7",
-    "picocolors": "^1.0.1",
+    "picocolors": "^1.1.0",
     "yaml-to-momoa": "^0.0.1",
     "yargs-parser": "^21.1.1"
   },
   "devDependencies": {
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   }
 }

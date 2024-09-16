@@ -11,15 +11,18 @@ const { frontmatter } = Astro.props;
   <head>
     <HeadMeta title={frontmatter.title} description={frontmatter.description} />
     <script is:inline>
-      const LS_THEME_KEY = 'tz-www-theme'
-      const initialValue = typeof localStorage !== 'undefined' ? localStorage.getItem(LS_THEME_KEY) : undefined;
-      if (initialValue === 'light' || initialValue === 'dark') {
-        document.documentElement.setAttribute('data-color-mode', initialValue);
+      const LS_THEME_KEY = "tz-www-theme";
+      const initialValue =
+        typeof localStorage !== "undefined"
+          ? localStorage.getItem(LS_THEME_KEY)
+          : undefined;
+      if (initialValue === "light" || initialValue === "dark") {
+        document.documentElement.setAttribute("data-color-mode", initialValue);
       }
     </script>
     <style>
       .docs {
-        --sidebar-width: 16rem;
+        --sidebar-width: calc(5 * var(--grid-size));
 
         display: grid;
         grid-template-areas: "sidenav" "header-nav" "toc" "main";
@@ -47,7 +50,7 @@ const { frontmatter } = Astro.props;
       }
 
       .docs-sidenav {
-        background-color: var(--tz-color-content-bg-aside);
+        background-color: var(--tz-color-bg-1);
         display: flex;
         grid-area: sidenav;
 
@@ -64,8 +67,12 @@ const { frontmatter } = Astro.props;
       }
 
       .content {
+        background: var(--tz-color-bg-1);
+        border-left: var(--tz-border-2);
+        border-right: var(--tz-border-2);
         margin-inline: auto;
-        max-width: 40rem;
+        max-width: calc(15 * var(--grid-size));
+        min-height: calc(100vh - var(--grid-size));
         padding-block-end: 6rem;
         padding-inline: var(--tz-space-600);
       }

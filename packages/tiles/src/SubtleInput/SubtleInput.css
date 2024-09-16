@@ -1,5 +1,5 @@
 .tz-subtle-input {
-  --tz-subtle-input-text: var(--tz-color-control-text);
+  --tz-subtle-input-text: var(--tz-color-text-2);
   --tz-subtle-input-border: transparent;
 
   background-color: transparent;
@@ -15,11 +15,11 @@
   position: relative;
 
   &:hover {
-    --tz-subtle-input-border: var(--tz-color-control-border);
+    --tz-subtle-input-border: var(--tz-color-border-3);
   }
 
   &:focus-within {
-    --tz-subtle-input-border: var(--tz-color-control-border-focus);
+    --tz-subtle-input-border: var(--tz-color-border-2);
   }
 }
 

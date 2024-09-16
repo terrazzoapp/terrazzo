@@ -32,8 +32,8 @@
       (2 * var(--border-size))
   );
 
-  background: var(--tz-color-control-bg);
-  border-color: var(--tz-color-control-border);
+  background: var(--tz-color-bg-1);
+  border-color: var(--tz-color-border-2);
   border-radius: var(--tz-slider-handle-size);
   border-style: solid;
   border-width: var(--border-size);
@@ -109,7 +109,7 @@
 }
 
 .tz-slider-track-bg {
-  background: var(--tz-color-control-bg-track);
+  background: var(--tz-color-bg-2);
   border-radius: var(--tz-radius-1000);
   inset: 0;
   position: absolute;

@@ -15,7 +15,7 @@
 .tz-select-item {
   align-items: center;
   border-radius: 3px;
-  color: var(--tz-color-control-text);
+  color: var(--tz-color-text-2);
   display: flex;
   font-family: var(--tz-typography-300-regular-family);
   font-size: var(--tz-typography-300-regular-font-size);
@@ -32,12 +32,12 @@
   }
 
   &[data-highlighted] {
-    background-color: var(--tz-color-control-bg-selected);
-    color: var(--tz-color-control-text-selected);
+    background-color: var(--tz-color-base-lime-800);
+    color: var(--tz-color-base-lime-200);
     outline: none;
 
     .tz-select-item-indicator {
-      background-color: var(--tz-color-control-bg-selected);
+      background-color: var(--tz-color-base-lime-800);
     }
   }
 }
@@ -64,7 +64,7 @@
 
 .tz-select-item-indicator {
   align-items: center;
-  background-color: var(--tz-color-control-bg);
+  background-color: var(--tz-color-bg-1);
   display: inline-flex;
   justify-content: center;
   left: 0;
@@ -73,10 +73,10 @@
 }
 
 .tz-select-options {
-  background: var(--tz-color-control-bg);
+  background: var(--tz-color-bg-1);
   border-radius: var(--tz-radius-200);
   box-shadow: var(--tz-shadow-300);
-  color: var(--tz-color-control-text);
+  color: var(--tz-color-text-2);
   overflow: hidden;
   padding-bottom: var(--tz-space-200);
   padding-top: var(--tz-space-200);
@@ -86,8 +86,8 @@
 
 .tz-select-scroll-button {
   align-items: center;
-  background-color: var(--tz-color-control-bg);
-  color: var(--tz-color-control-label);
+  background-color: var(--tz-color-bg-1);
+  color: var(--tz-color-text-3);
   cursor: default;
   display: flex;
   height: var(--tz-space-control-m);
@@ -99,7 +99,7 @@
   background-color: var(--tz-color-control-bg);
   border: none;
   border-radius: var(--tz-radius-300);
-  color: var(--tz-color-control-text);
+  color: var(--tz-color-text-1);
   cursor: pointer;
   display: inline-flex;
   font-family: var(--tz-typography-300-regular-font-family);
@@ -115,7 +115,7 @@
 
   &:hover,
   &:focus-visible {
-    outline-color: var(--tz-color-control-border-focus);
+    outline-color: var(--tz-color-base-lime-800);
   }
 }
 
