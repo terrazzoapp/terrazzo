@@ -170,7 +170,7 @@ const NAV_ITEMS = [
   }
 
   .section-title {
-    color: var(--tz-color-text-1);
+    color: var(--tz-color-text-2);
     font-size: var(--tz-typography-300-medium-font-size);
     font-weight: var(--tz-typography-300-medium-font-weight);
     line-height: var(--tz-typography-300-medium-line-height);
@@ -189,7 +189,7 @@ const NAV_ITEMS = [
     position: relative;
 
     &::before {
-      background-color: var(--tz-color-base-lime-600);
+      background-color: var(--tz-color-base-lime-800);
       content: "";
       display: block;
       left: var(--tz-space-300);
@@ -201,8 +201,12 @@ const NAV_ITEMS = [
       width: 2px;
     }
 
-    &:hover::before {
-      opacity: 0.5;
+    &:hover {
+      background-color: var(--tz-color-base-lime-900);
+
+      &::before {
+        opacity: 0.5;
+      }
     }
 
     &[aria-current="page"] {
