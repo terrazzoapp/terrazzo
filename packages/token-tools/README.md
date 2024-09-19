@@ -1,7 +1,7 @@
-# @cobalt-ui/token-tools
+# @terrazzo/token-tools
 
 ## Install
 
 ```sh
-npm install @cobalt-ui/token-tools
+npm install @terrazzo/token-tools
 ```
