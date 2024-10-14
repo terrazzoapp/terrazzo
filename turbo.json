@@ -7,7 +7,9 @@
     "build:app": {
       "dependsOn": ["build"]
     },
-    "lint": {},
+    "lint": {
+      "dependsOn": ["build"]
+    },
     "test": {
       "dependsOn": ["build"]
     }

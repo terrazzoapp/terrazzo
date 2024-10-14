@@ -22,7 +22,6 @@ jobs:
         with:
           version: 9.12.1
           run_install: true
-      - run: pnpm run build
       - run: pnpm run lint
   test:
     strategy:
@@ -39,5 +38,4 @@ jobs:
         with:
           version: 9.12.1
           run_install: true
-      - run: pnpm run build
       - run: pnpm test
