@@ -1,4 +1,3 @@
-import swc from '@rollup/plugin-swc';
 import ts from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-import-css';
 import { cleandir } from 'rollup-plugin-cleandir';
@@ -10,25 +9,8 @@ export default {
     css({
       output: 'all-components.css',
     }),
-    ts(),
-    swc({
-      swc: {
-        jsc: {
-          parser: {
-            dynamicImport: true,
-            syntax: 'typescript',
-            jsx: true,
-            tsx: true,
-            topLevelAwait: true,
-          },
-          target: 'esnext',
-          transform: {
-            react: {
-              runtime: 'automatic',
-            },
-          },
-        },
-      },
+    ts({
+      tsconfig: './tsconfig.build.json',
     }),
   ],
   input: 'src/index.ts',

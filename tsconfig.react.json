@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "lib": ["DOM", "ESNext"],
-    "jsx": "preserve",
-    "noEmit": true
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   }
 }
