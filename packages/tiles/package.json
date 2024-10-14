@@ -44,8 +44,7 @@
     "shiki": "^1.22.0"
   },
   "devDependencies": {
-    "@rollup/plugin-swc": "^0.3.1",
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-typescript": "^12.1.0",
     "@size-limit/preset-small-lib": "^11.1.6",
     "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",

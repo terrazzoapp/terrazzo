@@ -1,32 +1,9 @@
-import swc from '@rollup/plugin-swc';
 import ts from '@rollup/plugin-typescript';
 import { cleandir } from 'rollup-plugin-cleandir';
 
 /** @type {import("rollup").InputOptions} */
 export default {
-  plugins: [
-    cleandir(),
-    ts(),
-    swc({
-      swc: {
-        jsc: {
-          parser: {
-            dynamicImport: true,
-            syntax: 'typescript',
-            jsx: true,
-            tsx: true,
-            topLevelAwait: true,
-          },
-          target: 'esnext',
-          transform: {
-            react: {
-              runtime: 'automatic',
-            },
-          },
-        },
-      },
-    }),
-  ],
+  plugins: [cleandir(), ts()],
   input: 'src/index.tsx',
   external: ['*'],
   output: {

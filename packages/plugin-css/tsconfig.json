@@ -4,5 +4,5 @@
     "baseUrl": ".",
     "outDir": "./dist/"
   },
-  "include": ["src", "test"]
+  "include": ["src", "test", "../cli/test/fixtures/build-default"]
 }
