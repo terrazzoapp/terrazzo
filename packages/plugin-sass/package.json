@@ -29,7 +29,7 @@
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/plugin-sass run \"/^test:.*/\"",
-    "test:js": "vitest run",
+    "test:js": "nx vite:test run",
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {

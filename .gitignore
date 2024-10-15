@@ -6,3 +6,8 @@ package-lock.json
 .pnpm-debug*
 .env
 .turbo
+
+
+
+.nx/cache
+.nx/workspace-data

@@ -30,7 +30,7 @@
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "--disabled--test": "pnpm --filter @terrazzo/plugin-tailwind run \"/^test:.*/\"",
-    "--disabled--test:js": "vitest run",
+    "--disabled--test:js": "nx vite:test run",
     "--disabled--test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
