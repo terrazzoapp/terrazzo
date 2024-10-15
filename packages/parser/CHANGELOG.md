@@ -1,5 +1,13 @@
 # @terrazzo/parser
 
+## 0.0.19
+
+### Patch Changes
+
+- [#313](https://github.com/terrazzoapp/terrazzo/pull/313) [`1408594`](https://github.com/terrazzoapp/terrazzo/commit/1408594de029f57137c936dc2ff9ab949f039215) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in gradient position aliasing
+
+- [#313](https://github.com/terrazzoapp/terrazzo/pull/313) [`1408594`](https://github.com/terrazzoapp/terrazzo/commit/1408594de029f57137c936dc2ff9ab949f039215) Thanks [@drwpow](https://github.com/drwpow)! - Improve alias type validation
+
 ## 0.0.18
 
 ### Patch Changes

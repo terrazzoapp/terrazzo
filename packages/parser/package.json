@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/parser",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
   "type": "module",
   "author": {
