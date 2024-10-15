@@ -6,12 +6,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "pnpm run sb",
-    "build:app": "sb build -o storybook",
+    "build:app": "storybook build -o storybook",
     "format": "biome format --write src",
     "lint": "pnpm run --filter @terrazzo/storybook \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "sb": "sb dev -p 9009"
+    "sb": "storybook dev -p 9009"
   },
   "dependencies": {
     "culori": "^4.0.1"
