@@ -26,7 +26,7 @@
     "build": "tsc && size-limit",
     "format": "biome format --write .",
     "lint": "biome check .",
-    "test": "vitest run"
+    "test": "nx vite:test run"
   },
   "peerDependencies": {
     "react": "*"
