@@ -330,7 +330,7 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found
+            error: `Alias "{color.base.blue.600}" not found.
 
 /tokens.json:11:17
 
@@ -364,7 +364,7 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found
+            error: `Alias "{color.base.blue.600}" not found.
 
 /b.json:2:15
 
@@ -443,7 +443,7 @@ font:
             },
           ],
           want: {
-            error: `Circular alias detected from "{color.text.primary}"
+            error: `Circular alias detected from "{color.text.primary}".
 
 /tokens.json:4:16
 
@@ -454,6 +454,162 @@ font:
   5 |       "$value": "{color.text.primary}"
   6 |     },
   7 |     "text": {`,
+          },
+        },
+      ],
+      [
+        'invalid: wrong type (root)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                dimension: {
+                  base: { $type: 'dimension', $value: '1rem' },
+                },
+                border: {
+                  base: {
+                    $type: 'border',
+                    $value: '{dimension.base}',
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            error: `Invalid alias: expected $type: "border", received $type: "dimension".
+
+/tokens.json:11:17
+
+   9 |     "base": {
+  10 |       "$type": "border",
+> 11 |       "$value": "{dimension.base}"
+     |                 ^
+  12 |     }
+  13 |   }
+  14 | }`,
+          },
+        },
+      ],
+      [
+        'invalid: wrong type (composite)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  $type: 'color',
+                  blue: {
+                    $value: '#10109a',
+                  },
+                },
+                stroke: {
+                  $type: 'strokeStyle',
+                  solid: { $value: 'solid' },
+                },
+                border: {
+                  nested: {
+                    $type: 'border',
+                    $value: {
+                      color: '{color.blue}',
+                      width: '{color.blue}',
+                      style: '{stroke.solid}',
+                    },
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            error: `Invalid alias: expected $type: "dimension", received $type: "color".
+
+/tokens.json:19:18
+
+  17 |       "$value": {
+  18 |         "color": "{color.blue}",
+> 19 |         "width": "{color.blue}",
+     |                  ^
+  20 |         "style": "{stroke.solid}"
+  21 |       }
+  22 |     }`,
+          },
+        },
+      ],
+      [
+        'invalid: wrong type (composite array)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: {
+                  $type: 'color',
+                  blue: { $value: '#10109a' },
+                },
+                stop: {
+                  $type: 'number',
+                  0: { $value: 0.5 },
+                },
+                duration: {
+                  $type: 'duration',
+                  s: { $value: '100ms' },
+                },
+                gradient: {
+                  base: {
+                    $type: 'gradient',
+                    $value: [
+                      { color: '{color.blue}', position: '{stop.0}' },
+                      { color: '{color.blue}', position: '{duration.s}' },
+                    ],
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            error: `Invalid alias: expected $type: "number", received $type: "duration".
+
+/tokens.json:30:23
+
+  28 |         {
+  29 |           "color": "{color.blue}",
+> 30 |           "position": "{duration.s}"
+     |                       ^
+  31 |         }
+  32 |       ]
+  33 |     }`,
+          },
+        },
+      ],
+      [
+        'invalid: wrong type (strokeStyle)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                dimension: { $type: 'dimension', s: { $value: '0.5rem' } },
+                number: { $type: 'number', 50: { $value: 50 } },
+                strokeStyle: {
+                  $type: 'strokeStyle',
+                  dashed: { $value: { dashArray: ['{dimension.s}', '{number.50}'], lineCap: 'round' } },
+                },
+              },
+            },
+          ],
+          want: {
+            error: `Invalid alias: expected $type: "dimension", received $type: "number".
+
+/tokens.json:20:11
+
+  18 |         "dashArray": [
+  19 |           "{dimension.s}",
+> 20 |           "{number.50}"
+     |           ^
+  21 |         ],
+  22 |         "lineCap": "round"
+  23 |       }`,
           },
         },
       ],
@@ -1842,6 +1998,54 @@ font:
   10 |         "color": "#ff9900"
   11 |       }
   12 |     ]`,
+          },
+        },
+      ],
+    ];
+
+    it.each(tests)('%s', (_, testCase) => runTest(testCase));
+  });
+
+  describe('9.7 Typography', () => {
+    const tests: Test[] = [
+      [
+        'valid',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                typography: {
+                  $type: 'typography',
+                  $value: {
+                    fontFamily: 'Helvetica',
+                    fontSize: '16px',
+                    fontStyle: 'italic',
+                    fontVariant: 'small-caps',
+                    fontWeight: 400,
+                    letterSpacing: '0.1px',
+                    lineHeight: 1.5,
+                    textDecoration: 'underline',
+                    textTransform: 'uppercase',
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              typography: {
+                fontFamily: 'Helvetica',
+                fontSize: '16px',
+                fontStyle: 'italic',
+                fontVariant: 'small-caps',
+                fontWeight: 400,
+                letterSpacing: '0.1px',
+                lineHeight: 1.5,
+                textDecoration: 'underline',
+                textTransform: 'uppercase',
+              },
+            },
           },
         },
       ],

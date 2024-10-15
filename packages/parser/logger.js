@@ -25,8 +25,12 @@ export function formatMessage(entry, severity) {
   }
   if (entry.src) {
     const start = entry.node?.loc?.start;
-    // note: strip "file://" protocol, but not href
-    message = `${message}\n\n${entry.filename ? `${entry.filename.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n` : ''}${codeFrameColumns(entry.src, { start }, { highlightCode: false })}`;
+    //  strip "file://" protocol, but not href
+    const loc = entry.filename
+      ? `${entry.filename?.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n`
+      : '';
+    const codeFrame = codeFrameColumns(entry.src, { start }, { highlightCode: false });
+    message = `${message}\n\n${loc}${codeFrame}`;
   }
   return message;
 }

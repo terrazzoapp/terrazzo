@@ -131,7 +131,12 @@ export default async function parse(
       if (mode === '.') {
         continue; // skip shadow of root value
       }
-      applyAliases(tokens[id].mode[mode], { tokens, node: tokens[id].mode[mode].source.node, logger });
+      applyAliases(tokens[id].mode[mode], {
+        tokens,
+        node: tokens[id].mode[mode].source.node,
+        logger,
+        src: sources[tokens[id].source.loc]?.src,
+      });
     }
   }
   logger.debug({
@@ -419,10 +424,10 @@ export function maybeJSONString(input) {
 export function resolveAlias(alias, { tokens, logger, filename, src, node, scanned = [] }) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found`, filename, src, node });
+    logger.error({ message: `Alias "${alias}" not found.`, filename, src, node });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}"`, filename, src, node });
+    logger.error({ message: `Circular alias detected from "${alias}".`, filename, src, node });
   }
   const token = tokens[id];
   if (!isAlias(token.$value)) {
@@ -431,8 +436,43 @@ export function resolveAlias(alias, { tokens, logger, filename, src, node, scann
   return resolveAlias(token.$value, { tokens, logger, filename, node, src, scanned: [...scanned, id] });
 }
 
+/** Throw error if resolved alias for composite properties doesn’t match expected $type. */
+const COMPOSITE_TYPE_VALUES = {
+  border: {
+    color: ['color'],
+    width: ['dimension'],
+    strokeStyle: ['strokeStyle'],
+  },
+  gradient: {
+    color: ['color'],
+    position: ['number'],
+  },
+  shadow: {
+    color: ['color'],
+    position: ['dimension'],
+  },
+  strokeStyle: {
+    dashArray: ['dimension'],
+  },
+  transition: {
+    duration: ['duration'],
+    delay: ['duration'],
+    timingFunction: ['cubicBezier'],
+  },
+  typography: {
+    fontFamily: ['fontFamily'],
+    fontSize: ['dimension'],
+    fontWeight: ['fontWeight'],
+    letterSpacing: ['dimension'],
+    lineHeight: ['dimension', 'number'],
+  },
+};
+
 /** Resolve aliases, update values, and mutate `token` to add `aliasOf` / `partialAliasOf` */
 function applyAliases(token, { tokens, logger, filename, src, node }) {
+  const $valueNode = (node.type === 'Object' && node.members.find((m) => m.name.value === '$value')?.value) || node;
+  const expectedAliasTypes = COMPOSITE_TYPE_VALUES[token.$type];
+
   // handle simple aliases
   if (isAlias(token.$value)) {
     const aliasOfID = resolveAlias(token.$value, { tokens, logger, filename, node, src });
@@ -441,15 +481,16 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
     token.aliasOf = aliasOfID;
     token.$value = aliasOf.mode[aliasMode]?.$value || aliasOf.$value;
     if (token.$type && token.$type !== aliasOf.$type) {
-      logger.warn({
-        message: `Token ${token.id} has $type "${token.$type}" but aliased ${aliasOfID} of $type "${aliasOf.$type}"`,
-        node,
+      logger.error({
+        message: `Invalid alias: expected $type: "${token.$type}", received $type: "${aliasOf.$type}".`,
+        node: $valueNode,
+        filename,
+        src,
       });
-      token.$type = aliasOf.$type;
-    } else {
-      token.$type = aliasOf.$type;
     }
+    token.$type = aliasOf.$type;
   }
+
   // handle aliases within array values (e.g. cubicBezier, gradient)
   else if (Array.isArray(token.$value)) {
     // some arrays are primitives, some are objects. handle both
@@ -473,8 +514,20 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
             }
             const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, filename, node, src });
             const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i][property]);
+            const aliasToken = tokens[aliasOfID];
+
+            if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(aliasToken.$type)) {
+              const elementNode = $valueNode.elements[i].value;
+              logger.error({
+                message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${aliasToken.$type}".`,
+                node: elementNode.members.find((m) => m.name.value === property).value,
+                filename,
+                src,
+              });
+            }
+
             token.partialAliasOf[i][property] = aliasID; // also keep the shallow alias here, too!
-            token.$value[i][property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+            token.$value[i][property] = aliasToken.mode[aliasMode]?.$value || aliasToken.$value;
           }
         }
       }
@@ -494,8 +547,18 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
         const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, filename, node, src });
         const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property]);
         token.partialAliasOf[property] = aliasID; // keep the shallow alias!
-        token.$value[property] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
+        const aliasToken = tokens[aliasOfID];
+        if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(aliasToken.$type)) {
+          logger.error({
+            message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${aliasToken.$type}".`,
+            node: $valueNode.members.find((m) => m.name.value === property).value,
+            filename,
+            src,
+          });
+        }
+        token.$value[property] = aliasToken.mode[aliasMode]?.$value || aliasToken.$value;
       }
+
       // strokeStyle has an array within an object
       else if (Array.isArray(token.$value[property])) {
         for (let i = 0; i < token.$value[property].length; i++) {
@@ -509,6 +572,16 @@ function applyAliases(token, { tokens, logger, filename, src, node }) {
             }
             const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property][i]);
             token.partialAliasOf[property][i] = aliasID; // keep the shallow alias!
+            const aliasToken = tokens[aliasOfID];
+            if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(aliasToken.$type)) {
+              const arrayNode = $valueNode.members.find((m) => m.name.value === property).value;
+              logger.error({
+                message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${aliasToken.$type}".`,
+                node: arrayNode.elements[i],
+                filename,
+                src,
+              });
+            }
             token.$value[property][i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
           }
         }

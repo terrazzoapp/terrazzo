@@ -92,7 +92,7 @@ function validateMembersAs($value, properties, node, { filename, src, logger }) 
     }
     const value = members[property];
     if (isMaybeAlias(value)) {
-      validateAlias(value, node, { filename, src, logger });
+      validateAliasSyntax(value, node, { filename, src, logger });
     } else {
       validator(value, node, { filename, src, logger });
     }
@@ -100,13 +100,13 @@ function validateMembersAs($value, properties, node, { filename, src, logger }) 
 }
 
 /**
- * Verify an Alias token is valid
+ * Verify an Alias $value is formatted correctly
  * @param {ValueNode} $value
  * @param {AnyNode} node
  * @param {ValidateOptions} options
  * @return {void}
  */
-export function validateAlias($value, node, { filename, src, logger }) {
+export function validateAliasSyntax($value, node, { filename, src, logger }) {
   if ($value.type !== 'String' || !isAlias($value.value)) {
     logger.error({ message: `Invalid alias: ${print($value)}`, filename, node: $value, src });
   }
@@ -476,7 +476,7 @@ export function validateStrokeStyle($value, node, { filename, src, logger }) {
       for (const element of dashArray.elements) {
         if (element.value.type === 'String' && element.value.value !== '') {
           if (isMaybeAlias(element.value)) {
-            validateAlias(element.value, node, { logger, src });
+            validateAliasSyntax(element.value, node, { logger, src });
           } else {
             validateDimension(element.value, node, { logger, src });
           }
@@ -550,7 +550,7 @@ export default function validate(node, { filename, src, logger }) {
   // If top-level value is a valid alias, this is valid (no need for $type)
   // ⚠️ Important: ALL Object and Array nodes below will need to check for aliases within!
   if (isMaybeAlias($value)) {
-    validateAlias($value, node, { logger, src });
+    validateAliasSyntax($value, node, { logger, src });
     return;
   }
 

@@ -73,7 +73,7 @@ export default function normalizeValue(token) {
       for (let i = 0; i < token.$value.length; i++) {
         const stop = { ...token.$value[i] };
         stop.color = normalizeValue({ $type: 'color', $value: stop.color });
-        if (typeof stop.position !== 'number') {
+        if (stop.position === undefined) {
           stop.position = i / (token.$value.length - 1);
         }
         output.push(stop);

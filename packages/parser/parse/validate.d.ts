@@ -12,7 +12,7 @@ export interface ValidateOptions {
   logger: Logger;
 }
 
-export function validateAlias($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
+export function validateAliasSyntax($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
 export function validateBorder($value: ValueNode, node: AnyNode, options: ValidateOptions): void;
 
