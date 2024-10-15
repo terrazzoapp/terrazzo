@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @terrazzo/cli)",
-  "version": "0.0.4",
+  "version": "0.0.3",
   "type": "module",
   "author": {
     "name": "Drew Powers",

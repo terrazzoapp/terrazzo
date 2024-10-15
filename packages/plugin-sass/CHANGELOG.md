@@ -1,12 +1,11 @@
 # @terrazzo/plugin-sass
 
-## 0.0.4
+## 0.0.3
 
 ### Patch Changes
 
-- Updated dependencies [[`1408594`](https://github.com/terrazzoapp/terrazzo/commit/1408594de029f57137c936dc2ff9ab949f039215), [`1408594`](https://github.com/terrazzoapp/terrazzo/commit/1408594de029f57137c936dc2ff9ab949f039215)]:
-  - @terrazzo/cli@0.0.19
-  - @terrazzo/plugin-css@0.0.12
+- Updated dependencies [[`d0a9df4`](https://github.com/terrazzoapp/terrazzo/commit/d0a9df43ccabd10ea338e12cbfcfbd7e00952d28)]:
+  - @terrazzo/cli@0.0.17
 
 ## 0.0.2
 
