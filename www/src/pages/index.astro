@@ -186,8 +186,11 @@ import { ButtonLink } from '@terrazzo/tiles';
 
 <style>
   .card {
+    --border-width: 1px;
+
     background: var(--tz-color-bg-1);
     border: var(--tz-border-1);
+    box-sizing: border-box;
     color: var(--tz-color-text-1);
     display: block;
     margin-inline: auto;
@@ -199,19 +202,19 @@ import { ButtonLink } from '@terrazzo/tiles';
   }
 
   .h3 {
-    min-height: calc(3 * var(--grid-size));
+    min-height: calc(3 * var(--grid-size) - var(--border-width));
   }
 
   .h4 {
-    min-height: calc(4 * var(--grid-size));
+    min-height: calc(4 * var(--grid-size) - var(--border-width));
   }
 
   .m2 {
-    margin-block: calc(2 * var(--grid-size));
+    margin-block: calc(2 * var(--grid-size) - var(--border-width));
   }
 
   .m3 {
-    margin-block: calc(3 * var(--grid-size));
+    margin-block: calc(3 * var(--grid-size) - var(--border-width));
   }
 
   .w11 {

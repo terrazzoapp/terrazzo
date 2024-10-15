@@ -1,11 +1,11 @@
 import { OmniBar, OmniBarResult, type OmniBarResultProps } from '@terrazzo/tiles';
 import { Document, Heading, Pilcrow } from '@terrazzo/icons';
-import algoliasearch from 'algoliasearch/lite';
+import { liteClient } from 'algoliasearch/lite';
 import { useState } from 'react';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';
 import './SearchBox.css';
 
-const searchClient = algoliasearch('2U13I82HTZ', 'cf1dccf806eeec94bffd2f95b00d4599');
+const searchClient = liteClient('NV4WV1PJEZ', 'c5678f0920fbec3378a5ae3df0c1f4f5');
 
 type HighlightResult = {
   fullyHighlighted?: boolean;
@@ -183,7 +183,7 @@ function DocsSearchResults() {
 
 export default function DocsSearch() {
   return (
-    <InstantSearch searchClient={searchClient} indexName='cobalt-ui'>
+    <InstantSearch searchClient={searchClient} indexName='terrazzo'>
       <DocsSearchResults />
     </InstantSearch>
   );
