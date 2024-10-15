@@ -1,6 +1,7 @@
 import ts from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-import-css';
 import { cleandir } from 'rollup-plugin-cleandir';
+import { fileURLToPath } from 'node:url';
 
 /** @type {import("rollup").InputOptions} */
 export default {
@@ -10,7 +11,7 @@ export default {
       output: 'all-components.css',
     }),
     ts({
-      tsconfig: './tsconfig.build.json',
+      tsconfig: fileURLToPath(new URL('./tsconfig.build.json', import.meta.url)),
     }),
   ],
   input: 'src/index.ts',

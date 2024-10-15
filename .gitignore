@@ -3,6 +3,7 @@ dist
 node_modules
 package-lock.json
 .dccache
-.pnpm-debug*
 .env
-.turbo
+.nx/cache
+.nx/workspace-data
+.pnpm-debug*
