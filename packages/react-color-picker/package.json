@@ -34,7 +34,7 @@
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
     "test": "pnpm --filter @terrazzo/react-color-picker run \"/^test:.*/\"",
-    "--disabled--test:js": "vitest run",
+    "--disabled--test:js": "nx vite:test run",
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {

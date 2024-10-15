@@ -42,7 +42,7 @@
     "lint": "biome check .",
     "dev:ts": "tsc -p tsconfig.build.json --watch",
     "test": "pnpm --filter @terrazzo/token-tools run \"/^test:.*/\"",
-    "test:js": "vitest run",
+    "test:js": "nx vite:test run",
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
