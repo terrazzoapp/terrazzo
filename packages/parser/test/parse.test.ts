@@ -145,17 +145,23 @@ font:
                 },
                 size: {
                   $type: 'dimension',
-                  '2': { $value: '0.125rem' },
-                  '3': { $value: '0.25rem' },
+                  '2': { $value: { value: 0.125, unit: 'rem' } },
+                  '3': { $value: { value: 0.25, unit: 'rem' } },
                 },
               },
             },
           ],
           want: {
             tokens: {
-              buttonStroke: { lineCap: 'round', dashArray: ['0.125rem', '0.25rem'] },
-              'size.2': '0.125rem',
-              'size.3': '0.25rem',
+              buttonStroke: {
+                lineCap: 'round',
+                dashArray: [
+                  { value: 0.125, unit: 'rem' },
+                  { value: 0.25, unit: 'rem' },
+                ],
+              },
+              'size.2': { value: 0.125, unit: 'rem' },
+              'size.3': { value: 0.25, unit: 'rem' },
             },
           },
         },
@@ -169,7 +175,7 @@ font:
               src: {
                 color: { $type: 'color', semantic: { subdued: { $value: 'color(srgb 0 0 0 / 0.1)' } } },
                 border: {
-                  size: { $type: 'dimension', default: { $value: '1px' } },
+                  size: { $type: 'dimension', default: { $value: { value: 1, unit: 'px' } } },
                   style: { $type: 'strokeStyle', default: { $value: 'solid' } },
                 },
                 buttonBorder: {
@@ -186,11 +192,11 @@ font:
           want: {
             tokens: {
               'color.semantic.subdued': { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
-              'border.size.default': '1px',
+              'border.size.default': { value: 1, unit: 'px' },
               'border.style.default': 'solid',
               buttonBorder: {
                 color: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
-                width: '1px',
+                width: { value: 1, unit: 'px' },
                 style: 'solid',
               },
             },
@@ -846,31 +852,60 @@ font:
         'valid: rem',
         {
           given: [
-            {
-              filename: DEFAULT_FILENAME,
-              src: { xs: { $type: 'dimension', $value: '0.5rem' } },
-            },
+            { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 0.5, unit: 'rem' } } } },
           ],
-          want: { tokens: { xs: '0.5rem' } },
+          want: { tokens: { xs: { value: 0.5, unit: 'rem' } } },
+        },
+      ],
+      [
+        'valid: rem (string)',
+        {
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.5rem' } } }],
+          want: { tokens: { xs: { value: 0.5, unit: 'rem' } } },
         },
       ],
       [
         'valid: px',
         {
           given: [
-            {
-              filename: DEFAULT_FILENAME,
-              src: { xs: { $type: 'dimension', $value: '12px' } },
-            },
+            { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 12, unit: 'px' } } } },
           ],
-          want: { tokens: { xs: '12px' } },
+          want: { tokens: { xs: { value: 12, unit: 'px' } } },
+        },
+      ],
+      [
+        'valid: px (string)',
+        {
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '12px' } } }],
+          want: { tokens: { xs: { value: 12, unit: 'px' } } },
+        },
+      ],
+      [
+        'valid: em',
+        {
+          given: [
+            { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 0.25, unit: 'em' } } } },
+          ],
+          want: { tokens: { xs: { value: 0.25, unit: 'em' } } },
+        },
+      ],
+      [
+        'valid: em (string)',
+        {
+          given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.25em' } } }],
+          want: { tokens: { xs: { value: 0.25, unit: 'em' } } },
         },
       ],
       [
         'valid: negative',
         {
-          given: [{ filename: DEFAULT_FILENAME, src: { space: { 1: { $type: 'dimension', $value: '-0.25rem' } } } }],
-          want: { tokens: { 'space.1': '-0.25rem' } },
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { space: { 1: { $type: 'dimension', $value: { value: -0.25, unit: 'rem' } } } },
+            },
+          ],
+          want: { tokens: { 'space.1': { value: -0.25, unit: 'rem' } } },
         },
       ],
       [
@@ -910,7 +945,7 @@ font:
         {
           given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '16' } } }],
           want: {
-            error: `Missing units
+            error: `Expected unit "px", "em", or "rem", received "16"
 
   2 |   "xs": {
   3 |     "$type": "dimension",
@@ -941,7 +976,42 @@ font:
         'valid: 0',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: 0 } } }],
-          want: { tokens: { '00': '0' } },
+          want: { tokens: { '00': { value: 0, unit: 'px' } } },
+        },
+      ],
+      [
+        'invalid: unsupported unit',
+        {
+          given: [
+            { filename: DEFAULT_FILENAME, src: { md: { $type: 'dimension', $value: { value: 1, unit: 'vw' } } } },
+          ],
+          want: {
+            error: `Expected unit "px", "em", or "rem", received "vw"
+
+  4 |     "$value": {
+  5 |       "value": 1,
+> 6 |       "unit": "vw"
+    |               ^
+  7 |     }
+  8 |   }
+  9 | }`,
+          },
+        },
+      ],
+      [
+        'invalid: unsupported unit (string)',
+        {
+          given: [{ filename: DEFAULT_FILENAME, src: { md: { $type: 'dimension', $value: '1vw' } } }],
+          want: {
+            error: `Expected unit "px", "em", or "rem", received "vw"
+
+  2 |   "md": {
+  3 |     "$type": "dimension",
+> 4 |     "$value": "1vw"
+    |               ^
+  5 |   }
+  6 | }`,
+          },
         },
       ],
     ];
@@ -1130,15 +1200,36 @@ font:
       [
         'valid: ms',
         {
+          given: [
+            { filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: { value: 100, unit: 'ms' } } } },
+          ],
+          want: { tokens: { quick: { value: 100, unit: 'ms' } } },
+        },
+      ],
+      [
+        'valid: ms (string)',
+        {
           given: [{ filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: '100ms' } } }],
-          want: { tokens: { quick: '100ms' } },
+          want: { tokens: { quick: { value: 100, unit: 'ms' } } },
         },
       ],
       [
         'valid: s',
         {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { moderate: { $type: 'duration', $value: { value: 0.25, unit: 's' } } },
+            },
+          ],
+          want: { tokens: { moderate: { value: 0.25, unit: 's' } } },
+        },
+      ],
+      [
+        'valid: s (string)',
+        {
           given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '0.25s' } } }],
-          want: { tokens: { moderate: '0.25s' } },
+          want: { tokens: { moderate: { value: 0.25, unit: 's' } } },
         },
       ],
       [
@@ -1162,7 +1253,7 @@ font:
         {
           given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: 'ms' } } }],
           want: {
-            error: `Expected duration in \`ms\` or \`s\`, received "ms"
+            error: `Expected duration with units, received "ms"
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -1178,7 +1269,7 @@ font:
         {
           given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '250' } } }],
           want: {
-            error: `Missing unit "ms" or "s"
+            error: `Expected unit "ms" or "s", received "250"
 
   2 |   "moderate": {
   3 |     "$type": "duration",
@@ -1208,8 +1299,51 @@ font:
       [
         'valid: 0',
         {
-          given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: 0 } } }],
-          want: { tokens: { '00': '0' } },
+          given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'duration', $value: 0 } } }],
+          want: { tokens: { '00': { value: 0, unit: 'ms' } } },
+        },
+      ],
+      [
+        'invalid: unsupported unit',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { microscopic: { $type: 'duration', $value: { value: 200, unit: 'ns' } } },
+            },
+          ],
+          want: {
+            error: `Expected unit "ms" or "s", received "ns"
+
+  4 |     "$value": {
+  5 |       "value": 200,
+> 6 |       "unit": "ns"
+    |               ^
+  7 |     }
+  8 |   }
+  9 | }`,
+          },
+        },
+      ],
+      [
+        'invalid: unsupported unit (string)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: { microscopic: { $type: 'duration', $value: '200ns' } },
+            },
+          ],
+          want: {
+            error: `Expected unit "ms" or "s", received "ns"
+
+  2 |   "microscopic": {
+  3 |     "$type": "duration",
+> 4 |     "$value": "200ns"
+    |               ^
+  5 |   }
+  6 | }`,
+          },
         },
       ],
     ];
@@ -1587,7 +1721,12 @@ font:
           given: [
             {
               filename: DEFAULT_FILENAME,
-              src: { border: { $type: 'border', $value: { color: '#00000020', style: 'solid', width: '1px' } } },
+              src: {
+                border: {
+                  $type: 'border',
+                  $value: { color: '#00000020', style: 'solid', width: { value: 1, unit: 'px' } },
+                },
+              },
             },
           ],
           want: {
@@ -1595,7 +1734,7 @@ font:
               border: {
                 color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb' },
                 style: 'solid',
-                width: '1px',
+                width: { value: 1, unit: 'px' },
               },
             },
           },
@@ -1607,7 +1746,7 @@ font:
           given: [
             {
               filename: DEFAULT_FILENAME,
-              src: { border: { $type: 'border', $value: { style: 'solid', width: '1px' } } },
+              src: { border: { $type: 'border', $value: { style: 'solid', width: { value: 1, unit: 'px' } } } },
             },
           ],
           want: {
@@ -1620,8 +1759,8 @@ font:
 > 4 |     "$value": {
     |               ^
   5 |       "style": "solid",
-  6 |       "width": "1px"
-  7 |     }`,
+  6 |       "width": {
+  7 |         "value": 1,`,
           },
         },
       ],
@@ -1642,12 +1781,16 @@ font:
                 transition: {
                   'ease-in-out': {
                     $type: 'transition',
-                    $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}', delay: '0ms' },
+                    $value: {
+                      duration: '{timing.quick}',
+                      timingFunction: '{ease.in-out}',
+                      delay: { value: 0, unit: 'ms' },
+                    },
                   },
                 },
                 timing: {
                   $type: 'duration',
-                  quick: { $value: '150ms' },
+                  quick: { $value: { value: 150, unit: 'ms' } },
                 },
                 ease: {
                   $type: 'cubicBezier',
@@ -1658,8 +1801,12 @@ font:
           ],
           want: {
             tokens: {
-              'transition.ease-in-out': { duration: '150ms', timingFunction: [0.42, 0, 0.58, 1], delay: '0ms' },
-              'timing.quick': '150ms',
+              'transition.ease-in-out': {
+                duration: { value: 150, unit: 'ms' },
+                timingFunction: [0.42, 0, 0.58, 1],
+                delay: { value: 0, unit: 'ms' },
+              },
+              'timing.quick': { value: 150, unit: 'ms' },
               'ease.in-out': [0.42, 0, 0.58, 1],
             },
           },
@@ -1680,7 +1827,7 @@ font:
                 },
                 timing: {
                   $type: 'duration',
-                  quick: { $value: '150ms' },
+                  quick: { $value: { value: 150, unit: 'ms' } },
                 },
                 ease: {
                   $type: 'cubicBezier',
@@ -1691,8 +1838,12 @@ font:
           ],
           want: {
             tokens: {
-              'transition.ease-in-out': { duration: '150ms', timingFunction: [0.42, 0, 0.58, 1], delay: 0 },
-              'timing.quick': '150ms',
+              'transition.ease-in-out': {
+                duration: { value: 150, unit: 'ms' },
+                timingFunction: [0.42, 0, 0.58, 1],
+                delay: { value: 0, unit: 'ms' },
+              },
+              'timing.quick': { value: 150, unit: 'ms' },
               'ease.in-out': [0.42, 0, 0.58, 1],
             },
           },
@@ -1776,7 +1927,12 @@ font:
               src: {
                 shadowBase: {
                   $type: 'shadow',
-                  $value: { color: '#000000', offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+                  $value: {
+                    color: '#000000',
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                  },
                 },
               },
             },
@@ -1786,10 +1942,10 @@ font:
               shadowBase: [
                 {
                   color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1 },
-                  offsetX: '0',
-                  offsetY: '0.25rem',
-                  blur: '0.5rem',
-                  spread: '0',
+                  offsetX: { value: 0, unit: 'rem' },
+                  offsetY: { value: 0.25, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'px' },
                 },
               ],
             },
@@ -1808,16 +1964,16 @@ font:
                   $value: [
                     {
                       color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                      offsetX: 0,
-                      offsetY: '0.25rem',
-                      blur: '0.5rem',
+                      offsetX: { value: 0, unit: 'rem' },
+                      offsetY: { value: 0.25, unit: 'rem' },
+                      blur: { value: 0.5, unit: 'rem' },
                       spread: 0,
                     },
                     {
                       color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                      offsetX: 0,
-                      offsetY: '0.5rem',
-                      blur: '1rem',
+                      offsetX: { value: 0, unit: 'rem' },
+                      offsetY: { value: 0.5, unit: 'rem' },
+                      blur: { value: 1, unit: 'rem' },
                       spread: 0,
                     },
                   ],
@@ -1830,17 +1986,17 @@ font:
               shadowBase: [
                 {
                   color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: '0',
-                  offsetY: '0.25rem',
-                  blur: '0.5rem',
-                  spread: '0',
+                  offsetX: { value: 0, unit: 'rem' },
+                  offsetY: { value: 0.25, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'px' },
                 },
                 {
                   color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: '0',
-                  offsetY: '0.5rem',
-                  blur: '1rem',
-                  spread: '0',
+                  offsetX: { value: 0, unit: 'rem' },
+                  offsetY: { value: 0.5, unit: 'rem' },
+                  blur: { value: 1, unit: 'rem' },
+                  spread: { value: 0, unit: 'px' },
                 },
               ],
             },
@@ -2019,11 +2175,11 @@ font:
                   $type: 'typography',
                   $value: {
                     fontFamily: 'Helvetica',
-                    fontSize: '16px',
+                    fontSize: { value: 16, unit: 'px' },
                     fontStyle: 'italic',
                     fontVariant: 'small-caps',
                     fontWeight: 400,
-                    letterSpacing: '0.1px',
+                    letterSpacing: { value: 0.125, unit: 'em' },
                     lineHeight: 1.5,
                     textDecoration: 'underline',
                     textTransform: 'uppercase',
@@ -2036,11 +2192,11 @@ font:
             tokens: {
               typography: {
                 fontFamily: 'Helvetica',
-                fontSize: '16px',
+                fontSize: { value: 16, unit: 'px' },
                 fontStyle: 'italic',
                 fontVariant: 'small-caps',
                 fontWeight: 400,
-                letterSpacing: '0.1px',
+                letterSpacing: { value: 0.125, unit: 'em' },
                 lineHeight: 1.5,
                 textDecoration: 'underline',
                 textTransform: 'uppercase',

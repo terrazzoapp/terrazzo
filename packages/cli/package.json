@@ -47,7 +47,7 @@
     "chokidar": "^3.6.0",
     "dotenv": "^16.4.5",
     "merge-anything": "^5.1.7",
-    "picocolors": "^1.1.0",
+    "picocolors": "^1.1.1",
     "yaml-to-momoa": "^0.0.1",
     "yargs-parser": "^21.1.1"
   },

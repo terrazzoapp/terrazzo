@@ -97,10 +97,8 @@ describe('transformCubicBezierValue', () => {
 
 describe('transformDimensionValue', () => {
   const tests: Test<Parameters<typeof transformDimensionValue>, ReturnType<typeof transformDimensionValue>>[] = [
-    ['10px', { given: ['10px'], want: { success: '10px' } }],
-    ['1.5rem', { given: ['1.5rem'], want: { success: '1.5rem' } }],
-    ['0', { given: [0 as any], want: { success: '0' } }],
-    ['32', { given: [32 as any], want: { success: '32px' } }],
+    ['10px', { given: [{ value: 10, unit: 'px' }], want: { success: '10px' } }],
+    ['1.5rem', { given: [{ value: 1.5, unit: 'rem' }], want: { success: '1.5rem' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -115,10 +113,8 @@ describe('transformDimensionValue', () => {
 
 describe('transformDurationValue', () => {
   const tests: Test<Parameters<typeof transformDurationValue>, ReturnType<typeof transformDurationValue>>[] = [
-    ['100ms', { given: ['100ms'], want: { success: '100ms' } }],
-    ['0.25s', { given: ['0.25s'], want: { success: '0.25s' } }],
-    ['0', { given: ['0'], want: { success: '0ms' } }],
-    ['500', { given: [500 as any], want: { success: '500ms' } }],
+    ['100ms', { given: [{ value: 100, unit: 'ms' }], want: { success: '100ms' } }],
+    ['0.25s', { given: [{ value: 0.25, unit: 's' }], want: { success: '0.25s' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -199,10 +195,10 @@ describe('transformShadowValue', () => {
           [
             {
               color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-              offsetX: '0px',
-              offsetY: '0.25rem',
-              blur: '0.5rem',
-              spread: '0px',
+              offsetX: { value: 0, unit: 'px' },
+              offsetY: { value: 0.25, unit: 'rem' },
+              blur: { value: 0.5, unit: 'rem' },
+              spread: { value: 0, unit: 'px' },
             },
           ],
         ],
@@ -216,17 +212,17 @@ describe('transformShadowValue', () => {
           [
             {
               color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
-              offsetX: '0px',
-              offsetY: '0.25rem',
-              blur: '0.5rem',
-              spread: '0px',
+              offsetX: { value: 0, unit: 'px' },
+              offsetY: { value: 0.25, unit: 'rem' },
+              blur: { value: 0.5, unit: 'rem' },
+              spread: { value: 0, unit: 'px' },
             },
             {
               color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
-              offsetX: '0px',
-              offsetY: '0.5rem',
-              blur: '1rem',
-              spread: '0px',
+              offsetX: { value: 0, unit: 'px' },
+              offsetY: { value: 0.5, unit: 'rem' },
+              blur: { value: 1, unit: 'rem' },
+              spread: { value: 0, unit: 'px' },
             },
           ],
         ],

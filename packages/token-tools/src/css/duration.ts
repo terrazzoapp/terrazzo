@@ -1,15 +1,15 @@
+import type { AliasValue, DurationValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 /** Convert duration value to CSS */
 export function transformDurationValue(
-  value: number | string,
+  value: DurationValue | AliasValue,
   { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
 ): string {
   if (aliasOf) {
     return transformAlias(aliasOf);
+  } else if (typeof value === 'string') {
+    throw new Error(`Could not resolve alias ${value}`);
   }
-  if (typeof value === 'number' || String(Number.parseFloat(value)) === value) {
-    return `${value}ms`;
-  }
-  return value;
+  return value.value === 0 ? '0' : `${value.value}${value.unit}`;
 }

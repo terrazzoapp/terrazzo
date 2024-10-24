@@ -60,24 +60,45 @@ export const tokens = {
     ],
   },
   "timing.instant": {
-    ".": "50ms",
+    ".": {
+      "value": 50,
+      "unit": "ms"
+    },
   },
   "timing.quick": {
-    ".": "100ms",
+    ".": {
+      "value": 100,
+      "unit": "ms"
+    },
   },
   "timing.moderate": {
-    ".": "250ms",
+    ".": {
+      "value": 250,
+      "unit": "ms"
+    },
   },
   "timing.deliberate": {
-    ".": "500ms",
+    ".": {
+      "value": 500,
+      "unit": "ms"
+    },
   },
   "timing.slow": {
-    ".": "1s",
+    ".": {
+      "value": 1,
+      "unit": "s"
+    },
   },
   "transition.circ-in-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.55,
         0,
@@ -88,8 +109,14 @@ export const tokens = {
   },
   "transition.circ-in-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.55,
         0,
@@ -100,8 +127,14 @@ export const tokens = {
   },
   "transition.circ-in-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.55,
         0,
@@ -112,8 +145,14 @@ export const tokens = {
   },
   "transition.circ-in-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.55,
         0,
@@ -124,8 +163,14 @@ export const tokens = {
   },
   "transition.circ-in-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.55,
         0,
@@ -136,8 +181,14 @@ export const tokens = {
   },
   "transition.circ-in-out-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.85,
         0,
@@ -148,8 +199,14 @@ export const tokens = {
   },
   "transition.circ-in-out-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.85,
         0,
@@ -160,8 +217,14 @@ export const tokens = {
   },
   "transition.circ-in-out-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.85,
         0,
@@ -172,8 +235,14 @@ export const tokens = {
   },
   "transition.circ-in-out-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.85,
         0,
@@ -184,8 +253,14 @@ export const tokens = {
   },
   "transition.circ-in-out-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.85,
         0,
@@ -196,8 +271,14 @@ export const tokens = {
   },
   "transition.circ-out-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -208,8 +289,14 @@ export const tokens = {
   },
   "transition.circ-out-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -220,8 +307,14 @@ export const tokens = {
   },
   "transition.circ-out-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -232,8 +325,14 @@ export const tokens = {
   },
   "transition.circ-out-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -244,8 +343,14 @@ export const tokens = {
   },
   "transition.circ-out-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -256,8 +361,14 @@ export const tokens = {
   },
   "transition.cubic-in-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.32,
         0,
@@ -268,8 +379,14 @@ export const tokens = {
   },
   "transition.cubic-in-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.32,
         0,
@@ -280,8 +397,14 @@ export const tokens = {
   },
   "transition.cubic-in-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.32,
         0,
@@ -292,8 +415,14 @@ export const tokens = {
   },
   "transition.cubic-in-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.32,
         0,
@@ -304,8 +433,14 @@ export const tokens = {
   },
   "transition.cubic-in-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.32,
         0,
@@ -316,8 +451,14 @@ export const tokens = {
   },
   "transition.cubic-in-out-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.65,
         0,
@@ -328,8 +469,14 @@ export const tokens = {
   },
   "transition.cubic-in-out-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.65,
         0,
@@ -340,8 +487,14 @@ export const tokens = {
   },
   "transition.cubic-in-out-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.65,
         0,
@@ -352,8 +505,14 @@ export const tokens = {
   },
   "transition.cubic-in-out-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.65,
         0,
@@ -364,8 +523,14 @@ export const tokens = {
   },
   "transition.cubic-in-out-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.65,
         0,
@@ -376,8 +541,14 @@ export const tokens = {
   },
   "transition.cubic-out-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -388,8 +559,14 @@ export const tokens = {
   },
   "transition.cubic-out-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -400,8 +577,14 @@ export const tokens = {
   },
   "transition.cubic-out-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -412,8 +595,14 @@ export const tokens = {
   },
   "transition.cubic-out-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -424,8 +613,14 @@ export const tokens = {
   },
   "transition.cubic-out-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0.33,
         1,
@@ -436,8 +631,14 @@ export const tokens = {
   },
   "transition.linear-instant": {
     ".": {
-      "duration": "50ms",
-      "delay": 0,
+      "duration": {
+        "value": 50,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0,
         0,
@@ -448,8 +649,14 @@ export const tokens = {
   },
   "transition.linear-quick": {
     ".": {
-      "duration": "100ms",
-      "delay": 0,
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0,
         0,
@@ -460,8 +667,14 @@ export const tokens = {
   },
   "transition.linear-moderate": {
     ".": {
-      "duration": "250ms",
-      "delay": 0,
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0,
         0,
@@ -472,8 +685,14 @@ export const tokens = {
   },
   "transition.linear-deliberate": {
     ".": {
-      "duration": "500ms",
-      "delay": 0,
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0,
         0,
@@ -484,8 +703,14 @@ export const tokens = {
   },
   "transition.linear-slow": {
     ".": {
-      "duration": "1s",
-      "delay": 0,
+      "duration": {
+        "value": 1,
+        "unit": "s"
+      },
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      },
       "timingFunction": [
         0,
         0,

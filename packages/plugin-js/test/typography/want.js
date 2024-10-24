@@ -20,36 +20,60 @@ export const tokens = {
       "fontFamily": [
         "Helvetica"
       ],
-      "fontSize": "34px",
+      "fontSize": {
+        "value": 34,
+        "unit": "px"
+      },
       "fontWeight": 400,
       "lineHeight": "41px"
     },
     "xs": {
-      "fontSize": "31px",
+      "fontSize": {
+        "value": 31,
+        "unit": "px"
+      },
       "lineHeight": "38px"
     },
     "s": {
-      "fontSize": "32px",
+      "fontSize": {
+        "value": 32,
+        "unit": "px"
+      },
       "lineHeight": "39px"
     },
     "m": {
-      "fontSize": "33px",
+      "fontSize": {
+        "value": 33,
+        "unit": "px"
+      },
       "lineHeight": "40px"
     },
     "l": {
-      "fontSize": "34px",
+      "fontSize": {
+        "value": 34,
+        "unit": "px"
+      },
       "lineHeight": "41px"
     },
     "xl": {
-      "fontSize": "36px",
+      "fontSize": {
+        "value": 36,
+        "unit": "px"
+      },
       "lineHeight": "43px"
     },
     "2xl": {
-      "fontSize": "38px",
+      "fontSize": {
+        "value": 38,
+        "unit": "px"
+      },
       "lineHeight": "46px"
     },
     "3xl": {
-      "fontSize": "40px",
+      "fontSize": {
+        "value": 40,
+        "unit": "px"
+      },
       "lineHeight": "48px"
     },
   },
@@ -58,36 +82,60 @@ export const tokens = {
       "fontFamily": [
         "Helvetica"
       ],
-      "fontSize": "17px",
+      "fontSize": {
+        "value": 17,
+        "unit": "px"
+      },
       "fontWeight": 400,
       "lineHeight": "22px"
     },
     "xs": {
-      "fontSize": "14px",
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
       "lineHeight": "19px"
     },
     "s": {
-      "fontSize": "15px",
+      "fontSize": {
+        "value": 15,
+        "unit": "px"
+      },
       "lineHeight": "20px"
     },
     "m": {
-      "fontSize": "16px",
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
       "lineHeight": "21px"
     },
     "l": {
-      "fontSize": "17px",
+      "fontSize": {
+        "value": 17,
+        "unit": "px"
+      },
       "lineHeight": "22px"
     },
     "xl": {
-      "fontSize": "19px",
+      "fontSize": {
+        "value": 19,
+        "unit": "px"
+      },
       "lineHeight": "24px"
     },
     "2xl": {
-      "fontSize": "21px",
+      "fontSize": {
+        "value": 21,
+        "unit": "px"
+      },
       "lineHeight": "26px"
     },
     "3xl": {
-      "fontSize": "23px",
+      "fontSize": {
+        "value": 23,
+        "unit": "px"
+      },
       "lineHeight": "29px"
     },
   },

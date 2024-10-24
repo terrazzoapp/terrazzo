@@ -1,8 +1,10 @@
 import { kebabCase } from 'scule';
+import type { AliasValue, DimensionValue } from '../types.js';
 import { transformFontFamilyValue } from './font-family.js';
 import { transformFontWeightValue } from './font-weight.js';
 import { type IDGenerator, defaultAliasTransform, transformCompositeAlias } from './lib.js';
 import { transformStringValue } from './string.js';
+import { transformDimensionValue } from './dimension.js';
 
 /** Convert typography value to multiple CSS values */
 export function transformTypographyValue(
@@ -27,7 +29,10 @@ export function transformTypographyValue(
           transformedValue = transformFontFamilyValue(subvalue as string[], { transformAlias });
           break;
         }
-        case 'fontSize':
+        case 'fontSize': {
+          transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
+          break;
+        }
         case 'fontWeight': {
           transformedValue = transformFontWeightValue(subvalue as string, { transformAlias });
           break;
