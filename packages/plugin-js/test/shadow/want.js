@@ -15,10 +15,22 @@ export const tokens = {
           ],
           "alpha": 0.15
         },
-        "offsetX": "0",
-        "offsetY": "4px",
-        "blur": "8px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       }
     ],
   },
@@ -34,10 +46,22 @@ export const tokens = {
           ],
           "alpha": 0.15
         },
-        "offsetX": "0",
-        "offsetY": "4px",
-        "blur": "8px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       }
     ],
   },
@@ -53,10 +77,22 @@ export const tokens = {
           ],
           "alpha": 0.15
         },
-        "offsetX": "0",
-        "offsetY": "4px",
-        "blur": "8px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       }
     ],
   },
@@ -72,10 +108,22 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
-        "offsetX": "0",
-        "offsetY": "1px",
-        "blur": "1px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 1,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 1,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       },
       {
         "color": {
@@ -87,10 +135,22 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
-        "offsetX": "0",
-        "offsetY": "2px",
-        "blur": "2px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 2,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 2,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       },
       {
         "color": {
@@ -102,10 +162,22 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
-        "offsetX": "0",
-        "offsetY": "4px",
-        "blur": "4px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 4,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       },
       {
         "color": {
@@ -117,10 +189,22 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
-        "offsetX": "0",
-        "offsetY": "8px",
-        "blur": "8px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 8,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       },
       {
         "color": {
@@ -132,10 +216,22 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
-        "offsetX": "0",
-        "offsetY": "16px",
-        "blur": "16px",
-        "spread": "0"
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 16,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 16,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
       }
     ],
   },

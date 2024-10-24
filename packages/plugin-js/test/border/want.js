@@ -15,7 +15,10 @@ export const tokens = {
         "alpha": 1
       },
       "style": "solid",
-      "width": "1px"
+      "width": {
+        "value": 1,
+        "unit": "px"
+      }
     },
     "light": {
       "color": {
@@ -28,7 +31,10 @@ export const tokens = {
         "alpha": 1
       },
       "style": "solid",
-      "width": "1px"
+      "width": {
+        "value": 1,
+        "unit": "px"
+      }
     },
     "dark": {
       "color": {
@@ -41,7 +47,10 @@ export const tokens = {
         "alpha": 1
       },
       "style": "solid",
-      "width": "1px"
+      "width": {
+        "value": 1,
+        "unit": "px"
+      }
     },
   },
   "border.dashed": {
@@ -62,7 +71,10 @@ export const tokens = {
         ],
         "lineCap": "round"
       },
-      "width": "1.5px"
+      "width": {
+        "value": 1.5,
+        "unit": "px"
+      }
     },
     "light": {
       "color": {
@@ -81,7 +93,10 @@ export const tokens = {
         ],
         "lineCap": "round"
       },
-      "width": "1.5px"
+      "width": {
+        "value": 1.5,
+        "unit": "px"
+      }
     },
     "dark": {
       "color": {
@@ -100,7 +115,10 @@ export const tokens = {
         ],
         "lineCap": "round"
       },
-      "width": "1.5px"
+      "width": {
+        "value": 1.5,
+        "unit": "px"
+      }
     },
   },
   "border.default": {
@@ -115,7 +133,10 @@ export const tokens = {
         "alpha": 1
       },
       "style": "solid",
-      "width": "2.5px"
+      "width": {
+        "value": 2.5,
+        "unit": "px"
+      }
     },
   },
   "color.base.gray.10": {
