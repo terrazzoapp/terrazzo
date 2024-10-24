@@ -13,7 +13,7 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "nx rollup:build",
     "format": "biome format --write src",
     "lint": "pnpm --filter @terrazzo/icons run \"/^lint:.*/\"",
     "lint:js": "biome check ."

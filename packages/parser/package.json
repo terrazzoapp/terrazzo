@@ -32,7 +32,7 @@
   "scripts": {
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/parser run \"/^test:.*/\"",
-    "test:js": "vitest run",
+    "test:js": "nx vite:test run",
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
