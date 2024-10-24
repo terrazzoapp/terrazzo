@@ -50,7 +50,7 @@
     "clsx": "^2.1.1"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^11.1.6",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@size-limit/preset-small-lib": "^11.1.6",
     "@testing-library/jest-dom": "^6.6.2",
     "@testing-library/react": "^16.0.1",
