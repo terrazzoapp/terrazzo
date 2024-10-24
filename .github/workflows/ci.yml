@@ -20,13 +20,13 @@ jobs:
           node-version: 22
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.1
+          version: 9.12.2
           run_install: true
       - run: pnpm run lint
   test:
     strategy:
       matrix:
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, 23.x]
         os: [ubuntu-latest, macos-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
@@ -36,6 +36,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - uses: pnpm/action-setup@v4
         with:
-          version: 9.12.1
+          version: 9.12.2
           run_install: true
       - run: pnpm test
