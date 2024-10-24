@@ -21,6 +21,8 @@ export const FONT_WEIGHT_MAP = {
   'ultra-black': 950,
 };
 
+const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
+
 export default function normalizeValue(token) {
   if (isAlias(token.$value)) {
     return token.$value;
@@ -49,15 +51,25 @@ export default function normalizeValue(token) {
     }
     case 'dimension': {
       if (token.$value === 0) {
-        return '0';
+        return { value: 0, unit: 'px' };
       }
-      return typeof token.$value === 'number' ? `${token.$value}px` : token.$value;
+      // Backwards compat: handle string
+      if (typeof token.$value === 'string') {
+        const match = token.$value.match(NUMBER_WITH_UNIT_RE);
+        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match[2] || 'px' };
+      }
+      return token.$value;
     }
     case 'duration': {
       if (token.$value === 0) {
-        return 0;
+        return { value: 0, unit: 'ms' };
       }
-      return typeof token.$value === 'number' ? `${token.$value}ms` : token.$value;
+      // Backwards compat: handle string
+      if (typeof token.$value === 'string') {
+        const match = token.$value.match(NUMBER_WITH_UNIT_RE);
+        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match[2] || 'ms' };
+      }
+      return token.$value;
     }
     case 'fontFamily': {
       return Array.isArray(token.$value) ? token.$value : [token.$value];

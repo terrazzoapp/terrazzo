@@ -39,12 +39,12 @@
   "devDependencies": {
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
-    "@vitejs/plugin-react-swc": "^3.7.0",
-    "react": "19.0.0-rc-cd22717c-20241013",
-    "react-dom": "19.0.0-rc-cd22717c-20241013",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "react": "19.0.0-rc-1631855f-20241023",
+    "react-dom": "19.0.0-rc-1631855f-20241023",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1",
-    "vite": "^5.4.0"
+    "vite": "^5.4.10"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

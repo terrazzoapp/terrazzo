@@ -23,14 +23,14 @@
     "react-dom": "19.x"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^12.1.0",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
-    "react": "19.0.0-rc-cd22717c-20241013",
-    "react-dom": "19.0.0-rc-cd22717c-20241013",
+    "react": "19.0.0-rc-1631855f-20241023",
+    "react-dom": "19.0.0-rc-1631855f-20241023",
     "rollup": "^4.24.0",
     "rollup-plugin-cleandir": "^2.0.0",
-    "rollup-plugin-import-css": "^3.5.5",
+    "rollup-plugin-import-css": "^3.5.6",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"
   },

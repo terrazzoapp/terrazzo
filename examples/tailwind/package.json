@@ -9,6 +9,6 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-tailwind": "workspace:*",
-    "tailwindcss": "^3.4.13"
+    "tailwindcss": "^3.4.14"
   }
 }

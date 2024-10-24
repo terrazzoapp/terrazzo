@@ -73,20 +73,26 @@ export type CubicBezierValue = [number, number, number, number];
  */
 export interface DimensionToken extends TokenCore {
   $type: 'dimension';
-  $value: string | AliasValue;
+  $value: DimensionValue | AliasValue;
 }
 
-export type DimensionValue = `${number}px` | `${number}em` | `${number}rem` | '0';
+export interface DimensionValue {
+  value: number;
+  unit: 'px' | 'em' | 'rem';
+}
 
 /**
  * 8.5 Duration
  */
 export interface DurationToken extends TokenCore {
   $type: 'duration';
-  $value: string | AliasValue;
+  $value: DurationValue | AliasValue;
 }
 
-export type DurationValue = `${number}ms` | `${number}s`;
+export interface DurationValue {
+  value: number;
+  unit: 'ms' | 's';
+}
 
 /**
  * 9.6 Gradient

@@ -8,12 +8,12 @@
     "update": "node scripts/update"
   },
   "devDependencies": {
-    "@salesforce-ux/design-system": "^2.24.5",
+    "@salesforce-ux/design-system": "^2.25.3",
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/plugin-css": "workspace:*",
     "@terrazzo/plugin-js": "workspace:*",
     "@terrazzo/plugin-sass": "workspace:*",
     "culori": "^4.0.1",
-    "postcss": "^8.4.41"
+    "postcss": "^8.4.47"
   }
 }

@@ -262,13 +262,43 @@ export function validateDimension($value, node, { filename, src, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
+  if ($value.type === 'Object') {
+    const { value, unit } = getObjMembers($value);
+    if (!value) {
+      logger.error({ message: 'Missing required property "value".', filename, node: $value, src });
+    }
+    if (!unit) {
+      logger.error({ message: 'Missing required property "unit".', filename, node: $value, src });
+    }
+    if (value.type !== 'Number') {
+      logger.error({ message: `Expected number, received ${value.type}`, filename, node: value, src });
+    }
+    if (!['px', 'em', 'rem'].includes(unit.value)) {
+      logger.error({
+        message: `Expected unit "px", "em", or "rem", received ${print(unit)}`,
+        filename,
+        node: unit,
+        src,
+      });
+    }
+    return;
+  }
+  // Backwards compat: string
   if ($value.type !== 'String') {
     logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
-  } else if ($value.value === '') {
+  }
+  const value = $value.value.match(/^-?[0-9.]+/)?.[0];
+  const unit = $value.value.replace(value, '');
+  if ($value.value === '') {
     logger.error({ message: 'Expected dimension, received empty string', filename, node: $value, src });
-  } else if (String(Number.parseFloat($value.value)) === $value.value) {
-    logger.error({ message: 'Missing units', filename, node: $value, src });
-  } else if (!/^-?[0-9]+(\.[0-9]+)?/.test($value.value)) {
+  } else if (!['px', 'em', 'rem'].includes(unit)) {
+    logger.error({
+      message: `Expected unit "px", "em", or "rem", received ${JSON.stringify(unit || $value.value)}`,
+      filename,
+      node: $value,
+      src,
+    });
+  } else if (!Number.isFinite(Number.parseFloat(value))) {
     logger.error({ message: `Expected dimension with units, received ${print($value)}`, filename, node: $value, src });
   }
 }
@@ -284,19 +314,39 @@ export function validateDuration($value, node, { filename, src, logger }) {
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
+  if ($value.type === 'Object') {
+    const { value, unit } = getObjMembers($value);
+    if (!value) {
+      logger.error({ message: 'Missing required property "value".', filename, node: $value, src });
+    }
+    if (!unit) {
+      logger.error({ message: 'Missing required property "unit".', filename, node: $value, src });
+    }
+    if (value.type !== 'Number') {
+      logger.error({ message: `Expected number, received ${value.type}`, filename, node: value, src });
+    }
+    if (!['ms', 's'].includes(unit.value)) {
+      logger.error({ message: `Expected unit "ms" or "s", received ${print(unit)}`, filename, node: unit, src });
+    }
+    return;
+  }
+  // Backwards compat: string
   if ($value.type !== 'String') {
     logger.error({ message: `Expected string, received ${$value.type}`, filename, node: $value, src });
-  } else if ($value.value === '') {
+  }
+  const value = $value.value.match(/^-?[0-9.]+/)?.[0];
+  const unit = $value.value.replace(value, '');
+  if ($value.value === '') {
     logger.error({ message: 'Expected duration, received empty string', filename, node: $value, src });
-  } else if (!/m?s$/.test($value.value)) {
-    logger.error({ message: 'Missing unit "ms" or "s"', filename, node: $value, src });
-  } else if (!/^[0-9]+/.test($value.value)) {
+  } else if (!['ms', 's'].includes(unit)) {
     logger.error({
-      message: `Expected duration in \`ms\` or \`s\`, received ${print($value)}`,
+      message: `Expected unit "ms" or "s", received ${JSON.stringify(unit || $value.value)}`,
       filename,
       node: $value,
       src,
     });
+  } else if (!Number.isFinite(Number.parseFloat(value))) {
+    logger.error({ message: `Expected duration with units, received ${print($value)}`, filename, node: $value, src });
   }
 }
 

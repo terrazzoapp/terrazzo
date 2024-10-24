@@ -240,10 +240,11 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
           $typeInheritance[path.join('.') || '.'] = node.value.members.find((m) => m.name.value === '$type');
         }
 
+        const id = path.join('.');
+
         if (members.$value) {
           const extensions = members.$extensions ? getObjMembers(members.$extensions) : undefined;
           const sourceNode = structuredClone(node);
-          const id = path.join('.');
 
           // get parent type by taking the closest-scoped $type (length === closer)
           let parent$type;
@@ -309,7 +310,7 @@ async function parseSingle(input, { filename, logger, config, skipLint, continue
           }
 
           tokens[id] = token;
-        } else if (members.value) {
+        } else if (!id.includes('.$value') && members.value) {
           logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, filename, node, src });
         }
       }

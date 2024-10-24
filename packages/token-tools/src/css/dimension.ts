@@ -1,15 +1,15 @@
+import type { AliasValue, DimensionValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 /** Convert dimension value to CSS */
 export function transformDimensionValue(
-  value: number | string,
+  value: DimensionValue | AliasValue,
   { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
 ): string {
   if (aliasOf) {
     return transformAlias(aliasOf);
+  } else if (typeof value === 'string') {
+    throw new Error(`Could not resolve alias ${value}`);
   }
-  if (typeof value === 'number') {
-    return value === 0 ? '0' : `${value}px`;
-  }
-  return value === '0' || Number.parseFloat(value) === 0 ? '0' : value;
+  return value.value === 0 ? '0' : `${value.value}${value.unit}`;
 }
