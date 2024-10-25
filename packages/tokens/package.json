@@ -13,7 +13,7 @@
     "directory": "./packages/tokens/"
   },
   "scripts": {
-    "build": "del-cli dist && tz build",
+    "build": "tz build",
     "lint": "pnpm --filter @terrazzo/tokens run \"/^lint:.*/\"",
     "lint:tokens": "tz check",
     "dev": "tz build --watch"
