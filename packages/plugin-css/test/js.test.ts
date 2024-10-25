@@ -1,8 +1,8 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, it } from 'vitest';
-import fs from 'node:fs';
-import { fileURLToPath } from 'node:url';
 import css from '../src/index.js';
 
 // note: many colors’ hex fallbacks are intentionally different from what Culori

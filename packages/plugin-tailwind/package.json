@@ -25,7 +25,7 @@
   "scripts": {
     "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-tailwind dist/index.js",
     "build:ts": "tsc -p tsconfig.build.json",
-    "format": "biome format --write .",
+    "format": "biome check --fix --unsafe .",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "--disabled--test": "pnpm --filter @terrazzo/plugin-tailwind run \"/^test:.*/\"",

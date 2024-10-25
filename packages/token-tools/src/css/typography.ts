@@ -1,10 +1,10 @@
 import { kebabCase } from 'scule';
 import type { AliasValue, DimensionValue } from '../types.js';
+import { transformDimensionValue } from './dimension.js';
 import { transformFontFamilyValue } from './font-family.js';
 import { transformFontWeightValue } from './font-weight.js';
 import { type IDGenerator, defaultAliasTransform, transformCompositeAlias } from './lib.js';
 import { transformStringValue } from './string.js';
-import { transformDimensionValue } from './dimension.js';
 
 /** Convert typography value to multiple CSS values */
 export function transformTypographyValue(

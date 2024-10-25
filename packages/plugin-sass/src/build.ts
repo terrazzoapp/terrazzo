@@ -1,7 +1,7 @@
-import { isTokenMatch } from '@terrazzo/token-tools';
-import { makeCSSVar } from '@terrazzo/token-tools/css';
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { FORMAT_ID } from '@terrazzo/plugin-css';
+import { isTokenMatch } from '@terrazzo/token-tools';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { FILE_HEADER, MIXIN_TOKEN, MIXIN_TYPOGRAPHY, type SassPluginOptions } from './lib.js';
 
 export interface BuildParams {

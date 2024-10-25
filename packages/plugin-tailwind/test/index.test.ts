@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
 import pluginTailwind from '../src/index.js';
-import { build, defineConfig, parse } from '@terrazzo/parser';
 
 describe('@cobalt-ui/plugin-tailwind', () => {
   describe('options', () => {

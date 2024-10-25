@@ -1,7 +1,7 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { generateShorthand } from '@terrazzo/token-tools/css';
-import { type CSSPluginOptions, type CSSRule, printRules, FORMAT_ID } from '../lib.js';
+import { type CSSPluginOptions, type CSSRule, FORMAT_ID, printRules } from '../lib.js';
 import generateUtilityCSS from './utility-css.js';
 
 const P3_MQ = '@media (color-gamut: p3)';

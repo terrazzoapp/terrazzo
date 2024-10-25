@@ -1,0 +1,34 @@
+html {
+  height: 100%;
+}
+
+body {
+  background-color: var(--tz-color-bg-1);
+  color: var(--tz-color-text-1);
+  font-family: var(--tz-typography-family-sans);
+  font-size: 100%;
+  font-weight: var(--tz-typography-400-regular-font-weight);
+  line-height: 1;
+  margin: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  outline: 1px solid transparent;
+
+  &:focus-visible {
+    outline-color: var(--tz-color-base-lime-800);
+  }
+}
+
+::selection {
+  background-color: var(--tz-color-base-lime-800);
+  color: var(--tz-color-base-gray-100);
+}
+
+code,
+pre {
+  font-family: var(--tz-typography-family-monospace);
+}

@@ -1,5 +1,5 @@
 import type { GradientStopNormalized, GradientValueNormalized } from '../types';
-import { transformColorValue, type WideGamutColorValue } from './color.js';
+import { type WideGamutColorValue, transformColorValue } from './color.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 /** Convert gradient value to CSS */

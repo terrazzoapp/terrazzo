@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/icons",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -14,7 +14,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js",
-    "format": "biome format --write src",
+    "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/icons run \"/^lint:.*/\"",
     "lint:js": "biome check ."
   },
@@ -26,10 +26,9 @@
     "@rollup/plugin-typescript": "^12.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
-    "react": "19.0.0-rc-1631855f-20241023",
-    "react-dom": "19.0.0-rc-1631855f-20241023",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "rollup": "^4.24.0",
-    "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.6",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"

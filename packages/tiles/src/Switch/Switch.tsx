@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type ComponentProps, useId, type ReactNode } from 'react';
+import { type ComponentProps, type ReactNode, useId } from 'react';
 import './Switch.css';
 
 export interface SwitchProps extends ComponentProps<'input'> {

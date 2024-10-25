@@ -1,4 +1,4 @@
-import { useState, type MutableRefObject, useEffect } from 'react';
+import { type MutableRefObject, useEffect, useState } from 'react';
 
 /** Use performant Resize Observer */
 export default function useResizeObserver<T extends MutableRefObject<HTMLElement | null>>(el: T): DOMRect {

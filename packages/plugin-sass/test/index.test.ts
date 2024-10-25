@@ -1,10 +1,10 @@
-import { build, defineConfig, parse } from '@terrazzo/parser';
-import { makeCSSVar } from '@terrazzo/token-tools/css';
-import css from '@terrazzo/plugin-css';
-import stripAnsi from 'strip-ansi';
-import { describe, expect, it } from 'vitest';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { build, defineConfig, parse } from '@terrazzo/parser';
+import css from '@terrazzo/plugin-css';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
+import stripAnsi from 'strip-ansi';
+import { describe, expect, it } from 'vitest';
 import sass from '../src/index.js';
 
 describe('@terrazzo/plugin-scss', () => {

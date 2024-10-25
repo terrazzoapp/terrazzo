@@ -1,9 +1,8 @@
 import ts from '@rollup/plugin-typescript';
-import { cleandir } from 'rollup-plugin-cleandir';
 
 /** @type {import("rollup").InputOptions} */
 export default {
-  plugins: [cleandir(), ts()],
+  plugins: [ts()],
   input: 'src/index.tsx',
   external: ['*'],
   output: {

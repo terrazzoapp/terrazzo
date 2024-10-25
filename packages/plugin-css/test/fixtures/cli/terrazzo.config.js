@@ -1,5 +1,5 @@
-import pluginCSS from '../../../dist/index.js';
 import { defineConfig } from '../../../../cli/dist/index.js';
+import pluginCSS from '../../../dist/index.js';
 
 export default defineConfig({
   plugins: [

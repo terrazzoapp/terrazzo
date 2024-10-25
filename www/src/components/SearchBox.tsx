@@ -1,5 +1,5 @@
-import { OmniBar, OmniBarResult, type OmniBarResultProps } from '@terrazzo/tiles';
 import { Document, Heading, Pilcrow } from '@terrazzo/icons';
+import { OmniBar, OmniBarResult, type OmniBarResultProps } from '@terrazzo/tiles';
 import { liteClient } from 'algoliasearch/lite';
 import { useState } from 'react';
 import { Configure, InstantSearch, useHits } from 'react-instantsearch';

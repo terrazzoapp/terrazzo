@@ -1,6 +1,6 @@
 import { Check, Copy } from '@terrazzo/icons';
 import clsx from 'clsx';
-import { useRef, useState, type ComponentProps } from 'react';
+import { type ComponentProps, useRef, useState } from 'react';
 import './CopyButton.css';
 
 export interface CopyButtonProps extends Omit<ComponentProps<'button'>, 'children' | 'onClick'> {

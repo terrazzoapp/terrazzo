@@ -5,7 +5,7 @@ import type {
   TooltipPortalProps,
   TooltipTriggerProps,
 } from '@radix-ui/react-tooltip';
-import { Arrow, Content, Root, Portal, Provider, Trigger } from '@radix-ui/react-tooltip';
+import { Arrow, Content, Portal, Provider, Root, Trigger } from '@radix-ui/react-tooltip';
 import type { ReactNode } from 'react';
 import './Tooltip.css';
 

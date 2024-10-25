@@ -23,12 +23,12 @@
  * SOFTWARE.
  */
 
-import { parse, build, defineConfig, Logger } from '@terrazzo/parser';
-import chokidar from 'chokidar';
-import dotenv from 'dotenv';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { Logger, build, defineConfig, parse } from '@terrazzo/parser';
+import chokidar from 'chokidar';
+import dotenv from 'dotenv';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
 import parser from 'yargs-parser';

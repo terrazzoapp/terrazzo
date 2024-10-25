@@ -1,0 +1,23 @@
+.logo {
+  height: 1.25rem;
+  width: 1.25cqi;
+}
+
+.header {
+  align-items: center;
+  border-bottom: var(--tz-border-3);
+  display: flex;
+  padding: 0.75rem;
+}
+
+.codePanel {
+  margin-inline-start: auto;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  padding-inline-start: 0.5rem;
+}

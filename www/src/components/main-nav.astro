@@ -1,7 +1,7 @@
 ---
+import fs from 'node:fs';
 import { GitHubLogo } from '@terrazzo/icons';
 import { ButtonLink } from '@terrazzo/tiles';
-import fs from 'node:fs';
 import Terrazzo from './terrazzo.astro';
 
 const pkgInfo = JSON.parse(fs.readFileSync(new URL('../../../packages/cli/package.json', import.meta.url), 'utf8'));

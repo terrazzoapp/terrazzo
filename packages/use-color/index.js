@@ -1,7 +1,5 @@
 import {
   inGamut,
-  toGamut,
-  useMode,
   modeA98,
   modeHsl,
   modeHsv,
@@ -19,6 +17,8 @@ import {
   modeRgb,
   modeXyz50,
   modeXyz65,
+  toGamut,
+  useMode,
 } from 'culori/fn';
 import { useCallback, useState } from 'react';
 

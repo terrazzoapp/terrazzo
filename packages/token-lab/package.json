@@ -21,30 +21,36 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "vite dev",
-    "format:disabled": "biome format --write src",
+    "format:disabled": "biome check --fix --unsafe src",
     "lint:disabled": "pnpm run --filter @terrazzo/token-lab \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint src"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@terrazzo/fonts": "workspace:^",
+    "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
     "@terrazzo/tiles": "workspace:^",
-    "@terrazzo/tokens": "workspace:^"
+    "@terrazzo/tokens": "workspace:^",
+    "clsx": "^2.1.1",
+    "dtcg-examples": "^0.0.1",
+    "jotai": "^2.10.1",
+    "monaco-editor": "^0.52.0"
   },
   "devDependencies": {
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.1",
-    "react": "19.0.0-rc-1631855f-20241023",
-    "react-dom": "19.0.0-rc-1631855f-20241023",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "vite-plugin-sass-dts": "^1.3.29"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

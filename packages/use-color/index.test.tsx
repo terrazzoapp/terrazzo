@@ -1,10 +1,16 @@
-import type { ColorInput, ColorOutput, Rgb } from './index.js';
 import { cleanup, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import type { Color } from 'culori';
 import { useEffect } from 'react';
 import { afterEach, describe, expect, it } from 'vitest';
-import useColor, { createMemoizedColor, formatCss, parse } from './index.js';
+import useColor, {
+  type ColorInput,
+  type ColorOutput,
+  type Rgb,
+  createMemoizedColor,
+  formatCss,
+  parse,
+} from './index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];
 

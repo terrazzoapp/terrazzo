@@ -34,6 +34,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
+    "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/cli run \"/^test:.*/\"",
     "test:js": "vitest run",
