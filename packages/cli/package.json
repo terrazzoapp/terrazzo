@@ -32,9 +32,7 @@
     "terrazzo": "bin/cli.js"
   },
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts",
-    "build:clean": "del-cli dist",
-    "build:ts": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/cli run \"/^test:.*/\"",

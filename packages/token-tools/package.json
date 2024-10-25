@@ -35,8 +35,7 @@
     "./*": "./*"
   },
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/token-tools dist/index.js",
-    "build:clean": "del-cli dist",
+    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/token-tools dist/index.js",
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "pnpm --filter @terrazzo/token-tools run --parallel \"/^dev:.*/\"",
     "lint": "biome check .",

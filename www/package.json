@@ -6,7 +6,7 @@
     "build:app": "astro build && cp -r ../packages/storybook/storybook dist",
     "dev": "astro dev",
     "format": "biome format --write src",
-    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/www run \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
     "preview": "astro preview"

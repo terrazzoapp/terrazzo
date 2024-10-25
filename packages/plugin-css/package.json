@@ -23,8 +23,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:clean && pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-css dist/index.js",
-    "build:clean": "del-cli dist",
+    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-css dist/index.js",
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
     "lint": "biome check .",
