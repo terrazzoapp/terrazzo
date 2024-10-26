@@ -2,7 +2,7 @@ import type { Plugin } from '@terrazzo/parser';
 import { validateCustomTransform } from '@terrazzo/token-tools';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import buildFormat from './build/index.js';
-import { FILE_PREFIX, FORMAT_ID, type CSSPluginOptions } from './lib.js';
+import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
 
 export * from './build/index.js';
 export * from './lib.js';

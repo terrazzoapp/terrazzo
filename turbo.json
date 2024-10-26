@@ -7,6 +7,9 @@
     "build:app": {
       "dependsOn": ["build"]
     },
+    "format": {
+      "dependsOn": ["^format"]
+    },
     "lint": {
       "dependsOn": ["build"]
     },

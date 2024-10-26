@@ -1,5 +1,5 @@
-import { describe, expect, it } from 'vitest';
 import { execa } from 'execa';
+import { describe, expect, it } from 'vitest';
 
 const cmd = '../../../bin/cli.js';
 

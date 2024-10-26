@@ -322,6 +322,28 @@ export function Clock({ color = 'currentColor', size = 15, ...props }: IconProps
   );
 }
 
+export function Code({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox='0 0 15 15'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M9.96424 2.68571C10.0668 2.42931 9.94209 2.13833 9.6857 2.03577C9.4293 1.93322 9.13832 2.05792 9.03576 2.31432L5.03576 12.3143C4.9332 12.5707 5.05791 12.8617 5.3143 12.9642C5.5707 13.0668 5.86168 12.9421 5.96424 12.6857L9.96424 2.68571ZM3.85355 5.14646C4.04882 5.34172 4.04882 5.6583 3.85355 5.85356L2.20711 7.50001L3.85355 9.14646C4.04882 9.34172 4.04882 9.6583 3.85355 9.85356C3.65829 10.0488 3.34171 10.0488 3.14645 9.85356L1.14645 7.85356C0.951184 7.6583 0.951184 7.34172 1.14645 7.14646L3.14645 5.14646C3.34171 4.9512 3.65829 4.9512 3.85355 5.14646ZM11.1464 5.14646C11.3417 4.9512 11.6583 4.9512 11.8536 5.14646L13.8536 7.14646C14.0488 7.34172 14.0488 7.6583 13.8536 7.85356L11.8536 9.85356C11.6583 10.0488 11.3417 10.0488 11.1464 9.85356C10.9512 9.6583 10.9512 9.34172 11.1464 9.14646L12.7929 7.50001L11.1464 5.85356C10.9512 5.6583 10.9512 5.34172 11.1464 5.14646Z'
+        fill={color}
+      />
+    </svg>
+  );
+}
+
 export function ComponentInstance({ color = 'currentColor', size = 15, ...props }: IconProps) {
   return (
     <svg
@@ -361,6 +383,28 @@ export function Copy({ color = 'currentColor', size = 15, ...props }: IconProps)
         fill={color}
         fillRule='evenodd'
         clipRule='evenodd'
+      />
+    </svg>
+  );
+}
+
+export function Cross({ color = 'currentColor', size = 15, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox='0 0 15 15'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      role='graphics-symbol img'
+      aria-hidden={(!props['aria-label'] && !props['aria-labelledby']) || undefined}
+      {...props}
+    >
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M12.8536 2.85355C13.0488 2.65829 13.0488 2.34171 12.8536 2.14645C12.6583 1.95118 12.3417 1.95118 12.1464 2.14645L7.5 6.79289L2.85355 2.14645C2.65829 1.95118 2.34171 1.95118 2.14645 2.14645C1.95118 2.34171 1.95118 2.65829 2.14645 2.85355L6.79289 7.5L2.14645 12.1464C1.95118 12.3417 1.95118 12.6583 2.14645 12.8536C2.34171 13.0488 2.65829 13.0488 2.85355 12.8536L7.5 8.20711L12.1464 12.8536C12.3417 13.0488 12.6583 13.0488 12.8536 12.8536C13.0488 12.6583 13.0488 12.3417 12.8536 12.1464L8.20711 7.5L12.8536 2.85355Z'
+        fill={color}
       />
     </svg>
   );

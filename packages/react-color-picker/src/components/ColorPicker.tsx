@@ -1,8 +1,8 @@
 import { ColorFilterOutline } from '@terrazzo/icons';
 import { Select, SelectItem } from '@terrazzo/tiles';
-import { type default as useColor, formatCss, COLORSPACES, parse } from '@terrazzo/use-color';
+import { COLORSPACES, formatCss, parse, type default as useColor } from '@terrazzo/use-color';
 import clsx from 'clsx';
-import { type ComponentProps, useState, useMemo, useEffect } from 'react';
+import { type ComponentProps, useEffect, useMemo, useState } from 'react';
 import { channelOrder, updateColor } from '../lib/color.js';
 import ColorChannelSlider from './ColorChannelSlider.js';
 import './ColorPicker.css';

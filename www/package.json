@@ -5,7 +5,7 @@
   "scripts": {
     "build:app": "astro build && cp -r ../packages/storybook/storybook dist",
     "dev": "astro dev",
-    "format": "biome format --write src",
+    "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/www run \"/^lint:.*/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
@@ -22,8 +22,8 @@
     "@terrazzo/use-color": "workspace:^",
     "algoliasearch": "^5.10.2",
     "nanoid": "^5.0.7",
-    "react": "19.0.0-rc-1631855f-20241023",
-    "react-dom": "19.0.0-rc-1631855f-20241023",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "react-instantsearch": "^7.13.6"
   },
   "devDependencies": {

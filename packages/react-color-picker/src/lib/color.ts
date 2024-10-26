@@ -1,4 +1,4 @@
-import { COLORSPACES, type P3, type Color, type ColorInput, type Rgb } from '@terrazzo/use-color';
+import { COLORSPACES, type Color, type ColorInput, type P3, type Rgb } from '@terrazzo/use-color';
 import { toGamut } from 'culori';
 
 /** Calculate min, max, displayMin, and displayMax for a given color/colorspace/gamut */

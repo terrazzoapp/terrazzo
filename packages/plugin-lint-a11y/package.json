@@ -28,7 +28,7 @@
   "license": "MIT",
   "scripts": {
     "--disabled-build": "tsc",
-    "--disabled-format": "biome format --write src",
+    "--disabled-format": "biome check --fix --unsafe src",
     "--disabled-lint": "biome check src",
     "--disabled-test": "vitest run"
   },

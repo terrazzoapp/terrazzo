@@ -1,6 +1,6 @@
-import { build, defineConfig, parse } from '@terrazzo/parser';
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
+import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, test } from 'vitest';
 import js from '../src/index.js';
 

@@ -26,6 +26,7 @@
     "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-css dist/index.js",
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
+    "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "pnpm --filter @terrazzo/plugin-css run \"/^test:.*/\"",
     "test:js": "vitest run",

@@ -17,19 +17,19 @@
   "scripts": {
     "build": "rollup -c rollup.config.js && size-limit",
     "dev": "pnpm run build && chokidar \"src/**/*\" -c \"rollup -c rollup.config.js\"",
-    "format": "pnpm run \"/&lint:.*/\"",
-    "format:js": "biome format --write \"src/**/*.js\"",
+    "format": "pnpm --filter @terrazzo/tiles run \"/^format:/\"",
+    "format:js": "biome check --fix --unsafe src",
     "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "pnpm --filter @terrazzo/tiles run \"/^test.*/\"",
+    "test": "pnpm --filter @terrazzo/tiles run \"/^test:/\"",
     "test:js": "vitest run",
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "react": "*",
-    "react-dom": "*"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.1.2",
@@ -51,10 +51,9 @@
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.1",
     "chokidar-cli": "^3.0.0",
-    "react": "19.0.0-rc-1631855f-20241023",
-    "react-dom": "19.0.0-rc-1631855f-20241023",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "rollup": "^4.24.0",
-    "rollup-plugin-cleandir": "^2.0.0",
     "rollup-plugin-import-css": "^3.5.6",
     "size-limit": "^11.1.6",
     "types-react": "19.0.0-rc.1",

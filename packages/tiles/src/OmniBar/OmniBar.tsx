@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type ComponentProps, useCallback, useEffect, useId, useRef, useState, type ReactElement } from 'react';
+import { type ComponentProps, type ReactElement, useCallback, useEffect, useId, useRef, useState } from 'react';
 import Kbd from '../Kbd/Kbd.js';
 import './OmniBar.css';
 

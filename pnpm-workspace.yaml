@@ -1,5 +1,4 @@
 packages:
-  - "examples/**"
   - "packages/**"
   - "www"
   - "!packages/**/test/**"

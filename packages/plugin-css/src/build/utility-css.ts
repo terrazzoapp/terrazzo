@@ -1,6 +1,6 @@
+import type { TokenTransformed } from '@terrazzo/parser';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import type { TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from 'scule';
 import type { CSSRule, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
 

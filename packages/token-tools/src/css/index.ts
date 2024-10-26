@@ -1,6 +1,5 @@
 import type { TokenNormalized } from '../types.js';
 import { transformBooleanValue } from './boolean.js';
-import type { IDGenerator } from './lib.js';
 import { transformBorderValue } from './border.js';
 import { transformColorValue } from './color.js';
 import { transformCubicBezierValue } from './cubic-bezier.js';
@@ -9,13 +8,14 @@ import { transformDurationValue } from './duration.js';
 import { transformFontFamilyValue } from './font-family.js';
 import { transformFontWeightValue } from './font-weight.js';
 import { transformGradientValue } from './gradient.js';
-import { transformNumberValue } from './number.js';
+import type { IDGenerator } from './lib.js';
 import { transformLinkValue } from './link.js';
+import { transformNumberValue } from './number.js';
 import { transformShadowValue } from './shadow.js';
 import { transformStringValue } from './string.js';
-import { transformTypographyValue } from './typography.js';
-import { transformTransitionValue } from './transition.js';
 import { transformStrokeStyleValue } from './stroke-style.js';
+import { transformTransitionValue } from './transition.js';
+import { transformTypographyValue } from './typography.js';
 
 export * from './boolean.js';
 export * from './border.js';

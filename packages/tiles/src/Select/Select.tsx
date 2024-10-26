@@ -2,23 +2,23 @@ import {
   Content,
   Icon,
   Portal,
-  Root,
   SelectItem as RadixSelectItem,
-  SelectItemIndicator,
   type SelectItemProps as RadixSelectItemProps,
-  SelectItemText,
   SelectLabel as RadixSelectLabel,
-  type SelectLabelProps,
   type SelectProps as RadixSelectProps,
+  Root,
+  ScrollDownButton,
+  ScrollUpButton,
+  SelectItemIndicator,
+  SelectItemText,
+  type SelectLabelProps,
   Trigger,
   Value,
   Viewport,
-  ScrollUpButton,
-  ScrollDownButton,
 } from '@radix-ui/react-select';
 import { CaretSort, Check, ChevronDown, ChevronUp } from '@terrazzo/icons';
 import clsx from 'clsx';
-import type { ReactNode, CSSProperties, ForwardedRef } from 'react';
+import type { CSSProperties, ForwardedRef, ReactNode } from 'react';
 import './Select.css';
 
 export { Group as SelectGroup, Separator as SelectSeparator } from '@radix-ui/react-select';

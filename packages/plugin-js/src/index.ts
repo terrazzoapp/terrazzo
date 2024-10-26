@@ -1,7 +1,7 @@
 import type { Plugin } from '@terrazzo/parser';
 import { transformJSValue } from '@terrazzo/token-tools/js';
-import { FORMAT_DTS_ID, FORMAT_JS_ID, TYPE_MAP, type JSPluginOptions } from './lib.js';
 import { buildDTS, buildJS } from './build.js';
+import { FORMAT_DTS_ID, FORMAT_JS_ID, type JSPluginOptions, TYPE_MAP } from './lib.js';
 
 export * from './build.js';
 export * from './lib.js';

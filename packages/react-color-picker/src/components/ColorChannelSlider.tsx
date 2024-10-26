@@ -1,5 +1,5 @@
 import { Slider } from '@terrazzo/tiles';
-import { COLORSPACES, type ColorOutput, type default as useColor, formatCss } from '@terrazzo/use-color';
+import { COLORSPACES, type ColorOutput, formatCss, type default as useColor } from '@terrazzo/use-color';
 import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
 import type { WebGLColor } from '../lib/webgl.js';

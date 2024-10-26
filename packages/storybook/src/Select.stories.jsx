@@ -1,5 +1,5 @@
-import { Select, SelectGroup, SelectItem } from '@terrazzo/tiles';
 import { ColorFilterOutline } from '@terrazzo/icons';
+import { Select, SelectGroup, SelectItem } from '@terrazzo/tiles';
 
 export default {
   title: 'Components/Form/Select',

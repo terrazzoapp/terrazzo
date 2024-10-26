@@ -24,7 +24,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc && size-limit",
-    "format": "biome format --write .",
+    "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "vitest run"
   },
@@ -43,8 +43,8 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.1",
-    "react": "19.0.0-rc-1631855f-20241023",
-    "react-dom": "19.0.0-rc-1631855f-20241023",
+    "react": "19.0.0-rc-cae764ce-20241025",
+    "react-dom": "19.0.0-rc-cae764ce-20241025",
     "size-limit": "^11.1.6",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"
