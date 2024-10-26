@@ -2,7 +2,6 @@
  * DO NOT LOAD THIS SYNCHRONOUSLY!
  * This module is gigantic and must be codesplit
  */
-import radix from 'dtcg-examples/radix/tokens.json';
 import { useAtom } from 'jotai';
 import * as monaco from 'monaco-editor';
 import { useId, useLayoutEffect } from 'react';

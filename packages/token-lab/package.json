@@ -21,8 +21,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "dev": "vite dev",
-    "format:disabled": "biome check --fix --unsafe src",
-    "lint:disabled": "pnpm run --filter @terrazzo/token-lab \"/^lint:.*/\"",
+    "format": "biome check --fix --unsafe src",
+    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint src"
   },
@@ -34,7 +34,9 @@
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
     "@terrazzo/tiles": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.0.1",

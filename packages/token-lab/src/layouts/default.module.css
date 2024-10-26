@@ -1,0 +1,11 @@
+.page {
+  display: grid;
+  grid-template-columns: 20rem auto;
+}
+
+.tokensNav {
+}
+
+.main {
+  padding-inline: 1.5rem;
+}

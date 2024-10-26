@@ -2,6 +2,7 @@
  * Atomic state of DTCG JSON
  */
 
+import type { Group } from '@terrazzo/token-tools';
 import { atom } from 'jotai';
 import { getDB } from '../lib/indexed-db';
 

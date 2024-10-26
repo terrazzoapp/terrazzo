@@ -69,8 +69,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       yaml-to-momoa:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.3
+        version: 0.0.3
       yargs-parser:
         specifier: ^21.1.1
         version: 21.1.1
@@ -470,12 +470,18 @@ importers:
       '@terrazzo/icons':
         specifier: workspace:^
         version: link:../icons
+      '@terrazzo/parser':
+        specifier: workspace:^
+        version: link:../parser
       '@terrazzo/react-color-picker':
         specifier: workspace:^
         version: link:../react-color-picker
       '@terrazzo/tiles':
         specifier: workspace:^
         version: link:../tiles
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
       '@terrazzo/tokens':
         specifier: workspace:^
         version: link:../tokens
@@ -5852,6 +5858,9 @@ packages:
 
   yaml-to-momoa@0.0.1:
     resolution: {integrity: sha512-veT3zMQSdVv/YRCEOBFtoxTcI7Y5OtC78i6rUiaFXHxTNemyMq5ARf8UJkfdkdf77DrMdSyUPfCvVW0Qk49PZQ==}
+
+  yaml-to-momoa@0.0.3:
+    resolution: {integrity: sha512-8zEu6HkZO+upPrmEg9kqugEoPC8A11f7zveWv4qwMHJ1+21FYU2bqf2TleMm2IlwRNcdvDLx0yWJUxGlHJm3qA==}
 
   yaml@2.6.0:
     resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
@@ -11684,6 +11693,11 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml-to-momoa@0.0.1:
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.0
+      yaml: 2.6.0
+
+  yaml-to-momoa@0.0.3:
     dependencies:
       '@humanwhocodes/momoa': 3.3.0
       yaml: 2.6.0
