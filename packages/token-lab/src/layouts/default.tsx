@@ -1,5 +1,4 @@
-import MainNav from '../components/main-nav/main-nav';
-import TokensNav from '../components/tokens-nav/tokens-nav';
+import MainNav from '../components/main-nav/main-nav.js';
 import c from './default.module.css';
 
 export function DefaultLayout() {
@@ -7,9 +6,7 @@ export function DefaultLayout() {
     <>
       <MainNav />
       <div className={c.page}>
-        <aside className={c.tokensNav}>
-          <TokensNav />
-        </aside>
+        <aside className={c.sidebar}>Tokens</aside>
         <main className={c.main}>Main content</main>
       </div>
     </>

@@ -1,4 +1,4 @@
-import CodePanel from '../code-panel/code-panel';
+import CodePanel from '../code-panel/code-panel.js';
 import c from './main-nav.module.css';
 
 export default function MainNav() {

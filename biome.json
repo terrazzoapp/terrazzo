@@ -4,7 +4,7 @@
     "enabled": true
   },
   "files": {
-    "ignore": ["**/dist/**", "**/package.json", "*.css"]
+    "ignore": ["**/dist/**", "**/package.json", "*.css", "*.css.d.ts"]
   },
   "formatter": {
     "indentStyle": "space",
@@ -25,6 +25,7 @@
         "useArrowFunction": "off"
       },
       "correctness": {
+        "useImportExtensions": "error",
         "useExhaustiveDependencies": "off"
       },
       "style": {

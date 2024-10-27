@@ -3,7 +3,9 @@
   grid-template-columns: 20rem auto;
 }
 
-.tokensNav {
+.sidebar {
+  display: flex;
+  flex-direction: column;
 }
 
 .main {

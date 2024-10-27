@@ -23,7 +23,9 @@ export { default as TokenType } from './TokenType/TokenType.js';
 export * from './TokenType/TokenType.js';
 export { default as Tooltip } from './Tooltip/Tooltip.js';
 export * from './Tooltip/Tooltip.js';
+export * as TreeGrid from './TreeGrid/index.js';
 
 export { default as useResizeObserver } from './hooks/resize-observer.js';
 export * from './hooks/resize-observer.js';
 export * from './lib/number.js';
+export * from './lib/set.js';
