@@ -1,0 +1,63 @@
+.container {
+  --search-height: 1.5rem;
+
+  border-right: var(--tz-border-3);
+  display: grid;
+  grid-template-rows: var(--search-height) auto;
+  height: 100%;
+  max-height: 100%;
+  position: relative;
+}
+
+.tree {
+  overflow-y: auto;
+}
+
+.error {
+  background: var(--tz-color-bg-error);
+  color: var(--tz-color-text-error);
+  font-family: var(--tz-typography-family-mono);
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+.search {
+  background: var(--tz-color-bg-2);
+  border-bottom: var(--tz-border-3);
+  border-left: 0;
+  border-radius: 0;
+  border-right: 0;
+  border-top: 0;
+  color: var(--tz-color-text-2);
+  font-family: var(--tz-typography-100-regular-font-family);
+  font-size: var(--tz-typography-100-regular-font-size);
+  font-variation-settings: var(--tz-typography-100-regular-font-variation-settings);
+  font-weight: var(--tz-typography-100-regular-font-weight);
+  height: var(--search-height);
+  letter-spacing: var(--tz-typography-100-regular-letter-spacing);
+  line-height: var(--search-height);
+  padding: 0;
+  text-indent: var(--search-height);
+}
+
+.searchIcon {
+  --size: calc(var(--search-height) * 3 / 4);
+  --offset: calc(var(--search-height) / 8);
+
+  display: block;
+  height: var(--size);
+  left: var(--offset);
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: var(--offset);
+  width: var(--size);
+  z-index: 5;
+}
+
+.tokenIcon {
+  color: var(--tz-color-text-3);
+  height: 0.75rem;
+  margin-inline-end: 0.5em;
+  width: 0.75rem;
+}

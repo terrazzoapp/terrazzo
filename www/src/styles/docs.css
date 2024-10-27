@@ -91,9 +91,7 @@
 
   strong,
   b {
-    font-variation-settings: var(
-      --tz-typography-300-bold-font-variation-settings
-    );
+    font-variation-settings: var(--tz-typography-300-bold-font-variation-settings);
     font-weight: var(--tz-typography-300-bold-font-weight);
   }
 
@@ -158,9 +156,7 @@
     border-bottom: 1px solid transparent;
     cursor: pointer;
     display: flex;
-    font-variation-settings: var(
-      --tz-typography-300-medium-font-variation-settings
-    );
+    font-variation-settings: var(--tz-typography-300-medium-font-variation-settings);
     font-weight: var(--tz-typography-300-medium-font-weight);
     min-height: var(--tz-space-800);
     position: relative;
@@ -206,9 +202,7 @@
 
   th {
     border-bottom: var(--tz-border-2);
-    font-variation-settings: var(
-      --tz-typography-200-medium-font-variation-settings
-    );
+    font-variation-settings: var(--tz-typography-200-medium-font-variation-settings);
     font-weight: var(--tz-typography-200-medium-font-weight);
   }
 
@@ -260,11 +254,7 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: color-mix(
-    in oklab,
-    var(--tz-color-base-blue-800),
-    transparent 62.5%
-  );
+  background-color: color-mix(in oklab, var(--tz-color-base-blue-800), transparent 62.5%);
 
   .callout-indicator {
     color: var(--tz-color-base-blue-300);
@@ -273,11 +263,7 @@
 
 .callout--caution,
 .callout--warning {
-  background-color: color-mix(
-    in oklab,
-    var(--tz-color-base-orange-800),
-    transparent 62.5%
-  );
+  background-color: color-mix(in oklab, var(--tz-color-base-orange-800), transparent 62.5%);
 
   .callout-indicator {
     color: var(--tz-color-base-orange-300);
@@ -289,9 +275,7 @@
   display: flex;
   font-family: var(--tz-typography-200-bold-font-family);
   font-size: var(--tz-typography-200-bold-font-size);
-  font-variation-settings: var(
-    --tz-typography-200-bold-font-variation-settings
-  );
+  font-variation-settings: var(--tz-typography-200-bold-font-variation-settings);
   font-weight: var(--tz-typography-200-bold-font-weight);
   gap: var(--tz-space-200);
   letter-spacing: var(--tz-typography-200-bold-letter-spacing);
@@ -330,9 +314,7 @@
   cursor: pointer;
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
-  font-variation-settings: var(
-    --tz-typography-200-regular-font-variation-settings
-  );
+  font-variation-settings: var(--tz-typography-200-regular-font-variation-settings);
   font-weight: var(--tz-typography-200-regular-font-weight);
   height: var(--tz-space-control-m);
   letter-spacing: var(--tz-typography-200-regular-letter-spacing);
@@ -389,12 +371,8 @@
       --chrome-button-gap: calc(0.5 * var(--chrome-button-size));
       --y: calc(0.5 * var(--chrome-button-size));
       --x1: calc(0.5 * var(--chrome-button-size));
-      --x2: calc(
-        var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap)
-      );
-      --x3: calc(
-        var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap)
-      );
+      --x2: calc(var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap));
+      --x3: calc(var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap));
 
       background-image: radial-gradient(
           circle at var(--x1) var(--y),
@@ -444,9 +422,8 @@
   position: absolute;
   right: var(--tz-space-400);
   top: var(--tz-space-400);
-  transition:
-    background-color var(--tz-timing-default) var(--tz-ease-linear),
-    color var(--tz-timing-default) var(--tz-ease-linear);
+  transition: background-color var(--tz-timing-default) var(--tz-ease-linear), color var(--tz-timing-default)
+    var(--tz-ease-linear);
   width: var(--tz-space-control-m);
   z-index: var(--tz-layer-base);
 

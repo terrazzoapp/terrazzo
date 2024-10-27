@@ -57,9 +57,7 @@
   background-image: linear-gradient(var(--current-color), var(--current-color)),
     url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%23dad9d6' width='32' height='32'/><rect fill='%23dad9d6' x='32' y='32' width='32' height='32'/></svg>");
   background-repeat: no-repeat, repeat;
-  background-size:
-    100% 100%,
-    10px;
+  background-size: 100% 100%, 10px;
   border-top-left-radius: var(--tz-radius-300);
   border-top-right-radius: var(--tz-radius-300);
   height: 6rem;

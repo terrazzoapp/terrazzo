@@ -1,4 +1,7 @@
 {
+  "[css]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
   "[astro]": {
     "editor.defaultFormatter": "biomejs.biome"
   },

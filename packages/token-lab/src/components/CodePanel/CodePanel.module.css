@@ -32,7 +32,7 @@
 }
 
 .panel {
-  background-color: var(--tz-color-bg-2);
+  background-color: #202020;
   border: var(--tz-border-2);
   bottom: 0;
   display: grid;
@@ -55,6 +55,7 @@
 
 .menu {
   align-items: center;
+  background-color: var(--tz-color-bg-2);
   border-bottom: var(--tz-border-2);
   display: flex;
   justify-content: space-between;
@@ -65,5 +66,6 @@
   display: inline-flex;
   font-family: var(--tz-monospace);
   font-size: 0.75rem;
+  margin-right: auto;
   padding-inline: 0.5rem;
 }

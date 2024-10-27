@@ -1,5 +1,5 @@
-import CodePanel from '../code-panel/code-panel.js';
-import c from './main-nav.module.css';
+import CodePanel from '../CodePanel/CodePanel.js';
+import c from './MainNav.module.css';
 
 export default function MainNav() {
   return (

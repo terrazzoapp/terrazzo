@@ -2,11 +2,9 @@
  * DO NOT LOAD THIS SYNCHRONOUSLY!
  * This module is gigantic and must be codesplit
  */
-import { defineConfig, parse } from '@terrazzo/parser';
-import { useAtom } from 'jotai';
 import * as monaco from 'monaco-editor';
 import { useEffect, useId, useLayoutEffect, useState } from 'react';
-import dtcg, { saveTokens } from '../../atoms/dtcg.js';
+import useTokens from '../../hooks/tokens.js';
 
 const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   language: 'json',
@@ -18,15 +16,13 @@ const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   tabSize: 2,
 };
 
-const TZ_CONFIG = defineConfig({}, { cwd: new URL(window.location.href) });
-
 export default function CodeEditor() {
   const id = useId();
-  const [tokens, setTokens] = useAtom(dtcg);
+  const { tokens, setTokens } = useTokens();
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor>();
 
   // initial setup
-  // initialize AFTER first render
+  // initialize AFTER first render (so container element exists)
   useLayoutEffect(() => {
     self.MonacoEnvironment = {
       getWorker(_workerId: string, label: string): Worker {
@@ -55,30 +51,17 @@ export default function CodeEditor() {
     editorEl.querySelector('textarea')?.focus();
   }, []);
 
-  // on update, update Jotai atom
+  // on update, update Jotai atom (debounced; this will lock up the main thread every character)
   useEffect(() => {
-    editor?.getModel()?.onDidChangeContent(async () => {
+    let t: number | undefined;
+    editor?.getModel()?.onDidChangeContent(() => {
       const newCode = editor.getValue();
-      setTokens(newCode);
-      saveTokens(newCode);
-      try {
-        await parse([{ filename: new URL('file:///tokens.json'), src: newCode }], {
-          config: TZ_CONFIG,
-        });
-      } catch (err) {
-        if ((err as Error).name === 'TokensJSONError') {
-          console.error(err);
-        }
-      }
+      clearTimeout(t);
+      t = window.setTimeout(() => {
+        setTokens(newCode);
+      }, 1000);
     });
   }, [editor]);
-
-  // update code remotely if tokens change
-  useEffect(() => {
-    if (editor?.getValue() !== tokens) {
-      editor?.setValue(tokens);
-    }
-  }, [editor, tokens]);
 
   return <div id={id} />;
 }

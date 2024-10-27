@@ -3,19 +3,17 @@ import { type ComponentProps, type ReactNode, useContext, useEffect } from 'reac
 import { NestedContext } from './Group.js';
 import { Context } from './Root.js';
 
-export interface ItemProps extends Omit<ComponentProps<'tr'>, 'children'> {
-  /** Visible name of this item */
-  name?: ReactNode;
+export interface ItemProps extends ComponentProps<'tr'> {
   /**
    * Unique ID for this item
    * ⚠️ must not conflict with any other items, or any parent groups!
    */
   id: string;
   actions?: ReactNode;
-  children?: never;
+  hidden?: boolean;
 }
 
-export default function Item({ className, actions, id, name, ...rest }: ItemProps) {
+export default function Item({ actions, children, className, hidden, id, ...rest }: ItemProps) {
   const { selected, registerID } = useContext(Context);
   const { level, isParentExpanded, parentID } = useContext(NestedContext);
 
@@ -31,10 +29,10 @@ export default function Item({ className, actions, id, name, ...rest }: ItemProp
       aria-level={level}
       aria-selected={selected.has(id)}
       data-treegrid-item
-      hidden={!isParentExpanded || undefined}
+      hidden={!isParentExpanded || hidden || undefined}
     >
       <th scope='row' className='tz-treegrid-item-name' tabIndex={0}>
-        {name}
+        {children}
       </th>
       <td className='tz-treegrid-actions'>{actions}</td>
     </tr>

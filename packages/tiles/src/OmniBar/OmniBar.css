@@ -84,9 +84,7 @@
   flex-direction: column;
   left: calc(-1 * var(--padding));
   padding-block-end: 0;
-  padding-block-start: calc(
-    var(--padding) + var(--tz-space-control-m) + var(--padding)
-  );
+  padding-block-start: calc(var(--padding) + var(--tz-space-control-m) + var(--padding));
   padding-inline: 0;
   position: absolute;
   right: calc(-1 * var(--padding));
