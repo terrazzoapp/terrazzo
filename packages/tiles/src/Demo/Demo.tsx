@@ -1,7 +1,7 @@
 import { type ComponentProps, useEffect, useState } from 'react';
 import type { CodeOptionsSingleTheme, CodeToHastOptions } from 'shiki';
 import './Demo.css';
-import CopyButton from '../CopyButton/CopyButton';
+import CopyButton from '../CopyButton/CopyButton.js';
 
 const shiki = import('shiki');
 

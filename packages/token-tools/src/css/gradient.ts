@@ -1,4 +1,4 @@
-import type { GradientStopNormalized, GradientValueNormalized } from '../types';
+import type { GradientStopNormalized, GradientValueNormalized } from '../types.js';
 import { type WideGamutColorValue, transformColorValue } from './color.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 

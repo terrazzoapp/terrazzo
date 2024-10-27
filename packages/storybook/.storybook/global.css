@@ -1,6 +1,9 @@
 body {
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
+  font-variation-settings: var(
+    --tz-typography-200-regular-font-variation-settings
+  );
   font-weight: var(--tz-typography-200-regular-font-weight);
   line-height: 1;
   margin: 0;

@@ -3,7 +3,7 @@
  */
 
 import { atom } from 'jotai';
-import { getDB } from '../lib/indexed-db';
+import { getDB } from '../lib/indexed-db.js';
 
 const DB_NAME = 'tz-ds';
 const DB_VERSION = 1;

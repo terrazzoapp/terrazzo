@@ -69,8 +69,8 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       yaml-to-momoa:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.3
+        version: 0.0.3
       yargs-parser:
         specifier: ^21.1.1
         version: 21.1.1
@@ -281,7 +281,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.1
-        version: 3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       chokidar-cli:
         specifier: ^3.0.0
         version: 3.0.0
@@ -314,7 +314,7 @@ importers:
         version: 19.0.0-rc.1
       vitest-axe:
         specifier: ^0.1.0
-        version: 0.1.0(vitest@2.1.3(@types/node@22.8.0)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 0.1.0(vitest@2.1.3(@types/node@22.8.1)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5))
 
   packages/storybook:
     dependencies:
@@ -330,7 +330,7 @@ importers:
         version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(storybook@8.3.6)(typescript@5.6.3)
       '@storybook/react-vite':
         specifier: ^8.3.6
-        version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)
+        version: 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)
       '@storybook/test':
         specifier: ^8.3.6
         version: 8.3.6(storybook@8.3.6)
@@ -363,7 +363,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.1
-        version: 3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       react:
         specifier: 19.0.0-rc-cae764ce-20241025
         version: 19.0.0-rc-cae764ce-20241025
@@ -381,7 +381,7 @@ importers:
         version: 19.0.0-rc.1
       vite:
         specifier: ^5.4.10
-        version: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+        version: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
 
   packages/tiles:
     dependencies:
@@ -433,7 +433,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.1
-        version: 3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       chokidar-cli:
         specifier: ^3.0.0
         version: 3.0.0
@@ -460,7 +460,7 @@ importers:
         version: 19.0.0-rc.1
       vitest-axe:
         specifier: ^0.1.0
-        version: 0.1.0(vitest@2.1.3(@types/node@22.8.0)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 0.1.0(vitest@2.1.3(@types/node@22.8.1)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5))
 
   packages/token-lab:
     dependencies:
@@ -470,12 +470,18 @@ importers:
       '@terrazzo/icons':
         specifier: workspace:^
         version: link:../icons
+      '@terrazzo/parser':
+        specifier: workspace:^
+        version: link:../parser
       '@terrazzo/react-color-picker':
         specifier: workspace:^
         version: link:../react-color-picker
       '@terrazzo/tiles':
         specifier: workspace:^
         version: link:../tiles
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
       '@terrazzo/tokens':
         specifier: workspace:^
         version: link:../tokens
@@ -500,7 +506,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.1
-        version: 3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       react:
         specifier: 19.0.0-rc-cae764ce-20241025
         version: 19.0.0-rc-cae764ce-20241025
@@ -515,10 +521,10 @@ importers:
         version: 19.0.0-rc.1
       vite:
         specifier: ^5.4.10
-        version: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+        version: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
       vite-plugin-sass-dts:
         specifier: ^1.3.29
-        version: 1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
 
   packages/token-tools:
     dependencies:
@@ -580,7 +586,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
         specifier: ^3.7.1
-        version: 3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       react:
         specifier: 19.0.0-rc-cae764ce-20241025
         version: 19.0.0-rc-cae764ce-20241025
@@ -641,10 +647,10 @@ importers:
     devDependencies:
       '@astrojs/mdx':
         specifier: ^3.1.8
-        version: 3.1.8(astro@4.16.7(@types/node@22.8.0)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3))
+        version: 3.1.8(astro@4.16.7(@types/node@22.8.1)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3))
       '@astrojs/react':
         specifier: 3.6.2
-        version: 3.6.2(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 3.6.2(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       '@terrazzo/storybook':
         specifier: workspace:^
         version: link:../packages/storybook
@@ -656,7 +662,7 @@ importers:
         version: types-react-dom@19.0.0-rc.1
       astro:
         specifier: ^4.16.7
-        version: 4.16.7(@types/node@22.8.0)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3)
+        version: 4.16.7(@types/node@22.8.1)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3)
       json5:
         specifier: ^2.2.3
         version: 2.2.3
@@ -683,13 +689,13 @@ importers:
         version: 5.0.0
       vite:
         specifier: ^5.4.10
-        version: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+        version: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
       vite-plugin-sass-dts:
         specifier: ^1.3.29
-        version: 1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       vite-tsconfig-paths:
         specifier: ^5.0.1
-        version: 5.0.1(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+        version: 5.0.1(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
 
 packages:
 
@@ -2454,6 +2460,9 @@ packages:
 
   '@types/node@22.8.0':
     resolution: {integrity: sha512-84rafSBHC/z1i1E3p0cJwKA+CfYDNSXX9WSZBRopjIzLET8oNt6ht2tei4C7izwDeEiLLfdeSVBv1egOH916hg==}
+
+  '@types/node@22.8.1':
+    resolution: {integrity: sha512-k6Gi8Yyo8EtrNtkHXutUu2corfDf9su95VYVP10aGYMMROM6SAItZi0w1XszA6RtWTHSVp5OeFof37w0IEqCQg==}
 
   '@types/prop-types@15.7.13':
     resolution: {integrity: sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==}
@@ -5853,6 +5862,9 @@ packages:
   yaml-to-momoa@0.0.1:
     resolution: {integrity: sha512-veT3zMQSdVv/YRCEOBFtoxTcI7Y5OtC78i6rUiaFXHxTNemyMq5ARf8UJkfdkdf77DrMdSyUPfCvVW0Qk49PZQ==}
 
+  yaml-to-momoa@0.0.3:
+    resolution: {integrity: sha512-8zEu6HkZO+upPrmEg9kqugEoPC8A11f7zveWv4qwMHJ1+21FYU2bqf2TleMm2IlwRNcdvDLx0yWJUxGlHJm3qA==}
+
   yaml@2.6.0:
     resolution: {integrity: sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ==}
     engines: {node: '>= 14'}
@@ -6014,12 +6026,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@3.1.8(astro@4.16.7(@types/node@22.8.0)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3))':
+  '@astrojs/mdx@3.1.8(astro@4.16.7(@types/node@22.8.1)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3))':
     dependencies:
       '@astrojs/markdown-remark': 5.3.0
       '@mdx-js/mdx': 3.1.0(acorn@8.13.0)
       acorn: 8.13.0
-      astro: 4.16.7(@types/node@22.8.0)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3)
+      astro: 4.16.7(@types/node@22.8.1)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       gray-matter: 4.0.3
@@ -6038,11 +6050,11 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/react@3.6.2(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))':
+  '@astrojs/react@3.6.2(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(types-react-dom@19.0.0-rc.1)(types-react@19.0.0-rc.1)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))':
     dependencies:
       '@types/react': types-react@19.0.0-rc.1
       '@types/react-dom': types-react-dom@19.0.0-rc.1
-      '@vitejs/plugin-react': 4.3.3(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+      '@vitejs/plugin-react': 4.3.3(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       react: 19.0.0-rc-cae764ce-20241025
       react-dom: 19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025)
       ultrahtml: 1.5.3
@@ -6743,13 +6755,13 @@ snapshots:
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
 
-  '@joshwooding/vite-plugin-react-docgen-typescript@0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))':
+  '@joshwooding/vite-plugin-react-docgen-typescript@0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))':
     dependencies:
       glob: 7.2.3
       glob-promise: 4.2.2(glob@7.2.3)
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.6.3)
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     optionalDependencies:
       typescript: 5.6.3
 
@@ -7302,7 +7314,7 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
-  '@storybook/builder-vite@8.3.6(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)':
+  '@storybook/builder-vite@8.3.6(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)':
     dependencies:
       '@storybook/csf-plugin': 8.3.6(storybook@8.3.6)(webpack-sources@3.2.3)
       '@types/find-cache-dir': 3.2.1
@@ -7314,7 +7326,7 @@ snapshots:
       magic-string: 0.30.12
       storybook: 8.3.6
       ts-dedent: 2.2.0
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     optionalDependencies:
       typescript: 5.6.3
     transitivePeerDependencies:
@@ -7390,11 +7402,11 @@ snapshots:
       react-dom: 19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025)
       storybook: 8.3.6
 
-  '@storybook/react-vite@8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)':
+  '@storybook/react-vite@8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(rollup@4.24.0)(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)':
     dependencies:
-      '@joshwooding/vite-plugin-react-docgen-typescript': 0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+      '@joshwooding/vite-plugin-react-docgen-typescript': 0.3.0(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       '@rollup/pluginutils': 5.1.3(rollup@4.24.0)
-      '@storybook/builder-vite': 8.3.6(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)
+      '@storybook/builder-vite': 8.3.6(storybook@8.3.6)(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))(webpack-sources@3.2.3)
       '@storybook/react': 8.3.6(@storybook/test@8.3.6(storybook@8.3.6))(react-dom@19.0.0-rc-cae764ce-20241025(react@19.0.0-rc-cae764ce-20241025))(react@19.0.0-rc-cae764ce-20241025)(storybook@8.3.6)(typescript@5.6.3)
       find-up: 5.0.0
       magic-string: 0.30.12
@@ -7404,7 +7416,7 @@ snapshots:
       resolve: 1.22.8
       storybook: 8.3.6
       tsconfig-paths: 4.2.0
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - '@storybook/test'
@@ -7424,7 +7436,7 @@ snapshots:
       '@storybook/theming': 8.3.6(storybook@8.3.6)
       '@types/escodegen': 0.0.6
       '@types/estree': 0.0.51
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
       acorn: 7.4.1
       acorn-jsx: 5.3.2(acorn@7.4.1)
       acorn-walk: 7.2.0
@@ -7589,11 +7601,11 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.38
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
 
   '@types/connect@3.4.38':
     dependencies:
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
 
   '@types/cookie@0.6.0': {}
 
@@ -7621,7 +7633,7 @@ snapshots:
 
   '@types/express-serve-static-core@4.19.6':
     dependencies:
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
       '@types/qs': 6.9.16
       '@types/range-parser': 1.2.7
       '@types/send': 0.17.4
@@ -7638,7 +7650,7 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 5.1.2
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
 
   '@types/google.maps@3.58.1': {}
 
@@ -7674,6 +7686,10 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
+  '@types/node@22.8.1':
+    dependencies:
+      undici-types: 6.19.8
+
   '@types/prop-types@15.7.13': {}
 
   '@types/qs@6.9.16': {}
@@ -7690,12 +7706,12 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
 
   '@types/serve-static@1.15.7':
     dependencies:
       '@types/http-errors': 2.0.4
-      '@types/node': 22.8.0
+      '@types/node': 22.8.1
       '@types/send': 0.17.4
 
   '@types/unist@2.0.11': {}
@@ -7713,21 +7729,21 @@ snapshots:
       '@use-gesture/core': 10.3.1
       react: 19.0.0-rc-cae764ce-20241025
 
-  '@vitejs/plugin-react-swc@3.7.1(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))':
+  '@vitejs/plugin-react-swc@3.7.1(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))':
     dependencies:
       '@swc/core': 1.7.39
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     transitivePeerDependencies:
       - '@swc/helpers'
 
-  '@vitejs/plugin-react@4.3.3(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))':
+  '@vitejs/plugin-react@4.3.3(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.0)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.0)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.2
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     transitivePeerDependencies:
       - supports-color
 
@@ -7752,6 +7768,14 @@ snapshots:
       magic-string: 0.30.12
     optionalDependencies:
       vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+
+  '@vitest/mocker@2.1.3(@vitest/spy@2.1.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))':
+    dependencies:
+      '@vitest/spy': 2.1.3
+      estree-walker: 3.0.3
+      magic-string: 0.30.12
+    optionalDependencies:
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
 
   '@vitest/pretty-format@2.0.5':
     dependencies:
@@ -7918,7 +7942,7 @@ snapshots:
 
   astring@1.9.0: {}
 
-  astro@4.16.7(@types/node@22.8.0)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3):
+  astro@4.16.7(@types/node@22.8.1)(rollup@4.24.0)(sass-embedded@1.78.0)(sass@1.77.5)(typescript@5.6.3):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -7974,8 +7998,8 @@ snapshots:
       tsconfck: 3.1.4(typescript@5.6.3)
       unist-util-visit: 5.0.0
       vfile: 6.0.3
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
-      vitefu: 1.0.3(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5))
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
+      vitefu: 1.0.3(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
       which-pm: 3.0.0
       xxhash-wasm: 1.0.2
       yargs-parser: 21.1.1
@@ -11478,21 +11502,38 @@ snapshots:
       - supports-color
       - terser
 
-  vite-plugin-sass-dts@1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)):
+  vite-node@2.1.3(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5):
+    dependencies:
+      cac: 6.7.14
+      debug: 4.3.7
+      pathe: 1.1.2
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
+    transitivePeerDependencies:
+      - '@types/node'
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vite-plugin-sass-dts@1.3.29(postcss@8.4.47)(prettier@3.3.3)(sass-embedded@1.78.0)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)):
     dependencies:
       postcss: 8.4.47
       postcss-js: 4.0.1(postcss@8.4.47)
       prettier: 3.3.3
       sass-embedded: 1.78.0
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
 
-  vite-tsconfig-paths@5.0.1(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)):
+  vite-tsconfig-paths@5.0.1(typescript@5.6.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)):
     dependencies:
       debug: 4.3.7
       globrex: 0.1.2
       tsconfck: 3.1.4(typescript@5.6.3)
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11508,11 +11549,22 @@ snapshots:
       sass: 1.77.5
       sass-embedded: 1.78.0
 
-  vitefu@1.0.3(vite@5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)):
+  vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5):
+    dependencies:
+      esbuild: 0.21.5
+      postcss: 8.4.47
+      rollup: 4.24.0
     optionalDependencies:
-      vite: 5.4.10(@types/node@22.8.0)(sass-embedded@1.78.0)(sass@1.77.5)
+      '@types/node': 22.8.1
+      fsevents: 2.3.3
+      sass: 1.77.5
+      sass-embedded: 1.78.0
 
-  vitest-axe@0.1.0(vitest@2.1.3(@types/node@22.8.0)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5)):
+  vitefu@1.0.3(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)):
+    optionalDependencies:
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
+
+  vitest-axe@0.1.0(vitest@2.1.3(@types/node@22.8.1)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5)):
     dependencies:
       aria-query: 5.3.2
       axe-core: 4.10.2
@@ -11520,7 +11572,7 @@ snapshots:
       dom-accessibility-api: 0.5.16
       lodash-es: 4.17.21
       redent: 3.0.0
-      vitest: 2.1.3(@types/node@22.8.0)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5)
+      vitest: 2.1.3(@types/node@22.8.1)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5)
 
   vitest@2.1.3(@types/node@22.8.0)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5):
     dependencies:
@@ -11545,6 +11597,41 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.8.0
+      jsdom: 24.1.3
+    transitivePeerDependencies:
+      - less
+      - lightningcss
+      - msw
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+
+  vitest@2.1.3(@types/node@22.8.1)(jsdom@24.1.3)(sass-embedded@1.78.0)(sass@1.77.5):
+    dependencies:
+      '@vitest/expect': 2.1.3
+      '@vitest/mocker': 2.1.3(@vitest/spy@2.1.3)(vite@5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5))
+      '@vitest/pretty-format': 2.1.3
+      '@vitest/runner': 2.1.3
+      '@vitest/snapshot': 2.1.3
+      '@vitest/spy': 2.1.3
+      '@vitest/utils': 2.1.3
+      chai: 5.1.2
+      debug: 4.3.7
+      magic-string: 0.30.12
+      pathe: 1.1.2
+      std-env: 3.7.0
+      tinybench: 2.9.0
+      tinyexec: 0.3.1
+      tinypool: 1.0.1
+      tinyrainbow: 1.2.0
+      vite: 5.4.10(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
+      vite-node: 2.1.3(@types/node@22.8.1)(sass-embedded@1.78.0)(sass@1.77.5)
+      why-is-node-running: 2.3.0
+    optionalDependencies:
+      '@types/node': 22.8.1
       jsdom: 24.1.3
     transitivePeerDependencies:
       - less
@@ -11684,6 +11771,11 @@ snapshots:
   yallist@3.1.1: {}
 
   yaml-to-momoa@0.0.1:
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.0
+      yaml: 2.6.0
+
+  yaml-to-momoa@0.0.3:
     dependencies:
       '@humanwhocodes/momoa': 3.3.0
       yaml: 2.6.0

@@ -11,6 +11,7 @@
       "dependsOn": ["^format"]
     },
     "lint": {
+      "inputs": ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.css", "**/biome.json"],
       "dependsOn": ["build"]
     },
     "test": {

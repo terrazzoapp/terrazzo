@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { transformJSValue } from '../src/js';
+import { transformJSValue } from '../src/js/index.js';
 import type {
   BooleanTokenNormalized,
   ColorTokenNormalized,

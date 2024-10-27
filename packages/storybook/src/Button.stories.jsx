@@ -1,5 +1,5 @@
 import { Button } from '@terrazzo/tiles';
-import StickerSheet from './components/StickerSheet';
+import StickerSheet from './components/StickerSheet.tsx';
 
 export default {
   title: 'Components/Action/Button',

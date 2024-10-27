@@ -1,6 +1,6 @@
 declare const classNames: {
-  readonly logo: "logo";
   readonly header: "header";
+  readonly logo: "logo";
   readonly codePanel: "codePanel";
   readonly title: "title";
 };

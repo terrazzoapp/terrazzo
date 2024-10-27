@@ -1,0 +1,116 @@
+.tz-treegrid-root {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.tz-treegrid-caret {
+  align-items: center;
+  display: inline-flex;
+  height: 1em;
+  justify-content: center;
+  transform-origin: 50% 62.5%;
+  transition: transform 50ms linear;
+  width: 1em;
+
+  &[data-expanded="true"] {
+    transform: rotate(90deg);
+  }
+}
+
+.tz-treegrid-rowgroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.tz-treegrid-group-name,
+.tz-treegrid-item-name {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  font-family: var(--tz-typography-200-regular-font-family);
+  font-size: var(--tz-typography-200-regular-font-size);
+  font-variation-settings: var(
+    --tz-typography-200-regular-font-variation-settings
+  );
+  font-weight: var(--tz-typography-200-regular-font-weight);
+  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+  line-height: var(--tz-typography-200-regular-line-height);
+
+  &:focus-visible {
+    outline: var(--tz-border-focus);
+  }
+}
+
+.tz-treegrid-group,
+.tz-treegrid-item {
+  display: flex;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &[aria-selected="true"] {
+    background: var(--tz-color-bg-selected);
+    color: var(--tz-color-text-selected);
+  }
+}
+
+.tz-treegrid-group {
+  --grid-size: 0.5rem;
+
+  &[aria-level="1"] .tz-treegrid-group-name {
+    padding-left: calc(0 * var(--grid-size));
+  }
+
+  &[aria-level="2"] .tz-treegrid-group-name {
+    padding-left: calc(1 * var(--grid-size));
+  }
+
+  &[aria-level="3"] .tz-treegrid-group-name {
+    padding-left: calc(2 * var(--grid-size));
+  }
+
+  &[aria-level="4"] .tz-treegrid-group-name {
+    padding-left: calc(3 * var(--grid-size));
+  }
+
+  &[aria-level="5"] .tz-treegrid-group-name {
+    padding-left: calc(4 * var(--grid-size));
+  }
+
+  &[aria-level="6"] .tz-greegrid-group-name {
+    padding-left: calc(5 * var(--grid-size));
+  }
+}
+
+.tz-treegrid-item {
+  --grid-size: 0.5rem;
+
+  display: flex;
+
+  &[aria-level="1"] .tz-treegrid-item-name {
+    padding-left: calc(0 * var(--grid-size) + 0.5rem);
+  }
+
+  &[aria-level="2"] .tz-treegrid-item-name {
+    padding-left: calc(1 * var(--grid-size) + 0.5rem);
+  }
+
+  &[aria-level="3"] .tz-treegrid-item-name {
+    padding-left: calc(2 * var(--grid-size) + 0.5rem);
+  }
+
+  &[aria-level="4"] .tz-treegrid-item-name {
+    padding-left: calc(3 * var(--grid-size) + 0.5rem);
+  }
+
+  &[aria-level="5"] .tz-treegrid-item-name {
+    padding-left: calc(4 * var(--grid-size) + 0.5rem);
+  }
+
+  &[aria-level="6"] .tz-greegrid-item-name {
+    padding-left: calc(5 * var(--grid-size) + 0.5rem);
+  }
+}

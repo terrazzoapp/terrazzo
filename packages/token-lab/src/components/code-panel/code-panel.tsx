@@ -1,6 +1,6 @@
 import { Code, Cross } from '@terrazzo/icons';
 import clsx from 'clsx';
-import { lazy, Suspense, useId, useState } from 'react';
+import { Suspense, lazy, useId, useState } from 'react';
 import c from './code-panel.module.css';
 
 // lazy-load bc Monaco is heavy af
