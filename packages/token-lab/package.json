@@ -20,7 +20,9 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "scripts": {
-    "dev": "vite dev",
+    "dev": "pnpm run prepare:monaco && vite dev",
+    "build:app": "pnpm run prepare:monaco && vite build",
+    "prepare:monaco": "cp -r node_modules/monaco-editor public",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:/\"",
     "lint:js": "biome check src",
@@ -33,8 +35,8 @@
   "dependencies": {
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
-    "@terrazzo/react-color-picker": "workspace:^",
     "@terrazzo/parser": "workspace:^",
+    "@terrazzo/react-color-picker": "workspace:^",
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@terrazzo/tokens": "workspace:^",

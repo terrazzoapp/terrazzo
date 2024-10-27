@@ -32,7 +32,7 @@ export async function loadTokens(): Promise<string> {
       console.error((evt.target as IDBOpenDBRequest).error);
       resolve('{}');
     };
-    req.onsuccess = (evt) => resolve((evt.target as IDBRequest).result);
+    req.onsuccess = (evt) => resolve((evt.target as IDBRequest).result.data);
   });
 }
 

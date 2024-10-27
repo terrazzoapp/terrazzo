@@ -33,7 +33,7 @@ export interface ParseResult {
 /**
  * Parse and validate Tokens JSON, and lint it
  */
-export default function parse(input: ParseInput[], options?: ParseOptions): Promise<ParseResult>;
+export default function parse(input: ParseInput[], options: ParseOptions): Promise<ParseResult>;
 
 /** Determine if an input is likely a JSON string */
 export function maybeJSONString(input: unknown): boolean;
