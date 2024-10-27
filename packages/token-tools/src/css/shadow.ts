@@ -1,4 +1,4 @@
-import type { ShadowTokenNormalized, ShadowValueNormalized } from '../types';
+import type { ShadowTokenNormalized, ShadowValueNormalized } from '../types.js';
 import { transformColorValue } from './color.js';
 import { transformDimensionValue } from './dimension.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';

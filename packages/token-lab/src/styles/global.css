@@ -7,7 +7,10 @@ body {
   color: var(--tz-color-text-1);
   font-family: var(--tz-typography-family-sans);
   font-size: 100%;
-  font-weight: var(--tz-typography-400-regular-font-weight);
+  font-variation-settings: var(
+    --tz-typography-200-regular-font-variation-settings
+  );
+  font-weight: var(--tz-typography-200-regular-font-weight);
   line-height: 1;
   margin: 0;
 }
