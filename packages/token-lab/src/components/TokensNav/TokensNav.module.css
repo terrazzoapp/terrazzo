@@ -41,17 +41,14 @@
 }
 
 .searchIcon {
-  --size: calc(var(--search-height) * 3 / 4);
   --offset: calc(var(--search-height) / 8);
 
   display: block;
-  height: var(--size);
+  fill: var(--tz-color-text-2);
   left: var(--offset);
-  opacity: 0;
   pointer-events: none;
   position: absolute;
   top: var(--offset);
-  width: var(--size);
   z-index: 5;
 }
 

@@ -20,7 +20,7 @@ export default function useNavigation() {
     window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
   }, [state]);
 
-  return useMemo(() => [state, setState] as const, [state]);
+  return [state, setState] as const;
 }
 
 function serializeSelected(selected: string[]) {

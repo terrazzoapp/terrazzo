@@ -22,7 +22,8 @@
   "scripts": {
     "dev": "pnpm run prepare:monaco && vite dev",
     "build:app": "pnpm run prepare:monaco && vite build",
-    "prepare:monaco": "cp -r node_modules/monaco-editor public",
+    "prepare:monaco": "rm -rf public/monaco-editor && mkdir public/monaco-editor && cp -r node_modules/monaco-editor/esm public/monaco-editor/esm",
+    "preview": "vite preview",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:/\"",
     "lint:js": "biome check src",
@@ -40,6 +41,7 @@
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
+    "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.0.1",
     "jotai": "^2.10.1",

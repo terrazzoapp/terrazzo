@@ -25,5 +25,7 @@
 }
 
 .main {
-  padding-inline: 1.5rem;
+  max-height: calc(100svh - var(--main-nav-height));
+  max-height: calc(100vh - var(--main-nav-height));
+  overflow-y: auto;
 }

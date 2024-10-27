@@ -1,3 +1,4 @@
+import type { ColorValueNormalized } from '@terrazzo/token-tools';
 import { inGamut } from 'culori/fn';
 
 export { inGamut };
@@ -23,7 +24,7 @@ export type Xyz65 =    { mode: 'xyz65';    readonly x: number; readonly y: numbe
 
 export type Color = A98 | Hsl | Hsv | Hwb | Lab | Lch | Lrgb | Okhsl | Okhsv | Oklab | Oklch | P3 | Prophoto | Rec2020 | Rgb | Xyz50 | Xyz65; // biome-ignore format: repetitive strings
 
-export type ColorInput = string | Color;
+export type ColorInput = string | Color | ColorValueNormalized;
 
 /** Culori omits alpha if 1; this adds it */
 export declare function withAlpha(color: Color): Color;
@@ -114,5 +115,5 @@ export declare function createMemoizedColor(color: ColorInput): ColorOutput;
 
 /** memoize Culori colors and reduce unnecessary updates */
 export default function useColor(
-  color: string | Color,
+  color: ColorInput,
 ): [ColorOutput, (newColor: string | Color | ((value: ColorOutput) => string | Color)) => void];

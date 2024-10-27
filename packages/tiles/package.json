@@ -41,7 +41,8 @@
     "@use-gesture/react": "^10.3.1",
     "clsx": "^2.1.1",
     "culori": "^4.0.1",
-    "shiki": "^1.22.1"
+    "shiki": "^1.22.1",
+    "vite": "^5.4.10"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^12.1.1",

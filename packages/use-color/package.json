@@ -23,7 +23,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc && size-limit",
+    "build": "tsc --noEmit && size-limit",
     "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "vitest run"
@@ -32,6 +32,7 @@
     "react": "*"
   },
   "dependencies": {
+    "@terrazzo/token-tools": "workspace:^",
     "@types/culori": "^2.1.1",
     "culori": "^4.0.1"
   },

@@ -1,8 +1,8 @@
 import { MagnifyingGlass, TokenIcon } from '@terrazzo/icons';
 import { TreeGrid } from '@terrazzo/tiles';
 import { useState } from 'react';
-import useTokens from '../../hooks/tokens.js';
 import useNavigation from '../../hooks/navigation.js';
+import useTokens from '../../hooks/tokens.js';
 import c from './TokensNav.module.css';
 
 export default function TokensNav() {
@@ -20,7 +20,7 @@ export default function TokensNav() {
 
   return (
     <div className={c.container}>
-      <MagnifyingGlass className={c.searchIcon} color='var(--tz-color-text-3)' />
+      <MagnifyingGlass className={c.searchIcon} />
       <input
         className={c.search}
         type='search'
@@ -69,6 +69,7 @@ function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: un
         </TreeGrid.Item>
       );
     }
+
     // group
     return (
       <TreeGrid.Group key={k} id={id} name={k}>

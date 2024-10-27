@@ -30,6 +30,7 @@ const $parseError = atom<TokensJSONError | undefined>();
 /**
  * Synchronous hook that works with async IndexedDB.
  * Note that it will update after loading ONCE to load from IndexedDB
+ * ⚠️ Prefer prop drilling / inheritance over using this; this is just to ensure data integrity. If consumed in too many places, can cause performance issues.
  */
 export default function useTokens(filename = DEFAULT_FILENAME) {
   const [tokens, setTokens] = useAtom($tokens);
@@ -77,8 +78,8 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
   }, [filename, tokens, parseResult]);
 }
 
-function onupgradeneeded(evt: IDBVersionChangeEvent) {
-  const db = (evt.target as IDBOpenDBRequest).result as IDBDatabase;
+function onupgradeneeded(ev: IDBVersionChangeEvent) {
+  const db = (ev.target as IDBOpenDBRequest).result as IDBDatabase;
   db.createObjectStore('tokens', { keyPath: 'id' });
 }
 
@@ -91,15 +92,18 @@ export async function loadTokens(filename: string): Promise<string> {
   }
 
   const db = await getDB(DB_NAME, { version: DB_VERSION, onupgradeneeded });
-  const tx = db.transaction(TABLE_NAME, 'readonly');
+  const tx = db.transaction(TABLE_NAME, 'readwrite'); // "readwrite" is needed in case the DB hasn’t been initialized
   const store = tx.objectStore(TABLE_NAME);
   const req = store.get(filename);
   return await new Promise<string>((resolve) => {
-    req.onerror = (evt) => {
-      console.error((evt.target as IDBOpenDBRequest).error);
+    req.onerror = (ev) => {
+      console.error((ev.target as IDBOpenDBRequest).error);
       resolve('{}');
     };
-    req.onsuccess = (evt) => resolve((evt.target as IDBRequest).result.data);
+    req.onsuccess = (ev) => {
+      const data = (ev.target as IDBRequest).result?.data || '{}';
+      resolve(data);
+    };
   });
 }
 
@@ -112,7 +116,7 @@ export async function saveTokens(filename: string, tokens: string): Promise<void
   const store = tx.objectStore(TABLE_NAME);
   const req = store.put({ id: filename, data: tokens });
   return await new Promise<void>((resolve, reject) => {
-    req.onerror = (evt) => reject((evt.target as IDBRequest).error);
+    req.onerror = (ev) => reject((ev.target as IDBRequest).error);
     req.onsuccess = () => resolve();
   });
 }

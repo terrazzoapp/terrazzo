@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 
 /** @see https://vitejs.dev/config/ */
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react({ devTarget: 'esnext' })],
   test: {
     environment: 'jsdom',
     restoreMocks: true,
