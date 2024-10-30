@@ -116,4 +116,4 @@ export declare function createMemoizedColor(color: ColorInput): ColorOutput;
 /** memoize Culori colors and reduce unnecessary updates */
 export default function useColor(
   color: ColorInput,
-): [ColorOutput, (newColor: string | Color | ((value: ColorOutput) => string | Color)) => void];
+): [ColorOutput, (newColor: ColorInput | ((value: ColorOutput) => string | Color)) => void];
