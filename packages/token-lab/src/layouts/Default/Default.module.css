@@ -1,0 +1,31 @@
+.layout {
+  --main-nav-height: 3rem;
+  --sidebar-width: 16rem;
+
+  display: grid;
+  grid-template-rows: var(--main-nav-height) auto;
+  height: 100svh;
+  height: 100vh;
+  overflow: hidden;
+  width: 100svw;
+  width: 100vw;
+}
+
+.page {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) auto;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: calc(100svh - var(--main-nav-height));
+  max-height: calc(100vh - var(--main-nav-height));
+}
+
+.main {
+  max-height: calc(100svh - var(--main-nav-height));
+  max-height: calc(100vh - var(--main-nav-height));
+  overflow-y: auto;
+}

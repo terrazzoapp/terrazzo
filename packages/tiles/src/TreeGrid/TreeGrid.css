@@ -9,7 +9,7 @@
   display: inline-flex;
   height: 1em;
   justify-content: center;
-  transform-origin: 50% 62.5%;
+  transform-origin: 50% 50%;
   transition: transform 50ms linear;
   width: 1em;
 
@@ -31,9 +31,7 @@
   flex-shrink: 1;
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
-  font-variation-settings: var(
-    --tz-typography-200-regular-font-variation-settings
-  );
+  font-variation-settings: var(--tz-typography-200-regular-font-variation-settings);
   font-weight: var(--tz-typography-200-regular-font-weight);
   letter-spacing: var(--tz-typography-200-regular-letter-spacing);
   line-height: var(--tz-typography-200-regular-line-height);

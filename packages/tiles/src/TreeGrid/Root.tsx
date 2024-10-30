@@ -14,46 +14,57 @@ export const Context = createContext({
 });
 
 export interface RootProps extends ComponentProps<'table'> {
+  /** Set initial expanded values */
+  defaultExpanded?: string[];
+  /** Set initial selected values */
+  defaultSelected?: string[];
   /** Callback whenever a group is expanded or collapsed */
-  onExpandGroups?: (expanded: string[]) => void;
+  onExpandGroups?: (ids: string[]) => void;
   /** Callback whenever a group or item is selected/deselected */
-  onSelectItems?: (selection: string[]) => void;
+  onSelectItems?: (ids: string[]) => void;
 }
 
 export default function Root({
   children,
   className,
+  defaultExpanded = [],
+  defaultSelected = [],
   onClick,
   onExpandGroups,
   onKeyUp,
   onSelectItems,
   ...rest
 }: RootProps) {
-  const [expanded, setExpanded] = useState(new Set<string>());
-  const [selected, setSelected] = useState(new Set<string>());
+  const [expanded, setExpanded] = useState(new Set(defaultExpanded));
+  const [selected, setSelected] = useState(new Set(defaultSelected));
   const [ll, setLL] = useState<Record<string, string[]>>({});
 
   const rowGroupEl = useRef<HTMLTableSectionElement>(null);
 
   const expand = (id: string) => {
-    setExpanded(addToSet(id));
-    onExpandGroups?.([...expanded]);
+    const nextValue = addToSet(id);
+    setExpanded(nextValue);
+    onExpandGroups?.([...nextValue(expanded)]);
   };
   const collapse = (id: string) => {
-    setExpanded(removeFromSet(id));
-    onExpandGroups?.([...expanded]);
+    const nextValue = removeFromSet(id);
+    setExpanded(nextValue);
+    onExpandGroups?.([...nextValue(expanded)]);
   };
   const select = (id: string) => {
-    setSelected(addToSet(id));
-    onSelectItems?.([...selected]);
+    const nextValue = addToSet(id);
+    setSelected(nextValue);
+    onSelectItems?.([...nextValue(selected)]);
   };
   const selectOnly = (id: string) => {
-    setSelected(new Set([id]));
-    onSelectItems?.([...selected]);
+    const nextValue = new Set([id]);
+    setSelected(nextValue);
+    onSelectItems?.([...nextValue]);
   };
   const deselect = (id: string) => {
-    setSelected(removeFromSet(id));
-    onSelectItems?.([...selected]);
+    const nextValue = removeFromSet(id);
+    setSelected(nextValue);
+    onSelectItems?.([...nextValue(selected)]);
   };
 
   /** @see https://www.w3.org/WAI/ARIA/apg/patterns/treegrid/ */
@@ -225,7 +236,9 @@ export default function Root({
                 throw new Error('id missing');
               }
               if (id in ll) {
-                throw new Error(`ID "${id}" already registered`);
+                // TODO: do we need to warn here if something is re-rendered?
+                // throw new Error(`ID "${id}" already registered`);
+                return;
               }
               setLL((value) => ({
                 ...value,

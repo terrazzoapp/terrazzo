@@ -5,7 +5,7 @@ import '@terrazzo/tiles/dist/all-components.css';
 import '@terrazzo/react-color-picker/dist/all-components.css';
 import './styles/global.css';
 import { Provider as JotaiProvider } from 'jotai';
-import { DefaultLayout } from './layouts/default.js';
+import { DefaultLayout } from './layouts/Default/Default.js';
 
 export default function App() {
   return (

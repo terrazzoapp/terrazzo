@@ -1,0 +1,25 @@
+.btn {
+  background: none;
+  border: 1px solid var(--tz-border-3);
+  border-radius: 0;
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0;
+
+  &:hover {
+    border-color: var(--tz-color-border-2);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--tz-color-focus);
+    outline-offset: 2px;
+  }
+}
+
+.swatch {
+  background: var(--color);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  height: 2rem;
+  width: 3rem;
+}

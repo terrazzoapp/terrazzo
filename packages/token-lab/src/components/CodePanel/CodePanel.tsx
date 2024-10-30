@@ -1,14 +1,17 @@
 import { Code, Cross } from '@terrazzo/icons';
+import { CopyButton } from '@terrazzo/tiles';
 import clsx from 'clsx';
 import { Suspense, lazy, useId, useState } from 'react';
-import c from './code-panel.module.css';
+import useTokens from '../../hooks/tokens.js';
+import c from './CodePanel.module.css';
 
 // lazy-load bc Monaco is heavy af
-const CodeEditor = lazy(() => import('../code-editor/code-editor.js'));
+const CodeEditor = lazy(() => import('../CodeEditor/CodeEditor.js'));
 
 export default function CodePanel() {
   const panelID = useId();
   const [isOpen, setIsOpen] = useState(false);
+  const { tokens } = useTokens();
 
   return (
     <div className={c.container}>
@@ -34,6 +37,7 @@ export default function CodePanel() {
       >
         <div role='menu' className={c.menu}>
           <span className={c.title}>tokens.json</span>
+          <CopyButton clipboardText={tokens} />
           <button
             className={clsx(c.btn, c.btnClose)}
             type='button'

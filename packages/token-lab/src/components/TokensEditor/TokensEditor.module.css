@@ -1,0 +1,37 @@
+.multipleGroups {
+  padding: 1.5rem;
+}
+
+.group {
+  margin-block: 1.5rem;
+  padding-inline: 1.5rem;
+}
+
+.groupTitle {
+  font-family: var(--tz-typography-400-medium-font-family);
+  font-size: var(--tz-typography-400-medium-font-size);
+  font-variation-settings: var(--tz-typography-400-medium-font-variation-settings);
+  font-weight: var(--tz-typography-400-medium-font-weight);
+  letter-spacing: var(--tz-typography-400-medium-letter-spacing);
+  line-height: var(--tz-typography-400-medium-line-height);
+}
+
+.tokenGrid {
+  border-collapse: collapse;
+  border-left: var(--tz-border-3);
+  border-top: var(--tz-border-3);
+  text-align: left;
+  width: 100%;
+}
+
+.colheader {
+  border-bottom: var(--tz-border-3);
+  border-right: var(--tz-border-3);
+  font-family: var(--tz-typography-200-medium-font-family);
+  font-size: var(--tz-typography-200-medium-font-size);
+  font-variation-settings: var(--tz-typography-200-medium-font-variation-settings);
+  font-weight: var(--tz-typography-200-medium-font-weight);
+  letter-spacing: var(--tz-typography-200-medium-letter-spacing);
+  line-height: var(--tz-typography-200-medium-line-height);
+  padding: 0.5rem;
+}

@@ -2,9 +2,7 @@
   --tz-switch-height: 1.125rem;
   --tz-switch-width: 1.875rem;
   --tz-switch-inner-padding: 0.125rem;
-  --tz-switch-handle-size: calc(
-    var(--tz-switch-height) - 2 * var(--tz-switch-inner-padding)
-  );
+  --tz-switch-handle-size: calc(var(--tz-switch-height) - 2 * var(--tz-switch-inner-padding));
 
   cursor: pointer;
   display: flex;
@@ -76,10 +74,7 @@
 
   &::after {
     transform: translate3d(
-      calc(
-        var(--tz-switch-inner-padding) + var(--tz-switch-width) -
-          var(--tz-switch-height)
-      ),
+      calc(var(--tz-switch-inner-padding) + var(--tz-switch-width) - var(--tz-switch-height)),
       0,
       0
     );

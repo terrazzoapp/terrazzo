@@ -3,7 +3,7 @@
 
   align-items: center;
   background-color: transparent;
-  border: 1px solid var(--tz-button-secondary-border);
+  border: 1px solid var(--tz-border-1);
   border-radius: var(--tz-radius-300);
   color: var(--tz-icon-secondary);
   cursor: pointer;
@@ -16,10 +16,6 @@
   transition: outline-color var(--tz-timing-default) var(--tz-ease-linear);
   width: var(--tz-space-control-m);
   z-index: 2;
-
-  &:hover {
-    background-color: var(--tz-color-base-gray-300);
-  }
 
   &:focus-visible {
     outline-color: var(--tz-nav-primary-highlight);

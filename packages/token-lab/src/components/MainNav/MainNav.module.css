@@ -2,7 +2,7 @@
   align-items: center;
   border-bottom: var(--tz-border-3);
   display: flex;
-  height: 3rem;
+  height: var(--main-nav-height);
   user-select: none;
 }
 
