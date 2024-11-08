@@ -120,10 +120,13 @@ export default function normalizeValue(token) {
     case 'typography': {
       const output = {};
       for (const k in token.$value) {
-        if (k === 'fontSize') {
-          output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] });
-        } else {
-          output[k] = token.$value[k];
+        switch (k) {
+          case 'letterSpacing':
+          case 'fontSize':
+            output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] });
+            break;
+          default:
+            output[k] = token.$value[k];
         }
       }
       return output;

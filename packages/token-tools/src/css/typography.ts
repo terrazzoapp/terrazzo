@@ -29,6 +29,7 @@ export function transformTypographyValue(
           transformedValue = transformFontFamilyValue(subvalue as string[], { transformAlias });
           break;
         }
+        case 'letterSpacing':
         case 'fontSize': {
           transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
           break;
