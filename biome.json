@@ -38,6 +38,7 @@
       },
       "suspicious": {
         "noConsoleLog": "error",
+        "noFallthroughSwitchClause": "error",
         "noExplicitAny": "warn"
       }
     }
