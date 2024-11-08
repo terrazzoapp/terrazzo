@@ -11,5 +11,6 @@ export function transformDurationValue(
   } else if (typeof value === 'string') {
     throw new Error(`Could not resolve alias ${value}`);
   }
-  return value.value === 0 ? '0' : `${value.value}${value.unit}`;
+  // Note: always return unit, even if `0`
+  return `${value.value}${value.unit}`;
 }

@@ -36,7 +36,7 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@humanwhocodes/momoa": "^3.3.0",
+    "@humanwhocodes/momoa": "^3.3.3",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
     "@types/culori": "^2.1.1",
