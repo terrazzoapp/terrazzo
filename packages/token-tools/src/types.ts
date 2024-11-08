@@ -267,7 +267,7 @@ export interface GroupCore {
   $extensions?: Record<string, unknown>;
 }
 
-export type Group = GroupCore & { [key: string]: GroupOrToken };
+export type Group = GroupCore | { [key: string]: GroupOrToken | GroupCore };
 
 export type GroupOrToken = Group | Token;
 
