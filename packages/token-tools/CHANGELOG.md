@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.1.2
+
+### Patch Changes
+
+- [#342](https://github.com/terrazzoapp/terrazzo/pull/342) [`4bd7b85`](https://github.com/terrazzoapp/terrazzo/commit/4bd7b85427267728ba8c3ffd80aa4e01e8616c98) Thanks [@tomasfrancisco](https://github.com/tomasfrancisco)! - Improve typings for Group to allow nested Groups
+
 ## 0.1.1
 
 ### Patch Changes
