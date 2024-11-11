@@ -1,5 +1,5 @@
-import { describe, expectTypeOf, it } from 'vitest';
 import type { Group } from 'src/types.js';
+import { describe, expectTypeOf, it } from 'vitest';
 
 describe('types', () => {
   it('group', () => {
