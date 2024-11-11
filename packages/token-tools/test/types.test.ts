@@ -17,9 +17,9 @@ describe('types', () => {
 
   it('nested groups', () => {
     const groupsWithCore = {
-      $description: 'higher group',
+      $description: 'group',
       color: {
-        $description: 'lower group',
+        $description: 'nested group',
         primary: {
           $type: 'color',
           $description: 'token',
