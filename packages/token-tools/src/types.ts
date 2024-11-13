@@ -216,6 +216,7 @@ export interface ShadowValue {
   offsetY: DimensionValue | AliasValue;
   blur?: DimensionValue | AliasValue;
   spread?: DimensionValue | AliasValue;
+  inset?: boolean;
 }
 
 /**
@@ -466,6 +467,7 @@ export interface ShadowValueNormalized {
   offsetY: DimensionValue;
   blur: DimensionValue;
   spread: DimensionValue;
+  inset: boolean;
 }
 
 export interface StringTokenNormalized extends TokenNormalizedCore {

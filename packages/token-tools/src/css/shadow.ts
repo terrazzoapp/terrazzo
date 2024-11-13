@@ -28,8 +28,9 @@ export function transformShadowLayer(
   const spread = partialAliasOf?.spread
     ? transformAlias(partialAliasOf.spread)
     : transformDimensionValue(value.spread, { transformAlias });
+  const inset = value?.inset === true ? 'inset' : undefined;
 
-  return [offsetX, offsetY, blur, spread, color].join(' ');
+  return [inset, offsetX, offsetY, blur, spread, color].filter((v) => v !== undefined).join(' ');
 }
 
 /** Convert shadow value to CSS */

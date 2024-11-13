@@ -199,10 +199,29 @@ describe('transformShadowValue', () => {
               offsetY: { value: 0.25, unit: 'rem' },
               blur: { value: 0.5, unit: 'rem' },
               spread: { value: 0, unit: 'px' },
+              inset: false,
             },
           ],
         ],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
+      },
+    ],
+    [
+      'inset',
+      {
+        given: [
+          [
+            {
+              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+              offsetX: { value: 0, unit: 'px' },
+              offsetY: { value: 0.25, unit: 'rem' },
+              blur: { value: 0.5, unit: 'rem' },
+              spread: { value: 0, unit: 'px' },
+              inset: true,
+            },
+          ],
+        ],
+        want: { success: 'inset 0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
       },
     ],
     [
@@ -216,6 +235,7 @@ describe('transformShadowValue', () => {
               offsetY: { value: 0.25, unit: 'rem' },
               blur: { value: 0.5, unit: 'rem' },
               spread: { value: 0, unit: 'px' },
+              inset: false,
             },
             {
               color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
@@ -223,6 +243,7 @@ describe('transformShadowValue', () => {
               offsetY: { value: 0.5, unit: 'rem' },
               blur: { value: 1, unit: 'rem' },
               spread: { value: 0, unit: 'px' },
+              inset: false,
             },
           ],
         ],
