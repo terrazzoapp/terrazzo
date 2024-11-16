@@ -30,7 +30,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       }
     ],
   },
@@ -61,7 +62,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       }
     ],
   },
@@ -92,7 +94,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": true
       }
     ],
   },
@@ -123,7 +126,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       },
       {
         "color": {
@@ -150,7 +154,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       },
       {
         "color": {
@@ -177,7 +182,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       },
       {
         "color": {
@@ -204,7 +210,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       },
       {
         "color": {
@@ -231,7 +238,8 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
-        }
+        },
+        "inset": false
       }
     ],
   },

@@ -1946,6 +1946,7 @@ font:
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
                   spread: { value: 0, unit: 'px' },
+                  inset: false,
                 },
               ],
             },
@@ -1990,6 +1991,7 @@ font:
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
                   spread: { value: 0, unit: 'px' },
+                  inset: false,
                 },
                 {
                   color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
@@ -1997,6 +1999,7 @@ font:
                   offsetY: { value: 0.5, unit: 'rem' },
                   blur: { value: 1, unit: 'rem' },
                   spread: { value: 0, unit: 'px' },
+                  inset: false,
                 },
               ],
             },
@@ -2027,6 +2030,42 @@ font:
   5 |       "offsetX": 0,
   6 |       "offsetY": "0.25rem",
   7 |       "blur": "0.5rem"`,
+          },
+        },
+      ],
+      [
+        'valid: inset',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                shadowBase: {
+                  $type: 'shadow',
+                  $value: {
+                    color: '#000000',
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    inset: true,
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              shadowBase: [
+                {
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1 },
+                  offsetX: { value: 0, unit: 'rem' },
+                  offsetY: { value: 0.25, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'px' },
+                  inset: true,
+                },
+              ],
+            },
           },
         },
       ],

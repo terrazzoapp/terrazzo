@@ -102,6 +102,7 @@ export default function normalizeValue(token) {
         offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? 0 }),
         blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? 0 }),
         spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? 0 }),
+        inset: layer.inset === true,
       }));
     }
     case 'strokeStyle': {

@@ -462,6 +462,19 @@ export function validateNumber($value, node, { filename, src, logger }) {
 }
 
 /**
+ * Verify a Boolean token is valid
+ * @param {ValueNode} $value
+ * @param {AnyNode} node
+ * @param {ValidateOptions} options
+ * @return {void}
+ */
+export function validateBoolean($value, node, { filename, src, logger }) {
+  if ($value.type !== 'Boolean') {
+    logger.error({ message: `Expected boolean, received ${$value.type}`, filename, node: $value, src });
+  }
+}
+
+/**
  * Verify a Shadow token’s value is valid
  * @param {ValueNode} $value
  * @param {AnyNode} node
@@ -481,6 +494,7 @@ export function validateShadowLayer($value, node, { filename, src, logger }) {
       offsetY: { validator: validateDimension, required: true },
       blur: { validator: validateDimension },
       spread: { validator: validateDimension },
+      inset: { validator: validateBoolean },
     },
     node,
     { filename, src, logger },
