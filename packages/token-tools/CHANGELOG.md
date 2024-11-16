@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.1.3
+
+### Patch Changes
+
+- [#347](https://github.com/terrazzoapp/terrazzo/pull/347) [`b90287c`](https://github.com/terrazzoapp/terrazzo/commit/b90287cb13dc3bfdb24b8d6698931c7d156c3638) Thanks [@tomasfrancisco](https://github.com/tomasfrancisco)! - Add support for inset shadows
+
 ## 0.1.2
 
 ### Patch Changes
