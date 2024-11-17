@@ -17,10 +17,10 @@
     "culori": "^4.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.3.6",
-    "@storybook/react": "^8.3.6",
-    "@storybook/react-vite": "^8.3.6",
-    "@storybook/test": "^8.3.6",
+    "@storybook/addon-essentials": "^8.4.4",
+    "@storybook/react": "^8.4.4",
+    "@storybook/react-vite": "^8.4.4",
+    "@storybook/test": "^8.4.4",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
@@ -31,12 +31,12 @@
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
     "@vitejs/plugin-react-swc": "^3.7.1",
-    "react": "19.0.0-rc-cae764ce-20241025",
-    "react-dom": "19.0.0-rc-cae764ce-20241025",
-    "storybook": "^8.3.6",
+    "react": "19.0.0-rc.1",
+    "react-dom": "19.0.0-rc.1",
+    "storybook": "^8.4.4",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1",
-    "vite": "^5.4.10"
+    "vite": "^5.4.11"
   },
   "overrides": {
     "@types/react": "npm:types-react@rc",

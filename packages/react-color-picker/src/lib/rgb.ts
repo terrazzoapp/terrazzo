@@ -17,8 +17,10 @@ vec4 linear_rgb_to_srgb(vec4 linear_rgb) {
   return vec4(srgb_transfer_fn(linear_rgb.x), srgb_transfer_fn(linear_rgb.y), srgb_transfer_fn(linear_rgb.z), linear_rgb.w);
 }
 
+// Blend 2 vec4 colors together
 vec4 avg_vec4(vec4 a, vec4 b, float w) {
-  return a * (1.0 - w) + b * w;
+  float _w = 1.0 - w;
+  return (a * _w) + (b * w);
 }
 
 vec4 blend_srgb(vec4 a, vec4 b, float w) {

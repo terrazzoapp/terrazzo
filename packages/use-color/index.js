@@ -377,18 +377,15 @@ export function createMemoizedColor(color) {
 /** memoize Culori colors and reduce unnecessary updates */
 export default function useColor(color) {
   const [innerColor, setInnerColor] = useState(createMemoizedColor(parse(color)));
-  const setColorOutput = useCallback(
-    (newColor) => {
-      if (newColor) {
-        if (typeof newColor === 'function') {
-          setInnerColor((value) => createMemoizedColor(parse(newColor(value))));
-        } else {
-          setInnerColor(createMemoizedColor(parse(newColor)));
-        }
+  const setColorOutput = useCallback((newColor) => {
+    if (newColor) {
+      if (typeof newColor === 'function') {
+        setInnerColor((value) => createMemoizedColor(parse(newColor(value))));
+      } else {
+        setInnerColor(createMemoizedColor(parse(newColor)));
       }
-    },
-    [setInnerColor],
-  );
+    }
+  }, []);
 
   return [innerColor, setColorOutput];
 }

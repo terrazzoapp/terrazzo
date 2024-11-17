@@ -1,9 +1,6 @@
-import type { A98, Lrgb, P3, Prophoto, Rec2020, Rgb } from '@terrazzo/use-color';
+import type { Oklab } from '@terrazzo/use-color';
 import { OKLAB } from './oklab.js';
 import { LINEAR_RGB } from './rgb.js';
-
-/** RGB-based colorspaces */
-export type WebGLColor = A98 | Lrgb | Rgb | P3 | Rec2020 | Prophoto;
 
 /** create a WebGL2 rendering context and throw errors if needed */
 export function createRenderingContext(canvas: HTMLCanvasElement): WebGL2RenderingContext {
@@ -96,17 +93,21 @@ in vec4 v_end_color;
 out vec4 f_color;
 
 ${LINEAR_RGB}
+${OKLAB}
 
 void main() {
   float a = vec2(gl_FragCoord.xy / v_resolution).x;
-  f_color = blend_srgb(v_start_color, v_end_color, a);
+  f_color = linear_rgb_to_srgb(avg_vec4(oklab_to_linear_rgb(v_start_color), oklab_to_linear_rgb(v_end_color), a));
 }
 `;
 
-export class GradientRGB {
+/**
+ * Create a gradient from A to B, blended in Oklab space.
+ */
+export class GradientOklab {
   gl: WebGL2RenderingContext;
-  startColor: WebGLColor;
-  endColor: WebGLColor;
+  startColor: Oklab;
+  endColor: Oklab;
   program: WebGLProgram;
   attr: Record<keyof typeof GRADIENT_RGB_SHADERS.attrs, number> = {
     a_position: -1,
@@ -118,11 +119,7 @@ export class GradientRGB {
 
   private lastFrame: number | undefined;
 
-  constructor({
-    canvas,
-    startColor,
-    endColor,
-  }: { canvas: HTMLCanvasElement; startColor: WebGLColor; endColor: WebGLColor }) {
+  constructor({ canvas, startColor, endColor }: { canvas: HTMLCanvasElement; startColor: Oklab; endColor: Oklab }) {
     this.gl = createRenderingContext(canvas);
     this.program = createProgram({
       gl: this.gl,
@@ -153,26 +150,13 @@ export class GradientRGB {
     this.render();
   }
 
-  setColors(startColor: WebGLColor, endColor: WebGLColor) {
+  setColors(startColor: Oklab, endColor: Oklab) {
     this.startColor = startColor;
     this.endColor = endColor;
     // note: `drawingBufferColorSpace` is ignored in Firefox, but it shouldn’t throw an error
-    if (
-      endColor.mode === 'a98' ||
-      endColor.mode === 'p3' ||
-      endColor.mode === 'rec2020' ||
-      endColor.mode === 'prophoto' ||
-      startColor.mode === 'a98' ||
-      startColor.mode === 'p3' ||
-      startColor.mode === 'rec2020' ||
-      startColor.mode === 'prophoto'
-    ) {
-      this.gl.drawingBufferColorSpace = 'display-p3';
-    } else {
-      this.gl.drawingBufferColorSpace = 'srgb';
-    }
-    this.gl.vertexAttrib4f(this.attr.a_start_color, startColor.r, startColor.g, startColor.b, 1);
-    this.gl.vertexAttrib4f(this.attr.a_end_color, endColor.r, endColor.g, endColor.b, 1);
+    this.gl.drawingBufferColorSpace = 'display-p3';
+    this.gl.vertexAttrib4f(this.attr.a_start_color, startColor.l, startColor.a, startColor.b, 1);
+    this.gl.vertexAttrib4f(this.attr.a_end_color, endColor.l, endColor.a, endColor.b, 1);
     this.render();
   }
 
@@ -206,7 +190,7 @@ export class GradientRGB {
 }
 
 /**
- * Generate a perfect rainbow hue wheel in Oklab colorspace with WebGL
+ * Generate a perceptually-uniform rainbow gradient in the Oklab space.
  */
 export const HUE_SHADERS = {
   attrs: { a_position: 'a_position', a_resolution: 'a_resolution' },
@@ -243,12 +227,12 @@ void main() {
   // 3 = projection toward point, hue dependent
   // 4 = adaptive Lightness, hue independent
   // 5 = adaptive Lightness, hue dependent
-  int clamp_mode = 2;
+  int clamp_mode = 3;
 
   float hue_norm = vec2(gl_FragCoord.xy / v_resolution).x;
   float hue = 360.0 * hue_norm;
 
-  f_color = oklch_to_srgb(vec4(0.8, 0.4, hue, 1.0), clamp_mode);
+  f_color = oklch_to_srgb(vec4(0.7, 0.4, hue, 1.0), clamp_mode);
 }
 `;
 
@@ -288,7 +272,6 @@ export class HueWheel {
     if (gamut !== 'srgb' && gamut !== 'p3') {
       throw new Error(`Unsupported gamut: "${gamut}"`);
     }
-    // this.gl.drawingBufferColorSpace = gamut === 'p3' ? 'display-p3' : 'srgb';
     this.gl.drawingBufferColorSpace = 'display-p3';
   }
 
