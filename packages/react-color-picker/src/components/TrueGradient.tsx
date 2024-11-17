@@ -1,22 +1,23 @@
+import type { Oklab } from '@terrazzo/use-color';
 import { type ComponentProps, useEffect, useRef, useState } from 'react';
-import { GradientRGB, type WebGLColor } from '../lib/webgl.js';
+import { GradientOklab } from '../lib/webgl.js';
 
 export interface TrueGradientProps extends ComponentProps<'canvas'> {
-  start: WebGLColor;
-  end: WebGLColor;
+  start: Oklab;
+  end: Oklab;
 }
 
-function TrueGradient({ start, end, ...rest }: TrueGradientProps) {
+function TrueGradient({ start, end, ...props }: TrueGradientProps) {
   const canvasEl = useRef<HTMLCanvasElement>(null);
-  const [webgl, setWebgl] = useState<GradientRGB | undefined>();
+  const [webgl, setWebgl] = useState<GradientOklab | undefined>();
 
   // initialize
   useEffect(() => {
     if (webgl || !canvasEl.current) {
       return;
     }
-    setWebgl(new GradientRGB({ canvas: canvasEl.current, startColor: start, endColor: end }));
-  }, [canvasEl.current, webgl]);
+    setWebgl(new GradientOklab({ canvas: canvasEl.current, startColor: start, endColor: end }));
+  }, [webgl]);
 
   // update color
   useEffect(() => {
@@ -25,7 +26,7 @@ function TrueGradient({ start, end, ...rest }: TrueGradientProps) {
     }
   }, [start, end, webgl]);
 
-  return <canvas ref={canvasEl} {...rest} />;
+  return <canvas {...props} ref={canvasEl} />;
 }
 
 export default TrueGradient;

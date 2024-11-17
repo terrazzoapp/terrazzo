@@ -1,11 +1,15 @@
 import { Slider } from '@terrazzo/tiles';
-import { COLORSPACES, type ColorOutput, formatCss, type default as useColor } from '@terrazzo/use-color';
+import { type ColorOutput, type Oklab, formatCss, type default as useColor, withAlpha } from '@terrazzo/use-color';
+import { modeLrgb, modeOklab, modeRgb, useMode } from 'culori';
 import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';
-import type { WebGLColor } from '../lib/webgl.js';
 import HueWheel from './HueWheel.js';
 import TrueGradient from './TrueGradient.js';
 import './ColorChannelSlider.css';
+
+useMode(modeRgb);
+useMode(modeLrgb);
+const toOklab = useMode(modeOklab);
 
 /** size, in px, to pad inner track */
 export const TRACK_PADDING = 4;
@@ -84,18 +88,14 @@ function ColorChannelBG({ channel, color, displayMin, displayMax, min, max }: Co
   }
 
   const range = (displayMax ?? max) - (displayMin ?? min);
-  let leftColor = { ...color.original, [channel]: min, alpha: 1 } as WebGLColor;
-  if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    leftColor = COLORSPACES.rec2020.converter(leftColor);
-  }
-  let rightColor = { ...color.original, [channel]: max, alpha: 1 } as WebGLColor;
-  if (!RGB_COLORSPACES.includes(color.original.mode)) {
-    rightColor = COLORSPACES.rec2020.converter(rightColor);
-  }
+  const leftColor = { ...color.original, [channel]: displayMin ?? min };
+  const rightColor = { ...color.original, [channel]: displayMax ?? max };
+  const leftOklab = useMemo(() => withAlpha(toOklab(leftColor) as Oklab) as Oklab, [color.css]);
+  const rightOklab = useMemo(() => withAlpha(toOklab(rightColor) as Oklab) as Oklab, [color.css]);
 
   return (
     <div className='tz-color-channel-slider-bg-wrapper'>
-      <TrueGradient className='tz-color-channel-slider-bg' start={leftColor} end={rightColor} />
+      <TrueGradient className='tz-color-channel-slider-bg' start={leftOklab} end={rightOklab} />
       {typeof displayMin === 'number' && displayMin < min && (
         <div
           className='tz-color-channel-slider-overlay tz-color-channel-slider-overlay__min'
