@@ -21,7 +21,7 @@
     "linting",
     "lint"
   ],
-  "main": "./index.js",
+  "main": "./dist/index.js",
   "homepage": "https://terrazzoapp.com/docs/cli/api/js",
   "repository": {
     "type": "git",
@@ -30,10 +30,9 @@
   },
   "license": "MIT",
   "scripts": {
+    "build": "tsc -p tsconfig.build.json && cp -r \"src/**/*.{js,d.ts}\" dist",
     "lint": "biome check .",
-    "test": "pnpm --filter @terrazzo/parser run \"/^test:.*/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "test": "vitest run"
   },
   "dependencies": {
     "@humanwhocodes/momoa": "^3.3.3",

@@ -1,19 +1,29 @@
 import { isAlias, isTokenMatch } from '@terrazzo/token-tools';
+import type { LintNotice, LinterOptions } from '../../index.js';
 
-export default function ruleDuplicateValues({ tokens, rule: { severity }, options }) {
+export interface RuleDuplicateValueOptions {
+  /** (optional) Token IDs to ignore. Supports globs (`*`). */
+  ignore?: string[];
+}
+
+export default async function ruleDuplicateValues({
+  tokens,
+  rule: { severity },
+  options,
+}: LinterOptions<RuleDuplicateValueOptions>): Promise<LintNotice[] | undefined> {
   if (severity === 'off') {
     return;
   }
 
-  const notices = [];
-  const values = {};
+  const notices: LintNotice[] = [];
+  const values: Record<string, Set<any>> = {};
 
   for (const id in tokens) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
     }
 
-    const t = tokens[id];
+    const t = tokens[id]!;
 
     // skip ignored tokens
     if (options?.ignore && isTokenMatch(id, options.ignore)) {
@@ -34,12 +44,12 @@ export default function ruleDuplicateValues({ tokens, rule: { severity }, option
       t.$type === 'fontWeight'
     ) {
       // skip aliases (note: $value will be resolved)
-      if (isAlias(t._original.$value)) {
+      if (isAlias(t.aliasOf)) {
         return;
       }
 
       if (values[t.$type]?.has(t.$value)) {
-        notices.push({ message: `Duplicated value: "${t.$value}" (${t.id})`, node: t.sourceNode });
+        notices.push({ message: `Duplicated value: "${t.$value}" (${t.id})`, node: t.source.node });
         return;
       }
 
@@ -51,7 +61,7 @@ export default function ruleDuplicateValues({ tokens, rule: { severity }, option
     let isDuplicate = false;
     for (const v of values[t.$type]?.values() ?? []) {
       if (JSON.stringify(t.$value) === JSON.stringify(v)) {
-        notices.push({ message: `Duplicated value (${t.id})`, node: t.sourceNode });
+        notices.push({ message: `Duplicated value (${t.id})`, node: t.source.node });
         isDuplicate = true;
         break;
       }

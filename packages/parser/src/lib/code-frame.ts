@@ -25,17 +25,50 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+export interface Location {
+  line: number;
+  column: number;
+}
+
+export interface NodeLocation {
+  end?: Location;
+  start: Location;
+}
+
+export interface Options {
+  /** Syntax highlight the code as JavaScript for terminals. default: false */
+  highlightCode?: boolean;
+  /**  The number of lines to show above the error. default: 2 */
+  linesAbove?: number;
+  /**  The number of lines to show below the error. default: 3 */
+  linesBelow?: number;
+  /**
+   * Forcibly syntax highlight the code as JavaScript (for non-terminals);
+   * overrides highlightCode.
+   * default: false
+   */
+  forceColor?: boolean;
+  /**
+   * Pass in a string to be displayed inline (if possible) next to the
+   * highlighted location in the code. If it can't be positioned inline,
+   * it will be placed above the code frame.
+   * default: nothing
+   */
+  message?: string;
+}
+
 /**
  * Extract what lines should be marked and highlighted.
  */
-
-function getMarkerLines(loc, source, opts = {}) {
+function getMarkerLines(loc: NodeLocation, source: string[], opts: Options = {} as Options) {
   const startLoc = {
+    // @ts-ignore this is fine
     column: 0,
+    // @ts-ignore this is fine
     line: -1,
     ...loc.start,
-  };
-  const endLoc = {
+  } as Location;
+  const endLoc: Location = {
     ...startLoc,
     ...loc.end,
   };
@@ -57,7 +90,7 @@ function getMarkerLines(loc, source, opts = {}) {
   }
 
   const lineDiff = endLine - startLine;
-  const markerLines = {};
+  const markerLines: Record<string, any> = {};
 
   if (lineDiff) {
     for (let i = 0; i <= lineDiff; i++) {
@@ -66,13 +99,13 @@ function getMarkerLines(loc, source, opts = {}) {
       if (!startColumn) {
         markerLines[lineNumber] = true;
       } else if (i === 0) {
-        const sourceLength = source[lineNumber - 1].length;
+        const sourceLength = source[lineNumber - 1]!.length;
 
         markerLines[lineNumber] = [startColumn, sourceLength - startColumn + 1];
       } else if (i === lineDiff) {
         markerLines[lineNumber] = [0, endColumn];
       } else {
-        const sourceLength = source[lineNumber - i].length;
+        const sourceLength = source[lineNumber - i]!.length;
 
         markerLines[lineNumber] = [0, sourceLength];
       }
@@ -98,7 +131,7 @@ function getMarkerLines(loc, source, opts = {}) {
 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
-export function codeFrameColumns(rawLines, loc, opts = {}) {
+export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Options = {} as Options) {
   const lines = rawLines.split(NEWLINE);
   const { start, end, markerLines } = getMarkerLines(loc, lines, opts);
   const hasColumns = loc.start && typeof loc.start.column === 'number';

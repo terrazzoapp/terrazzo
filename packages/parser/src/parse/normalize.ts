@@ -1,4 +1,15 @@
-import { isAlias, parseColor } from '@terrazzo/token-tools';
+import {
+  type CubicBezierValue,
+  type DimensionValue,
+  type GradientStopNormalized,
+  type GradientValueNormalized,
+  type ShadowValueNormalized,
+  type Token,
+  type TransitionValue,
+  type TypographyValueNormalized,
+  isAlias,
+  parseColor,
+} from '@terrazzo/token-tools';
 
 export const FONT_WEIGHT_MAP = {
   thin: 100,
@@ -21,9 +32,13 @@ export const FONT_WEIGHT_MAP = {
   'ultra-black': 950,
 };
 
+// Note: because we’re handling a lot of input values, the type inference gets lost.
+// This file is expected to have a lot of `@ts-ignore` comments.
+
 const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
 
-export default function normalizeValue(token) {
+/** Fill in defaults, and return predictable shapes for tokens */
+export default function normalizeValue<T extends Token>(token: T): T['$value'] {
   if (isAlias(token.$value)) {
     return token.$value;
   }
@@ -32,6 +47,9 @@ export default function normalizeValue(token) {
       return !!token.$value;
     }
     case 'border': {
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
       return {
         color: normalizeValue({ $type: 'color', $value: token.$value.color ?? '#000000' }),
         style: normalizeValue({ $type: 'strokeStyle', $value: token.$value.style ?? 'solid' }),
@@ -45,29 +63,32 @@ export default function normalizeValue(token) {
       return 'alpha' in token.$value ? token.$value : { ...token.$value, alpha: 1 };
     }
     case 'cubicBezier': {
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
       return token.$value.map((value) =>
         typeof value === 'number' ? normalizeValue({ $type: 'number', $value: value }) : value,
-      );
+      ) as CubicBezierValue;
     }
     case 'dimension': {
-      if (token.$value === 0) {
+      if ((token as any).$value === 0) {
         return { value: 0, unit: 'px' };
       }
       // Backwards compat: handle string
       if (typeof token.$value === 'string') {
         const match = token.$value.match(NUMBER_WITH_UNIT_RE);
-        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match[2] || 'px' };
+        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match?.[2] || 'px' };
       }
       return token.$value;
     }
     case 'duration': {
-      if (token.$value === 0) {
+      if ((token as any).$value === 0) {
         return { value: 0, unit: 'ms' };
       }
       // Backwards compat: handle string
       if (typeof token.$value === 'string') {
         const match = token.$value.match(NUMBER_WITH_UNIT_RE);
-        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match[2] || 'ms' };
+        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match?.[2] || 'ms' };
       }
       return token.$value;
     }
@@ -75,16 +96,22 @@ export default function normalizeValue(token) {
       return Array.isArray(token.$value) ? token.$value : [token.$value];
     }
     case 'fontWeight': {
-      if (typeof token.$value === 'string' && FONT_WEIGHT_MAP[token.$value]) {
-        return FONT_WEIGHT_MAP[token.$value];
+      if (typeof token.$value === 'string' && FONT_WEIGHT_MAP[token.$value as keyof typeof FONT_WEIGHT_MAP]) {
+        return FONT_WEIGHT_MAP[token.$value as keyof typeof FONT_WEIGHT_MAP];
       }
-      return Number.parseInt(token.$value);
+      return Math.min(
+        999,
+        Math.max(1, typeof token.$value === 'string' ? Number.parseInt(token.$value) : token.$value),
+      );
     }
     case 'gradient': {
-      const output = [];
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
+      const output: GradientValueNormalized = [];
       for (let i = 0; i < token.$value.length; i++) {
-        const stop = { ...token.$value[i] };
-        stop.color = normalizeValue({ $type: 'color', $value: stop.color });
+        const stop = { ...(token.$value[i] as GradientStopNormalized) };
+        stop.color = normalizeValue({ $type: 'color', $value: stop.color! });
         if (stop.position === undefined) {
           stop.position = i / (token.$value.length - 1);
         }
@@ -96,14 +123,24 @@ export default function normalizeValue(token) {
       return typeof token.$value === 'number' ? token.$value : Number.parseFloat(token.$value);
     }
     case 'shadow': {
-      return (Array.isArray(token.$value) ? token.$value : [token.$value]).map((layer) => ({
-        color: normalizeValue({ $type: 'color', $value: layer.color }),
-        offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? 0 }),
-        offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? 0 }),
-        blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? 0 }),
-        spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? 0 }),
-        inset: layer.inset === true,
-      }));
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
+      return (Array.isArray(token.$value) ? token.$value : [token.$value]).map(
+        (layer) =>
+          ({
+            color: normalizeValue({ $type: 'color', $value: layer.color }),
+            // @ts-ignore
+            offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? 0 }),
+            // @ts-ignore
+            offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? 0 }),
+            // @ts-ignore
+            blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? 0 }),
+            // @ts-ignore
+            spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? 0 }),
+            inset: layer.inset === true,
+          }) as ShadowValueNormalized,
+      );
     }
     case 'strokeStyle': {
       return token.$value;
@@ -112,19 +149,28 @@ export default function normalizeValue(token) {
       return String(token.$value);
     }
     case 'transition': {
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
       return {
+        // @ts-ignore
         duration: normalizeValue({ $type: 'duration', $value: token.$value.duration ?? 0 }),
+        // @ts-ignore
         delay: normalizeValue({ $type: 'duration', $value: token.$value.delay ?? 0 }),
+        // @ts-ignore
         timingFunction: normalizeValue({ $type: 'cubicBezier', $value: token.$value.timingFunction }),
-      };
+      } as TransitionValue;
     }
     case 'typography': {
-      const output = {};
+      if (typeof token.$value === 'string') {
+        return token.$value;
+      }
+      const output: TypographyValueNormalized = {};
       for (const k in token.$value) {
         switch (k) {
           case 'letterSpacing':
           case 'fontSize':
-            output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] });
+            output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] as DimensionValue });
             break;
           default:
             output[k] = token.$value[k];

@@ -1,12 +1,48 @@
+import type { AnyNode } from '@humanwhocodes/momoa';
 import color from 'picocolors';
 import wcmatch from 'wildcard-match';
 import { codeFrameColumns } from './lib/code-frame.js';
 
-export const LOG_ORDER = ['error', 'warn', 'info', 'debug'];
+export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
 
-const DEBUG_GROUP_COLOR = { core: color.green, plugin: color.magenta };
+export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
 
-const MESSAGE_COLOR = { error: color.red, warn: color.yellow };
+export type LogLevel = LogSeverity | 'silent';
+
+export type LogGroup = 'parser' | 'plugin';
+
+export interface LogEntry {
+  /** Error message to be logged */
+  message: string;
+  /** (optional) Prefix message with label */
+  label?: string;
+  /** (optional) File in disk */
+  filename?: URL;
+  /** Continue on error? (default: false) */
+  continueOnError?: boolean;
+  /** (optional) Show a code frame for the erring node */
+  node?: AnyNode;
+  /** (optional) Originator of log message */
+  group?: LogGroup;
+  /** (optional) To show a code frame, provide the original source code */
+  src?: string;
+}
+
+export interface DebugEntry {
+  group: LogGroup;
+  /** Error message to be logged */
+  message: string;
+  /** Current subtask or submodule */
+  label?: string;
+  /** (optional) Show code below message */
+  codeFrame?: { src: string; line: number; column: number };
+  /** (optional) Display performance timing */
+  timing?: number;
+}
+
+const DEBUG_GROUP_COLOR: Record<string, typeof color.red | undefined> = { core: color.green, plugin: color.magenta };
+
+const MESSAGE_COLOR: Record<string, typeof color.red | undefined> = { error: color.red, warn: color.yellow };
 
 const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
 
@@ -15,16 +51,16 @@ const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
  * @param {Severity} severity
  * @return {string}
  */
-export function formatMessage(entry, severity) {
+export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   let message = entry.message;
   if (entry.label) {
     message = `${color.bold(`${entry.label}:`)} ${message}`;
   }
   if (severity in MESSAGE_COLOR) {
-    message = MESSAGE_COLOR[severity](message);
+    message = MESSAGE_COLOR[severity]!(message);
   }
   if (entry.src) {
-    const start = entry.node?.loc?.start;
+    const start = entry.node?.loc?.start ?? { line: 0, column: 0 };
     //  strip "file://" protocol, but not href
     const loc = entry.filename
       ? `${entry.filename?.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n`
@@ -36,14 +72,14 @@ export function formatMessage(entry, severity) {
 }
 
 export default class Logger {
-  level = 'info';
+  level = 'info' as LogLevel;
   debugScope = '*';
   errorCount = 0;
   warnCount = 0;
   infoCount = 0;
   debugCount = 0;
 
-  constructor(options) {
+  constructor(options?: { level?: LogLevel; debugScope?: string }) {
     if (options?.level) {
       this.level = options.level;
     }
@@ -52,12 +88,12 @@ export default class Logger {
     }
   }
 
-  setLevel(level) {
+  setLevel(level: LogLevel) {
     this.level = level;
   }
 
   /** Log an error message (always; can’t be silenced) */
-  error(entry) {
+  error(entry: LogEntry) {
     this.errorCount++;
     const message = formatMessage(entry, 'error');
     if (entry.continueOnError) {
@@ -72,7 +108,7 @@ export default class Logger {
   }
 
   /** Log an info message (if logging level permits) */
-  info(entry) {
+  info(entry: LogEntry) {
     this.infoCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
       return;
@@ -82,7 +118,7 @@ export default class Logger {
   }
 
   /** Log a warning message (if logging level permits) */
-  warn(entry) {
+  warn(entry: LogEntry) {
     this.warnCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
       return;
@@ -91,7 +127,7 @@ export default class Logger {
   }
 
   /** Log a diagnostics message (if logging level permits) */
-  debug(entry) {
+  debug(entry: DebugEntry) {
     this.debugCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
       return;
@@ -99,7 +135,7 @@ export default class Logger {
 
     let message = formatMessage(entry, 'debug');
 
-    const debugPrefix = `${entry.group}:${entry.task}`;
+    const debugPrefix = entry.label ? `${entry.group}:${entry.label}` : entry.group;
     if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
       return;
     }
@@ -107,7 +143,7 @@ export default class Logger {
       timeFormatter.format(new Date()),
     )} ${message}`;
     if (typeof entry.timing === 'number') {
-      let timing = Math.round(entry.timing);
+      let timing: string | number = Math.round(entry.timing);
       if (timing < 1_000) {
         timing = `${timing}ms`;
       } else if (timing < 60_000) {
@@ -132,7 +168,7 @@ export default class Logger {
 }
 
 export class TokensJSONError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     this.name = 'TokensJSONError';
   }

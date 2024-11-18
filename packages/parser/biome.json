@@ -4,5 +4,12 @@
   "files": {
     "ignore": ["./lib/code-frame.js"],
     "include": ["./src/", "./test/"]
+  },
+  "linter": {
+    "rules": {
+      "suspicious": {
+        "noExplicitAny": "off"
+      }
+    }
   }
 }

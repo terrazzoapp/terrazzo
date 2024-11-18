@@ -2,8 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "checkJs": true
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "noEmit": true
   },
-  "include": ["**/*.js", "**/*.ts"],
+  "include": ["src", "test"],
   "exclude": ["node_modules"]
 }
