@@ -61,6 +61,8 @@ export interface Config {
   };
   /** Ignore token groups */
   ignore?: {
+    /** Token patterns to ignore. Accepts globs. */
+    tokens?: string[];
     /** Ignore deprecated tokens */
     deprecated?: boolean;
   };
@@ -74,6 +76,10 @@ export interface ConfigInit {
   lint: {
     build: NonNullable<NonNullable<Config['lint']>['build']>;
     rules: Record<string, [LintRuleSeverity, any]>;
+  };
+  ignore: {
+    tokens: string[];
+    deprecated: boolean;
   };
 }
 

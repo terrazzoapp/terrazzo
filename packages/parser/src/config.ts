@@ -27,6 +27,7 @@ export default function defineConfig(
   normalizeOutDir({ config, cwd, logger });
   normalizePlugins({ config, logger });
   normalizeLint({ config, logger });
+  normalizeIgnore({ config, logger });
 
   // 2. Start build by calling config()
   for (const plugin of config.plugins) {
@@ -247,6 +248,24 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
       rules: {},
     };
   }
+}
+
+function normalizeIgnore({ config, logger }: { config: ConfigInit; logger: Logger }) {
+  const tokens = config.ignore?.tokens ?? [];
+  const deprecated = config.ignore?.deprecated ?? false;
+  if (!Array.isArray(tokens) || tokens.some((x) => typeof x !== 'string')) {
+    logger.error({
+      label: '[config] ignore › tokens',
+      message: `Expected array of strings, received ${JSON.stringify(config.ignore.tokens)}`,
+    });
+  }
+  if (typeof deprecated !== 'boolean') {
+    logger.error({
+      label: '[config] ignore › deprecated',
+      message: `Expected boolean, received ${JSON.stringify(config.ignore.deprecated)}`,
+    });
+  }
+  config.ignore ??= { tokens, deprecated };
 }
 
 /** Merge configs */

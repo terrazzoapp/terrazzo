@@ -2,6 +2,7 @@ import type { ObjectNode } from '@humanwhocodes/momoa';
 
 export interface TokenCore<E extends {} = Record<string, unknown>> {
   $description?: string;
+  $deprecated?: string | boolean;
   $extensions?: E;
 }
 
@@ -278,6 +279,7 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
   $type: $type;
   $description?: string;
   $extensions?: Record<string, unknown>;
+  $deprecated?: string | boolean;
   id: string;
   source: {
     loc?: string;

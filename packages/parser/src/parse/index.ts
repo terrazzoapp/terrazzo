@@ -1,9 +1,9 @@
 import { type DocumentNode, type ObjectNode, evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
-import { type Token, type TokenNormalized, pluralize, splitID } from '@terrazzo/token-tools';
+import { type Token, type TokenNormalized, isTokenMatch, pluralize, splitID } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
-import type { ConfigInit } from '../types.js';
 import Logger from '../logger.js';
+import type { ConfigInit } from '../types.js';
 import { applyAliases } from './alias.js';
 import { getObjMembers, injectObjMembers, maybeJSONString, traverse } from './json.js';
 import normalize from './normalize.js';
@@ -284,6 +284,17 @@ async function parseSingle(
 
           validate(sourceNode, { filename, src, logger });
 
+          // All tokens must be valid, so we want to validate it up till this
+          // point. However, if we are ignoring this token (or respecting
+          // $deprecated, we can omit it from the output.
+          const $deprecated = members.$deprecated && (evaluate(members.$deprecated) as string | boolean | undefined);
+          if (
+            (config.ignore.deprecated && $deprecated) ||
+            (config.ignore.tokens && isTokenMatch(id, config.ignore.tokens))
+          ) {
+            return;
+          }
+
           const group: TokenNormalized['group'] = { id: splitID(id).group!, tokens: [] };
           if (parent$type) {
             group.$type =
@@ -398,9 +409,6 @@ async function parseSingle(
     message: 'Start token normalization',
   });
   for (const [id, token] of Object.entries(tokens)) {
-    if (!Object.hasOwn(tokens, id)) {
-      continue;
-    }
     try {
       tokens[id]!.$value = normalize(token);
     } catch (err) {
@@ -433,6 +441,7 @@ async function parseSingle(
       }
     }
   }
+
   logger.debug({
     group: 'parser',
     label: 'normalize',

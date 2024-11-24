@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
 
 import stripAnsi from 'strip-ansi';
-import { type TokensJSONError, defineConfig, parse } from '../src/index.js';
+import { type Logger, type TokensJSONError, defineConfig, parse } from '../src/index.js';
 import {
   COLORSPACE,
   CONSISTENT_NAMING,
@@ -19,8 +19,8 @@ import {
   type RuleRequiredTypographyPropertiesOptions,
 } from '../src/lint/plugin-core/index.js';
 
-/* eslint-disable @typescript-eslint/ban-types */
-
+const cwd = new URL(import.meta.url);
+const DEFAULT_FILENAME = new URL('file:///tokens.json');
 type Test = [string, TestOptions];
 
 interface TestOptions {
@@ -33,7 +33,7 @@ interface TestOptions {
     | { rule: typeof REQUIRED_MODES; options: RuleRequiredModesOptions }
     | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
   );
-  want: { error: string; success?: never } | { error?: never; success: true };
+  want: { errors: string[]; success?: never } | { errors?: never; success: true };
 }
 
 describe('rules', () => {
@@ -79,7 +79,7 @@ describe('rules', () => {
           options: { colorSpace: 'oklch' },
           tokens: { color: { blue: { 100: { $type: 'color', $value: '#3c3c43' } } } },
         },
-        want: { error: 'Color color.blue.100: in hex (expected oklch)' },
+        want: { errors: ['Color color.blue.100 not in colorspace oklch'] },
       },
     ],
     [
@@ -101,7 +101,7 @@ describe('rules', () => {
           options: { format: 'kebab-case' },
           tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
         },
-        want: { error: 'Token token.camelCase: not in kebab-case' },
+        want: { errors: ['Token token.camelCase: not in kebab-case'] },
       },
     ],
     [
@@ -123,7 +123,7 @@ describe('rules', () => {
           options: { format: 'camelCase' },
           tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
         },
-        want: { error: 'Token token.kebab-case: not in camelCase' },
+        want: { errors: ['Token token.kebab-case: not in camelCase'] },
       },
     ],
     [
@@ -160,7 +160,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { error: 'Duplicated value: "#3c3c43" (color.blue.200)' },
+        want: { errors: ['Duplicated value: "#3c3c43" (color.blue.200)'] },
       },
     ],
     [
@@ -219,7 +219,7 @@ describe('rules', () => {
           options: { gamut: 'srgb' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
         },
-        want: { error: 'Color color.yellow outside srgb gamut' },
+        want: { errors: ['Color color.yellow outside srgb gamut'] },
       },
     ],
     [
@@ -241,7 +241,7 @@ describe('rules', () => {
           options: { gamut: 'p3' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(88.82% 0.217 96.35)' } } },
         },
-        want: { error: 'Color color.yellow outside p3 gamut' },
+        want: { errors: ['Color color.yellow outside p3 gamut'] },
       },
     ],
     [
@@ -263,7 +263,7 @@ describe('rules', () => {
           options: { gamut: 'rec2020' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(91.18% 0.234 96.35)' } } },
         },
-        want: { error: 'Color color.yellow outside rec2020 gamut' },
+        want: { errors: ['Color color.yellow outside rec2020 gamut'] },
       },
     ],
     [
@@ -292,7 +292,7 @@ describe('rules', () => {
           options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
           tokens: { color: { blue: { '100': { $type: 'color', $value: '#3c3c43' } } } },
         },
-        want: { error: 'Match 0: some groups missing required token "200"' },
+        want: { errors: ['Match 0: some groups missing required token "200"'] },
       },
     ],
     [
@@ -336,7 +336,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { error: 'Match 0: some tokens missing required group "error"' },
+        want: { errors: ['Match 0: some tokens missing required group "error"'] },
       },
     ],
     [
@@ -374,7 +374,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { error: 'Token typography.size.body: missing required mode "mobile"' },
+        want: { errors: ['Token typography.size.body: missing required mode "mobile"'] },
       },
     ],
     [
@@ -410,13 +410,14 @@ describe('rules', () => {
             },
           },
         },
-        want: { success: true },
+        want: { errors: ['typography.body missing required typographic property "fontWeight"'] },
       },
     ],
   ];
 
   test.each(tests)('%s', async (_, { given, want }) => {
     let result: Awaited<ReturnType<typeof parse>> | undefined;
+    const errors: string[] = [];
     try {
       const config = defineConfig(
         {
@@ -426,16 +427,40 @@ describe('rules', () => {
             },
           },
         },
-        { cwd: new URL('file:///') },
+        { cwd },
       );
-      result = await parse(given.tokens, { config });
-    } catch (e) {
-      const err = e as TokensJSONError;
-      expect(stripAnsi(err.message)).toBe(want.error);
+      result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
+        config,
+        logger: {
+          level: 'error',
+          debugCount: 0,
+          debugScope: '*',
+          errorCount: 0,
+          infoCount: 0,
+          warnCount: 0,
+          error({ message }) {
+            errors.push(message);
+          },
+          warn() {},
+          info() {},
+          debug() {},
+          stats() {
+            return { debugCount: 0, errorCount: 0, infoCount: 0, warnCount: 0 };
+          },
+          setLevel() {},
+        } as Logger,
+      });
+      if (want.success) {
+        expect(result).toBeTruthy();
+      } else {
+        expect(result).not.toBeTruthy();
+      }
+    } catch {
+      expect(errors.filter((error) => !error.includes('Lint failed with error'))).toEqual(want.errors);
     }
 
     if (result) {
-      expect(want.error).toBeUndefined();
+      expect(want.errors).toBeUndefined();
       for (const id in result.tokens) {
         const { source } = result.tokens[id]!;
         expect(source).not.toBeFalsy();

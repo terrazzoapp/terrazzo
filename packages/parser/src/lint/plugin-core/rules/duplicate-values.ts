@@ -50,7 +50,11 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         }
 
         if (values[t.$type]?.has(t.$value)) {
-          report({ messageId: ERROR_DUPLICATE_VALUE, data: { value: t.$value, id: t.id }, node: t.source.node });
+          report({
+            messageId: ERROR_DUPLICATE_VALUE,
+            data: { value: t.$value, id: t.id },
+            node: t.source.node,
+          });
         }
 
         values[t.$type]?.add(t.$value);
@@ -60,7 +64,11 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
       let isDuplicate = false;
       for (const v of values[t.$type]?.values() ?? []) {
         if (JSON.stringify(t.$value) === JSON.stringify(v)) {
-          report({ messageId: ERROR_DUPLICATE_VALUE, data: { id: t.id }, node: t.source.node });
+          report({
+            messageId: ERROR_DUPLICATE_VALUE,
+            data: { id: t.id },
+            node: t.source.node,
+          });
           isDuplicate = true;
         }
       }

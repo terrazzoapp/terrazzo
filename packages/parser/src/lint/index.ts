@@ -1,6 +1,6 @@
 import { type TokenNormalized, pluralize } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-import type { default as Logger, LogEntry } from '../logger.js';
+import type { LogEntry, default as Logger } from '../logger.js';
 import type { ConfigInit } from '../types.js';
 
 const listFormat = new Intl.ListFormat('en-us');
@@ -73,13 +73,17 @@ export default async function lintRunner({
                 for (const [k, v] of Object.entries(descriptor.data)) {
                   // lazy formatting
                   const formatted = ['string', 'number', 'boolean'].includes(typeof v) ? String(v) : JSON.stringify(v);
-                  message = message.replace(new RegExp(`{{\s*${k}\s*}}`), formatted);
+                  message = message.replace(/\{\{[^}]+\}\}/g, (inner) => {
+                    const key = inner.slice(2, -2).trim();
+                    return key === k ? formatted : inner;
+                  });
                 }
               }
 
               (severity === 'error' ? errors : warnings).push({
                 label: id,
                 message,
+                filename,
                 node: descriptor.node,
                 src: descriptor.source?.src,
               });

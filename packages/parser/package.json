@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && cp -r \"src/**/*.{js,d.ts}\" dist",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "biome check .",
     "test": "vitest run"
   },

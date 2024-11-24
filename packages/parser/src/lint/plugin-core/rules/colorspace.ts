@@ -1,4 +1,4 @@
-import { isTokenMatch, type ColorValueNormalized } from '@terrazzo/token-tools';
+import { type ColorValueNormalized, isTokenMatch } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
