@@ -4,7 +4,6 @@ import evaluateContrast, { type RuleContrastOptions } from './rules/contrast.js'
 export { evaluateContrast };
 export * from './rules/contrast.js';
 export * from './lib/index.js';
-export * from './lib/apca.js';
 
 export const RULES = {
   contrast: 'a11y/contrast',

@@ -19,12 +19,12 @@
     "version": "pnpm run build && changeset version && pnpm i --no-frozen-lockfile"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
+    "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
-    "@changesets/cli": "^2.27.7",
-    "@types/node": "^20.14.11",
+    "@changesets/cli": "^2.27.10",
+    "@types/node": "^20.17.7",
     "del-cli": "^5.1.0",
-    "typescript": "^5.5.3",
+    "typescript": "^5.7.2",
     "vitest": "^1.6.0"
   }
 }

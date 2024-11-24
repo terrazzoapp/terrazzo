@@ -514,11 +514,11 @@ Enforces [typography tokens](/tokens/typography) have required properties. This 
 
 ## a11y Rules
 
-The [a11y plugin](/integrations/a11y) can handle color contrast checks, including the common WCAG 2 contrast check as well as advanced APCA color contrast checks.
+The [a11y plugin](/integrations/a11y) can handle color contrast checks for WCAG2.
 
 | Rule                                              | Default | Description                                                                                                                                        |
 | :------------------------------------------------ | :-----: | :------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [a11y/contrast](/integrations/a11y#a11y-contrast) | `"off"` | Run WCAG2 and APCA contrast checks on all of your tokens (you have to manually specify the pairs, but it will work on any tokens in `tokens.json`) |
+| [a11y/contrast](/integrations/a11y#a11y-contrast) | `"off"` | Run WCAG2 contrast checks on all of your tokens (you have to manually specify the pairs, but it will work on any tokens in `tokens.json`) |
 
 ```sh
 npm i -D @cobalt-ui/lint-a11y
@@ -546,7 +546,6 @@ export default {
                 modes: ["light", "dark"],
               },
               wcag2: "AAA",
-              apca: true,
             },
           ],
         },

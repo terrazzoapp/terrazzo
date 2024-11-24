@@ -1,5 +1,11 @@
 # @cobalt-ui/cli
 
+## 1.12.0
+
+### Minor Changes
+
+- [#352](https://github.com/terrazzoapp/terrazzo/pull/352) Thanks [@drwpow](https://github.com/drwpow)! - Remove APCA contrast algorithm
+
 ## 1.11.3
 
 ### Patch Changes

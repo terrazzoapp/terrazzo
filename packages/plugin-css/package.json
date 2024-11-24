@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@cobalt-ui/utils": "workspace:^",
-    "@types/culori": "^2.1.0",
+    "@types/culori": "^2.1.1",
     "@types/mime": "^3.0.4",
     "culori": "^4.0.1",
     "mime": "^3.0.0",
@@ -50,6 +50,6 @@
   "devDependencies": {
     "@cobalt-ui/cli": "workspace:^",
     "@cobalt-ui/core": "workspace:^",
-    "yaml": "^2.4.5"
+    "yaml": "^2.6.1"
   }
 }
