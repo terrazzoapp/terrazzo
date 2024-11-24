@@ -155,7 +155,6 @@ export default {
                 modes: ["light", "dark"],
               },
               wcag2: "AAA",
-              apca: "silver",
             },
           ],
         },

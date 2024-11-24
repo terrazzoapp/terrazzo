@@ -18,7 +18,6 @@ export default {
                 typography: 'typography.body',
               },
               wcag2: 'AAA',
-              apca: 'silver',
             },
           ],
         },

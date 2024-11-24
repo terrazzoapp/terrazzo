@@ -32,7 +32,6 @@ describe('a11y plugin', () => {
                     background: 'color.high-contrast-bg',
                     typography: 'typography.large',
                   },
-                  apca: 'silver',
                   wcag2: 'AAA',
                 },
               ],
@@ -52,7 +51,6 @@ describe('a11y plugin', () => {
                     typography: 'typography.large',
                     modes: ['light', 'dark'],
                   },
-                  apca: 75,
                   wcag2: 'AAA',
                 },
               ],
@@ -72,7 +70,6 @@ describe('a11y plugin', () => {
                     typography: 'typography.large',
                     modes: ['light', 'dark'],
                   },
-                  apca: 75,
                   wcag2: 'AAA',
                 },
               ],
@@ -85,12 +82,7 @@ describe('a11y plugin', () => {
       Background: color.failing-dark-bg    →  #101010 (mode: dark)
 
       Wanted: 7:1 / Actual: 3.03:1`,
-                `a11y/contrast: ERROR
-    [APCA] Failed contrast
-      Foreground: color.failing-dark-text  →  #606060 (mode: dark)
-      Background: color.failing-dark-bg    →  #101010 (mode: dark)
-
-      Wanted: 75 / Actual: 20.09`,
+                'a11y/contrast: ERROR',
               ],
             },
           },
@@ -133,7 +125,6 @@ describe('a11y plugin', () => {
                     background: 'color.blue.1200',
                     foreground: 'color.blue.400',
                   },
-                  apca: 88.04,
                 },
                 {
                   tokens: {
@@ -141,7 +132,6 @@ describe('a11y plugin', () => {
                     foreground: 'color.blue.900',
                   },
                   wcag2: 2.95,
-                  apca: 42.98,
                 },
               ],
             },
