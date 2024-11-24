@@ -4,13 +4,21 @@ export const FORMAT_JS_ID = 'js';
 export const FORMAT_DTS_ID = 'd.ts';
 
 export interface JSPluginOptions {
-  /** output JS? (default: true) */
+  /**
+   * Output JS?
+   * @default true
+   */
   js?: boolean | string;
-  /** output JSON? (default: false) */
+  /** Output JSON?
+   * @default false
+   */
   json?: boolean | string;
-  /** exclude token IDs from output? */
+  /** Exclude token IDs from output? */
   exclude?: string[];
-  /** return deeply-nested values? (default: false) */
+  /**
+   * Return deeply-nested values?
+   * @default: false
+   */
   deep?: boolean;
   /** Override certain token values */
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];

@@ -28,16 +28,16 @@ And add it to `terrazzo.config.js` under `plugins`:
 :::code-group
 
 ```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
 import pluginCSS from "@terrazzo/plugin-css";
 
-/** @type {import("@terrazzo/cli").Config} */
-export default {
+export default defineConfig({
   plugins: [
     pluginCSS({
       fileName: "tokens.css",
     }),
   ],
-};
+});
 ```
 
 :::
@@ -137,7 +137,6 @@ import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import { kebabCase } from "scule";
 
-/** @type {import("@terrazzo/cli").Config} */
 export default defineConfig({
   plugins: [
     css({
@@ -261,11 +260,11 @@ Configure options in [terrazzo.config.js](/docs/cli/config):
 :::code-group
 
 ```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import { kebabCase } from "scule";
 
-/** @type {import("@terrazzo/cli").Config} */
-export default {
+export default defineConfig({
   plugins: [
     css({
       filename: "tokens.css",
@@ -295,7 +294,7 @@ export default {
       variableName: (id) => kebabCase(id),
     }),
   ],
-};
+});
 ```
 
 :::

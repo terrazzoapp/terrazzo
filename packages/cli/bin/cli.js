@@ -77,7 +77,7 @@ export default async function main() {
   // ---
   // full-run commands: build, check
 
-  // setup: load tokens.config.js and tokens.config.json
+  // setup: load terrazzo.config.js and terrazzo.config.json
   let configPath;
   if (typeof flags.config === 'string') {
     if (flags.config === '') {
@@ -182,7 +182,7 @@ export default async function main() {
     }
     case 'lint': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
-        printErrors(`No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
+        printErrors(`No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`);
       }
 
       const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
@@ -236,7 +236,7 @@ function showHelp() {
 
   [options]
     --help          Show this message
-    --config, -c    Path to config (default: ./tokens.config.js)
+    --config, -c    Path to config (default: ./terrazzo.config.js)
 `);
 }
 

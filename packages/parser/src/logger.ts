@@ -14,17 +14,20 @@ export type LogGroup = 'parser' | 'plugin';
 export interface LogEntry {
   /** Error message to be logged */
   message: string;
-  /** (optional) Prefix message with label */
+  /** Prefix message with label */
   label?: string;
-  /** (optional) File in disk */
+  /** File in disk */
   filename?: URL;
-  /** Continue on error? (default: false) */
+  /**
+   * Continue on error?
+   * @default false
+   */
   continueOnError?: boolean;
-  /** (optional) Show a code frame for the erring node */
+  /** Show a code frame for the erring node */
   node?: AnyNode;
-  /** (optional) Originator of log message */
+  /** Originator of log message */
   group?: LogGroup;
-  /** (optional) To show a code frame, provide the original source code */
+  /** To show a code frame, provide the original source code */
   src?: string;
 }
 
@@ -34,9 +37,9 @@ export interface DebugEntry {
   message: string;
   /** Current subtask or submodule */
   label?: string;
-  /** (optional) Show code below message */
+  /** Show code below message */
   codeFrame?: { src: string; line: number; column: number };
-  /** (optional) Display performance timing */
+  /** Display performance timing */
   timing?: number;
 }
 

@@ -1,3 +1,4 @@
+import { tokenToCulori } from '@terrazzo/token-tools';
 import {
   inGamut,
   modeA98,
@@ -64,66 +65,8 @@ export function parse(color) {
 
     // DTCG tokens: convert to Culori format
     if (color.colorSpace && Array.isArray(color.channels)) {
-      // convert DTCG colorSpace -> Culori mode (if possible)
-      const mode =
-        {
-          'xyz-d50': 'xyz50',
-          'xyz-d65': 'xyz65',
-          'a98-rgb': 'a98',
-          'display-p3': 'p3',
-          'prophoto-rgb': 'prophoto',
-          srgb: 'rgb',
-          'srgb-linear': 'lrgb',
-        }[color.colorSpace] || color.colorSpace;
-      const alpha = color.alpha ?? 1;
-      switch (color.colorSpace) {
-        case 'a98-rgb':
-        case 'display-p3':
-        case 'prophoto-rgb':
-        case 'rec2020':
-        case 'srgb':
-        case 'srgb-linear': {
-          const [r, g, b] = color.channels;
-          normalizedColor = { mode, r, g, b, alpha };
-          break;
-        }
-        case 'hsl':
-        case 'okhsl': {
-          const [h, s, l] = color.channels;
-          normalizedColor = { mode, h, s, l, alpha };
-          break;
-        }
-        case 'hsv': {
-          const [h, s, v] = color.channels;
-          normalizedColor = { mode, h, s, v, alpha };
-          break;
-        }
-        case 'hwb': {
-          const [h, w, b] = color.channels;
-          normalizedColor = { mode, h, w, b, alpha };
-          break;
-        }
-        case 'lab':
-        case 'oklab': {
-          const [l, a, b] = color.channels;
-          normalizedColor = { mode, l, a, b, alpha };
-          break;
-        }
-        case 'lch':
-        case 'oklch': {
-          const [l, c, h] = color.channels;
-          normalizedColor = { mode, l, c, h, alpha };
-          break;
-        }
-        case 'xyz-d50':
-        case 'xyz-d65': {
-          const [x, y, z] = color.channels;
-          normalizedColor = { mode, x, y, z, alpha };
-          break;
-        }
-      }
+      normalizedColor = tokenToCulori();
     }
-
     if (!normalizedColor.mode) {
       throw new Error(`Invalid Culori color: ${JSON.stringify(normalizedColor)}`);
     }

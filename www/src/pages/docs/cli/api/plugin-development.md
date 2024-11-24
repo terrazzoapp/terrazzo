@@ -165,6 +165,7 @@ Set to `"pre"` if this plugin should run before all other plugins, `"post"` to r
 ```js [my-plugin.js]
 export default function myPlugin() {
   return {
+    name: "my-plugin",
     enforce: "pre", // run before all other plugins
   };
 }
@@ -183,6 +184,7 @@ export default function myPlugin() {
   let outDir;
 
   return {
+    name: "my-plugin",
     config(userConfig) {
       outDir = userConfig.outDir;
     },
@@ -196,6 +198,86 @@ export default function myPlugin() {
 `config()` is **read-only**.
 :::
 
+### lint()
+
+This is an optional step, where a plugin may register lint rules (similar to [ESLint](https://eslint.org/)) to warn or throw errors on your design tokens.
+
+:::warn
+If upgrading from Cobalt, the API has changed! Now it matches ESLint far more closely than before for an easier experience.
+:::
+
+The `lint()` hook returns an object where the key is the rule name, and the value is a rule.
+
+:::code-group
+
+```js [my-plugin/index.js]
+import primary from "./rule-primary.js";
+
+export default function myPlugin() {
+  return {
+    name: "my-plugin",
+    lint() {
+      return {
+        primary,
+      };
+    },
+  };
+}
+```
+
+```js [my-plugin/rule-primary.js]
+export default {
+  meta: {
+    docs: {
+      description: "Don’t use the words “primary” or “secondary” in names.",
+      url: "https://my-docs.com/rule-primary",
+    },
+  },
+  defaultOptions: [],
+  create(context) {
+    for (const [id, token] of Object.entries(context.tokens)) {
+      if (["primary", "secondary"].includes(id.toLowerCase())) {
+        context.report({
+          message: `Invalid token name: "${id}"`, // Error message to display to the user
+          node: token.source.node, // this will point to the precise token in source code
+        });
+      }
+    }
+  },
+};
+```
+
+:::
+
+Like ESLint, every rule must have a `create(context)` callback. In there, you can iterate over the tokens, and call `context.report()` to surface violations. If a user wanted to opt in, they’d just add the following to their [config](/docs/cli/config):
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import myPlugin from "./my-plugin/index.js";
+
+export default defineConfig({
+  plugin: [myPlugin()],
+  lint: {
+    rules: {
+      primary: "error", // error on the "primary" rule violation
+    },
+  },
+});
+```
+
+:::
+
+Like ESLint:
+
+- **Rules don’t care about severity.** A rule’s only job is to report a _potential problem_, and doesn’t need to worry about whether something is an error, warning, or ignored. The config determines the severity.
+
+Unlike ESLint, there are a few notable differences:
+
+- **Namespacing isn’t provided by default.** Your rules declared in your plugin will match the user’s config. If you think your rules may conflict with other plugins, then namespace them yourself (e.g. `my-plugin/rule-foo`).
+- **There’s no AST visitor.** Linting tokens is much simpler than linting an actual programming language. For that reason, there’s no AST visitor. Most token linters will simply iterate over `context.tokens` for everything they need. However, if you _really_ want to traverse an AST, you can do so by parsing and traversing `context.src` yourself.
+
 ### transform()
 
 The **transform** hook can populate a format with transformed values. A **format** is a **language** that tokens will be written to, such as, but not limited to: `css`, `scss`, `json`, `js`, `ts`, and more.
@@ -206,6 +288,7 @@ The **transform** hook can populate a format with transformed values. A **format
 import { rgb } from "culori";
 
 export default function myPlugin() {
+  name: "my-plugin",
   return {
     async transform({ tokens, setTransform }) {
       setTransform("color.base.blue.500", {
@@ -220,7 +303,7 @@ export default function myPlugin() {
         value: "ReturnType<typeof rgb>",
         mode: ".",
       });
-    },
+    }
   };
 }
 ```
@@ -247,6 +330,7 @@ The build step is where a format’s values are read and converted into output f
 ```js [my-plugin.js]
 export default function myPlugin() {
   return {
+    name: "my-plugin",
     async build({ tokens, getTransforms, outputFile }) {
       const output = [];
 

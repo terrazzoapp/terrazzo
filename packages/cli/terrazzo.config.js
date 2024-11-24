@@ -1,5 +1,6 @@
-/** @type {import('@terrazzo/cli').Config} */
-export default {
+import { defineConfig } from '@terrazo/cli';
+
+export default defineConfig({
   tokens: ['tokens.json'],
   outDir: './tokens/',
   plugins: [
@@ -8,4 +9,4 @@ export default {
   lint: {
     /** @see https://terrazzo.app/docs/cli/linting */
   },
-};
+});

@@ -6,7 +6,10 @@ import './CopyButton.css';
 export interface CopyButtonProps extends Omit<ComponentProps<'button'>, 'children' | 'onClick'> {
   /** The text to copy to the clipboard */
   clipboardText: string;
-  /** Amount of time, in milliseconds, to show the checkmark. (default: 1000) */
+  /**
+   * Amount of time, in milliseconds, to show the checkmark.
+   * @default: 1000
+   */
   timeoutMS?: number;
 }
 

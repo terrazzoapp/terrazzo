@@ -1,6 +1,6 @@
 import { type Color, displayable, formatCss, toGamut } from 'culori';
 import { parseColor, tokenToCulori } from '../color.js';
-import type { ColorTokenNormalized, ColorValue } from '../types.js';
+import type { ColorValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';
 
 export type WideGamutColorValue = { '.': string; srgb: string; p3: string; rec2020: string };
@@ -15,11 +15,7 @@ export function transformColorValue(
   }
 
   const { colorSpace, channels, alpha = 1 } = typeof value === 'string' ? parseColor(value) : value;
-  const color = tokenToCulori({
-    $type: 'color',
-    $value: { colorSpace, channels, alpha },
-    mode: { '.': { $type: 'color', $value: { colorSpace, channels, alpha } } },
-  } as unknown as ColorTokenNormalized);
+  const color = tokenToCulori({ colorSpace, channels, alpha });
 
   if (!color) {
     throw new Error(`Can’t convert color ${JSON.stringify(value)} to Culori color`);

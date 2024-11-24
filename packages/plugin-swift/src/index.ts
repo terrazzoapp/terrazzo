@@ -5,7 +5,10 @@ import { toGamut } from 'culori';
 export const FORMAT = 'swift';
 
 export interface SwiftPluginOptions {
-  /** Asset Catalog name (default: "Tokens") */
+  /**
+   * Asset Catalog name
+   * @default "Tokens"
+   */
   catalogName?: string;
 }
 

@@ -10,17 +10,17 @@ The Terrazzo CLI needs a `terrazzo.config.js` file in your project root for most
 :::code-group
 
 ```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 
-/** @type {import("@terrazzo/cli").Config} */
-export default {
+export default defineConfig({
   tokens: ["./tokens.json"],
   outDir: "./tokens/",
   plugins: [css()],
   build: {
     cleanDir: false,
   },
-};
+});
 ```
 
 :::

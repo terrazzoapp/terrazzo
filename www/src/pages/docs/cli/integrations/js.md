@@ -24,10 +24,10 @@ pnpm i -D @terrazzo/plugin-js
 :::code-group
 
 ```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
 import pluginJS from "@terrazzo/plugin-js";
 
-/** @type {import("@terrazzo/cli").Config} */
-export default {
+export default defineConfig({
   plugins: [
     pluginJS({
       output: {
@@ -37,7 +37,7 @@ export default {
       },
     }),
   ],
-};
+});
 ```
 
 :::
@@ -57,16 +57,16 @@ Configure options in [terrazzo.config.js](/docs/cli/config):
 :::code-group
 
 ```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
 import pluginJS from "@terrazzo/plugin-js";
 
-/** @type {import("@terrazzo/cli").Config} */
-export default {
+export default defineConfig({
   plugins: [
     pluginJS({
       /* options */
     }),
   ],
-};
+});
 ```
 
 :::

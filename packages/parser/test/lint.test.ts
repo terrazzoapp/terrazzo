@@ -1,12 +1,23 @@
 import { describe, expect, test } from 'vitest';
 
-// - Warn if node has "value" key; maybe they meant "$value"?
-
-// - Warn if node has "type" key; maybe they meant "$type"?
-
 import stripAnsi from 'strip-ansi';
 import { type TokensJSONError, defineConfig, parse } from '../src/index.js';
-import type { RuleDuplicateValueOptions } from '../src/lint/plugin-core/index.js';
+import {
+  COLORSPACE,
+  CONSISTENT_NAMING,
+  DUPLICATE_VALUES,
+  MAX_GAMUT,
+  REQUIRED_CHILDREN,
+  REQUIRED_MODES,
+  REQUIRED_TYPOGRAPHY_PROPERTIES,
+  type RuleColorspaceOptions,
+  type RuleConsistentNamingOptions,
+  type RuleDuplicateValueOptions,
+  type RuleMaxGamutOptions,
+  type RuleRequiredChildrenOptions,
+  type RuleRequiredModesOptions,
+  type RuleRequiredTypographyPropertiesOptions,
+} from '../src/lint/plugin-core/index.js';
 
 /* eslint-disable @typescript-eslint/ban-types */
 
@@ -14,13 +25,13 @@ type Test = [string, TestOptions];
 
 interface TestOptions {
   given: { tokens: any } & (
-    | { rule: 'duplicate-values'; options: RuleDuplicateValueOptions }
-    | { rule: 'naming'; options: RuleNamingOptions }
-    | { rule: 'required-children'; options: RuleRequiredChildrenOptions }
-    | { rule: 'required-modes'; options: RuleRequiredModesOptions }
-    | { rule: 'color/format'; options: RuleColorFormatOptions }
-    | { rule: 'color/gamut'; options: RuleColorGamutOptions }
-    | { rule: 'typography/required-properties'; options: RuleTypographyRequiredPropertiesOptions }
+    | { rule: typeof DUPLICATE_VALUES; options: RuleDuplicateValueOptions }
+    | { rule: typeof COLORSPACE; options: RuleColorspaceOptions }
+    | { rule: typeof CONSISTENT_NAMING; options: RuleConsistentNamingOptions }
+    | { rule: typeof MAX_GAMUT; options: RuleMaxGamutOptions }
+    | { rule: typeof REQUIRED_CHILDREN; options: RuleRequiredChildrenOptions }
+    | { rule: typeof REQUIRED_MODES; options: RuleRequiredModesOptions }
+    | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
   );
   want: { error: string; success?: never } | { error?: never; success: true };
 }
@@ -28,10 +39,98 @@ interface TestOptions {
 describe('rules', () => {
   const tests: Test[] = [
     [
-      '[duplicate-values] no duplicates',
+      `[${COLORSPACE}] srgb (success)`,
       {
         given: {
-          rule: 'duplicate-values',
+          rule: COLORSPACE,
+          options: { colorSpace: 'srgb' },
+          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${COLORSPACE}] oklab (success; ignored)`,
+      {
+        given: {
+          rule: COLORSPACE,
+          options: { colorSpace: 'oklab', ignore: ['color.*'] },
+          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${COLORSPACE}] oklch (success)`,
+      {
+        given: {
+          rule: COLORSPACE,
+          options: { colorSpace: 'oklch' },
+          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${COLORSPACE}] oklch (fail)`,
+      {
+        given: {
+          rule: COLORSPACE,
+          options: { colorSpace: 'oklch' },
+          tokens: { color: { blue: { 100: { $type: 'color', $value: '#3c3c43' } } } },
+        },
+        want: { error: 'Color color.blue.100: in hex (expected oklch)' },
+      },
+    ],
+    [
+      `[${CONSISTENT_NAMING}] kebab-case (success)`,
+      {
+        given: {
+          rule: CONSISTENT_NAMING,
+          options: { format: 'kebab-case' },
+          tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${CONSISTENT_NAMING}] kebab-case (fail)`,
+      {
+        given: {
+          rule: CONSISTENT_NAMING,
+          options: { format: 'kebab-case' },
+          tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
+        },
+        want: { error: 'Token token.camelCase: not in kebab-case' },
+      },
+    ],
+    [
+      `[${CONSISTENT_NAMING}] camelCase (success)`,
+      {
+        given: {
+          rule: CONSISTENT_NAMING,
+          options: { format: 'camelCase' },
+          tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${CONSISTENT_NAMING}] camelCase (fail)`,
+      {
+        given: {
+          rule: CONSISTENT_NAMING,
+          options: { format: 'camelCase' },
+          tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
+        },
+        want: { error: 'Token token.kebab-case: not in camelCase' },
+      },
+    ],
+    [
+      `[${DUPLICATE_VALUES}] no duplicates`,
+      {
+        given: {
+          rule: DUPLICATE_VALUES,
           options: {},
           tokens: {
             color: {
@@ -47,10 +146,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[duplicate-values] duplicates (fail)',
+      `[${DUPLICATE_VALUES}] duplicates (fail)`,
       {
         given: {
-          rule: 'duplicate-values',
+          rule: DUPLICATE_VALUES,
           options: {},
           tokens: {
             color: {
@@ -65,10 +164,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[duplicate-values] duplicates (success; ignored)',
+      `[${DUPLICATE_VALUES}] duplicates (success; ignored)`,
       {
         given: {
-          rule: 'duplicate-values',
+          rule: DUPLICATE_VALUES,
           options: { ignore: ['color.*'] },
           tokens: {
             color: {
@@ -83,10 +182,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[duplicate-values] custom tokens ignored',
+      `[${DUPLICATE_VALUES}] custom tokens ignored`,
       {
         given: {
-          rule: 'duplicate-values',
+          rule: DUPLICATE_VALUES,
           options: { ignore: ['color.*'] },
           tokens: {
             foo: {
@@ -102,54 +201,76 @@ describe('rules', () => {
       },
     ],
     [
-      '[naming] kebab-case (success)',
+      `[${MAX_GAMUT}] srgb (success)`,
       {
         given: {
-          rule: 'naming',
-          options: { format: 'kebab-case' },
-          tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
+          rule: MAX_GAMUT,
+          options: { gamut: 'srgb' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(87.94% 0.163 96.35)' } } },
         },
         want: { success: true },
       },
     ],
     [
-      '[naming] kebab-case (fail)',
+      `[${MAX_GAMUT}] srgb (fail)`,
       {
         given: {
-          rule: 'naming',
-          options: { format: 'kebab-case' },
-          tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
+          rule: MAX_GAMUT,
+          options: { gamut: 'srgb' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
         },
-        want: { error: 'Token token.camelCase: not in kebab-case' },
+        want: { error: 'Color color.yellow outside srgb gamut' },
       },
     ],
     [
-      '[naming] camelCase (success)',
+      `[${MAX_GAMUT}] p3 (success)`,
       {
         given: {
-          rule: 'naming',
-          options: { format: 'camelCase' },
-          tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
+          rule: MAX_GAMUT,
+          options: { gamut: 'p3' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
         },
         want: { success: true },
       },
     ],
     [
-      '[naming] camelCase (fail)',
+      `[${MAX_GAMUT}] p3 (fail)`,
       {
         given: {
-          rule: 'naming',
-          options: { format: 'camelCase' },
-          tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
+          rule: MAX_GAMUT,
+          options: { gamut: 'p3' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(88.82% 0.217 96.35)' } } },
         },
-        want: { error: 'Token token.kebab-case: not in camelCase' },
+        want: { error: 'Color color.yellow outside p3 gamut' },
       },
     ],
     [
-      '[required-children] tokens (success)',
+      `[${MAX_GAMUT}] rec2020 (success)`,
       {
         given: {
-          rule: 'required-children',
+          rule: MAX_GAMUT,
+          options: { gamut: 'rec2020' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(90.59% 0.215 96.35)' } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${MAX_GAMUT}] rec2020 (fail)`,
+      {
+        given: {
+          rule: MAX_GAMUT,
+          options: { gamut: 'rec2020' },
+          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(91.18% 0.234 96.35)' } } },
+        },
+        want: { error: 'Color color.yellow outside rec2020 gamut' },
+      },
+    ],
+    [
+      `[${REQUIRED_CHILDREN}] tokens (success)`,
+      {
+        given: {
+          rule: REQUIRED_CHILDREN,
           options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
           tokens: {
             color: {
@@ -164,10 +285,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[required-children] tokens (failure)',
+      `[${REQUIRED_CHILDREN}] tokens (failure)`,
       {
         given: {
-          rule: 'required-children',
+          rule: REQUIRED_CHILDREN,
           options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
           tokens: { color: { blue: { '100': { $type: 'color', $value: '#3c3c43' } } } },
         },
@@ -175,10 +296,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[required-children] groups (success)',
+      `[${REQUIRED_CHILDREN}] groups (success)`,
       {
         given: {
-          rule: 'required-children',
+          rule: REQUIRED_CHILDREN,
           options: { matches: [{ match: ['color.*'], requiredGroups: ['action', 'error'] }] },
           tokens: {
             color: {
@@ -199,10 +320,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[required-children] groups (failure)',
+      `[${REQUIRED_CHILDREN}] groups (failure)`,
       {
         given: {
-          rule: 'required-children',
+          rule: REQUIRED_CHILDREN,
           options: { matches: [{ match: ['color.*'], requiredGroups: ['action', 'error'] }] },
           tokens: {
             color: {
@@ -219,10 +340,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[required-modes] success',
+      `[${REQUIRED_MODES}] success`,
       {
         given: {
-          rule: 'required-modes',
+          rule: REQUIRED_MODES,
           options: { matches: [{ match: ['typography.*'], modes: ['mobile', 'desktop'] }] },
           tokens: {
             typography: {
@@ -240,10 +361,10 @@ describe('rules', () => {
       },
     ],
     [
-      '[required-modes] fail',
+      `[${REQUIRED_MODES}] fail`,
       {
         given: {
-          rule: 'required-modes',
+          rule: REQUIRED_MODES,
           options: { matches: [{ match: ['typography.*'], modes: ['mobile', 'desktop'] }] },
           tokens: {
             typography: {
@@ -257,124 +378,39 @@ describe('rules', () => {
       },
     ],
     [
-      '[color/format] hex (success)',
+      `[${REQUIRED_TYPOGRAPHY_PROPERTIES}] success`,
       {
         given: {
-          rule: 'color/format',
-          options: { format: 'hex' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: '#3c3c43' } } } },
+          rule: REQUIRED_TYPOGRAPHY_PROPERTIES,
+          options: { properties: ['fontWeight'] },
+          tokens: {
+            typography: {
+              body: {
+                $type: 'typography',
+                $value: { fontFamily: ['Inter'], fontSize: { unit: 'rem', value: 1 }, fontWeight: 400 },
+              },
+            },
+          },
         },
         want: { success: true },
       },
     ],
     [
-      '[color/format] hex (fail)',
+      `[${REQUIRED_TYPOGRAPHY_PROPERTIES}] error`,
       {
         given: {
-          rule: 'color/format',
-          options: { format: 'hex' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
-        },
-        want: { error: 'Color color.blue.100: in oklch (expected hex)' },
-      },
-    ],
-    [
-      '[color/format] hex (success; ignored)',
-      {
-        given: {
-          rule: 'color/format',
-          options: { format: 'hex', ignore: ['color.*'] },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+          rule: REQUIRED_TYPOGRAPHY_PROPERTIES,
+          options: { properties: ['fontWeight'] },
+          tokens: {
+            typography: {
+              body: {
+                $type: 'typography',
+                $value: { fontFamily: ['Inter'], fontSize: { unit: 'rem', value: 1 } },
+              },
+            },
+          },
         },
         want: { success: true },
-      },
-    ],
-    [
-      '[color/format] oklch (success)',
-      {
-        given: {
-          rule: 'color/format',
-          options: { format: 'oklch' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
-        },
-        want: { success: true },
-      },
-    ],
-    [
-      '[color/format] oklch (fail)',
-      {
-        given: {
-          rule: 'color/format',
-          options: { format: 'oklch' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: '#3c3c43' } } } },
-        },
-        want: { error: 'Color color.blue.100: in hex (expected oklch)' },
-      },
-    ],
-    [
-      '[color/gamut] srgb (success)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'srgb' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(87.94% 0.163 96.35)' } } },
-        },
-        want: { success: true },
-      },
-    ],
-    [
-      '[color/gamut] srgb (fail)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'srgb' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
-        },
-        want: { error: 'Color color.yellow outside srgb gamut' },
-      },
-    ],
-    [
-      '[color/gamut] p3 (success)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'p3' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
-        },
-        want: { success: true },
-      },
-    ],
-    [
-      '[color/gamut] p3 (fail)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'p3' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(88.82% 0.217 96.35)' } } },
-        },
-        want: { error: 'Color color.yellow outside p3 gamut' },
-      },
-    ],
-    [
-      '[color/gamut] rec2020 (success)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'rec2020' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(90.59% 0.215 96.35)' } } },
-        },
-        want: { success: true },
-      },
-    ],
-    [
-      '[color/gamut] rec2020 (fail)',
-      {
-        given: {
-          rule: 'color/gamut',
-          options: { gamut: 'rec2020' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(91.18% 0.234 96.35)' } } },
-        },
-        want: { error: 'Color color.yellow outside rec2020 gamut' },
       },
     ],
   ];

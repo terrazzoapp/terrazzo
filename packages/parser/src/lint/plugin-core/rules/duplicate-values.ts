@@ -1,78 +1,74 @@
 import { isAlias, isTokenMatch } from '@terrazzo/token-tools';
-import type { LintNotice, LinterOptions } from '../../index.js';
+import type { LintRule } from '../../../types.js';
+import { docsLink } from '../lib/docs.js';
+
+export const DUPLICATE_VALUES = 'core/duplicate-values';
 
 export interface RuleDuplicateValueOptions {
-  /** (optional) Token IDs to ignore. Supports globs (`*`). */
+  /** Token IDs to ignore. Supports globs (`*`). */
   ignore?: string[];
 }
 
-export default async function ruleDuplicateValues({
-  tokens,
-  rule: { severity },
-  options,
-}: LinterOptions<RuleDuplicateValueOptions>): Promise<LintNotice[] | undefined> {
-  if (severity === 'off') {
-    return;
-  }
+const ERROR_DUPLICATE_VALUE = 'ERROR_DUPLICATE_VALUE';
 
-  const notices: LintNotice[] = [];
-  const values: Record<string, Set<any>> = {};
+const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = {
+  meta: {
+    messages: {
+      [ERROR_DUPLICATE_VALUE]: 'Duplicate value {{ value }} ({{ id }})',
+    },
+    docs: {
+      description: 'Detect duplicate values in tokens.',
+      url: docsLink(DUPLICATE_VALUES),
+    },
+  },
+  defaultOptions: {},
+  create({ report, tokens, options }) {
+    const values: Record<string, Set<any>> = {};
 
-  for (const id in tokens) {
-    if (!Object.hasOwn(tokens, id)) {
-      continue;
-    }
-
-    const t = tokens[id]!;
-
-    // skip ignored tokens
-    if (options?.ignore && isTokenMatch(id, options.ignore)) {
-      return;
-    }
-
-    if (!values[t.$type]) {
-      values[t.$type] = new Set();
-    }
-
-    // primitives: direct comparison is easy
-    if (
-      t.$type === 'color' ||
-      t.$type === 'dimension' ||
-      t.$type === 'duration' ||
-      t.$type === 'link' ||
-      t.$type === 'number' ||
-      t.$type === 'fontWeight'
-    ) {
-      // skip aliases (note: $value will be resolved)
-      if (isAlias(t.aliasOf)) {
-        return;
+    for (const t of Object.values(tokens)) {
+      // skip ignored tokens
+      if (options.ignore && isTokenMatch(t.id, options.ignore)) {
+        continue;
       }
 
-      if (values[t.$type]?.has(t.$value)) {
-        notices.push({ message: `Duplicated value: "${t.$value}" (${t.id})`, node: t.source.node });
-        return;
+      if (!values[t.$type]) {
+        values[t.$type] = new Set();
       }
 
-      values[t.$type]?.add(t.$value);
-      return;
-    }
+      // primitives: direct comparison is easy
+      if (
+        t.$type === 'color' ||
+        t.$type === 'dimension' ||
+        t.$type === 'duration' ||
+        t.$type === 'link' ||
+        t.$type === 'number' ||
+        t.$type === 'fontWeight'
+      ) {
+        // skip aliases (note: $value will be resolved)
+        if (isAlias(t.aliasOf)) {
+          continue;
+        }
 
-    // everything else: use deepEqual
-    let isDuplicate = false;
-    for (const v of values[t.$type]?.values() ?? []) {
-      if (JSON.stringify(t.$value) === JSON.stringify(v)) {
-        notices.push({ message: `Duplicated value (${t.id})`, node: t.source.node });
-        isDuplicate = true;
-        break;
+        if (values[t.$type]?.has(t.$value)) {
+          report({ messageId: ERROR_DUPLICATE_VALUE, data: { value: t.$value, id: t.id }, node: t.source.node });
+        }
+
+        values[t.$type]?.add(t.$value);
+      }
+
+      // everything else: use deepEqual
+      let isDuplicate = false;
+      for (const v of values[t.$type]?.values() ?? []) {
+        if (JSON.stringify(t.$value) === JSON.stringify(v)) {
+          report({ messageId: ERROR_DUPLICATE_VALUE, data: { id: t.id }, node: t.source.node });
+          isDuplicate = true;
+        }
+      }
+      if (!isDuplicate) {
+        values[t.$type]?.add(t.$value);
       }
     }
+  },
+};
 
-    if (isDuplicate) {
-      continue;
-    }
-
-    values[t.$type]?.add(t.$value);
-  }
-
-  return notices;
-}
+export default rule;

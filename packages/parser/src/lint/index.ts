@@ -1,49 +1,23 @@
-import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
 import { type TokenNormalized, pluralize } from '@terrazzo/token-tools';
-import type { ConfigInit } from '../config.js';
-import type Logger from '../logger.js';
-
-export interface LintNotice {
-  /** Lint message shown to the user */
-  message: string;
-  /** Erring node (used to point to a specific line) */
-  node?: AnyNode;
-}
-
-export type LintRuleSeverity = 'error' | 'warn' | 'off';
-export type LintRuleShorthand = LintRuleSeverity | 0 | 1 | 2;
-export type LintRuleLonghand = [LintRuleSeverity | 0 | 1 | 2, any];
-
-export interface LintRuleNormalized<O = any> {
-  id: string;
-  severity: LintRuleSeverity;
-  options?: O;
-}
-
-export interface LintRuleEvaluatorOptions<O = any> {
-  tokens: Record<string, TokenNormalized>;
-  document: DocumentNode;
-  filename?: URL;
-  source?: string;
-  /** Any options the user has declared for this plugin */
-  options?: O;
-}
-export type LintRuleEvaluator = (options: LintRuleEvaluatorOptions) => Promise<LintNotice[] | undefined>;
-
-export interface LintRunnerOptions {
-  tokens: Record<string, TokenNormalized>;
-  document: DocumentNode;
-  filename?: URL;
-  config: ConfigInit;
-  logger: Logger;
-}
+import { merge } from 'merge-anything';
+import type { default as Logger, LogEntry } from '../logger.js';
+import type { ConfigInit } from '../types.js';
 
 const listFormat = new Intl.ListFormat('en-us');
 
+export interface LintRunnerOptions {
+  tokens: Record<string, TokenNormalized>;
+  filename?: URL;
+  config: ConfigInit;
+  src: string;
+  logger: Logger;
+}
+
 export default async function lintRunner({
   tokens,
-  document,
+  filename,
   config = {} as ConfigInit,
+  src,
   logger,
 }: LintRunnerOptions): Promise<void> {
   const { plugins = [], lint } = config;
@@ -52,46 +26,100 @@ export default async function lintRunner({
   for (const plugin of plugins) {
     if (typeof plugin.lint === 'function') {
       const s = performance.now();
+
       logger.debug({ group: 'plugin', label: plugin.name, message: 'Start linting' });
 
       const linter = plugin.lint();
-      const errorEntries: LintNotice[] = [];
-      const warnEntries: LintNotice[] = [];
+      const errors: LogEntry[] = [];
+      const warnings: LogEntry[] = [];
+
       await Promise.all(
-        Object.entries(linter).map(async ([ruleID, evaluator]) => {
-          if (!(ruleID in lint.rules) || lint.rules[ruleID] === null) {
+        Object.entries(linter).map(async ([id, rule]) => {
+          if (!(id in lint.rules) || lint.rules[id] === null) {
             return;
           }
-          const [severity, options] = lint.rules[ruleID]!;
+          const [severity, options] = lint.rules[id]!;
           if (severity === 'off') {
             return;
           }
-          const results = await evaluator({ tokens, options, document });
-          for (const result of results ?? []) {
-            const noticeList = severity === 'error' ? errorEntries : warnEntries;
-            noticeList.push({ message: result.message, node: result.node });
-          }
 
+          // note: this usually isn’t a Promise, but it _might_ be!
+          await rule.create({
+            id,
+            report(descriptor) {
+              let message = '';
+              if (!descriptor.message && !descriptor.messageId) {
+                logger.error({
+                  label: `[plugin] ${plugin.name} › lint › ${id}`,
+                  message: 'Unable to report error: missing message or messageId',
+                });
+              }
+
+              // handle message or messageId
+              if (descriptor.message) {
+                message = descriptor.message;
+              } else {
+                if (!(descriptor.messageId! in (rule.meta?.messages ?? {}))) {
+                  logger.error({
+                    label: `[plugin] ${plugin.name} › lint › ${id}`,
+                    message: `messageId "${descriptor.messageId}" does not exist`,
+                  });
+                }
+                message = rule.meta?.messages?.[descriptor.messageId as keyof typeof rule.meta.messages] ?? '';
+              }
+
+              // replace with descriptor.data (if any)
+              if (descriptor.data && typeof descriptor.data === 'object') {
+                for (const [k, v] of Object.entries(descriptor.data)) {
+                  // lazy formatting
+                  const formatted = ['string', 'number', 'boolean'].includes(typeof v) ? String(v) : JSON.stringify(v);
+                  message = message.replace(new RegExp(`{{\s*${k}\s*}}`), formatted);
+                }
+              }
+
+              (severity === 'error' ? errors : warnings).push({
+                label: id,
+                message,
+                node: descriptor.node,
+                src: descriptor.source?.src,
+              });
+            },
+            tokens,
+            filename,
+            src,
+            options: merge(
+              rule.meta?.defaultOptions ?? [],
+              rule.defaultOptions ?? [], // Note: is this the correct order to merge in?
+              options,
+            ),
+          });
           // tick off used rule
-          const unusedLintRuleI = unusedLintRules.indexOf(ruleID);
+          const unusedLintRuleI = unusedLintRules.indexOf(id);
           if (unusedLintRuleI !== -1) {
             unusedLintRules.splice(unusedLintRuleI, 1);
           }
         }),
       );
-      for (const entry of errorEntries) {
-        logger.error(entry);
+
+      for (const error of errors) {
+        logger.error({ ...error, continueOnError: true }); // print out all errors before exiting here
       }
-      for (const entry of warnEntries) {
-        logger.warn(entry);
+      for (const warning of warnings) {
+        logger.warn(warning);
       }
+
       logger.debug({ group: 'plugin', label: plugin.name, message: 'Finish linting', timing: performance.now() - s });
-      if (errorEntries.length) {
-        const counts = [pluralize(errorEntries.length, 'error', 'errors')];
-        if (warnEntries.length) {
-          counts.push(pluralize(warnEntries.length, 'warning', 'warnings'));
+
+      if (errors.length) {
+        const counts = [pluralize(errors.length, 'error', 'errors')];
+        if (warnings.length) {
+          counts.push(pluralize(warnings.length, 'warning', 'warnings'));
         }
-        logger.error({ message: `Lint failed with ${listFormat.format(counts)}`, label: plugin.name });
+        logger.error({
+          message: `Lint failed with ${listFormat.format(counts)}`,
+          label: plugin.name,
+          continueOnError: false,
+        });
       }
     }
   }

@@ -28,7 +28,7 @@ export interface CSSPluginOptions {
 export interface ModeSelector {
   /** The name of the mode to match */
   mode: string;
-  /** (optional) Provide token IDs to match. Globs are allowed (e.g: `["color.*", "shadow.dark"]`) */
+  /** Provide token IDs to match. Globs are allowed (e.g: `["color.*", "shadow.dark"]`) */
   tokens?: string[];
   /** Provide CSS selectors to generate. (e.g.: `["@media (prefers-color-scheme: dark)", "[data-color-theme='dark']"]` ) */
   selectors: string[];

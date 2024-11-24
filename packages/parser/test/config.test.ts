@@ -1,5 +1,6 @@
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
+import parse from '../src/parse/index.js';
 import defineConfig from '../src/config.js';
 
 describe('config', () => {
@@ -52,6 +53,22 @@ describe('config', () => {
     it('outDir', () => {
       const config = defineConfig({ outDir: './custom-output/' }, { cwd: new URL(import.meta.url) });
       expect(config.outDir.href).toMatch(/^file:\/\/\/.*\/packages\/parser\/test\/custom-output\/$/);
+    });
+
+    it('ignore', async () => {
+      const config = defineConfig({ ignore: ['color-legacy.*'] }, { cwd: new URL(import.meta.url) });
+      const result = await parse(
+        [
+          {
+            src: {
+              color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', channels: [1, 0, 0] } } },
+              'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', channels: [1, 0, 0] } } },
+            },
+          },
+        ],
+        { config },
+      );
+      expect(result.tokens).toEqual({});
     });
   });
 });

@@ -342,7 +342,11 @@ export interface ColorTokenNormalized extends TokenNormalizedCore<'color'> {
 }
 
 export interface ColorValueNormalized {
-  /** Colorspace (default: `srgb`) @see https://www.w3.org/TR/css-color-4/#predefined */
+  /**
+   * Colorspace
+   * @default "srgb"
+   * @see https://www.w3.org/TR/css-color-4/#predefined
+   */
   colorSpace: ColorSpace;
   /** Color channels. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
   channels: [number, number, number];

@@ -1,64 +1,9 @@
 import { merge } from 'merge-anything';
-import type { BuildHookOptions, BuildRunnerResult, TransformHookOptions } from './build/index.js';
-import type { LintRuleLonghand, LintRuleSeverity, LintRuleShorthand, LintRuleEvaluator } from './lint/index.js';
 import coreLintPlugin from './lint/plugin-core/index.js';
 import Logger from './logger.js';
+import type { Config, ConfigInit, ConfigOptions, LintRuleSeverity } from './types.js';
 
 const TRAILING_SLASH_RE = /\/*$/;
-
-export interface Config {
-  /** Path to tokens.json (default: "./tokens.json") */
-  tokens?: string | string[];
-  /** Output directory (default: "./tokens/") */
-  outDir?: string;
-  /** Specify plugins */
-  plugins?: Plugin[];
-  /** Specify linting settings */
-  lint?: {
-    /** Configure build behavior */
-    build?: {
-      /** Should linters run with `tz build`? (default: true) */
-      enabled?: boolean;
-    };
-    /** Configure lint rules */
-    rules?: Record<string, LintRuleShorthand | LintRuleLonghand>;
-  };
-}
-
-export interface ConfigInit {
-  tokens: URL[];
-  outDir: URL;
-  plugins: Plugin[];
-  lint: {
-    build: NonNullable<NonNullable<Config['lint']>['build']>;
-    rules: Record<string, [LintRuleSeverity, any]>;
-  };
-}
-
-export interface Plugin {
-  name: string;
-  /** Read config, and optionally modify */
-  // biome-ignore lint/suspicious/noConfusingVoidType format: this helps plugins be a little looser on their typing
-  config?(config: ConfigInit): void | ConfigInit | undefined;
-  /**
-   * Declare:
-   * - `"pre"`: run this plugin BEFORE all others
-   * - `"post"`: run this plugin AFTER all others
-   * - (default) run this plugin in default order (array order)
-   */
-  enforce?: 'pre' | 'post';
-  /** Throw lint errors/warnings */
-  lint?(): Record<string, LintRuleEvaluator>;
-  transform?(options: TransformHookOptions): Promise<void>;
-  build?(options: BuildHookOptions): Promise<void>;
-  buildEnd?(result: BuildRunnerResult): Promise<void>;
-}
-
-export interface ConfigOptions {
-  logger?: Logger;
-  /** @terrazzo/parser needs cwd so this can be run without Node.js. Importing defineConfig from @terrazzo/cli doesn’t need this. */
-  cwd: URL;
-}
 
 /**
  * Validate and normalize a config
@@ -226,17 +171,31 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
         return;
       }
 
-      const allRules = new Set<string>();
+      const allRules = new Map<string, string>();
       for (const plugin of config.plugins) {
-        for (const rule in plugin.lint?.() ?? {}) {
-          allRules.add(rule);
+        if (typeof plugin.lint !== 'function') {
+          continue;
+        }
+        const pluginRules = plugin.lint();
+        if (!pluginRules || Array.isArray(pluginRules) || typeof pluginRules !== 'object') {
+          logger.error({
+            label: `[config] plugin › ${plugin.name}`,
+            message: `Expected object for lint() received ${JSON.stringify(pluginRules)}`,
+          });
+          continue;
+        }
+        for (const rule of Object.keys(pluginRules)) {
+          if (allRules.has(rule)) {
+            logger.error({
+              label: `[config] plugin › ${plugin.name}`,
+              message: `Duplicate rule ${rule} already registered by plugin ${allRules.get(rule)}`,
+            });
+          }
+          allRules.set(rule, plugin.name);
         }
       }
 
-      for (const id in config.lint.rules) {
-        if (!Object.hasOwn(config.lint.rules, id)) {
-          continue;
-        }
+      for (const id of Object.keys(config.lint.rules)) {
         if (!allRules.has(id)) {
           logger.error({
             label: `[config] lint › rule › ${id}`,

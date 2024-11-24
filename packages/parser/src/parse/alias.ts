@@ -118,24 +118,18 @@ export function applyAliases(
         // @ts-ignore
         token.$value[i] = (aliasMode && tokens[aliasOfID]!.mode[aliasMode]?.$value) || tokens[aliasOfID]!.$value;
       } else if (typeof token.$value[i] === 'object') {
-        // @ts-ignore
-        for (const property in token.$value[i]) {
-          // @ts-ignore
-          if (isAlias(token.$value[i][property])) {
+        for (const [property, subvalue] of Object.entries(token.$value[i]!)) {
+          if (isAlias(subvalue)) {
             if (!token.partialAliasOf) {
               token.partialAliasOf = [];
             }
             if (!token.partialAliasOf[i]) {
               token.partialAliasOf[i] = {};
             }
-            // @ts-ignore
-            const aliasOfID = resolveAlias(token.$value[i][property], { tokens, logger, filename, node, src });
-            // @ts-ignore
-            const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i][property]);
+            const aliasOfID = resolveAlias(subvalue, { tokens, logger, filename, node, src });
+            const { id: aliasID, mode: aliasMode } = parseAlias(subvalue);
             const aliasToken = tokens[aliasOfID]!;
-
-            // @ts-ignore
-            const possibleTypes: string[] = expectedAliasTypes?.[property] || [];
+            const possibleTypes: string[] = expectedAliasTypes?.[property as keyof typeof expectedAliasTypes] || [];
             if (!possibleTypes.includes(aliasToken.$type)) {
               const elementNode = ($valueNode as ArrayNode).elements[i]!.value;
               logger.error({
@@ -157,20 +151,17 @@ export function applyAliases(
   }
   // handle aliases within object (composite) values (e.g. border, typography, transition)
   else if (typeof token.$value === 'object') {
-    for (const property in token.$value) {
+    for (const [property, subvalue] of Object.entries(token.$value)) {
       if (!Object.hasOwn(token.$value, property)) {
         continue;
       }
 
-      // @ts-ignore
-      if (isAlias(token.$value[property])) {
+      if (isAlias(subvalue)) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = {};
         }
-        // @ts-ignore
-        const aliasOfID = resolveAlias(token.$value[property], { tokens, logger, filename, node, src });
-        // @ts-ignore
-        const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property]);
+        const aliasOfID = resolveAlias(subvalue, { tokens, logger, filename, node, src });
+        const { id: aliasID, mode: aliasMode } = parseAlias(subvalue);
         // @ts-ignore
         token.partialAliasOf[property] = aliasID; // keep the shallow alias!
         const aliasToken = tokens[aliasOfID];

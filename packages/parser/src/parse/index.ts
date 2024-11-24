@@ -1,8 +1,8 @@
 import { type DocumentNode, type ObjectNode, evaluate, parse as parseJSON, print } from '@humanwhocodes/momoa';
 import { type Token, type TokenNormalized, pluralize, splitID } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
-import type { ConfigInit } from '../config.js';
 import lintRunner from '../lint/index.js';
+import type { ConfigInit } from '../types.js';
 import Logger from '../logger.js';
 import { applyAliases } from './alias.js';
 import { getObjMembers, injectObjMembers, maybeJSONString, traverse } from './json.js';
@@ -15,9 +15,15 @@ export * from './validate.js';
 export interface ParseOptions {
   logger?: Logger;
   config: ConfigInit;
-  /** Skip lint step (default: false) */
+  /**
+   * Skip lint step
+   * @default false
+   */
   skipLint?: boolean;
-  /** Continue on error? (Useful for `tz check`) (default: false) */
+  /**
+   * Continue on error? (Useful for `tz check`)
+   * @default false
+   */
   continueOnError?: boolean;
   /** Provide yamlToMomoa module to parse YAML (by default, this isn’t shipped to cut down on package weight) */
   yamlToMomoa?: typeof ytm;
@@ -87,11 +93,10 @@ export default async function parse(
   const totalStart = performance.now();
 
   // 5. Resolve aliases and populate groups
-  for (const id in tokens) {
+  for (const [id, token] of Object.entries(tokens)) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
     }
-    const token = tokens[id]!;
     applyAliases(token, {
       tokens,
       filename: sources[token.source.loc!]?.filename!,
@@ -108,7 +113,7 @@ export default async function parse(
     }
     const { group: parentGroup } = splitID(id);
     if (parentGroup) {
-      for (const siblingID in tokens) {
+      for (const siblingID of Object.keys(tokens)) {
         const { group: siblingGroup } = splitID(siblingID);
         if (siblingGroup?.startsWith(parentGroup)) {
           token.group.tokens.push(siblingID);
@@ -124,19 +129,19 @@ export default async function parse(
     label: 'modes',
     message: 'Start mode resolution',
   });
-  for (const id in tokens) {
+  for (const [id, token] of Object.entries(tokens)) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
     }
-    for (const mode in tokens[id]!.mode) {
+    for (const [mode, modeValue] of Object.entries(token.mode)) {
       if (mode === '.') {
         continue; // skip shadow of root value
       }
-      applyAliases(tokens[id]!.mode[mode]!, {
+      applyAliases(modeValue, {
         tokens,
-        node: tokens[id]!.mode[mode]!.source.node,
+        node: modeValue.source.node,
         logger,
-        src: sources[tokens[id]!.source.loc!]?.src as string,
+        src: sources[token.source.loc!]?.src as string,
       });
     }
   }
@@ -302,6 +307,7 @@ async function parseSingle(
             // @ts-ignore
             $value: evaluate(members.$value),
             id,
+            // @ts-ignore
             mode: {},
             // @ts-ignore
             originalValue: evaluate(node.value),
@@ -375,7 +381,7 @@ async function parseSingle(
       label: 'validate',
       message: 'Start token linting',
     });
-    await lintRunner({ document, filename, config, logger });
+    await lintRunner({ tokens, src, config, logger });
     logger.debug({
       group: 'parser',
       label: 'validate',
@@ -391,28 +397,28 @@ async function parseSingle(
     label: 'normalize',
     message: 'Start token normalization',
   });
-  for (const id in tokens) {
+  for (const [id, token] of Object.entries(tokens)) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
     }
     try {
-      tokens[id]!.$value = normalize(tokens[id]!);
+      tokens[id]!.$value = normalize(token);
     } catch (err) {
-      let { node } = tokens[id]!.source;
+      let { node } = token.source;
       const members = getObjMembers(node);
       if (members.$value) {
         node = members.$value as ObjectNode;
       }
       logger.error({ message: (err as Error).message, filename, src, node, continueOnError });
     }
-    for (const mode in tokens[id]!.mode) {
+    for (const [mode, modeValue] of Object.entries(token.mode)) {
       if (mode === '.') {
         continue;
       }
       try {
-        tokens[id]!.mode[mode]!.$value = normalize(tokens[id]!.mode[mode]!);
+        tokens[id]!.mode[mode]!.$value = normalize(modeValue);
       } catch (err) {
-        let { node } = tokens[id]!.source;
+        let { node } = token.source;
         const members = getObjMembers(node);
         if (members.$value) {
           node = members.$value as ObjectNode;
@@ -421,7 +427,7 @@ async function parseSingle(
           message: (err as Error).message,
           filename,
           src,
-          node: tokens[id]!.mode[mode]!.source.node,
+          node: modeValue.source.node,
           continueOnError,
         });
       }
