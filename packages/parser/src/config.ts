@@ -255,21 +255,23 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
 }
 
 function normalizeIgnore({ config, logger }: { config: ConfigInit; logger: Logger }) {
-  const tokens = config.ignore?.tokens ?? [];
-  const deprecated = config.ignore?.deprecated ?? false;
-  if (!Array.isArray(tokens) || tokens.some((x) => typeof x !== 'string')) {
+  if (!config.ignore) {
+    config.ignore = {} as typeof config.ignore;
+  }
+  config.ignore.tokens ??= [];
+  config.ignore.deprecated ??= false;
+  if (!Array.isArray(config.ignore.tokens) || config.ignore.tokens.some((x) => typeof x !== 'string')) {
     logger.error({
       label: '[config] ignore › tokens',
       message: `Expected array of strings, received ${JSON.stringify(config.ignore.tokens)}`,
     });
   }
-  if (typeof deprecated !== 'boolean') {
+  if (typeof config.ignore.deprecated !== 'boolean') {
     logger.error({
       label: '[config] ignore › deprecated',
       message: `Expected boolean, received ${JSON.stringify(config.ignore.deprecated)}`,
     });
   }
-  config.ignore ??= { tokens, deprecated };
 }
 
 /** Merge configs */

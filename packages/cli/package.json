@@ -20,6 +20,14 @@
     "style system"
   ],
   "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./README.md": "./README.md",
+    "./package.json": "./package.json"
+  },
   "homepage": "https://terrazzoapp.com/docs/cli",
   "repository": {
     "type": "git",

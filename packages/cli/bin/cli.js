@@ -86,7 +86,12 @@ export default async function main() {
     }
     configPath = resolveConfig(flags.config);
   }
-  let config = { tokens: [new URL('./tokens.json', cwd)], outDir: new URL('./tokens/', cwd), plugins: [] };
+  let config = {
+    tokens: [new URL('./tokens.json', cwd)],
+    outDir: new URL('./tokens/', cwd),
+    plugins: [],
+    ignore: { tokens: [], deprecated: false },
+  };
   const resolvedConfigPath = resolveConfig(configPath);
   if (resolvedConfigPath) {
     try {
@@ -198,8 +203,8 @@ export default async function main() {
         !fs.existsSync(new URL('./terrazzo.config.mjs', cwd)) &&
         !fs.existsSync(new URL('./terrazzo.config.cjs', cwd))
       ) {
-        fs.cpSync(new URL('./terrazzo.config.js', PKG_ROOT), new URL('./terrazzo.config.js', cwd));
-        printSuccess('terrazzo.config.js created');
+        fs.cpSync(new URL('./terrazzo.config.mjs', PKG_ROOT), new URL('./terrazzo.config.mjs', cwd));
+        printSuccess('terrazzo.config.mjs created');
       }
       if (!fs.existsSync(config.tokens[0])) {
         fs.cpSync(new URL('./tokens-example.json', PKG_ROOT), new URL(config?.tokens, cwd));
