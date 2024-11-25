@@ -17,7 +17,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
       [ERROR_DUPLICATE_VALUE]: '{{ id }} declared a duplicate value',
     },
     docs: {
-      description: 'Detect duplicate values in tokens.',
+      description: 'Enforce tokens can’t redeclare the same value (excludes aliases).',
       url: docsLink(DUPLICATE_VALUES),
     },
   },

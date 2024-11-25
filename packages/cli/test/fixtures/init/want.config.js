@@ -7,6 +7,6 @@ export default defineConfig({
     /** @see https://terrazzo.app/docs/cli/integrations */
   ],
   lint: {
-    /** @see https://terrazzo.app/docs/cli/linting */
+    /** @see https://terrazzo.app/docs/cli/lint */
   },
 });

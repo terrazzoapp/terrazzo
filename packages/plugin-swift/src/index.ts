@@ -40,7 +40,7 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
               if (!modeValue) {
                 continue;
               }
-              const parsed = tokenToCulori(modeValue);
+              const parsed = tokenToCulori(modeValue.$value);
               if (!parsed) {
                 throw new Error(`Can’t convert color ${JSON.stringify(modeValue)} to Culori color`);
               }

@@ -186,7 +186,11 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           continue;
         }
         for (const rule of Object.keys(pluginRules)) {
-          if (allRules.has(rule)) {
+          // Note: sometimes plugins will be loaded multiple times, in which case it’s expected
+          // they’re register rules again for lint(). Only throw an error if plugin A and plugin B’s
+          // rules conflict.
+
+          if (allRules.get(rule) && allRules.get(rule) !== plugin.name) {
             logger.error({
               label: `[config] plugin › ${plugin.name}`,
               message: `Duplicate rule ${rule} already registered by plugin ${allRules.get(rule)}`,

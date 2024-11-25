@@ -1,6 +1,7 @@
 import { type ColorValueNormalized, isTokenMatch, tokenToCulori } from '@terrazzo/token-tools';
 import { type Color, clampChroma } from 'culori';
 import type { LintRule } from '../../../types.js';
+import { docsLink } from '../lib/docs.js';
 
 export const MAX_GAMUT = 'core/max-gamut';
 
@@ -57,6 +58,10 @@ const rule: LintRule<
       [ERROR_BORDER]: 'Border {{ id }} is outside {{ gamut }} gamut',
       [ERROR_GRADIENT]: 'Gradient {{ id }} is outside {{ gamut }} gamut',
       [ERROR_SHADOW]: 'Shadow {{ id }} is outside {{ gamut }} gamut',
+    },
+    docs: {
+      description: 'Enforce colors are within the specified gamut.',
+      url: docsLink(MAX_GAMUT),
     },
   },
   defaultOptions: { gamut: 'rec2020' },

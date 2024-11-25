@@ -1,3 +1,4 @@
+import { isTokenMatch } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -6,6 +7,8 @@ export const REQUIRED_TYPOGRAPHY_PROPERTIES = 'core/required-typography-properti
 export interface RuleRequiredTypographyPropertiesOptions {
   /** Required typography properties */
   properties: string[];
+  /** Token globs to ignore */
+  ignore?: string[];
 }
 
 const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
@@ -26,6 +29,10 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
     }
 
     for (const t of Object.values(tokens)) {
+      if (options.ignore && isTokenMatch(t.id, options.ignore)) {
+        continue;
+      }
+
       if (t.$type !== 'typography') {
         continue;
       }

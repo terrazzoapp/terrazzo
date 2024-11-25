@@ -4,29 +4,14 @@ import { docsLink } from '../lib/docs.js';
 
 export const REQUIRED_CHILDREN = 'core/required-children';
 
-export type RequiredChildrenMatch = {
+export interface RequiredChildrenMatch {
   /** Glob of tokens/groups to match */
   match: string[];
-} & ( // type helper (enforces at least 1 exists)
-  | {
-      /** Required token IDs to match (this only looks at the very last segment of a token ID!) */
-      requiredTokens: string[];
-      /** Required groups to match (this only looks at the beginning/middle segments of a token ID!) */
-      requiredGroups?: never;
-    }
-  | {
-      /** Required token IDs to match (this only looks at the very last segment of a token ID!) */
-      requiredTokens?: never;
-      /** Required groups to match (this only looks at the beginning/middle segments of a token ID!) */
-      requiredGroups: string[];
-    }
-  | {
-      /** Required token IDs to match (this only looks at the very last segment of a token ID!) */
-      requiredTokens: string[];
-      /** Required groups to match (this only looks at the beginning/middle segments of a token ID!) */
-      requiredGroups: string[];
-    }
-);
+  /** Required token IDs to match (this only looks at the very last segment of a token ID!) */
+  requiredTokens?: string[];
+  /** Required groups to match (this only looks at the beginning/middle segments of a token ID!) */
+  requiredGroups?: string[];
+}
 
 export interface RuleRequiredChildrenOptions {
   matches: RequiredChildrenMatch[];
@@ -47,7 +32,7 @@ const rule: LintRule<
       [ERROR_MISSING_REQUIRED_GROUP]: 'Match {{ index }}: some tokens missing required group "{{ group }}"',
     },
     docs: {
-      description: 'Enforce groups have required tokens, or tokens have required groups.',
+      description: 'Enforce token groups have specific children, whether tokens and/or groups.',
       url: docsLink(REQUIRED_CHILDREN),
     },
   },

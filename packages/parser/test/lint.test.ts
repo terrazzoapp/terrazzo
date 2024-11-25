@@ -2,15 +2,21 @@ import { describe, expect, test } from 'vitest';
 
 import { type Logger, defineConfig, parse } from '../src/index.js';
 import {
+  A11Y_MIN_CONTRAST,
+  A11Y_MIN_FONT_SIZE,
   COLORSPACE,
   CONSISTENT_NAMING,
+  DESCRIPTIONS,
   DUPLICATE_VALUES,
   MAX_GAMUT,
   REQUIRED_CHILDREN,
   REQUIRED_MODES,
   REQUIRED_TYPOGRAPHY_PROPERTIES,
+  type RuleA11yMinContrastOptions,
+  type RuleA11yMinFontSizeOptions,
   type RuleColorspaceOptions,
   type RuleConsistentNamingOptions,
+  type RuleDescriptionsOptions,
   type RuleDuplicateValueOptions,
   type RuleMaxGamutOptions,
   type RuleRequiredChildrenOptions,
@@ -24,13 +30,16 @@ type Test = [string, TestOptions];
 
 interface TestOptions {
   given: { tokens: any } & (
-    | { rule: typeof DUPLICATE_VALUES; options: RuleDuplicateValueOptions }
     | { rule: typeof COLORSPACE; options: RuleColorspaceOptions }
     | { rule: typeof CONSISTENT_NAMING; options: RuleConsistentNamingOptions }
+    | { rule: typeof DESCRIPTIONS; options: RuleDescriptionsOptions }
+    | { rule: typeof DUPLICATE_VALUES; options: RuleDuplicateValueOptions }
     | { rule: typeof MAX_GAMUT; options: RuleMaxGamutOptions }
     | { rule: typeof REQUIRED_CHILDREN; options: RuleRequiredChildrenOptions }
     | { rule: typeof REQUIRED_MODES; options: RuleRequiredModesOptions }
     | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
+    | { rule: typeof A11Y_MIN_CONTRAST; options: RuleA11yMinContrastOptions }
+    | { rule: typeof A11Y_MIN_FONT_SIZE; options: RuleA11yMinFontSizeOptions }
   );
   want: { errors: string[]; success?: never } | { errors?: never; success: true };
 }
@@ -159,6 +168,50 @@ describe('rules', () => {
           tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
         },
         want: { errors: ['token.kebab-case doesn’t match format camelCase'] },
+      },
+    ],
+    [
+      `[${DESCRIPTIONS}] (success)`,
+      {
+        given: {
+          rule: DESCRIPTIONS,
+          options: {},
+          tokens: { number: { 42: { $type: 'number', $description: 'The number 42.', $value: 42 } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${DESCRIPTIONS}] (success; ignored)`,
+      {
+        given: {
+          rule: DESCRIPTIONS,
+          options: { ignore: ['number.*'] },
+          tokens: { number: { 42: { $type: 'number', $value: 42 } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${DESCRIPTIONS}] (fail)`,
+      {
+        given: {
+          rule: DESCRIPTIONS,
+          options: {},
+          tokens: { number: { 42: { $type: 'number', $value: 42 } } },
+        },
+        want: { errors: ['number.42 missing description'] },
+      },
+    ],
+    [
+      `[${DESCRIPTIONS}] (fail; group doesn’t count)`,
+      {
+        given: {
+          rule: DESCRIPTIONS,
+          options: {},
+          tokens: { number: { $description: 'Number group', 42: { $type: 'number', $value: 42 } } },
+        },
+        want: { errors: ['number.42 missing description'] },
       },
     ],
     [
@@ -446,6 +499,157 @@ describe('rules', () => {
           },
         },
         want: { errors: ['typography.body missing required typographic property "fontWeight"'] },
+      },
+    ],
+    [
+      `[${A11Y_MIN_CONTRAST}]: success (AA)`,
+      {
+        given: {
+          rule: A11Y_MIN_CONTRAST,
+          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg' }], level: 'AA' },
+          tokens: {
+            color: {
+              $type: 'color',
+              fg: { $value: { colorSpace: 'srgb', channels: [0, 0, 1] } },
+              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${A11Y_MIN_CONTRAST}]: success (AAA)`,
+      {
+        given: {
+          rule: A11Y_MIN_CONTRAST,
+          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg' }], level: 'AAA' },
+          tokens: {
+            color: {
+              $type: 'color',
+              fg: { $value: { colorSpace: 'srgb', channels: [0, 0, 1] } },
+              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${A11Y_MIN_CONTRAST}]: fail (AA)`,
+      {
+        given: {
+          rule: A11Y_MIN_CONTRAST,
+          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg' }], level: 'AA' },
+          tokens: {
+            color: {
+              $type: 'color',
+              fg: { $value: { colorSpace: 'srgb', channels: [0.5, 0.5, 1] } },
+              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+            },
+          },
+        },
+        want: { errors: ['Pair 1 failed; expected 4.5, got 3.27 (AA)'] },
+      },
+    ],
+    [
+      `[${A11Y_MIN_CONTRAST}]: pass (AA; large text)`,
+      {
+        given: {
+          rule: A11Y_MIN_CONTRAST,
+          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg', largeText: true }], level: 'AA' },
+          tokens: {
+            color: {
+              $type: 'color',
+              fg: { $value: { colorSpace: 'srgb', channels: [0.5, 0.5, 1] } },
+              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${A11Y_MIN_CONTRAST}]: fail (AAA)`,
+      {
+        given: {
+          rule: A11Y_MIN_CONTRAST,
+          options: { pairs: [{ foreground: 'color.fg', background: 'color.bg' }], level: 'AAA' },
+          tokens: {
+            color: {
+              $type: 'color',
+              fg: { $value: { colorSpace: 'srgb', channels: [0.25, 0.25, 1] } },
+              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+            },
+          },
+        },
+        want: { errors: ['Pair 1 failed; expected 7, got 6.2 (AAA)'] },
+      },
+    ],
+    [
+      `[${A11Y_MIN_FONT_SIZE}]: success (px)`,
+      {
+        given: {
+          rule: A11Y_MIN_FONT_SIZE,
+          options: { minSizePx: 12 },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              small: { $value: { fontSize: { unit: 'px', value: 12 } } },
+              rem: { $value: { fontSize: { unit: 'rem', value: 0.1 } } }, // ignored
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${A11Y_MIN_FONT_SIZE}]: fail (px)`,
+      {
+        given: {
+          rule: A11Y_MIN_FONT_SIZE,
+          options: { minSizePx: 14 },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              small: { $value: { fontSize: { unit: 'px', value: 12 } } },
+            },
+          },
+        },
+        want: { errors: ['typography.small font size too small. Expected minimum of 14px'] },
+      },
+    ],
+    [
+      `[${A11Y_MIN_FONT_SIZE}]: success (rem)`,
+      {
+        given: {
+          rule: A11Y_MIN_FONT_SIZE,
+          options: { minSizeRem: 0.875 },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              small: { $value: { fontSize: { unit: 'rem', value: 0.875 } } },
+              px: { $value: { fontSize: { unit: 'px', value: 2 } } }, // ignored
+            },
+          },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${A11Y_MIN_FONT_SIZE}]: fail (rem)`,
+      {
+        given: {
+          rule: A11Y_MIN_FONT_SIZE,
+          options: { minSizeRem: 1 },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              small: { $value: { fontSize: { unit: 'rem', value: 0.875 } } },
+            },
+          },
+        },
+        want: { errors: ['typography.small font size too small. Expected minimum of 1rem'] },
       },
     ],
   ];

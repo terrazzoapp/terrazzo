@@ -25,9 +25,9 @@ export default defineConfig({
 
 :::
 
-## Linting
+## Lint
 
-See [Linting](/docs/cli/linting).
+See [Lint](/docs/cli/lint).
 
 ## All Options
 
@@ -36,4 +36,4 @@ See [Linting](/docs/cli/linting).
 | `tokens`  | `string \| string[]` | The path to your tokens. Can be one file (`string`), or multiple (`string[]`). |
 | `outDir`  | `string`             | The directory for output (_Tip: add this to `.gitignore`_).                    |
 | `plugins` | `Plugin[]`           | An array of [plugins](/docs/integrations) to use.                              |
-| `lint`    | `LintOptions`        | See [Linting](/docs/cli/linting).                                              |
+| `lint`    | `LintOptions`        | See [Lint](/docs/cli/lint).                                                    |

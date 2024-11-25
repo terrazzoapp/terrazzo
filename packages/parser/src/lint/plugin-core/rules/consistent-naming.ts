@@ -13,7 +13,7 @@ export interface RuleConsistentNamingOptions {
     | 'PascalCase'
     | 'snake_case'
     | 'SCREAMING_SNAKE_CASE'
-    | ((tokenID: string) => string | undefined);
+    | ((tokenID: string) => boolean);
   /** Token IDs to ignore. Supports globs (`*`). */
   ignore?: string[];
 }
