@@ -203,7 +203,7 @@ const NAV_ITEMS = [
     }
 
     &:hover {
-      background-color: var(--tz-color-base-lime-900);
+      background-color: var(--tz-color-bg-selected-hint);
 
       &::before {
         opacity: 0.5;
@@ -211,7 +211,7 @@ const NAV_ITEMS = [
     }
 
     &[aria-current="page"] {
-      color: var(--tz-color-base-lime-300);
+      color: inherit;
 
       &::before {
         opacity: 1;
