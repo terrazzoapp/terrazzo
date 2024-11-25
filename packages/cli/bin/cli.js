@@ -26,16 +26,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { Logger, build, defineConfig, parse } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import dotenv from 'dotenv';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
-import parser from 'yargs-parser';
 
 dotenv.config();
 
-const [, , cmd, ...args] = process.argv;
+const [, , ...argsRaw] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
 const PKG_ROOT = new URL('../', import.meta.url);
 const logger = new Logger(
@@ -44,33 +44,48 @@ const logger = new Logger(
 
 const GREEN_CHECK = pc.green('✔');
 
-const flags = parser(args, {
-  boolean: ['help', 'watch', 'version'],
-  string: ['config', 'out'],
-  alias: {
-    config: ['c'],
-    out: ['o'],
-    version: ['v'],
-    watch: ['w'],
+const { values: flags, positionals } = parseArgs({
+  args: argsRaw,
+  allowPositionals: true,
+  options: {
+    config: {
+      type: 'string',
+      short: 'c',
+    },
+    out: {
+      type: 'string',
+      short: 'o',
+    },
+    help: {
+      type: 'boolean',
+    },
+    watch: {
+      type: 'boolean',
+      short: 'w',
+    },
+    version: {
+      type: 'boolean',
+    },
   },
 });
 
 export default async function main() {
   const start = performance.now();
+  const cmd = positionals[0];
 
   // ---
   // half-run commands: --help, --version, init
 
-  // --help
-  if (flags.help || !cmd) {
-    showHelp();
+  // --version
+  if (flags.version) {
+    const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', PKG_ROOT), 'utf8'));
+    console.log(version);
     process.exit(0);
   }
 
-  // --version
-  if (flags.version) {
-    const { version } = parseJSON(fs.readFileSync(new URL('./package.json', PKG_ROOT), 'utf8'));
-    console.log(version);
+  // --help
+  if (flags.help || !cmd) {
+    showHelp();
     process.exit(0);
   }
 
@@ -121,7 +136,7 @@ export default async function main() {
 
       let rawSchemas = await loadTokens(config.tokens);
 
-      const watch = args.includes('-w') || args.includes('--watch');
+      const watch = flags.watch;
 
       let { tokens, ast } = await parse(rawSchemas, { config, logger, yamlToMomoa });
       let result = await build(tokens, { ast, config, logger });
@@ -178,8 +193,8 @@ export default async function main() {
       break;
     }
     case 'check': {
-      const rawSchemas = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const filename = flags._[0] || config.tokens[0];
+      const rawSchemas = await loadTokens(positionals[1] ? [resolveTokenPath(positionals[1])] : config.tokens);
+      const filename = positionals[1] || config.tokens[0];
       console.log(pc.underline(filename.protocol === 'file:' ? filename.href : filename));
       await parse(rawSchemas, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
@@ -190,10 +205,8 @@ export default async function main() {
         printErrors(`No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`);
       }
 
-      const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
-
-      // TODO
+      const rawSchema = await loadTokens(positionals[1] ? [resolveTokenPath(positionals[1])] : config.tokens);
+      await parse(rawSchema, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
 
       break;
     }

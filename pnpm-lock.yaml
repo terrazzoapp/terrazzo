@@ -71,9 +71,6 @@ importers:
       yaml-to-momoa:
         specifier: ^0.0.3
         version: 0.0.3
-      yargs-parser:
-        specifier: ^21.1.1
-        version: 21.1.1
     devDependencies:
       typescript:
         specifier: ^5.7.2
