@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.2.1
+
+### Patch Changes
+
+- [#358](https://github.com/terrazzoapp/terrazzo/pull/358) [`6b3c543`](https://github.com/terrazzoapp/terrazzo/commit/6b3c543a3356c582522f6e2d9b2948a0634a66df) Thanks [@christoph-fricke](https://github.com/christoph-fricke)! - Fix npm error when invoking the Terrazzo CLI through npm
+
 ## 0.2.0
 
 ### Minor Changes
