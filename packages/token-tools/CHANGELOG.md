@@ -1,5 +1,17 @@
 # @terrazzo/token-tools
 
+## 0.2.0
+
+### Minor Changes
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Add lint API
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Change tokenToCulori signature to only accept values
+
+### Patch Changes
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Add support for $deprecated tokens
+
 ## 0.1.3
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # @terrazzo/parser
 
+## 0.2.0
+
+### Minor Changes
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Add lint API
+
+### Patch Changes
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Add support for $deprecated tokens
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in alias resolution
+
+- [#353](https://github.com/terrazzoapp/terrazzo/pull/353) [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa) Thanks [@drwpow](https://github.com/drwpow)! - Fix type error with parser output
+
+- Updated dependencies [[`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa), [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa), [`80e04c3`](https://github.com/terrazzoapp/terrazzo/commit/80e04c36a354234e04153a8332ebddd5360247aa)]:
+  - @terrazzo/token-tools@0.2.0
+
 ## 0.1.3
 
 ### Patch Changes
