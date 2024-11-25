@@ -122,10 +122,16 @@ export default defineConfig({
         {
           matches: [
             // example 1: require all color.base tokens to be a ramp with 100–900 values
-            { match: ["color.base.*"], requiredTokens: ["100", "200", "300", "400", "500", "600", "700", "800", "900"] },
+            {
+              match: ["color.base.*"],
+              requiredTokens: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+            },
 
             // example 2: require all text.* and bg.* tokens to have specific states
-            { match: ["text.*", "bg.*"], requiredGroups: ["action", "disabled", "error", "warn", "success"] },
+            {
+              match: ["text.*", "bg.*"],
+              requiredGroups: ["action", "disabled", "error", "warn", "success"],
+            },
           ],
         },
       ],
