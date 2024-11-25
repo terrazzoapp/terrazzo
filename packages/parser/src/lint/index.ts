@@ -73,8 +73,8 @@ export default async function lintRunner({
                 for (const [k, v] of Object.entries(descriptor.data)) {
                   // lazy formatting
                   const formatted = ['string', 'number', 'boolean'].includes(typeof v) ? String(v) : JSON.stringify(v);
-                  message = message.replace(/\{\{[^}]+\}\}/g, (inner) => {
-                    const key = inner.slice(2, -2).trim();
+                  message = message.replace(/{{[^}]+}}/g, (inner) => {
+                    const key = inner.substring(2, inner.length - 2).trim();
                     return key === k ? formatted : inner;
                   });
                 }

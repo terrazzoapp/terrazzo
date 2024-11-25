@@ -43,7 +43,7 @@ const rule: LintRule<
   meta: {
     messages: {
       [ERROR_EMPTY_MATCH]: 'No tokens matched {{ matcher }}',
-      [ERROR_MISSING_REQUIRED_TOKENS]: 'Match {{ index }}: some groups missing required token "{{ id }}"',
+      [ERROR_MISSING_REQUIRED_TOKENS]: 'Match {{ index }}: some groups missing required token "{{ token }}"',
       [ERROR_MISSING_REQUIRED_GROUP]: 'Match {{ index }}: some tokens missing required group "{{ group }}"',
     },
     docs: {
@@ -85,21 +85,30 @@ const rule: LintRule<
       }
 
       if (!tokensMatched) {
-        report({ messageId: ERROR_EMPTY_MATCH, data: { matcher: JSON.stringify(match) } });
+        report({
+          messageId: ERROR_EMPTY_MATCH,
+          data: { matcher: JSON.stringify(match) },
+        });
         continue;
       }
 
       if (requiredTokens) {
         for (const id of requiredTokens) {
           if (!matchTokens.includes(id)) {
-            report({ messageId: ERROR_MISSING_REQUIRED_TOKENS, data: { index: matchI, token: id } });
+            report({
+              messageId: ERROR_MISSING_REQUIRED_TOKENS,
+              data: { index: matchI, token: id },
+            });
           }
         }
       }
       if (requiredGroups) {
         for (const groupName of requiredGroups) {
           if (!matchGroups.includes(groupName)) {
-            report({ messageId: ERROR_MISSING_REQUIRED_GROUP, data: { index: matchI, group: groupName } });
+            report({
+              messageId: ERROR_MISSING_REQUIRED_GROUP,
+              data: { index: matchI, group: groupName },
+            });
           }
         }
       }

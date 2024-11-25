@@ -21,7 +21,7 @@ export interface RuleConsistentNamingOptions {
 const rule: LintRule<typeof ERROR_WRONG_FORMAT, RuleConsistentNamingOptions> = {
   meta: {
     messages: {
-      [ERROR_WRONG_FORMAT]: 'Token "{{ id }}" doesn’t match format {{ format }}',
+      [ERROR_WRONG_FORMAT]: '{{ id }} doesn’t match format {{ format }}',
     },
     docs: {
       description: 'Enforce consistent naming for tokens.',

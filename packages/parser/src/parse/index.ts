@@ -384,24 +384,7 @@ async function parseSingle(
     timing: performance.now() - startValidation,
   });
 
-  // 3. Execute lint runner with loaded plugins
-  if (!skipLint && config?.plugins?.length) {
-    const lintStart = performance.now();
-    logger.debug({
-      group: 'parser',
-      label: 'validate',
-      message: 'Start token linting',
-    });
-    await lintRunner({ tokens, src, config, logger });
-    logger.debug({
-      group: 'parser',
-      label: 'validate',
-      message: 'Finish token linting',
-      timing: performance.now() - lintStart,
-    });
-  }
-
-  // 4. normalize values
+  // 3. normalize values
   const normalizeStart = performance.now();
   logger.debug({
     group: 'parser',
@@ -440,6 +423,23 @@ async function parseSingle(
         });
       }
     }
+  }
+
+  // 4. Execute lint runner with loaded plugins
+  if (!skipLint && config?.plugins?.length) {
+    const lintStart = performance.now();
+    logger.debug({
+      group: 'parser',
+      label: 'validate',
+      message: 'Start token linting',
+    });
+    await lintRunner({ tokens, src, config, logger });
+    logger.debug({
+      group: 'parser',
+      label: 'validate',
+      message: 'Finish token linting',
+      timing: performance.now() - lintStart,
+    });
   }
 
   logger.debug({

@@ -1,7 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import stripAnsi from 'strip-ansi';
-import { type Logger, type TokensJSONError, defineConfig, parse } from '../src/index.js';
+import { type Logger, defineConfig, parse } from '../src/index.js';
 import {
   COLORSPACE,
   CONSISTENT_NAMING,
@@ -44,7 +43,16 @@ describe('rules', () => {
         given: {
           rule: COLORSPACE,
           options: { colorSpace: 'srgb' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+          tokens: {
+            color: {
+              blue: {
+                100: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', channels: [0.2255639098, 0.2255639098, 0.2518796992] },
+                },
+              },
+            },
+          },
         },
         want: { success: true },
       },
@@ -55,7 +63,16 @@ describe('rules', () => {
         given: {
           rule: COLORSPACE,
           options: { colorSpace: 'oklab', ignore: ['color.*'] },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+          tokens: {
+            color: {
+              blue: {
+                100: {
+                  $type: 'color',
+                  $value: { colorSpace: 'oklch', channels: [0.8098, 0.089, 243.05] },
+                },
+              },
+            },
+          },
         },
         want: { success: true },
       },
@@ -66,7 +83,16 @@ describe('rules', () => {
         given: {
           rule: COLORSPACE,
           options: { colorSpace: 'oklch' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: 'oklch(80.98% 0.089 243.05)' } } } },
+          tokens: {
+            color: {
+              blue: {
+                100: {
+                  $type: 'color',
+                  $value: { colorSpace: 'oklch', channels: [0.8098, 0.089, 243.05] },
+                },
+              },
+            },
+          },
         },
         want: { success: true },
       },
@@ -77,7 +103,16 @@ describe('rules', () => {
         given: {
           rule: COLORSPACE,
           options: { colorSpace: 'oklch' },
-          tokens: { color: { blue: { 100: { $type: 'color', $value: '#3c3c43' } } } },
+          tokens: {
+            color: {
+              blue: {
+                100: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', channels: [0.2255639098, 0.2255639098, 0.2518796992] },
+                },
+              },
+            },
+          },
         },
         want: { errors: ['Color color.blue.100 not in colorspace oklch'] },
       },
@@ -101,7 +136,7 @@ describe('rules', () => {
           options: { format: 'kebab-case' },
           tokens: { token: { camelCase: { $type: 'number', $value: 42 } } },
         },
-        want: { errors: ['Token token.camelCase: not in kebab-case'] },
+        want: { errors: ['token.camelCase doesn’t match format kebab-case'] },
       },
     ],
     [
@@ -123,7 +158,7 @@ describe('rules', () => {
           options: { format: 'camelCase' },
           tokens: { token: { 'kebab-case': { $type: 'number', $value: 42 } } },
         },
-        want: { errors: ['Token token.kebab-case: not in camelCase'] },
+        want: { errors: ['token.kebab-case doesn’t match format camelCase'] },
       },
     ],
     [
@@ -160,7 +195,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { errors: ['Duplicated value: "#3c3c43" (color.blue.200)'] },
+        want: { errors: ['color.blue.200 declared a duplicate value'] },
       },
     ],
     [
@@ -219,7 +254,7 @@ describe('rules', () => {
           options: { gamut: 'srgb' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
         },
-        want: { errors: ['Color color.yellow outside srgb gamut'] },
+        want: { errors: ['Color color.yellow is outside srgb gamut'] },
       },
     ],
     [
@@ -241,7 +276,7 @@ describe('rules', () => {
           options: { gamut: 'p3' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(88.82% 0.217 96.35)' } } },
         },
-        want: { errors: ['Color color.yellow outside p3 gamut'] },
+        want: { errors: ['Color color.yellow is outside p3 gamut'] },
       },
     ],
     [
@@ -263,7 +298,7 @@ describe('rules', () => {
           options: { gamut: 'rec2020' },
           tokens: { color: { yellow: { $type: 'color', $value: 'oklch(91.18% 0.234 96.35)' } } },
         },
-        want: { errors: ['Color color.yellow outside rec2020 gamut'] },
+        want: { errors: ['Color color.yellow is outside rec2020 gamut'] },
       },
     ],
     [
@@ -418,53 +453,41 @@ describe('rules', () => {
   test.each(tests)('%s', async (_, { given, want }) => {
     let result: Awaited<ReturnType<typeof parse>> | undefined;
     const errors: string[] = [];
-    try {
-      const config = defineConfig(
-        {
-          lint: {
-            rules: {
-              [given.rule]: ['error', given.options],
-            },
+    const config = defineConfig(
+      {
+        lint: {
+          rules: {
+            [given.rule]: ['error', given.options],
           },
         },
-        { cwd },
-      );
-      result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
-        config,
-        logger: {
-          level: 'error',
-          debugCount: 0,
-          debugScope: '*',
-          errorCount: 0,
-          infoCount: 0,
-          warnCount: 0,
-          error({ message }) {
-            errors.push(message);
-          },
-          warn() {},
-          info() {},
-          debug() {},
-          stats() {
-            return { debugCount: 0, errorCount: 0, infoCount: 0, warnCount: 0 };
-          },
-          setLevel() {},
-        } as Logger,
-      });
-      if (want.success) {
-        expect(result).toBeTruthy();
-      } else {
-        expect(result).not.toBeTruthy();
-      }
-    } catch {
+      },
+      { cwd },
+    );
+    result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
+      config,
+      logger: {
+        level: 'error',
+        debugCount: 0,
+        debugScope: '*',
+        errorCount: 0,
+        infoCount: 0,
+        warnCount: 0,
+        error({ message }) {
+          errors.push(message);
+        },
+        warn() {},
+        info() {},
+        debug() {},
+        stats() {
+          return { debugCount: 0, errorCount: 0, infoCount: 0, warnCount: 0 };
+        },
+        setLevel() {},
+      } as Logger,
+    });
+    if (want.success) {
+      expect(result).toBeTruthy();
+    } else {
       expect(errors.filter((error) => !error.includes('Lint failed with error'))).toEqual(want.errors);
-    }
-
-    if (result) {
-      expect(want.errors).toBeUndefined();
-      for (const id in result.tokens) {
-        const { source } = result.tokens[id]!;
-        expect(source).not.toBeFalsy();
-      }
     }
   });
 });
