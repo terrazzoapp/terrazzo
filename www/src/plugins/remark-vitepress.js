@@ -73,7 +73,7 @@ export default function remarkVitepress() {
                   )
                   .join('')}</div>`,
               },
-              ...children.map((node, i) => ({
+              ...codeBlocks.map((node, i) => ({
                 type: 'paragraph',
                 data: {
                   hName: 'div',
