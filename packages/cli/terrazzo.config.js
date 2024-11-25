@@ -1,4 +1,4 @@
-import { defineConfig } from '@terrazo/cli';
+import { defineConfig } from '@terrazzo/cli';
 
 export default defineConfig({
   tokens: ['tokens.json'],
