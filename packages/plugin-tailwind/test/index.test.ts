@@ -60,20 +60,16 @@ describe('@cobalt-ui/plugin-tailwind', () => {
         const config = defineConfig(
           {
             outDir: './cjs/',
-            plugins: [
-              pluginTailwind({
-                ...baseConfig,
-                filename: './actual.js',
-                format: 'cjs',
-              }),
-            ],
+            plugins: [pluginTailwind({ ...baseConfig, filename: './actual.js', format: 'cjs' })],
           },
           { cwd },
         );
-        const { tokens, ast } = await parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
-        await build(tokens, { ast, config });
+        const { tokens, sources } = await parse([{ src: fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8') }], {
+          config,
+        });
+        await build(tokens, { sources, config });
 
-        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
+        await expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL('./want.js', cwd)),
         );
       });
@@ -83,20 +79,16 @@ describe('@cobalt-ui/plugin-tailwind', () => {
         const config = defineConfig(
           {
             outDir: './cjs/',
-            plugins: [
-              pluginTailwind({
-                ...baseConfig,
-                filename: './actual.js',
-                format: 'esm',
-              }),
-            ],
+            plugins: [pluginTailwind({ ...baseConfig, filename: './actual.js', format: 'esm' })],
           },
           { cwd },
         );
-        const { tokens, ast } = await parse(fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8'));
-        await build(tokens, { ast, config });
+        const { tokens, sources } = await parse([{ src: fs.readFileSync(new URL('../tokens.yaml', cwd), 'utf8') }], {
+          config,
+        });
+        await build(tokens, { sources, config });
 
-        expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
+        await expect(fs.readFileSync(new URL('./actual.js', cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL('./want.js', cwd)),
         );
       });

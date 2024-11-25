@@ -24,10 +24,10 @@ describe('@terrazzo/plugin-js', () => {
         config,
       });
       const result = await build(tokens, { sources, config });
-      expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+      await expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.js', cwd)),
       );
-      expect(
+      await expect(
         result.outputFiles.find((f) => f.filename === filename.replace(/\.js$/, '.d.ts'))?.contents,
       ).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
 

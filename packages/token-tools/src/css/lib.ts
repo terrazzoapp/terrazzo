@@ -36,7 +36,10 @@ const CSS_VAR_RE =
 export interface MakeCSSVarOptions {
   /** Prefix with string */
   prefix?: string;
-  /** Wrap with `var(…)` (default: false) */
+  /**
+   * Wrap with `var(…)`
+   * @default false
+   */
   wrapVar?: boolean;
 }
 

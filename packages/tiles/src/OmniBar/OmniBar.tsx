@@ -18,17 +18,20 @@ export function OmniBarResult({ className, children, ...rest }: OmniBarResultPro
 }
 
 export interface OmniBarProps extends ComponentProps<'input'> {
-  /** Expanded on initial render? (default: false) */
+  /**
+   * Expanded on initial render?
+   * @default: false
+   */
   defaultExpanded?: boolean;
   /** placeholder text  */
   placeholder: string;
-  /** (optional) If a key command should open this */
+  /** If a key command should open this */
   keyCommand: string;
   /** Expanded callback */
   onExpand?: (expanded: boolean) => void;
   /** Callback for `Enter` pressed on selected item */
   onEnter?: (activeItem: number) => void;
-  /** (optional) Description for search results */
+  /** Description for search results */
   resultDescription?: ReactElement;
 }
 

@@ -26,16 +26,16 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { Logger, build, defineConfig, parse } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import dotenv from 'dotenv';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
-import parser from 'yargs-parser';
 
 dotenv.config();
 
-const [, , cmd, ...args] = process.argv;
+const [, , ...argsRaw] = process.argv;
 const cwd = new URL(`file://${process.cwd()}/`);
 const PKG_ROOT = new URL('../', import.meta.url);
 const logger = new Logger(
@@ -44,22 +44,44 @@ const logger = new Logger(
 
 const GREEN_CHECK = pc.green('✔');
 
-const flags = parser(args, {
-  boolean: ['help', 'watch', 'version'],
-  string: ['config', 'out'],
-  alias: {
-    config: ['c'],
-    out: ['o'],
-    version: ['v'],
-    watch: ['w'],
+const { values: flags, positionals } = parseArgs({
+  args: argsRaw,
+  allowPositionals: true,
+  options: {
+    config: {
+      type: 'string',
+      short: 'c',
+    },
+    out: {
+      type: 'string',
+      short: 'o',
+    },
+    help: {
+      type: 'boolean',
+    },
+    watch: {
+      type: 'boolean',
+      short: 'w',
+    },
+    version: {
+      type: 'boolean',
+    },
   },
 });
 
 export default async function main() {
   const start = performance.now();
+  const cmd = positionals[0];
 
   // ---
   // half-run commands: --help, --version, init
+
+  // --version
+  if (flags.version) {
+    const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', PKG_ROOT), 'utf8'));
+    console.log(version);
+    process.exit(0);
+  }
 
   // --help
   if (flags.help || !cmd) {
@@ -67,17 +89,10 @@ export default async function main() {
     process.exit(0);
   }
 
-  // --version
-  if (flags.version) {
-    const { version } = parseJSON(fs.readFileSync(new URL('./package.json', PKG_ROOT), 'utf8'));
-    console.log(version);
-    process.exit(0);
-  }
-
   // ---
   // full-run commands: build, check
 
-  // setup: load tokens.config.js and tokens.config.json
+  // setup: load terrazzo.config.js and terrazzo.config.json
   let configPath;
   if (typeof flags.config === 'string') {
     if (flags.config === '') {
@@ -86,7 +101,12 @@ export default async function main() {
     }
     configPath = resolveConfig(flags.config);
   }
-  let config = { tokens: [new URL('./tokens.json', cwd)], outDir: new URL('./tokens/', cwd), plugins: [] };
+  let config = {
+    tokens: [new URL('./tokens.json', cwd)],
+    outDir: new URL('./tokens/', cwd),
+    plugins: [],
+    ignore: { tokens: [], deprecated: false },
+  };
   const resolvedConfigPath = resolveConfig(configPath);
   if (resolvedConfigPath) {
     try {
@@ -116,7 +136,7 @@ export default async function main() {
 
       let rawSchemas = await loadTokens(config.tokens);
 
-      const watch = args.includes('-w') || args.includes('--watch');
+      const watch = flags.watch;
 
       let { tokens, ast } = await parse(rawSchemas, { config, logger, yamlToMomoa });
       let result = await build(tokens, { ast, config, logger });
@@ -173,8 +193,8 @@ export default async function main() {
       break;
     }
     case 'check': {
-      const rawSchemas = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const filename = flags._[0] || config.tokens[0];
+      const rawSchemas = await loadTokens(positionals[1] ? [resolveTokenPath(positionals[1])] : config.tokens);
+      const filename = positionals[1] || config.tokens[0];
       console.log(pc.underline(filename.protocol === 'file:' ? filename.href : filename));
       await parse(rawSchemas, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
       printSuccess(`No errors ${time(start)}`);
@@ -182,13 +202,11 @@ export default async function main() {
     }
     case 'lint': {
       if (!Array.isArray(config.plugins) || !config.plugins.length) {
-        printErrors(`No plugins defined! Add some in ${configPath || 'tokens.config.js'}`);
+        printErrors(`No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`);
       }
 
-      const rawSchema = await loadTokens(flags._[0] ? [resolveTokenPath(flags._[0])] : config.tokens);
-      const parseResult = await parse(rawSchema, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
-
-      // TODO
+      const rawSchema = await loadTokens(positionals[1] ? [resolveTokenPath(positionals[1])] : config.tokens);
+      await parse(rawSchema, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors
 
       break;
     }
@@ -198,8 +216,8 @@ export default async function main() {
         !fs.existsSync(new URL('./terrazzo.config.mjs', cwd)) &&
         !fs.existsSync(new URL('./terrazzo.config.cjs', cwd))
       ) {
-        fs.cpSync(new URL('./terrazzo.config.js', PKG_ROOT), new URL('./terrazzo.config.js', cwd));
-        printSuccess('terrazzo.config.js created');
+        fs.cpSync(new URL('./terrazzo.config.mjs', PKG_ROOT), new URL('./terrazzo.config.mjs', cwd));
+        printSuccess('terrazzo.config.mjs created');
       }
       if (!fs.existsSync(config.tokens[0])) {
         fs.cpSync(new URL('./tokens-example.json', PKG_ROOT), new URL(config?.tokens, cwd));
@@ -236,7 +254,7 @@ function showHelp() {
 
   [options]
     --help          Show this message
-    --config, -c    Path to config (default: ./tokens.config.js)
+    --config, -c    Path to config (default: ./terrazzo.config.js)
 `);
 }
 

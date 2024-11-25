@@ -67,7 +67,7 @@ describe('tz build', () => {
     it('outDir', async () => {
       const cwd = new URL('./fixtures/cli-config-outdir/', import.meta.url);
       await execa('node', [cmd, 'build'], { cwd });
-      expect(fs.readFileSync(new URL('./styles/out/actual.css', cwd), 'utf8')).toMatchFileSnapshot(
+      await expect(fs.readFileSync(new URL('./styles/out/actual.css', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('./styles/out/want.css', cwd)),
       );
     });

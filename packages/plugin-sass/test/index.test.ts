@@ -30,7 +30,7 @@ describe('@terrazzo/plugin-scss', () => {
       config,
     });
     const result = await build(tokens, { sources, config });
-    expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
+    await expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.scss', cwd)),
     );
   });
