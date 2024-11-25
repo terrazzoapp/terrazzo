@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * @module @terrazzo/cli
  * @license MIT License
