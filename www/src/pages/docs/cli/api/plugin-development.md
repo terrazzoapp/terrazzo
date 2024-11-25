@@ -210,21 +210,6 @@ The `lint()` hook returns an object where the key is the rule name, and the valu
 
 :::code-group
 
-```js [my-plugin/index.js]
-import primary from "./rule-primary.js";
-
-export default function myPlugin() {
-  return {
-    name: "my-plugin",
-    lint() {
-      return {
-        primary,
-      };
-    },
-  };
-}
-```
-
 ```js [my-plugin/rule-primary.js]
 export default {
   meta: {
@@ -245,6 +230,21 @@ export default {
     }
   },
 };
+```
+
+```js [my-plugin/index.js]
+import primary from "./rule-primary.js";
+
+export default function myPlugin() {
+  return {
+    name: "my-plugin",
+    lint() {
+      return {
+        primary,
+      };
+    },
+  };
+}
 ```
 
 :::
