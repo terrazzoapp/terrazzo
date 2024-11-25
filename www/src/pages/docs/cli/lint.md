@@ -7,18 +7,18 @@ layout: ../../../layouts/docs.astro
 
 The idea of token linting is similar to any kind of code linting—you can run checks on your tokens to raise errors and warnings based on a number of criteria:
 
-| Rule                                                                        | Description                                                                |
-| :-------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
-| [core/colorspace](#core-colorspace)                                         | Enforce that all colors are declared in a specific colorspace (e.g. sRGB). |
-| [core/consistent-naming](#core-consistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                        |
-| [core/duplicate-value](#core-duplicate-value)                               | Enforce tokens can’t redeclare the same value (excludes aliases).          |
-| [core/descriptions](#core-descriptions)                                     | Enforce tokens have descriptions.                                          |
-| [core/max-gamut](#core-max-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).           |
-| [core/required-children](#core-required-children)                           | Enforce token groups have specific children, whether tokens and/or groups. |
-| [core/required-modes](#core-required-modes)                                 | Enforce certain tokens have specific modes.                                |
-| [core/required-typography-properties](#core-required-typography-properties) | Enforce typography tokens have required properties (e.g. `lineHeight`).    |
-| [a11y/min-contrast](#a11y-min-contrast)                                     | Ensure minimum WCAG 2.2 contrast given token pairs.                        |
-| [a11y/min-font-size](#a11y-min-font-size)                                   | Ensure minimum font size.                                                  |
+| Rule                                                                       | Description                                                                |
+| :------------------------------------------------------------------------- | :------------------------------------------------------------------------- |
+| [core/colorspace](#corecolorspace)                                         | Enforce that all colors are declared in a specific colorspace (e.g. sRGB). |
+| [core/consistent-naming](#coreconsistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                        |
+| [core/duplicate-value](#coreduplicate-value)                               | Enforce tokens can’t redeclare the same value (excludes aliases).          |
+| [core/descriptions](#coredescriptions)                                     | Enforce tokens have descriptions.                                          |
+| [core/max-gamut](#coremax-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).           |
+| [core/required-children](#corerequired-children)                           | Enforce token groups have specific children, whether tokens and/or groups. |
+| [core/required-modes](#corerequired-modes)                                 | Enforce certain tokens have specific modes.                                |
+| [core/required-typography-properties](#corerequired-typography-properties) | Enforce typography tokens have required properties (e.g. `lineHeight`).    |
+| [a11y/min-contrast](#a11ymin-contrast)                                     | Ensure minimum WCAG 2.2 contrast given token pairs.                        |
+| [a11y/min-font-size](#a11ymin-font-size)                                   | Ensure minimum font size.                                                  |
 
 ## Config
 
