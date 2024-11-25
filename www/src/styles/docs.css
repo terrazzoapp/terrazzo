@@ -254,7 +254,7 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: color-mix(in oklab, var(--tz-color-base-blue-800), transparent 62.5%);
+  background-color: color-mix(in oklab, var(--tz-color-base-blue-600), transparent 80%);
 
   .callout-indicator {
     color: var(--tz-color-base-blue-300);
@@ -263,7 +263,7 @@
 
 .callout--caution,
 .callout--warning {
-  background-color: color-mix(in oklab, var(--tz-color-base-orange-800), transparent 62.5%);
+  background-color: color-mix(in oklab, var(--tz-color-base-orange-600), transparent 80%);
 
   .callout-indicator {
     color: var(--tz-color-base-orange-300);
@@ -513,8 +513,8 @@
 
     @media (width >= 1200px) {
       &[aria-current] {
-        border-color: var(--tz-color-base-lime-300);
-        color: var(--tz-color-base-lime-200);
+        border-color: var(--tz-color-border-selected);
+        color: var(--tz-color-text-selected);
       }
     }
   }
