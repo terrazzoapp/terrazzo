@@ -3,11 +3,10 @@ import { type Token, type TokenNormalized, isTokenMatch, pluralize, splitID } fr
 import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
-import type { ConfigInit } from '../types.js';
+import type { ConfigInit, InputSource } from '../types.js';
 import { applyAliases } from './alias.js';
 import { getObjMembers, injectObjMembers, maybeJSONString, traverse } from './json.js';
 import normalize from './normalize.js';
-import type { ParseInput } from './types.js';
 import validate from './validate.js';
 
 export * from './validate.js';
@@ -31,12 +30,12 @@ export interface ParseOptions {
 
 export interface ParseResult {
   tokens: Record<string, TokenNormalized>;
-  sources: Record<string, ParseInput>;
+  sources: InputSource[];
 }
 
 /** Parse */
 export default async function parse(
-  input: ParseInput[],
+  input: Omit<InputSource, 'document'>[],
   {
     logger = new Logger(),
     skipLint = false,
@@ -48,7 +47,7 @@ export default async function parse(
   let tokens: Record<string, TokenNormalized> = {};
   // note: only keeps track of sources with locations on disk; in-memory sources are discarded
   // (it’s only for reporting line numbers, which doesn’t mean as much for dynamic sources)
-  const sources: Record<string, ParseInput> = {};
+  const sources: Record<string, InputSource> = {};
 
   if (!Array.isArray(input)) {
     logger.error({ group: 'parser', label: 'init', message: 'Input must be an array of input objects.' });
@@ -86,6 +85,7 @@ export default async function parse(
       sources[input[i]!.filename!.protocol === 'file:' ? input[i]!.filename!.href : input[i]!.filename!.href] = {
         filename: input[i]!.filename,
         src: result.src,
+        document: result.document,
       };
     }
   }
@@ -170,7 +170,7 @@ export default async function parse(
 
   return {
     tokens,
-    sources,
+    sources: Object.values(sources),
   };
 }
 
@@ -449,5 +449,9 @@ async function parseSingle(
     timing: performance.now() - normalizeStart,
   });
 
-  return { tokens, document, src };
+  return {
+    tokens,
+    document,
+    src,
+  };
 }

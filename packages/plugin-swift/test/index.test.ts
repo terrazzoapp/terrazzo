@@ -24,7 +24,7 @@ describe('@terrazzo/plugin-swift', () => {
     });
     const result = await build(tokens, { config, sources });
     for (const { filename, contents } of result.outputFiles) {
-      expect(contents).toMatchFileSnapshot(fileURLToPath(new URL(filename, cwd)));
+      await expect(contents).toMatchFileSnapshot(fileURLToPath(new URL(filename, cwd)));
     }
   });
 });

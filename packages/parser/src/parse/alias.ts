@@ -130,7 +130,7 @@ export function applyAliases(
             const { id: aliasID, mode: aliasMode } = parseAlias(subvalue);
             const aliasToken = tokens[aliasOfID]!;
             const possibleTypes: string[] = expectedAliasTypes?.[property as keyof typeof expectedAliasTypes] || [];
-            if (!possibleTypes.includes(aliasToken.$type)) {
+            if (possibleTypes.length && !possibleTypes.includes(aliasToken.$type)) {
               const elementNode = ($valueNode as ArrayNode).elements[i]!.value;
               logger.error({
                 message: `Invalid alias: expected $type: "${possibleTypes.join('" or "')}", received $type: "${aliasToken.$type}".`,
