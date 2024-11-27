@@ -1,6 +1,6 @@
 biome.json
 src/**
-rollup.*
+rolldown.*
 tsconfig.*
 vite.*
 vitest.*

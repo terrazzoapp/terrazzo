@@ -1,9 +1,13 @@
 import ts from '@rollup/plugin-typescript';
 
-/** @type {import("rollup").InputOptions} */
+/** @type {import("rolldown").InputOptions} */
 export default {
-  plugins: [ts()],
-  input: 'src/index.tsx',
+  plugins: [
+    ts({
+      tsconfig: './tsconfig.build.json',
+    }),
+  ],
+  input: 'src/index.ts',
   external: ['*'],
   output: {
     dir: './dist/',

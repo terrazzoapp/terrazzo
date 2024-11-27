@@ -1,7 +1,7 @@
 *.test.*
 .size-limit.js
 biome.*
-rollup.*
+rolldown
 stylelint.*
 src/**
 tsconfig.*

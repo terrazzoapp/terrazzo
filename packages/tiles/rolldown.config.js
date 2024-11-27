@@ -1,12 +1,8 @@
 import ts from '@rollup/plugin-typescript';
-import css from 'rollup-plugin-import-css';
 
-/** @type {import("rollup").InputOptions} */
+/** @type {import("rolldown").InputOptions} */
 export default {
   plugins: [
-    css({
-      output: 'all-components.css',
-    }),
     ts({
       tsconfig: './tsconfig.build.json',
     }),

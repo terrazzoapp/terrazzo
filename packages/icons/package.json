@@ -13,7 +13,7 @@
   },
   "main": "./dist/index.js",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
+    "build": "rolldown -c rolldown.config.js",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm --filter @terrazzo/icons run \"/^lint:.*/\"",
     "lint:js": "biome check ."
@@ -28,8 +28,7 @@
     "@types/react-dom": "npm:types-react-dom@rc",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
-    "rollup": "^4.27.2",
-    "rollup-plugin-import-css": "^3.5.6",
+    "rolldown": "0.14.0-snapshot-1cfa47c-20241129015040",
     "types-react": "19.0.0-rc.1",
     "types-react-dom": "19.0.0-rc.1"
   },
