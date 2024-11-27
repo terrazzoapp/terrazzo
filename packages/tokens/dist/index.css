@@ -47,7 +47,7 @@
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-900);
   --tz-color-bg-3: var(--tz-color-base-gray-800);
-  --tz-color-bg-selected-hint: var(--tz-color-base-lime-1000);
+  --tz-color-bg-selected-hint: var(--tz-color-base-lime-800);
   --tz-color-bg-selected: var(--tz-color-base-lime-1000);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-text-1: var(--tz-color-base-gray-200);
@@ -305,7 +305,7 @@
     --tz-color-bg-1: var(--tz-color-base-gray-1000);
     --tz-color-bg-2: var(--tz-color-base-gray-900);
     --tz-color-bg-3: var(--tz-color-base-gray-800);
-    --tz-color-bg-selected-hint: var(--tz-color-base-lime-1000);
+    --tz-color-bg-selected-hint: var(--tz-color-base-lime-800);
     --tz-color-bg-selected: var(--tz-color-base-lime-1000);
     --tz-color-bg-error: var(--tz-color-base-orange-600);
     --tz-color-text-1: var(--tz-color-base-gray-200);
@@ -365,7 +365,7 @@
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-900);
   --tz-color-bg-3: var(--tz-color-base-gray-800);
-  --tz-color-bg-selected-hint: var(--tz-color-base-lime-1000);
+  --tz-color-bg-selected-hint: var(--tz-color-base-lime-800);
   --tz-color-bg-selected: var(--tz-color-base-lime-1000);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-text-1: var(--tz-color-base-gray-200);
@@ -425,7 +425,7 @@
     --tz-color-bg-1: var(--tz-color-base-gray-100);
     --tz-color-bg-2: var(--tz-color-base-gray-200);
     --tz-color-bg-3: var(--tz-color-base-gray-300);
-    --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
+    --tz-color-bg-selected-hint: var(--tz-color-base-lime-100);
     --tz-color-bg-selected: var(--tz-color-base-lime-200);
     --tz-color-bg-error: var(--tz-color-base-orange-600);
     --tz-color-text-1: var(--tz-color-base-gray-800);
@@ -485,7 +485,7 @@
   --tz-color-bg-1: var(--tz-color-base-gray-100);
   --tz-color-bg-2: var(--tz-color-base-gray-200);
   --tz-color-bg-3: var(--tz-color-base-gray-300);
-  --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
+  --tz-color-bg-selected-hint: var(--tz-color-base-lime-100);
   --tz-color-bg-selected: var(--tz-color-base-lime-200);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-text-1: var(--tz-color-base-gray-800);
