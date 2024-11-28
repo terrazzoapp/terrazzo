@@ -75,6 +75,25 @@ npx tz build
 
 from your project root to generate code using your plugins.
 
+## Options
+
+```sh
+tz
+  [commands]
+    build           Build token artifacts from tokens.json
+      --watch, -w   Watch tokens.json for changes and recompile
+      --no-lint     Disable linters running on build
+    check [path]    Check tokens.json for errors and run linters
+    lint [path]     (alias of check)
+    init            Create a starter tokens.json file
+
+  [options]
+    --help          Show this message
+    --config, -c    Path to config (default: ./terrazzo.config.js)
+    --quiet         Suppress warnings
+`);
+```
+
 ## Comparison
 
 Whether you view your design tokens as **standard or nonstandard** will affect whether you use Terrazzo, some other tool like [Style Dictionary](https://amzn.github.io/style-dictionary/), or build your own. Terrazzo takes the same opinion as the DTCG format: **design tokens should be standardized.** This means that colors, typography, spacing, and more should be expressed in predictable ways.

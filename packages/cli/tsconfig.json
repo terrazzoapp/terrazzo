@@ -4,7 +4,8 @@
     "baseUrl": ".",
     "module": "NodeNext",
     "moduleResolution": "nodenext",
-    "outDir": "./dist/"
+    "outDir": "./dist/",
+    "skipLibCheck": true
   },
   "include": ["src", "test"]
 }
