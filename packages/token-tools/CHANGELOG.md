@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.2.3
+
+### Patch Changes
+
+- [#367](https://github.com/terrazzoapp/terrazzo/pull/367) [`00af144`](https://github.com/terrazzoapp/terrazzo/commit/00af144538390c0fd22ebc14bf70db2c1f942203) Thanks [@drwpow](https://github.com/drwpow)! - Add Microsoft Fluent as starter template
+
 ## 0.2.2
 
 ### Patch Changes
