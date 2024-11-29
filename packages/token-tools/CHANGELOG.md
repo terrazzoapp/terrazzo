@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.2.4
+
+### Patch Changes
+
+- [#369](https://github.com/terrazzoapp/terrazzo/pull/369) [`f2ca2b9`](https://github.com/terrazzoapp/terrazzo/commit/f2ca2b9261a88263e2fa3b7f1ec0a2fa10aa26e6) Thanks [@drwpow](https://github.com/drwpow)! - Fix tz init spinner
+
 ## 0.2.3
 
 ### Patch Changes
