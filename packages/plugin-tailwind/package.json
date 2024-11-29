@@ -44,6 +44,6 @@
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "tailwindcss": "^3.4.15",
-    "yaml": "^2.6.0"
+    "yaml": "^2.6.1"
   }
 }
