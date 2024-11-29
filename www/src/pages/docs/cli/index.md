@@ -1,17 +1,11 @@
 ---
-title: CLI
+title: Getting Started
 layout: ../../../layouts/docs.astro
 ---
 
 # CLI
 
-:::warning
-
-The CLI is in beta. Breaking changes may occur before the stable release.
-
-:::
-
-The Terrazzo CLI takes `tokens.json` either exported from the [Token Lab](/lab) or from [Figma](/docs/tokens) and generate code such as [CSS](/docs/cli/integrations/ss), [Sass](/docs/cli/integrations/sass), [JavaScript/TypeScript](/docs/cli/integrations/js), [JSON](/docs/cli/integrations/js), and more.
+The Terrazzo CLI takes DTCG tokens and generates code using plugins (e.g. [CSS](/docs/cli/integrations/ss), [Sass](/docs/cli/integrations/sass), [JS/TS](/docs/cli/integrations/js), and more). You can either run the Terrazzo CLI manually, or as part of your <abbr title="Continuous Integration">CI</abbr> process.
 
 :::tip
 
@@ -33,66 +27,21 @@ npm i -D @terrazzo/cli
 pnpm i -D @terrazzo/cli
 ```
 
-:::
-
-Next, install any plugins you’d like to use:
-
-:::code-group
-
-```sh [npm]
-npm i -D @terrazzo/plugin-css @terrazzo/plugin-js
-```
-
-```sh [pnpm]
-pnpm i -D @terrazzo/plugin-css @terrazzo/plugin-js
+```sh [bun]
+bun i -D @terrazzo/cli
 ```
 
 :::
 
-Third, create a `terrazzo.config.js` file in the root of your repo:
-
-:::code-group
-
-```js [terrazzo.config.js]
-import { defineConfig } from "@terrazzo/cli";
-import css from "@terrazzo/plugin-css";
-import js from "@terrazzo/plugin-js";
-
-export default defineConfig({
-  tokens: "./tokens.json",
-  outDir: "./tokens/",
-  plugins: [css(), js()],
-});
-```
-
-:::
-
-And finally, run:
+And you can create a configuration and install plugins with the `init` command:
 
 ```sh
-npx tz build
+npx tz init
 ```
 
-from your project root to generate code using your plugins.
+![tz init screenshot](/assets/cli-init.png)
 
-## Options
-
-```sh
-tz
-  [commands]
-    build           Build token artifacts from tokens.json
-      --watch, -w   Watch tokens.json for changes and recompile
-      --no-lint     Disable linters running on build
-    check [path]    Check tokens.json for errors and run linters
-    lint [path]     (alias of check)
-    init            Create a starter tokens.json file
-
-  [options]
-    --help          Show this message
-    --config, -c    Path to config (default: ./terrazzo.config.js)
-    --quiet         Suppress warnings
-`);
-```
+This will create a `terrazzo.config.mjs` starter config file, and even start your token system from a popular open source design system.
 
 ## Comparison
 

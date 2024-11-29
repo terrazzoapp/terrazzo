@@ -1,5 +1,5 @@
 ---
-title: Config
+title: Configuration
 layout: ../../../layouts/docs.astro
 ---
 
@@ -16,18 +16,28 @@ import css from "@terrazzo/plugin-css";
 export default defineConfig({
   tokens: ["./tokens.json"],
   outDir: "./tokens/",
-  plugins: [css()],
-  build: {
-    cleanDir: false,
+
+  plugins: [
+    css(), // generate .css files
+  ],
+
+  lint: {
+    rules: {
+      // my lint rules
+    },
   },
 });
 ```
 
 :::
 
+:::tip
+Enabling `{ "type": "module" }` in your `package.json` is recommended, but if that’s not possible, name your config `terrazzo.config.mjs` instead.
+:::
+
 ## Lint
 
-See [Lint](/docs/cli/lint).
+See [Lint docs](/docs/cli/lint).
 
 ## All Options
 
@@ -36,4 +46,4 @@ See [Lint](/docs/cli/lint).
 | `tokens`  | `string \| string[]` | The path to your tokens. Can be one file (`string`), or multiple (`string[]`). |
 | `outDir`  | `string`             | The directory for output (_Tip: add this to `.gitignore`_).                    |
 | `plugins` | `Plugin[]`           | An array of [plugins](/docs/integrations) to use.                              |
-| `lint`    | `LintOptions`        | See [Lint](/docs/cli/lint).                                                    |
+| `lint`    | `LintOptions`        | See [Lint docs](/docs/cli/lint).                                               |

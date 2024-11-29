@@ -4,11 +4,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
 import type { Logger } from '@terrazzo/parser';
+import { pluralize } from '@terrazzo/token-tools';
 import { detect } from 'detect-package-manager';
 import { generate } from 'escodegen';
-import { parseModule, type ESTree } from 'meriyah';
-import { cwd, DEFAULT_CONFIG_PATH, DEFAULT_TOKENS_PATH, loadConfig, printError } from './shared.js';
-import { pluralize } from '@terrazzo/token-tools';
+import { type ESTree, parseModule } from 'meriyah';
+import { DEFAULT_CONFIG_PATH, DEFAULT_TOKENS_PATH, cwd, loadConfig, printError } from './shared.js';
 
 const INSTALL_COMMAND = {
   npm: 'install -D --silent',

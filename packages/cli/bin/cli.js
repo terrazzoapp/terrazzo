@@ -48,8 +48,8 @@ const { values: flags, positionals } = parseArgs({
     config: { type: 'string', short: 'c' },
     out: { type: 'string', short: 'o' },
     help: { type: 'boolean' },
-    quiet: { type: 'boolean' },
-    silent: { type: 'boolean' }, // secret alias for --quiet because I can’t remember it
+    silent: { type: 'boolean' },
+    quiet: { type: 'boolean' }, // secret alias for --silent because I can’t remember it
     watch: { type: 'boolean', short: 'w' },
     version: { type: 'boolean' },
   },
@@ -66,7 +66,7 @@ const { values: flags, positionals } = parseArgs({
 // the raw message.
 const logger = new Logger({
   // set correct level of debugging
-  level: flags.quiet || flags.silent ? 'error' : undefined,
+  level: flags.silent || flags.quiet ? 'error' : undefined,
   // add debug messages, if requested
   debugScope: process.env.DEBUG,
 });

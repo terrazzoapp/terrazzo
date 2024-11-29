@@ -1,20 +1,20 @@
 import fs from 'node:fs';
+import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { type BuildRunnerResult, type ConfigInit, type Logger, build, parse } from '@terrazzo/parser';
 import chokidar from 'chokidar';
 import pc from 'picocolors';
 import yamlToMomoa from 'yaml-to-momoa';
 import {
-  cwd,
   DEFAULT_TOKENS_PATH,
   type Flags,
   GREEN_CHECK,
+  cwd,
   loadTokens,
   printError,
   printSuccess,
   resolveConfig,
 } from './shared.js';
-import path from 'node:path';
 
 export interface BuildOptions {
   flags: Flags;
