@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.2.2
+
+### Patch Changes
+
+- [#364](https://github.com/terrazzoapp/terrazzo/pull/364) [`27cc92e`](https://github.com/terrazzoapp/terrazzo/commit/27cc92ef5e9e187b5ec7a8abe3f23bc51f59fc9c) Thanks [@drwpow](https://github.com/drwpow)! - Add init CLI options
+
 ## 0.2.1
 
 ### Patch Changes
