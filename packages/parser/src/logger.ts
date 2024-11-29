@@ -1,5 +1,5 @@
 import type { AnyNode } from '@humanwhocodes/momoa';
-import color from 'picocolors';
+import pc from 'picocolors';
 import wcmatch from 'wildcard-match';
 import { codeFrameColumns } from './lib/code-frame.js';
 
@@ -43,9 +43,9 @@ export interface DebugEntry {
   timing?: number;
 }
 
-const DEBUG_GROUP_COLOR: Record<string, typeof color.red | undefined> = { core: color.green, plugin: color.magenta };
+const DEBUG_GROUP_COLOR: Record<string, typeof pc.red | undefined> = { core: pc.green, plugin: pc.magenta };
 
-const MESSAGE_COLOR: Record<string, typeof color.red | undefined> = { error: color.red, warn: color.yellow };
+const MESSAGE_COLOR: Record<string, typeof pc.red | undefined> = { error: pc.red, warn: pc.yellow };
 
 const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
 
@@ -57,7 +57,7 @@ const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
 export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   let message = entry.message;
   if (entry.label) {
-    message = `${color.bold(`${entry.label}:`)} ${message}`;
+    message = `${pc.bold(`${entry.label}:`)} ${message}`;
   }
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity]!(message);
@@ -142,7 +142,7 @@ export default class Logger {
     if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
       return;
     }
-    message = `${(DEBUG_GROUP_COLOR[entry.group] || color.white)(debugPrefix)} ${color.dim(
+    message = `${(DEBUG_GROUP_COLOR[entry.group] || pc.white)(debugPrefix)} ${pc.dim(
       timeFormatter.format(new Date()),
     )} ${message}`;
     if (typeof entry.timing === 'number') {
@@ -152,7 +152,7 @@ export default class Logger {
       } else if (timing < 60_000) {
         timing = `${Math.round(timing * 100) / 100_000}s`;
       }
-      message = `${message} ${color.dim(`[${timing}]`)}`;
+      message = `${message} ${pc.dim(`[${timing}]`)}`;
     }
 
     // biome-ignore lint/suspicious/noConsoleLog: this is its job

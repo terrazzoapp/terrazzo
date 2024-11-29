@@ -56,6 +56,22 @@ export default defineConfig({
 
 Enforce that all colors are declared in a specific colorspace (e.g. sRGB).
 
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/colorspace": ["error", { colorSpace: "oklab" }],
+    },
+  },
+});
+```
+
+:::
+
 | Option         | Description                                                                                                                                    |
 | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
 | **colorSpace** | Any valid [CSS Color Module 4](https://www.w3.org/TR/css-color-4/#predefined) predefined color space, e.g. `srgb`, `display-p3`, `oklab`, etc. |
@@ -64,6 +80,22 @@ Enforce that all colors are declared in a specific colorspace (e.g. sRGB).
 ### core/consistent-naming
 
 Enforce a consistent naming style (e.g. camelCase).
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/consistent-naming": ["error", { format: "kebab-case" }],
+    },
+  },
+});
+```
+
+:::
 
 | Option     | Description                                                                                                    |
 | :--------- | :------------------------------------------------------------------------------------------------------------- |
@@ -74,6 +106,22 @@ Enforce a consistent naming style (e.g. camelCase).
 
 Enforce tokens can’t redeclare the same value (excludes aliases).
 
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/duplicate-value": "error",
+    },
+  },
+});
+```
+
+:::
+
 | Option     | Description                                            |
 | :--------- | :----------------------------------------------------- |
 | **ignore** | Array of token globs to ignore, e.g. (`'["legacy.*"]`) |
@@ -81,6 +129,22 @@ Enforce tokens can’t redeclare the same value (excludes aliases).
 ### core/descriptions
 
 Enforce tokens have descriptions. Having a description on a group doesn’t count.
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/descriptions": "error",
+    },
+  },
+});
+```
+
+:::
 
 | Option     | Description                                          |
 | :--------- | :--------------------------------------------------- |
@@ -90,6 +154,22 @@ Enforce tokens have descriptions. Having a description on a group doesn’t coun
 
 Enforce colors are within the specified gamut.
 
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/max-gamut": ["error", { format: "srgb" }],
+    },
+  },
+});
+```
+
+:::
+
 | Option     | Description                                          |
 | :--------- | :--------------------------------------------------- |
 | **gamut**  | `srgb`, `p3`, or `rec2020`.                          |
@@ -98,13 +178,6 @@ Enforce colors are within the specified gamut.
 ### core/required-children
 
 Enforce token groups have specific children, whether tokens and/or groups.
-
-| Option                        | Description                                                                       |
-| :---------------------------- | :-------------------------------------------------------------------------------- |
-| **matches**                   | Array of Matches.                                                                 |
-| matches[n].**match**          | Array of token globs to include, e.g. `["color.*"]`                               |
-| matches[n].**requiredTokens** | Array of strings to match against sub-token IDs, e.g. `["100", "200", …]`         |
-| matches[n].**requiredGroups** | Array of strings to match against sub-group IDs, e.g. `["action", "disabled", …]` |
 
 A Match consists of a `match` glob to match against, along with either `requiredTokens` and/or `requiredGroups`. Here are some examples:
 
@@ -142,9 +215,42 @@ export default defineConfig({
 
 :::
 
+| Option                        | Description                                                                       |
+| :---------------------------- | :-------------------------------------------------------------------------------- |
+| **matches**                   | Array of Matches.                                                                 |
+| matches[n].**match**          | Array of token globs to include, e.g. `["color.*"]`                               |
+| matches[n].**requiredTokens** | Array of strings to match against sub-token IDs, e.g. `["100", "200", …]`         |
+| matches[n].**requiredGroups** | Array of strings to match against sub-group IDs, e.g. `["action", "disabled", …]` |
+
 ### core/required-modes
 
 Enforce certain tokens have specific modes.
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/required-modes": [
+        "error",
+        {
+          matches: [
+            {
+              match: ["color.*"],
+              modes: ["light", "dark"],
+            },
+          ],
+        },
+      ],
+    },
+  },
+});
+```
+
+:::
 
 | Option               | Description                                                                   |
 | :------------------- | :---------------------------------------------------------------------------- |
@@ -155,6 +261,34 @@ Enforce certain tokens have specific modes.
 ### core/required-typography-properites
 
 Enforce typography tokens have required properties.
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/required-typography-properties": [
+        "error",
+        {
+          properties: [
+            "fontFamily",
+            "fontSize",
+            "fontStyle",
+            "fontWeight",
+            "letterSpacing",
+            "lineHeight",
+          ],
+        },
+      ],
+    },
+  },
+});
+```
+
+:::
 
 | Option         | Description                                                                         |
 | :------------- | :---------------------------------------------------------------------------------- |
@@ -167,6 +301,41 @@ Enforce colors meet minimum contrast checks for WCAG 2. Rather than test every p
 
 Each pair consists of a `foreground` and `background` color to test (note that while WCAG 2 doesn’t distinguish between foreground and background, some other color algorithms do). Optionally, you can set `largeText = true` if this is for large or bold text (which lessens the contrast requirements a bit).
 
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "a11y/min-contrast": [
+        "error",
+        {
+          level: "AA",
+          pairs: [
+            {
+              foreground: "color.text-primary",
+              background: "color.bg-primary",
+            },
+            {
+              foreground: "color.error-text",
+              background: "color.error-bg",
+            },
+            {
+              foreground: "color.action-text",
+              background: "color.action-bg",
+            },
+          ],
+        },
+      ],
+    },
+  },
+});
+```
+
+:::
+
 | Option                  | Description                                                                                                             |
 | :---------------------- | :---------------------------------------------------------------------------------------------------------------------- |
 | **level**               | `AA` or `AAA`, corresponding to the [WCAG conformance levels](https://www.w3.org/WAI/WCAG22/quickref/#contrast-minimum) |
@@ -178,6 +347,22 @@ Each pair consists of a `foreground` and `background` color to test (note that w
 ### a11y/min-font-size
 
 Enforce font sizes are no smaller than the given value.
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "a11y/min-font-size": ["error", { minSizeRem: 1 }],
+    },
+  },
+});
+```
+
+:::
 
 | Option         | Description                                         |
 | :------------- | :-------------------------------------------------- |

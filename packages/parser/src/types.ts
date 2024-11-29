@@ -75,11 +75,11 @@ export interface ConfigInit {
   plugins: Plugin[];
   lint: {
     build: NonNullable<NonNullable<Config['lint']>['build']>;
-    rules: Record<string, [LintRuleSeverity, any]>;
+    rules: Record<string, LintRuleLonghand>;
   };
   ignore: {
-    tokens: string[];
-    deprecated: boolean;
+    tokens: NonNullable<NonNullable<Config['ignore']>['tokens']>;
+    deprecated: NonNullable<NonNullable<Config['ignore']>['deprecated']>;
   };
 }
 

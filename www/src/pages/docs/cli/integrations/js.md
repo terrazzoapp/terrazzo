@@ -19,6 +19,10 @@ npm i -D @terrazzo/plugin-js
 pnpm i -D @terrazzo/plugin-js
 ```
 
+```sh [bun]
+bun i -D @terrazzo/plugin-js
+```
+
 :::
 
 :::code-group

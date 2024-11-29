@@ -21,6 +21,10 @@ npm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
 pnpm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
 ```
 
+```sh [bun]
+bun i -D @terrazzo/plugin-css @terrazzo/plugin-sass
+```
+
 :::
 
 And add both to your `terrazzo.config.js` under `plugins` (order doesn’t matter):

@@ -19,6 +19,10 @@ npm i -D @terrazzo/parser
 pnpm i -D @terrazzo/parser
 ```
 
+```sh [bun]
+bun i -D @terrazzo/parser
+```
+
 :::
 
 And here’s a basic example showing `config`, `parse`, and `build` steps:
@@ -89,6 +93,10 @@ npm i -D yaml-to-momoa
 
 ```sh [pnpm]
 pnpm i -D yaml-to-momoa
+```
+
+```sh [bun]
+bun i -D yaml-to-momoa
 ```
 
 :::
