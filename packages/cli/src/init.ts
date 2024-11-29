@@ -1,4 +1,4 @@
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -127,7 +127,7 @@ export async function initCmd({ logger }: InitOptions) {
       if (ds) {
         // TODO: support multiple tokens files?
         const s = spinner();
-        s.start('Downloading…');
+        s.start('Downloading');
         const tokenSource = await fetch(new URL(ds.tokens[0]!, DTCG_ROOT_URL)).then((res) => res.text());
         fs.writeFileSync(tokensPath, tokenSource);
         s.stop('Download complete');
@@ -154,10 +154,14 @@ export async function initCmd({ logger }: InitOptions) {
       const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
 
       const s = spinner();
-      s.start(`Installing ${pluginCount}…`);
-      execSync([packageManager, INSTALL_COMMAND[packageManager], newPlugins.join(' ')].join(' '), {
-        cwd,
-        stdio: 'inherit',
+      s.start(`Installing ${pluginCount}`);
+      // note: thi sis async to show the spinner
+      await new Promise((resolve, reject) => {
+        const subprocess = exec([packageManager, INSTALL_COMMAND[packageManager], newPlugins.join(' ')].join(' '), {
+          cwd,
+        });
+        subprocess.on('error', reject);
+        subprocess.on('exit', resolve);
       });
       s.message('Updating config');
       if (configPath) {
