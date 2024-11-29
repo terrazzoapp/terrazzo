@@ -26,6 +26,7 @@ type DesignSystem =
   | 'figma-sds'
   | 'github-primer'
   | 'ibm-carbon'
+  | 'microsoft-fluent'
   | 'radix'
   | 'salesforce-lightning'
   | 'shopify-polaris';
@@ -56,6 +57,11 @@ const DESIGN_SYSTEMS: Record<DesignSystem, { name: string; author: string; token
     name: 'Carbon',
     author: 'IBM',
     tokens: ['ibm-carbon.json'],
+  },
+  'microsoft-fluent': {
+    name: 'Fluent',
+    author: 'Microsoft',
+    tokens: ['microsoft-fluent.json'],
   },
   radix: {
     name: 'Radix',
