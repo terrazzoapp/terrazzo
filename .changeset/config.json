@@ -1,8 +1,13 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@3.0.2/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "terrazzoapp/terrazzo" }],
+  "changelog": [
+    "@changesets/changelog-github",
+    {
+      "repo": "terrazzoapp/terrazzo"
+    }
+  ],
   "commit": false,
-  "linked": [["@terrazzo/cli", "@terrazzo/parser"]],
+  "fixed": [["@terrazzo/cli", "@terrazzo/parser", "@terrazzo/token-tools"]],
   "access": "public",
   "baseBranch": "main"
 }

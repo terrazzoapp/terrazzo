@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.2.5
+
+### Patch Changes
+
+- [#372](https://github.com/terrazzoapp/terrazzo/pull/372) [`d19df01`](https://github.com/terrazzoapp/terrazzo/commit/d19df016cd804971a190a8602d575aecdec00d5e) Thanks [@drwpow](https://github.com/drwpow)! - Ignore token-like structures inside $extensions
+
 ## 0.2.4
 
 ### Patch Changes
