@@ -2648,4 +2648,38 @@ describe('Additional cases', () => {
       }
     });
   });
+
+  describe('$extensions', () => {
+    const tests: [string, { given: any; want: any }][] = [
+      [
+        '$value is ignored',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                emptyGroup: { $extensions: { foo: { $value: 'bar' } } },
+                color: {
+                  $type: 'color',
+                  blue: { $value: { colorSpace: 'srgb', channels: [0.2, 0.4, 0.8], alpha: 1 } },
+                  $extensions: { fake: { $value: 'foo' } },
+                },
+              },
+            },
+          ],
+          want: {
+            'color.blue': { alpha: 1, channels: [0.2, 0.4, 0.8], colorSpace: 'srgb' },
+          },
+        },
+      ],
+    ];
+
+    it.each(tests)('%s', async (_, { given, want }) => {
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse(given, { config });
+      for (const id in want) {
+        expect(tokens[id]!.$value).toEqual(want[id]);
+      }
+    });
+  });
 });
