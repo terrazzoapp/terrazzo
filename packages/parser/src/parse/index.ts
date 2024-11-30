@@ -259,7 +259,10 @@ async function parseSingle(
 
         const id = path.join('.');
 
-        if (members.$value) {
+        if (
+          members.$value &&
+          !path.includes('$extensions') // don’t validate anything in $extensions
+        ) {
           const extensions = members.$extensions ? getObjMembers(members.$extensions as ObjectNode) : undefined;
           const sourceNode = structuredClone(node);
 
