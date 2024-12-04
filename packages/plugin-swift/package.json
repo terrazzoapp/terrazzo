@@ -30,11 +30,11 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@terrazzo/token-tools": "workspace:^",
     "culori": "^4.0.1"
   },
   "devDependencies": {
     "@terrazzo/parser": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^",
     "@types/culori": "^2.1.1"
   }
 }

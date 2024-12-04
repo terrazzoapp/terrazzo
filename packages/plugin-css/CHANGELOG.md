@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 0.2.0
+
+### Minor Changes
+
+- Reconcile types with latest changes from @terrazzo/cli and @terrazzo/parser
+
 ## 0.1.2
 
 ### Patch Changes

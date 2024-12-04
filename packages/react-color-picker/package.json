@@ -57,7 +57,7 @@
     "@types/culori": "^2.1.1",
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
-    "@vitejs/plugin-react-swc": "^3.7.1",
+    "@vitejs/plugin-react-swc": "^3.7.2",
     "chokidar-cli": "^3.0.0",
     "culori": "^4.0.1",
     "jsdom": "^24.1.3",
