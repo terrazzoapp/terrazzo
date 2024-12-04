@@ -91,7 +91,7 @@ export interface ConfigOptions {
 
 export interface InputSource {
   filename?: URL;
-  src: string;
+  src: any;
   document: DocumentNode;
 }
 

@@ -39,6 +39,27 @@ Enabling `{ "type": "module" }` in your `package.json` is recommended, but if th
 
 See [Lint docs](/docs/cli/lint).
 
+## Ignore
+
+You can ignore certain tokens from all parsing and output at a global level. This is useful if you have tokens that are invalid, or you just don’t want to show up in any plugin.
+
+```js
+export default defineConfig({
+  ignore: {
+    tokens: ["legacy-tokens.*"],
+    deprecated: true,
+  },
+});
+```
+
+### Tokens
+
+An array of token IDs, or globs to ignore.
+
+### Deprecated
+
+Enable to ignore any token with a `$deprecated` key.
+
 ## All Options
 
 | Name      | Type                 | Description                                                                    |
@@ -47,3 +68,4 @@ See [Lint docs](/docs/cli/lint).
 | `outDir`  | `string`             | The directory for output (_Tip: add this to `.gitignore`_).                    |
 | `plugins` | `Plugin[]`           | An array of [plugins](/docs/integrations) to use.                              |
 | `lint`    | `LintOptions`        | See [Lint docs](/docs/cli/lint).                                               |
+| `ignore`  | `IgnoreOptions`      | [Ignore](#ignore)                                                              |
