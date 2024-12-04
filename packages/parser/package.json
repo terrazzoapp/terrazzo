@@ -35,7 +35,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@humanwhocodes/momoa": "^3.3.3",
+    "@humanwhocodes/momoa": "^3.3.4",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
     "@types/culori": "^2.1.1",
