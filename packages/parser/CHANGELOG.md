@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 0.2.7
+
+### Patch Changes
+
+- [#376](https://github.com/terrazzoapp/terrazzo/pull/376) [`059b62a`](https://github.com/terrazzoapp/terrazzo/commit/059b62a95d1a7ec9667baef3dc695200a454eb61) Thanks [@drwpow](https://github.com/drwpow)! - Loosen up source type for parse()
+
+- Updated dependencies [[`059b62a`](https://github.com/terrazzoapp/terrazzo/commit/059b62a95d1a7ec9667baef3dc695200a454eb61)]:
+  - @terrazzo/token-tools@0.2.7
+
 ## 0.2.6
 
 ### Patch Changes
