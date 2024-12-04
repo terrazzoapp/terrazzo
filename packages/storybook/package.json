@@ -8,7 +8,7 @@
     "dev": "pnpm run sb",
     "build:app": "storybook build -o storybook",
     "format": "biome check --fix --unsafe src",
-    "lint": "pnpm run --filter @terrazzo/storybook \"/^lint:.*/\"",
+    "lint": "pnpm run lint:js && pnpm run lint:css",
     "lint:js": "biome check src",
     "lint:css": "stylelint \"src/**/*.css\"",
     "sb": "storybook dev -p 9009"
