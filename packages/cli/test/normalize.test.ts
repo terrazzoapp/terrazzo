@@ -9,7 +9,7 @@ describe('tz normalize', () => {
   test('basic', async () => {
     const cwd = new URL('./fixtures/normalize/', import.meta.url);
     await execa(cmd, ['normalize', 'input.json', '-o', 'actual.json'], { cwd });
-    expect(fs.readFileSync(new URL('./actual.json', cwd), 'utf8')).toMatchFileSnapshot(
+    await expect(fs.readFileSync(new URL('./actual.json', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.json', cwd)),
     );
   });
