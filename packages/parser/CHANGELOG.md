@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 0.2.6
+
+### Patch Changes
+
+- [#374](https://github.com/terrazzoapp/terrazzo/pull/374) [`cb64063`](https://github.com/terrazzoapp/terrazzo/commit/cb640631220f1abb72dd9e39806c5e1b61e92baf) Thanks [@drwpow](https://github.com/drwpow)! - Add normalize CLI command, which can upgrade a giant tokens file to the latest DTCG format.
+
+- Updated dependencies [[`cb64063`](https://github.com/terrazzoapp/terrazzo/commit/cb640631220f1abb72dd9e39806c5e1b61e92baf)]:
+  - @terrazzo/token-tools@0.2.6
+
 ## 0.2.5
 
 ### Patch Changes
