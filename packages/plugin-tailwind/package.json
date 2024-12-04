@@ -34,16 +34,14 @@
   },
   "peerDependencies": {
     "@terrazzo/cli": "workspace:^",
-    "tailwindcss": "*"
-  },
-  "dependencies": {
     "@terrazzo/plugin-css": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^"
+    "tailwindcss": "*"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "tailwindcss": "^3.4.15",
+    "@terrazzo/token-tools": "workspace:^",
+    "tailwindcss": "^3.4.16",
     "yaml": "^2.6.1"
   }
 }

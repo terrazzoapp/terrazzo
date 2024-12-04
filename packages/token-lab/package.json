@@ -50,7 +50,7 @@
   "devDependencies": {
     "@types/react": "npm:types-react@rc",
     "@types/react-dom": "npm:types-react-dom@rc",
-    "@vitejs/plugin-react-swc": "^3.7.1",
+    "@vitejs/plugin-react-swc": "^3.7.2",
     "react": "19.0.0-rc.1",
     "react-dom": "19.0.0-rc.1",
     "types-react": "19.0.0-rc.1",

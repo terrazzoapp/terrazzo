@@ -167,12 +167,6 @@ importers:
 
   packages/plugin-css:
     dependencies:
-      '@terrazzo/parser':
-        specifier: workspace:^
-        version: link:../parser
-      '@terrazzo/token-tools':
-        specifier: workspace:^
-        version: link:../token-tools
       scule:
         specifier: ^1.3.0
         version: 1.3.0
@@ -180,12 +174,14 @@ importers:
       '@terrazzo/cli':
         specifier: workspace:^
         version: link:../cli
-
-  packages/plugin-js:
-    dependencies:
+      '@terrazzo/parser':
+        specifier: workspace:^
+        version: link:../parser
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
+
+  packages/plugin-js:
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
@@ -193,12 +189,11 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
-
-  packages/plugin-sass:
-    dependencies:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
+
+  packages/plugin-sass:
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
@@ -209,12 +204,12 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
-
-  packages/plugin-swift:
-    dependencies:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
+
+  packages/plugin-swift:
+    dependencies:
       culori:
         specifier: ^4.0.1
         version: 4.0.1
@@ -222,6 +217,9 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
       '@types/culori':
         specifier: ^2.1.1
         version: 2.1.1
@@ -231,9 +229,6 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
-      '@terrazzo/token-tools':
-        specifier: workspace:^
-        version: link:../token-tools
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
@@ -241,9 +236,12 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
       tailwindcss:
-        specifier: ^3.4.15
-        version: 3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.13))(@types/node@22.10.1)(typescript@5.7.2))
+        specifier: ^3.4.16
+        version: 3.4.16(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.13))(@types/node@22.10.1)(typescript@5.7.2))
       yaml:
         specifier: ^2.6.1
         version: 2.6.1
@@ -288,8 +286,8 @@ importers:
         specifier: npm:types-react-dom@rc
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.1
-        version: 3.7.1(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
+        specifier: ^3.7.2
+        version: 3.7.2(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
       chokidar-cli:
         specifier: ^3.0.0
         version: 3.0.0
@@ -519,8 +517,8 @@ importers:
         specifier: npm:types-react-dom@rc
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.1
-        version: 3.7.1(@swc/helpers@0.5.13)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
+        specifier: ^3.7.2
+        version: 3.7.2(@swc/helpers@0.5.13)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
       react:
         specifier: 19.0.0-rc.1
         version: 19.0.0-rc.1
@@ -602,8 +600,8 @@ importers:
         specifier: npm:types-react-dom@rc
         version: types-react-dom@19.0.0-rc.1
       '@vitejs/plugin-react-swc':
-        specifier: ^3.7.1
-        version: 3.7.1(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
+        specifier: ^3.7.2
+        version: 3.7.2(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))
       react:
         specifier: 19.0.0-rc.1
         version: 19.0.0-rc.1
@@ -2435,22 +2433,10 @@ packages:
     peerDependencies:
       storybook: ^8.2.0 || ^8.3.0-0 || ^8.4.0-0 || ^8.5.0-0 || ^8.6.0-0
 
-  '@swc/core-darwin-arm64@1.9.2':
-    resolution: {integrity: sha512-nETmsCoY29krTF2PtspEgicb3tqw7Ci5sInTI03EU5zpqYbPjoPH99BVTjj0OsF53jP5MxwnLI5Hm21lUn1d6A==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [darwin]
-
   '@swc/core-darwin-arm64@1.9.3':
     resolution: {integrity: sha512-hGfl/KTic/QY4tB9DkTbNuxy5cV4IeejpPD4zo+Lzt4iLlDWIeANL4Fkg67FiVceNJboqg48CUX+APhDHO5G1w==}
     engines: {node: '>=10'}
     cpu: [arm64]
-    os: [darwin]
-
-  '@swc/core-darwin-x64@1.9.2':
-    resolution: {integrity: sha512-9gD+bwBz8ZByjP6nZTXe/hzd0tySIAjpDHgkFiUrc+5zGF+rdTwhcNrzxNHJmy6mw+PW38jqII4uspFHUqqxuQ==}
-    engines: {node: '>=10'}
-    cpu: [x64]
     os: [darwin]
 
   '@swc/core-darwin-x64@1.9.3':
@@ -2459,32 +2445,14 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@swc/core-linux-arm-gnueabihf@1.9.2':
-    resolution: {integrity: sha512-kYq8ief1Qrn+WmsTWAYo4r+Coul4dXN6cLFjiPZ29Cv5pyU+GFvSPAB4bEdMzwy99rCR0u2P10UExaeCjurjvg==}
-    engines: {node: '>=10'}
-    cpu: [arm]
-    os: [linux]
-
   '@swc/core-linux-arm-gnueabihf@1.9.3':
     resolution: {integrity: sha512-Pbwe7xYprj/nEnZrNBvZfjnTxlBIcfApAGdz2EROhjpPj+FBqBa3wOogqbsuGGBdCphf8S+KPprL1z+oDWkmSQ==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux]
 
-  '@swc/core-linux-arm64-gnu@1.9.2':
-    resolution: {integrity: sha512-n0W4XiXlmEIVqxt+rD3ZpkogsEWUk1jJ+i5bQNgB+1JuWh0fBE8c/blDgTQXa0GB5lTPVDZQussgdNOCnAZwiA==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-
   '@swc/core-linux-arm64-gnu@1.9.3':
     resolution: {integrity: sha512-AQ5JZiwNGVV/2K2TVulg0mw/3LYfqpjZO6jDPtR2evNbk9Yt57YsVzS+3vHSlUBQDRV9/jqMuZYVU3P13xrk+g==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [linux]
-
-  '@swc/core-linux-arm64-musl@1.9.2':
-    resolution: {integrity: sha512-8xzrOmsyCC1zrx2Wzx/h8dVsdewO1oMCwBTLc1gSJ/YllZYTb04pNm6NsVbzUX2tKddJVRgSJXV10j/NECLwpA==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -2495,20 +2463,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@swc/core-linux-x64-gnu@1.9.2':
-    resolution: {integrity: sha512-kZrNz/PjRQKcchWF6W292jk3K44EoVu1ad5w+zbS4jekIAxsM8WwQ1kd+yjUlN9jFcF8XBat5NKIs9WphJCVXg==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-
   '@swc/core-linux-x64-gnu@1.9.3':
     resolution: {integrity: sha512-ivXXBRDXDc9k4cdv10R21ccBmGebVOwKXT/UdH1PhxUn9m/h8erAWjz5pcELwjiMf27WokqPgaWVfaclDbgE+w==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [linux]
-
-  '@swc/core-linux-x64-musl@1.9.2':
-    resolution: {integrity: sha512-TTIpR4rjMkhX1lnFR+PSXpaL83TrQzp9znRdp2TzYrODlUd/R20zOwSo9vFLCyH6ZoD47bccY7QeGZDYT3nlRg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -2519,22 +2475,10 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@swc/core-win32-arm64-msvc@1.9.2':
-    resolution: {integrity: sha512-+Eg2d4icItKC0PMjZxH7cSYFLWk0aIp94LNmOw6tPq0e69ax6oh10upeq0D1fjWsKLmOJAWEvnXlayZcijEXDw==}
-    engines: {node: '>=10'}
-    cpu: [arm64]
-    os: [win32]
-
   '@swc/core-win32-arm64-msvc@1.9.3':
     resolution: {integrity: sha512-e+XmltDVIHieUnNJHtspn6B+PCcFOMYXNJB1GqoCcyinkEIQNwC8KtWgMqUucUbEWJkPc35NHy9k8aCXRmw9Kg==}
     engines: {node: '>=10'}
     cpu: [arm64]
-    os: [win32]
-
-  '@swc/core-win32-ia32-msvc@1.9.2':
-    resolution: {integrity: sha512-nLWBi4vZDdM/LkiQmPCakof8Dh1/t5EM7eudue04V1lIcqx9YHVRS3KMwEaCoHLGg0c312Wm4YgrWQd9vwZ5zQ==}
-    engines: {node: '>=10'}
-    cpu: [ia32]
     os: [win32]
 
   '@swc/core-win32-ia32-msvc@1.9.3':
@@ -2543,26 +2487,11 @@ packages:
     cpu: [ia32]
     os: [win32]
 
-  '@swc/core-win32-x64-msvc@1.9.2':
-    resolution: {integrity: sha512-ik/k+JjRJBFkXARukdU82tSVx0CbExFQoQ78qTO682esbYXzjdB5eLVkoUbwen299pnfr88Kn4kyIqFPTje8Xw==}
-    engines: {node: '>=10'}
-    cpu: [x64]
-    os: [win32]
-
   '@swc/core-win32-x64-msvc@1.9.3':
     resolution: {integrity: sha512-3YJJLQ5suIEHEKc1GHtqVq475guiyqisKSoUnoaRtxkDaW5g1yvPt9IoSLOe2mRs7+FFhGGU693RsBUSwOXSdQ==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
-
-  '@swc/core@1.9.2':
-    resolution: {integrity: sha512-dYyEkO6mRYtZFpnOsnYzv9rY69fHAHoawYOjGOEcxk9WYtaJhowMdP/w6NcOKnz2G7GlZaenjkzkMa6ZeQeMsg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@swc/helpers': '*'
-    peerDependenciesMeta:
-      '@swc/helpers':
-        optional: true
 
   '@swc/core@1.9.3':
     resolution: {integrity: sha512-oRj0AFePUhtatX+BscVhnzaAmWjpfAeySpM1TCbxA1rtBDeH/JDhi5yYzAKneDYtVtBvA7ApfeuzhMC9ye4xSg==}
@@ -2578,9 +2507,6 @@ packages:
 
   '@swc/helpers@0.5.13':
     resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
-
-  '@swc/types@0.1.15':
-    resolution: {integrity: sha512-XKaZ+dzDIQ9Ot9o89oJQ/aluI17+VvUnIpYJTcZtvv1iYX6MzHh3Ik2CSR7MdPKpPwfZXHBeCingb2b4PoDVdw==}
 
   '@swc/types@0.1.17':
     resolution: {integrity: sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==}
@@ -2739,11 +2665,6 @@ packages:
     resolution: {integrity: sha512-Yy19y6O2GJq8f7CHf7L0nxL8bf4PZCPaVOCgJrusOeFHY1LvHgYXnmnXg6N5iwAnbgbZCDjo60SiM6IPJi9C5g==}
     peerDependencies:
       react: '>= 16.8.0'
-
-  '@vitejs/plugin-react-swc@3.7.1':
-    resolution: {integrity: sha512-vgWOY0i1EROUK0Ctg1hwhtC3SdcDjZcdit4Ups4aPkDcB1jYhmo+RMYWY87cmXMhvtD5uf8lV89j2w16vkdSVg==}
-    peerDependencies:
-      vite: ^4 || ^5
 
   '@vitejs/plugin-react-swc@3.7.2':
     resolution: {integrity: sha512-y0byko2b2tSVVf5Gpng1eEhX1OvPC7x8yns1Fx8jDzlJp4LS6CMkCPfLw47cjyoMrshQDoQw4qcgjsU9VvlCew==}
@@ -4081,12 +4002,12 @@ packages:
     resolution: {integrity: sha512-8f7aNmS1+etYSLHht0fQApPc2kNO8qGRutifN5rVIc6Xo6ABsEbqOr758UwI7ALVbTt4x1fllKt0PYgzD9S3yQ==}
     engines: {node: '>= 12.0.0'}
 
-  lilconfig@2.1.0:
-    resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
-    engines: {node: '>=10'}
-
   lilconfig@3.1.2:
     resolution: {integrity: sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==}
+    engines: {node: '>=14'}
+
+  lilconfig@3.1.3:
+    resolution: {integrity: sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==}
     engines: {node: '>=14'}
 
   lines-and-columns@1.2.4:
@@ -5357,8 +5278,8 @@ packages:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
 
-  tailwindcss@3.4.15:
-    resolution: {integrity: sha512-r4MeXnfBmSOuKUWmXe6h2CcyfzJCEk4F0pptO5jlnYSIViUkVmsawj80N5h2lO3gwcmSb4n3PuN+e+GC1Guylw==}
+  tailwindcss@3.4.16:
+    resolution: {integrity: sha512-TI4Cyx7gDiZ6r44ewaJmt0o6BrMCT5aK5e0rmJ/G9Xq3w7CX/5VXl/zIPEJZFUK5VEqwByyhqNPycPlvcK4ZNw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -7638,82 +7559,35 @@ snapshots:
     dependencies:
       storybook: 8.4.5(prettier@3.4.1)
 
-  '@swc/core-darwin-arm64@1.9.2':
-    optional: true
-
   '@swc/core-darwin-arm64@1.9.3':
-    optional: true
-
-  '@swc/core-darwin-x64@1.9.2':
     optional: true
 
   '@swc/core-darwin-x64@1.9.3':
     optional: true
 
-  '@swc/core-linux-arm-gnueabihf@1.9.2':
-    optional: true
-
   '@swc/core-linux-arm-gnueabihf@1.9.3':
-    optional: true
-
-  '@swc/core-linux-arm64-gnu@1.9.2':
     optional: true
 
   '@swc/core-linux-arm64-gnu@1.9.3':
     optional: true
 
-  '@swc/core-linux-arm64-musl@1.9.2':
-    optional: true
-
   '@swc/core-linux-arm64-musl@1.9.3':
-    optional: true
-
-  '@swc/core-linux-x64-gnu@1.9.2':
     optional: true
 
   '@swc/core-linux-x64-gnu@1.9.3':
     optional: true
 
-  '@swc/core-linux-x64-musl@1.9.2':
-    optional: true
-
   '@swc/core-linux-x64-musl@1.9.3':
-    optional: true
-
-  '@swc/core-win32-arm64-msvc@1.9.2':
     optional: true
 
   '@swc/core-win32-arm64-msvc@1.9.3':
     optional: true
 
-  '@swc/core-win32-ia32-msvc@1.9.2':
-    optional: true
-
   '@swc/core-win32-ia32-msvc@1.9.3':
-    optional: true
-
-  '@swc/core-win32-x64-msvc@1.9.2':
     optional: true
 
   '@swc/core-win32-x64-msvc@1.9.3':
     optional: true
-
-  '@swc/core@1.9.2(@swc/helpers@0.5.13)':
-    dependencies:
-      '@swc/counter': 0.1.3
-      '@swc/types': 0.1.15
-    optionalDependencies:
-      '@swc/core-darwin-arm64': 1.9.2
-      '@swc/core-darwin-x64': 1.9.2
-      '@swc/core-linux-arm-gnueabihf': 1.9.2
-      '@swc/core-linux-arm64-gnu': 1.9.2
-      '@swc/core-linux-arm64-musl': 1.9.2
-      '@swc/core-linux-x64-gnu': 1.9.2
-      '@swc/core-linux-x64-musl': 1.9.2
-      '@swc/core-win32-arm64-msvc': 1.9.2
-      '@swc/core-win32-ia32-msvc': 1.9.2
-      '@swc/core-win32-x64-msvc': 1.9.2
-      '@swc/helpers': 0.5.13
 
   '@swc/core@1.9.3(@swc/helpers@0.5.13)':
     dependencies:
@@ -7738,10 +7612,6 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
-
-  '@swc/types@0.1.15':
-    dependencies:
-      '@swc/counter': 0.1.3
 
   '@swc/types@0.1.17':
     dependencies:
@@ -7912,24 +7782,17 @@ snapshots:
       '@use-gesture/core': 10.3.1
       react: 19.0.0-rc.1
 
-  '@vitejs/plugin-react-swc@3.7.1(@swc/helpers@0.5.13)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))':
-    dependencies:
-      '@swc/core': 1.9.2(@swc/helpers@0.5.13)
-      vite: 6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1)
-    transitivePeerDependencies:
-      - '@swc/helpers'
-
-  '@vitejs/plugin-react-swc@3.7.1(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))':
-    dependencies:
-      '@swc/core': 1.9.2(@swc/helpers@0.5.13)
-      vite: 6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1)
-    transitivePeerDependencies:
-      - '@swc/helpers'
-
   '@vitejs/plugin-react-swc@3.7.2(@swc/helpers@0.5.13)(vite@6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))':
     dependencies:
       '@swc/core': 1.9.3(@swc/helpers@0.5.13)
       vite: 6.0.1(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1)
+    transitivePeerDependencies:
+      - '@swc/helpers'
+
+  '@vitejs/plugin-react-swc@3.7.2(@swc/helpers@0.5.13)(vite@6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1))':
+    dependencies:
+      '@swc/core': 1.9.3(@swc/helpers@0.5.13)
+      vite: 6.0.2(@types/node@22.10.1)(jiti@2.4.0)(lightningcss@1.27.0)(sass-embedded@1.78.0)(sass@1.77.5)(terser@5.36.0)(yaml@2.6.1)
     transitivePeerDependencies:
       - '@swc/helpers'
 
@@ -9419,9 +9282,9 @@ snapshots:
       lightningcss-win32-x64-msvc: 1.27.0
     optional: true
 
-  lilconfig@2.1.0: {}
-
   lilconfig@3.1.2: {}
+
+  lilconfig@3.1.3: {}
 
   lines-and-columns@1.2.4: {}
 
@@ -10221,7 +10084,7 @@ snapshots:
 
   postcss-load-config@4.0.2(postcss@8.4.49)(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.13))(@types/node@22.10.1)(typescript@5.7.2)):
     dependencies:
-      lilconfig: 3.1.2
+      lilconfig: 3.1.3
       yaml: 2.6.1
     optionalDependencies:
       postcss: 8.4.49
@@ -11101,7 +10964,7 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
 
-  tailwindcss@3.4.15(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.13))(@types/node@22.10.1)(typescript@5.7.2)):
+  tailwindcss@3.4.16(ts-node@10.9.2(@swc/core@1.9.3(@swc/helpers@0.5.13))(@types/node@22.10.1)(typescript@5.7.2)):
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
@@ -11112,7 +10975,7 @@ snapshots:
       glob-parent: 6.0.2
       is-glob: 4.0.3
       jiti: 1.21.6
-      lilconfig: 2.1.0
+      lilconfig: 3.1.3
       micromatch: 4.0.8
       normalize-path: 3.0.0
       object-hash: 3.0.0
