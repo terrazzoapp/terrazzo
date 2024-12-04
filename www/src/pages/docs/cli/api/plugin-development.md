@@ -277,6 +277,7 @@ Unlike ESLint, there are a few notable differences:
 
 - **Namespacing isn’t provided by default.** Your rules declared in your plugin will match the user’s config. If you think your rules may conflict with other plugins, then namespace them yourself (e.g. `my-plugin/rule-foo`).
 - **There’s no AST visitor.** Linting tokens is much simpler than linting an actual programming language. For that reason, there’s no AST visitor. Most token linters will simply iterate over `context.tokens` for everything they need. However, if you _really_ want to traverse an AST, you can do so by parsing and traversing `context.src` yourself.
+- **There’s no auto-fixing.** Linting tokens is also a bit different, in that the source of truth may not even be source code (it was likely generated from Figma, etc.). So the APIs around fixing aren’t there yet; we’re only concerned with raising issues.
 
 ### transform()
 
