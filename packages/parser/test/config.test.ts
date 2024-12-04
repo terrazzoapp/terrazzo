@@ -100,7 +100,10 @@ describe('config', () => {
     it('ignore', async () => {
       const config = defineConfig(
         {
-          ignore: { tokens: ['color-legacy.*'] },
+          ignore: {
+            tokens: ['color-legacy.*'],
+            deprecated: true,
+          },
         },
         { cwd: new URL(import.meta.url) },
       );
@@ -110,6 +113,7 @@ describe('config', () => {
             src: {
               color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', channels: [1, 0, 0] } } },
               'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', channels: [1, 0, 0] } } },
+              deprecated: { $type: 'dimension', space: { $deprecated: true, $value: { value: 0.25, unit: 'rem' } } },
             },
           },
         ],
