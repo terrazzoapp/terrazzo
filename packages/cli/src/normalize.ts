@@ -1,7 +1,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { type MemberNode, type ObjectNode, parse as parseJSON, print } from '@humanwhocodes/momoa';
-import { type Logger, defineConfig, parse, traverse } from '@terrazzo/parser';
+import { type MemberNode, type ObjectNode, type StringNode, parse as parseJSON, print } from '@humanwhocodes/momoa';
+import { type Logger, defineConfig, getObjMembers, parse, traverse } from '@terrazzo/parser';
+import { isAlias } from '@terrazzo/token-tools';
 import { cwd, printError } from './shared.js';
 
 export interface NormalizeOptions {
@@ -9,8 +10,10 @@ export interface NormalizeOptions {
   output: URL;
 }
 
-function find$value(member: MemberNode) {
-  return member.name.type === 'String' && member.name.value === '$value';
+function findMember(name: string) {
+  return function (member: MemberNode) {
+    return member.name.type === 'String' && member.name.value === name;
+  };
 }
 
 export async function normalizeCmd(filename: string, { logger, output }: NormalizeOptions) {
@@ -33,19 +36,38 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
     traverse(document, {
       enter(node, _parent, nodePath) {
         const token = tokens[nodePath.join('.')];
+
         if (!token || token.aliasOf || node.type !== 'Member' || node.value.type !== 'Object') {
           return;
         }
-        const $valueI = node.value.members.findIndex(find$value);
-        const newValueContainer = parseJSON(JSON.stringify({ $value: token.$value })).body as ObjectNode;
-        const newValueNode = newValueContainer.members.find(find$value)!;
+        const $valueI = node.value.members.findIndex(findMember('$value'));
 
         switch (token.$type) {
           case 'color':
           case 'dimension':
           case 'duration': {
             if (node.value.members[$valueI]!.value.type === 'String') {
+              const newValueContainer = parseJSON(JSON.stringify({ $value: token.$value })).body as ObjectNode;
+              const newValueNode = newValueContainer.members.find(findMember('$value'))!;
               node.value.members[$valueI] = newValueNode;
+
+              const { $extensions } = getObjMembers(node.value);
+              if ($extensions?.type === 'Object') {
+                const { mode } = getObjMembers($extensions);
+                if (mode?.type === 'Object') {
+                  for (let i = 0; i < mode.members.length; i++) {
+                    const modeName = (mode.members[i]!.name as StringNode).value;
+                    if (isAlias(token.mode[modeName]!)) {
+                      continue;
+                    }
+                    const newModeValueContainer = parseJSON(
+                      JSON.stringify({ [modeName]: token.mode[modeName]!.$value }),
+                    ).body as ObjectNode;
+                    const newModeValueNode = newModeValueContainer.members.find(findMember(modeName))!;
+                    mode.members[i] = newModeValueNode;
+                  }
+                }
+              }
             }
             break;
           }

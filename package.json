@@ -6,7 +6,6 @@
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
-    "build:examples": "pnpm run -r --parallel --if-present --stream build:tokens",
     "changeset": "changeset",
     "inject-license": "node scripts/inject-license.js",
     "dev": "pnpm run -r --parallel --if-present dev",

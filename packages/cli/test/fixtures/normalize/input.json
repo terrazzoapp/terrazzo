@@ -109,6 +109,60 @@
       "900": { "$value": "#522504" },
       "1000": { "$value": "#401b01" }
     },
+    "celery": {
+      "400": {
+        "$value": "rgb(39, 187, 54)",
+        "$extensions": {
+          "mode": {
+            "dark": "rgb(34, 184, 51)",
+            "darkest": "rgb(13, 171, 37)",
+            "light": "rgb(39, 187, 54)",
+            "lightest": "rgb(48, 193, 61)",
+            "middark": "rgb(45, 190, 58)",
+            "midlight": "rgb(7, 167, 33)"
+          }
+        }
+      },
+      "500": {
+        "$value": "rgb(7, 167, 33)",
+        "$extensions": {
+          "mode": {
+            "dark": "rgb(68, 202, 73)",
+            "darkest": "rgb(45, 191, 58)",
+            "light": "rgb(7, 167, 33)",
+            "lightest": "rgb(15, 172, 38)",
+            "middark": "rgb(78, 207, 80)",
+            "midlight": "rgb(0, 148, 19)"
+          }
+        }
+      },
+      "600": {
+        "$value": "rgb(0, 145, 18)",
+        "$extensions": {
+          "mode": {
+            "dark": "rgb(105, 220, 99)",
+            "darkest": "rgb(80, 208, 82)",
+            "light": "rgb(0, 145, 18)",
+            "lightest": "rgb(0, 150, 20)",
+            "middark": "rgb(112, 223, 104)",
+            "midlight": "rgb(0, 127, 15)"
+          }
+        }
+      },
+      "700": {
+        "$value": "rgb(0, 124, 15)",
+        "$extensions": {
+          "mode": {
+            "dark": "rgb(142, 235, 127)",
+            "darkest": "rgb(115, 224, 107)",
+            "light": "rgb(0, 124, 15)",
+            "lightest": "rgb(0, 128, 15)",
+            "middark": "rgb(146, 237, 130)",
+            "midlight": "rgb(0, 107, 15)"
+          }
+        }
+      }
+    },
     "background": {
       "brand": {
         "default": { "$value": "{color.brand.800}" },
