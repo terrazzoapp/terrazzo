@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 0.2.8
+
+### Patch Changes
+
+- [#380](https://github.com/terrazzoapp/terrazzo/pull/380) [`a18c0a9`](https://github.com/terrazzoapp/terrazzo/commit/a18c0a972b6e6c19f2c0856e10326d96a838fcd2) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in normalize where modes were skipped over
+
+- Updated dependencies [[`a18c0a9`](https://github.com/terrazzoapp/terrazzo/commit/a18c0a972b6e6c19f2c0856e10326d96a838fcd2)]:
+  - @terrazzo/token-tools@0.2.8
+
 ## 0.2.7
 
 ### Patch Changes
