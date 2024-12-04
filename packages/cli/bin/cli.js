@@ -32,6 +32,7 @@ import { buildCmd } from '../dist/build.js';
 import { checkCmd } from '../dist/check.js';
 import { helpCmd } from '../dist/help.js';
 import { initCmd } from '../dist/init.js';
+import { normalizeCmd } from '../dist/normalize.js';
 import { loadConfig } from '../dist/shared.js';
 import { versionCmd } from '../dist/version.js';
 
@@ -86,6 +87,12 @@ export default async function main() {
   // --help
   if (flags.help || !cmd) {
     helpCmd();
+    process.exit(0);
+  }
+
+  // normalize
+  if (cmd === 'normalize') {
+    await normalizeCmd(positionals[1], { logger, output: flags.out });
     process.exit(0);
   }
 

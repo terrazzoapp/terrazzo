@@ -47,6 +47,20 @@ Validate all DTCG tokens for syntax errors, and run any [linters](/docs/cli/lint
 npx tz check [filename]
 ```
 
+## Normalize
+
+The DTCG format has gone through many iterations over the years. Terrazzo lenient in the inputs it allows, such as allowing legacy sRGB hex colors without throwing a parsing error. To quickly update your tokens to the latest version of the format, run the following command:
+
+```sh
+tz normalize tokens.json -o normalized.json
+```
+
+This will keep your tokens 100% as-authored, but will upgrade older DTCG files to the updated format and will safely fix minor issues. But just as a safety precaution, it requires saving to a new location just so you can review the changes before committing them.
+
+| Name            | Description            |
+| :-------------- | :--------------------- |
+| `--out` \| `-o` | Tokens file to output. |
+
 ## Global Flags
 
 Flags available for any command

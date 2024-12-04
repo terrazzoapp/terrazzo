@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-lab",
-  "description": "Create, edit, and safe tokens.json in DTCG format",
+  "description": "Create, edit, and save tokens.json in DTCG format",
   "version": "0.0.0",
   "type": "module",
   "keywords": [
@@ -43,7 +43,7 @@
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
-    "dtcg-examples": "^0.0.1",
+    "dtcg-examples": "^0.1.2",
     "jotai": "^2.10.2",
     "monaco-editor": "^0.52.0"
   },

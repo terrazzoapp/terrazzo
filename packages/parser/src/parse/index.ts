@@ -9,6 +9,11 @@ import { getObjMembers, injectObjMembers, maybeJSONString, traverse } from './js
 import normalize from './normalize.js';
 import validate from './validate.js';
 
+export * from './alias.js';
+export { default as normalize } from './normalize.js';
+export * from './normalize.js';
+export * from './json.js';
+export { default as validate } from './validate.js';
 export * from './validate.js';
 
 export interface ParseOptions {
