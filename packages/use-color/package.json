@@ -39,19 +39,13 @@
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.1.6",
     "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.0.1",
+    "@testing-library/react": "^16.1.0",
     "@testing-library/user-event": "^14.5.2",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react-swc": "^3.7.2",
-    "react": "19.0.0-rc.1",
-    "react-dom": "19.0.0-rc.1",
-    "size-limit": "^11.1.6",
-    "types-react": "19.0.0-rc.1",
-    "types-react-dom": "19.0.0-rc.1"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "size-limit": "^11.1.6"
   }
 }

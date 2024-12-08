@@ -44,22 +44,16 @@
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.1.2",
-    "jotai": "^2.10.2",
+    "jotai": "^2.10.3",
     "monaco-editor": "^0.52.0"
   },
   "devDependencies": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react-swc": "^3.7.2",
-    "react": "19.0.0-rc.1",
-    "react-dom": "19.0.0-rc.1",
-    "types-react": "19.0.0-rc.1",
-    "types-react-dom": "19.0.0-rc.1",
-    "vite": "^6.0.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "vite": "^6.0.3",
     "vite-plugin-sass-dts": "^1.3.29"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }
