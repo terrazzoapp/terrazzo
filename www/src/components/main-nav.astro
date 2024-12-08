@@ -1,6 +1,6 @@
 ---
 import fs from 'node:fs';
-import { GitHubLogo } from '@terrazzo/icons';
+import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import { ButtonLink } from '@terrazzo/tiles';
 import Terrazzo from './terrazzo.astro';
 
@@ -14,11 +14,11 @@ const { version } = pkgInfo;
       <a class="logo-link" href="/"><Terrazzo size="1.25rem" /></a>
     </li>
     <li class="nav-item"><a href="/docs/cli">Docs</a></li>
-    <li class="nav-item nav-item--sub">
+    <li class="nav-item nav-item--sub" style="margin-bottom:-1px">
       <ButtonLink href="/docs/cli" variant="lime">Get Started</ButtonLink>
     </li>
     <li class="nav-item nav-item--sub">
-      <code class="version">v{version}</code>
+      <a class="nav-link" href="https://github.com/terrazzoapp/terrazzo/releases"><code class="version">v{version}</code></a>
     </li>
     <li class="nav-item nav-item--sub">
       <a
@@ -26,6 +26,14 @@ const { version } = pkgInfo;
         href="https://github.com/terrazzoapp/terrazzo"
         target="_blank"
         aria-label="Terrazzo on GitHub"><GitHubLogo /></a
+      >
+    </li>
+    <li class="nav-item nav-item--sub">
+      <a
+        class="icon-link"
+        href="https://discord.gg/cju3dXyHNd"
+        target="_blank"
+        aria-label="Join Terrazzo on Discord"><DiscordLogo /></a
       >
     </li>
   </ul>
@@ -42,6 +50,8 @@ const { version } = pkgInfo;
       a {
         align-items: center;
         display: flex;
+        justify-content: center;
+        text-decoration: none;
       }
     }
 
@@ -76,22 +86,39 @@ const { version } = pkgInfo;
     }
 
     .version {
-      min-width: calc(2 * var(--grid-size));
+      display: block;
+      text-decoration: none;
       text-align: center;
+      padding-inline: 0.25rem;
+      white-space: nowrap;
+
+
+    }
+
+    .nav a:has(.version):hover {
+      background: var(--tz-color-bg-selected);
+      color: var(--tz-color-text-selected);
     }
 
     .nav-item:not(.nav-item--sub) + .nav-item--sub {
       margin-left: auto;
     }
 
-    .icon-link {
-      padding-inline: 0.5rem;
+    .icon-link {;
+      padding-inline: 0.25rem;
       text-align: center;
       width: var(--grid-size);
 
+      &:hover {
+        background: var(--tz-color-bg-selected);
+        color: var(--tz-color-text-selected);
+      }
+
       svg {
-        height: 1rem;
-        width: 1rem;
+        height: 1.25rem;
+        min-height: 1.25rem;
+        min-width: 1.25rem;
+        width: 1.25rem;
       }
     }
 
@@ -99,9 +126,7 @@ const { version } = pkgInfo;
       padding-inline-start: 1.5rem;
     }
 
-    .nav-item:last-of-type a {
-      padding-inline-end: 1.5rem;
-    }
+
 
     .logo-link {
       align-items: center;
