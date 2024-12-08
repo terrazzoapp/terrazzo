@@ -1,14 +1,7 @@
 .md-content {
-  display: flex;
-  flex-direction: column;
-
   > * {
-    margin-block: var(--tz-space-400);
+    margin-block: 2em;
     order: 99;
-
-    @media (width >= 1600px) {
-      margin-block: var(--tz-space-600);
-    }
   }
 
   h1,
@@ -18,13 +11,12 @@
   h5,
   h6 {
     --icon-size: 0.875em;
-    --padding: var(--tz-space-800);
+    --padding: 2em;
 
     cursor: pointer;
     font-family: var(--tz-typography-family-sans);
     letter-spacing: -0.03125em;
-    margin: 0;
-    padding-block-start: var(--padding);
+    margin-block-start: 2em;
     position: relative;
 
     a {
@@ -34,7 +26,8 @@
       left: 0;
       opacity: 0;
       position: absolute;
-      top: calc(var(--padding) + 0.125em);
+      top: 50%;
+      transform: translateY(-50%);
       transition: opacity var(--tz-timing-default) var(--tz-ease-linear);
       width: 100%;
 
@@ -239,7 +232,7 @@
   width: calc(100% + 2 * var(--padding));
 
   @media (width >= 600px) {
-    --padding: var(--tz-space-500);
+    --padding: var(--tz-space-600);
   }
 
   p:first-of-type {
@@ -435,8 +428,6 @@
 
 .toc {
   background: var(--tz-color-bg-1);
-  border: 1px solid var(--grid-color);
-  bottom: calc(-1 * var(--tz-space-500));
   font-family: var(--tz-typography-200-regular-font-family);
   font-size: var(--tz-typography-200-regular-font-size);
   height: min-content;
@@ -444,11 +435,12 @@
   line-height: var(--tz-typography-200-regular-line-height);
   margin: 0;
   order: 1;
-  padding-block: calc(0.5 * var(--grid-size));
-  padding-inline: calc(0.5 * var(--grid-size));
 
   @media (width >= 1200px) {
+    border: 1px solid var(--grid-color);
+    bottom: calc(-1 * var(--tz-space-500));
     overflow-y: auto;
+    padding: calc(0.5 * var(--grid-size));
     position: fixed;
     right: var(--tz-space-400);
     top: 0;
