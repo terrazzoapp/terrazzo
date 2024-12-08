@@ -1,5 +1,5 @@
 ---
-import { GitHubLogo } from '@terrazzo/icons';
+import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import DocsSearch from './SearchBox.tsx';
 import ThemeSwitcher from './ThemeSwitcher.tsx';
 ---
@@ -19,6 +19,14 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
           title="Terrazzo on GitHub"
         >
           <GitHubLogo />
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://discord.gg/cju3dXyHNd"
+          title="Join Terrazzo on Discord"
+        >
+          <DiscordLogo />
         </a>
       </li>
     </ul>
@@ -79,6 +87,8 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
 
       svg {
         height: 1.25rem;
+        min-height: 1.25rem;
+        min-width: 1.25rem;
         width: 1.25rem;
       }
     }

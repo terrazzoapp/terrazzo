@@ -16,6 +16,7 @@
     cursor: pointer;
     font-family: var(--tz-typography-family-sans);
     letter-spacing: -0.03125em;
+    margin-block-end: 0;
     margin-block-start: 2em;
     position: relative;
 
@@ -48,6 +49,11 @@
       height: var(--icon-size);
       transform: translate3d(calc(-100% - var(--tz-space-200)), 0, 0);
       width: var(--icon-size);
+    }
+
+    &:first-child {
+      margin-block-start: 0;
+      padding-block-start: var(--tz-space-600);
     }
   }
 
