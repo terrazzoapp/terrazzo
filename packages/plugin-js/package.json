@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
   "type": "module",
   "author": {
