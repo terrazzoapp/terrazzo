@@ -37,9 +37,9 @@ import Tri from '../tri.astro';
     background-color: var(--tz-color-base-orange-600);
     border: 2px solid var(--tz-color-base-blue-600);
     height: calc(3 * var(--grid-size));
-    left: 0;
+    left: calc(1 * var(--grid-size));
     position: absolute;
-    top: 0;
+    top: calc(1 * var(--grid-size));
     width: calc(5 * var(--grid-size));
   }
 
@@ -79,9 +79,9 @@ import Tri from '../tri.astro';
   .square {
     background: var(--tz-color-base-blue-800);
     height: calc(4 * var(--grid-size));
-    left: calc(2 * var(--grid-size));
+    left: calc(3 * var(--grid-size));
     position: absolute;
-    top: calc(1 * var(--grid-size));
+    top: calc(2 * var(--grid-size));
     width: calc(4 * var(--grid-size));
   }
 
@@ -90,8 +90,8 @@ import Tri from '../tri.astro';
     border-radius: 50%;
     height: calc(3 * var(--grid-size));
     position: absolute;
-    right: calc(2 * var(--grid-size));
-    top: 0;
+    right: calc(3 * var(--grid-size));
+    top: calc(1 * var(--grid-size));
     width: calc(3 * var(--grid-size));
   }
 </style>

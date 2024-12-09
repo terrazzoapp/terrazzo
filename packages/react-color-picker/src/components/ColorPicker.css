@@ -24,10 +24,10 @@
   border-radius: var(--tz-radius-300);
   color: var(--tz-color-picker-input);
   flex: 1 0 auto;
-  font-family: var(--tz-typography-family-mono);
-  font-size: var(--tz-typography-100-regular-font-size);
+  font-family: var(--tz-font-mono);
+  font-size: var(--tz-font-label-small-font-size);
   font-variant-ligatures: none;
-  font-weight: var(--tz-typography-100-regular-font-weight);
+  font-weight: var(--tz-font-label-small-font-weight);
   height: var(--tz-space-control-m);
   letter-spacing: 0;
   line-height: var(--tz-space-control-m);

@@ -12,7 +12,7 @@ import DefaultLayout from '../layouts/default.astro';
       <h1 class="title">Design systems <small>for everyone</small></h1>
       <Tri style="bottom: 0; right: 0; transform: rotate(180deg);" />
     </section>
-    <section class="card w13 h3 m2">
+    <section class="card w13 h4 m2">
       <h3 class="subheading">Used by</h3>
       <p class="logos">
         <svg
@@ -211,7 +211,7 @@ import DefaultLayout from '../layouts/default.astro';
       </p>
     </section>
   </main>
-  <section class="card w15 h4 m2">
+  <section class="card w15 h4 m2 has-cta">
     <p class="explainer">
       <b>terrazzo</b> is a collection of MIT licensed open source tools to help you
       create and manage your design system. It’s free to use, forever. Keep full
@@ -260,36 +260,43 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .w11 {
+    max-width: 100%;
     width: calc(9 * var(--grid-size));
-    @media (width >= 900px) {
+
+    @media (width >= 750px) {
       width: calc(11 * var(--grid-size));
     }
   }
 
   .w13 {
+    max-width: 100%;
     width: calc(9 * var(--grid-size));
-    @media (width >= 900px) {
+    @media (width >= 750px) {
       width: calc(13 * var(--grid-size));
     }
   }
 
   .w15 {
+    max-width: 100%;
     width: calc(11 * var(--grid-size));
-    @media (width >= 900px) {
+    @media (width >= 750px) {
       width: calc(15 * var(--grid-size));
     }
   }
 
   .illo {
-    position: absolute;
+    height: 100vh;
     left: 50%;
+    max-width: 100vw;
+    overflow: hidden;
+    position: absolute;
+    top: calc(2 * var(--grid-size));
     transform: translate3d(-50%, 0, 0);
-    top: calc(3 * var(--grid-size));
-    width: calc(11 * var(--grid-size));
+    width: calc(13 * var(--grid-size));
     z-index: 0;
 
-    @media (width >= 900px) {
-      width: calc(13 * var(--grid-size));
+    @media (width >= 750px) {
+      width: calc(15 * var(--grid-size));
     }
   }
 
@@ -297,20 +304,21 @@ import DefaultLayout from '../layouts/default.astro';
     display: flex;
     gap: calc(0.25 * var(--grid-size));
     flex-direction: column;
-    font-family: var(--tz-typography-900-bold-font-family);
-    font-size: var(--tz-typography-800-bold-font-size);
-    font-weight: var(--tz-typography-900-bold-font-weight);
-    letter-spacing: var(--tz-typography-900-bold-letter-spacing);
+    font-family: var(--tz-font-sans);
+    font-size: 2.1875rem;
+    font-weight: var(--tz-font-heading-1-font-weight);
+    font-variation-settings: var(--tz-font-heading-1-font-variation-settings);
+    letter-spacing: var(--tz-font-heading-1-letter-spacing);
     line-height: 1;
     margin: 0;
 
-    @media (width >= 900px) {
-      font-size: var(--tz-typography-900-bold-font-size);
+    @media (width >= 750px) {
+      font-size: 3.75rem;
     }
 
     small {
       display: block;
-      font-family: var(--tz-typography-family-mono);
+      font-family: var(--tz-font-mono);
       font-size: 0.375em;
       font-weight: 400;
       letter-spacing: calc(1 / 4 * 1em);
@@ -320,10 +328,11 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .subheading {
-    font-family: var(--tz-typography-family-mono);
-    font-size: var(--tz-typography-400-regular-font-size);
-    font-weight: var(--tz-typography-400-regular-font-weight);
-    letter-spacing: var(--tz-typography-400-regular-letter-spacing);
+    font-family: var(--tz-font-mono);
+    font-size: var(--tz-font-heading-4-font-size);
+    font-variation-settings: var(--tz-font-heading-4-font-variation-settings);
+    font-weight: var(--tz-font-heading-4-font-weight);
+    letter-spacing: var(--tz-font-heading-4-letter-spacing);
     line-height: 1;
     margin: 0;
     opacity: 0.7;
@@ -335,9 +344,10 @@ import DefaultLayout from '../layouts/default.astro';
   .logos {
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     gap: 2rem;
     justify-content: center;
-    margin: 1.5rem 0 0 0;
+    margin: 1rem 0 0 0;
     text-align: center;
   }
 
@@ -362,8 +372,16 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .explainer {
-    font-size: var(--tz-typography-400-regular-font-size);
+    font-size: var(--tz-font-heading-4-font-size);
     margin: 0;
+  }
+
+  .has-cta {
+    padding-bottom: calc(2 * var(--grid-size));
+
+    @media (width >= 750px) {
+      padding-bottom: 0;
+    }
   }
 
   .cta {
@@ -374,8 +392,10 @@ import DefaultLayout from '../layouts/default.astro';
     padding: 0;
     position: absolute;
     right: -1px;
+    width: 100%;
 
     .tz-button {
+      white-space: nowrap;
       width: calc(3 * var(--grid-size));
     }
   }

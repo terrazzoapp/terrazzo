@@ -16,7 +16,7 @@
   --ds-typography-subheading-font-size: 18px;
   --ds-typography-subheading-font-variation-settings: "wght" 130, "opsz" 100, "wdth" 50;
   --ds-typography-subheading-font-weight: 500;
-  --ds-typography-subheading-line-height: 1.375;
+  --ds-typography-subheading-line-height: 24px;
   --ds-typography-subheading-letter-spacing: 0.25em;
   --ds-typography-subheading-text-transform: uppercase;
   --ds-typography-callout-font-family: var(--ds-typography-family-body);

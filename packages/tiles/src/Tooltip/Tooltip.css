@@ -5,11 +5,11 @@
   border-radius: var(--tz-radius-2);
   box-shadow: var(--tz-shadow-300);
   color: var(--tz-text-secondary);
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
-  font-weight: var(--tz-typography-200-regular-font-weight);
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-typography-200-regular-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-weight: var(--tz-font-body-font-weight);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
   padding: var(--tz-space-300);
   user-select: none;
   will-change: transform, opacity;

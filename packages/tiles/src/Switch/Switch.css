@@ -29,11 +29,11 @@
   cursor: pointer;
   display: flex;
   flex: 1 0 auto;
-  font-family: var(--tz-typography-300-regular-font-family);
-  font-size: var(--tz-typography-300-regular-font-size);
-  font-weight: var(--tz-typography-300-regular-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-weight: var(--tz-font-body-font-weight);
   gap: var(--tz-space-300);
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: 1;
 
   &::before {

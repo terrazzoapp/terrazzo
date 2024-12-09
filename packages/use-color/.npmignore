@@ -1,5 +1,6 @@
 *.test.*
 .size-limit.js
+.turbo
 biome.*
 vite.*
 vitest.*

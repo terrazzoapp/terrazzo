@@ -72,8 +72,9 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
     a {
       align-items: center;
       display: flex;
-      font-size: var(--tz-typography-300-regular-font-size);
-      font-weight: var(--tz-typography-300-regular-font-weight);
+      font-size: var(--tz-font-body-font-size);
+      font-weight: var(--tz-font-body-font-weight);
+      font-variation-settings: var(--tz-font-body-font-variation-settings);
       gap: var(--tz-space-200);
       height: var(--tz-space-900);
       line-height: 1;
@@ -82,7 +83,9 @@ import ThemeSwitcher from './ThemeSwitcher.tsx';
 
       &[aria-current] {
         color: var(--tz-color-control-text-selected);
-        font-weight: var(--tz-typography-300-medium-font-weight);
+        font-variation-settings: var(
+          --tz-font-body-strong-font-variation-settings
+        );
       }
 
       svg {

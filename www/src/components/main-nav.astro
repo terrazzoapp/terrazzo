@@ -18,9 +18,13 @@ const { version } = pkgInfo;
       <ButtonLink href="/docs/cli" variant="lime">Get Started</ButtonLink>
     </li>
     <li class="nav-item nav-item--sub">
-      <a class="nav-link" href="https://github.com/terrazzoapp/terrazzo/releases"><code class="version">v{version}</code></a>
+      <a
+        class="nav-link"
+        href="https://github.com/terrazzoapp/terrazzo/releases"
+        ><code class="version">v{version}</code></a
+      >
     </li>
-    <li class="nav-item nav-item--sub">
+    <li class="nav-item nav-item--sub nav-item--secondary">
       <a
         class="icon-link"
         href="https://github.com/terrazzoapp/terrazzo"
@@ -28,7 +32,7 @@ const { version } = pkgInfo;
         aria-label="Terrazzo on GitHub"><GitHubLogo /></a
       >
     </li>
-    <li class="nav-item nav-item--sub">
+    <li class="nav-item nav-item--sub nav-item--secondary">
       <a
         class="icon-link"
         href="https://discord.gg/cju3dXyHNd"
@@ -76,6 +80,14 @@ const { version } = pkgInfo;
       padding-inline: 0.5rem;
     }
 
+    .nav-item--secondary {
+      display: none;
+
+      @media (width >= 600px) {
+        display: flex;
+      }
+    }
+
     .nav-item .tz-button {
       height: var(--grid-size);
       width: calc(2.5 * var(--grid-size));
@@ -91,8 +103,6 @@ const { version } = pkgInfo;
       text-align: center;
       padding-inline: 0.25rem;
       white-space: nowrap;
-
-
     }
 
     .nav a:has(.version):hover {
@@ -104,7 +114,7 @@ const { version } = pkgInfo;
       margin-left: auto;
     }
 
-    .icon-link {;
+    .icon-link {
       padding-inline: 0.25rem;
       text-align: center;
       width: var(--grid-size);
@@ -125,8 +135,6 @@ const { version } = pkgInfo;
     .nav-item:first-of-type a {
       padding-inline-start: 1.5rem;
     }
-
-
 
     .logo-link {
       align-items: center;

@@ -253,7 +253,7 @@ async function parseSingle(
   const $typeInheritance: Record<string, Token['$type']> = {};
   traverse(document, {
     enter(node, parent, path) {
-      if (node.type === 'Member' && node.value.type === 'Object' && node.value.members) {
+      if (node.type === 'Member' && node.value.type === 'Object' && node.value.members && !path.includes('$value')) {
         const members = getObjMembers(node.value);
 
         // keep track of $types
@@ -370,7 +370,7 @@ async function parseSingle(
           }
 
           tokens[id] = token;
-        } else if (!id.includes('.$value') && members.value) {
+        } else if (!path.includes('.$value') && members.value) {
           logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, filename, node, src });
         }
       }

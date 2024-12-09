@@ -9,10 +9,10 @@
 .tz-fieldset-legend {
   color: var(--tz-text-secondary);
   display: flex;
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-typography-200-regular-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
   margin-bottom: var(--tz-space-300);
   position: static;
   width: 100%;

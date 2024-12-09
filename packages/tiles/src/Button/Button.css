@@ -15,13 +15,13 @@
   color: var(--tz-button-text);
   cursor: pointer;
   display: inline-flex;
-  font-family: var(--tz-typography-200-medium-font-family);
-  font-size: var(--tz-typography-200-medium-font-size);
-  font-weight: var(--tz-typography-200-medium-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-strong-font-size);
+  font-weight: var(--tz-font-body-strong-font-weight);
   gap: var(--tz-button-gap);
   height: var(--tz-button-height);
   justify-content: center;
-  letter-spacing: var(--tz-typography-200-medium-letter-spacing);
+  letter-spacing: var(--tz-font-body-strong-letter-spacing);
   line-height: 1;
   outline-color: transparent;
   outline-offset: 2px;
@@ -40,8 +40,8 @@
   &[data-size="s"] {
     --tz-button-height: var(--tz-space-control-s);
 
-    font-size: var(--tz-typography-200-medium-font-size);
-    letter-spacing: var(--tz-typography-200-medium-letter-spacing);
+    font-size: var(--tz-font-body-strong-font-size);
+    letter-spacing: var(--tz-font-body-strong-letter-spacing);
   }
 
   &[data-variant="lime"] {

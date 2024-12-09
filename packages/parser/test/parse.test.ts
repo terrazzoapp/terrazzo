@@ -2219,7 +2219,7 @@ font:
                     fontVariant: 'small-caps',
                     fontWeight: 400,
                     letterSpacing: { value: 0.125, unit: 'em' },
-                    lineHeight: 1.5,
+                    lineHeight: { value: 24, unit: 'px' },
                     textDecoration: 'underline',
                     textTransform: 'uppercase',
                   },
@@ -2236,9 +2236,57 @@ font:
                 fontVariant: 'small-caps',
                 fontWeight: 400,
                 letterSpacing: { value: 0.125, unit: 'em' },
-                lineHeight: 1.5,
+                lineHeight: { value: 24, unit: 'px' },
                 textDecoration: 'underline',
                 textTransform: 'uppercase',
+              },
+            },
+          },
+        },
+      ],
+      [
+        'lineHeight: number',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                typography: {
+                  $type: 'typography',
+                  $value: {
+                    lineHeight: 1.5,
+                  },
+                },
+              },
+            },
+          ],
+          want: { tokens: { typography: { lineHeight: 1.5 } } },
+        },
+      ],
+      [
+        'dimension (legacy format)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                typography: {
+                  $type: 'typography',
+                  $value: {
+                    fontSize: '16px',
+                    letterSpacing: '0.001em',
+                    lineHeight: '24px',
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              typography: {
+                fontSize: { value: 16, unit: 'px' },
+                letterSpacing: { value: 0.001, unit: 'em' },
+                lineHeight: { value: 24, unit: 'px' },
               },
             },
           },

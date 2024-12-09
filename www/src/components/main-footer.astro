@@ -1,5 +1,5 @@
 ---
-import { GitHubLogo } from '@terrazzo/icons';
+import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import Terrazzo from './terrazzo.astro';
 ---
 
@@ -42,6 +42,14 @@ import Terrazzo from './terrazzo.astro';
           aria-label="Terrazzo on GitHub"><GitHubLogo /></a
         >
       </li>
+      <li>
+        <a
+          class="discord-link"
+          href="https://discord.gg/cju3dXyHNd"
+          target="_blank"
+          aria-label="Join Terrazzo on Discord"><DiscordLogo /></a
+        >
+      </li>
     </ul>
   </nav>
 </footer>
@@ -75,7 +83,7 @@ import Terrazzo from './terrazzo.astro';
 
   .cat {
     color: var(--tz-color-text-3);
-    font-size: var(--tz-typography-200-regular-font-size);
+    font-size: var(--tz-font-body-font-size);
     list-style: none;
     margin-block: 1.5rem;
     margin-inline: 0;
@@ -92,22 +100,23 @@ import Terrazzo from './terrazzo.astro';
     }
 
     li {
-      font-size: var(--tz-typography-200-regular-font-size);
+      font-size: var(--tz-font-body-font-size);
       margin-block: 0.5rem;
     }
   }
 
   .cat-heading {
-    font-family: var(--tz-typography-family-mono);
-    font-size: var(--tz-typography-200-regular-font-size);
-    font-weight: var(--tz-typography-200-regular-font-weight);
+    font-family: var(--tz-font-mono);
+    font-size: var(--tz-font-body-font-size);
+    font-weight: var(--tz-font-body-font-weight);
     letter-spacing: calc(1 / 8 * 1em);
     margin: 0;
     opacity: 0.7;
     text-transform: uppercase;
   }
 
-  .github-link {
+  .github-link,
+  .discord-link {
     align-items: center;
     display: flex;
     height: var(--grid-size);
@@ -118,8 +127,12 @@ import Terrazzo from './terrazzo.astro';
     width: var(--grid-size);
   }
 
+  .discord-link {
+    top: calc(0.5 * var(--grid-size));
+  }
+
   .colophon {
-    font-size: var(--tz-typography-200-regular-font-size);
+    font-size: var(--tz-font-body-font-size);
     opacity: 0.6;
   }
 </style>

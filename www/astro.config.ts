@@ -11,6 +11,9 @@ import remarkVitepress from './src/plugins/remark-vitepress.js';
 export default defineConfig({
   integrations: [react(), mdx()],
   site: 'https://terrazzo.app',
+  devToolbar: {
+    enabled: false,
+  },
   markdown: {
     shikiConfig: {
       theme: 'ayu-dark',
