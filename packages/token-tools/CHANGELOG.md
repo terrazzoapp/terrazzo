@@ -1,5 +1,13 @@
 # @terrazzo/token-tools
 
+## 0.2.9
+
+### Patch Changes
+
+- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - Fix incorrect parsing of typography tokens’ lineHeight when it’s a dimension value.
+
+- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - Fix warning on parsing dimension tokens in typography tokens
+
 ## 0.2.8
 
 ### Patch Changes

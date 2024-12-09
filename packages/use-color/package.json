@@ -29,7 +29,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": "^19.0.0"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",

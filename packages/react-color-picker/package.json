@@ -38,9 +38,9 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "culori": "4.x",
-    "react": "*",
-    "react-dom": "*"
+    "culori": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@terrazzo/icons": "workspace:^",
