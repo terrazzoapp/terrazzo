@@ -4,10 +4,10 @@
   --tz-select-bg: var(--tz-color-base);
 
   color: var(--tz-select-text);
-  font-family: var(--tz-typography-300-regular-family);
-  font-size: var(--tz-typography-300-regular-font-size);
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
-  line-height: var(--tz-typography-300-regular-line-height);
+  font-family: var(--tz-font-body-family);
+  font-size: var(--tz-font-body-font-size);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
   position: relative;
   z-index: var(--tz-layer-menu);
 }
@@ -17,10 +17,10 @@
   border-radius: 3px;
   color: var(--tz-color-text-2);
   display: flex;
-  font-family: var(--tz-typography-300-regular-family);
-  font-size: var(--tz-typography-300-regular-font-size);
+  font-family: var(--tz-font-body-family);
+  font-size: var(--tz-font-body-font-size);
   height: var(--tz-space-control-m);
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: 1;
   padding: 0 var(--tz-space-200);
   position: relative;
@@ -102,13 +102,13 @@
   color: var(--tz-color-text-1);
   cursor: pointer;
   display: inline-flex;
-  font-family: var(--tz-typography-300-regular-font-family);
-  font-size: var(--tz-typography-300-regular-font-size);
-  font-weight: var(--tz-typography-300-regular-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-weight: var(--tz-font-body-font-weight);
   gap: var(--tz-space-200);
   height: var(--tz-space-control-m);
   justify-content: center;
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: 1;
   outline: 1px solid transparent;
   padding: 0 var(--tz-space-200);

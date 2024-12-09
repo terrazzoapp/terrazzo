@@ -18,13 +18,13 @@ body {
   background-repeat: repeat;
   background-size: var(--grid-size) var(--grid-size);
   color: var(--tz-color-text-1);
-  font-family: var(--tz-typography-family-sans);
+  font-family: var(--tz-font-sans);
   font-size: 100%;
   line-height: 1;
   margin: 0;
 }
 
-@media (width >= 900px) {
+@media (width >= 600px) {
   body {
     --grid-size: 3rem;
   }
@@ -51,76 +51,76 @@ body {
 }
 
 h1 {
-  font-size: var(--tz-typography-700-bold-font-size);
-  font-style: var(--tz-typography-700-bold-font-style);
-  font-variation-settings: var(--tz-typography-700-bold-font-variation-settings);
-  font-weight: var(--tz-typography-700-bold-font-weight);
-  letter-spacing: var(--tz-typography-700-bold-letter-spacing);
-  line-height: var(--tz-typography-700-bold-line-height);
+  font-size: var(--tz-font-heading-1-font-size);
+  font-style: var(--tz-font-heading-1-font-style);
+  font-variation-settings: var(--tz-font-heading-1-font-variation-settings);
+  font-weight: var(--tz-font-heading-1-font-weight);
+  letter-spacing: var(--tz-font-heading-1-letter-spacing);
+  line-height: var(--tz-font-heading-1-line-height);
 }
 
 h2 {
-  font-size: var(--tz-typography-600-bold-font-size);
-  font-style: var(--tz-typography-600-bold-font-style);
-  font-variation-settings: var(--tz-typography-800-bold-font-variation-settings);
-  font-weight: var(--tz-typography-600-bold-font-weight);
-  letter-spacing: var(--tz-typography-600-bold-letter-spacing);
-  line-height: var(--tz-typography-600-bold-line-height);
+  font-size: var(--tz-font-heading-2-font-size);
+  font-style: var(--tz-font-heading-2-font-style);
+  font-variation-settings: var(--tz-font-heading-2-font-variation-settings);
+  font-weight: var(--tz-font-heading-2-font-weight);
+  letter-spacing: var(--tz-font-heading-2-letter-spacing);
+  line-height: var(--tz-font-heading-2-line-height);
 }
 
 h3 {
-  font-size: var(--tz-typography-500-medium-font-size);
-  font-style: var(--tz-typography-500-medium-font-style);
-  font-variation-settings: var(--tz-typography-500-medium-font-variation-settings);
-  font-weight: var(--tz-typography-500-medium-font-weight);
-  letter-spacing: var(--tz-typography-500-medium-letter-spacing);
-  line-height: var(--tz-typography-500-medium-line-height);
+  font-size: var(--tz-font-heading-3-font-size);
+  font-style: var(--tz-font-heading-3-font-style);
+  font-variation-settings: var(--tz-font-heading-3-font-variation-settings);
+  font-weight: var(--tz-font-heading-3-font-weight);
+  letter-spacing: var(--tz-font-heading-3-letter-spacing);
+  line-height: var(--tz-font-heading-3-line-height);
 }
 
 h4 {
-  font-size: var(--tz-typography-400-medium-font-size);
-  font-style: var(--tz-typography-400-medium-font-style);
-  font-variation-settings: var(--tz-typography-400-medium-font-variation-settings);
-  font-weight: var(--tz-typography-400-medium-font-weight);
-  letter-spacing: var(--tz-typography-400-medium-letter-spacing);
-  line-height: var(--tz-typography-400-medium-line-height);
+  font-size: var(--tz-font-heading-4-font-size);
+  font-style: var(--tz-font-heading-4-font-style);
+  font-variation-settings: var(--tz-font-heading-4-font-variation-settings);
+  font-weight: var(--tz-font-heading-4-font-weight);
+  letter-spacing: var(--tz-font-heading-4-letter-spacing);
+  line-height: var(--tz-font-heading-4-line-height);
 }
 
 h5 {
-  font-size: var(--tz-typography-300-medium-font-size);
-  font-style: var(--tz-typography-300-medium-font-style);
-  font-variation-settings: var(--tz-typography-300-medium-font-variation-settings);
-  font-weight: var(--tz-typography-300-medium-font-weight);
-  letter-spacing: var(--tz-typography-300-medium-letter-spacing);
-  line-height: var(--tz-typography-300-medium-line-height);
+  font-size: var(--tz-font-heading-5-font-size);
+  font-style: var(--tz-font-heading-5-font-style);
+  font-variation-settings: var(--tz-font-heading-5-font-variation-settings);
+  font-weight: var(--tz-font-heading-5-font-weight);
+  letter-spacing: var(--tz-font-heading-5-letter-spacing);
+  line-height: var(--tz-font-heading-5-line-height);
 }
 
 h6 {
-  font-size: var(--tz-typography-200-medium-font-size);
-  font-style: var(--tz-typography-200-medium-font-style);
-  font-variation-settings: var(--tz-typography-200-medium-font-variation-settings);
-  font-weight: var(--tz-typography-200-medium-font-weight);
-  letter-spacing: var(--tz-typography-200-medium-letter-spacing);
-  line-height: var(--tz-typography-200-medium-line-height);
+  font-size: var(--tz-font-heading-6-font-size);
+  font-style: var(--tz-font-heading-6-font-style);
+  font-variation-settings: var(--tz-font-heading-6-font-variation-settings);
+  font-weight: var(--tz-font-heading-6-font-weight);
+  letter-spacing: var(--tz-font-heading-6-letter-spacing);
+  line-height: var(--tz-font-heading-6-line-height);
 }
 
 p,
 li,
 blockquote {
-  font-size: var(--tz-typography-300-regular-font-size);
-  font-style: var(--tz-typography-300-regular-font-style);
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
-  line-height: var(--tz-typography-300-regular-line-height);
+  font-size: var(--tz-font-body-font-size);
+  font-style: var(--tz-font-body-font-style);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
 }
 
 pre,
 code {
-  font-family: var(--tz-typography-family-mono);
-  font-size: var(--tz-typography-100-regular-font-size);
-  font-style: var(--tz-typography-100-regular-font-style);
+  font-family: var(--tz-font-mono);
+  font-size: var(--tz-font-label-small-font-size);
+  font-style: var(--tz-font-label-small-font-style);
   font-variant-ligatures: none;
-  line-height: var(--tz-typography-100-regular-line-height);
-  text-decoration: var(--tz-typography-100-regular-text-decoration);
+  line-height: var(--tz-font-label-small-line-height);
+  text-decoration: var(--tz-font-label-small-text-decoration);
 }
 
 a {
@@ -142,7 +142,7 @@ strong {
   align-items: center;
   border-radius: 4rem;
   display: inline-flex;
-  font-weight: var(--tz-typography-300-medium-font-weight);
+  font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
   gap: 0.375em;
   vertical-align: -8.75%;
 }

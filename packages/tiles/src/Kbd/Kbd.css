@@ -6,12 +6,12 @@
   color: var(--tz-text-primary);
   cursor: default;
   display: inline-flex;
-  font-family: var(--tz-typography-family-mono);
+  font-family: var(--tz-font-mono);
   font-size: inherit;
-  font-weight: var(--tz-typography-300-regular-font-weight);
+  font-weight: var(--tz-font-body-font-weight);
   height: 1.5em;
   justify-content: center;
-  letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: inherit;
   padding: 0;
   user-select: none;

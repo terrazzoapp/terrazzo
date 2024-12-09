@@ -168,10 +168,18 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       const output: TypographyValueNormalized = {};
       for (const k in token.$value) {
         switch (k) {
-          case 'letterSpacing':
           case 'fontSize':
+          case 'letterSpacing': {
             output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] as DimensionValue });
             break;
+          }
+          case 'lineHeight': {
+            output[k] = normalizeValue({
+              $type: typeof token.$value === 'number' ? 'number' : 'dimension',
+              $value: token.$value[k] as any,
+            });
+            break;
+          }
           default:
             output[k] = token.$value[k];
         }

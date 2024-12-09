@@ -89,7 +89,7 @@
 }
 
 .tz-slider-label {
-  font-size: var(--tz-typography-200-regular-font-size);
+  font-size: var(--tz-font-body-font-size);
   grid-area: label;
   user-select: none;
   white-space: nowrap;

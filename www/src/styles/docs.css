@@ -14,7 +14,7 @@
     --padding: 2em;
 
     cursor: pointer;
-    font-family: var(--tz-typography-family-sans);
+    font-family: var(--tz-font-sans);
     letter-spacing: -0.03125em;
     margin-block-end: 0;
     margin-block-start: 2em;
@@ -65,16 +65,17 @@
   }
 
   li {
-    font-size: var(--tz-typography-300-regular-font-size);
-    letter-spacing: var(--tz-typography-300-regular-letter-spacing);
-    line-height: var(--tz-typography-300-regular-line-height);
+    font-size: var(--tz-font-body-font-size);
+    letter-spacing: var(--tz-font-body-letter-spacing);
+    line-height: var(--tz-font-body-line-height);
     margin-block: var(--tz-space-400);
     padding-inline-start: var(--tz-space-200);
 
     @media (width >= 1600px) {
-      font-size: var(--tz-typography-400-regular-font-size);
-      letter-spacing: var(--tz-typography-400-regular-letter-spacing);
-      line-height: var(--tz-typography-400-regular-line-height);
+      font-size: var(--tz-font-body-longform-font-size);
+      font-variation-settings: var(--tz-font-body-longform-font-variation-settings);
+      letter-spacing: var(--tz-font-body-longform-letter-spacing);
+      line-height: var(--tz-font-body-longform-line-height);
     }
   }
 
@@ -90,8 +91,8 @@
 
   strong,
   b {
-    font-variation-settings: var(--tz-typography-300-bold-font-variation-settings);
-    font-weight: var(--tz-typography-300-bold-font-weight);
+    font-variation-settings: "wght" 600;
+    font-weight: var(--tz-font-body-font-weight);
   }
 
   p > code,
@@ -121,9 +122,9 @@
 
   figcaption,
   figcaption p {
-    font-size: var(--tz-typography-200-regular-font-size);
-    letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-    line-height: var(--tz-typography-200-regular-line-height);
+    font-size: var(--tz-font-body-font-size);
+    letter-spacing: var(--tz-font-body-letter-spacing);
+    line-height: var(--tz-font-body-line-height);
     margin-top: var(--tz-space-200);
     opacity: 0.75;
     text-align: center;
@@ -140,13 +141,16 @@
   }
 
   p {
-    font-size: var(--tz-typography-300-regular-font-size);
-    letter-spacing: var(--tz-typography-300-regular-letter-spacing);
+    font-size: var(--tz-font-body-font-size);
+    font-variation-settings: var(--tz-font-body-font-variation-settings);
+    font-weight: var(--tz-font-body-font-weight);
+    letter-spacing: var(--tz-font-body-letter-spacing);
     line-height: 1.75;
 
     @media (width >= 1600px) {
-      font-size: var(--tz-typography-400-regular-font-size);
-      letter-spacing: var(--tz-typography-400-regular-letter-spacing);
+      font-size: var(--tz-font-body-longform-font-size);
+      font-variation-settings: var(--tz-font-body-longform-font-variation-settings);
+      letter-spacing: var(--tz-font-body-longform-letter-spacing);
     }
   }
 
@@ -155,8 +159,8 @@
     border-bottom: 1px solid transparent;
     cursor: pointer;
     display: flex;
-    font-variation-settings: var(--tz-typography-300-medium-font-variation-settings);
-    font-weight: var(--tz-typography-300-medium-font-weight);
+    font-variation-settings: var(--tz-body-strong-font-variation-settings);
+    font-weight: var(--tz-body-strong-font-weight);
     min-height: var(--tz-space-800);
     position: relative;
 
@@ -201,16 +205,16 @@
 
   th {
     border-bottom: var(--tz-border-2);
-    font-variation-settings: var(--tz-typography-200-medium-font-variation-settings);
-    font-weight: var(--tz-typography-200-medium-font-weight);
+    font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
+    font-weight: var(--tz-font-body-strong-font-weight);
   }
 
   th,
   td {
     border: var(--tz-border-2);
-    font-size: var(--tz-typography-200-regular-font-size);
-    letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-    line-height: var(--tz-typography-200-regular-line-height);
+    font-size: var(--tz-font-body-font-size);
+    letter-spacing: var(--tz-font-body-letter-spacing);
+    line-height: var(--tz-font-body-line-height);
     padding: var(--tz-space-300);
   }
 
@@ -272,13 +276,13 @@
 .callout-indicator {
   align-items: center;
   display: flex;
-  font-family: var(--tz-typography-200-bold-font-family);
-  font-size: var(--tz-typography-200-bold-font-size);
-  font-variation-settings: var(--tz-typography-200-bold-font-variation-settings);
-  font-weight: var(--tz-typography-200-bold-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-strong-font-size);
+  font-variation-settings: "wght" 600;
+  font-weight: var(--tz-font-body-strong-font-weight);
   gap: var(--tz-space-200);
-  letter-spacing: var(--tz-typography-200-bold-letter-spacing);
-  line-height: var(--tz-typography-200-bold-line-height);
+  letter-spacing: var(--tz-font-body-strong-letter-spacing);
+  line-height: var(--tz-font-body-strong-line-height);
   margin-bottom: var(--tz-space-200);
   text-transform: capitalize;
 }
@@ -311,12 +315,12 @@
   border-width: 3px 0;
   color: color(srgb 0.9 0.9 0.9);
   cursor: pointer;
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
-  font-variation-settings: var(--tz-typography-200-regular-font-variation-settings);
-  font-weight: var(--tz-typography-200-regular-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-variation-settings: var(--tz-font-body-font-variation-settings);
+  font-weight: var(--tz-font-body-font-weight);
   height: var(--tz-space-control-m);
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: var(--tz-space-control-m);
   outline: 2px solid transparent;
   padding: 0 var(--code-padding);
@@ -434,11 +438,11 @@
 
 .toc {
   background: var(--tz-color-bg-1);
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
   height: min-content;
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-typography-200-regular-line-height);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
   margin: 0;
   order: 1;
 
@@ -462,8 +466,8 @@
   }
 
   li {
-    font-family: var(--tz-typography-200-regular-font-family);
-    font-size: var(--tz-typography-200-regular-font-size);
+    font-family: var(--tz-font-sans);
+    font-size: var(--tz-font-body-font-size);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -488,7 +492,7 @@
     }
 
     ol a {
-      font-size: var(--tz-typography-100-regular-font-size);
+      font-size: var(--tz-font-label-small-font-size);
     }
   }
 

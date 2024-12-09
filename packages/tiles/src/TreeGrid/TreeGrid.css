@@ -29,12 +29,12 @@
   display: flex;
   flex-grow: 1;
   flex-shrink: 1;
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
-  font-variation-settings: var(--tz-typography-200-regular-font-variation-settings);
-  font-weight: var(--tz-typography-200-regular-font-weight);
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
-  line-height: var(--tz-typography-200-regular-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-variation-settings: var(--tz-font-body-font-variation-settings);
+  font-weight: var(--tz-font-body-font-weight);
+  letter-spacing: var(--tz-font-body-letter-spacing);
+  line-height: var(--tz-font-body-line-height);
 
   &:focus-visible {
     outline: var(--tz-border-focus);

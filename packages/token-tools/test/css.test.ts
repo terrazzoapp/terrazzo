@@ -10,6 +10,7 @@ import {
   transformGradientValue,
   transformNumberValue,
   transformShadowValue,
+  transformTypographyValue,
 } from '../src/css/index.js';
 
 type Test<Given = any, Want = any> = [
@@ -256,6 +257,54 @@ describe('transformShadowValue', () => {
     let result: typeof want.success;
     try {
       result = transformShadowValue(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformTypography', () => {
+  const tests: Test<Parameters<typeof transformTypographyValue>, ReturnType<typeof transformTypographyValue>>[] = [
+    [
+      'basic',
+      {
+        given: [
+          {
+            fontFamily: ['Helvetica'],
+            fontSize: { value: 16, unit: 'px' },
+            fontStyle: 'italic',
+            fontVariant: 'small-caps',
+            fontVariationSettings: '"wght" 600',
+            fontWeight: 400,
+            letterSpacing: { value: 0.125, unit: 'em' },
+            lineHeight: { value: 24, unit: 'px' },
+            textDecoration: 'underline',
+            textTransform: 'uppercase',
+          },
+        ],
+        want: {
+          success: {
+            'font-family': '"Helvetica"',
+            'font-size': '16px',
+            'font-style': 'italic',
+            'font-variant': 'small-caps',
+            'font-variation-settings': '"wght" 600',
+            'font-weight': '400',
+            'letter-spacing': '0.125em',
+            'line-height': '24px',
+            'text-decoration': 'underline',
+            'text-transform': 'uppercase',
+          },
+        },
+      },
+    ],
+  ];
+
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformTypographyValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }

@@ -31,6 +31,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
+    "dev": "pnpm run build --watch",
     "lint": "biome check .",
     "test": "vitest run"
   },

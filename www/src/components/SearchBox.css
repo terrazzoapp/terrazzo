@@ -21,11 +21,12 @@
 .tz-searchbox-result-title {
   color: var(--tz-color-content-text);
   display: block;
-  font-family: var(--tz-typography-300-medium-font-family);
-  font-size: var(--tz-typography-300-medium-font-size);
-  font-weight: var(--tz-typography-300-medium-font-weight);
-  letter-spacing: var(--tz-typography-300-medium-letter-spacing);
-  line-height: var(--tz-typography-300-medium-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-strong-font-size);
+  font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
+  font-weight: var(--tz-font-body-strong-font-weight);
+  letter-spacing: var(--tz-font-body-strong-letter-spacing);
+  line-height: var(--tz-font-body-strong-line-height);
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
@@ -34,11 +35,11 @@
 .tz-searchbox-result-desc {
   color: var(--tz-color-content-text-aside);
   display: block;
-  font-family: var(--tz-typography-100-regular-font-family);
-  font-size: var(--tz-typography-100-regular-font-size);
-  font-weight: var(--tz-typography-100-regular-font-weight);
-  letter-spacing: var(--tz-typography-100-regular-letter-spacing);
-  line-height: var(--tz-typography-100-regular-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-label-small-font-size);
+  font-weight: var(--tz-font-label-small-font-weight);
+  letter-spacing: var(--tz-font-label-small-letter-spacing);
+  line-height: var(--tz-font-label-small-line-height);
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;

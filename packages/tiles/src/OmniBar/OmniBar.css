@@ -19,11 +19,11 @@
   border: 1px solid var(--tz-omnibar-input-border);
   border-radius: var(--tz-radius-200);
   color: var(--tz-omnibar-input-text);
-  font-family: var(--tz-typography-200-regular-font-family);
-  font-size: var(--tz-typography-200-regular-font-size);
-  font-weight: var(--tz-typography-200-regular-font-weight);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-font-size);
+  font-weight: var(--tz-font-body-font-weight);
   height: 2rem;
-  letter-spacing: var(--tz-typography-200-regular-letter-spacing);
+  letter-spacing: var(--tz-font-body-letter-spacing);
   line-height: 1;
   min-width: 5rem;
   outline: none;
@@ -109,12 +109,12 @@
 .tz-omnibar-resultdesc {
   border-bottom: 1px solid var(--tz-color-content-border);
   color: var(--tz-text-secondary);
-  font-family: var(--tz-typography-100-regular-font-family);
-  font-size: var(--tz-typography-100-regular-font-size);
-  font-style: var(--tz-typography-100-regular-font-style);
-  font-weight: var(--tz-typography-100-regular-font-weight);
-  letter-spacing: var(--tz-typography-100-regular-letter-spacing);
-  line-height: var(--tz-typography-100-regular-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-label-small-font-size);
+  font-style: var(--tz-font-label-small-font-style);
+  font-weight: var(--tz-font-label-small-font-weight);
+  letter-spacing: var(--tz-font-label-small-letter-spacing);
+  line-height: var(--tz-font-label-small-line-height);
   padding-block-end: var(--tz-space-200);
   padding-inline: var(--tz-space-300);
 }

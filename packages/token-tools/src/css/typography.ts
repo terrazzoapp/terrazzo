@@ -1,14 +1,15 @@
 import { kebabCase } from 'scule';
-import type { AliasValue, DimensionValue } from '../types.js';
+import type { AliasValue, DimensionValue, TypographyValue } from '../types.js';
 import { transformDimensionValue } from './dimension.js';
 import { transformFontFamilyValue } from './font-family.js';
 import { transformFontWeightValue } from './font-weight.js';
 import { type IDGenerator, defaultAliasTransform, transformCompositeAlias } from './lib.js';
+import { transformNumberValue } from './number.js';
 import { transformStringValue } from './string.js';
 
 /** Convert typography value to multiple CSS values */
 export function transformTypographyValue(
-  value: Record<string, string | string[]>,
+  value: TypographyValue,
   {
     aliasOf,
     partialAliasOf,
@@ -29,13 +30,21 @@ export function transformTypographyValue(
           transformedValue = transformFontFamilyValue(subvalue as string[], { transformAlias });
           break;
         }
-        case 'letterSpacing':
-        case 'fontSize': {
+        case 'fontSize':
+        case 'letterSpacing': {
           transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
           break;
         }
         case 'fontWeight': {
           transformedValue = transformFontWeightValue(subvalue as string, { transformAlias });
+          break;
+        }
+        case 'lineHeight': {
+          if (typeof subvalue === 'number') {
+            transformedValue = transformNumberValue(subvalue as number, { transformAlias });
+          } else {
+            transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
+          }
           break;
         }
         default: {

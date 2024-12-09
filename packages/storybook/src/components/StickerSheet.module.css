@@ -9,11 +9,11 @@
 
 .th {
   color: var(--tz-text-secondary);
-  font-family: var(--tz-typography-family-mono);
-  font-size: var(--tz-typography-100-regular-font-size);
-  font-weight: var(--tz-typography-100-regular-font-weight);
-  letter-spacing: var(--tz-typography-100-regular-letter-spacing);
-  line-height: var(--tz-typography-100-regular-line-height);
+  font-family: var(--tz-font-mono);
+  font-size: var(--tz-font-label-small-font-size);
+  font-weight: var(--tz-font-label-small-font-weight);
+  letter-spacing: var(--tz-font-label-small-letter-spacing);
+  line-height: var(--tz-font-label-small-line-height);
   padding: var(--tz-space-100) var(--tz-space-200);
 
   &[scope="row"] {

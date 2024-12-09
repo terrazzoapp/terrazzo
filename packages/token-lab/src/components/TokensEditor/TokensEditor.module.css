@@ -8,12 +8,12 @@
 }
 
 .groupTitle {
-  font-family: var(--tz-typography-400-medium-font-family);
-  font-size: var(--tz-typography-400-medium-font-size);
-  font-variation-settings: var(--tz-typography-400-medium-font-variation-settings);
-  font-weight: var(--tz-typography-400-medium-font-weight);
-  letter-spacing: var(--tz-typography-400-medium-letter-spacing);
-  line-height: var(--tz-typography-400-medium-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-heading-4-font-size);
+  font-variation-settings: var(--tz-font-heading-4-font-variation-settings);
+  font-weight: var(--tz-font-heading-4-font-weight);
+  letter-spacing: var(--tz-font-heading-4-letter-spacing);
+  line-height: var(--tz-font-heading-4-line-height);
 }
 
 .tokenGrid {
@@ -27,11 +27,11 @@
 .colheader {
   border-bottom: var(--tz-border-3);
   border-right: var(--tz-border-3);
-  font-family: var(--tz-typography-200-medium-font-family);
-  font-size: var(--tz-typography-200-medium-font-size);
-  font-variation-settings: var(--tz-typography-200-medium-font-variation-settings);
-  font-weight: var(--tz-typography-200-medium-font-weight);
-  letter-spacing: var(--tz-typography-200-medium-letter-spacing);
-  line-height: var(--tz-typography-200-medium-line-height);
+  font-family: var(--tz-font-sans);
+  font-size: var(--tz-font-body-strong-font-size);
+  font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
+  font-weight: var(--tz-font-body-strong-font-weight);
+  letter-spacing: var(--tz-font-body-strong-letter-spacing);
+  line-height: var(--tz-font-body-strong-line-height);
   padding: 0.5rem;
 }
