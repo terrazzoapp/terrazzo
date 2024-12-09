@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/react-color-picker",
   "description": "React color picker that supports Color Module 4, wide color gamut (WCG), and Display-P3 using WebGL for monitor-accurate colors. Powered by Culori.",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -38,9 +38,9 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "culori": "4.x",
-    "react": "*",
-    "react-dom": "*"
+    "culori": "^4.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "dependencies": {
     "@terrazzo/icons": "workspace:^",

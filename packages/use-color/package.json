@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/use-color",
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
-  "version": "0.0.3",
+  "version": "0.0.2",
   "type": "module",
   "keywords": [
     "color",
@@ -29,7 +29,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "react": "*"
+    "react": "^19.0.0"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",

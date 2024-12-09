@@ -221,8 +221,8 @@ importers:
   packages/plugin-tailwind:
     dependencies:
       '@terrazzo/plugin-css':
-        specifier: workspace:^
-        version: link:../plugin-css
+        specifier: ^0.2.0
+        version: 0.2.0(@terrazzo/cli@packages+cli)
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
@@ -2380,6 +2380,11 @@ packages:
 
   '@swc/types@0.1.17':
     resolution: {integrity: sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==}
+
+  '@terrazzo/plugin-css@0.2.0':
+    resolution: {integrity: sha512-ONF8qzVekJAY4KuorZJGDoI3C+ToNRvOjRM/QfE/t1S1d5+SC9rQI/XEGwMueK6e3qJq0G39SiEOX3USyIbrvQ==}
+    peerDependencies:
+      '@terrazzo/cli': '*'
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -7346,6 +7351,11 @@ snapshots:
   '@swc/types@0.1.17':
     dependencies:
       '@swc/counter': 0.1.3
+
+  '@terrazzo/plugin-css@0.2.0(@terrazzo/cli@packages+cli)':
+    dependencies:
+      '@terrazzo/cli': link:packages/cli
+      scule: 1.3.0
 
   '@testing-library/dom@10.4.0':
     dependencies:
