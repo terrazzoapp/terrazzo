@@ -15,6 +15,10 @@
   --ds-space-700: 2.5rem;
   --ds-space-800: 3rem;
   --ds-space-900: 4rem;
+  --ds-space-large: 1.5rem;
+  --ds-space-x-large: 2rem;
+  --ds-space-2x-large: 3rem;
+  --ds-space-3x-large: 4rem;
 }
 
 @media (width >= 600px) {

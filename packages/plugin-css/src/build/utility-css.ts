@@ -1,7 +1,6 @@
 import type { TokenTransformed } from '@terrazzo/parser';
-import { isTokenMatch } from '@terrazzo/token-tools';
+import { isTokenMatch, kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
-import { kebabCase } from 'scule';
 import type { CSSRule, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources

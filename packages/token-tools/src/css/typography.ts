@@ -1,4 +1,4 @@
-import { kebabCase } from 'scule';
+import { kebabCase } from '../string.js';
 import type { AliasValue, DimensionValue, TypographyValue } from '../types.js';
 import { transformDimensionValue } from './dimension.js';
 import { transformFontFamilyValue } from './font-family.js';

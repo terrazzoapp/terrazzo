@@ -1,4 +1,4 @@
-import { kebabCase } from 'scule';
+import { kebabCase } from '../string.js';
 
 /** Function that generates a var(…) statement */
 export type IDGenerator = (id: string) => string;
@@ -31,7 +31,7 @@ export function transformCompositeAlias<T extends {}>(
 }
 
 const CSS_VAR_RE =
-  /(?:(\p{Uppercase_Letter}?\p{Lowercase_Letter}+|\p{Uppercase_Letter}+|\p{Number}+|[\u{80}-\u{10FFFF}]+|_)|.)/u;
+  /(?:(\p{Uppercase_Letter}?[\p{Lowercase_Letter}\p{Number}]+|[\p{Uppercase_Letter}\p{Number}]+|[\u{80}-\u{10FFFF}\p{Number}]+|_)|.)/u;
 
 export interface MakeCSSVarOptions {
   /** Prefix with string */
