@@ -1,5 +1,17 @@
 # @terrazzo/plugin-sass
 
+## 0.3.0
+
+### Minor Changes
+
+- [#391](https://github.com/terrazzoapp/terrazzo/pull/391) [`8e6810c`](https://github.com/terrazzoapp/terrazzo/commit/8e6810c33aded376aca58ebf2f28ad20aa3a06b1) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: Remove dash around numbers in CSS var names
+
+### Patch Changes
+
+- Updated dependencies [[`8e6810c`](https://github.com/terrazzoapp/terrazzo/commit/8e6810c33aded376aca58ebf2f28ad20aa3a06b1)]:
+  - @terrazzo/cli@0.3.0
+  - @terrazzo/plugin-css@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
