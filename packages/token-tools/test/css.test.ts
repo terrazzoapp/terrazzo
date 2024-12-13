@@ -22,7 +22,11 @@ describe('makeCSSVar', () => {
   const tests: Test<Parameters<typeof makeCSSVar>, ReturnType<typeof makeCSSVar>>[] = [
     ['token ID', { given: ['color.blue.500'], want: { success: '--color-blue-500' } }],
     ['camelCase', { given: ['myCssVariable'], want: { success: '--my-css-variable' } }],
+    ['utf8', { given: ['farbe.grün.500'], want: { success: '--farbe-grün-500' } }],
+    ['utf8 2', { given: ['layerÜber'], want: { success: '--layer-über' } }],
     ['extra dashes', { given: ['my-css---var'], want: { success: '--my-css-var' } }],
+    ['number prefix', { given: ['space.2x'], want: { success: '--space-2x' } }],
+    ['number suffix', { given: ['typography.heading2'], want: { success: '--typography-heading2' } }],
     ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡-_' } }],
     ['prefix', { given: ['typography.body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } }],
     [
