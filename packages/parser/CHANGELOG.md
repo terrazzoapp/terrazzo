@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 0.3.1
+
+### Patch Changes
+
+- [#393](https://github.com/terrazzoapp/terrazzo/pull/393) [`3ac154f`](https://github.com/terrazzoapp/terrazzo/commit/3ac154fe499a828ebf0bff033a5da302cccb7793) Thanks [@drwpow](https://github.com/drwpow)! - Improve error message for tz normalize
+
+- Updated dependencies [[`3ac154f`](https://github.com/terrazzoapp/terrazzo/commit/3ac154fe499a828ebf0bff033a5da302cccb7793)]:
+  - @terrazzo/token-tools@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
