@@ -1,6 +1,8 @@
 import 'culori/css';
-import { type Color, parse } from 'culori/fn';
+import { type Color, formatHex, parse } from 'culori/fn';
 import type { ColorSpace, ColorValueNormalized } from './types.js';
+
+const HEX_RE = /^#?([0-9a-f]{8}|[0-9a-f]{6}|[0-9a-f]{4}|[0-9a-f]{3})$/i;
 
 export const CULORI_TO_CSS: Record<
   Extract<
@@ -107,11 +109,17 @@ export function parseColor(color: string): ColorValueNormalized {
       break;
     }
   }
-  return {
+  const value: ColorValueNormalized = {
     colorSpace,
     channels,
     alpha: result.alpha ?? 1,
   };
+  if (HEX_RE.test(color)) {
+    // Note: this intentionally does NOT include alpha; it’s already in alpha.
+    // Always use formatHex (not formatHex8).
+    value.hex = formatHex(result);
+  }
+  return value;
 }
 
 /** Convert a color token to a Culori color */
