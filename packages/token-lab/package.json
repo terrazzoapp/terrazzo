@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/token-lab",
   "description": "Create, edit, and save tokens.json in DTCG format",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "type": "module",
   "keywords": [
     "dtcg",

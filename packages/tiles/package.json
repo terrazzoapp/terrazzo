@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/tiles",
   "description": "Terrazzo’s component library",
-  "version": "0.0.7",
+  "version": "0.0.6",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
