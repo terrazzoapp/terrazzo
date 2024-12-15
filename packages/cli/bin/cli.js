@@ -48,6 +48,7 @@ const { values: flags, positionals } = parseArgs({
   options: {
     config: { type: 'string', short: 'c' },
     out: { type: 'string', short: 'o' },
+    output: { type: 'string' },
     help: { type: 'boolean' },
     silent: { type: 'boolean' },
     quiet: { type: 'boolean' }, // secret alias for --silent because I can’t remember it
@@ -92,7 +93,7 @@ export default async function main() {
 
   // normalize
   if (cmd === 'normalize') {
-    await normalizeCmd(positionals[1], { logger, output: flags.out });
+    await normalizeCmd(positionals[1], { logger, output: flags.out ?? flags.output });
     process.exit(0);
   }
 

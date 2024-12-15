@@ -19,7 +19,7 @@ function findMember(name: string) {
 export async function normalizeCmd(filename: string, { logger, output }: NormalizeOptions) {
   try {
     if (!filename) {
-      logger.error({ message: 'Expected input: `tz normalize input.json -o output.json`' });
+      logger.error({ message: 'Expected input: `tz normalize <tokens.json> -o output.json`' });
       return;
     }
     const sourceLoc = new URL(filename, cwd);
