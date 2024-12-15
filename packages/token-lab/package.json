@@ -45,11 +45,11 @@
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.1.2",
     "jotai": "^2.10.3",
-    "monaco-editor": "^0.52.0"
+    "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
     "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
