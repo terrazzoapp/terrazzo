@@ -291,31 +291,37 @@ font:
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
               'alias.b': {
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
               'alias.c': {
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
               'alias.d': {
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
               'alias.e': {
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
               'alias.f': {
                 alpha: 1,
                 channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                 colorSpace: 'srgb',
+                hex: '#808080',
               },
             },
           },
@@ -1732,7 +1738,7 @@ font:
           want: {
             tokens: {
               border: {
-                color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb' },
+                color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
                 style: 'solid',
                 width: { value: 1, unit: 'px' },
               },
@@ -1941,7 +1947,7 @@ font:
             tokens: {
               shadowBase: [
                 {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1 },
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
@@ -2057,7 +2063,7 @@ font:
             tokens: {
               shadowBase: [
                 {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1 },
+                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
@@ -2096,8 +2102,8 @@ font:
           want: {
             tokens: {
               gradient: [
-                { color: { alpha: 1, channels: [0.4, 0.2, 0.6], colorSpace: 'srgb' }, position: 0 },
-                { color: { alpha: 1, channels: [1, 0.6, 0], colorSpace: 'srgb' }, position: 1 },
+                { color: { alpha: 1, channels: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                { color: { alpha: 1, channels: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
               ],
             },
           },
@@ -2626,6 +2632,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
+                  hex: '#8ec8f6',
                 },
               },
               light: {
@@ -2635,6 +2642,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
+                  hex: '#8ec8f6',
                 },
               },
               dark: {
@@ -2644,6 +2652,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
+                  hex: '#205d9e',
                 },
               },
             },
@@ -2656,6 +2665,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
+                  hex: '#8ec8f6',
                 },
               },
               light: {
@@ -2666,6 +2676,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
+                  hex: '#8ec8f6',
                 },
               },
               dark: {
@@ -2676,6 +2687,7 @@ describe('Additional cases', () => {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
+                  hex: '#205d9e',
                 },
               },
             },
