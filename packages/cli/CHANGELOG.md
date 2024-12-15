@@ -1,5 +1,15 @@
 # @terrazzo/cli
 
+## 0.3.2
+
+### Patch Changes
+
+- [#396](https://github.com/terrazzoapp/terrazzo/pull/396) [`4d1294d`](https://github.com/terrazzoapp/terrazzo/commit/4d1294d5695cf36cee65133b18f480d189911de2) Thanks [@drwpow](https://github.com/drwpow)! - Color tokens: add hex fallback for tokens parsed from hex
+
+- Updated dependencies [[`4d1294d`](https://github.com/terrazzoapp/terrazzo/commit/4d1294d5695cf36cee65133b18f480d189911de2)]:
+  - @terrazzo/token-tools@0.3.2
+  - @terrazzo/parser@0.3.2
+
 ## 0.3.1
 
 ### Patch Changes

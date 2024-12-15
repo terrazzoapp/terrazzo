@@ -33,7 +33,7 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "^0.3.1"
+    "@terrazzo/cli": "^0.3.2"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
