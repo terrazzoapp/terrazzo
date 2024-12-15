@@ -34,6 +34,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@nanostores/react": "^0.8.2",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/parser": "workspace:^",
@@ -45,7 +46,8 @@
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.1.4",
     "jotai": "^2.11.1",
-    "monaco-editor": "^0.52.2"
+    "monaco-editor": "^0.52.2",
+    "nanostores": "^0.11.3"
   },
   "devDependencies": {
     "@types/react": "^19.0.7",

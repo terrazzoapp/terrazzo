@@ -24,7 +24,7 @@ export default function TokensNav() {
       <input
         className={c.search}
         type='search'
-        onKeyUp={(ev) => {
+        onChange={(ev) => {
           setSearch(ev.currentTarget.value);
         }}
       />
@@ -42,7 +42,13 @@ export default function TokensNav() {
   );
 }
 
-function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: unknown; search?: string }) {
+interface TokensNavLevelProps {
+  path?: string[];
+  data: unknown;
+  search?: string;
+}
+
+function TokensNavLevel({ path = [], data, search }: TokensNavLevelProps) {
   const { parseResult } = useTokens();
 
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
@@ -58,8 +64,11 @@ function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: un
     if ('$value' in v) {
       // filter out non-matching tokens
       // TODO: filter out empty groups?
-      const isFiltered = search && !id.toLowerCase().includes(search);
-      const { $type } = parseResult.tokens[id] ?? {};
+      const isFiltered = !!search && !id.toLowerCase().includes(search);
+      if (!parseResult.tokens[id]) {
+        return null;
+      }
+      const { $type } = parseResult.tokens[id]!;
       return (
         <TreeGrid.Item key={k} id={id} hidden={isFiltered}>
           <>

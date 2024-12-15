@@ -9,6 +9,7 @@ export default function TokensEditor() {
   const [navState] = useNavigation();
 
   const visibleGroups = useMemo<TokenNormalized['group'][]>(() => {
+    console.time('visibleGroups hook');
     const allGroups: Record<string, TokenNormalized['group']> = {};
     for (const token of Object.values(parseResult.tokens)) {
       if (!(token.group.id in allGroups)) {
@@ -32,6 +33,7 @@ export default function TokensEditor() {
         }
       }
     }
+    console.timeEnd('visibleGroups hook');
     return groups;
   }, [navState.selection.join(',')]);
 

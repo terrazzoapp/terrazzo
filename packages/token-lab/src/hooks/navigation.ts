@@ -1,5 +1,6 @@
-import { atom, useAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
+import { useStore } from '@nanostores/react';
+import { atom } from 'nanostores';
+import { useEffect } from 'react';
 
 export interface NavState {
   selection: string[];
@@ -11,7 +12,7 @@ export interface NavState {
  * implement routing using a couple Jotai atoms without the need for a heavier router.
  */
 export default function useNavigation() {
-  const [state, setState] = useAtom($state);
+  const state = useStore($state);
 
   // keep search params synced with state
   useEffect(() => {
@@ -20,7 +21,7 @@ export default function useNavigation() {
     window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
   }, [state]);
 
-  return [state, setState] as const;
+  return [state, $state.set] as const;
 }
 
 function serializeSelected(selected: string[]) {
