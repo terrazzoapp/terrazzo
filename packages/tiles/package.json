@@ -48,7 +48,7 @@
     "@size-limit/preset-small-lib": "^11.1.6",
     "@types/culori": "^2.1.1",
     "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "chokidar-cli": "^3.0.0",
     "react": "19.0.0",

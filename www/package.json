@@ -12,6 +12,7 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@nanostores/react": "^0.8.2",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
@@ -19,20 +20,20 @@
     "@terrazzo/token-lab": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
-    "algoliasearch": "^5.15.0",
+    "algoliasearch": "^5.17.1",
     "nanoid": "^5.0.9",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "react-instantsearch": "^7.13.8",
-    "shiki": "^1.24.0"
+    "react-instantsearch": "^7.13.9",
+    "shiki": "^1.24.2"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.0.1",
+    "@astrojs/mdx": "^4.0.2",
     "@astrojs/react": "4.0.0",
     "@terrazzo/storybook": "workspace:^",
     "@types/react": "^19.0.1",
-    "@types/react-dom": "^19.0.1",
-    "astro": "^5.0.3",
+    "@types/react-dom": "^19.0.2",
+    "astro": "^5.0.5",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-directive": "^3.0.0",
