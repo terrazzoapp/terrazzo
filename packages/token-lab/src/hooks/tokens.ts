@@ -1,6 +1,7 @@
 import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
+import { useStore } from '@nanostores/react';
 import radix from 'dtcg-examples/figma-sds.json';
-import { atom, useAtom } from 'jotai';
+import { atom } from 'nanostores';
 import { useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';
 
@@ -33,20 +34,20 @@ const $parseError = atom<TokensJSONError | undefined>();
  * ⚠️ Prefer prop drilling / inheritance over using this; this is just to ensure data integrity. If consumed in too many places, can cause performance issues.
  */
 export default function useTokens(filename = DEFAULT_FILENAME) {
-  const [tokens, setTokens] = useAtom($tokens);
-  const [isLoaded, setIsLoaded] = useAtom($tokensLoaded);
-  const [parseResult, setParseResult] = useAtom($parseResult);
-  const [parseError, setParseError] = useAtom($parseError);
+  const tokens = useStore($tokens);
+  const isLoaded = useStore($tokensLoaded);
+  const parseResult = useStore($parseResult);
+  const parseError = useStore($parseError);
 
   // load (only once)
   useEffect(() => {
     if (isLoaded) {
       return;
     }
-    setIsLoaded(true); // set isLoaded FIRST to prevent race conditions
     loadTokens(filename).then((data) => {
       const code = !data || data === '{}' ? JSON.stringify(radix, null, 2) : data;
-      setTokens(code);
+      $tokens.set(code);
+      $tokensLoaded.set(true);
     });
   }, []);
 
@@ -55,30 +56,31 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
     if (!isLoaded) {
       return;
     }
-    setParseError(undefined);
+    $parseError.set(undefined);
     saveTokens(filename, tokens);
 
     (async () => {
       try {
         const result = await parse([{ filename: new URL(`file://${filename}`), src: tokens }], { config: TZ_CONFIG });
-        setParseResult(result);
+        $parseResult.set(result);
       } catch (err) {
-        setParseError(err as TokensJSONError);
+        $parseError.set(err as TokensJSONError);
       }
     })();
-  }, [tokens]);
+  }, [tokens, isLoaded]);
 
   return useMemo(() => {
     return {
       tokens,
-      setTokens: isLoaded ? setTokens : () => {}, // don’t allow data loss before loaded
+      setTokens: isLoaded ? $tokens.set : () => {}, // don’t allow data loss before loaded
       parseResult,
       parseError,
     };
-  }, [filename, tokens, parseResult]);
+  }, [filename, tokens, isLoaded, parseResult]);
 }
 
 function onupgradeneeded(ev: IDBVersionChangeEvent) {
+  console.debug('indexeddb: upgradeneeded');
   const db = (ev.target as IDBOpenDBRequest).result as IDBDatabase;
   db.createObjectStore('tokens', { keyPath: 'id' });
 }
@@ -87,6 +89,7 @@ function onupgradeneeded(ev: IDBVersionChangeEvent) {
  * Load tokens from IndexedDB (NOT Jotai!)
  */
 export async function loadTokens(filename: string): Promise<string> {
+  console.time('loadTokens');
   if (typeof window === 'undefined') {
     return '{}';
   }
@@ -102,6 +105,7 @@ export async function loadTokens(filename: string): Promise<string> {
     };
     req.onsuccess = (ev) => {
       const data = (ev.target as IDBRequest).result?.data || '{}';
+      console.timeEnd('loadTokens');
       resolve(data);
     };
   });
@@ -111,12 +115,19 @@ export async function loadTokens(filename: string): Promise<string> {
  * Save tokens to IndexedDB (NOT Jotai!)
  */
 export async function saveTokens(filename: string, tokens: string): Promise<void> {
+  if (tokens === $tokens.get()) {
+    return; // treat saves as idempotent
+  }
+  console.time('saveTokens');
   const db = await getDB(DB_NAME, { version: DB_VERSION, onupgradeneeded });
-  const tx = db.transaction(TABLE_NAME, 'readwrite');
-  const store = tx.objectStore(TABLE_NAME);
-  const req = store.put({ id: filename, data: tokens });
   return await new Promise<void>((resolve, reject) => {
+    const tx = db.transaction(TABLE_NAME, 'readwrite');
+    const store = tx.objectStore(TABLE_NAME);
+    const req = store.put({ id: filename, data: tokens });
     req.onerror = (ev) => reject((ev.target as IDBRequest).error);
-    req.onsuccess = () => resolve();
+    req.onsuccess = () => {
+      console.timeEnd('saveTokens');
+      return resolve();
+    };
   });
 }
