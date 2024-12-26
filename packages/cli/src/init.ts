@@ -255,7 +255,7 @@ export default defineConfig({
   plugins: [
     ${plugins.map((p) => `${p.specifier}(),`).join('\n    ')}
   ],
-  outdir: './dist/',
+  outDir: './dist/',
   lint: {
     /** @see https://terrazzo.app/docs/cli/lint */
   },

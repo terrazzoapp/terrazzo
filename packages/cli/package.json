@@ -49,8 +49,8 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "^0.8.2",
-    "@humanwhocodes/momoa": "^3.3.4",
+    "@clack/prompts": "^0.9.0",
+    "@humanwhocodes/momoa": "^3.3.5",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@types/escodegen": "^0.0.10",
