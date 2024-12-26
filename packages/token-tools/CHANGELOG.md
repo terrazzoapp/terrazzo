@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.3.3
+
+### Patch Changes
+
+- [#400](https://github.com/terrazzoapp/terrazzo/pull/400) [`9d888a6`](https://github.com/terrazzoapp/terrazzo/commit/9d888a65014b90fec90462cf8dc69f323f6e486b) Thanks [@drwpow](https://github.com/drwpow)! - Fix tz init "outDir" typo
+
 ## 0.3.2
 
 ### Patch Changes

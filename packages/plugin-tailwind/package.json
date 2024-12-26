@@ -33,7 +33,7 @@
     "--disabled--test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "^0.3.2",
+    "@terrazzo/cli": "^0.3.3",
     "@terrazzo/plugin-css": "^0.3.0",
     "tailwindcss": "*"
   },
