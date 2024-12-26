@@ -156,8 +156,8 @@ importers:
         specifier: ^0.23.1
         version: 0.23.1
       yaml-to-momoa:
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.3
+        version: 0.0.3
 
   packages/plugin-css:
     devDependencies:
@@ -5797,9 +5797,6 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yaml-to-momoa@0.0.1:
-    resolution: {integrity: sha512-veT3zMQSdVv/YRCEOBFtoxTcI7Y5OtC78i6rUiaFXHxTNemyMq5ARf8UJkfdkdf77DrMdSyUPfCvVW0Qk49PZQ==}
-
   yaml-to-momoa@0.0.3:
     resolution: {integrity: sha512-8zEu6HkZO+upPrmEg9kqugEoPC8A11f7zveWv4qwMHJ1+21FYU2bqf2TleMm2IlwRNcdvDLx0yWJUxGlHJm3qA==}
 
@@ -11393,11 +11390,6 @@ snapshots:
   y18n@4.0.3: {}
 
   yallist@3.1.1: {}
-
-  yaml-to-momoa@0.0.1:
-    dependencies:
-      '@humanwhocodes/momoa': 3.3.5
-      yaml: 2.6.1
 
   yaml-to-momoa@0.0.3:
     dependencies:

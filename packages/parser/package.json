@@ -50,6 +50,6 @@
   },
   "devDependencies": {
     "esbuild": "^0.23.1",
-    "yaml-to-momoa": "^0.0.1"
+    "yaml-to-momoa": "^0.0.3"
   }
 }
