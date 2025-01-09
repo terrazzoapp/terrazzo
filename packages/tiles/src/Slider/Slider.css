@@ -42,7 +42,7 @@
   padding: 0;
   position: absolute;
   top: 50%;
-  touch-action: pan-x;
+  touch-action: none;
   transform: translate3d(var(--tz-slider-handle-position), -50%, 0);
   width: var(--tz-slider-handle-size);
   z-index: calc(var(--tz-layer-base) + 1);
