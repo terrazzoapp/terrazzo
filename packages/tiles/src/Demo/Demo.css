@@ -1,15 +1,13 @@
 .tz-demo {
-  display: flex;
+  display: grid;
 }
 
 .tz-demo-canvas {
-  flex: 1 1 auto;
   padding: var(--tz-space-400);
 }
 
 .tz-demo-code {
-  flex: 1 1 auto;
-  position: relative;
+  contain: inline-size;
 }
 
 .tz-demo-code-copy-wrapper {
