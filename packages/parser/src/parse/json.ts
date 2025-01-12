@@ -3,13 +3,16 @@ import {
   type DocumentNode,
   type MemberNode,
   type ObjectNode,
+  type StringNode,
   type ValueNode,
   parse as parseJSON,
   print,
 } from '@humanwhocodes/momoa';
+import parseJSONPointer from '@terrazzo/json-pointer-parser';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
 import type { InputSource } from '../types.js';
+import { resolveRaw } from './resolve.js';
 
 export interface Visitor {
   enter?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
@@ -117,6 +120,13 @@ export function maybeRawJSON(input: string): boolean {
   return typeof input === 'string' && input.trim().startsWith('{');
 }
 
+/** Does this object have a JSON pointer? */
+export function getJSONPointerValue(node: ObjectNode): string | undefined {
+  return (
+    node.members.find((m) => m.name.type === 'String' && m.name.value === '$ref')?.value as StringNode | undefined
+  )?.value;
+}
+
 /** Find Momoa node by traversing paths */
 export function findNode<T = AnyNode>(node: AnyNode, path: string[]): T | undefined {
   if (!path.length) {
@@ -202,4 +212,84 @@ export function toMomoa(
     src = print(document, { indent: 2 });
   }
   return { src, document };
+}
+
+export interface TracePointerOptions {
+  filename: URL;
+  document: DocumentNode;
+  logger: Logger;
+  node?: AnyNode;
+  src?: string;
+  yamlToMomoa?: typeof yamlToMomoa;
+  _pointerChain?: Set<string>;
+  _sources?: Record<string, InputSource>;
+}
+
+/** Trace JSON pointers until resolution (or circular error) */
+export async function tracePointer(
+  pointerValue: string,
+  options: TracePointerOptions,
+): Promise<(InputSource & { node: AnyNode }) | undefined> {
+  if (!options._sources) {
+    options._sources = {};
+  }
+  if (!options._pointerChain) {
+    options._pointerChain = new Set();
+  }
+  const { filename, logger, node, src, document, yamlToMomoa } = options;
+  const { url: relativeURL, subpath } = parseJSONPointer(pointerValue);
+  const refFilename = new URL(relativeURL, filename);
+
+  // detect circular pointers, and throw
+  const refID = `${refFilename.href}#${(subpath ?? []).join('/')}`;
+  if (options._pointerChain.has(refID)) {
+    const chain = [...options._pointerChain].join(' → ');
+    logger.error({ message: `Circular ref detected: ${chain}` });
+  }
+  options._pointerChain.add(refID);
+
+  let resolvedNode: ValueNode | undefined = undefined;
+  let resolvedSource: InputSource = { src, document };
+
+  // local $ref
+  if (relativeURL === '.') {
+    if (subpath?.length) {
+      resolvedNode = findNode(document, subpath);
+    } else {
+      logger.error({
+        message: `Invalid ref: ${pointerValue}. Can’t recursively embed the same document within itself.`,
+        filename,
+        node,
+        src,
+      });
+    }
+  }
+
+  // remote $ref (resolve)
+  else {
+    // remote $ref is already in cache
+    if (options._sources[refFilename.href]) {
+      resolvedSource = options._sources[refFilename.href]!;
+      resolvedNode = subpath?.length ? findNode<ValueNode>(resolvedSource.document, subpath) : (document as any);
+    }
+    // remote $ref needs fetching
+    else {
+      // otherwise, resolve
+      const resolvedPointer = await resolveRaw(refFilename);
+      resolvedSource = toMomoa(resolvedPointer, { filename: refFilename, logger, yamlToMomoa });
+      options._sources[refFilename.href] = resolvedSource; // update cache with new entry
+      resolvedNode = subpath?.length ? findNode<ValueNode>(resolvedSource.document, subpath) : (document as any);
+    }
+  }
+  if (resolvedNode) {
+    if (resolvedNode.type === 'Object') {
+      const nextPointerValue = getJSONPointerValue(resolvedNode);
+      if (nextPointerValue) {
+        return await tracePointer(nextPointerValue, options);
+      }
+    }
+    return { ...resolvedSource, node: resolvedNode };
+  } else {
+    logger.error({ message: `Invalid ref: ${pointerValue} not found`, filename, node, src });
+  }
 }

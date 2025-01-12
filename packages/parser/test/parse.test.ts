@@ -2649,7 +2649,7 @@ describe('Additional cases', () => {
         ],
         { config },
       );
-      expect(tokens['color.blue.7']!.group).toEqual({
+      expect(tokens['color.blue.7']?.group).toEqual({
         id: 'color.blue',
         $type: 'color',
         $description: 'Blue palette',
@@ -2785,7 +2785,54 @@ describe('Additional cases', () => {
       };
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-      expect(tokens['color.blue']!.$value).toEqual({ alpha: 1, channels: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
+      expect(tokens['color.blue']?.$value).toEqual({ alpha: 1, channels: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
+    });
+  });
+
+  describe('$refs', () => {
+    it('local $refs', async () => {
+      const src = {
+        color: {
+          $type: 'color',
+          gray: { 1: { $value: { colorSpace: 'srgb', channels: [0.2, 0.2, 0.2] } } },
+          grey: { $ref: '#/color/gray', 2: { $value: { colorSpace: 'srgb', channels: [0.3, 0.3, 0.3] } } },
+        },
+      };
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+      expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', channels: [0.2, 0.2, 0.2], alpha: 1 });
+      expect(tokens['color.gray.2']).toBeUndefined();
+      expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', channels: [0.2, 0.2, 0.2], alpha: 1 });
+      expect(tokens['color.grey.2']?.$value).toEqual({ colorSpace: 'srgb', channels: [0.3, 0.3, 0.3], alpha: 1 });
+    });
+
+    it('local $refs + $defs + $type inheritance', async () => {
+      const src = {
+        color: {
+          $type: 'color', // this should cascade to the $ref
+          red: { 1: { $ref: '#/$defs/red-1' } },
+        },
+        $defs: {
+          'red-1': { $value: { colorSpace: 'srgb', channels: [0.8, 0.1, 0] } }, // this is invalid as-written, but $defs shouldn’t be validated (only the final, resolved value)
+        },
+      };
+      const config = defineConfig({}, { cwd });
+      const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+      expect(tokens['color.red.1']?.$value).toEqual({ colorSpace: 'srgb', channels: [0.2, 0.2, 0.2], alpha: 1 });
+    });
+
+    it('circular $refs', async () => {
+      const src = {
+        color: {
+          $type: 'color',
+          gray: { $ref: '#/color/grey' },
+          grey: { $ref: '#/color/gray' },
+        },
+      };
+      const config = defineConfig({}, { cwd });
+      await expect(() => parse([{ filename: DEFAULT_FILENAME, src }], { config })).rejects.toThrowError(
+        'Circular ref detected: file:///#color/grey → file:///#color/gray',
+      );
     });
   });
 });

@@ -37,10 +37,12 @@
   },
   "dependencies": {
     "@humanwhocodes/momoa": "^3.3.6",
+    "@terrazzo/json-pointer-parser": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
     "@types/culori": "^2.1.1",
     "culori": "^4.0.1",
+    "dequal": "^2.0.3",
     "is-what": "^4.1.16",
     "merge-anything": "^5.1.7",
     "picocolors": "^1.1.1",

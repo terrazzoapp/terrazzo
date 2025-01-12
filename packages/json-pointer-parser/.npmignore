@@ -1,0 +1,6 @@
+.turbo
+biome.json
+**/*.test.*
+**/*.bench.*
+tsconfig.*
+vitest.*

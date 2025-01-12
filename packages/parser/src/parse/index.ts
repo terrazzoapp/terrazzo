@@ -1,19 +1,22 @@
-import type { DocumentNode, ObjectNode } from '@humanwhocodes/momoa';
+import { type DocumentNode, type ObjectNode, print } from '@humanwhocodes/momoa';
 import { type Token, type TokenNormalized, pluralize, splitID } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import type { ConfigInit, InputSource } from '../types.js';
 import { applyAliases } from './alias.js';
-import { getObjMembers, toMomoa, traverse } from './json.js';
+import { getObjMembers, toMomoa, tracePointer, traverse } from './json.js';
 import normalize from './normalize.js';
 import validateTokenNode from './validate.js';
 
 export * from './alias.js';
 export * from './normalize.js';
 export * from './json.js';
+export * from './resolve.js';
 export * from './validate.js';
 export { normalize, validateTokenNode };
+
+const INVALID_POINTERS = new Set(['', '#', '/', '#/']); // we can’t support these pointers which will recursively embed themselves
 
 export interface ParseOptions {
   logger?: Logger;
@@ -91,6 +94,7 @@ export default async function parse(
         continueOnError,
         yamlToMomoa,
       });
+
       tokens = Object.assign(tokens, result.tokens);
       if (src.filename) {
         _sources[src.filename.href] = {
@@ -211,6 +215,7 @@ async function parseSingle(
     skipLint,
     continueOnError = false,
     yamlToMomoa, // optional dependency, declared here so the parser itself doesn’t have to load a heavy dep in-browser
+    _sources = {},
   }: {
     filename: URL;
     logger: Logger;
@@ -218,6 +223,7 @@ async function parseSingle(
     skipLint: boolean;
     continueOnError?: boolean;
     yamlToMomoa?: typeof ytm;
+    _sources?: Record<string, InputSource>;
   },
 ): Promise<{ tokens: Record<string, Token>; document: DocumentNode; src?: string }> {
   // 1. Build AST
@@ -231,7 +237,69 @@ async function parseSingle(
   });
   const tokens: Record<string, TokenNormalized> = {};
 
-  // 2. Walk AST to validate tokens
+  // 2. Walk AST once to resolve $refs (if any)
+  const startResolve = performance.now();
+  logger.debug({ group: 'parser', label: 'resolve', message: 'Start tokens resolving' });
+  const unresolvedPromises: Promise<any>[] = [];
+  traverse(document, {
+    enter(node) {
+      // handle $refs and $defs
+      if (node.type === 'Member' && node.value.type === 'Object') {
+        const $refI = node.value.members.findIndex((m) => m.name.type === 'String' && m.name.value === '$ref');
+        let $ref = node.value.members[$refI];
+        if ($ref) {
+          if ($ref.value.type !== 'String') {
+            logger.error({
+              group: 'parser',
+              label: 'alias',
+              message: `Invalid ref: ${print($ref)}. Must be a valid JSON pointer (RFC 6901).`,
+              filename,
+              node,
+              src,
+            });
+            return;
+          }
+          const pointerValue = $ref.value.value;
+          if (INVALID_POINTERS.has(pointerValue)) {
+            logger.error({
+              group: 'parser',
+              label: 'alias',
+              message: `Invalid ref: ${pointerValue}. Can’t recursively embed the same document within itself.`,
+              filename,
+              node: $ref,
+              src,
+            });
+            return;
+          }
+          // note: by pushing these to the background, we can parallelize as many as possible at once
+          unresolvedPromises.push(
+            tracePointer(pointerValue, { filename, src, node: $ref, document, logger, yamlToMomoa, _sources }).then(
+              (result) => {
+                if (result) {
+                  // if pointer has been resolved, replace the $ref node outright with the resolved one
+                  // note that we’re ONLY replacing the $ref itself, NOT the parent object, so this is a
+                  // safe operation
+                  $ref = result.node as any;
+                }
+              },
+            ),
+          );
+        }
+      }
+    },
+  });
+  if (unresolvedPromises.length) {
+    await Promise.all(unresolvedPromises);
+  }
+  logger.debug({
+    message: 'Finish tokens resolving',
+    group: 'parser',
+    label: 'resolve',
+    timing: performance.now() - startResolve,
+  });
+
+  // 3. Walk AST a 2nd time to validate tokens (can only be done after everything has settled, otherwise we’d have to
+  // restart the traversal every $ref insert, and we’d redo too much work
   let tokenCount = 0;
   const startValidate = performance.now();
   const $typeInheritance: Record<string, Token['$type']> = {};
@@ -263,7 +331,7 @@ async function parseSingle(
     timing: performance.now() - startValidate,
   });
 
-  // 3. normalize values
+  // 4. normalize values
   const normalizeStart = performance.now();
   for (const [id, token] of Object.entries(tokens)) {
     try {
@@ -315,7 +383,7 @@ async function parseSingle(
     timing: performance.now() - normalizeStart,
   });
 
-  // 4. Execute lint runner with loaded plugins
+  // 5. Execute lint runner with loaded plugins
   if (!skipLint && config?.plugins?.length) {
     const lintStart = performance.now();
     await lintRunner({ tokens, src, config, logger });
