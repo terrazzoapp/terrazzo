@@ -16,7 +16,7 @@
     "typescript"
   ],
   "main": "./dist/index.js",
-  "homepage": "https://terrazzoapp.com/docs/cli/integrations/js",
+  "homepage": "https://terrazzo.app/docs/cli/integrations/js",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
