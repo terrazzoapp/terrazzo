@@ -15,7 +15,7 @@
     "sass"
   ],
   "main": "./dist/index.js",
-  "homepage": "https://terrazzoapp.com/docs/cli/integrations/sass",
+  "homepage": "https://terrazzo.app/docs/cli/integrations/sass",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

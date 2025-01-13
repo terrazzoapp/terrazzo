@@ -4,11 +4,13 @@ import {
   type ObjectNode,
   type StringNode,
   type ValueNode,
+  evaluate,
   print,
 } from '@humanwhocodes/momoa';
-import { isAlias } from '@terrazzo/token-tools';
+import { type Token, type TokenNormalized, isAlias, isTokenMatch, splitID } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
-import { getObjMembers } from './json.js';
+import type { ConfigInit } from '../types.js';
+import { getObjMembers, injectObjMembers } from './json.js';
 
 const listFormat = new Intl.ListFormat('en-us', { type: 'disjunction' });
 
@@ -510,7 +512,7 @@ export function validateTransition($value: ValueNode, node: AnyNode, { filename,
  * object) to see if it’s a valid DTCG token or not. Keeping the parent key
  * really helps in debug messages.
  */
-export default function validate(node: MemberNode, { filename, src, logger }: ValidateOptions) {
+export function validateTokenMemberNode(node: MemberNode, { filename, src, logger }: ValidateOptions) {
   if (node.type !== 'Member' && node.type !== 'Object') {
     logger.error({
       message: `Expected Object, received ${JSON.stringify(
@@ -657,4 +659,143 @@ export default function validate(node: MemberNode, { filename, src, logger }: Va
       break;
     }
   }
+}
+
+export interface ValidateTokenNodeOptions {
+  subpath: string[];
+  src: string;
+  filename: URL;
+  config: ConfigInit;
+  logger: Logger;
+  parent?: AnyNode;
+  $typeInheritance?: Record<string, Token['$type']>;
+}
+
+export default function validateTokenNode(
+  node: MemberNode,
+  { config, filename, logger, parent, src, subpath, $typeInheritance }: ValidateTokenNodeOptions,
+): TokenNormalized | undefined {
+  // don’t validate $value
+  if (subpath.includes('$value') || node.value.type !== 'Object') {
+    return;
+  }
+
+  const members = getObjMembers(node.value);
+
+  // keep track of $types
+  if ($typeInheritance && members.$type && members.$type.type === 'String' && !members.$value) {
+    // @ts-ignore
+    $typeInheritance[subpath.join('.') || '.'] = node.value.members.find((m) => m.name.value === '$type');
+  }
+
+  // don’t validate $extensions or $defs
+  if (!members.$value || subpath.includes('$extensions') || subpath.includes('$deps')) {
+    return;
+  }
+
+  const id = subpath.join('.');
+
+  if (!subpath.includes('.$value') && members.value) {
+    logger.warn({ message: `Group ${id} has "value". Did you mean "$value"?`, filename, node, src });
+  }
+
+  const extensions = members.$extensions ? getObjMembers(members.$extensions as ObjectNode) : undefined;
+  const sourceNode = structuredClone(node);
+
+  // get parent type by taking the closest-scoped $type (length === closer)
+  let parent$type: Token['$type'] | undefined;
+  let longestPath = '';
+  for (const [k, v] of Object.entries($typeInheritance ?? {})) {
+    if (k === '.' || id.startsWith(k)) {
+      if (k.length > longestPath.length) {
+        parent$type = v;
+        longestPath = k;
+      }
+    }
+  }
+  if (parent$type && !members.$type) {
+    sourceNode.value = injectObjMembers(
+      // @ts-ignore
+      sourceNode.value,
+      [parent$type],
+    );
+  }
+
+  validateTokenMemberNode(sourceNode, { filename, src, logger });
+
+  // All tokens must be valid, so we want to validate it up till this
+  // point. However, if we are ignoring this token (or respecting
+  // $deprecated, we can omit it from the output.
+  const $deprecated = members.$deprecated && (evaluate(members.$deprecated) as string | boolean | undefined);
+  if ((config.ignore.deprecated && $deprecated) || (config.ignore.tokens && isTokenMatch(id, config.ignore.tokens))) {
+    return;
+  }
+
+  const group: TokenNormalized['group'] = { id: splitID(id).group!, tokens: [] };
+  if (parent$type) {
+    group.$type =
+      // @ts-ignore
+      parent$type.value.value;
+  }
+  // note: this will also include sibling tokens, so be selective about only accessing group-specific properties
+  const groupMembers = getObjMembers(
+    // @ts-ignore
+    parent,
+  );
+  if (groupMembers.$description) {
+    group.$description = evaluate(groupMembers.$description) as string;
+  }
+  if (groupMembers.$extensions) {
+    group.$extensions = evaluate(groupMembers.$extensions) as Record<string, unknown>;
+  }
+  const token: TokenNormalized = {
+    // @ts-ignore
+    $type: members.$type?.value ?? parent$type?.value.value,
+    // @ts-ignore
+    $value: evaluate(members.$value),
+    id,
+    // @ts-ignore
+    mode: {},
+    // @ts-ignore
+    originalValue: evaluate(node.value),
+    group,
+    source: {
+      loc: filename ? filename.href : undefined,
+      // @ts-ignore
+      node: sourceNode.value,
+    },
+  };
+  // @ts-ignore
+  if (members.$description?.value) {
+    // @ts-ignore
+    token.$description = members.$description.value;
+  }
+
+  // handle modes
+  // note that circular refs are avoided here, such as not duplicating `modes`
+  const modeValues = extensions?.mode
+    ? getObjMembers(
+        // @ts-ignore
+        extensions.mode,
+      )
+    : {};
+  for (const mode of ['.', ...Object.keys(modeValues)]) {
+    token.mode[mode] = {
+      id: token.id,
+      // @ts-ignore
+      $type: token.$type,
+      // @ts-ignore
+      $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
+      source: {
+        loc: filename ? filename.href : undefined,
+        // @ts-ignore
+        node: mode === '.' ? structuredClone(token.source.node) : modeValues[mode],
+      },
+    };
+    if (token.$description) {
+      token.mode[mode]!.$description = token.$description;
+    }
+  }
+
+  return token;
 }

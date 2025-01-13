@@ -28,12 +28,12 @@
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "@types/culori": "^2.1.1",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "storybook": "^8.4.7",
-    "vite": "^6.0.6"
+    "vite": "^6.0.7"
   }
 }

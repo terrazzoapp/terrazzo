@@ -28,7 +28,7 @@
     "./README.md": "./README.md",
     "./package.json": "./package.json"
   },
-  "homepage": "https://terrazzoapp.com/docs/cli",
+  "homepage": "https://terrazzo.app/docs/cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
@@ -49,17 +49,17 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@clack/prompts": "^0.9.0",
-    "@humanwhocodes/momoa": "^3.3.5",
+    "@clack/prompts": "^0.9.1",
+    "@humanwhocodes/momoa": "^3.3.6",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@types/escodegen": "^0.0.10",
     "chokidar": "^3.6.0",
     "detect-package-manager": "^3.0.2",
-    "dotenv": "^16.4.5",
+    "dotenv": "^16.4.7",
     "escodegen": "^2.1.0",
     "merge-anything": "^5.1.7",
-    "meriyah": "^6.0.3",
+    "meriyah": "^6.0.5",
     "picocolors": "^1.1.1",
     "yaml-to-momoa": "^0.0.3"
   }

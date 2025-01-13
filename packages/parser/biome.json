@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["../../biome.json"],
   "files": {
-    "ignore": ["./lib/code-frame.js"],
+    "ignore": ["./src/lib/code-frame.js"],
     "include": ["./src/", "./test/"]
   },
   "linter": {

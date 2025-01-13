@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@9.15.2",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -19,15 +19,15 @@
     "@biomejs/biome": "^1.9.4",
     "@changesets/changelog-github": "^0.5.0",
     "@changesets/cli": "^2.27.11",
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.5",
     "execa": "^9.5.2",
     "prettier": "^3.4.2",
     "strip-ansi": "^7.1.0",
-    "stylelint": "^16.12.0",
+    "stylelint": "^16.13.0",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "turbo": "^2.3.3",
-    "typescript": "^5.7.2",
+    "typescript": "^5.7.3",
     "vitest": "^2.1.8"
   }
 }
