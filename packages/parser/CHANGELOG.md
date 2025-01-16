@@ -1,5 +1,14 @@
 # @terrazzo/parser
 
+## 0.3.4
+
+### Patch Changes
+
+- [#408](https://github.com/terrazzoapp/terrazzo/pull/408) [`6f97566`](https://github.com/terrazzoapp/terrazzo/commit/6f97566ea83b7bcb42befd36aa618d52ec6e758f) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug where setTransform() would not properly deduplicate token values
+
+- Updated dependencies [[`6f97566`](https://github.com/terrazzoapp/terrazzo/commit/6f97566ea83b7bcb42befd36aa618d52ec6e758f)]:
+  - @terrazzo/token-tools@0.3.4
+
 ## 0.3.3
 
 ### Patch Changes
