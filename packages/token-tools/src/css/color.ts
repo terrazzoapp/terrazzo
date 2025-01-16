@@ -1,4 +1,4 @@
-import { type Color, displayable, formatCss, toGamut } from 'culori';
+import { type Color, displayable, formatCss, toGamut } from 'culori/fn';
 import { parseColor, tokenToCulori } from '../color.js';
 import type { ColorValue } from '../types.js';
 import { type IDGenerator, defaultAliasTransform } from './lib.js';

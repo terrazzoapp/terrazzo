@@ -120,7 +120,10 @@ export default async function build(
             formats[params.format] = [];
           }
           const foundTokenI = formats[params.format]!.findIndex(
-            (t) => id === t.id && params.localID === t.localID && (!params.mode || params.mode === t.mode),
+            (t) =>
+              id === t.id &&
+              (!params.localID || params.localID === t.localID) &&
+              (!params.mode || params.mode === t.mode),
           );
           if (foundTokenI === -1) {
             formats[params.format]!.push({

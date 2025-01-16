@@ -200,10 +200,10 @@
   }
 
   table {
-    display: block;
     border-collapse: collapse;
-    overflow-x: scroll;
     contain: inline-size;
+    display: block;
+    overflow-x: scroll;
   }
 
   th {
@@ -347,8 +347,8 @@
 }
 
 .code-block-wrapper {
-  position: relative;
   contain: inline-size;
+  position: relative;
 }
 
 .md-content > .code-block-wrapper {

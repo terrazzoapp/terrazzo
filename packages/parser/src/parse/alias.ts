@@ -99,6 +99,15 @@ export function applyAliases(
       });
     }
     token.$type = aliasOf.$type;
+
+    // also update aliased token’s .aliasedBy value
+    if (!tokens[aliasOfID]!.aliasedBy) {
+      tokens[aliasOfID]!.aliasedBy = [];
+    }
+    if (!tokens[aliasOfID]!.aliasedBy.includes(token.id)) {
+      tokens[aliasOfID]!.aliasedBy.push(token.id);
+      tokens[aliasOfID]!.aliasedBy.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true })); // sort to improve downstream plugins’ determinism
+    }
   }
 
   // handle aliases within array values (e.g. cubicBezier, gradient)
@@ -116,7 +125,7 @@ export function applyAliases(
         const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i]);
         token.partialAliasOf![i] = aliasID;
         // @ts-ignore
-        token.$value[i] = (aliasMode && tokens[aliasOfID]!.mode[aliasMode]?.$value) || tokens[aliasOfID]!.$value;
+        token.$value[i] = (aliasMode && tokens[aliasOfID].mode[aliasMode]?.$value) || tokens[aliasOfID].$value;
       } else if (typeof token.$value[i] === 'object') {
         for (const [property, subvalue] of Object.entries(token.$value[i]!)) {
           if (isAlias(subvalue)) {
@@ -141,9 +150,9 @@ export function applyAliases(
             }
 
             // @ts-ignore
-            token.partialAliasOf[i]![property] = aliasID; // also keep the shallow alias here, too!
+            token.partialAliasOf[i][property] = aliasID; // also keep the shallow alias here, too!
             // @ts-ignore
-            token.$value[i]![property] = (aliasMode && aliasToken.mode[aliasMode]?.$value) || aliasToken.$value;
+            token.$value[i][property] = (aliasMode && aliasToken.mode[aliasMode]?.$value) || aliasToken.$value;
           }
         }
       }
@@ -177,16 +186,16 @@ export function applyAliases(
           });
         }
         // @ts-ignore
-        token.$value[property] = aliasToken!.mode[aliasMode]?.$value || aliasToken!.$value;
+        token.$value[property] = aliasToken.mode[aliasMode]?.$value || aliasToken.$value;
       }
 
       // strokeStyle has an array within an object
       // @ts-ignore
-      else if (Array.isArray(token.$value[property]!)) {
+      else if (Array.isArray(token.$value[property])) {
         // @ts-ignore
-        for (let i = 0; i < token.$value[property]!.length; i++) {
+        for (let i = 0; i < token.$value[property].length; i++) {
           // @ts-ignore
-          if (isAlias(token.$value[property]![i])) {
+          if (isAlias(token.$value[property][i])) {
             // @ts-ignore
             const aliasOfID = resolveAlias(token.$value[property][i], { tokens, logger, filename, node, src });
             if (!token.partialAliasOf) {
@@ -215,7 +224,7 @@ export function applyAliases(
               });
             }
             // @ts-ignore
-            token.$value[property]![i] = tokens[aliasOfID]!.mode[aliasMode]?.$value || tokens[aliasOfID]!.$value;
+            token.$value[property][i] = tokens[aliasOfID].mode[aliasMode]?.$value || tokens[aliasOfID].$value;
           }
         }
       }
