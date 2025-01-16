@@ -15,6 +15,8 @@
   --ds-color-blue-9: color(srgb 0 0.12941176470588237 0.3333333333333333);
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: color(srgb -7.889244812986363e-15 0.5357343296597399 0.9999999999999997);
+  --ds-color-text-action: var(--ds-color-blue-6);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: color(srgb 0.12941176470588237 0.5450980392156862 1) 0%, color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
 }
@@ -22,12 +24,14 @@
 @media (color-gamut: p3) {
   :root {
     --ds-color-hdr-blue: color(display-p3 0.17546628160974162 0.5202121016217128 0.9999999999999999);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
     --ds-color-hdr-blue: color(rec2020 0.3209817156326149 0.47226959394393686 1.0000000000000002);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -45,6 +49,7 @@
     --ds-color-blue-9: color(srgb 0 0.12941176470588237 0.3333333333333333);
     --ds-color-control-border-focus: var(--ds-color-blue-7);
     --ds-color-hdr-blue: color(srgb -7.889244812986363e-15 0.5357343296597399 0.9999999999999997);
+    --ds-color-text-action: var(--ds-color-blue-6);
   }
 }
 
@@ -61,6 +66,7 @@
   --ds-color-blue-9: color(srgb 0 0.12941176470588237 0.3333333333333333);
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: color(srgb -7.889244812986363e-15 0.5357343296597399 0.9999999999999997);
+  --ds-color-text-action: var(--ds-color-blue-6);
 }
 
 @media (prefers-color-scheme: light) {
@@ -105,6 +111,7 @@
     --ds-color-blue-9: color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547);
     --ds-color-control-border-focus: var(--ds-color-blue-6);
     --ds-color-hdr-blue: color(srgb 0.13748909829685632 0.5371632643751101 1.0000000000000002);
+    --ds-color-text-action: var(--ds-color-blue-5);
   }
 }
 
@@ -121,6 +128,7 @@
   --ds-color-blue-9: color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547);
   --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: color(srgb 0.13748909829685632 0.5371632643751101 1.0000000000000002);
+  --ds-color-text-action: var(--ds-color-blue-5);
 }
 
 @media (prefers-color-scheme: dark) {

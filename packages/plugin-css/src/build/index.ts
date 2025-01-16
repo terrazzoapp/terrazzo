@@ -36,6 +36,14 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
         continue;
       }
       const localID = token.localID ?? token.token.id;
+
+      // CSS fix: inside selectors, if the value updates, then all downstream aliases need to be re-scoped so the value isn’t stale
+      const aliasTokens = getTransforms({
+        format: FORMAT_ID,
+        mode: '.',
+        id: token.token.aliasedBy ?? [], // important: this needs to be an empty array if no aliases, so we don’t accidentally query for all tokens
+      });
+
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         rootRule.declarations[localID] = token.value;
@@ -46,6 +54,14 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
         if (token.value.p3 !== token.value.srgb) {
           p3Rule.declarations[localID] = token.value.p3!;
           rec2020Rule.declarations[localID] = token.value.rec2020!;
+
+          // handle aliases within color gamut media queries
+          for (const alias of aliasTokens) {
+            if (alias.localID && typeof alias.value === 'string') {
+              p3Rule.declarations[alias.localID] ??= alias.value;
+              rec2020Rule.declarations[alias.localID] ??= alias.value;
+            }
+          }
         }
       }
       // multi-value token
@@ -74,10 +90,19 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
     const selectorRule: CSSRule = { selectors, declarations: {} };
     const selectorP3Rule: CSSRule = { selectors, nestedQuery: P3_MQ, declarations: {} };
     const selectorRec2020Rule: CSSRule = { selectors, nestedQuery: REC2020_MQ, declarations: {} };
+    const selectorAliasDeclarations: Record<string, string> = {};
     rules.push(selectorRule, selectorP3Rule, selectorRec2020Rule);
 
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
+
+      // CSS fix: inside selectors, if the value updates, then all downstream aliases need to be re-scoped so the value isn’t stale
+      const aliasTokens = getTransforms({
+        format: FORMAT_ID,
+        mode,
+        id: token.token.aliasedBy ?? [], // important: this needs to be an empty array if no aliases, so we don’t accidentally query for all tokens
+      });
+
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         selectorRule.declarations[localID] = token.value;
@@ -88,6 +113,14 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
         if (token.value.p3 !== token.value.srgb) {
           selectorP3Rule.declarations[localID] = token.value.p3!;
           selectorRec2020Rule.declarations[localID] = token.value.rec2020!;
+
+          // handle aliases within color gamut media queries
+          for (const alias of aliasTokens) {
+            if (alias.localID && typeof alias.value === 'string') {
+              selectorP3Rule.declarations[alias.localID] ??= alias.value;
+              selectorRec2020Rule.declarations[alias.localID] ??= alias.value;
+            }
+          }
         }
       }
       // multi-value token
@@ -100,6 +133,18 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
           selectorRule.declarations[`${localID}-${name}`] = subvalue;
         }
       }
+
+      // redeclare aliases so they have the correct scope
+      for (const alias of aliasTokens) {
+        if (alias.localID && typeof alias.value === 'string') {
+          selectorAliasDeclarations[alias.localID] = alias.value;
+        }
+      }
+    }
+
+    // after selector has settled, add in aliases if there are no conflicts
+    for (const [name, value] of Object.entries(selectorAliasDeclarations)) {
+      selectorRule.declarations[name] ??= value;
     }
   }
 
