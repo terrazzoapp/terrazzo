@@ -31,7 +31,7 @@ export function transformCompositeAlias<T extends {}>(
 }
 
 const CSS_VAR_RE =
-  /(?:(\p{Uppercase_Letter}?[\p{Lowercase_Letter}\p{Number}]+|[\p{Uppercase_Letter}\p{Number}]+|[\u{80}-\u{10FFFF}\p{Number}]+|_)|.)/u;
+  /(?:(\p{Uppercase_Letter}?[\p{Lowercase_Letter}\p{Number}]+|[\p{Uppercase_Letter}\p{Number}]+|[\u{80}-\u{10FFFF}\p{Number}]+)|.)/u;
 
 export interface MakeCSSVarOptions {
   /** Prefix with string */

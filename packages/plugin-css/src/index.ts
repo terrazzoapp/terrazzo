@@ -14,6 +14,7 @@ export default function cssPlugin({
   modeSelectors,
   transform: customTransform,
   utility,
+  legacyHex,
   skipBuild,
 }: CSSPluginOptions = {}): Plugin {
   const transformName = (id: string) => variableName?.(id) || makeCSSVar(id);
@@ -41,7 +42,11 @@ export default function cssPlugin({
             }
           }
 
-          const transformedValue = transformCSSValue(token, { mode, transformAlias });
+          const transformedValue = transformCSSValue(token, {
+            mode,
+            transformAlias,
+            color: { legacyHex },
+          });
           if (transformedValue !== undefined) {
             setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
           }

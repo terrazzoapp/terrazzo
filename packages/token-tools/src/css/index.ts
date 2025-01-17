@@ -38,12 +38,17 @@ export * from './typography.js';
 export interface TransformCSSValueOptions {
   mode: string;
   transformAlias: IDGenerator;
+  /** Color options */
+  color?: {
+    /** Output legacy hex-6 and hex-8 */
+    legacyHex?: boolean;
+  };
 }
 
 /** Main CSS Transform */
 export function transformCSSValue<T extends TokenNormalized>(
   token: T,
-  { mode, transformAlias }: TransformCSSValueOptions,
+  { mode, transformAlias, color }: TransformCSSValueOptions,
 ) {
   if (!token.mode[mode]) {
     return;
@@ -55,11 +60,11 @@ export function transformCSSValue<T extends TokenNormalized>(
     }
     case 'border': {
       const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-      return transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias, color });
     }
     case 'color': {
       const { $value, aliasOf } = token.mode[mode]!;
-      return transformColorValue($value, { aliasOf, transformAlias });
+      return transformColorValue($value, { aliasOf, transformAlias, color });
     }
     case 'cubicBezier': {
       const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
@@ -83,7 +88,7 @@ export function transformCSSValue<T extends TokenNormalized>(
     }
     case 'gradient': {
       const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
-      return transformGradientValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformGradientValue($value, { aliasOf, partialAliasOf, transformAlias, color });
     }
     case 'link': {
       const { $value, aliasOf } = token.mode[mode]!;

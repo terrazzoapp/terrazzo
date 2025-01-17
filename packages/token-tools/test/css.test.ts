@@ -27,7 +27,8 @@ describe('makeCSSVar', () => {
     ['extra dashes', { given: ['my-css---var'], want: { success: '--my-css-var' } }],
     ['number prefix', { given: ['space.2x'], want: { success: '--space-2x' } }],
     ['number suffix', { given: ['typography.heading2'], want: { success: '--typography-heading2' } }],
-    ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡-_' } }],
+    ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡' } }],
+    ['ramp-pale_purple-500', { given: ['ramp-pale_purple-500'], want: { success: '--ramp-pale-purple-500' } }],
     ['prefix', { given: ['typography.body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } }],
     [
       'prefix (already prefixed)',
