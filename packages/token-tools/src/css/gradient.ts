@@ -9,17 +9,21 @@ export function transformGradientValue(
     aliasOf,
     partialAliasOf,
     transformAlias = defaultAliasTransform,
+    color: colorOptions,
   }: {
     aliasOf?: string;
     partialAliasOf?: Partial<Record<keyof GradientStopNormalized, string>>[];
     transformAlias?: IDGenerator;
+    color?: { legacyHex?: boolean };
   } = {},
 ): string | WideGamutColorValue {
   if (aliasOf) {
     return transformAlias(aliasOf);
   }
   const colors = value.map(({ color }, i) =>
-    partialAliasOf?.[i]?.color ? transformAlias(partialAliasOf[i]!.color as string) : transformColorValue(color),
+    partialAliasOf?.[i]?.color
+      ? transformAlias(partialAliasOf[i]!.color as string)
+      : transformColorValue(color, { color: colorOptions }),
   );
   const positions = value.map(({ position }, i) =>
     partialAliasOf?.[i]?.position ? transformAlias(String(partialAliasOf[i]!.position)) : `${100 * position}%`,

@@ -12,10 +12,12 @@ export function transformBorderValue(
     aliasOf,
     partialAliasOf,
     transformAlias = defaultAliasTransform,
+    color: colorOptions,
   }: {
     aliasOf?: string;
     partialAliasOf?: Partial<Record<keyof typeof value, string>>;
     transformAlias: IDGenerator;
+    color?: { legacyHex?: boolean };
   },
 ) {
   if (aliasOf) {
@@ -27,7 +29,7 @@ export function transformBorderValue(
     : transformDimensionValue(value.width, { transformAlias });
   const color = partialAliasOf?.color
     ? transformAlias(partialAliasOf.color)
-    : transformColorValue(value.color, { transformAlias });
+    : transformColorValue(value.color, { transformAlias, color: colorOptions });
   const style = partialAliasOf?.style
     ? transformAlias(partialAliasOf.style)
     : transformStrokeStyleValue(value.style, { transformAlias });
