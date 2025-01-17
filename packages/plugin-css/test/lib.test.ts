@@ -129,4 +129,20 @@ describe('printRules', () => {
       }"
     `);
   });
+
+  it('complex selectors', () => {
+    const rules: CSSRule[] = [
+      {
+        selectors: [
+          '[data-color-mode="light"][data-product="default"], [data-color-mode="light"] [data-product="default"]',
+        ],
+        declarations: { '--color-blue-6': '#104d87' },
+      },
+    ];
+    expect(printRules(rules)).toMatchInlineSnapshot(`
+      "[data-color-mode="light"][data-product="default"], [data-color-mode="light"] [data-product="default"] {
+        --color-blue-6: #104d87;
+      }"
+    `);
+  });
 });
