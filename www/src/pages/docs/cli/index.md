@@ -59,6 +59,26 @@ While it’s tempting to lean toward _“flexibility,”_ that term is often ind
 
 :::
 
+## API
+
+| Command                 | Description                                                                                      |
+| :---------------------- | :----------------------------------------------------------------------------------------------- |
+| `init`                  | Scaffold out a new project from an existing design system.                                       |
+| `build`                 | Build tokens [with your plugins](/docs/cli/integrations) and also run [linting](/docs/cli/lint). |
+| `lint`                  | Only run [token linting](/docs/cli/lint) (not build).                                            |
+| `check [file]`          | Validate a given tokens JSON meets the DTCG specification.                                       |
+| `--help`                | Display help message.                                                                            |
+| `--silent` \| `--quiet` | Suppress warnings and logs.                                                                      |
+
+### Debugging
+
+With any command, set the `DEBUG` env var to a scope:
+
+- `DEBUG=* tz build`: debug all scopes
+- `DEBUG=parser tz build`: debug @terrazzo/parser
+- `DEBUG=lint tz build`: debug linting
+- `DEBUG=plugin tz build`: debug plugins
+
 ## Next Steps
 
 - See all [config options](/docs/cli/config)
