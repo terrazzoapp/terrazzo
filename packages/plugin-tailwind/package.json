@@ -37,10 +37,12 @@
     "@terrazzo/plugin-css": "^0.3.0",
     "tailwindcss": "*"
   },
+  "dependencies": {
+    "@terrazzo/token-tools": "workspace:^"
+  },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^",
     "tailwindcss": "^3.4.16",
     "yaml": "^2.6.1"
   }

@@ -35,9 +35,11 @@
   "peerDependencies": {
     "@terrazzo/cli": "^0.3.4"
   },
+  "dependencies": {
+    "@terrazzo/token-tools": "workspace:^"
+  },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^"
+    "@terrazzo/parser": "workspace:^"
   }
 }
