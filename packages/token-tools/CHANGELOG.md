@@ -1,5 +1,15 @@
 # @terrazzo/token-tools
 
+## 0.4.0
+
+### Minor Changes
+
+- [#416](https://github.com/terrazzoapp/terrazzo/pull/416) [`822c956`](https://github.com/terrazzoapp/terrazzo/commit/822c95666c18da1c591ee232e6f62cc1b1ae968d) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: CSS variables updated to closer match Cobalt 1.0 behavior
+
+### Patch Changes
+
+- [#416](https://github.com/terrazzoapp/terrazzo/pull/416) [`822c956`](https://github.com/terrazzoapp/terrazzo/commit/822c95666c18da1c591ee232e6f62cc1b1ae968d) Thanks [@drwpow](https://github.com/drwpow)! - Add legacyHex option for outputting legacy hex codes
+
 ## 0.3.5
 
 ### Patch Changes
