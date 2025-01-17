@@ -36,10 +36,12 @@
     "@terrazzo/cli": "^0.3.3",
     "@terrazzo/plugin-css": "^0.3.0"
   },
+  "dependencies": {
+    "@terrazzo/token-tools": "workspace:^"
+  },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "@terrazzo/plugin-css": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^"
+    "@terrazzo/plugin-css": "workspace:^"
   }
 }
