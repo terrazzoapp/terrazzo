@@ -1,5 +1,15 @@
 # @terrazzo/cli
 
+## 0.3.5
+
+### Patch Changes
+
+- [#414](https://github.com/terrazzoapp/terrazzo/pull/414) [`fd8fb6b`](https://github.com/terrazzoapp/terrazzo/commit/fd8fb6bf18b9353d8ea7482b23bd80f35a05af9a) Thanks [@drwpow](https://github.com/drwpow)! - Enable debugging in CLI
+
+- Updated dependencies [[`fd8fb6b`](https://github.com/terrazzoapp/terrazzo/commit/fd8fb6bf18b9353d8ea7482b23bd80f35a05af9a)]:
+  - @terrazzo/parser@0.3.5
+  - @terrazzo/token-tools@0.3.5
+
 ## 0.3.4
 
 ### Patch Changes
