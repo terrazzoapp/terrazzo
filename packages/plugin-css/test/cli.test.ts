@@ -71,5 +71,14 @@ describe('tz build', () => {
         fileURLToPath(new URL('./styles/out/want.css', cwd)),
       );
     });
+
+    it('skipBuild', async () => {
+      const cwd = new URL('./fixtures/cli-skip-build/', import.meta.url);
+      const before = fs.readdirSync(cwd);
+      await execa('node', [cmd, 'build'], { cwd });
+      const after = fs.readdirSync(cwd);
+      // assert absolutely no files or folders were created
+      expect(after.length, `${after.length - before.length} file/folder(s) generated`).toBe(before.length);
+    });
   });
 });
