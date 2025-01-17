@@ -72,12 +72,11 @@ While it’s tempting to lean toward _“flexibility,”_ that term is often ind
 
 ### Debugging
 
-With any command, set the `DEBUG` env var to a scope:
+With any command, set the `DEBUG` env var to a glob scope (accepts [wildcard-match](https://www.npmjs.com/package/wildcard-match) globs):
 
 - `DEBUG=* tz build`: debug all scopes
-- `DEBUG=parser tz build`: debug @terrazzo/parser
-- `DEBUG=lint tz build`: debug linting
-- `DEBUG=plugin tz build`: debug plugins
+- `DEBUG=parser:* tz build`: debug @terrazzo/parser (core)
+- `DEBUG=plugin:* tz build`: debug plugins
 
 ## Next Steps
 

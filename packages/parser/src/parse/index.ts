@@ -105,6 +105,8 @@ export default async function parse(
   const totalStart = performance.now();
 
   // 5. Resolve aliases and populate groups
+  const aliasesStart = performance.now();
+  let aliasCount = 0;
   for (const [id, token] of Object.entries(tokens)) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
@@ -123,6 +125,7 @@ export default async function parse(
     if (token.partialAliasOf) {
       token.mode['.']!.partialAliasOf = token.partialAliasOf;
     }
+    aliasCount++;
     const { group: parentGroup } = splitID(id);
     if (parentGroup) {
       for (const siblingID of Object.keys(tokens)) {
@@ -133,14 +136,16 @@ export default async function parse(
       }
     }
   }
+  logger.debug({
+    message: `Resolved ${aliasCount} aliases`,
+    group: 'parser',
+    label: 'aliases',
+    timing: performance.now() - aliasesStart,
+  });
 
   // 6. resolve mode aliases
   const modesStart = performance.now();
-  logger.debug({
-    message: 'Start mode resolution',
-    group: 'parser',
-    label: 'modes',
-  });
+  let modeAliasCount = 0;
   for (const [id, token] of Object.entries(tokens)) {
     if (!Object.hasOwn(tokens, id)) {
       continue;
@@ -149,6 +154,7 @@ export default async function parse(
       if (mode === '.') {
         continue; // skip shadow of root value
       }
+      modeAliasCount++;
       applyAliases(modeValue, {
         tokens,
         node: modeValue.source.node,
@@ -158,9 +164,9 @@ export default async function parse(
     }
   }
   logger.debug({
+    message: `Resolved ${modeAliasCount} mode aliases`,
     group: 'parser',
     label: 'modes',
-    message: 'Finish token modes',
     timing: performance.now() - modesStart,
   });
 
@@ -175,6 +181,7 @@ export default async function parse(
     const { errorCount } = logger.stats();
     if (errorCount > 0) {
       logger.error({
+        group: 'parser',
         message: `Parser encountered ${errorCount} ${pluralize(errorCount, 'error', 'errors')}. Exiting.`,
       });
     }
@@ -207,7 +214,6 @@ async function parseSingle(
 ): Promise<{ tokens: Record<string, Token>; document: DocumentNode; src?: string }> {
   // 1. Build AST
   const startParsing = performance.now();
-  logger.debug({ group: 'parser', label: 'parse', message: 'Start JSON parsing' });
   const { src, document } = toMomoa(input, { filename, logger, continueOnError, yamlToMomoa });
   logger.debug({
     group: 'parser',
@@ -218,9 +224,9 @@ async function parseSingle(
   const tokens: Record<string, TokenNormalized> = {};
 
   // 2. Walk AST to validate tokens
+  let tokenCount = 0;
   const startValidate = performance.now();
   const $typeInheritance: Record<string, Token['$type']> = {};
-  logger.debug({ message: 'Start token validation', group: 'parser', label: 'validate' });
   traverse(document, {
     enter(node, parent, subpath) {
       // if $type appears at root of tokens.json, collect it
@@ -237,19 +243,20 @@ async function parseSingle(
         const token = validateTokenNode(node, { filename, src, config, logger, parent, subpath, $typeInheritance });
         if (token) {
           tokens[token.id] = token;
+          tokenCount++;
         }
       }
     },
   });
-  logger.debug({ message: 'Finish token validation', group: 'parser', label: 'validate', timing: startValidate });
+  logger.debug({
+    message: `Validated ${tokenCount} tokens`,
+    group: 'parser',
+    label: 'validate',
+    timing: performance.now() - startValidate,
+  });
 
   // 3. normalize values
   const normalizeStart = performance.now();
-  logger.debug({
-    message: 'Start token normalization',
-    group: 'parser',
-    label: 'normalize',
-  });
   for (const [id, token] of Object.entries(tokens)) {
     try {
       tokens[id]!.$value = normalize(token);
@@ -259,7 +266,15 @@ async function parseSingle(
       if (members.$value) {
         node = members.$value as ObjectNode;
       }
-      logger.error({ message: (err as Error).message, filename, src, node, continueOnError });
+      logger.error({
+        group: 'parser',
+        label: 'normalize',
+        message: (err as Error).message,
+        filename,
+        src,
+        node,
+        continueOnError,
+      });
     }
     for (const [mode, modeValue] of Object.entries(token.mode)) {
       if (mode === '.') {
@@ -273,30 +288,38 @@ async function parseSingle(
         if (members.$value) {
           node = members.$value as ObjectNode;
         }
-        logger.error({ message: (err as Error).message, filename, src, node: modeValue.source.node, continueOnError });
+        logger.error({
+          group: 'parser',
+          label: 'normalize',
+          message: (err as Error).message,
+          filename,
+          src,
+          node: modeValue.source.node,
+          continueOnError,
+        });
       }
     }
   }
-
-  // 4. Execute lint runner with loaded plugins
-  if (!skipLint && config?.plugins?.length) {
-    const lintStart = performance.now();
-    logger.debug({ message: 'Start token linting', group: 'parser', label: 'validate' });
-    await lintRunner({ tokens, src, config, logger });
-    logger.debug({
-      message: 'Finish token linting',
-      group: 'parser',
-      label: 'validate',
-      timing: performance.now() - lintStart,
-    });
-  }
-
   logger.debug({
-    message: 'Finish token normalization',
+    message: `Normalized ${tokenCount} tokens`,
     group: 'parser',
     label: 'normalize',
     timing: performance.now() - normalizeStart,
   });
+
+  // 4. Execute lint runner with loaded plugins
+  if (!skipLint && config?.plugins?.length) {
+    const lintStart = performance.now();
+    await lintRunner({ tokens, src, config, logger });
+    logger.debug({
+      message: `Linted ${tokenCount} tokens`,
+      group: 'parser',
+      label: 'lint',
+      timing: performance.now() - lintStart,
+    });
+  } else {
+    logger.debug({ message: 'Linting skipped', group: 'parser', label: 'lint' });
+  }
 
   return {
     tokens,

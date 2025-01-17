@@ -18,7 +18,7 @@ export async function checkCmd({ config, logger, positionals }: CheckOptions) {
       : config.tokens;
     const sources = await loadTokens(tokenPaths, { logger });
     if (!sources?.length) {
-      logger.error({ message: 'Couldn’t find any tokens. Run `npx tz init` to create some.' });
+      logger.error({ group: 'config', message: 'Couldn’t find any tokens. Run `npx tz init` to create some.' });
       return;
     }
     await parse(sources, { config, continueOnError: true, logger, yamlToMomoa }); // will throw if errors

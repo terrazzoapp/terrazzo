@@ -27,8 +27,6 @@ export default async function lintRunner({
     if (typeof plugin.lint === 'function') {
       const s = performance.now();
 
-      logger.debug({ group: 'plugin', label: plugin.name, message: 'Start linting' });
-
       const linter = plugin.lint();
       const errors: LogEntry[] = [];
       const warnings: LogEntry[] = [];
@@ -50,7 +48,8 @@ export default async function lintRunner({
               let message = '';
               if (!descriptor.message && !descriptor.messageId) {
                 logger.error({
-                  label: `[plugin] ${plugin.name} › lint › ${id}`,
+                  group: 'lint',
+                  label: `${plugin.name} › lint › ${id}`,
                   message: 'Unable to report error: missing message or messageId',
                 });
               }
@@ -61,7 +60,8 @@ export default async function lintRunner({
               } else {
                 if (!(descriptor.messageId! in (rule.meta?.messages ?? {}))) {
                   logger.error({
-                    label: `[plugin] ${plugin.name} › lint › ${id}`,
+                    group: 'lint',
+                    label: `${plugin.name} › lint › ${id}`,
                     message: `messageId "${descriptor.messageId}" does not exist`,
                   });
                 }
@@ -81,6 +81,7 @@ export default async function lintRunner({
               }
 
               (severity === 'error' ? errors : warnings).push({
+                group: 'lint',
                 label: id,
                 message,
                 filename,
@@ -112,7 +113,7 @@ export default async function lintRunner({
         logger.warn(warning);
       }
 
-      logger.debug({ group: 'plugin', label: plugin.name, message: 'Finish linting', timing: performance.now() - s });
+      logger.debug({ group: 'lint', label: plugin.name, message: 'Finished', timing: performance.now() - s });
 
       if (errors.length) {
         const counts = [pluralize(errors.length, 'error', 'errors')];
@@ -120,6 +121,7 @@ export default async function lintRunner({
           counts.push(pluralize(warnings.length, 'warning', 'warnings'));
         }
         logger.error({
+          group: 'lint',
           message: `Lint failed with ${listFormat.format(counts)}`,
           label: plugin.name,
           continueOnError: false,
@@ -130,6 +132,6 @@ export default async function lintRunner({
 
   // warn user if they have unused lint rules (they might have meant to configure something!)
   for (const unusedRule of unusedLintRules) {
-    logger.warn({ group: 'parser', label: 'lint', message: `Unknown lint rule "${unusedRule}"` });
+    logger.warn({ group: 'lint', label: 'lint', message: `Unknown lint rule "${unusedRule}"` });
   }
 }

@@ -55,10 +55,17 @@ export function resolveAlias(
 ) {
   const { id } = parseAlias(alias);
   if (!tokens[id]) {
-    logger.error({ message: `Alias "${alias}" not found.`, filename, src, node });
+    logger.error({ group: 'parser', label: 'alias', message: `Alias "${alias}" not found.`, filename, src, node });
   }
   if (scanned.includes(id)) {
-    logger.error({ message: `Circular alias detected from "${alias}".`, filename, src, node });
+    logger.error({
+      group: 'parser',
+      label: 'alias',
+      message: `Circular alias detected from "${alias}".`,
+      filename,
+      src,
+      node,
+    });
   }
   const token = tokens[id]!;
   if (!isAlias(token.$value)) {
@@ -92,6 +99,8 @@ export function applyAliases(
     token.$value = aliasOf!.mode[aliasMode!]?.$value || aliasOf.$value;
     if (token.$type && token.$type !== aliasOf.$type) {
       logger.error({
+        group: 'parser',
+        label: 'alias',
         message: `Invalid alias: expected $type: "${token.$type}", received $type: "${aliasOf.$type}".`,
         node: $valueNode,
         filename,
@@ -142,6 +151,8 @@ export function applyAliases(
             if (possibleTypes.length && !possibleTypes.includes(aliasToken.$type)) {
               const elementNode = ($valueNode as ArrayNode).elements[i]!.value;
               logger.error({
+                group: 'parser',
+                label: 'alias',
                 message: `Invalid alias: expected $type: "${possibleTypes.join('" or "')}", received $type: "${aliasToken.$type}".`,
                 node: (elementNode as ObjectNode).members.find((m) => (m.name as StringNode).value === property)!.value,
                 filename,
@@ -177,6 +188,8 @@ export function applyAliases(
         // @ts-ignore
         if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(aliasToken!.$type)) {
           logger.error({
+            group: 'parser',
+            label: 'alias',
             // @ts-ignore
             message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${aliasToken.$type}".`,
             // @ts-ignore
@@ -216,6 +229,8 @@ export function applyAliases(
               // @ts-ignore
               const arrayNode = $valueNode.members.find((m) => m.name.value === property).value;
               logger.error({
+                group: 'parser',
+                label: 'alias',
                 // @ts-ignore
                 message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${aliasToken.$type}".`,
                 node: arrayNode.elements[i],

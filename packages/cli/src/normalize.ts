@@ -19,12 +19,15 @@ function findMember(name: string) {
 export async function normalizeCmd(filename: string, { logger, output }: NormalizeOptions) {
   try {
     if (!filename) {
-      logger.error({ message: 'Expected input: `tz normalize <tokens.json> -o output.json`' });
+      logger.error({ group: 'config', message: 'Expected input: `tz normalize <tokens.json> -o output.json`' });
       return;
     }
     const sourceLoc = new URL(filename, cwd);
     if (!fs.existsSync(sourceLoc)) {
-      logger.error({ message: `Couldn’t find ${path.relative(cwd.href, sourceLoc.href)}. Does it exist?` });
+      logger.error({
+        group: 'config',
+        message: `Couldn’t find ${path.relative(cwd.href, sourceLoc.href)}. Does it exist?`,
+      });
     }
     const sourceData = fs.readFileSync(sourceLoc, 'utf8');
     const document = parseJSON(sourceData);

@@ -44,7 +44,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
 
     if (typeof flags.config === 'string') {
       if (flags.config === '') {
-        logger.error({ message: 'Missing path after --config flag' });
+        logger.error({ group: 'config', message: 'Missing path after --config flag' });
         process.exit(1);
       }
       configPath = resolveConfig(flags.config);
@@ -56,15 +56,16 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         const mod = await import(resolvedConfigPath);
         if (!mod.default) {
           logger.error({
+            group: 'config',
             message: `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs/cli for instructions.`,
           });
         }
         config = defineConfig(mod.default, { cwd, logger });
       } catch (err) {
-        logger.error({ message: (err as Error).message || (err as string) });
+        logger.error({ group: 'config', message: (err as Error).message || (err as string) });
       }
     } else if (cmd !== 'init' && cmd !== 'check') {
-      logger.error({ message: 'No config file found. Create one with `npx terrazzo init`.' });
+      logger.error({ group: 'config', message: 'No config file found. Create one with `npx terrazzo init`.' });
     }
 
     return { config, configPath: resolvedConfigPath! };
@@ -80,7 +81,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
     const allTokens = [];
 
     if (!Array.isArray(tokenPaths)) {
-      logger.error({ message: `loadTokens: Expected array, received ${typeof tokenPaths}` });
+      logger.error({ group: 'config', message: `loadTokens: Expected array, received ${typeof tokenPaths}` });
     }
 
     // if this is the default value, also check for tokens.yaml
@@ -91,6 +92,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
           tokenPaths[0] = yamlPath;
         } else {
           logger.error({
+            group: 'config',
             message: `Could not locate ${path.relative(cwd.href, tokenPaths[0]!.href)}. To create one, run \`npx tz init\`.`,
           });
           return;
@@ -103,7 +105,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
       const filename = tokenPaths[i];
 
       if (!(filename instanceof URL)) {
-        logger.error({ message: `Expected URL, received ${filename}`, label: `loadTokens[${i}]` });
+        logger.error({ group: 'config', message: `Expected URL, received ${filename}`, label: `loadTokens[${i}]` });
         return;
       } else if (filename.protocol === 'http:' || filename.protocol === 'https:') {
         try {
@@ -112,6 +114,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             const [_, fileKeyword, fileKey] = filename.pathname.split('/');
             if (fileKeyword !== 'file' || !fileKey) {
               logger.error({
+                group: 'config',
                 message: `Unexpected Figma URL. Expected "https://www.figma.com/file/:file_key/:file_name?…", received "${filename.href}"`,
               });
             }
@@ -122,7 +125,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
             if (process.env.FIGMA_ACCESS_TOKEN) {
               headers.set('X-FIGMA-TOKEN', process.env.FIGMA_ACCESS_TOKEN);
             } else {
-              logger.warn({ message: 'FIGMA_ACCESS_TOKEN not set' });
+              logger.warn({ group: 'config', message: 'FIGMA_ACCESS_TOKEN not set' });
             }
             const res = await fetch(`https://api.figma.com/v1/files/${fileKey}/variables/local`, {
               method: 'GET',
@@ -132,7 +135,10 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
               allTokens.push({ filename, src: await res.text() });
             }
             const message = res.status !== 404 ? JSON.stringify(await res.json(), undefined, 2) : '';
-            logger.error({ message: `Figma responded with ${res.status}${message ? `:\n${message}` : ''}` });
+            logger.error({
+              group: 'config',
+              message: `Figma responded with ${res.status}${message ? `:\n${message}` : ''}`,
+            });
             break;
           }
 
@@ -143,7 +149,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
           });
           allTokens.push({ filename, src: await res.text() });
         } catch (err) {
-          logger.error({ message: `${filename.href}: ${err}` });
+          logger.error({ group: 'config', message: `${filename.href}: ${err}` });
           return;
         }
       } else {
@@ -151,6 +157,7 @@ export async function loadTokens(tokenPaths: URL[], { logger }: { logger: Logger
           allTokens.push({ filename, src: fs.readFileSync(filename, 'utf8') });
         } else {
           logger.error({
+            group: 'config',
             message: `Could not locate ${path.relative(cwd.href, filename.href)}. To create one, run \`npx tz init\`.`,
           });
           return;
@@ -198,9 +205,9 @@ export function resolveConfig(filename?: string) {
 export function resolveTokenPath(filename: string, { logger }: { logger: Logger }) {
   const tokensPath = new URL(filename, cwd);
   if (!fs.existsSync(tokensPath)) {
-    logger.error({ message: `Could not locate ${filename}. Does the file exist?` });
+    logger.error({ group: 'config', message: `Could not locate ${filename}. Does the file exist?` });
   } else if (!fs.statSync(tokensPath).isFile()) {
-    logger.error({ message: `Expected JSON or YAML file, received ${filename}.` });
+    logger.error({ group: 'config', message: `Expected JSON or YAML file, received ${filename}.` });
   }
   return tokensPath;
 }

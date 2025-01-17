@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { build, defineConfig, parse } from '@terrazzo/parser';
+import { build, defineConfig, Logger, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, it } from 'vitest';
 import css from '../src/index.js';
@@ -153,7 +153,10 @@ describe('Node.js API', () => {
         },
         { cwd },
       );
-      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+      const { tokens, sources } = await parse([{ filename: cwd, src }], {
+        config,
+        logger: new Logger({ level: 'debug' }),
+      });
       const result = await build(tokens, { sources, config });
       await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     });

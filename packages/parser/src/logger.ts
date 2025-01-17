@@ -9,9 +9,11 @@ export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
 
 export type LogLevel = LogSeverity | 'silent';
 
-export type LogGroup = 'parser' | 'plugin';
+export type LogGroup = 'config' | 'parser' | 'lint' | 'plugin';
 
 export interface LogEntry {
+  /** Originator of log message */
+  group: LogGroup;
   /** Error message to be logged */
   message: string;
   /** Prefix message with label */
@@ -25,8 +27,6 @@ export interface LogEntry {
   continueOnError?: boolean;
   /** Show a code frame for the erring node */
   node?: AnyNode;
-  /** Originator of log message */
-  group?: LogGroup;
   /** To show a code frame, provide the original source code */
   src?: string;
 }
@@ -47,7 +47,13 @@ const DEBUG_GROUP_COLOR: Record<string, typeof pc.red | undefined> = { core: pc.
 
 const MESSAGE_COLOR: Record<string, typeof pc.red | undefined> = { error: pc.red, warn: pc.yellow };
 
-const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
+const timeFormatter = new Intl.DateTimeFormat('en-us', {
+  hour: 'numeric',
+  hour12: false,
+  minute: 'numeric',
+  second: 'numeric',
+  fractionalSecondDigits: 3,
+});
 
 /**
  * @param {Entry} entry
@@ -56,9 +62,6 @@ const timeFormatter = new Intl.DateTimeFormat('en-gb', { timeStyle: 'medium' });
  */
 export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   let message = entry.message;
-  if (entry.label) {
-    message = `${pc.bold(`${entry.label}:`)} ${message}`;
-  }
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity]!(message);
   }
@@ -98,7 +101,10 @@ export default class Logger {
   /** Log an error message (always; can’t be silenced) */
   error(entry: LogEntry) {
     this.errorCount++;
-    const message = formatMessage(entry, 'error');
+    let message = formatMessage(entry, 'error');
+    if (entry.group) {
+      message = `${pc.bold(entry.group)}${entry.label ? `:${entry.label}` : ''} ${message}`;
+    }
     if (entry.continueOnError) {
       console.error(message);
       return;
@@ -131,10 +137,10 @@ export default class Logger {
 
   /** Log a diagnostics message (if logging level permits) */
   debug(entry: DebugEntry) {
-    this.debugCount++;
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
       return;
     }
+    this.debugCount++;
 
     let message = formatMessage(entry, 'debug');
 
@@ -143,14 +149,14 @@ export default class Logger {
       return;
     }
     message = `${(DEBUG_GROUP_COLOR[entry.group] || pc.white)(debugPrefix)} ${pc.dim(
-      timeFormatter.format(new Date()),
+      timeFormatter.format(performance.now()),
     )} ${message}`;
     if (typeof entry.timing === 'number') {
-      let timing: string | number = Math.round(entry.timing);
-      if (timing < 1_000) {
-        timing = `${timing}ms`;
-      } else if (timing < 60_000) {
-        timing = `${Math.round(timing * 100) / 100_000}s`;
+      let timing = '';
+      if (entry.timing < 1_000) {
+        timing = `${Math.round(entry.timing * 100) / 100}ms`;
+      } else if (entry.timing < 60_000) {
+        timing = `${Math.round(entry.timing * 100) / 100_000}s`;
       }
       message = `${message} ${pc.dim(`[${timing}]`)}`;
     }

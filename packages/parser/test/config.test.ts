@@ -10,21 +10,21 @@ describe('config', () => {
         'tokens: URL',
         {
           given: { tokens: new URL('https://google.com') },
-          want: '[config] tokens: Expected string or array of strings, received object',
+          want: 'config:tokens Expected string or array of strings, received object',
         },
       ],
       [
         'outDir: null',
         {
           given: { outDir: null },
-          want: '[config] outDir: Expected string, received null',
+          want: 'config:outDir Expected string, received null',
         },
       ],
       [
         'plugins: not array',
         {
           given: { plugins: {} },
-          want: '[config] plugins: Expected array of plugins, received {}',
+          want: 'config:plugins Expected array of plugins, received {}',
         },
       ],
       [
@@ -45,7 +45,7 @@ describe('config', () => {
               },
             },
           },
-          want: '[config] lint › rule › foo-bar: Invalid number 42. Specify 0 (off), 1 (warn), or 2 (error).',
+          want: 'config:lint › rule › foo-bar Invalid number 42. Specify 0 (off), 1 (warn), or 2 (error).',
         },
       ],
       [
@@ -66,7 +66,7 @@ describe('config', () => {
               },
             },
           },
-          want: '[config] lint › rule › foo-bar: Invalid string "feebee". Specify "off", "warn", or "error".',
+          want: 'config:lint › rule › foo-bar Invalid string "feebee". Specify "off", "warn", or "error".',
         },
       ],
       [
@@ -77,7 +77,7 @@ describe('config', () => {
               rules: { 'foo-bar': 'error' },
             },
           },
-          want: '[config] lint › rule › foo-bar: Unknown rule. Is the plugin installed?',
+          want: 'config:lint › rule › foo-bar Unknown rule. Is the plugin installed?',
         },
       ],
     ];

@@ -28,13 +28,17 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
   try {
     const startTime = performance.now();
     if (!Array.isArray(config.plugins) || !config.plugins.length) {
-      logger.error({ message: `No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}` });
+      logger.error({
+        group: 'config',
+        message: `No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`,
+      });
     }
 
     // first build
     let rawSchemas = await loadTokens(config.tokens, { logger });
     if (!rawSchemas) {
       logger.error({
+        group: 'config',
         message: `Error loading ${path.relative(fileURLToPath(cwd), fileURLToPath(config.tokens[0] || DEFAULT_TOKENS_PATH))}`,
       });
       return;
@@ -53,7 +57,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
       async function rebuild({ messageBefore, messageAfter }: { messageBefore?: string; messageAfter?: string } = {}) {
         try {
           if (messageBefore) {
-            logger.info({ message: messageBefore });
+            logger.info({ group: 'plugin', label: 'watch', message: messageBefore });
           }
           rawSchemas = await loadTokens(config.tokens, { logger });
           if (!rawSchemas) {
@@ -66,7 +70,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
           sources = parseResult.sources;
           result = await build(tokens, { sources, config, logger });
           if (messageAfter) {
-            logger.info({ message: messageAfter });
+            logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
           }
           writeFiles(result, config);
         } catch (err) {
