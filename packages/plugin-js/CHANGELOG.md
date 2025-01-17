@@ -1,5 +1,11 @@
 # @terrazzo/plugin-js
 
+## 0.3.0
+
+### Minor Changes
+
+- [#411](https://github.com/terrazzoapp/terrazzo/pull/411) [`2ad079c`](https://github.com/terrazzoapp/terrazzo/commit/2ad079c06dcdb3b0241e678b1625f202a4ec92b1) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in pnpm workspaces
+
 ## 0.2.0
 
 ### Minor Changes
