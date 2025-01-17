@@ -23,6 +23,8 @@ export interface CSSPluginOptions {
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
   /** Generate utility CSS from groups */
   utility?: Record<UtilityCSSGroup, string[]>;
+  /** Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk). */
+  skipBuild?: boolean;
 }
 
 export interface ModeSelector {

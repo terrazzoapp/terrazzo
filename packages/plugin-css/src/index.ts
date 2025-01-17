@@ -14,6 +14,7 @@ export default function cssPlugin({
   modeSelectors,
   transform: customTransform,
   utility,
+  skipBuild,
 }: CSSPluginOptions = {}): Plugin {
   const transformName = (id: string) => variableName?.(id) || makeCSSVar(id);
   const transformAlias = (id: string) => `var(${transformName(id)})`;
@@ -48,6 +49,10 @@ export default function cssPlugin({
       }
     },
     async build({ getTransforms, outputFile }) {
+      if (skipBuild === true) {
+        return;
+      }
+
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
         buildFormat({ exclude, getTransforms, modeSelectors, utility }),
