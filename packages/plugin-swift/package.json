@@ -29,6 +29,9 @@
     "lint": "biome check .",
     "test": "vitest run"
   },
+  "peerDependencies": {
+    "@terrazzo/cli": "^0.x"
+  },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
     "culori": "^4.0.1"

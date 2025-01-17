@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-css",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Convert DTCG tokens into CSS variables for use in any web application or native app with webview.",
   "type": "module",
   "author": {
@@ -33,7 +33,7 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "^0.3.4"
+    "@terrazzo/cli": "0.x"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^"

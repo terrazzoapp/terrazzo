@@ -203,6 +203,9 @@ importers:
 
   packages/plugin-swift:
     dependencies:
+      '@terrazzo/cli':
+        specifier: ^0.x
+        version: 0.3.4
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
@@ -220,7 +223,7 @@ importers:
   packages/plugin-tailwind:
     dependencies:
       '@terrazzo/plugin-css':
-        specifier: ^0.3.0
+        specifier: 0.x
         version: 0.3.0(@terrazzo/cli@packages+cli)
       '@terrazzo/token-tools':
         specifier: workspace:^
@@ -2340,10 +2343,20 @@ packages:
   '@swc/types@0.1.17':
     resolution: {integrity: sha512-V5gRru+aD8YVyCOMAjMpWR1Ui577DD5KSJsHP8RAxopAH22jFz6GZd/qxqjO6MJHQhcsjvjOFXyDhyLQUnMveQ==}
 
+  '@terrazzo/cli@0.3.4':
+    resolution: {integrity: sha512-mqx9xprsdL/iVVgiDn+EtWcjm3WpIyQZVobgI9SFspJ4Md/rc7lUeu6nBvRyHNQKe+mvO+mt01PT3FT6bTkGLw==}
+    hasBin: true
+
+  '@terrazzo/parser@0.3.4':
+    resolution: {integrity: sha512-SC8uILhP77H0kyrukNZZ9jHP1dOg0iDgUJ3K0x4vyxzwheU+xw9hrAJgL9oDclEjNQoRlHR8xUk5KEf3C//kwg==}
+
   '@terrazzo/plugin-css@0.3.0':
     resolution: {integrity: sha512-nRV7EG+8QsT13TNliudymRf7EEWEugbLBxRU2EHdZk1mwfNkwBYBv9+EOrSoKSnE1VZCEfiHswAicxJQjn0OpA==}
     peerDependencies:
       '@terrazzo/cli': ^0.3.0
+
+  '@terrazzo/token-tools@0.3.4':
+    resolution: {integrity: sha512-cOvb9NCq2OgrE4ZkrgJHODDkm7XXERVyM/7/7Skb73W9MZoSR+9Uy4cREtKvmtNldn6+WtU0TYnzusFdTw6FEQ==}
 
   '@testing-library/dom@10.4.0':
     resolution: {integrity: sha512-pemlzrSESWbdAloYml3bAJMEfNh1Z7EduzqPKprCH5S341frlpYnUEW0H72dLxa6IsYr+mPno20GiSm+h9dEdQ==}
@@ -7451,9 +7464,45 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
+  '@terrazzo/cli@0.3.4':
+    dependencies:
+      '@clack/prompts': 0.9.1
+      '@humanwhocodes/momoa': 3.3.6
+      '@terrazzo/parser': 0.3.4
+      '@terrazzo/token-tools': 0.3.4
+      '@types/escodegen': 0.0.10
+      chokidar: 3.6.0
+      detect-package-manager: 3.0.2
+      dotenv: 16.4.7
+      escodegen: 2.1.0
+      merge-anything: 5.1.7
+      meriyah: 6.0.5
+      picocolors: 1.1.1
+      yaml-to-momoa: 0.0.3
+
+  '@terrazzo/parser@0.3.4':
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.6
+      '@terrazzo/token-tools': 0.3.4
+      '@types/babel__code-frame': 7.0.6
+      '@types/culori': 2.1.1
+      culori: 4.0.1
+      is-what: 4.1.16
+      merge-anything: 5.1.7
+      picocolors: 1.1.1
+      scule: 1.3.0
+      wildcard-match: 5.1.4
+      yaml: 2.7.0
+
   '@terrazzo/plugin-css@0.3.0(@terrazzo/cli@packages+cli)':
     dependencies:
       '@terrazzo/cli': link:packages/cli
+
+  '@terrazzo/token-tools@0.3.4':
+    dependencies:
+      '@humanwhocodes/momoa': 3.3.6
+      culori: 4.0.1
+      wildcard-match: 5.1.4
 
   '@testing-library/dom@10.4.0':
     dependencies:

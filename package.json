@@ -13,7 +13,7 @@
     "format": "turbo run format",
     "test": "turbo run test",
     "prepublishOnly": "pnpm run build",
-    "version": "pnpm run build && changeset version && pnpm i --no-frozen-lockfile"
+    "version": "pnpm run build && changeset version && pnpm i"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
