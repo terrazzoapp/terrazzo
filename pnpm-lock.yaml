@@ -207,7 +207,7 @@ importers:
   packages/plugin-swift:
     dependencies:
       '@terrazzo/cli':
-        specifier: ^0.x
+        specifier: 0.x
         version: 0.3.4
       '@terrazzo/token-tools':
         specifier: workspace:^
