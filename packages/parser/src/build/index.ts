@@ -19,7 +19,7 @@ function validateTransformParams({
   logger,
   pluginName,
 }: { params: TokenTransformed; logger: Logger; pluginName: string }) {
-  const baseEntry: LogEntry = { group: 'plugin', label: pluginName, message: '' };
+  const baseMessage: LogEntry = { group: 'plugin', label: pluginName, message: '' };
 
   // validate value is valid for SINGLE_VALUE or MULTI_VALUE
   if (
@@ -28,7 +28,7 @@ function validateTransformParams({
     Array.isArray(params.value)
   ) {
     logger.error({
-      ...baseEntry,
+      ...baseMessage,
       message: `setTransform() value expected string or object of strings, received ${
         Array.isArray(params.value) ? 'Array' : typeof params.value
       }`,
@@ -36,7 +36,7 @@ function validateTransformParams({
   }
   if (typeof params.value === 'object' && Object.values(params.value).some((v) => typeof v !== 'string')) {
     logger.error({
-      ...baseEntry,
+      ...baseMessage,
       message: 'setTransform() value expected object of strings, received some non-string values',
     });
   }

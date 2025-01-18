@@ -239,17 +239,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      try {
-        const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-          config,
-        });
-        const result = await build(tokens, { sources, config });
-        await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
-          fileURLToPath(new URL('./want.css', cwd)),
-        );
-      } catch (err) {
-        console.error(err);
-      }
+      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+        config,
+      });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
     });
   });
 });

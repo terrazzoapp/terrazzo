@@ -110,7 +110,7 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       }
       const output: GradientValueNormalized = [];
       for (let i = 0; i < token.$value.length; i++) {
-        const stop = { ...(token.$value[i] as GradientStopNormalized) };
+        const stop = structuredClone(token.$value[i] as GradientStopNormalized);
         stop.color = normalizeValue({ $type: 'color', $value: stop.color! });
         if (stop.position === undefined) {
           stop.position = i / (token.$value.length - 1);
@@ -166,22 +166,24 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
         return token.$value;
       }
       const output: TypographyValueNormalized = {};
-      for (const k in token.$value) {
+      for (const [k, $value] of Object.entries(token.$value)) {
         switch (k) {
           case 'fontSize':
           case 'letterSpacing': {
-            output[k] = normalizeValue({ $type: 'dimension', $value: token.$value[k] as DimensionValue });
+            output[k] = normalizeValue({ $type: 'dimension', $value: $value as DimensionValue });
             break;
           }
           case 'lineHeight': {
             output[k] = normalizeValue({
               $type: typeof token.$value === 'number' ? 'number' : 'dimension',
-              $value: token.$value[k] as any,
+              $value: $value as any,
             });
             break;
           }
-          default:
-            output[k] = token.$value[k];
+          default: {
+            output[k] = $value;
+            break;
+          }
         }
       }
       return output;

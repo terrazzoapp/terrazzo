@@ -35,9 +35,8 @@ describe('Tokens', () => {
     if (result) {
       expect(want.tokens).toBeTruthy();
       expect(want.error).toBeUndefined();
-      for (const id in result.tokens) {
-        const { source, ...token } = result.tokens[id]!;
-        expect(source).not.toBeFalsy();
+      for (const [id, token] of Object.entries(result.tokens)) {
+        expect(token.source).not.toBeFalsy();
         expect(token.$value).toEqual(want.tokens![id]);
       }
     }
@@ -281,6 +280,67 @@ font:
                   d: { $value: '{alias.e}' },
                   e: { $value: '{alias.f}' },
                   f: { $value: '#808080' },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              'alias.a': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.b': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.c': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.d': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.e': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.f': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+            },
+          },
+        },
+      ],
+      [
+        'valid: non-linear order (verify work isn’t being skipped)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                alias: {
+                  $type: 'color',
+                  a: { $value: '#808080' },
+                  b: { $value: '{alias.f}' },
+                  c: { $value: '{alias.e}' },
+                  d: { $value: '{alias.a}' },
+                  e: { $value: '{alias.d}' },
+                  f: { $value: '{alias.c}' },
                 },
               },
             },
@@ -2543,8 +2603,8 @@ describe('Additional cases', () => {
     it.each(tests)('%s', async (_, { given, want }) => {
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
-      for (const id in want) {
-        expect(tokens[id]!.$value).toEqual(want[id]);
+      for (const [id, value] of Object.entries(want)) {
+        expect(tokens[id]!.$value).toEqual(value);
       }
     });
   });
@@ -2634,6 +2694,7 @@ describe('Additional cases', () => {
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasedBy: ['color.semantic.bg'],
               },
               light: {
                 id: 'color.blue.7',
@@ -2661,6 +2722,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
@@ -2672,6 +2734,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
@@ -2683,6 +2746,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
@@ -2699,11 +2763,11 @@ describe('Additional cases', () => {
     it.each(tests)('%s', async (_, { given, want }) => {
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
-      for (const id in want) {
-        for (const mode in want[id]!) {
+      for (const [id, value] of Object.entries(want)) {
+        for (const [mode, wantedValue] of Object.entries(value!)) {
           const { source, ...modeValue } = tokens[id]!.mode[mode]!;
           expect(source).not.toBeFalsy();
-          expect(modeValue).toEqual(want[id][mode]);
+          expect(modeValue).toEqual(wantedValue);
         }
       }
     });

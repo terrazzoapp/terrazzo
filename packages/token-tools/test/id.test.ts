@@ -34,6 +34,15 @@ describe('isTokenMatch', () => {
     expect(isTokenMatch('color.blue.60', ['color'])).toBe(false);
     expect(isTokenMatch('color.blue.60', ['color.blue'])).toBe(false);
     expect(isTokenMatch('color.blue.60', ['color.blue.50'])).toBe(false);
+    expect(
+      isTokenMatch('color.alias-1', [
+        'color.alias-1',
+        'color.alias-2',
+        'color.alias-3',
+        'color.alias-4',
+        'color.alias-5',
+      ]),
+    ).toBe(true);
   });
 });
 

@@ -37,7 +37,7 @@ export * from './typography.js';
 
 export interface TransformCSSValueOptions {
   mode: string;
-  transformAlias: IDGenerator;
+  transformAlias?: IDGenerator;
   /** Color options */
   color?: {
     /** Output legacy hex-6 and hex-8 */
@@ -50,73 +50,46 @@ export function transformCSSValue<T extends TokenNormalized>(
   token: T,
   { mode, transformAlias, color }: TransformCSSValueOptions,
 ) {
-  if (!token.mode[mode]) {
+  if (!(mode in token.mode)) {
     return;
   }
-  switch (token.$type) {
-    case 'boolean': {
-      const { $value, aliasOf } = token.mode[mode]!;
+  const { $type, $value, aliasChain, partialAliasOf } = token.mode[mode]!;
+
+  // important: CSS wants to have the shallow alias (this will always exist if `aliasOf` does)
+  const aliasOf = aliasChain?.[0];
+
+  switch ($type) {
+    case 'boolean':
       return transformBooleanValue($value, { aliasOf, transformAlias });
-    }
-    case 'border': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'border':
       return transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias, color });
-    }
-    case 'color': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'color':
       return transformColorValue($value, { aliasOf, transformAlias, color });
-    }
-    case 'cubicBezier': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'cubicBezier':
       return transformCubicBezierValue($value, { aliasOf, partialAliasOf, transformAlias });
-    }
-    case 'dimension': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'dimension':
       return transformDimensionValue($value, { aliasOf, transformAlias });
-    }
-    case 'duration': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'duration':
       return transformDurationValue($value, { aliasOf, transformAlias });
-    }
-    case 'fontFamily': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'fontFamily':
       return transformFontFamilyValue($value, { aliasOf, partialAliasOf, transformAlias });
-    }
-    case 'fontWeight': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'fontWeight':
       return transformFontWeightValue($value, { aliasOf, transformAlias });
-    }
-    case 'gradient': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'gradient':
       return transformGradientValue($value, { aliasOf, partialAliasOf, transformAlias, color });
-    }
-    case 'link': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'link':
       return transformLinkValue($value, { aliasOf, transformAlias });
-    }
-    case 'number': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'number':
       return transformNumberValue($value, { aliasOf, transformAlias });
-    }
-    case 'shadow': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'shadow':
       return transformShadowValue($value, { aliasOf, partialAliasOf, transformAlias });
-    }
-    case 'string': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'string':
       return transformStringValue($value, { aliasOf, transformAlias });
-    }
-    case 'strokeStyle': {
-      const { $value, aliasOf } = token.mode[mode]!;
+    case 'strokeStyle':
       return transformStrokeStyleValue($value, { aliasOf, transformAlias });
-    }
-    case 'transition': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'transition':
       return transformTransitionValue($value, { aliasOf, partialAliasOf, transformAlias });
-    }
-    case 'typography': {
-      const { $value, aliasOf, partialAliasOf } = token.mode[mode]!;
+    case 'typography':
       return transformTypographyValue($value as Record<string, string>, { aliasOf, partialAliasOf, transformAlias });
-    }
   }
 }

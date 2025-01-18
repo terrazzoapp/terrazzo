@@ -18,9 +18,7 @@ export default function pluginJS(options?: JSPluginOptions): Plugin {
         return;
       }
 
-      for (const id in tokens) {
-        const token = tokens[id]!;
-
+      for (const [id, token] of Object.entries(tokens)) {
         // .d.ts (only default "." mode needed)
         setTransform(id, {
           format: FORMAT_DTS_ID,
@@ -32,7 +30,7 @@ export default function pluginJS(options?: JSPluginOptions): Plugin {
         });
 
         // .js (all modes)
-        for (const mode in token.mode) {
+        for (const mode of Object.keys(token.mode)) {
           if (customTransform) {
             const transformedValue = customTransform(token, mode);
             if (transformedValue !== undefined && transformedValue !== null) {

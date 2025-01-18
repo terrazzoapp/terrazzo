@@ -50,6 +50,7 @@
     --ds-color-control-border-focus: var(--ds-color-blue-7);
     --ds-color-hdr-blue: #0089ff;
     --ds-color-text-action: var(--ds-color-blue-6);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -67,12 +68,14 @@
   --ds-color-control-border-focus: var(--ds-color-blue-7);
   --ds-color-hdr-blue: #0089ff;
   --ds-color-text-action: var(--ds-color-blue-6);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: p3) {
     :root {
       --ds-color-hdr-blue: #0087ff;
+      --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
 }
@@ -80,6 +83,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
     --ds-color-hdr-blue: #0087ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -87,6 +91,7 @@
   @media (color-gamut: rec2020) {
     :root {
       --ds-color-hdr-blue: #0087ff;
+      --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
 }
@@ -94,6 +99,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
     --ds-color-hdr-blue: #0087ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -112,6 +118,7 @@
     --ds-color-control-border-focus: var(--ds-color-blue-6);
     --ds-color-hdr-blue: #2389ff;
     --ds-color-text-action: var(--ds-color-blue-5);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -129,12 +136,14 @@
   --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #2389ff;
   --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: p3) {
     :root {
       --ds-color-hdr-blue: #0d87ff;
+      --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
 }
@@ -142,6 +151,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
     --ds-color-hdr-blue: #0d87ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -149,6 +159,7 @@
   @media (color-gamut: rec2020) {
     :root {
       --ds-color-hdr-blue: #1b87ff;
+      --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
 }
@@ -156,6 +167,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
     --ds-color-hdr-blue: #1b87ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -170,18 +182,23 @@
   --ds-color-blue-7: #033d8b;
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #0089ff;
+  --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light-colorblind"] {
     --ds-color-hdr-blue: #0087ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-colorblind"] {
     --ds-color-hdr-blue: #0087ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -196,18 +213,23 @@
   --ds-color-blue-7: #022f7a;
   --ds-color-blue-8: #032563;
   --ds-color-blue-9: #021a4a;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #005bff;
+  --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light-high-contrast"] {
     --ds-color-hdr-blue: #005aff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-high-contrast"] {
     --ds-color-hdr-blue: #005aff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
@@ -222,7 +244,10 @@
   --ds-color-blue-7: #1b4b91;
   --ds-color-blue-8: #143d79;
   --ds-color-blue-9: #0f2d5c;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #4184e4;
+  --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 [data-color-theme="dark-high-contrast"] {
@@ -236,7 +261,10 @@
   --ds-color-blue-7: #2672f3;
   --ds-color-blue-8: #1e60d5;
   --ds-color-blue-9: #194fb1;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #34a0ff;
+  --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 [data-color-theme="dark-colorblind"] {
@@ -250,18 +278,23 @@
   --ds-color-blue-7: #0d419d;
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
+  --ds-color-control-border-focus: var(--ds-color-blue-6);
   --ds-color-hdr-blue: #2389ff;
+  --ds-color-text-action: var(--ds-color-blue-5);
+  --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="dark-colorblind"] {
     --ds-color-hdr-blue: #0d87ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="dark-colorblind"] {
     --ds-color-hdr-blue: #1b87ff;
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 

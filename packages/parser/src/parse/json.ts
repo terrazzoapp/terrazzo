@@ -55,18 +55,15 @@ export function getObjMembers(node: ObjectNode): Record<string | number, ValueNo
 }
 
 /**
- * Inject members to ObjectNode and return a clone
+ * Inject members to ObjectNode
  * @param {ObjectNode} node
  * @param {MemberNode[]} members
- * @return {ObjectNode}
  */
-export function injectObjMembers(node: ObjectNode, members: MemberNode[] = []): ObjectNode {
+export function injectObjMembers(node: ObjectNode, members: MemberNode[] = []) {
   if (node.type !== 'Object') {
-    return node;
+    return;
   }
-  const newNode = structuredClone(node);
-  newNode.members.push(...members);
-  return newNode;
+  node.members.push(...members);
 }
 
 /**

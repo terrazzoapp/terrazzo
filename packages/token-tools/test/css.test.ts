@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
   transformBooleanValue,
+  transformCSSValue,
   transformColorValue,
   transformCubicBezierValue,
   transformDimensionValue,
@@ -12,6 +13,7 @@ import {
   transformShadowValue,
   transformTypographyValue,
 } from '../src/css/index.js';
+import type { TokenNormalized } from '../src/types.js';
 
 type Test<Given = any, Want = any> = [
   string,
@@ -39,6 +41,74 @@ describe('makeCSSVar', () => {
     let result: typeof want.success;
     try {
       result = makeCSSVar(...given);
+    } catch (err) {
+      expect((err as Error).message).toBe(want.error);
+    }
+    expect(result).toEqual(want.success);
+  });
+});
+
+describe('transformCSSValue', () => {
+  const tests: Test<Parameters<typeof transformCSSValue>, ReturnType<typeof transformCSSValue>>[] = [
+    [
+      'basic',
+      {
+        given: [
+          {
+            id: 'color.blue.6',
+            $type: 'color',
+            originalValue: { $type: 'color', $value: '#0000ff' },
+            $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
+            mode: {
+              '.': {
+                id: 'color.blue.6',
+                $type: 'color',
+                originalValue: { $type: 'color', $value: '#0000ff' },
+                $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
+              },
+            },
+          } as TokenNormalized,
+          { mode: '.', transformAlias: (id) => `--${id}` },
+        ],
+        want: { success: 'color(srgb 0 0 1)' },
+      },
+    ],
+    [
+      'aliasing',
+      {
+        given: [
+          {
+            $type: 'boolean',
+            $value: false,
+            id: 'bool.idk',
+            mode: {
+              '.': {
+                $type: 'boolean',
+                $value: false,
+                id: 'bool.idk',
+                originalValue: { $value: '{bool.nuh-uh}' },
+                group: { id: 'bool', tokens: [] },
+                source: {} as any,
+                aliasOf: 'bool.nuh-uh',
+                aliasChain: ['bool.nuh-uh'],
+              },
+            },
+            originalValue: { $value: '{bool.nuh-uh}' },
+            group: { id: 'bool', tokens: [] },
+            source: {} as any,
+            aliasOf: 'bool.nuh-uh',
+            aliasChain: ['bool.nuh-uh'],
+          },
+          { mode: '.' },
+        ],
+        want: { success: 'var(--bool-nuh-uh)' },
+      },
+    ],
+  ];
+  it.each(tests)('%s', (_, { given, want }) => {
+    let result: typeof want.success;
+    try {
+      result = transformCSSValue(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }

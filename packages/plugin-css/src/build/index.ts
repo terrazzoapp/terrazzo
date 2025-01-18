@@ -21,7 +21,8 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
   const rootTokens = getTransforms({ format: FORMAT_ID, mode: '.' });
   if (rootTokens.length) {
     const rootRule: CSSRule = { selectors: [':root'], declarations: {} };
-    // note: "nestedQuery" was designed specifically for higher-gamut colors to
+
+    // note: `nestedQuery` was designed specifically for higher-gamut colors to
     // apply color-gamut media queries to existing selectors (i.e. keep the same
     // targets, and apply another nested layer of media query filtering based on
     // hardware). Because of how CSS works they need to get built out into their
@@ -32,22 +33,26 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
     rules.push(rootRule, p3Rule, rec2020Rule);
 
     for (const token of rootTokens) {
+      // handle exclude (if any)
       if (isTokenMatch(token.token.id, exclude ?? [])) {
         continue;
       }
+
       const localID = token.localID ?? token.token.id;
 
-      // CSS fix: inside selectors, if the value updates, then all downstream aliases need to be re-scoped so the value isn’t stale
-      const aliasTokens = getTransforms({
-        format: FORMAT_ID,
-        mode: '.',
-        id: token.token.aliasedBy ?? [], // important: this needs to be an empty array if no aliases, so we don’t accidentally query for all tokens
-      });
+      // `aliasTokens` are an important concept unique to CSS: if the root value
+      // changes in a scope, all downstream aliases MUST be redeclared,
+      // otherwise the values are stale.  here, `aliasedBy` is a reverse lookup
+      // that lets us redeclare all CSS values again that are minimally-needed.
+      const aliasTokens = token.token.aliasedBy?.length
+        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
+        : [];
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         rootRule.declarations[localID] = token.value;
       }
+
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
         rootRule.declarations[localID] = token.value.srgb!;
@@ -64,6 +69,7 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
           }
         }
       }
+
       // multi-value token
       else if (token.type === 'MULTI_VALUE') {
         const shorthand = generateShorthand({ $type: token.token.$type, localID });
@@ -96,17 +102,15 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
 
-      // CSS fix: inside selectors, if the value updates, then all downstream aliases need to be re-scoped so the value isn’t stale
-      const aliasTokens = getTransforms({
-        format: FORMAT_ID,
-        mode,
-        id: token.token.aliasedBy ?? [], // important: this needs to be an empty array if no aliases, so we don’t accidentally query for all tokens
-      });
+      const aliasTokens = token.token.aliasedBy?.length
+        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
+        : [];
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         selectorRule.declarations[localID] = token.value;
       }
+
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
         selectorRule.declarations[localID] = token.value.srgb!;
@@ -123,6 +127,7 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
           }
         }
       }
+
       // multi-value token
       else {
         const shorthand = generateShorthand({ $type: token.token.$type, localID });

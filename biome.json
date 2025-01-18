@@ -39,7 +39,11 @@
       "suspicious": {
         "noConsoleLog": "error",
         "noFallthroughSwitchClause": "error",
-        "noExplicitAny": "warn"
+        "noExplicitAny": "warn",
+        "noShadowRestrictedNames": "error"
+      },
+      "nursery": {
+        "useGuardForIn": "error"
       }
     }
   },
@@ -49,8 +53,7 @@
       "linter": {
         "rules": {
           "suspicious": {
-            "noExplicitAny": "off",
-            "noShadowRestrictedNames": "error"
+            "noExplicitAny": "off"
           }
         }
       }

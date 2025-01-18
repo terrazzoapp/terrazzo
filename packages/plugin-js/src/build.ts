@@ -15,10 +15,10 @@ export function buildJS({ getTransforms }: { getTransforms: BuildHookOptions['ge
 
   // body
   output.push('export const tokens = {');
-  for (const id in tokenVals) {
+  for (const [id, tokenValue] of Object.entries(tokenVals)) {
     output.push(`  "${id}": {`);
-    for (const mode in tokenVals[id]) {
-      output.push(`    "${mode}": ${tokenVals[id]![mode]},`);
+    for (const [mode, modeValue] of Object.entries(tokenValue)) {
+      output.push(`    "${mode}": ${modeValue},`);
     }
     output.push('  },');
   }
