@@ -35,9 +35,8 @@ describe('Tokens', () => {
     if (result) {
       expect(want.tokens).toBeTruthy();
       expect(want.error).toBeUndefined();
-      for (const id in result.tokens) {
-        const { source, ...token } = result.tokens[id]!;
-        expect(source).not.toBeFalsy();
+      for (const [id, token] of Object.entries(result.tokens)) {
+        expect(token.source).not.toBeFalsy();
         expect(token.$value).toEqual(want.tokens![id]);
       }
     }
@@ -2604,8 +2603,8 @@ describe('Additional cases', () => {
     it.each(tests)('%s', async (_, { given, want }) => {
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
-      for (const id in want) {
-        expect(tokens[id]!.$value).toEqual(want[id]);
+      for (const [id, value] of Object.entries(want)) {
+        expect(tokens[id]!.$value).toEqual(value);
       }
     });
   });
@@ -2764,11 +2763,11 @@ describe('Additional cases', () => {
     it.each(tests)('%s', async (_, { given, want }) => {
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
-      for (const id in want) {
-        for (const mode in want[id]!) {
+      for (const [id, value] of Object.entries(want)) {
+        for (const [mode, wantedValue] of Object.entries(value!)) {
           const { source, ...modeValue } = tokens[id]!.mode[mode]!;
           expect(source).not.toBeFalsy();
-          expect(modeValue).toEqual(want[id][mode]);
+          expect(modeValue).toEqual(wantedValue);
         }
       }
     });

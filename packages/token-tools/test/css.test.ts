@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
   transformBooleanValue,
-  transformColorValue,
   transformCSSValue,
+  transformColorValue,
   transformCubicBezierValue,
   transformDimensionValue,
   transformDurationValue,
