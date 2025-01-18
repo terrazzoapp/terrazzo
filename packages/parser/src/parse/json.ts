@@ -49,8 +49,7 @@ export function getObjMembers(node: ObjectNode): Record<string | number, ValueNo
     if (m.name.type !== 'String') {
       continue;
     }
-    members[m.name.value] = structuredClone(m.value) as ValueNodeWithIndex;
-    members[m.name.value]!.index = i;
+    members[m.name.value] = { ...m.value, index: i };
   }
   return members;
 }
@@ -177,11 +176,12 @@ export function toMomoa(
       try {
         document = yamlToMomoa(input); // if string, but not JSON, attempt YAML
       } catch (err) {
-        logger.error({ group: 'parser', message: String(err), filename, src: input, continueOnError });
+        logger.error({ group: 'parser', label: 'json', message: String(err), filename, src: input, continueOnError });
       }
     } else {
       logger.error({
         group: 'parser',
+        label: 'yaml',
         message: `Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
 
     import { parse } from '@terrazzo/parser';

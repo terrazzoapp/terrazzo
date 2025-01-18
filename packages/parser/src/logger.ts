@@ -43,8 +43,6 @@ export interface DebugEntry {
   timing?: number;
 }
 
-const DEBUG_GROUP_COLOR: Record<string, typeof pc.red | undefined> = { core: pc.green, plugin: pc.magenta };
-
 const MESSAGE_COLOR: Record<string, typeof pc.red | undefined> = { error: pc.red, warn: pc.yellow };
 
 const timeFormatter = new Intl.DateTimeFormat('en-us', {
@@ -62,6 +60,7 @@ const timeFormatter = new Intl.DateTimeFormat('en-us', {
  */
 export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   let message = entry.message;
+  message = `[${entry.group}${entry.label ? `:${entry.label}` : ''}] ${message}`;
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity]!(message);
   }
@@ -101,10 +100,7 @@ export default class Logger {
   /** Log an error message (always; can’t be silenced) */
   error(entry: LogEntry) {
     this.errorCount++;
-    let message = formatMessage(entry, 'error');
-    if (entry.group) {
-      message = `${pc.bold(entry.group)}${entry.label ? `:${entry.label}` : ''} ${message}`;
-    }
+    const message = formatMessage(entry, 'error');
     if (entry.continueOnError) {
       console.error(message);
       return;
@@ -122,8 +118,9 @@ export default class Logger {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
       return;
     }
+    const message = formatMessage(entry, 'info');
     // biome-ignore lint/suspicious/noConsoleLog: this is its job
-    console.log(formatMessage(entry, 'info'));
+    console.log(message);
   }
 
   /** Log a warning message (if logging level permits) */
@@ -132,7 +129,8 @@ export default class Logger {
     if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
       return;
     }
-    console.warn(formatMessage(entry, 'warn'));
+    const message = formatMessage(entry, 'warn');
+    console.warn(message);
   }
 
   /** Log a diagnostics message (if logging level permits) */
@@ -148,9 +146,15 @@ export default class Logger {
     if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
       return;
     }
-    message = `${(DEBUG_GROUP_COLOR[entry.group] || pc.white)(debugPrefix)} ${pc.dim(
-      timeFormatter.format(performance.now()),
-    )} ${message}`;
+
+    // debug color
+    message
+      .replace(/\[config[^\]]+\]/, (match) => pc.green(match))
+      .replace(/\[parser[^\]]+\]/, (match) => pc.magenta(match))
+      .replace(/\[lint[^\]]+\]/, (match) => pc.yellow(match))
+      .replace(/\[plugin[^\]]+\]/, (match) => pc.cyan(match));
+
+    message = `${pc.dim(timeFormatter.format(performance.now()))} ${message}`;
     if (typeof entry.timing === 'number') {
       let timing = '';
       if (entry.timing < 1_000) {

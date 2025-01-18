@@ -18,7 +18,7 @@ describe('tz build', () => {
       await expect(() => execa('node', [cmd, 'build'], { cwd })).rejects.toThrowErrorMatchingInlineSnapshot(`
         [ExecaError: Command failed with exit code 1: node ../../../bin/cli.js build
 
-        ✗  Could not locate tokens.json. To create one, run \`npx tz init\`.]
+        ✗  [config] Could not locate tokens.json. To create one, run \`npx tz init\`.]
       `);
     });
 
@@ -27,7 +27,7 @@ describe('tz build', () => {
       await expect(() => execa('node', [cmd, 'build'], { cwd })).rejects.toThrowErrorMatchingInlineSnapshot(`
         [ExecaError: Command failed with exit code 1: node ../../../bin/cli.js build
 
-        ✗  No default export found in terrazzo.config.js. See https://terrazzo.dev/docs/cli for instructions.]
+        ✗  [config] No default export found in terrazzo.config.js. See https://terrazzo.dev/docs/cli for instructions.]
       `);
     });
   });

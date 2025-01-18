@@ -25,7 +25,7 @@ describe('Tokens', () => {
       result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
       const err = e as TokensJSONError;
-      expect(stripAnsi(err.message.replace(/^parser:(validate|alias|normalize)\s*/, ''))).toBe(want.error);
+      expect(stripAnsi(err.message.replace(/^\[parser:(validate|alias|normalize)\]\s*/, ''))).toBe(want.error);
 
       // ensure TokenValidationError contains necessary properties
       // expect(err.node?.type?.length).toBeGreaterThan(0);
@@ -2319,7 +2319,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow;
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "parser Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+        "[parser:yaml] Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
 
             import { parse } from '@terrazzo/parser';
             import yamlToMomoa from 'yaml-to-momoa';
@@ -2346,7 +2346,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow();
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "parser YAMLParseError: All mapping items must start at the same column at line 3, column 1:
+        "[parser:json] YAMLParseError: All mapping items must start at the same column at line 3, column 1:
 
           - foo: true
           false
@@ -2427,7 +2427,7 @@ describe('Additional cases', () => {
       expect(true).toBe(false);
     } catch (err) {
       expect(stripAnsi(String(err))).toMatchInlineSnapshot(`
-        "TokensJSONError: parser:normalize Unable to parse color "#646464)"
+        "TokensJSONError: [parser:normalize] Unable to parse color "#646464)"
 
         /tokens.json:45:29
 

@@ -217,7 +217,7 @@ async function parseSingle(
   const { src, document } = toMomoa(input, { filename, logger, continueOnError, yamlToMomoa });
   logger.debug({
     group: 'parser',
-    label: 'parse',
+    label: 'json',
     message: 'Finish JSON parsing',
     timing: performance.now() - startParsing,
   });

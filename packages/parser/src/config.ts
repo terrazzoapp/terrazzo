@@ -154,7 +154,7 @@ function normalizePlugins({ config, logger }: { config: ConfigInit; logger: Logg
 function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger }) {
   if (config.lint !== undefined) {
     if (config.lint === null || typeof config.lint !== 'object' || Array.isArray(config.lint)) {
-      logger.error({ group: 'config', label: '[config] lint', message: 'Must be an object' });
+      logger.error({ group: 'config', label: 'lint', message: 'Must be an object' });
     }
     if (!config.lint.build) {
       config.lint.build = { enabled: true };
