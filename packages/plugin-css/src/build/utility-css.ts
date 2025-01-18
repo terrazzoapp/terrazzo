@@ -101,7 +101,7 @@ export default function generateUtilityCSS(
 
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
             const declarations: Record<string, string> = {};
-            for (const k in token.value) {
+            for (const k of Object.keys(token.value)) {
               declarations[k] = makeCSSVar(`${token.localID ?? token.token.id}-${k}`, { wrapVar: true });
             }
             output.push({ selectors: [selector], declarations });

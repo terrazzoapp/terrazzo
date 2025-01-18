@@ -29,7 +29,7 @@ export default function defineConfig(
 
   // 2. Start build by calling config()
   for (const plugin of config.plugins) {
-    plugin.config?.({ ...config });
+    plugin.config?.(structuredClone(config));
   }
 
   // 3. finish

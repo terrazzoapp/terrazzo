@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#416](https://github.com/terrazzoapp/terrazzo/pull/416) [`822c956`](https://github.com/terrazzoapp/terrazzo/commit/822c95666c18da1c591ee232e6f62cc1b1ae968d) Thanks [@drwpow](https://github.com/drwpow)! - [cli,parser,plugin-css,token-tools] ⚠️ Breaking change: CSS variables updated to closer match Cobalt 1.0 behavior
+- [#416](https://github.com/terrazzoapp/terrazzo/pull/416) [`822c956`](https://github.com/terrazzoapp/terrazzo/commit/822c95666c18da1c591ee232e6f62cc1b1ae968d) Thanks [@drwpow](https://github.com/drwpow)! - fix: ⚠️ Breaking change: CSS variables updated to closer match Cobalt 1.0 behavior
 
 ### Patch Changes
 
@@ -16,7 +16,7 @@
 
 ### Patch Changes
 
-- [#414](https://github.com/terrazzoapp/terrazzo/pull/414) [`fd8fb6b`](https://github.com/terrazzoapp/terrazzo/commit/fd8fb6bf18b9353d8ea7482b23bd80f35a05af9a) Thanks [@drwpow](https://github.com/drwpow)! - Enable debugging in CLI
+- [#414](https://github.com/terrazzoapp/terrazzo/pull/414) [`fd8fb6b`](https://github.com/terrazzoapp/terrazzo/commit/fd8fb6bf18b9353d8ea7482b23bd80f35a05af9a) Thanks [@drwpow](https://github.com/drwpow)! - feat: Enable debugging in CLI
 
 - Updated dependencies [[`fd8fb6b`](https://github.com/terrazzoapp/terrazzo/commit/fd8fb6bf18b9353d8ea7482b23bd80f35a05af9a)]:
   - @terrazzo/parser@0.3.5
@@ -26,7 +26,7 @@
 
 ### Patch Changes
 
-- [#408](https://github.com/terrazzoapp/terrazzo/pull/408) [`6f97566`](https://github.com/terrazzoapp/terrazzo/commit/6f97566ea83b7bcb42befd36aa618d52ec6e758f) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug where setTransform() would not properly deduplicate token values
+- [#408](https://github.com/terrazzoapp/terrazzo/pull/408) [`6f97566`](https://github.com/terrazzoapp/terrazzo/commit/6f97566ea83b7bcb42befd36aa618d52ec6e758f) Thanks [@drwpow](https://github.com/drwpow)! - fix: setTransform() would not properly deduplicate token values
 
 - Updated dependencies [[`6f97566`](https://github.com/terrazzoapp/terrazzo/commit/6f97566ea83b7bcb42befd36aa618d52ec6e758f)]:
   - @terrazzo/token-tools@0.3.4
@@ -36,7 +36,7 @@
 
 ### Patch Changes
 
-- [#400](https://github.com/terrazzoapp/terrazzo/pull/400) [`9d888a6`](https://github.com/terrazzoapp/terrazzo/commit/9d888a65014b90fec90462cf8dc69f323f6e486b) Thanks [@drwpow](https://github.com/drwpow)! - Fix tz init "outDir" typo
+- [#400](https://github.com/terrazzoapp/terrazzo/pull/400) [`9d888a6`](https://github.com/terrazzoapp/terrazzo/commit/9d888a65014b90fec90462cf8dc69f323f6e486b) Thanks [@drwpow](https://github.com/drwpow)! - fix: tz init "outDir" typo
 
 - Updated dependencies [[`9d888a6`](https://github.com/terrazzoapp/terrazzo/commit/9d888a65014b90fec90462cf8dc69f323f6e486b)]:
   - @terrazzo/token-tools@0.3.3
@@ -46,7 +46,7 @@
 
 ### Patch Changes
 
-- [#396](https://github.com/terrazzoapp/terrazzo/pull/396) [`4d1294d`](https://github.com/terrazzoapp/terrazzo/commit/4d1294d5695cf36cee65133b18f480d189911de2) Thanks [@drwpow](https://github.com/drwpow)! - Color tokens: add hex fallback for tokens parsed from hex
+- [#396](https://github.com/terrazzoapp/terrazzo/pull/396) [`4d1294d`](https://github.com/terrazzoapp/terrazzo/commit/4d1294d5695cf36cee65133b18f480d189911de2) Thanks [@drwpow](https://github.com/drwpow)! - feat: Color tokens: add hex fallback for tokens parsed from hex
 
 - Updated dependencies [[`4d1294d`](https://github.com/terrazzoapp/terrazzo/commit/4d1294d5695cf36cee65133b18f480d189911de2)]:
   - @terrazzo/token-tools@0.3.2
@@ -56,7 +56,7 @@
 
 ### Patch Changes
 
-- [#393](https://github.com/terrazzoapp/terrazzo/pull/393) [`3ac154f`](https://github.com/terrazzoapp/terrazzo/commit/3ac154fe499a828ebf0bff033a5da302cccb7793) Thanks [@drwpow](https://github.com/drwpow)! - Improve error message for tz normalize
+- [#393](https://github.com/terrazzoapp/terrazzo/pull/393) [`3ac154f`](https://github.com/terrazzoapp/terrazzo/commit/3ac154fe499a828ebf0bff033a5da302cccb7793) Thanks [@drwpow](https://github.com/drwpow)! - fix: Improve error message for tz normalize
 
 - Updated dependencies [[`3ac154f`](https://github.com/terrazzoapp/terrazzo/commit/3ac154fe499a828ebf0bff033a5da302cccb7793)]:
   - @terrazzo/parser@0.3.1
@@ -66,7 +66,7 @@
 
 ### Minor Changes
 
-- [#391](https://github.com/terrazzoapp/terrazzo/pull/391) [`8e6810c`](https://github.com/terrazzoapp/terrazzo/commit/8e6810c33aded376aca58ebf2f28ad20aa3a06b1) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: Remove dash around numbers in CSS var names
+- [#391](https://github.com/terrazzoapp/terrazzo/pull/391) [`8e6810c`](https://github.com/terrazzoapp/terrazzo/commit/8e6810c33aded376aca58ebf2f28ad20aa3a06b1) Thanks [@drwpow](https://github.com/drwpow)! - fix: ⚠️ Breaking change: Remove dash around numbers in CSS var names
 
 ### Patch Changes
 
@@ -78,9 +78,9 @@
 
 ### Patch Changes
 
-- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - Fix incorrect parsing of typography tokens’ lineHeight when it’s a dimension value.
+- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - fix: Incorrect parsing of typography tokens’ lineHeight when it’s a dimension value.
 
-- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - Fix warning on parsing dimension tokens in typography tokens
+- [#387](https://github.com/terrazzoapp/terrazzo/pull/387) [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b) Thanks [@drwpow](https://github.com/drwpow)! - fix: Warning on parsing dimension tokens in typography tokens
 
 - Updated dependencies [[`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b), [`f14224b`](https://github.com/terrazzoapp/terrazzo/commit/f14224b5ae3dcf31d1a67a2f3346ffabfe7dc71b)]:
   - @terrazzo/parser@0.2.9
@@ -90,7 +90,7 @@
 
 ### Patch Changes
 
-- [#380](https://github.com/terrazzoapp/terrazzo/pull/380) [`a18c0a9`](https://github.com/terrazzoapp/terrazzo/commit/a18c0a972b6e6c19f2c0856e10326d96a838fcd2) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug in normalize where modes were skipped over
+- [#380](https://github.com/terrazzoapp/terrazzo/pull/380) [`a18c0a9`](https://github.com/terrazzoapp/terrazzo/commit/a18c0a972b6e6c19f2c0856e10326d96a838fcd2) Thanks [@drwpow](https://github.com/drwpow)! - fix: Bug in normalize where modes were skipped over
 
 - Updated dependencies [[`a18c0a9`](https://github.com/terrazzoapp/terrazzo/commit/a18c0a972b6e6c19f2c0856e10326d96a838fcd2)]:
   - @terrazzo/parser@0.2.8
@@ -100,7 +100,7 @@
 
 ### Patch Changes
 
-- [#376](https://github.com/terrazzoapp/terrazzo/pull/376) [`059b62a`](https://github.com/terrazzoapp/terrazzo/commit/059b62a95d1a7ec9667baef3dc695200a454eb61) Thanks [@drwpow](https://github.com/drwpow)! - Loosen up source type for parse()
+- [#376](https://github.com/terrazzoapp/terrazzo/pull/376) [`059b62a`](https://github.com/terrazzoapp/terrazzo/commit/059b62a95d1a7ec9667baef3dc695200a454eb61) Thanks [@drwpow](https://github.com/drwpow)! - fix: Loosen up source type for parse()
 
 - Updated dependencies [[`059b62a`](https://github.com/terrazzoapp/terrazzo/commit/059b62a95d1a7ec9667baef3dc695200a454eb61)]:
   - @terrazzo/parser@0.2.7
@@ -110,7 +110,7 @@
 
 ### Patch Changes
 
-- [#374](https://github.com/terrazzoapp/terrazzo/pull/374) [`cb64063`](https://github.com/terrazzoapp/terrazzo/commit/cb640631220f1abb72dd9e39806c5e1b61e92baf) Thanks [@drwpow](https://github.com/drwpow)! - Add normalize CLI command, which can upgrade a giant tokens file to the latest DTCG format.
+- [#374](https://github.com/terrazzoapp/terrazzo/pull/374) [`cb64063`](https://github.com/terrazzoapp/terrazzo/commit/cb640631220f1abb72dd9e39806c5e1b61e92baf) Thanks [@drwpow](https://github.com/drwpow)! - feat: Add normalize CLI command, which can upgrade a giant tokens file to the latest DTCG format.
 
 - Updated dependencies [[`cb64063`](https://github.com/terrazzoapp/terrazzo/commit/cb640631220f1abb72dd9e39806c5e1b61e92baf)]:
   - @terrazzo/token-tools@0.2.6

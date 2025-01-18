@@ -16,7 +16,7 @@ export function transformBorderValue(
   }: {
     aliasOf?: string;
     partialAliasOf?: Partial<Record<keyof typeof value, string>>;
-    transformAlias: IDGenerator;
+    transformAlias?: IDGenerator;
     color?: { legacyHex?: boolean };
   },
 ) {

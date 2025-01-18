@@ -87,14 +87,14 @@ function validateMembersAs(
   { filename, src, logger }: ValidateOptions,
 ) {
   const members = getObjMembers($value);
-  for (const property in properties) {
-    const { validator, required } = properties[property]!;
-    if (!members[property]) {
+  for (const [name, value] of Object.entries(properties)) {
+    const { validator, required } = value;
+    if (!members[name]) {
       if (required) {
         logger.error({
           group: 'parser',
           label: 'validate',
-          message: `Missing required property "${property}"`,
+          message: `Missing required property "${name}"`,
           filename,
           node: $value,
           src,
@@ -102,11 +102,11 @@ function validateMembersAs(
       }
       continue;
     }
-    const value = members[property];
-    if (isMaybeAlias(value)) {
-      validateAliasSyntax(value, node, { filename, src, logger });
+    const memberValue = members[name];
+    if (isMaybeAlias(memberValue)) {
+      validateAliasSyntax(memberValue, node, { filename, src, logger });
     } else {
-      validator(value, node, { filename, src, logger });
+      validator(memberValue, node, { filename, src, logger });
     }
   }
 }
@@ -152,6 +152,7 @@ export function validateBorder($value: ValueNode, node: AnyNode, { filename, src
 
 /** Verify a Color token is valid */
 export function validateColor($value: ValueNode, node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type === 'String') {
     // TODO: enable when object notation is finalized
     // logger.warn({
@@ -161,14 +162,7 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
     //   src,
     // });
     if ($value.value === '') {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: 'Expected color, received empty string',
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: 'Expected color, received empty string' });
     }
   } else if ($value.type === 'Object') {
     validateMembersAs(
@@ -178,22 +172,16 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
           validator: (v) => {
             if (v.type !== 'String') {
               logger.error({
-                group: 'parser',
-                label: 'validate',
+                ...baseMessage,
                 message: `Expected string, received ${print(v)}`,
-                filename,
                 node: v,
-                src,
               });
             }
             if (!VALID_COLORSPACES.has((v as StringNode).value)) {
               logger.error({
-                group: 'parser',
-                label: 'validate',
+                ...baseMessage,
                 message: `Unsupported colorspace ${print(v)}`,
-                filename,
                 node: v,
-                src,
               });
             }
           },
@@ -203,33 +191,24 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
           validator: (v) => {
             if (v.type !== 'Array') {
               logger.error({
-                group: 'parser',
-                label: 'validate',
+                ...baseMessage,
                 message: `Expected array, received ${print(v)}`,
-                filename,
                 node: v,
-                src,
               });
             } else {
               if (v.elements?.length !== 3) {
                 logger.error({
-                  group: 'parser',
-                  label: 'validate',
+                  ...baseMessage,
                   message: `Expected 3 channels, received ${v.elements?.length ?? 0}`,
-                  filename,
                   node: v,
-                  src,
                 });
               }
               for (const element of v.elements) {
                 if (element.value.type !== 'Number') {
                   logger.error({
-                    group: 'parser',
-                    label: 'validate',
+                    ...baseMessage,
                     message: `Expected number, received ${print(element.value)}`,
-                    filename,
                     node: element,
-                    src,
                   });
                 }
               }
@@ -250,12 +229,9 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
               !/^#[a-f0-9]{3,8}$/i.test(v.value)
             ) {
               logger.error({
-                group: 'parser',
-                label: 'validate',
+                ...baseMessage,
                 message: `Invalid hex color ${print(v)}`,
-                filename,
                 node: v,
-                src,
               });
             }
           },
@@ -267,47 +243,24 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
     );
   } else {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: `Expected object, received ${$value.type}`,
-      filename,
       node: $value,
-      src,
     });
   }
 }
 
 /** Verify a Cubic Bézier token is valid */
 export function validateCubicBezier($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type !== 'Array') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected array of strings, received ${print($value)}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected array of strings, received ${print($value)}` });
   } else if (
     !$value.elements.every((e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)))
   ) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Expected an array of 4 numbers, received some non-numbers',
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Expected an array of 4 numbers, received some non-numbers' });
   } else if ($value.elements.length !== 4) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected an array of 4 numbers, received ${$value.elements.length}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected an array of 4 numbers, received ${$value.elements.length}` });
   }
 }
 
@@ -316,90 +269,50 @@ export function validateDimension($value: ValueNode, _node: AnyNode, { filename,
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
+
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
+
+  // Give priority to object notation because it’s a faster code path
   if ($value.type === 'Object') {
     const { value, unit } = getObjMembers($value);
     if (!value) {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: 'Missing required property "value".',
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: 'Missing required property "value".' });
     }
     if (!unit) {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: 'Missing required property "unit".',
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: 'Missing required property "unit".' });
     }
     if (value!.type !== 'Number') {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Expected number, received ${value!.type}`,
-        filename,
         node: value,
-        src,
       });
     }
     if (!['px', 'em', 'rem'].includes((unit as StringNode).value)) {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Expected unit "px", "em", or "rem", received ${print(unit as StringNode)}`,
-        filename,
         node: unit,
-        src,
       });
     }
     return;
   }
+
   // Backwards compat: string
   if ($value.type !== 'String') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected string, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected string, received ${$value.type}` });
   }
   const value = ($value as StringNode).value.match(/^-?[0-9.]+/)?.[0];
   const unit = ($value as StringNode).value.replace(value!, '');
   if (($value as StringNode).value === '') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Expected dimension, received empty string',
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Expected dimension, received empty string' });
   } else if (!['px', 'em', 'rem'].includes(unit)) {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: `Expected unit "px", "em", or "rem", received ${JSON.stringify(unit || ($value as StringNode).value)}`,
-      filename,
-      node: $value,
-      src,
     });
   } else if (!Number.isFinite(Number.parseFloat(value!))) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected dimension with units, received ${print($value)}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected dimension with units, received ${print($value)}` });
   }
 }
 
@@ -408,183 +321,101 @@ export function validateDuration($value: ValueNode, _node: AnyNode, { filename, 
   if ($value.type === 'Number' && $value.value === 0) {
     return; // `0` is a valid number
   }
+
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
+
+  // Give priority to object notation because it’s a faster code path
   if ($value.type === 'Object') {
     const { value, unit } = getObjMembers($value);
     if (!value) {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: 'Missing required property "value".',
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: 'Missing required property "value".' });
     }
     if (!unit) {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: 'Missing required property "unit".',
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: 'Missing required property "unit".' });
     }
     if (value?.type !== 'Number') {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Expected number, received ${value?.type}`,
-        filename,
         node: value,
-        src,
       });
     }
     if (!['ms', 's'].includes((unit as StringNode).value)) {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Expected unit "ms" or "s", received ${print(unit!)}`,
-        filename,
         node: unit,
-        src,
       });
     }
     return;
   }
+
   // Backwards compat: string
   if ($value.type !== 'String') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected string, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected string, received ${$value.type}` });
   }
   const value = ($value as StringNode).value.match(/^-?[0-9.]+/)?.[0]!;
   const unit = ($value as StringNode).value.replace(value, '');
   if (($value as StringNode).value === '') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Expected duration, received empty string',
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Expected duration, received empty string' });
   } else if (!['ms', 's'].includes(unit)) {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: `Expected unit "ms" or "s", received ${JSON.stringify(unit || ($value as StringNode).value)}`,
-      filename,
-      node: $value,
-      src,
     });
   } else if (!Number.isFinite(Number.parseFloat(value))) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected duration with units, received ${print($value)}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected duration with units, received ${print($value)}` });
   }
 }
 
 /**  Verify a Font Family token is valid */
 export function validateFontFamily($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type !== 'String' && $value.type !== 'Array') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected string or array of strings, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected string or array of strings, received ${$value.type}` });
   }
   if ($value.type === 'String' && $value.value === '') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Expected font family name, received empty string',
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Expected font family name, received empty string' });
   }
   if ($value.type === 'Array' && !$value.elements.every((e) => e.value.type === 'String' && e.value.value !== '')) {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: 'Expected an array of strings, received some non-strings or empty strings',
-      filename,
-      node: $value,
-      src,
     });
   }
 }
 
 /** Verify a Font Weight token is valid */
 export function validateFontWeight($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type !== 'String' && $value.type !== 'Number') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected a font weight name or number 0–1000, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected a font weight name or number 0–1000, received ${$value.type}` });
   }
   if ($value.type === 'String' && !FONT_WEIGHT_VALUES.has($value.value)) {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: `Unknown font weight ${print($value)}. Expected one of: ${listFormat.format([...FONT_WEIGHT_VALUES])}.`,
-      filename,
-      node: $value,
-      src,
     });
   }
   if ($value.type === 'Number' && ($value.value < 0 || $value.value > 1000)) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected number 0–1000, received ${print($value)}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected number 0–1000, received ${print($value)}` });
   }
 }
 
 /** Verify a Gradient token is valid */
 export function validateGradient($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
+
   if ($value.type !== 'Array') {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected array of gradient stops, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected array of gradient stops, received ${$value.type}` });
   } else {
     for (let i = 0; i < $value.elements.length; i++) {
       const element = $value.elements[i]!;
       if (element.value.type !== 'Object') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Stop #${i + 1}: Expected gradient stop, received ${element.value.type}`,
-          filename,
           node: element,
-          src,
         });
         break;
       }
@@ -659,42 +490,33 @@ export function validateShadowLayer($value: ValueNode, node: AnyNode, { filename
 
 /** Verify a Stroke Style token is valid. */
 export function validateStrokeStyle($value: ValueNode, node: AnyNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
+
   // note: strokeStyle’s values are NOT aliasable (unless by string, but that breaks validations)
   if ($value.type === 'String') {
     if (!STROKE_STYLE_VALUES.has($value.value)) {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Unknown stroke style ${print($value)}. Expected one of: ${listFormat.format([
           ...STROKE_STYLE_VALUES,
         ])}.`,
-        filename,
-        node: $value,
-        src,
       });
     }
   } else if ($value.type === 'Object') {
     const strokeMembers = getObjMembers($value);
     for (const property of ['dashArray', 'lineCap']) {
       if (!strokeMembers[property]) {
-        logger.error({
-          group: 'parser',
-          label: 'validate',
-          message: `Missing required property "${property}"`,
-          filename,
-          node: $value,
-          src,
-        });
+        logger.error({ ...baseMessage, message: `Missing required property "${property}"` });
       }
     }
     const { lineCap, dashArray } = strokeMembers;
     if (lineCap?.type !== 'String' || !STROKE_STYLE_LINE_CAP_VALUES.has(lineCap.value)) {
       logger.error({
-        group: 'parser',
-        label: 'validate',
+        ...baseMessage,
         message: `Unknown lineCap value ${print(lineCap!)}. Expected one of: ${listFormat.format([
           ...STROKE_STYLE_LINE_CAP_VALUES,
         ])}.`,
+        node,
       });
     }
     if (dashArray?.type === 'Array') {
@@ -707,34 +529,17 @@ export function validateStrokeStyle($value: ValueNode, node: AnyNode, { filename
           }
         } else {
           logger.error({
-            group: 'parser',
-            label: 'validate',
+            ...baseMessage,
             message: 'Expected array of strings, recieved some non-strings or empty strings.',
-            filename,
             node: element,
-            src,
           });
         }
       }
     } else {
-      logger.error({
-        group: 'parser',
-        label: 'validate',
-        message: `Expected array of strings, received ${dashArray!.type}`,
-        filename,
-        node: $value,
-        src,
-      });
+      logger.error({ ...baseMessage, message: `Expected array of strings, received ${dashArray!.type}` });
     }
   } else {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: `Expected string or object, received ${$value.type}`,
-      filename,
-      node: $value,
-      src,
-    });
+    logger.error({ ...baseMessage, message: `Expected string or object, received ${$value.type}` });
   }
 }
 
@@ -769,17 +574,15 @@ export function validateTransition($value: ValueNode, node: AnyNode, { filename,
  * really helps in debug messages.
  */
 export function validateTokenMemberNode(node: MemberNode, { filename, src, logger }: ValidateOptions) {
+  const baseMessage = { group: 'parser' as const, label: 'validate', filename, node, src };
+
   if (node.type !== 'Member' && node.type !== 'Object') {
     logger.error({
-      group: 'parser',
-      label: 'validate',
+      ...baseMessage,
       message: `Expected Object, received ${JSON.stringify(
         // @ts-ignore Yes, TypeScript, this SHOULD be unexpected. This is why we’re validating.
         node.type,
       )}`,
-      filename,
-      node,
-      src,
     });
   }
 
@@ -788,14 +591,7 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
   const $type = rootMembers.$type as StringNode;
 
   if (!$value) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Token missing $value',
-      filename,
-      node,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Token missing $value' });
   }
   // If top-level value is a valid alias, this is valid (no need for $type)
   // ⚠️ Important: ALL Object and Array nodes below will need to check for aliases within!
@@ -805,14 +601,7 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
   }
 
   if (!$type) {
-    logger.error({
-      group: 'parser',
-      label: 'validate',
-      message: 'Token missing $type',
-      filename,
-      node,
-      src,
-    });
+    logger.error({ ...baseMessage, message: 'Token missing $type' });
   }
 
   switch ($type.value) {
@@ -853,12 +642,9 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
         }
       } else {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Expected shadow object or array of shadow objects, received ${$value.type}`,
-          filename,
           node: $value,
-          src,
         });
       }
       break;
@@ -868,12 +654,9 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
     case 'boolean': {
       if ($value.type !== 'Boolean') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Expected boolean, received ${$value.type}`,
-          filename,
           node: $value,
-          src,
         });
       }
       break;
@@ -881,21 +664,15 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
     case 'link': {
       if ($value.type !== 'String') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Expected string, received ${$value.type}`,
-          filename,
           node: $value,
-          src,
         });
       } else if ($value.value === '') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: 'Expected URL, received empty string',
-          filename,
           node: $value,
-          src,
         });
       }
       break;
@@ -903,12 +680,9 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
     case 'string': {
       if ($value.type !== 'String') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Expected string, received ${$value.type}`,
-          filename,
           node: $value,
-          src,
         });
       }
       break;
@@ -934,23 +708,17 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
     case 'typography': {
       if ($value.type !== 'Object') {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: `Expected object, received ${$value.type}`,
-          filename,
           node: $value,
-          src,
         });
         break;
       }
       if ($value.members.length === 0) {
         logger.error({
-          group: 'parser',
-          label: 'validate',
+          ...baseMessage,
           message: 'Empty typography token. Must contain at least 1 property.',
-          filename,
           node: $value,
-          src,
         });
       }
       validateMembersAs(
@@ -1034,7 +802,7 @@ export default function validateTokenNode(
     }
   }
   if (parent$type && !members.$type) {
-    sourceNode.value = injectObjMembers(
+    injectObjMembers(
       // @ts-ignore
       sourceNode.value,
       [parent$type],

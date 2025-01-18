@@ -328,6 +328,67 @@ font:
         },
       ],
       [
+        'valid: non-linear order (verify work isn’t being skipped)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                alias: {
+                  $type: 'color',
+                  a: { $value: '#808080' },
+                  b: { $value: '{alias.f}' },
+                  c: { $value: '{alias.e}' },
+                  d: { $value: '{alias.a}' },
+                  e: { $value: '{alias.d}' },
+                  f: { $value: '{alias.c}' },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              'alias.a': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.b': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.c': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.d': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.e': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+              'alias.f': {
+                alpha: 1,
+                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                colorSpace: 'srgb',
+                hex: '#808080',
+              },
+            },
+          },
+        },
+      ],
+      [
         'invalid: not found',
         {
           given: [
@@ -2634,6 +2695,7 @@ describe('Additional cases', () => {
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasedBy: ['color.semantic.bg'],
               },
               light: {
                 id: 'color.blue.7',
@@ -2661,6 +2723,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
@@ -2672,6 +2735,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
@@ -2683,6 +2747,7 @@ describe('Additional cases', () => {
                 id: 'color.semantic.bg',
                 $type: 'color',
                 aliasOf: 'color.blue.7',
+                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],

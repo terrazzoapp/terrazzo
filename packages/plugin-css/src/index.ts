@@ -29,10 +29,9 @@ export default function cssPlugin({
         return;
       }
 
-      for (const id in tokens) {
-        const token = tokens[id]!;
+      for (const [id, token] of Object.entries(tokens)) {
         const localID = transformName(id);
-        for (const mode in token.mode) {
+        for (const mode of Object.keys(token.mode)) {
           if (customTransform) {
             const value = customTransform(token, mode);
             if (value !== undefined && value !== null) {
@@ -42,11 +41,7 @@ export default function cssPlugin({
             }
           }
 
-          const transformedValue = transformCSSValue(token, {
-            mode,
-            transformAlias,
-            color: { legacyHex },
-          });
+          const transformedValue = transformCSSValue(token, { mode, transformAlias, color: { legacyHex } });
           if (transformedValue !== undefined) {
             setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
           }

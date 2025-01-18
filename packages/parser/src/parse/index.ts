@@ -118,9 +118,16 @@ export default async function parse(
       node: token.source.node,
       logger,
     });
+    token.mode['.']!.$type = token.$type;
     token.mode['.']!.$value = token.$value;
     if (token.aliasOf) {
       token.mode['.']!.aliasOf = token.aliasOf;
+    }
+    if (token.aliasChain) {
+      token.mode['.']!.aliasChain = token.aliasChain;
+    }
+    if (token.aliasedBy) {
+      token.mode['.']!.aliasedBy = token.aliasedBy;
     }
     if (token.partialAliasOf) {
       token.mode['.']!.partialAliasOf = token.partialAliasOf;
@@ -139,11 +146,11 @@ export default async function parse(
   logger.debug({
     message: `Resolved ${aliasCount} aliases`,
     group: 'parser',
-    label: 'aliases',
+    label: 'alias',
     timing: performance.now() - aliasesStart,
   });
 
-  // 6. resolve mode aliases
+  // 7. resolve mode aliases
   const modesStart = performance.now();
   let modeAliasCount = 0;
   for (const [id, token] of Object.entries(tokens)) {
@@ -160,13 +167,14 @@ export default async function parse(
         node: modeValue.source.node,
         logger,
         src: _sources[token.source.loc!]?.src as string,
+        skipReverseAlias: true,
       });
     }
   }
   logger.debug({
     message: `Resolved ${modeAliasCount} mode aliases`,
     group: 'parser',
-    label: 'modes',
+    label: 'alias',
     timing: performance.now() - modesStart,
   });
 

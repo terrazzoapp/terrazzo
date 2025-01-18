@@ -24,7 +24,7 @@ export function transformCompositeAlias<T extends {}>(
   { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf: string; transformAlias?: IDGenerator },
 ): Record<string, string> {
   const output: Record<string, string> = {};
-  for (const key in value) {
+  for (const key of Object.keys(value)) {
     output[kebabCase(key)] = transformAlias(`${aliasOf}-${key}`);
   }
   return output as Record<keyof T, string>;
