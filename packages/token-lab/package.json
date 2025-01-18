@@ -43,12 +43,12 @@
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
-    "dtcg-examples": "^0.1.2",
+    "dtcg-examples": "^0.1.4",
     "jotai": "^2.11.0",
     "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
-    "@types/react": "^19.0.6",
+    "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react-swc": "^3.7.2",
     "react": "19.0.0",
