@@ -176,11 +176,12 @@ export function toMomoa(
       try {
         document = yamlToMomoa(input); // if string, but not JSON, attempt YAML
       } catch (err) {
-        logger.error({ message: String(err), filename, src: input, continueOnError });
+        logger.error({ group: 'parser', label: 'json', message: String(err), filename, src: input, continueOnError });
       }
     } else {
       logger.error({
         group: 'parser',
+        label: 'yaml',
         message: `Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
 
     import { parse } from '@terrazzo/parser';

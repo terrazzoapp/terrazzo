@@ -188,7 +188,7 @@ export async function initCmd({ logger }: InitOptions) {
 
         // 2b. add plugins to config.plugins
         if (!astExport) {
-          logger.error({ message: `SyntaxError: ${relConfigPath} does not have default export.` });
+          logger.error({ group: 'config', message: `SyntaxError: ${relConfigPath} does not have default export.` });
           return;
         }
         const astConfig = (
@@ -199,7 +199,10 @@ export async function initCmd({ logger }: InitOptions) {
               astExport.declaration
         ) as ESTree.ObjectExpression;
         if (astConfig.type !== 'ObjectExpression') {
-          logger.error({ message: `Config: expected object default export, received ${astConfig.type}` });
+          logger.error({
+            group: 'config',
+            message: `Config: expected object default export, received ${astConfig.type}`,
+          });
           return;
         }
         const pluginsArray = (

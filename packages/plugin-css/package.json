@@ -40,6 +40,7 @@
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^"
+    "@terrazzo/parser": "workspace:^",
+    "dtcg-examples": "^0.1.3"
   }
 }

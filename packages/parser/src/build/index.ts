@@ -78,7 +78,6 @@ export default async function build(
   // transform()
   let transformsLocked = false; // prevent plugins from transforming after stage has ended
   const startTransform = performance.now();
-  logger.debug({ group: 'parser', label: 'transform', message: 'Start transform' });
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
       await plugin.transform({
@@ -146,13 +145,12 @@ export default async function build(
   logger.debug({
     group: 'parser',
     label: 'transform',
-    message: 'Finish transform',
+    message: 'transform() step',
     timing: performance.now() - startTransform,
   });
 
   // build()
   const startBuild = performance.now();
-  logger.debug({ group: 'parser', label: 'build', message: 'Start build' });
   for (const plugin of config.plugins) {
     if (typeof plugin.build === 'function') {
       const pluginBuildStart = performance.now();
@@ -163,7 +161,11 @@ export default async function build(
         outputFile(filename, contents) {
           const resolved = new URL(filename, config.outDir);
           if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
-            logger.error({ message: `Can’t overwrite file "${filename}"`, label: plugin.name });
+            logger.error({
+              group: 'plugin',
+              message: `Can’t overwrite file "${filename}"`,
+              label: plugin.name,
+            });
           }
           result.outputFiles.push({
             filename,
@@ -178,13 +180,12 @@ export default async function build(
   logger.debug({
     group: 'parser',
     label: 'build',
-    message: 'Finish build',
+    message: 'build() step',
     timing: performance.now() - startBuild,
   });
 
   // buildEnd()
   const startBuildEnd = performance.now();
-  logger.debug({ group: 'parser', label: 'build', message: 'Start buildEnd' });
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
       await plugin.buildEnd({ outputFiles: structuredClone(result.outputFiles) });
@@ -193,7 +194,7 @@ export default async function build(
   logger.debug({
     group: 'parser',
     label: 'build',
-    message: 'Finish buildEnd',
+    message: 'buildEnd() step',
     timing: performance.now() - startBuildEnd,
   });
 

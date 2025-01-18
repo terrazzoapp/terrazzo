@@ -171,6 +171,9 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      dtcg-examples:
+        specifier: ^0.1.3
+        version: 0.1.3
 
   packages/plugin-js:
     dependencies:
@@ -2968,6 +2971,9 @@ packages:
   dtcg-examples@0.1.2:
     resolution: {integrity: sha512-jaHSyl6KbvYcrTAc3hRFFBBZBuIbISgMnsP6vcPo6/cZGSl4BSkjsL3mo1iZhttziMD0xJWQgeEcUhqY8KyZuA==}
 
+  dtcg-examples@0.1.3:
+    resolution: {integrity: sha512-/RoMaiiM3BBgJZaPxSLuZf3D+jubaYk8zfYa/AOCpEpFMU1u9n+h7sghVkD09q4yXuc8QJB7zTfwFr5GmA0IBw==}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -3359,8 +3365,8 @@ packages:
     resolution: {integrity: sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==}
     hasBin: true
 
-  hookified@1.6.0:
-    resolution: {integrity: sha512-se7cpwTA+iA/eY548Bu03JJqBiEZAqU2jnyKdj5B5qurtBg64CZGHTgqCv4Yh7NWu6FGI09W61MCq+NoPj9GXA==}
+  hookified@1.7.0:
+    resolution: {integrity: sha512-XQdMjqC1AyeOzfs+17cnIk7Wdfu1hh2JtcyNfBf5u9jHrT3iZUlGHxLTntFBuk5lwkqJ6l3+daeQdHK5yByHVA==}
 
   htm@3.1.1:
     resolution: {integrity: sha512-983Vyg8NwUE7JkZ6NmOqpCZ+sh1bKv2iYTlUkzlWmA5JD2acKoxd4KVxbMmxX/85mtfdnDmTFoNKcg5DGAvxNQ==}
@@ -7811,7 +7817,7 @@ snapshots:
 
   cacheable@1.8.7:
     dependencies:
-      hookified: 1.6.0
+      hookified: 1.7.0
       keyv: 5.2.3
 
   call-bind-apply-helpers@1.0.1:
@@ -8089,6 +8095,8 @@ snapshots:
   dset@3.1.4: {}
 
   dtcg-examples@0.1.2: {}
+
+  dtcg-examples@0.1.3: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -8370,7 +8378,7 @@ snapshots:
     dependencies:
       cacheable: 1.8.7
       flatted: 3.3.2
-      hookified: 1.6.0
+      hookified: 1.7.0
 
   flatted@3.3.2: {}
 
@@ -8659,7 +8667,7 @@ snapshots:
       mkdirp: 0.3.0
       nopt: 1.0.10
 
-  hookified@1.6.0: {}
+  hookified@1.7.0: {}
 
   htm@3.1.1: {}
 

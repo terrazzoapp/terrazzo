@@ -27,7 +27,7 @@ describe('tz normalize', () => {
     await expect(execa(cmd, ['normalize', '--output', 'actual.json'], { cwd })).rejects.toThrow(
       `Command failed with exit code 1: ../../../bin/cli.js normalize --output actual.json
 
-✗  Expected input: \`tz normalize <tokens.json> -o output.json\``,
+✗  [config] Expected input: \`tz normalize <tokens.json> -o output.json\``,
     );
   });
 });
