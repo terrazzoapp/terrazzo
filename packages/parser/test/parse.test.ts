@@ -25,7 +25,7 @@ describe('Tokens', () => {
       result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
       const err = e as TokensJSONError;
-      expect(stripAnsi(err.message.replace(/^\[parser:(validate|alias|normalize)\]\s*/, ''))).toBe(want.error);
+      expect(stripAnsi(err.message).replace(/\[parser:(validate|alias|normalize)\]\s*/, '')).toBe(want.error);
 
       // ensure TokenValidationError contains necessary properties
       // expect(err.node?.type?.length).toBeGreaterThan(0);
