@@ -1090,7 +1090,7 @@ font:
       [
         'valid: string',
         {
-          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 'Helvetica' } } }],
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: ['Helvetica'] } } }],
           want: { tokens: { base: ['Helvetica'] } },
         },
       ],
@@ -2296,7 +2296,7 @@ font:
           want: {
             tokens: {
               typography: {
-                fontFamily: 'Helvetica',
+                fontFamily: ['Helvetica'],
                 fontSize: { value: 16, unit: 'px' },
                 fontStyle: 'italic',
                 fontVariant: 'small-caps',
@@ -2673,10 +2673,11 @@ describe('Additional cases', () => {
                   semantic: {
                     bg: {
                       $value: '{color.blue.7}',
-                      $extensions: { mode: { light: '{color.blue.7#light}', dark: '{color.blue.7#dark}' } },
+                      $extensions: { mode: { light: '{color.blue.7}', dark: '{color.blue.6}' } },
                     },
                   },
                   blue: {
+                    '6': { $value: '#0550ae', $extensions: { mode: { light: '#0550ae', dark: '#1158c7' } } },
                     '7': { $value: '#8ec8f6', $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } } },
                   },
                 },
@@ -2684,75 +2685,91 @@ describe('Additional cases', () => {
             },
           ],
           want: {
-            'color.blue.7': {
+            'color.blue.6': {
               '.': {
-                id: 'color.blue.7',
-                $type: 'color',
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
-                  hex: '#8ec8f6',
+                  hex: '#0550ae',
                 },
-                aliasedBy: ['color.semantic.bg'],
+                originalValue: '#0550ae',
               },
               light: {
-                id: 'color.blue.7',
-                $type: 'color',
+                $value: {
+                  alpha: 1,
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                  colorSpace: 'srgb',
+                  hex: '#0550ae',
+                },
+                originalValue: '#0550ae',
+              },
+              dark: {
+                $value: {
+                  alpha: 1,
+                  channels: [0, 0, 0],
+                  colorSpace: 'srgb',
+                  hex: '#1158c7',
+                },
+                originalValue: '#1158c7',
+              },
+            },
+            'color.blue.7': {
+              '.': {
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                originalValue: '#8ec8f6',
               },
-              dark: {
-                id: 'color.blue.7',
-                $type: 'color',
+              light: {
                 $value: {
                   alpha: 1,
-                  channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
+                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
-                  hex: '#205d9e',
+                  hex: '#8ec8f6',
                 },
+                originalValue: '#8ec8f6',
+              },
+              dark: {
+                $value: {
+                  alpha: 1,
+                  channels: [0, 0, 0],
+                  colorSpace: 'srgb',
+                  hex: '#1158c7',
+                },
+                originalValue: '#205d9e',
               },
             },
             'color.semantic.bg': {
               '.': {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                originalValue: '{color.blue.7}',
               },
               light: {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                originalValue: '{color.blue.7}',
               },
               dark: {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
-                  hex: '#205d9e',
+                  hex: '#1158c7',
                 },
+                originalValue: '{color.blue.6}',
               },
             },
           },

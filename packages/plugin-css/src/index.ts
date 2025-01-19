@@ -1,5 +1,5 @@
 import type { Plugin } from '@terrazzo/parser';
-import { validateCustomTransform } from '@terrazzo/token-tools';
+import { type TokenNormalized, validateCustomTransform } from '@terrazzo/token-tools';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import buildFormat from './build/index.js';
 import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
@@ -17,8 +17,17 @@ export default function cssPlugin({
   legacyHex,
   skipBuild,
 }: CSSPluginOptions = {}): Plugin {
-  const transformName = (id: string) => variableName?.(id) || makeCSSVar(id);
-  const transformAlias = (id: string) => `var(${transformName(id)})`;
+  function transformName(token: TokenNormalized) {
+    const customName = variableName?.(token);
+    if (customName !== undefined) {
+      if (typeof customName !== 'string') {
+        throw new Error(`variableName() must return a string; received ${customName}`);
+      }
+      return customName;
+    }
+    return makeCSSVar(token.id);
+  }
+  const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
 
   return {
     name: '@terrazzo/plugin-css',
@@ -30,7 +39,7 @@ export default function cssPlugin({
       }
 
       for (const [id, token] of Object.entries(tokens)) {
-        const localID = transformName(id);
+        const localID = transformName(token);
         for (const mode of Object.keys(token.mode)) {
           if (customTransform) {
             const value = customTransform(token, mode);
@@ -41,7 +50,12 @@ export default function cssPlugin({
             }
           }
 
-          const transformedValue = transformCSSValue(token, { mode, transformAlias, color: { legacyHex } });
+          const transformedValue = transformCSSValue(token, {
+            mode,
+            tokensSet: tokens,
+            transformAlias,
+            color: { legacyHex },
+          });
           if (transformedValue !== undefined) {
             setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
           }

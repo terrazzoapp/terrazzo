@@ -1,41 +1,25 @@
-import type { TransitionValueNormalized } from '../types.js';
-import { transformCubicBezierValue } from './cubic-bezier.js';
-import { transformDurationValue } from './duration.js';
-import { type IDGenerator, defaultAliasTransform, transformCompositeAlias } from './lib.js';
+import type { CubicBezierTokenNormalized, DurationTokenNormalized, TransitionTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { transformCubicBezier } from './cubic-bezier.js';
+import { transformDuration } from './duration.js';
+import { defaultAliasTransform } from './lib.js';
 
-/** Convert transition value to multiple CSS values */
-export function transformTransitionValue(
-  value: TransitionValueNormalized,
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: {
-    aliasOf?: string;
-    partialAliasOf?: Partial<Record<keyof typeof value, string>>;
-    transformAlias?: IDGenerator;
-  } = {},
-): {
-  duration: ReturnType<typeof transformDurationValue>;
-  delay: ReturnType<typeof transformDurationValue>;
-  'timing-function': ReturnType<typeof transformCubicBezierValue>;
-} {
-  if (aliasOf) {
-    return transformCompositeAlias(value, { aliasOf, transformAlias }) as {
-      duration: ReturnType<typeof transformDurationValue>;
-      delay: ReturnType<typeof transformDurationValue>;
-      'timing-function': ReturnType<typeof transformCubicBezierValue>;
-    };
+/** Convert transition value to shorthand */
+export function transformTransition(token: TransitionTokenNormalized, options: TransformCSSValueOptions) {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return {
-    duration: partialAliasOf?.duration
-      ? transformAlias(partialAliasOf.duration)
-      : transformDurationValue(value.duration, { transformAlias }),
-    delay: partialAliasOf?.delay
-      ? transformAlias(partialAliasOf.delay)
-      : transformDurationValue(value.delay, { transformAlias }),
-    'timing-function': partialAliasOf?.timingFunction
-      ? transformAlias(partialAliasOf.timingFunction)
-      : transformCubicBezierValue(value.timingFunction, { transformAlias }),
-  };
+
+  const duration = token.partialAliasOf?.duration
+    ? transformAlias(tokensSet[token.partialAliasOf.duration]!)
+    : transformDuration({ $value: token.$value.duration } as DurationTokenNormalized, options);
+  const delay = token.partialAliasOf?.delay
+    ? transformAlias(tokensSet[token.partialAliasOf.delay]!)
+    : transformDuration({ $value: token.$value.delay } as DurationTokenNormalized, options);
+  const timingFunction = token.partialAliasOf?.timingFunction
+    ? transformAlias(tokensSet[token.partialAliasOf.timingFunction]!)
+    : transformCubicBezier({ $value: token.$value.timingFunction } as CubicBezierTokenNormalized, options);
+
+  return `${duration} ${delay} ${timingFunction}`;
 }

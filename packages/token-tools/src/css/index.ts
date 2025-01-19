@@ -1,21 +1,21 @@
 import type { TokenNormalized } from '../types.js';
-import { transformBooleanValue } from './boolean.js';
-import { transformBorderValue } from './border.js';
-import { transformColorValue } from './color.js';
-import { transformCubicBezierValue } from './cubic-bezier.js';
-import { transformDimensionValue } from './dimension.js';
-import { transformDurationValue } from './duration.js';
-import { transformFontFamilyValue } from './font-family.js';
-import { transformFontWeightValue } from './font-weight.js';
-import { transformGradientValue } from './gradient.js';
-import type { IDGenerator } from './lib.js';
-import { transformLinkValue } from './link.js';
-import { transformNumberValue } from './number.js';
-import { transformShadowValue } from './shadow.js';
-import { transformStringValue } from './string.js';
-import { transformStrokeStyleValue } from './stroke-style.js';
-import { transformTransitionValue } from './transition.js';
-import { transformTypographyValue } from './typography.js';
+import { transformBoolean } from './boolean.js';
+import { transformBorder } from './border.js';
+import { transformColor } from './color.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { transformCubicBezier } from './cubic-bezier.js';
+import { transformDimension } from './dimension.js';
+import { transformDuration } from './duration.js';
+import { transformFontFamily } from './font-family.js';
+import { transformFontWeight } from './font-weight.js';
+import { transformGradient } from './gradient.js';
+import { transformLink } from './link.js';
+import { transformNumber } from './number.js';
+import { transformShadow } from './shadow.js';
+import { transformString } from './string.js';
+import { transformStrokeStyle } from './stroke-style.js';
+import { transformTransition } from './transition.js';
+import { transformTypography } from './typography.js';
 
 export * from './boolean.js';
 export * from './border.js';
@@ -35,61 +35,48 @@ export * from './stroke-style.js';
 export * from './transition.js';
 export * from './typography.js';
 
-export interface TransformCSSValueOptions {
-  mode: string;
-  transformAlias?: IDGenerator;
-  /** Color options */
-  color?: {
-    /** Output legacy hex-6 and hex-8 */
-    legacyHex?: boolean;
-  };
-}
-
 /** Main CSS Transform */
-export function transformCSSValue<T extends TokenNormalized>(
+export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
   token: T,
-  { mode, transformAlias, color }: TransformCSSValueOptions,
+  { mode, ...options }: { mode: keyof T['mode'] } & TransformCSSValueOptions,
 ) {
-  if (!(mode in token.mode)) {
+  const selectedMode = token.mode[mode as keyof typeof token.mode];
+  if (!selectedMode) {
     return;
   }
-  const { $type, $value, aliasChain, partialAliasOf } = token.mode[mode]!;
-
-  // important: CSS wants to have the shallow alias (this will always exist if `aliasOf` does)
-  const aliasOf = aliasChain?.[0];
-
-  switch ($type) {
+  const tokenWithModeValue = { ...token, ...selectedMode } as T;
+  switch (tokenWithModeValue.$type) {
     case 'boolean':
-      return transformBooleanValue($value, { aliasOf, transformAlias });
+      return transformBoolean(tokenWithModeValue, options);
     case 'border':
-      return transformBorderValue($value, { aliasOf, partialAliasOf, transformAlias, color });
+      return transformBorder(tokenWithModeValue, options);
     case 'color':
-      return transformColorValue($value, { aliasOf, transformAlias, color });
+      return transformColor(tokenWithModeValue, options);
     case 'cubicBezier':
-      return transformCubicBezierValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformCubicBezier(tokenWithModeValue, options);
     case 'dimension':
-      return transformDimensionValue($value, { aliasOf, transformAlias });
+      return transformDimension(tokenWithModeValue, options);
     case 'duration':
-      return transformDurationValue($value, { aliasOf, transformAlias });
+      return transformDuration(tokenWithModeValue, options);
     case 'fontFamily':
-      return transformFontFamilyValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformFontFamily(tokenWithModeValue, options);
     case 'fontWeight':
-      return transformFontWeightValue($value, { aliasOf, transformAlias });
+      return transformFontWeight(tokenWithModeValue, options);
     case 'gradient':
-      return transformGradientValue($value, { aliasOf, partialAliasOf, transformAlias, color });
+      return transformGradient(tokenWithModeValue, options);
     case 'link':
-      return transformLinkValue($value, { aliasOf, transformAlias });
+      return transformLink(tokenWithModeValue, options);
     case 'number':
-      return transformNumberValue($value, { aliasOf, transformAlias });
+      return transformNumber(tokenWithModeValue, options);
     case 'shadow':
-      return transformShadowValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformShadow(tokenWithModeValue, options);
     case 'string':
-      return transformStringValue($value, { aliasOf, transformAlias });
+      return transformString(tokenWithModeValue, options);
     case 'strokeStyle':
-      return transformStrokeStyleValue($value, { aliasOf, transformAlias });
+      return transformStrokeStyle(tokenWithModeValue, options);
     case 'transition':
-      return transformTransitionValue($value, { aliasOf, partialAliasOf, transformAlias });
+      return transformTransition(tokenWithModeValue, options);
     case 'typography':
-      return transformTypographyValue($value as Record<string, string>, { aliasOf, partialAliasOf, transformAlias });
+      return transformTypography(tokenWithModeValue, options);
   }
 }

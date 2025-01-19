@@ -51,7 +51,7 @@ export default async function parse(
     _sources = {},
   }: ParseOptions = {} as ParseOptions,
 ): Promise<ParseResult> {
-  let tokens: Record<string, TokenNormalized> = {};
+  let tokensSet: Record<string, TokenNormalized> = {};
 
   if (!Array.isArray(input)) {
     logger.error({ group: 'parser', label: 'init', message: 'Input must be an array of input objects.' });
@@ -91,7 +91,7 @@ export default async function parse(
         continueOnError,
         yamlToMomoa,
       });
-      tokens = Object.assign(tokens, result.tokens);
+      tokensSet = Object.assign(tokensSet, result.tokens);
       if (src.filename) {
         _sources[src.filename.href] = {
           filename: src.filename,
@@ -107,27 +107,21 @@ export default async function parse(
   // 5. Resolve aliases and populate groups
   const aliasesStart = performance.now();
   let aliasCount = 0;
-  for (const [id, token] of Object.entries(tokens)) {
-    if (!Object.hasOwn(tokens, id)) {
-      continue;
-    }
+  for (const [id, token] of Object.entries(tokensSet)) {
     applyAliases(token, {
-      tokens,
+      tokensSet,
       filename: _sources[token.source.loc!]?.filename!,
       src: _sources[token.source.loc!]?.src as string,
       node: token.source.node,
       logger,
     });
-    token.mode['.']!.$type = token.$type;
     token.mode['.']!.$value = token.$value;
+    token.mode['.']!.originalValue = token.originalValue.$value;
     if (token.aliasOf) {
       token.mode['.']!.aliasOf = token.aliasOf;
     }
     if (token.aliasChain) {
       token.mode['.']!.aliasChain = token.aliasChain;
-    }
-    if (token.aliasedBy) {
-      token.mode['.']!.aliasedBy = token.aliasedBy;
     }
     if (token.partialAliasOf) {
       token.mode['.']!.partialAliasOf = token.partialAliasOf;
@@ -135,7 +129,7 @@ export default async function parse(
     aliasCount++;
     const { group: parentGroup } = splitID(id);
     if (parentGroup) {
-      for (const siblingID of Object.keys(tokens)) {
+      for (const siblingID of Object.keys(tokensSet)) {
         const { group: siblingGroup } = splitID(siblingID);
         if (siblingGroup?.startsWith(parentGroup)) {
           token.group.tokens.push(siblingID);
@@ -148,34 +142,6 @@ export default async function parse(
     group: 'parser',
     label: 'alias',
     timing: performance.now() - aliasesStart,
-  });
-
-  // 7. resolve mode aliases
-  const modesStart = performance.now();
-  let modeAliasCount = 0;
-  for (const [id, token] of Object.entries(tokens)) {
-    if (!Object.hasOwn(tokens, id)) {
-      continue;
-    }
-    for (const [mode, modeValue] of Object.entries(token.mode)) {
-      if (mode === '.') {
-        continue; // skip shadow of root value
-      }
-      modeAliasCount++;
-      applyAliases(modeValue, {
-        tokens,
-        node: modeValue.source.node,
-        logger,
-        src: _sources[token.source.loc!]?.src as string,
-        skipReverseAlias: true,
-      });
-    }
-  }
-  logger.debug({
-    message: `Resolved ${modeAliasCount} mode aliases`,
-    group: 'parser',
-    label: 'alias',
-    timing: performance.now() - modesStart,
   });
 
   logger.debug({
@@ -196,7 +162,7 @@ export default async function parse(
   }
 
   return {
-    tokens,
+    tokens: tokensSet,
     sources: Object.values(_sources),
   };
 }
@@ -229,7 +195,7 @@ async function parseSingle(
     message: 'Finish JSON parsing',
     timing: performance.now() - startParsing,
   });
-  const tokens: Record<string, TokenNormalized> = {};
+  const tokensSet: Record<string, TokenNormalized> = {};
 
   // 2. Walk AST to validate tokens
   let tokenCount = 0;
@@ -250,7 +216,7 @@ async function parseSingle(
       if (node.type === 'Member') {
         const token = validateTokenNode(node, { filename, src, config, logger, parent, subpath, $typeInheritance });
         if (token) {
-          tokens[token.id] = token;
+          tokensSet[token.id] = token;
           tokenCount++;
         }
       }
@@ -265,9 +231,9 @@ async function parseSingle(
 
   // 3. normalize values
   const normalizeStart = performance.now();
-  for (const [id, token] of Object.entries(tokens)) {
+  for (const [id, token] of Object.entries(tokensSet)) {
     try {
-      tokens[id]!.$value = normalize(token);
+      tokensSet[id]!.$value = normalize(token);
     } catch (err) {
       let { node } = token.source;
       const members = getObjMembers(node);
@@ -284,12 +250,19 @@ async function parseSingle(
         continueOnError,
       });
     }
-    for (const [mode, modeValue] of Object.entries(token.mode)) {
+    for (const [mode, modeValueOverrides] of Object.entries(token.mode)) {
+      // for composite object tokens (e.g. typography or border tokens), mode
+      // values are allowed to extend from the default value (but not arrays, or
+      // other types). Combine them together
+      const modeValue =
+        !Array.isArray(modeValueOverrides) && typeof modeValueOverrides === 'object'
+          ? { ...token.mode['.'], ...modeValueOverrides }
+          : modeValueOverrides;
       if (mode === '.') {
         continue;
       }
       try {
-        tokens[id]!.mode[mode]!.$value = normalize(modeValue);
+        tokensSet[id]!.mode[mode]!.$value = normalize(modeValue);
       } catch (err) {
         let { node } = token.source;
         const members = getObjMembers(node);
@@ -318,7 +291,7 @@ async function parseSingle(
   // 4. Execute lint runner with loaded plugins
   if (!skipLint && config?.plugins?.length) {
     const lintStart = performance.now();
-    await lintRunner({ tokens, src, config, logger });
+    await lintRunner({ tokens: tokensSet, src, config, logger });
     logger.debug({
       message: `Linted ${tokenCount} tokens`,
       group: 'parser',
@@ -330,7 +303,7 @@ async function parseSingle(
   }
 
   return {
-    tokens,
+    tokens: tokensSet,
     document,
     src,
   };

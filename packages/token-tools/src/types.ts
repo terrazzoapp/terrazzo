@@ -24,6 +24,8 @@ export type Token =
   | TypographyToken
   | StrokeStyleToken;
 
+export type TokensSet = Record<string, Token>;
+
 export type AliasValue = string;
 export interface AliasToken extends TokenCore {
   $type?: never;
@@ -277,9 +279,17 @@ export type Group = GroupCore | { [key: string]: GroupOrToken | GroupCore };
 
 export type GroupOrToken = Group | Token;
 
-export type ModeMap<T extends { mode: any }> = {
-  '.': Omit<T, 'mode'>;
-  [mode: string]: Omit<T, 'mode'> | undefined;
+/** Modes only have a subset of information from the root token, that is allowed to diverge (e.g. id will never differ, so don’t bother storing it on mode). */
+export type TokenMode<T extends TokenNormalized> = Pick<
+  T,
+  '$value' | 'aliasOf' | 'aliasChain' | 'partialAliasOf' | 'source'
+> & {
+  originalValue: T['originalValue']['$value'];
+};
+
+export type ModeMap<T extends TokenNormalized> = {
+  '.': TokenMode<T>;
+  [mode: string]: TokenMode<T> | undefined;
 };
 
 export interface TokenNormalizedCore<$type extends Token['$type']> {
@@ -326,6 +336,7 @@ export type TokenNormalized =
   | TransitionTokenNormalized
   | TypographyTokenNormalized;
 
+export type TokenNormalizedSet = Record<string, TokenNormalized>;
 export interface BooleanTokenNormalized extends TokenNormalizedCore<'boolean'> {
   $value: BooleanValue;
   partialAliasOf?: never;

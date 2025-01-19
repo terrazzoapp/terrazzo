@@ -30,14 +30,18 @@ export function makeAlias(input: string): string {
 }
 
 /** Parse an alias */
-export function parseAlias(input: string): { id: string; mode?: string } {
+export function parseAlias(input: string): string {
+  // TODO: deprecate in future
+  if (input.includes('#')) {
+    throw new Error(
+      'Mode aliases (# character) are no longer supported as of v0.6.0. Alias the root token instead, and apply modes in plugins.',
+    );
+  }
   const match = input.match(ALIAS_RE);
   if (!match) {
-    return { id: input };
+    return input;
   }
-  const rawID = match[1] ?? match[0];
-  const hashI = rawID.indexOf('#');
-  return hashI === -1 ? { id: rawID } : { id: rawID.substring(0, hashI), mode: rawID.substring(hashI + 1) };
+  return match[1] ?? match[0];
 }
 
 /** split a token ID into a local ID and group ID */

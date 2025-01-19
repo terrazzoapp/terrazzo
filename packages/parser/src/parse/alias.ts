@@ -1,9 +1,9 @@
 import type { AnyNode, ArrayNode, ObjectNode, StringNode } from '@humanwhocodes/momoa';
-import { type TokenNormalized, isAlias, parseAlias } from '@terrazzo/token-tools';
+import { type TokenNormalized, type TokenNormalizedSet, isAlias, parseAlias } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
 
 /** Throw error if resolved alias for composite properties doesn’t match expected $type. */
-export const COMPOSITE_TYPE_VALUES = {
+export const COMPOSITE_TYPE_VALUES: Record<string, Record<string, TokenNormalized['$type'][]>> = {
   border: {
     color: ['color'],
     width: ['dimension'],
@@ -32,6 +32,17 @@ export const COMPOSITE_TYPE_VALUES = {
     letterSpacing: ['dimension'],
     lineHeight: ['dimension', 'number'],
   },
+
+  boolean: {},
+  color: {},
+  cubicBezier: {},
+  dimension: {},
+  duration: {},
+  fontFamily: {},
+  fontWeight: {},
+  link: {},
+  number: {},
+  string: {},
 };
 
 /**
@@ -43,14 +54,14 @@ export const COMPOSITE_TYPE_VALUES = {
 export function resolveAlias(
   alias: string,
   {
-    tokens,
+    tokensSet,
     logger,
     filename,
     src,
     node,
     scanned = [],
   }: {
-    tokens: Record<string, TokenNormalized>;
+    tokensSet: Record<string, TokenNormalized>;
     logger: Logger;
     filename?: URL;
     src: string;
@@ -58,8 +69,8 @@ export function resolveAlias(
     scanned?: string[];
   },
 ): { id: string; chain: string[] } {
-  const { id } = parseAlias(alias);
-  if (!tokens[id]) {
+  const id = parseAlias(alias);
+  if (!tokensSet[id]) {
     logger.error({ group: 'parser', label: 'alias', message: `Alias "${alias}" not found.`, filename, src, node });
   }
   if (scanned.includes(id)) {
@@ -72,13 +83,13 @@ export function resolveAlias(
       node,
     });
   }
-  const token = tokens[id]!;
+  const token = tokensSet[id]!;
   // important: use originalValue to trace the full alias path correctly
   if (!isAlias(token.originalValue.$value)) {
     return { id, chain: scanned.concat(id) };
   }
   return resolveAlias(token.originalValue.$value as string, {
-    tokens,
+    tokensSet,
     logger,
     filename,
     node,
@@ -91,14 +102,14 @@ export function resolveAlias(
 export function applyAliases(
   token: TokenNormalized,
   {
-    tokens,
+    tokensSet,
     logger,
     filename,
     src,
     node,
     skipReverseAlias,
   }: {
-    tokens: Record<string, TokenNormalized>;
+    tokensSet: TokenNormalizedSet;
     logger: Logger;
     filename?: URL;
     src: string;
@@ -106,42 +117,48 @@ export function applyAliases(
     skipReverseAlias?: boolean;
   },
 ) {
+  const { $type } = token;
+
   /**
    * Add reverse alias lookups. Note this intentionally mutates the root
    * references in `tokens` to save work.  This is essential to doing everything
    * in one pass while still being accurate.
    */
   function addReverseAliases(resolvedID: string, ids: string[]) {
-    if (skipReverseAlias || !tokens[resolvedID]) {
+    if (skipReverseAlias || !tokensSet[resolvedID]) {
       return;
     }
 
     // populate entire chain of aliases, so we can redeclare tokens when needed
-    if (!tokens[resolvedID]!.aliasedBy) {
-      tokens[resolvedID]!.aliasedBy = [];
+    if (!tokensSet[resolvedID]!.aliasedBy) {
+      tokensSet[resolvedID]!.aliasedBy = [];
     }
     for (const link of [token.id, ...ids]) {
-      if (link !== resolvedID && !tokens[resolvedID]!.aliasedBy!.includes(link)) {
-        tokens[resolvedID]!.aliasedBy.push(link);
+      if (link !== resolvedID && !tokensSet[resolvedID]!.aliasedBy!.includes(link)) {
+        tokensSet[resolvedID]!.aliasedBy.push(link);
       }
     }
   }
 
   const $valueNode =
     (node.type === 'Object' && node.members.find((m) => (m.name as StringNode).value === '$value')?.value) || node;
-  const expectedAliasTypes =
-    token.$type in COMPOSITE_TYPE_VALUES && COMPOSITE_TYPE_VALUES[token.$type as keyof typeof COMPOSITE_TYPE_VALUES];
+  const expectedAliasTypes = COMPOSITE_TYPE_VALUES[$type];
 
   // handle simple aliases
   if (isAlias(token.$value)) {
-    const { id: deepAliasID, chain } = resolveAlias(token.$value as string, { tokens, logger, filename, node, src });
-    const { mode: aliasMode } = parseAlias(token.$value as string);
-    const resolvedToken = tokens[deepAliasID]!;
+    const { id: deepAliasID, chain } = resolveAlias(token.$value as string, {
+      tokensSet,
+      logger,
+      filename,
+      node,
+      src,
+    });
+    const resolvedToken = tokensSet[deepAliasID]!;
 
     // resolve value in root token, and add aliasOf
     token.aliasOf = deepAliasID;
     token.aliasChain = chain;
-    token.$value = resolvedToken!.mode[aliasMode!]?.$value || resolvedToken.$value;
+    token.$value = resolvedToken.$value;
 
     addReverseAliases(deepAliasID, chain);
 
@@ -162,18 +179,15 @@ export function applyAliases(
   else if (token.$type === 'cubicBezier' || token.$type === 'gradient' || token.$type === 'shadow') {
     // some arrays are primitives, some are objects. handle both
     for (let i = 0; i < token.$value.length; i++) {
-      // @ts-ignore
-      if (isAlias(token.$value[i])) {
+      const value = token.$value[i] as unknown as string;
+      if (isAlias(value)) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = [];
         }
-        // @ts-ignore
-        const { id: deepAliasID } = resolveAlias(token.$value[i], { tokens, logger, filename, node, src });
-        // @ts-ignore
-        const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[i]);
-        token.partialAliasOf![i] = aliasID;
-        // @ts-ignore
-        token.$value[i] = (aliasMode && tokens[deepAliasID].mode[aliasMode]?.$value) || tokens[deepAliasID].$value;
+        const { id: deepAliasID } = resolveAlias(value, { tokensSet, logger, filename, node, src });
+        const shallowAliasID = parseAlias(value);
+        token.partialAliasOf![i] = shallowAliasID;
+        token.$value[i] = tokensSet[deepAliasID]!.$value as any;
       } else if (typeof token.$value[i] === 'object') {
         for (const [property, subvalue] of Object.entries(token.$value[i]!)) {
           if (isAlias(subvalue)) {
@@ -183,9 +197,9 @@ export function applyAliases(
             if (!token.partialAliasOf[i]) {
               token.partialAliasOf[i] = {};
             }
-            const { id: deepAliasID, chain } = resolveAlias(subvalue, { tokens, logger, filename, node, src });
-            const { id: shallowAliasID, mode: aliasMode } = parseAlias(subvalue);
-            const resolvedToken = tokens[deepAliasID]!;
+            const { id: deepAliasID, chain } = resolveAlias(subvalue, { tokensSet, logger, filename, node, src });
+            const shallowAliasID = parseAlias(subvalue);
+            const resolvedToken = tokensSet[deepAliasID]!;
 
             addReverseAliases(deepAliasID, chain);
 
@@ -202,10 +216,8 @@ export function applyAliases(
               });
             }
 
-            // @ts-ignore
-            token.partialAliasOf[i][property] = shallowAliasID; // also keep the shallow alias here, too!
-            // @ts-ignore
-            token.$value[i][property] = (aliasMode && resolvedToken.mode[aliasMode]?.$value) || resolvedToken.$value;
+            (token.partialAliasOf[i] as any)[property] = shallowAliasID; // also keep the shallow alias here, too!
+            (token.$value[i] as any)[property] = resolvedToken.$value;
           }
         }
       }
@@ -214,49 +226,37 @@ export function applyAliases(
   // handle aliases within object (composite) values (e.g. border, typography, transition)
   else if (typeof token.$value === 'object') {
     for (const [property, subvalue] of Object.entries(token.$value)) {
-      if (!Object.hasOwn(token.$value, property)) {
-        continue;
-      }
-
       if (isAlias(subvalue)) {
         if (!token.partialAliasOf) {
           token.partialAliasOf = {};
         }
-        const { id: deepAliasID, chain } = resolveAlias(subvalue, { tokens, logger, filename, node, src });
-        const { id: shallowAliasID, mode: aliasMode } = parseAlias(subvalue);
+        const { id: deepAliasID, chain } = resolveAlias(subvalue, { tokensSet, logger, filename, node, src });
+        const shallowAliasID = parseAlias(subvalue);
 
         addReverseAliases(deepAliasID, chain);
 
-        // @ts-ignore
-        token.partialAliasOf[property] = shallowAliasID; // keep the shallow alias!
-        const resolvedToken = tokens[deepAliasID];
-        // @ts-ignore
-        if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(resolvedToken!.$type)) {
+        (token.partialAliasOf as any)[property] = shallowAliasID; // keep the shallow alias!
+        const resolvedToken = tokensSet[deepAliasID]!;
+        if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(resolvedToken.$type)) {
           logger.error({
             group: 'parser',
             label: 'alias',
-            // @ts-ignore
             message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${resolvedToken.$type}".`,
-            // @ts-ignore
-            node: $valueNode.members.find((m) => m.name.value === property).value,
+            node: ($valueNode as ObjectNode).members.find((m) => m.name.type === 'String' && m.name.value === property)!
+              .value,
             filename,
             src,
           });
         }
-        // @ts-ignore
-        token.$value[property] = resolvedToken.mode[aliasMode]?.$value || resolvedToken.$value;
+        (token.$value as any)[property] = resolvedToken.$value;
       }
 
       // strokeStyle has an array within an object
-      // @ts-ignore
-      else if (Array.isArray(token.$value[property])) {
-        // @ts-ignore
-        for (let i = 0; i < token.$value[property].length; i++) {
-          // @ts-ignore
-          if (isAlias(token.$value[property][i])) {
-            // @ts-ignore
-            const { id: deepAliasID, chain } = resolveAlias(token.$value[property][i], {
-              tokens,
+      else if (Array.isArray(subvalue)) {
+        for (let i = 0; i < subvalue.length; i++) {
+          if (isAlias(subvalue[i])) {
+            const { id: deepAliasID, chain } = resolveAlias(subvalue[i], {
+              tokensSet,
               logger,
               filename,
               node,
@@ -268,34 +268,33 @@ export function applyAliases(
             if (!token.partialAliasOf) {
               token.partialAliasOf = {};
             }
-            // @ts-ignore
-            if (!token.partialAliasOf[property]) {
-              // @ts-ignore
-              token.partialAliasOf[property] = [];
+            if (!(token.partialAliasOf as any)[property]) {
+              (token.partialAliasOf as any)[property] = [];
             }
-            // @ts-ignore
-            const { id: aliasID, mode: aliasMode } = parseAlias(token.$value[property][i]);
-            // @ts-ignore
-            token.partialAliasOf[property][i] = aliasID; // keep the shallow alias!
-            const resolvedToken = tokens[deepAliasID];
-            // @ts-ignore
-            if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(resolvedToken.$type)) {
-              // @ts-ignore
-              const arrayNode = $valueNode.members.find((m) => m.name.value === property).value;
+            const aliasID = parseAlias(subvalue[i]);
+            (token.partialAliasOf as any)[property][i] = aliasID; // keep the shallow alias!
+            const resolvedToken = tokensSet[deepAliasID];
+            if (expectedAliasTypes?.[property] && !expectedAliasTypes[property].includes(resolvedToken!.$type)) {
+              const arrayNode = ($valueNode as ObjectNode).members.find(
+                (m) => m.name.type === 'String' && m.name.value === property,
+              )!.value as ArrayNode;
               logger.error({
                 group: 'parser',
                 label: 'alias',
-                // @ts-ignore
-                message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${resolvedToken.$type}".`,
+                message: `Invalid alias: expected $type: "${expectedAliasTypes[property].join('" or "')}", received $type: "${resolvedToken?.$type}".`,
                 node: arrayNode.elements[i],
                 filename,
                 src,
               });
             }
-            // @ts-ignore
-            token.$value[property][i] = tokens[deepAliasID].mode[aliasMode]?.$value || tokens[deepAliasID].$value;
+            (token.$value as any)[property][i] = tokensSet[deepAliasID]!.$value;
           }
         }
+      }
+
+      // typography tokens: make sure to un-link non-aliases
+      else if (token.partialAliasOf) {
+        delete (token.partialAliasOf as any)[property];
       }
     }
   }

@@ -1,9 +1,12 @@
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { NumberTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert number value to CSS */
-export function transformNumberValue(
-  value: number,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
-): string {
-  return aliasOf ? transformAlias(aliasOf) : String(value);
+export function transformNumber(token: NumberTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
+  }
+  return String(token.$value);
 }

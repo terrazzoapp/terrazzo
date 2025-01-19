@@ -868,21 +868,16 @@ export default function validateTokenNode(
       )
     : {};
   for (const mode of ['.', ...Object.keys(modeValues)]) {
+    const modeValue = mode === '.' ? token.$value : (evaluate((modeValues as any)[mode]) as any);
     token.mode[mode] = {
-      id: token.id,
-      // @ts-ignore
-      $type: token.$type,
-      // @ts-ignore
-      $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
+      $value: modeValue,
+      originalValue: modeValue,
       source: {
         loc: filename ? filename.href : undefined,
         // @ts-ignore
-        node: mode === '.' ? structuredClone(token.source.node) : modeValues[mode],
+        node: modeValues[mode],
       },
     };
-    if (token.$description) {
-      token.mode[mode]!.$description = token.$description;
-    }
   }
 
   // logger.debug({

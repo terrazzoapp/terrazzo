@@ -1,30 +1,19 @@
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { FontFamilyTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
-export const FONT_FAMILY_KEYWORDS = new Set([
-  'sans-serif',
-  'serif',
-  'monospace',
-  'system-ui',
-  'ui-monospace',
-  '-apple-system',
-]);
+const FONT_NAME_KEYWORD = /^[a-z-]+$/;
 
-export function transformFontFamilyValue(
-  value: string | string[],
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: { aliasOf?: string; partialAliasOf?: string[]; transformAlias?: IDGenerator } = {},
-): string {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+export function transformFontFamily(token: FontFamilyTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return (typeof value === 'string' ? [value] : value)
+  return token.$value
     .map((fontName, i) =>
-      partialAliasOf?.[i]
-        ? transformAlias(partialAliasOf[i]!)
-        : FONT_FAMILY_KEYWORDS.has(fontName)
+      token.partialAliasOf?.[i]
+        ? transformAlias(tokensSet[token.partialAliasOf[i]]!)
+        : FONT_NAME_KEYWORD.test(fontName)
           ? fontName
           : `"${fontName}"`,
     )

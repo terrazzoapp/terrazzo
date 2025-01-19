@@ -1,6 +1,7 @@
 import {
   type CubicBezierValue,
   type DimensionValue,
+  type FontFamilyValue,
   type GradientStopNormalized,
   type GradientValueNormalized,
   type ShadowValueNormalized,
@@ -168,6 +169,10 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       const output: TypographyValueNormalized = {};
       for (const [k, $value] of Object.entries(token.$value)) {
         switch (k) {
+          case 'fontFamily': {
+            output[k] = normalizeValue({ $type: 'fontFamily', $value: $value as FontFamilyValue });
+            break;
+          }
           case 'fontSize':
           case 'letterSpacing': {
             output[k] = normalizeValue({ $type: 'dimension', $value: $value as DimensionValue });

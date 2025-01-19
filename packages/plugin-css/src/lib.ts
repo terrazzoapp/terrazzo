@@ -18,7 +18,7 @@ export interface CSSPluginOptions {
   /** Define mode selectors as media queries or CSS classes */
   modeSelectors?: ModeSelector[];
   /** Control the final CSS variable name */
-  variableName?: (name: string) => string;
+  variableName?: (token: TokenNormalized) => string;
   /** Override certain token values */
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
   /** Generate utility CSS from groups */
