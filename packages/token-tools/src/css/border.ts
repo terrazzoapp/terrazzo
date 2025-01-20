@@ -1,38 +1,32 @@
 import { displayable } from 'culori';
-import type { BorderValue } from '../types.js';
-import { transformColorValue } from './color.js';
-import { transformDimensionValue } from './dimension.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
-import { transformStrokeStyleValue } from './stroke-style.js';
+import type {
+  BorderTokenNormalized,
+  ColorTokenNormalized,
+  DimensionTokenNormalized,
+  StrokeStyleTokenNormalized,
+} from '../types.js';
+import { transformColor } from './color.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { transformDimension } from './dimension.js';
+import { defaultAliasTransform } from './lib.js';
+import { transformStrokeStyle } from './stroke-style.js';
 
 /** Convert border value to multiple CSS values */
-export function transformBorderValue(
-  value: BorderValue,
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-    color: colorOptions,
-  }: {
-    aliasOf?: string;
-    partialAliasOf?: Partial<Record<keyof typeof value, string>>;
-    transformAlias?: IDGenerator;
-    color?: { legacyHex?: boolean };
-  },
-) {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+export function transformBorder(token: BorderTokenNormalized, options: TransformCSSValueOptions) {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
 
-  const width = partialAliasOf?.width
-    ? transformAlias(partialAliasOf.width)
-    : transformDimensionValue(value.width, { transformAlias });
-  const color = partialAliasOf?.color
-    ? transformAlias(partialAliasOf.color)
-    : transformColorValue(value.color, { transformAlias, color: colorOptions });
-  const style = partialAliasOf?.style
-    ? transformAlias(partialAliasOf.style)
-    : transformStrokeStyleValue(value.style, { transformAlias });
+  const width = token.partialAliasOf?.width
+    ? transformAlias(tokensSet[token.partialAliasOf.width]!)
+    : transformDimension({ $value: token.$value.width } as DimensionTokenNormalized, options);
+  const color = token.partialAliasOf?.color
+    ? transformAlias(tokensSet[token.partialAliasOf.color]!)
+    : transformColor({ $value: token.$value.color } as ColorTokenNormalized, options);
+  const style = token.partialAliasOf?.style
+    ? transformAlias(tokensSet[token.partialAliasOf.style]!)
+    : transformStrokeStyle({ $value: token.$value.style } as StrokeStyleTokenNormalized, options);
 
   const formatBorder = (colorKey: string) =>
     [width, style, typeof color === 'string' ? color : color[colorKey as keyof typeof color]].join(' ');

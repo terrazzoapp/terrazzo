@@ -1,15 +1,14 @@
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { BooleanTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert boolean value to CSS string */
-export function transformBooleanValue(
-  value: boolean,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
+export function transformBoolean(
+  token: BooleanTokenNormalized,
+  { tokensSet, transformAlias = defaultAliasTransform }: TransformCSSValueOptions,
 ): string {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  if (typeof value !== 'boolean') {
-    throw new Error(`Expected boolean, received ${typeof value} "${value}"`);
-  }
-  return value ? '1' : '0';
+  return token.$value === true ? '1' : '0';
 }

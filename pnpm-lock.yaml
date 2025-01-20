@@ -513,8 +513,8 @@ importers:
   packages/token-tools:
     dependencies:
       '@humanwhocodes/momoa':
-        specifier: ^3.3.5
-        version: 3.3.5
+        specifier: ^3.3.6
+        version: 3.3.6
       culori:
         specifier: ^4.0.1
         version: 4.0.1
@@ -1472,10 +1472,6 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
-
-  '@humanwhocodes/momoa@3.3.5':
-    resolution: {integrity: sha512-NI9codbQNjw9g4SS/cOizi8JDZ93B3oGVko8M3y0XF3gITaGDSQqea35V8fswWehnRQBLxPfZY5TJnuNhNCEzA==}
-    engines: {node: '>=18'}
 
   '@humanwhocodes/momoa@3.3.6':
     resolution: {integrity: sha512-7/sAGm3YsT6xG1bDkTSHvOpQB+cR4I2InfMVw110nuOCrxZvOQHgRqBMxSoTeUQrk9RS4OU9Aw2MBMZVJgLZMg==}
@@ -6613,8 +6609,6 @@ snapshots:
       react-dom: 19.0.0(react@19.0.0)
 
   '@floating-ui/utils@0.2.9': {}
-
-  '@humanwhocodes/momoa@3.3.5': {}
 
   '@humanwhocodes/momoa@3.3.6': {}
 

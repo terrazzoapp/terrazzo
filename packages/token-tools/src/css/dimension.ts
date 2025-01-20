@@ -1,15 +1,13 @@
-import type { AliasValue, DimensionValue } from '../types.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { DimensionTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert dimension value to CSS */
-export function transformDimensionValue(
-  value: DimensionValue | AliasValue,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
-): string {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
-  } else if (typeof value === 'string') {
-    throw new Error(`Could not resolve alias ${value}`);
+export function transformDimension(token: DimensionTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return value.value === 0 ? '0' : `${value.value}${value.unit}`;
+
+  return token.$value.value === 0 ? '0' : `${token.$value.value}${token.$value.unit}`;
 }

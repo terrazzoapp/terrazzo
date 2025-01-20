@@ -94,7 +94,7 @@ const NAV_ITEMS = [
                       </summary>
                       <ul class="nav-subnav">
                         {(item.items ?? []).map((subitem) => {
-                          const subURL = [url, subitem.url].join("/");
+                          const subURL = `${url}/${subitem.url}`
                           return (
                             <li class="nav-subitem">
                               <a

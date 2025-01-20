@@ -60,7 +60,8 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
                 if (mode?.type === 'Object') {
                   for (let i = 0; i < mode.members.length; i++) {
                     const modeName = (mode.members[i]!.name as StringNode).value;
-                    if (isAlias(token.mode[modeName]!)) {
+                    const modeValue = token.mode[modeName]!;
+                    if (typeof modeValue === 'string' && isAlias(modeValue)) {
                       continue;
                     }
                     const newModeValueContainer = parseJSON(

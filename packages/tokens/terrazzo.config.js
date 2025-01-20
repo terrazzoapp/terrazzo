@@ -7,7 +7,7 @@ export default defineConfig({
   outDir: './dist/',
   plugins: [
     css({
-      variableName: (name) => makeCSSVar(name, { prefix: 'tz' }),
+      variableName: (token) => makeCSSVar(token.id, { prefix: 'tz' }),
       modeSelectors: [
         {
           mode: 'light',

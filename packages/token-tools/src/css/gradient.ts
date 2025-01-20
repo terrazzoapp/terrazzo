@@ -1,46 +1,49 @@
-import type { GradientStopNormalized, GradientValueNormalized } from '../types.js';
-import { type WideGamutColorValue, transformColorValue } from './color.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { ColorTokenNormalized, GradientTokenNormalized } from '../types.js';
+import { type WideGamutColorValue, transformColor } from './color.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert gradient value to CSS */
-export function transformGradientValue(
-  value: GradientValueNormalized,
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-    color: colorOptions,
-  }: {
-    aliasOf?: string;
-    partialAliasOf?: Partial<Record<keyof GradientStopNormalized, string>>[];
-    transformAlias?: IDGenerator;
-    color?: { legacyHex?: boolean };
-  } = {},
+export function transformGradient(
+  token: GradientTokenNormalized,
+  options: TransformCSSValueOptions,
 ): string | WideGamutColorValue {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  const colors = value.map(({ color }, i) =>
-    partialAliasOf?.[i]?.color
-      ? transformAlias(partialAliasOf[i]!.color as string)
-      : transformColorValue(color, { color: colorOptions }),
-  );
-  const positions = value.map(({ position }, i) =>
-    partialAliasOf?.[i]?.position ? transformAlias(String(partialAliasOf[i]!.position)) : `${100 * position}%`,
-  );
-  const isHDR = colors.some((c) => typeof c === 'object');
-  const formatStop = (index: number, colorKey = '.') =>
-    [
-      typeof colors[index] === 'string' ? colors[index] : colors[index]![colorKey as keyof (typeof colors)[number]],
-      positions[index]!,
-    ].join(' ');
+
+  let isHDR = false;
+
+  const colors: (string | WideGamutColorValue)[] = [];
+  const positions: string[] = [];
+
+  for (let i = 0; i < token.$value.length; i++) {
+    const { color, position } = token.$value[i]!;
+    const colorValue = token.partialAliasOf?.[i]?.color
+      ? transformAlias(tokensSet[token.partialAliasOf[i]!.color!]!)
+      : transformColor({ $value: color } as ColorTokenNormalized, options);
+    if (typeof colorValue !== 'string') {
+      isHDR = true;
+    }
+    colors.push(colorValue);
+    positions.push(
+      token.partialAliasOf?.[i]?.position
+        ? transformAlias(tokensSet[token.partialAliasOf[i]!.position!]!)
+        : `${100 * position}%`,
+    );
+  }
+
+  function formatStop(i: number, colorKey = '.') {
+    return `${typeof colors[i] === 'string' ? colors[i] : colors[i]![colorKey as keyof (typeof colors)[number]]} ${positions[i]}`;
+  }
 
   return !isHDR
-    ? value.map((_, i) => formatStop(i, positions[i]!)).join(', ')
+    ? token.$value.map((_, i) => formatStop(i, positions[i]!)).join(', ')
     : {
-        '.': value.map((_, i) => formatStop(i, '.')).join(', '),
-        srgb: value.map((_, i) => formatStop(i, 'srgb')).join(', '),
-        p3: value.map((_, i) => formatStop(i, 'p3')).join(', '),
-        rec2020: value.map((_, i) => formatStop(i, 'rec2020')).join(', '),
+        '.': token.$value.map((_, i) => formatStop(i, '.')).join(', '),
+        srgb: token.$value.map((_, i) => formatStop(i, 'srgb')).join(', '),
+        p3: token.$value.map((_, i) => formatStop(i, 'p3')).join(', '),
+        rec2020: token.$value.map((_, i) => formatStop(i, 'rec2020')).join(', '),
       };
 }

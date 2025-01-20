@@ -45,7 +45,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
         t.$type === 'string'
       ) {
         // skip aliases (note: $value will be resolved)
-        if (isAlias(t.aliasOf)) {
+        if (typeof t.aliasOf === 'string' && isAlias(t.aliasOf)) {
           continue;
         }
 

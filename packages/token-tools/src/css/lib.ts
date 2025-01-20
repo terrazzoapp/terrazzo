@@ -1,9 +1,14 @@
-import { kebabCase } from '../string.js';
+import type { TokenNormalized } from '../types.js';
 
 /** Function that generates a var(…) statement */
-export type IDGenerator = (id: string) => string;
+export type IDGenerator<T = TokenNormalized> = (token: T) => string;
 
-export const defaultAliasTransform = (id: string) => `var(${makeCSSVar(id)})`;
+export function defaultAliasTransform(token: TokenNormalized) {
+  if (!token) {
+    throw new Error('Undefined token');
+  }
+  return `var(${makeCSSVar(token.id)})`;
+}
 
 /** Generate shorthand CSS for select token types */
 export function generateShorthand({ $type, localID }: { $type: string; localID: string }): string | undefined {
@@ -16,18 +21,6 @@ export function generateShorthand({ $type, localID }: { $type: string; localID: 
     // note: "typography" is not set in shorthand because it can often unset values unintentionally.
     // @see https://developer.mozilla.org/en-US/docs/Web/CSS/font
   }
-}
-
-/** Build object of alias values */
-export function transformCompositeAlias<T extends {}>(
-  value: T,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf: string; transformAlias?: IDGenerator },
-): Record<string, string> {
-  const output: Record<string, string> = {};
-  for (const key of Object.keys(value)) {
-    output[kebabCase(key)] = transformAlias(`${aliasOf}-${key}`);
-  }
-  return output as Record<keyof T, string>;
 }
 
 const CSS_VAR_RE =
@@ -48,6 +41,10 @@ export interface MakeCSSVarOptions {
  * Code by @dfrankland
  */
 export function makeCSSVar(name: string, { prefix, wrapVar = false }: MakeCSSVarOptions = {}): string {
+  if (typeof name !== 'string') {
+    throw new Error(`makeCSSVar() Expected string, received ${name}`);
+  }
+
   let property = name.split(CSS_VAR_RE).filter(Boolean).join('-');
   if (prefix && !property.startsWith(`${prefix}-`)) {
     property = `${prefix}-${property}`;

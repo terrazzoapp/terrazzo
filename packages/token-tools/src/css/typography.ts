@@ -1,54 +1,59 @@
 import { kebabCase } from '../string.js';
-import type { AliasValue, DimensionValue, TypographyValue } from '../types.js';
-import { transformDimensionValue } from './dimension.js';
-import { transformFontFamilyValue } from './font-family.js';
-import { transformFontWeightValue } from './font-weight.js';
-import { type IDGenerator, defaultAliasTransform, transformCompositeAlias } from './lib.js';
-import { transformNumberValue } from './number.js';
-import { transformStringValue } from './string.js';
+import type {
+  DimensionTokenNormalized,
+  FontFamilyTokenNormalized,
+  FontWeightTokenNormalized,
+  NumberTokenNormalized,
+  StringTokenNormalized,
+  TokenNormalized,
+  TypographyTokenNormalized,
+} from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { transformDimension } from './dimension.js';
+import { transformFontFamily } from './font-family.js';
+import { transformFontWeight } from './font-weight.js';
+import { defaultAliasTransform } from './lib.js';
+import { transformNumber } from './number.js';
+import { transformString } from './string.js';
 
 /** Convert typography value to multiple CSS values */
-export function transformTypographyValue(
-  value: TypographyValue,
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: { aliasOf?: string; partialAliasOf?: Record<keyof typeof value, string>; transformAlias?: IDGenerator } = {},
-): Record<string, string> {
+export function transformTypography(token: TypographyTokenNormalized, options: TransformCSSValueOptions) {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
   const output: Record<string, string> = {};
-  if (aliasOf) {
-    return transformCompositeAlias(value, { aliasOf, transformAlias });
-  }
-  for (const [property, subvalue] of Object.entries(value)) {
+  for (const [property, subvalue] of Object.entries(token.$value)) {
     let transformedValue: string;
-    if (partialAliasOf?.[property]) {
-      transformedValue = transformAlias(partialAliasOf[property]!);
+    const aliasedID = token.aliasChain?.[0] ?? token.partialAliasOf?.[property];
+    if (aliasedID) {
+      const resolvedToken = tokensSet[aliasedID] as TypographyTokenNormalized;
+      transformedValue = transformAlias(
+        // if resolving against a typography token, inject the property as well
+        resolvedToken.$type === 'typography' ? ({ id: `${aliasedID}-${property}` } as TokenNormalized) : resolvedToken,
+      );
     } else {
       switch (property) {
         case 'fontFamily': {
-          transformedValue = transformFontFamilyValue(subvalue as string[], { transformAlias });
+          transformedValue = transformFontFamily({ $value: subvalue } as FontFamilyTokenNormalized, options);
           break;
         }
         case 'fontSize':
         case 'letterSpacing': {
-          transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
+          transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
           break;
         }
         case 'fontWeight': {
-          transformedValue = transformFontWeightValue(subvalue as string, { transformAlias });
+          transformedValue = transformFontWeight({ $value: subvalue } as FontWeightTokenNormalized, options);
           break;
         }
         case 'lineHeight': {
           if (typeof subvalue === 'number') {
-            transformedValue = transformNumberValue(subvalue as number, { transformAlias });
+            transformedValue = transformNumber({ $value: subvalue } as NumberTokenNormalized, options);
           } else {
-            transformedValue = transformDimensionValue(subvalue as DimensionValue | AliasValue, { transformAlias });
+            transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
           }
           break;
         }
         default: {
-          transformedValue = transformStringValue(subvalue as string, { transformAlias });
+          transformedValue = transformString({ $value: subvalue } as StringTokenNormalized, options);
           break;
         }
       }

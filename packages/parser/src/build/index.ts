@@ -100,10 +100,8 @@ export default async function build(
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           if (typeof cleanValue === 'object') {
             for (const k of Object.keys(cleanValue)) {
-              if (Object.hasOwn(cleanValue, k)) {
-                if (cleanValue[k] === undefined) {
-                  delete cleanValue[k];
-                }
+              if (cleanValue[k] === undefined) {
+                delete cleanValue[k];
               }
             }
           }

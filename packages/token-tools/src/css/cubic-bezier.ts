@@ -1,23 +1,14 @@
-import type { CubicBezierValue } from '../types.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { CubicBezierTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert cubicBezier value to CSS */
-export function transformCubicBezierValue(
-  value: CubicBezierValue,
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: {
-    aliasOf?: string;
-    partialAliasOf?: [string | undefined, string | undefined, string | undefined, string | undefined];
-    transformAlias?: IDGenerator;
-  } = {},
-): string {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+export function transformCubicBezier(token: CubicBezierTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return `cubic-bezier(${value
-    .map((v, i) => (partialAliasOf?.[i] ? transformAlias(partialAliasOf[i]!) : v))
+  return `cubic-bezier(${token.$value
+    .map((v, i) => (token.partialAliasOf?.[i] ? transformAlias(tokensSet[token.partialAliasOf[i]]!) : v))
     .join(', ')})`;
 }

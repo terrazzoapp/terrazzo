@@ -1,13 +1,12 @@
-import type { StrokeStyleValue } from '../types.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { StrokeStyleTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert strokeStyle value to CSS */
-export function transformStrokeStyleValue(
-  value: string | StrokeStyleValue,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
-): string {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+export function transformStrokeStyle(token: StrokeStyleTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return typeof value === 'string' ? value : 'dashed'; // CSS doesn’t have `dash-array`; it’s just "dashed"
+  return typeof token.$value === 'string' ? token.$value : 'dashed'; // CSS doesn’t have `dash-array`; it’s just "dashed"
 }
