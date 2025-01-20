@@ -4,7 +4,7 @@ import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import type { ConfigInit, InputSource } from '../types.js';
-import { applyAliases } from './alias.js';
+import applyAliases from './alias.js';
 import { getObjMembers, toMomoa, traverse } from './json.js';
 import normalize from './normalize.js';
 import validateTokenNode from './validate.js';
@@ -112,7 +112,7 @@ export default async function parse(
       tokensSet,
       filename: _sources[token.source.loc!]?.filename!,
       src: _sources[token.source.loc!]?.src as string,
-      node: token.source.node,
+      node: (getObjMembers(token.source.node).$value as any) || token.source.node,
       logger,
     });
     aliasCount++;

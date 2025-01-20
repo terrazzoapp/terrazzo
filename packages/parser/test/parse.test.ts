@@ -9,7 +9,7 @@ import parse from '../src/parse/index.js';
 const cwd = new URL(import.meta.url);
 const DEFAULT_FILENAME = new URL('file:///tokens.json');
 
-describe.only('Tokens', () => {
+describe('Tokens', () => {
   type Test = [
     string,
     {
@@ -402,17 +402,17 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/tokens.json:11:17
+/tokens.json:12:17
 
-   9 |       }
   10 |     },
-> 11 |     "semantic": {
+  11 |     "semantic": {
+> 12 |       "$value": "{color.base.blue.600}"
      |                 ^
-  12 |       "$value": "{color.base.blue.600}"
   13 |     }
-  14 |   }`,
+  14 |   }
+  15 | }`,
           },
         },
       ],
@@ -436,14 +436,14 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/b.json:2:15
+/b.json:3:15
 
   1 | {
-> 2 |   "semantic": {
+  2 |   "semantic": {
+> 3 |     "$value": "{color.base.blue.600}"
     |               ^
-  3 |     "$value": "{color.base.blue.600}"
   4 |   }
   5 | }`,
           },
@@ -515,17 +515,17 @@ font:
             },
           ],
           want: {
-            error: `Circular alias detected from "{color.text.primary}".
+            error: `Circular alias detected from {color.text.primary}.
 
-/tokens.json:4:16
+/tokens.json:5:17
 
-  2 |   "color": {
   3 |     "$type": "color",
-> 4 |     "primary": {
-    |                ^
-  5 |       "$value": "{color.text.primary}"
+  4 |     "primary": {
+> 5 |       "$value": "{color.text.primary}"
+    |                 ^
   6 |     },
-  7 |     "text": {`,
+  7 |     "text": {
+  8 |       "primary": {`,
           },
         },
       ],
