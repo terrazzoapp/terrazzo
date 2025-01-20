@@ -115,17 +115,6 @@ export default async function parse(
       node: token.source.node,
       logger,
     });
-    token.mode['.']!.$value = token.$value;
-    token.mode['.']!.originalValue = token.originalValue.$value;
-    if (token.aliasOf) {
-      token.mode['.']!.aliasOf = token.aliasOf;
-    }
-    if (token.aliasChain) {
-      token.mode['.']!.aliasChain = token.aliasChain;
-    }
-    if (token.partialAliasOf) {
-      token.mode['.']!.partialAliasOf = token.partialAliasOf;
-    }
     aliasCount++;
     const { group: parentGroup } = splitID(id);
     if (parentGroup) {

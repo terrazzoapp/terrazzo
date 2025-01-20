@@ -40,7 +40,7 @@ const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
 
 /** Fill in defaults, and return predictable shapes for tokens */
 export default function normalizeValue<T extends Token>(token: T): T['$value'] {
-  if (isAlias(token.$value)) {
+  if (typeof token.$value === 'string' && isAlias(token.$value)) {
     return token.$value;
   }
   switch (token.$type) {

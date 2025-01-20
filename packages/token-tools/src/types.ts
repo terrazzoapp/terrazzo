@@ -26,7 +26,9 @@ export type Token =
 
 export type TokensSet = Record<string, Token>;
 
+// TODO: Update with JSON pointer
 export type AliasValue = string;
+
 export interface AliasToken extends TokenCore {
   $type?: never;
   $value: AliasValue;

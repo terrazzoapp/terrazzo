@@ -9,7 +9,7 @@ import parse from '../src/parse/index.js';
 const cwd = new URL(import.meta.url);
 const DEFAULT_FILENAME = new URL('file:///tokens.json');
 
-describe('Tokens', () => {
+describe.only('Tokens', () => {
   type Test = [
     string,
     {

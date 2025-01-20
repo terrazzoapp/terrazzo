@@ -3,10 +3,7 @@ import wcmatch from 'wildcard-match';
 const ALIAS_RE = /^\{([^}]+)\}$/;
 
 /** Is this token an alias of another? */
-export function isAlias(value: unknown): boolean {
-  if (typeof value !== 'string') {
-    return false;
-  }
+export function isAlias(value: string): boolean {
   return ALIAS_RE.test(value);
 }
 

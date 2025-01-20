@@ -750,6 +750,11 @@ export interface ValidateTokenNodeOptions {
   $typeInheritance?: Record<string, Token['$type']>;
 }
 
+/**
+ * Validate does a little more than validate; it also converts to TokenNormalized
+ * and sets up the basic data structure. But aliases are unresolved, and we need
+ * a 2nd normalization pass afterward.
+ */
 export default function validateTokenNode(
   node: MemberNode,
   { config, filename, logger, parent, src, subpath, $typeInheritance }: ValidateTokenNodeOptions,
