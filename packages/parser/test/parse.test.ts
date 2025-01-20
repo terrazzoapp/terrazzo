@@ -9,7 +9,7 @@ import parse from '../src/parse/index.js';
 const cwd = new URL(import.meta.url);
 const DEFAULT_FILENAME = new URL('file:///tokens.json');
 
-describe.only('Tokens', () => {
+describe('Tokens', () => {
   type Test = [
     string,
     {
@@ -24,6 +24,7 @@ describe.only('Tokens', () => {
     try {
       result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
+      // console.error(e)
       const err = e as TokensJSONError;
       expect(stripAnsi(err.message).replace(/\[parser:(validate|alias|normalize)\]\s*/, '')).toBe(want.error);
 
@@ -402,17 +403,17 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/tokens.json:11:17
+/tokens.json:12:17
 
-   9 |       }
   10 |     },
-> 11 |     "semantic": {
+  11 |     "semantic": {
+> 12 |       "$value": "{color.base.blue.600}"
      |                 ^
-  12 |       "$value": "{color.base.blue.600}"
   13 |     }
-  14 |   }`,
+  14 |   }
+  15 | }`,
           },
         },
       ],
@@ -436,14 +437,14 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/b.json:2:15
+/b.json:3:15
 
   1 | {
-> 2 |   "semantic": {
+  2 |   "semantic": {
+> 3 |     "$value": "{color.base.blue.600}"
     |               ^
-  3 |     "$value": "{color.base.blue.600}"
   4 |   }
   5 | }`,
           },
@@ -515,17 +516,17 @@ font:
             },
           ],
           want: {
-            error: `Circular alias detected from "{color.text.primary}".
+            error: `Circular alias detected from {color.text.primary}.
 
-/tokens.json:4:16
+/tokens.json:5:17
 
-  2 |   "color": {
   3 |     "$type": "color",
-> 4 |     "primary": {
-    |                ^
-  5 |       "$value": "{color.text.primary}"
+  4 |     "primary": {
+> 5 |       "$value": "{color.text.primary}"
+    |                 ^
   6 |     },
-  7 |     "text": {`,
+  7 |     "text": {
+  8 |       "primary": {`,
           },
         },
       ],
@@ -549,7 +550,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "border", received $type: "dimension".
+            error: `Invalid alias: expected $type: border, received $type: dimension.
 
 /tokens.json:11:17
 
@@ -594,7 +595,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "dimension", received $type: "color".
+            error: `Invalid alias: expected $type: dimension, received $type: color.
 
 /tokens.json:19:18
 
@@ -640,7 +641,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "number", received $type: "duration".
+            error: `Invalid alias: expected $type: number, received $type: duration.
 
 /tokens.json:30:23
 
@@ -671,7 +672,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "dimension", received $type: "number".
+            error: `Invalid alias: expected $type: dimension, received $type: number.
 
 /tokens.json:20:11
 
@@ -1427,7 +1428,7 @@ font:
         },
       ],
       [
-        'valid: aliases',
+        'invalid: aliases',
         {
           given: [
             {
@@ -1445,13 +1446,15 @@ font:
             },
           ],
           want: {
-            tokens: {
-              cubic: [0.33, 1, 0.68, 1],
-              'number.a': 0.33,
-              'number.b': 1,
-              'number.c': 0.68,
-              'number.d': 1,
-            },
+            error: `Expected an array of 4 numbers, received some non-numbers
+
+  2 |   "cubic": {
+  3 |     "$type": "cubicBezier",
+> 4 |     "$value": [
+    |               ^
+  5 |       "{number.a}",
+  6 |       "{number.b}",
+  7 |       "{number.c}",`,
           },
         },
       ],
@@ -2707,7 +2710,7 @@ describe('Additional cases', () => {
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0, 0, 0],
+                  channels: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
                   colorSpace: 'srgb',
                   hex: '#1158c7',
                 },
@@ -2736,9 +2739,9 @@ describe('Additional cases', () => {
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0, 0, 0],
+                  channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
-                  hex: '#1158c7',
+                  hex: '#205d9e',
                 },
                 originalValue: '#205d9e',
               },
@@ -2751,6 +2754,8 @@ describe('Additional cases', () => {
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasChain: ['color.blue.7'],
+                aliasOf: 'color.blue.7',
                 originalValue: '{color.blue.7}',
               },
               light: {
@@ -2760,15 +2765,19 @@ describe('Additional cases', () => {
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasChain: ['color.blue.7'],
+                aliasOf: 'color.blue.7',
                 originalValue: '{color.blue.7}',
               },
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
-                  hex: '#1158c7',
+                  hex: '#0550ae',
                 },
+                aliasChain: ['color.blue.6'],
+                aliasOf: 'color.blue.6',
                 originalValue: '{color.blue.6}',
               },
             },

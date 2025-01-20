@@ -4,7 +4,7 @@ import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import type { ConfigInit, InputSource } from '../types.js';
-import { applyAliases } from './alias.js';
+import applyAliases from './alias.js';
 import { getObjMembers, toMomoa, traverse } from './json.js';
 import normalize from './normalize.js';
 import validateTokenNode from './validate.js';
@@ -112,7 +112,7 @@ export default async function parse(
       tokensSet,
       filename: _sources[token.source.loc!]?.filename!,
       src: _sources[token.source.loc!]?.src as string,
-      node: token.source.node,
+      node: (getObjMembers(token.source.node).$value as any) || token.source.node,
       logger,
     });
     aliasCount++;
@@ -239,19 +239,12 @@ async function parseSingle(
         continueOnError,
       });
     }
-    for (const [mode, modeValueOverrides] of Object.entries(token.mode)) {
-      // for composite object tokens (e.g. typography or border tokens), mode
-      // values are allowed to extend from the default value (but not arrays, or
-      // other types). Combine them together
-      const modeValue =
-        !Array.isArray(modeValueOverrides) && typeof modeValueOverrides === 'object'
-          ? { ...token.mode['.'], ...modeValueOverrides }
-          : modeValueOverrides;
+    for (const [mode, modeValue] of Object.entries(token.mode)) {
       if (mode === '.') {
         continue;
       }
       try {
-        tokensSet[id]!.mode[mode]!.$value = normalize(modeValue);
+        tokensSet[id]!.mode[mode]!.$value = normalize({ $type: token.$type, ...modeValue });
       } catch (err) {
         let { node } = token.source;
         const members = getObjMembers(node);

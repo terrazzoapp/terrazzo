@@ -215,7 +215,7 @@ describe('Node.js API', () => {
       );
     });
 
-    it.only('utility', async () => {
+    it('utility', async () => {
       const output = 'actual.css';
       const cwd = new URL('./fixtures/utility-css/', import.meta.url);
       const config = defineConfig(

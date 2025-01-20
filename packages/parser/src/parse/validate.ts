@@ -254,10 +254,8 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
 export function validateCubicBezier($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
   const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type !== 'Array') {
-    logger.error({ ...baseMessage, message: `Expected array of strings, received ${print($value)}` });
-  } else if (
-    !$value.elements.every((e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)))
-  ) {
+    logger.error({ ...baseMessage, message: `Expected array of numbers, received ${print($value)}` });
+  } else if (!$value.elements.every((e) => e.value.type === 'Number')) {
     logger.error({ ...baseMessage, message: 'Expected an array of 4 numbers, received some non-numbers' });
   } else if ($value.elements.length !== 4) {
     logger.error({ ...baseMessage, message: `Expected an array of 4 numbers, received ${$value.elements.length}` });
@@ -866,12 +864,7 @@ export default function validateTokenNode(
 
   // handle modes
   // note that circular refs are avoided here, such as not duplicating `modes`
-  const modeValues = extensions?.mode
-    ? getObjMembers(
-        // @ts-ignore
-        extensions.mode,
-      )
-    : {};
+  const modeValues = extensions?.mode ? getObjMembers(extensions.mode as any) : {};
   for (const mode of ['.', ...Object.keys(modeValues)]) {
     const modeValue = mode === '.' ? token.$value : (evaluate((modeValues as any)[mode]) as any);
     token.mode[mode] = {
