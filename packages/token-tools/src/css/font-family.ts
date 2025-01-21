@@ -9,13 +9,5 @@ export function transformFontFamily(token: FontFamilyTokenNormalized, options: T
   if (token.aliasChain?.[0]) {
     return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  return token.$value
-    .map((fontName, i) =>
-      token.partialAliasOf?.[i]
-        ? transformAlias(tokensSet[token.partialAliasOf[i]]!)
-        : FONT_NAME_KEYWORD.test(fontName)
-          ? fontName
-          : `"${fontName}"`,
-    )
-    .join(', ');
+  return token.$value.map((fontName) => (FONT_NAME_KEYWORD.test(fontName) ? fontName : `"${fontName}"`)).join(', ');
 }

@@ -15,11 +15,14 @@ describe('Tokens', () => {
     {
       given: any;
       want:
-      | {
-        error?: never;
-        tokens: Record<string, Pick<TokenNormalized, '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy'>>;
-      }
-      | { error: string; tokens?: never };
+        | {
+            error?: never;
+            tokens: Record<
+              string,
+              Pick<TokenNormalized, '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf'>
+            >;
+          }
+        | { error: string; tokens?: never };
     },
   ];
 
@@ -44,6 +47,10 @@ describe('Tokens', () => {
       const expectedTokens: Record<string, any> = {};
       for (const [id, token] of Object.entries(result.tokens)) {
         expectedTokens[id] = { $value: token.$value };
+
+        // Note: all these additions are a pain, but they are a huge lift to
+        // test otherwise complex resolution logic. It’s OK when adding test cases
+        // to just “snapshot” it and copy the current value—that’s expected.
         if (token.aliasedBy) {
           expectedTokens[id].aliasedBy = token.aliasedBy;
         }
@@ -52,6 +59,9 @@ describe('Tokens', () => {
         }
         if (token.aliasChain?.length) {
           expectedTokens[id].aliasChain = token.aliasChain;
+        }
+        if (token.partialAliasOf) {
+          expectedTokens[id].partialAliasOf = token.partialAliasOf;
         }
       }
       expect(expectedTokens).toEqual(want.tokens);
@@ -240,6 +250,11 @@ font:
                   width: { value: 1, unit: 'px' },
                   style: 'solid',
                 },
+                partialAliasOf: {
+                  color: 'color.semantic.subdued',
+                  width: 'border.size.default',
+                  style: 'border.style.default',
+                },
               },
             },
           },
@@ -316,6 +331,10 @@ font:
                     },
                     position: 1,
                   },
+                ],
+                partialAliasOf: [
+                  { color: 'color.blue.500', position: 'perc.0' },
+                  { color: 'color.purple.800', position: 'perc.100' },
                 ],
               },
             },
@@ -1980,6 +1999,10 @@ font:
                   timingFunction: [0.42, 0, 0.58, 1],
                   delay: { value: 0, unit: 'ms' },
                 },
+                partialAliasOf: {
+                  duration: 'timing.quick',
+                  timingFunction: 'ease.in-out',
+                },
               },
               'timing.quick': {
                 $value: { value: 150, unit: 'ms' },
@@ -2021,6 +2044,10 @@ font:
                   duration: { value: 150, unit: 'ms' },
                   timingFunction: [0.42, 0, 0.58, 1],
                   delay: { value: 0, unit: 'ms' },
+                },
+                partialAliasOf: {
+                  duration: 'timing.quick',
+                  timingFunction: 'ease.in-out',
                 },
               },
               'timing.quick': { $value: { value: 150, unit: 'ms' }, aliasedBy: ['transition.ease-in-out'] },
@@ -2902,6 +2929,113 @@ describe('Additional cases', () => {
                 aliasChain: ['color.blue.6'],
                 aliasOf: 'color.blue.6',
                 originalValue: '{color.blue.6}',
+              },
+            },
+          },
+        },
+      ],
+      [
+        'typography',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                typography: {
+                  $type: 'typography',
+                  base: {
+                    $value: {
+                      fontFamily: 'Helvetica',
+                      fontSize: '{typography.size.sm}',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      fontVariantNumeric: 'tabular-nums',
+                      letterSpacing: 0,
+                      lineHeight: 1.4,
+                      textDecoration: 'none',
+                      textTransform: 'none',
+                    },
+                    $extensions: {
+                      mode: {
+                        mobile: { fontSize: { value: 0.875, unit: 'rem' } },
+                        desktop: { fontSize: { value: 1, unit: 'rem' } },
+                      },
+                    },
+                  },
+                  size: {
+                    $type: 'dimension',
+                    sm: { $value: { value: 0.875, unit: 'rem' } },
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            'typography.base': {
+              '.': {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 0.875 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontFamily: 'Helvetica',
+                  fontSize: '{typography.size.sm}',
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: 0,
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                partialAliasOf: {
+                  fontSize: 'typography.size.sm',
+                },
+              },
+              mobile: {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 0.875 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontSize: { value: 0.875, unit: 'rem' },
+                },
+              },
+              desktop: {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 1 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontSize: { value: 1, unit: 'rem' },
+                },
+              },
+            },
+            'typography.size.sm': {
+              '.': {
+                $value: { value: 0.875, unit: 'rem' },
+                originalValue: { value: 0.875, unit: 'rem' },
               },
             },
           },

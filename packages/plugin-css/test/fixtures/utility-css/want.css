@@ -37,7 +37,15 @@
 
 @media (width >= 600px) {
   :root {
+    --ds-typography-base-font-family: "Helvetica";
     --ds-typography-base-font-size: 1rem;
+    --ds-typography-base-font-style: normal;
+    --ds-typography-base-font-variant-numeric: tabular-nums;
+    --ds-typography-base-font-weight: 400;
+    --ds-typography-base-letter-spacing: 0;
+    --ds-typography-base-line-height: 1.4;
+    --ds-typography-base-text-decoration: none;
+    --ds-typography-base-text-transform: none;
   }
 }
 

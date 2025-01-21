@@ -218,7 +218,7 @@ function _resolveAliasInner(
 function applyBorderPartialAlias(token: BorderTokenNormalized, mode: string, options: ApplyAliasOptions): void {
   for (const [k, v] of Object.entries(token.mode[mode]!.$value)) {
     if (typeof v === 'string' && isAlias(v)) {
-      token.partialAliasOf ??= {};
+      token.mode[mode]!.partialAliasOf ??= {};
       const node = (getObjMembers(options.node)[k] as any) || options.node;
       const { resolvedToken } = resolveAlias(v, {
         ...options,
@@ -226,7 +226,11 @@ function applyBorderPartialAlias(token: BorderTokenNormalized, mode: string, opt
         expectedType: { color: ['color'], width: ['dimension'], style: ['strokeStyle'] }[k],
         node,
       });
-      (token.partialAliasOf as any)[k] = resolvedToken.id;
+      (token.mode[mode]!.partialAliasOf as any)[k] = parseAlias(v);
+      if (mode === '.') {
+        token.partialAliasOf ??= {};
+        (token.partialAliasOf as any)[k] = parseAlias(v);
+      }
       (token.mode[mode]!.$value as any)[k] = resolvedToken.$value;
     }
   }
@@ -237,15 +241,20 @@ function applyGradientPartialAlias(token: GradientTokenNormalized, mode: string,
     const step = token.mode[mode]!.$value[i]!;
     for (const [k, v] of Object.entries(step)) {
       if (typeof v === 'string' && isAlias(v)) {
-        token.partialAliasOf ??= [];
-        (token.partialAliasOf as any)[i] ??= {};
+        token.mode[mode]!.partialAliasOf ??= [];
+        (token.mode[mode]!.partialAliasOf as any)[i] ??= {};
         const expectedType = { color: ['color'], position: ['number'] }[k];
         let node = ((options.node as unknown as ArrayNode | undefined)?.elements?.[i]?.value as any) || options.node;
         if (node.type === 'Object') {
           node = getObjMembers(node)[k] || node;
         }
         const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
-        (token.partialAliasOf[i] as any)[k] = resolvedToken.id;
+        (token.mode[mode]!.partialAliasOf[i] as any)[k] = parseAlias(v);
+        if (mode === '.') {
+          token.partialAliasOf ??= [];
+          (token.partialAliasOf as any)[i] ??= {};
+          (token.partialAliasOf[i] as any)[k] = parseAlias(v);
+        }
         (step as any)[k] = resolvedToken.$value;
       }
     }
@@ -264,8 +273,8 @@ function applyShadowPartialAlias(token: ShadowTokenNormalized, mode: string, opt
     const layer = token.mode[mode]!.$value[i]!;
     for (const [k, v] of Object.entries(layer)) {
       if (typeof v === 'string' && isAlias(v)) {
-        token.partialAliasOf ??= [];
-        (token.partialAliasOf as any)[i] ??= {};
+        token.mode[mode]!.partialAliasOf ??= [];
+        token.mode[mode]!.partialAliasOf[i] ??= {};
         const expectedType = {
           offsetX: ['dimension'],
           offsetY: ['dimension'],
@@ -279,7 +288,12 @@ function applyShadowPartialAlias(token: ShadowTokenNormalized, mode: string, opt
           node = getObjMembers(node)[k] || node;
         }
         const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
-        (token.partialAliasOf[i] as any)[k] = resolvedToken.id;
+        (token.mode[mode]!.partialAliasOf[i] as any)[k] = parseAlias(v);
+        if (mode === '.') {
+          token.partialAliasOf ??= [];
+          token.partialAliasOf[i] ??= {};
+          (token.partialAliasOf[i] as any)[k] = parseAlias(v);
+        }
         (layer as any)[k] = resolvedToken.$value;
       }
     }
@@ -317,11 +331,15 @@ function applyStrokeStylePartialAlias(
 function applyTransitionPartialAlias(token: TransitionTokenNormalized, mode: string, options: ApplyAliasOptions): void {
   for (const [k, v] of Object.entries(token.mode[mode]!.$value)) {
     if (typeof v === 'string' && isAlias(v)) {
-      token.partialAliasOf ??= {};
+      token.mode[mode]!.partialAliasOf ??= {};
       const expectedType = { duration: ['duration'], delay: ['duration'], timingFunction: ['cubicBezier'] }[k];
       const node = (getObjMembers(options.node)[k] as any) || options.node;
       const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
-      (token.partialAliasOf as any)[k] = resolvedToken.id;
+      (token.mode[mode]!.partialAliasOf as any)[k] = parseAlias(v);
+      if (mode === '.') {
+        token.partialAliasOf ??= {};
+        (token.partialAliasOf as any)[k] = parseAlias(v);
+      }
       (token.mode[mode]!.$value as any)[k] = resolvedToken.$value;
     }
   }
@@ -331,6 +349,7 @@ function applyTypographyPartialAlias(token: TypographyTokenNormalized, mode: str
   for (const [k, v] of Object.entries(token.mode[mode]!.$value)) {
     if (typeof v === 'string' && isAlias(v)) {
       token.partialAliasOf ??= {};
+      token.mode[mode]!.partialAliasOf ??= {};
       const expectedType = {
         fontFamily: ['fontFamily'],
         fontSize: ['dimension'],
@@ -340,7 +359,10 @@ function applyTypographyPartialAlias(token: TypographyTokenNormalized, mode: str
       }[k] || ['string'];
       const node = (getObjMembers(options.node)[k] as any) || options.node;
       const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
-      (token.partialAliasOf as any)[k] = resolvedToken.id;
+      (token.mode[mode]!.partialAliasOf as any)[k] = parseAlias(v);
+      if (mode === '.') {
+        token.partialAliasOf[k] = parseAlias(v);
+      }
       (token.mode[mode]!.$value as any)[k] = resolvedToken.$value;
     }
   }

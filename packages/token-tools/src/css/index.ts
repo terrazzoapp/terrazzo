@@ -44,7 +44,12 @@ export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
   if (!selectedMode) {
     return;
   }
-  const tokenWithModeValue = { ...token, ...selectedMode } as T;
+  const tokenWithModeValue: T = {
+    id: token.id,
+    $type: token.$type,
+    // note: do NOT carry over aliasOf/partialAliasOf as that will result in incorrect values
+    ...selectedMode,
+  } as any;
   switch (tokenWithModeValue.$type) {
     case 'boolean':
       return transformBoolean(tokenWithModeValue, options);

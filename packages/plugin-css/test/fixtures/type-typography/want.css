@@ -39,7 +39,7 @@
 
 @media (width >= 600px) {
   :root {
-    --ds-typography-body-font-family: var(--ds-typography-family-body);
+    --ds-typography-body-font-family: "IBM Plex Sans", system-ui, sans-serif;
     --ds-typography-body-font-size: 14px;
     --ds-typography-body-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
     --ds-typography-body-font-weight: 400;
