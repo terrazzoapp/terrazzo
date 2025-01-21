@@ -161,6 +161,10 @@
 
 @media (prefers-color-scheme: light) {
   :root {
+    --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+    --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+    --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -221,6 +225,10 @@
 }
 
 [data-color-mode="light"][data-color-mode="light"] {
+  --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+  --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+  --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -281,6 +289,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+    --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+    --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -341,6 +353,10 @@
 }
 
 [data-color-mode="dark"][data-color-mode="dark"] {
+  --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+  --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+  --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);

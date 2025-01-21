@@ -333,6 +333,7 @@ function applyTypographyPartialAlias(token: TypographyTokenNormalized, mode: str
       token.partialAliasOf ??= {};
       const expectedType = {
         fontFamily: ['fontFamily'],
+        fontSize: ['dimension'],
         fontWeight: ['fontWeight'],
         letterSpacing: ['dimension'],
         lineHeight: ['dimension', 'number'],
