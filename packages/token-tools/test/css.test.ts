@@ -83,7 +83,7 @@ describe('transformCSSValue', () => {
             mode: {
               '.': {
                 $value: false,
-                originalValue: { $value: '{bool.nuh-uh}' },
+                originalValue: '{bool.nuh-uh}',
                 source: {} as any,
                 aliasOf: 'bool.nuh-uh',
               },

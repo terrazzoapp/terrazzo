@@ -16,7 +16,7 @@ describe('transformJSValue', () => {
       $type: 'dimension',
       $value: '1rem',
     } as unknown as DimensionTokenNormalized;
-    dimension.mode = { '.': { ...dimension } };
+    dimension.mode = { '.': { $value: dimension.$value, originalValue: dimension.$value, source: {} as any } };
 
     expect(transformJSValue(dimension, { mode: '.' })).toMatchInlineSnapshot(`
       ""1rem""
@@ -29,7 +29,7 @@ describe('transformJSValue', () => {
       $type: 'boolean',
       $value: false,
     } as unknown as BooleanTokenNormalized;
-    bool.mode = { '.': { ...bool } };
+    bool.mode = { '.': { $value: bool.$value, originalValue: bool.$value, source: {} as any } };
 
     expect(transformJSValue(bool, { mode: '.' })).toMatchInlineSnapshot(`
       "false"
@@ -42,7 +42,7 @@ describe('transformJSValue', () => {
       $type: 'number',
       $value: 500,
     } as unknown as NumberTokenNormalized;
-    num.mode = { '.': { ...num } };
+    num.mode = { '.': { $value: num.$value, originalValue: num.$value, source: {} as any } };
 
     expect(transformJSValue(num, { mode: '.' })).toMatchInlineSnapshot(`
       "500"
@@ -55,7 +55,7 @@ describe('transformJSValue', () => {
       $type: 'color',
       $value: { colorSpace: 'srgb', channels: [0.02, 0.53, 0.94], alpha: 1 },
     } as unknown as ColorTokenNormalized;
-    color.mode = { '.': { ...color } };
+    color.mode = { '.': { $value: color.$value, originalValue: color.$value, source: {} as any } };
 
     expect(transformJSValue(color, { mode: '.' })).toMatchInlineSnapshot(`
       "{
@@ -78,7 +78,7 @@ describe('transformJSValue', () => {
         { color: { colorSpace: 'srgb', channels: [0.51, 0.28, 0.73], alpha: 1 }, position: 100 },
       ],
     } as unknown as GradientTokenNormalized;
-    gradient.mode = { '.': { ...gradient } };
+    gradient.mode = { '.': { $value: gradient.$value, originalValue: gradient.$value, source: {} as any } };
 
     expect(transformJSValue(gradient, { mode: '.' })).toMatchInlineSnapshot(`
       "[
@@ -125,7 +125,7 @@ describe('transformJSValue', () => {
         textTranssform: 'none',
       },
     } as unknown as TypographyTokenNormalized;
-    typography.mode = { '.': { ...typography } };
+    typography.mode = { '.': { $value: typography.$value, originalValue: typography.$value, source: {} as any } };
 
     expect(transformJSValue(typography, { mode: '.' })).toMatchInlineSnapshot(`
       "{

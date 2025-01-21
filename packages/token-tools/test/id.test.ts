@@ -11,7 +11,7 @@ describe('isAlias', () => {
   });
 
   it('ignores invalid values', () => {
-    expect(isAlias([])).toBe(false);
+    expect(isAlias([] as any)).toBe(false);
   });
 });
 
