@@ -271,7 +271,7 @@
   --size-stroke-border: 0.0625rem;
   --size-stroke-focus-ring: 0.125rem;
   --typography-family-mono: "roboto mono", monospace;
-  --typography-family-sans: "inter", sans-serif;
+  --typography-family-sans: inter, sans-serif;
   --typography-family-serif: "noto serif", serif;
   --typography-scale-01: 0.75rem;
   --typography-scale-02: 0.875rem;

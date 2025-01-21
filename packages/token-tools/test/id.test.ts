@@ -11,7 +11,7 @@ describe('isAlias', () => {
   });
 
   it('ignores invalid values', () => {
-    expect(isAlias([])).toBe(false);
+    expect(isAlias([] as any)).toBe(false);
   });
 });
 
@@ -55,15 +55,11 @@ describe('getTokenMatch', () => {
 
 describe('parseAlias', () => {
   it('standard', () => {
-    expect(parseAlias('{color.blue.60}')).toEqual({ id: 'color.blue.60' });
-  });
-
-  it('with mode', () => {
-    expect(parseAlias('{color.blue.60#dark}')).toEqual({ id: 'color.blue.60', mode: 'dark' });
+    expect(parseAlias('{color.blue.60}')).toEqual('color.blue.60');
   });
 
   it('invalid', () => {
-    expect(parseAlias('color.blue.60')).toEqual({ id: 'color.blue.60' });
+    expect(parseAlias('color.blue.60')).toEqual('color.blue.60');
   });
 });
 

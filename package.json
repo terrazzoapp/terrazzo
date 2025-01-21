@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.15.2",
+  "packageManager": "pnpm@9.15.4",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -28,6 +28,6 @@
     "stylelint-order": "^6.0.4",
     "turbo": "^2.3.3",
     "typescript": "^5.7.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.0.2"
   }
 }

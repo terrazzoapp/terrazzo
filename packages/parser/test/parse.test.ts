@@ -14,7 +14,15 @@ describe('Tokens', () => {
     string,
     {
       given: any;
-      want: { error?: never; tokens: Record<string, TokenNormalized['$value']> } | { error: string; tokens?: never };
+      want:
+        | {
+            error?: never;
+            tokens: Record<
+              string,
+              Pick<TokenNormalized, '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf'>
+            >;
+          }
+        | { error: string; tokens?: never };
     },
   ];
 
@@ -24,6 +32,7 @@ describe('Tokens', () => {
     try {
       result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
+      // console.error(e)
       const err = e as TokensJSONError;
       expect(stripAnsi(err.message).replace(/\[parser:(validate|alias|normalize)\]\s*/, '')).toBe(want.error);
 
@@ -35,10 +44,27 @@ describe('Tokens', () => {
     if (result) {
       expect(want.tokens).toBeTruthy();
       expect(want.error).toBeUndefined();
+      const expectedTokens: Record<string, any> = {};
       for (const [id, token] of Object.entries(result.tokens)) {
-        expect(token.source).not.toBeFalsy();
-        expect(token.$value).toEqual(want.tokens![id]);
+        expectedTokens[id] = { $value: token.$value };
+
+        // Note: all these additions are a pain, but they are a huge lift to
+        // test otherwise complex resolution logic. It’s OK when adding test cases
+        // to just “snapshot” it and copy the current value—that’s expected.
+        if (token.aliasedBy) {
+          expectedTokens[id].aliasedBy = token.aliasedBy;
+        }
+        if (token.aliasOf) {
+          expectedTokens[id].aliasOf = token.aliasOf;
+        }
+        if (token.aliasChain?.length) {
+          expectedTokens[id].aliasChain = token.aliasChain;
+        }
+        if (token.partialAliasOf) {
+          expectedTokens[id].partialAliasOf = token.partialAliasOf;
+        }
       }
+      expect(expectedTokens).toEqual(want.tokens);
     }
   }
 
@@ -60,8 +86,15 @@ describe('Tokens', () => {
           ],
           want: {
             tokens: {
-              'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
-              'color.semantic': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+              'color.base.blue.500': {
+                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                aliasedBy: ['color.semantic'],
+              },
+              'color.semantic': {
+                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                aliasOf: 'color.base.blue.500',
+                aliasChain: ['color.base.blue.500'],
+              },
             },
           },
         },
@@ -84,8 +117,15 @@ describe('Tokens', () => {
           ],
           want: {
             tokens: {
-              'color.base.blue.500': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
-              'color.semantic': { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+              'color.base.blue.500': {
+                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                aliasedBy: ['color.semantic'],
+              },
+              'color.semantic': {
+                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                aliasOf: 'color.base.blue.500',
+                aliasChain: ['color.base.blue.500'],
+              },
             },
           },
         },
@@ -104,8 +144,8 @@ describe('Tokens', () => {
           ],
           want: {
             tokens: {
-              'font.weight.bold': 700,
-              bold: 700,
+              'font.weight.bold': { $value: 700, aliasedBy: ['bold'] },
+              bold: { $value: 700, aliasOf: 'font.weight.bold', aliasChain: ['font.weight.bold'] },
             },
           },
         },
@@ -127,7 +167,10 @@ font:
             },
           ],
           want: {
-            tokens: { bold: 700, 'font.weight.700': 700 },
+            tokens: {
+              'font.weight.700': { $value: 700, aliasedBy: ['bold'] },
+              bold: { $value: 700, aliasOf: 'font.weight.700', aliasChain: ['font.weight.700'] },
+            },
           },
         },
       ],
@@ -153,14 +196,16 @@ font:
           want: {
             tokens: {
               buttonStroke: {
-                lineCap: 'round',
-                dashArray: [
-                  { value: 0.125, unit: 'rem' },
-                  { value: 0.25, unit: 'rem' },
-                ],
+                $value: {
+                  lineCap: 'round',
+                  dashArray: [
+                    { value: 0.125, unit: 'rem' },
+                    { value: 0.25, unit: 'rem' },
+                  ],
+                },
               },
-              'size.2': { value: 0.125, unit: 'rem' },
-              'size.3': { value: 0.25, unit: 'rem' },
+              'size.2': { $value: { value: 0.125, unit: 'rem' }, aliasedBy: ['buttonStroke'] },
+              'size.3': { $value: { value: 0.25, unit: 'rem' }, aliasedBy: ['buttonStroke'] },
             },
           },
         },
@@ -190,13 +235,26 @@ font:
           ],
           want: {
             tokens: {
-              'color.semantic.subdued': { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
-              'border.size.default': { value: 1, unit: 'px' },
-              'border.style.default': 'solid',
+              'color.semantic.subdued': {
+                $value: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
+                aliasedBy: ['buttonBorder'],
+              },
+              'border.size.default': { $value: { value: 1, unit: 'px' }, aliasedBy: ['buttonBorder'] },
+              'border.style.default': {
+                $value: 'solid',
+                aliasedBy: ['buttonBorder'],
+              },
               buttonBorder: {
-                color: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
-                width: { value: 1, unit: 'px' },
-                style: 'solid',
+                $value: {
+                  color: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
+                  width: { value: 1, unit: 'px' },
+                  style: 'solid',
+                },
+                partialAliasOf: {
+                  color: 'color.semantic.subdued',
+                  width: 'border.size.default',
+                  style: 'border.style.default',
+                },
               },
             },
           },
@@ -232,35 +290,53 @@ font:
           want: {
             tokens: {
               'color.blue.500': {
-                alpha: 1,
-                channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
-                colorSpace: 'srgb',
+                $value: {
+                  alpha: 1,
+                  channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
+                  colorSpace: 'srgb',
+                },
+                aliasedBy: ['gradient'],
               },
               'color.purple.800': {
-                alpha: 1,
-                channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
-                colorSpace: 'srgb',
+                $value: {
+                  alpha: 1,
+                  channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
+                  colorSpace: 'srgb',
+                },
+                aliasedBy: ['gradient'],
               },
-              'perc.0': 0,
-              'perc.100': 1,
-              gradient: [
-                {
-                  color: {
-                    alpha: 1,
-                    channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
-                    colorSpace: 'srgb',
+              'perc.0': {
+                $value: 0,
+                aliasedBy: ['gradient'],
+              },
+              'perc.100': {
+                $value: 1,
+                aliasedBy: ['gradient'],
+              },
+              gradient: {
+                $value: [
+                  {
+                    color: {
+                      alpha: 1,
+                      channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
+                      colorSpace: 'srgb',
+                    },
+                    position: 0,
                   },
-                  position: 0,
-                },
-                {
-                  color: {
-                    alpha: 1,
-                    channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
-                    colorSpace: 'srgb',
+                  {
+                    color: {
+                      alpha: 1,
+                      channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
+                      colorSpace: 'srgb',
+                    },
+                    position: 1,
                   },
-                  position: 1,
-                },
-              ],
+                ],
+                partialAliasOf: [
+                  { color: 'color.blue.500', position: 'perc.0' },
+                  { color: 'color.purple.800', position: 'perc.100' },
+                ],
+              },
             },
           },
         },
@@ -287,40 +363,63 @@ font:
           want: {
             tokens: {
               'alias.a': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.b', 'alias.c', 'alias.d', 'alias.e', 'alias.f'],
+                aliasOf: 'alias.f',
               },
               'alias.b': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.c', 'alias.d', 'alias.e', 'alias.f'],
+                aliasOf: 'alias.f',
               },
               'alias.c': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.d', 'alias.e', 'alias.f'],
+                aliasOf: 'alias.f',
               },
               'alias.d': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.e', 'alias.f'],
+                aliasOf: 'alias.f',
               },
               'alias.e': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.f'],
+                aliasOf: 'alias.f',
               },
               'alias.f': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasedBy: ['alias.a', 'alias.b', 'alias.c', 'alias.d', 'alias.e'],
               },
             },
           },
@@ -348,40 +447,63 @@ font:
           want: {
             tokens: {
               'alias.a': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasedBy: ['alias.b', 'alias.c', 'alias.d', 'alias.e', 'alias.f'],
               },
               'alias.b': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.f', 'alias.c', 'alias.e', 'alias.d', 'alias.a'],
+                aliasOf: 'alias.a',
               },
               'alias.c': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.e', 'alias.d', 'alias.a'],
+                aliasOf: 'alias.a',
               },
               'alias.d': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.a'],
+                aliasOf: 'alias.a',
               },
               'alias.e': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.d', 'alias.a'],
+                aliasOf: 'alias.a',
               },
               'alias.f': {
-                alpha: 1,
-                channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
+                $value: {
+                  alpha: 1,
+                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  colorSpace: 'srgb',
+                  hex: '#808080',
+                },
+                aliasChain: ['alias.c', 'alias.e', 'alias.d', 'alias.a'],
+                aliasOf: 'alias.a',
               },
             },
           },
@@ -402,17 +524,17 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/tokens.json:11:17
+/tokens.json:12:17
 
-   9 |       }
   10 |     },
-> 11 |     "semantic": {
+  11 |     "semantic": {
+> 12 |       "$value": "{color.base.blue.600}"
      |                 ^
-  12 |       "$value": "{color.base.blue.600}"
   13 |     }
-  14 |   }`,
+  14 |   }
+  15 | }`,
           },
         },
       ],
@@ -436,14 +558,14 @@ font:
             },
           ],
           want: {
-            error: `Alias "{color.base.blue.600}" not found.
+            error: `Alias {color.base.blue.600} not found.
 
-/b.json:2:15
+/b.json:3:15
 
   1 | {
-> 2 |   "semantic": {
+  2 |   "semantic": {
+> 3 |     "$value": "{color.base.blue.600}"
     |               ^
-  3 |     "$value": "{color.base.blue.600}"
   4 |   }
   5 | }`,
           },
@@ -515,17 +637,17 @@ font:
             },
           ],
           want: {
-            error: `Circular alias detected from "{color.text.primary}".
+            error: `Circular alias detected from {color.text.primary}.
 
-/tokens.json:4:16
+/tokens.json:5:17
 
-  2 |   "color": {
   3 |     "$type": "color",
-> 4 |     "primary": {
-    |                ^
-  5 |       "$value": "{color.text.primary}"
+  4 |     "primary": {
+> 5 |       "$value": "{color.text.primary}"
+    |                 ^
   6 |     },
-  7 |     "text": {`,
+  7 |     "text": {
+  8 |       "primary": {`,
           },
         },
       ],
@@ -549,7 +671,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "border", received $type: "dimension".
+            error: `Invalid alias: expected $type: border, received $type: dimension.
 
 /tokens.json:11:17
 
@@ -594,7 +716,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "dimension", received $type: "color".
+            error: `Invalid alias: expected $type: dimension, received $type: color.
 
 /tokens.json:19:18
 
@@ -640,7 +762,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "number", received $type: "duration".
+            error: `Invalid alias: expected $type: number, received $type: duration.
 
 /tokens.json:30:23
 
@@ -671,7 +793,7 @@ font:
             },
           ],
           want: {
-            error: `Invalid alias: expected $type: "dimension", received $type: "number".
+            error: `Invalid alias: expected $type: dimension, received $type: number.
 
 /tokens.json:20:11
 
@@ -701,7 +823,7 @@ font:
               src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
             },
           ],
-          want: { tokens: { 'color.cobalt': { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } },
+          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
         },
       ],
       [
@@ -713,7 +835,7 @@ font:
               src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
             },
           ],
-          want: { tokens: { 'color.cobalt': { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } },
+          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
         },
       ],
       [
@@ -920,14 +1042,14 @@ font:
           given: [
             { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 0.5, unit: 'rem' } } } },
           ],
-          want: { tokens: { xs: { value: 0.5, unit: 'rem' } } },
+          want: { tokens: { xs: { $value: { value: 0.5, unit: 'rem' } } } },
         },
       ],
       [
         'valid: rem (string)',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.5rem' } } }],
-          want: { tokens: { xs: { value: 0.5, unit: 'rem' } } },
+          want: { tokens: { xs: { $value: { value: 0.5, unit: 'rem' } } } },
         },
       ],
       [
@@ -936,14 +1058,14 @@ font:
           given: [
             { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 12, unit: 'px' } } } },
           ],
-          want: { tokens: { xs: { value: 12, unit: 'px' } } },
+          want: { tokens: { xs: { $value: { value: 12, unit: 'px' } } } },
         },
       ],
       [
         'valid: px (string)',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '12px' } } }],
-          want: { tokens: { xs: { value: 12, unit: 'px' } } },
+          want: { tokens: { xs: { $value: { value: 12, unit: 'px' } } } },
         },
       ],
       [
@@ -952,14 +1074,14 @@ font:
           given: [
             { filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: { value: 0.25, unit: 'em' } } } },
           ],
-          want: { tokens: { xs: { value: 0.25, unit: 'em' } } },
+          want: { tokens: { xs: { $value: { value: 0.25, unit: 'em' } } } },
         },
       ],
       [
         'valid: em (string)',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: '0.25em' } } }],
-          want: { tokens: { xs: { value: 0.25, unit: 'em' } } },
+          want: { tokens: { xs: { $value: { value: 0.25, unit: 'em' } } } },
         },
       ],
       [
@@ -971,7 +1093,7 @@ font:
               src: { space: { 1: { $type: 'dimension', $value: { value: -0.25, unit: 'rem' } } } },
             },
           ],
-          want: { tokens: { 'space.1': { value: -0.25, unit: 'rem' } } },
+          want: { tokens: { 'space.1': { $value: { value: -0.25, unit: 'rem' } } } },
         },
       ],
       [
@@ -1042,7 +1164,7 @@ font:
         'valid: 0',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'dimension', $value: 0 } } }],
-          want: { tokens: { '00': { value: 0, unit: 'px' } } },
+          want: { tokens: { '00': { $value: { value: 0, unit: 'px' } } } },
         },
       ],
       [
@@ -1090,8 +1212,8 @@ font:
       [
         'valid: string',
         {
-          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: 'Helvetica' } } }],
-          want: { tokens: { base: ['Helvetica'] } },
+          given: [{ filename: DEFAULT_FILENAME, src: { base: { $type: 'fontFamily', $value: ['Helvetica'] } } }],
+          want: { tokens: { base: { $value: ['Helvetica'] } } },
         },
       ],
       [
@@ -1103,7 +1225,7 @@ font:
               src: { base: { $type: 'fontFamily', $value: ['Helvetica', 'system-ui', 'sans-serif'] } },
             },
           ],
-          want: { tokens: { base: ['Helvetica', 'system-ui', 'sans-serif'] } },
+          want: { tokens: { base: { $value: ['Helvetica', 'system-ui', 'sans-serif'] } } },
         },
       ],
       [
@@ -1166,7 +1288,7 @@ font:
         'valid: number',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { bold: { $type: 'fontWeight', $value: 700 } } }],
-          want: { tokens: { bold: 700 } },
+          want: { tokens: { bold: { $value: 700 } } },
         },
       ],
       [
@@ -1202,24 +1324,24 @@ font:
           ],
           want: {
             tokens: {
-              'fontWeight.thin': 100,
-              'fontWeight.hairline': 100,
-              'fontWeight.extra-light': 200,
-              'fontWeight.ultra-light': 200,
-              'fontWeight.light': 300,
-              'fontWeight.normal': 400,
-              'fontWeight.regular': 400,
-              'fontWeight.book': 400,
-              'fontWeight.medium': 500,
-              'fontWeight.semi-bold': 600,
-              'fontWeight.demi-bold': 600,
-              'fontWeight.bold': 700,
-              'fontWeight.extra-bold': 800,
-              'fontWeight.ultra-bold': 800,
-              'fontWeight.black': 900,
-              'fontWeight.heavy': 900,
-              'fontWeight.extra-black': 950,
-              'fontWeight.ultra-black': 950,
+              'fontWeight.thin': { $value: 100 },
+              'fontWeight.hairline': { $value: 100 },
+              'fontWeight.extra-light': { $value: 200 },
+              'fontWeight.ultra-light': { $value: 200 },
+              'fontWeight.light': { $value: 300 },
+              'fontWeight.normal': { $value: 400 },
+              'fontWeight.regular': { $value: 400 },
+              'fontWeight.book': { $value: 400 },
+              'fontWeight.medium': { $value: 500 },
+              'fontWeight.semi-bold': { $value: 600 },
+              'fontWeight.demi-bold': { $value: 600 },
+              'fontWeight.bold': { $value: 700 },
+              'fontWeight.extra-bold': { $value: 800 },
+              'fontWeight.ultra-bold': { $value: 800 },
+              'fontWeight.black': { $value: 900 },
+              'fontWeight.heavy': { $value: 900 },
+              'fontWeight.extra-black': { $value: 950 },
+              'fontWeight.ultra-black': { $value: 950 },
             },
           },
         },
@@ -1269,14 +1391,14 @@ font:
           given: [
             { filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: { value: 100, unit: 'ms' } } } },
           ],
-          want: { tokens: { quick: { value: 100, unit: 'ms' } } },
+          want: { tokens: { quick: { $value: { value: 100, unit: 'ms' } } } },
         },
       ],
       [
         'valid: ms (string)',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: '100ms' } } }],
-          want: { tokens: { quick: { value: 100, unit: 'ms' } } },
+          want: { tokens: { quick: { $value: { value: 100, unit: 'ms' } } } },
         },
       ],
       [
@@ -1288,14 +1410,14 @@ font:
               src: { moderate: { $type: 'duration', $value: { value: 0.25, unit: 's' } } },
             },
           ],
-          want: { tokens: { moderate: { value: 0.25, unit: 's' } } },
+          want: { tokens: { moderate: { $value: { value: 0.25, unit: 's' } } } },
         },
       ],
       [
         'valid: s (string)',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { moderate: { $type: 'duration', $value: '0.25s' } } }],
-          want: { tokens: { moderate: { value: 0.25, unit: 's' } } },
+          want: { tokens: { moderate: { $value: { value: 0.25, unit: 's' } } } },
         },
       ],
       [
@@ -1366,7 +1488,7 @@ font:
         'valid: 0',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { '00': { $type: 'duration', $value: 0 } } }],
-          want: { tokens: { '00': { value: 0, unit: 'ms' } } },
+          want: { tokens: { '00': { $value: { value: 0, unit: 'ms' } } } },
         },
       ],
       [
@@ -1423,11 +1545,11 @@ font:
         'valid',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1] } } }],
-          want: { tokens: { cubic: [0.33, 1, 0.68, 1] } },
+          want: { tokens: { cubic: { $value: [0.33, 1, 0.68, 1] } } },
         },
       ],
       [
-        'valid: aliases',
+        'invalid: aliases',
         {
           given: [
             {
@@ -1445,13 +1567,15 @@ font:
             },
           ],
           want: {
-            tokens: {
-              cubic: [0.33, 1, 0.68, 1],
-              'number.a': 0.33,
-              'number.b': 1,
-              'number.c': 0.68,
-              'number.d': 1,
-            },
+            error: `Expected an array of 4 numbers, received some non-numbers
+
+  2 |   "cubic": {
+  3 |     "$type": "cubicBezier",
+> 4 |     "$value": [
+    |               ^
+  5 |       "{number.a}",
+  6 |       "{number.b}",
+  7 |       "{number.c}",`,
           },
         },
       ],
@@ -1507,7 +1631,7 @@ font:
         'valid',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: 42 } } }],
-          want: { tokens: { number: 42 } },
+          want: { tokens: { number: { $value: 42 } } },
         },
       ],
       [
@@ -1559,14 +1683,14 @@ font:
         'valid: true',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: true } } }],
-          want: { tokens: { myBool: true } },
+          want: { tokens: { myBool: { $value: true } } },
         },
       ],
       [
         'valid: false',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: false } } }],
-          want: { tokens: { myBool: false } },
+          want: { tokens: { myBool: { $value: false } } },
         },
       ],
       [
@@ -1618,7 +1742,7 @@ font:
           given: [
             { filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: '/assets/icons/star.svg' } } },
           ],
-          want: { tokens: { iconStar: '/assets/icons/star.svg' } },
+          want: { tokens: { iconStar: { $value: '/assets/icons/star.svg' } } },
         },
       ],
       [
@@ -1668,14 +1792,14 @@ font:
         'valid',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 'foobar' } } }],
-          want: { tokens: { myString: 'foobar' } },
+          want: { tokens: { myString: { $value: 'foobar' } } },
         },
       ],
       [
         'valid: empty string',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: '' } } }],
-          want: { tokens: { myString: '' } },
+          want: { tokens: { myString: { $value: '' } } },
         },
       ],
       [
@@ -1707,7 +1831,7 @@ font:
         'valid: string',
         {
           given: [{ filename: DEFAULT_FILENAME, src: { borderStyle: { $type: 'strokeStyle', $value: 'double' } } }],
-          want: { tokens: { borderStyle: 'double' } },
+          want: { tokens: { borderStyle: { $value: 'double' } } },
         },
       ],
       [
@@ -1724,7 +1848,7 @@ font:
               },
             },
           ],
-          want: { tokens: { borderStyle: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] } } },
+          want: { tokens: { borderStyle: { $value: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] } } } },
         },
       ],
       [
@@ -1798,9 +1922,11 @@ font:
           want: {
             tokens: {
               border: {
-                color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
-                style: 'solid',
-                width: { value: 1, unit: 'px' },
+                $value: {
+                  color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
+                  style: 'solid',
+                  width: { value: 1, unit: 'px' },
+                },
               },
             },
           },
@@ -1868,12 +1994,21 @@ font:
           want: {
             tokens: {
               'transition.ease-in-out': {
-                duration: { value: 150, unit: 'ms' },
-                timingFunction: [0.42, 0, 0.58, 1],
-                delay: { value: 0, unit: 'ms' },
+                $value: {
+                  duration: { value: 150, unit: 'ms' },
+                  timingFunction: [0.42, 0, 0.58, 1],
+                  delay: { value: 0, unit: 'ms' },
+                },
+                partialAliasOf: {
+                  duration: 'timing.quick',
+                  timingFunction: 'ease.in-out',
+                },
               },
-              'timing.quick': { value: 150, unit: 'ms' },
-              'ease.in-out': [0.42, 0, 0.58, 1],
+              'timing.quick': {
+                $value: { value: 150, unit: 'ms' },
+                aliasedBy: ['transition.ease-in-out'],
+              },
+              'ease.in-out': { $value: [0.42, 0, 0.58, 1], aliasedBy: ['transition.ease-in-out'] },
             },
           },
         },
@@ -1905,12 +2040,18 @@ font:
           want: {
             tokens: {
               'transition.ease-in-out': {
-                duration: { value: 150, unit: 'ms' },
-                timingFunction: [0.42, 0, 0.58, 1],
-                delay: { value: 0, unit: 'ms' },
+                $value: {
+                  duration: { value: 150, unit: 'ms' },
+                  timingFunction: [0.42, 0, 0.58, 1],
+                  delay: { value: 0, unit: 'ms' },
+                },
+                partialAliasOf: {
+                  duration: 'timing.quick',
+                  timingFunction: 'ease.in-out',
+                },
               },
-              'timing.quick': { value: 150, unit: 'ms' },
-              'ease.in-out': [0.42, 0, 0.58, 1],
+              'timing.quick': { $value: { value: 150, unit: 'ms' }, aliasedBy: ['transition.ease-in-out'] },
+              'ease.in-out': { $value: [0.42, 0, 0.58, 1], aliasedBy: ['transition.ease-in-out'] },
             },
           },
         },
@@ -2005,16 +2146,18 @@ font:
           ],
           want: {
             tokens: {
-              shadowBase: [
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
-                  offsetX: { value: 0, unit: 'rem' },
-                  offsetY: { value: 0.25, unit: 'rem' },
-                  blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
-                  inset: false,
-                },
-              ],
+              shadowBase: {
+                $value: [
+                  {
+                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    spread: { value: 0, unit: 'px' },
+                    inset: false,
+                  },
+                ],
+              },
             },
           },
         },
@@ -2050,24 +2193,26 @@ font:
           ],
           want: {
             tokens: {
-              shadowBase: [
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: { value: 0, unit: 'rem' },
-                  offsetY: { value: 0.25, unit: 'rem' },
-                  blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
-                  inset: false,
-                },
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-                  offsetX: { value: 0, unit: 'rem' },
-                  offsetY: { value: 0.5, unit: 'rem' },
-                  blur: { value: 1, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
-                  inset: false,
-                },
-              ],
+              shadowBase: {
+                $value: [
+                  {
+                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    spread: { value: 0, unit: 'px' },
+                    inset: false,
+                  },
+                  {
+                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.5, unit: 'rem' },
+                    blur: { value: 1, unit: 'rem' },
+                    spread: { value: 0, unit: 'px' },
+                    inset: false,
+                  },
+                ],
+              },
             },
           },
         },
@@ -2121,16 +2266,18 @@ font:
           ],
           want: {
             tokens: {
-              shadowBase: [
-                {
-                  color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
-                  offsetX: { value: 0, unit: 'rem' },
-                  offsetY: { value: 0.25, unit: 'rem' },
-                  blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
-                  inset: true,
-                },
-              ],
+              shadowBase: {
+                $value: [
+                  {
+                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    spread: { value: 0, unit: 'px' },
+                    inset: true,
+                  },
+                ],
+              },
             },
           },
         },
@@ -2161,10 +2308,12 @@ font:
           ],
           want: {
             tokens: {
-              gradient: [
-                { color: { alpha: 1, channels: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
-                { color: { alpha: 1, channels: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
-              ],
+              gradient: {
+                $value: [
+                  { color: { alpha: 1, channels: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                  { color: { alpha: 1, channels: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
+                ],
+              },
             },
           },
         },
@@ -2296,15 +2445,17 @@ font:
           want: {
             tokens: {
               typography: {
-                fontFamily: 'Helvetica',
-                fontSize: { value: 16, unit: 'px' },
-                fontStyle: 'italic',
-                fontVariant: 'small-caps',
-                fontWeight: 400,
-                letterSpacing: { value: 0.125, unit: 'em' },
-                lineHeight: { value: 24, unit: 'px' },
-                textDecoration: 'underline',
-                textTransform: 'uppercase',
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { value: 16, unit: 'px' },
+                  fontStyle: 'italic',
+                  fontVariant: 'small-caps',
+                  fontWeight: 400,
+                  letterSpacing: { value: 0.125, unit: 'em' },
+                  lineHeight: { value: 24, unit: 'px' },
+                  textDecoration: 'underline',
+                  textTransform: 'uppercase',
+                },
               },
             },
           },
@@ -2326,7 +2477,7 @@ font:
               },
             },
           ],
-          want: { tokens: { typography: { lineHeight: 1.5 } } },
+          want: { tokens: { typography: { $value: { lineHeight: 1.5 } } } },
         },
       ],
       [
@@ -2350,9 +2501,11 @@ font:
           want: {
             tokens: {
               typography: {
-                fontSize: { value: 16, unit: 'px' },
-                letterSpacing: { value: 0.001, unit: 'em' },
-                lineHeight: { value: 24, unit: 'px' },
+                $value: {
+                  fontSize: { value: 16, unit: 'px' },
+                  letterSpacing: { value: 0.001, unit: 'em' },
+                  lineHeight: { value: 24, unit: 'px' },
+                },
               },
             },
           },
@@ -2673,10 +2826,11 @@ describe('Additional cases', () => {
                   semantic: {
                     bg: {
                       $value: '{color.blue.7}',
-                      $extensions: { mode: { light: '{color.blue.7#light}', dark: '{color.blue.7#dark}' } },
+                      $extensions: { mode: { light: '{color.blue.7}', dark: '{color.blue.6}' } },
                     },
                   },
                   blue: {
+                    '6': { $value: '#0550ae', $extensions: { mode: { light: '#0550ae', dark: '#1158c7' } } },
                     '7': { $value: '#8ec8f6', $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } } },
                   },
                 },
@@ -2684,75 +2838,204 @@ describe('Additional cases', () => {
             },
           ],
           want: {
-            'color.blue.7': {
+            'color.blue.6': {
               '.': {
-                id: 'color.blue.7',
-                $type: 'color',
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
-                  hex: '#8ec8f6',
+                  hex: '#0550ae',
                 },
-                aliasedBy: ['color.semantic.bg'],
+                originalValue: '#0550ae',
               },
               light: {
-                id: 'color.blue.7',
-                $type: 'color',
+                $value: {
+                  alpha: 1,
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                  colorSpace: 'srgb',
+                  hex: '#0550ae',
+                },
+                originalValue: '#0550ae',
+              },
+              dark: {
+                $value: {
+                  alpha: 1,
+                  channels: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
+                  colorSpace: 'srgb',
+                  hex: '#1158c7',
+                },
+                originalValue: '#1158c7',
+              },
+            },
+            'color.blue.7': {
+              '.': {
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                originalValue: '#8ec8f6',
+              },
+              light: {
+                $value: {
+                  alpha: 1,
+                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  colorSpace: 'srgb',
+                  hex: '#8ec8f6',
+                },
+                originalValue: '#8ec8f6',
               },
               dark: {
-                id: 'color.blue.7',
-                $type: 'color',
                 $value: {
                   alpha: 1,
                   channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
                   hex: '#205d9e',
                 },
+                originalValue: '#205d9e',
               },
             },
             'color.semantic.bg': {
               '.': {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasChain: ['color.blue.7'],
+                aliasOf: 'color.blue.7',
+                originalValue: '{color.blue.7}',
               },
               light: {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
                   channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
+                aliasChain: ['color.blue.7'],
+                aliasOf: 'color.blue.7',
+                originalValue: '{color.blue.7}',
               },
               dark: {
-                id: 'color.semantic.bg',
-                $type: 'color',
-                aliasOf: 'color.blue.7',
-                aliasChain: ['color.blue.7'],
                 $value: {
                   alpha: 1,
-                  channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
+                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
-                  hex: '#205d9e',
+                  hex: '#0550ae',
                 },
+                aliasChain: ['color.blue.6'],
+                aliasOf: 'color.blue.6',
+                originalValue: '{color.blue.6}',
+              },
+            },
+          },
+        },
+      ],
+      [
+        'typography',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                typography: {
+                  $type: 'typography',
+                  base: {
+                    $value: {
+                      fontFamily: 'Helvetica',
+                      fontSize: '{typography.size.sm}',
+                      fontStyle: 'normal',
+                      fontWeight: 400,
+                      fontVariantNumeric: 'tabular-nums',
+                      letterSpacing: 0,
+                      lineHeight: 1.4,
+                      textDecoration: 'none',
+                      textTransform: 'none',
+                    },
+                    $extensions: {
+                      mode: {
+                        mobile: { fontSize: { value: 0.875, unit: 'rem' } },
+                        desktop: { fontSize: { value: 1, unit: 'rem' } },
+                      },
+                    },
+                  },
+                  size: {
+                    $type: 'dimension',
+                    sm: { $value: { value: 0.875, unit: 'rem' } },
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            'typography.base': {
+              '.': {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 0.875 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontFamily: 'Helvetica',
+                  fontSize: '{typography.size.sm}',
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: 0,
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                partialAliasOf: {
+                  fontSize: 'typography.size.sm',
+                },
+              },
+              mobile: {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 0.875 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontSize: { value: 0.875, unit: 'rem' },
+                },
+              },
+              desktop: {
+                $value: {
+                  fontFamily: ['Helvetica'],
+                  fontSize: { unit: 'rem', value: 1 },
+                  fontStyle: 'normal',
+                  fontVariantNumeric: 'tabular-nums',
+                  fontWeight: 400,
+                  letterSpacing: { unit: 'px', value: 0 },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
+                },
+                originalValue: {
+                  fontSize: { value: 1, unit: 'rem' },
+                },
+              },
+            },
+            'typography.size.sm': {
+              '.': {
+                $value: { value: 0.875, unit: 'rem' },
+                originalValue: { value: 0.875, unit: 'rem' },
               },
             },
           },

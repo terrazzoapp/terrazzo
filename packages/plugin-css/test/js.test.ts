@@ -21,7 +21,7 @@ describe('Node.js API', () => {
             plugins: [
               css({
                 filename: output,
-                variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
+                variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
                 modeSelectors: [
                   {
                     mode: 'light',
@@ -169,7 +169,7 @@ describe('Node.js API', () => {
             css({
               filename: output,
               legacyHex: true,
-              variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
+              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
               modeSelectors: [
                 {
                   mode: 'light',
@@ -223,7 +223,7 @@ describe('Node.js API', () => {
           plugins: [
             css({
               filename: output,
-              variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
+              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
               utility: {
                 bg: ['color.semantic.*', 'color.gradient.*'],
                 border: ['border.*'],

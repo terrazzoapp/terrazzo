@@ -16,7 +16,7 @@ describe('@terrazzo/plugin-scss', () => {
         plugins: [
           css({
             filename: 'actual.css',
-            variableName: (name) => makeCSSVar(name, { prefix: 'ds' }),
+            variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
           }),
           sass({
             filename,

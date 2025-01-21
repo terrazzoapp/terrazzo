@@ -1,11 +1,14 @@
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type { StringTokenNormalized } from '../types.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert string value to CSS */
-export function transformStringValue(
-  value: string | number | boolean,
-  { aliasOf, transformAlias = defaultAliasTransform }: { aliasOf?: string; transformAlias?: IDGenerator } = {},
-): string {
+export function transformString(token: StringTokenNormalized, options: TransformCSSValueOptions): string {
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
+  }
   // this seems like a useless function—because it is—but this is a placeholder
   // that can handle unexpected values in the future should any arise
-  return aliasOf ? transformAlias(aliasOf) : String(value);
+  return String(token.$value);
 }

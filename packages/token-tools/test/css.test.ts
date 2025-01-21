@@ -1,19 +1,18 @@
 import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
-  transformBooleanValue,
+  transformBoolean,
   transformCSSValue,
-  transformColorValue,
-  transformCubicBezierValue,
-  transformDimensionValue,
-  transformDurationValue,
-  transformFontWeightValue,
-  transformGradientValue,
-  transformNumberValue,
-  transformShadowValue,
-  transformTypographyValue,
+  transformColor,
+  transformCubicBezier,
+  transformDimension,
+  transformDuration,
+  transformFontWeight,
+  transformGradient,
+  transformNumber,
+  transformShadow,
+  transformTypography,
 } from '../src/css/index.js';
-import type { TokenNormalized } from '../src/types.js';
 
 type Test<Given = any, Want = any> = [
   string,
@@ -67,8 +66,8 @@ describe('transformCSSValue', () => {
                 $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
               },
             },
-          } as TokenNormalized,
-          { mode: '.', transformAlias: (id) => `--${id}` },
+          } as any,
+          { mode: '.', tokensSet: {}, transformAlias: (id) => `--${id}` },
         ],
         want: { success: 'color(srgb 0 0 1)' },
       },
@@ -83,11 +82,8 @@ describe('transformCSSValue', () => {
             id: 'bool.idk',
             mode: {
               '.': {
-                $type: 'boolean',
                 $value: false,
-                id: 'bool.idk',
-                originalValue: { $value: '{bool.nuh-uh}' },
-                group: { id: 'bool', tokens: [] },
+                originalValue: '{bool.nuh-uh}',
                 source: {} as any,
                 aliasOf: 'bool.nuh-uh',
                 aliasChain: ['bool.nuh-uh'],
@@ -99,7 +95,13 @@ describe('transformCSSValue', () => {
             aliasOf: 'bool.nuh-uh',
             aliasChain: ['bool.nuh-uh'],
           },
-          { mode: '.' },
+          {
+            mode: '.',
+            tokensSet: {
+              'bool.idk': { $type: 'boolean', $value: false, id: 'bool.idk' },
+              'bool.nuh-uh': { $type: 'boolean', $value: false, id: 'bool.nuh-uh' },
+            } as any,
+          },
         ],
         want: { success: 'var(--bool-nuh-uh)' },
       },
@@ -116,16 +118,15 @@ describe('transformCSSValue', () => {
   });
 });
 
-describe('transformBooleanValue', () => {
-  const tests: Test<Parameters<typeof transformBooleanValue>, ReturnType<typeof transformBooleanValue>>[] = [
-    ['true', { given: [true], want: { success: '1' } }],
-    ['false', { given: [false], want: { success: '0' } }],
-    ['invalid', { given: ['true' as any], want: { error: 'Expected boolean, received string "true"' } }],
+describe('transformBoolean', () => {
+  const tests: Test<Parameters<typeof transformBoolean>, ReturnType<typeof transformBoolean>>[] = [
+    ['true', { given: [{ $value: true } as any, { tokensSet: {} }], want: { success: '1' } }],
+    ['false', { given: [{ $value: false } as any, { tokensSet: {} }], want: { success: '0' } }],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformBooleanValue(...given);
+      result = transformBoolean(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -133,22 +134,34 @@ describe('transformBooleanValue', () => {
   });
 });
 
-describe('transformColorValue', () => {
-  const tests: Test<Parameters<typeof transformColorValue>, ReturnType<typeof transformColorValue>>[] = [
-    ['string', { given: ['#663399'], want: { success: 'color(srgb 0.4 0.2 0.6)' } }],
+describe('transformColor', () => {
+  const tests: Test<Parameters<typeof transformColor>, ReturnType<typeof transformColor>>[] = [
     [
-      'object',
+      'string',
       {
-        given: [{ colorSpace: 'srgb', channels: [0.4, 0.2, 0.6], alpha: 1 }],
+        given: [{ $value: '#663399' } as any, { tokensSet: {} }],
         want: { success: 'color(srgb 0.4 0.2 0.6)' },
       },
     ],
-    ['invalid', { given: ['#wtf'], want: { error: 'Unable to parse color "#wtf"' } }],
+    [
+      'object',
+      {
+        given: [{ $value: { colorSpace: 'srgb', channels: [0.4, 0.2, 0.6], alpha: 1 } } as any, { tokensSet: {} }],
+        want: { success: 'color(srgb 0.4 0.2 0.6)' },
+      },
+    ],
+    [
+      'invalid',
+      {
+        given: [{ $value: '#wtf' } as any, { tokensSet: {} }],
+        want: { error: 'Unable to parse color "#wtf"' },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformColorValue(...given);
+      result = transformColor(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -156,14 +169,20 @@ describe('transformColorValue', () => {
   });
 });
 
-describe('transformCubicBezierValue', () => {
-  const tests: Test<Parameters<typeof transformCubicBezierValue>, ReturnType<typeof transformCubicBezierValue>>[] = [
-    ['basic', { given: [[0.33, 1, 0.68, 1]], want: { success: 'cubic-bezier(0.33, 1, 0.68, 1)' } }],
+describe('transformCubicBezier', () => {
+  const tests: Test<Parameters<typeof transformCubicBezier>, ReturnType<typeof transformCubicBezier>>[] = [
+    [
+      'basic',
+      {
+        given: [{ $value: [0.33, 1, 0.68, 1] } as any, { tokensSet: {} }],
+        want: { success: 'cubic-bezier(0.33, 1, 0.68, 1)' },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformCubicBezierValue(...given);
+      result = transformCubicBezier(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -171,15 +190,27 @@ describe('transformCubicBezierValue', () => {
   });
 });
 
-describe('transformDimensionValue', () => {
-  const tests: Test<Parameters<typeof transformDimensionValue>, ReturnType<typeof transformDimensionValue>>[] = [
-    ['10px', { given: [{ value: 10, unit: 'px' }], want: { success: '10px' } }],
-    ['1.5rem', { given: [{ value: 1.5, unit: 'rem' }], want: { success: '1.5rem' } }],
+describe('transformDimension', () => {
+  const tests: Test<Parameters<typeof transformDimension>, ReturnType<typeof transformDimension>>[] = [
+    [
+      '10px',
+      {
+        given: [{ $value: { value: 10, unit: 'px' } } as any, { tokensSet: {} }],
+        want: { success: '10px' },
+      },
+    ],
+    [
+      '1.5rem',
+      {
+        given: [{ $value: { value: 1.5, unit: 'rem' } } as any, { tokensSet: {} }],
+        want: { success: '1.5rem' },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformDimensionValue(...given);
+      result = transformDimension(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -187,15 +218,27 @@ describe('transformDimensionValue', () => {
   });
 });
 
-describe('transformDurationValue', () => {
-  const tests: Test<Parameters<typeof transformDurationValue>, ReturnType<typeof transformDurationValue>>[] = [
-    ['100ms', { given: [{ value: 100, unit: 'ms' }], want: { success: '100ms' } }],
-    ['0.25s', { given: [{ value: 0.25, unit: 's' }], want: { success: '0.25s' } }],
+describe('transformDuration', () => {
+  const tests: Test<Parameters<typeof transformDuration>, ReturnType<typeof transformDuration>>[] = [
+    [
+      '100ms',
+      {
+        given: [{ $value: { value: 100, unit: 'ms' } } as any, { tokensSet: {} }],
+        want: { success: '100ms' },
+      },
+    ],
+    [
+      '0.25s',
+      {
+        given: [{ $value: { value: 0.25, unit: 's' } } as any, { tokensSet: {} }],
+        want: { success: '0.25s' },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformDurationValue(...given);
+      result = transformDuration(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -203,17 +246,20 @@ describe('transformDurationValue', () => {
   });
 });
 
-describe('transformGradientValue', () => {
-  const tests: Test<Parameters<typeof transformGradientValue>, ReturnType<typeof transformGradientValue>>[] = [
+describe('transformGradient', () => {
+  const tests: Test<Parameters<typeof transformGradient>, ReturnType<typeof transformGradient>>[] = [
     [
       'basic',
       {
         given: [
-          [
-            { color: { colorSpace: 'srgb', channels: [1, 0, 1], alpha: 1 }, position: 0 },
-            { color: { colorSpace: 'srgb', channels: [0, 1, 0], alpha: 1 }, position: 0.5 },
-            { color: { colorSpace: 'srgb', channels: [1, 0, 0], alpha: 1 }, position: 1 },
-          ],
+          {
+            $value: [
+              { color: { colorSpace: 'srgb', channels: [1, 0, 1], alpha: 1 }, position: 0 },
+              { color: { colorSpace: 'srgb', channels: [0, 1, 0], alpha: 1 }, position: 0.5 },
+              { color: { colorSpace: 'srgb', channels: [1, 0, 0], alpha: 1 }, position: 1 },
+            ],
+          } as any,
+          { tokensSet: {} },
         ],
         want: { success: 'color(srgb 1 0 1) 0%, color(srgb 0 1 0) 50%, color(srgb 1 0 0) 100%' },
       },
@@ -222,7 +268,7 @@ describe('transformGradientValue', () => {
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformGradientValue(...given);
+      result = transformGradient(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -230,15 +276,15 @@ describe('transformGradientValue', () => {
   });
 });
 
-describe('transformFontWeightValue', () => {
-  const tests: Test<Parameters<typeof transformFontWeightValue>, ReturnType<typeof transformFontWeightValue>>[] = [
-    ['400', { given: [400], want: { success: '400' } }],
+describe('transformFontWeight', () => {
+  const tests: Test<Parameters<typeof transformFontWeight>, ReturnType<typeof transformFontWeight>>[] = [
+    ['400', { given: [{ $value: 400 } as any, { tokensSet: {} }], want: { success: '400' } }],
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformFontWeightValue(...given);
+      result = transformFontWeight(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -246,15 +292,15 @@ describe('transformFontWeightValue', () => {
   });
 });
 
-describe('transformNumberValue', () => {
-  const tests: Test<Parameters<typeof transformNumberValue>, ReturnType<typeof transformNumberValue>>[] = [
-    ['basic', { given: [42], want: { success: '42' } }],
+describe('transformNumber', () => {
+  const tests: Test<Parameters<typeof transformNumber>, ReturnType<typeof transformNumber>>[] = [
+    ['basic', { given: [{ $value: 42 } as any, { tokensSet: {} }], want: { success: '42' } }],
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformNumberValue(...given);
+      result = transformNumber(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -262,22 +308,25 @@ describe('transformNumberValue', () => {
   });
 });
 
-describe('transformShadowValue', () => {
-  const tests: Test<Parameters<typeof transformShadowValue>, ReturnType<typeof transformShadowValue>>[] = [
+describe('transformShadow', () => {
+  const tests: Test<Parameters<typeof transformShadow>, ReturnType<typeof transformShadow>>[] = [
     [
       'basic',
       {
         given: [
-          [
-            {
-              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-              offsetX: { value: 0, unit: 'px' },
-              offsetY: { value: 0.25, unit: 'rem' },
-              blur: { value: 0.5, unit: 'rem' },
-              spread: { value: 0, unit: 'px' },
-              inset: false,
-            },
-          ],
+          {
+            $value: [
+              {
+                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0.5, unit: 'rem' },
+                spread: { value: 0, unit: 'px' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {} },
         ],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
       },
@@ -286,16 +335,19 @@ describe('transformShadowValue', () => {
       'inset',
       {
         given: [
-          [
-            {
-              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
-              offsetX: { value: 0, unit: 'px' },
-              offsetY: { value: 0.25, unit: 'rem' },
-              blur: { value: 0.5, unit: 'rem' },
-              spread: { value: 0, unit: 'px' },
-              inset: true,
-            },
-          ],
+          {
+            $value: [
+              {
+                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0.5, unit: 'rem' },
+                spread: { value: 0, unit: 'px' },
+                inset: true,
+              },
+            ],
+          } as any,
+          { tokensSet: {} },
         ],
         want: { success: 'inset 0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.1)' },
       },
@@ -304,24 +356,27 @@ describe('transformShadowValue', () => {
       'array',
       {
         given: [
-          [
-            {
-              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
-              offsetX: { value: 0, unit: 'px' },
-              offsetY: { value: 0.25, unit: 'rem' },
-              blur: { value: 0.5, unit: 'rem' },
-              spread: { value: 0, unit: 'px' },
-              inset: false,
-            },
-            {
-              color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
-              offsetX: { value: 0, unit: 'px' },
-              offsetY: { value: 0.5, unit: 'rem' },
-              blur: { value: 1, unit: 'rem' },
-              spread: { value: 0, unit: 'px' },
-              inset: false,
-            },
-          ],
+          {
+            $value: [
+              {
+                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.25, unit: 'rem' },
+                blur: { value: 0.5, unit: 'rem' },
+                spread: { value: 0, unit: 'px' },
+                inset: false,
+              },
+              {
+                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+                offsetX: { value: 0, unit: 'px' },
+                offsetY: { value: 0.5, unit: 'rem' },
+                blur: { value: 1, unit: 'rem' },
+                spread: { value: 0, unit: 'px' },
+                inset: false,
+              },
+            ],
+          } as any,
+          { tokensSet: {} },
         ],
         want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)' },
       },
@@ -331,7 +386,7 @@ describe('transformShadowValue', () => {
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformShadowValue(...given);
+      result = transformShadow(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
@@ -340,27 +395,30 @@ describe('transformShadowValue', () => {
 });
 
 describe('transformTypography', () => {
-  const tests: Test<Parameters<typeof transformTypographyValue>, ReturnType<typeof transformTypographyValue>>[] = [
+  const tests: Test<Parameters<typeof transformTypography>, ReturnType<typeof transformTypography>>[] = [
     [
       'basic',
       {
         given: [
           {
-            fontFamily: ['Helvetica'],
-            fontSize: { value: 16, unit: 'px' },
-            fontStyle: 'italic',
-            fontVariant: 'small-caps',
-            fontVariationSettings: '"wght" 600',
-            fontWeight: 400,
-            letterSpacing: { value: 0.125, unit: 'em' },
-            lineHeight: { value: 24, unit: 'px' },
-            textDecoration: 'underline',
-            textTransform: 'uppercase',
-          },
+            $value: {
+              fontFamily: ['Helvetica Neue', 'Helvetica', '-apple-system', 'system-ui', 'sans-serif'],
+              fontSize: { value: 16, unit: 'px' },
+              fontStyle: 'italic',
+              fontVariant: 'small-caps',
+              fontVariationSettings: '"wght" 600',
+              fontWeight: 400,
+              letterSpacing: { value: 0.125, unit: 'em' },
+              lineHeight: { value: 24, unit: 'px' },
+              textDecoration: 'underline',
+              textTransform: 'uppercase',
+            },
+          } as any,
+          { tokensSet: {} },
         ],
         want: {
           success: {
-            'font-family': '"Helvetica"',
+            'font-family': '"Helvetica Neue", "Helvetica", -apple-system, system-ui, sans-serif',
             'font-size': '16px',
             'font-style': 'italic',
             'font-variant': 'small-caps',
@@ -374,12 +432,37 @@ describe('transformTypography', () => {
         },
       },
     ],
+    [
+      'alias',
+      {
+        given: [
+          {
+            id: 'typography.labelSmall',
+            $value: {
+              fontFamily: ['Inter'],
+            },
+            partialAliasOf: { fontFamily: 'font.sans' },
+          } as any,
+          {
+            tokensSet: {
+              'typography.labelSmall': { $type: 'typography', $value: { fontFamily: ['Inter'] } },
+              'font.sans': { $type: 'typography', $value: { fontFamily: ['Inter'] } },
+            } as any,
+          },
+        ],
+        want: {
+          success: {
+            'font-family': 'var(--font-sans-font-family)',
+          },
+        },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
     try {
-      result = transformTypographyValue(...given);
+      result = transformTypography(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }

@@ -19,6 +19,7 @@
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
+  --ds-shadow: 0 1px 1px 0 #0000001f, 0 2px 2px 0 #0000001f, 0 4px 4px 0 #0000001f, 0 8px 8px 0 #0000001f, 0 16px 16px 0 #0000001f;
 }
 
 @media (color-gamut: p3) {

@@ -38,7 +38,11 @@ export const tokens = {
       "lineHeight": {
         "value": 38,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "s": {
       "fontSize": {
@@ -48,7 +52,11 @@ export const tokens = {
       "lineHeight": {
         "value": 39,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "m": {
       "fontSize": {
@@ -58,7 +66,11 @@ export const tokens = {
       "lineHeight": {
         "value": 40,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "l": {
       "fontSize": {
@@ -68,7 +80,11 @@ export const tokens = {
       "lineHeight": {
         "value": 41,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "xl": {
       "fontSize": {
@@ -78,7 +94,11 @@ export const tokens = {
       "lineHeight": {
         "value": 43,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "2xl": {
       "fontSize": {
@@ -88,7 +108,11 @@ export const tokens = {
       "lineHeight": {
         "value": 46,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "3xl": {
       "fontSize": {
@@ -98,7 +122,11 @@ export const tokens = {
       "lineHeight": {
         "value": 48,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
   },
   "typography.body": {
@@ -124,7 +152,11 @@ export const tokens = {
       "lineHeight": {
         "value": 19,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "s": {
       "fontSize": {
@@ -134,7 +166,11 @@ export const tokens = {
       "lineHeight": {
         "value": 20,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "m": {
       "fontSize": {
@@ -144,7 +180,11 @@ export const tokens = {
       "lineHeight": {
         "value": 21,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "l": {
       "fontSize": {
@@ -154,7 +194,11 @@ export const tokens = {
       "lineHeight": {
         "value": 22,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "xl": {
       "fontSize": {
@@ -164,7 +208,11 @@ export const tokens = {
       "lineHeight": {
         "value": 24,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "2xl": {
       "fontSize": {
@@ -174,7 +222,11 @@ export const tokens = {
       "lineHeight": {
         "value": 26,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
     "3xl": {
       "fontSize": {
@@ -184,7 +236,11 @@ export const tokens = {
       "lineHeight": {
         "value": 29,
         "unit": "px"
-      }
+      },
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontWeight": 400
     },
   },
 };

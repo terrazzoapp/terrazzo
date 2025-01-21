@@ -254,10 +254,8 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
 export function validateCubicBezier($value: ValueNode, _node: AnyNode, { filename, src, logger }: ValidateOptions) {
   const baseMessage = { group: 'parser' as const, label: 'validate', filename, node: $value, src };
   if ($value.type !== 'Array') {
-    logger.error({ ...baseMessage, message: `Expected array of strings, received ${print($value)}` });
-  } else if (
-    !$value.elements.every((e) => e.value.type === 'Number' || (e.value.type === 'String' && isAlias(e.value.value)))
-  ) {
+    logger.error({ ...baseMessage, message: `Expected array of numbers, received ${print($value)}` });
+  } else if (!$value.elements.every((e) => e.value.type === 'Number')) {
     logger.error({ ...baseMessage, message: 'Expected an array of 4 numbers, received some non-numbers' });
   } else if ($value.elements.length !== 4) {
     logger.error({ ...baseMessage, message: `Expected an array of 4 numbers, received ${$value.elements.length}` });
@@ -750,6 +748,11 @@ export interface ValidateTokenNodeOptions {
   $typeInheritance?: Record<string, Token['$type']>;
 }
 
+/**
+ * Validate does a little more than validate; it also converts to TokenNormalized
+ * and sets up the basic data structure. But aliases are unresolved, and we need
+ * a 2nd normalization pass afterward.
+ */
 export default function validateTokenNode(
   node: MemberNode,
   { config, filename, logger, parent, src, subpath, $typeInheritance }: ValidateTokenNodeOptions,
@@ -861,28 +864,18 @@ export default function validateTokenNode(
 
   // handle modes
   // note that circular refs are avoided here, such as not duplicating `modes`
-  const modeValues = extensions?.mode
-    ? getObjMembers(
-        // @ts-ignore
-        extensions.mode,
-      )
-    : {};
+  const modeValues = extensions?.mode ? getObjMembers(extensions.mode as any) : {};
   for (const mode of ['.', ...Object.keys(modeValues)]) {
+    const modeValue = mode === '.' ? token.$value : (evaluate((modeValues as any)[mode]) as any);
     token.mode[mode] = {
-      id: token.id,
-      // @ts-ignore
-      $type: token.$type,
-      // @ts-ignore
-      $value: mode === '.' ? token.$value : evaluate(modeValues[mode]),
+      $value: modeValue,
+      originalValue: modeValue,
       source: {
         loc: filename ? filename.href : undefined,
         // @ts-ignore
-        node: mode === '.' ? structuredClone(token.source.node) : modeValues[mode],
+        node: modeValues[mode],
       },
     };
-    if (token.$description) {
-      token.mode[mode]!.$description = token.$description;
-    }
   }
 
   // logger.debug({

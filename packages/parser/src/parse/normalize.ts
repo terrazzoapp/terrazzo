@@ -1,6 +1,7 @@
 import {
   type CubicBezierValue,
   type DimensionValue,
+  type FontFamilyValue,
   type GradientStopNormalized,
   type GradientValueNormalized,
   type ShadowValueNormalized,
@@ -39,7 +40,7 @@ const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
 
 /** Fill in defaults, and return predictable shapes for tokens */
 export default function normalizeValue<T extends Token>(token: T): T['$value'] {
-  if (isAlias(token.$value)) {
+  if (typeof token.$value === 'string' && isAlias(token.$value)) {
     return token.$value;
   }
   switch (token.$type) {
@@ -168,6 +169,10 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       const output: TypographyValueNormalized = {};
       for (const [k, $value] of Object.entries(token.$value)) {
         switch (k) {
+          case 'fontFamily': {
+            output[k] = normalizeValue({ $type: 'fontFamily', $value: $value as FontFamilyValue });
+            break;
+          }
           case 'fontSize':
           case 'letterSpacing': {
             output[k] = normalizeValue({ $type: 'dimension', $value: $value as DimensionValue });

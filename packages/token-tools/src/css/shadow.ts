@@ -1,70 +1,66 @@
-import type { ShadowTokenNormalized, ShadowValueNormalized } from '../types.js';
-import { transformColorValue } from './color.js';
-import { transformDimensionValue } from './dimension.js';
-import { type IDGenerator, defaultAliasTransform } from './lib.js';
+import type {
+  ColorTokenNormalized,
+  DimensionTokenNormalized,
+  ShadowTokenNormalized,
+  ShadowValueNormalized,
+} from '../types.js';
+import { transformColor } from './color.js';
+import type { TransformCSSValueOptions } from './css-types.js';
+import { transformDimension } from './dimension.js';
+import { defaultAliasTransform } from './lib.js';
 
 /** Convert shadow subvalue to CSS */
 export function transformShadowLayer(
   value: ShadowValueNormalized,
-  {
-    color,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: {
-    color: string;
-    partialAliasOf?: Partial<Record<keyof ShadowValueNormalized, string>>;
-    transformAlias?: IDGenerator;
+  options: TransformCSSValueOptions & {
+    colorValue: string;
+    partialAliasOf?: Partial<Record<keyof typeof value, string>>;
   },
 ): string | Record<string, string> {
+  const { tokensSet, colorValue, partialAliasOf, transformAlias = defaultAliasTransform } = options;
   const offsetX = partialAliasOf?.offsetX
-    ? transformAlias(partialAliasOf.offsetX)
-    : transformDimensionValue(value.offsetX, { transformAlias });
+    ? transformAlias(tokensSet[partialAliasOf.offsetX]!)
+    : transformDimension({ $value: value.offsetX } as DimensionTokenNormalized, options);
   const offsetY = partialAliasOf?.offsetY
-    ? transformAlias(partialAliasOf.offsetY)
-    : transformDimensionValue(value.offsetY, { transformAlias });
+    ? transformAlias(tokensSet[partialAliasOf.offsetY]!)
+    : transformDimension({ $value: value.offsetY } as DimensionTokenNormalized, options);
   const blur = partialAliasOf?.blur
-    ? transformAlias(partialAliasOf.blur)
-    : transformDimensionValue(value.blur, { transformAlias });
+    ? transformAlias(tokensSet[partialAliasOf.blur]!)
+    : transformDimension({ $value: value.blur } as DimensionTokenNormalized, options);
   const spread = partialAliasOf?.spread
-    ? transformAlias(partialAliasOf.spread)
-    : transformDimensionValue(value.spread, { transformAlias });
+    ? transformAlias(tokensSet[partialAliasOf.spread]!)
+    : transformDimension({ $value: value.spread } as DimensionTokenNormalized, options);
   const inset = value?.inset === true ? 'inset' : undefined;
 
-  return [inset, offsetX, offsetY, blur, spread, color].filter((v) => v !== undefined).join(' ');
+  return [inset, offsetX, offsetY, blur, spread, colorValue].filter(Boolean).join(' ');
 }
 
 /** Convert shadow value to CSS */
-export function transformShadowValue(
-  value: ShadowTokenNormalized['$value'],
-  {
-    aliasOf,
-    partialAliasOf,
-    transformAlias = defaultAliasTransform,
-  }: {
-    aliasOf?: string;
-    partialAliasOf?: Partial<Record<keyof ShadowValueNormalized, string>>[];
-    transformAlias?: IDGenerator;
-  } = {},
+export function transformShadow(
+  token: ShadowTokenNormalized,
+  options: TransformCSSValueOptions,
 ): string | Record<string, string> {
-  if (aliasOf) {
-    return transformAlias(aliasOf);
+  const { tokensSet, transformAlias = defaultAliasTransform } = options;
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]!);
   }
-  const colors = value.map(({ color }, i) =>
-    partialAliasOf?.[i]?.color
-      ? transformAlias(partialAliasOf[i]!.color!)
-      : transformColorValue(color, { transformAlias }),
+  const colors = token.$value.map((v, i) =>
+    token.partialAliasOf?.[i]?.color
+      ? transformAlias(tokensSet[token.partialAliasOf[i]!.color!]!)
+      : transformColor({ $value: v.color } as ColorTokenNormalized, options),
   );
   const isHDR = colors.some((c) => typeof c === 'object');
 
   const formatShadow = (colorKey: string) =>
-    value
+    token.$value
       .map((v, i) =>
         transformShadowLayer(v, {
-          color:
+          tokensSet,
+          colorValue:
             typeof colors[i] === 'string'
               ? (colors[i] as string)
               : colors[i]![colorKey as keyof (typeof colors)[number]]!,
-          partialAliasOf: partialAliasOf?.[i],
+          partialAliasOf: token.partialAliasOf?.[i],
           transformAlias,
         }),
       )
@@ -72,5 +68,10 @@ export function transformShadowValue(
 
   return !isHDR
     ? formatShadow('.')
-    : { '.': formatShadow('.'), srgb: formatShadow('srgb'), p3: formatShadow('p3'), rec2020: formatShadow('rec2020') };
+    : {
+        '.': formatShadow('.'),
+        srgb: formatShadow('srgb'),
+        p3: formatShadow('p3'),
+        rec2020: formatShadow('rec2020'),
+      };
 }
