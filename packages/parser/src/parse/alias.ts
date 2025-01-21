@@ -52,7 +52,7 @@ export default function applyAliases(token: TokenNormalized, options: ApplyAlias
 
   // resolve root
   if (typeof token.$value === 'string' && isAlias(token.$value)) {
-    const { aliasChain, resolvedToken } = resolveAlias(token, token.$value, options);
+    const { aliasChain, resolvedToken } = resolveAlias(token.$value, { ...options, token });
     token.aliasOf = resolvedToken.id;
     token.aliasChain = aliasChain;
     (token as any).$value = resolvedToken.$value;
@@ -65,8 +65,9 @@ export default function applyAliases(token: TokenNormalized, options: ApplyAlias
     // if the entire mode value is a simple alias, resolve & continue
     if (typeof modeValue === 'string' && isAlias(modeValue)) {
       const expectedType = [token.$type];
-      const { aliasChain, resolvedToken } = resolveAlias(token.mode[mode]!, modeValue, {
+      const { aliasChain, resolvedToken } = resolveAlias(modeValue, {
         ...options,
+        token,
         expectedType,
         node: token.mode[mode]!.source?.node || options.node,
       });
@@ -120,67 +121,60 @@ export default function applyAliases(token: TokenNormalized, options: ApplyAlias
   }
 }
 
-type TokenOrModeValue = {
-  $value: any;
-  $type?: string;
-  source?: TokenNormalized['source'];
-  aliasOf?: string;
-  aliasChain?: string[];
-  aliasedBy?: string[];
-};
-
 const LIST_FORMAT = new Intl.ListFormat('en-us', { type: 'disjunction' });
 
 /**
  * Resolve alias. Also add info on root node if it’s the root token (has .id)
  */
-function resolveAlias(node: TokenOrModeValue, alias: string, options: { expectedType?: string[] } & ApplyAliasOptions) {
+function resolveAlias(alias: string, options: { token: TokenNormalized; expectedType?: string[] } & ApplyAliasOptions) {
   const baseMessage = {
     group: 'parser' as const,
     label: 'alias',
-    node: node.source?.node ?? options?.node,
+    node: options?.node,
     filename: options.filename,
     src: options.src,
   };
-  const { logger } = options;
+  const { logger, token, tokensSet } = options;
   const shallowAliasID = parseAlias(alias);
   const { token: resolvedToken, chain } = _resolveAliasInner(shallowAliasID, options);
 
-  // Note: we are “cheating” here and mutating the root node only if it’s the
-  // root token While this isn’t great, the alternative is more work—passing it
-  // back to the consumer and making it determine where/how to apply this data.
-  if ('id' in node && !node.$type) {
-    node.$type = resolvedToken!.$type;
+  // Apply missing $types while resolving
+  if (!tokensSet[token.id]!.$type) {
+    tokensSet[token.id]!.$type = resolvedToken!.$type;
   }
 
   // throw error if expectedType differed
   const expectedType = [...(options.expectedType ?? [])];
-  if (node.$type && !expectedType?.length) {
-    expectedType.push(node.$type);
+  if (token.$type && !expectedType?.length) {
+    expectedType.push(token.$type);
   }
   if (expectedType?.length && !expectedType.includes(resolvedToken!.$type)) {
     logger.error({
       ...baseMessage,
       message: `Invalid alias: expected $type: ${LIST_FORMAT.format(expectedType!)}, received $type: ${resolvedToken!.$type}.`,
-      node: (node.source?.node?.type === 'Object' && getObjMembers(node.source.node).$value) || baseMessage.node,
+      node: (options.node?.type === 'Object' && getObjMembers(options.node).$value) || baseMessage.node,
     });
   }
 
-  // Cheat #2: apply reverse alias
-  if ('id' in node && chain?.length) {
-    if (!node.aliasedBy) {
-      node.aliasedBy = [];
+  // Apply reverse aliases as we’re traversing the graph
+  if (chain?.length && resolvedToken) {
+    let needsSort = false;
+    for (const id of chain) {
+      if (id !== resolvedToken.id && !resolvedToken.aliasedBy?.includes(id)) {
+        resolvedToken.aliasedBy ??= [];
+        resolvedToken.aliasedBy!.push(id);
+        needsSort = true;
+      }
+      if (token && !resolvedToken.aliasedBy?.includes(token.id)) {
+        resolvedToken.aliasedBy ??= [];
+        resolvedToken.aliasedBy!.push(token.id);
+        needsSort = true;
+      }
     }
-    for (const id of chain!) {
-      if (id === node.id) {
-        continue;
-      }
-      if (!node.aliasedBy!.includes(id)) {
-        node.aliasedBy!.push(id);
-      }
+    if (needsSort) {
+      resolvedToken.aliasedBy!.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
     }
   }
-
   return { resolvedToken: resolvedToken!, aliasChain: chain };
 }
 
@@ -226,8 +220,9 @@ function applyBorderPartialAlias(token: BorderTokenNormalized, mode: string, opt
     if (typeof v === 'string' && isAlias(v)) {
       token.partialAliasOf ??= {};
       const node = (getObjMembers(options.node)[k] as any) || options.node;
-      const { resolvedToken } = resolveAlias(token.mode[mode]!, v, {
+      const { resolvedToken } = resolveAlias(v, {
         ...options,
+        token,
         expectedType: { color: ['color'], width: ['dimension'], style: ['strokeStyle'] }[k],
         node,
       });
@@ -249,7 +244,7 @@ function applyGradientPartialAlias(token: GradientTokenNormalized, mode: string,
         if (node.type === 'Object') {
           node = getObjMembers(node)[k] || node;
         }
-        const { resolvedToken } = resolveAlias(token.mode[mode]!, v, { ...options, expectedType, node });
+        const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
         (token.partialAliasOf[i] as any)[k] = resolvedToken.id;
         (step as any)[k] = resolvedToken.$value;
       }
@@ -283,7 +278,7 @@ function applyShadowPartialAlias(token: ShadowTokenNormalized, mode: string, opt
         if (node.type === 'Object') {
           node = getObjMembers(node)[k] || node;
         }
-        const { resolvedToken } = resolveAlias(token.mode[mode]!, v, { ...options, expectedType, node });
+        const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
         (token.partialAliasOf[i] as any)[k] = resolvedToken.id;
         (layer as any)[k] = resolvedToken.$value;
       }
@@ -308,8 +303,9 @@ function applyStrokeStylePartialAlias(
       if (node.type === 'Array') {
         node = ((node as unknown as ArrayNode | undefined)?.elements?.[i]?.value as any) || node;
       }
-      const { resolvedToken } = resolveAlias(token.mode[mode]!, dash, {
+      const { resolvedToken } = resolveAlias(dash, {
         ...options,
+        token,
         expectedType: ['dimension'],
         node,
       });
@@ -324,7 +320,7 @@ function applyTransitionPartialAlias(token: TransitionTokenNormalized, mode: str
       token.partialAliasOf ??= {};
       const expectedType = { duration: ['duration'], delay: ['duration'], timingFunction: ['cubicBezier'] }[k];
       const node = (getObjMembers(options.node)[k] as any) || options.node;
-      const { resolvedToken } = resolveAlias(token.mode[mode]!, v, { ...options, expectedType, node });
+      const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
       (token.partialAliasOf as any)[k] = resolvedToken.id;
       (token.mode[mode]!.$value as any)[k] = resolvedToken.$value;
     }
@@ -342,7 +338,7 @@ function applyTypographyPartialAlias(token: TypographyTokenNormalized, mode: str
         lineHeight: ['dimension', 'number'],
       }[k] || ['string'];
       const node = (getObjMembers(options.node)[k] as any) || options.node;
-      const { resolvedToken } = resolveAlias(token.mode[mode] as any, v, { ...options, expectedType, node });
+      const { resolvedToken } = resolveAlias(v, { ...options, token, expectedType, node });
       (token.partialAliasOf as any)[k] = resolvedToken.id;
       (token.mode[mode]!.$value as any)[k] = resolvedToken.$value;
     }
