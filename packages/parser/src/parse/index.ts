@@ -41,7 +41,7 @@ export interface ParseResult {
 
 /** Parse */
 export default async function parse(
-  input: Omit<InputSource, 'document'>[],
+  _input: Omit<InputSource, 'document'> | Omit<InputSource, 'document'>[],
   {
     logger = new Logger(),
     skipLint = false,
@@ -51,6 +51,7 @@ export default async function parse(
     _sources = {},
   }: ParseOptions = {} as ParseOptions,
 ): Promise<ParseResult> {
+  const input = Array.isArray(_input) ? _input : [_input];
   let tokensSet: Record<string, TokenNormalized> = {};
 
   if (!Array.isArray(input)) {

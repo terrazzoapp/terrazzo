@@ -34,11 +34,14 @@ const config = defineConfig(
   {
     // config options
   },
-  { cwd: new URL(import.meta.url) }
+  { cwd: new URL(import.meta.url) },
 );
 
 const rawTokens = "(any JSON or YAML)";
-const { tokens, sources } = await parse(rawTokens, { config });
+const { tokens, sources } = await parse(
+  [{ filename: new URL("file:///tokens.json"), src: rawTokens }],
+  { config },
+);
 const buildResult = await build(tokens, { sources, config });
 ```
 
@@ -75,10 +78,13 @@ class MyLogger {
   }
 }
 
-const { tokens, ast } = await parse(rawTokens, {
-  config,
-  logger: new MyLogger(),
-});
+const { tokens, ast } = await parse(
+  [{ filename: new URL("file:///tokens.json"), src: rawTokens }],
+  {
+    config,
+    logger: new MyLogger(),
+  },
+);
 ```
 
 ## YAML support
