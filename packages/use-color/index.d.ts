@@ -84,7 +84,9 @@ export interface ColorOutput {
   lrgb: Lrgb;
   okhsl: Okhsl;
   okhsv: Okhsv;
+  lab: Lab;
   oklab: Oklab;
+  oklch: Oklch;
   p3: P3;
   prophoto: Prophoto;
   rec2020: Rec2020;

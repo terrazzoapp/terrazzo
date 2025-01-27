@@ -60,7 +60,7 @@ export function cleanValue(value, precision = 5, normalized = true) {
 }
 
 /** Primary parse logic */
-export function parse(color) {
+export function parse(/** @type {import("./index.d.ts").ColorInput} */ color) {
   if (color && typeof color === 'object') {
     let normalizedColor = color;
 
@@ -249,6 +249,11 @@ export function createMemoizedColor(color) {
       this.lab = COLORSPACES.lab.converter(color);
       return this.lab;
     },
+    get lch() {
+      delete this.lch;
+      this.lch = COLORSPACES.lch.converter(color);
+      return this.lch;
+    },
     get lrgb() {
       delete this.lrgb;
       this.lrgb = COLORSPACES.lrgb.converter(color);
@@ -319,7 +324,7 @@ export function createMemoizedColor(color) {
 }
 
 /** memoize Culori colors and reduce unnecessary updates */
-export default function useColor(color) {
+export default function useColor(/** @type {import("./index.d.ts").ColorInput} */ color) {
   const [innerColor, setInnerColor] = useState(createMemoizedColor(parse(color)));
   const setColorOutput = useCallback((newColor) => {
     if (newColor) {
