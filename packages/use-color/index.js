@@ -65,7 +65,7 @@ export function parse(color) {
 
     // DTCG tokens: convert to Culori format
     if (color.colorSpace && Array.isArray(color.channels)) {
-      normalizedColor = tokenToCulori();
+      normalizedColor = tokenToCulori(color);
     }
     if (!normalizedColor.mode) {
       throw new Error(`Invalid Culori color: ${JSON.stringify(normalizedColor)}`);
