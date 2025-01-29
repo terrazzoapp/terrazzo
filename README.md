@@ -2,7 +2,7 @@
 
 This repo serves as the home for:
 
-- [Terrazzo CLI](https://terrazzo.app/docs/cli): generate code from DTCG tokens (formerly known as “Cobalt UI”)
+- [Terrazzo CLI](https://terrazzo.app/docs/cli): generate code from [DTCG tokens](https://tr.designtokens.org/format/) (formerly known as “Cobalt UI”)
   - [CSS](https://terrazzo.app/docs/cli/integrations/css)
   - [Sass](https://terrazzo.app/docs/cli/integrations/sass)
   - [JS/TS](https://terrazzo.app/docs/cli/integrations/js)
