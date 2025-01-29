@@ -55,19 +55,18 @@
     transform: translate3d(-50%, calc(-1 * var(--tz-slider-handle-position)), 0);
   }
 
-  &[data-variant="color"]::after {
-    background-color: var(--tz-slider-handle-color);
-    border-radius: var(--tz-slider-handle-size);
-    box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2);
-    content: "";
-    display: block;
-    height: var(--tz-slider-track-size-block);
-    left: calc(0.5 * var(--handle-offset));
-    pointer-events: none;
-    position: absolute;
-    top: calc(0.5 * var(--handle-offset));
-    width: var(--tz-slider-track-size-block);
-    z-index: calc(var(--tz-layer-base) + 2);
+  &[data-variant="color"] {
+    background-image:
+      radial-gradient(
+        transparent 40%,
+        rgb(0 0 0 / 0.2) 40%,
+        rgb(0 0 0 / 0.2) 50%,
+        transparent 50%
+      ),
+      radial-gradient(
+        var(--tz-slider-handle-color) 49%,
+        var(--tz-color-bg-1) 50%
+      );
   }
 
   &:active {
