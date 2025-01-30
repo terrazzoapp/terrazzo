@@ -3071,4 +3071,20 @@ describe('Additional cases', () => {
       expect(tokens['color.blue']!.$value).toEqual({ alpha: 1, channels: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
     });
   });
+
+  it('JSONC', async () => {
+    const src = `{
+  // color group
+  "color": {
+    "$type": "color",
+    // blue group
+    "blue": {
+      "06": { "$value": { "colorSpace": "srgb", "channels": [0, 0, 1] } }
+    }
+  }
+}`;
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+    expect(tokens['color.blue.06']!.$value).toEqual({ alpha: 1, channels: [0, 0, 1], colorSpace: 'srgb' });
+  });
 });
