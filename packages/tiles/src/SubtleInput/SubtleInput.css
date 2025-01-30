@@ -30,6 +30,7 @@
   background: none;
   border: none;
   color: inherit;
+  field-sizing: content;
   flex: 1 0 auto;
   font-family: var(--tz-font-mono);
   font-size: var(--tz-font-body-font-size);
@@ -40,7 +41,6 @@
   outline: none;
   padding: 0;
   text-indent: var(--tz-space-200);
-  field-sizing: content;
 
   &[type="number"] {
     text-align: right;

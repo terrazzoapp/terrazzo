@@ -13,5 +13,6 @@ export default {
     'order/properties-alphabetical-order': true, // let me find things
     'property-no-vendor-prefix': null, // we still need this
     'selector-class-pattern': null,
+    'selector-pseudo-class-no-unknown': null, // stylelint considers the :global selector unknown
   },
 };

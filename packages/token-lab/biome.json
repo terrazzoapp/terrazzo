@@ -5,7 +5,15 @@
     "rules": {
       "a11y": {
         "useSemanticElements": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
       }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
     }
   }
 }

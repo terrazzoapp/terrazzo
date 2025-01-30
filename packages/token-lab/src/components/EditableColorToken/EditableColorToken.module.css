@@ -1,22 +1,22 @@
 .container {
-  display: grid;
-  grid-auto-flow: column;
-  width: 28rem;
-  height: 1.5rem;
-  gap: 1rem;
-  grid-template-columns: 3fr 20fr 5fr;
   contain: inline-size;
+  display: grid;
+  gap: 1rem;
+  grid-auto-flow: column;
+  grid-template-columns: 3fr 20fr 5fr;
+  height: 1.5rem;
   place-items: center;
+  width: 28rem;
 }
 
 .swatch {
   background: var(--color);
-  border: 1px solid oklch(0 0 0 / 20%);
+  border: 1px solid oklch(0 0 0 / 0.2);
   border-radius: 0.25rem;
+  cursor: pointer;
+  height: 100%;
   padding: 0;
   width: 100%;
-  height: 100%;
-  cursor: pointer;
 
   &:hover {
     border-color: var(--tz-color-border-2);
@@ -29,100 +29,99 @@
 }
 
 .popover {
-  display: grid;
   background: var(--tz-color-bg-1);
-  padding: 1rem;
-  filter: drop-shadow(4px 8px 8px oklch(0.1 0 0 / 0.5));
-  place-items: center;
   border-radius: 1rem;
-  transition-property: opacity, translate;
+  display: grid;
+  filter: drop-shadow(4px 8px 8px oklch(0.1 0 0 / 0.5));
+  padding: 1rem;
+  place-items: center;
   transition-duration: 0.2s;
+  transition-property: opacity, translate;
   transition-timing-function: ease-in-out;
 }
 
 .popover::after {
-  content: '';
-  display: block;
   background-color: var(--tz-color-bg-1);
+  content: "";
+  display: block;
   height: 1rem;
   width: 1rem;
 }
 
-.popover[data-side=bottom] {
+.popover[data-side="bottom"] {
   padding-top: 0; /* the triangle is going to do double duty as the top padding */
+
   @starting-style {
     opacity: 0;
     translate: 0 2rem;
   }
+
   &::after {
     grid-row: 1;
+    mask: conic-gradient(from 135deg at top, black 90deg, transparent 91deg, transparent 359deg, black 360deg) top /
+      100% 50% no-repeat;
     translate: 0 -8px;
-    mask: conic-gradient(
-      from 135deg at top,
-      black 90deg,
-      transparent 91deg,
-      transparent 359deg,
-      black 360deg
-    ) top / 100% 50% no-repeat;
   }
 }
 
-.popover[data-side=top] {
+.popover[data-side="top"] {
   padding-bottom: 0;
+
   @starting-style {
     opacity: 0;
     translate: 0 -2rem;
   }
+
   &::after {
     grid-row: 2;
+    mask: conic-gradient(from -45deg at bottom, black 90deg, transparent 91deg, transparent 359deg, black 360deg) bottom
+      / 100% 50% no-repeat;
     translate: 0 8px;
-    mask: conic-gradient(
-      from -45deg at bottom,
-      black 90deg,
-      transparent 91deg,
-      transparent 359deg,
-      black 360deg
-    ) bottom / 100% 50% no-repeat;
   }
 }
 
 .channels {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(4, 1fr);
-  outline: var(--tz-border-3);
   border-radius: 0.25rem;
-  height: 100%;
   contain: inline-size;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: 100%;
+  outline: var(--tz-border-3);
+  width: 100%;
 }
 
 .colorSpaceDropdown {
-  font-family: var(--tz-font-mono);
-  color: var(--tz-color-text-1);
-  height: 100%;
-  contain: size paint;
   border-radius: initial;
+  color: var(--tz-color-text-1);
+  contain: size paint;
   display: grid;
-  padding: 0 0.5rem;
+  font-family: var(--tz-font-mono);
+  height: 100%;
   justify-content: stretch;
+  padding: 0 0.5rem;
 
   & > :nth-child(1) {
-    grid-area: 1/1;
+    grid-area: 1 / 1;
     justify-self: start;
   }
+
   & > :nth-child(2) {
-    grid-area: 1/1;
+    grid-area: 1 / 1;
     justify-self: end;
   }
+
   & :global(.tz-select-item-inner) {
     display: block;
   }
+
   & :global(.tz-select-item-icon) {
     display: none;
   }
-  &:hover, &:focus-visible {
-    outline-color: transparent;
+
+  &:hover,
+  &:focus-visible {
     background: var(--tz-color-bg-2);
+    outline-color: transparent;
   }
 }
 
@@ -131,21 +130,21 @@
 }
 
 .channel {
-  display: inline-block;
-  padding: 0 0.5rem;
-  font-family: var(--tz-font-mono);
+  align-content: center;
   border-left: var(--tz-border-3);
   color: var(--tz-color-text-1);
-  align-content: center;
+  display: inline-block;
+  font-family: var(--tz-font-mono);
+  padding: 0 0.5rem;
 }
 
 .alpha {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 0 0.5rem;
-  font-family: var(--tz-font-mono);
-  outline: var(--tz-border-3);
-  border-radius: 0.25rem;
   align-content: center;
+  border-radius: 0.25rem;
+  display: inline-block;
+  font-family: var(--tz-font-mono);
+  height: 100%;
+  outline: var(--tz-border-3);
+  padding: 0 0.5rem;
+  width: 100%;
 }

@@ -3,7 +3,7 @@ import { ChevronDown } from '@terrazzo/icons';
 import ColorPicker, { COLOR_PICKER_SPACES } from '@terrazzo/react-color-picker';
 import { Select, SelectItem } from '@terrazzo/tiles';
 import type { ColorValueNormalized } from '@terrazzo/token-tools';
-import useColor, { ColorOutput } from '@terrazzo/use-color';
+import useColor, { type ColorOutput } from '@terrazzo/use-color';
 import c from './EditableColorToken.module.css';
 
 export interface EditableColorTokenProps {
@@ -16,36 +16,42 @@ export default function EditableColorToken({ id, mode = '.', value }: EditableCo
   const [color, setColor] = useColor(value);
   const channels = normalizedChannels(color);
 
-  return <div className={c.container}>
-    <Popover.Root>
-      <Popover.Trigger className={c.swatch} aria-label={`Edit ${id}`} style={{ '--color': color.css }}/>
-      <Popover.Portal>
-        <Popover.Content className={c.popover}>
-          <ColorPicker color={color} setColor={setColor} />
-        </Popover.Content>
-      </Popover.Portal>
-    </Popover.Root>
-    <div className={c.channels}>
-      <Select
-        className={c.colorSpaceDropdown}
-        value={color.original.mode}
-        trigger={color.original.mode}
-        triggerIcon={<ChevronDown />}
-        onValueChange={space => setColor(color[space as keyof typeof color] ?? color.original)}
-      >
-        {Object.entries(COLOR_PICKER_SPACES).map(([id, label]) => (
-          <SelectItem className={c.colorSpaceDropdownItem} key={id} value={id}>
-            {label}
-          </SelectItem>
+  return (
+    <div className={c.container}>
+      <Popover.Root>
+        <Popover.Trigger className={c.swatch} aria-label={`Edit ${id}`} style={{ '--color': color.css }} />
+        <Popover.Portal>
+          <Popover.Content className={c.popover}>
+            <ColorPicker color={color} setColor={setColor} />
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+      <div className={c.channels}>
+        <Select
+          className={c.colorSpaceDropdown}
+          value={color.original.mode}
+          trigger={color.original.mode}
+          triggerIcon={<ChevronDown />}
+          onValueChange={(space) => setColor(color[space as keyof typeof color] ?? color.original)}
+        >
+          {Object.entries(COLOR_PICKER_SPACES).map(([id, label]) => (
+            <SelectItem className={c.colorSpaceDropdownItem} key={id} value={id}>
+              {label}
+            </SelectItem>
+          ))}
+        </Select>
+        {channels.map((v, i) => (
+          <output className={c.channel} key={i}>
+            {trimTrailingZeros(String(v).slice(0, 6))}
+          </output>
         ))}
-      </Select>
-      {channels.map((v, i) => <output className={c.channel} key={i}>{trimTrailingZeros(String(v).slice(0, 6))}</output>)}
+      </div>
+      <output className={c.alpha}>{trimTrailingZeros(String(color.original.alpha * 100).slice(0, 6))}%</output>
     </div>
-    <output className={c.alpha}>{trimTrailingZeros(String((color.original.alpha * 100)).slice(0, 6))}%</output>
-  </div>;
+  );
 }
 
-function normalizedChannels({ original }: ColorOutput): ColorValueNormalized["channels"] {
+function normalizedChannels({ original }: ColorOutput): ColorValueNormalized['channels'] {
   switch (original.mode) {
     case 'a98':
     case 'lrgb':

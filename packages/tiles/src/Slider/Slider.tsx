@@ -134,6 +134,26 @@ export default function Slider({
     setIntermediaryInputValue(percentage ? snap(percModifier * value, step)! : value);
   }, [max, min, percentage, value]);
 
+  const draggable = useDrag(
+    ({ first, last, values }) => {
+      if (first) {
+        document.body.classList.add(BODY_DRAGGING_CLASS);
+      }
+      if (last) {
+        document.body.classList.remove(BODY_DRAGGING_CLASS);
+      }
+      const [x, y] = values;
+      const nextValue =
+        orientation === 'horizontal'
+          ? clamp(min + ((x - containerRect.left) / containerRect.width) * range, min, max)
+          : clamp(min + ((y - containerRect.top) / containerRect.height) * range, min, max);
+      if (nextValue !== value) {
+        onChange(nextValue);
+      }
+    },
+    { preventDefault: true },
+  );
+
   const range = max - min;
   const minNorm = min * percModifier;
   const maxNorm = max * percModifier;
@@ -143,16 +163,7 @@ export default function Slider({
     <div className={clsx('tz-slider', className)} data-orientation={orientation}>
       <div ref={trackEl} className='tz-slider-track-wrapper'>
         <div className='tz-slider-track'>
-          <div
-            className='tz-slider-track-bg'
-            onPointerDown={(evt) => {
-              const { left, width } = evt.currentTarget.getBoundingClientRect();
-              const nextValue = clamp(min + ((evt.clientX - left) / width) * range, min, max);
-              if (nextValue !== value) {
-                onChange(nextValue);
-              }
-            }}
-          >
+          <div className='tz-slider-track-bg' {...draggable()}>
             {bg}
           </div>
           <SliderHandle
