@@ -1,5 +1,11 @@
 # @terrazzo/tiles
 
+## 0.0.7
+
+### Patch Changes
+
+- Bugfixes thanks to [@lilnasy](lilnasy)
+
 ## 0.0.3
 
 ### Patch Changes
