@@ -175,7 +175,7 @@ export default function myPlugin() {
 
 ### config()
 
-The `config()` hook fires after all plugins have been registered and the final config is resolved. This is handy when you need to grab a value from `terrazzo.config.mjs` (but note you can’t modify anything!).
+The `config()` hook fires after all plugins have been registered and the final config is resolved. This is handy when you need to grab a value from `terrazzo.config.js` (but note you can’t modify anything!).
 
 :::code-group
 
