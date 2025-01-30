@@ -1,5 +1,15 @@
 # @terrazzo/cli
 
+## 0.6.1
+
+### Patch Changes
+
+- [#427](https://github.com/terrazzoapp/terrazzo/pull/427) [`af57a80`](https://github.com/terrazzoapp/terrazzo/commit/af57a8010664e0e5b5b6eb5eef10779a4197da25) Thanks [@drwpow](https://github.com/drwpow)! - feat: `parse()` JS API doesn’t need an array for a single file (can just accept an object)
+
+- Updated dependencies [[`af57a80`](https://github.com/terrazzoapp/terrazzo/commit/af57a8010664e0e5b5b6eb5eef10779a4197da25)]:
+  - @terrazzo/parser@0.6.1
+  - @terrazzo/token-tools@0.6.1
+
 ## 0.6.0
 
 ### Minor Changes
