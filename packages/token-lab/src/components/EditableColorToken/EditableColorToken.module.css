@@ -41,14 +41,14 @@
 }
 
 .popover::after {
-  content: '';
+  content: "";
   display: block;
   background-color: var(--tz-color-bg-1);
   height: 1rem;
   width: 1rem;
 }
 
-.popover[data-side=bottom] {
+.popover[data-side="bottom"] {
   padding-top: 0; /* the triangle is going to do double duty as the top padding */
   @starting-style {
     opacity: 0;
@@ -57,17 +57,12 @@
   &::after {
     grid-row: 1;
     translate: 0 -8px;
-    mask: conic-gradient(
-      from 135deg at top,
-      black 90deg,
-      transparent 91deg,
-      transparent 359deg,
-      black 360deg
-    ) top / 100% 50% no-repeat;
+    mask: conic-gradient(from 135deg at top, black 90deg, transparent 91deg, transparent 359deg, black 360deg) top /
+      100% 50% no-repeat;
   }
 }
 
-.popover[data-side=top] {
+.popover[data-side="top"] {
   padding-bottom: 0;
   @starting-style {
     opacity: 0;
@@ -76,13 +71,8 @@
   &::after {
     grid-row: 2;
     translate: 0 8px;
-    mask: conic-gradient(
-      from -45deg at bottom,
-      black 90deg,
-      transparent 91deg,
-      transparent 359deg,
-      black 360deg
-    ) bottom / 100% 50% no-repeat;
+    mask: conic-gradient(from -45deg at bottom, black 90deg, transparent 91deg, transparent 359deg, black 360deg) bottom
+      / 100% 50% no-repeat;
   }
 }
 
@@ -107,11 +97,11 @@
   justify-content: stretch;
 
   & > :nth-child(1) {
-    grid-area: 1/1;
+    grid-area: 1 / 1;
     justify-self: start;
   }
   & > :nth-child(2) {
-    grid-area: 1/1;
+    grid-area: 1 / 1;
     justify-self: end;
   }
   & :global(.tz-select-item-inner) {
@@ -120,7 +110,8 @@
   & :global(.tz-select-item-icon) {
     display: none;
   }
-  &:hover, &:focus-visible {
+  &:hover,
+  &:focus-visible {
     outline-color: transparent;
     background: var(--tz-color-bg-2);
   }

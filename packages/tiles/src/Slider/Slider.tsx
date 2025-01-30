@@ -143,9 +143,10 @@ export default function Slider({
         document.body.classList.remove(BODY_DRAGGING_CLASS);
       }
       const [x, y] = values;
-      const nextValue = orientation === 'horizontal'
-        ? clamp(min + ((x - containerRect.left) / containerRect.width) * range, min, max)
-        : clamp(min + ((y - containerRect.top) / containerRect.height) * range, min, max);
+      const nextValue =
+        orientation === 'horizontal'
+          ? clamp(min + ((x - containerRect.left) / containerRect.width) * range, min, max)
+          : clamp(min + ((y - containerRect.top) / containerRect.height) * range, min, max);
       if (nextValue !== value) {
         onChange(nextValue);
       }
