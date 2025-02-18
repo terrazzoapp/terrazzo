@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.6.2
+
+### Patch Changes
+
+- [#440](https://github.com/terrazzoapp/terrazzo/pull/440) [`34e2cdc`](https://github.com/terrazzoapp/terrazzo/commit/34e2cdce27a578571e04eb006d3b209461a0fbbe) Thanks [@drwpow](https://github.com/drwpow)! - Add debug info for buildEnd
+
 ## 0.6.1
 
 ### Patch Changes
