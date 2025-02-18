@@ -45,7 +45,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
     }
     let { tokens, sources } = await parse(rawSchemas, { config, logger, yamlToMomoa });
     let result = await build(tokens, { sources, config, logger });
-    writeFiles(result, config);
+    writeFiles(result, { config, logger });
 
     // --watch (handle rebuild)
     if (flags.watch) {
@@ -72,7 +72,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
           if (messageAfter) {
             logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
           }
-          writeFiles(result, config);
+          writeFiles(result, { config, logger });
         } catch (err) {
           console.error(pc.red(`✗  ${(err as Error).message || (err as string)}`));
           // don’t exit! we’re watching, so continue as long as possible
@@ -107,10 +107,11 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
 }
 
 /** Write files */
-export function writeFiles(result: BuildRunnerResult, config: ConfigInit) {
+export function writeFiles(result: BuildRunnerResult, { config, logger }: { config: ConfigInit; logger: Logger }) {
   for (const { filename, contents } of result.outputFiles) {
     const output = new URL(filename, config.outDir);
     fs.mkdirSync(new URL('.', output), { recursive: true });
     fs.writeFileSync(output, contents);
+    logger.debug({ group: 'parser', label: 'buildEnd', message: `Wrote file ${fileURLToPath(output)}` });
   }
 }
