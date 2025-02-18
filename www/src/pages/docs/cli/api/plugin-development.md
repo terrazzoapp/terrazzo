@@ -133,7 +133,7 @@ The full build process consists of the following steps, in order:
 2. **[lint](#lint)**: the plugin lints the original tokens file and checks for errors
 3. **[transform](#transform)**: the token values are converted to **formats** (e.g. `css`, `js`, `scss`, `json`)
 4. **[build](#build)**: gather relevant transforms to assemble output file(s)
-5. **[postBuild](#postbuild)**: run after all other steps (in case plugins want to introspect the final output).
+5. **[buildEnd](#buildend)**: run after all other steps (in case plugins want to introspect the final output).
 
 In addition to the following steps, each plugin can also set additional options:
 
