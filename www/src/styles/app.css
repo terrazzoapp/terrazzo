@@ -138,6 +138,11 @@ strong {
   font-weight: 400;
 }
 
+svg,
+text {
+  font-family: var(--tz-font-body-font-family);
+}
+
 .gh-user {
   align-items: center;
   border-radius: 4rem;
