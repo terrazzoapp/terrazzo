@@ -19,8 +19,9 @@ export function defineConfig(config: Config): ConfigInit {
         return tokenPath;
       }
       try {
-        return require.resolve(tokenPath);
+        return new URL(`file://${require.resolve(tokenPath)}`);
       } catch (err) {
+        console.error(err);
         // this will throw an error if Node couldn’t automatically resolve it,
         // which will be true for many token paths. We don’t need to surface
         // that error; it’ll get its own error down the line if it’s a bad path.
