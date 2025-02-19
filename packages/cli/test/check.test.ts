@@ -22,6 +22,13 @@ describe('tz check', () => {
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
   });
 
+  it('valid, npm packages', async () => {
+    const cwd = new URL('./fixtures/check-npm/', import.meta.url);
+    const { stdout } = await execa('node', ['../../../bin/cli.js', 'check'], { cwd });
+    const output = stripAnsi(stdout);
+    expect(output).toMatch('✔  No errors');
+  });
+
   it('invalid', async () => {
     const command = async () => {
       const cwd = new URL('../', import.meta.url);

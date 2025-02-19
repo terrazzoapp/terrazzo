@@ -1,0 +1,8 @@
+{
+  "name": "@terrazzo/test-cli",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "my-tokens": "file:pkg"
+  }
+}

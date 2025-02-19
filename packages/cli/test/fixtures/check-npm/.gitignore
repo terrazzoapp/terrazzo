@@ -1,0 +1,4 @@
+# `npm i` needed for this test for Node resolution.
+# No actual node_modules were harmed in the making of this test.
+!node_modules
+!package-lock.json
