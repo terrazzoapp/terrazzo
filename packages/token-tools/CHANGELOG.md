@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.6.3
+
+### Patch Changes
+
+- [#443](https://github.com/terrazzoapp/terrazzo/pull/443) [`8cc558f`](https://github.com/terrazzoapp/terrazzo/commit/8cc558ff98cef4eb36240918aa594905dfeb11ee) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: allow resolving from node_modules in @terrazzo/cli (note: @terrazzo/parser/JS API still runs in browser, so it still can’t resolve npm modules).
+
 ## 0.6.2
 
 ### Patch Changes

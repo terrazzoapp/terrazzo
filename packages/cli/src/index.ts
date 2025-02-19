@@ -15,7 +15,7 @@ export function defineConfig(config: Config): ConfigInit {
     normalizedConfig.tokens = (
       Array.isArray(normalizedConfig.tokens) ? normalizedConfig.tokens : [normalizedConfig.tokens]
     ).map((tokenPath) => {
-      if (tokenPath.startsWith('.') || /^https?:\/\//.test(tokenPath)) {
+      if (tokenPath.startsWith('.') || /^(https?|file):\/\//i.test(tokenPath)) {
         return tokenPath;
       }
       try {
