@@ -1,4 +1,5 @@
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import { defineConfig } from 'astro/config';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -9,7 +10,7 @@ import remarkVitepress from './src/plugins/remark-vitepress.js';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
+  integrations: [react(), mdx(), sitemap()],
   site: 'https://terrazzo.app',
   devToolbar: {
     enabled: false,

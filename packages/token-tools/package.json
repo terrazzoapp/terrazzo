@@ -45,7 +45,7 @@
     "test:ts": "tsc --noEmit"
   },
   "dependencies": {
-    "@humanwhocodes/momoa": "^3.3.6",
+    "@humanwhocodes/momoa": "^3.3.8",
     "culori": "^4.0.1",
     "wildcard-match": "^5.1.4"
   },
