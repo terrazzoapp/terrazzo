@@ -1,5 +1,5 @@
 import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
-import radix from 'dtcg-examples/figma-sds.json';
+import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
 import { useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';

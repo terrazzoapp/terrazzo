@@ -5,4 +5,4 @@ declare const classNames: {
   readonly tokenGrid: "tokenGrid";
   readonly colheader: "colheader";
 };
-export = classNames;
+export default classNames;

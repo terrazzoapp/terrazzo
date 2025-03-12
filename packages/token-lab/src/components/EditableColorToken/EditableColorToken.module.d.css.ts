@@ -10,4 +10,4 @@ declare const classNames: {
   readonly channel: "channel";
   readonly alpha: "alpha";
 };
-export = classNames;
+export default classNames;

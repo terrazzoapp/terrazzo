@@ -4,4 +4,4 @@ declare const classNames: {
   readonly sidebar: "sidebar";
   readonly main: "main";
 };
-export = classNames;
+export default classNames;

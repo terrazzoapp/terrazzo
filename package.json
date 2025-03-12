@@ -29,5 +29,10 @@
     "turbo": "^2.4.4",
     "typescript": "~5.7.3",
     "vitest": "^3.0.8"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vite-plugin-sass-dts": "patches/vite-plugin-sass-dts.patch"
+    }
   }
 }

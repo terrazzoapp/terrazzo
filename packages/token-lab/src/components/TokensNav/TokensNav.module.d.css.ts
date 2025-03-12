@@ -6,4 +6,4 @@ declare const classNames: {
   readonly searchIcon: "searchIcon";
   readonly tokenIcon: "tokenIcon";
 };
-export = classNames;
+export default classNames;

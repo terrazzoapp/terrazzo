@@ -58,12 +58,12 @@ function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: un
     if ('$value' in v) {
       // filter out non-matching tokens
       // TODO: filter out empty groups?
-      const isFiltered = search && !id.toLowerCase().includes(search);
+      const isFiltered = typeof search === 'string' && !id.toLowerCase().includes(search);
       const { $type } = parseResult.tokens[id] ?? {};
       return (
         <TreeGrid.Item key={k} id={id} hidden={isFiltered}>
           <>
-            <TokenIcon type={$type} className={c.tokenIcon} />
+            {$type !== undefined  && $type !== "string" && <TokenIcon type={$type} className={c.tokenIcon} />}
             {k}
           </>
         </TreeGrid.Item>

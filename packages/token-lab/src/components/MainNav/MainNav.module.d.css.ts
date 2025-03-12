@@ -4,4 +4,4 @@ declare const classNames: {
   readonly codePanel: "codePanel";
   readonly title: "title";
 };
-export = classNames;
+export default classNames;

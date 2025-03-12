@@ -6,4 +6,4 @@ declare const classNames: {
   readonly menu: "menu";
   readonly title: "title";
 };
-export = classNames;
+export default classNames;
