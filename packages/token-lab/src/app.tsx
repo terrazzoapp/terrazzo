@@ -6,11 +6,15 @@ import '@terrazzo/react-color-picker/dist/all-components.css';
 import './styles/global.css';
 import { Provider as JotaiProvider } from 'jotai';
 import { DefaultLayout } from './layouts/Default/Default.js';
+import { TokensFileContext } from './hooks/tokens.js';
 
-export default function App() {
+
+export default function App({ tokensFile }: { tokensFile?: string }) {
   return (
     <JotaiProvider>
-      <DefaultLayout />
+      <TokensFileContext value={tokensFile}>
+        <DefaultLayout />
+      </TokensFileContext>
     </JotaiProvider>
   );
 }

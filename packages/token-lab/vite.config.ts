@@ -3,5 +3,5 @@ import sassDts from 'vite-plugin-sass-dts';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  plugins: [react(), sassDts()],
+  plugins: [react(), sassDts({ esmExport: true })],
 });
