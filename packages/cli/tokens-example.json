@@ -1,7 +1,19 @@
 {
   "color": {
     "$description": "Color tokens",
-    "$type": "color"
+    "$type": "color",
+    "black": {
+      "100": { "$value": "#0c0c0d0d" },
+      "200": { "$value": "#0c0c0d1a" },
+      "300": { "$value": "#0c0c0d33" },
+      "400": { "$value": "#0c0c0456" },
+      "500": { "$value": "#0c0c0db2" },
+      "600": { "$value": "#0c0c0dcc" },
+      "700": { "$value": "#0c0c0dd9" },
+      "800": { "$value": "#0c0c0de5" },
+      "900": { "$value": "#0c0c0df2" },
+      "1000": { "$value": "#0c0c0d" }
+    }
   },
   "border": {
     "$description": "Border tokens",

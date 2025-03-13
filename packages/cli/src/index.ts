@@ -1,8 +1,7 @@
-import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+import { join } from 'node:path';
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
 import { cwd } from './shared.js';
-
-const require = createRequire(cwd);
 
 export type { Command, Flags } from './shared.js';
 
@@ -19,7 +18,7 @@ export function defineConfig(config: Config): ConfigInit {
         return tokenPath;
       }
       try {
-        return new URL(`file://${require.resolve(tokenPath)}`);
+        return pathToFileURL(join(process.cwd(), tokenPath));
       } catch (err) {
         console.error(err);
         // this will throw an error if Node couldn’t automatically resolve it,

@@ -58,12 +58,18 @@ importers:
       '@clack/prompts':
         specifier: ^0.9.1
         version: 0.9.1
+      '@hono/node-server':
+        specifier: ^1.13.8
+        version: 1.13.8(hono@4.7.4)
       '@humanwhocodes/momoa':
         specifier: ^3.3.6
         version: 3.3.8
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      '@terrazzo/token-lab':
+        specifier: workspace:^
+        version: link:../token-lab
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
@@ -88,12 +94,28 @@ importers:
       meriyah:
         specifier: ^6.0.5
         version: 6.0.5
+      mime:
+        specifier: ^4.0.6
+        version: 4.0.6
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
       yaml-to-momoa:
         specifier: ^0.0.3
         version: 0.0.3
+    devDependencies:
+      '@vitejs/plugin-react-swc':
+        specifier: ^3.7.2
+        version: 3.8.0(vite@6.2.1(@types/node@22.13.10)(jiti@2.4.2)(sass-embedded@1.85.1)(yaml@2.7.0))
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-dom:
+        specifier: 19.0.0
+        version: 19.0.0(react@19.0.0)
+      vite:
+        specifier: ^6.2.1
+        version: 6.2.1(@types/node@22.13.10)(jiti@2.4.2)(sass-embedded@1.85.1)(yaml@2.7.0)
 
   packages/fonts: {}
 
@@ -163,13 +185,13 @@ importers:
 
   packages/plugin-css:
     dependencies:
+      '@terrazzo/cli':
+        specifier: 0.x
+        version: 0.6.3
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
     devDependencies:
-      '@terrazzo/cli':
-        specifier: workspace:^
-        version: link:../cli
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
@@ -537,8 +559,8 @@ importers:
   packages/tokens:
     devDependencies:
       '@terrazzo/cli':
-        specifier: workspace:^
-        version: link:../cli
+        specifier: ^0.6.3
+        version: 0.6.3
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
@@ -1200,6 +1222,12 @@ packages:
 
   '@floating-ui/utils@0.2.9':
     resolution: {integrity: sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg==}
+
+  '@hono/node-server@1.13.8':
+    resolution: {integrity: sha512-fsn8ucecsAXUoVxrUil0m13kOEq4mkX4/4QozCqmY+HpGfKl74OYSn8JcMA8GnG0ClfdRI4/ZSeG7zhFaVg+wg==}
+    engines: {node: '>=18.14.1'}
+    peerDependencies:
+      hono: ^4
 
   '@humanwhocodes/momoa@3.3.8':
     resolution: {integrity: sha512-/3PZzor2imi/RLLcnHztkwA79txiVvW145Ve2cp5dxRcH5qOUNJPToasqLFHniTfw4B4lT7jGDdBOPXbXYlIMQ==}
@@ -3167,6 +3195,10 @@ packages:
     resolution: {integrity: sha512-RqGs4wavGYJWE07t35JQccByczmNUXQT0E12ZYV1VKYu5UiAU9lsos/yBAcf840+zrUQQxgVduCR5/B8nNtibg==}
     hasBin: true
 
+  hono@4.7.4:
+    resolution: {integrity: sha512-Pst8FuGqz3L7tFF+u9Pu70eI0xa5S3LPUmrNd5Jm8nTHze9FxLTK9Kaj5g/k4UcwuJSXTP65SyHOPLrffpcAJg==}
+    engines: {node: '>=16.9.0'}
+
   hookified@1.7.1:
     resolution: {integrity: sha512-OXcdHsXeOiD7OJ5zvWj8Oy/6RCdLwntAX+wUrfemNcMGn6sux4xbEHi2QXwqePYhjQ/yvxxq2MvCRirdlHscBw==}
 
@@ -3756,6 +3788,11 @@ packages:
   mime-types@2.1.35:
     resolution: {integrity: sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw==}
     engines: {node: '>= 0.6'}
+
+  mime@4.0.6:
+    resolution: {integrity: sha512-4rGt7rvQHBbaSOF9POGkk1ocRP16Md1x36Xma8sz8h8/vfCUI2OtEIeCqe4Ofes853x4xDoPiFLIT47J5fI/7A==}
+    engines: {node: '>=16'}
+    hasBin: true
 
   mimic-fn@2.1.0:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
@@ -5959,6 +5996,10 @@ snapshots:
 
   '@floating-ui/utils@0.2.9': {}
 
+  '@hono/node-server@1.13.8(hono@4.7.4)':
+    dependencies:
+      hono: 4.7.4
+
   '@humanwhocodes/momoa@3.3.8': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
@@ -8149,6 +8190,8 @@ snapshots:
       mkdirp: 0.3.0
       nopt: 1.0.10
 
+  hono@4.7.4: {}
+
   hookified@1.7.1: {}
 
   htm@3.1.1: {}
@@ -8970,6 +9013,8 @@ snapshots:
   mime-types@2.1.35:
     dependencies:
       mime-db: 1.52.0
+
+  mime@4.0.6: {}
 
   mimic-fn@2.1.0: {}
 

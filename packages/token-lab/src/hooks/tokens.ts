@@ -122,6 +122,22 @@ export async function loadTokens(filename: string): Promise<string> {
  * Save tokens to IndexedDB (NOT Jotai!)
  */
 export async function saveTokens(filename: string, tokens: string): Promise<void> {
+  // TODO: this logic should instead be coming from <App onUpdate={newTokens => { ... }} />
+  if (typeof window !== 'undefined' && window.location.pathname === '/') {
+    const response = await fetch('/api/tokens', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: tokens
+    });
+    
+    if (!response.ok) {
+      console.error(`Failed to save tokens: ${response.status}`);
+    }
+    
+    return;
+  }
   const db = await getDB(DB_NAME, { version: DB_VERSION, onupgradeneeded });
   const tx = db.transaction(TABLE_NAME, 'readwrite');
   const store = tx.objectStore(TABLE_NAME);

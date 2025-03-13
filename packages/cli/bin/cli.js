@@ -35,6 +35,7 @@ import { initCmd } from '../dist/init.js';
 import { normalizeCmd } from '../dist/normalize.js';
 import { loadConfig } from '../dist/shared.js';
 import { versionCmd } from '../dist/version.js';
+import { labCmd } from '../dist/lab.js';
 
 // Load env vars before anything else
 // (a user may not use these at all, but in the offchance they do)
@@ -119,6 +120,10 @@ export default async function main() {
     }
     case 'init': {
       await initCmd({ config, flags, logger });
+      break;
+    }
+    case 'lab': {
+      await labCmd({ config, configPath, flags, logger });
       break;
     }
     default: {
