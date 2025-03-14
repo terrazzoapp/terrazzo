@@ -4,7 +4,7 @@ import { atom, useAtom } from 'jotai';
 import { use, createContext, useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';
 
-export const TokensFileContext = createContext<string | undefined>(undefined);
+export const TokensFileContext = createContext<[tokens: string | undefined, onUpdate: ((tokens: string) => unknown) | undefined]>([undefined, undefined]);
 
 const DEFAULT_FILENAME = 'tokens.json'; // TODO: add support for multiple files
 
@@ -39,7 +39,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
   const [isLoaded, setIsLoaded] = useAtom($tokensLoaded);
   const [parseResult, setParseResult] = useAtom($parseResult);
   const [parseError, setParseError] = useAtom($parseError);
-  const contextTokens = use(TokensFileContext);
+  const [ contextTokens, contextTokensOnUpdate ] = use(TokensFileContext);
 
   // load (only once)
   useEffect(() => {
@@ -68,6 +68,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
     }
     setParseError(undefined);
     saveTokens(filename, tokens);
+    contextTokensOnUpdate?.(tokens);
 
     (async () => {
       try {
@@ -122,22 +123,6 @@ export async function loadTokens(filename: string): Promise<string> {
  * Save tokens to IndexedDB (NOT Jotai!)
  */
 export async function saveTokens(filename: string, tokens: string): Promise<void> {
-  // TODO: this logic should instead be coming from <App onUpdate={newTokens => { ... }} />
-  if (typeof window !== 'undefined' && window.location.pathname === '/') {
-    const response = await fetch('/api/tokens', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain'
-      },
-      body: tokens
-    });
-    
-    if (!response.ok) {
-      console.error(`Failed to save tokens: ${response.status}`);
-    }
-    
-    return;
-  }
   const db = await getDB(DB_NAME, { version: DB_VERSION, onupgradeneeded });
   const tx = db.transaction(TABLE_NAME, 'readwrite');
   const store = tx.objectStore(TABLE_NAME);

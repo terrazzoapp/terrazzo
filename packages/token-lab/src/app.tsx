@@ -8,11 +8,10 @@ import { Provider as JotaiProvider } from 'jotai';
 import { DefaultLayout } from './layouts/Default/Default.js';
 import { TokensFileContext } from './hooks/tokens.js';
 
-
-export default function App({ tokensFile }: { tokensFile?: string }) {
+export default function App({ tokensFile, onUpdate }: { tokensFile?: string, onUpdate?: (file: string) => unknown }) {
   return (
     <JotaiProvider>
-      <TokensFileContext value={tokensFile}>
+      <TokensFileContext value={[tokensFile, onUpdate]}>
         <DefaultLayout />
       </TokensFileContext>
     </JotaiProvider>

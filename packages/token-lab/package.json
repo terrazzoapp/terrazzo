@@ -26,6 +26,7 @@
   },
   "scripts": {
     "dev": "vite dev",
+    "build": "tsc",
     "build:app": "vite build",
     "preview": "vite preview",
     "format": "biome check --fix --unsafe src",
