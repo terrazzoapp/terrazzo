@@ -32,10 +32,10 @@ import { buildCmd } from '../dist/build.js';
 import { checkCmd } from '../dist/check.js';
 import { helpCmd } from '../dist/help.js';
 import { initCmd } from '../dist/init.js';
+import { labCmd } from '../dist/lab.js';
 import { normalizeCmd } from '../dist/normalize.js';
 import { loadConfig } from '../dist/shared.js';
 import { versionCmd } from '../dist/version.js';
-import { labCmd } from '../dist/lab.js';
 
 // Load env vars before anything else
 // (a user may not use these at all, but in the offchance they do)

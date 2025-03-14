@@ -1,5 +1,5 @@
-import { pathToFileURL } from 'node:url';
 import { join } from 'node:path';
+import { pathToFileURL } from 'node:url';
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
 import { cwd } from './shared.js';
 
