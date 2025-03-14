@@ -1,4 +1,4 @@
-import { defineConfig } from '../../../../cli/dist/index.js';
+import { defineConfig } from '@terrazzo/cli';
 import pluginCSS from '../../../dist/index.js';
 
 export default defineConfig({
