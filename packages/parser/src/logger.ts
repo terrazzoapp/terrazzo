@@ -9,7 +9,7 @@ export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
 
 export type LogLevel = LogSeverity | 'silent';
 
-export type LogGroup = 'config' | 'parser' | 'lint' | 'plugin';
+export type LogGroup = 'config' | 'parser' | 'lint' | 'plugin' | 'server';
 
 export interface LogEntry {
   /** Originator of log message */

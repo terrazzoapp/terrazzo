@@ -32,6 +32,7 @@ import { buildCmd } from '../dist/build.js';
 import { checkCmd } from '../dist/check.js';
 import { helpCmd } from '../dist/help.js';
 import { initCmd } from '../dist/init.js';
+import { labCmd } from '../dist/lab.js';
 import { normalizeCmd } from '../dist/normalize.js';
 import { loadConfig } from '../dist/shared.js';
 import { versionCmd } from '../dist/version.js';
@@ -119,6 +120,10 @@ export default async function main() {
     }
     case 'init': {
       await initCmd({ config, flags, logger });
+      break;
+    }
+    case 'lab': {
+      await labCmd({ config, configPath, flags, logger });
       break;
     }
     default: {

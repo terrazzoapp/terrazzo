@@ -1,4 +1,4 @@
-# @terrazzo/gallery
+# @terrazzo/token-lab
 
 Tokens.json editor and viewer.
 
@@ -9,13 +9,10 @@ pnpm
 ```
 
 ```tsx
-import Gallery from '@terrazzo/gallery';
-import tokens from './tokens.json' assert { type: json };
+import TokenLab from '@terrazzo/token-lab';
+import tokens from './tokens.json' with { type: 'json' };
 
-<Gallery
+<TokenLab
   tokens={tokens}
-  onUpdate={async (newTokens) => {
-    // do something…
-  }}
 />;
 ```

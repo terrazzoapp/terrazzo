@@ -1,5 +1,5 @@
 import { defineConfig } from '../../../dist/index.js';
 
 export default defineConfig({
-  tokens: ['my-tokens/tokens.json'],
+  tokens: ['pkg/tokens.json'],
 });

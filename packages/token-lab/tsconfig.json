@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
+    "incremental": true,
     "baseUrl": ".",
     "outDir": "dist"
   },

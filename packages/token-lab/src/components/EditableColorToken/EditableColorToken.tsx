@@ -12,7 +12,7 @@ export interface EditableColorTokenProps {
   value: ColorValueNormalized;
 }
 
-export default function EditableColorToken({ id, mode = '.', value }: EditableColorTokenProps) {
+export default function EditableColorToken({ id, value }: EditableColorTokenProps) {
   const [color, setColor] = useColor(value);
   const channels = normalizedChannels(color);
 

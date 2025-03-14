@@ -14,7 +14,9 @@
     "skipLibCheck": false,
     "sourceMap": true,
     "strict": true,
-    "target": "ESNext"
+    "target": "ESNext",
+    "allowArbitraryExtensions": true,
+    "resolveJsonModule": true,
   },
   "exclude": ["**/dist/*", "**/node_modules/*"]
 }

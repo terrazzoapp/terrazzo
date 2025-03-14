@@ -28,12 +28,12 @@ export default function CodeEditor() {
       getWorker(_workerId: string, label: string): Worker {
         switch (label) {
           case 'json': {
-            return new Worker(new URL('/monaco-editor/esm/vs/language/json/json.worker.js', import.meta.url), {
+            return new Worker(new URL('monaco-editor/esm/vs/language/json/json.worker.js', import.meta.url), {
               type: 'module',
             });
           }
           default: {
-            return new Worker(new URL('/monaco-editor/esm/vs/editor/editor.worker.js', import.meta.url), {
+            return new Worker(new URL('monaco-editor/esm/vs/editor/editor.worker.js', import.meta.url), {
               type: 'module',
             });
           }
