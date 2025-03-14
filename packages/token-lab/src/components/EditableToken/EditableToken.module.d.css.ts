@@ -1,5 +1,5 @@
 declare const classNames: {
-  readonly cell: "cell";
-  readonly code: "code";
+  readonly cell: 'cell';
+  readonly code: 'code';
 };
 export default classNames;

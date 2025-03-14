@@ -1,10 +1,12 @@
 import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
 import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
-import { use, createContext, useEffect, useMemo } from 'react';
+import { createContext, use, useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';
 
-export const TokensFileContext = createContext<[tokens: string | undefined, onUpdate: ((tokens: string) => unknown) | undefined]>([undefined, undefined]);
+export const TokensFileContext = createContext<
+  [tokens: string | undefined, onUpdate: ((tokens: string) => unknown) | undefined]
+>([undefined, undefined]);
 
 const DEFAULT_FILENAME = 'tokens.json'; // TODO: add support for multiple files
 
@@ -39,7 +41,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
   const [isLoaded, setIsLoaded] = useAtom($tokensLoaded);
   const [parseResult, setParseResult] = useAtom($parseResult);
   const [parseError, setParseError] = useAtom($parseError);
-  const [ contextTokens, contextTokensOnUpdate ] = use(TokensFileContext);
+  const [contextTokens, contextTokensOnUpdate] = use(TokensFileContext);
 
   // load (only once)
   useEffect(() => {
