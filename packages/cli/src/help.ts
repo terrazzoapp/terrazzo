@@ -8,6 +8,7 @@ export function helpCmd() {
     check [path]    Check tokens.json for errors and run linters
     lint [path]     (alias of check)
     init            Create a starter tokens.json file
+    lab             Manage your tokens with a web interface
 
   [options]
     --help          Show this message

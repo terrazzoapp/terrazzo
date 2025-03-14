@@ -16,11 +16,6 @@ export interface BuildOptions {
 }
 
 export async function labCmd({ config, logger }: BuildOptions) {
-  /**
-   * it reads TOKEN if you squint your eyes all the way closed
-   */
-  const port = 9000;
-
   /** TODO: handle multiple files */
   const [ tokenFileUrl ] = config.tokens
 
@@ -36,7 +31,7 @@ export async function labCmd({ config, logger }: BuildOptions) {
   }
 
   const server = serve({
-    port,
+    port: 9000,
     overrideGlobalObjects: false,
     async fetch(request) {
       const url = new URL(request.url);
@@ -74,7 +69,7 @@ export async function labCmd({ config, logger }: BuildOptions) {
       return new Response('Not found', { status: 404 });
     }
   }, (info) => {
-    logger.info({ group: 'lab', message: `Server running at http://${info.address === "::" ? "localhost" : info.address}:${info.port}` });
+    logger.info({ group: 'server', message: `Token Lab running at http://${info.address === "::" ? "localhost" : info.address}:${info.port}` });
   });
   /**
    * The cli entrypoint is going to manually exit the process after labCmd returns.
