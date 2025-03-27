@@ -15,7 +15,7 @@ DTCG tokens are stored in JSON, and look something like the following:
     "$type": "color",
     "$value": {
       "colorSpace": "srgb",
-      "channels": [0.4, 0.2, 0.6]
+      "components": [0.4, 0.2, 0.6]
     }
   }
 }

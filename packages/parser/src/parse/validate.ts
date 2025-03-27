@@ -165,6 +165,14 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
       logger.error({ ...baseMessage, message: 'Expected color, received empty string' });
     }
   } else if ($value.type === 'Object') {
+    // allow "channels" but raise warning. also rename as a workaround (mutating the AST is a bad idea in general, but this is safe)
+    const channelMemberI = $value.members.findIndex((m) => m.name.type === 'String' && m.name.value === 'channels');
+
+    if (channelMemberI !== -1) {
+      logger.warn({ ...baseMessage, message: '"channels" is deprecated; rename "channels" to "components"' });
+      ($value.members[channelMemberI]!.name as StringNode).value = 'components';
+    }
+
     validateMembersAs(
       $value,
       {
@@ -187,7 +195,7 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
           },
           required: true,
         },
-        channels: {
+        components: {
           validator: (v) => {
             if (v.type !== 'Array') {
               logger.error({
@@ -196,10 +204,12 @@ export function validateColor($value: ValueNode, node: AnyNode, { filename, src,
                 node: v,
               });
             } else {
+              // note: in the future, length will change depending on colorSpace, e.g. CMYK
+              // but in the current spec it’s 3 for now.
               if (v.elements?.length !== 3) {
                 logger.error({
                   ...baseMessage,
-                  message: `Expected 3 channels, received ${v.elements?.length ?? 0}`,
+                  message: `Expected 3 components, received ${v.elements?.length ?? 0}`,
                   node: v,
                 });
               }

@@ -18,10 +18,10 @@ export function transformColor(
 
   const {
     colorSpace,
-    channels,
+    components,
     alpha = 1,
   } = typeof token.$value === 'string' ? parseColor(token.$value) : token.$value;
-  const color = tokenToCulori({ colorSpace, channels, alpha });
+  const color = tokenToCulori({ colorSpace, components, alpha });
 
   if (!color) {
     throw new Error(`Can’t convert color ${JSON.stringify(token.$value)} to Culori color`);

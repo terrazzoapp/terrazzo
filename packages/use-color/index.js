@@ -65,7 +65,7 @@ export function parse(/** @type {import("./index.d.ts").ColorInput} */ color) {
     let normalizedColor = color;
 
     // DTCG tokens: convert to Culori format
-    if (color.colorSpace && Array.isArray(color.channels)) {
+    if (color.colorSpace && Array.isArray(color.components)) {
       normalizedColor = tokenToCulori(color);
     }
     if (!normalizedColor.mode) {

@@ -57,7 +57,7 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'srgb', channels: [0.2255639098, 0.2255639098, 0.2518796992] },
+                  $value: { colorSpace: 'srgb', components: [0.2255639098, 0.2255639098, 0.2518796992] },
                 },
               },
             },
@@ -77,7 +77,7 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'oklch', channels: [0.8098, 0.089, 243.05] },
+                  $value: { colorSpace: 'oklch', components: [0.8098, 0.089, 243.05] },
                 },
               },
             },
@@ -97,7 +97,7 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'oklch', channels: [0.8098, 0.089, 243.05] },
+                  $value: { colorSpace: 'oklch', components: [0.8098, 0.089, 243.05] },
                 },
               },
             },
@@ -117,7 +117,7 @@ describe('rules', () => {
               blue: {
                 100: {
                   $type: 'color',
-                  $value: { colorSpace: 'srgb', channels: [0.2255639098, 0.2255639098, 0.2518796992] },
+                  $value: { colorSpace: 'srgb', components: [0.2255639098, 0.2255639098, 0.2518796992] },
                 },
               },
             },
@@ -510,8 +510,8 @@ describe('rules', () => {
           tokens: {
             color: {
               $type: 'color',
-              fg: { $value: { colorSpace: 'srgb', channels: [0, 0, 1] } },
-              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+              fg: { $value: { colorSpace: 'srgb', components: [0, 0, 1] } },
+              bg: { $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
             },
           },
         },
@@ -527,8 +527,8 @@ describe('rules', () => {
           tokens: {
             color: {
               $type: 'color',
-              fg: { $value: { colorSpace: 'srgb', channels: [0, 0, 1] } },
-              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+              fg: { $value: { colorSpace: 'srgb', components: [0, 0, 1] } },
+              bg: { $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
             },
           },
         },
@@ -544,8 +544,8 @@ describe('rules', () => {
           tokens: {
             color: {
               $type: 'color',
-              fg: { $value: { colorSpace: 'srgb', channels: [0.5, 0.5, 1] } },
-              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+              fg: { $value: { colorSpace: 'srgb', components: [0.5, 0.5, 1] } },
+              bg: { $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
             },
           },
         },
@@ -561,8 +561,8 @@ describe('rules', () => {
           tokens: {
             color: {
               $type: 'color',
-              fg: { $value: { colorSpace: 'srgb', channels: [0.5, 0.5, 1] } },
-              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+              fg: { $value: { colorSpace: 'srgb', components: [0.5, 0.5, 1] } },
+              bg: { $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
             },
           },
         },
@@ -578,8 +578,8 @@ describe('rules', () => {
           tokens: {
             color: {
               $type: 'color',
-              fg: { $value: { colorSpace: 'srgb', channels: [0.25, 0.25, 1] } },
-              bg: { $value: { colorSpace: 'srgb', channels: [1, 1, 1] } },
+              fg: { $value: { colorSpace: 'srgb', components: [0.25, 0.25, 1] } },
+              bg: { $value: { colorSpace: 'srgb', components: [1, 1, 1] } },
             },
           },
         },

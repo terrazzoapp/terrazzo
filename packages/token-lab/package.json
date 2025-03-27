@@ -46,10 +46,9 @@
     "@terrazzo/react-color-picker": "workspace:^",
     "@terrazzo/tiles": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
-    "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
-    "dtcg-examples": "^0.1.4",
+    "dtcg-examples": "^0.2.0",
     "jotai": "^2.12.2",
     "monaco-editor": "^0.52.2"
   },

@@ -1,4 +1,5 @@
 import {
+  type ColorValueNormalized,
   type CubicBezierValue,
   type DimensionValue,
   type FontFamilyValue,
@@ -61,7 +62,15 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       if (typeof token.$value === 'string') {
         return parseColor(token.$value);
       }
-      return 'alpha' in token.$value ? token.$value : { ...token.$value, alpha: 1 };
+      const newValue: ColorValueNormalized = {
+        colorSpace: token.$value.colorSpace,
+        components: token.$value.components ?? token.$value.channels,
+        alpha: token.$value.alpha ?? 1,
+      };
+      if ('hex' in token.$value) {
+        newValue.hex = token.$value.hex;
+      }
+      return newValue;
     }
     case 'cubicBezier': {
       if (typeof token.$value === 'string') {

@@ -4,4 +4,7 @@ packages:
   - www
   - '!packages/**/test/**'
 onlyBuiltDependencies:
+  - '@biomejs/biome'
   - '@swc/core'
+  - esbuild
+  - sharp

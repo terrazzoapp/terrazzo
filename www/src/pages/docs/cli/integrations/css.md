@@ -88,7 +88,7 @@ If all your tokens are in the “safe” `srgb` color space, no extra code is ge
         "$type": "color",
         "$value": {
           "colorSpace": "oklch",
-          "channels": [0.5618, 0.227, 252.19], // Rec2020 color
+          "components": [0.5618, 0.227, 252.19], // Rec2020 color
         },
       },
     },

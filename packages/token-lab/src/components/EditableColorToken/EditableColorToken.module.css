@@ -80,7 +80,7 @@
   }
 }
 
-.channels {
+.components {
   border-radius: 0.25rem;
   contain: inline-size;
   display: grid;

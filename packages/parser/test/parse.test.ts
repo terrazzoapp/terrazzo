@@ -87,11 +87,11 @@ describe('Tokens', () => {
           want: {
             tokens: {
               'color.base.blue.500': {
-                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
                 aliasedBy: ['color.semantic'],
               },
               'color.semantic': {
-                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
                 aliasOf: 'color.base.blue.500',
                 aliasChain: ['color.base.blue.500'],
               },
@@ -118,11 +118,11 @@ describe('Tokens', () => {
           want: {
             tokens: {
               'color.base.blue.500': {
-                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
                 aliasedBy: ['color.semantic'],
               },
               'color.semantic': {
-                $value: { alpha: 1, channels: [0, 0.2, 1], colorSpace: 'srgb' },
+                $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
                 aliasOf: 'color.base.blue.500',
                 aliasChain: ['color.base.blue.500'],
               },
@@ -236,7 +236,7 @@ font:
           want: {
             tokens: {
               'color.semantic.subdued': {
-                $value: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
+                $value: { alpha: 0.1, components: [0, 0, 0], colorSpace: 'srgb' },
                 aliasedBy: ['buttonBorder'],
               },
               'border.size.default': { $value: { value: 1, unit: 'px' }, aliasedBy: ['buttonBorder'] },
@@ -246,7 +246,7 @@ font:
               },
               buttonBorder: {
                 $value: {
-                  color: { alpha: 0.1, channels: [0, 0, 0], colorSpace: 'srgb' },
+                  color: { alpha: 0.1, components: [0, 0, 0], colorSpace: 'srgb' },
                   width: { value: 1, unit: 'px' },
                   style: 'solid',
                 },
@@ -292,7 +292,7 @@ font:
               'color.blue.500': {
                 $value: {
                   alpha: 1,
-                  channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
+                  components: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
                   colorSpace: 'srgb',
                 },
                 aliasedBy: ['gradient'],
@@ -300,7 +300,7 @@ font:
               'color.purple.800': {
                 $value: {
                   alpha: 1,
-                  channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
+                  components: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
                   colorSpace: 'srgb',
                 },
                 aliasedBy: ['gradient'],
@@ -318,7 +318,7 @@ font:
                   {
                     color: {
                       alpha: 1,
-                      channels: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
+                      components: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
                       colorSpace: 'srgb',
                     },
                     position: 0,
@@ -326,7 +326,7 @@ font:
                   {
                     color: {
                       alpha: 1,
-                      channels: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
+                      components: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
                       colorSpace: 'srgb',
                     },
                     position: 1,
@@ -365,7 +365,7 @@ font:
               'alias.a': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -375,7 +375,7 @@ font:
               'alias.b': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -385,7 +385,7 @@ font:
               'alias.c': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -395,7 +395,7 @@ font:
               'alias.d': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -405,7 +405,7 @@ font:
               'alias.e': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -415,7 +415,7 @@ font:
               'alias.f': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -449,7 +449,7 @@ font:
               'alias.a': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -458,7 +458,7 @@ font:
               'alias.b': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -468,7 +468,7 @@ font:
               'alias.c': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -478,7 +478,7 @@ font:
               'alias.d': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -488,7 +488,7 @@ font:
               'alias.e': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -498,7 +498,7 @@ font:
               'alias.f': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                  components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
                   colorSpace: 'srgb',
                   hex: '#808080',
                 },
@@ -823,7 +823,7 @@ font:
               src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
             },
           ],
-          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
         },
       ],
       [
@@ -832,10 +832,22 @@ font:
           given: [
             {
               filename: DEFAULT_FILENAME,
+              src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1] } } } },
+            },
+          ],
+          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        },
+      ],
+      [
+        'valid: object (legacy channels)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
               src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
             },
           ],
-          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, channels: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+          want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
         },
       ],
       [
@@ -886,7 +898,7 @@ font:
           given: [
             {
               filename: DEFAULT_FILENAME,
-              src: { color: { cobalt: { $type: 'color', $value: { channels: [0.3, 0.6, 1] } } } },
+              src: { color: { cobalt: { $type: 'color', $value: { components: [0.3, 0.6, 1] } } } },
             },
           ],
           want: {
@@ -896,14 +908,14 @@ font:
   4 |       "$type": "color",
 > 5 |       "$value": {
     |                 ^
-  6 |         "channels": [
+  6 |         "components": [
   7 |           0.3,
   8 |           0.6,`,
           },
         },
       ],
       [
-        'invalid: missing channels',
+        'invalid: missing components',
         {
           given: [
             {
@@ -912,7 +924,7 @@ font:
             },
           ],
           want: {
-            error: `Missing required property "channels"
+            error: `Missing required property "components"
 
   3 |     "cobalt": {
   4 |       "$type": "color",
@@ -925,7 +937,9 @@ font:
         },
       ],
       [
-        'invalid: wrong number of channels',
+        // note: the number of components will change according to the colorSpace in the future, but it’s always 3 for now
+        // TODO: provide colorSpace-specific error message, e.g. "srgb requires 3 components, etc."
+        'invalid: wrong number of components',
         {
           given: [
             {
@@ -934,19 +948,21 @@ font:
                 filename: DEFAULT_FILENAME,
                 src: [
                   {
-                    color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1, 0.2] } } },
+                    color: {
+                      cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1, 0.2] } },
+                    },
                   },
                 ],
               },
             },
           ],
           want: {
-            error: `Expected 3 channels, received 4
+            error: `Expected 3 components, received 4
 
    8 |           "$value": {
    9 |             "colorSpace": "srgb",
-> 10 |             "channels": [
-     |                         ^
+> 10 |             "components": [
+     |                           ^
   11 |               0.3,
   12 |               0.6,
   13 |               1,`,
@@ -960,7 +976,7 @@ font:
             {
               filename: DEFAULT_FILENAME,
               src: {
-                color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', channels: [0.3, 0.6, 1] } } },
+                color: { cobalt: { $type: 'color', $value: { colorSpace: 'mondrian', components: [0.3, 0.6, 1] } } },
               },
             },
           ],
@@ -971,7 +987,7 @@ font:
   5 |       "$value": {
 > 6 |         "colorSpace": "mondrian",
     |                       ^
-  7 |         "channels": [
+  7 |         "components": [
   8 |           0.3,
   9 |           0.6,`,
           },
@@ -985,7 +1001,7 @@ font:
               filename: DEFAULT_FILENAME,
               src: {
                 color: {
-                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1], alpha: 'quack' } },
+                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 'quack' } },
                 },
               },
             },
@@ -1011,7 +1027,7 @@ font:
               filename: DEFAULT_FILENAME,
               src: {
                 color: {
-                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', channels: [0.3, 0.6, 1] } },
+                  cobalt: { $type: 'color', $value: { colorSpace: 'srgb', hex: '#abcde', components: [0.3, 0.6, 1] } },
                 },
               },
             },
@@ -1023,7 +1039,7 @@ font:
    6 |         "colorSpace": "srgb",
 >  7 |         "hex": "#abcde",
      |                ^
-   8 |         "channels": [
+   8 |         "components": [
    9 |           0.3,
   10 |           0.6,`,
           },
@@ -1923,7 +1939,7 @@ font:
             tokens: {
               border: {
                 $value: {
-                  color: { alpha: 0.12549019607843137, channels: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
+                  color: { alpha: 0.12549019607843137, components: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
                   style: 'solid',
                   width: { value: 1, unit: 'px' },
                 },
@@ -2149,7 +2165,7 @@ font:
               shadowBase: {
                 $value: [
                   {
-                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1, hex: '#000000' },
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.25, unit: 'rem' },
                     blur: { value: 0.5, unit: 'rem' },
@@ -2173,14 +2189,14 @@ font:
                   $type: 'shadow',
                   $value: [
                     {
-                      color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                      color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                       offsetX: { value: 0, unit: 'rem' },
                       offsetY: { value: 0.25, unit: 'rem' },
                       blur: { value: 0.5, unit: 'rem' },
                       spread: 0,
                     },
                     {
-                      color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                      color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                       offsetX: { value: 0, unit: 'rem' },
                       offsetY: { value: 0.5, unit: 'rem' },
                       blur: { value: 1, unit: 'rem' },
@@ -2196,7 +2212,7 @@ font:
               shadowBase: {
                 $value: [
                   {
-                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.25, unit: 'rem' },
                     blur: { value: 0.5, unit: 'rem' },
@@ -2204,7 +2220,7 @@ font:
                     inset: false,
                   },
                   {
-                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.5, unit: 'rem' },
                     blur: { value: 1, unit: 'rem' },
@@ -2269,7 +2285,7 @@ font:
               shadowBase: {
                 $value: [
                   {
-                    color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 1, hex: '#000000' },
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1, hex: '#000000' },
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.25, unit: 'rem' },
                     blur: { value: 0.5, unit: 'rem' },
@@ -2310,8 +2326,8 @@ font:
             tokens: {
               gradient: {
                 $value: [
-                  { color: { alpha: 1, channels: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
-                  { color: { alpha: 1, channels: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
+                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
                 ],
               },
             },
@@ -2842,7 +2858,7 @@ describe('Additional cases', () => {
               '.': {
                 $value: {
                   alpha: 1,
-                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
                   hex: '#0550ae',
                 },
@@ -2851,7 +2867,7 @@ describe('Additional cases', () => {
               light: {
                 $value: {
                   alpha: 1,
-                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
                   hex: '#0550ae',
                 },
@@ -2860,7 +2876,7 @@ describe('Additional cases', () => {
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
+                  components: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
                   colorSpace: 'srgb',
                   hex: '#1158c7',
                 },
@@ -2871,7 +2887,7 @@ describe('Additional cases', () => {
               '.': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
@@ -2880,7 +2896,7 @@ describe('Additional cases', () => {
               light: {
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
@@ -2889,7 +2905,7 @@ describe('Additional cases', () => {
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
+                  components: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
                   colorSpace: 'srgb',
                   hex: '#205d9e',
                 },
@@ -2900,7 +2916,7 @@ describe('Additional cases', () => {
               '.': {
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
@@ -2911,7 +2927,7 @@ describe('Additional cases', () => {
               light: {
                 $value: {
                   alpha: 1,
-                  channels: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
+                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
                   colorSpace: 'srgb',
                   hex: '#8ec8f6',
                 },
@@ -2922,7 +2938,7 @@ describe('Additional cases', () => {
               dark: {
                 $value: {
                   alpha: 1,
-                  channels: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
                   colorSpace: 'srgb',
                   hex: '#0550ae',
                 },
@@ -3062,13 +3078,13 @@ describe('Additional cases', () => {
         emptyGroup: { $extensions: { foo: { $value: 'bar' } } },
         color: {
           $type: 'color',
-          blue: { $value: { colorSpace: 'srgb', channels: [0.2, 0.4, 0.8], alpha: 1 } },
+          blue: { $value: { colorSpace: 'srgb', components: [0.2, 0.4, 0.8], alpha: 1 } },
           $extensions: { fake: { $value: 'foo' } },
         },
       };
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-      expect(tokens['color.blue']!.$value).toEqual({ alpha: 1, channels: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
+      expect(tokens['color.blue']!.$value).toEqual({ alpha: 1, components: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
     });
   });
 
@@ -3079,12 +3095,12 @@ describe('Additional cases', () => {
     "$type": "color",
     // blue group
     "blue": {
-      "06": { "$value": { "colorSpace": "srgb", "channels": [0, 0, 1] } }
+      "06": { "$value": { "colorSpace": "srgb", "components": [0, 0, 1] } }
     }
   }
 }`;
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.blue.06']!.$value).toEqual({ alpha: 1, channels: [0, 0, 1], colorSpace: 'srgb' });
+    expect(tokens['color.blue.06']!.$value).toEqual({ alpha: 1, components: [0, 0, 1], colorSpace: 'srgb' });
   });
 });

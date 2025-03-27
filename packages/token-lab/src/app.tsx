@@ -1,4 +1,4 @@
-import '@terrazzo/tokens/dist/index.css';
+import './styles/tokens.css';
 import '@terrazzo/fonts/fragment-mono.css';
 import '@terrazzo/fonts/instrument-sans.css';
 import '@terrazzo/tiles/dist/all-components.css';

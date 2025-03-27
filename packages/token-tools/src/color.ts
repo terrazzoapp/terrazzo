@@ -69,8 +69,8 @@ export function parseColor(color: string): ColorValueNormalized {
   if (!(result.mode in CULORI_TO_CSS)) {
     throw new Error(`Unsupported color space: ${result.mode}`);
   }
-  const colorSpace = CULORI_TO_CSS[result.mode as keyof typeof CULORI_TO_CSS];
-  let channels: [number, number, number] = [0, 0, 0];
+  const colorSpace = CULORI_TO_CSS[result.mode as keyof typeof CULORI_TO_CSS]!;
+  let components: [number, number, number] = [0, 0, 0];
   switch (result.mode) {
     case 'a98':
     case 'rec2020':
@@ -78,40 +78,40 @@ export function parseColor(color: string): ColorValueNormalized {
     case 'prophoto':
     case 'lrgb':
     case 'rgb': {
-      channels = [result.r, result.g, result.b];
+      components = [result.r, result.g, result.b];
       break;
     }
     case 'hsl': {
-      channels = [result.h ?? 0, result.s, result.l];
+      components = [result.h ?? 0, result.s, result.l];
       break;
     }
     case 'hsv': {
-      channels = [result.h ?? 0, result.s, result.v];
+      components = [result.h ?? 0, result.s, result.v];
       break;
     }
     case 'hwb': {
-      channels = [result.h ?? 0, result.w, result.b];
+      components = [result.h ?? 0, result.w, result.b];
       break;
     }
     case 'lab':
     case 'oklab': {
-      channels = [result.l, result.a, result.b];
+      components = [result.l, result.a, result.b];
       break;
     }
     case 'lch':
     case 'oklch': {
-      channels = [result.l, result.c, result.h ?? 0];
+      components = [result.l, result.c, result.h ?? 0];
       break;
     }
     case 'xyz50':
     case 'xyz65': {
-      channels = [result.x, result.y, result.z];
+      components = [result.x, result.y, result.z];
       break;
     }
   }
   const value: ColorValueNormalized = {
     colorSpace,
-    channels,
+    components,
     alpha: result.alpha ?? 1,
   };
   if (HEX_RE.test(color)) {
@@ -131,7 +131,7 @@ export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
     case 'rec2020':
     case 'srgb':
     case 'srgb-linear': {
-      const [r, g, b] = value.channels;
+      const [r, g, b] = value.components;
       return {
         mode: CSS_TO_CULORI[value.colorSpace] || value.colorSpace,
         r,
@@ -141,33 +141,33 @@ export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
       } as Color;
     }
     case 'hsl': {
-      const [h, s, l] = value.channels;
+      const [h, s, l] = value.components;
       return { mode: 'hsl', h, s, l, alpha: value.alpha };
     }
     case 'hsv': {
-      const [h, s, v] = value.channels;
+      const [h, s, v] = value.components;
       return { mode: 'hsv', h, s, v, alpha: value.alpha };
     }
     case 'hwb': {
-      const [h, w, b] = value.channels;
+      const [h, w, b] = value.components;
       return { mode: 'hwb', h, w, b, alpha: value.alpha };
     }
     case 'lab':
     case 'oklab': {
-      const [l, a, b] = value.channels;
+      const [l, a, b] = value.components;
       return { mode: value.colorSpace, l, a, b, alpha: value.alpha };
     }
     case 'lch':
     case 'oklch': {
-      const [l, c, h] = value.channels;
+      const [l, c, h] = value.components;
       return { mode: value.colorSpace, l, c, h, alpha: value.alpha };
     }
     case 'xyz-d50': {
-      const [x, y, z] = value.channels;
+      const [x, y, z] = value.components;
       return { mode: 'xyz50', x, y, z, alpha: value.alpha };
     }
     case 'xyz-d65': {
-      const [x, y, z] = value.channels;
+      const [x, y, z] = value.components;
       return { mode: 'xyz65', x, y, z, alpha: value.alpha };
     }
   }
