@@ -53,14 +53,14 @@ describe('transformJSValue', () => {
     const color = {
       id: 'color.blue.600',
       $type: 'color',
-      $value: { colorSpace: 'srgb', channels: [0.02, 0.53, 0.94], alpha: 1 },
+      $value: { colorSpace: 'srgb', components: [0.02, 0.53, 0.94], alpha: 1 },
     } as unknown as ColorTokenNormalized;
     color.mode = { '.': { $value: color.$value, originalValue: color.$value, source: {} as any } };
 
     expect(transformJSValue(color, { mode: '.' })).toMatchInlineSnapshot(`
       "{
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.02,
           0.53,
           0.94
@@ -74,8 +74,8 @@ describe('transformJSValue', () => {
     const gradient = {
       $type: 'gradient',
       $value: [
-        { color: { colorSpace: 'srgb', channels: [0.02, 0.53, 0.94], alpha: 1 }, position: 0 },
-        { color: { colorSpace: 'srgb', channels: [0.51, 0.28, 0.73], alpha: 1 }, position: 100 },
+        { color: { colorSpace: 'srgb', components: [0.02, 0.53, 0.94], alpha: 1 }, position: 0 },
+        { color: { colorSpace: 'srgb', components: [0.51, 0.28, 0.73], alpha: 1 }, position: 100 },
       ],
     } as unknown as GradientTokenNormalized;
     gradient.mode = { '.': { $value: gradient.$value, originalValue: gradient.$value, source: {} as any } };
@@ -85,7 +85,7 @@ describe('transformJSValue', () => {
         {
           "color": {
             "colorSpace": "srgb",
-            "channels": [
+            "components": [
               0.02,
               0.53,
               0.94
@@ -97,7 +97,7 @@ describe('transformJSValue', () => {
         {
           "color": {
             "colorSpace": "srgb",
-            "channels": [
+            "components": [
               0.51,
               0.28,
               0.73

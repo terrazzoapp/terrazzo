@@ -39,7 +39,8 @@
     "@terrazzo/token-tools": "workspace:^"
   },
   "devDependencies": {
+    "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "dtcg-examples": "^0.1.4"
+    "dtcg-examples": "^0.2.0"
   }
 }

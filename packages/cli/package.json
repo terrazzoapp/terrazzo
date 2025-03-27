@@ -40,7 +40,7 @@
     "terrazzo": "bin/cli.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "tsc -p tsconfig.build.json && pnpm run build:lab",
     "build:lab": "vite build",
     "dev": "tsc -p tsconfig.build.json -w",
     "format": "biome check --fix --unsafe .",
@@ -54,7 +54,6 @@
     "@hono/node-server": "^1.14.0",
     "@humanwhocodes/momoa": "^3.3.8",
     "@terrazzo/parser": "workspace:^",
-    "@terrazzo/token-lab": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@types/escodegen": "^0.0.10",
     "chokidar": "^3.6.0",

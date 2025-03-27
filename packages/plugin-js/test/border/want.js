@@ -7,7 +7,7 @@ export const tokens = {
     ".": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.65,
           0.69,
           0.71
@@ -23,7 +23,7 @@ export const tokens = {
     "light": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.65,
           0.69,
           0.71
@@ -39,7 +39,7 @@ export const tokens = {
     "dark": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.08,
           0.09,
           0.11
@@ -57,7 +57,7 @@ export const tokens = {
     ".": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.65,
           0.69,
           0.71
@@ -79,7 +79,7 @@ export const tokens = {
     "light": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.65,
           0.69,
           0.71
@@ -101,7 +101,7 @@ export const tokens = {
     "dark": {
       "color": {
         "colorSpace": "srgb",
-        "channels": [
+        "components": [
           0.08,
           0.09,
           0.11
@@ -125,7 +125,7 @@ export const tokens = {
     ".": {
       "color": {
         "colorSpace": "oklch",
-        "channels": [
+        "components": [
           0.2,
           0.001422,
           310
@@ -142,7 +142,7 @@ export const tokens = {
   "color.base.gray.10": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.1,
         0.002,
         270
@@ -153,7 +153,7 @@ export const tokens = {
   "color.base.gray.15": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.15,
         0.001577,
         290
@@ -164,7 +164,7 @@ export const tokens = {
   "color.base.gray.20": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.2,
         0.001422,
         310
@@ -175,7 +175,7 @@ export const tokens = {
   "color.base.gray.25": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.25,
         0.001614,
         340
@@ -186,7 +186,7 @@ export const tokens = {
   "color.base.gray.30": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.3,
         0.002057,
         0
@@ -197,7 +197,7 @@ export const tokens = {
   "color.base.gray.40": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.4,
         0.003261,
         18
@@ -208,7 +208,7 @@ export const tokens = {
   "color.base.gray.50": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.5,
         0.004607,
         27
@@ -219,7 +219,7 @@ export const tokens = {
   "color.base.gray.60": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.6,
         0.006,
         31
@@ -230,7 +230,7 @@ export const tokens = {
   "color.base.gray.70": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.7,
         0.00575,
         31
@@ -241,7 +241,7 @@ export const tokens = {
   "color.base.gray.80": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.8,
         0.0055,
         31
@@ -252,7 +252,7 @@ export const tokens = {
   "color.base.gray.85": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.85,
         0.005375,
         31
@@ -263,7 +263,7 @@ export const tokens = {
   "color.base.gray.90": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.9,
         0.00525,
         31
@@ -274,7 +274,7 @@ export const tokens = {
   "color.base.gray.95": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.94,
         0.005125,
         31
@@ -285,7 +285,7 @@ export const tokens = {
   "color.base.gray.100": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         1,
         0,
         0
@@ -296,7 +296,7 @@ export const tokens = {
   "color.border": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.2,
         0.001422,
         310
@@ -305,7 +305,7 @@ export const tokens = {
     },
     "light": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.2,
         0.001422,
         310
@@ -314,7 +314,7 @@ export const tokens = {
     },
     "dark": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.8,
         0.0055,
         31

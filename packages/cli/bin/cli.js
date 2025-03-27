@@ -25,6 +25,7 @@
  * SOFTWARE.
  */
 
+import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
 import { Logger } from '@terrazzo/parser';
 import dotenv from 'dotenv';
@@ -36,6 +37,8 @@ import { labCmd } from '../dist/lab.js';
 import { normalizeCmd } from '../dist/normalize.js';
 import { loadConfig } from '../dist/shared.js';
 import { versionCmd } from '../dist/version.js';
+
+const require = createRequire(process.cwd());
 
 // Load env vars before anything else
 // (a user may not use these at all, but in the offchance they do)
@@ -123,7 +126,13 @@ export default async function main() {
       break;
     }
     case 'lab': {
-      await labCmd({ config, configPath, flags, logger });
+      try {
+        require.resolve('@terrazzo/token-lab');
+        await labCmd({ config, configPath, flags, logger });
+      } catch {
+        console.error('Install @terrazzo/token-lab and try again.');
+        process.exit(1);
+      }
       break;
     }
     default: {

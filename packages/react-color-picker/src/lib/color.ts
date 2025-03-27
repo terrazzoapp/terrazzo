@@ -113,7 +113,7 @@ export function updateColor(color: Color, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb
   return color;
 }
 
-/** Order color channels in proper order */
+/** Order color components in proper order */
 export function channelOrder(color: Color): string[] {
   switch (color.mode) {
     case 'rgb':

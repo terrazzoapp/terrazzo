@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { execa } from 'execa';
 import { describe, expect, it } from 'vitest';
 
-const cmd = '../../../node_modules/@terrazzo/cli/bin/cli.js';
+const cmd = '../../../../cli/bin/cli.js';
 
 describe('tz build', () => {
   it('simple', async () => {

@@ -111,8 +111,8 @@ describe('config', () => {
         [
           {
             src: {
-              color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', channels: [1, 0, 0] } } },
-              'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', channels: [1, 0, 0] } } },
+              color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', components: [1, 0, 0] } } },
+              'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } } },
               deprecated: { $type: 'dimension', space: { $deprecated: true, $value: { value: 0.25, unit: 'rem' } } },
             },
           },
@@ -120,7 +120,7 @@ describe('config', () => {
         { config },
       );
       expect(result.tokens).toEqual({
-        'color.red': expect.objectContaining({ $value: { colorSpace: 'display-p3', channels: [1, 0, 0], alpha: 1 } }),
+        'color.red': expect.objectContaining({ $value: { colorSpace: 'display-p3', components: [1, 0, 0], alpha: 1 } }),
         // color-legacy omitted
       });
     });

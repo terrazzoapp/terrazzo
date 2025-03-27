@@ -57,13 +57,13 @@ describe('transformCSSValue', () => {
             id: 'color.blue.6',
             $type: 'color',
             originalValue: { $type: 'color', $value: '#0000ff' },
-            $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
+            $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
             mode: {
               '.': {
                 id: 'color.blue.6',
                 $type: 'color',
                 originalValue: { $type: 'color', $value: '#0000ff' },
-                $value: { colorSpace: 'srgb', channels: [0, 0, 1], alpha: 1 },
+                $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
               },
             },
           } as any,
@@ -146,7 +146,7 @@ describe('transformColor', () => {
     [
       'object',
       {
-        given: [{ $value: { colorSpace: 'srgb', channels: [0.4, 0.2, 0.6], alpha: 1 } } as any, { tokensSet: {} }],
+        given: [{ $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6], alpha: 1 } } as any, { tokensSet: {} }],
         want: { success: 'color(srgb 0.4 0.2 0.6)' },
       },
     ],
@@ -254,9 +254,9 @@ describe('transformGradient', () => {
         given: [
           {
             $value: [
-              { color: { colorSpace: 'srgb', channels: [1, 0, 1], alpha: 1 }, position: 0 },
-              { color: { colorSpace: 'srgb', channels: [0, 1, 0], alpha: 1 }, position: 0.5 },
-              { color: { colorSpace: 'srgb', channels: [1, 0, 0], alpha: 1 }, position: 1 },
+              { color: { colorSpace: 'srgb', components: [1, 0, 1], alpha: 1 }, position: 0 },
+              { color: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 }, position: 0.5 },
+              { color: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 }, position: 1 },
             ],
           } as any,
           { tokensSet: {} },
@@ -317,7 +317,7 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -338,7 +338,7 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.1 },
+                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -359,7 +359,7 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.05 },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -367,7 +367,7 @@ describe('transformShadow', () => {
                 inset: false,
               },
               {
-                color: { colorSpace: 'srgb', channels: [0, 0, 0], alpha: 0.05 },
+                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.05 },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.5, unit: 'rem' },
                 blur: { value: 1, unit: 'rem' },

@@ -8,7 +8,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -40,7 +40,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -72,7 +72,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -104,7 +104,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -132,7 +132,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -160,7 +160,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -188,7 +188,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0
@@ -216,7 +216,7 @@ export const tokens = {
       {
         "color": {
           "colorSpace": "srgb",
-          "channels": [
+          "components": [
             0,
             0,
             0

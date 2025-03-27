@@ -43,8 +43,8 @@ describe('tz check', () => {
 
   4 |       "100": {
   5 |         "$type": "color",
-> 6 |         "$value": { "colorSpace": "srgb", "channels": "[0, 0.2, 1]", "alpha": 1 }
-    |                                                       ^
+> 6 |         "$value": { "colorSpace": "srgb", "components": "[0, 0.2, 1]", "alpha": 1 }
+    |                                                         ^
   7 |       }
   8 |     }
   9 |   }`);

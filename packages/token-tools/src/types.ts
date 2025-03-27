@@ -68,7 +68,14 @@ export interface ColorToken extends TokenCore {
 
 export type ColorValue =
   | string
-  | { colorSpace: ColorSpace; channels: [number, number, number]; alpha?: number; hex?: string };
+  | {
+      colorSpace: ColorSpace;
+      /* @deprecated! Use "components" instead */
+      channels?: [number, number, number];
+      components: [number, number, number]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
+      alpha?: number;
+      hex?: string;
+    };
 
 export interface CubicBezierToken extends TokenCore {
   $type: 'cubicBezier';
@@ -373,8 +380,10 @@ export interface ColorValueNormalized {
    * @see https://www.w3.org/TR/css-color-4/#predefined
    */
   colorSpace: ColorSpace;
-  /** Color channels. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
-  channels: [number, number, number];
+  /* @deprecated! Use "components" instead */
+  channels?: [number, number, number];
+  /** Color components. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
+  components: [number, number, number];
   /** Alpha channel, normalized from 0 – 1 */
   alpha: number;
   /** Hex fallback (for sRGB) */

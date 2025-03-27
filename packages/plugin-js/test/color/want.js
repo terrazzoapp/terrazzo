@@ -6,7 +6,7 @@ export const tokens = {
   "color.black": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.08,
         0.002,
         247.86
@@ -17,7 +17,7 @@ export const tokens = {
   "color.blue.1": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.9931,
         0.003,
         247.86
@@ -28,7 +28,7 @@ export const tokens = {
   "color.blue.2": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.982,
         0.009,
         242.83
@@ -39,7 +39,7 @@ export const tokens = {
   "color.blue.3": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.9597,
         0.02,
         238.66
@@ -50,7 +50,7 @@ export const tokens = {
   "color.blue.4": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.9381,
         0.035,
         234.8
@@ -61,7 +61,7 @@ export const tokens = {
   "color.blue.5": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.9051,
         0.051,
         240.31
@@ -72,7 +72,7 @@ export const tokens = {
   "color.blue.6": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.8633,
         0.068,
         243.3
@@ -83,7 +83,7 @@ export const tokens = {
   "color.blue.7": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.8098,
         0.089,
         243.05
@@ -94,7 +94,7 @@ export const tokens = {
   "color.blue.8": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.7336,
         0.121,
         243.09
@@ -105,7 +105,7 @@ export const tokens = {
   "color.blue.9": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.6493,
         0.193,
         251.78
@@ -116,7 +116,7 @@ export const tokens = {
   "color.blue.10": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.6223,
         0.183,
         251.7
@@ -127,7 +127,7 @@ export const tokens = {
   "color.blue.11": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.5558,
         0.162,
         252.19
@@ -138,7 +138,7 @@ export const tokens = {
   "color.blue.12": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.324,
         0.096,
         258.82
@@ -149,7 +149,7 @@ export const tokens = {
   "color.white": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         1,
         0,
         0
@@ -160,7 +160,7 @@ export const tokens = {
   "ui.bg": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         1,
         0,
         0
@@ -169,7 +169,7 @@ export const tokens = {
     },
     "light": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         1,
         0,
         0
@@ -178,7 +178,7 @@ export const tokens = {
     },
     "dark": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.08,
         0.002,
         247.86
@@ -189,7 +189,7 @@ export const tokens = {
   "ui.fg": {
     ".": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.08,
         0.002,
         247.86
@@ -198,7 +198,7 @@ export const tokens = {
     },
     "light": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         0.08,
         0.002,
         247.86
@@ -207,7 +207,7 @@ export const tokens = {
     },
     "dark": {
       "colorSpace": "oklch",
-      "channels": [
+      "components": [
         1,
         0,
         0
