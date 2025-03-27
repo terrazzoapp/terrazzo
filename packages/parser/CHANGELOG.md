@@ -1,5 +1,16 @@
 # @terrazzo/parser
 
+## 0.7.0
+
+### Minor Changes
+
+- [#454](https://github.com/terrazzoapp/terrazzo/pull/454) [`44ff082`](https://github.com/terrazzoapp/terrazzo/commit/44ff082ec3cc4034dcbcf7702f9676a631c99dde) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: the new color token object format uses "components" instead of "channels". Please update your tokens accordingly.
+
+### Patch Changes
+
+- Updated dependencies [[`44ff082`](https://github.com/terrazzoapp/terrazzo/commit/44ff082ec3cc4034dcbcf7702f9676a631c99dde)]:
+  - @terrazzo/token-tools@0.7.0
+
 ## 0.6.3
 
 ### Patch Changes
