@@ -9,4 +9,4 @@ export default defineConfig({
     sourcemap: true,
     target: 'es2024',
   },
-}); 
+});

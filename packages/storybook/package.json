@@ -17,10 +17,10 @@
     "culori": "^4.0.1"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^8.5.2",
-    "@storybook/react": "^8.5.2",
-    "@storybook/react-vite": "^8.5.2",
-    "@storybook/test": "^8.5.2",
+    "@storybook/addon-essentials": "^8.6.10",
+    "@storybook/react": "^8.6.10",
+    "@storybook/react-vite": "^8.6.10",
+    "@storybook/test": "^8.6.10",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/react-color-picker": "workspace:^",
@@ -28,12 +28,12 @@
     "@terrazzo/tokens": "workspace:^",
     "@terrazzo/use-color": "workspace:^",
     "@types/culori": "^2.1.1",
-    "@types/react": "^19.0.8",
-    "@types/react-dom": "^19.0.3",
-    "@vitejs/plugin-react-swc": "^3.7.2",
+    "@types/react": "^19.0.12",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "storybook": "^8.5.2",
-    "vite": "^6.0.11"
+    "storybook": "^8.6.10",
+    "vite": "^6.2.3"
   }
 }

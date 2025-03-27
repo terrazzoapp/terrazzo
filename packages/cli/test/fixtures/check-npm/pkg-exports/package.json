@@ -1,0 +1,8 @@
+{
+  "name": "my-other-tokens",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./aliased": "./tokens-xyz.json"
+  }
+}

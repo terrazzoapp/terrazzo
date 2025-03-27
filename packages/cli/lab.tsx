@@ -1,21 +1,26 @@
+import TokenLab from '@terrazzo/token-lab';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import TokenLab from '@terrazzo/token-lab';
 
-const response = await fetch("/api/tokens")
-const tokenFile = await response.text()
+const response = await fetch('/api/tokens');
+const tokenFile = await response.text();
 const root = createRoot(document.getElementById('app'));
 
-root.render(<TokenLab tokensFile={tokenFile} onUpdate={async updatedTokens => {
-    const response = await fetch('/api/tokens', {
+root.render(
+  <TokenLab
+    tokensFile={tokenFile}
+    onUpdate={async (updatedTokens) => {
+      const response = await fetch('/api/tokens', {
         method: 'POST',
         headers: {
-            'Content-Type': 'text/plain'
+          'Content-Type': 'text/plain',
         },
-        body: updatedTokens
-    });
+        body: updatedTokens,
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
         console.error(`Failed to save tokens: ${response.status}`);
-    }
-}} />);
+      }
+    }}
+  />,
+);
