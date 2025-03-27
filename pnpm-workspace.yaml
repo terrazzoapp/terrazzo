@@ -1,3 +1,4 @@
+shellEmulator: true
 packages:
   - "packages/**"
   - "www"

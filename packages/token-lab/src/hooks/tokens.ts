@@ -1,8 +1,12 @@
 import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
-import radix from 'dtcg-examples/figma-sds.json';
+import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
-import { useEffect, useMemo } from 'react';
+import { createContext, use, useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';
+
+export const TokensFileContext = createContext<
+  [tokens: string | undefined, onUpdate: ((tokens: string) => unknown) | undefined]
+>([undefined, undefined]);
 
 const DEFAULT_FILENAME = 'tokens.json'; // TODO: add support for multiple files
 
@@ -12,7 +16,7 @@ const TABLE_NAME = 'tokens';
 const TZ_CONFIG = defineConfig(
   {},
   {
-    // CWD doesn’t matter how we’re using it
+    // CWD doesn't matter how we're using it
     cwd: new URL(typeof window !== 'undefined' ? window.location.href : import.meta.url),
   },
 );
@@ -37,6 +41,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
   const [isLoaded, setIsLoaded] = useAtom($tokensLoaded);
   const [parseResult, setParseResult] = useAtom($parseResult);
   const [parseError, setParseError] = useAtom($parseError);
+  const [contextTokens, contextTokensOnUpdate] = use(TokensFileContext);
 
   // load (only once)
   useEffect(() => {
@@ -45,8 +50,16 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
     }
     setIsLoaded(true); // set isLoaded FIRST to prevent race conditions
     loadTokens(filename).then((data) => {
-      const code = !data || data === '{}' ? JSON.stringify(radix, null, 2) : data;
-      setTokens(code);
+      if (data && data !== '{}') {
+        // Use IndexedDB data if available
+        setTokens(data);
+      } else if (contextTokens) {
+        // Use context tokens if provided and IndexedDB is empty
+        setTokens(contextTokens);
+      } else {
+        // Fallback to default Figma SDS tokens
+        setTokens(JSON.stringify(radix, null, 2));
+      }
     });
   }, []);
 
@@ -57,6 +70,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
     }
     setParseError(undefined);
     saveTokens(filename, tokens);
+    contextTokensOnUpdate?.(tokens);
 
     (async () => {
       try {

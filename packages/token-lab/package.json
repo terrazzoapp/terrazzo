@@ -18,11 +18,16 @@
     "directory": "./packages/token-lab/"
   },
   "license": "MIT",
-  "main": "./dist/index.js",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": "./src/app.tsx"
+  },
   "scripts": {
-    "dev": "pnpm run prepare:monaco && vite dev",
-    "build:app": "pnpm run prepare:monaco && vite build",
-    "prepare:monaco": "rm -rf public/monaco-editor && mkdir public/monaco-editor && cp -r node_modules/monaco-editor/esm public/monaco-editor/esm",
+    "dev": "vite dev",
+    "build": "tsc",
+    "build:app": "vite build",
     "preview": "vite preview",
     "format": "biome check --fix --unsafe src",
     "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:/\"",

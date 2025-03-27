@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@9.15.4",
+  "packageManager": "pnpm@10.6.2",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -27,7 +27,12 @@
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "turbo": "^2.4.4",
-    "typescript": "^5.7.3",
+    "typescript": "~5.7.3",
     "vitest": "^3.0.8"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "vite-plugin-sass-dts": "patches/vite-plugin-sass-dts.patch"
+    }
   }
 }

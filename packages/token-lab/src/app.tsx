@@ -5,12 +5,15 @@ import '@terrazzo/tiles/dist/all-components.css';
 import '@terrazzo/react-color-picker/dist/all-components.css';
 import './styles/global.css';
 import { Provider as JotaiProvider } from 'jotai';
+import { TokensFileContext } from './hooks/tokens.js';
 import { DefaultLayout } from './layouts/Default/Default.js';
 
-export default function App() {
+export default function App({ tokensFile, onUpdate }: { tokensFile?: string; onUpdate?: (file: string) => unknown }) {
   return (
     <JotaiProvider>
-      <DefaultLayout />
+      <TokensFileContext value={[tokensFile, onUpdate]}>
+        <DefaultLayout />
+      </TokensFileContext>
     </JotaiProvider>
   );
 }
