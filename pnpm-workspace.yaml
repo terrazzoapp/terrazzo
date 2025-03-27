@@ -1,5 +1,7 @@
 shellEmulator: true
 packages:
-  - "packages/**"
-  - "www"
-  - "!packages/**/test/**"
+  - packages/**
+  - www
+  - '!packages/**/test/**'
+onlyBuiltDependencies:
+  - '@swc/core'

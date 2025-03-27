@@ -51,8 +51,8 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.9.1",
-    "@hono/node-server": "^1.13.8",
-    "@humanwhocodes/momoa": "^3.3.6",
+    "@hono/node-server": "^1.14.0",
+    "@humanwhocodes/momoa": "^3.3.8",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/token-lab": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
@@ -68,9 +68,9 @@
     "yaml-to-momoa": "^0.0.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-react-swc": "^3.7.2",
+    "@vitejs/plugin-react-swc": "^3.8.1",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "vite": "^6.2.1"
+    "vite": "^6.2.3"
   }
 }

@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["../../biome.json"],
   "files": {
-    "include": ["./bin/", "./src/", "./test/"],
+    "include": ["./bin/", "./src/", "./test/", "*.tsx"],
     "ignore": ["./test/fixtures/**/*.json", "./test/fixtures/**/*.js", "./test/fixtures/**/*.d.ts"]
   },
   "linter": {

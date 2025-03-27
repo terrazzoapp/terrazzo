@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "my-tokens": "file:pkg"
+    "my-tokens": "file:./pkg",
+    "my-other-tokens": "file:./pkg-exports"
   }
 }

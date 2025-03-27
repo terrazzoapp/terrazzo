@@ -1,0 +1,10 @@
+{
+  "color": {
+    "blue": {
+      "$type": "color",
+      "4": {
+        "$value": { "colorSpace": "oklch", "channels": [0.9381, 0.035, 234.8] }
+      }
+    }
+  }
+}
