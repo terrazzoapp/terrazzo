@@ -38,9 +38,9 @@ blue:
 :::
 
 | Property       | Type     | Description                                                                                                                     |
-| :------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ | --- |
+| :------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------ |
 | `$type`        | `string` | **Required.** `"color"`                                                                                                         |
-| `$value`       | `string` | **Required.** An object with required `colorSpace` and `components` keys. `alpha` and `hex` (sRGB fallback color) are optional. |     |
+| `$value`       | `string` | **Required.** An object with required `colorSpace` and `components` keys. `alpha` and `hex` (sRGB fallback color) are optional. |
 | `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                  |
 
 ### See also
