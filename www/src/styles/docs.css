@@ -61,6 +61,7 @@
     &:hover,
     &:focus-visible {
       background-color: var(--tz-color-base-lime-800);
+      color: var(--tz-color-base-gray-100);
     }
   }
 
