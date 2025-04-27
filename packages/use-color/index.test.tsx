@@ -6,10 +6,10 @@ import { afterEach, describe, expect, it } from 'vitest';
 import useColor, {
   type ColorInput,
   type ColorOutput,
-  type Rgb,
   createMemoizedColor,
   formatCss,
   parse,
+  type Rgb,
 } from './index.js';
 
 type ColorType = ReturnType<typeof useColor>[0];

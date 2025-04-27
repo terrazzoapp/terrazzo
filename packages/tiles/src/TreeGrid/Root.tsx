@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { type ComponentProps, type KeyboardEvent, type MouseEvent, createContext, useRef, useState } from 'react';
+import { type ComponentProps, createContext, type KeyboardEvent, type MouseEvent, useRef, useState } from 'react';
 import { addToSet, removeFromSet } from '../lib/set.js';
 
 export const Context = createContext({
@@ -219,7 +219,6 @@ export default function Root({
       aria-multiselectable='true'
       {...rest}
       className={clsx('tz-treegrid-root', className)}
-      role='treegrid'
       onClick={handleClick}
       onKeyDown={handleKeyDown}
     >

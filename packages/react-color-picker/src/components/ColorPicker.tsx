@@ -57,8 +57,6 @@ export default function ColorPicker({ className, color, setColor, ...rest }: Col
             if (newValue in COLORSPACES) {
               setColor(updateColor(COLORSPACES[newValue].converter(color.original)!, maxGamut));
             } else {
-              // eslint-disable-next-line no-console
-              console.warn(`[@terrazzo/react-color-picker] unsupported colorspace "${newValue}"`);
             }
           }}
         >

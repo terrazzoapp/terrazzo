@@ -62,10 +62,8 @@ function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: un
       const { $type } = parseResult.tokens[id] ?? {};
       return (
         <TreeGrid.Item key={k} id={id} hidden={isFiltered}>
-          <>
-            {$type !== undefined && $type !== 'string' && <TokenIcon type={$type} className={c.tokenIcon} />}
-            {k}
-          </>
+          {$type !== undefined && $type !== 'string' && <TokenIcon type={$type} className={c.tokenIcon} />}
+          {k}
         </TreeGrid.Item>
       );
     }
