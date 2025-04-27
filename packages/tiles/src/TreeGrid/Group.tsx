@@ -1,6 +1,6 @@
 import { TriangleRight } from '@terrazzo/icons';
 import clsx from 'clsx';
-import { type ComponentProps, type ReactNode, createContext, useContext, useEffect } from 'react';
+import { type ComponentProps, createContext, type ReactNode, useContext, useEffect } from 'react';
 import { Context } from './Root.js';
 
 export interface GroupProps extends Omit<ComponentProps<'tr'>, 'name'> {

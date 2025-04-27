@@ -1,7 +1,4 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["../../biome.json"],
-  "files": {
-    "ignore": ["./test/fixtures/**/*"]
-  }
+  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.1/schema.json",
+  "extends": ["../../biome.json"]
 }

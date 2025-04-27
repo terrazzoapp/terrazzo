@@ -1,4 +1,4 @@
-import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
+import { defineConfig, type ParseResult, parse, type TokensJSONError } from '@terrazzo/parser';
 import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
 import { createContext, use, useEffect, useMemo } from 'react';
@@ -110,8 +110,7 @@ export async function loadTokens(filename: string): Promise<string> {
   const store = tx.objectStore(TABLE_NAME);
   const req = store.get(filename);
   return await new Promise<string>((resolve) => {
-    req.onerror = (ev) => {
-      console.error((ev.target as IDBOpenDBRequest).error);
+    req.onerror = (_ev) => {
       resolve('{}');
     };
     req.onsuccess = (ev) => {
