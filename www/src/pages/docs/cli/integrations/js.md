@@ -34,11 +34,9 @@ import pluginJS from "@terrazzo/plugin-js";
 export default defineConfig({
   plugins: [
     pluginJS({
-      output: {
-        js: "index.js",
-        ts: "index.d.ts",
-        json: false, // set to a filename to generate JSON
-      },
+      js: "index.js",
+      ts: "index.d.ts",
+      json: false, // set to a filename to generate JSON
     }),
   ],
 });
