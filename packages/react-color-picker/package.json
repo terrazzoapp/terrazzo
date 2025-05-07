@@ -54,7 +54,7 @@
     "@size-limit/preset-small-lib": "^11.2.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
-    "@types/culori": "^2.1.1",
+    "@types/culori": "^4.0.0",
     "@types/react": "^19.1.1",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react-swc": "^3.8.1",

@@ -50,6 +50,6 @@
     "wildcard-match": "^5.1.4"
   },
   "devDependencies": {
-    "@types/culori": "^2.1.1"
+    "@types/culori": "^4.0.0"
   }
 }

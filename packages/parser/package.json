@@ -39,7 +39,7 @@
     "@humanwhocodes/momoa": "^3.3.8",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
-    "@types/culori": "^2.1.1",
+    "@types/culori": "^4.0.0",
     "culori": "^4.0.1",
     "is-what": "^4.1.16",
     "merge-anything": "^5.1.7",
