@@ -36,6 +36,7 @@ export default function generateUtilityCSS(
   for (const [group, selectors] of groupEntries) {
     const matchingTokens = tokens.filter((token) => isTokenMatch(token.token.id, selectors));
     if (!matchingTokens.length) {
+      // biome-ignore lint/suspicious/noConsole: intentional user log
       console.warn(`[@terrazzo/plugin-css] utility group "${group}" matched 0 tokens: ${JSON.stringify(selectors)}`);
       break;
     }
@@ -221,6 +222,7 @@ export default function generateUtilityCSS(
         break;
       }
       default: {
+        // biome-ignore lint/suspicious/noConsole: intentional user log
         console.warn(`[@terrazzo/plugin-css] unknown utility CSS group "${group}", ignoring`);
         break;
       }

@@ -1,4 +1,4 @@
-import { defineConfig, type ParseResult, parse, type TokensJSONError } from '@terrazzo/parser';
+import { type ParseResult, type TokensJSONError, defineConfig, parse } from '@terrazzo/parser';
 import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
 import { createContext, use, useEffect, useMemo } from 'react';

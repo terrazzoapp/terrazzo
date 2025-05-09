@@ -16,7 +16,10 @@ import {
 
 type Test<Given = any, Want = any> = [
   string,
-  { given: Given; want: { error: string; success?: never } | { error?: never; success: Want } },
+  {
+    given: Given;
+    want: { error: string; success?: never } | { error?: never; success: Want };
+  },
 ];
 
 describe('makeCSSVar', () => {
@@ -27,13 +30,34 @@ describe('makeCSSVar', () => {
     ['utf8 2', { given: ['layerÜber'], want: { success: '--layer-über' } }],
     ['extra dashes', { given: ['my-css---var'], want: { success: '--my-css-var' } }],
     ['number prefix', { given: ['space.2x'], want: { success: '--space-2x' } }],
-    ['number suffix', { given: ['typography.heading2'], want: { success: '--typography-heading2' } }],
+    [
+      'number suffix',
+      {
+        given: ['typography.heading2'],
+        want: { success: '--typography-heading2' },
+      },
+    ],
     ['emojis', { given: ['--🤡\\_'], want: { success: '--🤡' } }],
-    ['ramp-pale_purple-500', { given: ['ramp-pale_purple-500'], want: { success: '--ramp-pale-purple-500' } }],
-    ['prefix', { given: ['typography.body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } }],
+    [
+      'ramp-pale_purple-500',
+      {
+        given: ['ramp-pale_purple-500'],
+        want: { success: '--ramp-pale-purple-500' },
+      },
+    ],
+    [
+      'prefix',
+      {
+        given: ['typography.body', { prefix: 'tz' }],
+        want: { success: '--tz-typography-body' },
+      },
+    ],
     [
       'prefix (already prefixed)',
-      { given: ['--tz-typography-body', { prefix: 'tz' }], want: { success: '--tz-typography-body' } },
+      {
+        given: ['--tz-typography-body', { prefix: 'tz' }],
+        want: { success: '--tz-typography-body' },
+      },
     ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
@@ -99,7 +123,11 @@ describe('transformCSSValue', () => {
             mode: '.',
             tokensSet: {
               'bool.idk': { $type: 'boolean', $value: false, id: 'bool.idk' },
-              'bool.nuh-uh': { $type: 'boolean', $value: false, id: 'bool.nuh-uh' },
+              'bool.nuh-uh': {
+                $type: 'boolean',
+                $value: false,
+                id: 'bool.nuh-uh',
+              },
             } as any,
           },
         ],
@@ -120,8 +148,20 @@ describe('transformCSSValue', () => {
 
 describe('transformBoolean', () => {
   const tests: Test<Parameters<typeof transformBoolean>, ReturnType<typeof transformBoolean>>[] = [
-    ['true', { given: [{ $value: true } as any, { tokensSet: {} }], want: { success: '1' } }],
-    ['false', { given: [{ $value: false } as any, { tokensSet: {} }], want: { success: '0' } }],
+    [
+      'true',
+      {
+        given: [{ $value: true } as any, { tokensSet: {} }],
+        want: { success: '1' },
+      },
+    ],
+    [
+      'false',
+      {
+        given: [{ $value: false } as any, { tokensSet: {} }],
+        want: { success: '0' },
+      },
+    ],
   ];
   it.each(tests)('%s', (_, { given, want }) => {
     let result: typeof want.success;
@@ -146,21 +186,40 @@ describe('transformColor', () => {
     [
       'object',
       {
-        given: [{ $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6], alpha: 1 } } as any, { tokensSet: {} }],
+        given: [
+          {
+            $value: {
+              colorSpace: 'srgb',
+              components: [0.4, 0.2, 0.6],
+              alpha: 1,
+            },
+          } as any,
+          { tokensSet: {} },
+        ],
         want: { success: 'color(srgb 0.4 0.2 0.6)' },
       },
     ],
     [
       'oklch (in gamut)',
       {
-        given: [{ $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 } } as any, { tokensSet: {} }],
+        given: [
+          {
+            $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 },
+          } as any,
+          { tokensSet: {} },
+        ],
         want: { success: 'oklch(0 0 0)' },
       },
     ],
     [
       'oklch (out of gamut)',
       {
-        given: [{ $value: { colorSpace: 'oklch', components: [1, 0.2, 40], alpha: 1 } } as any, { tokensSet: {} }],
+        given: [
+          {
+            $value: { colorSpace: 'oklch', components: [1, 0.2, 40], alpha: 1 },
+          } as any,
+          { tokensSet: {} },
+        ],
         want: {
           success: {
             '.': 'oklch(1 0.2 40)',
@@ -275,14 +334,25 @@ describe('transformGradient', () => {
         given: [
           {
             $value: [
-              { color: { colorSpace: 'srgb', components: [1, 0, 1], alpha: 1 }, position: 0 },
-              { color: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 }, position: 0.5 },
-              { color: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 }, position: 1 },
+              {
+                color: { colorSpace: 'srgb', components: [1, 0, 1], alpha: 1 },
+                position: 0,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 },
+                position: 0.5,
+              },
+              {
+                color: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 },
+                position: 1,
+              },
             ],
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: 'color(srgb 1 0 1) 0%, color(srgb 0 1 0) 50%, color(srgb 1 0 0) 100%' },
+        want: {
+          success: 'color(srgb 1 0 1) 0%, color(srgb 0 1 0) 50%, color(srgb 1 0 0) 100%',
+        },
       },
     ],
   ];
@@ -299,7 +369,13 @@ describe('transformGradient', () => {
 
 describe('transformFontWeight', () => {
   const tests: Test<Parameters<typeof transformFontWeight>, ReturnType<typeof transformFontWeight>>[] = [
-    ['400', { given: [{ $value: 400 } as any, { tokensSet: {} }], want: { success: '400' } }],
+    [
+      '400',
+      {
+        given: [{ $value: 400 } as any, { tokensSet: {} }],
+        want: { success: '400' },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
@@ -315,7 +391,13 @@ describe('transformFontWeight', () => {
 
 describe('transformNumber', () => {
   const tests: Test<Parameters<typeof transformNumber>, ReturnType<typeof transformNumber>>[] = [
-    ['basic', { given: [{ $value: 42 } as any, { tokensSet: {} }], want: { success: '42' } }],
+    [
+      'basic',
+      {
+        given: [{ $value: 42 } as any, { tokensSet: {} }],
+        want: { success: '42' },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
@@ -338,7 +420,11 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -359,7 +445,11 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.1,
+                },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -380,7 +470,11 @@ describe('transformShadow', () => {
           {
             $value: [
               {
-                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.05 },
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.05,
+                },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.25, unit: 'rem' },
                 blur: { value: 0.5, unit: 'rem' },
@@ -388,7 +482,11 @@ describe('transformShadow', () => {
                 inset: false,
               },
               {
-                color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.05 },
+                color: {
+                  colorSpace: 'srgb',
+                  components: [0, 0, 0],
+                  alpha: 0.05,
+                },
                 offsetX: { value: 0, unit: 'px' },
                 offsetY: { value: 0.5, unit: 'rem' },
                 blur: { value: 1, unit: 'rem' },
@@ -399,7 +497,9 @@ describe('transformShadow', () => {
           } as any,
           { tokensSet: {} },
         ],
-        want: { success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)' },
+        want: {
+          success: '0 0.25rem 0.5rem 0 color(srgb 0 0 0 / 0.05), 0 0.5rem 1rem 0 color(srgb 0 0 0 / 0.05)',
+        },
       },
     ],
   ];
@@ -466,8 +566,14 @@ describe('transformTypography', () => {
           } as any,
           {
             tokensSet: {
-              'typography.labelSmall': { $type: 'typography', $value: { fontFamily: ['Inter'] } },
-              'font.sans': { $type: 'typography', $value: { fontFamily: ['Inter'] } },
+              'typography.labelSmall': {
+                $type: 'typography',
+                $value: { fontFamily: ['Inter'] },
+              },
+              'font.sans': {
+                $type: 'typography',
+                $value: { fontFamily: ['Inter'] },
+              },
             } as any,
           },
         ],

@@ -44,10 +44,10 @@
     "build:lab": "vite build",
     "dev": "tsc -p tsconfig.build.json -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "biome check .",
-    "test": "pnpm --filter @terrazzo/cli run \"/^test:.*/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "lint": "pnpm --filter @terrazzo/cli run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
   },
   "dependencies": {
     "@clack/prompts": "^0.9.1",

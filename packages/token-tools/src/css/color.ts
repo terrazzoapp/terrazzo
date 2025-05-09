@@ -27,7 +27,12 @@ import type { ColorTokenNormalized } from '../types.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
-export type WideGamutColorValue = { '.': string; srgb: string; p3: string; rec2020: string };
+export type WideGamutColorValue = {
+  '.': string;
+  srgb: string;
+  p3: string;
+  rec2020: string;
+};
 
 /** Convert color value to CSS string */
 export function transformColor(

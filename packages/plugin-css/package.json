@@ -27,10 +27,10 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "biome check .",
-    "test": "pnpm --filter @terrazzo/plugin-css run \"/^test:.*/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "lint": "pnpm --filter @terrazzo/plugin-css run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@terrazzo/cli": "^0.7.0"

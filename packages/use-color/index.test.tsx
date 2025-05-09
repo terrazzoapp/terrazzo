@@ -65,38 +65,110 @@ describe('useColor', () => {
         'hex',
         {
           given: '#663399',
-          want: { mode: 'rgb', r: 0.40000000000000013, g: 0.20000000000000018, b: 0.5999999999999999, alpha: 1 },
+          want: {
+            mode: 'rgb',
+            r: 0.40000000000000013,
+            g: 0.20000000000000018,
+            b: 0.5999999999999999,
+            alpha: 1,
+          },
         },
       ],
-      ['hsl', { given: 'hsl(270 50% 40%)', want: { mode: 'hsl', h: 270, s: 0.5, l: 0.4, alpha: 1 } }],
-      ['oklab', { given: 'oklab(0.7 0.3 0.4)', want: { mode: 'oklab', l: 0.7, a: 0.3, b: 0.4, alpha: 1 } }],
-      ['oklch', { given: 'oklch(0.7 0.2 150)', want: { mode: 'oklch', l: 0.7, c: 0.2, h: 150, alpha: 1 } }],
-      ['okhsv', { given: 'color(--okhsv 150 0.6 0.8)', want: { mode: 'okhsv', h: 150, s: 0.6, v: 0.8, alpha: 1 } }],
-      ['okhsl', { given: 'color(--okhsl 150 0.8 0.5)', want: { mode: 'okhsl', h: 150, s: 0.8, l: 0.5, alpha: 1 } }],
+      [
+        'hsl',
+        {
+          given: 'hsl(270 50% 40%)',
+          want: { mode: 'hsl', h: 270, s: 0.5, l: 0.4, alpha: 1 },
+        },
+      ],
+      [
+        'oklab',
+        {
+          given: 'oklab(0.7 0.3 0.4)',
+          want: { mode: 'oklab', l: 0.7, a: 0.3, b: 0.4, alpha: 1 },
+        },
+      ],
+      [
+        'oklch',
+        {
+          given: 'oklch(0.7 0.2 150)',
+          want: { mode: 'oklch', l: 0.7, c: 0.2, h: 150, alpha: 1 },
+        },
+      ],
+      [
+        'okhsv',
+        {
+          given: 'color(--okhsv 150 0.6 0.8)',
+          want: { mode: 'okhsv', h: 150, s: 0.6, v: 0.8, alpha: 1 },
+        },
+      ],
+      [
+        'okhsl',
+        {
+          given: 'color(--okhsl 150 0.8 0.5)',
+          want: { mode: 'okhsl', h: 150, s: 0.8, l: 0.5, alpha: 1 },
+        },
+      ],
       [
         'display-p3',
         {
           given: 'color(display-p3 0.3 0.1 0.6)',
-          want: { mode: 'p3', r: 0.29999999999999977, g: 0.10000000000000009, b: 0.6000000000000002, alpha: 1 },
+          want: {
+            mode: 'p3',
+            r: 0.29999999999999977,
+            g: 0.10000000000000009,
+            b: 0.6000000000000002,
+            alpha: 1,
+          },
         },
       ],
-      ['lrgb', { given: 'color(srgb-linear 0.3 0.1 0.6)', want: { mode: 'lrgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 } }],
+      [
+        'lrgb',
+        {
+          given: 'color(srgb-linear 0.3 0.1 0.6)',
+          want: { mode: 'lrgb', r: 0.3, g: 0.1, b: 0.6, alpha: 1 },
+        },
+      ],
       [
         'rgb',
         {
           given: 'rgb(30% 10% 60%)',
-          want: { mode: 'rgb', r: 0.30000000000000027, g: 0.0999999999999994, b: 0.6, alpha: 1 },
+          want: {
+            mode: 'rgb',
+            r: 0.30000000000000027,
+            g: 0.0999999999999994,
+            b: 0.6,
+            alpha: 1,
+          },
         },
       ],
       [
         'srgb',
         {
           given: 'color(srgb 0.3 0.1 0.6)',
-          want: { mode: 'rgb', r: 0.30000000000000027, g: 0.0999999999999994, b: 0.6, alpha: 1 },
+          want: {
+            mode: 'rgb',
+            r: 0.30000000000000027,
+            g: 0.0999999999999994,
+            b: 0.6,
+            alpha: 1,
+          },
         },
       ],
-      ['xyz50', { given: 'color(xyz-d50 0.7 0.3 -0.05)', want: { mode: 'xyz50', x: 0.7, y: 0.3, z: -0.05, alpha: 1 } }],
-      ['xyz65', { given: 'color(xyz-d65 0.7 0.3 -0.05)', want: { mode: 'xyz65', x: 0.7, y: 0.3, z: -0.05, alpha: 1 } }],
+      [
+        'xyz50',
+        {
+          given: 'color(xyz-d50 0.7 0.3 -0.05)',
+          want: { mode: 'xyz50', x: 0.7, y: 0.3, z: -0.05, alpha: 1 },
+        },
+      ],
+      [
+        'xyz65',
+        {
+          given: 'color(xyz-d65 0.7 0.3 -0.05)',
+          want: { mode: 'xyz65', x: 0.7, y: 0.3, z: -0.05, alpha: 1 },
+        },
+      ],
     ];
 
     it.each(formatTests)('%s', (_, { given, want }) => {

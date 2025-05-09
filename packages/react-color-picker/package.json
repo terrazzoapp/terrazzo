@@ -32,10 +32,8 @@
     "format:css": "stylelint --fix \"src/**/*.css\"",
     "lint": "pnpm --filter @terrazzo/react-color-picker run \"/^lint:.*/\"",
     "lint:js": "biome check src",
-    "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "pnpm --filter @terrazzo/react-color-picker run \"/^test:.*/\"",
-    "--disabled--test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "lint:ts": "tsc --noEmit",
+    "lint:css": "stylelint \"src/**/*.css\""
   },
   "peerDependencies": {
     "culori": "^4.0.0",

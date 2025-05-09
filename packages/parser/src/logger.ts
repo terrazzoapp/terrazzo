@@ -102,6 +102,7 @@ export default class Logger {
     this.errorCount++;
     const message = formatMessage(entry, 'error');
     if (entry.continueOnError) {
+      // biome-ignore lint/suspicious/noConsole: this is a logger
       console.error(message);
       return;
     }
@@ -119,7 +120,7 @@ export default class Logger {
       return;
     }
     const message = formatMessage(entry, 'info');
-    // biome-ignore lint/suspicious/noConsoleLog: this is its job
+    // biome-ignore lint/suspicious/noConsole: this is a logger
     console.log(message);
   }
 
@@ -130,6 +131,7 @@ export default class Logger {
       return;
     }
     const message = formatMessage(entry, 'warn');
+    // biome-ignore lint/suspicious/noConsole: this is a logger
     console.warn(message);
   }
 
@@ -165,7 +167,7 @@ export default class Logger {
       message = `${message} ${pc.dim(`[${timing}]`)}`;
     }
 
-    // biome-ignore lint/suspicious/noConsoleLog: this is its job
+    // biome-ignore lint/suspicious/noConsole: this is a logger
     console.log(message);
   }
 

@@ -1,8 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0-beta.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "extends": ["../../biome.json"],
   "files": {
-    "includes": ["./bin/", "./src/", "./test/", "*.tsx"]
+    "include": ["./bin/", "./src/", "./test/", "*.tsx"]
   },
   "linter": {
     "rules": {
@@ -13,7 +13,7 @@
   },
   "overrides": [
     {
-      "includes": ["./bin/cli.js"],
+      "include": ["./bin/cli.js"],
       "linter": {
         "rules": {
           "suspicious": {

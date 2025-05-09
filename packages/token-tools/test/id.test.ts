@@ -65,7 +65,10 @@ describe('parseAlias', () => {
 
 describe('splitID', () => {
   it('token ID', () => {
-    expect(splitID('color.blue.60')).toEqual({ local: '60', group: 'color.blue' });
+    expect(splitID('color.blue.60')).toEqual({
+      local: '60',
+      group: 'color.blue',
+    });
   });
 
   it('string', () => {

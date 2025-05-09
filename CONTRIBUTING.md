@@ -49,7 +49,7 @@ Some packages like `packages/plugin-css` make heavy use of snapshot tests. Snaps
 To update snapshots for a failing test, run:
 
 ```sh
-pnpm exec vitest run -u
+pnpm run test -u
 ```
 
 > [!WARNING]

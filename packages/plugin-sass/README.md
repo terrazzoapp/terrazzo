@@ -4,7 +4,7 @@ Convert DTCG tokens into Sass for use in any web application or native app with 
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs/cli). With both installed, run:
+Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs/cli). With both installed, run:
 
 ```sh
 npm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
@@ -21,10 +21,10 @@ export default defineConfig({
   outDir: "./tokens/",
   plugins: [
     css({
-      fileName: "tokens.css",
+      filename: "tokens.css",
     }),
     sass({
-      fileName: "index.sass",
+      filename: "index.sass",
     }),
   ],
 });

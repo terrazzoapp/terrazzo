@@ -11,7 +11,10 @@ export const FILE_PREFIX = `/* -------------------------------------------
  * ------------------------------------------- */`;
 
 export interface CSSPluginOptions {
-  /** Where to output CSS */
+  /**
+   * Where to output CSS
+   * @default "index.css"
+   */
   filename?: string;
   /** Glob patterns to exclude tokens from output */
   exclude?: string[];
@@ -23,9 +26,15 @@ export interface CSSPluginOptions {
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
   /** Generate utility CSS from groups */
   utility?: Record<UtilityCSSGroup, string[]>;
-  /** Output colors as hex-6/hex-8 instead of color() function */
+  /**
+   * Output colors as hex-6/hex-8 instead of color() function
+   * @default false
+   */
   legacyHex?: boolean;
-  /** Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk). */
+  /**
+   * Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).
+   * @default false
+   */
   skipBuild?: boolean;
 }
 

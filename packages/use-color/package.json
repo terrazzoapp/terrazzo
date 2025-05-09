@@ -3,13 +3,7 @@
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
   "version": "0.1.0",
   "type": "module",
-  "keywords": [
-    "color",
-    "color-module-4",
-    "culori",
-    "react",
-    "hooks"
-  ],
+  "keywords": ["color", "color-module-4", "culori", "react", "hooks"],
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"

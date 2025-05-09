@@ -7,16 +7,19 @@ import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
 export * from './build/index.js';
 export * from './lib.js';
 
-export default function cssPlugin({
-  filename = './index.css',
-  exclude,
-  variableName,
-  modeSelectors,
-  transform: customTransform,
-  utility,
-  legacyHex,
-  skipBuild,
-}: CSSPluginOptions = {}): Plugin {
+export default function cssPlugin(options?: CSSPluginOptions): Plugin {
+  const {
+    exclude,
+    variableName,
+    modeSelectors,
+    transform: customTransform,
+    utility,
+    legacyHex,
+    skipBuild,
+  } = options ?? {};
+
+  const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
+
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
     if (customName !== undefined) {
