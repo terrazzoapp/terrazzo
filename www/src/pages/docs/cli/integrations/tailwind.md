@@ -57,6 +57,8 @@ export default defineConfig({
 });
 ```
 
+:::
+
 Lastly, run:
 
 ```sh
