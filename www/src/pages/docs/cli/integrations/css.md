@@ -118,15 +118,31 @@ If all your tokens are in the “safe” `srgb` color space, no extra code is ge
 
 The result is color that “just works” in any browser and hardware type automatically (and, yes, additional code is generated for modes, so this applies for all color modes you’re using!).
 
-<details>
-
-<summary>Color nerd info</summary>
+#### Color gamut handling
 
 Colors are downconverted using Culori’s [toGamut()](https://culorijs.org/api/#toGamut) method which uses the same underlying math as CSS Color Level 4’s [Gamut mapping algorithm](https://drafts.csswg.org/css-color/#css-gamut-mapping) and also described in Björn Ottosen’s [sRGB Gamut Clipping](https://bottosson.github.io/posts/gamutclipping/) article. This produces the best results for most applications on the web, using the best-available color research.
 
 This is an improvement over Cobalt 1.x’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
 
-</details>
+### Dynamic mode handling
+
+Variable modes can be tricky! That’s why Terrazzo redeclares all aliases in CSS whenever their upstream values change. For example:
+
+```diff
+  :root {
+    --neutral-3: #e6eaef;
+    --color-bg-alt: var(--neutral-3);
+  }
+
+  [data-theme='dark'] {
+    --neutral-3: #212830;
++   --color-bg-alt: var(--neutral-3);
+  }
+```
+
+Whenever any value updates, so, too must all its aliases. Terrazzo correctly implements this behavior in CSS so your values are always correct when changing modes.
+
+[See example](https://codepen.io/dangodev/pen/EaaeELN).
 
 ### Utility CSS
 
