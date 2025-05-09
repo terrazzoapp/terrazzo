@@ -1,7 +1,7 @@
 import { Code, Cross } from '@terrazzo/icons';
 import { CopyButton } from '@terrazzo/tiles';
 import clsx from 'clsx';
-import { lazy, Suspense, useId, useState } from 'react';
+import { Suspense, lazy, useId, useState } from 'react';
 import useTokens from '../../hooks/tokens.js';
 import c from './CodePanel.module.css';
 

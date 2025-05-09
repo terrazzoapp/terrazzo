@@ -22,10 +22,9 @@
     "format:css": "stylelint --fix \"src/**/*.css\"",
     "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:/\"",
     "lint:js": "biome check src",
+    "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "test": "pnpm --filter @terrazzo/tiles run \"/^test:/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "test": "vitest run"
   },
   "peerDependencies": {
     "react": "^19.0.0",

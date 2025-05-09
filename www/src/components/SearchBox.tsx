@@ -60,7 +60,9 @@ function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
         <span
           className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1.value ?? hit.hierarchy?.lvl1 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl1.value ?? hit.hierarchy?.lvl1,
+          }}
         />
       </span>
     </span>
@@ -75,12 +77,16 @@ function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
         <span
           className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl2?.value ?? hit.hierarchy?.lvl2 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl2?.value ?? hit.hierarchy?.lvl2,
+          }}
         />
         <span
           className='tz-searchbox-result-desc'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
+          }}
         />
       </span>
     </span>
@@ -95,12 +101,16 @@ function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
         <span
           className='tz-searchbox-result-title'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl3?.value ?? hit.hierarchy?.lvl3 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl3?.value ?? hit.hierarchy?.lvl3,
+          }}
         />
         <span
           className='tz-searchbox-result-desc'
           // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
+          }}
         />
       </span>
     </span>
@@ -114,11 +124,15 @@ function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
       <span className='tz-searchbox-result-overflow'>
         <span
           className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl4?.value ?? hit.hierarchy?.lvl4 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl4?.value ?? hit.hierarchy?.lvl4,
+          }}
         />
         <span
           className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
+          }}
         />
       </span>
     </span>
@@ -132,11 +146,15 @@ function DocsSearchContent({ hit }: { hit: Hit }) {
       <span className='tz-searchbox-result-overflow'>
         <span
           className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.content?.value }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.content?.value,
+          }}
         />
         <span
           className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
-          dangerouslySetInnerHTML={{ __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1 }}
+          dangerouslySetInnerHTML={{
+            __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
+          }}
         />
       </span>
     </span>

@@ -3,7 +3,10 @@ export async function getDB(
   {
     version = 1,
     onupgradeneeded,
-  }: { version?: number; onupgradeneeded?: NonNullable<IDBOpenDBRequest['onupgradeneeded']> } = {},
+  }: {
+    version?: number;
+    onupgradeneeded?: NonNullable<IDBOpenDBRequest['onupgradeneeded']>;
+  } = {},
 ): Promise<IDBDatabase> {
   return await new Promise<IDBDatabase>((resolve, reject) => {
     const dbReq = window.indexedDB.open(name, version);

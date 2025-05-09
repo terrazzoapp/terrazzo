@@ -9,7 +9,7 @@ Convert DTCG tokens into Sass for use in any web application or native app with 
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
+Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
 
 :::code-group
 

@@ -1,7 +1,6 @@
 {
   "name": "@terrazzo/plugin-tailwind",
   "version": "0.0.1",
-  "private": true,
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -27,15 +26,15 @@
     "build:ts": "tsc -p tsconfig.build.json",
     "format": "biome check --fix --unsafe .",
     "dev": "tsc -p tsconfig.build.json -w",
-    "lint": "biome check .",
-    "--disabled--test": "pnpm --filter @terrazzo/plugin-tailwind run \"/^test:.*/\"",
-    "--disabled--test:js": "vitest run",
-    "--disabled--test:ts": "tsc --noEmit"
+    "lint": "pnpm --filter @terrazzo/plugin-tailwind run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
   },
   "peerDependencies": {
     "@terrazzo/cli": "^0.7.0",
     "@terrazzo/plugin-css": "^0.7.0",
-    "tailwindcss": "*"
+    "tailwindcss": "^4.0.0"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^"
@@ -44,8 +43,6 @@
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
-    "tailwindcss": "^3.4.17",
-    "typescript": "~5.7.3",
-    "yaml": "^2.7.0"
+    "tailwindcss": "^4.1.5"
   }
 }

@@ -9,7 +9,7 @@ Convert DTCG tokens into CSS variables for use in any web application or native 
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
+Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](/docs/cli). With both installed, run:
 
 :::code-group
 
@@ -38,7 +38,7 @@ import pluginCSS from "@terrazzo/plugin-css";
 export default defineConfig({
   plugins: [
     pluginCSS({
-      fileName: "tokens.css",
+      filename: "tokens.css",
     }),
   ],
 });
@@ -321,7 +321,7 @@ export default defineConfig({
 
 | Name            | Type                                                           | Description                                                                                                                                      |
 | :-------------- | :------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filename`      | `string`                                                       | Default filename (default: `"tokens.css"`).                                                                                                      |
+| `filename`      | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                  |
 | `exclude`       | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                         |
 | `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                             |
 | `variableName`  | `(id: string) => string`                                       | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way. |

@@ -38,11 +38,12 @@
     "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/token-tools dist/index.js",
     "build:ts": "tsc -p tsconfig.build.json",
     "dev": "pnpm --filter @terrazzo/token-tools run --parallel \"/^dev:.*/\"",
-    "lint": "biome check .",
+    "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:.*/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "format": "biome check --fix --unsafe .",
     "dev:ts": "tsc -p tsconfig.build.json --watch",
-    "test": "pnpm --filter @terrazzo/token-tools run \"/^test:.*/\"",
-    "test:js": "vitest run",
-    "test:ts": "tsc --noEmit"
+    "test": "vitest run"
   },
   "dependencies": {
     "@humanwhocodes/momoa": "^3.3.8",

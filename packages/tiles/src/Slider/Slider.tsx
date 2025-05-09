@@ -1,8 +1,8 @@
 import { useDrag } from '@use-gesture/react';
 import clsx from 'clsx';
 import { type ComponentProps, type ReactElement, useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
-import { clamp, snap } from '../lib/number.js';
 import SubtleInput from '../SubtleInput/SubtleInput.js';
+import { clamp, snap } from '../lib/number.js';
 import './Slider.css';
 
 /** size, in px, to pad inner track */

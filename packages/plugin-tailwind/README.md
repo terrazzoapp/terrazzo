@@ -1,10 +1,10 @@
 # ⛋ @terrazzo/plugin-tailwind
 
-Generate a Tailwind theme from DTCG tokens.
+Generate a Tailwind v4 theme from DTCG tokens.
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js 20 or later](https://nodejs.org). With that installed, run:
 
 ```sh
 npm i -D @terrazzo/cli @terrazzo/plugin-css @terrazzo/plugin-tailwind
@@ -21,11 +21,10 @@ export default defineConfig({
   outDir: "./tokens/",
   plugins: [
     css({
-      fileName: "tokens.css",
+      filename: "tokens.css",
     }),
     tailwind({
-      fileName: "tailwind.js",
-
+      filename: "tailwind.js",
       theme: {
         /** @see https://tailwindcss.com/docs/configuration#theme */
         colors: {
@@ -62,6 +61,6 @@ Lastly, run:
 npx tz build
 ```
 
-And you’ll see a `./tokens/tailwind.js` file generated in your project.
+And you’ll see a `./tokens/tailwind-theme.css` file generated in your project.
 
 [Full Documentation](https://terrazzo.app/docs/integrations/taiwlind)

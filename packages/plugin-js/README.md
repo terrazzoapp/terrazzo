@@ -4,7 +4,7 @@ Generate JavaScript, TypeScript, and JSON from DTCG tokens.
 
 ## Setup
 
-Requires [Node.js 18 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js 20 or later](https://nodejs.org). With that installed, run:
 
 ```sh
 npm i -D @terrazzo/cli @terrazzo/plugin-js
