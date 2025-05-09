@@ -40,13 +40,27 @@ pnpm run build
 pnpm test
 ```
 
-⚠️ **Be sure to build first!** Many tests test the _actual_ built files, not the source `.ts` files.
+> [!WARNING] > **Be sure to build first!** Many tests test the _actual_ built files, not the source `.ts` files.
+
+### Snapshot tests
+
+Some packages like `packages/plugin-css` make heavy use of snapshot tests. Snapshot tests aren’t perfect for everything; they have their pros and cons. The real win of snapshot tests for complex transformations is they can catch regressions you may not have even thought to look for in the first place because they capture every tiny detail! But their strength is also their flaw—they capture every tiny detail, so a failing snapshot isn’t always a bad thing. It takes time to review and evaluate whether every change is an improvement or not.
+
+To update snapshots for a failing test, run:
+
+```sh
+pnpm exec vitest run -u
+```
+
+> [!WARNING]
+> Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later..
 
 ## Opening a Pull Request
 
 All PRs are welcome! But to save your time, here are some common PRs received and the best course of action to take:
 
-_✨ **Tip**: check out the [good first issue](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!_
+> [!NOTE]
+> Check out the [good first issue](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!\_
 
 ### 🐛 Bugfixes
 

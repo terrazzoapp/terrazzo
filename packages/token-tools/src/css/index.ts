@@ -51,37 +51,53 @@ export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
     ...selectedMode,
   } as any;
   switch (tokenWithModeValue.$type) {
-    case 'boolean':
+    case 'boolean': {
       return transformBoolean(tokenWithModeValue, options);
-    case 'border':
+    }
+    case 'border': {
       return transformBorder(tokenWithModeValue, options);
-    case 'color':
+    }
+    case 'color': {
       return transformColor(tokenWithModeValue, options);
-    case 'cubicBezier':
+    }
+    case 'cubicBezier': {
       return transformCubicBezier(tokenWithModeValue, options);
-    case 'dimension':
+    }
+    case 'dimension': {
       return transformDimension(tokenWithModeValue, options);
-    case 'duration':
+    }
+    case 'duration': {
       return transformDuration(tokenWithModeValue, options);
-    case 'fontFamily':
+    }
+    case 'fontFamily': {
       return transformFontFamily(tokenWithModeValue, options);
-    case 'fontWeight':
+    }
+    case 'fontWeight': {
       return transformFontWeight(tokenWithModeValue, options);
-    case 'gradient':
+    }
+    case 'gradient': {
       return transformGradient(tokenWithModeValue, options);
-    case 'link':
+    }
+    case 'link': {
       return transformLink(tokenWithModeValue, options);
-    case 'number':
+    }
+    case 'number': {
       return transformNumber(tokenWithModeValue, options);
-    case 'shadow':
+    }
+    case 'shadow': {
       return transformShadow(tokenWithModeValue, options);
-    case 'string':
+    }
+    case 'string': {
       return transformString(tokenWithModeValue, options);
-    case 'strokeStyle':
+    }
+    case 'strokeStyle': {
       return transformStrokeStyle(tokenWithModeValue, options);
-    case 'transition':
+    }
+    case 'transition': {
       return transformTransition(tokenWithModeValue, options);
-    case 'typography':
+    }
+    case 'typography': {
       return transformTypography(tokenWithModeValue, options);
+    }
   }
 }
