@@ -1,5 +1,15 @@
 # @terrazzo/cli
 
+## 0.7.1
+
+### Patch Changes
+
+- [#468](https://github.com/terrazzoapp/terrazzo/pull/468) [`2c28957`](https://github.com/terrazzoapp/terrazzo/commit/2c289579bee73eabcdf648fbdb99071fece9c018) Thanks [@drwpow](https://github.com/drwpow)! - When downsampling colors for sRGB gamut, preserve the originally-authored colorspace
+
+- Updated dependencies [[`2c28957`](https://github.com/terrazzoapp/terrazzo/commit/2c289579bee73eabcdf648fbdb99071fece9c018)]:
+  - @terrazzo/token-tools@0.7.1
+  - @terrazzo/parser@0.7.1
+
 ## 0.7.0
 
 ### Minor Changes

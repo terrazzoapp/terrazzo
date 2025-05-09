@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-js",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
   "type": "module",
   "author": {
@@ -34,7 +34,7 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "0.x"
+    "@terrazzo/cli": "0.7.1"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^"

@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-sass",
   "description": "Generate scss/sass from your design tokens schema (requires @terrazzo/cli)",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -33,8 +33,8 @@
     "test:ts": "tsc --noEmit"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "0.x",
-    "@terrazzo/plugin-css": "0.x"
+    "@terrazzo/cli": "0.7.1",
+    "@terrazzo/plugin-css": "0.7.1"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^"

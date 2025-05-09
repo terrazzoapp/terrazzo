@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-swift",
   "description": "Generate Swift code using DTCG tokens.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "license": "MIT",
   "main": "./dist/index.js",
@@ -30,7 +30,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "0.x"
+    "@terrazzo/cli": "0.7.1"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
