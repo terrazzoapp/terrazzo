@@ -30,7 +30,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "0.x"
+    "@terrazzo/cli": "^0.7.0"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
