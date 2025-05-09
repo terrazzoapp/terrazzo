@@ -40,7 +40,7 @@ export const CULORI_TO_CSS: Record<
   rgb: 'srgb',
   xyz50: 'xyz-d50',
   xyz65: 'xyz-d65',
-};
+} as const;
 
 export const CSS_TO_CULORI = {
   a98: 'a98',
@@ -58,7 +58,7 @@ export const CSS_TO_CULORI = {
   'srgb-linear': 'lrgb',
   'xyz-d50': 'xyz50',
   'xyz-d65': 'xyz65',
-};
+} as const;
 
 /** Parse any color */
 export function parseColor(color: string): ColorValueNormalized {

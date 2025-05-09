@@ -6,19 +6,19 @@
   --ds-shadow-base: var(--ds-shadow-simple);
   --ds-shadow-inset: inset 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
   --ds-shadow-layered: 0 1px 1px 0 color(srgb 0 0 0 / 0.12), 0 2px 2px 0 color(srgb 0 0 0 / 0.12), 0 4px 4px 0 color(srgb 0 0 0 / 0.12), 0 8px 8px 0 color(srgb 0 0 0 / 0.12), 0 16px 16px 0 color(srgb 0 0 0 / 0.12);
-  --ds-shadow-neon: 0 0 0 0.5rem color(srgb 7.440992266793955e-15 0.8754887001262557 0.2255527763219426);
+  --ds-shadow-neon: 0 0 0 0.5rem oklch(0.7856631286711945 0.2500998352524085 144.59678318808196);
   --ds-shadow-simple: 0 4px 8px 0 color(srgb 0 0 0 / 0.15);
 }
 
 @media (color-gamut: p3) {
   :root {
-    --ds-shadow-neon: 0 0 0 0.5rem color(display-p3 -5.647982082024328e-15 0.8989461845843385 2.5998647679159604e-15);
+    --ds-shadow-neon: 0 0 0 0.5rem oklch(0.7831365401896191 0.34000664092427674 145.64495037017775);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-shadow-neon: 0 0 0 0.5rem color(rec2020 0.33238877335831263 0.8594100009628456 0.05722888543089559);
+    --ds-shadow-neon: 0 0 0 0.5rem oklch(0.7765 0.3530000000000003 147.18);
   }
 }
 

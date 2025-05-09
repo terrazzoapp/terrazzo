@@ -393,7 +393,6 @@ export interface ColorValueNormalized {
 export type ColorSpace =
   | 'a98'
   | 'display-p3'
-  | 'hsb'
   | 'hsl'
   | 'hsv'
   | 'hwb'

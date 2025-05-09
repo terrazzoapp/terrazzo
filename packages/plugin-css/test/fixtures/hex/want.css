@@ -14,7 +14,7 @@
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
   --ds-color-control-border-focus: var(--ds-color-blue-7);
-  --ds-color-hdr-blue: #0089ff;
+  --ds-color-hdr-blue: oklch(0.6333612529106073 0.20110650544801523 253.921996151641);
   --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
   --ds-gradient-blue-pink: #218bff 0%, #e85aad 100%;
@@ -24,14 +24,14 @@
 
 @media (color-gamut: p3) {
   :root {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6312831744667307 0.21843061935804214 253.28399755832424);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6336836232352946 0.2186805283935796 254.20132843068833);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -49,7 +49,7 @@
     --ds-color-blue-8: #0a3069;
     --ds-color-blue-9: #002155;
     --ds-color-control-border-focus: var(--ds-color-blue-7);
-    --ds-color-hdr-blue: #0089ff;
+    --ds-color-hdr-blue: oklch(0.6333612529106073 0.20110650544801523 253.921996151641);
     --ds-color-text-action: var(--ds-color-blue-6);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
@@ -67,7 +67,7 @@
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
   --ds-color-control-border-focus: var(--ds-color-blue-7);
-  --ds-color-hdr-blue: #0089ff;
+  --ds-color-hdr-blue: oklch(0.6333612529106073 0.20110650544801523 253.921996151641);
   --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
@@ -75,7 +75,7 @@
 @media (prefers-color-scheme: light) {
   @media (color-gamut: p3) {
     :root {
-      --ds-color-hdr-blue: #0087ff;
+      --ds-color-hdr-blue: oklch(0.6312831744667307 0.21843061935804214 253.28399755832424);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -83,7 +83,7 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6312831744667307 0.21843061935804214 253.28399755832424);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -91,7 +91,7 @@
 @media (prefers-color-scheme: light) {
   @media (color-gamut: rec2020) {
     :root {
-      --ds-color-hdr-blue: #0087ff;
+      --ds-color-hdr-blue: oklch(0.6336836232352946 0.2186805283935796 254.20132843068833);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -99,7 +99,7 @@
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6336836232352946 0.2186805283935796 254.20132843068833);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -117,7 +117,7 @@
     --ds-color-blue-8: #0c2d6b;
     --ds-color-blue-9: #051d4d;
     --ds-color-control-border-focus: var(--ds-color-blue-6);
-    --ds-color-hdr-blue: #2389ff;
+    --ds-color-hdr-blue: oklch(0.6378288775773928 0.19696272225315292 255.74756901893846);
     --ds-color-text-action: var(--ds-color-blue-5);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
@@ -135,7 +135,7 @@
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
   --ds-color-control-border-focus: var(--ds-color-blue-6);
-  --ds-color-hdr-blue: #2389ff;
+  --ds-color-hdr-blue: oklch(0.6378288775773928 0.19696272225315292 255.74756901893846);
   --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
@@ -143,7 +143,7 @@
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: p3) {
     :root {
-      --ds-color-hdr-blue: #0d87ff;
+      --ds-color-hdr-blue: oklch(0.6373450751575621 0.21232561970809632 255.93892863056823);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -151,7 +151,7 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
-    --ds-color-hdr-blue: #0d87ff;
+    --ds-color-hdr-blue: oklch(0.6373450751575621 0.21232561970809632 255.93892863056823);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -159,7 +159,7 @@
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: rec2020) {
     :root {
-      --ds-color-hdr-blue: #1b87ff;
+      --ds-color-hdr-blue: oklch(0.6397133340946504 0.21277814964014954 256.8440577344628);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
@@ -167,7 +167,7 @@
 
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
-    --ds-color-hdr-blue: #1b87ff;
+    --ds-color-hdr-blue: oklch(0.6397133340946504 0.21277814964014954 256.8440577344628);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -184,21 +184,21 @@
   --ds-color-blue-8: #0a3069;
   --ds-color-blue-9: #002155;
   --ds-color-control-border-focus: var(--ds-color-blue-6);
-  --ds-color-hdr-blue: #0089ff;
+  --ds-color-hdr-blue: oklch(0.6333612529106073 0.20110650544801523 253.921996151641);
   --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light-colorblind"] {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6312831744667307 0.21843061935804214 253.28399755832424);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-colorblind"] {
-    --ds-color-hdr-blue: #0087ff;
+    --ds-color-hdr-blue: oklch(0.6336836232352946 0.2186805283935796 254.20132843068833);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -215,21 +215,21 @@
   --ds-color-blue-8: #032563;
   --ds-color-blue-9: #021a4a;
   --ds-color-control-border-focus: var(--ds-color-blue-6);
-  --ds-color-hdr-blue: #005bff;
+  --ds-color-hdr-blue: oklch(0.5435010241641232 0.25312925764010896 262.09199137757344);
   --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light-high-contrast"] {
-    --ds-color-hdr-blue: #005aff;
+    --ds-color-hdr-blue: oklch(0.5436688005900532 0.2721174762006569 259.4652107036988);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light-high-contrast"] {
-    --ds-color-hdr-blue: #005aff;
+    --ds-color-hdr-blue: oklch(0.5441 0.27399999999999974 259.2);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
@@ -263,9 +263,23 @@
   --ds-color-blue-8: #1e60d5;
   --ds-color-blue-9: #194fb1;
   --ds-color-control-border-focus: var(--ds-color-blue-6);
-  --ds-color-hdr-blue: #34a0ff;
+  --ds-color-hdr-blue: oklch(0.6904856991281646 0.16947014696725143 249.78225659377864);
   --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
+}
+
+@media (color-gamut: p3) {
+  [data-color-theme="dark-high-contrast"] {
+    --ds-color-hdr-blue: oklch(0.6949796134997654 0.17863613887148144 251.46984200860834);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
+  }
+}
+
+@media (color-gamut: rec2020) {
+  [data-color-theme="dark-high-contrast"] {
+    --ds-color-hdr-blue: oklch(0.6960542459091384 0.17984317749099996 251.84862031718166);
+    --ds-color-text-hdr: var(--ds-color-hdr-blue);
+  }
 }
 
 [data-color-theme="dark-colorblind"] {
@@ -280,21 +294,21 @@
   --ds-color-blue-8: #0c2d6b;
   --ds-color-blue-9: #051d4d;
   --ds-color-control-border-focus: var(--ds-color-blue-6);
-  --ds-color-hdr-blue: #2389ff;
+  --ds-color-hdr-blue: oklch(0.6378288775773928 0.19696272225315292 255.74756901893846);
   --ds-color-text-action: var(--ds-color-blue-5);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="dark-colorblind"] {
-    --ds-color-hdr-blue: #0d87ff;
+    --ds-color-hdr-blue: oklch(0.6373450751575621 0.21232561970809632 255.93892863056823);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="dark-colorblind"] {
-    --ds-color-hdr-blue: #1b87ff;
+    --ds-color-hdr-blue: oklch(0.6397133340946504 0.21277814964014954 256.8440577344628);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }

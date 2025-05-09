@@ -151,6 +151,27 @@ describe('transformColor', () => {
       },
     ],
     [
+      'oklch (in gamut)',
+      {
+        given: [{ $value: { colorSpace: 'oklch', components: [0, 0, 0], alpha: 1 } } as any, { tokensSet: {} }],
+        want: { success: 'oklch(0 0 0)' },
+      },
+    ],
+    [
+      'oklch (out of gamut)',
+      {
+        given: [{ $value: { colorSpace: 'oklch', components: [1, 0.2, 40], alpha: 1 } } as any, { tokensSet: {} }],
+        want: {
+          success: {
+            '.': 'oklch(1 0.2 40)',
+            p3: 'oklch(0.999999993473546 3.727399542465306e-8 89.87556275421639)',
+            rec2020: 'oklch(0.9999999934735462 3.7273995536157345e-8 89.87556241327162)',
+            srgb: 'oklch(0.999999993473546 0 none)',
+          },
+        },
+      },
+    ],
+    [
       'invalid',
       {
         given: [{ $value: '#wtf' } as any, { tokensSet: {} }],
