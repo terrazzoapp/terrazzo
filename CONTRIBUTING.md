@@ -43,7 +43,9 @@ And you’re ready to get started!
 
 #### Branches
 
-Terrazzo’s primary branch is the `main` branch. Even though it’s normally a faux pas to commit to the main branch, when you’re working on your fork it’s actually all the same whether you commit to `main` or work in a local branch.
+Terrazzo’s primary branch is the `main` branch. Even though it’s normally a faux pas to commit to the main branch, when you’re working on your fork it’s the same whether you commit to `main` or another branch—you can open up a PR against Terrazzo all the same. Though keep in mind that if you are planning on repeat contributions, having your `main` history diverge from Terrazzo’s source could get a little messier to sync.
+
+Of course, for maintainers working in the source repo, they must branch off the main branch in order to make changes. We live in a society.
 
 #### Setup
 
