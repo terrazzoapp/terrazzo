@@ -146,7 +146,7 @@ The [packages/](./packages/) directory contains all the npm libraries that are p
 | `plugin-sass`     | Plugin to generate `.scss`.                                                                                                                                                                                                               |
 | `plugin-tailwind` | Plugin to generate a Tailwind v4 theme.                                                                                                                                                                                                   |
 
-The other packages beyond these are in various states of readiness, and can be ignored. There are some packages that are slated for future release that are still under development.
+The other packages beyond these (`token-lab`, `fonts`, `tiles`, etc.) are in various states of readiness, and can be ignored. There are some packages that are slated for future release that are still under development.
 
 ### Docs
 
@@ -159,9 +159,26 @@ Releasing is done only by maintainers, but it’s handled by [changesets](https:
 > [!WARNING]
 > Changesets has limitations in how it bumps nested packages like Terrazzo has. For this reason, the release PRs almost always have to be manually massaged to work correctly.
 
+### Snapshot tests
+
+Snapshot tests aren’t perfect for everything. But in a project like this they really shine—they capture even the tiniest regressions in output even if you didn’t mean to test for it originally. The flipside is by capturing every minute detail, sometimes “failures” are intentional, and you’ll always get a snapshot diff when making any sort of change.
+
+> [!WARNING]
+> Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later..
+
 ## Philosophy
 
-### Timeline
+### Project goals
+
+Beyond the obvious usecase of existing to work with design tokens and generate code, there are a few different priorities this project has over Style Dictionary:
+
+1. **Enforce standards.** Terrazzo supports the full DTCG design token specification, with some extensions. This means there are _some_ restrictions on how tokens are authored. But it’s done in service of creating more universal systems.
+1. **Empower plugins.** This library is heavily influenced by [Rollup](https://rollupjs.org/introduction/) and [Vite](https://vite.dev), and the idea that generating code should be as easy as adding a plugin.
+1. **Support linting.** Standards are great, because they can be [linted](https://terrazzo.app/docs/cli/lint/)!
+
+Any/all iterations to this library will always be pointing towards these goalposts and strengthening them. At this stage, deviating from any one of these goals would (in my opinion) constitute a different project and different North Star.
+
+### History
 
 Many of the project’s decisions can be explained as a simple timeline:
 
@@ -170,11 +187,4 @@ Many of the project’s decisions can be explained as a simple timeline:
 - 2021: Drew releases [Cobalt](https://cobalt-ui.pages.dev) because the W3C Design Tokens specification had no tooling that supported it. Style Dictionary would go on to support it in 2024 in its 4.0 release.
 - 2023: Cobalt renames to Terrazzo (it’s the same project)
 
-So while it’s not necessarily accurate to call Terrazzo a “successor” to Style Dictionary (at least, not yet), these 3 parts—Style Dictionary, DTCG, and Terrazzo—are all reacting to one another in the design tokens tooling space.
-
-### Snapshot tests
-
-Snapshot tests aren’t perfect for everything. But in a project like this they really shine—they capture even the tiniest regressions in output even if you didn’t mean to test for it originally. The flipside is by capturing every minute detail, sometimes “failures” are intentional, and you’ll always get a snapshot diff when making any sort of change.
-
-> [!WARNING]
-> Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later..
+So while it’s not necessarily accurate to call Terrazzo a “successor” to Style Dictionary (at least, not yet), these 3 parts—Style Dictionary, DTCG, and Terrazzo—are all reacting to one another in the design tokens tooling space. The [goal](#project-goals) of Terrazzo is to be easier to use, and more powerful, than what came before it. And that is subjective, and a work-in-progress, but the intent is to learn from mistakes and “stand on the shoulders of giants.”
