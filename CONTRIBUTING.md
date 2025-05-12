@@ -108,7 +108,7 @@ Instead, reviewing is meant to catch things like:
 
 - Whether the code constitutes a breaking change, and if so, what the impact is
   - In this event, the reviewer will work with the author to either reduce the impact as much as possible, and/or coordinate a release plan so users can migrate.
-- Significant performance regressions (it’s normal and expected that adding code slows something down by an imperceptible amount, but a single PR slowing everything down by, say, 2× is avoidable).
+- Significant performance regressions (it’s normal and expected that adding code slows something down by some trivial amount, but we can’t allow a single PR to slow everything down by, say, 2×).
 - Whether there are invisible regressions to things beyond the scope of the codebase, such as specific consumer usecases (which usually highlights a failure in the test suite, in which case it should be patched as soon as possible).
 - Upcoming changes or behind-the-scenes work where there may be a conflict and potentially wasted work on one end or the other.
 
