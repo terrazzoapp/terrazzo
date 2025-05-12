@@ -100,6 +100,12 @@ Be sure to **fill out the template** describing very clearly why you’re openin
 - [ ] Lint passing
 - [ ] A [changeset](https://github.com/changesets/changesets) added (`patch` or `minor`, `major` changes may only be made by a maintainer)
 
+##### Git commits / PR titles
+
+This project does **NOT** follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) styleguide (e.g. `feat: Add foobar`. We very roughly recommend the basic format of `[Present-tense verb] [Description]` in commit messages. This project uses [changesets](https://github.com/changesets/changesets) to provide human-readable changelog info, taking that burden off commit messages.
+
+PR titles operate the same way—there’s no strict styleguide. As long as **you generally describe the change** that’s all that matters. In this project the “ripple effect” is very common, so it’s assumed a single change affects multiple targets. And for now, at least, bugfixes and features may be shipped in a single change.
+
 ### 3. Review
 
 PRs are rarely ever rejected, and the review process is always under the premise of trying to help the author get their work merged. As much as possible, **existing tests and lint rules enforce the code standards,** which means you should have an idea of whether your code meets the quality bar of this project from just running tests locally.
@@ -108,7 +114,7 @@ Instead, reviewing is meant to catch things like:
 
 - Whether the code constitutes a breaking change, and if so, what the impact is
   - In this event, the reviewer will work with the author to either reduce the impact as much as possible, and/or coordinate a release plan so users can migrate.
-- Significant performance regressions (it’s normal and expected that adding code slows something down by an imperceptible amount, but a single PR slowing everything down by, say, 2× is avoidable).
+- Significant performance regressions (it’s normal and expected that adding code slows something down by some trivial amount, but we can’t allow a single PR to slow everything down by, say, 2×).
 - Whether there are invisible regressions to things beyond the scope of the codebase, such as specific consumer usecases (which usually highlights a failure in the test suite, in which case it should be patched as soon as possible).
 - Upcoming changes or behind-the-scenes work where there may be a conflict and potentially wasted work on one end or the other.
 
