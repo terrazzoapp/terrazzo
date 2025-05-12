@@ -1,0 +1,26 @@
+name: Feature request
+description: Propose new functionality or a breaking change
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Summary
+      description: Short description of the problem, and why this could be useful.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal & prior art
+      description: |
+        Describe the change in detail. Answer all the following questions: 1) What is syntax? 2) What are some alternate options, along with pros/cons of each? 3) Is this a breaking change (and if so, what is gained/lost)? 4) Any prior art to reference?
+    validations:
+      required: true
+  - type: checkboxes
+    id: extra
+    attributes:
+      label: Extra
+      options:
+        - label: I’m willing to open a PR (see [CONTRIBUTING.md](https://github.com/terrazzoapp/terrazzo/blob/main/CONTRIBUTING.md))

@@ -1,0 +1,56 @@
+name: Bug report
+description: Report a bug or unexpected behavior
+labels:
+  - bug
+  - triage
+body:
+  - type: textarea
+    id: versions
+    attributes:
+      label: Versions
+      description: List out any versions of the Terrazzo CLI, and any applicable plugins and their versions.
+      placeholder: |
+        - @terrazzo/cli: 0.x.x
+        - @terrazzo/plugin-css: 0.x.x
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      placeholder: 22.x.x
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: OS + version
+      placeholder: macOS 15.1.1
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: A brief description of the bug. Please include error messages, output, and screenshots if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction
+      description: What are the steps to reproduce this issue? Bonus points for a GitHub repository link.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected result
+      description: (In case it’s not obvious)
+    validations:
+      required: true
+  - type: checkboxes
+    id: extra
+    attributes:
+      label: Extra
+      options:
+        - label: I’m willing to open a PR (see [CONTRIBUTING.md](https://github.com/terrazzoapp/terrazzo/blob/main/CONTRIBUTING.md))
