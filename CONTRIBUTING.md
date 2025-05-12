@@ -100,6 +100,12 @@ Be sure to **fill out the template** describing very clearly why you’re openin
 - [ ] Lint passing
 - [ ] A [changeset](https://github.com/changesets/changesets) added (`patch` or `minor`, `major` changes may only be made by a maintainer)
 
+##### Git commits / PR titles
+
+This project does **NOT** follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) styleguide (e.g. `feat: Add foobar`. We very roughly recommend the basic format of `[Present-tense verb] [Description]` in commit messages. This project uses [changesets](https://github.com/changesets/changesets) to provide human-readable changelog info, taking that burden off commit messages.
+
+PR titles operate the same way—there’s no strict styleguide. As long as **you generally describe the change** that’s all that matters. In this project the “ripple effect” is very common, so it’s assumed a single change affects multiple targets. And for now, at least, bugfixes and features may be shipped in a single change.
+
 ### 3. Review
 
 PRs are rarely ever rejected, and the review process is always under the premise of trying to help the author get their work merged. As much as possible, **existing tests and lint rules enforce the code standards,** which means you should have an idea of whether your code meets the quality bar of this project from just running tests locally.
