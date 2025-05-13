@@ -91,7 +91,11 @@ class SassMap extends ValueSassToken {
   constructor(indentationLevel: number, values?: SassMapValues) {
     super(indentationLevel);
     this.values = new Map<SassMapKey, SassMapValue>(
-      values ? (Array.isArray(values) ? values : Object.entries(values)) : undefined,
+      values
+        ? Symbol.iterator in values && typeof values[Symbol.iterator] === 'function'
+          ? values
+          : Object.entries(values)
+        : undefined,
     );
   }
 
