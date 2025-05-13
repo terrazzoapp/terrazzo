@@ -1,85 +1,198 @@
 # Contributing
 
-All contributions of any nature are welcome.
+Thank you for being willing to contribute to this project! Anyone is able to contribute, and all contributions are welcome. This guide is meant to help you make a successful contribution as quickly as possible. To do that, this guide is organized into 3 main sections:
 
-**💁 First time contributor?**
+1. **Workflow**: where do you start? Should you open an issue, or a discussion? How do pull requests work?
+2. **Code walkthrough**: general instructions for getting the code running locally, and a summary of notable structures/patterns.
+3. **Philosophy**: what does this project value? What does this project try and stay away from?
 
-I’d love for this project to be your first contribution. If you are new to Open Source contributions, please see [https://github.com/firstcontributions/first-contributions] for a handy guide on how to get started. Nearly everything there will apply to
-contributing here.
+## Workflow
 
-## Setup
+The basic workflow is organized into the following steps:
 
-This repo requires [pnpm](https://pnpm.io/). Once installed, run:
+1. **Issue/Discussion**: report a bug or suggest a feature or change to this project. Issues are the quickest way to align on an idea before doing any work.
+2. **Pull Request**: fork this project, contribute code, and open a pull request back on the original project.
+3. **Review**: aligning the code to this project’s standards so it can be accepted.
+4. **Acceptance**: congratulations! 🥳 Your contribution has been accepted and it will go out in a future release.
+
+### 1. Opening an Issue or Discussion
+
+The difference between opening an [Issue](https://github.com/terrazzoapp/terrazzo/issues) vs a [Discussion](https://github.com/terrazzoapp/terrazzo/discussions) really depends on **initial clarity.** If you have a clear idea of a bug to report, or change you’d like to suggest, that’s an [Issue](https://github.com/terrazzoapp/terrazzo/issues). You can use the appropriate template to provide all necessary information.
+
+But perhaps you have a loose question, that either may not be linked to a bug, or may even be partially unrelated to Terrazzo. [Discussions](https://github.com/terrazzoapp/terrazzo/discussions) are better for more “casual” conversation threads!
+
+Of course, even if you open one in the wrong place, it can be moved! The main reason they’re distinct is that a GitHub Issue is tracked as work to be done—the more open issues, the more work that is needed. This not only helps maintainers, it also helps other contributors like yourself know what can be fixed!
+
+> [!WARNING]
+> Please don’t open a Pull Request without first opening an issue! Even if you are just fixing a simple bug, it’s good to double-check that it actually is a bug, and you’re aligned on the solution. Getting a maintainer’s advice can save a lot of wasted work!
+
+### 2. Pull Requests
+
+So you have code to contribute, and want to get started! The first thing you’ll do is [fork the repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) if you haven’t already—just click the big **Fork** button [on the front page](https://github.com/terrazzoapp/terrazzo). This will create a copy of Terrazzo locally.
+
+You’ll then clone that repo:
+
+```sh
+git clone [myusername]/terrazzo
+```
+
+And you’re ready to get started!
+
+> [!TIP]
+> If you want to work on a PR, but don’t have an idea yourself, take a look at [good first issue](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue%20state%3Aopen%20label%3A%22good%20first%20issue%22) issues! They are friendly for newcomers and have well-defined boundaries.
+
+#### Branches
+
+Terrazzo’s primary branch is the `main` branch. Even though it’s normally a faux pas to commit to the main branch, when you’re working on your fork it’s the same whether you commit to `main` or another branch—you can open up a PR against Terrazzo all the same. Though keep in mind that if you are planning on repeat contributions, having your `main` history diverge from Terrazzo’s source could get a little messier to sync.
+
+Of course, for maintainers working in the source repo, they must branch off the main branch in order to make changes. We live in a society.
+
+#### Setup
+
+Contributing to this project requires installing Node.js LTS ([fnm](https://github.com/Schniz/fnm) is recommended) and [pnpm](https://pnpm.io/). With both installed, navigate to the root of this project in a terminal, and run the following to install dependencies:
 
 ```sh
 pnpm i
 ```
 
-## Developing
+#### Tests
 
-To build TypeScript as you work, run:
-
-```sh
-pnpm run dev
-```
-
-This project uses [Biome](https://biomejs.dev/), a modern JS toolchain, for linting and formatting.
-
-### `.ts` vs. `.js` + `.d.ts`
-
-Some packages (such as `parser`) are written in raw `.js` and `.d.ts`. The reason is the types are written strictly for the benefit of the user, however, the runtime needs to handle invalid and unexpected input that TypeScript may think is impossible or unnecessary, and it usually gets confused. One way to solve this is typing almost everything as `unknown`, however, that’s essentially the same as just writing `.js` anyway. Another way to look at it is for these packages, `.d.ts` are what’s _expected_ from the user, but often reality won’t match that.
-
-Packages that are wrtitten in `.ts` follow more expected TypeScript conventions.
-
-## Testing
-
-Tests are written in [Vitest](https://vitest.dev), a modern replacement for Jest. To run tests:
+Tests are run in Node.js using [Vitest](https://vitest.dev/). To run _all_ tests, run the following command from the project root:
 
 ```sh
 pnpm run build
 pnpm test
 ```
 
-> [!WARNING] > **Be sure to build first!** Many tests test the _actual_ built files, not the source `.ts` files.
+To run tests for just a specific package, run:
 
-### Snapshot tests
+```sh
+pnpm run build
+pnpm --filter @terrazzo/[package] run test
+```
 
-Some packages like `packages/plugin-css` make heavy use of snapshot tests. Snapshot tests aren’t perfect for everything; they have their pros and cons. The real win of snapshot tests for complex transformations is they can catch regressions you may not have even thought to look for in the first place because they capture every tiny detail! But their strength is also their flaw—they capture every tiny detail, so a failing snapshot isn’t always a bad thing. It takes time to review and evaluate whether every change is an improvement or not.
-
-To update snapshots for a failing test, run:
+Lastly, to update snapshots in tests:
 
 ```sh
 pnpm run test -u
 ```
 
+> [!TIP]
+> Because many Terrazzo packages depend on each other, you won’t be able to run tests if any of its dependencies aren’t built. Make sure to run `pnpm run build` from the root to build all packages so tests work as-expected! There are also a few instances of packages needing to build themeselves, too, before testing, but this isn’t as common.
+
+#### Linting
+
+Linting is handled via [Biome](https://biomejs.dev/). To lint all packages, run the following command from the project root:
+
+```sh
+pnpm run lint
+```
+
+#### Opening the PR
+
+Say you’ve gotten to a good point to get feedback on your work. As soon as you push your changes (`git push`) to your fork, navigate back to either your fork or the original Terrazzo repo. You should see a banner at the top of the page asking if you want to Open a PR (yes!).
+
+Be sure to **fill out the template** describing very clearly why you’re opening a PR. A good PR meets all the following criteria:
+
+- [ ] References the issue it will close on merging
+- [ ] Tests added for the bugfix/feature (tests are always required!)
+- [ ] All existing tests passing
+- [ ] Lint passing
+- [ ] A [changeset](https://github.com/changesets/changesets) added (`patch` or `minor`, `major` changes may only be made by a maintainer)
+
+##### Git commits / PR titles
+
+This project does **NOT** follow the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) styleguide (e.g. `feat: Add foobar`. We very roughly recommend the basic format of `[Present-tense verb] [Description]` in commit messages. This project uses [changesets](https://github.com/changesets/changesets) to provide human-readable changelog info, taking that burden off commit messages.
+
+PR titles operate the same way—there’s no strict styleguide. As long as **you generally describe the change** that’s all that matters. In this project the “ripple effect” is very common, so it’s assumed a single change affects multiple targets. And for now, at least, bugfixes and features may be shipped in a single change.
+
+### 3. Review
+
+PRs are rarely ever rejected, and the review process is always under the premise of trying to help the author get their work merged. As much as possible, **existing tests and lint rules enforce the code standards,** which means you should have an idea of whether your code meets the quality bar of this project from just running tests locally.
+
+Instead, reviewing is meant to catch things like:
+
+- Whether the code constitutes a breaking change, and if so, what the impact is
+  - In this event, the reviewer will work with the author to either reduce the impact as much as possible, and/or coordinate a release plan so users can migrate.
+- Significant performance regressions (it’s normal and expected that adding code slows something down by some trivial amount, but we can’t allow a single PR to slow everything down by, say, 2×).
+- Whether there are invisible regressions to things beyond the scope of the codebase, such as specific consumer usecases (which usually highlights a failure in the test suite, in which case it should be patched as soon as possible).
+- Upcoming changes or behind-the-scenes work where there may be a conflict and potentially wasted work on one end or the other.
+
+The reviewer will then either **Approve** or **Request Changes** with a clear path to resolution.
+
+#### Rejecting PRs
+
+Again, it’s very rare PRs are rejected! Almost every time this happens, it’s from someone that didn’t read this document. Examples include:
+
+- Introducing a breaking change without any prior discussion (“Sir this is a Wendy’s” PRs)
+- Not referencing any issues, and giving almost no explanation for the change
+- PR has been open for a very long time without any updates, and tests are failing
+
+There’s essentially a zero chance that if you are opening a PR to close out an issue, your PR will be rejected. There’s also a zero chance that a maintainer giving you the greenlight to open a PR, rejecting it in the end. Rejecting PRs ultimately is trying to guard against this library breaking for users! And as long as you’re mindful of _improving_ and not degrading quality, you will likely never have a PR rejected from this project.
+
+### 4. Acceptance
+
+When a PR has been **Approved,** all tests are passing, and a [changeset](https://github.com/changesets/changesets) has been added, it will be merged and will go out on the next release. The author will have their name forever enshrined in the changelog, and is encouraged to brag about their accomplishment to everyone. They are now a bonified open source contributor (if they weren’t already) and are a philanthropist and beautiful person inside and out. It’s science.
+
+## Code walkthrough
+
+This section outlines some more nitty-gritty code details and general organization about the project. For a more conceptual approach, see [Philosophy](#philosophy) instead.
+
+### Packages
+
+This monorepo is managed by [pnpm Workspaces](https://pnpm.io/workspaces), which means every package internally behaves like it’s been published to npm. This is fantastic for testing changes in lockstep—a package can be tested in its parent package, and its parent’s parent package, and so on, all before a version is released.
+
+The [packages/](./packages/) directory contains all the npm libraries that are published to npm under the `@terrazzo/` org:
+
+| Package           | Description                                                                                                                                                                                                                               |
+| :---------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `parser`          | The pure JS library that validates DTCG Tokens JSON, runs linters, and runs plugins to produce builds. It can run in Node.js or the browser (restricted by plugins, of course—it can only run in the browser if all the plugins do, too). |
+| `token-tools`     | A Swiss Army Knife library that contains a lot of common operations and transforms used by plugins. It’s abstracted mostly as a convenience, so people can build their own plugins more easily.                                           |
+| `cli`             | The wrapper around `parser` that handles the Node.js CLI.                                                                                                                                                                                 |
+| `plugin-css`      | Plugin to generate `.css`.                                                                                                                                                                                                                |
+| `plugin-js`       | Plugin to generate `.js` and `.json`.                                                                                                                                                                                                     |
+| `plugin-sass`     | Plugin to generate `.scss`.                                                                                                                                                                                                               |
+| `plugin-tailwind` | Plugin to generate a Tailwind v4 theme.                                                                                                                                                                                                   |
+
+The other packages beyond these (`token-lab`, `fonts`, `tiles`, etc.) are in various states of readiness, and can be ignored. There are some packages that are slated for future release that are still under development.
+
+### Docs
+
+[terrazzo.app](https://terrazzo.app) is powered by [Astro](https://astro.build) and lives in [www/](./www/).
+
+### Releases
+
+Releasing is done only by maintainers, but it’s handled by [changesets](https://github.com/changesets/changesets). Whenever any changelog is generated, an automated release PR is opened. If a maintainer approves and merges that PR, all the released versions will be published to npm.
+
+> [!WARNING]
+> Changesets has limitations in how it bumps nested packages like Terrazzo has. For this reason, the release PRs almost always have to be manually massaged to work correctly.
+
+### Snapshot tests
+
+Snapshot tests aren’t perfect for everything. But in a project like this they really shine—they capture even the tiniest regressions in output even if you didn’t mean to test for it originally. The flipside is by capturing every minute detail, sometimes “failures” are intentional, and you’ll always get a snapshot diff when making any sort of change.
+
 > [!WARNING]
 > Be sure to inspect all changes carefully! Never blindly accept snapshot changes—they may introduce really tricky regressions that will be hard to fix later..
 
-## Opening a Pull Request
+## Philosophy
 
-All PRs are welcome! But to save your time, here are some common PRs received and the best course of action to take:
+### Project goals
 
-> [!NOTE]
-> Check out the [good first issue](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [help wanted](https://github.com/terrazzoapp/terrazzo/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) tags for open issues that need a PR!\_
+Beyond the obvious usecase of existing to work with design tokens and generate code, there are a few different priorities this project has over Style Dictionary:
 
-### 🐛 Bugfixes
+1. **Enforce standards.** Terrazzo supports the full DTCG design token specification, with some extensions. This means there are _some_ restrictions on how tokens are authored. But it’s done in service of creating more universal systems.
+1. **Empower plugins.** This library is heavily influenced by [Rollup](https://rollupjs.org/introduction/) and [Vite](https://vite.dev), and the idea that generating code should be as easy as adding a plugin.
+1. **Support linting.** Standards are great, because they can be [linted](https://terrazzo.app/docs/cli/lint/)!
 
-1. **Open the PR directly.** Always accepted, with or without an accompanying issue, as long as you also add tests. Thank you for fixing it!
+Any/all iterations to this library will always be pointing towards these goalposts and strengthening them. At this stage, deviating from any one of these goals would (in my opinion) constitute a different project and different North Star.
 
-### 📖 Documentation Changes
+### History
 
-1. **Open an issue.** If this is a larger restructuring, or making huge content changes, we’re open to that! But it may need discussion first. However, if this is a **translation** (always accepted) or **fixing a typo** no issue is needed; just open the PR.
-2. **Open the PR.** This will be accepted 🙂.
+Many of the project’s decisions can be explained as a simple timeline:
 
-### ✨ New Feature
+- 2017: Amazon releases [Style Dictionary](https://styledictionary.com/), a tool for generating code from design tokens in JSON. Its unopinionated design lets you store tokens any way you want. Great for individual flexibility, but not-so-great for portability as everyone’s “reinventing the wheel” over and over again.
+- 2021–2022: The [W3C Design Tokens Community Group](https://www.w3.org/community/design-tokens/) release significant versions to codify design tokens in JSON in a more standardized way, largely as a reaction to Style Dictionary’s laissez-faire design.
+- 2021: Drew releases [Cobalt](https://cobalt-ui.pages.dev) because the W3C Design Tokens specification had no tooling that supported it. Style Dictionary would go on to support it in 2024 in its 4.0 release.
+- 2023: Cobalt renames to Terrazzo (it’s the same project)
 
-1. **Open an issue to discuss.** Before opening a PR, the feature may need some discussion, and a clarifying design! Opening an issue makes sure no work is wasted when it’s time for a PR.
-2. **Open the PR.** With a clear goal for the PR, it’ll be easier to write and review, and will chip more quickly!
-
-### 💥 Breaking Change
-
-1. **Open an issue to discuss.** Sure, we never plan _directly_ on breaking the API, but usually it’s part of a larger desired change. Let’s discuss it **in an issue** before opening a PR!
-2. **Open a NON-BREAKING PR against `main`** Usually we can do some halfway workaround that somewhat solves the problem without breaking the existing API. But afterward, …
-3. **Open a BREAKING PR in the future when pinged**. Cobalt doesn’t have a defined release cycle yet, but at certain times, there will be a branch that contains breaking changes for a future major release. The core maintainers will coordinate with you on how to get the breaking changes in, if they’re accepted.
-
-For all PRs, **adding tests** are required, as is **filling out the description template** and adding a 🦋 **Changeset** if a new version needs to be released (Changeset instructions automatically appear as a PR comment).
+So while it’s not necessarily accurate to call Terrazzo a “successor” to Style Dictionary (at least, not yet), these 3 parts—Style Dictionary, DTCG, and Terrazzo—are all reacting to one another in the design tokens tooling space. The [goal](#project-goals) of Terrazzo is to be easier to use, and more powerful, than what came before it. And that is subjective, and a work-in-progress, but the intent is to learn from mistakes and “stand on the shoulders of giants.”
