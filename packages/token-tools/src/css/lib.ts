@@ -1,3 +1,5 @@
+// import type { TokenTransformedMultiValue } from '@terrazzo/parser';
+
 import type { TokenNormalized } from '../types.js';
 
 /** Function that generates a var(…) statement */
@@ -11,15 +13,50 @@ export function defaultAliasTransform(token: TokenNormalized) {
 }
 
 /** Generate shorthand CSS for select token types */
-export function generateShorthand({ $type, localID }: { $type: string; localID: string }): string | undefined {
+export function generateShorthand({
+  token,
+  localID,
+}: { token: any /*TokenTransformedMultiValue*/; localID: string }): string | undefined {
+  const $type = token.token.$type;
+
   switch ($type) {
     case 'transition': {
       return ['duration', 'delay', 'timing-function']
         .map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true }))
         .join(' ');
     }
-    // note: "typography" is not set in shorthand because it can often unset values unintentionally.
-    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/font
+
+    case 'typography': {
+      const properties = token.value;
+
+      if ('font-size' in properties && 'font-family' in properties) {
+        const output: string[] = [];
+
+        const fontSizeVar = makeCSSVar(`${localID}-font-size`, { wrapVar: true });
+
+        if ('font-style' in properties) {
+          output.push(makeCSSVar(`${localID}-font-style`, { wrapVar: true }));
+        }
+
+        if ('font-variant' in properties) {
+          output.push(makeCSSVar(`${localID}-font-variant`, { wrapVar: true }));
+        }
+
+        if ('font-weight' in properties) {
+          output.push(makeCSSVar(`${localID}-font-weight`, { wrapVar: true }));
+        }
+
+        if ('line-height' in properties) {
+          output.push(`${fontSizeVar}/${makeCSSVar(`${localID}-line-height`, { wrapVar: true })}`);
+        } else {
+          output.push(fontSizeVar);
+        }
+
+        output.push(makeCSSVar(`${localID}-font-family`, { wrapVar: true }));
+
+        return output.join(' ');
+      }
+    }
   }
 }
 

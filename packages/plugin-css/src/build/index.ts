@@ -72,7 +72,7 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
 
       // multi-value token
       else if (token.type === 'MULTI_VALUE') {
-        const shorthand = generateShorthand({ $type: token.token.$type, localID });
+        const shorthand = generateShorthand({ token, localID });
         if (shorthand) {
           rootRule.declarations[token.localID ?? token.token.id] = shorthand;
         }
@@ -130,7 +130,7 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
 
       // multi-value token
       else {
-        const shorthand = generateShorthand({ $type: token.token.$type, localID });
+        const shorthand = generateShorthand({ token, localID });
         if (shorthand) {
           selectorRule.declarations[localID] = shorthand;
         }

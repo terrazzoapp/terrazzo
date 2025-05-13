@@ -552,6 +552,9 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
+      '@terrazzo/plugin-sass':
+        specifier: workspace:^
+        version: link:../plugin-sass
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools

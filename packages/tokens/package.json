@@ -21,6 +21,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/plugin-sass": "workspace:^",
     "@terrazzo/token-tools": "workspace:^"
   }
 }
