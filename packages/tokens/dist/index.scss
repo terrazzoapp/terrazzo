@@ -124,50 +124,50 @@ $__token-values: (
 
 $__token-typography-mixins: (
   "font.body": (
-    "font-variation-settings": var(--tz-font-body-font-variation-settings),
-    "font": var(--tz-font-body)
+    "font": var(--tz-font-body),
+    "font-variation-settings": var(--tz-font-body-font-variation-settings)
   ),
   "font.bodyStrong": (
-    "font-variation-settings": var(--tz-font-body-strong-font-variation-settings),
-    "font": var(--tz-font-body-strong)
+    "font": var(--tz-font-body-strong),
+    "font-variation-settings": var(--tz-font-body-strong-font-variation-settings)
   ),
   "font.bodyLongform": (
+    "font": var(--tz-font-body-longform),
     "font-variation-settings": var(--tz-font-body-longform-font-variation-settings),
-    "letter-spacing": var(--tz-font-body-longform-letter-spacing),
-    "font": var(--tz-font-body-longform)
+    "letter-spacing": var(--tz-font-body-longform-letter-spacing)
   ),
   "font.labelSmall": (
+    "font": var(--tz-font-label-small),
     "font-variation-settings": var(--tz-font-label-small-font-variation-settings),
-    "letter-spacing": var(--tz-font-label-small-letter-spacing),
-    "font": var(--tz-font-label-small)
+    "letter-spacing": var(--tz-font-label-small-letter-spacing)
   ),
   "font.heading1": (
+    "font": var(--tz-font-heading1),
     "font-variation-settings": var(--tz-font-heading1-font-variation-settings),
-    "letter-spacing": var(--tz-font-heading1-letter-spacing),
-    "font": var(--tz-font-heading1)
+    "letter-spacing": var(--tz-font-heading1-letter-spacing)
   ),
   "font.heading2": (
+    "font": var(--tz-font-heading2),
     "font-variation-settings": var(--tz-font-heading2-font-variation-settings),
-    "letter-spacing": var(--tz-font-heading2-letter-spacing),
-    "font": var(--tz-font-heading2)
+    "letter-spacing": var(--tz-font-heading2-letter-spacing)
   ),
   "font.heading3": (
+    "font": var(--tz-font-heading3),
     "font-variation-settings": var(--tz-font-heading3-font-variation-settings),
-    "letter-spacing": var(--tz-font-heading3-letter-spacing),
-    "font": var(--tz-font-heading3)
+    "letter-spacing": var(--tz-font-heading3-letter-spacing)
   ),
   "font.heading4": (
+    "font": var(--tz-font-heading4),
     "font-variation-settings": var(--tz-font-heading4-font-variation-settings),
-    "letter-spacing": var(--tz-font-heading4-letter-spacing),
-    "font": var(--tz-font-heading4)
+    "letter-spacing": var(--tz-font-heading4-letter-spacing)
   ),
   "font.heading5": (
-    "font-variation-settings": var(--tz-font-heading5-font-variation-settings),
-    "font": var(--tz-font-heading5)
+    "font": var(--tz-font-heading5),
+    "font-variation-settings": var(--tz-font-heading5-font-variation-settings)
   ),
   "font.heading6": (
-    "font-variation-settings": var(--tz-font-heading6-font-variation-settings),
-    "font": var(--tz-font-heading6)
+    "font": var(--tz-font-heading6),
+    "font-variation-settings": var(--tz-font-heading6-font-variation-settings)
   ),
   "font.mtest-font-size-only": (
     "font-size": var(--tz-font-mtest-font-size-only-font-size)

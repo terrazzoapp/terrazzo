@@ -90,17 +90,17 @@ class SassMap extends ValueSassToken {
 
   constructor(indentationLevel: number, values?: SassMapValues) {
     super(indentationLevel);
-    this.values = new Map<SassMapKey, SassMapValue>(
-      values
-        ? Symbol.iterator in values && typeof values[Symbol.iterator] === 'function'
-          ? values
-          : Object.entries(values)
-        : undefined,
-    );
+    this.values = new Map<SassMapKey, SassMapValue>(values ? this.sassMapValuesToIter(values) : undefined);
   }
 
   public set(key: SassMapKey, value: SassMapValue) {
     this.values.set(key, value);
+  }
+
+  public extend(values: SassMapValues) {
+    for (const [key, value] of this.sassMapValuesToIter(values)) {
+      this.set(key, value);
+    }
   }
 
   public setMap(key: SassMapKey, values: SassMapValues) {
@@ -119,6 +119,10 @@ class SassMap extends ValueSassToken {
       ).join(this.MAP_VALUE_SEPARATOR),
       new StringSassToken(this.MAP_CLOSE, this.indentationLevel),
     ].join(this.SEPARATOR);
+  }
+
+  private sassMapValuesToIter(values: SassMapValues) {
+    return Symbol.iterator in values && typeof values[Symbol.iterator] === 'function' ? values : Object.entries(values);
   }
 }
 
@@ -226,26 +230,24 @@ class SassBuilder {
 
       const values = { ...token.value };
 
-      let useFontshorthand = false;
+      const fontMap = tokenTypographyMixinsMap.createMap();
 
       if ('font-size' in tokenValue && 'font-family' in tokenValue) {
-        useFontshorthand = true;
+        fontMap.set('font', new CssVarReferenceSassToken(`${tokenName}`));
+
         for (const property of this.FONT_SHORTHAND_PROPERTIES) {
           delete values[property];
         }
       }
 
-      const fontMap = tokenTypographyMixinsMap.setMap(
-        tokenId,
+      fontMap.extend(
         Object.keys(values).map(
           (propertyName) =>
             [propertyName, new CssVarReferenceSassToken(`${tokenName}-${propertyName}`)] as [SassMapKey, SassMapValue],
         ),
       );
 
-      if (useFontshorthand) {
-        fontMap.set('font', new CssVarReferenceSassToken(`${tokenName}`));
-      }
+      tokenTypographyMixinsMap.set(tokenId, fontMap);
     }
 
     root.appendVariableDefinition('$__token-typography-mixins', tokenTypographyMixinsMap);
