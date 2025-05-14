@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import type { BuildHookOptions } from '@terrazzo/parser';
+import { MULTI_VALUE, type BuildHookOptions } from '@terrazzo/parser';
 import { FORMAT_ID } from '@terrazzo/plugin-css';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
@@ -20,7 +20,7 @@ export interface BuildParams {
 
 type SassMapKey = string | number;
 type SassMapValue = string | SassToken;
-type SassMapValues = { [key: SassMapKey]: SassMapValue } | Iterable<[SassMapKey, SassMapValue]>;
+type SassMapValues = Record<SassMapKey, SassMapValue> | Iterable<[SassMapKey, SassMapValue]>;
 
 abstract class SassToken {
   constructor(public readonly indentationLevel: number = 0) {}
@@ -205,9 +205,21 @@ class SassBuilder {
       const tokenId = token.token.id;
       const tokenName = token.localID ?? tokenId;
 
-      if (token.token.$type === 'typography') {
-        // typography tokens handled later
-        tokenValuesMap.set(tokenId, '"__tz-error-typography"');
+      if (token.token.$type === 'typography' && token.type === MULTI_VALUE) {
+        const tokenValue = token.value;
+
+        const typographySassVars = new Map<SassMapKey, SassToken>(
+          Object.keys(tokenValue).map((key) => [
+            `${tokenId}.${key}`,
+            new CssVarReferenceSassToken(`${tokenName}-${key}`),
+          ]),
+        );
+
+        if ('font-size' in tokenValue && 'font-family' in tokenValue) {
+          typographySassVars.set(tokenId, new CssVarReferenceSassToken(tokenName));
+        }
+
+        tokenValuesMap.extend(typographySassVars);
       } else {
         tokenValuesMap.set(tokenId, new CssVarReferenceSassToken(tokenName));
       }
