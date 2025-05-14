@@ -40,6 +40,7 @@ export default function generateUtilityCSS(
       console.warn(`[@terrazzo/plugin-css] utility group "${group}" matched 0 tokens: ${JSON.stringify(selectors)}`);
       break;
     }
+
     switch (group) {
       case 'bg': {
         for (const token of matchingTokens) {
