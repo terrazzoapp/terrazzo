@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 0.7.2
+
+### Patch Changes
+
+- [#477](https://github.com/terrazzoapp/terrazzo/pull/477) [`0e24810`](https://github.com/terrazzoapp/terrazzo/commit/0e248106b313e363edcfb1a27d11de619133af03) Thanks [@dzonatan](https://github.com/dzonatan)! - add `baseSelector` option to css plugin to allow changing the root selector
+
 ## 0.7.1
 
 ### Patch Changes
