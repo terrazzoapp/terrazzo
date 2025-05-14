@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { MULTI_VALUE, type BuildHookOptions } from '@terrazzo/parser';
+import { type BuildHookOptions, MULTI_VALUE } from '@terrazzo/parser';
 import { FORMAT_ID } from '@terrazzo/plugin-css';
 import { isTokenMatch } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
