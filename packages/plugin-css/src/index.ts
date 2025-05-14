@@ -19,6 +19,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
   } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
+  const baseSelector = options?.baseSelector ?? ':root';
 
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
@@ -72,7 +73,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
 
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
-        buildFormat({ exclude, getTransforms, modeSelectors, utility }),
+        buildFormat({ exclude, getTransforms, modeSelectors, utility, baseSelector }),
         '\n', // EOF newline
       );
       outputFile(filename, output.join('\n'));
