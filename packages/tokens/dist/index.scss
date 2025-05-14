@@ -271,7 +271,7 @@ $__token-typography-mixins: (
     @error 'This is a typography mixin. Use `@include typography("#{tokenId}")` instead.';
   }
 
-  @return map.get($token);
+  @return $token;
 }
 
 @mixin typography($tokenName) {
