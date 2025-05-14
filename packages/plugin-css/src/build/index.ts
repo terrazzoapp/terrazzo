@@ -12,15 +12,22 @@ export interface BuildFormatOptions {
   getTransforms: BuildHookOptions['getTransforms'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
   utility: CSSPluginOptions['utility'];
+  baseSelector: string;
 }
 
-export default function buildFormat({ getTransforms, exclude, utility, modeSelectors }: BuildFormatOptions): string {
+export default function buildFormat({
+  getTransforms,
+  exclude,
+  utility,
+  modeSelectors,
+  baseSelector,
+}: BuildFormatOptions): string {
   const rules: CSSRule[] = [];
 
   // :root
   const rootTokens = getTransforms({ format: FORMAT_ID, mode: '.' });
   if (rootTokens.length) {
-    const rootRule: CSSRule = { selectors: [':root'], declarations: {} };
+    const rootRule: CSSRule = { selectors: [baseSelector], declarations: {} };
 
     // note: `nestedQuery` was designed specifically for higher-gamut colors to
     // apply color-gamut media queries to existing selectors (i.e. keep the same
@@ -28,8 +35,8 @@ export default function buildFormat({ getTransforms, exclude, utility, modeSelec
     // hardware). Because of how CSS works they need to get built out into their
     // own selectors that have different structures depending on whether
     // `selectors` has a media query or not.
-    const p3Rule: CSSRule = { selectors: [':root'], nestedQuery: P3_MQ, declarations: {} };
-    const rec2020Rule: CSSRule = { selectors: [':root'], nestedQuery: REC2020_MQ, declarations: {} };
+    const p3Rule: CSSRule = { selectors: [baseSelector], nestedQuery: P3_MQ, declarations: {} };
+    const rec2020Rule: CSSRule = { selectors: [baseSelector], nestedQuery: REC2020_MQ, declarations: {} };
     rules.push(rootRule, p3Rule, rec2020Rule);
 
     for (const token of rootTokens) {

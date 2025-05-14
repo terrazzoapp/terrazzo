@@ -36,6 +36,11 @@ export interface CSSPluginOptions {
    * @default false
    */
   skipBuild?: boolean;
+  /**
+   * Set the base selector, like ":root" or ":host".
+   * @default ":root"
+   */
+  baseSelector?: string;
 }
 
 export interface ModeSelector {
