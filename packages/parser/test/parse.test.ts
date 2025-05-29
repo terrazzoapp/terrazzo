@@ -32,7 +32,6 @@ describe('Tokens', () => {
     try {
       result = await parse(given, { config, yamlToMomoa });
     } catch (e) {
-      // console.error(e)
       const err = e as TokensJSONError;
       expect(stripAnsi(err.message).replace(/\[parser:(validate|alias|normalize)\]\s*/, '')).toBe(want.error);
 

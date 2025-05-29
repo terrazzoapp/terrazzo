@@ -14,13 +14,15 @@ export default function pluginSass(options?: SassPluginOptions): Plugin {
       // plugin-css is required for transforms. throw error
       if (!config.plugins.some((p) => p.name === '@terrazzo/plugin-css')) {
         throw new Error(
-          `@terrazzo/plugin-sass relies on @terrazzo/plugin-css.
-Please install @terrazzo/plugin-css and follow setup to add to your config.`,
+          [
+            '@terrazzo/plugin-sass relies on @terrazzo/plugin-css.',
+            'Please install @terrazzo/plugin-css and follow setup to add to your config.',
+          ].join('\n'),
         );
       }
     },
     async build({ getTransforms, outputFile }) {
-      const output = build({ getTransforms, options });
+      const output = await build({ getTransforms, options });
       outputFile(filename, output);
     },
   };
