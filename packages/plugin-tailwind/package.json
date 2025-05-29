@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-tailwind",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@terrazzo/cli": "^0.7.0",
-    "@terrazzo/plugin-css": "^0.7.2",
+    "@terrazzo/plugin-css": "^0.7.0",
     "tailwindcss": "^4.0.0"
   },
   "dependencies": {

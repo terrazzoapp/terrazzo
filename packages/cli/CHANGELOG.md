@@ -1,5 +1,15 @@
 # @terrazzo/cli
 
+## 0.7.3
+
+### Patch Changes
+
+- [#482](https://github.com/terrazzoapp/terrazzo/pull/482) [`abc14c4`](https://github.com/terrazzoapp/terrazzo/commit/abc14c4f59f21a1c7d05d613dacdebcd9d512838) Thanks [@drwpow](https://github.com/drwpow)! - Fix documentation links
+
+- Updated dependencies [[`abc14c4`](https://github.com/terrazzoapp/terrazzo/commit/abc14c4f59f21a1c7d05d613dacdebcd9d512838)]:
+  - @terrazzo/parser@0.7.2
+  - @terrazzo/token-tools@0.7.3
+
 ## 0.7.2
 
 ### Patch Changes
