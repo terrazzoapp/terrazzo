@@ -5,7 +5,7 @@ layout: ../../../layouts/docs.astro
 
 # CLI
 
-The Terrazzo CLI takes DTCG tokens and generates code using plugins (e.g. [CSS](/docs/cli/integrations/ss), [Sass](/docs/cli/integrations/sass), [JS/TS](/docs/cli/integrations/js), and more). You can either run the Terrazzo CLI manually, or as part of your <abbr title="Continuous Integration">CI</abbr> process.
+The Terrazzo CLI takes DTCG tokens and generates code using plugins (e.g. [CSS](/docs/cli/integrations/css), [Sass](/docs/cli/integrations/sass), [JS/TS](/docs/cli/integrations/js), and more). You can either run the Terrazzo CLI manually, or as part of your <abbr title="Continuous Integration">CI</abbr> process.
 
 :::tip
 

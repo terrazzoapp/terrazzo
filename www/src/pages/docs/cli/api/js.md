@@ -5,7 +5,7 @@ layout: ../../../../layouts/docs.astro
 
 # JS API
 
-The JS API is a lower-level, powerful API that can be used to build Design Token systems such as the [Token Lab](/docs/token-lab). The JS API runs anywhere JavaScript does, including in Node.js, the browser, and serverless functions.
+The JS API is a lower-level, powerful API that can be used to build Design Token systems. The JS API runs anywhere JavaScript does, including in Node.js, the browser, and serverless functions.
 
 ## Basic Usage
 
@@ -34,13 +34,13 @@ const config = defineConfig(
   {
     // config options
   },
-  { cwd: new URL(import.meta.url) },
+  { cwd: new URL(import.meta.url) }
 );
 
 const rawTokens = "(any JSON or YAML)";
 const { tokens, sources } = await parse(
   [{ filename: new URL("file:///tokens.json"), src: rawTokens }],
-  { config },
+  { config }
 );
 const buildResult = await build(tokens, { sources, config });
 ```
@@ -83,7 +83,7 @@ const { tokens, ast } = await parse(
   {
     config,
     logger: new MyLogger(),
-  },
+  }
 );
 ```
 
