@@ -34,9 +34,6 @@ export const FONT_WEIGHT_MAP = {
   'ultra-black': 950,
 };
 
-// Note: because we’re handling a lot of input values, the type inference gets lost.
-// This file is expected to have a lot of `@ts-ignore` comments.
-
 const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
 
 /** Fill in defaults, and return predictable shapes for tokens */
@@ -140,14 +137,10 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
         (layer) =>
           ({
             color: normalizeValue({ $type: 'color', $value: layer.color }),
-            // @ts-ignore
-            offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? 0 }),
-            // @ts-ignore
-            offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? 0 }),
-            // @ts-ignore
-            blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? 0 }),
-            // @ts-ignore
-            spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? 0 }),
+            offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? { value: 0, unit: 'px' } }),
+            offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? { value: 0, unit: 'px' } }),
+            blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? { value: 0, unit: 'px' } }),
+            spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? { value: 0, unit: 'px' } }),
             inset: layer.inset === true,
           }) as ShadowValueNormalized,
       );
@@ -163,11 +156,8 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
         return token.$value;
       }
       return {
-        // @ts-ignore
         duration: normalizeValue({ $type: 'duration', $value: token.$value.duration ?? 0 }),
-        // @ts-ignore
         delay: normalizeValue({ $type: 'duration', $value: token.$value.delay ?? 0 }),
-        // @ts-ignore
         timingFunction: normalizeValue({ $type: 'cubicBezier', $value: token.$value.timingFunction }),
       } as TransitionValue;
     }

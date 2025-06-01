@@ -1,11 +1,9 @@
 {
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "dist",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
-    "skipLibCheck": true
+    "baseUrl": "src",
+    "incremental": true,
+    "outDir": "dist"
   },
-  "include": ["src"]
+  "include": ["./src/"]
 }

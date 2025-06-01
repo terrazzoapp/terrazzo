@@ -1,10 +1,10 @@
 {
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
+    "incremental": true,
     "noEmit": true,
-    "skipLibCheck": true,
     "outDir": "dist"
   },
-  "include": ["src", "*.{js,ts}", "index.test.tsx"]
+  "include": ["./src", "./*.{js,ts}", "./index.test.tsx"]
 }

@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "allowArbitraryExtensions": true,
     "declaration": true,
     "declarationMap": true,
     "esModuleInterop": true,
-    "lib": ["DOM", "ESNext"],
+    "lib": ["ESNext"],
     "module": "NodeNext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
@@ -11,12 +12,12 @@
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "skipLibCheck": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
     "target": "ESNext",
-    "allowArbitraryExtensions": true,
-    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["**/dist/*", "**/node_modules/*"]
 }
