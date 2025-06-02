@@ -67,16 +67,27 @@ export interface SelectProps extends RadixSelectProps {
 export default function Select({
   children,
   className,
+  defaultOpen,
+  defaultValue,
+  onOpenChange,
+  onValueChange,
   scrollDownIcon,
   scrollUpIcon,
   style,
   trigger,
   triggerIcon,
+  value,
   ...rest
 }: SelectProps) {
   return (
-    <Root {...rest}>
-      <Trigger className={clsx('tz-select-trigger', className)} style={style}>
+    <Root
+      defaultOpen={defaultOpen}
+      defaultValue={defaultValue}
+      onOpenChange={onOpenChange}
+      onValueChange={onValueChange}
+      value={value}
+    >
+      <Trigger {...rest} className={clsx('tz-select-trigger', className)} style={style}>
         <Value placeholder={<span className='tz-select-trigger-inner'>{trigger}</span>} />
         <Icon className='tz-select-icon'>{triggerIcon ?? <CaretSort />}</Icon>
       </Trigger>

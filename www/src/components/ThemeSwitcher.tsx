@@ -44,7 +44,7 @@ export default function ThemeSwitcher() {
   }, [theme]);
 
   return (
-    <Select value={theme} onValueChange={(value) => setTheme(value as typeof theme)}>
+    <Select value={theme} onValueChange={(value) => setTheme(value as typeof theme)} aria-label='Theme'>
       <SelectItem value='auto' icon={<Half2 />}>
         Auto
       </SelectItem>
