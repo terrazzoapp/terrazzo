@@ -1,5 +1,13 @@
 # @terrazzo/plugin-swift
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`84335da`](https://github.com/terrazzoapp/terrazzo/commit/84335da86adbe4cf112b91d8d9bfa1301c5492d4)]:
+  - @terrazzo/cli@0.7.4
+  - @terrazzo/token-tools@0.7.4
+
 ## 0.0.2
 
 ### Patch Changes
