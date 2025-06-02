@@ -29,7 +29,7 @@ And here’s a basic example showing `config`, `parse`, and `build` steps:
 
 ```js
 import { defineConfig, parse, build } from "@terrazzo/parser";
-import fs from "node:fs";
+import fs from "node:fs/promises";
 
 const config = defineConfig(
   {
@@ -40,10 +40,14 @@ const config = defineConfig(
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const { tokens, sources } = await parse(
-  [{ filename, src: fs.readFileSync(filename) }],
+  [{ filename, src: await fs.readFile(filename) }],
   { config }
 );
 const buildResult = await build(tokens, { sources, config });
+
+for (const { filename, contents } of buildResult) {
+  await fs.writeFile(filename, contents);
+}
 ```
 
 It’s worth noting the JS API is a little more manual work than the [CLI](/docs/cli):
@@ -128,41 +132,40 @@ Sometimes the token source you’re reading from isn’t in a perfect state, and
 ```ts
 import { parse } from "@terrazzo/parser";
 import culori from "culori";
+import fs from "node:fs/promises";
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
+const config = defineConfig({}, { cwd: new URL(import.meta.url) });
 const { sources } = await parse(
-  [{ filename, src: fs.readFileSync(filename) }],
-  { config }
-);
+  [{ filename, src: await fs.readFile(filename) }],
+  {
+    config,
+    transform: {
+      // Dynamically inject some colors
+      group(json, path, ast) {
+        if (path.startsWith("color.base.slate")) {
+          return {
+            ...json,
+            "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
+          };
+        }
+      },
 
-const { code } = await parse([{ filename, src: fs.readFileSync(filename) }], {
-  transform: {
-    // Dynamically inject some colors
-    group(json, path, ast) {
-      if (path.startsWith("color.base.slate")) {
+      // Transform color tokens, converting them from CSS strings into color objects
+      color(json, path, ast) {
+        const color = culori.parse(json.$value);
+        if (!color) return;
+
+        const { mode: colorSpace, alpha, ...components } = color;
+
         return {
           ...json,
-          "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
+          $value: { colorSpace, components, alpha },
         };
-      }
+      },
     },
-
-    // Transform color tokens, converting them from CSS strings into color objects
-    color(json, path, ast) {
-      const color = culori.parse(json.$value);
-      if (!color) return;
-
-      const { mode: colorSpace, alpha, ...components } = color;
-
-      return {
-        ...json,
-        $value: { colorSpace, components, alpha },
-      };
-    },
-  },
-});
-
-fs.writeFileSync("./tokens/updated-tokens", code);
+  }
+);
 ```
 
 Return **undefined** to leave the JSON as-is, or return **any JSON-serializable value** to replace the JSON with a new one.
@@ -213,7 +216,7 @@ The visitor always moves top-down (or “depth-first”). What this means is if 
 4. group `color.neutral.default`
 5. color `color.neutral.default.100`
 
-So you couldn’t, say, transform the value of `color.neutral.default.100` and try to use it in the **group** `color.neutral` transform—when that fires, it still has the old value. So when transforming, you’ll have to work with the highest level up that captures what you want to do.
+So you couldn’t, say, transform the value of `color.neutral.default.100` in step 5, but try to use it in step 3 in the **group** `color.neutral` transform—when that fires, it still has the old value. Traversals don’t re-fire just for efficiency. So when transforming, you’ll have to work with the highest level up that captures what you want to do.
 
 The **root** visitor always fires first, no matter what.
 
@@ -225,7 +228,7 @@ The **root** visitor always fires first, no matter what.
 - There’s not a way to catch “any token” type. If you want to apply some transformation to all token types, specify each visitor individually and create common functions to call.
 - AST source locations aren’t updated from transformations. For example, any dynamically-injected tokens wouldn’t have any source location whatsoever (this only matters if you’ve built plugins that use AST data).
 
-::: tip
+:::tip
 
 If you need a more advanced usecase than what the Transform API can deliver, you can always process tokens in multiple passes! For example, you could always simply use `parse()` to generate a clean, easy-to-work-with tokens object in memory, you could operate on that, and you could re-run it through `parse()` again.
 
