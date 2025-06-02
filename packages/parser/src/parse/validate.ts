@@ -20,6 +20,29 @@ export interface ValidateOptions {
   logger: Logger;
 }
 
+export interface Visitors {
+  color?: Visitor;
+  dimension?: Visitor;
+  fontFamily?: Visitor;
+  fontWeight?: Visitor;
+  duration?: Visitor;
+  cubicBezier?: Visitor;
+  number?: Visitor;
+  link?: Visitor;
+  boolean?: Visitor;
+  strokeStyle?: Visitor;
+  border?: Visitor;
+  transition?: Visitor;
+  shadow?: Visitor;
+  gradient?: Visitor;
+  typography?: Visitor;
+  root?: Visitor;
+  group?: Visitor;
+  [key: string]: Visitor | undefined;
+}
+
+export type Visitor = (json: any, path: string, ast: AnyNode) => any | undefined | null;
+
 export const VALID_COLORSPACES = new Set([
   'adobe-rgb',
   'display-p3',
@@ -587,10 +610,7 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
   if (node.type !== 'Member' && node.type !== 'Object') {
     logger.error({
       ...baseMessage,
-      message: `Expected Object, received ${JSON.stringify(
-        // @ts-ignore Yes, TypeScript, this SHOULD be unexpected. This is why we’re validating.
-        node.type,
-      )}`,
+      message: `Expected Object, received ${JSON.stringify(node.type)}`,
     });
   }
 
@@ -748,14 +768,48 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
   }
 }
 
+/** Return any token node with its inherited $type */
+export function getInheritedType(
+  node: MemberNode,
+  { subpath, $typeInheritance }: { subpath: string[]; $typeInheritance?: Record<string, MemberNode> },
+): MemberNode | undefined {
+  if (node.value.type !== 'Object') {
+    return;
+  }
+
+  // keep track of $types
+  const $type = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$type');
+  const $value = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$value');
+  if ($typeInheritance && $type && !$value) {
+    $typeInheritance[subpath.join('.') || '.'] = $type;
+  }
+
+  const id = subpath.join('.');
+
+  // get parent type by taking the closest-scoped $type (length === closer)
+  let parent$type: MemberNode | undefined;
+  let longestPath = '';
+  for (const [k, v] of Object.entries($typeInheritance ?? {})) {
+    if (k === '.' || id.startsWith(k)) {
+      if (k.length > longestPath.length) {
+        parent$type = v;
+        longestPath = k;
+      }
+    }
+  }
+
+  return parent$type;
+}
+
 export interface ValidateTokenNodeOptions {
   subpath: string[];
   src: string;
   filename: URL;
   config: ConfigInit;
   logger: Logger;
-  parent?: AnyNode;
-  $typeInheritance?: Record<string, Token['$type']>;
+  parent: AnyNode | undefined;
+  transform?: Visitors;
+  inheritedTypeNode?: MemberNode;
 }
 
 /**
@@ -765,22 +819,14 @@ export interface ValidateTokenNodeOptions {
  */
 export default function validateTokenNode(
   node: MemberNode,
-  { config, filename, logger, parent, src, subpath, $typeInheritance }: ValidateTokenNodeOptions,
+  { config, filename, logger, parent, inheritedTypeNode, src, subpath }: ValidateTokenNodeOptions,
 ): TokenNormalized | undefined {
-  // const start = performance.now();
-
   // don’t validate $value
   if (subpath.includes('$value') || node.value.type !== 'Object') {
     return;
   }
 
   const members = getObjMembers(node.value);
-
-  // keep track of $types
-  if ($typeInheritance && members.$type && members.$type.type === 'String' && !members.$value) {
-    // @ts-ignore
-    $typeInheritance[subpath.join('.') || '.'] = node.value.members.find((m) => m.name.value === '$type');
-  }
 
   // don’t validate $extensions or $defs
   if (!members.$value || subpath.includes('$extensions') || subpath.includes('$deps')) {
@@ -800,29 +846,13 @@ export default function validateTokenNode(
     });
   }
 
-  const extensions = members.$extensions ? getObjMembers(members.$extensions as ObjectNode) : undefined;
-  const sourceNode = structuredClone(node);
-
-  // get parent type by taking the closest-scoped $type (length === closer)
-  let parent$type: Token['$type'] | undefined;
-  let longestPath = '';
-  for (const [k, v] of Object.entries($typeInheritance ?? {})) {
-    if (k === '.' || id.startsWith(k)) {
-      if (k.length > longestPath.length) {
-        parent$type = v;
-        longestPath = k;
-      }
-    }
+  const nodeWithType = structuredClone(node);
+  let $type = (members.$type?.type === 'String' && members.$type.value) || undefined;
+  if (inheritedTypeNode && !members.$type) {
+    injectObjMembers(nodeWithType.value as ObjectNode, [inheritedTypeNode]);
+    $type = (inheritedTypeNode.value as StringNode).value;
   }
-  if (parent$type && !members.$type) {
-    injectObjMembers(
-      // @ts-ignore
-      sourceNode.value,
-      [parent$type],
-    );
-  }
-
-  validateTokenMemberNode(sourceNode, { filename, src, logger });
+  validateTokenMemberNode(nodeWithType, { filename, src, logger });
 
   // All tokens must be valid, so we want to validate it up till this
   // point. However, if we are ignoring this token (or respecting
@@ -833,47 +863,37 @@ export default function validateTokenNode(
   }
 
   const group: TokenNormalized['group'] = { id: splitID(id).group!, tokens: [] };
-  if (parent$type) {
-    group.$type =
-      // @ts-ignore
-      parent$type.value.value;
+  if (inheritedTypeNode && inheritedTypeNode.value.type === 'String') {
+    group.$type = inheritedTypeNode.value.value as Token['$type'];
   }
   // note: this will also include sibling tokens, so be selective about only accessing group-specific properties
-  const groupMembers = getObjMembers(
-    // @ts-ignore
-    parent,
-  );
+  const groupMembers = getObjMembers(parent as ObjectNode);
   if (groupMembers.$description) {
     group.$description = evaluate(groupMembers.$description) as string;
   }
   if (groupMembers.$extensions) {
     group.$extensions = evaluate(groupMembers.$extensions) as Record<string, unknown>;
   }
-  const token: TokenNormalized = {
-    // @ts-ignore
-    $type: members.$type?.value ?? parent$type?.value.value,
-    // @ts-ignore
-    $value: evaluate(members.$value),
+  const $value = evaluate(members.$value!);
+  const token = {
+    $type,
+    $value,
     id,
-    // @ts-ignore
     mode: {},
-    // @ts-ignore
     originalValue: evaluate(node.value),
     group,
     source: {
-      loc: filename ? filename.href : undefined,
-      // @ts-ignore
-      node: sourceNode.value,
+      loc: filename?.href,
+      node: nodeWithType.value as ObjectNode,
     },
-  };
-  // @ts-ignore
-  if (members.$description?.value) {
-    // @ts-ignore
+  } as unknown as TokenNormalized;
+  if (members.$description?.type === 'String' && members.$description.value) {
     token.$description = members.$description.value;
   }
 
   // handle modes
   // note that circular refs are avoided here, such as not duplicating `modes`
+  const extensions = members.$extensions ? getObjMembers(members.$extensions as ObjectNode) : undefined;
   const modeValues = extensions?.mode ? getObjMembers(extensions.mode as any) : {};
   for (const mode of ['.', ...Object.keys(modeValues)]) {
     const modeValue = mode === '.' ? token.$value : (evaluate((modeValues as any)[mode]) as any);
@@ -881,18 +901,11 @@ export default function validateTokenNode(
       $value: modeValue,
       originalValue: modeValue,
       source: {
-        loc: filename ? filename.href : undefined,
-        // @ts-ignore
-        node: modeValues[mode],
+        loc: filename?.href,
+        node: modeValues[mode] as ObjectNode,
       },
     };
   }
 
-  // logger.debug({
-  //   message: `${token.id}: validateTokenNode`,
-  //   group: 'parser', label: 'validate',
-  //   label: 'validate',
-  //   timing: performance.now() - start,
-  // });
   return token;
 }

@@ -1,13 +1,13 @@
-import type { DocumentNode, ObjectNode } from '@humanwhocodes/momoa';
+import { type DocumentNode, type MemberNode, type ObjectNode, evaluate } from '@humanwhocodes/momoa';
 import { type Token, type TokenNormalized, pluralize, splitID } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import type { ConfigInit, InputSource } from '../types.js';
 import applyAliases from './alias.js';
-import { getObjMembers, toMomoa, traverse } from './json.js';
+import { getObjMembers, parseJSON, replaceObjMembers, toMomoa, traverse } from './json.js';
 import normalize from './normalize.js';
-import validateTokenNode from './validate.js';
+import validateTokenNode, { type Visitors, getInheritedType } from './validate.js';
 
 export * from './alias.js';
 export * from './normalize.js';
@@ -30,6 +30,11 @@ export interface ParseOptions {
   continueOnError?: boolean;
   /** Provide yamlToMomoa module to parse YAML (by default, this isn’t shipped to cut down on package weight) */
   yamlToMomoa?: typeof ytm;
+  /**
+   * Transform API
+   * @see https://terrazzo.app/docs/api/js#transform-api
+   */
+  transform?: Visitors;
   /** (internal cache; do not use) */
   _sources?: Record<string, InputSource>;
 }
@@ -48,6 +53,7 @@ export default async function parse(
     config = {} as ConfigInit,
     continueOnError = false,
     yamlToMomoa,
+    transform,
     _sources = {},
   }: ParseOptions = {} as ParseOptions,
 ): Promise<ParseResult> {
@@ -91,6 +97,7 @@ export default async function parse(
         skipLint,
         continueOnError,
         yamlToMomoa,
+        transform,
       });
       tokensSet = Object.assign(tokensSet, result.tokens);
       if (src.filename) {
@@ -166,6 +173,7 @@ async function parseSingle(
     config,
     skipLint,
     continueOnError = false,
+    transform,
     yamlToMomoa, // optional dependency, declared here so the parser itself doesn’t have to load a heavy dep in-browser
   }: {
     filename: URL;
@@ -173,12 +181,13 @@ async function parseSingle(
     config: ConfigInit;
     skipLint: boolean;
     continueOnError?: boolean;
+    transform: ParseOptions['transform'] | undefined;
     yamlToMomoa?: typeof ytm;
   },
 ): Promise<{ tokens: Record<string, Token>; document: DocumentNode; src?: string }> {
   // 1. Build AST
   const startParsing = performance.now();
-  const { src, document } = toMomoa(input, { filename, logger, continueOnError, yamlToMomoa });
+  let { src, document } = toMomoa(input, { filename, logger, continueOnError, yamlToMomoa });
   logger.debug({
     group: 'parser',
     label: 'json',
@@ -187,27 +196,77 @@ async function parseSingle(
   });
   const tokensSet: Record<string, TokenNormalized> = {};
 
+  // 1a. if there’s a root() transformer, then re-parse
+  if (transform?.root) {
+    const json = typeof input === 'string' ? JSON.parse(input) : input;
+    const result = transform?.root(json, '.', document);
+    if (result) {
+      const reRunResult = toMomoa(result, { filename, logger, continueOnError /* YAML not needed in transform() */ });
+      src = reRunResult.src;
+      document = reRunResult.document;
+    }
+  }
+
   // 2. Walk AST to validate tokens
   let tokenCount = 0;
   const startValidate = performance.now();
-  const $typeInheritance: Record<string, Token['$type']> = {};
+  const $typeInheritance: Record<string, MemberNode> = {};
   traverse(document, {
     enter(node, parent, subpath) {
       // if $type appears at root of tokens.json, collect it
       if (node.type === 'Document' && node.body.type === 'Object' && node.body.members) {
-        const members = getObjMembers(node.body);
-        if (members.$type && members.$type.type === 'String' && !members.$value) {
-          // @ts-ignore
-          $typeInheritance['.'] = node.body.members.find((m) => m.name.value === '$type');
+        const { members: rootMembers } = node.body;
+        const root$type = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$type');
+        const root$value = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$value');
+        if (root$type && !root$value) {
+          $typeInheritance['.'] = root$type;
+        }
+      }
+
+      // for transform() visitors, all non-tokens MUST be handled at this point (besides "root", which was handled above)
+      if (
+        node.type === 'Object' && // JSON object
+        subpath.length &&
+        !node.members.some((m) => m.name.type === 'String' && m.name.value === '$value') && // not the token node itself
+        !subpath.includes('$value') && // not a child of a token node, either
+        !subpath.includes('$extensions') // not metadata
+      ) {
+        if (transform?.group) {
+          const newJSON = transform?.group(evaluate(node), subpath.join('.'), node);
+          if (newJSON) {
+            replaceObjMembers(node, parseJSON(newJSON));
+          }
         }
       }
 
       // handle tokens
       if (node.type === 'Member') {
-        const token = validateTokenNode(node, { filename, src, config, logger, parent, subpath, $typeInheritance });
-        if (token) {
-          tokensSet[token.id] = token;
-          tokenCount++;
+        const inheritedTypeNode = getInheritedType(node, { subpath, $typeInheritance });
+        if (node.value.type === 'Object') {
+          const $type =
+            node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$type') || inheritedTypeNode;
+          const $value = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$value');
+          if ($value && $type?.value.type === 'String' && transform?.[$type.value.value]) {
+            const result = transform[$type.value.value]?.(evaluate(node.value), subpath.join('.'), node);
+            if (result) {
+              node.value = parseJSON(result).body;
+            }
+          }
+
+          const token = validateTokenNode(node, {
+            filename,
+            src,
+            config,
+            logger,
+            parent,
+            subpath,
+            transform,
+            inheritedTypeNode,
+          });
+          if (token) {
+            tokensSet[token.id] = token;
+            tokenCount++;
+          }
         }
       }
     },

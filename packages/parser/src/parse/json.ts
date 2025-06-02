@@ -3,15 +3,16 @@ import {
   type DocumentNode,
   type MemberNode,
   type ObjectNode,
+  type ParseOptions,
   type ValueNode,
-  parse as parseJSON,
+  parse as momoaParse,
   print,
 } from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
 import type { InputSource } from '../types.js';
 
-export interface Visitor {
+export interface JSONVisitor {
   enter?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
   exit?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
 }
@@ -54,11 +55,7 @@ export function getObjMembers(node: ObjectNode): Record<string | number, ValueNo
   return members;
 }
 
-/**
- * Inject members to ObjectNode
- * @param {ObjectNode} node
- * @param {MemberNode[]} members
- */
+/** Inject members to ObjectNode */
 export function injectObjMembers(node: ObjectNode, members: MemberNode[] = []) {
   if (node.type !== 'Object') {
     return;
@@ -66,11 +63,16 @@ export function injectObjMembers(node: ObjectNode, members: MemberNode[] = []) {
   node.members.push(...members);
 }
 
+/** Replace an ObjectNode’s contents outright with another */
+export function replaceObjMembers(a: ObjectNode, b: DocumentNode | ObjectNode) {
+  a.members = (b.type === 'Document' && (b.body as ObjectNode)?.members) || (b as ObjectNode).members;
+}
+
 /**
  * Variation of Momoa’s traverse(), which keeps track of global path.
  * Allows mutation of AST (along with any consequences)
  */
-export function traverse(root: AnyNode, visitor: Visitor) {
+export function traverse(root: AnyNode, visitor: JSONVisitor) {
   /**
    * Recursively visits a node.
    * @param {AnyNode} node The node to visit.
@@ -89,20 +91,15 @@ export function traverse(root: AnyNode, visitor: Visitor) {
     const childNode = CHILD_KEYS[node.type];
     for (const key of childNode ?? []) {
       const value = node[key as keyof typeof node];
-
-      if (value && typeof value === 'object') {
-        if (Array.isArray(value)) {
-          for (let i = 0; i < value.length; i++) {
-            visitNode(
-              // @ts-expect-error this is safe
-              value[i],
-              node,
-              key === 'elements' ? [...nextPath, String(i)] : nextPath,
-            );
-          }
-        } else if (isNode(value)) {
-          visitNode(value as unknown as AnyNode, node, nextPath);
+      if (!value) {
+        continue;
+      }
+      if (Array.isArray(value)) {
+        for (let i = 0; i < value.length; i++) {
+          visitNode(value[i] as unknown as AnyNode, node, key === 'elements' ? [...nextPath, String(i)] : nextPath);
         }
+      } else if (isNode(value)) {
+        visitNode(value as unknown as AnyNode, node, nextPath);
       }
     }
 
@@ -189,17 +186,26 @@ export function toMomoa(
       });
     }
   } else {
-    document = parseJSON(
-      typeof input === 'string' ? input : JSON.stringify(input, undefined, 2), // everything else: assert it’s JSON-serializable
-      {
-        mode: 'jsonc',
-        ranges: true,
-        tokens: true,
-      },
-    );
+    document = parseJSON(input);
   }
   if (!src) {
     src = print(document, { indent: 2 });
   }
   return { src, document };
+}
+
+/** Momoa, just with default options pre-set */
+export function parseJSON(input: string | Record<string, any>, options?: ParseOptions): any {
+  return momoaParse(
+    // note: it seems silly, at first glance, to have JSON.stringify() inside an actual JSON parser. But
+    // this provides a common interface to generate a Momoa AST for JSON created in-memory, which we already
+    // know is 100% valid because it’s already deserialized.
+    typeof input === 'string' ? input : JSON.stringify(input, undefined, 2),
+    {
+      mode: 'jsonc',
+      ranges: true,
+      tokens: true,
+      ...options,
+    },
+  );
 }

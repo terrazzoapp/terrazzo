@@ -1,3 +1,4 @@
+import type { AnyNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
@@ -2773,7 +2774,7 @@ describe('Additional cases', () => {
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse(given, { config });
       for (const [id, value] of Object.entries(want)) {
-        expect(tokens[id]!.$value).toEqual(value);
+        expect(tokens[id]?.$value).toEqual(value);
       }
     });
   });
@@ -2818,7 +2819,7 @@ describe('Additional cases', () => {
         ],
         { config },
       );
-      expect(tokens['color.blue.7']!.group).toEqual({
+      expect(tokens['color.blue.7']?.group).toEqual({
         id: 'color.blue',
         $type: 'color',
         $description: 'Blue palette',
@@ -3064,7 +3065,7 @@ describe('Additional cases', () => {
       const { tokens } = await parse(given, { config });
       for (const [id, value] of Object.entries(want)) {
         for (const [mode, wantedValue] of Object.entries(value!)) {
-          const { source, ...modeValue } = tokens[id]!.mode[mode]!;
+          const { source, ...modeValue } = tokens[id]?.mode[mode]!;
           expect(source).not.toBeFalsy();
           expect(modeValue).toEqual(wantedValue);
         }
@@ -3084,7 +3085,7 @@ describe('Additional cases', () => {
       };
       const config = defineConfig({}, { cwd });
       const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-      expect(tokens['color.blue']!.$value).toEqual({ alpha: 1, components: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
+      expect(tokens['color.blue']?.$value).toEqual({ alpha: 1, components: [0.2, 0.4, 0.8], colorSpace: 'srgb' });
     });
   });
 
@@ -3101,6 +3102,197 @@ describe('Additional cases', () => {
 }`;
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.blue.06']!.$value).toEqual({ alpha: 1, components: [0, 0, 1], colorSpace: 'srgb' });
+    expect(tokens['color.blue.06']?.$value).toEqual({ alpha: 1, components: [0, 0, 1], colorSpace: 'srgb' });
+  });
+});
+
+interface Visit {
+  name: string;
+  json: any;
+  path: string;
+  ast: AnyNode;
+}
+
+describe('Transform', () => {
+  it('color', async () => {
+    const visits: Visit[] = [];
+    const src = `{
+  "color": {
+    "$type": "color",
+    "slate": {
+      "700": { "$value": "#5a5a5a" },
+      "800": { "$value": "#434343" },
+      "900": { "$value": "#303030" },
+      "1000": { "$value": "#242424" }
+    },
+    "bg": {
+      "neutral": {
+        "default": { "$value": "{color.slate.700}" },
+        "hover": { "$value": "{color.slate.800}" }
+      }
+    }
+  }
+}`;
+
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
+      config,
+      transform: {
+        root(json, path, ast) {
+          visits.push({ name: 'root', json, path, ast });
+        },
+        group(json, path, ast) {
+          visits.push({ name: 'group', json, path, ast });
+        },
+        color(json, path, ast) {
+          visits.push({ name: 'color', json, path, ast });
+          if (path === 'color.bg.neutral.hover') {
+            return { ...json, $value: '{color.slate.900}' };
+          }
+        },
+      },
+    });
+
+    // assert visitors arrived in the right order
+    expect(visits.map(({ name, path }) => ({ name, path }))).toEqual([
+      { name: 'root', path: '.' },
+      { name: 'group', path: 'color' },
+      { name: 'group', path: 'color.slate' },
+      { name: 'color', path: 'color.slate.700' },
+      { name: 'color', path: 'color.slate.800' },
+      { name: 'color', path: 'color.slate.900' },
+      { name: 'color', path: 'color.slate.1000' },
+      { name: 'group', path: 'color.bg' },
+      { name: 'group', path: 'color.bg.neutral' },
+      { name: 'color', path: 'color.bg.neutral.default' },
+      { name: 'color', path: 'color.bg.neutral.hover' },
+    ]);
+
+    // assert color.bg.neutral.hover was transformed to color.slate.900 (not color.slate.800 as originally authored)
+    expect(tokens['color.bg.neutral.hover']?.$value).toEqual({
+      alpha: 1,
+      components: [0.18823529411764706, 0.18823529411764706, 0.18823529411764706],
+      colorSpace: 'srgb',
+      hex: '#303030',
+    });
+  });
+
+  it('deleting', async () => {
+    const src = `{
+  "color": {
+    "$type": "color",
+    "slate": {
+      "700": { "$value": "#5a5a5a" },
+      "800": { "$value": "#434343" },
+      "900": { "$value": "#303030" },
+      "1000": { "$value": "#242424" }
+    }
+  }
+}`;
+
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
+      config,
+      transform: {
+        group(json, path) {
+          if (path === 'color.slate') {
+            const groupJSON = { ...json };
+            delete groupJSON['900'];
+            return groupJSON;
+          }
+        },
+      },
+    });
+
+    // assert only one token was removed, all others were kept in tact
+    expect(tokens['color.slate.700']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0.35294117647058826, 0.35294117647058826, 0.35294117647058826],
+      hex: '#5a5a5a',
+    });
+    expect(tokens['color.slate.800']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0.2627450980392157, 0.2627450980392157, 0.2627450980392157],
+      hex: '#434343',
+    });
+    expect(tokens['color.slate.900']).toBeUndefined();
+    expect(tokens['color.slate.1000']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0.1411764705882353, 0.1411764705882353, 0.1411764705882353],
+      hex: '#242424',
+    });
+  });
+
+  it('injecting', async () => {
+    const src = `{
+  "color": {
+    "$type": "color",
+    "slate": {
+      "700": { "$value": "#5a5a5a" }
+    }
+  }
+}`;
+
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
+      config,
+      transform: {
+        group(json, path) {
+          if (path === 'color.slate') {
+            return { ...json, '800': { $value: '#434343' } };
+          }
+        },
+      },
+    });
+
+    // assert original token was preserved as authored
+    expect(tokens['color.slate.700']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0.35294117647058826, 0.35294117647058826, 0.35294117647058826],
+      hex: '#5a5a5a',
+    });
+
+    // assert dynamically-injected token matches
+    expect(tokens['color.slate.800']?.$type).toBe('color');
+    expect(tokens['color.slate.800']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0.2627450980392157, 0.2627450980392157, 0.2627450980392157],
+      hex: '#434343',
+    });
+  });
+
+  it('unknown', async () => {
+    const src = `{
+  "color": {
+    "$type": "foobar",
+    "slate": {
+      "700": { "$value": "bazbaz" }
+    }
+  }
+}`;
+
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
+      config,
+      transform: {
+        foobar(json) {
+          return { ...json, $type: 'color', $value: '#0088ff' };
+        },
+      },
+    });
+
+    // assert custom $type was parsed as a color (with a new $value)
+    expect(tokens['color.slate.700']?.$type).toBe('color');
+    expect(tokens['color.slate.700']?.$value).toEqual({
+      alpha: 1,
+      colorSpace: 'srgb',
+      components: [0, 0.5333333333333333, 1],
+      hex: '#0088ff',
+    });
   });
 });

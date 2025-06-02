@@ -1,8 +1,9 @@
 {
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
-    "noEmit": true,
-    "baseUrl": "."
+    "baseUrl": "src",
+    "incremental": true,
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["./src/"]
 }

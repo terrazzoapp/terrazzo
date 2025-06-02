@@ -1,11 +1,10 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "module": "NodeNext",
-    "moduleResolution": "nodenext",
+    "baseUrl": "src",
+    "incremental": true,
     "noEmit": true
   },
-  "include": ["src", "test"],
+  "include": ["./src/", "./test/"],
   "exclude": ["node_modules"]
 }
