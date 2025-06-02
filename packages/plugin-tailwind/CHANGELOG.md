@@ -1,5 +1,16 @@
 # @terrazzo/plugin-tailwind
 
+## 0.0.4
+
+### Patch Changes
+
+- [#485](https://github.com/terrazzoapp/terrazzo/pull/485) [`84335da`](https://github.com/terrazzoapp/terrazzo/commit/84335da86adbe4cf112b91d8d9bfa1301c5492d4) Thanks [@drwpow](https://github.com/drwpow)! - Add transform API to allow dynamic parsing / transformation of tokens on load
+
+- Updated dependencies [[`84335da`](https://github.com/terrazzoapp/terrazzo/commit/84335da86adbe4cf112b91d8d9bfa1301c5492d4)]:
+  - @terrazzo/cli@0.7.4
+  - @terrazzo/plugin-css@0.7.4
+  - @terrazzo/token-tools@0.7.4
+
 ## 0.0.3
 
 ### Patch Changes
