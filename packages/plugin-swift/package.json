@@ -1,19 +1,12 @@
 {
   "name": "@terrazzo/plugin-swift",
-  "description": "Generate Swift code using DTCG tokens.",
   "version": "0.0.3",
-  "type": "module",
+  "description": "Generate Swift code using DTCG design tokens JSON.",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
-  },
-  "homepage": "https://terrazzo.app/docs/cli/integrations/swift",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/terrazzoapp/terrazzo.git",
-    "directory": "./packages/plugin-swift/"
   },
   "keywords": [
     "design tokens",
@@ -23,8 +16,23 @@
     "swift",
     "ios"
   ],
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://terrazzo.app/docs/cli/integrations/swift",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-swift/"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "unbuild && attw --profile node16 --pack .",
+    "dev": "unbuild -w",
     "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "vitest run"

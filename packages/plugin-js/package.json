@@ -1,7 +1,8 @@
 {
   "name": "@terrazzo/plugin-js",
   "version": "0.7.3",
-  "description": "Generate JS, TS, and JSON from your design tokens schema (requires @terrazzo/cli)",
+  "description": "Generate JS, TS, and JSON from your DTCG design tokens JSON.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -15,20 +16,25 @@
     "ts",
     "typescript"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "homepage": "https://terrazzo.app/docs/cli/integrations/js",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/plugin-js/"
   },
-  "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-js dist/index.js",
-    "build:ts": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json -w",
+    "build": "unbuild && attw --profile node16 --pack .",
+    "dev": "unbuild -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-js run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/plugin-js run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

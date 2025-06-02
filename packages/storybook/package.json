@@ -1,9 +1,9 @@
 {
   "name": "@terrazzo/storybook",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "dev": "pnpm run sb",
     "build:app": "storybook build -o storybook",

@@ -1,13 +1,13 @@
 {
   "name": "@terrazzo/tiles",
-  "description": "Terrazzo’s component library",
   "version": "0.1.0",
+  "description": "Terrazzo’s component library",
+  "license": "MIT",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "license": "MIT",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+terrazzoapp/terrazzo.git",
@@ -20,7 +20,7 @@
     "format": "pnpm --filter @terrazzo/tiles run \"/^format:/\"",
     "format:js": "biome check --fix --unsafe src",
     "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:/\"",
+    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:(js|ts|css)$/\"",
     "lint:js": "biome check src",
     "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint \"src/**/*.css\"",

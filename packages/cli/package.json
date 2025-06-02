@@ -2,6 +2,7 @@
   "name": "@terrazzo/cli",
   "version": "0.7.4",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -19,13 +20,12 @@
     "style tokens",
     "style system"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
     },
-    "./README.md": "./README.md",
     "./package.json": "./package.json"
   },
   "homepage": "https://terrazzo.app/docs/cli",
@@ -34,17 +34,15 @@
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/cli/"
   },
-  "license": "MIT",
   "bin": {
     "tz": "bin/cli.js",
     "terrazzo": "bin/cli.js"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json && pnpm run build:lab",
-    "build:lab": "vite build",
-    "dev": "tsc -p tsconfig.build.json -w",
+    "build": "unbuild && attw --profile node16 --pack . && vite build",
+    "dev": "unbuild -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/cli run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/cli run \"/^lint:(js|ts)$/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

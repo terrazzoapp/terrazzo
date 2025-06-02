@@ -2,6 +2,7 @@
   "name": "@terrazzo/parser",
   "version": "0.7.3",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -21,18 +22,26 @@
     "linting",
     "lint"
   ],
-  "main": "./dist/index.js",
+  "main": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "homepage": "https://terrazzo.app/docs/cli/api/js",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/parser/"
   },
-  "license": "MIT",
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "unbuild && attw --profile node16 --pack .",
     "dev": "pnpm run build --watch",
-    "lint": "biome check .",
+    "lint": "pnpm --filter @terrazzo/parser run \"/^lint:(js|ts)$/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
     "test": "vitest run"
   },
   "dependencies": {
