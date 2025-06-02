@@ -10,6 +10,7 @@
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
+  --tz-color-base-blue-400: color(srgb 0 0.4392156862745098 0.6431372549019608);
   --tz-color-base-blue-600: color(srgb 0.12549019607843137 0.8274509803921568 0.9647058823529412);
   --tz-color-base-blue-800: color(srgb 0.5764705882352941 0.9372549019607843 1);
   --tz-color-base-blue-900: color(srgb 0.7803921568627451 0.9764705882352941 1);
@@ -62,7 +63,7 @@
   --tz-color-text-2: var(--tz-color-base-gray-300);
   --tz-color-text-3: var(--tz-color-base-gray-600);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
-  --tz-color-text-selected: var(--tz-color-base-blue-200);
+  --tz-color-text-selected: var(--tz-color-base-blue-400);
   --tz-ease-linear: cubic-bezier(0, 0, 1, 1);
   --tz-ease-quint-in: cubic-bezier(0.64, 0, 0.78, 0);
   --tz-ease-quint-in-out: cubic-bezier(0.83, 0, 0.17, 1);
@@ -168,6 +169,7 @@
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
+    --tz-color-base-blue-400: color(srgb 0 0.5372549019607843 0.6431372549019608);
     --tz-color-base-blue-600: color(srgb 0.12549019607843137 0.8274509803921568 0.9647058823529412);
     --tz-color-base-blue-800: color(srgb 0.5764705882352941 0.9372549019607843 1);
     --tz-color-base-blue-900: color(srgb 0.7803921568627451 0.9764705882352941 1);
@@ -220,7 +222,7 @@
     --tz-color-text-2: var(--tz-color-base-gray-300);
     --tz-color-text-3: var(--tz-color-base-gray-600);
     --tz-color-text-error: var(--tz-color-base-gray-1000);
-    --tz-color-text-selected: var(--tz-color-base-blue-200);
+    --tz-color-text-selected: var(--tz-color-base-blue-400);
   }
 }
 
@@ -232,6 +234,7 @@
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
+  --tz-color-base-blue-400: color(srgb 0 0.5372549019607843 0.6431372549019608);
   --tz-color-base-blue-600: color(srgb 0.12549019607843137 0.8274509803921568 0.9647058823529412);
   --tz-color-base-blue-800: color(srgb 0.5764705882352941 0.9372549019607843 1);
   --tz-color-base-blue-900: color(srgb 0.7803921568627451 0.9764705882352941 1);
@@ -284,7 +287,7 @@
   --tz-color-text-2: var(--tz-color-base-gray-300);
   --tz-color-text-3: var(--tz-color-base-gray-600);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
-  --tz-color-text-selected: var(--tz-color-base-blue-200);
+  --tz-color-text-selected: var(--tz-color-base-blue-400);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -296,6 +299,7 @@
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
+    --tz-color-base-blue-400: color(srgb 0.44313725490196076 0.6901960784313725 0.7333333333333333);
     --tz-color-base-blue-600: color(srgb 0.12549019607843137 0.8274509803921568 0.9647058823529412);
     --tz-color-base-blue-800: color(srgb 0.5764705882352941 0.9372549019607843 1);
     --tz-color-base-blue-900: color(srgb 0.7803921568627451 0.9764705882352941 1);
@@ -360,6 +364,7 @@
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
+  --tz-color-base-blue-400: color(srgb 0.44313725490196076 0.6901960784313725 0.7333333333333333);
   --tz-color-base-blue-600: color(srgb 0.12549019607843137 0.8274509803921568 0.9647058823529412);
   --tz-color-base-blue-800: color(srgb 0.5764705882352941 0.9372549019607843 1);
   --tz-color-base-blue-900: color(srgb 0.7803921568627451 0.9764705882352941 1);
