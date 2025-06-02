@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-tools",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "description": "Various utilities for token types",
   "license": "MIT",
   "type": "module",
@@ -29,9 +29,9 @@
   },
   "main": "./dist/index.js",
   "exports": {
-    ".":"./dist/index.js",
+    ".": "./dist/index.js",
     "./css": "./dist/css.js",
-    "./js":  "./dist/js.js",
+    "./js": "./dist/js.js",
     "./package.json": "./package.json"
   },
   "scripts": {

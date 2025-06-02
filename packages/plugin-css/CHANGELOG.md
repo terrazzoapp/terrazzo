@@ -1,5 +1,17 @@
 # @terrazzo/plugin-css
 
+## 0.8.0
+
+### Minor Changes
+
+- [#489](https://github.com/terrazzoapp/terrazzo/pull/489) [`63f91e6`](https://github.com/terrazzoapp/terrazzo/commit/63f91e6eee1bec5cf7fae3c1bffdde40a5604ec6) Thanks [@drwpow](https://github.com/drwpow)! - Use Rolldown for packaging 🚀
+
+### Patch Changes
+
+- Updated dependencies [[`63f91e6`](https://github.com/terrazzoapp/terrazzo/commit/63f91e6eee1bec5cf7fae3c1bffdde40a5604ec6)]:
+  - @terrazzo/token-tools@0.8.0
+  - @terrazzo/cli@0.8.0
+
 ## 0.7.4
 
 ### Patch Changes
