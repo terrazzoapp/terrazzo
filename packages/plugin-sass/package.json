@@ -15,12 +15,9 @@
     "css",
     "sass"
   ],
-  "main": "./dist/index.mjs",
-    "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.mjs"
-    },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "homepage": "https://terrazzo.app/docs/cli/integrations/sass",
@@ -30,8 +27,8 @@
     "directory": "packages/plugin-sass"
   },
   "scripts": {
-    "build": "unbuild && attw --profile node16 --pack .",
-    "dev": "unbuild -w",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/plugin-sass run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",

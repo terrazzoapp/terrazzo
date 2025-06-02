@@ -30,7 +30,7 @@
     "build:app": "vite build",
     "preview": "vite preview",
     "format": "biome check --fix --unsafe src",
-    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:(js|css)$/\"",
+    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:(js|css)/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint src"
   },

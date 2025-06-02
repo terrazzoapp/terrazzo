@@ -15,8 +15,9 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "format": "biome check --fix --unsafe src",
-    "lint": "pnpm --filter @terrazzo/icons run \"/^lint:(js)$/\"",
-    "lint:js": "biome check ."
+    "lint": "pnpm --filter @terrazzo/icons run \"/^lint:(js|ts)/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit"
   },
   "peerDependencies": {
     "react": "^19.0.0",

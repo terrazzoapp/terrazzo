@@ -8,14 +8,14 @@ import type { Logger } from '@terrazzo/parser';
 import mime from 'mime';
 import type { Flags } from './shared.js';
 
-export interface BuildOptions {
+export interface LabBuildOptions {
   flags: Flags;
   config: ConfigInit;
   configPath: string;
   logger: Logger;
 }
 
-export async function labCmd({ config, logger }: BuildOptions) {
+export async function labCmd({ config, logger }: LabBuildOptions) {
   /** TODO: handle multiple files */
   const [tokenFileUrl] = config.tokens;
 

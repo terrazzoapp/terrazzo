@@ -20,12 +20,9 @@
     "style tokens",
     "style system"
   ],
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.js",
   "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.mjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "homepage": "https://terrazzo.app/docs/cli",
@@ -39,10 +36,10 @@
     "terrazzo": "bin/cli.js"
   },
   "scripts": {
-    "build": "unbuild && attw --profile node16 --pack . && vite build",
-    "dev": "unbuild -w",
+    "build": "rolldown -c && attw --profile esm-only --pack . && vite build",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/cli run \"/^lint:(js|ts)$/\"",
+    "lint": "pnpm --filter @terrazzo/cli run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

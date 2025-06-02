@@ -20,7 +20,7 @@
     "format": "pnpm --filter @terrazzo/tiles run \"/^format:/\"",
     "format:js": "biome check --fix --unsafe src",
     "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:(js|ts|css)$/\"",
+    "lint": "pnpm --filter @terrazzo/tiles run \"/^lint:(js|ts|css)/\"",
     "lint:js": "biome check src",
     "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint \"src/**/*.css\"",

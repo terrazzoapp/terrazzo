@@ -15,12 +15,9 @@
     "w3c",
     "css"
   ],
-  "main": "./dist/index.mjs",
+  "main": "./dist/index.js",
   "exports": {
-    ".": {
-      "require": "./dist/index.cjs",
-      "default": "./dist/index.mjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "homepage": "https://terrazzo.app/docs/cli/integrations/css",
@@ -30,8 +27,8 @@
     "directory": "./packages/plugin-css/"
   },
   "scripts": {
-    "build": "unbuild && attw --profile node16 --pack .",
-    "dev": "unbuild -w",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/plugin-css run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",

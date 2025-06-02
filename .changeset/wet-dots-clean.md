@@ -9,4 +9,4 @@
 "@terrazzo/cli": minor
 ---
 
-Use unbuild for packaging
+Use Rolldown for packaging 🚀
