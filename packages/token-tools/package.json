@@ -1,7 +1,9 @@
 {
   "name": "@terrazzo/token-tools",
-  "description": "Various utilities for token types",
   "version": "0.7.4",
+  "description": "Various utilities for token types",
+  "license": "MIT",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
@@ -25,24 +27,20 @@
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/token-tools/"
   },
-  "license": "MIT",
-  "type": "module",
   "main": "./dist/index.js",
   "exports": {
-    ".": "./dist/index.js",
-    "./css": "./dist/css/index.js",
-    "./js": "./dist/js/index.js",
-    "./*": "./*"
+    ".":"./dist/index.js",
+    "./css": "./dist/css.js",
+    "./js":  "./dist/js.js",
+    "./package.json": "./package.json"
   },
   "scripts": {
-    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/token-tools dist/index.js",
-    "build:ts": "tsc -p tsconfig.build.json",
-    "dev": "pnpm --filter @terrazzo/token-tools run --parallel \"/^dev:.*/\"",
-    "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:.*/\"",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
+    "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "format": "biome check --fix --unsafe .",
-    "dev:ts": "tsc -p tsconfig.build.json --watch",
     "test": "vitest run"
   },
   "dependencies": {

@@ -3,6 +3,14 @@ import { pathToFileURL } from 'node:url';
 import { type Config, type ConfigInit, defineConfig as defineConfigCore } from '@terrazzo/parser';
 import { cwd } from './shared.js';
 
+export * from './build.js';
+export * from './check.js';
+export * from './help.js';
+export * from './init.js';
+export * from './lab.js';
+export * from './normalize.js';
+export * from './shared.js';
+export * from './version.js';
 export type { Command, Flags } from './shared.js';
 
 const require = createRequire(cwd);

@@ -1,7 +1,8 @@
 {
   "name": "@terrazzo/plugin-css",
   "version": "0.7.4",
-  "description": "Convert DTCG tokens into CSS variables for use in any web application or native app with webview.",
+  "description": "Convert DTCG design tokens JSON into CSS variables for use in any web application or native app with webview.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -15,19 +16,21 @@
     "css"
   ],
   "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "homepage": "https://terrazzo.app/docs/cli/integrations/css",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "./packages/plugin-css/"
   },
-  "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-css dist/index.js",
-    "build:ts": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json -w",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-css run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/plugin-css run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

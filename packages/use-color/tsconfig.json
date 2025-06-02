@@ -2,9 +2,8 @@
   "extends": "../../tsconfig.react.json",
   "compilerOptions": {
     "baseUrl": "src",
-    "incremental": true,
     "noEmit": true,
     "outDir": "dist"
   },
-  "include": ["./src", "./*.{js,ts}", "./index.test.tsx"]
+  "include": ["./*.{js,ts}", "./index.test.tsx"]
 }

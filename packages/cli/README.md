@@ -1,6 +1,6 @@
 # ⛋ @terrazzo/cli
 
-The Terrazzo CLI takes DTCG tokens and generates code using plugins (e.g. [CSS](../plugin-css/), [Sass](../plugin-sass/), [JS/TS](../plugin-js/), and more). You can either run the Terrazzo CLI manually, or as part of your <abbr title="Continuous Integration">CI</abbr> process.
+The Terrazzo CLI takes DTCG design tokens and generates code using plugins (e.g. [CSS](../plugin-css/), [Sass](../plugin-sass/), [JS/TS](../plugin-js/), and more). You can either run the Terrazzo CLI manually, or as part of your <abbr title="Continuous Integration">CI</abbr> process.
 
 > [!TIP]
 > Migrating from Cobalt? Check out the [Migration Guide](/docs/cli/migrating)

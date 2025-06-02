@@ -29,14 +29,7 @@ import { createRequire } from 'node:module';
 import { parseArgs } from 'node:util';
 import { Logger } from '@terrazzo/parser';
 import dotenv from 'dotenv';
-import { buildCmd } from '../dist/build.js';
-import { checkCmd } from '../dist/check.js';
-import { helpCmd } from '../dist/help.js';
-import { initCmd } from '../dist/init.js';
-import { labCmd } from '../dist/lab.js';
-import { normalizeCmd } from '../dist/normalize.js';
-import { loadConfig } from '../dist/shared.js';
-import { versionCmd } from '../dist/version.js';
+import { buildCmd, checkCmd, helpCmd, initCmd, labCmd, loadConfig, normalizeCmd, versionCmd } from '../dist/index.js';
 
 const require = createRequire(process.cwd());
 

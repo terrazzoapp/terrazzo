@@ -1,13 +1,13 @@
 {
   "name": "@terrazzo/react-color-picker",
-  "description": "React color picker that supports Color Module 4, wide color gamut (WCG), and Display-P3 using WebGL for monitor-accurate colors. Powered by Culori.",
   "version": "0.1.0",
+  "description": "React color picker that supports Color Module 4, wide color gamut (WCG), and Display-P3 using WebGL for monitor-accurate colors. Powered by Culori.",
+  "license": "MIT",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
   },
-  "license": "MIT",
-  "type": "module",
   "keywords": [
     "color",
     "wcg",
@@ -30,7 +30,7 @@
     "format": "pnpm --filter @terrazzo/react-color-picker run \"/^format:.*/\"",
     "format:js": "biome check --fix --unsafe src",
     "format:css": "stylelint --fix \"src/**/*.css\"",
-    "lint": "pnpm --filter @terrazzo/react-color-picker run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/react-color-picker run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check src",
     "lint:ts": "tsc --noEmit",
     "lint:css": "stylelint \"src/**/*.css\""

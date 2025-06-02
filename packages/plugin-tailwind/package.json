@@ -1,6 +1,8 @@
 {
   "name": "@terrazzo/plugin-tailwind",
   "version": "0.0.4",
+  "description": "Generate Tailwind v4 theme using DTCG design tokens.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -14,19 +16,21 @@
     "tailwind",
     "css"
   ],
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/plugin-tailwind"
   },
   "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-tailwind dist/index.js",
-    "build:ts": "tsc -p tsconfig.build.json",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
-    "dev": "tsc -p tsconfig.build.json -w",
-    "lint": "pnpm --filter @terrazzo/plugin-tailwind run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/plugin-tailwind run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

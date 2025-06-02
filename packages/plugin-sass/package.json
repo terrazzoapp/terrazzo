@@ -1,7 +1,8 @@
 {
   "name": "@terrazzo/plugin-sass",
-  "description": "Generate scss/sass from your design tokens schema (requires @terrazzo/cli)",
   "version": "0.7.4",
+  "description": "Generate .scss from your DTCG design tokens JSON.",
+  "license": "MIT",
   "type": "module",
   "author": {
     "name": "Drew Powers",
@@ -15,19 +16,21 @@
     "sass"
   ],
   "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
   "homepage": "https://terrazzo.app/docs/cli/integrations/sass",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
     "directory": "packages/plugin-sass"
   },
-  "license": "MIT",
   "scripts": {
-    "build": "pnpm run build:ts && pnpm -w run inject-license @terrazzo/plugin-sass dist/index.js",
-    "build:ts": "tsc -p tsconfig.build.json",
-    "dev": "tsc -p tsconfig.build.json -w",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-sass run \"/^lint:.*/\"",
+    "lint": "pnpm --filter @terrazzo/plugin-sass run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"

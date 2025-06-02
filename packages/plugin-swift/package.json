@@ -1,19 +1,12 @@
 {
   "name": "@terrazzo/plugin-swift",
-  "description": "Generate Swift code using DTCG tokens.",
   "version": "0.0.3",
-  "type": "module",
+  "description": "Generate Swift code using DTCG design tokens JSON.",
   "license": "MIT",
-  "main": "./dist/index.js",
+  "type": "module",
   "author": {
     "name": "Drew Powers",
     "email": "drew@pow.rs"
-  },
-  "homepage": "https://terrazzo.app/docs/cli/integrations/swift",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/terrazzoapp/terrazzo.git",
-    "directory": "./packages/plugin-swift/"
   },
   "keywords": [
     "design tokens",
@@ -23,8 +16,20 @@
     "swift",
     "ios"
   ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://terrazzo.app/docs/cli/integrations/swift",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-swift/"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -c -w",
     "format": "biome check --fix --unsafe .",
     "lint": "biome check .",
     "test": "vitest run"
@@ -37,6 +42,7 @@
     "culori": "^4.0.1"
   },
   "devDependencies": {
+    "@terrazzo/cli": "workspace:*",
     "@terrazzo/parser": "workspace:^",
     "@types/culori": "^4.0.0"
   }

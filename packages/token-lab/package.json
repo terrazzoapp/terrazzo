@@ -1,7 +1,8 @@
 {
   "name": "@terrazzo/token-lab",
-  "description": "Create, edit, and save tokens.json in DTCG format",
   "version": "0.0.0",
+  "description": "Create, edit, and save tokens.json in DTCG format",
+  "license": "MIT",
   "type": "module",
   "keywords": [
     "dtcg",
@@ -17,7 +18,6 @@
     "url": "git+terrazzoapp/terrazzo.git",
     "directory": "./packages/token-lab/"
   },
-  "license": "MIT",
   "files": [
     "src"
   ],
@@ -30,7 +30,7 @@
     "build:app": "vite build",
     "preview": "vite preview",
     "format": "biome check --fix --unsafe src",
-    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:/\"",
+    "lint": "pnpm run --filter @terrazzo/token-lab \"/^lint:(js|css)/\"",
     "lint:js": "biome check src",
     "lint:css": "stylelint src"
   },
