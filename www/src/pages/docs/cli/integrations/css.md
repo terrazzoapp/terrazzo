@@ -39,6 +39,8 @@ export default defineConfig({
   plugins: [
     pluginCSS({
       filename: "tokens.css",
+      variableName: (id) => id.replace(/\./g, "-"),
+      baseSelector: ":root",
     }),
   ],
 });
@@ -329,7 +331,7 @@ export default defineConfig({
 | `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                      |
 | `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                   |
 | `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).        |
-| `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`. |
+| `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                      |
 
 ### Mode Selectors
 

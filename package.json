@@ -20,18 +20,18 @@
     "@biomejs/biome": "1.9.4",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.4",
-    "@types/node": "^22.15.29",
+    "@types/node": "^22.15.30",
     "execa": "^9.6.0",
     "prettier": "^3.5.3",
     "rolldown": "1.0.0-beta.10",
-    "rolldown-plugin-dts": "^0.13.7",
+    "rolldown-plugin-dts": "^0.13.8",
     "strip-ansi": "^7.1.0",
     "stylelint": "^16.20.0",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
-    "vitest": "^3.1.4"
+    "vitest": "^3.2.2"
   },
   "pnpm": {
     "patchedDependencies": {
