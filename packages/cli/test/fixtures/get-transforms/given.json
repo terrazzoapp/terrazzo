@@ -1,0 +1,18 @@
+{
+  "color.green.100": "#ebffee",
+  "color.green.200": "#cff7d3",
+  "color.green.300": "#aff4c6",
+  "color.green.400": "#85e0a3",
+  "color.green.500": "#14ae5c",
+  "color.green.600": "#009951",
+  "color.green.700": "#008043",
+  "color.green.800": "#02542d",
+  "color.green.900": "#024023",
+  "color.green.1000": "#062d1b",
+  "color.background.positive.default": "#14ae5c",
+  "color.background.positive.hover": "#009951",
+  "color.background.positive.secondary": "#cff7d3",
+  "color.background.positive.secondary-hover": "#aff4c6",
+  "color.background.positive.tertiary": "#ebffee",
+  "color.background.positive.tertiary-hover": "#cff7d3"
+}

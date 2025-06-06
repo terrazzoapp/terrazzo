@@ -5,6 +5,7 @@ export default defineConfig({
   input: {
     index: './src/index.ts',
   },
+  platform: 'browser',
   plugins: [dts()],
   external: [
     '@humanwhocodes/mamoa',

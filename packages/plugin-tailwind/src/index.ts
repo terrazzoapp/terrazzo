@@ -28,11 +28,12 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       for (const { variant, mode } of variants) {
         const flatTheme = flattenThemeObj(options.theme);
         for (const { path, value } of flatTheme) {
-          for (const token of getTransforms({
+          const tokens = getTransforms({
             format: FORMAT_CSS,
             id: value,
             mode,
-          })) {
+          });
+          for (const token of tokens) {
             let relName = token.id.split('.').at(-1)!;
             for (const subgroup of [...(Array.isArray(value) ? value : [value])]) {
               const match = subgroup.replace(/\*.*/, '');
