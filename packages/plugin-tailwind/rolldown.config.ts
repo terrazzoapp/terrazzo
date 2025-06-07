@@ -5,6 +5,7 @@ export default defineConfig({
   input: {
     index: './src/index.ts',
   },
+  platform: 'node',
   plugins: [dts()],
   output: {
     dir: 'dist',

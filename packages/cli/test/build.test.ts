@@ -1,12 +1,21 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { execa } from 'execa';
 import { describe, expect, it } from 'vitest';
 
 const cmd = '../../../bin/cli.js';
 
 describe('tz build', () => {
-  // note: Successful build tests live in plugins’ directories, because
-  // importing them here would create a circlar dep. Errors can be tested here,
-  // though.
+  // note: More advanced plugins are tested in their respective folders, to avoid a circular dep.
+  // This tests errors, and simplified plugin examples
+  describe('transform', () => {
+    it('getTransforms / setTransform', async () => {
+      const cwd = new URL('./fixtures/get-transforms/', import.meta.url);
+      await execa('node', [cmd, 'build'], { cwd });
+      const given = fs.readFileSync(new URL('given.json', cwd), 'utf8');
+      await expect(given).toMatchFileSnapshot(fileURLToPath(new URL('want.json', cwd)));
+    });
+  });
 
   describe('errors', () => {
     // note: Parsing out the execa error is more hassle than just using inline

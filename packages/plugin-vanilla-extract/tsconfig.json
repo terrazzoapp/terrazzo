@@ -1,0 +1,11 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": "src",
+    "lib": ["DOM"],
+    "outDir": "dist",
+    "jsx": "react-jsx"
+  },
+  "include": ["./src/", "./test/"],
+  "exclude": ["node_modules", "./test/fixtures/**"]
+}
