@@ -98,15 +98,15 @@ describe('serializeValue', () => {
     // aliases
     [
       'var(--color-background-default)',
-      ['var(--color-background-default)', '__ident__tzVars.color.background.default__ident__'],
+      ['var(--color-background-default)', '__ident__vars.color.background.default__ident__'],
     ],
-    ['var(--color-green-600)', ['var(--color-green-600)', '__ident__tzVars.color.green[600]__ident__']],
-    ['var(--color-blue-07)', ['var(--color-blue-07)', "__ident__tzVars.color.blue['07']__ident__"]],
-    ['var(--123abc)', ['var(--123abc)', "__ident__tzVars['123abc']__ident__"]],
-    ['var(--on_brand.disabled)', ['var(--on_brand.disabled)', '__ident__tzVars.on_brand.disabled__ident__']],
-    ['var(--foo-bar)', ['var(--foo-bar)', "__ident__tzVars['foo-bar']__ident__"]],
-    ["var(--color-\\'--07)", ["var(--color-\\'--07)", "__ident__tzVars.color['\\'']['-07']__ident__"]],
-    ['var(--1-2-3)', ['var(--1-2-3)', '__ident__tzVars[1][2][3]__ident__']],
+    ['var(--color-green-600)', ['var(--color-green-600)', '__ident__vars.color.green[600]__ident__']],
+    ['var(--color-blue-07)', ['var(--color-blue-07)', "__ident__vars.color.blue['07']__ident__"]],
+    ['var(--123abc)', ['var(--123abc)', "__ident__vars['123abc']__ident__"]],
+    ['var(--on_brand.disabled)', ['var(--on_brand.disabled)', '__ident__vars.on_brand.disabled__ident__']],
+    ['var(--foo-bar)', ['var(--foo-bar)', "__ident__vars['foo-bar']__ident__"]],
+    ["var(--color-\\'--07)", ["var(--color-\\'--07)", "__ident__vars.color['\\'']['-07']__ident__"]],
+    ['var(--1-2-3)', ['var(--1-2-3)', '__ident__vars[1][2][3]__ident__']],
   ];
 
   it.each(TESTS)('%s', (_, [given, want]) => {
