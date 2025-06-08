@@ -42,9 +42,7 @@ function validateTransformParams({
   }
 }
 
-/**
- * Run build stage
- */
+/** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
   { sources, logger = new Logger(), config }: BuildRunnerOptions,
@@ -53,7 +51,11 @@ export default async function build(
   const result: BuildRunnerResult = { outputFiles: [] };
 
   function getTransforms(params: TransformParams) {
-    return (formats[params.format] ?? []).filter((token) => {
+    if (!params?.format) {
+      logger.warn({ group: 'plugin', message: '"format" missing from getTransforms(), no tokens returned.' });
+      return [];
+    }
+    return (formats[params.format!] ?? []).filter((token) => {
       if (params.$type) {
         if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
           return false;
