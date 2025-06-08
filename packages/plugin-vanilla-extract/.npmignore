@@ -1,5 +1,6 @@
 .turbo
 biome.json
+rolldown.*
 src/**
 test/**
 tsconfig.*

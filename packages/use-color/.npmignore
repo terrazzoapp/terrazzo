@@ -2,6 +2,7 @@
 .size-limit.js
 .turbo
 biome.*
+rolldown.*
 vite.*
 vitest.*
 tsconfig.*
