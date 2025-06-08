@@ -1,5 +1,14 @@
 # @terrazzo/plugin-sass
 
+## 0.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`5edf1fd`](https://github.com/terrazzoapp/terrazzo/commit/5edf1fde42cd53b5883eefcbe849dc5749cfaa8f)]:
+  - @terrazzo/cli@0.8.1
+  - @terrazzo/token-tools@0.8.1
+  - @terrazzo/plugin-css@0.8.1
+
 ## 0.8.0
 
 ### Minor Changes

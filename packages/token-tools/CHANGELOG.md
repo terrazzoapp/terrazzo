@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.8.1
+
+### Patch Changes
+
+- [#491](https://github.com/terrazzoapp/terrazzo/pull/491) [`5edf1fd`](https://github.com/terrazzoapp/terrazzo/commit/5edf1fde42cd53b5883eefcbe849dc5749cfaa8f) Thanks [@drwpow](https://github.com/drwpow)! - Add warning on incorrect getTransforms() usage
+
 ## 0.8.0
 
 ### Minor Changes
