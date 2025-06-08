@@ -1,5 +1,6 @@
 .turbo
-biome.json
+biome.*
+rolldown.*
 src/**
 test/**
 tsconfig.*
