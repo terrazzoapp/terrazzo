@@ -1,12 +1,12 @@
 import { style } from '@vanilla-extract/css';
-import { light } from './theme.css.js';
+import { vars } from './theme.css.js';
 
 export const btn = style({
-  background: light.color.background.brand.default,
-  color: light.color.text.brand.default,
-  fontFamily: light.typography.family.sans,
+  background: vars.color.background.brand.default,
+  color: vars.color.text.brand.default,
+  fontFamily: vars.typography.family.sans,
   ':hover': {
-    background: light.color.background.brand.default,
-    color: light.color.text.brand.default,
+    background: vars.color.background.brand.default,
+    color: vars.color.text.brand.default,
   },
 });

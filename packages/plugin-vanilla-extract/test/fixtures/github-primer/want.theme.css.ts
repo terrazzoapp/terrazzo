@@ -1,6 +1,6 @@
 import { createTheme, createThemeContract } from "@vanilla-extract/css";
 
-export const tzVars = createThemeContract({
+export const vars = createThemeContract({
   "base": {
     "color": {
       "black": null,
@@ -647,7 +647,12 @@ export const tzVars = createThemeContract({
       "size": null,
       "lineHeight": null,
       "weight": null,
-      "shorthand": null
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "lineHeight": null,
+        "fontFamily": null
+      }
     },
     "title": {
       "size": {
@@ -666,16 +671,36 @@ export const tzVars = createThemeContract({
         "small": null
       },
       "shorthand": {
-        "large": null,
-        "medium": null,
-        "small": null
+        "large": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "medium": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "small": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        }
       }
     },
     "subtitle": {
       "size": null,
       "lineHeight": null,
       "weight": null,
-      "shorthand": null
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "lineHeight": null,
+        "fontFamily": null
+      }
     },
     "body": {
       "size": {
@@ -690,27 +715,56 @@ export const tzVars = createThemeContract({
       },
       "weight": null,
       "shorthand": {
-        "large": null,
-        "medium": null,
-        "small": null
+        "large": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "medium": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "small": {
+          "fontWeight": null,
+          "fontSize": null,
+          "lineHeight": null,
+          "fontFamily": null
+        }
       }
     },
     "caption": {
       "size": null,
       "lineHeight": null,
       "weight": null,
-      "shorthand": null
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "lineHeight": null,
+        "fontFamily": null
+      }
     },
     "codeBlock": {
       "size": null,
       "lineHeight": null,
       "weight": null,
-      "shorthand": null
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "lineHeight": null,
+        "fontFamily": null
+      }
     },
     "codeInline": {
       "size": null,
       "weight": null,
-      "shorthand": null
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "fontFamily": null
+      }
     }
   },
   "motion": {
@@ -734,7 +788,7 @@ export const tzVars = createThemeContract({
   }
 });
 
-export const [lightClass, light] = createTheme({
+export const [lightClass, light] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.12156862745098039 0.13725490196078433 0.1568627450980392)",
@@ -1369,23 +1423,23 @@ export const [lightClass, light] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -1400,40 +1454,40 @@ export const [lightClass, light] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -1447,57 +1501,57 @@ export const [lightClass, light] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -1522,7 +1576,7 @@ export const [lightClass, light] = createTheme({
   }
 });
 
-export const [lightColorblindClass, lightColorblind] = createTheme({
+export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.10588235294117647 0.12156862745098039 0.1411764705882353)",
@@ -2157,23 +2211,23 @@ export const [lightColorblindClass, lightColorblind] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -2188,40 +2242,40 @@ export const [lightColorblindClass, lightColorblind] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -2235,57 +2289,57 @@ export const [lightColorblindClass, lightColorblind] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -2310,7 +2364,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme({
   }
 });
 
-export const [lightHCClass, lightHC] = createTheme({
+export const [lightHCClass, lightHC] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -2945,23 +2999,23 @@ export const [lightHCClass, lightHC] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -2976,40 +3030,40 @@ export const [lightHCClass, lightHC] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -3023,57 +3077,57 @@ export const [lightHCClass, lightHC] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -3098,7 +3152,7 @@ export const [lightHCClass, lightHC] = createTheme({
   }
 });
 
-export const [darkClass, dark] = createTheme({
+export const [darkClass, dark] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -3733,23 +3787,23 @@ export const [darkClass, dark] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -3764,40 +3818,40 @@ export const [darkClass, dark] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -3811,57 +3865,57 @@ export const [darkClass, dark] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -3886,7 +3940,7 @@ export const [darkClass, dark] = createTheme({
   }
 });
 
-export const [darkColorblindClass, darkColorblind] = createTheme({
+export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -4521,23 +4575,23 @@ export const [darkColorblindClass, darkColorblind] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -4552,40 +4606,40 @@ export const [darkColorblindClass, darkColorblind] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -4599,57 +4653,57 @@ export const [darkColorblindClass, darkColorblind] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -4674,7 +4728,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme({
   }
 });
 
-export const [darkHCClass, darkHC] = createTheme({
+export const [darkHCClass, darkHC] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -5309,23 +5363,23 @@ export const [darkHCClass, darkHC] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -5340,40 +5394,40 @@ export const [darkHCClass, darkHC] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -5387,57 +5441,57 @@ export const [darkHCClass, darkHC] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },
@@ -5462,7 +5516,7 @@ export const [darkHCClass, darkHC] = createTheme({
   }
 });
 
-export const [darkDimmedClass, darkDimmed] = createTheme({
+export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.10980392156862745 0.12941176470588237 0.1568627450980392)",
@@ -6097,23 +6151,23 @@ export const [darkDimmedClass, darkDimmed] = createTheme({
   },
   "space": {
     "xxsmall": "2px",
-    "xsmall": tzVars.base.size[4],
+    "xsmall": vars.base.size[4],
     "small": "6px",
-    "medium": tzVars.base.size[8],
-    "large": tzVars.base.size[12],
-    "xlarge": tzVars.base.size[16]
+    "medium": vars.base.size[8],
+    "large": vars.base.size[12],
+    "xlarge": vars.base.size[16]
   },
   "text": {
     "display": {
       "lineBoxHeight": "56px",
       "size": "40px",
       "lineHeight": "1.4",
-      "weight": tzVars.base.text.weight.medium,
+      "weight": vars.base.text.weight.medium,
       "shorthand": {
-        "font-weight": tzVars.text.display.weight,
-        "font-size": tzVars.text.display.size,
-        "line-height": tzVars.text.display.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.display.weight,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "title": {
@@ -6128,40 +6182,40 @@ export const [darkDimmedClass, darkDimmed] = createTheme({
         "small": "1.5"
       },
       "weight": {
-        "large": tzVars.base.text.weight.semibold,
-        "medium": tzVars.base.text.weight.semibold,
-        "small": tzVars.base.text.weight.semibold
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       },
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.title.weight.large,
-          "font-size": tzVars.text.title.size.large,
-          "line-height": tzVars.text.title.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.large,
+          "fontSize": vars.text.title.size.large,
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.title.weight.medium,
-          "font-size": tzVars.text.title.size.medium,
-          "line-height": tzVars.text.title.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.medium,
+          "fontSize": vars.text.title.size.medium,
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.title.weight.small,
-          "font-size": tzVars.text.title.size.small,
-          "line-height": tzVars.text.title.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.title.weight.small,
+          "fontSize": vars.text.title.size.small,
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "subtitle": {
       "size": "20px",
       "lineHeight": "1.6",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.subtitle.weight,
-        "font-size": tzVars.text.subtitle.size,
-        "line-height": tzVars.text.subtitle.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.subtitle.weight,
+        "fontSize": vars.text.subtitle.size,
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "body": {
@@ -6175,57 +6229,57 @@ export const [darkDimmedClass, darkDimmed] = createTheme({
         "medium": "1.4285",
         "small": "1.6666"
       },
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
         "large": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.large,
-          "line-height": tzVars.text.body.lineHeight.large,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.large,
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.medium,
-          "line-height": tzVars.text.body.lineHeight.medium,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.medium,
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "font-weight": tzVars.text.body.weight,
-          "font-size": tzVars.text.body.size.small,
-          "line-height": tzVars.text.body.lineHeight.small,
-          "font-family": tzVars.fontStack.sansSerif
+          "fontWeight": vars.text.body.weight,
+          "fontSize": vars.text.body.size.small,
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
         }
       }
     },
     "caption": {
       "size": "12px",
       "lineHeight": "1.3333",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.caption.weight,
-        "font-size": tzVars.text.caption.size,
-        "line-height": tzVars.text.caption.lineHeight,
-        "font-family": tzVars.fontStack.sansSerif
+        "fontWeight": vars.text.caption.weight,
+        "fontSize": vars.text.caption.size,
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
       }
     },
     "codeBlock": {
       "size": "13px",
       "lineHeight": "1.5385",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeBlock.weight,
-        "font-size": tzVars.text.codeBlock.size,
-        "line-height": tzVars.text.codeBlock.lineHeight,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeBlock.weight,
+        "fontSize": vars.text.codeBlock.size,
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
       }
     },
     "codeInline": {
       "size": "0.9285em",
-      "weight": tzVars.base.text.weight.normal,
+      "weight": vars.base.text.weight.normal,
       "shorthand": {
-        "font-weight": tzVars.text.codeInline.weight,
-        "font-size": tzVars.text.codeInline.size,
-        "font-family": tzVars.fontStack.monospace
+        "fontWeight": vars.text.codeInline.weight,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace
       }
     }
   },

@@ -1,6 +1,6 @@
 import { createGlobalThemeContract, createTheme } from "@vanilla-extract/css";
 
-export const tzVars = createGlobalThemeContract({
+export const vars = createGlobalThemeContract({
   "color": {
     "black": {
       "100": "color-black-100",
@@ -357,36 +357,112 @@ export const tzVars = createGlobalThemeContract({
     }
   },
   "typography": {
-    "titleHero": "typography-title-hero",
+    "titleHero": {
+      "fontFamily": "typography-title-hero-font-family",
+      "fontSize": "typography-title-hero-font-size",
+      "fontWeight": "typography-title-hero-font-weight"
+    },
     "titlePage": {
-      "small": "typography-title-page-small",
-      "base": "typography-title-page-base",
-      "large": "typography-title-page-large"
+      "small": {
+        "fontFamily": "typography-title-page-small-font-family",
+        "fontSize": "typography-title-page-small-font-size",
+        "fontWeight": "typography-title-page-small-font-weight"
+      },
+      "base": {
+        "fontFamily": "typography-title-page-base-font-family",
+        "fontSize": "typography-title-page-base-font-size",
+        "fontWeight": "typography-title-page-base-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-title-page-large-font-family",
+        "fontSize": "typography-title-page-large-font-size",
+        "fontWeight": "typography-title-page-large-font-weight"
+      }
     },
     "subtitle": {
-      "small": "typography-subtitle-small",
-      "base": "typography-subtitle-base",
-      "large": "typography-subtitle-large"
+      "small": {
+        "fontFamily": "typography-subtitle-small-font-family",
+        "fontSize": "typography-subtitle-small-font-size",
+        "fontWeight": "typography-subtitle-small-font-weight"
+      },
+      "base": {
+        "fontFamily": "typography-subtitle-base-font-family",
+        "fontSize": "typography-subtitle-base-font-size",
+        "fontWeight": "typography-subtitle-base-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-subtitle-large-font-family",
+        "fontSize": "typography-subtitle-large-font-size",
+        "fontWeight": "typography-subtitle-large-font-weight"
+      }
     },
     "heading": {
-      "small": "typography-heading-small",
-      "base": "typography-heading-base",
-      "large": "typography-heading-large"
+      "small": {
+        "fontFamily": "typography-heading-small-font-family",
+        "fontSize": "typography-heading-small-font-size",
+        "fontWeight": "typography-heading-small-font-weight"
+      },
+      "base": {
+        "fontFamily": "typography-heading-base-font-family",
+        "fontSize": "typography-heading-base-font-size",
+        "fontWeight": "typography-heading-base-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-heading-large-font-family",
+        "fontSize": "typography-heading-large-font-size",
+        "fontWeight": "typography-heading-large-font-weight"
+      }
     },
     "subheading": {
-      "small": "typography-subheading-small",
-      "base": "typography-subheading-base",
-      "large": "typography-subheading-large"
+      "small": {
+        "fontFamily": "typography-subheading-small-font-family",
+        "fontSize": "typography-subheading-small-font-size",
+        "fontWeight": "typography-subheading-small-font-weight"
+      },
+      "base": {
+        "fontFamily": "typography-subheading-base-font-family",
+        "fontSize": "typography-subheading-base-font-size",
+        "fontWeight": "typography-subheading-base-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-subheading-large-font-family",
+        "fontSize": "typography-subheading-large-font-size",
+        "fontWeight": "typography-subheading-large-font-weight"
+      }
     },
     "body": {
-      "small": "typography-body-small",
-      "medium": "typography-body-medium",
-      "large": "typography-body-large"
+      "small": {
+        "fontFamily": "typography-body-small-font-family",
+        "fontSize": "typography-body-small-font-size",
+        "fontWeight": "typography-body-small-font-weight"
+      },
+      "medium": {
+        "fontFamily": "typography-body-medium-font-family",
+        "fontSize": "typography-body-medium-font-size",
+        "fontWeight": "typography-body-medium-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-body-large-font-family",
+        "fontSize": "typography-body-large-font-size",
+        "fontWeight": "typography-body-large-font-weight"
+      }
     },
     "code": {
-      "small": "typography-code-small",
-      "medium": "typography-code-medium",
-      "large": "typography-code-large"
+      "small": {
+        "fontFamily": "typography-code-small-font-family",
+        "fontSize": "typography-code-small-font-size",
+        "fontWeight": "typography-code-small-font-weight"
+      },
+      "medium": {
+        "fontFamily": "typography-code-medium-font-family",
+        "fontSize": "typography-code-medium-font-size",
+        "fontWeight": "typography-code-medium-font-weight"
+      },
+      "large": {
+        "fontFamily": "typography-code-large-font-family",
+        "fontSize": "typography-code-large-font-size",
+        "fontWeight": "typography-code-large-font-weight"
+      }
     },
     "family": {
       "mono": "typography-family-mono",
@@ -419,7 +495,7 @@ export const tzVars = createGlobalThemeContract({
   }
 });
 
-export const [lightClass, light] = createTheme({
+export const [lightClass, light] = createTheme(vars, {
   "color": {
     "black": {
       "100": "color(srgb 0.047058823529411764 0.047058823529411764 0.050980392156862744 / 0.050980392156862744)",
@@ -531,192 +607,192 @@ export const [lightClass, light] = createTheme({
     },
     "background": {
       "brand": {
-        "default": tzVars.color.brand[800],
-        "hover": tzVars.color.brand[900],
-        "secondary": tzVars.color.brand[200],
-        "secondaryHover": tzVars.color.brand[300],
-        "tertiary": tzVars.color.brand[100],
-        "tertiaryHover": tzVars.color.brand[200]
+        "default": vars.color.brand[800],
+        "hover": vars.color.brand[900],
+        "secondary": vars.color.brand[200],
+        "secondaryHover": vars.color.brand[300],
+        "tertiary": vars.color.brand[100],
+        "tertiaryHover": vars.color.brand[200]
       },
       "danger": {
-        "default": tzVars.color.red[500],
-        "hover": tzVars.color.red[600],
-        "secondary": tzVars.color.red[200],
-        "secondaryHover": tzVars.color.red[300],
-        "tertiary": tzVars.color.red[100],
-        "tertiaryHover": tzVars.color.red[200]
+        "default": vars.color.red[500],
+        "hover": vars.color.red[600],
+        "secondary": vars.color.red[200],
+        "secondaryHover": vars.color.red[300],
+        "tertiary": vars.color.red[100],
+        "tertiaryHover": vars.color.red[200]
       },
       "default": {
-        "default": tzVars.color.white[1000],
-        "hover": tzVars.color.gray[100],
-        "secondary": tzVars.color.gray[100],
-        "secondaryHover": tzVars.color.gray[200],
-        "tertiary": tzVars.color.gray[300],
-        "tertiaryHover": tzVars.color.gray[400]
+        "default": vars.color.white[1000],
+        "hover": vars.color.gray[100],
+        "secondary": vars.color.gray[100],
+        "secondaryHover": vars.color.gray[200],
+        "tertiary": vars.color.gray[300],
+        "tertiaryHover": vars.color.gray[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[300]
+        "default": vars.color.brand[300]
       },
       "neutral": {
-        "default": tzVars.color.slate[700],
-        "hover": tzVars.color.slate[800],
-        "secondary": tzVars.color.slate[300],
-        "secondaryHover": tzVars.color.slate[400],
-        "tertiary": tzVars.color.slate[200],
-        "tertiaryHover": tzVars.color.slate[300]
+        "default": vars.color.slate[700],
+        "hover": vars.color.slate[800],
+        "secondary": vars.color.slate[300],
+        "secondaryHover": vars.color.slate[400],
+        "tertiary": vars.color.slate[200],
+        "tertiaryHover": vars.color.slate[300]
       },
       "positive": {
-        "default": tzVars.color.green[500],
-        "hover": tzVars.color.green[600],
-        "secondary": tzVars.color.green[200],
-        "secondaryHover": tzVars.color.green[300],
-        "tertiary": tzVars.color.green[100],
-        "tertiaryHover": tzVars.color.green[200]
+        "default": vars.color.green[500],
+        "hover": vars.color.green[600],
+        "secondary": vars.color.green[200],
+        "secondaryHover": vars.color.green[300],
+        "tertiary": vars.color.green[100],
+        "tertiaryHover": vars.color.green[200]
       },
       "warning": {
-        "default": tzVars.color.yellow[400],
-        "hover": tzVars.color.yellow[500],
-        "secondary": tzVars.color.yellow[200],
-        "secondaryHover": tzVars.color.yellow[300],
-        "tertiary": tzVars.color.yellow[100],
-        "tertiaryHover": tzVars.color.yellow[200]
+        "default": vars.color.yellow[400],
+        "hover": vars.color.yellow[500],
+        "secondary": vars.color.yellow[200],
+        "secondaryHover": vars.color.yellow[300],
+        "tertiary": vars.color.yellow[100],
+        "tertiaryHover": vars.color.yellow[200]
       }
     },
     "border": {
       "brand": {
-        "default": tzVars.color.brand[800],
-        "secondary": tzVars.color.brand[600],
-        "tertiary": tzVars.color.brand[500]
+        "default": vars.color.brand[800],
+        "secondary": vars.color.brand[600],
+        "tertiary": vars.color.brand[500]
       },
       "danger": {
-        "default": tzVars.color.red[700],
-        "secondary": tzVars.color.red[600],
-        "tertiary": tzVars.color.red[500]
+        "default": vars.color.red[700],
+        "secondary": vars.color.red[600],
+        "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": tzVars.color.gray[300],
-        "secondary": tzVars.color.gray[500],
-        "tertiary": tzVars.color.gray[700]
+        "default": vars.color.gray[300],
+        "secondary": vars.color.gray[500],
+        "tertiary": vars.color.gray[700]
       },
       "disabled": {
-        "default": tzVars.color.brand[400]
+        "default": vars.color.brand[400]
       },
       "neutral": {
-        "default": tzVars.color.slate[900],
-        "secondary": tzVars.color.slate[600],
-        "tertiary": tzVars.color.slate[400]
+        "default": vars.color.slate[900],
+        "secondary": vars.color.slate[600],
+        "tertiary": vars.color.slate[400]
       },
       "positive": {
-        "default": tzVars.color.green[800],
-        "secondary": tzVars.color.green[600],
-        "tertiary": tzVars.color.green[500]
+        "default": vars.color.green[800],
+        "secondary": vars.color.green[600],
+        "tertiary": vars.color.green[500]
       },
       "warning": {
-        "default": tzVars.color.yellow[900],
-        "secondary": tzVars.color.yellow[700],
-        "tertiary": tzVars.color.yellow[600]
+        "default": vars.color.yellow[900],
+        "secondary": vars.color.yellow[700],
+        "tertiary": vars.color.yellow[600]
       }
     },
     "icon": {
       "brand": {
-        "default": tzVars.color.brand[800],
-        "secondary": tzVars.color.brand[600],
-        "tertiary": tzVars.color.brand[500],
-        "onBrand": tzVars.color.brand[100],
-        "onBrandSecondary": tzVars.color.brand[900],
-        "onBrandTertiary": tzVars.color.brand[800]
+        "default": vars.color.brand[800],
+        "secondary": vars.color.brand[600],
+        "tertiary": vars.color.brand[500],
+        "onBrand": vars.color.brand[100],
+        "onBrandSecondary": vars.color.brand[900],
+        "onBrandTertiary": vars.color.brand[800]
       },
       "danger": {
-        "default": tzVars.color.red[700],
-        "secondary": tzVars.color.red[600],
-        "tertiary": tzVars.color.red[500],
-        "onDanger": tzVars.color.red[100],
-        "onDangerSecondary": tzVars.color.red[700],
-        "onDangerTertiary": tzVars.color.red[700]
+        "default": vars.color.red[700],
+        "secondary": vars.color.red[600],
+        "tertiary": vars.color.red[500],
+        "onDanger": vars.color.red[100],
+        "onDangerSecondary": vars.color.red[700],
+        "onDangerTertiary": vars.color.red[700]
       },
       "default": {
-        "default": tzVars.color.gray[900],
-        "secondary": tzVars.color.gray[500],
-        "tertiary": tzVars.color.gray[400]
+        "default": vars.color.gray[900],
+        "secondary": vars.color.gray[500],
+        "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[400],
-        "onDisabled": tzVars.color.brand[400]
+        "default": vars.color.brand[400],
+        "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": tzVars.color.slate[900],
-        "secondary": tzVars.color.slate[700],
-        "tertiary": tzVars.color.slate[600],
-        "onNeutral": tzVars.color.slate[100],
-        "onNeutralSecondary": tzVars.color.slate[900],
-        "onNeutralTertiary": tzVars.color.slate[800]
+        "default": vars.color.slate[900],
+        "secondary": vars.color.slate[700],
+        "tertiary": vars.color.slate[600],
+        "onNeutral": vars.color.slate[100],
+        "onNeutralSecondary": vars.color.slate[900],
+        "onNeutralTertiary": vars.color.slate[800]
       },
       "positive": {
-        "default": tzVars.color.green[800],
-        "secondary": tzVars.color.green[600],
-        "tertiary": tzVars.color.green[500],
-        "onPositive": tzVars.color.green[100],
-        "onPositiveSecondary": tzVars.color.green[800],
-        "onPositiveTertiary": tzVars.color.green[900]
+        "default": vars.color.green[800],
+        "secondary": vars.color.green[600],
+        "tertiary": vars.color.green[500],
+        "onPositive": vars.color.green[100],
+        "onPositiveSecondary": vars.color.green[800],
+        "onPositiveTertiary": vars.color.green[900]
       },
       "warning": {
-        "default": tzVars.color.yellow[900],
-        "secondary": tzVars.color.yellow[700],
-        "tertiary": tzVars.color.yellow[600],
-        "onWarning": tzVars.color.yellow[1000],
-        "onWarningSecondary": tzVars.color.yellow[800],
-        "onWarningTertiary": tzVars.color.yellow[900]
+        "default": vars.color.yellow[900],
+        "secondary": vars.color.yellow[700],
+        "tertiary": vars.color.yellow[600],
+        "onWarning": vars.color.yellow[1000],
+        "onWarningSecondary": vars.color.yellow[800],
+        "onWarningTertiary": vars.color.yellow[900]
       }
     },
     "text": {
       "brand": {
-        "default": tzVars.color.brand[800],
-        "secondary": tzVars.color.brand[600],
-        "tertiary": tzVars.color.brand[500],
-        "onBrand": tzVars.color.brand[100],
-        "onBrandSecondary": tzVars.color.brand[900],
-        "onBrandTertiary": tzVars.color.brand[800]
+        "default": vars.color.brand[800],
+        "secondary": vars.color.brand[600],
+        "tertiary": vars.color.brand[500],
+        "onBrand": vars.color.brand[100],
+        "onBrandSecondary": vars.color.brand[900],
+        "onBrandTertiary": vars.color.brand[800]
       },
       "danger": {
-        "default": tzVars.color.red[700],
-        "secondary": tzVars.color.red[600],
-        "tertiary": tzVars.color.red[500],
-        "onDanger": tzVars.color.red[100],
-        "onDangerSecondary": tzVars.color.red[700],
-        "onDangerTertiary": tzVars.color.red[700]
+        "default": vars.color.red[700],
+        "secondary": vars.color.red[600],
+        "tertiary": vars.color.red[500],
+        "onDanger": vars.color.red[100],
+        "onDangerSecondary": vars.color.red[700],
+        "onDangerTertiary": vars.color.red[700]
       },
       "default": {
-        "default": tzVars.color.gray[900],
-        "secondary": tzVars.color.gray[500],
-        "tertiary": tzVars.color.gray[400]
+        "default": vars.color.gray[900],
+        "secondary": vars.color.gray[500],
+        "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[400],
-        "onDisabled": tzVars.color.brand[400]
+        "default": vars.color.brand[400],
+        "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": tzVars.color.slate[900],
-        "onNeutral": tzVars.color.slate[100],
-        "onNeutralSecondary": tzVars.color.slate[900],
-        "onNeutralTertiary": tzVars.color.slate[800],
-        "secondary": tzVars.color.slate[700],
-        "tertiary": tzVars.color.slate[600]
+        "default": vars.color.slate[900],
+        "onNeutral": vars.color.slate[100],
+        "onNeutralSecondary": vars.color.slate[900],
+        "onNeutralTertiary": vars.color.slate[800],
+        "secondary": vars.color.slate[700],
+        "tertiary": vars.color.slate[600]
       },
       "positive": {
-        "default": tzVars.color.green[800],
-        "secondary": tzVars.color.green[600],
-        "tertiary": tzVars.color.green[500],
-        "onPositive": tzVars.color.green[100],
-        "onPositiveSecondary": tzVars.color.green[800],
-        "onPositiveTertiary": tzVars.color.green[800]
+        "default": vars.color.green[800],
+        "secondary": vars.color.green[600],
+        "tertiary": vars.color.green[500],
+        "onPositive": vars.color.green[100],
+        "onPositiveSecondary": vars.color.green[800],
+        "onPositiveTertiary": vars.color.green[800]
       },
       "warning": {
-        "default": tzVars.color.yellow[900],
-        "secondary": tzVars.color.yellow[700],
-        "tertiary": tzVars.color.yellow[600],
-        "onWarning": tzVars.color.yellow[1000],
-        "onWarningSecondary": tzVars.color.yellow[800],
-        "onWarningTertiary": tzVars.color.yellow[900]
+        "default": vars.color.yellow[900],
+        "secondary": vars.color.yellow[700],
+        "tertiary": vars.color.yellow[600],
+        "onWarning": vars.color.yellow[1000],
+        "onWarningSecondary": vars.color.yellow[800],
+        "onWarningTertiary": vars.color.yellow[900]
       }
     }
   },
@@ -777,110 +853,110 @@ export const [lightClass, light] = createTheme({
   },
   "typography": {
     "titleHero": {
-      "font-family": tzVars.typography.family.sans,
-      "font-size": tzVars.typography.scale[10],
-      "font-weight": tzVars.typography.weight.bold
+      "fontFamily": vars.typography.family.sans,
+      "fontSize": vars.typography.scale[10],
+      "fontWeight": vars.typography.weight.bold
     },
     "titlePage": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['07'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['07'],
+        "fontWeight": vars.typography.weight.bold
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['08'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['08'],
+        "fontWeight": vars.typography.weight.bold
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['09'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['09'],
+        "fontWeight": vars.typography.weight.bold
       }
     },
     "subtitle": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.regular
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['06'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['06'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['07'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['07'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "heading": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.semibold
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.semibold
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['06'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['06'],
+        "fontWeight": vars.typography.weight.semibold
       }
     },
     "subheading": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "body": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['02'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['02'],
+        "fontWeight": vars.typography.weight.regular
       },
       "medium": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "code": {
       "small": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['02'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['02'],
+        "fontWeight": vars.typography.weight.regular
       },
       "medium": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "family": {
@@ -914,7 +990,7 @@ export const [lightClass, light] = createTheme({
   }
 });
 
-export const [darkClass, dark] = createTheme({
+export const [darkClass, dark] = createTheme(vars, {
   "color": {
     "black": {
       "100": "color(srgb 0.047058823529411764 0.047058823529411764 0.050980392156862744 / 0.050980392156862744)",
@@ -1026,192 +1102,192 @@ export const [darkClass, dark] = createTheme({
     },
     "background": {
       "brand": {
-        "default": tzVars.color.white[100],
-        "hover": tzVars.color.brand[300],
-        "secondary": tzVars.color.brand[600],
-        "secondaryHover": tzVars.color.brand[500],
-        "tertiary": tzVars.color.brand[600],
-        "tertiaryHover": tzVars.color.brand[800]
+        "default": vars.color.white[100],
+        "hover": vars.color.brand[300],
+        "secondary": vars.color.brand[600],
+        "secondaryHover": vars.color.brand[500],
+        "tertiary": vars.color.brand[600],
+        "tertiaryHover": vars.color.brand[800]
       },
       "danger": {
-        "default": tzVars.color.red[600],
-        "hover": tzVars.color.red[700],
-        "secondary": tzVars.color.red[800],
-        "secondaryHover": tzVars.color.red[900],
-        "tertiary": tzVars.color.red[900],
-        "tertiaryHover": tzVars.color.red[1000]
+        "default": vars.color.red[600],
+        "hover": vars.color.red[700],
+        "secondary": vars.color.red[800],
+        "secondaryHover": vars.color.red[900],
+        "tertiary": vars.color.red[900],
+        "tertiaryHover": vars.color.red[1000]
       },
       "default": {
-        "default": tzVars.color.gray[900],
-        "hover": tzVars.color.gray[700],
-        "secondary": tzVars.color.gray[800],
-        "secondaryHover": tzVars.color.gray[900],
-        "tertiary": tzVars.color.gray[600],
-        "tertiaryHover": tzVars.color.gray[700]
+        "default": vars.color.gray[900],
+        "hover": vars.color.gray[700],
+        "secondary": vars.color.gray[800],
+        "secondaryHover": vars.color.gray[900],
+        "tertiary": vars.color.gray[600],
+        "tertiaryHover": vars.color.gray[700]
       },
       "disabled": {
-        "default": tzVars.color.brand[700]
+        "default": vars.color.brand[700]
       },
       "neutral": {
-        "default": tzVars.color.slate[400],
-        "hover": tzVars.color.slate[500],
-        "secondary": tzVars.color.slate[900],
-        "secondaryHover": tzVars.color.slate[1000],
-        "tertiary": tzVars.color.slate[900],
-        "tertiaryHover": tzVars.color.slate[1000]
+        "default": vars.color.slate[400],
+        "hover": vars.color.slate[500],
+        "secondary": vars.color.slate[900],
+        "secondaryHover": vars.color.slate[1000],
+        "tertiary": vars.color.slate[900],
+        "tertiaryHover": vars.color.slate[1000]
       },
       "positive": {
-        "default": tzVars.color.green[700],
-        "hover": tzVars.color.green[800],
-        "secondary": tzVars.color.green[800],
-        "secondaryHover": tzVars.color.green[900],
-        "tertiary": tzVars.color.green[900],
-        "tertiaryHover": tzVars.color.green[1000]
+        "default": vars.color.green[700],
+        "hover": vars.color.green[800],
+        "secondary": vars.color.green[800],
+        "secondaryHover": vars.color.green[900],
+        "tertiary": vars.color.green[900],
+        "tertiaryHover": vars.color.green[1000]
       },
       "warning": {
-        "default": tzVars.color.yellow[400],
-        "hover": tzVars.color.yellow[500],
-        "secondary": tzVars.color.yellow[800],
-        "secondaryHover": tzVars.color.yellow[900],
-        "tertiary": tzVars.color.yellow[900],
-        "tertiaryHover": tzVars.color.yellow[1000]
+        "default": vars.color.yellow[400],
+        "hover": vars.color.yellow[500],
+        "secondary": vars.color.yellow[800],
+        "secondaryHover": vars.color.yellow[900],
+        "tertiary": vars.color.yellow[900],
+        "tertiaryHover": vars.color.yellow[1000]
       }
     },
     "border": {
       "brand": {
-        "default": tzVars.color.brand[100],
-        "secondary": tzVars.color.brand[300],
-        "tertiary": tzVars.color.brand[400]
+        "default": vars.color.brand[100],
+        "secondary": vars.color.brand[300],
+        "tertiary": vars.color.brand[400]
       },
       "danger": {
-        "default": tzVars.color.red[200],
-        "secondary": tzVars.color.red[400],
-        "tertiary": tzVars.color.red[500]
+        "default": vars.color.red[200],
+        "secondary": vars.color.red[400],
+        "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": tzVars.color.gray[600],
-        "secondary": tzVars.color.gray[500],
-        "tertiary": tzVars.color.gray[400]
+        "default": vars.color.gray[600],
+        "secondary": vars.color.gray[500],
+        "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[600]
+        "default": vars.color.brand[600]
       },
       "neutral": {
-        "default": tzVars.color.slate[100],
-        "secondary": tzVars.color.slate[500],
-        "tertiary": tzVars.color.slate[600]
+        "default": vars.color.slate[100],
+        "secondary": vars.color.slate[500],
+        "tertiary": vars.color.slate[600]
       },
       "positive": {
-        "default": tzVars.color.green[200],
-        "secondary": tzVars.color.green[400],
-        "tertiary": tzVars.color.green[600]
+        "default": vars.color.green[200],
+        "secondary": vars.color.green[400],
+        "tertiary": vars.color.green[600]
       },
       "warning": {
-        "default": tzVars.color.yellow[200],
-        "secondary": tzVars.color.yellow[400],
-        "tertiary": tzVars.color.yellow[600]
+        "default": vars.color.yellow[200],
+        "secondary": vars.color.yellow[400],
+        "tertiary": vars.color.yellow[600]
       }
     },
     "icon": {
       "brand": {
-        "default": tzVars.color.brand[100],
-        "secondary": tzVars.color.brand[300],
-        "tertiary": tzVars.color.brand[400],
-        "onBrand": tzVars.color.brand[900],
-        "onBrandSecondary": tzVars.color.brand[100],
-        "onBrandTertiary": tzVars.color.brand[100]
+        "default": vars.color.brand[100],
+        "secondary": vars.color.brand[300],
+        "tertiary": vars.color.brand[400],
+        "onBrand": vars.color.brand[900],
+        "onBrandSecondary": vars.color.brand[100],
+        "onBrandTertiary": vars.color.brand[100]
       },
       "danger": {
-        "default": tzVars.color.red[200],
-        "secondary": tzVars.color.red[400],
-        "tertiary": tzVars.color.red[500],
-        "onDanger": tzVars.color.red[100],
-        "onDangerSecondary": tzVars.color.red[100],
-        "onDangerTertiary": tzVars.color.red[100]
+        "default": vars.color.red[200],
+        "secondary": vars.color.red[400],
+        "tertiary": vars.color.red[500],
+        "onDanger": vars.color.red[100],
+        "onDangerSecondary": vars.color.red[100],
+        "onDangerTertiary": vars.color.red[100]
       },
       "default": {
-        "default": tzVars.color.white[1000],
-        "secondary": tzVars.color.white[500],
-        "tertiary": tzVars.color.white[400]
+        "default": vars.color.white[1000],
+        "secondary": vars.color.white[500],
+        "tertiary": vars.color.white[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[500],
-        "onDisabled": tzVars.color.brand[400]
+        "default": vars.color.brand[500],
+        "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": tzVars.color.slate[200],
-        "secondary": tzVars.color.slate[300],
-        "tertiary": tzVars.color.slate[400],
-        "onNeutral": tzVars.color.slate[1000],
-        "onNeutralSecondary": tzVars.color.slate[100],
-        "onNeutralTertiary": tzVars.color.slate[100]
+        "default": vars.color.slate[200],
+        "secondary": vars.color.slate[300],
+        "tertiary": vars.color.slate[400],
+        "onNeutral": vars.color.slate[1000],
+        "onNeutralSecondary": vars.color.slate[100],
+        "onNeutralTertiary": vars.color.slate[100]
       },
       "positive": {
-        "default": tzVars.color.green[200],
-        "secondary": tzVars.color.green[400],
-        "tertiary": tzVars.color.green[600],
-        "onPositive": tzVars.color.green[100],
-        "onPositiveSecondary": tzVars.color.green[100],
-        "onPositiveTertiary": tzVars.color.green[100]
+        "default": vars.color.green[200],
+        "secondary": vars.color.green[400],
+        "tertiary": vars.color.green[600],
+        "onPositive": vars.color.green[100],
+        "onPositiveSecondary": vars.color.green[100],
+        "onPositiveTertiary": vars.color.green[100]
       },
       "warning": {
-        "default": tzVars.color.yellow[200],
-        "secondary": tzVars.color.yellow[400],
-        "tertiary": tzVars.color.yellow[600],
-        "onWarning": tzVars.color.yellow[1000],
-        "onWarningSecondary": tzVars.color.yellow[100],
-        "onWarningTertiary": tzVars.color.yellow[100]
+        "default": vars.color.yellow[200],
+        "secondary": vars.color.yellow[400],
+        "tertiary": vars.color.yellow[600],
+        "onWarning": vars.color.yellow[1000],
+        "onWarningSecondary": vars.color.yellow[100],
+        "onWarningTertiary": vars.color.yellow[100]
       }
     },
     "text": {
       "brand": {
-        "default": tzVars.color.brand[100],
-        "secondary": tzVars.color.brand[300],
-        "tertiary": tzVars.color.brand[400],
-        "onBrand": tzVars.color.brand[900],
-        "onBrandSecondary": tzVars.color.brand[100],
-        "onBrandTertiary": tzVars.color.brand[100]
+        "default": vars.color.brand[100],
+        "secondary": vars.color.brand[300],
+        "tertiary": vars.color.brand[400],
+        "onBrand": vars.color.brand[900],
+        "onBrandSecondary": vars.color.brand[100],
+        "onBrandTertiary": vars.color.brand[100]
       },
       "danger": {
-        "default": tzVars.color.red[200],
-        "secondary": tzVars.color.red[400],
-        "tertiary": tzVars.color.red[500],
-        "onDanger": tzVars.color.red[100],
-        "onDangerSecondary": tzVars.color.red[100],
-        "onDangerTertiary": tzVars.color.red[100]
+        "default": vars.color.red[200],
+        "secondary": vars.color.red[400],
+        "tertiary": vars.color.red[500],
+        "onDanger": vars.color.red[100],
+        "onDangerSecondary": vars.color.red[100],
+        "onDangerTertiary": vars.color.red[100]
       },
       "default": {
-        "default": tzVars.color.white[1000],
-        "secondary": tzVars.color.white[500],
-        "tertiary": tzVars.color.white[400]
+        "default": vars.color.white[1000],
+        "secondary": vars.color.white[500],
+        "tertiary": vars.color.white[400]
       },
       "disabled": {
-        "default": tzVars.color.brand[500],
-        "onDisabled": tzVars.color.brand[400]
+        "default": vars.color.brand[500],
+        "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": tzVars.color.slate[200],
-        "onNeutral": tzVars.color.slate[1000],
-        "onNeutralSecondary": tzVars.color.slate[100],
-        "onNeutralTertiary": tzVars.color.slate[100],
-        "secondary": tzVars.color.slate[300],
-        "tertiary": tzVars.color.slate[400]
+        "default": vars.color.slate[200],
+        "onNeutral": vars.color.slate[1000],
+        "onNeutralSecondary": vars.color.slate[100],
+        "onNeutralTertiary": vars.color.slate[100],
+        "secondary": vars.color.slate[300],
+        "tertiary": vars.color.slate[400]
       },
       "positive": {
-        "default": tzVars.color.green[200],
-        "secondary": tzVars.color.green[400],
-        "tertiary": tzVars.color.green[600],
-        "onPositive": tzVars.color.green[100],
-        "onPositiveSecondary": tzVars.color.green[100],
-        "onPositiveTertiary": tzVars.color.green[100]
+        "default": vars.color.green[200],
+        "secondary": vars.color.green[400],
+        "tertiary": vars.color.green[600],
+        "onPositive": vars.color.green[100],
+        "onPositiveSecondary": vars.color.green[100],
+        "onPositiveTertiary": vars.color.green[100]
       },
       "warning": {
-        "default": tzVars.color.yellow[200],
-        "secondary": tzVars.color.yellow[400],
-        "tertiary": tzVars.color.yellow[600],
-        "onWarning": tzVars.color.yellow[1000],
-        "onWarningSecondary": tzVars.color.yellow[100],
-        "onWarningTertiary": tzVars.color.yellow[100]
+        "default": vars.color.yellow[200],
+        "secondary": vars.color.yellow[400],
+        "tertiary": vars.color.yellow[600],
+        "onWarning": vars.color.yellow[1000],
+        "onWarningSecondary": vars.color.yellow[100],
+        "onWarningTertiary": vars.color.yellow[100]
       }
     }
   },
@@ -1272,110 +1348,110 @@ export const [darkClass, dark] = createTheme({
   },
   "typography": {
     "titleHero": {
-      "font-family": tzVars.typography.family.sans,
-      "font-size": tzVars.typography.scale[10],
-      "font-weight": tzVars.typography.weight.bold
+      "fontFamily": vars.typography.family.sans,
+      "fontSize": vars.typography.scale[10],
+      "fontWeight": vars.typography.weight.bold
     },
     "titlePage": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['07'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['07'],
+        "fontWeight": vars.typography.weight.bold
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['08'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['08'],
+        "fontWeight": vars.typography.weight.bold
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['09'],
-        "font-weight": tzVars.typography.weight.bold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['09'],
+        "fontWeight": vars.typography.weight.bold
       }
     },
     "subtitle": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.regular
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['06'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['06'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['07'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['07'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "heading": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.semibold
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.semibold
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['06'],
-        "font-weight": tzVars.typography.weight.semibold
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['06'],
+        "fontWeight": vars.typography.weight.semibold
       }
     },
     "subheading": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "base": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['05'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['05'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "body": {
       "small": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['02'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['02'],
+        "fontWeight": vars.typography.weight.regular
       },
       "medium": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.sans,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.sans,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "code": {
       "small": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['02'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['02'],
+        "fontWeight": vars.typography.weight.regular
       },
       "medium": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['03'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['03'],
+        "fontWeight": vars.typography.weight.regular
       },
       "large": {
-        "font-family": tzVars.typography.family.mono,
-        "font-size": tzVars.typography.scale['04'],
-        "font-weight": tzVars.typography.weight.regular
+        "fontFamily": vars.typography.family.mono,
+        "fontSize": vars.typography.scale['04'],
+        "fontWeight": vars.typography.weight.regular
       }
     },
     "family": {

@@ -1,8 +1,9 @@
 import type { TokenTransformed } from '@terrazzo/parser';
 import type ve from '@vanilla-extract/css';
+import { camelCase } from 'scule';
 
 export const FORMAT_ID = 'vanilla-extract';
-export const THEME_CONTRACT_VAR = 'tzVars'; // aim for low chance of collision while being human-readable
+export const THEME_EXPORT = 'vars'; // Could be a future option, for now match docs
 
 export interface VanillaExtractPluginOptions {
   /**
@@ -88,10 +89,21 @@ export function generateThemeContract({
     if (token.type !== 'MULTI_VALUE') {
       throw new Error('Error in plugin-vanilla-extract: values didn’t generate correctly.');
     }
-    node[name] = globalThemeContract ? token.value.__cssName?.replace(/^--/, '') : null;
+    const cssName = token.value.__cssName?.replace(/^--/, '');
+    if ('.' in token.value) {
+      node[name] = globalThemeContract ? cssName : null;
+    } else {
+      node[name] = {};
+      for (const k of Object.keys(token.value)) {
+        if (k === '__cssName') {
+          continue;
+        }
+        node[name][camelCase(k)] = globalThemeContract ? `${cssName}-${k}` : null;
+      }
+    }
   }
 
-  return `export const ${THEME_CONTRACT_VAR} = ${globalThemeContract ? VE.createGlobalThemeContract : VE.createThemeContract}(${JSON.stringify(tokensObj, undefined, 2)});\n`;
+  return `export const ${THEME_EXPORT} = ${globalThemeContract ? VE.createGlobalThemeContract : VE.createThemeContract}(${JSON.stringify(tokensObj, undefined, 2)});\n`;
 }
 
 /** Generate createTheme()/createGlobalTheme() */
@@ -130,7 +142,7 @@ export function generateTheme({
           if (k === '__cssName') {
             continue;
           }
-          node[name][k] = serializeValue(v, tokens);
+          node[name][camelCase(k)] = serializeValue(v, tokens);
         }
       }
     } else {
@@ -139,7 +151,9 @@ export function generateTheme({
   }
 
   const ident = globalTheme ? `${name}` : `[${namingPattern(name)[0]}, ${namingPattern(name)[1]}]`;
-  const prefix = globalTheme ? `${VE.createGlobalTheme}(${JSON.stringify(selector)}, ` : `${VE.createTheme}(`;
+  const prefix = globalTheme
+    ? `${VE.createGlobalTheme}(${JSON.stringify(selector)}, ${THEME_EXPORT}, `
+    : `${VE.createTheme}(${THEME_EXPORT}, `;
   const rawTokens = JSON.stringify(tokensObj, undefined, 2);
   return `export const ${ident} = ${prefix}${deserializeAllValues(rawTokens)});\n`;
 }
@@ -173,7 +187,7 @@ export function serializeValue(value: string | number | boolean, tokens: TokenTr
         jsIdent += `.${part}`;
       }
     }
-    return `${IDENT_ESCAPE}${THEME_CONTRACT_VAR}${jsIdent}${IDENT_ESCAPE}`;
+    return `${IDENT_ESCAPE}${THEME_EXPORT}${jsIdent}${IDENT_ESCAPE}`;
   }
 
   // special case: zero
