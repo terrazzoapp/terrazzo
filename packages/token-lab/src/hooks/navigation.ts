@@ -1,8 +1,7 @@
-import { atom, useAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useLayoutEffect, useState, type Dispatch, type SetStateAction } from 'react';
 
 export interface NavState {
-  selection: string[];
+  selected: string[];
 }
 
 /**
@@ -10,30 +9,28 @@ export interface NavState {
  * The simple version of this app only uses a single route with clientside search params, so we can
  * implement routing using a couple Jotai atoms without the need for a heavier router.
  */
-export default function useNavigation() {
-  const [state, setState] = useAtom($state);
+export default function useNavigation(): [NavState, Dispatch<SetStateAction<NavState>>] {
+  const [navState, setNavState] = useState<NavState>(
+    typeof window !== 'undefined'
+      ? { selected: deserializeSelected(new URLSearchParams(window.location.search).get('selected')) }
+      : { selected: [] },
+  );
 
-  // keep search params synced with state
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    params.set('selected', serializeSelected(state.selection));
-    window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
-  }, [state]);
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const search = new URLSearchParams(window.location.search);
+    search.set('selected', serializeSelected(navState.selected));
+  }, [serializeSelected(navState.selected)]);
 
-  return [state, setState] as const;
+  return [navState, setNavState];
 }
 
-function serializeSelected(selected: string[]) {
+function serializeSelected(selected: string[]): string {
   return selected.join(',');
 }
 
-function deserializeSelected(selected: string) {
-  return selected.split(',');
+function deserializeSelected(selected: string | null): string[] {
+  return selected?.split(',') ?? [];
 }
-
-const rawParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
-const parsed: NavState = {
-  selection: deserializeSelected(rawParams.get('selected') || ''),
-};
-
-const $state = atom(parsed);

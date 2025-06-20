@@ -4,7 +4,7 @@
  */
 import * as monaco from 'monaco-editor';
 import { useEffect, useId, useLayoutEffect, useState } from 'react';
-import useTokens from '../../hooks/tokens.js';
+import useTokensLoader from '../../hooks/tokens-loader.js';
 
 const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
   language: 'json',
@@ -18,7 +18,7 @@ const MONACO_OPTIONS: monaco.editor.IStandaloneEditorConstructionOptions = {
 
 export default function CodeEditor() {
   const id = useId();
-  const { tokens, setTokens } = useTokens();
+  const [tokensLoader, setTokens] = useTokensLoader();
   const [editor, setEditor] = useState<monaco.editor.IStandaloneCodeEditor>();
 
   // initial setup
@@ -43,7 +43,7 @@ export default function CodeEditor() {
     const editorEl = document.getElementById(id)!;
     setEditor(
       monaco.editor.create(document.getElementById(id)!, {
-        value: tokens,
+        value: tokensLoader.tokensRaw,
         ...MONACO_OPTIONS,
       }),
     );
@@ -51,7 +51,6 @@ export default function CodeEditor() {
     editorEl.querySelector('textarea')?.focus();
   }, []);
 
-  // on update, update Jotai atom (debounced; this will lock up the main thread every character)
   useEffect(() => {
     let t: number | undefined;
     editor?.getModel()?.onDidChangeContent(() => {

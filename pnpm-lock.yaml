@@ -545,9 +545,6 @@ importers:
       dtcg-examples:
         specifier: ^0.3.3
         version: 0.3.3
-      jotai:
-        specifier: ^2.12.3
-        version: 2.12.5(@types/react@19.1.6)(react@19.0.0)
       monaco-editor:
         specifier: ^0.52.2
         version: 0.52.2
@@ -3764,18 +3761,6 @@ packages:
   jiti@2.4.2:
     resolution: {integrity: sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A==}
     hasBin: true
-
-  jotai@2.12.5:
-    resolution: {integrity: sha512-G8m32HW3lSmcz/4mbqx0hgJIQ0ekndKWiYP7kWVKi0p6saLXdSoye+FZiOFyonnd7Q482LCzm8sMDl7Ar1NWDw==}
-    engines: {node: '>=12.20.0'}
-    peerDependencies:
-      '@types/react': '>=17.0.0'
-      react: '>=17.0.0'
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
-      react:
-        optional: true
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -9189,11 +9174,6 @@ snapshots:
   javascript-stringify@2.1.0: {}
 
   jiti@2.4.2: {}
-
-  jotai@2.12.5(@types/react@19.1.6)(react@19.0.0):
-    optionalDependencies:
-      '@types/react': 19.1.6
-      react: 19.0.0
 
   js-tokens@4.0.0: {}
 

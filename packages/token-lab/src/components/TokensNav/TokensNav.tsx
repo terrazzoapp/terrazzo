@@ -2,7 +2,7 @@ import { MagnifyingGlass, TokenIcon } from '@terrazzo/icons';
 import { TreeGrid } from '@terrazzo/tiles';
 import { useState } from 'react';
 import useNavigation from '../../hooks/navigation.js';
-import useTokens from '../../hooks/tokens.js';
+import useTokensLoader from '../../hooks/tokens-loader.js';
 import c from './TokensNav.module.css';
 
 export default function TokensNav() {
@@ -11,11 +11,11 @@ export default function TokensNav() {
   // Note: "tokens" is a string that is allowed to be invalid / in a mid-edit state.
   // The parse result is guaranteed to be the latest, valid parse result without
   // errors (though during initial load, it will be an empty object)
-  const { tokens, parseResult, parseError } = useTokens();
+  const [tokensLoader] = useTokensLoader();
   const [navState, setNavState] = useNavigation();
 
-  if (!parseResult.tokens) {
-    return <div className={c.error}>{parseError ? String(parseError) : 'There was an error parsing tokens.json'}</div>;
+  if (!tokensLoader.tokens) {
+    return <div className={c.error}>{tokensLoader.parseError || 'There was an error parsing tokens.json'}</div>;
   }
 
   return (
@@ -30,20 +30,20 @@ export default function TokensNav() {
       />
       <TreeGrid.Root
         className={c.tree}
-        defaultExpanded={navState.selection}
-        defaultSelected={navState.selection}
+        defaultExpanded={navState.selected}
+        defaultSelected={navState.selected}
         onSelectItems={(ids) => {
-          setNavState({ selection: ids });
+          setNavState({ selected: ids });
         }}
       >
-        <TokensNavLevel data={JSON.parse(tokens)} search={search.toLowerCase()} />
+        <TokensNavLevel data={tokensLoader.tokens} search={search.toLowerCase()} />
       </TreeGrid.Root>
     </div>
   );
 }
 
 function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: unknown; search?: string }) {
-  const { parseResult } = useTokens();
+  const [tokensLoader] = useTokensLoader();
 
   if (!data || typeof data !== 'object' || Array.isArray(data)) {
     return null;
@@ -59,7 +59,7 @@ function TokensNavLevel({ path = [], data, search }: { path?: string[]; data: un
       // filter out non-matching tokens
       // TODO: filter out empty groups?
       const isFiltered = typeof search === 'string' && !id.toLowerCase().includes(search);
-      const { $type } = parseResult.tokens[id] ?? {};
+      const { $type } = tokensLoader.tokens?.[id] ?? {};
       return (
         <TreeGrid.Item key={k} id={id} hidden={isFiltered}>
           {$type !== undefined && $type !== 'string' && <TokenIcon type={$type} className={c.tokenIcon} />}
