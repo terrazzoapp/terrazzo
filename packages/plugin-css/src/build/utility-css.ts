@@ -1,6 +1,7 @@
 import type { TokenTransformed } from '@terrazzo/parser';
-import { isTokenMatch, kebabCase } from '@terrazzo/token-tools';
+import { kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+import wcmatch from 'wildcard-match';
 import type { CSSRule, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
@@ -34,7 +35,8 @@ export default function generateUtilityCSS(
   groupEntries.sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [group, selectors] of groupEntries) {
-    const matchingTokens = tokens.filter((token) => isTokenMatch(token.token.id, selectors));
+    const selectorMatcher = wcmatch(selectors);
+    const matchingTokens = tokens.filter((token) => selectorMatcher(token.token.id));
     if (!matchingTokens.length) {
       // biome-ignore lint/suspicious/noConsole: intentional user log
       console.warn(`[@terrazzo/plugin-css] utility group "${group}" matched 0 tokens: ${JSON.stringify(selectors)}`);

@@ -1,5 +1,5 @@
 import type { DocumentNode } from '@humanwhocodes/momoa';
-import { type TokenNormalized, isTokenMatch } from '@terrazzo/token-tools';
+import type { TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
 import type { BuildRunnerResult, ConfigInit, TokenTransformed, TransformParams } from '../types.js';
@@ -55,6 +55,10 @@ export default async function build(
       logger.warn({ group: 'plugin', message: '"format" missing from getTransforms(), no tokens returned.' });
       return [];
     }
+
+    const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
+    const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+
     return (formats[params.format!] ?? []).filter((token) => {
       if (params.$type) {
         if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
@@ -63,14 +67,10 @@ export default async function build(
           return false;
         }
       }
-      if (
-        params.id &&
-        params.id !== '*' &&
-        !isTokenMatch(token.token.id, Array.isArray(params.id) ? params.id : [params.id])
-      ) {
+      if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
         return false;
       }
-      if (params.mode && !wcmatch(params.mode)(token.mode)) {
+      if (modeMatcher && !modeMatcher(token.mode)) {
         return false;
       }
       return true;

@@ -7,7 +7,8 @@ import {
   evaluate,
   print,
 } from '@humanwhocodes/momoa';
-import { type Token, type TokenNormalized, isAlias, isTokenMatch, splitID } from '@terrazzo/token-tools';
+import { type Token, type TokenNormalized, isAlias, splitID } from '@terrazzo/token-tools';
+import wcmatch from 'wildcard-match';
 import type Logger from '../logger.js';
 import type { ConfigInit } from '../types.js';
 import { getObjMembers, injectObjMembers } from './json.js';
@@ -858,7 +859,7 @@ export default function validateTokenNode(
   // point. However, if we are ignoring this token (or respecting
   // $deprecated, we can omit it from the output.
   const $deprecated = members.$deprecated && (evaluate(members.$deprecated) as string | boolean | undefined);
-  if ((config.ignore.deprecated && $deprecated) || (config.ignore.tokens && isTokenMatch(id, config.ignore.tokens))) {
+  if ((config.ignore.deprecated && $deprecated) || (config.ignore.tokens && wcmatch(config.ignore.tokens)(id))) {
     return;
   }
 

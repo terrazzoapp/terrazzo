@@ -1,7 +1,7 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { FORMAT_ID } from '@terrazzo/plugin-css';
-import { isTokenMatch } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+import wcmatch from 'wildcard-match';
 import { FILE_HEADER, MIXIN_TOKEN, MIXIN_TYPOGRAPHY, type SassPluginOptions } from './lib.js';
 
 export interface BuildParams {
@@ -14,10 +14,12 @@ export default function build({ getTransforms, options }: BuildParams): string {
 
   const output: string[] = [FILE_HEADER, ''];
 
+  const shouldExclude = wcmatch(options?.exclude ?? []);
+
   // main values
   output.push('$__token-values: (');
   for (const token of tokens) {
-    if (isTokenMatch(token.token.id, options?.exclude ?? [])) {
+    if (shouldExclude(token.token.id)) {
       continue;
     }
     // typography tokens handled later

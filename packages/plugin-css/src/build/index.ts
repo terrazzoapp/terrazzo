@@ -1,6 +1,7 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
-import { isTokenMatch } from '@terrazzo/token-tools';
 import { generateShorthand } from '@terrazzo/token-tools/css';
+import wcmatch from 'wildcard-match';
+import type { DocumentNode } from 'graphql';
 import { type CSSPluginOptions, type CSSRule, FORMAT_ID, printRules } from '../lib.js';
 import generateUtilityCSS from './utility-css.js';
 
@@ -39,9 +40,11 @@ export default function buildFormat({
     const rec2020Rule: CSSRule = { selectors: [baseSelector], nestedQuery: REC2020_MQ, declarations: {} };
     rules.push(rootRule, p3Rule, rec2020Rule);
 
+    const shouldExclude = wcmatch(exclude ?? []);
+
     for (const token of rootTokens) {
       // handle exclude (if any)
-      if (isTokenMatch(token.token.id, exclude ?? [])) {
+      if (shouldExclude(token.token.id)) {
         continue;
       }
 
