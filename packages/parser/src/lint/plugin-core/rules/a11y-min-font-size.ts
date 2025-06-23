@@ -1,4 +1,4 @@
-import { isTokenMatch } from '@terrazzo/token-tools';
+import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -31,8 +31,10 @@ const rule: LintRule<typeof ERROR_TOO_SMALL, RuleA11yMinFontSizeOptions> = {
       throw new Error('Must specify at least one of minSizePx or minSizeRem');
     }
 
+    const shouldIgnore = options.ignore ? wcmatch(options.ignore) : null;
+
     for (const t of Object.values(tokens)) {
-      if (options.ignore && isTokenMatch(t.id, options.ignore)) {
+      if (shouldIgnore?.(t.id)) {
         continue;
       }
 

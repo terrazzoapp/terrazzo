@@ -39,7 +39,8 @@
     "@terrazzo/cli": "^0.8.0"
   },
   "dependencies": {
-    "@terrazzo/token-tools": "workspace:^"
+    "@terrazzo/token-tools": "workspace:^",
+    "wildcard-match": "^5.1.4"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",

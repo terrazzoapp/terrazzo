@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getTokenMatch, isAlias, isTokenMatch, makeAlias, parseAlias, splitID } from '../src/id.js';
+import { getTokenMatch, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {
   it('returns true for valid ID', () => {
@@ -22,27 +22,6 @@ describe('makeAlias', () => {
 
   it('existing aliases are kept', () => {
     expect(makeAlias('{color.blue.60}')).toBe('{color.blue.60}');
-  });
-});
-
-describe('isTokenMatch', () => {
-  it('basic', () => {
-    expect(isTokenMatch('color.blue.60', ['color.*'])).toBe(true);
-    expect(isTokenMatch('color.blue.60', ['*.blue.*'])).toBe(true);
-    expect(isTokenMatch('color.blue.60', ['*.60'])).toBe(true);
-    expect(isTokenMatch('color.blue.60', ['*'])).toBe(true);
-    expect(isTokenMatch('color.blue.60', ['color'])).toBe(false);
-    expect(isTokenMatch('color.blue.60', ['color.blue'])).toBe(false);
-    expect(isTokenMatch('color.blue.60', ['color.blue.50'])).toBe(false);
-    expect(
-      isTokenMatch('color.alias-1', [
-        'color.alias-1',
-        'color.alias-2',
-        'color.alias-3',
-        'color.alias-4',
-        'color.alias-5',
-      ]),
-    ).toBe(true);
   });
 });
 
