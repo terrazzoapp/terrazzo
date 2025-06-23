@@ -7,16 +7,6 @@ export function isAlias(value: string): boolean {
   return ALIAS_RE.test(value);
 }
 
-/**
- * Match token against globs
- *
- * @deprecated Use `wildcard-match` directly instead. It is recommended to call
- *   `wcmatch(globPatterns)` once and reuse the created function for performance.
- */
-export function isTokenMatch(tokenID: string, globPatterns: string[]): boolean {
-  return wcmatch(globPatterns)(tokenID);
-}
-
 /** Same as isTokenMatch but returns the matching pattern */
 export function getTokenMatch(tokenId: string, globPatterns: string[]): string | undefined {
   for (const pattern of globPatterns) {
