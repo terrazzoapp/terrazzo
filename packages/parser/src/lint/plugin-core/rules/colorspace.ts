@@ -1,7 +1,7 @@
-import { type ColorValueNormalized } from '@terrazzo/token-tools';
+import type { ColorValueNormalized } from '@terrazzo/token-tools';
+import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
-import wcmatch from 'wildcard-match';
 
 export const COLORSPACE = 'core/colorspace';
 

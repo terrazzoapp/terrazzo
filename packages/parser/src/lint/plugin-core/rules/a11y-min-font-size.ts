@@ -1,6 +1,6 @@
+import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
-import wcmatch from 'wildcard-match';
 
 export const A11Y_MIN_FONT_SIZE = 'a11y/min-font-size';
 

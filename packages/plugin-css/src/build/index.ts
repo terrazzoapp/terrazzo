@@ -1,7 +1,6 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { generateShorthand } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import type { DocumentNode } from 'graphql';
 import { type CSSPluginOptions, type CSSRule, FORMAT_ID, printRules } from '../lib.js';
 import generateUtilityCSS from './utility-css.js';
 

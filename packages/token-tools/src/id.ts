@@ -7,9 +7,9 @@ export function isAlias(value: string): boolean {
   return ALIAS_RE.test(value);
 }
 
-/** 
+/**
  * Match token against globs
- * 
+ *
  * @deprecated Use `wildcard-match` directly instead. It is recommended to call
  *   `wcmatch(globPatterns)` once and reuse the created function for performance.
  */
