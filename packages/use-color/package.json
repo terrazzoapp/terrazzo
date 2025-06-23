@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/use-color",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "React hook for memoizing and transforming any web-compatible color. Uses Culori.",
   "license": "MIT",
   "type": "module",
