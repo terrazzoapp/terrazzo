@@ -220,6 +220,9 @@ importers:
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
+      wildcard-match:
+        specifier: ^5.1.4
+        version: 5.1.4
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
