@@ -9,6 +9,7 @@ import {
   modeHsv,
   modeHwb,
   modeLab,
+  modeLab65,
   modeLch,
   modeLrgb,
   modeOklab,
@@ -69,6 +70,7 @@ const converters: Record<keyof typeof CULORI_TO_CSS, (color: Color) => Color> = 
   hsv: useMode(modeHsv),
   hwb: useMode(modeHwb),
   lab: useMode(modeLab),
+  lab65: useMode(modeLab65),
   lch: useMode(modeLch),
   lrgb: useMode(modeLrgb),
   oklab: useMode(modeOklab),
@@ -88,12 +90,27 @@ const converters: Record<keyof typeof CULORI_TO_CSS, (color: Color) => Color> = 
  * we’re just preserving the original colorspace.
  */
 function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color) {
+  if (!($value.colorSpace in CSS_TO_CULORI)) {
+    throw new Error(
+      `Invalid colorSpace "${$value.colorSpace}". Expected one of: ${Object.keys(CSS_TO_CULORI).join(', ')}`,
+    );
+  }
   const conversionSpace = CSS_TO_CULORI[$value.colorSpace] || 'oklab';
-  const converter = converters[conversionSpace];
+  let gamutSpace = conversionSpace;
+  // bugfix. "lab" and "oklab" have a bug in Culori
+  // https://github.com/Evercoder/culori/issues/261
+  if (gamutSpace === 'lab' || gamutSpace === 'lab65') {
+    gamutSpace = 'lch';
+  } else if (gamutSpace === 'oklab') {
+    gamutSpace = 'oklch';
+  }
+  const srgb = converters[conversionSpace](toGamut('rgb', gamutSpace)(culoriColor));
+  const p3 = converters[conversionSpace](toGamut('p3', gamutSpace)(culoriColor));
+  const rec2020 = converters[conversionSpace](toGamut('rec2020', gamutSpace)(culoriColor));
   return {
     '.': formatCss(culoriColor),
-    srgb: formatCss(converter(toGamut('rgb', conversionSpace)(culoriColor))),
-    p3: formatCss(converter(toGamut('p3', conversionSpace)(culoriColor))),
-    rec2020: formatCss(converter(toGamut('rec2020', conversionSpace)(culoriColor))),
+    srgb: formatCss(srgb),
+    p3: formatCss(p3),
+    rec2020: formatCss(rec2020),
   };
 }

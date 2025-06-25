@@ -9,6 +9,7 @@ export const CULORI_TO_CSS: Record<
     Color['mode'],
     | 'a98'
     | 'lab'
+    | 'lab65'
     | 'lch'
     | 'oklab'
     | 'oklch'
@@ -30,6 +31,7 @@ export const CULORI_TO_CSS: Record<
   hsv: 'hsv',
   hwb: 'hwb',
   lab: 'lab',
+  lab65: 'lab-d65',
   lch: 'lch',
   lrgb: 'srgb-linear',
   oklab: 'oklab',
@@ -49,6 +51,7 @@ export const CSS_TO_CULORI = {
   hsv: 'hsv',
   hwb: 'hwb',
   lab: 'lab',
+  'lab-d65': 'lab65',
   lch: 'lch',
   oklab: 'oklab',
   oklch: 'oklch',
@@ -94,6 +97,7 @@ export function parseColor(color: string): ColorValueNormalized {
       break;
     }
     case 'lab':
+    case 'lab65':
     case 'oklab': {
       components = [result.l, result.a, result.b];
       break;
@@ -153,9 +157,11 @@ export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
       return { mode: 'hwb', h, w, b, alpha: value.alpha };
     }
     case 'lab':
+    case 'lab-d65':
     case 'oklab': {
       const [l, a, b] = value.components;
-      return { mode: value.colorSpace, l, a, b, alpha: value.alpha };
+      const mode = value.colorSpace === 'lab-d65' ? 'lab65' : value.colorSpace;
+      return { mode, l, a, b, alpha: value.alpha };
     }
     case 'lch':
     case 'oklch': {
@@ -169,6 +175,11 @@ export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
     case 'xyz-d65': {
       const [x, y, z] = value.components;
       return { mode: 'xyz65', x, y, z, alpha: value.alpha };
+    }
+    default: {
+      throw new Error(
+        `Invalid colorSpace "${value.colorSpace}". Expected one of ${Object.keys(CSS_TO_CULORI).join(', ')}`,
+      );
     }
   }
 }

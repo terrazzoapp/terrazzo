@@ -179,24 +179,139 @@ describe('transformColor', () => {
     [
       'string',
       {
-        given: [{ $value: '#663399' } as any, { tokensSet: {} }],
+        given: [{ $value: '#663399' }, { tokensSet: {} }],
         want: { success: 'color(srgb 0.4 0.2 0.6)' },
       },
     ],
     [
-      'object',
+      'srgb',
       {
         given: [
           {
-            $value: {
-              colorSpace: 'srgb',
-              components: [0.4, 0.2, 0.6],
-              alpha: 1,
-            },
-          } as any,
+            $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] } as any,
+          },
           { tokensSet: {} },
         ],
         want: { success: 'color(srgb 0.4 0.2 0.6)' },
+      },
+    ],
+    [
+      'lrgb',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'srgb-linear', components: [0.4, 0.2, 0.6] } as any,
+          },
+          { tokensSet: {} },
+        ],
+        want: { success: 'color(srgb-linear 0.4 0.2 0.6)' },
+      },
+    ],
+    [
+      'p3',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'display-p3', components: [0.4, 0.2, 0.6] } as any,
+          },
+          { tokensSet: {} },
+        ],
+        want: { success: 'color(display-p3 0.4 0.2 0.6)' },
+      },
+    ],
+    [
+      'hsl',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'hsl', components: [218, 0.5, 0.67] },
+          } as any,
+          { tokensSet: {} },
+        ],
+        want: { success: 'hsl(218 50% 67%)' },
+      },
+    ],
+    [
+      'hsl',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'hsl', components: [218, 0.5, 0.67] },
+          } as any,
+          { tokensSet: {} },
+        ],
+        want: { success: 'hsl(218 50% 67%)' },
+      },
+    ],
+    [
+      'hwb',
+      {
+        given: [{ $value: { colorSpace: 'hwb', components: [45, 0.4, 0.8] } } as any, { tokensSet: {} }],
+        want: { success: 'hwb(45 40% 80%)' },
+      },
+    ],
+    [
+      'lab',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'lab', components: [0.97607, -15.753, 93.388] },
+          } as any,
+          { tokensSet: {} },
+        ],
+        want: {
+          success: {
+            '.': 'lab(0.97607 -15.753 93.388)',
+            p3: 'lab(0.9992456122453213 -0.22075576349825377 1.6354688171982878)',
+            rec2020: 'lab(0.9909312517695597 -0.24730031693993848 1.649082035846855)',
+            srgb: 'lab(1.001832729252527 -0.1892285324187476 1.4850469752498152)',
+          },
+        },
+      },
+    ],
+    [
+      'lab-d65',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'lab-d65', components: [0.97607, -15.753, 93.388] },
+          } as any,
+          { tokensSet: {} },
+        ],
+        want: {
+          success: {
+            '.': 'color(--lab-d65 0.97607 -15.753 93.388)',
+            p3: 'color(--lab-d65 1.8855122166091576 -0.360479905092595 3.1148289149372954)',
+            rec2020: 'color(--lab-d65 1.8734299289396539 -0.39990148710858375 3.1455705440267545)',
+            srgb: 'color(--lab-d65 1.894456898976582 -0.28385578499251496 2.832328734182904)',
+          },
+        },
+      },
+    ],
+    [
+      'lch',
+      {
+        given: [
+          {
+            $value: { colorSpace: 'lch', components: [0.292345, 44.2, 27] },
+          } as any,
+          { tokensSet: {} },
+        ],
+        want: {
+          success: {
+            '.': 'lch(0.292345 44.2 27)',
+            p3: 'lch(0.3008995559138441 1.5469628958122028 19.61978258664296)',
+            rec2020: 'lch(0.2981584825921537 1.538049285636121 19.485853861927055)',
+            srgb: 'lch(0.3214049466640958 1.5192684802362915 19.699130975077715)',
+          },
+        },
+      },
+    ],
+    [
+      'oklab',
+      {
+        given: [{ $value: { colorSpace: 'oklab', components: [0.40101, 0.1147, 0.0453] } }, { tokensSet: {} }],
+        want: { success: 'oklab(0.40101 0.1147 0.0453)' },
       },
     ],
     [
@@ -231,10 +346,34 @@ describe('transformColor', () => {
       },
     ],
     [
+      'xyz-d50',
+      {
+        given: [{ $value: { colorSpace: 'xyz-d50', components: [0.2005, 0.14089, 0.4472] } } as any, { tokensSet: {} }],
+        want: { success: 'color(xyz-d50 0.2005 0.14089 0.4472)' },
+      },
+    ],
+    [
+      'xyz-d65',
+      {
+        given: [{ $value: { colorSpace: 'xyz-d65', components: [0.2005, 0.14089, 0.4472] } } as any, { tokensSet: {} }],
+        want: { success: 'color(xyz-d65 0.2005 0.14089 0.4472)' },
+      },
+    ],
+    [
       'invalid',
       {
         given: [{ $value: '#wtf' } as any, { tokensSet: {} }],
         want: { error: 'Unable to parse color "#wtf"' },
+      },
+    ],
+    [
+      'unknown colorSpace',
+      {
+        given: [{ $value: { colorSpace: 'bad', components: [0.1, 0.1, 0.1] } } as any, { tokensSet: {} }],
+        want: {
+          error:
+            'Invalid colorSpace "bad". Expected one of a98, display-p3, hsl, hsv, hwb, lab, lab-d65, lch, oklab, oklch, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz-d65',
+        },
       },
     ],
   ];

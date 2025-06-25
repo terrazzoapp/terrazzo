@@ -828,7 +828,7 @@ font:
         },
       ],
       [
-        'valid: object',
+        'valid: object (srgb)',
         {
           given: [
             {
@@ -837,6 +837,20 @@ font:
             },
           ],
           want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        },
+      ],
+      [
+        'valid: object (hsl)',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                color: { blue: { 10: { $type: 'color', $value: { colorSpace: 'hsl', components: [218, 50, 67] } } } },
+              },
+            },
+          ],
+          want: { tokens: { 'color.blue.10': { $value: { alpha: 1, components: [218, 50, 67], colorSpace: 'hsl' } } } },
         },
       ],
       [
