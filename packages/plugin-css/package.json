@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-css",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Convert DTCG design tokens JSON into CSS variables for use in any web application or native app with webview.",
   "license": "MIT",
   "type": "module",
@@ -36,7 +36,7 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "^0.8.0"
+    "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",

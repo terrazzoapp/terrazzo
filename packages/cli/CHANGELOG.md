@@ -1,5 +1,18 @@
 # @terrazzo/cli
 
+## 0.9.0
+
+### Minor Changes
+
+- [#497](https://github.com/terrazzoapp/terrazzo/pull/497) [`9b80fd4`](https://github.com/terrazzoapp/terrazzo/commit/9b80fd4edd1198021d8e309483e8cd8551fe79dc) Thanks [@bschlenk](https://github.com/bschlenk)! - - potential 5x speedup for @terrazzo/plugin-css
+  - removed isTokenMatch from @terrazzo/token-tools
+
+### Patch Changes
+
+- Updated dependencies [[`9b80fd4`](https://github.com/terrazzoapp/terrazzo/commit/9b80fd4edd1198021d8e309483e8cd8551fe79dc)]:
+  - @terrazzo/parser@0.9.0
+  - @terrazzo/token-tools@0.9.0
+
 ## 0.8.1
 
 ### Patch Changes

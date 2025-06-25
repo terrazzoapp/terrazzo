@@ -18,7 +18,7 @@ describe('vanilla-extract', () => {
         const cwd = new URL(`${name}/`, EXAMPLES_DIR);
 
         // 1. evaluate TZ output
-        await execa({ cwd })`pnpm exec tz build -c ${fileURLToPath(new URL('terrazzo.config.js', cwd))}`;
+        await execa({ cwd })`pnpm exec tz build -c test/fixtures/${name}/terrazzo.config.js`;
         // TODO: support renaming?
         await expect(fs.readFileSync(new URL('theme.css.ts', cwd), 'utf8')).toMatchFileSnapshot(
           fileURLToPath(new URL('want.theme.css.ts', cwd)),
