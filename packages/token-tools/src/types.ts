@@ -397,6 +397,7 @@ export type ColorSpace =
   | 'hsv'
   | 'hwb'
   | 'lab'
+  | 'lab-d65'
   | 'lch'
   | 'oklab'
   | 'oklch'
