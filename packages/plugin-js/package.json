@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-js",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "Generate JS, TS, and JSON from your DTCG design tokens JSON.",
   "license": "MIT",
   "type": "module",
