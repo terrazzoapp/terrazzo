@@ -1,6 +1,7 @@
 {
   "name": "@terrazzo/token-lab",
-  "version": "0.0.1",
+  "private": true,
+  "version": "0.0.0",
   "description": "Create, edit, and save tokens.json in DTCG format",
   "license": "MIT",
   "type": "module",

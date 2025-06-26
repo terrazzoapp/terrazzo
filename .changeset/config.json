@@ -6,6 +6,7 @@
       "repo": "terrazzoapp/terrazzo"
     }
   ],
+  "ignore": ["@terrazzo/token-lab"],
   "commit": false,
   "access": "public",
   "baseBranch": "main"
