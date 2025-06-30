@@ -175,11 +175,11 @@ By declaring a `variants` array with both `selector` (Tailwind) and `mode` (DTCG
 tailwind({
   theme: {
     color: ["color.*"],
-    modeVariants: [
+  },
+  modeVariants: [
       { variant: "dark", mode: "dark" },
       { variant: "hc", mode: "high-contrast" },
     ],
-  },
 });
 ```
 
