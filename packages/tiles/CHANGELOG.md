@@ -1,5 +1,13 @@
 # @terrazzo/tiles
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @terrazzo/tokens@0.1.0
+  - @terrazzo/use-color@0.1.2
+
 ## 0.1.1
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-swift",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Generate Swift code using DTCG design tokens JSON.",
   "license": "MIT",
   "type": "module",
