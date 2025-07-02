@@ -6,7 +6,6 @@ export { inGamut };
 // note: redeclared color types are compatible with Culori, but stricter (for our purposes)
 export type A98 =      { mode: 'a98';      readonly r: number; readonly g: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 export type Hsl =      { mode: 'hsl';      readonly h: number; readonly s: number; readonly l: number; readonly alpha: number }; // biome-ignore format: repetitive strings
-export type Hsv =      { mode: 'hsv';      readonly h: number; readonly s: number; readonly v: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 export type Hwb =      { mode: 'hwb';      readonly h: number; readonly w: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 export type Lab =      { mode: 'lab';      readonly l: number; readonly a: number; readonly b: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 export type Lch =      { mode: 'lch';      readonly l: number; readonly c: number; readonly h: number; readonly alpha: number }; // biome-ignore format: repetitive strings
@@ -22,7 +21,7 @@ export type Rgb =      { mode: 'rgb';      readonly r: number; readonly g: numbe
 export type Xyz50 =    { mode: 'xyz50';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 export type Xyz65 =    { mode: 'xyz65';    readonly x: number; readonly y: number; readonly z: number; readonly alpha: number }; // biome-ignore format: repetitive strings
 
-export type Color = A98 | Hsl | Hsv | Hwb | Lab | Lch | Lrgb | Okhsl | Okhsv | Oklab | Oklch | P3 | Prophoto | Rec2020 | Rgb | Xyz50 | Xyz65; // biome-ignore format: repetitive strings
+export type Color = A98 | Hsl | Hwb | Lab | Lch | Lrgb | Okhsl | Okhsv | Oklab | Oklch | P3 | Prophoto | Rec2020 | Rgb | Xyz50 | Xyz65; // biome-ignore format: repetitive strings
 
 export type ColorInput = string | Color | ColorValueNormalized;
 
@@ -53,7 +52,6 @@ export declare function parse(color: ColorInput): Color | undefined;
 export declare const COLORSPACES: {
   a98:      { converter: (color: ColorInput) => A98 }; // biome-ignore format: repetitive strings
   hsl:      { converter: (color: ColorInput) => Hsl }; // biome-ignore format: repetitive strings
-  hsv:      { converter: (color: ColorInput) => Hsv }; // biome-ignore format: repetitive strings
   hwb:      { converter: (color: ColorInput) => Hwb }; // biome-ignore format: repetitive strings
   lab:      { converter: (color: ColorInput) => Lab }; // biome-ignore format: repetitive strings
   lch:      { converter: (color: ColorInput) => Lch }; // biome-ignore format: repetitive strings
@@ -79,7 +77,6 @@ export interface ColorOutput {
   /** Preserve current format (Culori) */
   a98: A98;
   hsl: Hsl;
-  hsv: Hsv;
   hwb: Hwb;
   lrgb: Lrgb;
   okhsl: Okhsl;

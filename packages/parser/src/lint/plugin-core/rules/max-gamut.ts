@@ -21,7 +21,7 @@ function isWithinGamut(color: ColorValueNormalized, gamut: RuleMaxGamutOptions['
   if (!parsed) {
     return false;
   }
-  if (['rgb', 'hsl', 'hsv', 'hwb'].includes(parsed.mode)) {
+  if (['rgb', 'hsl', 'hwb'].includes(parsed.mode)) {
     return true;
   }
   const clamped = clampChroma(parsed, parsed.mode, gamut === 'srgb' ? 'rgb' : gamut);

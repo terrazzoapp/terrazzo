@@ -65,7 +65,6 @@ function normalizedComponents({ original }: ColorOutput): ColorValueNormalized['
     case 'okhsl': {
       return [original.h, original.s, original.l];
     }
-    case 'hsv':
     case 'okhsv': {
       return [original.h, original.s, original.v];
     }

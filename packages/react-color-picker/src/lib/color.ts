@@ -10,8 +10,7 @@ export function calculateBounds(color: Color, channel: string) {
     case 'hsl':
     case 'hwb':
     case 'okhsl':
-    case 'okhsv':
-    case 'hsv': {
+    case 'okhsv': {
       switch (channel) {
         case 'h': {
           max = 360;
@@ -90,13 +89,13 @@ export function updateColor(color: Color, gamut: 'rgb' | 'p3' | 'rec2020' = 'rgb
     // encompasses P3
     case 'rec2020': {
       // no clamping necessary
-      if (color.mode === 'rgb' || color.mode === 'p3' || color.mode === 'hsl' || color.mode === 'hsv') {
+      if (color.mode === 'rgb' || color.mode === 'p3' || color.mode === 'hsl' || color.mode === 'hwb') {
         return COLORSPACES.rec2020.converter(color); // if this is in a non-Rec2020-compatible colorspace, convert it
       }
       break;
     }
     case 'p3': {
-      if (color.mode === 'rec2020' || color.mode === 'rgb' || color.mode === 'hsl' || color.mode === 'hsv') {
+      if (color.mode === 'rec2020' || color.mode === 'rgb' || color.mode === 'hsl' || color.mode === 'hwb') {
         const clamped = toGamut('p3', 'oklch')(color); // clamp color to P3 gamut
         return COLORSPACES.p3.converter(clamped as P3); // if this is in a non-P3-compatible colorspace, convert it
       }
@@ -127,7 +126,6 @@ export function channelOrder(color: Color): string[] {
     case 'okhsl': {
       return ['h', 's', 'l', 'alpha'];
     }
-    case 'hsv':
     case 'okhsv': {
       return ['h', 's', 'v', 'alpha'];
     }
