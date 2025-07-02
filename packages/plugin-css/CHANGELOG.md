@@ -1,6 +1,6 @@
 # @terrazzo/plugin-css
 
-## 1.0.0
+## 0.10.0
 
 ### Minor Changes
 

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-vanilla-extract",
-  "version": "1.0.0",
+  "version": "0.2.0",
   "description": "Generate Vanilla Extract themes from DTCG design tokens.",
   "license": "MIT",
   "type": "module",
