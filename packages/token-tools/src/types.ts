@@ -391,20 +391,21 @@ export interface ColorValueNormalized {
 }
 
 export type ColorSpace =
-  | 'a98'
+  | 'a98-rgb'
   | 'display-p3'
   | 'hsl'
-  | 'hsv'
   | 'hwb'
   | 'lab'
   | 'lab-d65'
   | 'lch'
+  | 'okhsv' // extension
   | 'oklab'
   | 'oklch'
   | 'prophoto-rgb'
   | 'rec2020'
   | 'srgb-linear'
   | 'srgb'
+  | 'xyz'
   | 'xyz-d50'
   | 'xyz-d65';
 

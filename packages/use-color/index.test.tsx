@@ -298,7 +298,6 @@ describe('formatCss', () => {
   const tests: [string, string][] = [
     ['a98', 'color(a98-rgb 0.35800 0.21232 0.58434)'],
     ['hsl', 'hsl(270.00 50.00% 40.00%)'],
-    ['hsv', 'color(--hsv 270.00 0.66667 0.60000)'],
     ['hwb', 'hwb(270.00 20.00% 40.00%)'],
     ['lab', 'lab(32.39 38.42 -47.69)'],
     ['lrgb', 'color(srgb-linear 0.13287 0.03310 0.31855)'],

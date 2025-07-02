@@ -4,7 +4,6 @@ import {
   inGamut,
   modeA98,
   modeHsl,
-  modeHsv,
   modeHwb,
   modeLab,
   modeLch,
@@ -103,7 +102,6 @@ export { inGamut };
 
 const toA98 = useMode(modeA98);
 const toHsl = useMode(modeHsl);
-const toHsv = useMode(modeHsv);
 const toHwb = useMode(modeHwb);
 const toLab = useMode(modeLab);
 const toLch = useMode(modeLch);
@@ -122,7 +120,6 @@ const toXyz65 = useMode(modeXyz65);
 export const COLORSPACES = {
   a98: { converter: (color) => withAlpha(toA98(color)) },
   hsl: { converter: (color) => withAlpha(toHsl(color)) },
-  hsv: { converter: (color) => withAlpha(toHsv(color)) },
   hwb: { converter: (color) => withAlpha(toHwb(color)) },
   lab: { converter: (color) => withAlpha(toLab(color)) },
   lch: { converter: (color) => withAlpha(toLch(color)) },
@@ -172,9 +169,6 @@ export function formatCss(color, { precision: p = 5 } = {}) {
     }
     case 'hsl': {
       return `hsl(${cleanValue(color.h, p, false)} ${cleanValue(100 * color.s, p, false)}% ${cleanValue(100 * color.l, p, false)}%${alpha})`;
-    }
-    case 'hsv': {
-      return `color(--hsv ${cleanValue(color.h, p, false)} ${cleanValue(color.s, p)} ${cleanValue(color.v, p)}${alpha})`;
     }
     case 'hwb': {
       return `hwb(${cleanValue(color.h, p, false)} ${cleanValue(100 * color.w, p, false)}% ${cleanValue(100 * color.b, p, false)}%${alpha})`;
@@ -233,11 +227,6 @@ export function createMemoizedColor(color) {
       delete this.hsl;
       this.hsl = COLORSPACES.hsl.converter(srgbClamper(color));
       return this.hsl;
-    },
-    get hsv() {
-      delete this.hsv;
-      this.hsv = COLORSPACES.hsv.converter(srgbClamper(color));
-      return this.hsv;
     },
     get hwb() {
       delete this.hwb;
