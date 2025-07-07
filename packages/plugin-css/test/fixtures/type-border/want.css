@@ -23,24 +23,22 @@
   --ds-color-base-gray-85: oklch(0.85 0.005375 31);
   --ds-color-base-gray-90: oklch(0.9 0.00525 31);
   --ds-color-base-gray-95: oklch(0.94 0.005125 31);
-  --ds-color-base-gray-100: oklch(0.999999993473546 0 none);
+  --ds-color-base-gray-100: oklch(1 0 0);
   --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-color-red: oklch(0.634748960045975 0.2539676968564316 16.44019446498583);
+  --ds-color-red: oklch(0.6347 0.254 16.4402);
 }
 
 @media (color-gamut: p3) {
   :root {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-base-gray-100: oklch(0.999999993473546 3.727399542465306e-8 89.87556275421639);
-    --ds-color-red: oklch(0.6400192213930215 0.28892199290086235 16.576833302899527);
+    --ds-color-red: oklch(0.64 0.2889 16.5768);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-base-gray-100: oklch(0.9999999934735462 3.7273995536157345e-8 89.87556241327162);
-    --ds-color-red: oklch(0.638785838810311 0.33676793454559933 16.292612504438885);
+    --ds-color-red: oklch(0.6388 0.3368 16.2926);
   }
 }
 
@@ -48,21 +46,21 @@
   :root {
     --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-border: var(--ds-color-base-gray-20);
-    --ds-color-red: oklch(0.634748960045975 0.2539676968564316 16.44019446498583);
+    --ds-color-red: oklch(0.6347 0.254 16.4402);
   }
 }
 
 [data-color-theme="light"] {
   --ds-border-red: 1px solid var(--ds-color-red);
   --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-color-red: oklch(0.634748960045975 0.2539676968564316 16.44019446498583);
+  --ds-color-red: oklch(0.6347 0.254 16.4402);
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: p3) {
     :root {
       --ds-border-red: 1px solid var(--ds-color-red);
-      --ds-color-red: oklch(0.6400192213930215 0.28892199290086235 16.576833302899527);
+      --ds-color-red: oklch(0.64 0.2889 16.5768);
     }
   }
 }
@@ -70,7 +68,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-red: oklch(0.6400192213930215 0.28892199290086235 16.576833302899527);
+    --ds-color-red: oklch(0.64 0.2889 16.5768);
   }
 }
 
@@ -78,7 +76,7 @@
   @media (color-gamut: rec2020) {
     :root {
       --ds-border-red: 1px solid var(--ds-color-red);
-      --ds-color-red: oklch(0.638785838810311 0.33676793454559933 16.292612504438885);
+      --ds-color-red: oklch(0.6388 0.3368 16.2926);
     }
   }
 }
@@ -86,7 +84,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-red: oklch(0.638785838810311 0.33676793454559933 16.292612504438885);
+    --ds-color-red: oklch(0.6388 0.3368 16.2926);
   }
 }
 
@@ -94,21 +92,21 @@
   :root {
     --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-border: var(--ds-color-base-gray-80);
-    --ds-color-red: oklch(0.3530274441944863 0.14145444739665314 18.15138677882905);
+    --ds-color-red: oklch(0.353 0.1415 18.1514);
   }
 }
 
 [data-color-theme="dark"] {
   --ds-border-red: 1px solid var(--ds-color-red);
   --ds-color-border: var(--ds-color-base-gray-80);
-  --ds-color-red: oklch(0.3530274441944863 0.14145444739665314 18.15138677882905);
+  --ds-color-red: oklch(0.353 0.1415 18.1514);
 }
 
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: p3) {
     :root {
       --ds-border-red: 1px solid var(--ds-color-red);
-      --ds-color-red: oklch(0.3518046179053847 0.15898927558975162 17.97441473722864);
+      --ds-color-red: oklch(0.3518 0.159 17.9744);
     }
   }
 }
@@ -116,7 +114,7 @@
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-red: oklch(0.3518046179053847 0.15898927558975162 17.97441473722864);
+    --ds-color-red: oklch(0.3518 0.159 17.9744);
   }
 }
 
@@ -124,7 +122,7 @@
   @media (color-gamut: rec2020) {
     :root {
       --ds-border-red: 1px solid var(--ds-color-red);
-      --ds-color-red: oklch(0.3505202104619931 0.1848558625515554 17.453377886711237);
+      --ds-color-red: oklch(0.3505 0.1849 17.4534);
     }
   }
 }
@@ -132,7 +130,7 @@
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
     --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-color-red: oklch(0.3505202104619931 0.1848558625515554 17.453377886711237);
+    --ds-color-red: oklch(0.3505 0.1849 17.4534);
   }
 }
 

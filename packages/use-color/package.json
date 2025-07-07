@@ -34,7 +34,7 @@
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
     "@types/culori": "^4.0.0",
-    "culori": "^4.0.1"
+    "culori": "^4.0.2"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",

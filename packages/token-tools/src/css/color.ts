@@ -20,6 +20,7 @@ import {
   modeRgb,
   modeXyz50,
   modeXyz65,
+  round,
   toGamut,
   useMode,
 } from 'culori/fn';
@@ -61,7 +62,9 @@ export function transformColor(
     formatColor = color.alpha !== 1 ? formatHex8 : formatHex;
   }
 
-  return displayable(color) ? formatColor(color) : downsample({ colorSpace, components, alpha }, color);
+  return displayable(color)
+    ? formatColor(color)
+    : downsample({ colorSpace, components, alpha }, color, options.color?.depth);
 }
 
 const converters: Record<keyof typeof CULORI_TO_CSS, (color: Color) => Color> = {
@@ -83,13 +86,22 @@ const converters: Record<keyof typeof CULORI_TO_CSS, (color: Color) => Color> = 
   xyz65: useMode(modeXyz65),
 };
 
+export const DEPTH_ROUNDING = {
+  24: round(4), // 24-bit almost fits into 3 decimal places, but not quite
+  30: round(4),
+  36: round(5),
+  48: round(6),
+};
+
+export type Depth = keyof typeof DEPTH_ROUNDING | 'unlimited';
+
 /**
  * Downsample color to sRGB/Display P3/Rec2020 colorspaces.
  * Note: because Culori tends to convert to RGB color spaces to ensure the operation,
  * we have to do an additional step of converting back. So we’re not really converting;
  * we’re just preserving the original colorspace.
  */
-function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color) {
+function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color, depth: Depth = 30) {
   if (!($value.colorSpace in CSS_TO_CULORI)) {
     throw new Error(
       `Invalid colorSpace "${$value.colorSpace}". Expected one of: ${Object.keys(CSS_TO_CULORI).join(', ')}`,
@@ -104,13 +116,36 @@ function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color) 
   } else if (gamutSpace === 'oklab') {
     gamutSpace = 'oklch';
   }
-  const srgb = converters[conversionSpace](toGamut('rgb', gamutSpace)(culoriColor));
-  const p3 = converters[conversionSpace](toGamut('p3', gamutSpace)(culoriColor));
-  const rec2020 = converters[conversionSpace](toGamut('rec2020', gamutSpace)(culoriColor));
+  let srgb = converters[conversionSpace](toGamut('rgb', gamutSpace)(culoriColor));
+  let p3 = converters[conversionSpace](toGamut('p3', gamutSpace)(culoriColor));
+  let rec2020 = converters[conversionSpace](toGamut('rec2020', gamutSpace)(culoriColor));
+  if (typeof depth === 'number') {
+    if (!DEPTH_ROUNDING[depth]) {
+      throw new Error(`Invalid bit depth: ${depth}. Supported values: ${Object.keys(DEPTH_ROUNDING).join(', ')}`);
+    }
+    srgb = roundColor(srgb, depth);
+    p3 = roundColor(p3, depth);
+    rec2020 = roundColor(rec2020, depth);
+  }
   return {
     '.': formatCss(culoriColor),
     srgb: formatCss(srgb),
     p3: formatCss(p3),
     rec2020: formatCss(rec2020),
   };
+}
+
+/** Round color to certain depth. */
+export function roundColor<T extends Color = Color>(color: T, depth: Depth = 30): T {
+  if (depth === 'unlimited') {
+    return color;
+  }
+  const newColor = { ...color };
+  for (const [k, v] of Object.entries(color)) {
+    if (typeof v !== 'number' || k === 'mode') {
+      continue;
+    }
+    newColor[k as keyof T] = DEPTH_ROUNDING[depth](v) as T[keyof T];
+  }
+  return newColor;
 }

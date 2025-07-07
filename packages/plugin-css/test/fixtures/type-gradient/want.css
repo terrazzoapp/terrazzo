@@ -3,56 +3,56 @@
  * ------------------------------------------- */
 
 :root {
-  --ds-gradient-blue-to-green: oklch(0.4563109812323692 0.31000229105626553 266.07978709856536) 0%, oklch(0.8298099957273914 0.20886546016361843 154.09569700512927) 100%;
+  --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
 }
 
 @media (color-gamut: p3) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.4674086520674701 0.3199408288374021 265.3983635042541) 0%, oklch(0.8245363172836564 0.2781024736662307 155.73827406139677) 100%;
+    --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.45589999999999986 0.3279999999999999 265.76000000000005) 0%, oklch(0.8206 0.28600000000000003 156.71) 100%;
+    --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-gradient-blue-to-green: oklch(0.4563109812323692 0.31000229105626553 266.07978709856536) 0%, oklch(0.8298099957273914 0.20886546016361843 154.09569700512927) 100%;
+    --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
   }
 }
 
 [data-color-theme="light"] {
-  --ds-gradient-blue-to-green: oklch(0.4563109812323692 0.31000229105626553 266.07978709856536) 0%, oklch(0.8298099957273914 0.20886546016361843 154.09569700512927) 100%;
+  --ds-gradient-blue-to-green: oklch(0.4563 0.31 266.0798) 0%, oklch(0.8298 0.2089 154.0957) 100%;
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: p3) {
     :root {
-      --ds-gradient-blue-to-green: oklch(0.4674086520674701 0.3199408288374021 265.3983635042541) 0%, oklch(0.8245363172836564 0.2781024736662307 155.73827406139677) 100%;
+      --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
     }
   }
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
-    --ds-gradient-blue-to-green: oklch(0.4674086520674701 0.3199408288374021 265.3983635042541) 0%, oklch(0.8245363172836564 0.2781024736662307 155.73827406139677) 100%;
+    --ds-gradient-blue-to-green: oklch(0.4674 0.3199 265.3984) 0%, oklch(0.8245 0.2781 155.7383) 100%;
   }
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: rec2020) {
     :root {
-      --ds-gradient-blue-to-green: oklch(0.45589999999999986 0.3279999999999999 265.76000000000005) 0%, oklch(0.8206 0.28600000000000003 156.71) 100%;
+      --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
     }
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
-    --ds-gradient-blue-to-green: oklch(0.45589999999999986 0.3279999999999999 265.76000000000005) 0%, oklch(0.8206 0.28600000000000003 156.71) 100%;
+    --ds-gradient-blue-to-green: oklch(0.4559 0.328 265.76) 0%, oklch(0.8206 0.286 156.71) 100%;
   }
 }
 

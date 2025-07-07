@@ -1,6 +1,8 @@
+import { type Rgb, formatCss, formatHex, parse } from 'culori';
 import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
+  roundColor,
   transformBoolean,
   transformCSSValue,
   transformColor,
@@ -281,7 +283,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lab', components: [0.97607, -15.753, 93.388] },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
@@ -300,7 +302,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lab-d65', components: [0.97607, -15.753, 93.388] },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
@@ -319,7 +321,7 @@ describe('transformColor', () => {
           {
             $value: { colorSpace: 'lch', components: [0.292345, 44.2, 27] },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
@@ -355,16 +357,16 @@ describe('transformColor', () => {
       {
         given: [
           {
-            $value: { colorSpace: 'oklch', components: [1, 0.2, 40], alpha: 1 },
+            $value: { colorSpace: 'oklch', components: [0.9, 0.1, 40], alpha: 1 },
           } as any,
-          { tokensSet: {} },
+          { tokensSet: {}, color: { depth: 'unlimited' } },
         ],
         want: {
           success: {
-            '.': 'oklch(1 0.2 40)',
-            p3: 'oklch(0.999999993473546 3.727399542465306e-8 89.87556275421639)',
-            rec2020: 'oklch(0.9999999934735462 3.7273995536157345e-8 89.87556241327162)',
-            srgb: 'oklch(0.999999993473546 0 none)',
+            '.': 'oklch(0.9 0.1 40)',
+            srgb: 'oklch(0.8871159807250525 0.06383317651475744 44.99492562496044)',
+            p3: 'oklch(0.887964813585299 0.08088218405569154 44.274026638671025)',
+            rec2020: 'oklch(0.9000000000000001 0.10000000000000017 39.99999999999983)',
           },
         },
       },
@@ -428,6 +430,34 @@ describe('transformColor', () => {
       expect((err as Error).message).toBe(want.error);
     }
     expect(result).toEqual(want.success);
+  });
+});
+
+describe('roundColor', () => {
+  it.each([24, 30, 36, 48] as const)('%s', (depth) => {
+    const range = 2 ** (depth / 3);
+    const value = 1 / range;
+    const errorTolerance = 0.1 * value; // 10%
+
+    let lastValue = -1;
+    for (let i = 0; i < range; i++) {
+      const original = { mode: 'rgb' as const, r: i * value, g: 0, b: 0 } as Rgb;
+      // for 24-bit color, compare hex codes which are clearer examples of rounding
+      if (depth === 24) {
+        expect(formatHex(original)).toBe(formatHex(roundColor(original, depth)));
+      } else {
+        const reParsed = parse(formatCss(original)) as Rgb;
+        const rounded = parse(formatCss(roundColor(original, depth))) as Rgb;
+        expect(Math.abs(reParsed.r - rounded.r)).toBeLessThan(errorTolerance);
+        expect(rounded.r, `Duplicated value for ${i}/${range}`).not.toBe(lastValue);
+        lastValue = rounded.r;
+      }
+    }
+  });
+
+  it('unlimited', () => {
+    const original = { mode: 'rgb' as const, r: 0.1 + 0.2, g: 0, b: 0 } as Rgb;
+    expect(roundColor(original, 'unlimited')).toEqual(original);
   });
 });
 

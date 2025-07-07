@@ -67,9 +67,9 @@ describe('useColor', () => {
           given: '#663399',
           want: {
             mode: 'rgb',
-            r: 0.40000000000000013,
-            g: 0.20000000000000018,
-            b: 0.5999999999999999,
+            r: 0.39999999999999974,
+            g: 0.20000000000000046,
+            b: 0.6,
             alpha: 1,
           },
         },
@@ -115,9 +115,9 @@ describe('useColor', () => {
           given: 'color(display-p3 0.3 0.1 0.6)',
           want: {
             mode: 'p3',
-            r: 0.29999999999999977,
-            g: 0.10000000000000009,
-            b: 0.6000000000000002,
+            r: 0.2999999999999998,
+            g: 0.10000000000000045,
+            b: 0.5999999999999999,
             alpha: 1,
           },
         },
@@ -135,8 +135,8 @@ describe('useColor', () => {
           given: 'rgb(30% 10% 60%)',
           want: {
             mode: 'rgb',
-            r: 0.30000000000000027,
-            g: 0.0999999999999994,
+            r: 0.2999999999999993,
+            g: 0.10000000000000084,
             b: 0.6,
             alpha: 1,
           },
@@ -148,8 +148,8 @@ describe('useColor', () => {
           given: 'color(srgb 0.3 0.1 0.6)',
           want: {
             mode: 'rgb',
-            r: 0.30000000000000027,
-            g: 0.0999999999999994,
+            r: 0.2999999999999993,
+            g: 0.10000000000000084,
             b: 0.6,
             alpha: 1,
           },
@@ -196,9 +196,9 @@ describe('useColor', () => {
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
       expect(displayedColor).toEqual({
         mode: 'rgb',
-        r: 0.00016175596675521153,
-        g: 0.300082124265595,
-        b: 0.9998580363472361,
+        r: 0.0001617559902515342,
+        g: 0.30008212426886693,
+        b: 0.9998580363362607,
         alpha: 1,
       });
 
@@ -247,9 +247,9 @@ describe('useColor', () => {
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
       expect(displayedColor).toEqual({
         mode: 'rgb',
-        r: 0.6000000000000015,
-        g: 0.2999999999999985,
-        b: 0.4999999999999997,
+        r: 0.5999999999999989,
+        g: 0.3000000000000008,
+        b: 0.500000000000001,
         alpha: 1,
       });
 

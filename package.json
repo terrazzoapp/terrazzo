@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.12.2",
+  "packageManager": "pnpm@10.12.4",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -16,22 +16,22 @@
     "version": "pnpm run build && changeset version"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "^0.18.1",
+    "@arethetypeswrong/cli": "^0.18.2",
     "@biomejs/biome": "1.9.4",
     "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.4",
-    "@types/node": "^22.15.30",
+    "@changesets/cli": "^2.29.5",
+    "@types/node": "^22.16.0",
     "execa": "^9.6.0",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "rolldown": "1.0.0-beta.10",
-    "rolldown-plugin-dts": "^0.13.8",
+    "rolldown-plugin-dts": "^0.13.13",
     "strip-ansi": "^7.1.0",
-    "stylelint": "^16.20.0",
+    "stylelint": "^16.21.1",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
     "turbo": "^2.5.4",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.2"
+    "vitest": "^3.2.4"
   },
   "pnpm": {
     "patchedDependencies": {
