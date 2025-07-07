@@ -126,6 +126,24 @@ Colors are downconverted using Culori’s [toGamut()](https://culorijs.org/api/#
 
 This is an improvement over Cobalt 1.x’s “expand into P3” method that oversaturated sRGB colors automatically unless opting out.
 
+##### Color depth
+
+By default, Terrazzo rounds colors to [30-bit depth](<https://en.wikipedia.org/wiki/Color_depth#Deep_color_(30-bit)>) (“deep color”). This is mostly a cosmetic thing, and prevents decimal noise in colors. You can change this setting with `colorDepth`:
+
+:::code-group
+
+```js [terrazzo.config.js]
+export default defineConfig({
+  plugins: [
+    css({
+      colorDepth: 30, // 24, 30, 36, 48, or "unlimited"
+    }),
+  ],
+};
+```
+
+:::
+
 ### Dynamic mode handling
 
 Variable modes can be tricky! That’s why Terrazzo redeclares all aliases in CSS whenever their upstream values change. For example:
@@ -321,17 +339,18 @@ export default defineConfig({
 
 :::
 
-| Name            | Type                                                           | Description                                                                                                                                      |
-| :-------------- | :------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filename`      | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                  |
-| `exclude`       | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                         |
-| `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                             |
-| `variableName`  | `(id: string) => string`                                       | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way. |
-| `transform`     | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                 |
-| `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                      |
-| `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                   |
-| `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).        |
-| `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                      |
+| Name            | Type                                                           | Description                                                                                                                                                     |
+| :-------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filename`      | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
+| `exclude`       | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
+| `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                                            |
+| `variableName`  | `(id: string) => string`                                       | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
+| `transform`     | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
+| `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
+| `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
+| `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
+| `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                                     |
+| `colorDepth`    | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
 ### Mode Selectors
 

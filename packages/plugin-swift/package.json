@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "culori": "^4.0.1"
+    "culori": "^4.0.2"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
