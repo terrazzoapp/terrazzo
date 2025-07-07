@@ -1,5 +1,17 @@
 # @terrazzo/plugin-tailwind
 
+## 0.3.1
+
+### Patch Changes
+
+- [#510](https://github.com/terrazzoapp/terrazzo/pull/510) [`4493731`](https://github.com/terrazzoapp/terrazzo/commit/4493731a4d458af45a1bb4c56e3fe0d42d66aeef) Thanks [@drwpow](https://github.com/drwpow)! - Reduce decimal places in color output.
+  - [plugin-css] ⚠️ Minor breaking change: decimals have been simplified in output. To restore original behavior, pass in `colorDepth: 'unlimited'`
+
+- Updated dependencies [[`4493731`](https://github.com/terrazzoapp/terrazzo/commit/4493731a4d458af45a1bb4c56e3fe0d42d66aeef)]:
+  - @terrazzo/token-tools@0.10.1
+  - @terrazzo/plugin-css@0.10.1
+  - @terrazzo/cli@0.10.1
+
 ## 0.3.0
 
 ### Minor Changes
