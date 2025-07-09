@@ -50,7 +50,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
     },
     async build({ getTransforms, outputFile }) {
-      const output = ['@import "tailwind";', ''];
+      const output = ['@import "tailwindcss";', ''];
 
       const variants: Record<string, string[]> = { '.': [] };
       for (const token of getTransforms({ format: FORMAT_ID })) {
