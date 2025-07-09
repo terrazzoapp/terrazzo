@@ -1,5 +1,11 @@
 # @terrazzo/plugin-tailwind
 
+## 0.3.2
+
+### Patch Changes
+
+- [#513](https://github.com/terrazzoapp/terrazzo/pull/513) [`7bb2b26`](https://github.com/terrazzoapp/terrazzo/commit/7bb2b2612e00df34f15f75f6bd5c7251163b9783) Thanks [@camerondubas](https://github.com/camerondubas)! - fix tailwind import
+
 ## 0.3.1
 
 ### Patch Changes
