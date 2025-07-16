@@ -55,10 +55,14 @@ export interface ModeSelector {
 // A CSSRule is a sort of “we have AST at home” shortcut that provides the benefit of normalized formatting
 // but without the overhead/complexity of a full AST. It’s useful because we only generate a limited CSS
 // syntax, and is a good balance between spec-compliance vs ease-of-use.
+interface CSSRuleDeclaration {
+  value: string;
+  description?: string;
+}
 export interface CSSRule {
   selectors: string[];
   nestedQuery?: string;
-  declarations: Record<string, string>;
+  declarations: Record<string, CSSRuleDeclaration>;
 }
 
 /** Convert CSSRules into a formatted, indented CSS string */
@@ -117,8 +121,8 @@ function _printRule(rule: CSSRule): string {
 
   const declarations = Object.entries(rule.declarations);
   declarations.sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
-  for (const [k, v] of declarations) {
-    output.push(`${indent}${k}: ${v};`);
+  for (const [k, d] of declarations) {
+    output.push(`${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
   }
 
   // base closing brackets on indent level
