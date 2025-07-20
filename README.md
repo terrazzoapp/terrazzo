@@ -9,7 +9,6 @@ This repo serves as the home for:
   - [Swift](https://terrazzo.app/docs/cli/integrations/swift)
   - [Tailwind](https://terrazzo.app/docs/cli/integrations/tailwind)
 - [Terrazzo Color Picker](https://terrazzo.app/docs/components/color-picker), a futuristic colorpicker that can handle wide gamut and high bit-depth colors in stunning color reproduction
-- [Terrazzo Tiles DS](./packages/tiles/): a design system for _documenting_ design systems
 - Token Lab (coming soon): generate design systems from scratch, or start from an existing OSS design system
 
 ### 🔹 Cobalt UI
