@@ -8,9 +8,6 @@ export interface OmniBarResultProps extends ComponentProps<'li'> {}
 export function OmniBarResult({ className, children, ...rest }: OmniBarResultProps) {
   return (
     // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: ignore
-    // biome-ignore lint/a11y/useAriaPropsForRole: ignore
-    // biome-ignore lint/a11y/useFocusableInteractive: ignore
-    // biome-ignore lint/a11y/useSemanticElements: ignore
     <li className={clsx('tz-omnibar-result', className)} role='option' {...rest}>
       {children}
     </li>
@@ -225,7 +222,6 @@ export function OmniBar({
             ref={listboxEl}
             id={listboxId}
             className='tz-omnibar-listbox'
-            // biome-ignore lint/a11y/useSemanticElements: ignore
             // biome-ignore lint/a11y/noNoninteractiveElementToInteractiveRole: why tho?
             role='listbox'
             aria-describedby={resultDescription ? resultDescId : undefined}

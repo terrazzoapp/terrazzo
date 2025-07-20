@@ -56,7 +56,8 @@
   }
 
   &[data-variant="color"] {
-    background-image: radial-gradient(transparent 40%, rgb(0 0 0 / 0.2) 40%, rgb(0 0 0 / 0.2) 50%, transparent 50%),
+    background-image:
+      radial-gradient(transparent 40%, rgb(0 0 0 / 0.2) 40%, rgb(0 0 0 / 0.2) 50%, transparent 50%),
       radial-gradient(var(--tz-slider-handle-color) 49%, var(--tz-color-bg-1) 50%);
   }
 

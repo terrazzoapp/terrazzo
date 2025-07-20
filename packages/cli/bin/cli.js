@@ -63,7 +63,7 @@ const { values: flags, positionals } = parseArgs({
 // likely to see multiple at once. We want to remove stacktraces just for the
 // CLI context. So we wrap this logger with our own formatter that simply prints
 // the raw message.
-let logLevel = undefined;
+let logLevel;
 if (flags.silent || flags.quiet) {
   logLevel = 'error';
 } else if (process.env.DEBUG) {

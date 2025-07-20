@@ -5,12 +5,12 @@ import {
   type FontFamilyValue,
   type GradientStopNormalized,
   type GradientValueNormalized,
+  isAlias,
+  parseColor,
   type ShadowValueNormalized,
   type Token,
   type TransitionValue,
   type TypographyValueNormalized,
-  isAlias,
-  parseColor,
 } from '@terrazzo/token-tools';
 
 export const FONT_WEIGHT_MAP = {

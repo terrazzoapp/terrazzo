@@ -11,11 +11,9 @@ describe('padStr', () => {
 
   it('chaotic', () => {
     expect(padStr('input', -100, 'center')).toMatchInlineSnapshot(`"input"`);
-    // biome-ignore lint/style/useNumberNamespace format: TS gets mad at me
     expect(padStr('input', Infinity, 'center')).toMatchInlineSnapshot(
       `"                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 input                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  "`,
     );
-    // biome-ignore lint/style/useNumberNamespace format: TS gets mad at me
     expect(padStr('input', -Infinity, 'center')).toMatchInlineSnapshot(`"input"`);
     expect(padStr('input', -0, 'center')).toMatchInlineSnapshot(`"input"`);
     expect(padStr('input', Number.NaN, 'center')).toMatchInlineSnapshot(`"input"`);

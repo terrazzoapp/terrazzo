@@ -87,5 +87,5 @@ function normalizedComponents({ original }: ColorOutput): ColorValueNormalized['
 }
 
 function trimTrailingZeros(value: string) {
-  return value.replace(/\.0+$/, '').replace(/(?<=\.[^\.]+)0+$/, '');
+  return value.replace(/\.0+$/, '').replace(/(?<=\.[^.]+)0+$/, '');
 }

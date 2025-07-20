@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { type MemberNode, type ObjectNode, type StringNode, parse as parseJSON, print } from '@humanwhocodes/momoa';
-import { type Logger, defineConfig, getObjMembers, parse, traverse } from '@terrazzo/parser';
+import { type MemberNode, type ObjectNode, parse as parseJSON, print, type StringNode } from '@humanwhocodes/momoa';
+import { defineConfig, getObjMembers, type Logger, parse, traverse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
 import { cwd, printError } from './shared.js';
 

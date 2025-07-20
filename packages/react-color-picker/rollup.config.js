@@ -5,7 +5,7 @@ import css from 'rollup-plugin-import-css';
 export default {
   plugins: [
     css({
-      output: 'all-components.css',
+      output: 'styles.css',
     }),
     ts({
       tsconfig: './tsconfig.build.json',

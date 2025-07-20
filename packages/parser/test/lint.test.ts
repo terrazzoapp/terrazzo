@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { type Logger, defineConfig, parse } from '../src/index.js';
+import { defineConfig, type Logger, parse } from '../src/index.js';
 import {
   A11Y_MIN_CONTRAST,
   A11Y_MIN_FONT_SIZE,

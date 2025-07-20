@@ -1,6 +1,5 @@
 import { ColorChannelSlider } from '@terrazzo/react-color-picker';
 import useColor from '@terrazzo/use-color';
-import { useEffect } from 'react';
 
 export default {
   title: 'Components/Form/ColorChannelSlider',

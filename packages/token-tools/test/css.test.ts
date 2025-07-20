@@ -1,11 +1,11 @@
-import { type Rgb, formatCss, formatHex, parse } from 'culori';
+import { formatCss, formatHex, parse, type Rgb } from 'culori';
 import { describe, expect, it } from 'vitest';
 import {
   makeCSSVar,
   roundColor,
   transformBoolean,
-  transformCSSValue,
   transformColor,
+  transformCSSValue,
   transformCubicBezier,
   transformDimension,
   transformDuration,

@@ -43,9 +43,9 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react-swc": "^3.11.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "@vitejs/plugin-react-swc": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "size-limit": "^11.2.0"
   }
 }

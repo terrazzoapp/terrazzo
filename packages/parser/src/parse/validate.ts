@@ -1,13 +1,13 @@
 import {
   type AnyNode,
+  evaluate,
   type MemberNode,
   type ObjectNode,
+  print,
   type StringNode,
   type ValueNode,
-  evaluate,
-  print,
 } from '@humanwhocodes/momoa';
-import { type Token, type TokenNormalized, isAlias, splitID } from '@terrazzo/token-tools';
+import { isAlias, splitID, type Token, type TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import type Logger from '../logger.js';
 import type { ConfigInit } from '../types.js';

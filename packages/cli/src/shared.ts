@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
-import { type ConfigInit, type Logger, defineConfig } from '@terrazzo/parser';
+import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory

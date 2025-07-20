@@ -48,7 +48,12 @@ function normalizeTokens({
   config,
   logger,
   cwd,
-}: { rawConfig: Config; config: ConfigInit; logger: Logger; cwd: URL }) {
+}: {
+  rawConfig: Config;
+  config: ConfigInit;
+  logger: Logger;
+  cwd: URL;
+}) {
   if (rawConfig.tokens === undefined) {
     config.tokens = [
       // @ts-ignore we’ll normalize in next step
@@ -89,7 +94,7 @@ function normalizeTokens({
     }
     try {
       config.tokens[i] = new URL(filepath, cwd);
-    } catch (err) {
+    } catch {
       logger.error({ group: 'config', label: 'tokens', message: `Invalid URL ${filepath}` });
     }
   }

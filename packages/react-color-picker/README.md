@@ -14,9 +14,18 @@ pnpm i @terrazzo/react-color-picker @terrazzo/tiles
 import ColorPicker from "@terrazzo/react-color-picker";
 import { useState } from "react";
 
-import "@terrazzo/tiles/all-components.css";
-
 const [color, setColor] = useState("color(display-p3 0 0.3 1)");
 
 <ColorPicker value={color} onChange={setColor} />;
 ```
+
+### Styling
+
+To use the default styles, import both `@terrazzo/tiles` and `@terrazzo/react-color-picker` CSS:
+
+```diff
++ import "@terrazzo/tiles/all-components.css";
++ import "@terrazzo/react-color-picker/styles.css";
+```
+
+Or, you can copy both of those files manually into your own styling, and customize/delete what you don’t use.

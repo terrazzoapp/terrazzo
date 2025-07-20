@@ -2,11 +2,11 @@ import {
   type AnyNode,
   type DocumentNode,
   type MemberNode,
+  parse as momoaParse,
   type ObjectNode,
   type ParseOptions,
-  type ValueNode,
-  parse as momoaParse,
   print,
+  type ValueNode,
 } from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';

@@ -3,6 +3,7 @@ import c from './MainNav.module.css';
 
 export default function MainNav() {
   return (
+    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: false "banner" is nameable
     <header className={c.header} aria-label='Header'>
       <svg
         className={c.logo}

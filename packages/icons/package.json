@@ -27,8 +27,8 @@
     "@rollup/plugin-typescript": "^12.1.4",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "rollup": "^4.45.1",
     "rollup-plugin-import-css": "^3.5.8"
   }

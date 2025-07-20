@@ -18,7 +18,11 @@ function validateTransformParams({
   params,
   logger,
   pluginName,
-}: { params: TokenTransformed; logger: Logger; pluginName: string }): void {
+}: {
+  params: TokenTransformed;
+  logger: Logger;
+  pluginName: string;
+}): void {
   const baseMessage: LogEntry = { group: 'plugin', label: pluginName, message: '' };
 
   // validate value is valid for SINGLE_VALUE or MULTI_VALUE
