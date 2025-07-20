@@ -5,7 +5,7 @@ import '@terrazzo/tiles/dist/all-components.css';
 import '@terrazzo/react-color-picker/dist/all-components.css';
 import './global.css';
 
-/** @type { import('@storybook/react').Preview } */
+/** @type { import('@storybook/react-vite').Preview } */
 const preview = {
   parameters: {
     controls: {

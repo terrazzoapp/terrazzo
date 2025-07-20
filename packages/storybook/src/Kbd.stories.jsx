@@ -1,6 +1,6 @@
 import { Kbd } from '@terrazzo/tiles';
 
-/** @type {import("@storybook/react").Meta} */
+/** @type {import("@storybook/react-vite").Meta} */
 export default {
   title: 'Components/Display/Kbd',
   component: Kbd,

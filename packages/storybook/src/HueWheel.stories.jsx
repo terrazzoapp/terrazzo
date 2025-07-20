@@ -1,6 +1,6 @@
 import { HueWheel } from '@terrazzo/react-color-picker';
 
-/** @type {import("@storybook/react").Meta} */
+/** @type {import("@storybook/react-vite").Meta} */
 export default {
   title: 'Components/Display/HueWheel',
   component: HueWheel,

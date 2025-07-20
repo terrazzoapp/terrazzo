@@ -3,7 +3,7 @@ import path from 'node:path';
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 const config = {
   stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
-  addons: [getAbsolutePath('@storybook/addon-essentials')],
+  addons: [getAbsolutePath("@storybook/addon-docs")],
 
   framework: {
     name: getAbsolutePath('@storybook/react-vite'),
@@ -12,8 +12,7 @@ const config = {
   },
 
   docs: {
-    autodocs: false,
-    docsMode: false,
+    docsMode: false
   },
 
   typescript: {

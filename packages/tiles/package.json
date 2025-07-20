@@ -31,8 +31,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/react-select": "^2.1.7",
-    "@radix-ui/react-tooltip": "^1.2.0",
+    "@radix-ui/react-select": "^2.2.5",
+    "@radix-ui/react-tooltip": "^1.2.7",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/tokens": "workspace:^",
@@ -43,16 +43,16 @@
     "shiki": "^1.29.2"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^12.1.2",
+    "@rollup/plugin-typescript": "^12.1.4",
     "@size-limit/preset-small-lib": "^11.2.0",
     "@types/culori": "^4.0.0",
-    "@types/react": "^19.1.1",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react-swc": "^3.8.1",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react-swc": "^3.11.0",
     "chokidar-cli": "^3.0.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "rollup": "^4.40.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "rollup": "^4.45.1",
     "rollup-plugin-import-css": "^3.5.8",
     "size-limit": "^11.2.0",
     "vitest-axe": "^0.1.0"
