@@ -1,5 +1,5 @@
 import { Slider } from '@terrazzo/tiles';
-import { type ColorOutput, type Oklab, formatCss, type default as useColor, withAlpha } from '@terrazzo/use-color';
+import { type ColorOutput, formatCss, type Oklab, type default as useColor, withAlpha } from '@terrazzo/use-color';
 import { modeLrgb, modeOklab, modeRgb, useMode } from 'culori';
 import { type ReactElement, useMemo } from 'react';
 import { calculateBounds } from '../lib/color.js';

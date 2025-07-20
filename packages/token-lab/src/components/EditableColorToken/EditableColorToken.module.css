@@ -58,8 +58,9 @@
 
   &::after {
     grid-row: 1;
-    mask: conic-gradient(from 135deg at top, black 90deg, transparent 91deg, transparent 359deg, black 360deg) top /
-      100% 50% no-repeat;
+    mask:
+      conic-gradient(from 135deg at top, black 90deg, transparent 91deg, transparent 359deg, black 360deg) top / 100%
+      50% no-repeat;
     translate: 0 -8px;
   }
 }
@@ -74,8 +75,9 @@
 
   &::after {
     grid-row: 2;
-    mask: conic-gradient(from -45deg at bottom, black 90deg, transparent 91deg, transparent 359deg, black 360deg) bottom
-      / 100% 50% no-repeat;
+    mask:
+      conic-gradient(from -45deg at bottom, black 90deg, transparent 91deg, transparent 359deg, black 360deg) bottom /
+      100% 50% no-repeat;
     translate: 0 8px;
   }
 }

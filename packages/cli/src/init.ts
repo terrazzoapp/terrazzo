@@ -8,7 +8,7 @@ import { pluralize } from '@terrazzo/token-tools';
 import { detect } from 'detect-package-manager';
 import { generate } from 'escodegen';
 import { type ESTree, parseModule } from 'meriyah';
-import { DEFAULT_CONFIG_PATH, DEFAULT_TOKENS_PATH, cwd, loadConfig, printError } from './shared.js';
+import { cwd, DEFAULT_CONFIG_PATH, DEFAULT_TOKENS_PATH, loadConfig, printError } from './shared.js';
 
 const INSTALL_COMMAND = {
   npm: 'install -D --silent',

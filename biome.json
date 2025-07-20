@@ -1,12 +1,12 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
   },
   "files": {
-    "ignore": ["**/package.json", "**/test/fixtures/**", "**/test/**/want.*"],
+    "includes": ["**", "!**/test/fixtures/**", "!**/test/**/want.*"],
     "ignoreUnknown": true
   },
   "formatter": {
@@ -32,6 +32,7 @@
         "useExhaustiveDependencies": "off"
       },
       "style": {
+        "noDescendingSpecificity": "off",
         "noNonNullAssertion": "off",
         "noUselessElse": "off",
         "useBlockStatements": "error"
@@ -41,18 +42,18 @@
       },
       "suspicious": {
         "noConsole": "error",
+        "noDuplicateProperties": "off",
         "noFallthroughSwitchClause": "error",
         "noExplicitAny": "warn",
-        "noShadowRestrictedNames": "error"
-      },
-      "nursery": {
+        "noShadowRestrictedNames": "error",
         "useGuardForIn": "error"
-      }
+      },
+      "nursery": {}
     }
   },
   "overrides": [
     {
-      "include": ["**/*.test.*"],
+      "includes": ["**/*.test.*"],
       "linter": {
         "rules": {
           "suspicious": {

@@ -1,5 +1,5 @@
 import type { ColorTokenNormalized, GradientTokenNormalized } from '../types.js';
-import { type WideGamutColorValue, transformColor } from './color.js';
+import { transformColor, type WideGamutColorValue } from './color.js';
 import type { TransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 

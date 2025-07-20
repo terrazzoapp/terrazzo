@@ -1,5 +1,4 @@
 import TokenLab from '@terrazzo/token-lab';
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
 const response = await fetch('/api/tokens');

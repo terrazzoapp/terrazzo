@@ -1,10 +1,9 @@
-import { type PathLike, createReadStream, createWriteStream } from 'node:fs';
+import { createReadStream, createWriteStream, type PathLike } from 'node:fs';
 import { readdir } from 'node:fs/promises';
 import { Readable, Writable } from 'node:stream';
 import { fileURLToPath } from 'node:url';
 import { serve } from '@hono/node-server';
-import type { ConfigInit } from '@terrazzo/parser';
-import type { Logger } from '@terrazzo/parser';
+import type { ConfigInit, Logger } from '@terrazzo/parser';
 import mime from 'mime';
 import type { Flags } from './shared.js';
 

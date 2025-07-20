@@ -11,7 +11,6 @@ export * from './lab.js';
 export * from './normalize.js';
 export * from './shared.js';
 export * from './version.js';
-export type { Command, Flags } from './shared.js';
 
 const require = createRequire(cwd);
 

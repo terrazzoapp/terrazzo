@@ -40,7 +40,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/react-popover": "^1.1.11",
+    "@radix-ui/react-popover": "^1.1.14",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/parser": "workspace:^",
@@ -50,16 +50,15 @@
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.3.3",
-    "jotai": "^2.12.3",
+    "jotai": "^2.12.5",
     "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react-swc": "^3.9.0",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "vite": "^6.3.5",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@vitejs/plugin-react-swc": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
     "vite-plugin-sass-dts": "^1.3.31"
   }
 }

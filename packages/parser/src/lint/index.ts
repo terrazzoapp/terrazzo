@@ -1,4 +1,4 @@
-import { type TokenNormalized, pluralize } from '@terrazzo/token-tools';
+import { pluralize, type TokenNormalized } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import type { LogEntry, default as Logger } from '../logger.js';
 import type { ConfigInit } from '../types.js';

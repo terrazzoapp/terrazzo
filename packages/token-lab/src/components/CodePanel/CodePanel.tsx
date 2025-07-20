@@ -1,7 +1,7 @@
 import { Code, Cross } from '@terrazzo/icons';
 import { CopyButton } from '@terrazzo/tiles';
 import clsx from 'clsx';
-import { Suspense, lazy, useId, useState } from 'react';
+import { lazy, Suspense, useId, useState } from 'react';
 import useTokens from '../../hooks/tokens.js';
 import c from './CodePanel.module.css';
 
@@ -25,6 +25,7 @@ export default function CodePanel() {
       >
         <Code aria-hidden />
       </button>
+      {/* biome-ignore lint/a11y/noStaticElementInteractions: this is in conjunction with other interactions */}
       <div
         id={panelID}
         className={c.panel}

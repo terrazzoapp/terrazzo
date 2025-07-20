@@ -2,14 +2,14 @@ import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
 import {
   type BorderTokenNormalized,
   type GradientTokenNormalized,
+  isAlias,
+  parseAlias,
   type ShadowTokenNormalized,
   type StrokeStyleTokenNormalized,
   type TokenNormalized,
   type TokenNormalizedSet,
   type TransitionTokenNormalized,
   type TypographyTokenNormalized,
-  isAlias,
-  parseAlias,
 } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
 import { getObjMembers } from './json.js';

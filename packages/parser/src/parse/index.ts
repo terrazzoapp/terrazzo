@@ -1,5 +1,5 @@
-import { type DocumentNode, type MemberNode, type ObjectNode, evaluate } from '@humanwhocodes/momoa';
-import { type Token, type TokenNormalized, pluralize, splitID } from '@terrazzo/token-tools';
+import { type DocumentNode, evaluate, type MemberNode, type ObjectNode } from '@humanwhocodes/momoa';
+import { pluralize, splitID, type Token, type TokenNormalized } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
@@ -7,11 +7,11 @@ import type { ConfigInit, InputSource } from '../types.js';
 import applyAliases from './alias.js';
 import { getObjMembers, parseJSON, replaceObjMembers, toMomoa, traverse } from './json.js';
 import normalize from './normalize.js';
-import validateTokenNode, { type Visitors, getInheritedType } from './validate.js';
+import validateTokenNode, { getInheritedType, type Visitors } from './validate.js';
 
 export * from './alias.js';
-export * from './normalize.js';
 export * from './json.js';
+export * from './normalize.js';
 export * from './validate.js';
 export { normalize, validateTokenNode };
 

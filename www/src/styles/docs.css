@@ -382,7 +382,8 @@
       --x2: calc(var(--x1) + var(--chrome-button-size) + var(--chrome-button-gap));
       --x3: calc(var(--x2) + var(--chrome-button-size) + var(--chrome-button-gap));
 
-      background-image: radial-gradient(
+      background-image:
+        radial-gradient(
           circle at var(--x1) var(--y),
           transparent 0,
           transparent calc(0.5 * var(--chrome-button-size) - 1px),
@@ -430,8 +431,9 @@
   position: absolute;
   right: var(--tz-space-400);
   top: var(--tz-space-400);
-  transition: background-color var(--tz-timing-default) var(--tz-ease-linear), color var(--tz-timing-default)
-    var(--tz-ease-linear);
+  transition:
+    background-color var(--tz-timing-default) var(--tz-ease-linear),
+    color var(--tz-timing-default) var(--tz-ease-linear);
   width: var(--tz-space-control-m);
   z-index: var(--tz-layer-base);
 

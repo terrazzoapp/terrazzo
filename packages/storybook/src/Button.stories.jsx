@@ -10,7 +10,7 @@ export default {
 };
 
 export const Overview = {
-  render(args) {
+  render() {
     return (
       <StickerSheet
         columns={['size="m"', 'size="s"']}

@@ -1,14 +1,16 @@
 import clsx from 'clsx';
-import { type ComponentProps, type KeyboardEvent, type MouseEvent, createContext, useRef, useState } from 'react';
+import { type ComponentProps, createContext, type KeyboardEvent, type MouseEvent, useRef, useState } from 'react';
 import { addToSet, removeFromSet } from '../lib/set.js';
 
 export const Context = createContext({
   expanded: new Set<string>(),
   selected: new Set<string>(),
   registerID: (
-    // @ts-expect-error just for types
+    // @ts-expect-error: just for types
+    // biome-ignore lint/correctness/noUnusedFunctionParameters: just for types
     parentID: string,
-    // @ts-expect-error just for types
+    // @ts-expect-error: just for types
+    // biome-ignore lint/correctness/noUnusedFunctionParameters: just for types
     id: string,
   ) => {},
 });
@@ -215,6 +217,7 @@ export default function Root({
   }
 
   return (
+    // biome-ignore lint/a11y/useAriaPropsSupportedByRole: incorrect, this is supported
     <table
       aria-multiselectable='true'
       {...rest}

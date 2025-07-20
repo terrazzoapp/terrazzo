@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
-import { type TailwindPluginOptions, flattenThemeObj } from './lib.js';
+import { flattenThemeObj, type TailwindPluginOptions } from './lib.js';
 
 export const FORMAT_ID = 'tailwind';
 
