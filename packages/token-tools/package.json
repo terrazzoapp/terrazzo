@@ -36,7 +36,7 @@
   },
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "rolldown -c -w",
+    "dev": "rolldown -w -c",
     "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
