@@ -1,16 +1,17 @@
-import type { BuildHookOptions } from '@terrazzo/parser';
-import { FORMAT_ID } from '@terrazzo/plugin-css';
+import type { BuildHookOptions, ListingService } from '@terrazzo/parser';
+import { FORMAT_ID as CSS_FORMAT_ID } from '@terrazzo/plugin-css';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
 import { FILE_HEADER, MIXIN_TOKEN, MIXIN_TYPOGRAPHY, type SassPluginOptions } from './lib.js';
 
 export interface BuildParams {
   getTransforms: BuildHookOptions['getTransforms'];
+  listBuiltToken: ListingService['listBuiltToken'];
   options?: SassPluginOptions;
 }
 
-export default function build({ getTransforms, options }: BuildParams): string {
-  const tokens = getTransforms({ format: FORMAT_ID, id: '*', mode: '.' });
+export default function build({ getTransforms, listBuiltToken, options }: BuildParams): string {
+  const tokens = getTransforms({ format: CSS_FORMAT_ID, id: '*', mode: '.' });
 
   const output: string[] = [FILE_HEADER, ''];
 
@@ -30,6 +31,12 @@ export default function build({ getTransforms, options }: BuildParams): string {
     } else {
       const name = token.localID ?? token.token.id;
       output.push(`  "${token.token.id}": (${makeCSSVar(name, { wrapVar: true })}),`);
+      listBuiltToken({
+        mode: '.',
+        name: `token("${token.id}")`, 
+        pluginId: '@terrazzo/plugin-sass',
+        tokenId: token.token.id,
+      });
     }
   }
   output.push(');', '');
@@ -37,7 +44,7 @@ export default function build({ getTransforms, options }: BuildParams): string {
   // typography mixins
   output.push('$__token-typography-mixins: (');
 
-  const typographyTokens = getTransforms({ format: 'css', id: '*', mode: '.', $type: 'typography' });
+  const typographyTokens = getTransforms({ format: CSS_FORMAT_ID, id: '*', mode: '.', $type: 'typography' });
   for (const token of typographyTokens) {
     output.push(`  "${token.token.id}": (`);
     for (const property of Object.keys(token.value)) {
@@ -45,6 +52,12 @@ export default function build({ getTransforms, options }: BuildParams): string {
       output.push(`    "${property}": (${makeCSSVar(name, { wrapVar: true })}),`);
     }
     output.push('  ),');
+    listBuiltToken({
+      mode: '.',
+      name: `typography("${token.id}")`, 
+      pluginId: '@terrazzo/plugin-sass',
+      tokenId: token.token.id,
+    });
   }
   output.push(');', '');
 

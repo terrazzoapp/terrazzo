@@ -1,0 +1,50 @@
+{
+  "name": "@terrazzo/plugin-token-listing",
+  "version": "0.0.0",
+  "description": "Produce a token listing file for built DTCG tokens, containing attributes you've computed during your build.",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Steve Dodier-Lazaro",
+    "email": "sidnioulz@gmail.com"
+  },
+  "keywords": [
+    "design tokens",
+    "design system",
+    "dtcg",
+    "w3c",
+    "token listing"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "homepage": "TBC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-token-listing/"
+  },
+  "scripts": {
+    "build": "rolldown && attw --profile esm-only --pack .",
+    "dev": "rolldown -w -c",
+    "format": "biome check --fix --unsafe .",
+    "lint": "pnpm --filter @terrazzo/plugin-token-listing run \"/^lint:(js|ts)/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@terrazzo/cli": "workspace:^"
+  },
+  "dependencies": {
+    "@terrazzo/token-tools": "workspace:^",
+    "wildcard-match": "^5.1.4"
+  },
+  "devDependencies": {
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
+    "dtcg-examples": "^0.3.3"
+  }
+}

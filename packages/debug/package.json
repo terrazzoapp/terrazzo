@@ -1,0 +1,21 @@
+{
+  "name": "debug",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/plugin-sass": "workspace:^",
+    "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4"
+}

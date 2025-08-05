@@ -66,14 +66,14 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         }
       }
     },
-    async build({ getTransforms, outputFile }) {
+    async build({ context: { listingService }, getTransforms, outputFile }) {
       if (skipBuild === true) {
         return;
       }
 
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
-        buildFormat({ exclude, getTransforms, modeSelectors, utility, baseSelector }),
+        buildFormat({ exclude, getTransforms, listBuiltToken:  listingService.listBuiltToken.bind(listingService), modeSelectors, utility, baseSelector }),
         '\n', // EOF newline
       );
       outputFile(filename, output.join('\n'));
