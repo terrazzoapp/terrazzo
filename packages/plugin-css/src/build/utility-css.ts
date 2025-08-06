@@ -2,7 +2,7 @@ import type { TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import type { CSSRule, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
+import type { CSSRule, CSSRuleDeclaration, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
 const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
@@ -21,8 +21,8 @@ function makeSelector(token: TokenTransformed, prefix: UtilityCSSPrefix, subgrou
   return `.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`;
 }
 
-function makeVarValue(token: TokenTransformed): string {
-  return makeCSSVar(token.localID ?? token.token.id, { wrapVar: true });
+function makeVarValue(token: TokenTransformed): CSSRuleDeclaration {
+  return { value: makeCSSVar(token.localID ?? token.token.id, { wrapVar: true }) };
 }
 
 export default function generateUtilityCSS(
@@ -55,7 +55,9 @@ export default function generateUtilityCSS(
               output.push({
                 selectors: [selector],
                 declarations: {
-                  'background-image': `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
+                  'background-image': {
+                    value: `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
+                  },
                 },
               });
             }
@@ -103,9 +105,9 @@ export default function generateUtilityCSS(
           const selector = makeSelector(token, 'font');
 
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
-            const declarations: Record<string, string> = {};
+            const declarations: Record<string, CSSRuleDeclaration> = {};
             for (const k of Object.keys(token.value)) {
-              declarations[k] = makeCSSVar(`${token.localID ?? token.token.id}-${k}`, { wrapVar: true });
+              declarations[k] = { value: makeCSSVar(`${token.localID ?? token.token.id}-${k}`, { wrapVar: true }) };
             }
             output.push({ selectors: [selector], declarations });
           } else {
@@ -212,9 +214,9 @@ export default function generateUtilityCSS(
               output.push({
                 selectors: [selector],
                 declarations: {
-                  background: `-webkit-linear-gradient(${value})`,
-                  '-webkit-background-clip': 'text',
-                  '-webkit-text-fill-color': 'transparent',
+                  background: { value: `-webkit-linear-gradient(${value.value})` },
+                  '-webkit-background-clip': { value: 'text' },
+                  '-webkit-text-fill-color': { value: 'transparent' },
                 },
               });
               break;

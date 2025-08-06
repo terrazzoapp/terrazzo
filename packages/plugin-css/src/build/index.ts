@@ -59,21 +59,21 @@ export default function buildFormat({
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
-        rootRule.declarations[localID] = token.value;
+        rootRule.declarations[localID] = { value: token.value, description: token.token.$description };
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
-        rootRule.declarations[localID] = token.value.srgb!;
+        rootRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
         if (token.value.p3 !== token.value.srgb) {
-          p3Rule.declarations[localID] = token.value.p3!;
-          rec2020Rule.declarations[localID] = token.value.rec2020!;
+          p3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
+          rec2020Rule.declarations[localID] = { value: token.value.rec2020!, description: token.token.$description };
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
-              p3Rule.declarations[alias.localID] ??= alias.value;
-              rec2020Rule.declarations[alias.localID] ??= alias.value;
+              p3Rule.declarations[alias.localID] ??= { value: alias.value, description: token.token.$description };
+              rec2020Rule.declarations[alias.localID] ??= { value: alias.value, description: token.token.$description };
             }
           }
         }
@@ -83,10 +83,16 @@ export default function buildFormat({
       else if (token.type === 'MULTI_VALUE') {
         const shorthand = generateShorthand({ $type: token.token.$type, localID });
         if (shorthand) {
-          rootRule.declarations[token.localID ?? token.token.id] = shorthand;
+          rootRule.declarations[token.localID ?? token.token.id] = {
+            value: shorthand,
+            description: token.token.$description,
+          };
         }
         for (const [name, value] of Object.entries(token.value)) {
-          rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = value;
+          rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = {
+            value,
+            description: token.token.$description,
+          };
         }
       }
     }
@@ -105,7 +111,7 @@ export default function buildFormat({
     const selectorRule: CSSRule = { selectors, declarations: {} };
     const selectorP3Rule: CSSRule = { selectors, nestedQuery: P3_MQ, declarations: {} };
     const selectorRec2020Rule: CSSRule = { selectors, nestedQuery: REC2020_MQ, declarations: {} };
-    const selectorAliasDeclarations: Record<string, string> = {};
+    const selectorAliasDeclarations: CSSRule['declarations'] = {};
     rules.push(selectorRule, selectorP3Rule, selectorRec2020Rule);
 
     for (const token of selectorTokens) {
@@ -117,21 +123,30 @@ export default function buildFormat({
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
-        selectorRule.declarations[localID] = token.value;
+        selectorRule.declarations[localID] = { value: token.value, description: token.token.$description };
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
-        selectorRule.declarations[localID] = token.value.srgb!;
+        selectorRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
         if (token.value.p3 !== token.value.srgb) {
-          selectorP3Rule.declarations[localID] = token.value.p3!;
-          selectorRec2020Rule.declarations[localID] = token.value.rec2020!;
+          selectorP3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
+          selectorRec2020Rule.declarations[localID] = {
+            value: token.value.rec2020!,
+            description: token.token.$description,
+          };
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
-              selectorP3Rule.declarations[alias.localID] ??= alias.value;
-              selectorRec2020Rule.declarations[alias.localID] ??= alias.value;
+              selectorP3Rule.declarations[alias.localID] ??= {
+                value: alias.value,
+                description: token.token.$description,
+              };
+              selectorRec2020Rule.declarations[alias.localID] ??= {
+                value: alias.value,
+                description: token.token.$description,
+              };
             }
           }
         }
@@ -141,24 +156,24 @@ export default function buildFormat({
       else {
         const shorthand = generateShorthand({ $type: token.token.$type, localID });
         if (shorthand) {
-          selectorRule.declarations[localID] = shorthand;
+          selectorRule.declarations[localID] = { value: shorthand, description: token.token.$description };
         }
         for (const [name, subvalue] of Object.entries(token.value)) {
-          selectorRule.declarations[`${localID}-${name}`] = subvalue;
+          selectorRule.declarations[`${localID}-${name}`] = { value: subvalue, description: token.token.$description };
         }
       }
 
       // redeclare aliases so they have the correct scope
       for (const alias of aliasTokens) {
         if (alias.localID && typeof alias.value === 'string') {
-          selectorAliasDeclarations[alias.localID] = alias.value;
+          selectorAliasDeclarations[alias.localID] = { value: alias.value, description: token.token.$description };
         }
       }
     }
 
     // after selector has settled, add in aliases if there are no conflicts
-    for (const [name, value] of Object.entries(selectorAliasDeclarations)) {
-      selectorRule.declarations[name] ??= value;
+    for (const [name, { value, description }] of Object.entries(selectorAliasDeclarations)) {
+      selectorRule.declarations[name] ??= { value, description };
     }
   }
 
