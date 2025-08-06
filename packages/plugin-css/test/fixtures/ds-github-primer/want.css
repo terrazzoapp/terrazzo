@@ -586,7 +586,7 @@
   --base-text-weight-medium: 500;
   --base-text-weight-normal: 400;
   --base-text-weight-semibold: 600;
-  --border-radius-full: 9999px;
+  --border-radius-full: 9999px; /* Use this border radius for pill shaped elements */
   --border-radius-large: 12px;
   --border-radius-medium: 6px;
   --border-radius-small: 3px;
@@ -599,9 +599,9 @@
   --font-stack-monospace: ui-monospace, "SFMono-Regular", "SF Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
   --font-stack-sans-serif: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
   --font-stack-system: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --motion-loading-delay-default: 1000ms;
-  --motion-skeleton-loader-shimmer-duration-scale: 1000ms;
-  --motion-spinner-duration-rotation: 1000ms;
+  --motion-loading-delay-default: 1000ms; /* The amount of time to wait before showing a loading indicator or announcing a loading state to assistive technologies. */
+  --motion-skeleton-loader-shimmer-duration-scale: 1000ms; /* The amount of times it takes the "shimmer" effect to go from the start (left) of the skeleton loader to the end (right) */
+  --motion-spinner-duration-rotation: 1000ms; /* The amount of time it takes the "Spinner" loading indicator to make a full 360deg rotation */
   --space-large: var(--base-size-12);
   --space-medium: var(--base-size-8);
   --space-small: 6px;
@@ -611,71 +611,71 @@
   --text-body-line-height-large: 1.5;
   --text-body-line-height-medium: 1.4285;
   --text-body-line-height-small: 1.6666;
-  --text-body-shorthand-large-font-family: var(--font-stack-sans-serif);
-  --text-body-shorthand-large-font-size: var(--text-body-size-large);
-  --text-body-shorthand-large-font-weight: var(--text-body-weight);
-  --text-body-shorthand-large-line-height: var(--text-body-line-height-large);
-  --text-body-shorthand-medium-font-family: var(--font-stack-sans-serif);
-  --text-body-shorthand-medium-font-size: var(--text-body-size-medium);
-  --text-body-shorthand-medium-font-weight: var(--text-body-weight);
-  --text-body-shorthand-medium-line-height: var(--text-body-line-height-medium);
-  --text-body-shorthand-small-font-family: var(--font-stack-sans-serif);
-  --text-body-shorthand-small-font-size: var(--text-body-size-small);
-  --text-body-shorthand-small-font-weight: var(--text-body-weight);
-  --text-body-shorthand-small-line-height: var(--text-body-line-height-small);
+  --text-body-shorthand-large-font-family: var(--font-stack-sans-serif); /* User-generated content, markdown rendering. */
+  --text-body-shorthand-large-font-size: var(--text-body-size-large); /* User-generated content, markdown rendering. */
+  --text-body-shorthand-large-font-weight: var(--text-body-weight); /* User-generated content, markdown rendering. */
+  --text-body-shorthand-large-line-height: var(--text-body-line-height-large); /* User-generated content, markdown rendering. */
+  --text-body-shorthand-medium-font-family: var(--font-stack-sans-serif); /* Default UI font. Most commonly used for body text. */
+  --text-body-shorthand-medium-font-size: var(--text-body-size-medium); /* Default UI font. Most commonly used for body text. */
+  --text-body-shorthand-medium-font-weight: var(--text-body-weight); /* Default UI font. Most commonly used for body text. */
+  --text-body-shorthand-medium-line-height: var(--text-body-line-height-medium); /* Default UI font. Most commonly used for body text. */
+  --text-body-shorthand-small-font-family: var(--font-stack-sans-serif); /* Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px. */
+  --text-body-shorthand-small-font-size: var(--text-body-size-small); /* Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px. */
+  --text-body-shorthand-small-font-weight: var(--text-body-weight); /* Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px. */
+  --text-body-shorthand-small-line-height: var(--text-body-line-height-small); /* Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px. */
   --text-body-size-large: 16px;
   --text-body-size-medium: 14px;
   --text-body-size-small: 12px;
   --text-body-weight: var(--base-text-weight-normal);
   --text-caption-line-height: 1.3333;
-  --text-caption-shorthand-font-family: var(--font-stack-sans-serif);
-  --text-caption-shorthand-font-size: var(--text-caption-size);
-  --text-caption-shorthand-font-weight: var(--text-caption-weight);
-  --text-caption-shorthand-line-height: var(--text-caption-line-height);
+  --text-caption-shorthand-font-family: var(--font-stack-sans-serif); /* Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements. */
+  --text-caption-shorthand-font-size: var(--text-caption-size); /* Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements. */
+  --text-caption-shorthand-font-weight: var(--text-caption-weight); /* Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements. */
+  --text-caption-shorthand-line-height: var(--text-caption-line-height); /* Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements. */
   --text-caption-size: 12px;
   --text-caption-weight: var(--base-text-weight-normal);
   --text-code-block-line-height: 1.5385;
-  --text-code-block-shorthand-font-family: var(--font-stack-monospace);
-  --text-code-block-shorthand-font-size: var(--text-code-block-size);
-  --text-code-block-shorthand-font-weight: var(--text-code-block-weight);
-  --text-code-block-shorthand-line-height: var(--text-code-block-line-height);
+  --text-code-block-shorthand-font-family: var(--font-stack-monospace); /* Default style for rendering code blocks. */
+  --text-code-block-shorthand-font-size: var(--text-code-block-size); /* Default style for rendering code blocks. */
+  --text-code-block-shorthand-font-weight: var(--text-code-block-weight); /* Default style for rendering code blocks. */
+  --text-code-block-shorthand-line-height: var(--text-code-block-line-height); /* Default style for rendering code blocks. */
   --text-code-block-size: 13px;
   --text-code-block-weight: var(--base-text-weight-normal);
-  --text-code-inline-shorthand-font-family: var(--font-stack-monospace);
-  --text-code-inline-shorthand-font-size: var(--text-code-inline-size);
-  --text-code-inline-shorthand-font-weight: var(--text-code-inline-weight);
+  --text-code-inline-shorthand-font-family: var(--font-stack-monospace); /* Inline code blocks using em units to inherit size from its parent. */
+  --text-code-inline-shorthand-font-size: var(--text-code-inline-size); /* Inline code blocks using em units to inherit size from its parent. */
+  --text-code-inline-shorthand-font-weight: var(--text-code-inline-weight); /* Inline code blocks using em units to inherit size from its parent. */
   --text-code-inline-size: 0.9285em;
   --text-code-inline-weight: var(--base-text-weight-normal);
   --text-display-line-box-height: 56px;
   --text-display-line-height: 1.4;
-  --text-display-shorthand-font-family: var(--font-stack-sans-serif);
-  --text-display-shorthand-font-size: var(--text-display-size);
-  --text-display-shorthand-font-weight: var(--text-display-weight);
-  --text-display-shorthand-line-height: var(--text-display-line-height);
+  --text-display-shorthand-font-family: var(--font-stack-sans-serif); /* Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports. */
+  --text-display-shorthand-font-size: var(--text-display-size); /* Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports. */
+  --text-display-shorthand-font-weight: var(--text-display-weight); /* Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports. */
+  --text-display-shorthand-line-height: var(--text-display-line-height); /* Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports. */
   --text-display-size: 40px;
   --text-display-weight: var(--base-text-weight-medium);
   --text-subtitle-line-height: 1.6;
-  --text-subtitle-shorthand-font-family: var(--font-stack-sans-serif);
-  --text-subtitle-shorthand-font-size: var(--text-subtitle-size);
-  --text-subtitle-shorthand-font-weight: var(--text-subtitle-weight);
-  --text-subtitle-shorthand-line-height: var(--text-subtitle-line-height);
+  --text-subtitle-shorthand-font-family: var(--font-stack-sans-serif); /* Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium). */
+  --text-subtitle-shorthand-font-size: var(--text-subtitle-size); /* Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium). */
+  --text-subtitle-shorthand-font-weight: var(--text-subtitle-weight); /* Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium). */
+  --text-subtitle-shorthand-line-height: var(--text-subtitle-line-height); /* Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium). */
   --text-subtitle-size: 20px;
   --text-subtitle-weight: var(--base-text-weight-normal);
   --text-title-line-height-large: 1.5;
   --text-title-line-height-medium: 1.6;
   --text-title-line-height-small: 1.5;
-  --text-title-shorthand-large-font-family: var(--font-stack-sans-serif);
-  --text-title-shorthand-large-font-size: var(--text-title-size-large);
-  --text-title-shorthand-large-font-weight: var(--text-title-weight-large);
-  --text-title-shorthand-large-line-height: var(--text-title-line-height-large);
-  --text-title-shorthand-medium-font-family: var(--font-stack-sans-serif);
-  --text-title-shorthand-medium-font-size: var(--text-title-size-medium);
-  --text-title-shorthand-medium-font-weight: var(--text-title-weight-medium);
-  --text-title-shorthand-medium-line-height: var(--text-title-line-height-medium);
-  --text-title-shorthand-small-font-family: var(--font-stack-sans-serif);
-  --text-title-shorthand-small-font-size: var(--text-title-size-small);
-  --text-title-shorthand-small-font-weight: var(--text-title-weight-small);
-  --text-title-shorthand-small-line-height: var(--text-title-line-height-small);
+  --text-title-shorthand-large-font-family: var(--font-stack-sans-serif); /* Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports. */
+  --text-title-shorthand-large-font-size: var(--text-title-size-large); /* Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports. */
+  --text-title-shorthand-large-font-weight: var(--text-title-weight-large); /* Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports. */
+  --text-title-shorthand-large-line-height: var(--text-title-line-height-large); /* Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports. */
+  --text-title-shorthand-medium-font-family: var(--font-stack-sans-serif); /* Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition. */
+  --text-title-shorthand-medium-font-size: var(--text-title-size-medium); /* Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition. */
+  --text-title-shorthand-medium-font-weight: var(--text-title-weight-medium); /* Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition. */
+  --text-title-shorthand-medium-line-height: var(--text-title-line-height-medium); /* Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition. */
+  --text-title-shorthand-small-font-family: var(--font-stack-sans-serif); /* Uses the same size as body (large) with a heavier weight of semibold (600). */
+  --text-title-shorthand-small-font-size: var(--text-title-size-small); /* Uses the same size as body (large) with a heavier weight of semibold (600). */
+  --text-title-shorthand-small-font-weight: var(--text-title-weight-small); /* Uses the same size as body (large) with a heavier weight of semibold (600). */
+  --text-title-shorthand-small-line-height: var(--text-title-line-height-small); /* Uses the same size as body (large) with a heavier weight of semibold (600). */
   --text-title-size-large: 32px;
   --text-title-size-medium: 20px;
   --text-title-size-small: 16px;

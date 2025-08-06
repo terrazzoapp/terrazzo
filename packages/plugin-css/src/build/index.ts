@@ -67,7 +67,7 @@ export default function buildFormat({
         rootRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
         if (token.value.p3 !== token.value.srgb) {
           p3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
-          rec2020Rule.declarations[localID] =  { value: token.value.rec2020!, description: token.token.$description };
+          rec2020Rule.declarations[localID] = { value: token.value.rec2020!, description: token.token.$description };
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
@@ -83,10 +83,16 @@ export default function buildFormat({
       else if (token.type === 'MULTI_VALUE') {
         const shorthand = generateShorthand({ $type: token.token.$type, localID });
         if (shorthand) {
-          rootRule.declarations[token.localID ?? token.token.id] = { value: shorthand, description: token.token.$description };
+          rootRule.declarations[token.localID ?? token.token.id] = {
+            value: shorthand,
+            description: token.token.$description,
+          };
         }
         for (const [name, value] of Object.entries(token.value)) {
-          rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = { value, description: token.token.$description };
+          rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = {
+            value,
+            description: token.token.$description,
+          };
         }
       }
     }
@@ -125,13 +131,22 @@ export default function buildFormat({
         selectorRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
         if (token.value.p3 !== token.value.srgb) {
           selectorP3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
-          selectorRec2020Rule.declarations[localID] = { value: token.value.rec2020!, description: token.token.$description };
+          selectorRec2020Rule.declarations[localID] = {
+            value: token.value.rec2020!,
+            description: token.token.$description,
+          };
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
-              selectorP3Rule.declarations[alias.localID] ??= { value: alias.value, description: token.token.$description };
-              selectorRec2020Rule.declarations[alias.localID] ??= { value: alias.value, description: token.token.$description };
+              selectorP3Rule.declarations[alias.localID] ??= {
+                value: alias.value,
+                description: token.token.$description,
+              };
+              selectorRec2020Rule.declarations[alias.localID] ??= {
+                value: alias.value,
+                description: token.token.$description,
+              };
             }
           }
         }
@@ -157,7 +172,7 @@ export default function buildFormat({
     }
 
     // after selector has settled, add in aliases if there are no conflicts
-    for (const [name, {value, description}] of Object.entries(selectorAliasDeclarations)) {
+    for (const [name, { value, description }] of Object.entries(selectorAliasDeclarations)) {
       selectorRule.declarations[name] ??= { value, description };
     }
   }

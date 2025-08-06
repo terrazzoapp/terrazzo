@@ -7,23 +7,35 @@ describe('printRules', () => {
       printRules([
         {
           selectors: [':root'],
-          declarations: { '--color-blue-6': '#acd8fc', '--color-blue-7': '#8ec8f6', '--color-blue-8': '#5eb1ef' },
+          declarations: {
+            '--color-blue-6': { value: '#acd8fc' },
+            '--color-blue-7': { value: '#8ec8f6' },
+            '--color-blue-8': { value: '#5eb1ef' },
+          },
         },
         {
           selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
-          declarations: { '--color-blue-6': '#acd8fc', '--color-blue-7': '#8ec8f6', '--color-blue-8': '#5eb1ef' },
+          declarations: {
+            '--color-blue-6': { value: '#acd8fc' },
+            '--color-blue-7': { value: '#8ec8f6' },
+            '--color-blue-8': { value: '#5eb1ef' },
+          },
         },
         {
           selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]', '.color-mode-dark'],
-          declarations: { '--color-blue-6': '#104d87', '--color-blue-7': '#205d9e', '--color-blue-8': '#2870bd' },
+          declarations: {
+            '--color-blue-6': { value: '#104d87' },
+            '--color-blue-7': { value: '#205d9e' },
+            '--color-blue-8': { value: '#2870bd' },
+          },
         },
         {
           selectors: ['.font-default'],
           declarations: {
-            'font-family': 'var(--typography-default-font-family)',
-            'font-size': 'var(--typography-default-font-size)',
-            'font-weight': 'var(--typography-default-font-weight)',
-            'line-height': 'var(--typography-default-line-height)',
+            'font-family': { value: 'var(--typography-default-font-family)' },
+            'font-size': { value: 'var(--typography-default-font-size)' },
+            'font-weight': { value: 'var(--typography-default-font-weight)' },
+            'line-height': { value: 'var(--typography-default-line-height)' },
           },
         },
       ]),
@@ -79,9 +91,9 @@ describe('printRules', () => {
         selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
         nestedQuery: '@media (color-gamut: p3)',
         declarations: {
-          '--color-blue-6': 'color(display-p3 0.062745 0.301961 0.529412)',
-          '--color-blue-7': 'color(display-p3 0.12549 0.364706 0.619608)',
-          '--color-blue-8': 'color(display-p3 0.156863 0.439216 0.741176)',
+          '--color-blue-6': { value: 'color(display-p3 0.062745 0.301961 0.529412)' },
+          '--color-blue-7': { value: 'color(display-p3 0.12549 0.364706 0.619608)' },
+          '--color-blue-8': { value: 'color(display-p3 0.156863 0.439216 0.741176)' },
         },
       },
     ];
@@ -113,9 +125,9 @@ describe('printRules', () => {
         selectors: [':root'],
         nestedQuery: '@media (color-gamut: p3)',
         declarations: {
-          '--color-blue-6': 'color(display-p3 0.062745 0.301961 0.529412)',
-          '--color-blue-7': 'color(display-p3 0.12549 0.364706 0.619608)',
-          '--color-blue-8': 'color(display-p3 0.156863 0.439216 0.741176)',
+          '--color-blue-6': { value: 'color(display-p3 0.062745 0.301961 0.529412)' },
+          '--color-blue-7': { value: 'color(display-p3 0.12549 0.364706 0.619608)' },
+          '--color-blue-8': { value: 'color(display-p3 0.156863 0.439216 0.741176)' },
         },
       },
     ];
@@ -136,7 +148,7 @@ describe('printRules', () => {
         selectors: [
           '[data-color-mode="light"][data-product="default"], [data-color-mode="light"] [data-product="default"]',
         ],
-        declarations: { '--color-blue-6': '#104d87' },
+        declarations: { '--color-blue-6': { value: '#104d87' } },
       },
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`

@@ -55,7 +55,7 @@ export interface ModeSelector {
 // A CSSRule is a sort of “we have AST at home” shortcut that provides the benefit of normalized formatting
 // but without the overhead/complexity of a full AST. It’s useful because we only generate a limited CSS
 // syntax, and is a good balance between spec-compliance vs ease-of-use.
-interface CSSRuleDeclaration {
+export interface CSSRuleDeclaration {
   value: string;
   description?: string;
 }
