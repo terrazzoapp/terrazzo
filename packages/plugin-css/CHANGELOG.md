@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#521](https://github.com/terrazzoapp/terrazzo/pull/521) [`f0d909c`](https://github.com/terrazzoapp/terrazzo/commit/f0d909c78e5b41749437d52df2197ab85ebeea33) Thanks [@drwpow](https://github.com/drwpow)! - Add token $description as CSS comments
+- [#521](https://github.com/terrazzoapp/terrazzo/pull/521) [`f0d909c`](https://github.com/terrazzoapp/terrazzo/commit/f0d909c78e5b41749437d52df2197ab85ebeea33) Thanks [@ciampo](https://github.com/ciampo)! - Add token $description as CSS comments
 
 ## 0.10.1
 
