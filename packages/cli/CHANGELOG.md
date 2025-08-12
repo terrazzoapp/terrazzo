@@ -1,5 +1,11 @@
 # @terrazzo/cli
 
+## 0.10.2
+
+### Patch Changes
+
+- [#526](https://github.com/terrazzoapp/terrazzo/pull/526) [`085f657`](https://github.com/terrazzoapp/terrazzo/commit/085f6573ca964af72fa2985e33f671f972cdf7fd) Thanks [@drwpow](https://github.com/drwpow)! - Update strokeStyle tokens to allow modern dimension syntax
+
 ## 0.10.1
 
 ### Patch Changes
