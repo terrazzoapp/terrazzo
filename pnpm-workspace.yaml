@@ -1,16 +1,19 @@
-shellEmulator: true
 packages:
   - packages/**
   - www
-  - "!packages/**/test/**"
-onlyBuiltDependencies:
-  - "@biomejs/biome"
-  - "@swc/core"
-  - esbuild
-  - sharp
+  - '!packages/**/test/**'
+
 catalog:
-  "@vitejs/plugin-react-swc": ^3.11.0
+  '@vitejs/plugin-react-swc': ^3.11.0
   react: ^19.1.0
   react-dom: ^19.1.0
-  vite: ^7.0.5
+  vite: ^7.1.2
   vitest: ^3.2.4
+
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@swc/core'
+  - esbuild
+  - sharp
+
+shellEmulator: true

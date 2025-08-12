@@ -559,10 +559,12 @@ export function validateStrokeStyle($value: ValueNode, node: AnyNode, { filename
           } else {
             validateDimension(element.value, node, { logger, src });
           }
+        } else if (element.value.type === 'Object') {
+          validateDimension(element.value, node, { logger, src });
         } else {
           logger.error({
             ...baseMessage,
-            message: 'Expected array of strings, recieved some non-strings or empty strings.',
+            message: `Expected array of dimensions, received ${element.value.type}.`,
             node: element,
           });
         }
