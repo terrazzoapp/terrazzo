@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/token-tools",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "description": "Various utilities for token types",
   "license": "MIT",
   "type": "module",
