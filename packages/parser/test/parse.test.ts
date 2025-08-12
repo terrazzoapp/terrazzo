@@ -1874,6 +1874,41 @@ font:
               src: {
                 borderStyle: {
                   $type: 'strokeStyle',
+                  $value: {
+                    lineCap: 'square',
+                    dashArray: [
+                      { value: 0.25, unit: 'rem' },
+                      { value: 0.5, unit: 'rem' },
+                    ],
+                  },
+                },
+              },
+            },
+          ],
+          want: {
+            tokens: {
+              borderStyle: {
+                $value: {
+                  lineCap: 'square',
+                  dashArray: [
+                    { value: 0.25, unit: 'rem' },
+                    { value: 0.5, unit: 'rem' },
+                  ],
+                },
+              },
+            },
+          },
+        },
+      ],
+      [
+        'valid: legacy syntax',
+        {
+          given: [
+            {
+              filename: DEFAULT_FILENAME,
+              src: {
+                borderStyle: {
+                  $type: 'strokeStyle',
                   $value: { lineCap: 'square', dashArray: ['0.25rem', '0.5rem'] },
                 },
               },
@@ -1915,7 +1950,7 @@ font:
             },
           ],
           want: {
-            error: `Expected array of strings, recieved some non-strings or empty strings.
+            error: `Expected array of dimensions, received Number.
 
 /tokens.json:7:9
 
