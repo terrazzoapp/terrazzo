@@ -5,8 +5,8 @@ packages:
 
 catalog:
   '@vitejs/plugin-react-swc': ^3.11.0
-  react: ^19.1.0
-  react-dom: ^19.1.0
+  react: ^19.1.1
+  react-dom: ^19.1.1
   vite: ^7.1.2
   vitest: ^3.2.4
 
