@@ -33,7 +33,7 @@
     "@terrazzo/storybook": "workspace:^",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "astro": "^5.12.9",
+    "astro": "^5.13.1",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-slug": "^6.0.0",
     "remark-directive": "^3.0.1",
