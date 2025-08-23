@@ -90,20 +90,35 @@ const rule: LintRule<
       switch (t.$type) {
         case 'color': {
           if (!isWithinGamut(t.$value, options.gamut)) {
-            report({ messageId: ERROR_COLOR, data: { id: t.id, gamut: options.gamut }, node: t.source.node });
+            report({
+              messageId: ERROR_COLOR,
+              data: { id: t.id, gamut: options.gamut },
+              node: t.source.node,
+              filename: t.source.filename,
+            });
           }
           break;
         }
         case 'border': {
           if (!t.partialAliasOf?.color && !isWithinGamut(t.$value.color, options.gamut)) {
-            report({ messageId: ERROR_BORDER, data: { id: t.id, gamut: options.gamut }, node: t.source.node });
+            report({
+              messageId: ERROR_BORDER,
+              data: { id: t.id, gamut: options.gamut },
+              node: t.source.node,
+              filename: t.source.filename,
+            });
           }
           break;
         }
         case 'gradient': {
           for (let stopI = 0; stopI < t.$value.length; stopI++) {
             if (!t.partialAliasOf?.[stopI]?.color && !isWithinGamut(t.$value[stopI]!.color, options.gamut)) {
-              report({ messageId: ERROR_GRADIENT, data: { id: t.id, gamut: options.gamut }, node: t.source.node });
+              report({
+                messageId: ERROR_GRADIENT,
+                data: { id: t.id, gamut: options.gamut },
+                node: t.source.node,
+                filename: t.source.filename,
+              });
             }
           }
           break;
@@ -111,7 +126,12 @@ const rule: LintRule<
         case 'shadow': {
           for (let shadowI = 0; shadowI < t.$value.length; shadowI++) {
             if (!t.partialAliasOf?.[shadowI]?.color && !isWithinGamut(t.$value[shadowI]!.color, options.gamut)) {
-              report({ messageId: ERROR_SHADOW, data: { id: t.id, gamut: options.gamut }, node: t.source.node });
+              report({
+                messageId: ERROR_SHADOW,
+                data: { id: t.id, gamut: options.gamut },
+                node: t.source.node,
+                filename: t.source.filename,
+              });
             }
           }
           break;

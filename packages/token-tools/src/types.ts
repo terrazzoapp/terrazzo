@@ -71,9 +71,9 @@ export type ColorValue =
   | {
       colorSpace: ColorSpace;
       /* @deprecated! Use "components" instead */
-      channels?: [number, number, number];
-      components: [number, number, number]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
-      alpha?: number;
+      channels?: (number | null | string)[];
+      components: (number | null | string)[]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
+      alpha?: string | number;
       hex?: string;
     };
 
@@ -82,7 +82,7 @@ export interface CubicBezierToken extends TokenCore {
   $value: CubicBezierValue | AliasValue;
 }
 
-export type CubicBezierValue = [number, number, number, number];
+export type CubicBezierValue = [number | string, number | string, number | string, number | string];
 
 /**
  * 8.2 Dimension
@@ -308,7 +308,9 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
   $deprecated?: string | boolean;
   id: string;
   source: {
+    /** @deprecated use filename instead */
     loc?: string;
+    filename?: string;
     node: ObjectNode;
   };
   /** The **final** aliased ID */
@@ -319,6 +321,7 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
   aliasedBy?: string[];
   group: {
     $description?: string;
+    $deprecated?: string | boolean;
     $extensions?: Record<string, unknown>;
     $type?: $type;
     id: string;
@@ -355,7 +358,7 @@ export interface BooleanTokenNormalized extends TokenNormalizedCore<'boolean'> {
 
 export interface BorderTokenNormalized extends TokenNormalizedCore<'border'> {
   $value: BorderValueNormalized;
-  partialAliasOf?: Partial<Record<keyof BorderValueNormalized, string>>;
+  partialAliasOf?: Record<keyof BorderValueNormalized, string | undefined>;
   mode: ModeMap<BorderTokenNormalized>;
   originalValue: BorderToken | AliasToken;
 }
@@ -369,7 +372,12 @@ export interface BorderValueNormalized {
 export interface ColorTokenNormalized extends TokenNormalizedCore<'color'> {
   $value: ColorValueNormalized;
   mode: ModeMap<ColorTokenNormalized>;
-  partialAliasOf?: never;
+  partialAliasOf?: {
+    colorSpace: string | undefined;
+    components: (string | undefined)[];
+    alpha: string | undefined;
+    hex: string | undefined;
+  };
   originalValue: ColorToken | AliasToken;
 }
 
@@ -381,9 +389,9 @@ export interface ColorValueNormalized {
    */
   colorSpace: ColorSpace;
   /* @deprecated! Use "components" instead */
-  channels?: [number, number, number];
+  channels?: (number | null)[];
   /** Color components. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
-  components: [number, number, number];
+  components: (number | null)[];
   /** Alpha channel, normalized from 0 – 1 */
   alpha: number;
   /** Hex fallback (for sRGB) */
@@ -453,7 +461,7 @@ export type FontWeightValueNormalized = number;
 
 export interface GradientTokenNormalized extends TokenNormalizedCore<'gradient'> {
   $value: GradientValueNormalized;
-  partialAliasOf?: Partial<Record<keyof GradientStopNormalized, string>>[];
+  partialAliasOf?: Record<keyof GradientStopNormalized, string | undefined>[];
   mode: ModeMap<GradientTokenNormalized>;
   originalValue: GradientTokenNormalized | AliasToken;
 }
@@ -481,7 +489,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore<'number'> {
 
 export interface ShadowTokenNormalized extends TokenNormalizedCore<'shadow'> {
   $value: ShadowValueNormalized[];
-  partialAliasOf?: Partial<Record<keyof ShadowValueNormalized, string>>[];
+  partialAliasOf?: Record<keyof ShadowValue, string | undefined>[];
   mode: ModeMap<ShadowTokenNormalized>;
   originalValue: ShadowToken | AliasToken;
 }
@@ -504,14 +512,16 @@ export interface StringTokenNormalized extends TokenNormalizedCore<'string'> {
 
 export interface StrokeStyleTokenNormalized extends TokenNormalizedCore<'strokeStyle'> {
   $value: StrokeStyleValueExpanded;
-  partialAliasOf?: never;
+  partialAliasOf?: {
+    dashArray: (string | undefined)[];
+  };
   mode: ModeMap<StrokeStyleTokenNormalized>;
   originalValue: StrokeStyleToken | AliasToken;
 }
 
 export interface TransitionTokenNormalized extends TokenNormalizedCore<'transition'> {
   $value: TransitionValueNormalized;
-  partialAliasOf?: Partial<Record<keyof TransitionValueNormalized, string>>;
+  partialAliasOf?: Record<keyof TransitionValueNormalized, string | undefined>;
   mode: ModeMap<TransitionTokenNormalized>;
   originalValue: TransitionToken | AliasToken;
 }
@@ -524,14 +534,14 @@ export interface TransitionValueNormalized {
 
 export interface TypographyTokenNormalized extends TokenNormalizedCore<'typography'> {
   $value: TypographyValueNormalized;
-  partialAliasOf?: Record<string, string>;
+  partialAliasOf?: Record<keyof TypographyValueNormalized, string | undefined>;
   mode: ModeMap<TypographyTokenNormalized>;
   originalValue: TypographyToken | AliasToken;
 }
 
 export interface TypographyValueNormalized {
-  fontFamily?: FontFamilyValue;
-  fontSize?: DimensionValue;
+  fontFamily: FontFamilyValue;
+  fontSize: DimensionValue;
   fontStyle?: string;
   fontVariant?: string;
   fontVariantAlternatives?: string;
@@ -542,9 +552,9 @@ export interface TypographyValueNormalized {
   fontVariantNumeric?: string;
   fontVariantPosition?: string;
   fontVariationSettings?: string;
-  fontWeight?: FontWeightValue;
-  letterSpacing?: DimensionValue;
-  lineHeight?: DimensionValue | NumberValue;
+  fontWeight: FontWeightValue;
+  letterSpacing: DimensionValue;
+  lineHeight: DimensionValue | NumberValue;
   textDecoration?: string;
   textTransform?: string;
   [key: string]: unknown;

@@ -1,15 +1,16 @@
 import { pluralize, type TokenNormalized } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
+import { getCode } from '../lib/code-frame.js';
 import type { LogEntry, default as Logger } from '../logger.js';
-import type { ConfigInit } from '../types.js';
+import type { ConfigInit, InputSource } from '../types.js';
 
-const listFormat = new Intl.ListFormat('en-us');
+export { RECOMMENDED_CONFIG } from './plugin-core/index.js';
 
 export interface LintRunnerOptions {
   tokens: Record<string, TokenNormalized>;
   filename?: URL;
   config: ConfigInit;
-  src: string;
+  sources: InputSource[];
   logger: Logger;
 }
 
@@ -17,19 +18,19 @@ export default async function lintRunner({
   tokens,
   filename,
   config = {} as ConfigInit,
-  src,
+  sources,
   logger,
 }: LintRunnerOptions): Promise<void> {
   const { plugins = [], lint } = config;
   const unusedLintRules = Object.keys(lint?.rules ?? {});
 
+  const errors: LogEntry[] = [];
+  const warnings: LogEntry[] = [];
   for (const plugin of plugins) {
     if (typeof plugin.lint === 'function') {
       const s = performance.now();
 
       const linter = plugin.lint();
-      const errors: LogEntry[] = [];
-      const warnings: LogEntry[] = [];
 
       await Promise.all(
         Object.entries(linter).map(async ([id, rule]) => {
@@ -86,12 +87,12 @@ export default async function lintRunner({
                 message,
                 filename,
                 node: descriptor.node,
-                src: descriptor.source?.src,
+                src: getCode(sources, descriptor.filename),
               });
             },
             tokens,
             filename,
-            src,
+            sources,
             options: merge(
               rule.meta?.defaultOptions ?? [],
               rule.defaultOptions ?? [], // Note: is this the correct order to merge in?
@@ -106,28 +107,26 @@ export default async function lintRunner({
         }),
       );
 
-      for (const error of errors) {
-        logger.error({ ...error, continueOnError: true }); // print out all errors before exiting here
-      }
-      for (const warning of warnings) {
-        logger.warn(warning);
-      }
-
-      logger.debug({ group: 'lint', label: plugin.name, message: 'Finished', timing: performance.now() - s });
-
-      if (errors.length) {
-        const counts = [pluralize(errors.length, 'error', 'errors')];
-        if (warnings.length) {
-          counts.push(pluralize(warnings.length, 'warning', 'warnings'));
-        }
-        logger.error({
-          group: 'lint',
-          message: `Lint failed with ${listFormat.format(counts)}`,
-          label: plugin.name,
-          continueOnError: false,
-        });
-      }
+      logger.debug({
+        group: 'lint',
+        label: plugin.name,
+        message: 'Finished',
+        timing: performance.now() - s,
+      });
     }
+  }
+
+  const errCount = errors.length ? `${errors.length} ${pluralize(errors.length, 'error', 'errors')}` : '';
+  const warnCount = warnings.length ? `${warnings.length} ${pluralize(warnings.length, 'warning', 'warnings')}` : '';
+  if (errors.length > 0) {
+    logger.error(...errors, {
+      group: 'lint',
+      label: 'lint',
+      message: [errCount, warnCount].filter(Boolean).join(', '),
+    });
+  }
+  if (warnings.length > 0) {
+    logger.warn(...warnings, { group: 'lint', label: 'lint', message: warnCount });
   }
 
   // warn user if they have unused lint rules (they might have meant to configure something!)

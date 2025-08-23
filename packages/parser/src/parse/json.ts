@@ -6,6 +6,7 @@ import {
   type ObjectNode,
   type ParseOptions,
   print,
+  type StringNode,
   type ValueNode,
 } from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
@@ -39,7 +40,15 @@ export function isNode(value: unknown): boolean {
 
 export type ValueNodeWithIndex = ValueNode & { index: number };
 
-/** Get ObjectNode members as object */
+/** Get single member by name. Useful when you only need a single value. */
+export function getObjMember(node: ObjectNode | undefined, key: string): ValueNode | undefined {
+  if (!node || node.type !== 'Object') {
+    return;
+  }
+  return node.members.find((m) => m.name.type === 'String' && m.name.value === key)?.value;
+}
+
+/** Format ObjectNode members as key–value object. Better when retrieving multiple values. */
 export function getObjMembers(node: ObjectNode): Record<string | number, ValueNodeWithIndex> {
   const members: Record<string | number, ValueNodeWithIndex> = {};
   if (node.type !== 'Object') {
@@ -115,9 +124,9 @@ export function maybeRawJSON(input: string): boolean {
 }
 
 /** Find Momoa node by traversing paths */
-export function findNode<T = AnyNode>(node: AnyNode, path: string[]): T | undefined {
-  if (!path.length) {
-    return;
+export function findNode<T = AnyNode>(node: AnyNode, path?: string[]): T {
+  if (!path?.length) {
+    return node as T;
   }
 
   let nextNode: AnyNode | undefined;
@@ -176,7 +185,7 @@ export function toMomoa(
       logger.error({
         group: 'parser',
         label: 'yaml',
-        message: `Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+        message: `Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
     import { parse } from '@terrazzo/parser';
     import yamlToMomoa from 'yaml-to-momoa';
@@ -197,9 +206,9 @@ export function toMomoa(
 /** Momoa, just with default options pre-set */
 export function parseJSON(input: string | Record<string, any>, options?: ParseOptions): any {
   return momoaParse(
-    // note: it seems silly, at first glance, to have JSON.stringify() inside an actual JSON parser. But
-    // this provides a common interface to generate a Momoa AST for JSON created in-memory, which we already
-    // know is 100% valid because it’s already deserialized.
+    // note: it seems silly at first glance to have JSON.stringify() inside a JSON parser.
+    // we do this for objects created in memory to simulate line and column numbers for
+    // better stack traces, which we don’t get with the native JSON parser.
     typeof input === 'string' ? input : JSON.stringify(input, undefined, 2),
     {
       mode: 'jsonc',
@@ -208,4 +217,61 @@ export function parseJSON(input: string | Record<string, any>, options?: ParseOp
       ...options,
     },
   );
+}
+
+/** Merge multiple Momoa documents from different sources. Conflicts will be overridden  */
+export function mergeDocuments(documents: DocumentNode[]): DocumentNode {
+  if (!documents.length) {
+    throw new Error(`Can’t merge 0 documents.`);
+  }
+  if (documents.length === 1) {
+    return documents[0]!;
+  }
+  if (documents.some((d) => d.body.type !== 'Object')) {
+    throw new Error(`mergeDocuments() can only merge top-level objects`);
+  }
+  const final = structuredClone(documents[0]!);
+  for (const next of documents.slice(1)) {
+    final.body = mergeObjects(final.body as ObjectNode, next.body as ObjectNode);
+  }
+  return final;
+}
+
+/** Merge Momoa Objects. */
+export function mergeObjects(a: ObjectNode, b: ObjectNode): ObjectNode {
+  const obj: ObjectNode = structuredClone(a);
+  // on type mismatch, b overwrites a
+  if (a.type !== 'Object') {
+    return structuredClone(b);
+  }
+  for (const next of b.members) {
+    if (next.name.type !== 'String') {
+      throw new Error(`Member with key ${print(next.name)} not JSON serializable`);
+    }
+    const i = obj.members.findIndex((prev) => (prev.name as StringNode).value === (next.name as StringNode).value);
+    if (i !== -1) {
+      switch (next.value.type) {
+        // Only objects get deep merging
+        case 'Object': {
+          obj.members[i]!.value = mergeObjects(obj.members[i]!.value as ObjectNode, next.value);
+          break;
+        }
+        // Everything else gets overwritten
+        case 'String':
+        case 'Boolean':
+        case 'Number':
+        case 'Null':
+        case 'Array': {
+          obj.members[i]!.value = next.value;
+          break;
+        }
+        default: {
+          throw new Error(`Unhandled: ${next.value.type}`);
+        }
+      }
+    } else {
+      obj.members.push(next);
+    }
+  }
+  return obj;
 }

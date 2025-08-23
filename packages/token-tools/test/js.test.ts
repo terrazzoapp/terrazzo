@@ -162,7 +162,7 @@ describe('transformJSValue', () => {
         letterSpacing: 0,
         lineHeight: 1.5,
         textDecoration: 'none',
-        textTranssform: 'none',
+        textTransform: 'none',
       },
     } as unknown as TypographyTokenNormalized;
     typography.mode = {
@@ -184,7 +184,7 @@ describe('transformJSValue', () => {
         "letterSpacing": 0,
         "lineHeight": 1.5,
         "textDecoration": "none",
-        "textTranssform": "none"
+        "textTransform": "none"
       }"
     `);
   });

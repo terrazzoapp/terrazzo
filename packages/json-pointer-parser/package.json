@@ -1,0 +1,44 @@
+{
+  "name": "@terrazzo/json-pointer-parser",
+  "version": "0.0.1",
+  "description": "Itty-bitty utility to parse JSON pointers (RFC 6901). No resolving, no dereferencing, no CLI. Universal ESM.",
+  "type": "module",
+  "keywords": [
+    "json",
+    "pointer",
+    "ref",
+    "rfc",
+    "6901"
+  ],
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "homepage": "https://terrazzo.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/json-schema-ref-parser/"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "bench": "vitest bench",
+    "dev": "pnpm run build --watch",
+    "lint": "pnpm --filter @terrazzo/parser run \"/^lint:(js|ts)/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^11.9.3"
+  }
+}

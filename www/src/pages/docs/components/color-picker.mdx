@@ -58,9 +58,9 @@ The following decisions went into making Terrazzo’s color picker as good as it
 
 ### Sliders: accuracy
 
-As pointed out in Björn Ottosen’s—the creator of OKLAB/OKLCH—fantastic [article about color pickers](https://bottosson.github.io/posts/colorpicker/), there’s a tension between accurate colorpickers being hard to use, while user-friendly colorpickers aren’t precise.
+As pointed out in Björn Ottosen’s—the creator of OKLAB/OKLCH—fantastic [article about color pickers](https://bottosson.github.io/posts/colorpicker/), there’s a tension between accurate color pickers being hard to use, while user-friendly color pickers aren’t precise.
 
-While his solution of an OKHSL colorpicker is a great compromise, it limits colorpicking to that color space alone. In order to be universally-usable for all color spaces, per-channel sliders are needed for control.
+While his solution of an OKHSL color picker is a great compromise, it limits color picking to that color space alone. In order to be universally-usable for all color spaces, per-channel sliders are needed for control.
 
 ### Percentages: higher bit depth
 
@@ -93,7 +93,7 @@ sRGB, Display P3, and Rec 2020 (upcoming) gamuts in comparison. Each is signific
 By default, all color spaces are clamped to the sRGB gamut, which is the smallest but is available for all users on all devices. The expanded Display P3 gamut—common but not quite 100% of all users and devices—has to be manually-enabled in the expanded options. The Rec2020 gamut, the largest one, isn’t yet available on the web, but it’s included for futureproofing this colorpicker for the day when it does become available.
 
 <figure>
-  <img src="/assets/colorpicker-gamut.png" alt="Gamut toggles" width="300" />
+  <img src="/assets/color picker-gamut.png" alt="Gamut toggles" width="300" />
 </figure>
 
 Any gamuts that are toggled **off** won’t be reachable with the sliders. This ensures you’re not selecting colors outside the range of what’s intended.
