@@ -38,7 +38,10 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       tokens: [DEFAULT_TOKENS_PATH],
       outDir: new URL('./tokens/', cwd),
       plugins: [],
-      lint: { build: { enabled: true }, rules: {} },
+      lint: {
+        build: { enabled: true },
+        rules: {},
+      },
       ignore: { tokens: [], deprecated: false },
     };
     let configPath: string | undefined;

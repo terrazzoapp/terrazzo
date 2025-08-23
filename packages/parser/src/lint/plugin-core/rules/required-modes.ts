@@ -55,6 +55,7 @@ const rule: LintRule<never, RuleRequiredModesOptions> = {
             report({
               message: `Token ${t.id}: missing required mode "${mode}"`,
               node: t.source.node,
+              filename: t.source.filename,
             });
           }
         }
@@ -63,6 +64,7 @@ const rule: LintRule<never, RuleRequiredModesOptions> = {
           report({
             message: `Match "${matchI}": no tokens matched ${JSON.stringify(match)}`,
             node: t.source.node,
+            filename: t.source.filename,
           });
         }
       }

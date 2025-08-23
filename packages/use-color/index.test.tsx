@@ -212,7 +212,7 @@ describe('useColor', () => {
       expect(renderCount).toBe(1);
     });
 
-    it('returns undefined for unknown colorspaces', () => {
+    it('returns undefined for unknown color spaces', () => {
       const color = 'color(srgb 0 0.3 1)';
 
       render(
@@ -283,16 +283,16 @@ describe('useColor', () => {
 
       const { rerender } = render(<UseColorTester {...props} display='css' />);
 
-      const colorspaces = ['original', 'css', 'a98', 'srgb', 'rgb', 'oklab', 'oklch', 'xyz', 'xyz50', 'xyz65'] as const;
-      for (const c of colorspaces) {
+      const colorSpaces = ['original', 'css', 'a98', 'srgb', 'rgb', 'oklab', 'oklch', 'xyz', 'xyz50', 'xyz65'] as const;
+      for (const c of colorSpaces) {
         rerender(<UseColorTester {...props} display={c as keyof ColorType} />);
       }
 
       // assert onChange fired 0 times (+1 for first render)
       expect(onChangeCount).toBe(0 + 1);
 
-      // assert rerendering happened once per colorspace (+1 for first render)
-      expect(rerenderCount).toBe(colorspaces.length + 1);
+      // assert rerendering happened once per color space (+1 for first render)
+      expect(rerenderCount).toBe(colorSpaces.length + 1);
     });
   });
 });
