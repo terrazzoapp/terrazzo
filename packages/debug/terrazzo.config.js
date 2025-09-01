@@ -1,4 +1,5 @@
 import { defineConfig } from '@terrazzo/cli';
+
 import css from '@terrazzo/plugin-css';
 import listing from '@terrazzo/plugin-token-listing';
 
@@ -7,7 +8,7 @@ export default defineConfig({
   plugins: [
     css({
       filename: 'tokens.css',
-      variableName: (token) => token.id.replace(/\./g, '-'),
+      // variableName: (token) => token.id.replace(/\./g, '-'),
       baseSelector: ':root',
     }),
     listing({
@@ -28,8 +29,7 @@ export default defineConfig({
       // whether they support DTCG instead.
       names: {
         figma: {
-          type: 'design',
-          built: false,
+          description: 'Our variables (color, spacing) and styles (typography)',
           transform: (token) => {
             const baseName = token.id.split('.').join('/');
             const isLocalStyle = token.$type === 'typography';
@@ -38,16 +38,42 @@ export default defineConfig({
           },
         },
         tokensstudio: {
-          type: 'token-editor',
-          built: false,
+          description: 'The place where we store our source tokens',
           transform: (token) => token.id,
         },
         css: {
-          type: 'code',
-          description: 'Built CSS representations of design tokens maintained by our DS team',
-          built: true,
+          description: 'Our built tokens in CSS for the developers',
           plugin: '@terrazzo/plugin-css',
         },
+      },
+
+      subtype: (token) => {
+        if (token.$type === 'color') {
+          if (token.id.includes('background')) {
+            return 'bgColor';
+          }
+          if (token.id.includes('border')) {
+            return 'borderColor';
+          }
+          if (token.id.includes('icon') || token.id.includes('text')) {
+            return 'fgColor';
+          }
+        }
+
+        if (token.$type === 'dimension') {
+          if (token.id.includes('icon')) {
+            return 'size';
+          }
+          if (token.id.includes('space') || token.id.includes('depth')) {
+            return 'gap';
+          }
+          if (token.id.includes('stroke')) {
+            return 'borderWidth';
+          }
+          if (token.id.includes('radius')) {
+            return 'borderRadius';
+          }
+        }
       },
     }),
   ],

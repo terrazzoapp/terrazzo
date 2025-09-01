@@ -152,6 +152,9 @@ importers:
       '@terrazzo/plugin-token-listing':
         specifier: workspace:^
         version: link:../plugin-token-listing
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
 
   packages/fonts: {}
 

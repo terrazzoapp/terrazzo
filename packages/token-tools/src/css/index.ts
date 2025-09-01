@@ -40,9 +40,18 @@ export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
   token: T,
   { mode, ...options }: { mode: keyof T['mode'] } & TransformCSSValueOptions,
 ) {
+  if (token.id === 'color.background.brand.default') {
+    console.log('transformCSSValue', token.id, mode);
+  }
   const selectedMode = token.mode[mode as keyof typeof token.mode];
   if (!selectedMode) {
+    if (token.id === 'color.background.brand.default') {
+      console.log('transformCSSValue no selected mode', token.id);
+    }
     return;
+  }
+  if (token.id === 'color.background.brand.default') {
+    console.log('transformCSSValue selectedMode', selectedMode);
   }
   const tokenWithModeValue: T = {
     id: token.id,
@@ -50,6 +59,9 @@ export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
     // note: do NOT carry over aliasOf/partialAliasOf as that will result in incorrect values
     ...selectedMode,
   } as any;
+  if (token.id === 'color.background.brand.default') {
+    console.log('transformCSSValue tokenWithModeValue', tokenWithModeValue);
+  }
   switch (tokenWithModeValue.$type) {
     case 'boolean': {
       return transformBoolean(tokenWithModeValue, options);
@@ -58,6 +70,12 @@ export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
       return transformBorder(tokenWithModeValue, options);
     }
     case 'color': {
+      const cc = transformColor(tokenWithModeValue, options);
+
+      if (token.id === 'color.background.brand.default') {
+        console.log('transformCSSValue color', cc);
+      }
+      return cc;
       return transformColor(tokenWithModeValue, options);
     }
     case 'cubicBezier': {

@@ -72,8 +72,8 @@ export interface TokenListingPluginOptions {
   names?: Record<string, NameOption>;
   defaultSource?: string;
   customSource?: (token: TokenNormalized) => string | undefined;
-  customPreviewValue?: (token: TokenNormalized) => Value;
-  subtype?: Subtype;
+  customPreviewValue?: (token: TokenNormalized) => Value | undefined;
+  subtype?: (token: TokenNormalized) => Subtype | undefined;
 }
 
 // TODO: document all interfaces.

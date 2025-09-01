@@ -1,17 +1,49 @@
 import type { Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
-import { type TokenListingExtension, type TokenListingPluginOptions } from './lib.js';
+import type { TokenListingExtension, TokenListingPluginOptions } from './lib.js';
+import { transformCSSValue } from '@terrazzo/token-tools/css';
 
 export * from './lib.js';
 
+function computePreviewValue(
+  tokensSet: Record<string, TokenNormalized>,
+  token: TokenNormalized,
+  mode?: string,
+): string {
+  const recursiveNoAliasTransform = (rToken: TokenNormalized): string => {
+    // // @ts-expect-error Not typed yet in TZ.
+    // if (mode && mode !== '.' && rToken.$extensions?.mode?.[mode]) {
+
+    // }
+    // // "$value": "{color.brand.200}",
+    // // "$extensions": { "mode": { "light": "{color.brand.200}", "dark": "{color.brand.600}" } }
+
+    if (rToken.id === 'color.background.brand.default') {
+      console.log('recursiveNoAliasTransform', mode, typeof mode);
+    }
+    return `${transformCSSValue(rToken, {
+      mode: mode ?? '.',
+      tokensSet,
+      // STEVE THIS IS WHERE YOU WERE. need to recursively transform so that we dont endu p with var(--)
+      // but the primitive token doesn't have a mode value so we need to switch back to "." if undefined?
+      transformAlias: recursiveNoAliasTransform,
+      // color: { legacyHex: true },
+    })}`;
+  };
+
+  return recursiveNoAliasTransform(token);
+}
+
 export default function tokenListingPlugin(options: TokenListingPluginOptions): Plugin {
-  const { names = [], customSource } = options;
+  const { names = [], subtype } = options;
 
   const getListingMeta = ({
     token,
+    tokensSet,
     getTransforms,
     mode,
   }: {
     token: TokenNormalized;
+    tokensSet: Record<string, TokenNormalized>;
     getTransforms: (params: TransformParams) => TokenTransformed[];
     mode?: string;
   }): TokenListingExtension => {
@@ -31,25 +63,29 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
         computedNames[name] = nameOption.getName(token);
       }
     }
+    if (token.id === 'color.background.brand.default') {
+      console.log('\n\n\n\n\n\n\n\n\n');
+    }
 
-    const webValue = getTransforms({ format: 'css', id: token.id, mode })[0];
-    console.log('webValue,', webValue);
+    const previewValue = computePreviewValue(tokensSet, token, mode);
+    // FIXME: check for failed transforms in whole listing output
+    if (token.id === 'color.background.brand.default') {
+      console.log('mode', mode);
+      // console.log(getTransforms({ format: 'css', id: token.id, mode }));
+      console.log('previewValue,', previewValue);
+      console.log('\n\n\n');
+    }
 
     const output: TokenListingExtension = {
       names: computedNames,
-      // TODO compute subtype with heuristics or through a function option
-      subtype: token.$type,
-      previewValue: webValue?.value,
-      originalValue: token.originalValue.$value,
+      // source: TODO once the Resolver Spec is implemented.
+      previewValue,
+      originalValue: token.originalValue.$value, // FIXME
+      subtype: subtype?.(token),
     };
 
     if (mode !== '.') {
       output.mode = mode;
-    }
-
-    const computedCustomSource = customSource?.(token);
-    if (computedCustomSource) {
-      output.source = computedCustomSource;
     }
 
     return output;
@@ -64,7 +100,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
           $type: token.$type,
           $value: tokenInMode ? tokenInMode.$value : token.$value,
           $extensions: {
-            'app.terrazzo.listing': getListingMeta({ token, getTransforms, mode }),
+            'app.terrazzo.listing': getListingMeta({ token, tokensSet: tokens, getTransforms, mode }),
           },
         })),
       );
