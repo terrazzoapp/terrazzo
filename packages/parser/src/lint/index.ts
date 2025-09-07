@@ -1,4 +1,4 @@
-import { pluralize, type TokenNormalized } from '@terrazzo/token-tools';
+import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import { getCode } from '../lib/code-frame.js';
 import type { LogEntry, default as Logger } from '../logger.js';
@@ -7,7 +7,7 @@ import type { ConfigInit, InputSource } from '../types.js';
 export { RECOMMENDED_CONFIG } from './plugin-core/index.js';
 
 export interface LintRunnerOptions {
-  tokens: Record<string, TokenNormalized>;
+  tokens: TokenNormalizedSet;
   filename?: URL;
   config: ConfigInit;
   sources: InputSource[];

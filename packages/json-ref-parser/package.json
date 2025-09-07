@@ -1,5 +1,5 @@
 {
-  "name": "@terrazzo/json-pointer-parser",
+  "name": "@terrazzo/json-ref-parser",
   "version": "0.0.1",
   "description": "Itty-bitty utility to parse JSON pointers (RFC 6901). No resolving, no dereferencing, no CLI. Universal ESM.",
   "type": "module",

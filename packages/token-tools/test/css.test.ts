@@ -103,23 +103,38 @@ describe('transformCSSValue', () => {
       {
         given: [
           {
+            id: 'bool.idk',
             $type: 'boolean',
             $value: false,
-            id: 'bool.idk',
+            $deprecated: undefined,
+            $description: undefined,
+            $extensions: undefined,
+            source: {} as any,
+            aliasOf: 'bool.nuh-uh',
+            aliasChain: ['bool.nuh-uh'],
+            partialAliasOf: undefined,
+            aliasedBy: undefined,
+            dependencies: undefined,
             mode: {
               '.': {
                 $value: false,
                 originalValue: '{bool.nuh-uh}',
+                dependencies: undefined,
                 source: {} as any,
                 aliasOf: 'bool.nuh-uh',
                 aliasChain: ['bool.nuh-uh'],
+                partialAliasOf: undefined,
               },
             },
             originalValue: { $value: '{bool.nuh-uh}' },
-            group: { id: 'bool', tokens: [] },
-            source: {} as any,
-            aliasOf: 'bool.nuh-uh',
-            aliasChain: ['bool.nuh-uh'],
+            group: {
+              id: 'bool',
+              $type: undefined,
+              $description: undefined,
+              $deprecated: undefined,
+              $extensions: undefined,
+              tokens: [],
+            },
           },
           {
             mode: '.',

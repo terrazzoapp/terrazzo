@@ -11,7 +11,14 @@ describe('7 Alias', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                base: {
+                  blue: {
+                    500: {
+                      $type: 'color',
+                      $value: 'color(srgb 0 0.2 1)',
+                    },
+                  },
+                },
                 semantic: { $value: '{color.base.blue.500}' },
               },
             },
@@ -39,13 +46,13 @@ describe('7 Alias', () => {
           {
             filename: new URL('file:///tokens.yaml'),
             src: `color:
-  base:
-    blue:
-      500:
-        $type: color
-        $value: color(srgb 0 0.2 1)
-  semantic:
-    $value: "{color.base.blue.500}"`,
+      base:
+        blue:
+          500:
+            $type: color
+            $value: color(srgb 0 0.2 1)
+      semantic:
+        $value: "{color.base.blue.500}"`,
           },
         ],
         want: {
@@ -90,13 +97,13 @@ describe('7 Alias', () => {
           {
             filename: new URL('file:///tokens.yaml'),
             src: `bold:
-  $type: fontWeight
-  $value: "{font.weight.700}"
-font:
-  weight:
-    $type: fontWeight
-    700:
-      $value: 700`,
+      $type: fontWeight
+      $value: "{font.weight.700}"
+    font:
+      weight:
+        $type: fontWeight
+        700:
+          $value: 700`,
           },
         ],
         want: {
@@ -135,6 +142,13 @@ font:
                   { value: 0.125, unit: 'rem' },
                   { value: 0.25, unit: 'rem' },
                 ],
+              },
+              dependencies: ['#/size/2/$value', '#/size/3/$value'],
+              partialAliasOf: {
+                dashArray: {
+                  '0': 'size.2',
+                  '1': 'size.3',
+                },
               },
             },
             'size.2': { $value: { value: 0.125, unit: 'rem' }, aliasedBy: ['buttonStroke'] },
@@ -183,6 +197,11 @@ font:
                 width: { value: 1, unit: 'px' },
                 style: 'solid',
               },
+              dependencies: [
+                '#/color/semantic/subdued/$value',
+                '#/border/size/default/$value',
+                '#/border/style/default/$value',
+              ],
               partialAliasOf: {
                 color: 'color.semantic.subdued',
                 width: 'border.size.default',
@@ -264,6 +283,12 @@ font:
                   },
                   position: 1,
                 },
+              ],
+              dependencies: [
+                '#/color/blue/500/$value',
+                '#/perc/0/$value',
+                '#/color/purple/800/$value',
+                '#/perc/100/$value',
               ],
               partialAliasOf: [
                 { color: 'color.blue.500', position: 'perc.0' },
@@ -457,9 +482,7 @@ font:
           },
         ],
         want: {
-          error: `Alias {color.base.blue.600} not found.
-
-/tokens.json:12:17
+          error: `[parser:init] Could not resolve $ref "#/color/base/blue/600/$value"
 
   10 |     },
   11 |     "semantic": {
@@ -491,9 +514,7 @@ font:
           },
         ],
         want: {
-          error: `Alias {color.base.blue.600} not found.
-
-/b.json:3:15
+          error: `[parser:init] Could not resolve $ref "#/color/base/blue/600/$value"
 
   1 | {
   2 |   "semantic": {
@@ -514,7 +535,7 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: "{foo.bar"
+          error: `[parser:init] Token has no $type
 
   1 | {
   2 |   "alias": {
@@ -532,6 +553,9 @@ font:
           {
             filename: DEFAULT_FILENAME,
             src: {
+              perc: {
+                0: { $type: 'number', $value: 0.5 },
+              },
               gradient: {
                 $type: 'gradient',
                 $value: [{ color: '{color.blue.500', position: '{perc.0}' }],
@@ -540,17 +564,17 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: "{color.blue.500"
+          error: `[lint:core/valid-color] Could not parse color "{color.blue.500".
 
-/tokens.json:6:18
+  10 |     "$value": [
+  11 |       {
+> 12 |         "color": "{color.blue.500",
+     |                  ^
+  13 |         "position": "{perc.0}"
+  14 |       }
+  15 |     ]
 
-  4 |     "$value": [
-  5 |       {
-> 6 |         "color": "{color.blue.500",
-    |                  ^
-  7 |         "position": "{perc.0}"
-  8 |       }
-  9 |     ]`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -570,9 +594,7 @@ font:
           },
         ],
         want: {
-          error: `Circular alias detected from {color.text.primary}.
-
-/tokens.json:5:17
+          error: `[parser:init] Circular alias detected.
 
   3 |     "$type": "color",
   4 |     "primary": {
@@ -592,7 +614,7 @@ font:
             filename: DEFAULT_FILENAME,
             src: {
               dimension: {
-                base: { $type: 'dimension', $value: '1rem' },
+                base: { $type: 'dimension', $value: { value: 1, unit: 'rem' } },
               },
               border: {
                 base: {
@@ -604,17 +626,17 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: expected $type: border, received $type: dimension.
+          error: `[lint:core/valid-border] Border token missing required properties: color, width, and style.
 
-/tokens.json:11:17
-
-   9 |     "base": {
-  10 |       "$type": "border",
-> 11 |       "$value": "{dimension.base}"
+  12 |     "base": {
+  13 |       "$type": "border",
+> 14 |       "$value": "{dimension.base}"
      |                 ^
-  12 |     }
-  13 |   }
-  14 | }`,
+  15 |     }
+  16 |   }
+  17 | }
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -628,7 +650,11 @@ font:
               color: {
                 $type: 'color',
                 blue: {
-                  $value: '#10109a',
+                  $value: {
+                    colorSpace: 'srgb',
+                    components: [0.062745098, 0.062745098, 0.6039215686],
+                    hex: '#10109a',
+                  },
                 },
               },
               stroke: {
@@ -649,17 +675,17 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: expected $type: dimension, received $type: color.
+          error: `[lint:core/valid-dimension] Invalid dimension: {"colorSpace":"srgb","components":[0.062745098,0.062745098,0.6039215686],"hex":"#10109a"}. Expected object with "value" and "unit".
 
-/tokens.json:19:18
-
-  17 |       "$value": {
-  18 |         "color": "{color.blue}",
-> 19 |         "width": "{color.blue}",
+  25 |       "$value": {
+  26 |         "color": "{color.blue}",
+> 27 |         "width": "{color.blue}",
      |                  ^
-  20 |         "style": "{stroke.solid}"
-  21 |       }
-  22 |     }`,
+  28 |         "style": "{stroke.solid}"
+  29 |       }
+  30 |     }
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -672,7 +698,13 @@ font:
             src: {
               color: {
                 $type: 'color',
-                blue: { $value: '#10109a' },
+                blue: {
+                  $value: {
+                    colorSpace: 'srgb',
+                    components: [0.062745098, 0.062745098, 0.6039215686],
+                    hex: '#10109a',
+                  },
+                },
               },
               stop: {
                 $type: 'number',
@@ -680,7 +712,7 @@ font:
               },
               duration: {
                 $type: 'duration',
-                s: { $value: '100ms' },
+                s: { $value: { value: 100, unit: 'ms' } },
               },
               gradient: {
                 base: {
@@ -695,17 +727,17 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: expected $type: number, received $type: duration.
+          error: `[lint:core/valid-gradient] Expected number 0-1, received {"value":100,"unit":"ms"}.
 
-/tokens.json:30:23
-
-  28 |         {
-  29 |           "color": "{color.blue}",
-> 30 |           "position": "{duration.s}"
+  39 |         {
+  40 |           "color": "{color.blue}",
+> 41 |           "position": "{duration.s}"
      |                       ^
-  31 |         }
-  32 |       ]
-  33 |     }`,
+  42 |         }
+  43 |       ]
+  44 |     }
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -716,7 +748,7 @@ font:
           {
             filename: DEFAULT_FILENAME,
             src: {
-              dimension: { $type: 'dimension', s: { $value: '0.5rem' } },
+              dimension: { $type: 'dimension', s: { $value: { value: 0.5, unit: 'rem' } } },
               number: { $type: 'number', 50: { $value: 50 } },
               strokeStyle: {
                 $type: 'strokeStyle',
@@ -726,17 +758,17 @@ font:
           },
         ],
         want: {
-          error: `Invalid alias: expected $type: dimension, received $type: number.
+          error: `[lint:core/valid-dimension] Invalid dimension: 50. Expected object with "value" and "unit".
 
-/tokens.json:20:11
-
-  18 |         "dashArray": [
-  19 |           "{dimension.s}",
-> 20 |           "{number.50}"
+  21 |         "dashArray": [
+  22 |           "{dimension.s}",
+> 23 |           "{number.50}"
      |           ^
-  21 |         ],
-  22 |         "lineCap": "round"
-  23 |       }`,
+  24 |         ],
+  25 |         "lineCap": "round"
+  26 |       }
+
+[lint:lint] 1 error, 1 warning`,
         },
       },
     ],

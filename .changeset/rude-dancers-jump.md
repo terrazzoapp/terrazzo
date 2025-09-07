@@ -4,6 +4,6 @@
 "@terrazzo/token-tools": patch
 ---
 
-Add first class support for JSON Schema pointers, both remote and local.
+Add first class support for JSON $refs, both remote and local.
 
-Under-the-hood this transforms DTCG aliase to JSON Schema pointers, so they’re interchangeable.
+Under-the-hood this transforms DTCG aliase to JSON $refs, so they’re interchangeable.

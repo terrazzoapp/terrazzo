@@ -23,7 +23,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_MISSING> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf || t.$type !== 'typography') {
+      if (t.aliasOf || !t.originalValue || t.$type !== 'typography') {
         continue;
       }
 

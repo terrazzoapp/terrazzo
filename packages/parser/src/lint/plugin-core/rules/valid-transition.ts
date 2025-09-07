@@ -21,7 +21,7 @@ const rule: LintRule<typeof ERROR> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf || t.$type !== 'typography') {
+      if (t.aliasOf || !t.originalValue || t.$type !== 'transition') {
         continue;
       }
 
@@ -29,17 +29,17 @@ const rule: LintRule<typeof ERROR> = {
         node: getObjMember(t.source.node, '$value') as ObjectNode,
         filename: t.source.filename,
       });
+    }
 
-      // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
-      // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
-      function validateTransition(value: unknown, { node, filename }: { node: ObjectNode; filename?: string }) {
-        if (
-          !value ||
-          typeof value !== 'object' ||
-          TRANSITION_REQUIRED_PROPERTIES.every((property) => property in value)
-        ) {
-          report({ messageId: ERROR, node, filename });
-        }
+    // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
+    // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
+    function validateTransition(value: unknown, { node, filename }: { node: ObjectNode; filename?: string }) {
+      if (
+        !value ||
+        typeof value !== 'object' ||
+        !TRANSITION_REQUIRED_PROPERTIES.every((property) => property in value)
+      ) {
+        report({ messageId: ERROR, node, filename });
       }
     }
   },

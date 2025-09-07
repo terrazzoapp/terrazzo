@@ -34,7 +34,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
   },
   create({ tokens, options, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 

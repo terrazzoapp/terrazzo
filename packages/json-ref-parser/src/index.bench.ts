@@ -5,11 +5,11 @@ import parsePointer from './index.js';
 const TEST_CASES = ['#/foo/bar', 'https://example.com/schema#/foo/bar', '#/foo~0/~1bar', ''];
 
 describe('benchmark', () => {
-  bench('@terrazzo/json-pointer-parser', () => {
+  bench('@terrazzo/json-ref-parser', () => {
     parsePointer(TEST_CASES[0]!);
   });
 
-  bench('@terrazzo/json-pointer-parser (full)', () => {
+  bench('@terrazzo/json-ref-parser (full)', () => {
     for (const t of TEST_CASES) {
       parsePointer(t);
     }

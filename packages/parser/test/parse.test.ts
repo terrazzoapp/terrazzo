@@ -21,7 +21,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow;
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "[parser:yaml] Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+        "[parser:yaml] Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
             import { parse } from '@terrazzo/parser';
             import yamlToMomoa from 'yaml-to-momoa';
@@ -55,7 +55,6 @@ describe('Additional cases', () => {
         ^
 
 
-        /tokens.yaml:0:0
 
           1 | tokens:
           2 |   - foo: true
@@ -129,9 +128,7 @@ describe('Additional cases', () => {
       expect(true).toBe(false);
     } catch (err) {
       expect(stripAnsi(String(err))).toMatchInlineSnapshot(`
-        "TokensJSONError: [parser:normalize] Unable to parse color "#646464)"
-
-        /tokens.json:45:29
+        "TokensJSONError: [lint:core/valid-color] Could not parse color "#646464)".
 
           43 |         "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
           44 |         "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
@@ -139,7 +136,9 @@ describe('Additional cases', () => {
              |                             ^
           46 |         "1200": { "$value": "#202020", "$extensions": { "mode": { "light": "#202020", "dark": "#fdfdfc" } } },
           47 |         "1300": { "$value": "#000000", "$extensions": { "mode": { "light": "#000000", "dark": "#ffffff" } } }
-          48 |       }"
+          48 |       }
+
+        [lint:lint] 1 error"
       `);
     }
   });
@@ -200,9 +199,9 @@ describe('Additional cases', () => {
                   $value: {
                     fontFamily: '{typography.family.sans}',
                     fontWeight: 400,
-                    fontSize: '0.75rem',
+                    fontSize: { value: 0.75, unit: 'rem' },
                     lineHeight: 1.25,
-                    letterSpacing: '0.0024999999rem',
+                    letterSpacing: { value: 0.0024999999, unit: 'rem' },
                   },
                 },
               },
@@ -343,6 +342,7 @@ describe('Additional cases', () => {
       expect(tokens['color.blue.7']?.group).toEqual({
         id: 'color.blue',
         $type: 'color',
+        $deprecated: undefined,
         $description: 'Blue palette',
         $extensions: { foo: 'bar' },
         tokens: ['color.blue.7', 'color.blue.8', 'color.blue.9', 'color.blue.10'],

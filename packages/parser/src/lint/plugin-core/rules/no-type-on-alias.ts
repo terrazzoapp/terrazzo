@@ -19,7 +19,7 @@ const rule: LintRule<typeof ERROR> = {
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
       if (t.aliasOf) {
-        if (t.originalValue.$type) {
+        if (t.originalValue?.$type) {
           report({ messageId: ERROR, node: t.source.node, filename: t.source.filename });
         }
       }

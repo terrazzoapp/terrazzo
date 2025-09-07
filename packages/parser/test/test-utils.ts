@@ -1,4 +1,3 @@
-import type { TokenNormalized } from '@terrazzo/token-tools';
 import stripAnsi from 'strip-ansi';
 import { expect } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
@@ -15,10 +14,7 @@ export type Test = [
     want:
       | {
           error?: never;
-          tokens: Record<
-            string,
-            Pick<TokenNormalized, '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf'>
-          >;
+          tokens: Record<string, any>;
         }
       | { error: string; tokens?: never };
   },
@@ -30,9 +26,9 @@ export async function parserTest({ given, want }: Test[1]) {
   try {
     result = await parse(given, { config, yamlToMomoa });
   } catch (e) {
-    // console.error(e)
+    // console.error(e);
     const err = e as TokensJSONError;
-    expect(stripAnsi(err.message).replace(/\[parser:(validate|alias|normalize)\]\s*/, '')).toBe(want.error);
+    expect(stripAnsi(err.message)).toBe(want.error);
 
     // ensure TokenValidationError contains necessary properties
     // expect(err.node?.type?.length).toBeGreaterThan(0);
@@ -60,6 +56,9 @@ export async function parserTest({ given, want }: Test[1]) {
       }
       if (token.partialAliasOf) {
         expectedTokens[id].partialAliasOf = token.partialAliasOf;
+      }
+      if (token.dependencies?.length) {
+        expectedTokens[id].dependencies = token.dependencies;
       }
     }
     expect(expectedTokens).toEqual(want.tokens);

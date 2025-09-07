@@ -30,7 +30,7 @@ const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 
