@@ -43,54 +43,12 @@ describe('9.4 Transition', () => {
                 duration: 'timing.quick',
                 timingFunction: 'ease.in-out',
               },
+              dependencies: ['#/timing/quick/$value', '#/ease/in-out/$value'],
             },
             'timing.quick': {
               $value: { value: 150, unit: 'ms' },
               aliasedBy: ['transition.ease-in-out'],
             },
-            'ease.in-out': { $value: [0.42, 0, 0.58, 1], aliasedBy: ['transition.ease-in-out'] },
-          },
-        },
-      },
-    ],
-    [
-      'valid: optional delay',
-      {
-        given: [
-          {
-            filename: DEFAULT_FILENAME,
-            src: {
-              transition: {
-                'ease-in-out': {
-                  $type: 'transition',
-                  $value: { duration: '{timing.quick}', timingFunction: '{ease.in-out}' },
-                },
-              },
-              timing: {
-                $type: 'duration',
-                quick: { $value: { value: 150, unit: 'ms' } },
-              },
-              ease: {
-                $type: 'cubicBezier',
-                'in-out': { $value: [0.42, 0, 0.58, 1] },
-              },
-            },
-          },
-        ],
-        want: {
-          tokens: {
-            'transition.ease-in-out': {
-              $value: {
-                duration: { value: 150, unit: 'ms' },
-                timingFunction: [0.42, 0, 0.58, 1],
-                delay: { value: 0, unit: 'ms' },
-              },
-              partialAliasOf: {
-                duration: 'timing.quick',
-                timingFunction: 'ease.in-out',
-              },
-            },
-            'timing.quick': { $value: { value: 150, unit: 'ms' }, aliasedBy: ['transition.ease-in-out'] },
             'ease.in-out': { $value: [0.42, 0, 0.58, 1], aliasedBy: ['transition.ease-in-out'] },
           },
         },
@@ -113,9 +71,7 @@ describe('9.4 Transition', () => {
           },
         ],
         want: {
-          error: `Missing required property "duration"
-
-/tokens.json:5:17
+          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
@@ -123,7 +79,43 @@ describe('9.4 Transition', () => {
     |                 ^
   6 |         "timingFunction": [
   7 |           0.42,
-  8 |           0,`,
+  8 |           0,
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: missing delay',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              transition: {
+                'ease-in-out': {
+                  $type: 'transition',
+                  $value: {
+                    duration: { value: 150, unit: 'ms' },
+                    timingFunction: [0.42, 0, 0.58, 1],
+                  },
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
+
+  3 |     "ease-in-out": {
+  4 |       "$type": "transition",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "duration": {
+  7 |           "value": 150,
+  8 |           "unit": "ms"
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -137,24 +129,27 @@ describe('9.4 Transition', () => {
               transition: {
                 'ease-in-out': {
                   $type: 'transition',
-                  $value: { duration: '150ms' },
+                  $value: {
+                    duration: { value: 150, unit: 'ms' },
+                    delay: { value: 0, unit: 'ms' },
+                  },
                 },
               },
             },
           },
         ],
         want: {
-          error: `Missing required property "timingFunction"
-
-/tokens.json:5:17
+          error: `[lint:core/valid-transition] Missing required properties: duration, delay, and timingFunction.
 
   3 |     "ease-in-out": {
   4 |       "$type": "transition",
 > 5 |       "$value": {
     |                 ^
-  6 |         "duration": "150ms"
-  7 |       }
-  8 |     }`,
+  6 |         "duration": {
+  7 |           "value": 150,
+  8 |           "unit": "ms"
+
+[lint:lint] 1 error`,
         },
       },
     ],

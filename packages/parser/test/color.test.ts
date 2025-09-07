@@ -1,20 +1,11 @@
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import yamlToMomoa from 'yaml-to-momoa';
+import defineConfig from '../src/config.js';
+import { parse } from '../src/index.js';
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('8.1 Color', () => {
   const tests: Test[] = [
-    [
-      'valid: color()',
-      {
-        given: [
-          {
-            filename: DEFAULT_FILENAME,
-            src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
-          },
-        ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
-      },
-    ],
     [
       'valid: object (srgb)',
       {
@@ -24,7 +15,11 @@ describe('8.1 Color', () => {
             src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1] } } } },
           },
         ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        want: {
+          tokens: {
+            'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } },
+          },
+        },
       },
     ],
     [
@@ -38,11 +33,39 @@ describe('8.1 Color', () => {
             },
           },
         ],
-        want: { tokens: { 'color.blue.10': { $value: { alpha: 1, components: [218, 50, 67], colorSpace: 'hsl' } } } },
+        want: {
+          tokens: {
+            'color.blue.10': { $value: { alpha: 1, components: [218, 50, 67], colorSpace: 'hsl' } },
+          },
+        },
       },
     ],
     [
-      'valid: object (legacy channels)',
+      'invalid: string',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-color] Migrate to the new object format, e.g. "#ff0000" → { "colorSpace": "srgb", "components": [1, 0, 0] } }
+
+  3 |     "cobalt": {
+  4 |       "$type": "color",
+> 5 |       "$value": "color(srgb 0.3 0.6 1)"
+    |                 ^
+  6 |     }
+  7 |   }
+  8 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: object (legacy channels)',
       {
         given: [
           {
@@ -50,7 +73,19 @@ describe('8.1 Color', () => {
             src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
           },
         ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        want: {
+          error: `[lint:core/valid-color] Expected components to be array of numbers, received undefined.
+
+  3 |     "cobalt": {
+  4 |       "$type": "color",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "colorSpace": "srgb",
+  7 |         "channels": [
+  8 |           0.3,
+
+[lint:lint] 1 error`,
+        },
       },
     ],
     [
@@ -267,4 +302,30 @@ describe('8.1 Color', () => {
   ];
 
   it.each(tests)('%s', (_, testCase) => parserTest(testCase));
+
+  it('legacyFormat', async () => {
+    const cwd = new URL('file:///');
+    const config = defineConfig(
+      {
+        lint: {
+          rules: {
+            'core/valid-color': ['error', { legacyFormat: true }],
+          },
+        },
+      },
+      { cwd },
+    );
+    let result: Awaited<ReturnType<typeof parse>> | undefined;
+    const given = [
+      {
+        filename: DEFAULT_FILENAME,
+        src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
+      },
+    ];
+
+    result = await parse(given, { config, yamlToMomoa });
+    expect(result.tokens['color.cobalt']).toEqual(
+      expect.objectContaining({ $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 1 } }),
+    );
+  });
 });

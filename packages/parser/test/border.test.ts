@@ -12,7 +12,11 @@ describe('9.3 Border', () => {
             src: {
               border: {
                 $type: 'border',
-                $value: { color: '#00000020', style: 'solid', width: { value: 1, unit: 'px' } },
+                $value: {
+                  color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15 },
+                  style: 'solid',
+                  width: { value: 1, unit: 'px' },
+                },
               },
             },
           },
@@ -21,7 +25,7 @@ describe('9.3 Border', () => {
           tokens: {
             border: {
               $value: {
-                color: { alpha: 0.12549019607843137, components: [0, 0, 0], colorSpace: 'srgb', hex: '#000000' },
+                color: { alpha: 0.15, components: [0, 0, 0], colorSpace: 'srgb' },
                 style: 'solid',
                 width: { value: 1, unit: 'px' },
               },
@@ -40,9 +44,7 @@ describe('9.3 Border', () => {
           },
         ],
         want: {
-          error: `Missing required property "color"
-
-/tokens.json:4:15
+          error: `[lint:core/valid-border] Border token missing required properties: color, width, and style.
 
   2 |   "border": {
   3 |     "$type": "border",
@@ -50,7 +52,9 @@ describe('9.3 Border', () => {
     |               ^
   5 |       "style": "solid",
   6 |       "width": {
-  7 |         "value": 1,`,
+  7 |         "value": 1,
+
+[lint:lint] 1 error`,
         },
       },
     ],

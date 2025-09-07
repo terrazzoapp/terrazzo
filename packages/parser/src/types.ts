@@ -359,3 +359,7 @@ export interface TransformHookOptions {
   /** Momoa documents */
   sources: InputSource[];
 }
+
+export interface ReferenceObject {
+  $ref: string;
+}

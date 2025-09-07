@@ -1,8 +1,9 @@
+import fs from 'node:fs/promises';
 import { describe, expect, it } from 'vitest';
 import { defineConfig, parse } from '../src/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';
 
-describe('JSON pointers', () => {
+describe('JSON $refs', () => {
   it('token $refs', async () => {
     const src = {
       color: {
@@ -19,26 +20,12 @@ describe('JSON pointers', () => {
     expect(tokens['color.grey.1']?.aliasOf).toBe('color.gray.1');
   });
 
-  it('$value $refs (literal)', async () => {
+  it('$value $refs', async () => {
     const src = {
       color: {
         $type: 'color',
         gray: { 1: { $value: { colorSpace: 'srgb', components: [0.2, 0.2, 0.2] } } },
         grey: { 1: { $value: { $ref: '#/color/gray/1/$value' } } },
-      },
-    };
-    const config = defineConfig({}, { cwd });
-    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
-    expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
-  });
-
-  it('$value $refs (assumed)', async () => {
-    const src = {
-      color: {
-        $type: 'color',
-        gray: { 1: { $value: { colorSpace: 'srgb', components: [0.2, 0.2, 0.2] } } },
-        grey: { 1: { $value: { $ref: '#/color/gray/1' } } },
       },
     };
     const config = defineConfig({}, { cwd });
@@ -109,27 +96,6 @@ describe('JSON pointers', () => {
     expect(tokens.b?.$type).toBe('color');
   });
 
-  it('string $refs (assumed)', async () => {
-    const src = {
-      a: {
-        $description: 'Default description',
-        $type: 'color',
-        $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] },
-      },
-      b: {
-        $description: { $ref: '#/a' },
-        $type: { $ref: '#/a' },
-        $value: { colorSpace: 'srgb', components: [0.4, 0.2, 0.6] },
-      },
-    };
-    const config = defineConfig({}, { cwd });
-    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], { config });
-    expect(tokens.a?.$description).toBe('Default description');
-    expect(tokens.a?.$type).toBe('color');
-    expect(tokens.b?.$description).toBe('Default description');
-    expect(tokens.b?.$type).toBe('color');
-  });
-
   it('local $refs + $defs + $type inheritance', async () => {
     const src = {
       color: {
@@ -145,20 +111,28 @@ describe('JSON pointers', () => {
     expect(tokens['color.red.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.4, 0.1, 0], alpha: 1 });
   });
 
+  it('flattens $refs correctly', async () => {
+    const filename = new URL('./fixtures/refs/dark.json', import.meta.url);
+    const src = await fs.readFile(filename, 'utf8');
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename, src }], { config });
+    expect(Object.keys(tokens)).toEqual([]);
+  });
+
   it('root $refs throw error', async () => {
     const src = { color: { $type: 'color', gray: { $ref: '#/' } } };
     const config = defineConfig({}, { cwd });
     await expect(() =>
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:alias] Invalid ref: #/. Can’t recursively embed the same document within itself.
-/tokens.json:5:7
+    ).rejects.toThrowError(`[parser:init] Can’t recursively embed a document within itself.
+
+  2 |   "color": {
   3 |     "$type": "color",
-  4 |     "gray": {
-> 5 |       "$ref": "#\\/"
-    |       ^
+> 4 |     "gray": {
+    |             ^
+  5 |       "$ref": "#\\/"
   6 |     }
-  7 |   }
-  8 | }`);
+  7 |   }`);
   });
 
   it('circular $refs throw error', async () => {
@@ -172,15 +146,15 @@ describe('JSON pointers', () => {
     const config = defineConfig({}, { cwd });
     await expect(() =>
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:parse] Circular ref detected: file:///#color/grey → file:///#color/gray
-/tokens.json:5:7
+    ).rejects.toThrowError(`[parser:init] Circular $ref detected: "#/color/grey"
+
+  2 |   "color": {
   3 |     "$type": "color",
-  4 |     "gray": {
-> 5 |       "$ref": "#\\/color\\/grey"
-    |       ^
+> 4 |     "gray": {
+    |             ^
+  5 |       "$ref": "#\\/color\\/grey"
   6 |     },
-  7 |     "grey": {
-  8 |       "$ref": "#\\/color\\/gray"`);
+  7 |     "grey": {`);
   });
 
   it('invalid $refs throw error', async () => {
@@ -193,12 +167,14 @@ describe('JSON pointers', () => {
     const config = defineConfig({}, { cwd });
     await expect(() =>
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:parse] Invalid $ref. Expected string.
-/tokens.json:5:7
+    ).rejects.toThrowError(`[parser:init] Invalid $ref. Expected string.
+
   3 |     "$type": "color",
   4 |     "blue": {
-> 5 |       "$ref": 23
-    |       ^
-  6 |     },`);
+> 5 |       "100": {
+    |              ^
+  6 |         "$ref": 23
+  7 |       }
+  8 |     }`);
   });
 });

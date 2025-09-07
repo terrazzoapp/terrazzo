@@ -20,7 +20,7 @@ const rule: LintRule<typeof ERROR_NAN> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 

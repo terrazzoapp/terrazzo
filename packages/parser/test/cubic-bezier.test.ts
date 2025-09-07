@@ -11,7 +11,7 @@ describe('8.6 Cubic Bézier', () => {
       },
     ],
     [
-      'invalid: aliases',
+      'valid: aliases',
       {
         given: [
           {
@@ -29,15 +29,17 @@ describe('8.6 Cubic Bézier', () => {
           },
         ],
         want: {
-          error: `Expected an array of 4 numbers, received some non-numbers
-
-  2 |   "cubic": {
-  3 |     "$type": "cubicBezier",
-> 4 |     "$value": [
-    |               ^
-  5 |       "{number.a}",
-  6 |       "{number.b}",
-  7 |       "{number.c}",`,
+          tokens: {
+            cubic: {
+              $value: [0.33, 1, 0.68, 1],
+              partialAliasOf: ['number.a', 'number.b', 'number.c', 'number.d'],
+              dependencies: ['#/number/a/$value', '#/number/b/$value', '#/number/c/$value', '#/number/d/$value'],
+            },
+            'number.a': { $value: 0.33, aliasedBy: ['cubic'] },
+            'number.b': { $value: 1, aliasedBy: ['cubic'] },
+            'number.c': { $value: 0.68, aliasedBy: ['cubic'] },
+            'number.d': { $value: 1, aliasedBy: ['cubic'] },
+          },
         },
       },
     ],
@@ -48,7 +50,7 @@ describe('8.6 Cubic Bézier', () => {
           { filename: DEFAULT_FILENAME, src: { cubic: { $type: 'cubicBezier', $value: [0.33, 1, 0.68, 1, 5] } } },
         ],
         want: {
-          error: `Expected an array of 4 numbers, received 5
+          error: `[lint:core/valid-cubic-bezier] Expected [number, number, number, number].
 
   2 |   "cubic": {
   3 |     "$type": "cubicBezier",
@@ -56,7 +58,9 @@ describe('8.6 Cubic Bézier', () => {
     |               ^
   5 |       0.33,
   6 |       1,
-  7 |       0.68,`,
+  7 |       0.68,
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -70,15 +74,47 @@ describe('8.6 Cubic Bézier', () => {
           },
         ],
         want: {
-          error: `Expected an array of 4 numbers, received some non-numbers
+          error: `[lint:core/valid-cubic-bezier] x values must be between 0-1.
 
-  2 |   "cubic": {
   3 |     "$type": "cubicBezier",
-> 4 |     "$value": [
-    |               ^
-  5 |       "33%",
+  4 |     "$value": [
+> 5 |       "33%",
+    |       ^
   6 |       "100%",
-  7 |       "68%",`,
+  7 |       "68%",
+  8 |       "100%"
+
+[lint:core/valid-cubic-bezier] x values must be between 0-1.
+
+   5 |       "33%",
+   6 |       "100%",
+>  7 |       "68%",
+     |       ^
+   8 |       "100%"
+   9 |     ]
+  10 |   }
+
+[lint:core/valid-cubic-bezier] y values must be a valid number.
+
+  4 |     "$value": [
+  5 |       "33%",
+> 6 |       "100%",
+    |       ^
+  7 |       "68%",
+  8 |       "100%"
+  9 |     ]
+
+[lint:core/valid-cubic-bezier] y values must be a valid number.
+
+   6 |       "100%",
+   7 |       "68%",
+>  8 |       "100%"
+     |       ^
+   9 |     ]
+  10 |   }
+  11 | }
+
+[lint:lint] 4 errors`,
         },
       },
     ],

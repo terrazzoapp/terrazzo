@@ -1,0 +1,22 @@
+{
+  "base": {
+    "color": {
+      "$ref": "./base/colors-light.json#/base/color",
+      "black": { "$value": "#010409", "$type": "color" },
+      "blue": {
+        "0": {
+          "$value": "#cae8ff",
+          "$type": "color"
+        },
+        "1": {
+          "$value": "#a5d6ff",
+          "$type": "color"
+        },
+        "$ref": "./base/colors-light.json#/base/color/blue"
+      }
+    },
+    "size": {
+      "$ref": "./base/size.json#/base/size"
+    }
+  }
+}

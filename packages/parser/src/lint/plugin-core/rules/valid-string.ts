@@ -20,7 +20,7 @@ const rule: LintRule<typeof ERROR> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf || t.$type !== 'string') {
+      if (t.aliasOf || !t.originalValue || t.$type !== 'string') {
         continue;
       }
 

@@ -1,4 +1,5 @@
 import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import { isAlias } from '@terrazzo/token-tools';
 import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
@@ -6,6 +7,7 @@ import { docsLink } from '../lib/docs.js';
 export const VALID_DIMENSION = 'core/valid-dimension';
 
 const ERROR_FORMAT = 'ERROR_FORMAT';
+const ERROR_LEGACY = 'ERROR_LEGACY';
 const ERROR_UNIT = 'ERROR_UNIT';
 const ERROR_VALUE = 'ERROR_VALUE';
 
@@ -22,10 +24,14 @@ export interface RuleValidDimension {
   unknownUnits?: boolean;
 }
 
-const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALUE, RuleValidDimension> = {
+const rule: LintRule<
+  typeof ERROR_FORMAT | typeof ERROR_LEGACY | typeof ERROR_UNIT | typeof ERROR_VALUE,
+  RuleValidDimension
+> = {
   meta: {
     messages: {
-      [ERROR_FORMAT]: 'Migrate to the new object format: { "value": 10, "unit": "px" }.',
+      [ERROR_FORMAT]: 'Invalid dimension: {{ value }}. Expected object with "value" and "unit".',
+      [ERROR_LEGACY]: 'Migrate to the new object format: { "value": 10, "unit": "px" }.',
       [ERROR_UNIT]: 'Unknown unit {{ unit }}. Expected "px" or "rem".',
       [ERROR_VALUE]: 'Expected number, received {{ value }}.',
     },
@@ -40,7 +46,7 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
   },
   create({ tokens, options, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 
@@ -68,7 +74,7 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
         case 'border': {
           const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode;
           if (typeof t.originalValue.$value === 'object') {
-            if (t.originalValue.$value.width) {
+            if (t.originalValue.$value.width && !isAlias(t.originalValue.$value.width as string)) {
               validateDimension(t.originalValue.$value.width, {
                 node: getObjMember($valueNode, 'width'),
                 filename: t.source.filename,
@@ -81,6 +87,9 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
               const style = getObjMember($valueNode, 'style') as ObjectNode;
               const dashArray = getObjMember(style, 'dashArray') as ArrayNode;
               for (let i = 0; i < t.originalValue.$value.style.dashArray.length; i++) {
+                if (isAlias(t.originalValue.$value.style.dashArray[i] as string)) {
+                  continue;
+                }
                 validateDimension(t.originalValue.$value.style.dashArray[i], {
                   node: dashArray.elements[i]!.value,
                   filename: t.source.filename,
@@ -99,12 +108,13 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
             for (let i = 0; i < valueArray.length; i++) {
               const node = $valueNode.type === 'Array' ? ($valueNode.elements[i]!.value as ObjectNode) : $valueNode;
               for (const property of ['offsetX', 'offsetY', 'blur', 'spread'] as const) {
-                if (property in t.originalValue.$value) {
-                  validateDimension(valueArray[i]![property], {
-                    node: getObjMember(node, property),
-                    filename: t.source.filename,
-                  });
+                if (isAlias(valueArray[i]![property] as string)) {
+                  continue;
                 }
+                validateDimension(valueArray[i]![property], {
+                  node: getObjMember(node, property),
+                  filename: t.source.filename,
+                });
               }
             }
           }
@@ -133,6 +143,10 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
       function validateDimension(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
         if (value && typeof value === 'object') {
           const { unit, value: numValue } = value as Record<string, any>;
+          if (!('value' in value || 'unit' in value)) {
+            report({ messageId: ERROR_FORMAT, data: { value }, node, filename });
+            return;
+          }
           if (!options.unknownUnits && !['rem', 'px'].includes(unit)) {
             report({
               messageId: ERROR_UNIT,
@@ -149,8 +163,10 @@ const rule: LintRule<typeof ERROR_FORMAT | typeof ERROR_UNIT | typeof ERROR_VALU
               filename,
             });
           }
-        } else if (!options.legacyFormat) {
-          report({ messageId: ERROR_FORMAT, node, filename });
+        } else if (typeof value === 'string' && !options.legacyFormat) {
+          report({ messageId: ERROR_LEGACY, node, filename });
+        } else {
+          report({ messageId: ERROR_FORMAT, data: { value }, node, filename });
         }
       }
     }

@@ -10,6 +10,7 @@ Though this is a breaking change in default behavior, you can opt back into the 
 
 List of changes:
 
+- **color**: `channels` is invalid; `components` is required (“channels” was never part of the spec; this just deprecates an in-progress draft that was briefly supported)
 - **dimension**: object notation (`{ value: 16, unit: 'px' }`) required
 - **dimension**: `em` units no longer allowed
 - **dimension**: `{ $value: 0 }` no longer allowed

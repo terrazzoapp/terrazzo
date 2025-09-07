@@ -13,10 +13,11 @@ describe('9.5 Shadow', () => {
               shadowBase: {
                 $type: 'shadow',
                 $value: {
-                  color: '#000000',
+                  color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15, hex: '#000000' },
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
                 },
               },
             },
@@ -27,11 +28,11 @@ describe('9.5 Shadow', () => {
             shadowBase: {
               $value: [
                 {
-                  color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1, hex: '#000000' },
+                  color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15, hex: '#000000' },
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
+                  spread: { value: 0, unit: 'rem' },
                   inset: false,
                 },
               ],
@@ -55,14 +56,14 @@ describe('9.5 Shadow', () => {
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.25, unit: 'rem' },
                     blur: { value: 0.5, unit: 'rem' },
-                    spread: 0,
+                    spread: { value: 0, unit: 'rem' },
                   },
                   {
                     color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
                     offsetX: { value: 0, unit: 'rem' },
                     offsetY: { value: 0.5, unit: 'rem' },
                     blur: { value: 1, unit: 'rem' },
-                    spread: 0,
+                    spread: { value: 0, unit: 'rem' },
                   },
                 ],
               },
@@ -78,7 +79,7 @@ describe('9.5 Shadow', () => {
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
+                  spread: { value: 0, unit: 'rem' },
                   inset: false,
                 },
                 {
@@ -86,12 +87,49 @@ describe('9.5 Shadow', () => {
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.5, unit: 'rem' },
                   blur: { value: 1, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
+                  spread: { value: 0, unit: 'rem' },
                   inset: false,
                 },
               ],
             },
           },
+        },
+      },
+    ],
+    [
+      'invalid: bad dimension',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              shadowBase: {
+                $type: 'shadow',
+                $value: [
+                  {
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
+                    offsetX: 0,
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    spread: { value: 0, unit: 'rem' },
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-dimension] Invalid dimension: 0. Expected object with "value" and "unit".
+
+  13 |           "alpha": 0.1
+  14 |         },
+> 15 |         "offsetX": 0,
+     |                    ^
+  16 |         "offsetY": {
+  17 |           "value": 0.25,
+  18 |           "unit": "rem"
+
+[lint:lint] 1 error, 1 warning`,
         },
       },
     ],
@@ -104,21 +142,28 @@ describe('9.5 Shadow', () => {
             src: {
               shadowBase: {
                 $type: 'shadow',
-                $value: { offsetX: 0, offsetY: '0.25rem', blur: '0.5rem' },
+                $value: {
+                  offsetX: { value: 0, unit: 'rem' },
+                  offsetY: { value: 0.25, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
+                },
               },
             },
           },
         ],
         want: {
-          error: `Missing required property "color"
+          error: `[lint:core/valid-shadow] Missing required properties: color, offsetX, offsetY, blur, and spread.
 
   2 |   "shadowBase": {
   3 |     "$type": "shadow",
 > 4 |     "$value": {
     |               ^
-  5 |       "offsetX": 0,
-  6 |       "offsetY": "0.25rem",
-  7 |       "blur": "0.5rem"`,
+  5 |       "offsetX": {
+  6 |         "value": 0,
+  7 |         "unit": "rem"
+
+[lint:lint] 1 error, 1 warning`,
         },
       },
     ],
@@ -136,6 +181,7 @@ describe('9.5 Shadow', () => {
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
                   inset: true,
                 },
               },
@@ -151,7 +197,7 @@ describe('9.5 Shadow', () => {
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
-                  spread: { value: 0, unit: 'px' },
+                  spread: { value: 0, unit: 'rem' },
                   inset: true,
                 },
               ],

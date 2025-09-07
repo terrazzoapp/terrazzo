@@ -6,6 +6,7 @@ import {
   type ColorValueNormalized,
   type GradientStopNormalized,
   type GradientValueNormalized,
+  isAlias,
   parseColor,
   type ShadowValueNormalized,
 } from '@terrazzo/token-tools';
@@ -71,7 +72,7 @@ const rule: LintRule<
   },
   create({ tokens, options, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 
@@ -84,17 +85,19 @@ const rule: LintRule<
           break;
         }
         case 'border': {
-          validateColor((t.originalValue.$value as BorderValue).color, {
-            node: getObjMember(getObjMember(t.source.node, '$value') as ObjectNode, 'color'),
-            filename: t.source.filename,
-          });
+          if ((t.originalValue.$value as any).color && !isAlias((t.originalValue.$value as any).color)) {
+            validateColor((t.originalValue.$value as BorderValue).color, {
+              node: getObjMember(getObjMember(t.source.node, '$value') as ObjectNode, 'color'),
+              filename: t.source.filename,
+            });
+          }
           break;
         }
         case 'gradient': {
           const $valueNode = getObjMember(t.source.node, '$value') as ArrayNode;
           for (let i = 0; i < (t.originalValue.$value as GradientValueNormalized).length; i++) {
             const stop = t.originalValue.$value[i] as GradientStopNormalized;
-            if (!stop.color) {
+            if (!stop.color || isAlias(stop.color as any)) {
               continue;
             }
             validateColor(stop.color, {
@@ -111,7 +114,7 @@ const rule: LintRule<
           const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode | ArrayNode;
           for (let i = 0; i < $value.length; i++) {
             const layer = $value[i]!;
-            if (!layer.color) {
+            if (!layer.color || isAlias(layer.color as any)) {
               continue;
             }
             validateColor(layer.color, {
@@ -127,7 +130,9 @@ const rule: LintRule<
       }
 
       function validateColor(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
-        if (value && typeof value === 'object') {
+        if (!value) {
+          report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
+        } else if (typeof value === 'object') {
           // Color space
           const colorSpace =
             'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
@@ -182,7 +187,7 @@ const rule: LintRule<
 
           // Alpha
           const alpha = 'alpha' in value ? value.alpha : undefined;
-          if (typeof alpha !== 'number' || alpha < 0 || alpha > 1) {
+          if (alpha !== undefined && (typeof alpha !== 'number' || alpha < 0 || alpha > 1)) {
             report({
               messageId: ERROR_ALPHA,
               data: { alpha },
@@ -216,16 +221,19 @@ const rule: LintRule<
               });
             }
           }
-        } else if (!options.legacyFormat) {
-          // Legacy format
-          try {
-            parseColor(value as string);
-          } catch {
-            report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
+        } else if (typeof value === 'string') {
+          if (!options.legacyFormat) {
+            report({ messageId: ERROR_OBJ_FORMAT, data: { color: JSON.stringify(value) }, node, filename });
+          } else {
+            // Legacy format
+            try {
+              parseColor(value as string);
+            } catch {
+              report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
+            }
           }
-          return;
         } else {
-          report({ messageId: ERROR_OBJ_FORMAT, node, filename });
+          report({ messageId: ERROR_INVALID_COLOR, node, filename });
         }
       }
     }

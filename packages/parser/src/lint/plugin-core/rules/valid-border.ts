@@ -21,7 +21,7 @@ const rule: LintRule<typeof ERROR, {}> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf || t.$type !== 'border') {
+      if (t.aliasOf || !t.originalValue || t.$type !== 'border') {
         continue;
       }
 
@@ -29,13 +29,13 @@ const rule: LintRule<typeof ERROR, {}> = {
         node: getObjMember(t.source.node, '$value'),
         filename: t.source.filename,
       });
+    }
 
-      // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
-      // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
-      function validateBorder(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
-        if (!value || typeof value !== 'object' || BORDER_REQUIRED_PROPERTIES.every((property) => property in value)) {
-          report({ messageId: ERROR, filename, node });
-        }
+    // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
+    // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
+    function validateBorder(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
+      if (!value || typeof value !== 'object' || !BORDER_REQUIRED_PROPERTIES.every((property) => property in value)) {
+        report({ messageId: ERROR, filename, node });
       }
     }
   },

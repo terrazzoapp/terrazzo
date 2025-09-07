@@ -1,8 +1,8 @@
 import type { ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import { isAlias } from '@terrazzo/token-tools';
 import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
-import { isAlias } from '@terrazzo/token-tools';
 
 export const VALID_CUBIC_BEZIER = 'core/valid-cubic-bezier';
 
@@ -25,7 +25,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
+      if (t.aliasOf || !t.originalValue) {
         continue;
       }
 
@@ -38,9 +38,13 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
           break;
         }
         case 'transition': {
-          if (typeof t.originalValue.$value === 'object' && t.originalValue.$value.timingFunction) {
+          if (
+            typeof t.originalValue.$value === 'object' &&
+            t.originalValue.$value.timingFunction &&
+            !isAlias(t.originalValue.$value.timingFunction as string)
+          ) {
             const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode;
-            validateCubicBezier(t.originalValue.$value, {
+            validateCubicBezier(t.originalValue.$value.timingFunction, {
               node: getObjMember($valueNode, 'timingFunction') as ArrayNode,
               filename: t.source.filename,
             });
@@ -51,7 +55,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
       function validateCubicBezier(value: unknown, { node, filename }: { node: ArrayNode; filename?: string }) {
         if (Array.isArray(value) && value.length === 4) {
           // validate x values
-          for (const pos of [1, 3]) {
+          for (const pos of [0, 2]) {
             if (typeof value[pos] === 'string' && isAlias(value[pos])) {
               continue;
             }
@@ -60,7 +64,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
             }
           }
           // validate y values
-          for (const pos of [2, 4]) {
+          for (const pos of [1, 3]) {
             if (typeof value[pos] === 'string' && isAlias(value[pos])) {
               continue;
             }
