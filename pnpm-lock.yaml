@@ -188,7 +188,7 @@ importers:
         specifier: ^3.5.8
         version: 3.5.8(rollup@4.50.1)
 
-  packages/json-pointer-parser:
+  packages/json-ref-parser:
     devDependencies:
       '@apidevtools/json-schema-ref-parser':
         specifier: ^11.9.3
@@ -199,9 +199,9 @@ importers:
       '@humanwhocodes/momoa':
         specifier: 'catalog:'
         version: 3.3.9
-      '@terrazzo/json-pointer-parser':
+      '@terrazzo/json-ref-parser':
         specifier: workspace:^
-        version: link:../json-pointer-parser
+        version: link:../json-ref-parser
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools

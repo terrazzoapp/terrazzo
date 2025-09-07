@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { defineConfig, parse } from '../src/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';
 
-describe('JSON pointers', () => {
+describe('JSON $refs', () => {
   it('token $refs', async () => {
     const src = {
       color: {

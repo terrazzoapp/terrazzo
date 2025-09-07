@@ -15,14 +15,16 @@ describe('8.7 Number', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { number: { $type: 'number', $value: '100' } } }],
         want: {
-          error: `Expected number, received String
+          error: `[lint:core/valid-number] Must be a number.
 
   2 |   "number": {
   3 |     "$type": "number",
 > 4 |     "$value": "100"
     |               ^
   5 |   }
-  6 | }`,
+  6 | }
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -36,15 +38,47 @@ describe('8.7 Number', () => {
           },
         ],
         want: {
-          error: `Expected an array of 4 numbers, received some non-numbers
+          error: `[lint:core/valid-cubic-bezier] x values must be between 0-1.
 
-  2 |   "cubic": {
   3 |     "$type": "cubicBezier",
-> 4 |     "$value": [
-    |               ^
-  5 |       "33%",
+  4 |     "$value": [
+> 5 |       "33%",
+    |       ^
   6 |       "100%",
-  7 |       "68%",`,
+  7 |       "68%",
+  8 |       "100%"
+
+[lint:core/valid-cubic-bezier] x values must be between 0-1.
+
+   5 |       "33%",
+   6 |       "100%",
+>  7 |       "68%",
+     |       ^
+   8 |       "100%"
+   9 |     ]
+  10 |   }
+
+[lint:core/valid-cubic-bezier] y values must be a valid number.
+
+  4 |     "$value": [
+  5 |       "33%",
+> 6 |       "100%",
+    |       ^
+  7 |       "68%",
+  8 |       "100%"
+  9 |     ]
+
+[lint:core/valid-cubic-bezier] y values must be a valid number.
+
+   6 |       "100%",
+   7 |       "68%",
+>  8 |       "100%"
+     |       ^
+   9 |     ]
+  10 |   }
+  11 | }
+
+[lint:lint] 4 errors`,
         },
       },
     ],

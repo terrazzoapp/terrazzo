@@ -12,7 +12,11 @@ describe('8.1 Color', () => {
             src: { color: { cobalt: { $type: 'color', $value: 'color(srgb 0.3 0.6 1)' } } },
           },
         ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        want: {
+          tokens: {
+            'color.cobalt': { $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 1 } },
+          },
+        },
       },
     ],
     [
@@ -24,7 +28,11 @@ describe('8.1 Color', () => {
             src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1] } } } },
           },
         ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        want: {
+          tokens: {
+            'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } },
+          },
+        },
       },
     ],
     [
@@ -38,11 +46,15 @@ describe('8.1 Color', () => {
             },
           },
         ],
-        want: { tokens: { 'color.blue.10': { $value: { alpha: 1, components: [218, 50, 67], colorSpace: 'hsl' } } } },
+        want: {
+          tokens: {
+            'color.blue.10': { $value: { alpha: 1, components: [218, 50, 67], colorSpace: 'hsl' } },
+          },
+        },
       },
     ],
     [
-      'valid: object (legacy channels)',
+      'invalid: object (legacy channels)',
       {
         given: [
           {
@@ -50,7 +62,19 @@ describe('8.1 Color', () => {
             src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', channels: [0.3, 0.6, 1] } } } },
           },
         ],
-        want: { tokens: { 'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } } } },
+        want: {
+          error: `[lint:core/valid-color] Expected components to be array of numbers, received undefined.
+
+  3 |     "cobalt": {
+  4 |       "$type": "color",
+> 5 |       "$value": {
+    |                 ^
+  6 |         "colorSpace": "srgb",
+  7 |         "channels": [
+  8 |           0.3,
+
+[lint:lint] 1 error`,
+        },
       },
     ],
     [

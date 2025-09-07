@@ -30,7 +30,7 @@ const rule: LintRule<typeof ERROR, {}> = {
       });
 
       function validateLink(value: unknown, { node, filename }: { node: StringNode; filename?: string }) {
-        if (typeof value !== 'string') {
+        if (!value || typeof value !== 'string') {
           report({ messageId: ERROR, node, filename });
         }
       }

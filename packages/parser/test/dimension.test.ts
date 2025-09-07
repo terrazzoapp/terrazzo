@@ -117,11 +117,29 @@ describe('8.2 Dimension', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: 42 } } }],
         want: {
-          error: `[lint:core/valid-dimension] Migrate to the new object format: { "value": 10, "unit": "px" }.
+          error: `[lint:core/valid-dimension] Invalid dimension: 42. Expected object with "value" and "unit".
 
   2 |   "xs": {
   3 |     "$type": "dimension",
 > 4 |     "$value": 42
+    |               ^
+  5 |   }
+  6 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: number (zero)',
+      {
+        given: [{ filename: DEFAULT_FILENAME, src: { xs: { $type: 'dimension', $value: 0 } } }],
+        want: {
+          error: `[lint:core/valid-dimension] Invalid dimension: 0. Expected object with "value" and "unit".
+
+  2 |   "xs": {
+  3 |     "$type": "dimension",
+> 4 |     "$value": 0
     |               ^
   5 |   }
   6 | }

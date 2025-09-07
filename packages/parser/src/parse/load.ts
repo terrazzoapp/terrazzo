@@ -1,9 +1,24 @@
-import { type AnyNode, evaluate, type ObjectNode, print, type StringNode } from '@humanwhocodes/momoa';
-import parseRef from '@terrazzo/json-pointer-parser';
-import { isAlias, parseAlias, type TokenNormalized } from '@terrazzo/token-tools';
+import {
+  type AnyNode,
+  type DocumentNode,
+  evaluate,
+  type ObjectNode,
+  print,
+  type StringNode,
+  type ValueNode,
+} from '@humanwhocodes/momoa';
+import parseRef from '@terrazzo/json-ref-parser';
+import {
+  type GroupNormalized,
+  isAlias,
+  parseAlias,
+  type TokenNormalized,
+  type TokenNormalizedSet,
+} from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
 import type { InputSource, ParseOptions } from '../types.js';
-import { findNode, getObjMembers, mergeObjects, toMomoa, traverse } from './json.js';
+import { aliasToMomoa, flatten$refs, getObjMember, refToTokenID, toMomoa, traverse } from './json.js';
+import { normalize } from './normalize.js';
 
 /** Ephemeral format that only exists while parsing the document. This is not confirmed to be DTCG yet. */
 export interface IntermediaryToken {
@@ -39,17 +54,17 @@ export interface LoadOptions extends Pick<ParseOptions, 'continueOnError' | 'yam
 }
 
 /** Load from multiple entries, while resolving remote files */
-export async function loadAll(
+export async function loadSources(
   inputs: Omit<InputSource, 'document'>[],
   { logger, continueOnError, yamlToMomoa, transform }: LoadOptions,
-): Promise<{ tokens: Record<string, IntermediaryToken>; sources: InputSource[] }> {
+): Promise<{ tokens: TokenNormalizedSet; sources: InputSource[] }> {
+  const entry = { group: 'parser' as const, label: 'init' };
   const sources = inputs.map((i) => ({
     ...i,
     filename: i.filename ?? new URL(`virtual:${i}`), // for objects created in memory, an index-based ID helps associate tokens with these
   })) as InputSource[];
-  let tokens: Record<string, IntermediaryToken> = {};
 
-  const parseWithTransform = (input: (typeof inputs)[number]) => {
+  function parseWithTransform(input: (typeof inputs)[number]) {
     let { document } = toMomoa(input.src, { logger, continueOnError, filename: input.filename, yamlToMomoa });
 
     // If there’s a root transformer, reparse
@@ -67,276 +82,340 @@ export async function loadAll(
     }
 
     return document;
-  };
+  }
 
+  // First pass: parse all root-level documents
+  const firstLoad = performance.now();
+  logger.debug({ ...entry, message: `Parsing tokens` });
   await Promise.all(
     inputs.map(async (input, i) => {
       if (!input || typeof input !== 'object') {
-        logger.error({ group: 'parser', label: 'init', message: `Input (${i}) must be an object.` });
+        logger.error({ ...entry, message: `Input (${i}) must be an object.` });
       }
       if (!input.src || (typeof input.src !== 'string' && typeof input.src !== 'object')) {
-        logger.error({
-          message: `Input (${i}) missing "src" with a JSON/YAML string, or JSON object.`,
-          group: 'parser',
-          label: 'init',
-        });
+        logger.error({ ...entry, message: `Input (${i}) missing "src" with a JSON/YAML string, or JSON object.` });
       }
       if (input.filename) {
         if (!(input.filename instanceof URL)) {
-          logger.error({
-            message: `Input (${i}) "filename" must be a URL (remote or file URL).`,
-            group: 'parser',
-            label: 'init',
-          });
+          logger.error({ ...entry, message: `Input (${i}) "filename" must be a URL (remote or file URL).` });
         }
       }
 
+      // Note: we’re still parsing with Momoa because folks may use JSONC or YAML
       sources[i]!.document = parseWithTransform(input);
       // For objects created in memory, use the source code formatted by Momoa
       if (typeof sources[i]!.src !== 'string') {
         sources[i]!.src = print(sources[i]!.document, { indent: 2 });
       }
-
-      /** Resolver for $refs */
-      const resolve = async (ref: string, _path: string[] = []): Promise<AnyNode> => {
-        // 1. parse and normalize $ref
-        let absoluteURL = new URL('file:///');
-        let subpath: string[] = [];
-        try {
-          const parsed = parseRef(ref);
-          subpath = parsed.subpath ?? subpath;
-          absoluteURL = new URL(parsed.url, input.filename);
-        } catch {
-          throw new Error(`Could not resolve "${ref}"`);
-        }
-
-        // 2. detect circular $refs
-        if (_path.includes(absoluteURL.href)) {
-          throw new Error(`Circular $ref "${ref}" can’t be resolved.`);
-        }
-        _path.push(absoluteURL.href);
-
-        // 3. load document and subpath
-        let node = {} as AnyNode;
-        const cached = sources.find((s) => s.filename?.href === absoluteURL.href);
-        if (cached) {
-          node = findNode(cached.document, subpath);
-        } else {
-          const res = await resolveRaw(absoluteURL);
-          const nextDocument = parseWithTransform({ src: res, filename: absoluteURL });
-          sources.push({ src: res, filename: absoluteURL, document: nextDocument });
-          node = findNode(nextDocument, subpath);
-        }
-
-        // 4. continue loop if this is another $ref
-        if (node.type === 'Object') {
-          const hasRef = node.members.find(
-            (m) => m.name.type === 'String' && m.name.value === '$ref' && m.value.type === 'String',
-          )?.value as StringNode | undefined;
-          if (hasRef) {
-            const resolved = await resolve(hasRef.value, _path);
-            return node.members.length > 1
-              ? mergeObjects(resolved as ObjectNode, node) // Important: local node takes priority, i.e. last
-              : resolved;
-          }
-        }
-
-        // 5. finish
-        return node;
-      };
-
-      const nextTokens = await bundleTokens(sources[i]!, { logger, resolve });
-      tokens = { ...tokens, ...nextTokens };
     }),
   );
+  logger.debug({
+    ...entry,
+    message: `Parsing tokens done`,
+    timing: performance.now() - firstLoad,
+  });
 
-  return {
-    tokens,
-    sources,
-  };
-}
-
-/** Flatten tokens into a shallow map, while bundling in remote tokens */
-export async function bundleTokens(
-  input: InputSource,
-  { logger, resolve }: { logger: Logger; resolve: (reference: string) => Promise<AnyNode> },
-): Promise<Record<string, IntermediaryToken>> {
-  const tokens: Record<string, IntermediaryToken> = {};
-  const typeInh: Record<string, string> = {};
-  const descInh: Record<string, string> = {};
-  const deprecatedInh: Record<string, string> = {};
-  const entry = { group: 'parser' as const, label: 'core', filename: input.filename, src: input.src };
-
-  traverse(input.document, {
-    async enter(node, _parent, path) {
-      // TODO: handle aliases
-      if (node.type === 'String') {
-        if (isAlias(node.value)) {
-          const path = `#/${parseAlias(node.value).split('.').join('/')}`;
-          (node as any).type = 'Object';
-          (node as any).members = [
-            { type: 'Member', name: { type: 'String', value: '$ref' }, value: { type: 'String', value: path } },
-          ];
+  // Second pass: load and parse all remote documents, but don’t flatten aliases yet.
+  // This gives us the full token count and all original values, which we want to preserve before flattening.
+  const fetchStart = performance.now();
+  logger.debug({ ...entry, message: `Fetch remote files` });
+  const sharedCache = Object.fromEntries(sources.map((s) => [s.filename!.href, s]));
+  async function recursiveResolve(source: InputSource): Promise<void> {
+    const queue: Promise<void>[] = [];
+    traverse(source.document, {
+      enter(node) {
+        const $ref = node.type === 'Object' ? getObjMember(node, '$ref') : undefined;
+        if ($ref?.type !== 'String') {
+          return;
         }
-      }
-
-      if (node.type !== 'Object') {
-        return;
-      }
-
-      const id = path.join('.');
-
-      let $ref: string | undefined;
-
-      // Resolve and inline $refs, if any
-      const refIndex = node.members.findIndex(
-        (m) => m.name.type === 'String' && m.name.value === '$ref' && m.value.type === 'String',
-      );
-      if (refIndex !== -1) {
+        const { url } = parseRef($ref.value);
+        if (!url) {
+          return;
+        }
         try {
-          $ref = (node.members[refIndex]!.value as StringNode).value;
-          const resolved = await resolve($ref);
-          if (node.members.length > 1) {
-            if (resolved.type !== 'Object') {
-              logger.error({
-                ...entry,
-                message: `Expected $ref to resolve to object, received ${resolved.type}`,
-                node,
-                src: input.src,
-              });
-            } else {
-              node.members = mergeObjects(resolved as ObjectNode, node).members;
+          const absoluteURL = new URL(url, source.filename!);
+          if (sharedCache[absoluteURL.href]) {
+            return; // already fetched
+          }
+          sharedCache[absoluteURL.href] = { filename: absoluteURL, src: '', document: {} as DocumentNode }; // insert placeholder synchronously so we don’t load the same resources in parallel
+          queue.push(
+            resolveRaw(absoluteURL).then(async (src) => {
+              sharedCache[absoluteURL.href]!.src = src;
+              const document = parseWithTransform({ src, filename: absoluteURL });
+              sharedCache[absoluteURL.href]!.document = document;
+              await recursiveResolve(sharedCache[absoluteURL.href]!);
+            }),
+          );
+        } catch {
+          logger.error({
+            ...entry,
+            message: `Cannot resolve ${url} from ${source.filename?.href}`,
+            node,
+            src: source.src,
+          });
+        }
+      },
+    });
+    await Promise.all(queue);
+  }
+  await Promise.all(sources.map(recursiveResolve));
+  logger.debug({ ...entry, message: `Fetch done`, timing: performance.now() - fetchStart });
+
+  // Third pass: map all tokens and preserve original values, before flattening
+  const preResolveStart = performance.now();
+  logger.debug({ ...entry, message: 'Normalize start' });
+  const tokens: TokenNormalizedSet = {};
+  for (const source of sources) {
+    const groups: Record<string, GroupNormalized> = {};
+    traverse(source.document, {
+      enter(node, _parent, path) {
+        const id = path.join('.');
+
+        if (node.type === 'Object') {
+          // token
+          if (node.members.some((m) => m.name.type === 'String' && m.name.value === '$value')) {
+            const originalValue = evaluate(node) as any;
+            const group = groups[path.slice(0, path.length - 1).join('.')] as any;
+            if (group?.tokens && !group.tokens.includes(id)) {
+              group.tokens.push(id);
             }
-          } else {
-            // overwrite node entirely
-            for (const [k, v] of Object.entries(resolved)) {
-              (node as any)[k] = v;
+            const nodeSource = { filename: source.filename?.href, node };
+            if (tokens[id]) {
+              logger.info({
+                ...entry,
+                message: `Token ${id} overwritten in ${source.filename?.href}`,
+                node,
+                src: source.src,
+              });
+            }
+            tokens[id] = {
+              id,
+              $type: originalValue.$type || group.$type,
+              $description: originalValue.$description || undefined,
+              $deprecated: originalValue.$deprecated || group.$deprecated || undefined,
+              $value: originalValue.$value,
+              $extensions: originalValue.$extensions || undefined,
+              aliasChain: undefined,
+              aliasedBy: undefined,
+              aliasOf: undefined,
+              partialAliasOf: undefined,
+              dependencies: undefined,
+              group,
+              originalValue,
+              source: nodeSource,
+              mode: {
+                '.': {
+                  $value: originalValue.$value,
+                  aliasOf: undefined,
+                  aliasChain: undefined,
+                  partialAliasOf: undefined,
+                  originalValue: originalValue.$value,
+                  dependencies: undefined,
+                  source: {
+                    ...nodeSource,
+                    node: (getObjMember(nodeSource.node, '$value') ?? nodeSource.node) as ObjectNode,
+                  },
+                },
+              },
+            };
+
+            if (tokens[id].$extensions && 'mode' in tokens[id].$extensions) {
+              const modeNode = (getObjMember(node, '$extensions') as ObjectNode).members.find(
+                (m) => m.name.type === 'String' && m.name.value === 'mode',
+              )!.value as ObjectNode;
+              for (const mode of Object.keys((tokens[id].$extensions as any).mode)) {
+                const modeValue = (tokens[id].$extensions as any).mode;
+                tokens[id].mode[mode] = {
+                  $value: modeValue,
+                  aliasOf: undefined,
+                  aliasChain: undefined,
+                  partialAliasOf: undefined,
+                  originalValue: modeValue,
+                  dependencies: undefined,
+                  source: modeNode.members.find((m) => m.name.type === 'String' && m.name.value === mode)!.value as any,
+                };
+              }
+            }
+
+            return;
+          }
+
+          // group
+          if (!groups[id]) {
+            groups[id] = {
+              id,
+              $deprecated: undefined,
+              $description: undefined,
+              $extensions: undefined,
+              $type: undefined,
+              tokens: [],
+            };
+          }
+          // first, copy all parent groups’ properties into local, since they cascade
+          const groupIDs = Object.keys(groups);
+          groupIDs.sort(); // these may not be sorted; re-sort just in case (order determines final values)
+          for (const groupID of groupIDs) {
+            const isParentGroup = id.startsWith(groupID) && groupID !== id;
+            if (isParentGroup) {
+              groups[id] = { ...groups[groupID] } as GroupNormalized;
+            }
+          }
+          // next, override cascading values with local
+          for (const m of node.members) {
+            if (
+              m.name.type !== 'String' ||
+              !['$deprecated', '$description', '$extensions', '$type'].includes(m.name.value)
+            ) {
+              continue;
+            }
+            (groups as any)[id]![m.name.value] = evaluate(m.value);
+          }
+        }
+      },
+    });
+  }
+  logger.debug({ ...entry, message: 'Normalize done', timing: performance.now() - preResolveStart });
+
+  // Fourth pass: resolve and flatten aliases
+  const resolveStart = performance.now();
+  logger.debug({ ...entry, message: 'Resolution start' });
+  for (const source of sources) {
+    const { src } = source;
+    // this will be mutated, so make a copy first
+    const flattenedDoc = structuredClone(source.document);
+    traverse(flattenedDoc, {
+      // before we start parsing, we have to resolve all $refs, because those may affect the final structure significantly.
+      // after a full pass of inlining $refs, then we can update the token values
+      enter(node, _, path) {
+        const rawID = `#/${path.join('/')}`;
+        const options = { source, sources: sharedCache, visited: [] };
+        const isToken = path.includes('$value');
+
+        try {
+          switch (node.type) {
+            case 'Object': {
+              const aliasChain: string[] = [];
+              const flattened = flatten$refs(node, { ...options, aliasChain }) as ObjectNode;
+              node.members = flattened.members;
+
+              if (isToken) {
+                updateFromAliasChain({ tokens, rawID, aliasChain, logger, src });
+              }
+              break;
+            }
+            case 'Array': {
+              for (let i = 0; i < node.elements.length; i++) {
+                const aliasChain: string[] = [];
+                if (node.elements[i]!.value.type === 'Object') {
+                  node.elements[i]!.value = flatten$refs(node.elements[i]!.value as ObjectNode, {
+                    ...options,
+                    aliasChain,
+                  }) as ValueNode;
+                }
+
+                if (isToken) {
+                  updateFromAliasChain({ tokens, rawID, aliasChain, logger, src });
+                }
+              }
+              break;
+            }
+            case 'String': {
+              if (isAlias(node.value)) {
+                const aliasChain: string[] = [];
+                const flattened = flatten$refs(aliasToMomoa(node.value)!, { ...options, aliasChain });
+
+                // DTCG aliases can result in any type, so we have to transform the node fully
+                node.type = flattened.type as any;
+                node.loc = flattened.loc;
+                node.range = flattened.range;
+                if (flattened.type === 'Array') {
+                  (node as any).elements = flattened.elements;
+                  (node as any).value = undefined;
+                } else if (flattened.type === 'Object') {
+                  (node as any).members = flattened.members;
+                  (node as any).value = undefined;
+                } else {
+                  (node as any).value = flattened.value;
+                }
+
+                if (isToken) {
+                  updateFromAliasChain({ tokens, rawID, aliasChain, logger, src });
+                }
+              }
+              break;
             }
           }
         } catch (err) {
-          logger.error({ ...entry, message: String(err), node, src: input.src });
+          logger.error({ ...entry, message: (err as Error).message, node, src });
         }
-      }
-
-      // ⚠️ Important: scan members AFTER the $ref inlining to include the new values
-      const members = getObjMembers(node);
-      if (members.$type) {
-        typeInh[id] = evaluate(members.$type as StringNode) as string;
-      }
-      if (members.$description) {
-        descInh[id] = evaluate(members.$description as StringNode) as string;
-      }
-      if (members.$deprecated) {
-        deprecatedInh[id] = evaluate(members.$deprecated as StringNode) as string;
-      }
-
-      // $value
-      if (members.$value) {
-        const groupID = path.slice(0, path.length - 1).join('.');
-
-        let aliasOf: string | undefined;
-        if (typeof members.$value === 'string' && isAlias(members.$value)) {
-          aliasOf = parseAlias(members.$value);
-        } else if (
-          members.$value &&
-          typeof members.$value === 'object' &&
-          '$ref' in members.$value &&
-          typeof members.$value.$ref === 'string'
-        ) {
-          aliasOf = members.$value.$ref;
+      },
+      exit(node, _parent, path) {
+        // Don’t parse `$extensions` deeply
+        if (path.includes('$extensions')) {
+          return;
         }
+        // skip over non-tokens
+        const $value = node.type === 'Object' && getObjMember(node, '$value');
+        if (!$value) {
+          return;
+        }
+        const id = path.join('.');
+        tokens[id]!.$value = evaluate($value) as any;
+        tokens[id]!.mode['.'].$value = tokens[id]!.$value;
 
-        tokens[id] = {
-          id,
-          $type: ((members.$type && evaluate(members.$type)) as string) ?? findClosest(id, typeInh) ?? undefined,
-          $description:
-            ((members.$description && evaluate(members.$description)) as string) ??
-            findClosest(id, descInh) ??
-            undefined,
-          $deprecated:
-            (members.$deprecated && (evaluate(members.$deprecated) as string)) ??
-            findClosest(id, deprecatedInh) ??
-            undefined,
-          $value: evaluate(members.$value),
-          $extensions: members.$extensions
-            ? (evaluate(members.$extensions as ObjectNode) as Record<string, unknown>)
-            : undefined,
-          aliasOf,
-          partialAliasOf: undefined,
-          group: {
-            id: groupID,
-            $type: (findClosest(groupID, typeInh) as any) ?? undefined,
-            $description: findClosest(groupID, descInh) ?? undefined,
-            $deprecated: findClosest(groupID, deprecatedInh) ?? undefined,
-            tokens: [],
-          },
-          mode: {
-            '.': {
-              $type: undefined,
-              $value: undefined,
-              aliasOf,
-              partialAliasOf: undefined,
-              source: {
-                filename: input.filename,
-                node,
-              },
-            },
-          },
-          source: {
-            filename: input.filename,
-            node,
-          },
-        };
-
-        // Handle modes
-        tokens[id]!.mode['.']!.$type = tokens[id]!.$type;
-        tokens[id]!.mode['.']!.$value = tokens[id]!.$value;
-        tokens[id]!.mode['.']!.source = tokens[id]!.source;
-        if (members.$extensions?.type === 'Object') {
-          const ext = getObjMembers(members.$extensions);
-          if (ext.mode?.type === 'Object') {
-            for (const mode of ext.mode.members) {
-              if (mode.name.type !== 'String') {
-                continue;
-              }
-              const $value = evaluate(mode.value);
-              tokens[id]!.mode[mode.name.value] = {
-                $type: tokens[id]!.$type,
-                $value,
-                aliasOf: undefined,
-                partialAliasOf: undefined,
-                source: {
-                  filename: input.filename,
-                  node: mode.value as ObjectNode,
-                },
-              };
-              if (typeof $value === 'string' && isAlias($value)) {
-                tokens[id]!.mode[mode.name.value]!.aliasOf = parseAlias($value);
-              }
+        const $extensions = getObjMember(node, '$extensions');
+        if ($extensions?.type === 'Object') {
+          const mode = getObjMember($extensions, 'mode');
+          if (mode?.type === 'Object') {
+            for (const m of mode.members) {
+              const name = (m.name as StringNode).value;
+              tokens[id]!.mode[name]!.$value = evaluate(m.value) as any;
             }
           }
         }
-      }
-    },
-  });
-
-  return tokens;
-}
-
-/** Given an inheritance map of properties, find the most-closely-scoped one */
-function findClosest<T = unknown>(id: string, properties: Record<string, T>): T | undefined {
-  if (id in properties) {
-    return properties[id];
+      },
+    });
   }
-  let longestMatch = '';
-  let closestValue: T | undefined;
-  for (const [k, v] of Object.entries(properties)) {
-    if (id.startsWith(k) && k.length > longestMatch.length) {
-      longestMatch = k;
-      closestValue = v;
+  logger.debug({ ...entry, message: 'Resolution done', timing: performance.now() - resolveStart });
+
+  // fifth pass: check for circular DTCG aliases and missing $types
+  const circularStart = performance.now();
+  logger.debug({ ...entry, message: 'Validating resolution' });
+  for (const id of Object.keys(tokens)) {
+    // circular aliases
+    try {
+      traceDTCG(tokens, id);
+    } catch {
+      logger.error({
+        ...entry,
+        message: 'Circular alias detected.',
+        node: getObjMember(tokens[id]!.source.node, '$value'),
+        src: sources.find((s) => s.filename?.href === tokens[id]!.source.filename)?.src,
+      });
     }
   }
-  return closestValue;
+
+  for (const id of Object.keys(tokens)) {
+    if (!tokens[id]!.$type) {
+      logger.error({
+        ...entry,
+        message: 'Token has no $type',
+        node: getObjMember((tokens[id] as any).source.node, '$value'),
+        src: sources.find((s) => s.filename?.href === tokens[id]!.source.filename)?.src,
+      });
+    }
+  }
+  logger.debug({ ...entry, message: 'Validating resolution done', timing: performance.now() - circularStart });
+
+  // sixth pass: normalize tokens
+  const normalizeStart = performance.now();
+  logger.debug({ ...entry, message: 'Normalizing start' });
+  for (const token of Object.values(tokens)) {
+    normalize(token as any, { logger, src: sources.find((s) => s.filename?.href === token.source.filename)?.src });
+  }
+  logger.debug({ ...entry, message: 'Normalizing done', timing: performance.now() - normalizeStart });
+
+  return { tokens, sources };
 }
 
 let fs: any;
@@ -363,4 +442,126 @@ async function resolveRaw(path: URL, init?: RequestInit): Promise<string> {
     throw new Error(`${path.href} responded with ${res.status}:\n${res.text()}`);
   }
   return res.text();
+}
+
+/**
+ * Link and reverse-link tokens in one pass.
+ *
+ * This is one of, if not the most obtuse parts of the codebase. We flip
+ * back-and-forth between DTCG dot separated IDs and JSON $ref notation. This is
+ * an “ends justifies the means” scenario where the behavior should be captured
+ * in test cases, and this just satisfies those. We’re trading off idiomatic
+ * code for performance.
+ */
+function updateFromAliasChain({
+  tokens,
+  rawID,
+  aliasChain,
+  logger,
+  src,
+}: {
+  tokens: TokenNormalizedSet;
+  rawID: string;
+  aliasChain: string[];
+  src: string;
+  logger: Logger;
+}) {
+  if (!aliasChain.length) {
+    return;
+  }
+
+  // TODO: deprecate
+  // In the future, token composition will be more complex, which means we can
+  // make more granular tracing possible with JSON $refs. But we keep the dot
+  // notation for backwards-compatibility with older versions. This may be
+  // removed in a future version.
+  const aliasChainTokenIDs = aliasChain.map(refToTokenID).filter(Boolean) as string[];
+  const tokenID = refToTokenID(rawID);
+  if (!tokenID || !tokens[tokenID]) {
+    return;
+  }
+
+  if (!tokens[tokenID].dependencies) {
+    tokens[tokenID].dependencies = [...aliasChain];
+  } else {
+    tokens[tokenID].dependencies.push(...aliasChain.filter((ref) => !tokens[tokenID]!.dependencies!.includes(ref)));
+  }
+
+  for (const aliasedByID of aliasChainTokenIDs) {
+    if (tokens[aliasedByID]) {
+      if (!tokens[aliasedByID].aliasedBy) {
+        tokens[aliasedByID].aliasedBy = [];
+      }
+      if (!tokens[aliasedByID].aliasedBy.includes(tokenID)) {
+        tokens[aliasedByID].aliasedBy.push(tokenID);
+      }
+    }
+  }
+
+  const { subpath: $refPath } = parseRef(rawID);
+  const partialValueIndex = $refPath?.indexOf('$value');
+  if (!(partialValueIndex! > 0)) {
+    const aliasedID = aliasChainTokenIDs.pop()!;
+    tokens[tokenID].aliasOf = aliasedID;
+    tokens[tokenID].$type = tokens[aliasedID]!.$type;
+    return;
+  }
+  const partialValue = ($refPath ?? []).slice(partialValueIndex! + 1);
+
+  if (!tokens[tokenID].partialAliasOf) {
+    tokens[tokenID].partialAliasOf = Array.isArray(tokens[tokenID].$value) ? [] : {};
+  }
+  let node = tokens[tokenID]!.$value as any;
+  let sourceNode = getObjMember(tokens[tokenID]!.source.node, '$value') as AnyNode;
+  let partialAliasNode = tokens[tokenID].partialAliasOf as any;
+  for (let i = 0; i < partialValue.length; i++) {
+    const key = partialValue[i]!;
+
+    if (key in node && typeof node[key] !== 'undefined') {
+      if (sourceNode.type === 'Object') {
+        sourceNode = getObjMember(sourceNode, key)!;
+      } else if (sourceNode.type === 'Array') {
+        sourceNode = sourceNode.elements[Number(key)]!.value;
+      }
+
+      // last node: apply partial alias
+      if (i === partialValue.length - 1) {
+        const aliasedID = aliasChainTokenIDs.pop()!;
+        partialAliasNode[key] = aliasedID;
+        if (!(aliasedID in tokens)) {
+          logger.error({
+            group: 'parser',
+            label: 'init',
+            message: `Invalid alias: ${aliasedID}`,
+            node: sourceNode,
+            src,
+          });
+        }
+        node[key] = structuredClone(tokens[aliasedID]!.$value);
+        break;
+      }
+
+      node = node[key];
+      // otherwise, create deeper structure and continue traversing
+      if (!(key in partialAliasNode)) {
+        partialAliasNode[key] = Array.isArray(node[key]) ? [] : {};
+      }
+      partialAliasNode = partialAliasNode[key];
+    }
+  }
+}
+
+/** Detect circular aliases */
+function traceDTCG(tokens: TokenNormalizedSet, id: string, path = [] as string[]): void {
+  for (const mode of Object.keys(tokens[id]!.mode)) {
+    if (!isAlias((tokens[id]!.mode[mode] as any).$value)) {
+      continue;
+    }
+    const nextID = parseAlias((tokens[id]!.mode[mode] as any).$value);
+    if (path.includes(nextID)) {
+      throw new Error();
+    }
+    path.push(nextID);
+    traceDTCG(tokens, nextID, path);
+  }
 }

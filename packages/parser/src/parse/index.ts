@@ -2,8 +2,7 @@ import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import type { ConfigInit, InputSource, ParseOptions } from '../types.js';
-import { loadAll } from './load.js';
-import { normalize } from './normalize.js';
+import { loadSources } from './load.js';
 
 export * from './json.js';
 
@@ -26,10 +25,9 @@ export default async function parse(
 ): Promise<ParseResult> {
   const inputs = Array.isArray(_input) ? _input : [_input];
 
-  // 1. Load
   const totalStart = performance.now();
   const initStart = performance.now();
-  const { tokens, sources } = await loadAll(inputs, { logger, continueOnError, yamlToMomoa, transform });
+  const { tokens, sources } = await loadSources(inputs, { logger, continueOnError, yamlToMomoa, transform });
   logger.debug({
     message: 'Loaded tokens',
     group: 'parser',
@@ -37,19 +35,8 @@ export default async function parse(
     timing: performance.now() - initStart,
   });
 
-  // 2. Normalize
-  const normStart = performance.now();
-  const normalized = normalize(tokens, { logger, continueOnError, sources });
-  logger.debug({
-    message: 'Normalized values',
-    group: 'parser',
-    label: 'core',
-    timing: performance.now() - normStart,
-  });
-
-  // 3. Lint (and validate)
   if (!skipLint && config?.plugins?.length) {
-    await lintRunner({ tokens: normalized, sources, config, logger });
+    await lintRunner({ tokens, sources, config, logger });
     const lintStart = performance.now();
     logger.debug({
       message: 'Lint finished',
@@ -59,7 +46,6 @@ export default async function parse(
     });
   }
 
-  // 4. finish up
   logger.debug({
     message: 'Finish all parser tasks',
     group: 'parser',
@@ -78,7 +64,7 @@ export default async function parse(
   }
 
   return {
-    tokens: normalized,
+    tokens,
     sources,
   };
 }

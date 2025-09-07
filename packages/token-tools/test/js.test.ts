@@ -21,6 +21,10 @@ describe('transformJSValue', () => {
         $value: dimension.$value,
         originalValue: dimension.$value,
         source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
       },
     };
 
@@ -40,6 +44,10 @@ describe('transformJSValue', () => {
         $value: bool.$value,
         originalValue: bool.$value,
         source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
       },
     };
 
@@ -55,7 +63,15 @@ describe('transformJSValue', () => {
       $value: 500,
     } as unknown as NumberTokenNormalized;
     num.mode = {
-      '.': { $value: num.$value, originalValue: num.$value, source: {} as any },
+      '.': {
+        $value: num.$value,
+        originalValue: num.$value,
+        source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
+      },
     };
 
     expect(transformJSValue(num, { mode: '.' })).toMatchInlineSnapshot(`
@@ -74,6 +90,10 @@ describe('transformJSValue', () => {
         $value: color.$value,
         originalValue: color.$value,
         source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
       },
     };
 
@@ -117,6 +137,10 @@ describe('transformJSValue', () => {
         $value: gradient.$value,
         originalValue: gradient.$value,
         source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
       },
     };
 
@@ -170,6 +194,10 @@ describe('transformJSValue', () => {
         $value: typography.$value,
         originalValue: typography.$value,
         source: {} as any,
+        aliasOf: undefined,
+        aliasChain: undefined,
+        partialAliasOf: undefined,
+        dependencies: undefined,
       },
     };
 

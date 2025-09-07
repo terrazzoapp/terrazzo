@@ -13,8 +13,8 @@ describe('9.6 Gradient', () => {
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: '#663399', position: 0 },
-                  { color: '#ff9900', position: 1 },
+                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
                 ],
               },
             },
@@ -43,24 +43,24 @@ describe('9.6 Gradient', () => {
                 $type: 'gradient',
                 $value: [
                   { color: 'foo', position: 0 },
-                  { color: '#ff9900', position: 1 },
+                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
                 ],
               },
             },
           },
         ],
         want: {
-          error: `Unable to parse color "foo"
+          error: `[lint:core/valid-color] Could not parse color "foo".
 
-/tokens.json:4:15
-
-  2 |   "gradient": {
-  3 |     "$type": "gradient",
-> 4 |     "$value": [
-    |               ^
+  4 |     "$value": [
   5 |       {
-  6 |         "color": "foo",
-  7 |         "position": 0`,
+> 6 |         "color": "foo",
+    |                  ^
+  7 |         "position": 0
+  8 |       },
+  9 |       {
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -74,25 +74,28 @@ describe('9.6 Gradient', () => {
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: 'foo', position: 0 },
-                  { color: '#ff9900', position: '12px' },
+                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                  {
+                    color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' },
+                    position: '12px',
+                  },
                 ],
               },
             },
           },
         ],
         want: {
-          error: `Expected number, received String
+          error: `[lint:core/valid-gradient] Expected number 0-1, received 12px.
 
-/tokens.json:11:21
-
-   9 |       {
-  10 |         "color": "#ff9900",
-> 11 |         "position": "12px"
+  27 |           "hex": "#ff9900"
+  28 |         },
+> 29 |         "position": "12px"
      |                     ^
-  12 |       }
-  13 |     ]
-  14 |   }`,
+  30 |       }
+  31 |     ]
+  32 |   }
+
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -105,23 +108,26 @@ describe('9.6 Gradient', () => {
             src: {
               gradient: {
                 $type: 'gradient',
-                $value: [{ color: 'foo', position: 0 }, { color: '#ff9900' }],
+                $value: [
+                  { color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' }, position: 0 },
+                  { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' } },
+                ],
               },
             },
           },
         ],
         want: {
-          error: `Missing required property "position"
+          error: `[lint:core/valid-gradient] Must be an array of { color, position } objects.
 
-/tokens.json:9:7
-
-   7 |         "position": 0
-   8 |       },
->  9 |       {
+  16 |         "position": 0
+  17 |       },
+> 18 |       {
      |       ^
-  10 |         "color": "#ff9900"
-  11 |       }
-  12 |     ]`,
+  19 |         "color": {
+  20 |           "alpha": 1,
+  21 |           "components": [
+
+[lint:lint] 1 error`,
         },
       },
     ],
