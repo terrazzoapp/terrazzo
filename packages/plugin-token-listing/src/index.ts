@@ -8,30 +8,91 @@ function computePreviewValue(
   tokensSet: Record<string, TokenNormalized>,
   token: TokenNormalized,
   mode?: string,
-): string {
-  const recursiveNoAliasTransform = (rToken: TokenNormalized): string => {
-    // // @ts-expect-error Not typed yet in TZ.
-    // if (mode && mode !== '.' && rToken.$extensions?.mode?.[mode]) {
+): string | null {
+  const recursiveNoAliasTransform = (rToken: TokenNormalized): string | null => {
+    /* When a token aliases to another token, the aliased token often does not have values in
+     * the same mode, so we revert to the default mode in that case, which will often, but not
+     * always, yield the correct value. This algorithm prints wrong values when an aliased token
+     * is affected by a different set of modes. */
+    const modeToTransformWith = mode && mode in rToken.mode ? mode : '.';
 
-    // }
-    // // "$value": "{color.brand.200}",
-    // // "$extensions": { "mode": { "light": "{color.brand.200}", "dark": "{color.brand.600}" } }
-
-    if (rToken.id === 'color.background.brand.default') {
-      console.log('recursiveNoAliasTransform', mode, typeof mode);
-    }
-    return `${transformCSSValue(rToken, {
-      mode: mode ?? '.',
+    const computed = transformCSSValue(rToken, {
+      mode: modeToTransformWith,
       tokensSet,
-      // STEVE THIS IS WHERE YOU WERE. need to recursively transform so that we dont endu p with var(--)
-      // but the primitive token doesn't have a mode value so we need to switch back to "." if undefined?
       transformAlias: recursiveNoAliasTransform,
-      // color: { legacyHex: true },
-    })}`;
+      color: { legacyHex: true },
+    });
+
+    if (typeof computed === 'object') {
+      if (token.$type === 'typography') {
+        return `TODO ${JSON.stringify(computed)}`;
+      } else if (token.$type === 'color') {
+        return 'TODO WideGamutColorValue';
+      }
+
+      console.warn('Warning: object-type previewValue not yet implemented:', computed);
+      return null;
+    }
+
+    return computed ?? null;
   };
 
   return recursiveNoAliasTransform(token);
 }
+
+// function extractReferencedTokens(token: TokenNormalized): TokenNormalized[] {
+//   return token.aliasChain ? [token.aliasChain[0]] : []
+// }
+
+// function extractEntriesFromTokenInMode(token: TokenNormalized, tokenInMode: TokenNormalized, mode: string): any[] {
+// // TODO: extract entries from the tokens referenced inside this one's value
+// const referencedTokens = extractReferencedTokens(tokenInMode);
+// const referencedEntries = referencedTokens.map(extractEntriesFromToken)
+
+// // TODO: compute the combination of modes that exist in these entries. E.g. if referencedToken 1 has modes light and dark, and referencedToken 2 has modes light and dark, then we have: light + light, light + dark, dark + light, dark + dark.
+// // If referencedToken 1 has light and dark, and referencedToken 2 has mobile, tablet, desktop, then we have: light + mobile, light + tablet, light + desktop, dark + mobile, dark + tablet, dark + desktop.
+// const referenceModeMatrix = referencedEntries.reduce((acc, entries) => { }, []);
+
+// // TODO: eliminate mutually exclusive modes from the mode matrix, e.g. the Resolver spec will tell us that light and dark are mutually exclusive, so we can eliminate light + dark and dark + light from the matrix.
+// // FIXME: resolver spec not available yet.
+// const finalModeMatrix = filterMutuallyExclusiveModes(referenceModeMatrix);
+
+/*
+  
+  t1 .        t2 .
+  t1 light    t2 light
+  t1 dark     t2 dark
+  
+  
+  return {
+    $name: token.id,
+    $type: token.$type,
+    $value: tokenInMode ? tokenInMode.$value : token.$value,
+    $modes: [mode],
+    };
+    }
+// TODO: return a mapping of those entries' modes/previewValues and our current token
+
+function extractEntriesFromToken(token: TokenNormalized) {
+  return Object.entries(token.mode).map(([mode, tokenInMode]) => ({
+    $name: token.id,
+    $type: token.$type,
+    $value: tokenInMode ? tokenInMode.$value : token.$value,
+    $modes: [mode],
+  }));
+}
+
+function computeEntry(entry) {
+  return {
+    ...entry,
+    $extensions: {
+      'app.terrazzo.listing': getListingMeta({ token, tokensSet: tokens, getTransforms, mode }),
+    },
+  };
+}
+
+
+*/
 
 export default function tokenListingPlugin(options: TokenListingPluginOptions): Plugin {
   const { names = [], subtype } = options;
@@ -59,30 +120,23 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
         })[0];
         // FIXME this line is made complicated because localID is not guaranteed to exist and be a string.
         computedNames[name] = pluginToken && 'localID' in pluginToken ? `${pluginToken.localID}` : '';
-      } else if ('getName' in nameOption) {
-        computedNames[name] = nameOption.getName(token);
+      } else if ('transform' in nameOption) {
+        computedNames[name] = nameOption.transform(token, mode);
       }
-    }
-    if (token.id === 'color.background.brand.default') {
-      console.log('\n\n\n\n\n\n\n\n\n');
     }
 
     const previewValue = computePreviewValue(tokensSet, token, mode);
-    // FIXME: check for failed transforms in whole listing output
-    if (token.id === 'color.background.brand.default') {
-      console.log('mode', mode);
-      // console.log(getTransforms({ format: 'css', id: token.id, mode }));
-      console.log('previewValue,', previewValue);
-      console.log('\n\n\n');
-    }
 
     const output: TokenListingExtension = {
       names: computedNames,
       // source: TODO once the Resolver Spec is implemented.
-      previewValue,
-      originalValue: token.originalValue.$value, // FIXME
+      originalValue: token.originalValue.$value,
       subtype: subtype?.(token),
     };
+
+    if (previewValue !== null) {
+      output.previewValue = previewValue;
+    }
 
     if (mode !== '.') {
       output.mode = mode;

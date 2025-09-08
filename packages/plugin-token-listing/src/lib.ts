@@ -8,8 +8,8 @@ export interface TokenListingExtension {
   mode?: string;
   subtype?: string;
   source?: string;
-  previewValue?: Value;
-  originalValue?: Value;
+  previewValue?: PreviewValue;
+  originalValue?: string | number | boolean | string[] | Record<string | number | boolean | string[]>;
 }
 
 export interface ListedToken {
@@ -39,7 +39,7 @@ export type NameOption = NameOptionBase &
   //   }
   (
     | {
-        getName: (token: TokenNormalized) => string;
+        transform: (token: TokenNormalized, mode: string) => string;
       }
     | {
         plugin: string;
@@ -49,7 +49,7 @@ export type NameOption = NameOptionBase &
 interface PreviewValueOptionObject {
   [key: string]: string | number | boolean | PreviewValueOptionObject;
 }
-export type Value = string | number | boolean | PreviewValueOptionObject;
+export type PreviewValue = string | number | boolean | PreviewValueOptionObject;
 
 export type Subtype =
   | 'bgColor'
@@ -72,7 +72,7 @@ export interface TokenListingPluginOptions {
   names?: Record<string, NameOption>;
   defaultSource?: string;
   customSource?: (token: TokenNormalized) => string | undefined;
-  customPreviewValue?: (token: TokenNormalized) => Value | undefined;
+  customPreviewValue?: (token: TokenNormalized) => PreviewValue | undefined;
   subtype?: (token: TokenNormalized) => Subtype | undefined;
 }
 

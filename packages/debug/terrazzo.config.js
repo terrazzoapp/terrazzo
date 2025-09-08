@@ -8,7 +8,8 @@ export default defineConfig({
   plugins: [
     css({
       filename: 'tokens.css',
-      // variableName: (token) => token.id.replace(/\./g, '-'),
+      // Custom naming will be honoured by the token listing format.
+      variableName: (token) => `prefix${token.id.replace(/\./g, '-')}`,
       baseSelector: ':root',
     }),
     listing({
@@ -30,11 +31,11 @@ export default defineConfig({
       names: {
         figma: {
           description: 'Our variables (color, spacing) and styles (typography)',
-          transform: (token) => {
+          transform: (token, mode) => {
             const baseName = token.id.split('.').join('/');
             const isLocalStyle = token.$type === 'typography';
 
-            return isLocalStyle ? `${mode}/${baseName}` : baseName;
+            return isLocalStyle ? `${mode !== '.' ? `${mode}/` : ''}${baseName}` : baseName;
           },
         },
         tokensstudio: {
@@ -73,6 +74,10 @@ export default defineConfig({
           if (token.id.includes('radius')) {
             return 'borderRadius';
           }
+        }
+
+        if (token.$type === 'typography') {
+          return 'compositeFont';
         }
       },
     }),
