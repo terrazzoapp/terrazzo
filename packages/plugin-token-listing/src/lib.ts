@@ -39,7 +39,7 @@ export type NameOption = NameOptionBase &
   //   }
   (
     | {
-        transform: (token: TokenNormalized, mode: string) => string;
+        transform: (token: TokenNormalized, mode: string | undefined) => string;
       }
     | {
         plugin: string;

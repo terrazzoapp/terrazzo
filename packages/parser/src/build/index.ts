@@ -10,6 +10,10 @@ export interface BuildRunnerOptions {
   logger?: Logger;
 }
 
+export interface SanitizedBuildRunnerOptions extends Omit<BuildRunnerOptions, 'logger'> {
+  logger: Logger;
+}
+
 export const SINGLE_VALUE = 'SINGLE_VALUE';
 export const MULTI_VALUE = 'MULTI_VALUE';
 
@@ -49,8 +53,9 @@ function validateTransformParams({
 /** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
-  { sources, logger = new Logger(), config }: BuildRunnerOptions,
+  context: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
+  const { sources, logger = new Logger(), config } = context;
   const formats: Record<string, TokenTransformed[]> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
@@ -87,6 +92,7 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
       await plugin.transform({
+        context,
         tokens,
         sources,
         getTransforms,
@@ -159,6 +165,7 @@ export default async function build(
     if (typeof plugin.build === 'function') {
       const pluginBuildStart = performance.now();
       await plugin.build({
+        context,
         tokens,
         sources,
         getTransforms,
@@ -192,7 +199,13 @@ export default async function build(
   const startBuildEnd = performance.now();
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
-      await plugin.buildEnd({ outputFiles: structuredClone(result.outputFiles) });
+      await plugin.buildEnd({
+        context,
+        tokens,
+        getTransforms,
+        sources,
+        outputFiles: structuredClone(result.outputFiles),
+      });
     }
   }
   logger.debug({

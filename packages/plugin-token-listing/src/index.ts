@@ -1,15 +1,38 @@
-import type { Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
+import type { Logger, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
 import type { TokenListingExtension, TokenListingPluginOptions } from './lib.js';
 import { transformCSSValue } from '@terrazzo/token-tools/css';
 
 export * from './lib.js';
 
-function computePreviewValue(
-  tokensSet: Record<string, TokenNormalized>,
-  token: TokenNormalized,
-  mode?: string,
-): string | null {
-  const recursiveNoAliasTransform = (rToken: TokenNormalized): string | null => {
+function isCompositeTypography(computed: ReturnType<typeof transformCSSValue>): computed is {
+  'font-family'?: string;
+  'font-size'?: string;
+  'font-style'?: string;
+  'font-weight'?: string;
+  'line-height'?: string;
+} {
+  return (
+    typeof computed === 'object' &&
+    ('font-weight' in computed ||
+      'font-size' in computed ||
+      'font-family' in computed ||
+      'line-height' in computed ||
+      'font-style' in computed)
+  );
+}
+
+function computePreviewValue({
+  tokensSet,
+  token,
+  mode,
+  logger,
+}: {
+  tokensSet: Record<string, TokenNormalized>;
+  token: TokenNormalized;
+  mode?: string;
+  logger: Logger;
+}): string {
+  const recursiveNoAliasTransform = (rToken: TokenNormalized): string => {
     /* When a token aliases to another token, the aliased token often does not have values in
      * the same mode, so we revert to the default mode in that case, which will often, but not
      * always, yield the correct value. This algorithm prints wrong values when an aliased token
@@ -24,17 +47,21 @@ function computePreviewValue(
     });
 
     if (typeof computed === 'object') {
-      if (token.$type === 'typography') {
-        return `TODO ${JSON.stringify(computed)}`;
-      } else if (token.$type === 'color') {
-        return 'TODO WideGamutColorValue';
+      if (token.$type === 'typography' && isCompositeTypography(computed)) {
+        return `${computed['font-weight'] || 400}${computed['font-style'] ? ` ${computed['font-style']}` : ''} ${computed['font-size'] || '1rem'}${computed['line-height'] ? `/${computed['line-height']}` : ''} ${computed['font-family'] ?? 'inherit'}`;
       }
 
-      console.warn('Warning: object-type previewValue not yet implemented:', computed);
-      return null;
+      // TODO: WideGamutColorValue
+
+      logger.warn({
+        group: 'plugin',
+        label: `@terrazzo/plugin-token-listing > build > ${token.id}`,
+        message: `Preview value computation is not supported yet for: ${JSON.stringify(computed)}`,
+      });
+      return '';
     }
 
-    return computed ?? null;
+    return computed ?? '';
   };
 
   return recursiveNoAliasTransform(token);
@@ -101,10 +128,12 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
     token,
     tokensSet,
     getTransforms,
+    logger,
     mode,
   }: {
     token: TokenNormalized;
     tokensSet: Record<string, TokenNormalized>;
+    logger: Logger;
     getTransforms: (params: TransformParams) => TokenTransformed[];
     mode?: string;
   }): TokenListingExtension => {
@@ -121,11 +150,11 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
         // FIXME this line is made complicated because localID is not guaranteed to exist and be a string.
         computedNames[name] = pluginToken && 'localID' in pluginToken ? `${pluginToken.localID}` : '';
       } else if ('transform' in nameOption) {
-        computedNames[name] = nameOption.transform(token, mode);
+        computedNames[name] = nameOption.transform(token, mode === '.' ? undefined : mode);
       }
     }
 
-    const previewValue = computePreviewValue(tokensSet, token, mode);
+    const previewValue = computePreviewValue({ tokensSet, token, mode, logger });
 
     const output: TokenListingExtension = {
       names: computedNames,
@@ -134,7 +163,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
       subtype: subtype?.(token),
     };
 
-    if (previewValue !== null) {
+    if (previewValue !== '') {
       output.previewValue = previewValue;
     }
 
@@ -147,14 +176,14 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
 
   return {
     name: '@terrazzo/plugin-token-listing',
-    async build({ tokens, getTransforms, outputFile }) {
+    async build({ context: { logger }, tokens, getTransforms, outputFile }) {
       const listing = Object.values(tokens).flatMap((token) =>
         Object.entries(token.mode).map(([mode, tokenInMode]) => ({
           $name: token.id,
           $type: token.$type,
           $value: tokenInMode ? tokenInMode.$value : token.$value,
           $extensions: {
-            'app.terrazzo.listing': getListingMeta({ token, tokensSet: tokens, getTransforms, mode }),
+            'app.terrazzo.listing': getListingMeta({ logger, token, tokensSet: tokens, getTransforms, mode }),
           },
         })),
       );

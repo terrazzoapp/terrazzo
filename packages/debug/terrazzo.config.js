@@ -9,9 +9,10 @@ export default defineConfig({
     css({
       filename: 'tokens.css',
       // Custom naming will be honoured by the token listing format.
-      variableName: (token) => `prefix${token.id.replace(/\./g, '-')}`,
+      variableName: (token) => `--prefix-${token.id.replace(/\./g, '-')}`,
       baseSelector: ':root',
     }),
+
     listing({
       // Output file name.
       filename: 'terrazzo.listing.json',
@@ -24,6 +25,7 @@ export default defineConfig({
           description: 'Color theme matching user device preferences',
         },
       ],
+
       // Configuration for all the systems consuming design tokens.
       // Lists how each system names the tokens, whether tokens have
       // gone through a transform process in a token translator or
@@ -45,6 +47,40 @@ export default defineConfig({
         css: {
           description: 'Our built tokens in CSS for the developers',
           plugin: '@terrazzo/plugin-css',
+        },
+      },
+
+      // For each of the defined names, filter which tokens are available in the matching environment.
+      // If a filter is omitted for a given environment name, all tokens are considered included.
+      filters: {
+        // You may pass a function to use custom filtering logic.
+        figma: (token) => !(token.$key !== 'size.offset.focus-ring'),
+
+        // You may pass a Terrazzo plugin name to use this plugin’s internal filtering logic.
+        css: '@terrazzo/plugin-css',
+      },
+
+      // ALT SYNTAX?
+      outputs: {
+        figma: {
+          description: 'Figma variables (color, spacing) and local styles (typography)',
+          filter: (token) => !(token.$key !== 'size.offset.focus-ring'),
+          name: (token, mode) => {
+            const baseName = token.id.split('.').join('/');
+            const isLocalStyle = token.$type === 'typography';
+
+            return isLocalStyle ? `${mode !== '.' ? `${mode}/` : ''}${baseName}` : baseName;
+          },
+        },
+        css: {
+          description: 'Tokens built as CSS variables for the developers',
+          filter: '@terrazzo/plugin-css',
+          name: '@terrazzo/plugin-css',
+        },
+        tokensstudio: {
+          description: 'The place where we store our source tokens',
+          // no filter, all tokens included
+          name: (token) => token.id,
         },
       },
 

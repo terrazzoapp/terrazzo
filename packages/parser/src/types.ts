@@ -1,8 +1,11 @@
 import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import type Logger from './logger.js';
+import type { SanitizedBuildRunnerOptions } from 'build/index.js';
 
 export interface BuildHookOptions {
+  /** Build context (provides logger, outDir, other plugins' config) */
+  context: SanitizedBuildRunnerOptions;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
@@ -18,10 +21,12 @@ export interface BuildHookOptions {
 }
 
 export interface BuildRunnerResult {
-  outputFiles: OutputFile[];
+  outputFiles: OutputFileExpanded[];
 }
 
 export interface BuildEndHookOptions {
+  /** Build context (provides logger, outDir, other plugins' config) */
+  context: SanitizedBuildRunnerOptions;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
@@ -237,7 +242,7 @@ export interface Plugin {
   lint?(): Record<string, LintRule<any, any, any>>;
   transform?(options: TransformHookOptions): Promise<void>;
   build?(options: BuildHookOptions): Promise<void>;
-  buildEnd?(result: BuildRunnerResult): Promise<void>;
+  buildEnd?(options: BuildEndHookOptions): Promise<void>;
 }
 
 /** Transformed token with a single value. Note that this may be any type! */
@@ -291,6 +296,8 @@ export interface TransformParams {
 }
 
 export interface TransformHookOptions {
+  /** Build context (provides logger, outDir, other plugins' config) */
+  context: SanitizedBuildRunnerOptions;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
