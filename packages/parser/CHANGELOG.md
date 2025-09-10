@@ -1,5 +1,11 @@
 # @terrazzo/parser
 
+## 0.10.3
+
+### Patch Changes
+
+- [#532](https://github.com/terrazzoapp/terrazzo/pull/532) [`6141d4f`](https://github.com/terrazzoapp/terrazzo/commit/6141d4f5a9790be73b314c517d9da010f237814e) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Support the $deprecated prop being inherited from a token's group
+
 ## 0.10.2
 
 ### Patch Changes

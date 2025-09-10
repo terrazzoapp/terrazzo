@@ -1,5 +1,14 @@
 # @terrazzo/cli
 
+## 0.10.3
+
+### Patch Changes
+
+- [#533](https://github.com/terrazzoapp/terrazzo/pull/533) [`e1a612f`](https://github.com/terrazzoapp/terrazzo/commit/e1a612f2297662b1dfd4ca517c83b9679960a5cf) Thanks [@pvignau](https://github.com/pvignau)! - Auto-install CSS plugin with Sass during init
+
+- Updated dependencies [[`6141d4f`](https://github.com/terrazzoapp/terrazzo/commit/6141d4f5a9790be73b314c517d9da010f237814e)]:
+  - @terrazzo/parser@0.10.3
+
 ## 0.10.2
 
 ### Patch Changes
