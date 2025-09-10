@@ -45,6 +45,7 @@ function UseColorTester({
         }}
       >
         <label htmlFor='color-input'>Update color</label>
+        {/* biome-ignore lint/correctness/useUniqueElementIds: this is a test */}
         <input id='color-input' name='color' />
         <button type='submit'>Save</button>
       </form>

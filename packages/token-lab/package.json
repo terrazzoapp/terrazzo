@@ -40,7 +40,7 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
-    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-popover": "^1.1.15",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
     "@terrazzo/parser": "workspace:^",
@@ -50,12 +50,12 @@
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "^0.3.3",
-    "jotai": "^2.12.5",
+    "jotai": "^2.14.0",
     "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",

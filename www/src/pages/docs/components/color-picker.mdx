@@ -7,9 +7,9 @@ import ColorPickerDemo from "./demos/color-picker-basic.tsx";
 
 # React Color Picker
 
-Most color pickers are steeped in the past with limited gamuts and colorspaces. Now that [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) and higher-gamut colors are widely-available to users, color pickers need to update.
+Most color pickers are steeped in the past with limited gamuts and color spaces. Now that [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) and higher-gamut colors are widely-available to users, color pickers need to update.
 
-But not only that, in order to display colors in non-sRGB colorspaces, WebGL is needed to recreate colors accurately. Most colorpickers use CSS Gradients to simulate colors, which can achieve “good enough” accuracy for sRGB, but not for anything else.
+But not only that, in order to display colors in non-sRGB color spaces, WebGL is needed to recreate colors accurately. Most color pickers use CSS Gradients to simulate colors, which can achieve “good enough” accuracy for sRGB, but not for anything else.
 
 | Feature       | Terrazzo | react-color | @rc-component/color-picker | react-colorful | react-aria |
 | :------------ | :------: | :---------: | :------------------------: | :------------: | :--------: |
@@ -60,7 +60,7 @@ The following decisions went into making Terrazzo’s color picker as good as it
 
 As pointed out in Björn Ottosen’s—the creator of OKLAB/OKLCH—fantastic [article about color pickers](https://bottosson.github.io/posts/colorpicker/), there’s a tension between accurate colorpickers being hard to use, while user-friendly colorpickers aren’t precise.
 
-While his solution of an OKHSL colorpicker is a great compromise, it limits colorpicking to that colorspace alone. In order to be universally-usable for all colorspaces, per-channel sliders are needed for control.
+While his solution of an OKHSL colorpicker is a great compromise, it limits colorpicking to that color space alone. In order to be universally-usable for all color spaces, per-channel sliders are needed for control.
 
 ### Percentages: higher bit depth
 
@@ -90,7 +90,7 @@ sRGB, Display P3, and Rec 2020 (upcoming) gamuts in comparison. Each is signific
 
 </figure>
 
-By default, all colorspaces are clamped to the sRGB gamut, which is the smallest but is available for all users on all devices. The expanded Display P3 gamut—common but not quite 100% of all users and devices—has to be manually-enabled in the expanded options. The Rec2020 gamut, the largest one, isn’t yet available on the web, but it’s included for futureproofing this colorpicker for the day when it does become available.
+By default, all color spaces are clamped to the sRGB gamut, which is the smallest but is available for all users on all devices. The expanded Display P3 gamut—common but not quite 100% of all users and devices—has to be manually-enabled in the expanded options. The Rec2020 gamut, the largest one, isn’t yet available on the web, but it’s included for futureproofing this colorpicker for the day when it does become available.
 
 <figure>
   <img src="/assets/colorpicker-gamut.png" alt="Gamut toggles" width="300" />
@@ -131,7 +131,7 @@ console.log(formatCss(color.oklab)); // color(oklab 0.628 0.22 0.13)
 
 ### Colorspaces
 
-The `color` object can convert to any [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) colorspace using a memoized [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) (meaning the work isn’t done until the colorspace is requested, and subequent requests are cached).
+The `color` object can convert to any [CSS Color Module 4](https://www.w3.org/TR/css-color-4/) color space using a memoized [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) (meaning the work isn’t done until the color space is requested, and subequent requests are cached).
 
 | Name             |   Type   | Description                       |
 | :--------------- | :------: | :-------------------------------- |

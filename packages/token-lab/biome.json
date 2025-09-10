@@ -1,19 +1,19 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.1.2/schema.json",
-	"extends": "//",
-	"linter": {
-		"rules": {
-			"a11y": {
-				"useSemanticElements": "off"
-			},
-			"suspicious": {
-				"noArrayIndexKey": "off"
-			}
-		}
-	},
-	"css": {
-		"parser": {
-			"cssModules": true
-		}
-	}
+  "$schema": "https://biomejs.dev/schemas/2.2.4/schema.json",
+  "extends": "//",
+  "linter": {
+    "rules": {
+      "a11y": {
+        "useSemanticElements": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off"
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  }
 }

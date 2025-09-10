@@ -1,6 +1,6 @@
 # @terrazzo/use-color
 
-React hook for memoizing and transforming any web-compatible color. Only 12 kB (with full support for all web colorspaces!) thanks to Culori.
+React hook for memoizing and transforming any web-compatible color. Only 12 kB (with full support for all web color spaces!) thanks to Culori.
 
 ## Setup
 
