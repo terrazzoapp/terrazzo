@@ -490,7 +490,7 @@ A composite type combining [color](#color) and [number](#number)(normalized to `
 
 ### Notes
 
-- This token is currently missing information on whether this is a [linear](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient), [radial](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient), or [conic](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient) gradient. In most Cobalt plugins, `linear` gradient is assumed.
+- This token is currently missing information on whether this is a [linear](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient), [radial](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/radial-gradient), or [conic](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/conic-gradient) gradient. In most Terrazzo plugins, `linear` gradient is assumed.
 
 ### Tips & recommendations
 
@@ -518,11 +518,11 @@ A composite type combining [fontFamily](#font-family), [dimension](#dimension), 
 }
 ```
 
-| Property       | Type     | Description                                                                                                                                                                                                          |
-| :------------- | :------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$type`        | `string` | **Required.** `"typography"`                                                                                                                                                                                         |
-| `$value`       | `object` | **Required.** Specify any typographic CSS properties in _camelCase_ format. Although the spec limits the properties to only a few, Cobalt allows any valid attributes including `letterSpacing`, `fontVariant`, etc. |
-| `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                                                                                                       |
+| Property       | Type     | Description                                                                                                                                                                                                            |
+| :------------- | :------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$type`        | `string` | **Required.** `"typography"`                                                                                                                                                                                           |
+| `$value`       | `object` | **Required.** Specify any typographic CSS properties in _camelCase_ format. Although the spec limits the properties to only a few, Terrazzo allows any valid attributes including `letterSpacing`, `fontVariant`, etc. |
+| `$description` | `string` | (Optional) A description of this token and its intended usage.                                                                                                                                                         |
 
 ### Tips & recommendations
 

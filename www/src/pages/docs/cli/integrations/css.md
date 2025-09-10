@@ -76,7 +76,7 @@ This plugin outputs standard CSS variables that correspond directly to your toke
 
 ### CSS Color Module 4 support
 
-This plugin lets you pick out-of-band colors in [higher-gamut colorspaces](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) like P3 and Rec2020 and automatically downconverts them to displayable colors using media queries. Use the colors you wanna; this plugin will just keep up.
+This plugin lets you pick out-of-band colors in [higher-gamut color spaces](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/color-gamut) like P3 and Rec2020 and automatically downconverts them to displayable colors using media queries. Use the colors you wanna; this plugin will just keep up.
 
 If all your tokens are in the “safe” `srgb` color space, no extra code is generated. But when using colors in the P3 or Rec2020 gamut (or beyond), the CSS plugin automatically downconverts colors so they’re displayable on all hardware:
 

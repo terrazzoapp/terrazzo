@@ -220,6 +220,7 @@ export async function initCmd({ logger }: InitOptions) {
                 name: p.specifier,
               },
               arguments: [],
+              optional: false,
             }) as ESTree.CallExpression,
         );
         if (pluginsArray) {

@@ -62,9 +62,9 @@ export interface Options {
  */
 function getMarkerLines(loc: NodeLocation, source: string[], opts: Options = {} as Options) {
   const startLoc = {
-    // @ts-ignore this is fine
+    // @ts-expect-error this is fine
     column: 0,
-    // @ts-ignore this is fine
+    // @ts-expect-error this is fine
     line: -1,
     ...loc.start,
   } as Location;
