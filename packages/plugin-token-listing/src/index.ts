@@ -182,6 +182,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
           $name: token.id,
           $type: token.$type,
           $value: tokenInMode ? tokenInMode.$value : token.$value,
+          $deprecated: token.$deprecated,
           $extensions: {
             'app.terrazzo.listing': getListingMeta({ logger, token, tokensSet: tokens, getTransforms, mode }),
           },
