@@ -35,7 +35,7 @@
   },
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
-    "dev": "pnpm run build --watch",
+    "dev": "rolldown -w -c",
     "lint": "pnpm --filter @terrazzo/parser run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
