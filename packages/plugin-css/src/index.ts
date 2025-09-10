@@ -61,7 +61,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
             color: { legacyHex },
           });
           if (transformedValue !== undefined) {
-            setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
+            setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode, $extensions: {} });
           }
         }
       }

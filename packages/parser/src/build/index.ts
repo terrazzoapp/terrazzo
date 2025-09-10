@@ -9,11 +9,6 @@ export interface BuildRunnerOptions {
   config: ConfigInit;
   logger?: Logger;
 }
-
-export interface SanitizedBuildRunnerOptions extends Omit<BuildRunnerOptions, 'logger'> {
-  logger: Logger;
-}
-
 export const SINGLE_VALUE = 'SINGLE_VALUE';
 export const MULTI_VALUE = 'MULTI_VALUE';
 
@@ -92,7 +87,7 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
       await plugin.transform({
-        context,
+        context: { logger },
         tokens,
         sources,
         getTransforms,
@@ -165,7 +160,7 @@ export default async function build(
     if (typeof plugin.build === 'function') {
       const pluginBuildStart = performance.now();
       await plugin.build({
-        context,
+        context: { logger },
         tokens,
         sources,
         getTransforms,
@@ -200,7 +195,7 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
       await plugin.buildEnd({
-        context,
+        context: { logger },
         tokens,
         getTransforms,
         sources,

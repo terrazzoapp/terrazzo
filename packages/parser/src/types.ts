@@ -1,11 +1,14 @@
 import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import type Logger from './logger.js';
-import type { SanitizedBuildRunnerOptions } from 'build/index.js';
+
+export interface PluginHookContext {
+  logger: Logger;
+}
 
 export interface BuildHookOptions {
-  /** Build context (provides logger, outDir, other plugins' config) */
-  context: SanitizedBuildRunnerOptions;
+  /** Plugin hook context (provides access to shared logger) */
+  context: PluginHookContext;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
@@ -25,8 +28,8 @@ export interface BuildRunnerResult {
 }
 
 export interface BuildEndHookOptions {
-  /** Build context (provides logger, outDir, other plugins' config) */
-  context: SanitizedBuildRunnerOptions;
+  /** Plugin hook context (provides access to shared logger) */
+  context: PluginHookContext;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
@@ -296,8 +299,8 @@ export interface TransformParams {
 }
 
 export interface TransformHookOptions {
-  /** Build context (provides logger, outDir, other plugins' config) */
-  context: SanitizedBuildRunnerOptions;
+  /** Plugin hook context (provides access to shared logger) */
+  context: PluginHookContext;
   /** Map of tokens */
   tokens: Record<string, TokenNormalized>;
   /** Query transformed values */
