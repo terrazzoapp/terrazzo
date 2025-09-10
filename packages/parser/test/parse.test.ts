@@ -2797,6 +2797,55 @@ describe('Additional cases', () => {
     });
   });
 
+  describe('$deprecated', () => {
+    it('property is not forwarded when aliasing', async () => {
+      const config = defineConfig({}, { cwd });
+      const result = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                base: { blue: { 500: { $type: 'color', $deprecated: true, $value: 'color(srgb 0 0.2 1)' } } },
+                semantic: { $value: '{color.base.blue.500}' },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      expect(result.tokens['color.base.blue.500']?.$deprecated).toBe(true);
+      expect(result.tokens['color.semantic']?.$deprecated).toBe(undefined);
+    });
+
+    it('inheritance works', async () => {
+      const config = defineConfig({}, { cwd });
+      const result = await parse(
+        [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                $type: 'color',
+                combava: {
+                  400: { $value: '#66945b' },
+                },
+                lime: {
+                  $deprecated: 'Use combava instead',
+                  200: { $deprecated: false, $value: '#f3ffe0ff' },
+                  400: { $value: '#dfffad' },
+                },
+              },
+            },
+          },
+        ],
+        { config },
+      );
+      expect(result.tokens['color.lime.200']?.$deprecated).toBe(false);
+      expect(result.tokens['color.lime.400']?.$deprecated).toBe('Use combava instead');
+    });
+  });
+
   describe('values', () => {
     const tests: [string, { given: any; want: any }][] = [
       [

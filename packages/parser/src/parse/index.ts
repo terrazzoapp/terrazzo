@@ -7,7 +7,7 @@ import type { ConfigInit, InputSource } from '../types.js';
 import applyAliases from './alias.js';
 import { getObjMembers, parseJSON, replaceObjMembers, toMomoa, traverse } from './json.js';
 import normalize from './normalize.js';
-import validateTokenNode, { getInheritedType, type Visitors } from './validate.js';
+import validateTokenNode, { computeInheritedProperty, isGroupNode, type Visitors } from './validate.js';
 
 export * from './alias.js';
 export * from './json.js';
@@ -210,16 +210,24 @@ async function parseSingle(
   // 2. Walk AST to validate tokens
   let tokenCount = 0;
   const startValidate = performance.now();
+  // $type and $deprecated can be applied at group level to target all child tokens,
+  // these two objects keep track of inherited prop values as we traverse the token tree
   const $typeInheritance: Record<string, MemberNode> = {};
+  const $deprecatedInheritance: Record<string, MemberNode> = {};
   traverse(document, {
     enter(node, parent, subpath) {
       // if $type appears at root of tokens.json, collect it
       if (node.type === 'Document' && node.body.type === 'Object' && node.body.members) {
         const { members: rootMembers } = node.body;
-        const root$type = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$type');
-        const root$value = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$value');
-        if (root$type && !root$value) {
-          $typeInheritance['.'] = root$type;
+        if (isGroupNode(node.body)) {
+          const root$type = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$type');
+          if (root$type) {
+            $typeInheritance['.'] = root$type;
+          }
+          const root$deprecated = rootMembers.find((m) => m.name.type === 'String' && m.name.value === '$deprecated');
+          if (root$deprecated) {
+            $deprecatedInheritance['.'] = root$deprecated;
+          }
         }
       }
 
@@ -241,13 +249,15 @@ async function parseSingle(
 
       // handle tokens
       if (node.type === 'Member') {
-        const inheritedTypeNode = getInheritedType(node, { subpath, $typeInheritance });
+        const inheritedDeprecatedNode = computeInheritedProperty(node, '$deprecated', {
+          subpath,
+          inherited: $deprecatedInheritance,
+        });
+        const inheritedTypeNode = computeInheritedProperty(node, '$type', { subpath, inherited: $typeInheritance });
         if (node.value.type === 'Object') {
-          const $type =
-            node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$type') || inheritedTypeNode;
           const $value = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$value');
-          if ($value && $type?.value.type === 'String' && transform?.[$type.value.value]) {
-            const result = transform[$type.value.value]?.(evaluate(node.value), subpath.join('.'), node);
+          if ($value && inheritedTypeNode?.value.type === 'String' && transform?.[inheritedTypeNode.value.value]) {
+            const result = transform[inheritedTypeNode.value.value]?.(evaluate(node.value), subpath.join('.'), node);
             if (result) {
               node.value = parseJSON(result).body;
             }
@@ -261,6 +271,7 @@ async function parseSingle(
             parent,
             subpath,
             transform,
+            inheritedDeprecatedNode,
             inheritedTypeNode,
           });
           if (token) {

@@ -1,5 +1,6 @@
 import {
   type AnyNode,
+  type BooleanNode,
   evaluate,
   type MemberNode,
   type ObjectNode,
@@ -771,28 +772,47 @@ export function validateTokenMemberNode(node: MemberNode, { filename, src, logge
   }
 }
 
-/** Return any token node with its inherited $type */
-export function getInheritedType(
+/** Return whether a MemberNode is a group (has no `$value`).
+ * Groups can have properties that their child nodes will inherit. */
+export function isGroupNode(node: ObjectNode): boolean {
+  if (node.type !== 'Object') {
+    return false;
+  }
+
+  // check for $value
+  const has$value = node.members.some((m) => m.name.type === 'String' && m.name.value === '$value');
+  return !has$value;
+}
+
+/** Check if a token node has the specified property name, and if it does, stores
+ * the value in the `inherited` object as a side effect for future use. If not,
+ * traverses the `inherited` object to find the closest parent that has the property.
+ *
+ * Returns the property value if found locally or in a parent, otherwise undefined. */
+export function computeInheritedProperty(
   node: MemberNode,
-  { subpath, $typeInheritance }: { subpath: string[]; $typeInheritance?: Record<string, MemberNode> },
+  propertyName: string,
+  { subpath, inherited }: { subpath: string[]; inherited?: Record<string, MemberNode> },
 ): MemberNode | undefined {
   if (node.value.type !== 'Object') {
     return;
   }
 
-  // keep track of $types
-  const $type = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$type');
-  const $value = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$value');
-  if ($typeInheritance && $type && !$value) {
-    $typeInheritance[subpath.join('.') || '.'] = $type;
+  // if property exists locally in the token node, add it to the inherited tree
+  const property = node.value.members.find((m) => m.name.type === 'String' && m.name.value === propertyName);
+  if (inherited && property && isGroupNode(node.value)) {
+    // this is where the side effect occurs
+    inherited[subpath.join('.') || '.'] = property;
+
+    // We know this is the closest property, so return early
+    return property;
   }
 
-  const id = subpath.join('.');
-
   // get parent type by taking the closest-scoped $type (length === closer)
+  const id = subpath.join('.');
   let parent$type: MemberNode | undefined;
   let longestPath = '';
-  for (const [k, v] of Object.entries($typeInheritance ?? {})) {
+  for (const [k, v] of Object.entries(inherited ?? {})) {
     if (k === '.' || id.startsWith(k)) {
       if (k.length > longestPath.length) {
         parent$type = v;
@@ -812,6 +832,7 @@ export interface ValidateTokenNodeOptions {
   logger: Logger;
   parent: AnyNode | undefined;
   transform?: Visitors;
+  inheritedDeprecatedNode?: MemberNode;
   inheritedTypeNode?: MemberNode;
 }
 
@@ -822,7 +843,16 @@ export interface ValidateTokenNodeOptions {
  */
 export default function validateTokenNode(
   node: MemberNode,
-  { config, filename, logger, parent, inheritedTypeNode, src, subpath }: ValidateTokenNodeOptions,
+  {
+    config,
+    filename,
+    logger,
+    parent,
+    inheritedDeprecatedNode,
+    inheritedTypeNode,
+    src,
+    subpath,
+  }: ValidateTokenNodeOptions,
 ): TokenNormalized | undefined {
   // don’t validate $value
   if (subpath.includes('$value') || node.value.type !== 'Object') {
@@ -850,17 +880,33 @@ export default function validateTokenNode(
   }
 
   const nodeWithType = structuredClone(node);
+  // inject $type that can be inherited in the DTCG format
   let $type = (members.$type?.type === 'String' && members.$type.value) || undefined;
   if (inheritedTypeNode && !members.$type) {
     injectObjMembers(nodeWithType.value as ObjectNode, [inheritedTypeNode]);
     $type = (inheritedTypeNode.value as StringNode).value;
   }
+
+  // inject $deprecated that can also be inherited
+  let $deprecated = members.$deprecated
+    ? members.$deprecated?.type === 'String'
+      ? (members.$deprecated as StringNode).value
+      : (members.$deprecated as BooleanNode).value
+    : undefined;
+  if (inheritedDeprecatedNode && !members.$deprecated) {
+    injectObjMembers(nodeWithType.value as ObjectNode, [inheritedDeprecatedNode]);
+    $deprecated =
+      inheritedDeprecatedNode.value.type === 'String'
+        ? (inheritedDeprecatedNode.value as StringNode).value
+        : (inheritedDeprecatedNode.value as BooleanNode).value;
+  }
+
+  // validate once after injecting all inherited properties
   validateTokenMemberNode(nodeWithType, { filename, src, logger });
 
   // All tokens must be valid, so we want to validate it up till this
   // point. However, if we are ignoring this token (or respecting
   // $deprecated, we can omit it from the output.
-  const $deprecated = members.$deprecated && (evaluate(members.$deprecated) as string | boolean | undefined);
   if ((config.ignore.deprecated && $deprecated) || (config.ignore.tokens && wcmatch(config.ignore.tokens)(id))) {
     return;
   }
@@ -881,6 +927,7 @@ export default function validateTokenNode(
   const token = {
     $type,
     $value,
+    $deprecated,
     id,
     mode: {},
     originalValue: evaluate(node.value),
