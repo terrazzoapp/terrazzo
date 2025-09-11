@@ -39,11 +39,11 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "culori": "^4.0.2"
+    "culori": "catalog:"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:*",
     "@terrazzo/parser": "workspace:^",
-    "@types/culori": "^4.0.1"
+    "@types/culori": "catalog:"
   }
 }

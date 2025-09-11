@@ -54,8 +54,8 @@
     "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",

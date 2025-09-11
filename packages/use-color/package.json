@@ -33,16 +33,16 @@
   },
   "dependencies": {
     "@terrazzo/token-tools": "workspace:^",
-    "@types/culori": "^4.0.1",
-    "culori": "^4.0.2"
+    "@types/culori": "catalog:",
+    "culori": "catalog:"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^11.2.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
     "@vitejs/plugin-react-swc": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",

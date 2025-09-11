@@ -59,7 +59,7 @@
     "meriyah": "^6.1.4",
     "mime": "^4.0.7",
     "picocolors": "^1.1.1",
-    "yaml-to-momoa": "^0.0.6"
+    "yaml-to-momoa": "catalog:"
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "catalog:",
