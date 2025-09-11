@@ -422,13 +422,23 @@ describe('transformColor', () => {
       },
     ],
   ];
-  it.each(tests)('%s', (_, { given, want }) => {
+  it.each(tests)('%s', (testName, { given, want }) => {
     let result: typeof want.success;
+
     try {
       result = transformColor(...given);
     } catch (err) {
       expect((err as Error).message).toBe(want.error);
     }
+
+    // TODO: node 24 rounding error
+    if (testName === 'oklch (out of gamut)' && result && typeof result === 'object') {
+      expect(result['.']).toBe('oklch(0.9 0.1 40)');
+      expect(result.p3).toMatch(/oklch\(0\.88796\d* 0\.08088\d* 44\.27402\d*\)/);
+      expect(result.rec2020).toMatch(/oklch\(0\.9\d* ((0\.09\d*)|(0\.1\d*)) (39|40)\.?\d*\)/);
+      expect(result.srgb).toMatch(/oklch\(0\.8871\d* 0\.06383\d* 44\.99492\d*\)/);
+    }
+
     expect(result).toEqual(want.success);
   });
 });
