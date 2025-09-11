@@ -2,6 +2,9 @@
 // (note: Babel loads both chalk AND picocolors, and doesn’t treeshake well)
 // Babel is MIT-licensed and unaffiliated with this project.
 
+import { print } from '@humanwhocodes/momoa';
+import type { InputSource } from '../types.js';
+
 // MIT License
 //
 // Copyright (c) 2014-present Sebastian McKenzie and other contributors
@@ -132,6 +135,9 @@ function getMarkerLines(loc: NodeLocation, source: string[], opts: Options = {} 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
 export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Options = {} as Options) {
+  if (typeof rawLines !== 'string') {
+    throw new Error(`Expected string, got ${rawLines}`);
+  }
   const lines = rawLines.split(NEWLINE);
   const { start, end, markerLines } = getMarkerLines(loc, lines, opts);
   const hasColumns = loc.start && typeof loc.start.column === 'number';
@@ -171,4 +177,19 @@ export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Opti
   }
 
   return frame;
+}
+
+/** Find source code in sources array */
+export function getCode(sources: InputSource[], filename?: string): string | undefined {
+  const source = (filename && sources.find((s) => s.filename?.href === filename)) || undefined;
+  if (typeof source?.src === 'string') {
+    return source.src;
+  } else if (source) {
+    return print(source.document, { indent: 2 });
+  }
+}
+
+/** Find source code in sources array */
+export function getSource(sources: InputSource[], filename?: string): InputSource | undefined {
+  return (filename && sources.find((s) => s.filename?.href === filename)) || undefined;
 }

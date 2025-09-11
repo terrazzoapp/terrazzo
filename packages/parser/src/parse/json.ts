@@ -1,36 +1,27 @@
 import {
   type AnyNode,
+  type ArrayNode,
+  type BooleanNode,
   type DocumentNode,
   type MemberNode,
   parse as momoaParse,
+  type NumberNode,
   type ObjectNode,
   type ParseOptions,
   print,
+  type StringNode,
   type ValueNode,
 } from '@humanwhocodes/momoa';
+import parseRef from '@terrazzo/json-ref-parser';
+import { parseAlias } from '@terrazzo/token-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
-import type { InputSource } from '../types.js';
+import type { InputSource, ReferenceObject } from '../types.js';
 
 export interface JSONVisitor {
   enter?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
   exit?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
 }
-
-export const CHILD_KEYS = {
-  Document: ['body'] as const,
-  Object: ['members'] as const,
-  Member: ['name', 'value'] as const,
-  Element: ['value'] as const,
-  Array: ['elements'] as const,
-  String: [] as const,
-  Number: [] as const,
-  Boolean: [] as const,
-  Null: [] as const,
-  Identifier: [] as const,
-  NaN: [] as const,
-  Infinity: [] as const,
-};
 
 /** Determines if a given value is an AST node. */
 export function isNode(value: unknown): boolean {
@@ -39,7 +30,15 @@ export function isNode(value: unknown): boolean {
 
 export type ValueNodeWithIndex = ValueNode & { index: number };
 
-/** Get ObjectNode members as object */
+/** Get single member by name. Useful when you only need a single value. */
+export function getObjMember(node: ObjectNode | undefined, key: string): ValueNode | undefined {
+  if (!node || node.type !== 'Object') {
+    return;
+  }
+  return node.members.find((m) => m.name.type === 'String' && m.name.value === key)?.value;
+}
+
+/** Format ObjectNode members as key–value object. Better when retrieving multiple values. */
 export function getObjMembers(node: ObjectNode): Record<string | number, ValueNodeWithIndex> {
   const members: Record<string | number, ValueNodeWithIndex> = {};
   if (node.type !== 'Object') {
@@ -81,25 +80,31 @@ export function traverse(root: AnyNode, visitor: JSONVisitor) {
    */
   function visitNode(node: AnyNode, parent: AnyNode | undefined, path: string[] = []) {
     const nextPath = [...path];
-    if (node.type === 'Member') {
-      const { name } = node;
-      nextPath.push('value' in name ? name.value : String(name));
-    }
 
     visitor.enter?.(node, parent, nextPath);
 
-    const childNode = CHILD_KEYS[node.type];
-    for (const key of childNode ?? []) {
-      const value = node[key as keyof typeof node];
-      if (!value) {
-        continue;
+    // visit child nodes before enter & exit
+    switch (node.type) {
+      case 'Document': {
+        visitNode(node.body, node, nextPath); // document.body is invisible
+        break;
       }
-      if (Array.isArray(value)) {
-        for (let i = 0; i < value.length; i++) {
-          visitNode(value[i] as unknown as AnyNode, node, key === 'elements' ? [...nextPath, String(i)] : nextPath);
+      case 'Array': {
+        for (let i = 0; i < node.elements.length; i++) {
+          visitNode(node.elements[i]!, node, [...nextPath, String(i)]);
         }
-      } else if (isNode(value)) {
-        visitNode(value as unknown as AnyNode, node, nextPath);
+        break;
+      }
+      case 'Element':
+      case 'Member': {
+        visitNode(node.value, node, nextPath);
+        break;
+      }
+      case 'Object': {
+        for (const member of node.members) {
+          visitNode(member, node, [...nextPath, (member.name as StringNode).value]);
+        }
+        break;
       }
     }
 
@@ -115,9 +120,9 @@ export function maybeRawJSON(input: string): boolean {
 }
 
 /** Find Momoa node by traversing paths */
-export function findNode<T = AnyNode>(node: AnyNode, path: string[]): T | undefined {
-  if (!path.length) {
-    return;
+export function findNode<T = AnyNode>(node: AnyNode, path?: string[]): T {
+  if (!path?.length) {
+    return node as T;
   }
 
   let nextNode: AnyNode | undefined;
@@ -176,7 +181,7 @@ export function toMomoa(
       logger.error({
         group: 'parser',
         label: 'yaml',
-        message: `Install \`yaml-to-momoa\` package to parse YAML, and pass in as option, e.g.:
+        message: `Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
     import { parse } from '@terrazzo/parser';
     import yamlToMomoa from 'yaml-to-momoa';
@@ -197,9 +202,9 @@ export function toMomoa(
 /** Momoa, just with default options pre-set */
 export function parseJSON(input: string | Record<string, any>, options?: ParseOptions): any {
   return momoaParse(
-    // note: it seems silly, at first glance, to have JSON.stringify() inside an actual JSON parser. But
-    // this provides a common interface to generate a Momoa AST for JSON created in-memory, which we already
-    // know is 100% valid because it’s already deserialized.
+    // note: it seems silly at first glance to have JSON.stringify() inside a JSON parser.
+    // we do this for objects created in memory to simulate line and column numbers for
+    // better stack traces, which we don’t get with the native JSON parser.
     typeof input === 'string' ? input : JSON.stringify(input, undefined, 2),
     {
       mode: 'jsonc',
@@ -208,4 +213,163 @@ export function parseJSON(input: string | Record<string, any>, options?: ParseOp
       ...options,
     },
   );
+}
+
+/** Merge multiple Momoa documents from different sources. Conflicts will be overridden  */
+export function mergeDocuments(documents: DocumentNode[]): DocumentNode {
+  if (!documents.length) {
+    throw new Error(`Can’t merge 0 documents.`);
+  }
+  if (documents.length === 1) {
+    return documents[0]!;
+  }
+  if (documents.some((d) => d.body.type !== 'Object')) {
+    throw new Error(`mergeDocuments() can only merge top-level objects`);
+  }
+  const final = structuredClone(documents[0]!);
+  for (const next of documents.slice(1)) {
+    final.body = mergeObjects(final.body as ObjectNode, next.body as ObjectNode);
+  }
+  return final;
+}
+
+/** Merge Momoa Objects. */
+export function mergeObjects(a: ObjectNode, b: ObjectNode): ObjectNode {
+  const obj: ObjectNode = structuredClone(a);
+  // on type mismatch, b overwrites a
+  if (a.type !== 'Object') {
+    return structuredClone(b);
+  }
+  for (const next of b.members) {
+    if (next.name.type !== 'String') {
+      throw new Error(`Member with key ${print(next.name)} not JSON serializable`);
+    }
+    const i = obj.members.findIndex((prev) => (prev.name as StringNode).value === (next.name as StringNode).value);
+    if (i !== -1) {
+      switch (next.value.type) {
+        // Only objects get deep merging
+        case 'Object': {
+          obj.members[i]!.value = mergeObjects(obj.members[i]!.value as ObjectNode, next.value);
+          break;
+        }
+        // Everything else gets overwritten
+        case 'String':
+        case 'Boolean':
+        case 'Number':
+        case 'Null':
+        case 'Array': {
+          obj.members[i]!.value = next.value;
+          obj.members[i]!.loc = next.loc;
+          break;
+        }
+        default: {
+          throw new Error(`Unhandled: ${next.value.type}`);
+        }
+      }
+    } else {
+      obj.members.push(next);
+    }
+  }
+  return obj;
+}
+
+/** Flatten $refs and merge objects one level deep. */
+export function flatten$refs(
+  node: ObjectNode,
+  {
+    source,
+    sources,
+    visited = [],
+    aliasChain = [],
+  }: {
+    source: InputSource;
+    sources: Record<string, InputSource>;
+    visited: string[];
+    aliasChain: string[];
+  },
+): StringNode | NumberNode | ObjectNode | BooleanNode | ArrayNode {
+  if (node.type !== 'Object') {
+    return node;
+  }
+
+  // 1. if $ref is anywhere in this object, hoist to top and merge in
+  const $ref = getObjMember(node, '$ref');
+  if (!$ref || $ref.type !== 'String') {
+    return node;
+  }
+  const { url, subpath } = parseRef($ref.value);
+  if (url === '.' && !subpath?.length) {
+    throw new Error(`Can’t recursively embed a document within itself.`);
+  }
+  const filename = url === '.' ? source.filename! : new URL(url, source.filename!);
+  if (url !== '.' && visited.includes(filename.href)) {
+    throw new Error(`Circular $ref detected: "${$ref.value}"`);
+  }
+  visited.push(filename.href);
+  const nextPath =
+    filename.href === source.filename!.href
+      ? `#/${subpath?.join('/') ?? '/'}`
+      : `${filename.href}${subpath ? `#${subpath.join('/')}` : ''}`;
+  aliasChain.push(nextPath);
+  const resolved = findNode(sources[filename.href]!.document, subpath) as ObjectNode | undefined;
+  if (!resolved) {
+    throw new Error(`Could not resolve $ref "${$ref.value}"`);
+  }
+  const flattened = flatten$refs(resolved, { source, sources, visited, aliasChain });
+
+  // 2. Either use $ref as-is, or merge into object (only if it is an object)
+  const isOnlyRef = node.members.length === 1;
+  if (isOnlyRef) {
+    return flattened;
+  }
+  if (resolved.type !== 'Object') {
+    throw new Error(`Can’t merge $ref of type "${resolved.type}" into Object`);
+  }
+  return mergeObjects(resolved, node);
+}
+
+/** Convert valid DTCG alias to $ref */
+export function aliasToRef(alias: string): ReferenceObject | undefined {
+  const id = parseAlias(alias);
+  // if this is invalid, stop
+  if (id === alias) {
+    return;
+  }
+  return { $ref: `#/${id.replace(/~/g, '~0').replace(/\//g, '~1').replace(/\./g, '/')}/$value` };
+}
+
+/**
+ * Convert Reference Object to token ID.
+ * This can then be turned into an alias by surrounding with { … }
+ */
+export function refToTokenID($ref: ReferenceObject | string): string | undefined {
+  const path = typeof $ref === 'object' ? $ref.$ref : $ref;
+  if (typeof path !== 'string') {
+    return;
+  }
+  const { subpath } = parseRef(path);
+  return (subpath?.length && subpath.join('.').replace(/\.\$value.*$/, '')) || undefined;
+}
+
+/** Convert valid DTCG alias to $ref Momoa Node */
+export function aliasToMomoa(
+  alias: string,
+  loc: ObjectNode['loc'] = { start: { line: -1, column: -1, offset: 0 }, end: { line: -1, column: -1, offset: 0 } },
+): ObjectNode | undefined {
+  const $ref = aliasToRef(alias);
+  if (!$ref) {
+    return;
+  }
+  return {
+    type: 'Object',
+    members: [
+      {
+        type: 'Member',
+        name: { type: 'String', value: '$ref', loc },
+        value: { type: 'String', value: $ref.$ref, loc },
+        loc,
+      },
+    ],
+    loc,
+  };
 }
