@@ -39,7 +39,8 @@
     "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
-    "@prettier/sync": "^0.6.1",
+    "@biomejs/js-api": "^3.0.0",
+    "@biomejs/wasm-nodejs": "^2.2.4",
     "@terrazzo/token-tools": "workspace:^",
     "wildcard-match": "^5.1.4"
   },

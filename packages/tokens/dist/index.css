@@ -125,7 +125,8 @@
   --tz-font-label-small-letter-spacing: 0.0025rem;
   --tz-font-label-small-line-height: 1.25;
   --tz-font-mono: "Fragment Mono", ui-monospace, monospace;
-  --tz-font-sans: "Instrument Sans", system-ui, -apple-system, "Aptos", "Helvetica Neue", "Helvetica", "Arial", "Noto Sans", sans-serif, "Helvetica", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
+  --tz-font-sans:
+    "Instrument Sans", system-ui, -apple-system, "Aptos", "Helvetica Neue", "Helvetica", "Arial", "Noto Sans", sans-serif, "Helvetica", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
   --tz-layer-base: 10;
   --tz-layer-menu: 50;
   --tz-layer-modal: 100;
@@ -419,4 +420,5 @@
   --tz-color-text-error: var(--tz-color-base-gray-1000);
   --tz-color-text-selected: var(--tz-color-base-blue-800);
 }
+
 
