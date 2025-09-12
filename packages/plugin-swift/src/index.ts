@@ -1,5 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { tokenToCulori } from '@terrazzo/token-tools';
+import type { Color, P3 } from 'culori';
 import { toGamut } from 'culori';
 
 export const FORMAT = 'swift';
@@ -27,15 +28,19 @@ export interface ColorData {
   };
 }
 
-const toP3 = toGamut('p3', 'oklch');
-
 export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptions = {}): Plugin {
   return {
     name: '@terrazzo/plugin-swift',
     async transform({ tokens, setTransform }) {
+      // Defer toP3 creation to avoid import-time errors
+      let toP3: ((color: string | Color) => P3) | null = null;
+
       for (const [id, token] of Object.entries(tokens)) {
         switch (token.$type) {
           case 'color': {
+            if (!toP3) {
+              toP3 = toGamut('p3', 'oklch');
+            }
             for (const [mode, modeValue] of Object.entries(token.mode)) {
               if (!modeValue) {
                 continue;
@@ -44,6 +49,7 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
               if (!parsed) {
                 throw new Error(`Can’t convert color ${JSON.stringify(modeValue)} to Culori color`);
               }
+
               const { r: red, g: green, b: blue, alpha } = toP3(parsed);
               setTransform(id, {
                 format: FORMAT,
