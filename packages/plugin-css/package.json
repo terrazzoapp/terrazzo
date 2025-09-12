@@ -39,6 +39,7 @@
     "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
+    "@prettier/sync": "^0.6.1",
     "@terrazzo/token-tools": "workspace:^",
     "wildcard-match": "^5.1.4"
   },
