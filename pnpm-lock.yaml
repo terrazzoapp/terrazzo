@@ -4,42 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    '@humanwhocodes/momoa':
-      specifier: ^3.3.9
-      version: 3.3.9
-    '@types/culori':
-      specifier: ^4.0.1
-      version: 4.0.1
-    '@types/react':
-      specifier: ^19.1.12
-      version: 19.1.12
-    '@types/react-dom':
-      specifier: ^19.1.9
-      version: 19.1.9
-    '@vitejs/plugin-react-swc':
-      specifier: ^3.11.0
-      version: 3.11.0
-    culori:
-      specifier: ^4.0.2
-      version: 4.0.2
-    react:
-      specifier: ^19.1.1
-      version: 19.1.1
-    react-dom:
-      specifier: ^19.1.1
-      version: 19.1.1
-    vite:
-      specifier: ^7.1.5
-      version: 7.1.5
-    vitest:
-      specifier: ^3.2.4
-      version: 3.2.4
-    yaml-to-momoa:
-      specifier: ^0.0.6
-      version: 0.0.6
-
 patchedDependencies:
   vite-plugin-sass-dts:
     hash: b24cc0a26a7fb3be5953d16328d300540294f2b983fbef3e95a2e4ff0939a75e
@@ -224,6 +188,12 @@ importers:
 
   packages/plugin-css:
     dependencies:
+      '@biomejs/js-api':
+        specifier: ^3.0.0
+        version: 3.0.0(@biomejs/wasm-nodejs@2.2.4)
+      '@biomejs/wasm-nodejs':
+        specifier: ^2.2.4
+        version: 2.2.4
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools
@@ -1015,6 +985,23 @@ packages:
     engines: {node: '>=14.21.3'}
     cpu: [x64]
     os: [win32]
+
+  '@biomejs/js-api@3.0.0':
+    resolution: {integrity: sha512-5QcGJFj9IO+yXl76ICjvkdE38uxRcTDsBzcCZHEZ+ma+Te/nbvJg4A3KtAds9HCrEF0JKLWiyjMhAbqazuJvYA==}
+    peerDependencies:
+      '@biomejs/wasm-bundler': ^2.2.0
+      '@biomejs/wasm-nodejs': ^2.2.0
+      '@biomejs/wasm-web': ^2.2.0
+    peerDependenciesMeta:
+      '@biomejs/wasm-bundler':
+        optional: true
+      '@biomejs/wasm-nodejs':
+        optional: true
+      '@biomejs/wasm-web':
+        optional: true
+
+  '@biomejs/wasm-nodejs@2.2.4':
+    resolution: {integrity: sha512-ExHAa8W9uyinDhvxhe9CXA6V9bHka3RIs9jKQWlzOz7/LEt3IcFA+fo0O+9RdU30q7lmoo83VqUJwWPTLXeWiA==}
 
   '@braidai/lang@1.1.2':
     resolution: {integrity: sha512-qBcknbBufNHlui137Hft8xauQMTZDKdophmLFv05r2eNmdIv/MlPuP4TdUknHG68UdWLgVZwgxVe735HzJNIwA==}
@@ -6439,6 +6426,12 @@ snapshots:
 
   '@biomejs/cli-win32-x64@2.2.4':
     optional: true
+
+  '@biomejs/js-api@3.0.0(@biomejs/wasm-nodejs@2.2.4)':
+    optionalDependencies:
+      '@biomejs/wasm-nodejs': 2.2.4
+
+  '@biomejs/wasm-nodejs@2.2.4': {}
 
   '@braidai/lang@1.1.2': {}
 

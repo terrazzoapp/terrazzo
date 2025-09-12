@@ -542,8 +542,7 @@
 }
 
 .text-color-gradient-blue-to-green {
+  background: linear-gradient(var(--ds-color-gradient-blue-to-green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
 }
-

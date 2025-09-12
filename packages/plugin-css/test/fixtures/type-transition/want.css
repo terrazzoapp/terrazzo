@@ -51,4 +51,3 @@
   --ds-transition-linear-quick: var(--ds-timing-quick) 0ms var(--ds-ease-linear);
   --ds-transition-linear-slow: var(--ds-timing-slow) 0ms var(--ds-ease-linear);
 }
-

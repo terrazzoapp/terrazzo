@@ -81,8 +81,9 @@ describe('printRules', () => {
         font-size: var(--typography-default-font-size);
         font-weight: var(--typography-default-font-weight);
         line-height: var(--typography-default-line-height);
-      }"
-    `);
+      }
+      "
+      `);
   });
 
   it('nestedQuery', () => {
@@ -115,8 +116,9 @@ describe('printRules', () => {
           --color-blue-7: color(display-p3 0.12549 0.364706 0.619608);
           --color-blue-8: color(display-p3 0.156863 0.439216 0.741176);
         }
-      }"
-    `);
+      }
+      "
+      `);
   });
 
   it('nestedQuery (:root)', () => {
@@ -138,8 +140,9 @@ describe('printRules', () => {
           --color-blue-7: color(display-p3 0.12549 0.364706 0.619608);
           --color-blue-8: color(display-p3 0.156863 0.439216 0.741176);
         }
-      }"
-    `);
+      }
+      "
+      `);
   });
 
   it('complex selectors', () => {
@@ -152,9 +155,11 @@ describe('printRules', () => {
       },
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`
-      "[data-color-mode="light"][data-product="default"], [data-color-mode="light"] [data-product="default"] {
+      "[data-color-mode="light"][data-product="default"],
+      [data-color-mode="light"] [data-product="default"] {
         --color-blue-6: #104d87;
-      }"
-    `);
+      }
+      "
+      `);
   });
 });
