@@ -21,7 +21,7 @@ biome.applyConfiguration(projectKey, {
     formatter: {
       indentWidth: 2,
       indentStyle: 'space',
-      lineWidth: 120,
+      lineWidth: 320,
     },
   },
 });
@@ -32,6 +32,10 @@ export const formatCSS = (code: string) => {
 
 const joinSelectors = (selectors: string[]) => {
   return selectors.join(',\n');
+};
+
+const isVendorPrefixed = (property: string) => {
+  return property.startsWith('-webkit-');
 };
 
 export interface CSSPluginOptions {
@@ -111,6 +115,7 @@ export function printRules(rules: CSSRule[]): string {
       output.push(_printRule({ ...rule, selectors: joinableSelectors }));
     }
   }
+
   return formatCSS(output.join('\n\n'));
 }
 
@@ -183,7 +188,21 @@ function _printRule(rule: CSSRule): string {
   }
 
   const declarations = Object.entries(rule.declarations);
-  declarations.sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
+  declarations.sort((a, b) => {
+    const aIsVendorPrefixed = isVendorPrefixed(a[0]);
+    const bIsVendorPrefixed = isVendorPrefixed(b[0]);
+
+    // If one is vendor-prefixed and the other isn't, vendor-prefixed goes last
+    if (aIsVendorPrefixed && !bIsVendorPrefixed) {
+      return 1;
+    }
+    if (!aIsVendorPrefixed && bIsVendorPrefixed) {
+      return -1;
+    }
+
+    // If both are vendor-prefixed or both are standard, sort alphabetically
+    return a[0].localeCompare(b[0], 'en-us', { numeric: true });
+  });
   for (const [k, d] of declarations) {
     output.push(`${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
   }

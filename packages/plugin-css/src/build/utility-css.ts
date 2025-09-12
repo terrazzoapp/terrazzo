@@ -214,7 +214,7 @@ export default function generateUtilityCSS(
               output.push({
                 selectors: [selector],
                 declarations: {
-                  background: { value: `-webkit-linear-gradient(${value.value})` },
+                  background: { value: `linear-gradient(${value.value})` },
                   '-webkit-background-clip': { value: 'text' },
                   '-webkit-text-fill-color': { value: 'transparent' },
                 },
