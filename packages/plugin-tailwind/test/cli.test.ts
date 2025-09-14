@@ -5,14 +5,14 @@ import { execa } from 'execa';
 import { describe, expect, test } from 'vitest';
 import tailwind from '../src/index.js';
 
-const CMD = '../../../../cli/bin/cli.js';
+const cmd = '../../../../cli/bin/cli.js';
 
 describe('CLI', () => {
   const fixtures = ['primer'];
 
   test.each(fixtures)('%s', async (dir) => {
     const cwd = new URL(`./fixtures/${dir}/`, import.meta.url);
-    await execa('node', [CMD, 'build'], { cwd, stdout: 'inherit' });
+    await execa('node', [cmd, 'build'], { cwd, stdout: 'inherit' });
     await expect(fs.readFileSync(new URL('./actual.css', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.css', cwd)),
     );

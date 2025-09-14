@@ -6,10 +6,13 @@ packages:
 catalog:
   '@humanwhocodes/momoa': ^3.3.9
   '@types/culori': ^4.0.1
-  '@types/react': ^19.1.12
+  '@types/react': ^19.1.13
   '@types/react-dom': ^19.1.9
   '@vitejs/plugin-react-swc': ^3.11.0
+  '@vitest/browser': ^3.2.4
   culori: ^4.0.2
+  dtcg-examples: ^0.3.3
+  playwright: ^1.55.0
   react: ^19.1.1
   react-dom: ^19.1.1
   vite: ^7.1.5

@@ -35,6 +35,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
+      - run: pnpm exec playwright install
       - run: pnpm test
   test-macos:
     runs-on: macos-latest
@@ -46,6 +47,7 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
+      - run: pnpm exec playwright install
       - run: pnpm test
   test-windows:
     runs-on: windows-latest
@@ -57,4 +59,5 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
+      - run: pnpm exec playwright install
       - run: pnpm -r build && pnpm -r test

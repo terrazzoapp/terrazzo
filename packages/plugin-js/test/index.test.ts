@@ -1,12 +1,12 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { build, defineConfig, parse } from '@terrazzo/parser';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import js from '../src/index.js';
 
 describe('@terrazzo/plugin-js', () => {
   describe('snapshots', () => {
-    test.each(['border', 'color', 'shadow', 'transition', 'typography'])('%s', async (dir) => {
+    it.each(['border', 'color', 'shadow', 'transition', 'typography'])('%s', async (dir) => {
       const filename = 'actual.js';
       const cwd = new URL(`./${dir}/`, import.meta.url);
       const config = defineConfig(
@@ -39,6 +39,37 @@ describe('@terrazzo/plugin-js', () => {
       expect(mod.token(firstToken, '.')).toBeDefined();
       expect(mod.token(firstToken, 'bad-mode-wont-exist')).toBeUndefined();
       expect(mod.token('unequivocably.fake.token.value')).toBeUndefined();
+    });
+  });
+
+  describe('external DSs', () => {
+    it.each([
+      'adobe-spectrum',
+      'apple-hig',
+      'figma-sds',
+      'github-primer',
+      'ibm-carbon',
+      'microsoft-fluent',
+      'radix',
+      'salesforce-lightning',
+      'shopify-polaris',
+    ])('%s', async (name) => {
+      const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
+      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+      const config = defineConfig(
+        {
+          plugins: [
+            js({
+              js: 'want.js',
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+      await expect(result.outputFiles[1]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
     });
   });
 });
