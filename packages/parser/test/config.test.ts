@@ -94,7 +94,7 @@ describe('config', () => {
   describe('options', () => {
     it('outDir', () => {
       const config = defineConfig({ outDir: './custom-output/' }, { cwd: new URL(import.meta.url) });
-      expect(config.outDir.href).toMatch(/^file:\/\/\/.*\/packages\/parser\/test\/custom-output\/$/);
+      expect(config.outDir.href).toMatch(/^file:\/\/\/.*\/parser\/test\/custom-output\/$/);
     });
 
     it('ignore', async () => {

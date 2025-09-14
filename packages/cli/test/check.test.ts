@@ -5,12 +5,12 @@ import { describe, expect, it } from 'vitest';
 
 const PLATFORM = os.platform();
 
-const CMD = './bin/cli.js';
+const cmd = './bin/cli.js';
 
 describe('tz check', () => {
   it('valid', async () => {
     const cwd = new URL('../', import.meta.url);
-    const { stdout } = await execa('node', [CMD, 'check', 'test/fixtures/check-valid/tokens.json'], { cwd });
+    const { stdout } = await execa('node', [cmd, 'check', 'test/fixtures/check-valid/tokens.json'], { cwd });
     const output = stripAnsi(stdout);
     expect(output).toMatch('✔  No errors'); // note: this contains a timestamp that would be flaky
   });
@@ -32,7 +32,7 @@ describe('tz check', () => {
   it('invalid', async () => {
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
-      await execa('node', [CMD, 'check', 'test/fixtures/check-invalid/tokens.json'], { cwd });
+      await execa('node', [cmd, 'check', 'test/fixtures/check-invalid/tokens.json'], { cwd });
     };
 
     if (PLATFORM === 'win32') {

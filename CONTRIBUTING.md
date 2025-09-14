@@ -61,6 +61,7 @@ Tests are run in Node.js using [Vitest](https://vitest.dev/). To run _all_ tests
 
 ```sh
 pnpm run build
+pnpm exec playwright install
 pnpm test
 ```
 
