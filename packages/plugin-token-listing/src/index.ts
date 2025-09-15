@@ -1,9 +1,9 @@
-import type { PlatformOption, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
+import type { PlatformOption, ListedExtension, TokenListingPluginOptions } from './lib.js';
 import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';
 import type { Logger, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
 
-export * from './lib.js';
+export type { ListedExtension, ListedToken, TokenListing } from './lib.js';
 
 function getNameFromPlugin({
   getTransforms,
@@ -24,8 +24,6 @@ function getNameFromPlugin({
     mode,
   })[0];
 
-  console.log(pluginToken);
-
   // FIXME this line is made complicated because localID is not guaranteed to exist and be a string.
   return pluginToken && 'localID' in pluginToken ? `${pluginToken.localID}` : '';
 }
@@ -45,12 +43,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
     logger: Logger;
     getTransforms: (params: TransformParams) => TokenTransformed[];
     mode?: string;
-  }): TokenListingExtension => {
-    // TODO customPreviewValue
-    // TODO platforms to names
-    // TODO sourceOfTruth
-    // TODO source
-
+  }): ListedExtension => {
     const computedNames: Record<string, string> = {};
     for (const [pid, platform] of Object.entries(platforms)) {
       let name: string | undefined;
@@ -82,7 +75,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
       }
     }
 
-    const output: TokenListingExtension = {
+    const output: ListedExtension = {
       names: computedNames,
       originalValue: token.originalValue.$value,
     };
@@ -128,6 +121,7 @@ export default function tokenListingPlugin(options: TokenListingPluginOptions): 
           $name: token.id,
           $type: token.$type,
           $value: tokenInMode ? tokenInMode.$value : token.$value,
+          $description: token.$description,
           $deprecated: token.$deprecated,
           $extensions: {
             'app.terrazzo.listing': getListingMeta({ logger, token, tokensSet: tokens, getTransforms, mode }),

@@ -22,7 +22,7 @@ import type {
 export const FORMAT_ID = 'token-listing';
 
 /** Content of the DTCG $extension property computed by this plugin. */
-export interface TokenListingExtension {
+export interface ListedExtension {
   /** Dictionary of names for the current design token, in all platforms where it exists. */
   names: Record<string, string>;
 
@@ -72,10 +72,35 @@ export interface TokenListingExtension {
 export interface ListedToken {
   $name: string;
   $type: string;
+  $description: string;
   $value: string | number | boolean | Record<string, any>;
+  $deprecated?: boolean;
   $extensions: {
-    'app.terrazzo.listing': TokenListingExtension;
+    'app.terrazzo.listing': ListedExtension;
   };
+}
+
+export interface ModeOutput {
+  name: string;
+  values: string[];
+  description?: string;
+}
+
+export interface NamesOutput {
+  [platform: string]: {
+    description?: string;
+  };
+}
+
+export interface TokenListing {
+  meta: {
+    version: 1;
+    authoringTool: string;
+    modes: ModeOutput[];
+    names: NamesOutput;
+    sourceOfTruth?: string;
+  };
+  data: ListedToken[];
 }
 
 export type ModeOption = {

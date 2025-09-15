@@ -149,6 +149,9 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
+      '@terrazzo/plugin-sass':
+        specifier: workspace:^
+        version: link:../plugin-sass
       '@terrazzo/plugin-token-listing':
         specifier: workspace:^
         version: link:../plugin-token-listing
@@ -555,6 +558,19 @@ importers:
       vitest-axe:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.2.1)(jiti@2.4.2)(jsdom@24.1.3)(sass-embedded@1.85.1)(yaml@2.8.0))
+
+  packages/token-diff:
+    dependencies:
+      '@humanwhocodes/momoa':
+        specifier: ^3.3.8
+        version: 3.3.8
+    devDependencies:
+      '@terrazzo/plugin-token-listing':
+        specifier: workspace:^
+        version: link:../plugin-token-listing
+      '@types/culori':
+        specifier: ^4.0.0
+        version: 4.0.0
 
   packages/token-lab:
     dependencies:

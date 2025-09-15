@@ -27,7 +27,7 @@
     "directory": "./packages/plugin-token-listing/"
   },
   "scripts": {
-    "build": "rolldown && attw --profile esm-only --pack .",
+    "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
     "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/plugin-token-listing run \"/^lint:(js|ts)/\"",
