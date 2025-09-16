@@ -46,6 +46,7 @@
   },
   "devDependencies": {
     "@types/culori": "^4.0.0",
-    "@terrazzo/plugin-token-listing": "workspace:^"
+    "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
   }
 }

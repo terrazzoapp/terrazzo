@@ -12,6 +12,7 @@
     "@terrazzo/plugin-css": "workspace:^",
     "@terrazzo/plugin-sass": "workspace:^",
     "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/token-diff": "workspace:^",
     "@terrazzo/token-tools": "workspace:^"
   },
   "keywords": [],

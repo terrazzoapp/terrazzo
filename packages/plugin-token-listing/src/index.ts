@@ -3,7 +3,7 @@ import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';
 import type { Logger, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
 
-export type { ListedExtension, ListedToken, TokenListing } from './lib.js';
+export type { ListedExtension, ListedToken, TokenListing, Value } from './lib.js';
 
 function getNameFromPlugin({
   getTransforms,

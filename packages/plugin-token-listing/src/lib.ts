@@ -45,7 +45,7 @@ export interface ListedExtension {
   };
 
   /** Value that can be used to preview this token in a Web environment. */
-  previewValue?: PreviewValue;
+  previewValue?: Value;
 
   /** Original value of the token, with aliases preserved. */
   originalValue?:
@@ -73,7 +73,7 @@ export interface ListedToken {
   $name: string;
   $type: string;
   $description: string;
-  $value: string | number | boolean | Record<string, any>;
+  $value: Value;
   $deprecated?: boolean;
   $extensions: {
     'app.terrazzo.listing': ListedExtension;
@@ -124,10 +124,10 @@ export type SourceOfTruthOption =
       custom: (token: TokenNormalized) => string | undefined;
     };
 
-interface PreviewValueObject {
-  [key: string]: string | number | boolean | PreviewValueObject;
+interface ValueObject {
+  [key: string]: string | number | boolean | ValueObject;
 }
-export type PreviewValue = string | number | boolean | PreviewValueObject;
+export type Value = string | number | boolean | ValueObject;
 
 export type Subtype =
   | 'bgColor'
@@ -178,7 +178,7 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
-  previewValue?: (token: TokenNormalized) => PreviewValue | undefined;
+  previewValue?: (token: TokenNormalized) => Value | undefined;
 
   /**
    * Hook to compute subtypes for design tokens, e.g. to hint which colors are backgrounds, borders,
