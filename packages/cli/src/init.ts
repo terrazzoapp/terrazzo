@@ -214,9 +214,9 @@ export async function initCmd({ logger }: InitOptions) {
         const pluginsAst = plugins.map(
           (p) =>
             ({
-              type: 'CallExpression',
+              type: 'CallExpression' as const,
               callee: {
-                type: 'Identifier',
+                type: 'Identifier' as const,
                 name: p.specifier,
               },
               arguments: [],
@@ -254,6 +254,7 @@ export async function initCmd({ logger }: InitOptions) {
           DEFAULT_CONFIG_PATH,
           `import { defineConfig } from '@terrazzo/cli';
 ${plugins.map((p) => `import ${p.specifier} from '${p.package}';`).join('\n')}
+
 export default defineConfig({
   tokens: ['./tokens.json'],
   plugins: [
@@ -262,6 +263,27 @@ export default defineConfig({
   outDir: './dist/',
   lint: {
     /** @see https://terrazzo.app/docs/cli/lint */
+    enabled: true,
+    rules: {
+      'core/valid-color': 'error',
+      'core/valid-dimension': 'error',
+      'core/valid-font-family': 'error',
+      'core/valid-font-weight': 'error',
+      'core/valid-duration': 'error',
+      'core/valid-cubic-bezier': 'error',
+      'core/valid-number': 'error',
+      'core/valid-link': 'error',
+      'core/valid-boolean': 'error',
+      'core/valid-string': 'error',
+      'core/valid-stroke-style': 'error',
+      'core/valid-border': 'error',
+      'core/valid-transition': 'error',
+      'core/valid-shadow': 'error',
+      'core/valid-gradient': 'error',
+      'core/valid-typography': 'error',
+      'core/consistent-naming': 'warn',
+      'no-type-on-alias': 'error',
+    },
   },
 });`,
         );
