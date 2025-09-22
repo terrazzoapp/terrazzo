@@ -1,7 +1,7 @@
 import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
-import { getObjMember } from './json.js';
 
 interface PreValidatedToken {
   id: string;

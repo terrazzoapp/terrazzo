@@ -17,7 +17,7 @@ describe('8.4 Font Weight', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              'font-weight': {
+              fontWeight: {
                 $type: 'fontWeight',
                 thin: { $value: 'thin' },
                 hairline: { $value: 'hairline' },

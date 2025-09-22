@@ -1,5 +1,6 @@
 import type { NumberNode, ObjectNode } from '@humanwhocodes/momoa';
-import { getObjMember } from '../../../parse/json.js';
+import { getObjMember } from '@terrazzo/json-schema-tools';
+import { isAlias } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -36,7 +37,11 @@ const rule: LintRule<typeof ERROR_NAN> = {
         case 'typography': {
           const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode;
           if (typeof t.originalValue.$value === 'object') {
-            if (t.originalValue.$value.lineHeight && typeof t.originalValue.$value.lineHeight !== 'object') {
+            if (
+              t.originalValue.$value.lineHeight &&
+              !isAlias(t.originalValue.$value.lineHeight as string) &&
+              typeof t.originalValue.$value.lineHeight !== 'object'
+            ) {
               validateNumber(t.originalValue.$value.lineHeight, {
                 node: getObjMember($valueNode, 'lineHeight') as NumberNode,
                 filename: t.source.filename,

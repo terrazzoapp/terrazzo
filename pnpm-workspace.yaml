@@ -17,7 +17,7 @@ catalog:
   react-dom: ^19.1.1
   vite: ^7.1.6
   vitest: ^3.2.4
-  yaml-to-momoa: ^0.0.6
+  yaml-to-momoa: 0.0.6
 
 onlyBuiltDependencies:
   - '@biomejs/biome'

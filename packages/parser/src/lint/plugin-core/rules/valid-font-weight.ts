@@ -1,6 +1,6 @@
 import type { NumberNode, ObjectNode, StringNode } from '@humanwhocodes/momoa';
+import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS } from '@terrazzo/token-tools';
-import { getObjMember, getObjMembers } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

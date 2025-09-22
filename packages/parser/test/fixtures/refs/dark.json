@@ -2,14 +2,14 @@
   "base": {
     "color": {
       "$ref": "./base/colors-light.json#/base/color",
-      "black": { "$value": "#010409", "$type": "color" },
+      "black": { "$value": { "colorSpace": "srgb", "components": [0, 0.02, 0.04] }, "$type": "color" },
       "blue": {
         "0": {
-          "$value": "#cae8ff",
+          "$value": { "colorSpace": "srgb", "components": [0.78, 0.91, 1], "hex": "#cae8ff" },
           "$type": "color"
         },
         "1": {
-          "$value": "#a5d6ff",
+          "$value": { "colorSpace": "srgb", "components": [0.65, 0.84, 1], "hex": "#a5d6ff" },
           "$type": "color"
         },
         "$ref": "./base/colors-light.json#/base/color/blue"

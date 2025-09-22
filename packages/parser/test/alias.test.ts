@@ -15,7 +15,7 @@ describe('7 Alias', () => {
                   blue: {
                     500: {
                       $type: 'color',
-                      $value: 'color(srgb 0 0.2 1)',
+                      $value: { colorSpace: 'srgb', components: [0, 0.2, 1] },
                     },
                   },
                 },
@@ -34,6 +34,7 @@ describe('7 Alias', () => {
               $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
               aliasOf: 'color.base.blue.500',
               aliasChain: ['color.base.blue.500'],
+              dependencies: ['#/color/base/blue/500/$value'],
             },
           },
         },
@@ -46,13 +47,18 @@ describe('7 Alias', () => {
           {
             filename: new URL('file:///tokens.yaml'),
             src: `color:
-      base:
-        blue:
-          500:
-            $type: color
-            $value: color(srgb 0 0.2 1)
-      semantic:
-        $value: "{color.base.blue.500}"`,
+  base:
+    blue:
+      500:
+        $type: color
+        $value:
+          colorSpace: srgb
+          components:
+            - 0
+            - 0.2
+            - 1
+  semantic:
+    $value: "{color.base.blue.500}"`,
           },
         ],
         want: {
@@ -65,6 +71,7 @@ describe('7 Alias', () => {
               $value: { alpha: 1, components: [0, 0.2, 1], colorSpace: 'srgb' },
               aliasOf: 'color.base.blue.500',
               aliasChain: ['color.base.blue.500'],
+              dependencies: ['#/color/base/blue/500/$value'],
             },
           },
         },
@@ -78,14 +85,19 @@ describe('7 Alias', () => {
             filename: DEFAULT_FILENAME,
             src: {
               font: { weight: { bold: { $type: 'fontWeight', $value: 700 } } },
-              bold: { $type: 'fontWeight', $value: '{font.weight.bold}' },
+              bold: { $value: '{font.weight.bold}' },
             },
           },
         ],
         want: {
           tokens: {
             'font.weight.bold': { $value: 700, aliasedBy: ['bold'] },
-            bold: { $value: 700, aliasOf: 'font.weight.bold', aliasChain: ['font.weight.bold'] },
+            bold: {
+              $value: 700,
+              aliasOf: 'font.weight.bold',
+              aliasChain: ['font.weight.bold'],
+              dependencies: ['#/font/weight/bold/$value'],
+            },
           },
         },
       },
@@ -97,19 +109,23 @@ describe('7 Alias', () => {
           {
             filename: new URL('file:///tokens.yaml'),
             src: `bold:
-      $type: fontWeight
-      $value: "{font.weight.700}"
-    font:
-      weight:
-        $type: fontWeight
-        700:
-          $value: 700`,
+  $value: "{font.weight.700}"
+font:
+  weight:
+    $type: fontWeight
+    700:
+      $value: 700`,
           },
         ],
         want: {
           tokens: {
             'font.weight.700': { $value: 700, aliasedBy: ['bold'] },
-            bold: { $value: 700, aliasOf: 'font.weight.700', aliasChain: ['font.weight.700'] },
+            bold: {
+              $value: 700,
+              aliasOf: 'font.weight.700',
+              aliasChain: ['font.weight.700'],
+              dependencies: ['#/font/weight/700/$value'],
+            },
           },
         },
       },
@@ -121,7 +137,7 @@ describe('7 Alias', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              buttonStroke: {
+              'button-stroke': {
                 $type: 'strokeStyle',
                 $value: { lineCap: 'round', dashArray: ['{size.2}', '{size.3}'] },
               },
@@ -135,7 +151,7 @@ describe('7 Alias', () => {
         ],
         want: {
           tokens: {
-            buttonStroke: {
+            'button-stroke': {
               $value: {
                 lineCap: 'round',
                 dashArray: [
@@ -164,7 +180,10 @@ describe('7 Alias', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              color: { $type: 'color', semantic: { subdued: { $value: 'color(srgb 0 0 0 / 0.1)' } } },
+              color: {
+                $type: 'color',
+                semantic: { subdued: { $value: { colorSpace: 'srgb', components: [0, 0, 0] } } },
+              },
               border: {
                 size: { $type: 'dimension', default: { $value: { value: 1, unit: 'px' } } },
                 style: { $type: 'strokeStyle', default: { $value: 'solid' } },
@@ -221,8 +240,8 @@ describe('7 Alias', () => {
             src: {
               color: {
                 $type: 'color',
-                blue: { 500: { $value: 'rgb(2, 101, 220)' } },
-                purple: { 800: { $value: 'rgb(93, 19, 183)' } },
+                blue: { 500: { $value: { colorSpace: 'srgb', components: [0.01, 0.4, 0.86] } } },
+                purple: { 800: { $value: { colorSpace: 'srgb', components: [0.365, 0.075, 0.718] } } },
               },
               perc: {
                 $type: 'number',
@@ -242,19 +261,11 @@ describe('7 Alias', () => {
         want: {
           tokens: {
             'color.blue.500': {
-              $value: {
-                alpha: 1,
-                components: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
-                colorSpace: 'srgb',
-              },
+              $value: { alpha: 1, components: [0.01, 0.4, 0.86], colorSpace: 'srgb' },
               aliasedBy: ['gradient'],
             },
             'color.purple.800': {
-              $value: {
-                alpha: 1,
-                components: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
-                colorSpace: 'srgb',
-              },
+              $value: { alpha: 1, components: [0.365, 0.075, 0.718], colorSpace: 'srgb' },
               aliasedBy: ['gradient'],
             },
             'perc.0': {
@@ -268,19 +279,11 @@ describe('7 Alias', () => {
             gradient: {
               $value: [
                 {
-                  color: {
-                    alpha: 1,
-                    components: [0.00784313725490196, 0.396078431372549, 0.8627450980392157],
-                    colorSpace: 'srgb',
-                  },
+                  color: { alpha: 1, components: [0.01, 0.4, 0.86], colorSpace: 'srgb' },
                   position: 0,
                 },
                 {
-                  color: {
-                    alpha: 1,
-                    components: [0.36470588235294116, 0.07450980392156863, 0.7176470588235294],
-                    colorSpace: 'srgb',
-                  },
+                  color: { alpha: 1, components: [0.365, 0.075, 0.718], colorSpace: 'srgb' },
                   position: 1,
                 },
               ],
@@ -313,7 +316,7 @@ describe('7 Alias', () => {
                 c: { $value: '{alias.d}' },
                 d: { $value: '{alias.e}' },
                 e: { $value: '{alias.f}' },
-                f: { $value: '#808080' },
+                f: { $value: { colorSpace: 'srgb', components: [0.5, 0.5, 0.5], hex: '#808080' } },
               },
             },
           },
@@ -323,57 +326,72 @@ describe('7 Alias', () => {
             'alias.a': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
               aliasChain: ['alias.b', 'alias.c', 'alias.d', 'alias.e', 'alias.f'],
               aliasOf: 'alias.f',
+              dependencies: [
+                '#/alias/b/$value',
+                '#/alias/c/$value',
+                '#/alias/d/$value',
+                '#/alias/e/$value',
+                '#/alias/f/$value',
+              ],
             },
             'alias.b': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
               aliasChain: ['alias.c', 'alias.d', 'alias.e', 'alias.f'],
               aliasOf: 'alias.f',
+              aliasedBy: ['alias.a'],
+              dependencies: ['#/alias/c/$value', '#/alias/d/$value', '#/alias/e/$value', '#/alias/f/$value'],
             },
             'alias.c': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
               aliasChain: ['alias.d', 'alias.e', 'alias.f'],
               aliasOf: 'alias.f',
+              aliasedBy: ['alias.a', 'alias.b'],
+              dependencies: ['#/alias/d/$value', '#/alias/e/$value', '#/alias/f/$value'],
             },
             'alias.d': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
               aliasChain: ['alias.e', 'alias.f'],
               aliasOf: 'alias.f',
+              aliasedBy: ['alias.a', 'alias.b', 'alias.c'],
+              dependencies: ['#/alias/e/$value', '#/alias/f/$value'],
             },
             'alias.e': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
               aliasChain: ['alias.f'],
               aliasOf: 'alias.f',
+              aliasedBy: ['alias.a', 'alias.b', 'alias.c', 'alias.d'],
+              dependencies: ['#/alias/f/$value'],
             },
             'alias.f': {
               $value: {
                 alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
+                components: [0.5, 0.5, 0.5],
                 colorSpace: 'srgb',
                 hex: '#808080',
               },
@@ -392,7 +410,7 @@ describe('7 Alias', () => {
             src: {
               alias: {
                 $type: 'color',
-                a: { $value: '#808080' },
+                a: { $value: { colorSpace: 'srgb', components: [0.5, 0.5, 0.5] } },
                 b: { $value: '{alias.f}' },
                 c: { $value: '{alias.e}' },
                 d: { $value: '{alias.a}' },
@@ -405,63 +423,48 @@ describe('7 Alias', () => {
         want: {
           tokens: {
             'alias.a': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasedBy: ['alias.b', 'alias.c', 'alias.d', 'alias.e', 'alias.f'],
             },
             'alias.b': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
-              aliasChain: ['alias.f', 'alias.c', 'alias.e', 'alias.d', 'alias.a'],
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasOf: 'alias.a',
+              aliasChain: ['alias.f', 'alias.c', 'alias.e', 'alias.d', 'alias.a'],
+              dependencies: [
+                '#/alias/a/$value',
+                '#/alias/c/$value',
+                '#/alias/d/$value',
+                '#/alias/e/$value',
+                '#/alias/f/$value',
+              ],
             },
             'alias.c': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasChain: ['alias.e', 'alias.d', 'alias.a'],
               aliasOf: 'alias.a',
+              aliasedBy: ['alias.b', 'alias.f'],
+              dependencies: ['#/alias/a/$value', '#/alias/d/$value', '#/alias/e/$value'],
             },
             'alias.d': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
-              aliasChain: ['alias.a'],
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasOf: 'alias.a',
+              aliasChain: ['alias.a'],
+              aliasedBy: ['alias.b', 'alias.c', 'alias.e', 'alias.f'],
+              dependencies: ['#/alias/a/$value'],
             },
             'alias.e': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
-              aliasChain: ['alias.d', 'alias.a'],
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasOf: 'alias.a',
+              aliasChain: ['alias.d', 'alias.a'],
+              aliasedBy: ['alias.b', 'alias.c', 'alias.f'],
+              dependencies: ['#/alias/a/$value', '#/alias/d/$value'],
             },
             'alias.f': {
-              $value: {
-                alpha: 1,
-                components: [0.5019607843137255, 0.5019607843137255, 0.5019607843137255],
-                colorSpace: 'srgb',
-                hex: '#808080',
-              },
-              aliasChain: ['alias.c', 'alias.e', 'alias.d', 'alias.a'],
+              $value: { alpha: 1, components: [0.5, 0.5, 0.5], colorSpace: 'srgb' },
               aliasOf: 'alias.a',
+              aliasChain: ['alias.c', 'alias.e', 'alias.d', 'alias.a'],
+              aliasedBy: ['alias.b'],
+              dependencies: ['#/alias/a/$value', '#/alias/c/$value', '#/alias/d/$value', '#/alias/e/$value'],
             },
           },
         },
@@ -475,22 +478,22 @@ describe('7 Alias', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
                 semantic: { $value: '{color.base.blue.600}' },
               },
             },
           },
         ],
         want: {
-          error: `[parser:init] Could not resolve $ref "#/color/base/blue/600/$value"
+          error: `[parser:init] Could not resolve alias {color.base.blue.600}.
 
-  10 |     },
-  11 |     "semantic": {
-> 12 |       "$value": "{color.base.blue.600}"
+  17 |     },
+  18 |     "semantic": {
+> 19 |       "$value": "{color.base.blue.600}"
      |                 ^
-  13 |     }
-  14 |   }
-  15 | }`,
+  20 |     }
+  21 |   }
+  22 | }`,
         },
       },
     ],
@@ -502,7 +505,7 @@ describe('7 Alias', () => {
             filename: new URL('file:///a.json'),
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
               },
             },
           },
@@ -514,7 +517,7 @@ describe('7 Alias', () => {
           },
         ],
         want: {
-          error: `[parser:init] Could not resolve $ref "#/color/base/blue/600/$value"
+          error: `[parser:init] Could not resolve alias {color.base.blue.600}.
 
   1 | {
   2 |   "semantic": {
@@ -626,7 +629,7 @@ describe('7 Alias', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-border] Border token missing required properties: color, width, and style.
+          error: `[parser:init] Cannot alias to $type "dimension" from $type "border".
 
   12 |     "base": {
   13 |       "$type": "border",
@@ -634,9 +637,7 @@ describe('7 Alias', () => {
      |                 ^
   15 |     }
   16 |   }
-  17 | }
-
-[lint:lint] 1 error`,
+  17 | }`,
         },
       },
     ],
@@ -675,17 +676,15 @@ describe('7 Alias', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-dimension] Invalid dimension: {"colorSpace":"srgb","components":[0.062745098,0.062745098,0.6039215686],"hex":"#10109a"}. Expected object with "value" and "unit".
+          error: `[parser:init] Cannot alias to $type "color" from $type "dimension".
 
-  25 |       "$value": {
+  23 |     "nested": {
+  24 |       "$type": "border",
+> 25 |       "$value": {
+     |                 ^
   26 |         "color": "{color.blue}",
-> 27 |         "width": "{color.blue}",
-     |                  ^
-  28 |         "style": "{stroke.solid}"
-  29 |       }
-  30 |     }
-
-[lint:lint] 1 error`,
+  27 |         "width": "{color.blue}",
+  28 |         "style": "{stroke.solid}"`,
         },
       },
     ],
@@ -727,7 +726,17 @@ describe('7 Alias', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-gradient] Expected number 0-1, received {"value":100,"unit":"ms"}.
+          error: `[lint:core/valid-gradient] Expected number 0-1, received {stop.0}.
+
+  35 |         {
+  36 |           "color": "{color.blue}",
+> 37 |           "position": "{stop.0}"
+     |                       ^
+  38 |         },
+  39 |         {
+  40 |           "color": "{color.blue}",
+
+[lint:core/valid-gradient] Expected number 0-1, received {duration.s}.
 
   39 |         {
   40 |           "color": "{color.blue}",
@@ -737,7 +746,7 @@ describe('7 Alias', () => {
   43 |       ]
   44 |     }
 
-[lint:lint] 1 error`,
+[lint:lint] 2 errors`,
         },
       },
     ],
@@ -750,7 +759,7 @@ describe('7 Alias', () => {
             src: {
               dimension: { $type: 'dimension', s: { $value: { value: 0.5, unit: 'rem' } } },
               number: { $type: 'number', 50: { $value: 50 } },
-              strokeStyle: {
+              'stroke-style': {
                 $type: 'strokeStyle',
                 dashed: { $value: { dashArray: ['{dimension.s}', '{number.50}'], lineCap: 'round' } },
               },
@@ -768,7 +777,7 @@ describe('7 Alias', () => {
   25 |         "lineCap": "round"
   26 |       }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],

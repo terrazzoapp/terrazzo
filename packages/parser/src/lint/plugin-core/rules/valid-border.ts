@@ -1,17 +1,19 @@
-import type { AnyNode } from '@humanwhocodes/momoa';
+import type { AnyNode, ObjectNode } from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import { BORDER_REQUIRED_PROPERTIES } from '@terrazzo/token-tools';
-import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_BORDER = 'core/valid-border';
 
 const ERROR = 'ERROR';
+const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 
-const rule: LintRule<typeof ERROR, {}> = {
+const rule: LintRule<typeof ERROR | typeof ERROR_INVALID_PROP, {}> = {
   meta: {
     messages: {
       [ERROR]: `Border token missing required properties: ${new Intl.ListFormat(undefined, { type: 'conjunction' }).format(BORDER_REQUIRED_PROPERTIES)}.`,
+      [ERROR_INVALID_PROP]: 'Unknown property: {{ key }}.',
     },
     docs: {
       description: 'Require border tokens to follow the format.',
@@ -36,6 +38,17 @@ const rule: LintRule<typeof ERROR, {}> = {
     function validateBorder(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
       if (!value || typeof value !== 'object' || !BORDER_REQUIRED_PROPERTIES.every((property) => property in value)) {
         report({ messageId: ERROR, filename, node });
+      } else {
+        for (const key of Object.keys(value)) {
+          if (!BORDER_REQUIRED_PROPERTIES.includes(key as (typeof BORDER_REQUIRED_PROPERTIES)[number])) {
+            report({
+              messageId: ERROR_INVALID_PROP,
+              data: { key: JSON.stringify(key) },
+              node: getObjMember(node as ObjectNode, key) ?? node,
+              filename,
+            });
+          }
+        }
       }
     }
   },

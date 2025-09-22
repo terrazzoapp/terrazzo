@@ -1,6 +1,6 @@
 import type { ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import { getObjMember, isPure$ref } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import { getObjMember, isPure$ref } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

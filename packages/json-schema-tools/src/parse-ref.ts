@@ -21,7 +21,7 @@ export interface ParsedRef {
  * because the behavior changes based on whether we ever encounter a "#"
  * character, and we don’t know until we’ve made a full pass.
  */
-export default function parseJSONPointer(ref: string): ParsedRef {
+export function parseRef(ref: string): ParsedRef {
   const final: ParsedRef = { url: '.' };
   if (typeof ref !== 'string' || ref === '') {
     return final;

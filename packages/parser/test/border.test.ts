@@ -58,6 +58,40 @@ describe('9.3 Border', () => {
         },
       },
     ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              border: {
+                $type: 'border',
+                $value: {
+                  color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15 },
+                  style: 'solid',
+                  width: { value: 1, unit: 'px' },
+                  bad: 'foo',
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-border] Unknown property: "bad".
+
+  17 |         "unit": "px"
+  18 |       },
+> 19 |       "bad": "foo"
+     |              ^
+  20 |     }
+  21 |   }
+  22 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, testCase) => parserTest(testCase));

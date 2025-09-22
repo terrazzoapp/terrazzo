@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import parseRef from './index.js';
+import { parseRef } from '../src/index.js';
 
 describe('parseRef', () => {
   const tests: [Parameters<typeof parseRef>[0], ReturnType<typeof parseRef>][] = [

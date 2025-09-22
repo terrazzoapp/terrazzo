@@ -4,8 +4,6 @@ import Logger from '../logger.js';
 import type { ConfigInit, InputSource, ParseOptions } from '../types.js';
 import { loadSources } from './load.js';
 
-export * from './json.js';
-
 export interface ParseResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];

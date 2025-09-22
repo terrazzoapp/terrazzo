@@ -42,7 +42,7 @@ describe('9.6 Gradient', () => {
               gradient: {
                 $type: 'gradient',
                 $value: [
-                  { color: 'foo', position: 0 },
+                  { color: { colorSpace: 'mud' }, position: 0 },
                   { color: { alpha: 1, components: [1, 0.6, 0], colorSpace: 'srgb', hex: '#ff9900' }, position: 1 },
                 ],
               },
@@ -50,15 +50,15 @@ describe('9.6 Gradient', () => {
           },
         ],
         want: {
-          error: `[lint:core/valid-color] Could not parse color "foo".
+          error: `[lint:core/valid-color] Invalid color space: mud. Expected a98-rgb, display-p3, hsl, hwb, lab, lab-d65, lch, oklab, oklch, okhsv, prophoto-rgb, rec2020, srgb, srgb-linear, xyz-d50, xyz, or xyz-d65
 
-  4 |     "$value": [
-  5 |       {
-> 6 |         "color": "foo",
-    |                  ^
-  7 |         "position": 0
-  8 |       },
-  9 |       {
+   5 |       {
+   6 |         "color": {
+>  7 |           "colorSpace": "mud"
+     |                         ^
+   8 |         },
+   9 |         "position": 0
+  10 |       },
 
 [lint:lint] 1 error`,
         },
@@ -126,6 +126,41 @@ describe('9.6 Gradient', () => {
   19 |         "color": {
   20 |           "alpha": 1,
   21 |           "components": [
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              gradient: {
+                $type: 'gradient',
+                $value: [
+                  {
+                    color: { alpha: 1, components: [0.4, 0.2, 0.6], colorSpace: 'srgb', hex: '#663399' },
+                    position: 0,
+                    bad: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-gradient] Unknown property "bad".
+
+  3 |     "$type": "gradient",
+  4 |     "$value": [
+> 5 |       {
+    |       ^
+  6 |         "color": {
+  7 |           "alpha": 1,
+  8 |           "components": [
 
 [lint:lint] 1 error`,
         },

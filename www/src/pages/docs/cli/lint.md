@@ -400,7 +400,18 @@ import { defineConfig } from "@terrazzo/cli";
 export default defineConfig({
   lint: {
     rules: {
-      "core/valid-typography": "error",
+      "core/valid-typography": [
+        "error",
+        {
+          requiredProperties: [
+            "fontFamily",
+            "fontSize",
+            "fontWeight",
+            "lineHeight",
+            "letterSpacing",
+          ],
+        },
+      ],
     },
   },
 });
@@ -615,6 +626,12 @@ export default defineConfig({
 | matches[n].**modes** | Array of strings to match against mode names, e.g. `["mobile", "desktop", …]` |
 
 ### core/required-typography-properites
+
+:::warn
+
+This rule is deprecated in favor of `core/valid-typography`.
+
+:::
 
 Enforce typography tokens have required properties.
 

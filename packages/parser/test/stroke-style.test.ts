@@ -6,8 +6,8 @@ describe('9.2 Stroke Style', () => {
     [
       'valid: string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { borderStyle: { $type: 'strokeStyle', $value: 'double' } } }],
-        want: { tokens: { borderStyle: { $value: 'double' } } },
+        given: [{ filename: DEFAULT_FILENAME, src: { 'border-style': { $type: 'strokeStyle', $value: 'double' } } }],
+        want: { tokens: { 'border-style': { $value: 'double' } } },
       },
     ],
     [
@@ -17,7 +17,7 @@ describe('9.2 Stroke Style', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              borderStyle: {
+              'border-style': {
                 $type: 'strokeStyle',
                 $value: {
                   lineCap: 'square',
@@ -32,7 +32,7 @@ describe('9.2 Stroke Style', () => {
         ],
         want: {
           tokens: {
-            borderStyle: {
+            'border-style': {
               $value: {
                 lineCap: 'square',
                 dashArray: [
@@ -48,18 +48,18 @@ describe('9.2 Stroke Style', () => {
     [
       'invalid: unknown string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { borderStyle: { $type: 'strokeStyle', $value: 'thicc' } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { 'border-style': { $type: 'strokeStyle', $value: 'thicc' } } }],
         want: {
           error: `[lint:core/valid-stroke-style] Value most be one of solid, dashed, dotted, double, groove, ridge, outset, or inset.
 
-  2 |   "borderStyle": {
+  2 |   "border-style": {
   3 |     "$type": "strokeStyle",
 > 4 |     "$value": "thicc"
     |               ^
   5 |   }
   6 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -70,7 +70,7 @@ describe('9.2 Stroke Style', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              borderStyle: {
+              'border-style': {
                 $type: 'strokeStyle',
                 $value: { lineCap: 'round', dashArray: ['0.25rem', '0.5rem'] },
               },
@@ -98,7 +98,43 @@ describe('9.2 Stroke Style', () => {
   10 |     }
   11 |   }
 
-[lint:lint] 2 errors, 1 warning`,
+[lint:lint] 2 errors`,
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              'border-style': {
+                $type: 'strokeStyle',
+                $value: {
+                  lineCap: 'square',
+                  dashArray: [
+                    { value: 0.25, unit: 'rem' },
+                    { value: 0.5, unit: 'rem' },
+                  ],
+                  bad: true,
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-stroke-style] Unknown property: "bad".
+
+  14 |         }
+  15 |       ],
+> 16 |       "bad": true
+     |              ^
+  17 |     }
+  18 |   }
+  19 | }
+
+[lint:lint] 1 error`,
         },
       },
     ],

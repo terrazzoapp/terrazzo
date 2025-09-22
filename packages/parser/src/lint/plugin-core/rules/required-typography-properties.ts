@@ -20,6 +20,9 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
   },
   defaultOptions: { properties: [] },
   create({ tokens, options, report }) {
+    report({
+      message: `This rule is deprecated. Please migrate to core/valid-typography.`,
+    });
     if (!options) {
       return;
     }

@@ -1,6 +1,7 @@
 .turbo
 biome.*
 rolldown.*
+src/
 test/
 tsconfig.*
 vitest.*

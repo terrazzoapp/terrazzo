@@ -1,17 +1,17 @@
 import Pointer from '@apidevtools/json-schema-ref-parser/lib/pointer.js';
 import { bench, describe } from 'vitest';
-import parsePointer from './index.js';
+import { parseRef } from '../src/index.js';
 
 const TEST_CASES = ['#/foo/bar', 'https://example.com/schema#/foo/bar', '#/foo~0/~1bar', ''];
 
 describe('benchmark', () => {
-  bench('@terrazzo/json-ref-parser', () => {
-    parsePointer(TEST_CASES[0]!);
+  bench('@terrazzo/json-schema-tools', () => {
+    parseRef(TEST_CASES[0]!);
   });
 
-  bench('@terrazzo/json-ref-parser (full)', () => {
+  bench('@terrazzo/json-schema-tools (full)', () => {
     for (const t of TEST_CASES) {
-      parsePointer(t);
+      parseRef(t);
     }
   });
 

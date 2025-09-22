@@ -299,6 +299,34 @@ describe('8.1 Color', () => {
         },
       },
     ],
+    [
+      'invalid: unknown props',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], bad: true } },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-color] Unknown property "bad".
+
+  10 |           1
+  11 |         ],
+> 12 |         "bad": true
+     |                ^
+  13 |       }
+  14 |     }
+  15 |   }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, testCase) => parserTest(testCase));

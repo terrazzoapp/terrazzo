@@ -1,12 +1,13 @@
 import type { AnyNode, ObjectNode } from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
 export const VALID_DURATION = 'core/valid-duration';
 
 const ERROR_FORMAT = 'ERROR_FORMAT';
+const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 const ERROR_LEGACY = 'ERROR_LEGACY';
 const ERROR_UNIT = 'ERROR_UNIT';
 const ERROR_VALUE = 'ERROR_VALUE';
@@ -25,13 +26,14 @@ export interface RuleValidDimension {
 }
 
 const rule: LintRule<
-  typeof ERROR_FORMAT | typeof ERROR_LEGACY | typeof ERROR_UNIT | typeof ERROR_VALUE,
+  typeof ERROR_FORMAT | typeof ERROR_LEGACY | typeof ERROR_UNIT | typeof ERROR_VALUE | typeof ERROR_INVALID_PROP,
   RuleValidDimension
 > = {
   meta: {
     messages: {
       [ERROR_FORMAT]: 'Migrate to the new object format: { "value": 2, "unit": "ms" }.',
       [ERROR_LEGACY]: 'Migrate to the new object format: { "value": 10, "unit": "px" }.',
+      [ERROR_INVALID_PROP]: 'Unknown property: {{ key }}.',
       [ERROR_UNIT]: 'Unknown unit {{ unit }}. Expected "ms" or "s".',
       [ERROR_VALUE]: 'Expected number, received {{ value }}.',
     },
@@ -76,6 +78,17 @@ const rule: LintRule<
 
       function validateDuration(value: unknown, { node, filename }: { node: AnyNode; filename?: string }) {
         if (value && typeof value === 'object') {
+          for (const key of Object.keys(value)) {
+            if (!['value', 'unit'].includes(key)) {
+              report({
+                messageId: ERROR_INVALID_PROP,
+                data: { key: JSON.stringify(key) },
+                node: getObjMember(node as ObjectNode, key) ?? node,
+                filename,
+              });
+            }
+          }
+
           const { unit, value: numValue } = value as Record<string, any>;
           if (!('value' in value || 'unit' in value)) {
             report({ messageId: ERROR_FORMAT, data: { value }, node, filename });

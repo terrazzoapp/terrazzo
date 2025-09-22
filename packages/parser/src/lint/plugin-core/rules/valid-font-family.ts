@@ -1,5 +1,5 @@
 import type { ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
-import { getObjMember, getObjMembers } from '../../../parse/json.js';
+import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 

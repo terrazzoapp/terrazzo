@@ -1,11 +1,12 @@
 import type { ObjectNode, StringNode } from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import {
+  isAlias,
   STROKE_STYLE_LINE_CAP_VALUES,
   STROKE_STYLE_OBJECT_REQUIRED_PROPERTIES,
   STROKE_STYLE_STRING_VALUES,
   TRANSITION_REQUIRED_PROPERTIES,
 } from '@terrazzo/token-tools';
-import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -14,13 +15,15 @@ export const VALID_STROKE_STYLE = 'core/valid-stroke-style';
 const ERROR_STR = 'ERROR_STR';
 const ERROR_OBJ = 'ERROR_OBJ';
 const ERROR_LINE_CAP = 'ERROR_LINE_CAP';
+const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 
-const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP> = {
+const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP | typeof ERROR_INVALID_PROP> = {
   meta: {
     messages: {
       [ERROR_STR]: `Value most be one of ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(STROKE_STYLE_STRING_VALUES)}.`,
       [ERROR_OBJ]: `Missing required properties: ${new Intl.ListFormat(undefined, { type: 'conjunction' }).format(TRANSITION_REQUIRED_PROPERTIES)}.`,
       [ERROR_LINE_CAP]: `lineCap must be one of ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(STROKE_STYLE_LINE_CAP_VALUES)}.`,
+      [ERROR_INVALID_PROP]: 'Unknown property: {{ key }}.',
     },
     docs: {
       description: 'Require strokeStyle tokens to follow the format.',
@@ -63,7 +66,10 @@ const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP
         { node, filename }: { node: StringNode | ObjectNode; filename?: string },
       ) {
         if (typeof value === 'string') {
-          if (!STROKE_STYLE_STRING_VALUES.includes(value as (typeof STROKE_STYLE_STRING_VALUES)[number])) {
+          if (
+            !isAlias(value) &&
+            !STROKE_STYLE_STRING_VALUES.includes(value as (typeof STROKE_STYLE_STRING_VALUES)[number])
+          ) {
             report({ messageId: ERROR_STR, node, filename });
             return;
           }
@@ -76,6 +82,16 @@ const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP
           }
           if (!STROKE_STYLE_LINE_CAP_VALUES.includes((value as any).lineCap)) {
             report({ messageId: ERROR_OBJ, node: getObjMember(node as ObjectNode, 'lineCap'), filename });
+          }
+          for (const key of Object.keys(value)) {
+            if (!['dashArray', 'lineCap'].includes(key)) {
+              report({
+                messageId: ERROR_INVALID_PROP,
+                data: { key: JSON.stringify(key) },
+                node: getObjMember(node as ObjectNode, key),
+                filename,
+              });
+            }
           }
         } else {
           report({ messageId: ERROR_OBJ, node, filename });

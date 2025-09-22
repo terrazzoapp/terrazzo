@@ -167,6 +167,30 @@ describe('8.2 Dimension', () => {
         },
       },
     ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { xs: { $type: 'dimension', $value: { value: 2, unit: 'px', bad: true } } },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-dimension] Unknown property "bad".
+
+   5 |       "value": 2,
+   6 |       "unit": "px",
+>  7 |       "bad": true
+     |              ^
+   8 |     }
+   9 |   }
+  10 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, testCase) => parserTest(testCase));
