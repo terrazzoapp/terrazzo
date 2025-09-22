@@ -1,6 +1,0 @@
-.turbo
-biome.*
-rolldown.*
-test/
-tsconfig.*
-vitest.*

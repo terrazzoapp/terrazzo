@@ -1,6 +1,6 @@
-import type { ObjectNode } from '@humanwhocodes/momoa';
-import { TYPOGRAPHY_REQUIRED_PROPERTIES } from '@terrazzo/token-tools';
-import { getObjMember } from '../../../parse/json.js';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
+import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -9,10 +9,17 @@ export const VALID_TYPOGRAPHY = 'core/valid-typography';
 const ERROR = 'ERROR';
 const ERROR_MISSING = 'ERROR_MISSING';
 
-const rule: LintRule<typeof ERROR | typeof ERROR_MISSING> = {
+export interface RuleRequiredTypographyPropertiesOptions {
+  /** Required typography properties */
+  requiredProperties: string[];
+  /** Token globs to ignore */
+  ignore?: string[];
+}
+
+const rule: LintRule<typeof ERROR | typeof ERROR_MISSING, RuleRequiredTypographyPropertiesOptions> = {
   meta: {
     messages: {
-      [ERROR]: `Must be an object with the properties ${TYPOGRAPHY_REQUIRED_PROPERTIES.join(', ')}.`,
+      [ERROR]: `Expected object, received {{ value }}.`,
       [ERROR_MISSING]: `Missing required property "{{ property }}".`,
     },
     docs: {
@@ -20,29 +27,37 @@ const rule: LintRule<typeof ERROR | typeof ERROR_MISSING> = {
       url: docsLink(VALID_TYPOGRAPHY),
     },
   },
-  defaultOptions: {},
-  create({ tokens, report }) {
+  defaultOptions: {
+    requiredProperties: ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'],
+  },
+  create({ tokens, options, report }) {
+    const isIgnored = options.ignore ? wcmatch(options.ignore) : () => false;
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf || !t.originalValue || t.$type !== 'typography') {
+      if (t.aliasOf || !t.originalValue || t.$type !== 'typography' || isIgnored(t.id)) {
         continue;
       }
 
       validateTypography(t.originalValue.$value, {
-        node: getObjMember(t.source.node, '$value') as ObjectNode,
+        node: getObjMember(t.source.node, '$value') as momoa.ObjectNode,
         filename: t.source.filename,
       });
 
       // Note: we validate sub-properties using other checks like valid-dimension, valid-font-family, etc.
       // The only thing remaining is to check that all properties exist (since missing properties won’t appear as invalid)
-      function validateTypography(value: unknown, { node, filename }: { node: ObjectNode; filename?: string }) {
+      function validateTypography(value: unknown, { node, filename }: { node: momoa.ObjectNode; filename?: string }) {
         if (value && typeof value === 'object') {
-          for (const property of TYPOGRAPHY_REQUIRED_PROPERTIES) {
+          for (const property of options.requiredProperties) {
             if (!(property in value)) {
               report({ messageId: ERROR_MISSING, data: { property }, node, filename });
             }
           }
         } else {
-          report({ messageId: ERROR, node, filename });
+          report({
+            messageId: ERROR,
+            data: { value: JSON.stringify(value) },
+            node,
+            filename,
+          });
         }
       }
     }

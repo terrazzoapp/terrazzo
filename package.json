@@ -2,7 +2,7 @@
   "name": "@terrazzo/monorepo",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.17.0",
+  "packageManager": "pnpm@10.17.1",
   "scripts": {
     "build": "turbo run build",
     "build:apps": "turbo run build:app",
@@ -27,7 +27,7 @@
     "execa": "^9.6.0",
     "playwright": "^1.55.0",
     "prettier": "^3.6.2",
-    "rolldown": "1.0.0-beta.37",
+    "rolldown": "1.0.0-beta.39",
     "rolldown-plugin-dts": "^0.16.6",
     "strip-ansi": "^7.1.2",
     "stylelint": "^16.24.0",

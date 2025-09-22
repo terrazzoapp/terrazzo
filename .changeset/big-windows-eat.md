@@ -11,9 +11,9 @@ Though this is a breaking change in default behavior, you can opt back into the 
 List of changes:
 
 - **color**: `channels` is invalid; `components` is required (“channels” was never part of the spec; this just deprecates an in-progress draft that was briefly supported)
-- **dimension**: object notation (`{ value: 16, unit: 'px' }`) required
-- **dimension**: `em` units no longer allowed
-- **dimension**: `{ $value: 0 }` no longer allowed
-- **duration**: object notation (`{ value: 100, unit: 'ms' }`) required
-- **dimension**: `{ $value: 0 }` no longer allowed
-- **typography**: `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, and `letterSpacing` are all required at a minimum (additional properties are still allowed)
+- **dimension**: object notation (`{ value: 16, unit: 'px' }`) required.
+- **dimension**: `em` units warn by default (set [lint rules](https://terrazzo.app/docs/cli/linting) for `core/valid-dimension` to change).
+- **dimension**: `0` is no longer automatically expanded to`{ value: 0, unit: 'px' }`.
+- **duration**: object notation (`{ value: 100, unit: 'ms' }`) required.
+- **dimension**: `{ $value: 0 }` no longer allowed.
+- **typography**: `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, and `letterSpacing` are all required at a minimum (additional properties are still allowed).

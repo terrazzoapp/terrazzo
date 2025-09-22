@@ -12,12 +12,16 @@ describe('8.1 Color', () => {
         given: [
           {
             filename: DEFAULT_FILENAME,
-            src: { color: { cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1] } } } },
+            src: {
+              color: {
+                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 0.8 } },
+              },
+            },
           },
         ],
         want: {
           tokens: {
-            'color.cobalt': { $value: { alpha: 1, components: [0.3, 0.6, 1], colorSpace: 'srgb' } },
+            'color.cobalt': { $value: { alpha: 0.8, components: [0.3, 0.6, 1], colorSpace: 'srgb' } },
           },
         },
       },
@@ -299,6 +303,34 @@ describe('8.1 Color', () => {
         },
       },
     ],
+    [
+      'invalid: unknown props',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              color: {
+                cobalt: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], bad: true } },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-color] Unknown property "bad".
+
+  10 |           1
+  11 |         ],
+> 12 |         "bad": true
+     |                ^
+  13 |       }
+  14 |     }
+  15 |   }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
   ];
 
   it.each(tests)('%s', (_, testCase) => parserTest(testCase));
@@ -315,7 +347,6 @@ describe('8.1 Color', () => {
       },
       { cwd },
     );
-    let result: Awaited<ReturnType<typeof parse>> | undefined;
     const given = [
       {
         filename: DEFAULT_FILENAME,
@@ -323,7 +354,7 @@ describe('8.1 Color', () => {
       },
     ];
 
-    result = await parse(given, { config, yamlToMomoa });
+    const result = await parse(given, { config, yamlToMomoa });
     expect(result.tokens['color.cobalt']).toEqual(
       expect.objectContaining({ $value: { colorSpace: 'srgb', components: [0.3, 0.6, 1], alpha: 1 } }),
     );

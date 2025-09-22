@@ -1,3 +1,4 @@
+import { isAlias } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -18,10 +19,8 @@ const rule: LintRule<typeof ERROR> = {
   defaultOptions: {},
   create({ tokens, report }) {
     for (const t of Object.values(tokens)) {
-      if (t.aliasOf) {
-        if (t.originalValue?.$type) {
-          report({ messageId: ERROR, node: t.source.node, filename: t.source.filename });
-        }
+      if (isAlias(t.originalValue!.$value as any) && t.originalValue?.$type) {
+        report({ messageId: ERROR, node: t.source.node, filename: t.source.filename });
       }
     }
   },

@@ -1,5 +1,5 @@
-import type { ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
-import { getObjMember, getObjMembers } from '../../../parse/json.js';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -27,7 +27,7 @@ const rule: LintRule<typeof ERROR> = {
       switch (t.$type) {
         case 'fontFamily': {
           validateFontFamily(t.originalValue.$value, {
-            node: getObjMember(t.source.node, '$value') as ArrayNode,
+            node: getObjMember(t.source.node, '$value') as momoa.ArrayNode,
             filename: t.source.filename,
           });
           break;
@@ -38,9 +38,9 @@ const rule: LintRule<typeof ERROR> = {
               continue;
             }
             const $value = getObjMember(t.source.node, '$value');
-            const properties = getObjMembers($value as ObjectNode);
+            const properties = getObjMembers($value as momoa.ObjectNode);
             validateFontFamily(t.originalValue.$value.fontFamily, {
-              node: properties.fontFamily as ArrayNode,
+              node: properties.fontFamily as momoa.ArrayNode,
               filename: t.source.filename,
             });
           }
@@ -48,7 +48,7 @@ const rule: LintRule<typeof ERROR> = {
         }
       }
 
-      function validateFontFamily(value: unknown, { node, filename }: { node: ArrayNode; filename?: string }) {
+      function validateFontFamily(value: unknown, { node, filename }: { node: momoa.ArrayNode; filename?: string }) {
         if (typeof value === 'string') {
           if (!value) {
             report({ messageId: ERROR, node, filename });

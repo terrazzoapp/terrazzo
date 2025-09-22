@@ -153,7 +153,7 @@ describe('8.2 Dimension', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { md: { $type: 'dimension', $value: { value: 1, unit: 'vw' } } } }],
         want: {
-          error: `[lint:core/valid-dimension] Unknown unit vw. Expected "px" or "rem".
+          error: `[lint:core/valid-dimension] Unit vw not allowed. Expected px or rem.
 
   4 |     "$value": {
   5 |       "value": 1,
@@ -162,6 +162,30 @@ describe('8.2 Dimension', () => {
   7 |     }
   8 |   }
   9 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { xs: { $type: 'dimension', $value: { value: 2, unit: 'px', bad: true } } },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-dimension] Unknown property "bad".
+
+   5 |       "value": 2,
+   6 |       "unit": "px",
+>  7 |       "bad": true
+     |              ^
+   8 |     }
+   9 |   }
+  10 | }
 
 [lint:lint] 1 error`,
         },

@@ -130,6 +130,7 @@ const { tokens, sources } = await parse(yaml, { config, yamlToMomoa });
 Sometimes the token source you’re reading from isn’t in a perfect state, and you want to transform the values before being parsed. You can do so by specifying a `transform` object in the options with AST visitors:
 
 ```ts
+import * as momoa from "@humanwhocodes/momoa";
 import { parse } from "@terrazzo/parser";
 import culori from "culori";
 import fs from "node:fs/promises";
@@ -142,26 +143,30 @@ const { sources } = await parse(
     config,
     transform: {
       // Dynamically inject some colors
-      group(json, path, ast) {
-        if (path.startsWith("color.base.slate")) {
-          return {
-            ...json,
-            "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-          };
+      group(node, path) {
+        if (path.join(".").startsWith("color.base.slate")) {
+          node.members.push(
+            momoa.parse({
+              "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
+            }).body.members[0]
+          );
         }
       },
 
       // Transform color tokens, converting them from CSS strings into color objects
-      color(json, path, ast) {
-        const color = culori.parse(json.$value);
+      color(node, path) {
+        const color = culori.parse(momoa.evaluate(json).$value);
         if (!color) return;
 
         const { mode: colorSpace, alpha, ...components } = color;
 
-        return {
-          ...json,
-          $value: { colorSpace, components, alpha },
-        };
+        return (node.members.find(
+          (m) => m.name.type === "String" && m.name.value === "$value"
+        ).value = momoa.parse({
+          colorSpace,
+          components,
+          alpha,
+        })).body;
       },
     },
   }
@@ -174,11 +179,12 @@ Return **undefined** to leave the JSON as-is, or return **any JSON-serializable 
 
 Every visitor has the following parameters:
 
-| Name     | Type      | Description                                                                                                                                                                              |
-| :------- | :-------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **json** | `any`     | The raw JSON as it was authored. Note that tokens may not have `$type: [type]` declared if they inherit from their parent.                                                               |
-| **path** | `string`  | The path to a group or token node (e.g. `color.neutral.default.100`).                                                                                                                    |
-| **ast**  | `AnyNode` | A [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node as-parsed. This contains lots of metadata like file location, line number, etc. not found in the raw JSON itself. |
+| Name                 | Type                   | Description                                                                                                                                                                              |
+| :------------------- | :--------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **node**             | `AnyNode`              | A [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node as-parsed. This contains lots of metadata like file location, line number, etc. not found in the raw JSON itself. |
+| **options.path**     | `string[]`             | The path in the document to this node.                                                                                                                                                   |
+| **options.filename** | `URL`                  | The URL to this document.                                                                                                                                                                |
+| **options.parent**   | `AnyNode \| undefined` | The parent Momoa AST node, unless this is the document node.                                                                                                                             |
 
 ### Visitor types
 

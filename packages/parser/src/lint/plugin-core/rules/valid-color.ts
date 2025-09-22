@@ -1,4 +1,5 @@
-import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import {
   type BorderValue,
   COLORSPACE,
@@ -8,9 +9,8 @@ import {
   type GradientValueNormalized,
   isAlias,
   parseColor,
-  type ShadowValueNormalized,
+  type ShadowValue,
 } from '@terrazzo/token-tools';
-import { getObjMember } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -21,6 +21,7 @@ const ERROR_INVALID_COLOR = 'ERROR_INVALID_COLOR';
 const ERROR_INVALID_COLOR_SPACE = 'ERROR_INVALID_COLOR_SPACE';
 const ERROR_INVALID_COMPONENT_LENGTH = 'ERROR_INVALID_COMPONENT_LENGTH';
 const ERROR_INVALID_HEX8 = 'ERROR_INVALID_HEX8';
+const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 const ERROR_MISSING_COMPONENTS = 'ERROR_MISSING_COMPONENTS';
 const ERROR_OBJ_FORMAT = 'ERROR_OBJ_FORMAT';
 const ERROR_OUT_OF_RANGE = 'ERROR_OUT_OF_RANGE';
@@ -44,6 +45,7 @@ const rule: LintRule<
   | typeof ERROR_INVALID_COLOR_SPACE
   | typeof ERROR_INVALID_COMPONENT_LENGTH
   | typeof ERROR_INVALID_HEX8
+  | typeof ERROR_INVALID_PROP
   | typeof ERROR_MISSING_COMPONENTS
   | typeof ERROR_OBJ_FORMAT
   | typeof ERROR_OUT_OF_RANGE,
@@ -56,6 +58,7 @@ const rule: LintRule<
       [ERROR_INVALID_COLOR]: `Could not parse color {{ color }}.`,
       [ERROR_INVALID_COMPONENT_LENGTH]: 'Expected {{ expected }} components, received {{ got }}.',
       [ERROR_INVALID_HEX8]: `Hex value can’t be semi-transparent.`,
+      [ERROR_INVALID_PROP]: `Unknown property {{ key }}.`,
       [ERROR_MISSING_COMPONENTS]: 'Expected components to be array of numbers, received {{ got }}.',
       [ERROR_OBJ_FORMAT]:
         'Migrate to the new object format, e.g. "#ff0000" → { "colorSpace": "srgb", "components": [1, 0, 0] } }',
@@ -87,21 +90,21 @@ const rule: LintRule<
         case 'border': {
           if ((t.originalValue.$value as any).color && !isAlias((t.originalValue.$value as any).color)) {
             validateColor((t.originalValue.$value as BorderValue).color, {
-              node: getObjMember(getObjMember(t.source.node, '$value') as ObjectNode, 'color'),
+              node: getObjMember(getObjMember(t.source.node, '$value') as momoa.ObjectNode, 'color'),
               filename: t.source.filename,
             });
           }
           break;
         }
         case 'gradient': {
-          const $valueNode = getObjMember(t.source.node, '$value') as ArrayNode;
+          const $valueNode = getObjMember(t.source.node, '$value') as momoa.ArrayNode;
           for (let i = 0; i < (t.originalValue.$value as GradientValueNormalized).length; i++) {
             const stop = t.originalValue.$value[i] as GradientStopNormalized;
             if (!stop.color || isAlias(stop.color as any)) {
               continue;
             }
             validateColor(stop.color, {
-              node: getObjMember($valueNode.elements[i]!.value as ObjectNode, 'color'),
+              node: getObjMember($valueNode.elements[i]!.value as momoa.ObjectNode, 'color'),
               filename: t.source.filename,
             });
           }
@@ -110,8 +113,8 @@ const rule: LintRule<
         case 'shadow': {
           const $value = (
             Array.isArray(t.originalValue.$value) ? t.originalValue.$value : [t.originalValue.$value]
-          ) as ShadowValueNormalized[];
-          const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode | ArrayNode;
+          ) as ShadowValue[];
+          const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode | momoa.ArrayNode;
           for (let i = 0; i < $value.length; i++) {
             const layer = $value[i]!;
             if (!layer.color || isAlias(layer.color as any)) {
@@ -121,7 +124,7 @@ const rule: LintRule<
               node:
                 $valueNode.type === 'Object'
                   ? getObjMember($valueNode, 'color')
-                  : getObjMember($valueNode.elements[i]!.value as ObjectNode, 'color'),
+                  : getObjMember($valueNode.elements[i]!.value as momoa.ObjectNode, 'color'),
               filename: t.source.filename,
             });
           }
@@ -129,10 +132,21 @@ const rule: LintRule<
         }
       }
 
-      function validateColor(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
+      function validateColor(value: unknown, { node, filename }: { node?: momoa.AnyNode; filename?: string }) {
         if (!value) {
           report({ messageId: ERROR_INVALID_COLOR, data: { color: JSON.stringify(value) }, node, filename });
         } else if (typeof value === 'object') {
+          for (const key of Object.keys(value)) {
+            if (!['colorSpace', 'components', 'channels' /* TODO: remove */, 'hex', 'alpha'].includes(key)) {
+              report({
+                messageId: ERROR_INVALID_PROP,
+                data: { key: JSON.stringify(key) },
+                node: getObjMember(node as momoa.ObjectNode, key) ?? node,
+                filename,
+              });
+            }
+          }
+
           // Color space
           const colorSpace =
             'colorSpace' in value && typeof value.colorSpace === 'string' ? value.colorSpace : undefined;
@@ -141,7 +155,7 @@ const rule: LintRule<
             report({
               messageId: ERROR_INVALID_COLOR_SPACE,
               data: { colorSpace },
-              node: getObjMember(node as ObjectNode, 'colorSpace') ?? node,
+              node: getObjMember(node as momoa.ObjectNode, 'colorSpace') ?? node,
               filename,
             });
             return;
@@ -167,7 +181,7 @@ const rule: LintRule<
                     report({
                       messageId: ERROR_OUT_OF_RANGE,
                       data: { colorSpace, range: `[${csData.ranges.map((r) => `${r[0]}–${r[1]}`).join(', ')}]` },
-                      node: getObjMember(node as ObjectNode, 'components') ?? node,
+                      node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                       filename,
                     });
                   }
@@ -177,7 +191,7 @@ const rule: LintRule<
               report({
                 messageId: ERROR_INVALID_COMPONENT_LENGTH,
                 data: { expected: csData?.ranges.length, got: (components as number[] | undefined)?.length ?? 0 },
-                node: getObjMember(node as ObjectNode, 'components') ?? node,
+                node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
                 filename,
               });
             }
@@ -191,7 +205,7 @@ const rule: LintRule<
             report({
               messageId: ERROR_ALPHA,
               data: { alpha },
-              node: getObjMember(node as ObjectNode, 'alpha') ?? node,
+              node: getObjMember(node as momoa.ObjectNode, 'alpha') ?? node,
               filename,
             });
           }
@@ -206,7 +220,7 @@ const rule: LintRule<
               report({
                 messageId: ERROR_INVALID_COLOR,
                 data: { color: hex },
-                node: getObjMember(node as ObjectNode, 'hex') ?? node,
+                node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
                 filename,
               });
               return;
@@ -216,7 +230,7 @@ const rule: LintRule<
               report({
                 messageId: ERROR_INVALID_HEX8,
                 data: { color: hex },
-                node: getObjMember(node as ObjectNode, 'hex') ?? node,
+                node: getObjMember(node as momoa.ObjectNode, 'hex') ?? node,
                 filename,
               });
             }

@@ -17,7 +17,7 @@ describe('JSON $refs', () => {
     expect(tokens['color.gray.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
     expect(tokens['color.gray.1']?.aliasOf).toBeUndefined();
     expect(tokens['color.grey.1']?.$value).toEqual({ colorSpace: 'srgb', components: [0.2, 0.2, 0.2], alpha: 1 });
-    expect(tokens['color.grey.1']?.aliasOf).toBeUndefined();
+    expect(tokens['color.grey.1']?.aliasOf).toBe('color.gray.1');
     expect(tokens['color.grey.1']?.dependencies).toEqual(['#/color/gray/1']);
   });
 
@@ -123,7 +123,114 @@ describe('JSON $refs', () => {
     const src = await fs.readFile(filename, 'utf8');
     const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename, src }], { config });
-    expect(Object.keys(tokens)).toEqual([]);
+    expect(tokens).toEqual({
+      // dark value
+      'base.color.black': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0, 0.02, 0.04], alpha: 1 },
+      }),
+      // dark value
+      'base.color.blue.0': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.78, 0.91, 1], alpha: 1, hex: '#cae8ff' },
+      }),
+      // dark value
+      'base.color.blue.1': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.65, 0.84, 1], alpha: 1, hex: '#a5d6ff' },
+      }),
+      'base.color.blue.2': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.5, 0.8, 1], alpha: 1 },
+      }),
+      'base.color.blue.3': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.33, 0.68, 1], alpha: 1 },
+      }),
+      'base.color.blue.4': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.13, 0.55, 1], alpha: 1 },
+      }),
+      'base.color.blue.5': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.04, 0.41, 0.85], alpha: 1 },
+      }),
+      'base.color.blue.6': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.02, 0.31, 0.68], alpha: 1 },
+      }),
+      'base.color.blue.7': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.01, 0.24, 0.55], alpha: 1 },
+      }),
+      'base.color.blue.8': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.04, 0.19, 0.41], alpha: 1 },
+      }),
+      'base.color.blue.9': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0, 0.13, 0.33], alpha: 1 },
+      }),
+      'base.color.inset': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+      }),
+      'base.color.neutral.0': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+      }),
+      'base.color.neutral.1': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.96, 0.97, 0.98], alpha: 1 },
+      }),
+      'base.color.neutral.2': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.94, 0.95, 0.96], alpha: 1 },
+      }),
+      'base.color.neutral.3': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.9, 0.92, 0.94], alpha: 1 },
+      }),
+      'base.color.neutral.4': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.88, 0.9, 0.91], alpha: 1 },
+      }),
+      'base.color.neutral.5': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.85, 0.88, 0.91], alpha: 1 },
+      }),
+      'base.color.neutral.6': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.82, 0.85, 0.88], alpha: 1 },
+      }),
+      'base.color.neutral.7': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.78, 0.82, 0.85], alpha: 1 },
+      }),
+      'base.color.neutral.8': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.51, 0.55, 0.6], alpha: 1 },
+      }),
+      'base.color.neutral.9': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.35, 0.39, 0.43], alpha: 1 },
+      }),
+      'base.color.neutral.10': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.27, 0.3, 0.33], alpha: 1 },
+      }),
+      'base.color.neutral.11': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.22, 0.25, 0.27], alpha: 1 },
+      }),
+      'base.color.neutral.12': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0.15, 0.16, 0.18], alpha: 1 },
+      }),
+      'base.color.neutral.13': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [0, 0.02, 0.04], alpha: 1 },
+      }),
+      'base.color.transparent': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 0 },
+      }),
+      'base.color.white': expect.objectContaining({
+        $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+      }),
+      'base.size.2': expect.objectContaining({ $value: { value: 2, unit: 'px' } }),
+      'base.size.4': expect.objectContaining({ $value: { value: 4, unit: 'px' } }),
+      'base.size.6': expect.objectContaining({ $value: { value: 6, unit: 'px' } }),
+      'base.size.8': expect.objectContaining({ $value: { value: 8, unit: 'px' } }),
+      'base.size.12': expect.objectContaining({ $value: { value: 12, unit: 'px' } }),
+      'base.size.16': expect.objectContaining({ $value: { value: 16, unit: 'px' } }),
+      'base.size.20': expect.objectContaining({ $value: { value: 20, unit: 'px' } }),
+      'base.size.24': expect.objectContaining({ $value: { value: 24, unit: 'px' } }),
+      'base.size.28': expect.objectContaining({ $value: { value: 28, unit: 'px' } }),
+      'base.size.32': expect.objectContaining({ $value: { value: 32, unit: 'px' } }),
+      'base.size.36': expect.objectContaining({ $value: { value: 36, unit: 'px' } }),
+      'base.size.40': expect.objectContaining({ $value: { value: 40, unit: 'px' } }),
+      'base.size.44': expect.objectContaining({ $value: { value: 44, unit: 'px' } }),
+      'base.size.48': expect.objectContaining({ $value: { value: 48, unit: 'px' } }),
+      'base.size.64': expect.objectContaining({ $value: { value: 64, unit: 'px' } }),
+      'base.size.80': expect.objectContaining({ $value: { value: 80, unit: 'px' } }),
+      'base.size.96': expect.objectContaining({ $value: { value: 96, unit: 'px' } }),
+      'base.size.112': expect.objectContaining({ $value: { value: 112, unit: 'px' } }),
+      'base.size.128': expect.objectContaining({ $value: { value: 128, unit: 'px' } }),
+    });
   });
 
   it('root $refs throw error', async () => {
@@ -133,13 +240,13 @@ describe('JSON $refs', () => {
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
     ).rejects.toThrowError(`[parser:init] Can’t recursively embed a document within itself.
 
-  2 |   "color": {
   3 |     "$type": "color",
-> 4 |     "gray": {
-    |             ^
-  5 |       "$ref": "#\\/"
+  4 |     "gray": {
+> 5 |       "$ref": "#/"
+    |               ^
   6 |     }
-  7 |   }`);
+  7 |   }
+  8 | }`);
   });
 
   it('circular $refs throw error', async () => {
@@ -155,13 +262,13 @@ describe('JSON $refs', () => {
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
     ).rejects.toThrowError(`[parser:init] Circular $ref detected: "#/color/grey"
 
-  2 |   "color": {
   3 |     "$type": "color",
-> 4 |     "gray": {
-    |             ^
-  5 |       "$ref": "#\\/color\\/grey"
+  4 |     "gray": {
+> 5 |       "$ref": "#/color/grey"
+    |               ^
   6 |     },
-  7 |     "grey": {`);
+  7 |     "grey": {
+  8 |       "$ref": "#/color/gray"`);
   });
 
   it('invalid $refs throw error', async () => {
@@ -176,12 +283,12 @@ describe('JSON $refs', () => {
       parse([{ filename: DEFAULT_FILENAME, src }], { config }),
     ).rejects.toThrowError(`[parser:init] Invalid $ref. Expected string.
 
-  3 |     "$type": "color",
   4 |     "blue": {
-> 5 |       "100": {
-    |              ^
-  6 |         "$ref": 23
+  5 |       "100": {
+> 6 |         "$ref": 23
+    |                 ^
   7 |       }
-  8 |     }`);
+  8 |     }
+  9 |   }`);
   });
 });

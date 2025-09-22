@@ -1,4 +1,4 @@
-import { type AnyNode, print } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import pc from 'picocolors';
 import wcmatch from 'wildcard-match';
 import { codeFrameColumns } from './lib/code-frame.js';
@@ -23,7 +23,7 @@ export interface LogEntry {
    */
   continueOnError?: boolean;
   /** Show a code frame for the erring node */
-  node?: AnyNode;
+  node?: momoa.AnyNode;
   /** To show a code frame, provide the original source code */
   src?: string;
 }
@@ -68,7 +68,7 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
       ? `${entry.filename?.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n`
       : '';
     const codeFrame = codeFrameColumns(
-      entry.src ?? print(entry.node, { indent: 2 }),
+      entry.src ?? momoa.print(entry.node, { indent: 2 }),
       { start },
       { highlightCode: false },
     );
@@ -101,7 +101,7 @@ export default class Logger {
   /** Log an error message (always; can’t be silenced) */
   error(...entries: LogEntry[]) {
     const message: string[] = [];
-    let firstNode: AnyNode | undefined;
+    let firstNode: momoa.AnyNode | undefined;
     for (const entry of entries) {
       this.errorCount++;
       message.push(formatMessage(entry, 'error'));

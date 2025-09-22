@@ -6,50 +6,50 @@ describe('8.? Boolean', () => {
     [
       'valid: true',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: true } } }],
-        want: { tokens: { myBool: { $value: true } } },
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: true } } }],
+        want: { tokens: { 'my-bool': { $value: true } } },
       },
     ],
     [
       'valid: false',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: false } } }],
-        want: { tokens: { myBool: { $value: false } } },
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: false } } }],
+        want: { tokens: { 'my-bool': { $value: false } } },
       },
     ],
     [
       'invalid: string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: 'true' } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: 'true' } } }],
         want: {
           error: `[lint:core/valid-boolean] Must be a boolean.
 
-  2 |   "myBool": {
+  2 |   "my-bool": {
   3 |     "$type": "boolean",
 > 4 |     "$value": "true"
     |               ^
   5 |   }
   6 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
     [
       'invalid: binary',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myBool: { $type: 'boolean', $value: 0 } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-bool': { $type: 'boolean', $value: 0 } } }],
         want: {
           error: `[lint:core/valid-boolean] Must be a boolean.
 
-  2 |   "myBool": {
+  2 |   "my-bool": {
   3 |     "$type": "boolean",
 > 4 |     "$value": 0
     |               ^
   5 |   }
   6 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -63,43 +63,47 @@ describe('8.? Link', () => {
     [
       'valid',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: '/assets/icons/star.svg' } } }],
-        want: { tokens: { iconStar: { $value: '/assets/icons/star.svg' } } },
+        given: [
+          { filename: DEFAULT_FILENAME, src: { icon: { star: { $type: 'link', $value: '/assets/icons/star.svg' } } } },
+        ],
+        want: { tokens: { 'icon.star': { $value: '/assets/icons/star.svg' } } },
       },
     ],
     [
       'invalid: empty string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: '' } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { icon: { star: { $type: 'link', $value: '' } } } }],
         want: {
           error: `[lint:core/valid-link] Must be a string.
 
-  2 |   "iconStar": {
-  3 |     "$type": "link",
-> 4 |     "$value": ""
-    |               ^
-  5 |   }
-  6 | }
+  3 |     "star": {
+  4 |       "$type": "link",
+> 5 |       "$value": ""
+    |                 ^
+  6 |     }
+  7 |   }
+  8 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
     [
       'invalid: number',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { iconStar: { $type: 'link', $value: 100 } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { icon: { star: { $type: 'link', $value: 100 } } } }],
         want: {
           error: `[lint:core/valid-link] Must be a string.
 
-  2 |   "iconStar": {
-  3 |     "$type": "link",
-> 4 |     "$value": 100
-    |               ^
-  5 |   }
-  6 | }
+  3 |     "star": {
+  4 |       "$type": "link",
+> 5 |       "$value": 100
+    |                 ^
+  6 |     }
+  7 |   }
+  8 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -113,32 +117,32 @@ describe('8.? String', () => {
     [
       'valid',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 'foobar' } } }],
-        want: { tokens: { myString: { $value: 'foobar' } } },
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-string': { $type: 'string', $value: 'foobar' } } }],
+        want: { tokens: { 'my-string': { $value: 'foobar' } } },
       },
     ],
     [
       'valid: empty string',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: '' } } }],
-        want: { tokens: { myString: { $value: '' } } },
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-string': { $type: 'string', $value: '' } } }],
+        want: { tokens: { 'my-string': { $value: '' } } },
       },
     ],
     [
       'invalid: number',
       {
-        given: [{ filename: DEFAULT_FILENAME, src: { myString: { $type: 'string', $value: 99 } } }],
+        given: [{ filename: DEFAULT_FILENAME, src: { 'my-string': { $type: 'string', $value: 99 } } }],
         want: {
           error: `[lint:core/valid-string] Must be a string.
 
-  2 |   "myString": {
+  2 |   "my-string": {
   3 |     "$type": "string",
 > 4 |     "$value": 99
     |               ^
   5 |   }
   6 | }
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],

@@ -2,6 +2,18 @@ import { describe, it } from 'vitest';
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('9.7 Typography', () => {
+  const DEFAULT_VALID = {
+    fontFamily: 'Helvetica',
+    fontSize: { value: 16, unit: 'px' },
+    fontStyle: 'italic',
+    fontVariant: 'small-caps',
+    fontWeight: 400,
+    letterSpacing: { value: 0.125, unit: 'rem' },
+    lineHeight: { value: 24, unit: 'px' },
+    textDecoration: 'underline',
+    textTransform: 'uppercase',
+  };
+
   const tests: Test[] = [
     [
       'valid',
@@ -10,18 +22,26 @@ describe('9.7 Typography', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
+              typography: { body: { $type: 'typography', $value: { ...DEFAULT_VALID } } },
+            },
+          },
+        ],
+        want: {
+          tokens: { 'typography.body': { $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'] } } },
+        },
+      },
+    ],
+    [
+      'valid: lineHeight (number)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
               typography: {
-                $type: 'typography',
-                $value: {
-                  fontFamily: 'Helvetica',
-                  fontSize: { value: 16, unit: 'px' },
-                  fontStyle: 'italic',
-                  fontVariant: 'small-caps',
-                  fontWeight: 400,
-                  letterSpacing: { value: 0.125, unit: 'rem' },
-                  lineHeight: { value: 24, unit: 'px' },
-                  textDecoration: 'underline',
-                  textTransform: 'uppercase',
+                body: {
+                  $type: 'typography',
+                  $value: { ...DEFAULT_VALID, lineHeight: 1.5 },
                 },
               },
             },
@@ -29,17 +49,11 @@ describe('9.7 Typography', () => {
         ],
         want: {
           tokens: {
-            typography: {
+            'typography.body': {
               $value: {
+                ...DEFAULT_VALID,
                 fontFamily: ['Helvetica'],
-                fontSize: { value: 16, unit: 'px' },
-                fontStyle: 'italic',
-                fontVariant: 'small-caps',
-                fontWeight: 400,
-                letterSpacing: { value: 0.125, unit: 'rem' },
-                lineHeight: { value: 24, unit: 'px' },
-                textDecoration: 'underline',
-                textTransform: 'uppercase',
+                lineHeight: 1.5,
               },
             },
           },
@@ -47,37 +61,209 @@ describe('9.7 Typography', () => {
       },
     ],
     [
-      'lineHeight: number',
+      'valid: fontFamily alias',
       {
         given: [
           {
             filename: DEFAULT_FILENAME,
             src: {
+              font: { family: { $type: 'fontFamily', $value: 'Helvetica' } },
+              typography: { body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontFamily: '{font.family}' } } },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'font.family': { $value: ['Helvetica'], aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'] },
+              partialAliasOf: { fontFamily: 'font.family' },
+              dependencies: ['#/font/family/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: fontSize alias',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { size: { $type: 'dimension', $value: { value: 1.25, unit: 'rem' } } },
               typography: {
-                $type: 'typography',
-                $value: {
-                  fontFamily: 'Helvetica',
-                  fontSize: { value: 16, unit: 'px' },
-                  fontWeight: 400,
-                  letterSpacing: { value: 0, unit: 'px' },
-                  lineHeight: 1.5,
-                },
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontSize: '{font.size}' } },
               },
             },
           },
         ],
         want: {
           tokens: {
-            typography: {
-              $value: {
-                fontFamily: ['Helvetica'],
-                fontSize: { value: 16, unit: 'px' },
-                fontWeight: 400,
-                letterSpacing: { value: 0, unit: 'px' },
-                lineHeight: 1.5,
+            'font.size': { $value: { value: 1.25, unit: 'rem' }, aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], fontSize: { value: 1.25, unit: 'rem' } },
+              partialAliasOf: { fontSize: 'font.size' },
+              dependencies: ['#/font/size/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: fontWeight alias',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { weight: { $type: 'fontWeight', $value: 750 } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' } },
               },
             },
           },
+        ],
+        want: {
+          tokens: {
+            'font.weight': { $value: 750, aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], fontWeight: 750 },
+              partialAliasOf: { fontWeight: 'font.weight' },
+              dependencies: ['#/font/weight/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: lineHeight alias (dimension)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { 'line-height': { $type: 'dimension', $value: { value: 1.25, unit: 'rem' } } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' } },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'font.line-height': { $value: { value: 1.25, unit: 'rem' }, aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], lineHeight: { value: 1.25, unit: 'rem' } },
+              partialAliasOf: { lineHeight: 'font.line-height' },
+              dependencies: ['#/font/line-height/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: lineHeight alias (number)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { 'line-height': { $type: 'number', $value: 1.6 } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, lineHeight: '{font.line-height}' } },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'font.line-height': { $value: 1.6, aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], lineHeight: 1.6 },
+              partialAliasOf: { lineHeight: 'font.line-height' },
+              dependencies: ['#/font/line-height/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: letterSpacing alias',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { spacing: { $type: 'dimension', $value: { value: 0.01, unit: 'px' } } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, letterSpacing: '{font.spacing}' } },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'font.spacing': { $value: { value: 0.01, unit: 'px' }, aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], letterSpacing: { value: 0.01, unit: 'px' } },
+              partialAliasOf: { letterSpacing: 'font.spacing' },
+              dependencies: ['#/font/spacing/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: fontStyle alias',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { style: { $type: 'string', $value: 'normal' } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontStyle: '{font.style}' } },
+              },
+            },
+          },
+        ],
+        want: {
+          tokens: {
+            'font.style': { $value: 'normal', aliasedBy: ['typography.body'] },
+            'typography.body': {
+              $value: { ...DEFAULT_VALID, fontFamily: ['Helvetica'], fontStyle: 'normal' },
+              partialAliasOf: { fontStyle: 'font.style' },
+              dependencies: ['#/font/style/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'invalid: incorrect fontWeight alias',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              font: { weight: { $type: 'number', $value: 750 } },
+              typography: {
+                body: { $type: 'typography', $value: { ...DEFAULT_VALID, fontWeight: '{font.weight}' } },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[parser:init] Cannot alias to $type "number" from $type "fontWeight".
+
+  17 |         "fontStyle": "italic",
+  18 |         "fontVariant": "small-caps",
+> 19 |         "fontWeight": "{font.weight}",
+     |                       ^
+  20 |         "letterSpacing": {
+  21 |           "value": 0.125,
+  22 |           "unit": "rem"`,
         },
       },
     ],
@@ -87,59 +273,59 @@ describe('9.7 Typography', () => {
         given: [
           {
             filename: DEFAULT_FILENAME,
-            src: { typography: { $type: 'typography', $value: {} } },
+            src: { typography: { body: { $type: 'typography', $value: {} } } },
           },
         ],
         want: {
           error: `[lint:core/valid-typography] Missing required property "fontFamily".
 
-  2 |   "typography": {
-  3 |     "$type": "typography",
-> 4 |     "$value": {
-    |               ^
-  5 |
-  6 |     }
-  7 |   }
+  3 |     "body": {
+  4 |       "$type": "typography",
+> 5 |       "$value": {
+    |                 ^
+  6 |
+  7 |       }
+  8 |     }
 
 [lint:core/valid-typography] Missing required property "fontSize".
 
-  2 |   "typography": {
-  3 |     "$type": "typography",
-> 4 |     "$value": {
-    |               ^
-  5 |
-  6 |     }
-  7 |   }
+  3 |     "body": {
+  4 |       "$type": "typography",
+> 5 |       "$value": {
+    |                 ^
+  6 |
+  7 |       }
+  8 |     }
 
 [lint:core/valid-typography] Missing required property "fontWeight".
 
-  2 |   "typography": {
-  3 |     "$type": "typography",
-> 4 |     "$value": {
-    |               ^
-  5 |
-  6 |     }
-  7 |   }
+  3 |     "body": {
+  4 |       "$type": "typography",
+> 5 |       "$value": {
+    |                 ^
+  6 |
+  7 |       }
+  8 |     }
 
 [lint:core/valid-typography] Missing required property "letterSpacing".
 
-  2 |   "typography": {
-  3 |     "$type": "typography",
-> 4 |     "$value": {
-    |               ^
-  5 |
-  6 |     }
-  7 |   }
+  3 |     "body": {
+  4 |       "$type": "typography",
+> 5 |       "$value": {
+    |                 ^
+  6 |
+  7 |       }
+  8 |     }
 
 [lint:core/valid-typography] Missing required property "lineHeight".
 
-  2 |   "typography": {
-  3 |     "$type": "typography",
-> 4 |     "$value": {
-    |               ^
-  5 |
-  6 |     }
-  7 |   }
+  3 |     "body": {
+  4 |       "$type": "typography",
+> 5 |       "$value": {
+    |                 ^
+  6 |
+  7 |       }
+  8 |     }
 
 [lint:lint] 5 errors`,
         },

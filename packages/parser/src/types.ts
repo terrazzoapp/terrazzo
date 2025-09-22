@@ -1,4 +1,4 @@
-import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
@@ -69,28 +69,38 @@ export interface Config {
   };
 }
 
-export interface TransformVisitors {
-  color?: Visitor;
-  dimension?: Visitor;
-  fontFamily?: Visitor;
-  fontWeight?: Visitor;
-  duration?: Visitor;
-  cubicBezier?: Visitor;
-  number?: Visitor;
-  link?: Visitor;
-  boolean?: Visitor;
-  strokeStyle?: Visitor;
-  border?: Visitor;
-  transition?: Visitor;
-  shadow?: Visitor;
-  gradient?: Visitor;
-  typography?: Visitor;
-  root?: Visitor;
-  group?: Visitor;
-  [key: string]: Visitor | undefined;
+export interface VisitorContext {
+  parent?: momoa.AnyNode;
+  filename: URL;
+  path: string[];
 }
 
-export type Visitor = (json: any, path: string, ast: AnyNode) => any | undefined | null;
+export type Visitor<T extends momoa.AnyNode = momoa.ObjectNode | momoa.DocumentNode> = (
+  node: T,
+  context: VisitorContext,
+) => T | void | null | undefined;
+
+export interface TransformVisitors {
+  boolean?: Visitor;
+  border?: Visitor;
+  color?: Visitor;
+  cubicBezier?: Visitor;
+  dimension?: Visitor;
+  duration?: Visitor;
+  fontFamily?: Visitor;
+  fontWeight?: Visitor;
+  gradient?: Visitor;
+  group?: Visitor;
+  link?: Visitor;
+  number?: Visitor;
+  root?: Visitor;
+  shadow?: Visitor;
+  strokeStyle?: Visitor;
+  token?: Visitor;
+  transition?: Visitor;
+  typography?: Visitor;
+  [key: string]: Visitor | undefined;
+}
 
 // normalized, finalized config
 export interface ConfigInit {
@@ -116,14 +126,14 @@ export interface ConfigOptions {
 export interface InputSource {
   filename?: URL;
   src: any;
-  document: DocumentNode;
+  document: momoa.DocumentNode;
 }
 
 export interface LintNotice {
   /** Lint message shown to the user */
   message: string;
   /** Erring node (used to point to a specific line) */
-  node?: AnyNode;
+  node?: momoa.AnyNode;
 }
 
 export type LintRuleSeverity = 'error' | 'warn' | 'off';
@@ -138,7 +148,7 @@ export interface LintRuleNormalized<O = any> {
 
 export type LintReportDescriptor<MessageIds extends string> = {
   /** To error on a specific token source file, provide a Momoa node */
-  node?: AnyNode;
+  node?: momoa.AnyNode;
   /** To provide correct line numbers, specify the filename (usually found on `token.source.loc`) */
   filename?: string;
   /** Provide data for messages */

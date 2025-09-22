@@ -1,4 +1,4 @@
-import type { ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 
 export interface TokenCore<E extends {} = Record<string, unknown>> {
   $description?: string;
@@ -278,21 +278,24 @@ export interface TypographyValue {
 }
 
 export interface GroupCore {
+  $deprecated?: string | boolean;
   $description?: string;
   $type?: Token['$type'];
   $extensions?: Record<string, unknown>;
 }
 
-export type Group = GroupCore & { [key: string]: GroupOrToken | GroupCore };
+export type Group = GroupCore & {
+  [key: string]: GroupOrToken;
+};
 
 export type GroupOrToken = Group | Token;
 
 /** Modes only have a subset of information from the root token, that is allowed to diverge (e.g. id will never differ, so don’t bother storing it on mode). */
 export type TokenMode<T extends TokenNormalized> = Pick<
   T,
-  '$value' | 'aliasOf' | 'aliasChain' | 'partialAliasOf' | 'dependencies' | 'source'
+  '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies' | 'source'
 > & {
-  originalValue: T['originalValue'] extends {} ? T['originalValue']['$value'] : undefined;
+  originalValue?: T['originalValue'] extends {} ? T['originalValue']['$value'] : never;
 };
 
 export type ModeMap<T extends TokenNormalized> = {
@@ -321,7 +324,7 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
     /** @deprecated use filename instead */
     loc?: string;
     filename: string | undefined;
-    node: ObjectNode;
+    node: momoa.ObjectNode;
   };
   /** JSON Schema form of ID */
   jsonID: string;

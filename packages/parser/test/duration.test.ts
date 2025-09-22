@@ -45,7 +45,7 @@ describe('8.5 Duration', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { quick: { $type: 'duration', $value: '100ms' } } }],
         want: {
-          error: `[lint:core/valid-duration] Migrate to the new object format: { \"value\": 2, \"unit\": \"ms\" }.
+          error: `[lint:core/valid-duration] Migrate to the new object format: { "value": 2, "unit": "ms" }.
 
   2 |   "quick": {
   3 |     "$type": "duration",
@@ -149,6 +149,30 @@ describe('8.5 Duration', () => {
   7 |     }
   8 |   }
   9 | }
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: { microscopic: { $type: 'duration', $value: { value: 100, unit: 'ms', bad: true } } },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-duration] Unknown property: "bad".
+
+   5 |       "value": 100,
+   6 |       "unit": "ms",
+>  7 |       "bad": true
+     |              ^
+   8 |     }
+   9 |   }
+  10 | }
 
 [lint:lint] 1 error`,
         },

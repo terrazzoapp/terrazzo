@@ -1,5 +1,6 @@
-import type { NumberNode, ObjectNode } from '@humanwhocodes/momoa';
-import { getObjMember } from '../../../parse/json.js';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
+import { isAlias } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -27,18 +28,22 @@ const rule: LintRule<typeof ERROR_NAN> = {
       switch (t.$type) {
         case 'number': {
           validateNumber(t.originalValue.$value, {
-            node: getObjMember(t.source.node, '$value') as NumberNode,
+            node: getObjMember(t.source.node, '$value') as momoa.NumberNode,
             filename: t.source.filename,
           });
           break;
         }
         // Note: gradient not needed, validated in gradient
         case 'typography': {
-          const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode;
+          const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
           if (typeof t.originalValue.$value === 'object') {
-            if (t.originalValue.$value.lineHeight && typeof t.originalValue.$value.lineHeight !== 'object') {
+            if (
+              t.originalValue.$value.lineHeight &&
+              !isAlias(t.originalValue.$value.lineHeight as string) &&
+              typeof t.originalValue.$value.lineHeight !== 'object'
+            ) {
               validateNumber(t.originalValue.$value.lineHeight, {
-                node: getObjMember($valueNode, 'lineHeight') as NumberNode,
+                node: getObjMember($valueNode, 'lineHeight') as momoa.NumberNode,
                 filename: t.source.filename,
               });
             }
@@ -46,7 +51,7 @@ const rule: LintRule<typeof ERROR_NAN> = {
         }
       }
 
-      function validateNumber(value: unknown, { node, filename }: { node: NumberNode; filename?: string }) {
+      function validateNumber(value: unknown, { node, filename }: { node: momoa.NumberNode; filename?: string }) {
         if (typeof value !== 'number' || Number.isNaN(value)) {
           report({ messageId: ERROR_NAN, node, filename });
         }

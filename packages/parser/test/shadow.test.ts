@@ -10,7 +10,7 @@ describe('9.5 Shadow', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              shadowBase: {
+              'shadow-base': {
                 $type: 'shadow',
                 $value: {
                   color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15, hex: '#000000' },
@@ -25,7 +25,7 @@ describe('9.5 Shadow', () => {
         ],
         want: {
           tokens: {
-            shadowBase: {
+            'shadow-base': {
               $value: [
                 {
                   color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.15, hex: '#000000' },
@@ -48,7 +48,7 @@ describe('9.5 Shadow', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              shadowBase: {
+              'shadow-base': {
                 $type: 'shadow',
                 $value: [
                   {
@@ -72,7 +72,7 @@ describe('9.5 Shadow', () => {
         ],
         want: {
           tokens: {
-            shadowBase: {
+            'shadow-base': {
               $value: [
                 {
                   color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
@@ -103,7 +103,7 @@ describe('9.5 Shadow', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              shadowBase: {
+              'shadow-base': {
                 $type: 'shadow',
                 $value: [
                   {
@@ -129,7 +129,7 @@ describe('9.5 Shadow', () => {
   17 |           "value": 0.25,
   18 |           "unit": "rem"
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -140,7 +140,7 @@ describe('9.5 Shadow', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              shadowBase: {
+              'shadow-base': {
                 $type: 'shadow',
                 $value: {
                   offsetX: { value: 0, unit: 'rem' },
@@ -155,7 +155,7 @@ describe('9.5 Shadow', () => {
         want: {
           error: `[lint:core/valid-shadow] Missing required properties: color, offsetX, offsetY, blur, and spread.
 
-  2 |   "shadowBase": {
+  2 |   "shadow-base": {
   3 |     "$type": "shadow",
 > 4 |     "$value": {
     |               ^
@@ -163,7 +163,7 @@ describe('9.5 Shadow', () => {
   6 |         "value": 0,
   7 |         "unit": "rem"
 
-[lint:lint] 1 error, 1 warning`,
+[lint:lint] 1 error`,
         },
       },
     ],
@@ -174,10 +174,10 @@ describe('9.5 Shadow', () => {
           {
             filename: DEFAULT_FILENAME,
             src: {
-              shadowBase: {
+              'shadow-base': {
                 $type: 'shadow',
                 $value: {
-                  color: '#000000',
+                  color: { colorSpace: 'srgb', components: [0, 0, 0], hex: '#000000' },
                   offsetX: { value: 0, unit: 'rem' },
                   offsetY: { value: 0.25, unit: 'rem' },
                   blur: { value: 0.5, unit: 'rem' },
@@ -190,7 +190,7 @@ describe('9.5 Shadow', () => {
         ],
         want: {
           tokens: {
-            shadowBase: {
+            'shadow-base': {
               $value: [
                 {
                   color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1, hex: '#000000' },
@@ -203,6 +203,45 @@ describe('9.5 Shadow', () => {
               ],
             },
           },
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              'shadow-base': {
+                $type: 'shadow',
+                $value: [
+                  {
+                    color: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 },
+                    offsetX: { value: 0, unit: 'rem' },
+                    offsetY: { value: 0.25, unit: 'rem' },
+                    blur: { value: 0.5, unit: 'rem' },
+                    spread: { value: 0, unit: 'rem' },
+                    inset: false,
+                    bad: true,
+                  },
+                ],
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-shadow] Unknown property "bad".
+
+  30 |         },
+  31 |         "inset": false,
+> 32 |         "bad": true
+     |                ^
+  33 |       }
+  34 |     ]
+  35 |   }
+
+[lint:lint] 1 error`,
         },
       },
     ],

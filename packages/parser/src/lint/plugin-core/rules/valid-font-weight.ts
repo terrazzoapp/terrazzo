@@ -1,6 +1,6 @@
-import type { NumberNode, ObjectNode, StringNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS } from '@terrazzo/token-tools';
-import { getObjMember, getObjMembers } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -41,7 +41,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
       switch (t.$type) {
         case 'fontWeight': {
           validateFontWeight(t.originalValue.$value, {
-            node: getObjMember(t.source.node, '$value') as StringNode,
+            node: getObjMember(t.source.node, '$value') as momoa.StringNode,
             filename: t.source.filename,
           });
           break;
@@ -52,9 +52,9 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
               continue;
             }
             const $value = getObjMember(t.source.node, '$value');
-            const properties = getObjMembers($value as ObjectNode);
+            const properties = getObjMembers($value as momoa.ObjectNode);
             validateFontWeight(t.originalValue.$value.fontWeight, {
-              node: properties.fontWeight as StringNode,
+              node: properties.fontWeight as momoa.StringNode,
               filename: t.source.filename,
             });
           }
@@ -64,7 +64,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> =
 
       function validateFontWeight(
         value: unknown,
-        { node, filename }: { node: StringNode | NumberNode; filename?: string },
+        { node, filename }: { node: momoa.StringNode | momoa.NumberNode; filename?: string },
       ) {
         if (typeof value === 'string') {
           if (options.style === 'numbers') {

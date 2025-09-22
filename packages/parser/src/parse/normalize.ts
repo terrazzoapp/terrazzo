@@ -1,7 +1,7 @@
-import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
-import { getObjMember } from './json.js';
 
 interface PreValidatedToken {
   id: string;
@@ -25,7 +25,7 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
     return (typeof value === 'string' && FONT_WEIGHTS[value as keyof typeof FONT_WEIGHTS]) || (value as number);
   }
 
-  function normalizeColor(value: unknown, node: AnyNode | undefined) {
+  function normalizeColor(value: unknown, node: momoa.AnyNode | undefined) {
     if (typeof value === 'string' && !isAlias(value)) {
       logger.warn({
         ...entry,
@@ -79,7 +79,7 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
         if (border.color) {
           border.color = normalizeColor(
             border.color,
-            getObjMember(token.mode[mode]!.source.node as ObjectNode, 'color'),
+            getObjMember(token.mode[mode]!.source.node as momoa.ObjectNode, 'color'),
           );
         }
       }
@@ -103,7 +103,7 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
             token.mode[mode]!.source.node.type === 'Array'
               ? token.mode[mode]!.source.node.elements[i]!.value
               : token.mode[mode]!.source.node
-          ) as ObjectNode;
+          ) as momoa.ObjectNode;
           if (shadow.color) {
             shadow.color = normalizeColor(shadow.color, getObjMember(shadowNode, 'color'));
           }
@@ -127,7 +127,7 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           if (!stop || typeof stop !== 'object') {
             continue;
           }
-          const stopNode = (token.mode[mode]!.source.node as ArrayNode)?.elements?.[i]?.value as ObjectNode;
+          const stopNode = (token.mode[mode]!.source.node as momoa.ArrayNode)?.elements?.[i]?.value as momoa.ObjectNode;
           if (stop.color) {
             stop.color = normalizeColor(stop.color, getObjMember(stopNode, 'color'));
           }

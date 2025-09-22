@@ -1,5 +1,5 @@
-import type { AnyNode } from '@humanwhocodes/momoa';
-import { getObjMember } from '../../../parse/json.js';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -29,7 +29,7 @@ const rule: LintRule<typeof ERROR, {}> = {
         filename: t.source.filename,
       });
 
-      function validateBoolean(value: unknown, { node, filename }: { node?: AnyNode; filename?: string }) {
+      function validateBoolean(value: unknown, { node, filename }: { node?: momoa.AnyNode; filename?: string }) {
         if (typeof value !== 'boolean') {
           report({ messageId: ERROR, filename, node });
         }

@@ -7,6 +7,7 @@ export default defineConfig({
   },
   platform: 'browser',
   plugins: [dts()],
+  external: ['@humanwhocodes/momoa'],
   output: {
     dir: 'dist',
     format: 'es',

@@ -43,7 +43,7 @@ describe('9.4 Transition', () => {
                 duration: 'timing.quick',
                 timingFunction: 'ease.in-out',
               },
-              dependencies: ['#/timing/quick/$value', '#/ease/in-out/$value'],
+              dependencies: ['#/ease/in-out/$value', '#/timing/quick/$value'],
             },
             'timing.quick': {
               $value: { value: 150, unit: 'ms' },
@@ -148,6 +148,42 @@ describe('9.4 Transition', () => {
   6 |         "duration": {
   7 |           "value": 150,
   8 |           "unit": "ms"
+
+[lint:lint] 1 error`,
+        },
+      },
+    ],
+    [
+      'invalid: unknown prop',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              transition: {
+                'ease-in-out': {
+                  $type: 'transition',
+                  $value: {
+                    duration: { value: 100, unit: 'ms' },
+                    timingFunction: [0, 0, 1, 1],
+                    delay: { value: 0, unit: 'ms' },
+                    bad: true,
+                  },
+                },
+              },
+            },
+          },
+        ],
+        want: {
+          error: `[lint:core/valid-transition] Unknown property: "bad".
+
+  18 |           "unit": "ms"
+  19 |         },
+> 20 |         "bad": true
+     |                ^
+  21 |       }
+  22 |     }
+  23 |   }
 
 [lint:lint] 1 error`,
         },

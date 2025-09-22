@@ -4,8 +4,6 @@ import Logger from '../logger.js';
 import type { ConfigInit, InputSource, ParseOptions } from '../types.js';
 import { loadSources } from './load.js';
 
-export * from './json.js';
-
 export interface ParseResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];
@@ -27,7 +25,7 @@ export default async function parse(
 
   const totalStart = performance.now();
   const initStart = performance.now();
-  const { tokens, sources } = await loadSources(inputs, { logger, continueOnError, yamlToMomoa, transform });
+  const { tokens, sources } = await loadSources(inputs, { logger, config, continueOnError, yamlToMomoa, transform });
   logger.debug({
     message: 'Loaded tokens',
     group: 'parser',

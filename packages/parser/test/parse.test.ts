@@ -1,4 +1,4 @@
-import type { AnyNode } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import yamlToMomoa from 'yaml-to-momoa';
@@ -40,12 +40,12 @@ describe('Additional cases', () => {
       expect(() => result).toThrow;
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "[parser:yaml] Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
+        "[parser:init] Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
-            import { parse } from '@terrazzo/parser';
+            import { bundle } from '@terrazzo/json-schema-tools';
             import yamlToMomoa from 'yaml-to-momoa';
 
-            parse(yamlString, { yamlToMomoa });"
+            bundle(yamlString, { yamlToMomoa });"
       `);
     }
   });
@@ -67,7 +67,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow();
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "[parser:json] YAMLParseError: All mapping items must start at the same column at line 3, column 1:
+        "[parser:init] All mapping items must start at the same column at line 3, column 1:
 
   - foo: true
   false
@@ -214,15 +214,15 @@ describe('Additional cases', () => {
             {
               filename: DEFAULT_FILENAME,
               src: {
-                fontFamily: {
+                'font-family': {
                   $type: 'fontFamily',
                   base: { $value: 'Helvetica' },
-                  sans: { $value: '{fontFamily.base}' },
+                  sans: { $value: '{font-family.base}' },
                 },
               },
             },
           ],
-          want: { 'fontFamily.base': ['Helvetica'], 'fontFamily.sans': ['Helvetica'] },
+          want: { 'font-family.base': ['Helvetica'], 'font-family.sans': ['Helvetica'] },
         },
       ],
     ];
@@ -244,21 +244,221 @@ describe('Additional cases', () => {
           blue: {
             $description: 'Blue palette',
             $extensions: { foo: 'bar' },
+            '6': {
+              $value: {
+                colorSpace: 'srgb',
+                components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                alpha: 1,
+                hex: '#0550ae',
+              },
+              $extensions: {
+                mode: {
+                  light: {
+                    colorSpace: 'srgb',
+                    components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                    alpha: 1,
+                    hex: '#0550ae',
+                  },
+                  'light-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+                    alpha: 1,
+                    hex: '#0550ae',
+                  },
+                  'light-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.00784313725490196, 0.23137254901960785, 0.5843137254901961],
+                    alpha: 1,
+                    hex: '#023b95',
+                  },
+                  dark: {
+                    colorSpace: 'srgb',
+                    components: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
+                    alpha: 1,
+                    hex: '#1158c7',
+                  },
+                  'dark-dimmed': {
+                    colorSpace: 'srgb',
+                    components: [0.1450980392156863, 0.35294117647058826, 0.6980392156862745],
+                    alpha: 1,
+                    hex: '#255ab2',
+                  },
+                  'dark-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.19215686274509805, 0.5450980392156862, 0.9725490196078431],
+                    alpha: 1,
+                    hex: '#318bf8',
+                  },
+                  'dark-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
+                    alpha: 1,
+                    hex: '#1158c7',
+                  },
+                },
+              },
+            },
             '7': {
-              $value: '#8ec8f6',
-              $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } },
+              $value: {
+                colorSpace: 'srgb',
+                components: [0.011764705882352941, 0.23921568627450981, 0.5450980392156862],
+                alpha: 1,
+                hex: '#033d8b',
+              },
+              $extensions: {
+                mode: {
+                  light: {
+                    colorSpace: 'srgb',
+                    components: [0.011764705882352941, 0.23921568627450981, 0.5450980392156862],
+                    alpha: 1,
+                    hex: '#033d8b',
+                  },
+                  'light-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.011764705882352941, 0.23921568627450981, 0.5450980392156862],
+                    alpha: 1,
+                    hex: '#033d8b',
+                  },
+                  'light-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.00784313725490196, 0.1843137254901961, 0.47843137254901963],
+                    alpha: 1,
+                    hex: '#022f7a',
+                  },
+                  dark: {
+                    colorSpace: 'srgb',
+                    components: [0.050980392156862744, 0.2549019607843137, 0.615686274509804],
+                    alpha: 1,
+                    hex: '#0d419d',
+                  },
+                  'dark-dimmed': {
+                    colorSpace: 'srgb',
+                    components: [0.10588235294117647, 0.29411764705882354, 0.5686274509803921],
+                    alpha: 1,
+                    hex: '#1b4b91',
+                  },
+                  'dark-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.14901960784313725, 0.4470588235294118, 0.9529411764705882],
+                    alpha: 1,
+                    hex: '#2672f3',
+                  },
+                  'dark-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.050980392156862744, 0.2549019607843137, 0.615686274509804],
+                    alpha: 1,
+                    hex: '#0d419d',
+                  },
+                },
+              },
             },
             '8': {
-              $value: '#5eb1ef',
-              $extensions: { mode: { light: '#5eb1ef', dark: '#2870bd' } },
+              $value: {
+                colorSpace: 'srgb',
+                components: [0.0392156862745098, 0.18823529411764706, 0.4117647058823529],
+                alpha: 1,
+                hex: '#0a3069',
+              },
+              $extensions: {
+                mode: {
+                  light: {
+                    colorSpace: 'srgb',
+                    components: [0.0392156862745098, 0.18823529411764706, 0.4117647058823529],
+                    alpha: 1,
+                    hex: '#0a3069',
+                  },
+                  'light-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.0392156862745098, 0.18823529411764706, 0.4117647058823529],
+                    alpha: 1,
+                    hex: '#0a3069',
+                  },
+                  'light-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.011764705882352941, 0.1450980392156863, 0.38823529411764707],
+                    alpha: 1,
+                    hex: '#032563',
+                  },
+                  dark: {
+                    colorSpace: 'srgb',
+                    components: [0.047058823529411764, 0.17647058823529413, 0.4196078431372549],
+                    alpha: 1,
+                    hex: '#0c2d6b',
+                  },
+                  'dark-dimmed': {
+                    colorSpace: 'srgb',
+                    components: [0.0784313725490196, 0.23921568627450981, 0.4745098039215686],
+                    alpha: 1,
+                    hex: '#143d79',
+                  },
+                  'dark-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.11764705882352941, 0.3764705882352941, 0.8352941176470589],
+                    alpha: 1,
+                    hex: '#1e60d5',
+                  },
+                  'dark-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.047058823529411764, 0.17647058823529413, 0.4196078431372549],
+                    alpha: 1,
+                    hex: '#0c2d6b',
+                  },
+                },
+              },
             },
             '9': {
-              $value: '#0090ff',
-              $extensions: { mode: { light: '#0090ff', dark: '#0090ff' } },
-            },
-            '10': {
-              $value: '#0588f0',
-              $extensions: { mode: { light: '#0588f0', dark: '#3b9eff' } },
+              $value: {
+                colorSpace: 'srgb',
+                components: [0, 0.12941176470588237, 0.3333333333333333],
+                alpha: 1,
+                hex: '#002155',
+              },
+              $extensions: {
+                mode: {
+                  light: {
+                    colorSpace: 'srgb',
+                    components: [0, 0.12941176470588237, 0.3333333333333333],
+                    alpha: 1,
+                    hex: '#002155',
+                  },
+                  'light-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0, 0.12941176470588237, 0.3333333333333333],
+                    alpha: 1,
+                    hex: '#002155',
+                  },
+                  'light-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.00784313725490196, 0.10196078431372549, 0.2901960784313726],
+                    alpha: 1,
+                    hex: '#021a4a',
+                  },
+                  dark: {
+                    colorSpace: 'srgb',
+                    components: [0.0196078431372549, 0.11372549019607843, 0.30196078431372547],
+                    alpha: 1,
+                    hex: '#051d4d',
+                  },
+                  'dark-dimmed': {
+                    colorSpace: 'srgb',
+                    components: [0.058823529411764705, 0.17647058823529413, 0.3607843137254902],
+                    alpha: 1,
+                    hex: '#0f2d5c',
+                  },
+                  'dark-high-contrast': {
+                    colorSpace: 'srgb',
+                    components: [0.09803921568627451, 0.30980392156862746, 0.6941176470588235],
+                    alpha: 1,
+                    hex: '#194fb1',
+                  },
+                  'dark-colorblind': {
+                    colorSpace: 'srgb',
+                    components: [0.0196078431372549, 0.11372549019607843, 0.30196078431372547],
+                    alpha: 1,
+                    hex: '#051d4d',
+                  },
+                },
+              },
             },
           },
         },
@@ -276,18 +476,18 @@ describe('Additional cases', () => {
         ],
         { config },
       );
-      expect(tokens['color.blue.7']?.group).toEqual({
+      expect(tokens['color.blue.6']?.group).toEqual({
         id: 'color.blue',
         $type: 'color',
         $deprecated: undefined,
         $description: 'Blue palette',
         $extensions: { foo: 'bar' },
-        tokens: ['color.blue.7', 'color.blue.8', 'color.blue.9', 'color.blue.10'],
+        tokens: ['color.blue.6', 'color.blue.7', 'color.blue.8', 'color.blue.9'],
       });
     });
   });
 
-  describe.only('modes', () => {
+  describe('modes', () => {
     const tests: [string, { given: any; want: any }][] = [
       [
         'color',
@@ -340,6 +540,7 @@ describe('Additional cases', () => {
                 originalValue: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: undefined,
                 partialAliasOf: undefined,
                 dependencies: undefined,
               },
@@ -348,6 +549,8 @@ describe('Additional cases', () => {
                 originalValue: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: undefined,
+                partialAliasOf: undefined,
                 dependencies: undefined,
               },
               dark: {
@@ -355,6 +558,7 @@ describe('Additional cases', () => {
                 originalValue: { components: [0.067, 0.35, 0.78], colorSpace: 'srgb' },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: ['color.semantic.bg'],
                 partialAliasOf: undefined,
                 dependencies: undefined,
               },
@@ -365,6 +569,7 @@ describe('Additional cases', () => {
                 originalValue: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: ['color.semantic.bg'],
                 partialAliasOf: undefined,
                 dependencies: undefined,
               },
@@ -373,6 +578,7 @@ describe('Additional cases', () => {
                 originalValue: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: ['color.semantic.bg'],
                 partialAliasOf: undefined,
                 dependencies: undefined,
               },
@@ -381,6 +587,7 @@ describe('Additional cases', () => {
                 originalValue: { colorSpace: 'srgb', components: [0.13, 0.36, 0.62] },
                 aliasChain: undefined,
                 aliasOf: undefined,
+                aliasedBy: undefined,
                 partialAliasOf: undefined,
                 dependencies: undefined,
               },
@@ -391,24 +598,27 @@ describe('Additional cases', () => {
                 originalValue: '{color.blue.7}',
                 aliasChain: ['color.blue.7'],
                 aliasOf: 'color.blue.7',
+                aliasedBy: undefined,
                 partialAliasOf: undefined,
-                dependencies: undefined,
+                dependencies: ['#/color/blue/7/$value'],
               },
               light: {
                 $value: { alpha: 1, components: [0.56, 0.78, 0.96], colorSpace: 'srgb' },
                 originalValue: '{color.blue.7}',
                 aliasChain: ['color.blue.7'],
                 aliasOf: 'color.blue.7',
+                aliasedBy: undefined,
                 partialAliasOf: undefined,
-                dependencies: undefined,
+                dependencies: ['#/color/blue/7/$extensions/mode/light/$value'],
               },
               dark: {
-                $value: { alpha: 1, components: [0.02, 0.3, 0.68], colorSpace: 'srgb' },
+                $value: { alpha: 1, components: [0.067, 0.35, 0.78], colorSpace: 'srgb' },
                 originalValue: '{color.blue.6}',
                 aliasChain: ['color.blue.6'],
                 aliasOf: 'color.blue.6',
+                aliasedBy: undefined,
                 partialAliasOf: undefined,
-                dependencies: undefined,
+                dependencies: ['#/color/blue/6/$extensions/mode/dark/$value'],
               },
             },
           },
@@ -430,15 +640,35 @@ describe('Additional cases', () => {
                       fontStyle: 'normal',
                       fontWeight: 400,
                       fontVariantNumeric: 'tabular-nums',
-                      letterSpacing: 0,
+                      letterSpacing: { value: 0, unit: 'px' },
                       lineHeight: 1.4,
                       textDecoration: 'none',
                       textTransform: 'none',
                     },
                     $extensions: {
                       mode: {
-                        mobile: { fontSize: { value: 0.875, unit: 'rem' } },
-                        desktop: { fontSize: { value: 1, unit: 'rem' } },
+                        mobile: {
+                          fontFamily: 'Helvetica',
+                          fontSize: { value: 0.875, unit: 'rem' },
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          fontVariantNumeric: 'tabular-nums',
+                          letterSpacing: { value: 0, unit: 'px' },
+                          lineHeight: 1.4,
+                          textDecoration: 'none',
+                          textTransform: 'none',
+                        },
+                        desktop: {
+                          fontFamily: 'Helvetica',
+                          fontSize: { value: 1, unit: 'rem' },
+                          fontStyle: 'normal',
+                          fontWeight: 400,
+                          fontVariantNumeric: 'tabular-nums',
+                          letterSpacing: { value: 0, unit: 'px' },
+                          lineHeight: 1.4,
+                          textDecoration: 'none',
+                          textTransform: 'none',
+                        },
                       },
                     },
                   },
@@ -459,7 +689,7 @@ describe('Additional cases', () => {
                   fontStyle: 'normal',
                   fontVariantNumeric: 'tabular-nums',
                   fontWeight: 400,
-                  letterSpacing: { unit: 'px', value: 0 },
+                  letterSpacing: { value: 0, unit: 'px' },
                   lineHeight: 1.4,
                   textDecoration: 'none',
                   textTransform: 'none',
@@ -470,14 +700,18 @@ describe('Additional cases', () => {
                   fontStyle: 'normal',
                   fontVariantNumeric: 'tabular-nums',
                   fontWeight: 400,
-                  letterSpacing: 0,
+                  letterSpacing: { value: 0, unit: 'px' },
                   lineHeight: 1.4,
                   textDecoration: 'none',
                   textTransform: 'none',
                 },
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: undefined,
                 partialAliasOf: {
                   fontSize: 'typography.size.sm',
                 },
+                dependencies: ['#/typography/size/sm/$value'],
               },
               mobile: {
                 $value: {
@@ -492,8 +726,21 @@ describe('Additional cases', () => {
                   textTransform: 'none',
                 },
                 originalValue: {
+                  fontFamily: 'Helvetica',
                   fontSize: { value: 0.875, unit: 'rem' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontVariantNumeric: 'tabular-nums',
+                  letterSpacing: { value: 0, unit: 'px' },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
                 },
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               desktop: {
                 $value: {
@@ -508,14 +755,32 @@ describe('Additional cases', () => {
                   textTransform: 'none',
                 },
                 originalValue: {
+                  fontFamily: 'Helvetica',
                   fontSize: { value: 1, unit: 'rem' },
+                  fontStyle: 'normal',
+                  fontWeight: 400,
+                  fontVariantNumeric: 'tabular-nums',
+                  letterSpacing: { value: 0, unit: 'px' },
+                  lineHeight: 1.4,
+                  textDecoration: 'none',
+                  textTransform: 'none',
                 },
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
             },
             'typography.size.sm': {
               '.': {
                 $value: { value: 0.875, unit: 'rem' },
                 originalValue: { value: 0.875, unit: 'rem' },
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: ['typography.base'],
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
             },
           },
@@ -571,9 +836,8 @@ describe('Additional cases', () => {
 
 interface Visit {
   name: string;
-  json: any;
-  path: string;
-  ast: AnyNode;
+  node: momoa.AnyNode;
+  path: string[];
 }
 
 describe('Transform', () => {
@@ -583,10 +847,10 @@ describe('Transform', () => {
   "color": {
     "$type": "color",
     "slate": {
-      "700": { "$value": "#5a5a5a" },
-      "800": { "$value": "#434343" },
-      "900": { "$value": "#303030" },
-      "1000": { "$value": "#242424" }
+      "700": { "$value": { "colorSpace": "srgb", "components": [0.35294117647058826, 0.35294117647058826, 0.35294117647058826], "alpha": 1, "hex": "#5a5a5a" } },
+      "800": { "$value": { "colorSpace": "srgb", "components": [0.2627450980392157, 0.2627450980392157, 0.2627450980392157], "alpha": 1, "hex": "#434343" } },
+      "900": { "$value": { "colorSpace": "srgb", "components": [0.18823529411764706, 0.18823529411764706, 0.18823529411764706], "alpha": 1, "hex": "#303030" } },
+      "1000": {  "$value": { "colorSpace": "srgb", "components": [0.1411764705882353, 0.1411764705882353, 0.1411764705882353], "alpha": 1, "hex": "#242424" } }
     },
     "bg": {
       "neutral": {
@@ -601,16 +865,18 @@ describe('Transform', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
-        root(json, path, ast) {
-          visits.push({ name: 'root', json, path, ast });
+        root(node, { path }) {
+          visits.push({ name: 'root', node, path });
         },
-        group(json, path, ast) {
-          visits.push({ name: 'group', json, path, ast });
+        group(node, { path }) {
+          visits.push({ name: 'group', node, path });
         },
-        color(json, path, ast) {
-          visits.push({ name: 'color', json, path, ast });
-          if (path === 'color.bg.neutral.hover') {
-            return { ...json, $value: '{color.slate.900}' };
+        color(node, { path }) {
+          if (path.join('.') === 'color.bg.neutral.hover') {
+            visits.push({ name: 'color', node, path });
+            const json = momoa.evaluate(node) as any;
+            json.$value = '{color.slate.900}';
+            return momoa.parse(json).body as momoa.ObjectNode;
           }
         },
       },
@@ -663,16 +929,18 @@ describe('Transform', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
-        root(json, path, ast) {
-          visits.push({ name: 'root', json, path, ast });
+        root(node, { path }) {
+          visits.push({ name: 'root', node, path });
         },
-        group(json, path, ast) {
-          visits.push({ name: 'group', json, path, ast });
+        group(node, { path }) {
+          visits.push({ name: 'group', node, path });
         },
-        color(json, path, ast) {
-          visits.push({ name: 'color', json, path, ast });
-          if (path === 'color.bg.neutral.hover') {
-            return { ...json, $value: '{color.slate.900}' };
+        color(node, { path }) {
+          visits.push({ name: 'color', node, path });
+          if (path.join('.') === 'color.bg.neutral.hover') {
+            const json = momoa.evaluate(node) as any;
+            json.$value = '{color.slate.900}';
+            return momoa.parse(json);
           }
         },
       },
@@ -707,10 +975,10 @@ describe('Transform', () => {
   "color": {
     "$type": "color",
     "slate": {
-      "700": { "$value": "#5a5a5a" },
-      "800": { "$value": "#434343" },
-      "900": { "$value": "#303030" },
-      "1000": { "$value": "#242424" }
+      "700": { "$value": { "colorSpace": "srgb", "components": [0.35294117647058826, 0.35294117647058826, 0.35294117647058826], "alpha": 1, "hex": "#5a5a5a" } },
+      "800": { "$value": { "colorSpace": "srgb", "components": [0.2627450980392157, 0.2627450980392157, 0.2627450980392157], "alpha": 1, "hex": "#434343" } },
+      "900": { "$value": { "colorSpace": "srgb", "components": [0.18823529411764706, 0.18823529411764706, 0.18823529411764706], "alpha": 1, "hex": "#303030" } },
+      "1000": {  "$value": { "colorSpace": "srgb", "components": [0.1411764705882353, 0.1411764705882353, 0.1411764705882353], "alpha": 1, "hex": "#242424" } }
     }
   }
 }`;
@@ -719,11 +987,11 @@ describe('Transform', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
-        group(json, path) {
-          if (path === 'color.slate') {
-            const groupJSON = { ...json };
+        group(node, { path }) {
+          if (path.join('.') === 'color.slate') {
+            const groupJSON = momoa.evaluate(node) as any;
             delete groupJSON['900'];
-            return groupJSON;
+            return momoa.parse(groupJSON);
           }
         },
       },
@@ -756,7 +1024,7 @@ describe('Transform', () => {
   "color": {
     "$type": "color",
     "slate": {
-      "700": { "$value": "#5a5a5a" }
+      "700": { "$value": { "colorSpace": "srgb", "components": [0.35294117647058826, 0.35294117647058826, 0.35294117647058826], "alpha": 1, "hex": "#5a5a5a" } }
     }
   }
 }`;
@@ -765,9 +1033,24 @@ describe('Transform', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
-        group(json, path) {
-          if (path === 'color.slate') {
-            return { ...json, '800': { $value: '#434343' } };
+        group(node, { path }) {
+          if (path.join('.') === 'color.slate') {
+            (node as momoa.ObjectNode).members.push(
+              (
+                momoa.parse(
+                  JSON.stringify({
+                    '800': {
+                      $value: {
+                        colorSpace: 'srgb',
+                        components: [0.2627450980392157, 0.2627450980392157, 0.2627450980392157],
+                        alpha: 1,
+                        hex: '#434343',
+                      },
+                    },
+                  }),
+                ).body as momoa.ObjectNode
+              ).members[0]!,
+            );
           }
         },
       },
@@ -806,7 +1089,11 @@ describe('Transform', () => {
       config,
       transform: {
         foobar(json) {
-          return { ...json, $type: 'color', $value: '#0088ff' };
+          return {
+            ...json,
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [0, 0.5333333333333333, 1], hex: '#0088ff' },
+          };
         },
       },
     });

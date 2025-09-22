@@ -1,6 +1,6 @@
-import type { ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember, isPure$ref } from '@terrazzo/json-schema-tools';
 import { isAlias } from '@terrazzo/token-tools';
-import { getObjMember, isPure$ref } from '../../../parse/json.js';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -32,7 +32,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
       switch (t.$type) {
         case 'cubicBezier': {
           validateCubicBezier(t.originalValue.$value, {
-            node: getObjMember(t.source.node, '$value') as ArrayNode,
+            node: getObjMember(t.source.node, '$value') as momoa.ArrayNode,
             filename: t.source.filename,
           });
           break;
@@ -43,16 +43,16 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
             t.originalValue.$value.timingFunction &&
             !isAlias(t.originalValue.$value.timingFunction as string)
           ) {
-            const $valueNode = getObjMember(t.source.node, '$value') as ObjectNode;
+            const $valueNode = getObjMember(t.source.node, '$value') as momoa.ObjectNode;
             validateCubicBezier(t.originalValue.$value.timingFunction, {
-              node: getObjMember($valueNode, 'timingFunction') as ArrayNode,
+              node: getObjMember($valueNode, 'timingFunction') as momoa.ArrayNode,
               filename: t.source.filename,
             });
           }
         }
       }
 
-      function validateCubicBezier(value: unknown, { node, filename }: { node: ArrayNode; filename?: string }) {
+      function validateCubicBezier(value: unknown, { node, filename }: { node: momoa.ArrayNode; filename?: string }) {
         if (Array.isArray(value) && value.length === 4) {
           // validate x values
           for (const pos of [0, 2]) {
@@ -60,7 +60,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
               continue;
             }
             if (!(value[pos] >= 0 && value[pos] <= 1)) {
-              report({ messageId: ERROR_X, node: (node as ArrayNode).elements[pos], filename });
+              report({ messageId: ERROR_X, node: (node as momoa.ArrayNode).elements[pos], filename });
             }
           }
           // validate y values
@@ -69,7 +69,7 @@ const rule: LintRule<typeof ERROR | typeof ERROR_X | typeof ERROR_Y> = {
               continue;
             }
             if (typeof value[pos] !== 'number') {
-              report({ messageId: ERROR_Y, node: (node as ArrayNode).elements[pos], filename });
+              report({ messageId: ERROR_Y, node: (node as momoa.ArrayNode).elements[pos], filename });
             }
           }
         } else {

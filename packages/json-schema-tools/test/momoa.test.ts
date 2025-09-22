@@ -1,7 +1,6 @@
-import { print, parse as toMomoa } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import { describe, expect, it } from 'vitest';
-import { mergeDocuments } from '../src/parse/json.js';
-import { aliasToRef } from '../src/parse/token.js';
+import { mergeDocuments } from '../src/index.js';
 
 describe('mergeDocuments', () => {
   const tests: [string, { given: any[]; want: string }][] = [
@@ -83,23 +82,7 @@ describe('mergeDocuments', () => {
   ];
 
   it.each(tests)('%s', (_, { given, want }) => {
-    const input = given.map((src) => toMomoa(JSON.stringify(src)));
-    expect(print(mergeDocuments(input), { indent: 2 })).toBe(want);
-  });
-});
-
-describe('aliasToRef', () => {
-  const tests: [string, { given: Parameters<typeof aliasToRef>[0]; want: ReturnType<typeof aliasToRef> }][] = [
-    ['valid: simple', { given: '{color.blue.500}', want: { $ref: '#/color/blue/500/$value' } }],
-    ['valid: single-level', { given: '{red}', want: { $ref: '#/red/$value' } }],
-    ['valid: / char', { given: '{transition/ease/fast}', want: { $ref: '#/transition~1ease~1fast/$value' } }],
-    ['valid: ~ char', { given: '{spacing.~.200}', want: { $ref: '#/spacing/~0/200/$value' } }],
-    ['valid: ~0', { given: '{my.~0token.200}', want: { $ref: '#/my/~00token/200/$value' } }],
-    ['invalid: bad alias', { given: '{color.text.bg', want: undefined }],
-    ['invalid: ref string', { given: '#/color/blue/200', want: undefined }],
-  ];
-
-  it.each(tests)('%s', (_, { given, want }) => {
-    expect(aliasToRef(given)).toEqual(want);
+    const input = given.map((src) => momoa.parse(JSON.stringify(src)));
+    expect(momoa.print(mergeDocuments(input), { indent: 2 })).toBe(want);
   });
 });
