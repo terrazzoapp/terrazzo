@@ -1,6 +1,5 @@
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
-import { getCode } from '../lib/code-frame.js';
 import type { LogEntry, default as Logger } from '../logger.js';
 import type { ConfigInit, InputSource } from '../types.js';
 
@@ -22,6 +21,10 @@ export default async function lintRunner({
   logger,
 }: LintRunnerOptions): Promise<void> {
   const { plugins = [], lint } = config;
+  const sourceByFilename: Record<string, InputSource> = {};
+  for (const source of sources) {
+    sourceByFilename[source.filename!.href] = source;
+  }
   const unusedLintRules = Object.keys(lint?.rules ?? {});
 
   const errors: LogEntry[] = [];
@@ -87,7 +90,7 @@ export default async function lintRunner({
                 message,
                 filename,
                 node: descriptor.node,
-                src: getCode(sources, descriptor.filename),
+                src: sourceByFilename[descriptor.filename!]?.src,
               });
             },
             tokens,

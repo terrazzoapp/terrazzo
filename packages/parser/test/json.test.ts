@@ -1,6 +1,7 @@
 import { print, parse as toMomoa } from '@humanwhocodes/momoa';
 import { describe, expect, it } from 'vitest';
-import { aliasToRef, mergeDocuments } from '../src/parse/json.js';
+import { mergeDocuments } from '../src/parse/json.js';
+import { aliasToRef } from '../src/parse/token.js';
 
 describe('mergeDocuments', () => {
   const tests: [string, { given: any[]; want: string }][] = [

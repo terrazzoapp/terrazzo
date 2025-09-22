@@ -3,7 +3,6 @@ import {
   type ArrayNode,
   type BooleanNode,
   type DocumentNode,
-  type MemberNode,
   parse as momoaParse,
   type NumberNode,
   type ObjectNode,
@@ -13,19 +12,13 @@ import {
   type ValueNode,
 } from '@humanwhocodes/momoa';
 import parseRef from '@terrazzo/json-ref-parser';
-import { parseAlias } from '@terrazzo/token-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
-import type { InputSource, ReferenceObject } from '../types.js';
+import type { InputSource } from '../types.js';
 
-export interface JSONVisitor {
-  enter?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
-  exit?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => void;
-}
-
-/** Determines if a given value is an AST node. */
-export function isNode(value: unknown): boolean {
-  return !!value && typeof value === 'object' && 'type' in value && typeof value.type === 'string';
+export interface AsyncJSONVisitor {
+  enter?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => Promise<void>;
+  exit?: (node: AnyNode, parent: AnyNode | undefined, path: string[]) => Promise<void>;
 }
 
 export type ValueNodeWithIndex = ValueNode & { index: number };
@@ -54,14 +47,6 @@ export function getObjMembers(node: ObjectNode): Record<string | number, ValueNo
   return members;
 }
 
-/** Inject members to ObjectNode */
-export function injectObjMembers(node: ObjectNode, members: MemberNode[] = []) {
-  if (node.type !== 'Object') {
-    return;
-  }
-  node.members.push(...members);
-}
-
 /** Replace an ObjectNode’s contents outright with another */
 export function replaceObjMembers(a: ObjectNode, b: DocumentNode | ObjectNode) {
   a.members = (b.type === 'Document' && (b.body as ObjectNode)?.members) || (b as ObjectNode).members;
@@ -71,22 +56,19 @@ export function replaceObjMembers(a: ObjectNode, b: DocumentNode | ObjectNode) {
  * Variation of Momoa’s traverse(), which keeps track of global path.
  * Allows mutation of AST (along with any consequences)
  */
-export function traverse(root: AnyNode, visitor: JSONVisitor) {
+export async function traverseAsync(root: AnyNode, visitor: AsyncJSONVisitor): Promise<void> {
   /**
    * Recursively visits a node.
    * @param {AnyNode} node The node to visit.
    * @param {AnyNode} [parent] The parent of the node to visit.
    * @return {void}
    */
-  function visitNode(node: AnyNode, parent: AnyNode | undefined, path: string[] = []) {
+  async function visitNode(node: AnyNode, parent: AnyNode | undefined, path: string[] = []) {
     const nextPath = [...path];
-
-    visitor.enter?.(node, parent, nextPath);
-
-    // visit child nodes before enter & exit
+    await visitor.enter?.(node, parent, nextPath);
     switch (node.type) {
       case 'Document': {
-        visitNode(node.body, node, nextPath); // document.body is invisible
+        await visitNode(node.body, node, nextPath);
         break;
       }
       case 'Array': {
@@ -94,7 +76,7 @@ export function traverse(root: AnyNode, visitor: JSONVisitor) {
         let len = node.elements.length;
         let prevElements = node.elements;
         while (i < len) {
-          visitNode(node.elements[i]!, node, [...nextPath, String(i)]);
+          await visitNode(node.elements[i]!, node, [...nextPath, String(i)]);
           // if this node mutated, start over
           if (node.elements !== prevElements) {
             i = 0;
@@ -108,7 +90,7 @@ export function traverse(root: AnyNode, visitor: JSONVisitor) {
       }
       case 'Element':
       case 'Member': {
-        visitNode(node.value, node, nextPath);
+        await visitNode(node.value, node, nextPath);
         break;
       }
       case 'Object': {
@@ -116,7 +98,7 @@ export function traverse(root: AnyNode, visitor: JSONVisitor) {
         let len = node.members.length;
         let prevMembers = node.members;
         while (i < len) {
-          visitNode(node.members[i]!, node, [...nextPath, (node.members[i]!.name as StringNode).value]);
+          await visitNode(node.members[i]!, node, [...nextPath, (node.members[i]!.name as StringNode).value]);
           // if this node mutated, start over
           if (node.members !== prevMembers) {
             i = 0;
@@ -129,10 +111,9 @@ export function traverse(root: AnyNode, visitor: JSONVisitor) {
         break;
       }
     }
-    visitor.exit?.(node, parent, nextPath);
+    await visitor.exit?.(node, parent, nextPath);
   }
-
-  visitNode(root, undefined, []);
+  await visitNode(root, undefined, []);
 }
 
 /** Determine if an input is likely a JSON string */
@@ -250,7 +231,13 @@ export function mergeDocuments(documents: DocumentNode[]): DocumentNode {
   const final = structuredClone(documents[0]!);
   for (const next of documents.slice(1)) {
     final.body = mergeObjects(final.body as ObjectNode, next.body as ObjectNode);
+
+    // take the longer end point. this is wrong, but it’s… less wrong
+    if (next.body.loc.end.offset > final.body.loc.end.offset) {
+      final.loc.end = { ...next.body.loc.end };
+    }
   }
+
   return final;
 }
 
@@ -294,33 +281,58 @@ export function mergeObjects(a: ObjectNode, b: ObjectNode): ObjectNode {
   return obj;
 }
 
+let fs: any;
+
+export interface ResolveRefOptions {
+  parse: (source: Pick<InputSource, 'filename' | 'src'>) => DocumentNode;
+  source: InputSource;
+  sources: Record<string, InputSource>;
+  visited: string[];
+  refChain: string[];
+}
+
 /** Flatten $refs and merge objects one level deep. */
-export function flatten$refs(
+export async function resolveRef(
   node: ObjectNode,
-  {
-    source,
-    sources,
-    visited = [],
-    aliasChain = [],
-  }: {
-    source: InputSource;
-    sources: Record<string, InputSource>;
-    visited: string[];
-    aliasChain: string[];
-  },
-): StringNode | NumberNode | ObjectNode | BooleanNode | ArrayNode {
+  options: ResolveRefOptions,
+): Promise<StringNode | NumberNode | ObjectNode | BooleanNode | ArrayNode> {
   if (node.type !== 'Object') {
     return node;
   }
-
-  // 1. if $ref is anywhere in this object, hoist to top and merge in
+  const { parse, visited, source, sources, refChain } = options;
   const $ref = getObjMember(node, '$ref');
   if (!$ref) {
     return node;
   }
+
+  /**
+   * Resolve a URL and return its unparsed content in Node.js or browser environments safely.
+   * Note: response could be JSON or YAML (tip: pair with maybeRawJSON helper)
+   */
+  async function resolveRaw(path: URL, init?: RequestInit): Promise<string> {
+    // load node:fs if we‘re trying to load files. throw error if we try and open files from a browser context.
+    if (path.protocol === 'file:') {
+      if (!fs) {
+        try {
+          fs = await import('node:fs/promises').then((m) => m.default);
+        } catch {
+          throw new Error(`Tried to load file ${path.href} outside a Node.js environment`);
+        }
+      }
+      return await fs.readFile(path, 'utf8');
+    }
+
+    const res = await fetch(path, { redirect: 'follow', ...init });
+    if (!res.ok) {
+      throw new Error(`${path.href} responded with ${res.status}:\n${res.text()}`);
+    }
+    return res.text();
+  }
+
   if ($ref.type !== 'String') {
     throw new Error(`Invalid $ref. Expected string.`);
   }
+
   const { url, subpath } = parseRef($ref.value);
   if (url === '.' && !subpath?.length) {
     throw new Error(`Can’t recursively embed a document within itself.`);
@@ -334,15 +346,22 @@ export function flatten$refs(
     filename.href === source.filename!.href
       ? `#/${subpath?.join('/') ?? '/'}`
       : `${filename.href}${subpath ? `#${subpath.join('/')}` : ''}`;
-  if (aliasChain.includes(nextPath)) {
+  if (refChain.includes(nextPath)) {
     throw new Error(`Circular $ref detected: "${$ref.value}"`);
   }
-  aliasChain.push(nextPath);
+  refChain.push(nextPath);
+
+  if (!sources[filename.href]) {
+    const rawSource = await resolveRaw(filename);
+    sources[filename.href] = { filename, src: rawSource, document: parse({ filename, src: rawSource }) };
+  }
+
   const resolved = findNode(sources[filename.href]!.document, subpath) as ObjectNode | undefined;
+
   if (!resolved) {
     throw new Error(`Could not resolve $ref "${$ref.value}"`);
   }
-  const flattened = flatten$refs(resolved, { source, sources, visited, aliasChain });
+  const flattened = await resolveRef(resolved, options);
 
   // 2. Either use $ref as-is, or merge into object (only if it is an object)
   const isOnlyRef = node.members.length === 1;
@@ -358,58 +377,12 @@ export function flatten$refs(
   });
 }
 
-/** Convert valid DTCG alias to $ref */
-export function aliasToRef(alias: string): ReferenceObject | undefined {
-  const id = parseAlias(alias);
-  // if this is invalid, stop
-  if (id === alias) {
-    return;
-  }
-  return { $ref: `#/${id.replace(/~/g, '~0').replace(/\//g, '~1').replace(/\./g, '/')}/$value` };
-}
-
 /** Is this object a pure $ref? (no other properties) */
 export function isPure$ref(value: unknown): boolean {
   if (!value || typeof value !== 'object') {
     return false;
   }
   return '$ref' in value && Object.keys(value).length === 1;
-}
-
-/**
- * Convert Reference Object to token ID.
- * This can then be turned into an alias by surrounding with { … }
- */
-export function refToTokenID($ref: ReferenceObject | string): string | undefined {
-  const path = typeof $ref === 'object' ? $ref.$ref : $ref;
-  if (typeof path !== 'string') {
-    return;
-  }
-  const { subpath } = parseRef(path);
-  return (subpath?.length && subpath.join('.').replace(/\.\$value.*$/, '')) || undefined;
-}
-
-/** Convert valid DTCG alias to $ref Momoa Node */
-export function aliasToMomoa(
-  alias: string,
-  loc: ObjectNode['loc'] = { start: { line: -1, column: -1, offset: 0 }, end: { line: -1, column: -1, offset: 0 } },
-): ObjectNode | undefined {
-  const $ref = aliasToRef(alias);
-  if (!$ref) {
-    return;
-  }
-  return {
-    type: 'Object',
-    members: [
-      {
-        type: 'Member',
-        name: { type: 'String', value: '$ref', loc },
-        value: { type: 'String', value: $ref.$ref, loc },
-        loc,
-      },
-    ],
-    loc,
-  };
 }
 
 /** Replace node */
@@ -426,4 +399,46 @@ export function replaceNode(a: AnyNode, b: AnyNode) {
   } else if (b.type !== 'Null') {
     (a as StringNode).value = (b as StringNode).value;
   }
+}
+
+export interface BundleOptions {
+  parse: (source: Pick<InputSource, 'filename' | 'src'>) => DocumentNode;
+  continueOnError: boolean;
+  logger: Logger;
+  yamlToMomoa?: typeof yamlToMomoa;
+}
+
+/** Flatten multiple Momoa documents into one, while resolving refs. */
+export async function bundle(
+  sources: InputSource[],
+  options: BundleOptions,
+): Promise<{ document: DocumentNode; aliasMap: Record<string, { filename: string; refChain: string[] }> }> {
+  const externalDocs: Record<string, InputSource> = {};
+  const aliasMap: Record<string, { filename: string; refChain: string[] }> = {};
+  const resolvedDocs = await Promise.all<DocumentNode>(
+    sources.map(async (source) => {
+      const resolved = structuredClone(source.document);
+      await traverseAsync(resolved, {
+        async enter(node, _parent, path) {
+          if (node.type === 'Object' && getObjMember(node, '$ref')) {
+            const refChain: string[] = [];
+            const newNode = await resolveRef(node, {
+              source,
+              sources: externalDocs,
+              visited: [],
+              refChain,
+              ...options,
+            });
+            if (refChain.length) {
+              aliasMap[`#/${path.join('/')}`] = { filename: source.filename!.href, refChain };
+            }
+            replaceNode(node, newNode);
+          }
+        },
+      });
+      return resolved;
+    }),
+  );
+
+  return { document: mergeDocuments(resolvedDocs), aliasMap };
 }

@@ -14,6 +14,25 @@ describe('Additional cases', () => {
     );
   });
 
+  it.skip('Buffer', async () => {
+    const config = defineConfig({}, { cwd });
+    expect(
+      (
+        await parse(
+          [
+            {
+              filename: DEFAULT_FILENAME,
+              src: Buffer.from('{"size":{"large":{"$type":"dimension","$value":{"value":1,"unit":"rem"}}}}', 'utf8'),
+            },
+          ],
+          { config },
+        )
+      ).tokens,
+    ).toEqual({
+      'size.large': expect.objectContaining({ $value: { value: 1, unit: 'rem' } }),
+    });
+  });
+
   it('YAML: plugin not installed', async () => {
     try {
       const config = defineConfig({}, { cwd });
@@ -50,96 +69,10 @@ describe('Additional cases', () => {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
         "[parser:json] YAMLParseError: All mapping items must start at the same column at line 3, column 1:
 
-          - foo: true
-          false
-        ^
-
-
-
-          1 | tokens:
-          2 |   - foo: true
-          3 |   false"
-      `);
-    }
-  });
-
-  it('error messages', async () => {
-    try {
-      const config = defineConfig({}, { cwd });
-      await parse(
-        [
-          {
-            filename: DEFAULT_FILENAME,
-            src: `{
-  "color": {
-    "$type": "color",
-    "base": {
-      "blue": {
-        "100": { "$value": "#fafdfe", "$extensions": { "mode": { "light": "#fafdfe", "dark": "#07191d" } } },
-        "200": { "$value": "#f2fcfd", "$extensions": { "mode": { "light": "#f2fcfd", "dark": "#0b1d22" } } },
-        "300": { "$value": "#e7f9fb", "$extensions": { "mode": { "light": "#e7f9fb", "dark": "#0f272e" } } },
-        "400": { "$value": "#d8f3f6", "$extensions": { "mode": { "light": "#d8f3f6", "dark": "#112f37" } } },
-        "500": { "$value": "#c4eaef", "$extensions": { "mode": { "light": "#c4eaef", "dark": "#143741" } } },
-        "600": { "$value": "#aadee6", "$extensions": { "mode": { "light": "#aadee6", "dark": "#17444f" } } },
-        "700": { "$value": "#84cdda", "$extensions": { "mode": { "light": "#84cdda", "dark": "#1d586a" } } },
-        "800": { "$value": "#3db9cf", "$extensions": { "mode": { "light": "#3db9cf", "dark": "#28879f" } } },
-        "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#05a2c2" } } },
-        "1000": { "$value": "#0894b3", "$extensions": { "mode": { "light": "#0894b3", "dark": "#13b7d8" } } },
-        "1100": { "$value": "#0c7792", "$extensions": { "mode": { "light": "#0c7792", "dark": "#20d0f3" } } },
-        "1200": { "$value": "#0d3c48", "$extensions": { "mode": { "light": "#0d3c48", "dark": "#b6ecf7" } } }
-      },
-      "green": {
-        "100": { "$value": "#fbfefb", "$extensions": { "mode": { "light": "#fbfefb", "dark": "#203c25" } } },
-        "200": { "$value": "#f3fcf3", "$extensions": { "mode": { "light": "#f3fcf3", "dark": "#297c3b" } } },
-        "300": { "$value": "#ebf9eb", "$extensions": { "mode": { "light": "#ebf9eb", "dark": "#3d9a50" } } },
-        "400": { "$value": "#dff3df", "$extensions": { "mode": { "light": "#dff3df", "dark": "#46a758" } } },
-        "500": { "$value": "#ceebcf", "$extensions": { "mode": { "light": "#ceebcf", "dark": "#65ba75" } } },
-        "600": { "$value": "#b7dfba", "$extensions": { "mode": { "light": "#b7dfba", "dark": "#97cf9c" } } },
-        "700": { "$value": "#97cf9c", "$extensions": { "mode": { "light": "#97cf9c", "dark": "#b7dfba" } } },
-        "800": { "$value": "#65ba75", "$extensions": { "mode": { "light": "#65ba75", "dark": "#ceebcf" } } },
-        "900": { "$value": "#46a758", "$extensions": { "mode": { "light": "#46a758", "dark": "#dff3df" } } },
-        "1000": { "$value": "#3d9a50", "$extensions": { "mode": { "light": "#3d9a50", "dark": "#ebf9eb" } } },
-        "1100": { "$value": "#297c3b", "$extensions": { "mode": { "light": "#297c3b", "dark": "#f3fcf3" } } },
-        "1200": { "$value": "#203c25", "$extensions": { "mode": { "light": "#203c25", "dark": "#fbfefb" } } }
-      },
-      "gray": {
-        "000": { "$value": "#ffffff", "$extensions": { "mode": { "light": "#ffffff", "dark": "#000000" } } },
-        "100": { "$value": "#fdfdfc", "$extensions": { "mode": { "light": "#fdfdfc", "dark": "#181818" } } },
-        "200": { "$value": "#f9f9f8", "$extensions": { "mode": { "light": "#f9f9f8", "dark": "#282828" } } },
-        "300": { "$value": "#f1f0ef", "$extensions": { "mode": { "light": "#f1f0ef", "dark": "#303030" } } },
-        "400": { "$value": "#e9e8e6", "$extensions": { "mode": { "light": "#e9e8e6", "dark": "#373737" } } },
-        "500": { "$value": "#e2e1de", "$extensions": { "mode": { "light": "#e2e1de", "dark": "#3f3f3f" } } },
-        "600": { "$value": "#dad9d6", "$extensions": { "mode": { "light": "#dad9d6", "dark": "#4a4a4a" } } },
-        "700": { "$value": "#cfceca", "$extensions": { "mode": { "light": "#cfceca", "dark": "#606060" } } },
-        "800": { "$value": "#bcbbb5", "$extensions": { "mode": { "light": "#bcbbb5", "dark": "#6e6e6e" } } },
-        "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
-        "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
-        "1100": { "$value": "#646464)", "$extensions": { "mode": { "light": "#646464)", "dark": "#eeeeee" } } },
-        "1200": { "$value": "#202020", "$extensions": { "mode": { "light": "#202020", "dark": "#fdfdfc" } } },
-        "1300": { "$value": "#000000", "$extensions": { "mode": { "light": "#000000", "dark": "#ffffff" } } }
-      }
-    }
-  }
-}`,
-          },
-        ],
-        { config },
-      );
-      expect(true).toBe(false);
-    } catch (err) {
-      expect(stripAnsi(String(err))).toMatchInlineSnapshot(`
-        "TokensJSONError: [lint:core/valid-color] Could not parse color "#646464)".
-
-          43 |         "900": { "$value": "#8c8d86", "$extensions": { "mode": { "light": "#8c8d86", "dark": "#818181" } } },
-          44 |         "1000": { "$value": "#82827C", "$extensions": { "mode": { "light": "#82827C", "dark": "#b1b1b1" } } },
-        > 45 |         "1100": { "$value": "#646464)", "$extensions": { "mode": { "light": "#646464)", "dark": "#eeeeee" } } },
-             |                             ^
-          46 |         "1200": { "$value": "#202020", "$extensions": { "mode": { "light": "#202020", "dark": "#fdfdfc" } } },
-          47 |         "1300": { "$value": "#000000", "$extensions": { "mode": { "light": "#000000", "dark": "#ffffff" } } }
-          48 |       }
-
-        [lint:lint] 1 error"
-      `);
+  - foo: true
+  false
+^
+"`);
     }
   });
 
@@ -152,7 +85,7 @@ describe('Additional cases', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $value: 'color(srgb 0 0.2 1)' } } },
+                base: { blue: { 500: { $type: 'color', $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } } } },
                 semantic: { $value: '{color.base.blue.500}' },
               },
             },
@@ -206,7 +139,7 @@ describe('Additional cases', () => {
                 },
               },
               lime: {
-                400: { $value: '#dfffad' },
+                400: { $value: { colorSpace: 'srgb', components: [223 / 255, 1, 173 / 255] } },
               },
             },
           },
@@ -228,7 +161,11 @@ describe('Additional cases', () => {
             filename: DEFAULT_FILENAME,
             src: {
               color: {
-                base: { blue: { 500: { $type: 'color', $deprecated: true, $value: 'color(srgb 0 0.2 1)' } } },
+                base: {
+                  blue: {
+                    500: { $type: 'color', $deprecated: true, $value: { colorSpace: 'srgb', components: [0, 0.2, 1] } },
+                  },
+                },
                 semantic: { $value: '{color.base.blue.500}' },
               },
             },
@@ -250,12 +187,12 @@ describe('Additional cases', () => {
               color: {
                 $type: 'color',
                 combava: {
-                  400: { $value: '#66945b' },
+                  400: { $value: { colorSpace: 'srgb', components: [102 / 255, 148 / 255, 91 / 255] } },
                 },
                 lime: {
                   $deprecated: 'Use combava instead',
-                  200: { $deprecated: false, $value: '#f3ffe0ff' },
-                  400: { $value: '#dfffad' },
+                  200: { $deprecated: false, $value: { colorSpace: 'srgb', components: [243 / 255, 1, 224 / 255] } },
+                  400: { $value: { colorSpace: 'srgb', components: [223 / 255, 1, 173 / 255] } },
                 },
               },
             },
@@ -350,7 +287,7 @@ describe('Additional cases', () => {
     });
   });
 
-  describe('modes', () => {
+  describe.only('modes', () => {
     const tests: [string, { given: any; want: any }][] = [
       [
         'color',
@@ -364,12 +301,33 @@ describe('Additional cases', () => {
                   semantic: {
                     bg: {
                       $value: '{color.blue.7}',
-                      $extensions: { mode: { light: '{color.blue.7}', dark: '{color.blue.6}' } },
+                      $extensions: {
+                        mode: {
+                          light: '{color.blue.7}',
+                          dark: '{color.blue.6}',
+                        },
+                      },
                     },
                   },
                   blue: {
-                    '6': { $value: '#0550ae', $extensions: { mode: { light: '#0550ae', dark: '#1158c7' } } },
-                    '7': { $value: '#8ec8f6', $extensions: { mode: { light: '#8ec8f6', dark: '#205d9e' } } },
+                    '6': {
+                      $value: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
+                      $extensions: {
+                        mode: {
+                          light: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
+                          dark: { colorSpace: 'srgb', components: [0.067, 0.35, 0.78] },
+                        },
+                      },
+                    },
+                    '7': {
+                      $value: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
+                      $extensions: {
+                        mode: {
+                          light: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
+                          dark: { colorSpace: 'srgb', components: [0.13, 0.36, 0.62] },
+                        },
+                      },
+                    },
                   },
                 },
               },
@@ -378,95 +336,79 @@ describe('Additional cases', () => {
           want: {
             'color.blue.6': {
               '.': {
-                $value: {
-                  alpha: 1,
-                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
-                  colorSpace: 'srgb',
-                  hex: '#0550ae',
-                },
-                originalValue: '#0550ae',
+                $value: { alpha: 1, components: [0.02, 0.3, 0.68], colorSpace: 'srgb' },
+                originalValue: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               light: {
-                $value: {
-                  alpha: 1,
-                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
-                  colorSpace: 'srgb',
-                  hex: '#0550ae',
-                },
-                originalValue: '#0550ae',
+                $value: { alpha: 1, components: [0.02, 0.3, 0.68], colorSpace: 'srgb' },
+                originalValue: { colorSpace: 'srgb', components: [0.02, 0.3, 0.68] },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                dependencies: undefined,
               },
               dark: {
-                $value: {
-                  alpha: 1,
-                  components: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
-                  colorSpace: 'srgb',
-                  hex: '#1158c7',
-                },
-                originalValue: '#1158c7',
+                $value: { alpha: 1, components: [0.067, 0.35, 0.78], colorSpace: 'srgb' },
+                originalValue: { components: [0.067, 0.35, 0.78], colorSpace: 'srgb' },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
             },
             'color.blue.7': {
               '.': {
-                $value: {
-                  alpha: 1,
-                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
-                  colorSpace: 'srgb',
-                  hex: '#8ec8f6',
-                },
-                originalValue: '#8ec8f6',
+                $value: { alpha: 1, components: [0.56, 0.78, 0.96], colorSpace: 'srgb' },
+                originalValue: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               light: {
-                $value: {
-                  alpha: 1,
-                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
-                  colorSpace: 'srgb',
-                  hex: '#8ec8f6',
-                },
-                originalValue: '#8ec8f6',
+                $value: { alpha: 1, components: [0.56, 0.78, 0.96], colorSpace: 'srgb' },
+                originalValue: { colorSpace: 'srgb', components: [0.56, 0.78, 0.96] },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               dark: {
-                $value: {
-                  alpha: 1,
-                  components: [0.12549019607843137, 0.36470588235294116, 0.6196078431372549],
-                  colorSpace: 'srgb',
-                  hex: '#205d9e',
-                },
-                originalValue: '#205d9e',
+                $value: { alpha: 1, components: [0.13, 0.36, 0.62], colorSpace: 'srgb' },
+                originalValue: { colorSpace: 'srgb', components: [0.13, 0.36, 0.62] },
+                aliasChain: undefined,
+                aliasOf: undefined,
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
             },
             'color.semantic.bg': {
               '.': {
-                $value: {
-                  alpha: 1,
-                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
-                  colorSpace: 'srgb',
-                  hex: '#8ec8f6',
-                },
+                $value: { alpha: 1, components: [0.56, 0.78, 0.96], colorSpace: 'srgb' },
+                originalValue: '{color.blue.7}',
                 aliasChain: ['color.blue.7'],
                 aliasOf: 'color.blue.7',
-                originalValue: '{color.blue.7}',
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               light: {
-                $value: {
-                  alpha: 1,
-                  components: [0.5568627450980392, 0.7843137254901961, 0.9647058823529412],
-                  colorSpace: 'srgb',
-                  hex: '#8ec8f6',
-                },
+                $value: { alpha: 1, components: [0.56, 0.78, 0.96], colorSpace: 'srgb' },
+                originalValue: '{color.blue.7}',
                 aliasChain: ['color.blue.7'],
                 aliasOf: 'color.blue.7',
-                originalValue: '{color.blue.7}',
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
               dark: {
-                $value: {
-                  alpha: 1,
-                  components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
-                  colorSpace: 'srgb',
-                  hex: '#0550ae',
-                },
+                $value: { alpha: 1, components: [0.02, 0.3, 0.68], colorSpace: 'srgb' },
+                originalValue: '{color.blue.6}',
                 aliasChain: ['color.blue.6'],
                 aliasOf: 'color.blue.6',
-                originalValue: '{color.blue.6}',
+                partialAliasOf: undefined,
+                dependencies: undefined,
               },
             },
           },

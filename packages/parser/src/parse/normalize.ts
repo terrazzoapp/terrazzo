@@ -1,5 +1,5 @@
 import type { AnyNode, ArrayNode, ObjectNode } from '@humanwhocodes/momoa';
-import { isAlias, parseColor } from '@terrazzo/token-tools';
+import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
 import type Logger from '../logger.js';
 import { getObjMember } from './json.js';
 
@@ -19,6 +19,10 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
 
   function normalizeFontFamily(value: unknown): string[] {
     return typeof value === 'string' ? [value] : (value as string[]);
+  }
+
+  function normalizeFontWeight(value: unknown): number {
+    return (typeof value === 'string' && FONT_WEIGHTS[value as keyof typeof FONT_WEIGHTS]) || (value as number);
   }
 
   function normalizeColor(value: unknown, node: AnyNode | undefined) {
@@ -53,6 +57,14 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
     case 'fontFamily': {
       for (const mode of Object.keys(token.mode)) {
         token.mode[mode]!.$value = normalizeFontFamily(token.mode[mode]!.$value);
+      }
+      token.$value = token.mode['.']!.$value;
+      break;
+    }
+
+    case 'fontWeight': {
+      for (const mode of Object.keys(token.mode)) {
+        token.mode[mode]!.$value = normalizeFontWeight(token.mode[mode]!.$value);
       }
       token.$value = token.mode['.']!.$value;
       break;
@@ -135,6 +147,10 @@ export function normalize(token: PreValidatedToken, { logger, src }: { logger: L
           switch (k) {
             case 'fontFamily': {
               $value[k] = normalizeFontFamily(v);
+              break;
+            }
+            case 'fontWeight': {
+              $value[k] = normalizeFontWeight(v);
               break;
             }
           }
