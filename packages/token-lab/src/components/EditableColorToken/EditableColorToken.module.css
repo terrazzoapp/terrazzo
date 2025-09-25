@@ -11,7 +11,7 @@
 
 .swatch {
   background: var(--color);
-  border: 1px solid oklch(0 0 0 / 0.2);
+  border: var(--tz-border-3);
   border-radius: 0.25rem;
   cursor: pointer;
   height: 100%;
