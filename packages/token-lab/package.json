@@ -40,6 +40,8 @@
     "react-dom": "^19.0.0"
   },
   "dependencies": {
+    "@dnd-kit/helpers": "^0.1.21",
+    "@dnd-kit/react": "^0.1.21",
     "@radix-ui/react-popover": "^1.1.15",
     "@terrazzo/fonts": "workspace:^",
     "@terrazzo/icons": "workspace:^",
