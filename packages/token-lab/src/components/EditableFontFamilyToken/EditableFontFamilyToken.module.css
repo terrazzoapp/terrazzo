@@ -1,0 +1,39 @@
+.container {
+  /* align-items: start; */
+  display: grid;
+  gap: 1rem;
+
+  /* contain: inline-size; */
+
+  /* justify-content: start; */
+  width: 28rem;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.list {
+  /* align-items: start; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: stretch;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.removeButton {
+  padding: 0.5em;
+}
+
+.input {
+  flex: 1;
+}
+
+.input input {
+  width: auto;
+}
