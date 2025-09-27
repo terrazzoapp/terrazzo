@@ -13,7 +13,6 @@ export default defineConfig({
         // set transforms for a local format
         for (const token of Object.values(tokens)) {
           for (const [mode, modeValue] of Object.entries(token.mode)) {
-            console.log({ mode, modeValue });
             setTransform(token.id, {
               format: MY_FORMAT,
               mode,

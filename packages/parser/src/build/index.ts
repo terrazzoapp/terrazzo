@@ -101,17 +101,8 @@ export default async function build(
           }
           const token = tokens[id]!;
 
-          // allow `undefined` values, but remove them here
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
-          if (typeof cleanValue === 'object') {
-            for (const k of Object.keys(cleanValue)) {
-              if (cleanValue[k] === undefined) {
-                delete cleanValue[k];
-              }
-            }
-          }
-
           validateTransformParams({
             logger,
             params: { ...(params as any), value: cleanValue },

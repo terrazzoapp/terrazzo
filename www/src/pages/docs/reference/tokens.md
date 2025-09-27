@@ -293,7 +293,7 @@ However, it can be used for `lineHeight` within a [typography token](#typography
 
 ## Link
 
-**Terrazzo extension**. A link to a [resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) such as an image. Not a supported token type outside of Cobalt.
+**Terrazzo extension**. A link to a [resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) such as an image. Not a supported token type outside of Terrazzo.
 
 ```json
 {

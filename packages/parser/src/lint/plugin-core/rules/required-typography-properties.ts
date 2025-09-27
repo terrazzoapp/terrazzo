@@ -20,6 +20,9 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
   },
   defaultOptions: { properties: [] },
   create({ tokens, options, report }) {
+    report({
+      message: `This rule is deprecated. Please migrate to core/valid-typography.`,
+    });
     if (!options) {
       return;
     }
@@ -45,7 +48,11 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
 
       for (const p of options.properties) {
         if (!t.partialAliasOf?.[p] && !(p in t.$value)) {
-          report({ message: `${t.id} missing required typographic property "${p}"`, node: t.source.node });
+          report({
+            message: `${t.id} missing required typographic property "${p}"`,
+            node: t.source.node,
+            filename: t.source.filename,
+          });
         }
       }
     }

@@ -223,8 +223,8 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: '#3c3c43' },
-                '200': { $type: 'color', $value: '#f4faff' },
+                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] } },
+                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.957, 0.98, 1] } },
                 '300': { $type: 'color', $value: '{color.blue.100}' },
               },
             },
@@ -242,8 +242,8 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: '#3c3c43' },
-                '200': { $type: 'color', $value: '#3c3c43' },
+                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
+                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
               },
             },
           },
@@ -260,8 +260,8 @@ describe('rules', () => {
           tokens: {
             color: {
               blue: {
-                '100': { $type: 'color', $value: '#3c3c43' },
-                '200': { $type: 'color', $value: '#3c3c43' },
+                '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
+                '200': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.24, 0.24, 0.26] } },
               },
             },
           },
@@ -277,10 +277,9 @@ describe('rules', () => {
           options: { ignore: ['color.*'] },
           tokens: {
             foo: {
-              $type: 'bar',
               baz: {
-                bat: { $value: '123' },
-                boz: { $value: '456' },
+                bat: { $type: 'bar', $value: '123' },
+                boz: { $type: 'bar', $value: '456' },
               },
             },
           },
@@ -294,7 +293,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'srgb' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(87.94% 0.163 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8794, 0.163, 96.35] } } },
+          },
         },
         want: { success: true },
       },
@@ -305,7 +306,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'srgb' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] } } },
+          },
         },
         want: { errors: ['Color color.yellow is outside srgb gamut'] },
       },
@@ -316,7 +319,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'p3' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(89.12% 0.2 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8912, 0.2, 96.35] } } },
+          },
         },
         want: { success: true },
       },
@@ -327,7 +332,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'p3' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(88.82% 0.217 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.8882, 0.217, 96.35] } } },
+          },
         },
         want: { errors: ['Color color.yellow is outside p3 gamut'] },
       },
@@ -338,7 +345,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'rec2020' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(90.59% 0.215 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.9059, 0.215, 96.35] } } },
+          },
         },
         want: { success: true },
       },
@@ -349,7 +358,9 @@ describe('rules', () => {
         given: {
           rule: MAX_GAMUT,
           options: { gamut: 'rec2020' },
-          tokens: { color: { yellow: { $type: 'color', $value: 'oklch(91.18% 0.234 96.35)' } } },
+          tokens: {
+            color: { yellow: { $type: 'color', $value: { colorSpace: 'oklch', components: [0.9118, 0.234, 96.35] } } },
+          },
         },
         want: { errors: ['Color color.yellow is outside rec2020 gamut'] },
       },
@@ -378,7 +389,11 @@ describe('rules', () => {
         given: {
           rule: REQUIRED_CHILDREN,
           options: { matches: [{ match: ['color.*'], requiredTokens: ['100', '200'] }] },
-          tokens: { color: { blue: { '100': { $type: 'color', $value: '#3c3c43' } } } },
+          tokens: {
+            color: {
+              blue: { '100': { $type: 'color', $value: { colorSpace: 'srgb', components: [0.235, 0.235, 0.263] } } },
+            },
+          },
         },
         want: { errors: ['Match 0: some groups missing required token "200"'] },
       },
@@ -393,12 +408,12 @@ describe('rules', () => {
             color: {
               semantic: {
                 action: {
-                  text: { $type: 'color', $value: '#5eb1ef' },
-                  bg: { $type: 'color', $value: '#fbfdff' },
+                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] } },
+                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] } },
                 },
                 error: {
-                  text: { $type: 'color', $value: '#eb8e90' },
-                  bg: { $type: 'color', $value: '#fff7f7' },
+                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.922, 0.557, 0.565] } },
+                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0.969, 0.969] } },
                 },
               },
             },
@@ -417,8 +432,8 @@ describe('rules', () => {
             color: {
               semantic: {
                 action: {
-                  text: { $type: 'color', $value: '#5eb1ef' },
-                  bg: { $type: 'color', $value: '#fbfdff' },
+                  text: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.369, 0.694, 0.937] } },
+                  bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.984, 0.992, 1] } },
                 },
               },
             },
@@ -438,7 +453,7 @@ describe('rules', () => {
               size: {
                 body: {
                   $type: 'dimension',
-                  $value: '16px',
+                  $value: { value: 16, unit: 'px' },
                   $extensions: { mode: { mobile: '16px', desktop: '16px' } },
                 },
               },
@@ -457,7 +472,11 @@ describe('rules', () => {
           tokens: {
             typography: {
               size: {
-                body: { $type: 'dimension', $value: '16px', $extensions: { mode: { desktop: '16px' } } },
+                body: {
+                  $type: 'dimension',
+                  $value: { value: 16, unit: 'px' },
+                  $extensions: { mode: { desktop: '16px' } },
+                },
               },
             },
           },
@@ -466,7 +485,7 @@ describe('rules', () => {
       },
     ],
     [
-      `[${REQUIRED_TYPOGRAPHY_PROPERTIES}] success`,
+      `[${REQUIRED_TYPOGRAPHY_PROPERTIES}] (deprecated)`,
       {
         given: {
           rule: REQUIRED_TYPOGRAPHY_PROPERTIES,
@@ -480,25 +499,7 @@ describe('rules', () => {
             },
           },
         },
-        want: { success: true },
-      },
-    ],
-    [
-      `[${REQUIRED_TYPOGRAPHY_PROPERTIES}] error`,
-      {
-        given: {
-          rule: REQUIRED_TYPOGRAPHY_PROPERTIES,
-          options: { properties: ['fontWeight'] },
-          tokens: {
-            typography: {
-              body: {
-                $type: 'typography',
-                $value: { fontFamily: ['Inter'], fontSize: { unit: 'rem', value: 1 } },
-              },
-            },
-          },
-        },
-        want: { errors: ['typography.body missing required typographic property "fontWeight"'] },
+        want: { errors: ['This rule is deprecated. Please migrate to core/valid-typography.'] },
       },
     ],
     [

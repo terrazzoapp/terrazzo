@@ -58,6 +58,7 @@ const rule: LintRule<
               messageId: ERROR_COLOR,
               data: { id: t.id, colorSpace: options.colorSpace },
               node: t.source.node,
+              filename: t.source.filename,
             });
           }
           break;
@@ -68,6 +69,7 @@ const rule: LintRule<
               messageId: ERROR_BORDER,
               data: { id: t.id, colorSpace: options.colorSpace },
               node: t.source.node,
+              filename: t.source.filename,
             });
           }
           break;
@@ -79,6 +81,7 @@ const rule: LintRule<
                 messageId: ERROR_GRADIENT,
                 data: { id: t.id, colorSpace: options.colorSpace },
                 node: t.source.node,
+                filename: t.source.filename,
               });
             }
           }
@@ -91,6 +94,7 @@ const rule: LintRule<
                 messageId: ERROR_SHADOW,
                 data: { id: t.id, colorSpace: options.colorSpace },
                 node: t.source.node,
+                filename: t.source.filename,
               });
             }
           }

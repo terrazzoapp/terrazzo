@@ -57,6 +57,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
             messageId: ERROR_DUPLICATE_VALUE,
             data: { id: t.id },
             node: t.source.node,
+            filename: t.source.filename,
           });
         }
 
@@ -70,6 +71,7 @@ const rule: LintRule<typeof ERROR_DUPLICATE_VALUE, RuleDuplicateValueOptions> = 
               messageId: ERROR_DUPLICATE_VALUE,
               data: { id: t.id },
               node: t.source.node,
+              filename: t.source.filename,
             });
             break;
           }

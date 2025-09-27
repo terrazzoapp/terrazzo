@@ -132,6 +132,9 @@ function getMarkerLines(loc: NodeLocation, source: string[], opts: Options = {} 
 const NEWLINE = /\r\n|[\n\r\u2028\u2029]/;
 
 export function codeFrameColumns(rawLines: string, loc: NodeLocation, opts: Options = {} as Options) {
+  if (typeof rawLines !== 'string') {
+    throw new Error(`Expected string, got ${rawLines}`);
+  }
   const lines = rawLines.split(NEWLINE);
   const { start, end, markerLines } = getMarkerLines(loc, lines, opts);
   const hasColumns = loc.start && typeof loc.start.column === 'number';
