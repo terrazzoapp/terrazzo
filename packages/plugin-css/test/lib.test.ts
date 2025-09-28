@@ -157,4 +157,68 @@ describe('printRules', () => {
       }"
     `);
   });
+
+  it('color-scheme declarations', () => {
+    const rules: CSSRule[] = [
+      {
+        selectors: [':root'],
+        declarations: {
+          'color-scheme': { value: 'light dark' },
+          '--color-blue-6': { value: '#acd8fc' },
+          '--color-blue-7': { value: '#8ec8f6' },
+        },
+      },
+      {
+        selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+        declarations: {
+          'color-scheme': { value: 'light' },
+          '--color-blue-6': { value: '#acd8fc' },
+          '--color-blue-7': { value: '#8ec8f6' },
+        },
+      },
+      {
+        selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+        declarations: {
+          'color-scheme': { value: 'dark' },
+          '--color-blue-6': { value: '#104d87' },
+          '--color-blue-7': { value: '#205d9e' },
+        },
+      },
+    ];
+    expect(printRules(rules)).toMatchInlineSnapshot(`
+      ":root {
+        color-scheme: light dark;
+        --color-blue-6: #acd8fc;
+        --color-blue-7: #8ec8f6;
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          color-scheme: light;
+          --color-blue-6: #acd8fc;
+          --color-blue-7: #8ec8f6;
+        }
+      }
+
+      [data-color-theme="light"] {
+        color-scheme: light;
+        --color-blue-6: #acd8fc;
+        --color-blue-7: #8ec8f6;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          color-scheme: dark;
+          --color-blue-6: #104d87;
+          --color-blue-7: #205d9e;
+        }
+      }
+
+      [data-color-theme="dark"] {
+        color-scheme: dark;
+        --color-blue-6: #104d87;
+        --color-blue-7: #205d9e;
+      }"
+    `);
+  });
 });

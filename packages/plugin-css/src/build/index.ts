@@ -13,6 +13,7 @@ export interface BuildFormatOptions {
   modeSelectors: CSSPluginOptions['modeSelectors'];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
+  baseScheme: CSSPluginOptions['baseScheme'];
 }
 
 export default function buildFormat({
@@ -21,6 +22,7 @@ export default function buildFormat({
   utility,
   modeSelectors,
   baseSelector,
+  baseScheme,
 }: BuildFormatOptions): string {
   const rules: CSSRule[] = [];
 
@@ -40,6 +42,11 @@ export default function buildFormat({
     rules.push(rootRule, p3Rule, rec2020Rule);
 
     const shouldExclude = wcmatch(exclude ?? []);
+
+    // add base color-scheme declaration if configured
+    if (baseScheme) {
+      rootRule.declarations['color-scheme'] = { value: baseScheme };
+    }
 
     for (const token of rootTokens) {
       // handle exclude (if any)
@@ -98,8 +105,8 @@ export default function buildFormat({
     }
   }
 
-  // modeSelectors (note: without these, modes won’t get written to CSS)
-  for (const { selectors, tokens, mode } of modeSelectors ?? []) {
+  // modeSelectors (note: without these, modes won't get written to CSS)
+  for (const { selectors, tokens, mode, scheme } of modeSelectors ?? []) {
     if (!selectors.length) {
       continue;
     }
@@ -113,6 +120,11 @@ export default function buildFormat({
     const selectorRec2020Rule: CSSRule = { selectors, nestedQuery: REC2020_MQ, declarations: {} };
     const selectorAliasDeclarations: CSSRule['declarations'] = {};
     rules.push(selectorRule, selectorP3Rule, selectorRec2020Rule);
+
+    // add color-scheme declaration if configured for this mode
+    if (scheme) {
+      selectorRule.declarations['color-scheme'] = { value: scheme };
+    }
 
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
