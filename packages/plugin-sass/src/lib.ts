@@ -12,17 +12,19 @@ export const FILE_HEADER = `////
 ////
 
 @use "sass:list";
-@use "sass:map";`;
+@use "sass:map";
+@use "sass:meta";`;
 
 export const MIXIN_TOKEN = `@function token($tokenName) {
   @if map.has-key($__token-values, $tokenName) == false {
     @error 'No token named "#{$tokenName}"';
   }
   $_token: map.get($__token-values, $tokenName);
-  @if map.has-key($_token, "__tz-error") {
+  @if meta.type-of($_token) == map and map.has-key($_token, "__tz-error") {
     @error map.get($_token, "__tz-error");
   }
-  @return map.get($_token);
+
+  @return $_token;
 }`;
 
 export const MIXIN_TYPOGRAPHY = `@mixin typography($tokenName, $modeName: ".") {
