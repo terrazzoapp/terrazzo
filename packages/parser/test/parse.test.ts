@@ -3275,6 +3275,68 @@ describe('Transform', () => {
     });
   });
 
+  it('color with token-level $type', async () => {
+    const visits: Visit[] = [];
+    const src = `{
+  "color": {
+    "slate": {
+      "700": { "$type": "color", "$value": "#5a5a5a" },
+      "800": { "$type": "color", "$value": "#434343" },
+      "900": { "$type": "color", "$value": "#303030" },
+      "1000": { "$type": "color", "$value": "#242424" }
+    },
+    "bg": {
+      "neutral": {
+        "default": { "$type": "color", "$value": "{color.slate.700}" },
+        "hover": { "$type": "color", "$value": "{color.slate.800}" }
+      }
+    }
+  }
+}`;
+
+    const config = defineConfig({}, { cwd });
+    const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
+      config,
+      transform: {
+        root(json, path, ast) {
+          visits.push({ name: 'root', json, path, ast });
+        },
+        group(json, path, ast) {
+          visits.push({ name: 'group', json, path, ast });
+        },
+        color(json, path, ast) {
+          visits.push({ name: 'color', json, path, ast });
+          if (path === 'color.bg.neutral.hover') {
+            return { ...json, $value: '{color.slate.900}' };
+          }
+        },
+      },
+    });
+
+    // assert visitors arrived in the right order
+    expect(visits.map(({ name, path }) => ({ name, path }))).toEqual([
+      { name: 'root', path: '.' },
+      { name: 'group', path: 'color' },
+      { name: 'group', path: 'color.slate' },
+      { name: 'color', path: 'color.slate.700' },
+      { name: 'color', path: 'color.slate.800' },
+      { name: 'color', path: 'color.slate.900' },
+      { name: 'color', path: 'color.slate.1000' },
+      { name: 'group', path: 'color.bg' },
+      { name: 'group', path: 'color.bg.neutral' },
+      { name: 'color', path: 'color.bg.neutral.default' },
+      { name: 'color', path: 'color.bg.neutral.hover' },
+    ]);
+
+    // assert color.bg.neutral.hover was transformed to color.slate.900 (not color.slate.800 as originally authored)
+    expect(tokens['color.bg.neutral.hover']?.$value).toEqual({
+      alpha: 1,
+      components: [0.18823529411764706, 0.18823529411764706, 0.18823529411764706],
+      colorSpace: 'srgb',
+      hex: '#303030',
+    });
+  });
+
   it('deleting', async () => {
     const src = `{
   "color": {

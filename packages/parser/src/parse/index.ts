@@ -256,8 +256,18 @@ async function parseSingle(
         const inheritedTypeNode = computeInheritedProperty(node, '$type', { subpath, inherited: $typeInheritance });
         if (node.value.type === 'Object') {
           const $value = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$value');
-          if ($value && inheritedTypeNode?.value.type === 'String' && transform?.[inheritedTypeNode.value.value]) {
-            const result = transform[inheritedTypeNode.value.value]?.(evaluate(node.value), subpath.join('.'), node);
+
+          // Call transform using either inherited type or token-level type
+          let typeNode = inheritedTypeNode;
+          if (!typeNode) {
+            const local$type = node.value.members.find((m) => m.name.type === 'String' && m.name.value === '$type');
+            if (local$type) {
+              typeNode = local$type as MemberNode;
+            }
+          }
+
+          if ($value && typeNode?.value.type === 'String' && transform?.[typeNode.value.value]) {
+            const result = transform[typeNode.value.value]?.(evaluate(node.value), subpath.join('.'), node);
             if (result) {
               node.value = parseJSON(result).body;
             }
