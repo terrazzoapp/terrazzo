@@ -17,9 +17,17 @@ import type {
   TokenNormalized,
   TransitionValue,
   TypographyValue,
+  Logger,
 } from '@terrazzo/parser';
 
 export const FORMAT_ID = 'token-listing';
+
+export interface CustomFunctionParams {
+  logger: Logger;
+  mode?: string;
+  token: TokenNormalized;
+  tokensSet: Record<string, TokenNormalized>;
+}
 
 /** Content of the DTCG $extension property computed by this plugin. */
 export interface TokenListingExtension {
@@ -87,8 +95,8 @@ export type ModeOption = {
 export type PlatformOption =
   | {
       description?: string;
-      filter?: string | ((token: TokenNormalized, mode: string | undefined) => boolean);
-      name: string | ((token: TokenNormalized, mode: string | undefined) => string);
+      filter?: string | ((params: CustomFunctionParams) => boolean);
+      name: string | ((params: CustomFunctionParams) => string);
     }
   | string;
 
@@ -96,7 +104,7 @@ export type SourceOfTruthOption =
   | string
   | {
       default: string;
-      custom: (token: TokenNormalized) => string | undefined;
+      custom: (params: CustomFunctionParams) => string | undefined;
     };
 
 interface PreviewValueObject {
@@ -153,7 +161,7 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
-  previewValue?: (token: TokenNormalized) => PreviewValue | undefined;
+  previewValue?: (params: CustomFunctionParams) => PreviewValue | undefined;
 
   /**
    * Hook to compute subtypes for design tokens, e.g. to hint which colors are backgrounds, borders,
@@ -161,5 +169,5 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a subtype.
    * @returns The computed subtype, or `undefined` to use the DTCG $type for token presentation.
    */
-  subtype?: (token: TokenNormalized) => Subtype | undefined;
+  subtype?: (params: CustomFunctionParams) => Subtype | undefined;
 }

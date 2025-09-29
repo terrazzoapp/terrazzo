@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": 1,
+    "authoringTool": "Terrazzo",
+    "names": {}
+  },
+  "data": [
+    {
+      "$name": "color.base.gray.10",
+      "$type": "color",
+      "$value": {
+        "colorSpace": "lab",
+        "components": [
+          0.1,
+          0,
+          0
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "app.terrazzo.listing": {
+          "names": {},
+          "originalValue": {
+            "colorSpace": "lab",
+            "components": [
+              0.1,
+              0,
+              0
+            ],
+            "alpha": 1
+          },
+          "previewValue": "#000000",
+          "source": {
+            "resource": "file:///home/steve/Development/terrazzo/packages/plugin-token-listing/test/fixtures/cli-config-outdir/styles/tokens.json",
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 15,
+                "offset": 81
+              },
+              "end": {
+                "line": 6,
+                "column": 91,
+                "offset": 157
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -21,10 +21,12 @@ function getNameFromPlugin({
   return annotation?.name;
 }
 
-function getName({ listingService, mode, platform, token }: {
+function getName({ logger, listingService, mode, platform, tokensSet, token }: {
+  logger: Logger;
   listingService: ListingService;
   mode: string | undefined;
   platform: PlatformOption;
+  tokensSet: Record<string, TokenNormalized>;
   token: TokenNormalized;
 }): string | undefined {
 
@@ -37,17 +39,24 @@ function getName({ listingService, mode, platform, token }: {
   if ('name' in platform && typeof platform.name === 'string') {
     name = getNameFromPlugin({ listingService, mode, plugin: platform.name, token });
   } else if ('name' in platform && typeof platform.name === 'function') {
-    name = platform.name(token, mode === '.' ? undefined : mode);
+    name = platform.name({
+      logger,
+      mode: mode === '.' ? undefined : mode,
+      tokensSet,
+      token,
+    });
   }
   
   let filter: boolean = true;
   if ('filter' in platform && typeof platform.filter === 'string') {
     filter = !!(getNameFromPlugin({ listingService, mode, plugin: platform.filter, token }));
   } else if ('filter' in platform && typeof platform.filter === 'function') {
-    filter = platform.filter(token, mode === '.' ? undefined : mode);
-  }
-  if ('filter' in platform && typeof platform.filter === 'function') {
-    filter = platform.filter(token, mode);
+    filter = platform.filter({
+      logger,
+      mode: mode === '.' ? undefined : mode,
+      tokensSet,
+      token,
+    });
   }
 
   return filter ? name : undefined;
@@ -72,7 +81,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin["bu
   }): TokenListingExtension => {
     const computedNames: Record<string, string> = {};
     for (const [pid, platform] of Object.entries(platforms)) {
-      const name = getName({ listingService, mode, platform, token });
+      const name = getName({ logger, listingService, mode, platform, tokensSet, token });
       if (name) {
         computedNames[pid] = name;
       }
@@ -83,12 +92,18 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin["bu
       originalValue: token.originalValue.$value,
     };
 
-    const previewValue = computePreviewValue({ tokensSet, token, mode, logger });
+    
+    const previewValue = options.previewValue?.({ tokensSet, token, mode, logger }) ?? computePreviewValue({ tokensSet, token, mode, logger });
     if (previewValue !== '') {
       output.previewValue = previewValue;
     }
 
-    const subtype = options.subtype?.(token);
+    const subtype = options.subtype?.({
+      logger,
+      mode: mode === '.' ? undefined : mode,
+      tokensSet,
+      token,
+    });
     if (subtype) {
       output.subtype = subtype;
     }
@@ -98,7 +113,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin["bu
     }
 
     const sourceOfTruth =
-      typeof options.sourceOfTruth === 'object' ? options.sourceOfTruth?.custom?.(token) : undefined;
+      typeof options.sourceOfTruth === 'object' ? options.sourceOfTruth?.custom?.({ tokensSet, token, mode, logger }) : undefined;
     if (sourceOfTruth) {
       output.sourceOfTruth = sourceOfTruth;
     }

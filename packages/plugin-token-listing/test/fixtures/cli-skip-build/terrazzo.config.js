@@ -1,10 +1,10 @@
 import { defineConfig } from '@terrazzo/cli';
-import css from '../../../dist/index.js';
+import listing from '../../../dist/index.js';
 
 export default defineConfig({
   tokens: ['./tokens.json'],
   plugins: [
-    css({
+    listing({
       skipBuild: true,
     }),
   ],

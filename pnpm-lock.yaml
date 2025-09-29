@@ -359,6 +359,9 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      '@terrazzo/plugin-css':
+        specifier: workspace:^
+        version: link:../plugin-css
       dtcg-examples:
         specifier: ^0.3.3
         version: 0.3.3
