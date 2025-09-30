@@ -1,10 +1,8 @@
 import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import type Logger from './logger.js';
-import type ListingService from './listing-service.js';
 
 export interface PluginHookContext {
-  listingService: ListingService;
   logger: Logger;
 }
 
@@ -250,14 +248,11 @@ export interface Plugin {
   buildEnd?(options: BuildEndHookOptions): Promise<void>;
 }
 
-/** Transformed token with a single value. Note that this may be any type! */
-export interface TokenTransformedSingleValue {
+interface TokenTransformedBase {
   /** Original Token ID */
   id: string;
   /** ID unique to this format. */
   localID?: string;
-  type: 'SINGLE_VALUE';
-  value: string;
   /**
    * The mode of this value
    * @default "."
@@ -265,23 +260,27 @@ export interface TokenTransformedSingleValue {
   mode: string;
   /** The original token. */
   token: TokenNormalized;
+  /** Arbitrary metadata set by plugins. */
+  meta?: Record<string | number | symbol, unknown> & {
+    /**
+     * Metadata for the token-listing plugin. Plugins can
+     * set this to be the name of a token as it appears in code,
+     * and the token-listing plugin will pick it up and use it.
+     */
+    'token-listing'?: { name: string | undefined; };
+  };
+}
+
+/** Transformed token with a single value. Note that this may be any type! */
+export interface TokenTransformedSingleValue extends TokenTransformedBase {
+  type: 'SINGLE_VALUE';
+  value: string;
 }
 
 /** Transformed token with multiple values. Note that this may be any type! */
-export interface TokenTransformedMultiValue {
-  /** Original Token ID */
-  id: string;
-  /** ID unique to this format.*/
-  localID?: string;
+export interface TokenTransformedMultiValue extends TokenTransformedBase {
   type: 'MULTI_VALUE';
   value: Record<string, string>;
-  /**
-   * The mode of this value
-   * @default "."
-   */
-  mode: string;
-  /** The original token */
-  token: TokenNormalized;
 }
 
 export type TokenTransformed = TokenTransformedSingleValue | TokenTransformedMultiValue;
@@ -315,6 +314,7 @@ export interface TransformHookOptions {
       localID?: string;
       value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
       mode?: string;
+      meta?: Record<string | number | symbol, unknown>;
     },
   ): void;
   /** Momoa documents */

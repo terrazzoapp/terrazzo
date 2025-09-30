@@ -9,15 +9,15 @@ import type {
   FontFamilyValue,
   FontWeightValue,
   GradientValue,
-  NumberValue,
   LinkValue,
+  Logger,
+  NumberValue,
   ShadowValue,
   StringValue,
   StrokeStyleValue,
   TokenNormalized,
   TransitionValue,
   TypographyValue,
-  Logger,
 } from '@terrazzo/parser';
 
 export const FORMAT_ID = 'token-listing';
@@ -80,10 +80,22 @@ export interface TokenListingExtension {
 export interface ListedToken {
   $name: string;
   $type: string;
-  $value: string | number | boolean | Record<string, any>;
+  $value: string | number | boolean | Record<string, unknown>;
   $extensions: {
     'app.terrazzo.listing': TokenListingExtension;
   };
+}
+
+export interface TokenListing {
+  meta: {
+    version: 1;
+    authoringTool: string;
+    modes?: ModeOption[];
+    platforms: Record<string, { description?: string }>;
+    /** Identity of the platform acting as a source of truth for this listing's tokens. */
+    sourceOfTruth?: string;
+  };
+  data: ListedToken[];
 }
 
 export type ModeOption = {

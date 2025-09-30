@@ -1,24 +1,24 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mapValues } from '../src/utils/utils.js';
-import { computePreviewValue } from '../src/utils/previewValue.js';
 import type { TokenNormalized } from '@terrazzo/parser';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { computePreviewValue } from '../src/utils/previewValue.js';
+import { mapValues } from '../src/utils/utils.js';
 
 describe('mapValues', () => {
   it('maps values and preserves keys', () => {
     const input = { a: 1, b: 2, c: 3 };
-  const out = mapValues(input, (v) => v * 2);
+    const out = mapValues(input, (v) => v * 2);
     expect(out).toEqual({ a: 2, b: 4, c: 6 });
   });
 
   it('works with empty object', () => {
     const input: Record<string, number> = {};
-  const out = mapValues(input, (v) => v + 1);
+    const out = mapValues(input, (v) => v + 1);
     expect(out).toEqual({});
   });
 
   it('passes key to mapper', () => {
     const input = { x: 'one', y: 'two' };
-  const out = mapValues(input, (v, k) => `${k}:${v}`);
+    const out = mapValues(input, (v, k) => `${k}:${v}`);
     expect(out).toEqual({ x: 'x:one', y: 'y:two' });
   });
 });
@@ -43,14 +43,19 @@ describe('computePreviewValue', () => {
     stats: vi.fn(),
   } as any;
 
-  const createMockToken = (id: string, $type: any = 'color', mode: any = { '.': { $value: 'test-value' } }): TokenNormalized => ({
-    id,
-    $type,
-    mode,
-    $description: undefined,
-    $extensions: undefined,
-    aliasOf: undefined,
-  } as TokenNormalized);
+  const createMockToken = (
+    id: string,
+    $type: any = 'color',
+    mode: any = { '.': { $value: 'test-value' } },
+  ): TokenNormalized =>
+    ({
+      id,
+      $type,
+      mode,
+      $description: undefined,
+      $extensions: undefined,
+      aliasOf: undefined,
+    }) as TokenNormalized;
 
   const mockTokensSet: Record<string, TokenNormalized> = {
     'color.primary': createMockToken('color.primary', 'color'),
@@ -183,7 +188,7 @@ describe('computePreviewValue', () => {
 
       const token = createMockToken('color.adaptive', 'color', {
         '.': { $value: '#light-color' },
-        'dark': { $value: '#dark-color' },
+        dark: { $value: '#dark-color' },
       });
 
       computePreviewValue({
@@ -193,10 +198,7 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(
-        token,
-        expect.objectContaining({ mode: 'dark' })
-      );
+      expect(transformCSSValue).toHaveBeenCalledWith(token, expect.objectContaining({ mode: 'dark' }));
     });
 
     it('falls back to default mode when specified mode not available', async () => {
@@ -212,10 +214,7 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(
-        token,
-        expect.objectContaining({ mode: '.' })
-      );
+      expect(transformCSSValue).toHaveBeenCalledWith(token, expect.objectContaining({ mode: '.' }));
     });
 
     it('uses default mode when no mode specified', async () => {
@@ -230,10 +229,7 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(
-        token,
-        expect.objectContaining({ mode: '.' })
-      );
+      expect(transformCSSValue).toHaveBeenCalledWith(token, expect.objectContaining({ mode: '.' }));
     });
   });
 
@@ -274,7 +270,7 @@ describe('computePreviewValue', () => {
       expect(mockLogger.warn).toHaveBeenCalledWith(
         expect.objectContaining({
           message: expect.stringContaining('Preview value computation is not supported yet for:'),
-        })
+        }),
       );
     });
   });
@@ -298,7 +294,7 @@ describe('computePreviewValue', () => {
           transformAlias: expect.any(Function),
           tokensSet: mockTokensSet,
           color: { legacyHex: true },
-        })
+        }),
       );
     });
 
@@ -319,15 +315,12 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(
-        token,
-        {
-          mode: 'light',
-          tokensSet: mockTokensSet,
-          transformAlias: expect.any(Function),
-          color: { legacyHex: true },
-        }
-      );
+      expect(transformCSSValue).toHaveBeenCalledWith(token, {
+        mode: 'light',
+        tokensSet: mockTokensSet,
+        transformAlias: expect.any(Function),
+        color: { legacyHex: true },
+      });
     });
   });
 
@@ -359,39 +352,36 @@ describe('computePreviewValue', () => {
         logger: mockLogger,
       });
 
-      expect(transformCSSValue).toHaveBeenCalledWith(
-        token,
-        expect.objectContaining({ mode: '.' })
-      );
+      expect(transformCSSValue).toHaveBeenCalledWith(token, expect.objectContaining({ mode: '.' }));
     });
   });
 
-    describe('WideGamutColorValue', () => {
-      it('formats WideGamutColorValue correctly for preview', async () => {
-        const { transformCSSValue } = await import('@terrazzo/token-tools/css');
-        vi.mocked(transformCSSValue).mockReturnValue({
-          '.': 'color(display-p3 0.5 0.2 0.7)',
-          srgb: 'rgb(128, 51, 179)',
-          p3: 'color(display-p3 0.5 0.2 0.7)',
-          rec2020: 'color(rec2020 0.5 0.2 0.7)',
-        });
-
-        const token = {
-          id: 'color.wide-gamut',
-          $type: 'color',
-          mode: { '.': { $value: 'irrelevant' } },
-          $description: undefined,
-          $extensions: undefined,
-          aliasOf: undefined,
-        } as any;
-
-        const result = computePreviewValue({
-          tokensSet: {},
-          token,
-          logger: mockLogger,
-        });
-
-        expect(result).toBe('rgb(128, 51, 179)');
+  describe('WideGamutColorValue', () => {
+    it('formats WideGamutColorValue correctly for preview', async () => {
+      const { transformCSSValue } = await import('@terrazzo/token-tools/css');
+      vi.mocked(transformCSSValue).mockReturnValue({
+        '.': 'color(display-p3 0.5 0.2 0.7)',
+        srgb: 'rgb(128, 51, 179)',
+        p3: 'color(display-p3 0.5 0.2 0.7)',
+        rec2020: 'color(rec2020 0.5 0.2 0.7)',
       });
+
+      const token = {
+        id: 'color.wide-gamut',
+        $type: 'color',
+        mode: { '.': { $value: 'irrelevant' } },
+        $description: undefined,
+        $extensions: undefined,
+        aliasOf: undefined,
+      } as any;
+
+      const result = computePreviewValue({
+        tokensSet: {},
+        token,
+        logger: mockLogger,
+      });
+
+      expect(result).toBe('rgb(128, 51, 179)');
     });
+  });
 });

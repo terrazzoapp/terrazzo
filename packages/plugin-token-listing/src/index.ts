@@ -1,6 +1,6 @@
-import type { TokenListingPluginOptions } from './lib.js';
-import getBuild from './build.js';
 import type { Plugin } from '@terrazzo/parser';
+import getBuild from './build.js';
+import type { TokenListingPluginOptions } from './lib.js';
 
 export * from './lib.js';
 

@@ -2,7 +2,6 @@ import type { DocumentNode } from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
-import ListingService from '../listing-service.js';
 import type { BuildRunnerResult, ConfigInit, TokenTransformed, TransformParams } from '../types.js';
 
 export interface BuildRunnerOptions {
@@ -54,7 +53,6 @@ export default async function build(
   const { sources, logger = new Logger(), config } = context;
   const formats: Record<string, TokenTransformed[]> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
-  const listingService = new ListingService({ logger });
 
   function getTransforms(params: TransformParams) {
     if (!params?.format) {
@@ -89,7 +87,7 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.transform === 'function') {
       await plugin.transform({
-        context: { listingService, logger },
+        context: { logger },
         tokens,
         sources,
         getTransforms,
@@ -162,7 +160,7 @@ export default async function build(
     if (typeof plugin.build === 'function') {
       const pluginBuildStart = performance.now();
       await plugin.build({
-        context: { listingService, logger },
+        context: { logger },
         tokens,
         sources,
         getTransforms,
@@ -197,7 +195,7 @@ export default async function build(
   for (const plugin of config.plugins) {
     if (typeof plugin.buildEnd === 'function') {
       await plugin.buildEnd({
-        context: { listingService, logger },
+        context: { logger },
         tokens,
         getTransforms,
         sources,

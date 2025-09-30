@@ -10,8 +10,11 @@
   "dependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
+    "@terrazzo/plugin-js": "workspace:^",
     "@terrazzo/plugin-sass": "workspace:^",
+    "@terrazzo/plugin-swift": "workspace:^",
     "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/plugin-vanilla-extract": "workspace:^",
     "@terrazzo/token-tools": "workspace:^"
   },
   "keywords": [],

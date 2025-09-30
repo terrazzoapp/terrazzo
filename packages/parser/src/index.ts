@@ -87,9 +87,6 @@ export { default as lintRunner } from './lint/index.js';
 export * from './logger.js';
 export { default as Logger } from './logger.js';
 
-export * from './listing-service.js';
-export { default as ListingService } from './listing-service.js';
-
 export * from './parse/index.js';
 export { default as parse } from './parse/index.js';
 

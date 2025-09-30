@@ -1,6 +1,6 @@
 import type { CSSPluginOptions } from '@terrazzo/plugin-css';
 
-export const FORMAT_ID = 'scss';
+export const FORMAT_ID = 'sass';
 
 export interface SassPluginOptions {
   /** Where to output CSS */

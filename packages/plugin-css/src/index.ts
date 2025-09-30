@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { type TokenNormalized, validateCustomTransform } from '@terrazzo/token-tools';
-import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
+import { generateShorthand, makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import buildFormat from './build/index.js';
 import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
 
@@ -49,7 +49,13 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
             const value = customTransform(token, mode);
             if (value !== undefined && value !== null) {
               validateCustomTransform(value, { $type: token.$type });
-              setTransform(id, { format: FORMAT_ID, localID, value, mode });
+              setTransform(id, {
+                format: FORMAT_ID,
+                localID,
+                value,
+                mode,
+                meta: { 'token-listing': { name: localID } },
+              });
               continue;
             }
           }
@@ -61,19 +67,32 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
             color: { legacyHex },
           });
           if (transformedValue !== undefined) {
-            setTransform(id, { format: FORMAT_ID, localID, value: transformedValue, mode });
+            let listingName: string | undefined = localID;
+
+            // Composite tokens without a shorthand won't get generated in the output, so we don't list them.
+            if (typeof transformedValue === 'object' && generateShorthand({ $type: token.$type, localID }) === undefined) {
+              listingName = undefined;
+            }
+
+            setTransform(id, {
+              format: FORMAT_ID,
+              localID,
+              value: transformedValue,
+              mode,
+              meta: { 'token-listing': { name: listingName } },
+            });
           }
         }
       }
     },
-    async build({ context: { listingService }, getTransforms, outputFile }) {
+    async build({ getTransforms, outputFile }) {
       if (skipBuild === true) {
         return;
       }
 
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
-        buildFormat({ exclude, getTransforms, listBuiltToken:  listingService.listBuiltToken.bind(listingService), modeSelectors, utility, baseSelector }),
+        buildFormat({ exclude, getTransforms, modeSelectors, utility, baseSelector }),
         '\n', // EOF newline
       );
       outputFile(filename, output.join('\n'));

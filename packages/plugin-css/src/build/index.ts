@@ -1,4 +1,4 @@
-import type { BuildHookOptions, ListingService } from '@terrazzo/parser';
+import type { BuildHookOptions } from '@terrazzo/parser';
 import { generateShorthand } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
 import { type CSSPluginOptions, type CSSRule, FORMAT_ID, printRules } from '../lib.js';
@@ -10,7 +10,6 @@ const REC2020_MQ = '@media (color-gamut: rec2020)';
 export interface BuildFormatOptions {
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
-  listBuiltToken: ListingService['listBuiltToken'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
@@ -18,7 +17,6 @@ export interface BuildFormatOptions {
 
 export default function buildFormat({
   getTransforms,
-  listBuiltToken,
   exclude,
   utility,
   modeSelectors,
@@ -62,23 +60,11 @@ export default function buildFormat({
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         rootRule.declarations[localID] = { value: token.value, description: token.token.$description };
-        listBuiltToken({
-          mode: '.',
-          name: localID, 
-          pluginId: '@terrazzo/plugin-css',
-          tokenId: token.token.id,
-        });
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
         rootRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
-        listBuiltToken({
-          mode: '.',
-          name: localID, 
-          pluginId: '@terrazzo/plugin-css',
-          tokenId: token.token.id,
-        });
         if (token.value.p3 !== token.value.srgb) {
           p3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
           rec2020Rule.declarations[localID] = { value: token.value.rec2020!, description: token.token.$description };
@@ -101,12 +87,6 @@ export default function buildFormat({
             value: shorthand,
             description: token.token.$description,
           };
-        listBuiltToken({
-          mode: '.',
-          name: localID, 
-          pluginId: '@terrazzo/plugin-css',
-          tokenId: token.token.id,
-        });
         }
         for (const [name, value] of Object.entries(token.value)) {
           rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = {
@@ -144,23 +124,11 @@ export default function buildFormat({
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
         selectorRule.declarations[localID] = { value: token.value, description: token.token.$description };
-        listBuiltToken({
-          mode,
-          name: localID, 
-          pluginId: '@terrazzo/plugin-css',
-          tokenId: token.token.id,
-        });
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
         selectorRule.declarations[localID] = { value: token.value.srgb!, description: token.token.$description };
-        listBuiltToken({
-          mode,
-          name: localID, 
-          pluginId: '@terrazzo/plugin-css',
-          tokenId: token.token.id,
-        });
         if (token.value.p3 !== token.value.srgb) {
           selectorP3Rule.declarations[localID] = { value: token.value.p3!, description: token.token.$description };
           selectorRec2020Rule.declarations[localID] = {
@@ -189,12 +157,6 @@ export default function buildFormat({
         const shorthand = generateShorthand({ $type: token.token.$type, localID });
         if (shorthand) {
           selectorRule.declarations[localID] = { value: shorthand, description: token.token.$description };
-          listBuiltToken({
-            mode,
-            name: localID, 
-            pluginId: '@terrazzo/plugin-css',
-            tokenId: token.token.id,
-          });
         }
         for (const [name, subvalue] of Object.entries(token.value)) {
           selectorRule.declarations[`${localID}-${name}`] = { value: subvalue, description: token.token.$description };

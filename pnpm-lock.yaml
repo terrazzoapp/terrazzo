@@ -182,12 +182,21 @@ importers:
       '@terrazzo/plugin-css':
         specifier: workspace:^
         version: link:../plugin-css
+      '@terrazzo/plugin-js':
+        specifier: workspace:^
+        version: link:../plugin-js
       '@terrazzo/plugin-sass':
         specifier: workspace:^
         version: link:../plugin-sass
+      '@terrazzo/plugin-swift':
+        specifier: workspace:^
+        version: link:../plugin-swift
       '@terrazzo/plugin-token-listing':
         specifier: workspace:^
         version: link:../plugin-token-listing
+      '@terrazzo/plugin-vanilla-extract':
+        specifier: workspace:^
+        version: link:../plugin-vanilla-extract
       '@terrazzo/token-tools':
         specifier: workspace:^
         version: link:../token-tools

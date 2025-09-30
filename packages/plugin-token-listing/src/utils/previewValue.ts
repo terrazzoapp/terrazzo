@@ -58,8 +58,10 @@ export function computePreviewValue({
           computed['font-weight'] || '',
           computed['font-style'] || '',
           `${computed['font-size']}${computed['line-height'] ? `/${computed['line-height']}` : ''}`,
-          computed['font-family']
-        ].filter(Boolean).join(' ');
+          computed['font-family'],
+        ]
+          .filter(Boolean)
+          .join(' ');
       }
 
       // WideGamutColorValue
@@ -70,7 +72,6 @@ export function computePreviewValue({
         'p3' in computed &&
         'rec2020' in computed
       ) {
-
         return computed.srgb;
       }
 
