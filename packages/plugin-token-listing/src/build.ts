@@ -66,7 +66,6 @@ function getName({
 
 function getPlatformDescription(platform: PlatformOption): { description?: string } {
   if (typeof platform === 'string') {
-    
     return { description: `Automatically generated from ${platform}` };
   }
 

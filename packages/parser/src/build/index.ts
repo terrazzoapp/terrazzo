@@ -48,9 +48,8 @@ function validateTransformParams({
 /** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
-  context: BuildRunnerOptions,
+  { sources, logger = new Logger(), config }: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
-  const { sources, logger = new Logger(), config } = context;
   const formats: Record<string, TokenTransformed[]> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 

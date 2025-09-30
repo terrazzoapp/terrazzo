@@ -24,7 +24,7 @@ export interface BuildHookOptions {
 }
 
 export interface BuildRunnerResult {
-  outputFiles: OutputFileExpanded[];
+  outputFiles: OutputFile[];
 }
 
 export interface BuildEndHookOptions {
@@ -314,7 +314,7 @@ export interface TransformHookOptions {
       localID?: string;
       value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
       mode?: string;
-      meta?: Record<string | number | symbol, unknown>;
+      meta?: TokenTransformedBase['meta'];
     },
   ): void;
   /** Momoa documents */
