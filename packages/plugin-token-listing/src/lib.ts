@@ -24,7 +24,7 @@ export const FORMAT_ID = 'token-listing';
 
 export interface CustomFunctionParams {
   logger: Logger;
-  mode?: string;
+  mode: string;
   token: TokenNormalized;
   tokensSet: Record<string, TokenNormalized>;
 }
@@ -52,8 +52,8 @@ export interface TokenListingExtension {
     };
   };
 
-  /** Value that can be used to preview this token in a Web environment. */
-  previewValue?: PreviewValue;
+  /** Value that can be used to preview this token in a CSS engine. */
+  previewValue?: string | number;
 
   /** Original value of the token, with aliases preserved. */
   originalValue?:
@@ -102,6 +102,7 @@ export type ModeOption = {
   name: string;
   values: string[];
   description?: string;
+  default?: string;
 };
 
 export type PlatformOption =
@@ -118,11 +119,6 @@ export type SourceOfTruthOption =
       default: string;
       custom: (params: CustomFunctionParams) => string | undefined;
     };
-
-interface PreviewValueObject {
-  [key: string]: string | number | boolean | PreviewValueObject;
-}
-export type PreviewValue = string | number | boolean | PreviewValueObject;
 
 export type Subtype =
   | 'bgColor'
@@ -173,7 +169,7 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
-  previewValue?: (params: CustomFunctionParams) => PreviewValue | undefined;
+  previewValue?: (params: CustomFunctionParams) => string | number | undefined;
 
   /**
    * Hook to compute subtypes for design tokens, e.g. to hint which colors are backgrounds, borders,

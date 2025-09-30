@@ -28,6 +28,7 @@ export default defineConfig({
     // Configure the token listing
     listing({
       filename: 'terrazzo.listing.json',
+      // Pass mode information so documentation tools can generate mode selectors
       modes: [
         {
           name: 'color-scheme',
@@ -35,6 +36,7 @@ export default defineConfig({
           description: 'Color theme matching user device preferences',
         },
       ],
+      // Define platforms included in the Terrazzo build
       platforms: {
         css: {
           description: 'Tokens built as CSS variables for the developers',

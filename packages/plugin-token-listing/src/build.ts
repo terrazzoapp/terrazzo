@@ -37,7 +37,7 @@ function getName({
 }: {
   getTransforms: (params: TransformParams) => TokenTransformed[];
   logger: Logger;
-  mode: string | undefined;
+  mode: string;
   platform: PlatformOption;
   tokensSet: Record<string, TokenNormalized>;
   token: TokenNormalized;
@@ -51,27 +51,26 @@ function getName({
   if ('name' in platform && typeof platform.name === 'string') {
     name = getNameFromPlugin({ getTransforms, mode, plugin: platform.name, token });
   } else if ('name' in platform && typeof platform.name === 'function') {
-    name = platform.name({
-      logger,
-      mode: mode === '.' ? undefined : mode,
-      tokensSet,
-      token,
-    });
+    name = platform.name({ logger, mode, tokensSet, token });
   }
 
   let filter: boolean = true;
   if ('filter' in platform && typeof platform.filter === 'string') {
     filter = !!getNameFromPlugin({ getTransforms, mode, plugin: platform.filter, token });
   } else if ('filter' in platform && typeof platform.filter === 'function') {
-    filter = platform.filter({
-      logger,
-      mode: mode === '.' ? undefined : mode,
-      tokensSet,
-      token,
-    });
+    filter = platform.filter({ logger, mode, tokensSet, token });
   }
 
   return filter ? name : undefined;
+}
+
+function getPlatformDescription(platform: PlatformOption): { description?: string } {
+  if (typeof platform === 'string') {
+    
+    return { description: `Automatically generated from ${platform}` };
+  }
+
+  return { description: platform.description };
 }
 
 export default function getBuild(options: TokenListingPluginOptions): Plugin['build'] {
@@ -86,7 +85,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
   }: {
     getTransforms: (params: TransformParams) => TokenTransformed[];
     logger: Logger;
-    mode?: string;
+    mode: string;
     token: TokenNormalized;
     tokensSet: Record<string, TokenNormalized>;
   }): TokenListingExtension => {
@@ -104,18 +103,13 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
     };
 
     const previewValue =
-      options.previewValue?.({ tokensSet, token, mode, logger }) ??
-      computePreviewValue({ tokensSet, token, mode, logger });
+      options.previewValue?.({ logger, mode, tokensSet, token }) ??
+      computePreviewValue({ logger, mode, tokensSet, token });
     if (previewValue !== '') {
       output.previewValue = previewValue;
     }
 
-    const subtype = options.subtype?.({
-      logger,
-      mode: mode === '.' ? undefined : mode,
-      tokensSet,
-      token,
-    });
+    const subtype = options.subtype?.({ logger, mode, tokensSet, token });
     if (subtype) {
       output.subtype = subtype;
     }
@@ -126,7 +120,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
 
     const sourceOfTruth =
       typeof options.sourceOfTruth === 'object'
-        ? options.sourceOfTruth?.custom?.({ tokensSet, token, mode, logger })
+        ? options.sourceOfTruth?.custom?.({ logger, mode, tokensSet, token })
         : undefined;
     if (sourceOfTruth) {
       output.sourceOfTruth = sourceOfTruth;
@@ -163,9 +157,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
         version: 1,
         authoringTool: 'Terrazzo',
         modes: options.modes,
-        platforms: mapValues(options.platforms ?? {}, (platform: PlatformOption) =>
-          typeof platform === 'string' ? { description: platform } : { description: platform.description },
-        ),
+        platforms: mapValues(options.platforms ?? {}, getPlatformDescription),
         sourceOfTruth:
           typeof options.sourceOfTruth === 'string' ? options.sourceOfTruth : options.sourceOfTruth?.default,
       },
