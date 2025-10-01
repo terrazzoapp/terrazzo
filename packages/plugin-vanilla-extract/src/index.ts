@@ -58,7 +58,7 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
           localID,
           value,
           mode: token.mode,
-          meta: { 'token-listing': { name: `vars.${localID}`, } },
+          meta: { 'token-listing': { name: `vars.${localID}` } },
         });
       }
     },

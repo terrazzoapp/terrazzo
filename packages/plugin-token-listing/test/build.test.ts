@@ -145,7 +145,7 @@ describe('token-listing plugin - Node.js API', () => {
       };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      expect(output.meta.names).toMatchObject({
+      expect(output.meta.platforms).toMatchObject({
         css: {
           description: 'CSS variables',
         },

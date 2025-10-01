@@ -17,7 +17,7 @@ describe('tz build', () => {
   "meta": {
     "version": 1,
     "authoringTool": "Terrazzo",
-    "names": {}
+    "platforms": {}
   },
   "data": [
 `),
@@ -53,7 +53,7 @@ describe('tz build', () => {
   "meta": {
     "version": 1,
     "authoringTool": "Terrazzo",
-    "names": {}
+    "platforms": {}
   },
   "data": [`),
     );

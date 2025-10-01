@@ -24,7 +24,7 @@ export interface BuildHookOptions {
 }
 
 export interface BuildRunnerResult {
-  outputFiles: OutputFile[];
+  outputFiles: OutputFileExpanded[];
 }
 
 export interface BuildEndHookOptions {
@@ -267,7 +267,7 @@ interface TokenTransformedBase {
      * set this to be the name of a token as it appears in code,
      * and the token-listing plugin will pick it up and use it.
      */
-    'token-listing'?: { name: string | undefined; };
+    'token-listing'?: { name: string | undefined };
   };
 }
 
