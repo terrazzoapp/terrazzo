@@ -1,5 +1,11 @@
 # @terrazzo/parser
 
+## 0.10.4
+
+### Patch Changes
+
+- [#552](https://github.com/terrazzoapp/terrazzo/pull/552) [`d96e0e5`](https://github.com/terrazzoapp/terrazzo/commit/d96e0e544d49ee94148d38270c29bec22f9bc6ea) Thanks [@nlemoine](https://github.com/nlemoine)! - Apply transform to token nodes
+
 ## 0.10.3
 
 ### Patch Changes
