@@ -271,5 +271,43 @@ describe('Node.js API', () => {
         fileURLToPath(new URL('./want.css', cwd)),
       );
     });
+
+    it('color-scheme properties', async () => {
+      const output = 'actual.css';
+      const cwd = new URL('./fixtures/color-scheme/', import.meta.url);
+      const config = defineConfig(
+        {
+          plugins: [
+            css({
+              filename: output,
+              baseScheme: 'light dark',
+              modeSelectors: [
+                {
+                  mode: 'light',
+                  tokens: ['color.*'],
+                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+                  scheme: 'light',
+                },
+                {
+                  mode: 'dark',
+                  tokens: ['color.*'],
+                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+                  scheme: 'dark',
+                },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const tokensJSON = new URL('./tokens.json', cwd);
+      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+        config,
+      });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
   });
 });
