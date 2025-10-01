@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-sass",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Generate .scss from your DTCG design tokens JSON.",
   "license": "MIT",
   "type": "module",
