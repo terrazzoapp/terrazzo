@@ -4,6 +4,7 @@
 
 @use "sass:list";
 @use "sass:map";
+@use "sass:meta";
 
 $__token-values: (
   "border.std": (var(--ds-border-std)),
@@ -66,10 +67,11 @@ $__token-typography-mixins: (
     @error 'No token named "#{$tokenName}"';
   }
   $_token: map.get($__token-values, $tokenName);
-  @if map.has-key($_token, "__tz-error") {
+  @if meta.type-of($_token) == map and map.has-key($_token, "__tz-error") {
     @error map.get($_token, "__tz-error");
   }
-  @return map.get($_token);
+
+  @return $_token;
 }
 
 @mixin typography($tokenName, $modeName: ".") {
