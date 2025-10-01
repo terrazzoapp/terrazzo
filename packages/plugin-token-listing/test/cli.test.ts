@@ -63,7 +63,10 @@ describe('tz build', () => {
     it('outDir', async () => {
       const cwd = new URL('./fixtures/cli-config-outdir/', import.meta.url);
       await execa('node', [cmd, 'build'], { cwd });
-      await expect(fs.readFileSync(new URL('./styles/out/actual.listing.json', cwd), 'utf8')).toMatchFileSnapshot(
+      
+      const actual = fs.readFileSync(new URL('./styles/out/actual.listing.json', cwd), 'utf8');
+      const comparable = actual.replace(/file:\/\/\/[^"]+/g, 'file:///some-path/tokens.json');
+      await expect(comparable).toMatchFileSnapshot(
         fileURLToPath(new URL('./styles/out/want.listing.json', cwd)),
       );
     });

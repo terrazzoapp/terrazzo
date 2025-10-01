@@ -31,7 +31,7 @@
           },
           "previewValue": "#000000",
           "source": {
-            "resource": "file:///home/steve/Development/terrazzo/packages/plugin-token-listing/test/fixtures/cli-config-outdir/styles/tokens.json",
+            "resource": "file:///some-path/tokens.json",
             "loc": {
               "start": {
                 "line": 6,
