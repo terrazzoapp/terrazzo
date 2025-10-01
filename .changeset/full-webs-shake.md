@@ -6,6 +6,7 @@
 "@terrazzo/plugin-css": minor
 "@terrazzo/plugin-js": minor
 "@terrazzo/parser": minor
+"@terrazzo/www": minor
 ---
 
 Add support for the Token Listing format
