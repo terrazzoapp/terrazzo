@@ -34,13 +34,23 @@ export default function pluginJS(options?: JSPluginOptions): Plugin {
           if (customTransform) {
             const transformedValue = customTransform(token, mode);
             if (transformedValue !== undefined && transformedValue !== null) {
-              setTransform(id, { format: FORMAT_JS_ID, value: transformedValue, mode });
+              setTransform(id, {
+                format: FORMAT_JS_ID,
+                value: transformedValue,
+                mode,
+                meta: { 'token-listing': { name: `tokens.${id}` } },
+              });
               continue;
             }
           }
           const transformedValue = transformJSValue(token, { mode, startingIndent: 4 });
           if (transformedValue !== undefined) {
-            setTransform(id, { format: FORMAT_JS_ID, value: transformedValue, mode });
+            setTransform(id, {
+              format: FORMAT_JS_ID,
+              value: transformedValue,
+              mode,
+              meta: { 'token-listing': { name: `tokens.${id}` } },
+            });
           }
         }
       }
