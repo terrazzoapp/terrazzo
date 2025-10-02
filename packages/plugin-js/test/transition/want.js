@@ -11,19 +11,19 @@ export const tokens = {
       0.45
     ],
   },
-  "ease.circ-out": {
-    ".": [
-      0.33,
-      1,
-      0.68,
-      1
-    ],
-  },
   "ease.circ-in-out": {
     ".": [
       0.85,
       0,
       0.15,
+      1
+    ],
+  },
+  "ease.circ-out": {
+    ".": [
+      0.33,
+      1,
+      0.68,
       1
     ],
   },
@@ -59,15 +59,15 @@ export const tokens = {
       1
     ],
   },
-  "timing.instant": {
+  "timing.deliberate": {
     ".": {
-      "value": 50,
+      "value": 500,
       "unit": "ms"
     },
   },
-  "timing.quick": {
+  "timing.instant": {
     ".": {
-      "value": 100,
+      "value": 50,
       "unit": "ms"
     },
   },
@@ -77,9 +77,15 @@ export const tokens = {
       "unit": "ms"
     },
   },
-  "timing.deliberate": {
+  "timing.none": {
     ".": {
-      "value": 500,
+      "value": 0,
+      "unit": "ms"
+    },
+  },
+  "timing.quick": {
+    ".": {
+      "value": 100,
       "unit": "ms"
     },
   },
@@ -89,40 +95,40 @@ export const tokens = {
       "unit": "s"
     },
   },
+  "transition.circ-in-deliberate": {
+    ".": {
+      "duration": {
+        "value": 500,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
   "transition.circ-in-instant": {
     ".": {
       "duration": {
         "value": 50,
         "unit": "ms"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.55,
         0,
         1,
         0.45
-      ]
-    },
-  },
-  "transition.circ-in-quick": {
-    ".": {
-      "duration": {
-        "value": 100,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.55,
-        0,
-        1,
-        0.45
-      ]
+      }
     },
   },
   "transition.circ-in-moderate": {
@@ -131,106 +137,16 @@ export const tokens = {
         "value": 250,
         "unit": "ms"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.55,
         0,
         1,
         0.45
-      ]
-    },
-  },
-  "transition.circ-in-deliberate": {
-    ".": {
-      "duration": {
-        "value": 500,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.55,
-        0,
-        1,
-        0.45
-      ]
-    },
-  },
-  "transition.circ-in-slow": {
-    ".": {
-      "duration": {
-        "value": 1,
-        "unit": "s"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.55,
-        0,
-        1,
-        0.45
-      ]
-    },
-  },
-  "transition.circ-in-out-instant": {
-    ".": {
-      "duration": {
-        "value": 50,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.85,
-        0,
-        0.15,
-        1
-      ]
-    },
-  },
-  "transition.circ-in-out-quick": {
-    ".": {
-      "duration": {
-        "value": 100,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.85,
-        0,
-        0.15,
-        1
-      ]
-    },
-  },
-  "transition.circ-in-out-moderate": {
-    ".": {
-      "duration": {
-        "value": 250,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.85,
-        0,
-        0.15,
-        1
-      ]
+      }
     },
   },
   "transition.circ-in-out-deliberate": {
@@ -239,8 +155,22 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ],
       "delay": {
         "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-in-out-instant": {
+    ".": {
+      "duration": {
+        "value": 50,
         "unit": "ms"
       },
       "timingFunction": [
@@ -248,7 +178,47 @@ export const tokens = {
         0,
         0.15,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-in-out-moderate": {
+    ".": {
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-in-out-quick": {
+    ".": {
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.85,
+        0,
+        0.15,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
   "transition.circ-in-out-slow": {
@@ -257,70 +227,52 @@ export const tokens = {
         "value": 1,
         "unit": "s"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.85,
         0,
         0.15,
         1
-      ]
-    },
-  },
-  "transition.circ-out-instant": {
-    ".": {
-      "duration": {
-        "value": 50,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
-  "transition.circ-out-quick": {
+  "transition.circ-in-quick": {
     ".": {
       "duration": {
         "value": 100,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
-  "transition.circ-out-moderate": {
+  "transition.circ-in-slow": {
     ".": {
       "duration": {
-        "value": 250,
-        "unit": "ms"
+        "value": 1,
+        "unit": "s"
       },
+      "timingFunction": [
+        0.55,
+        0,
+        1,
+        0.45
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
   "transition.circ-out-deliberate": {
@@ -329,8 +281,22 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
       "delay": {
         "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-out-instant": {
+    ".": {
+      "duration": {
+        "value": 50,
         "unit": "ms"
       },
       "timingFunction": [
@@ -338,7 +304,47 @@ export const tokens = {
         1,
         0.68,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-out-moderate": {
+    ".": {
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.circ-out-quick": {
+    ".": {
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
   "transition.circ-out-slow": {
@@ -347,70 +353,16 @@ export const tokens = {
         "value": 1,
         "unit": "s"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.33,
         1,
         0.68,
         1
-      ]
-    },
-  },
-  "transition.cubic-in-instant": {
-    ".": {
-      "duration": {
-        "value": 50,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.32,
-        0,
-        0.67,
-        0
-      ]
-    },
-  },
-  "transition.cubic-in-quick": {
-    ".": {
-      "duration": {
-        "value": 100,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.32,
-        0,
-        0.67,
-        0
-      ]
-    },
-  },
-  "transition.cubic-in-moderate": {
-    ".": {
-      "duration": {
-        "value": 250,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.32,
-        0,
-        0.67,
-        0
-      ]
+      }
     },
   },
   "transition.cubic-in-deliberate": {
@@ -419,88 +371,52 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.32,
         0,
         0.67,
         0
-      ]
-    },
-  },
-  "transition.cubic-in-slow": {
-    ".": {
-      "duration": {
-        "value": 1,
-        "unit": "s"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.32,
-        0,
-        0.67,
-        0
-      ]
+      }
     },
   },
-  "transition.cubic-in-out-instant": {
+  "transition.cubic-in-instant": {
     ".": {
       "duration": {
         "value": 50,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.65,
-        0,
-        0.35,
-        1
-      ]
+      }
     },
   },
-  "transition.cubic-in-out-quick": {
-    ".": {
-      "duration": {
-        "value": 100,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0.65,
-        0,
-        0.35,
-        1
-      ]
-    },
-  },
-  "transition.cubic-in-out-moderate": {
+  "transition.cubic-in-moderate": {
     ".": {
       "duration": {
         "value": 250,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.65,
-        0,
-        0.35,
-        1
-      ]
+      }
     },
   },
   "transition.cubic-in-out-deliberate": {
@@ -509,8 +425,22 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
       "delay": {
         "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-in-out-instant": {
+    ".": {
+      "duration": {
+        "value": 50,
         "unit": "ms"
       },
       "timingFunction": [
@@ -518,7 +448,47 @@ export const tokens = {
         0,
         0.35,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-in-out-moderate": {
+    ".": {
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-in-out-quick": {
+    ".": {
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.65,
+        0,
+        0.35,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
   "transition.cubic-in-out-slow": {
@@ -527,70 +497,52 @@ export const tokens = {
         "value": 1,
         "unit": "s"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.65,
         0,
         0.35,
         1
-      ]
-    },
-  },
-  "transition.cubic-out-instant": {
-    ".": {
-      "duration": {
-        "value": 50,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
-  "transition.cubic-out-quick": {
+  "transition.cubic-in-quick": {
     ".": {
       "duration": {
         "value": 100,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
-  "transition.cubic-out-moderate": {
+  "transition.cubic-in-slow": {
     ".": {
       "duration": {
-        "value": 250,
-        "unit": "ms"
+        "value": 1,
+        "unit": "s"
       },
+      "timingFunction": [
+        0.32,
+        0,
+        0.67,
+        0
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0.33,
-        1,
-        0.68,
-        1
-      ]
+      }
     },
   },
   "transition.cubic-out-deliberate": {
@@ -599,8 +551,22 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
       "delay": {
         "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-out-instant": {
+    ".": {
+      "duration": {
+        "value": 50,
         "unit": "ms"
       },
       "timingFunction": [
@@ -608,7 +574,47 @@ export const tokens = {
         1,
         0.68,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-out-moderate": {
+    ".": {
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.cubic-out-quick": {
+    ".": {
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0.33,
+        1,
+        0.68,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
   "transition.cubic-out-slow": {
@@ -617,70 +623,16 @@ export const tokens = {
         "value": 1,
         "unit": "s"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0.33,
         1,
         0.68,
         1
-      ]
-    },
-  },
-  "transition.linear-instant": {
-    ".": {
-      "duration": {
-        "value": 50,
-        "unit": "ms"
-      },
+      ],
       "delay": {
         "value": 0,
         "unit": "ms"
-      },
-      "timingFunction": [
-        0,
-        0,
-        1,
-        1
-      ]
-    },
-  },
-  "transition.linear-quick": {
-    ".": {
-      "duration": {
-        "value": 100,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0,
-        0,
-        1,
-        1
-      ]
-    },
-  },
-  "transition.linear-moderate": {
-    ".": {
-      "duration": {
-        "value": 250,
-        "unit": "ms"
-      },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
-      "timingFunction": [
-        0,
-        0,
-        1,
-        1
-      ]
+      }
     },
   },
   "transition.linear-deliberate": {
@@ -689,8 +641,22 @@ export const tokens = {
         "value": 500,
         "unit": "ms"
       },
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ],
       "delay": {
         "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.linear-instant": {
+    ".": {
+      "duration": {
+        "value": 50,
         "unit": "ms"
       },
       "timingFunction": [
@@ -698,7 +664,47 @@ export const tokens = {
         0,
         1,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.linear-moderate": {
+    ".": {
+      "duration": {
+        "value": 250,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
+    },
+  },
+  "transition.linear-quick": {
+    ".": {
+      "duration": {
+        "value": 100,
+        "unit": "ms"
+      },
+      "timingFunction": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
   "transition.linear-slow": {
@@ -707,16 +713,16 @@ export const tokens = {
         "value": 1,
         "unit": "s"
       },
-      "delay": {
-        "value": 0,
-        "unit": "ms"
-      },
       "timingFunction": [
         0,
         0,
         1,
         1
-      ]
+      ],
+      "delay": {
+        "value": 0,
+        "unit": "ms"
+      }
     },
   },
 };

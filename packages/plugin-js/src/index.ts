@@ -23,7 +23,7 @@ export default function pluginJS(options?: JSPluginOptions): Plugin {
         setTransform(id, {
           format: FORMAT_DTS_ID,
           value: {
-            description: token.$description!,
+            description: token.$description ? String(token.$description) : '',
             value: `Record<"${Object.keys(token.mode).join('" | "')}", ${TYPE_MAP[token.$type]}["$value"]>`,
           },
           mode: '.',

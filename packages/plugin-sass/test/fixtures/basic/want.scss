@@ -8,11 +8,19 @@
 
 $__token-values: (
   "border.std": (var(--ds-border-std)),
-  "color.red": (var(--ds-color-red)),
-  "color.green": (var(--ds-color-green)),
   "color.blue": (var(--ds-color-blue)),
+  "color.green": (var(--ds-color-green)),
+  "color.red": (var(--ds-color-red)),
   "color.redgreenblue": (var(--ds-color-redgreenblue)),
   "gradient.g-b": (var(--ds-gradient-g-b)),
+  "shadow": (var(--ds-shadow)),
+  "transition": (var(--ds-transition)),
+  "typography.body": (
+    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.body")` instead.',
+  ),
+  "typography.callout": (
+    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.callout")` instead.',
+  ),
   "typography.family.body": (var(--ds-typography-family-body)),
   "typography.family.heading": (var(--ds-typography-family-heading)),
   "typography.page-title": (
@@ -21,17 +29,24 @@ $__token-values: (
   "typography.subheading": (
     "__tz-error": 'This is a typography mixin. Use `@include typography("typography.subheading")` instead.',
   ),
-  "typography.callout": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.callout")` instead.',
-  ),
-  "typography.body": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.body")` instead.',
-  ),
-  "shadow": (var(--ds-shadow)),
-  "transition": (var(--ds-transition)),
 );
 
 $__token-typography-mixins: (
+  "typography.body": (
+    "font-family": (var(--ds-typography-body-font-family)),
+    "font-size": (var(--ds-typography-body-font-size)),
+    "font-weight": (var(--ds-typography-body-font-weight)),
+    "line-height": (var(--ds-typography-body-line-height)),
+    "letter-spacing": (var(--ds-typography-body-letter-spacing)),
+  ),
+  "typography.callout": (
+    "font-family": (var(--ds-typography-callout-font-family)),
+    "font-size": (var(--ds-typography-callout-font-size)),
+    "font-weight": (var(--ds-typography-callout-font-weight)),
+    "font-style": (var(--ds-typography-callout-font-style)),
+    "line-height": (var(--ds-typography-callout-line-height)),
+    "letter-spacing": (var(--ds-typography-callout-letter-spacing)),
+  ),
   "typography.page-title": (
     "font-family": (var(--ds-typography-page-title-font-family)),
     "font-size": (var(--ds-typography-page-title-font-size)),
@@ -46,19 +61,6 @@ $__token-typography-mixins: (
     "line-height": (var(--ds-typography-subheading-line-height)),
     "letter-spacing": (var(--ds-typography-subheading-letter-spacing)),
     "text-transform": (var(--ds-typography-subheading-text-transform)),
-  ),
-  "typography.callout": (
-    "font-family": (var(--ds-typography-callout-font-family)),
-    "font-size": (var(--ds-typography-callout-font-size)),
-    "font-weight": (var(--ds-typography-callout-font-weight)),
-    "font-style": (var(--ds-typography-callout-font-style)),
-    "line-height": (var(--ds-typography-callout-line-height)),
-  ),
-  "typography.body": (
-    "font-family": (var(--ds-typography-body-font-family)),
-    "font-size": (var(--ds-typography-body-font-size)),
-    "font-weight": (var(--ds-typography-body-font-weight)),
-    "line-height": (var(--ds-typography-body-line-height)),
   ),
 );
 

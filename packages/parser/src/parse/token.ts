@@ -259,9 +259,16 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
       let node: any = modeValue.$value;
       let sourceNode = modeValue.source.node as momoa.AnyNode;
       if (!modeValue.partialAliasOf) {
-        modeValue.partialAliasOf = Array.isArray(modeValue.$value) ? [] : {};
+        modeValue.partialAliasOf = Array.isArray(modeValue.$value) || tokens[rootRef]?.$type === 'shadow' ? [] : {};
       }
       let partialAliasOf = modeValue.partialAliasOf as any;
+      // special case: for shadows, normalize object to array
+      if (tokens[rootRef]?.$type === 'shadow' && !Array.isArray(node)) {
+        if (Array.isArray(modeValue.partialAliasOf) && !modeValue.partialAliasOf.length) {
+          modeValue.partialAliasOf.push({} as any);
+        }
+        partialAliasOf = (modeValue.partialAliasOf as any)[0]!;
+      }
 
       for (let i = 0; i < partial.length; i++) {
         let key = partial[i] as string | number;
@@ -455,7 +462,7 @@ export function resolveAliases(
                 continue;
               }
               value[i] = traverseAndResolve(value[i], {
-                node: (node as momoa.ArrayNode).elements[i]!.value,
+                node: (node as momoa.ArrayNode).elements?.[i]?.value!,
                 // special case: cubicBezier
                 expectedTypes: expectedTypes?.includes('cubicBezier') ? ['number'] : expectedTypes,
                 path: [...path, i],

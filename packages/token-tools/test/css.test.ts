@@ -103,6 +103,7 @@ describe('transformCSSValue', () => {
       {
         given: [
           {
+            jsonID: '#/bool/idk',
             id: 'bool.idk',
             $type: 'boolean',
             $value: false,
@@ -122,11 +123,14 @@ describe('transformCSSValue', () => {
                 dependencies: undefined,
                 source: {} as any,
                 aliasOf: 'bool.nuh-uh',
+                aliasedBy: undefined,
                 aliasChain: ['bool.nuh-uh'],
                 partialAliasOf: undefined,
               },
             },
-            originalValue: { $value: '{bool.nuh-uh}' },
+            originalValue: {
+              $value: '{bool.nuh-uh}',
+            },
             group: {
               id: 'bool',
               $type: undefined,
@@ -139,11 +143,25 @@ describe('transformCSSValue', () => {
           {
             mode: '.',
             tokensSet: {
-              'bool.idk': { $type: 'boolean', $value: false, id: 'bool.idk' },
+              'bool.idk': {
+                $type: 'boolean',
+                $value: false,
+                jsonID: '#/bool/idk',
+                id: 'bool.idk',
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: undefined,
+                dependencies: undefined,
+              },
               'bool.nuh-uh': {
                 $type: 'boolean',
                 $value: false,
+                jsonID: '#/bool/nuh-uh',
                 id: 'bool.nuh-uh',
+                aliasOf: undefined,
+                aliasChain: undefined,
+                aliasedBy: undefined,
+                dependencies: undefined,
               },
             } as any,
           },
@@ -517,6 +535,13 @@ describe('transformDimension', () => {
       {
         given: [{ $value: { value: 1.5, unit: 'rem' } } as any, { tokensSet: {} }],
         want: { success: '1.5rem' },
+      },
+    ],
+    [
+      '0.75em',
+      {
+        given: [{ $value: { value: 0.75, unit: 'em' } } as any, { tokensSet: {} }],
+        want: { success: '0.75em' },
       },
     ],
   ];

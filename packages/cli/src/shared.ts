@@ -72,7 +72,10 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       logger.error({ group: 'config', message: 'No config file found. Create one with `npx terrazzo init`.' });
     }
 
-    return { config, configPath: resolvedConfigPath! };
+    return {
+      config,
+      configPath: resolvedConfigPath!,
+    };
   } catch (err) {
     printError((err as Error).message);
     process.exit(1);

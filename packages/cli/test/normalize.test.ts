@@ -8,7 +8,7 @@ const cmd = '../../../bin/cli.js';
 describe('tz normalize', () => {
   test('basic', async () => {
     const cwd = new URL('./fixtures/normalize/', import.meta.url);
-    await execa(cmd, ['normalize', 'input.json', '--output', 'actual.json'], { cwd, stdout: 'inherit' });
+    await execa(cmd, ['normalize', 'input.json', '--output', 'actual.json'], { cwd });
     await expect(fs.readFileSync(new URL('./actual.json', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.json', cwd)),
     );
@@ -16,7 +16,7 @@ describe('tz normalize', () => {
 
   test('basic (shortcut)', async () => {
     const cwd = new URL('./fixtures/normalize/', import.meta.url);
-    await execa(cmd, ['normalize', 'input.json', '-o', 'actual.json'], { cwd, stdout: 'inherit' });
+    await execa(cmd, ['normalize', 'input.json', '-o', 'actual.json'], { cwd });
     await expect(fs.readFileSync(new URL('./actual.json', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.json', cwd)),
     );
@@ -24,7 +24,7 @@ describe('tz normalize', () => {
 
   test('missing input', async () => {
     const cwd = new URL('./fixtures/normalize/', import.meta.url);
-    await expect(execa(cmd, ['normalize', '--output', 'actual.json'], { cwd, stdout: 'inherit' })).rejects.toThrow(
+    await expect(execa(cmd, ['normalize', '--output', 'actual.json'], { cwd })).rejects.toThrow(
       `Command failed with exit code 1: ../../../bin/cli.js normalize --output actual.json
 
 ✗  [config] Expected input: \`tz normalize <tokens.json> -o output.json\``,

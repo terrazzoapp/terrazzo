@@ -33,7 +33,7 @@ export default async function parse(
     timing: performance.now() - initStart,
   });
 
-  if (!skipLint && config?.plugins?.length) {
+  if (skipLint !== true && config?.plugins?.length) {
     await lintRunner({ tokens, sources, config, logger });
     const lintStart = performance.now();
     logger.debug({

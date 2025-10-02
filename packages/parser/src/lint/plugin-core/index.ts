@@ -100,5 +100,5 @@ export const RECOMMENDED_CONFIG: Record<string, LintRuleLonghand> = {
   [VALID_GRADIENT]: ['error', {}],
   [VALID_TYPOGRAPHY]: ['error', {}],
   [CONSISTENT_NAMING]: ['warn', { format: 'kebab-case' }],
-  [NO_TYPE_ON_ALIAS]: ['error', {}],
+  [NO_TYPE_ON_ALIAS]: ['warn', {}],
 };

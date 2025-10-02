@@ -187,37 +187,37 @@ describe('printRules', () => {
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`
       ":root {
-        color-scheme: light dark;
         --color-blue-6: #acd8fc;
         --color-blue-7: #8ec8f6;
+        color-scheme: light dark;
       }
 
       @media (prefers-color-scheme: light) {
         :root {
-          color-scheme: light;
           --color-blue-6: #acd8fc;
           --color-blue-7: #8ec8f6;
+          color-scheme: light;
         }
       }
 
       [data-color-theme="light"] {
-        color-scheme: light;
         --color-blue-6: #acd8fc;
         --color-blue-7: #8ec8f6;
+        color-scheme: light;
       }
 
       @media (prefers-color-scheme: dark) {
         :root {
-          color-scheme: dark;
           --color-blue-6: #104d87;
           --color-blue-7: #205d9e;
+          color-scheme: dark;
         }
       }
 
       [data-color-theme="dark"] {
-        color-scheme: dark;
         --color-blue-6: #104d87;
         --color-blue-7: #205d9e;
+        color-scheme: dark;
       }"
     `);
   });

@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import { defineConfig, parse } from '../src/index.js';
 import { cwd, DEFAULT_FILENAME } from './test-utils.js';
@@ -236,9 +237,11 @@ describe('JSON $refs', () => {
   it('root $refs throw error', async () => {
     const src = { color: { $type: 'color', gray: { $ref: '#/' } } };
     const config = defineConfig({}, { cwd });
-    await expect(() =>
-      parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:init] Can’t recursively embed a document within itself.
+    try {
+      await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+      expect(true).toBe(false);
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Can’t recursively embed a document within itself.
 
   3 |     "$type": "color",
   4 |     "gray": {
@@ -247,6 +250,7 @@ describe('JSON $refs', () => {
   6 |     }
   7 |   }
   8 | }`);
+    }
   });
 
   it('circular $refs throw error', async () => {
@@ -258,9 +262,11 @@ describe('JSON $refs', () => {
       },
     };
     const config = defineConfig({}, { cwd });
-    await expect(() =>
-      parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:init] Circular $ref detected: "#/color/grey"
+    try {
+      await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+      expect(true).toBe(false);
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Circular $ref detected: "#/color/grey"
 
   3 |     "$type": "color",
   4 |     "gray": {
@@ -269,6 +275,7 @@ describe('JSON $refs', () => {
   6 |     },
   7 |     "grey": {
   8 |       "$ref": "#/color/gray"`);
+    }
   });
 
   it('invalid $refs throw error', async () => {
@@ -279,9 +286,11 @@ describe('JSON $refs', () => {
       },
     };
     const config = defineConfig({}, { cwd });
-    await expect(() =>
-      parse([{ filename: DEFAULT_FILENAME, src }], { config }),
-    ).rejects.toThrowError(`[parser:init] Invalid $ref. Expected string.
+    try {
+      await parse([{ filename: DEFAULT_FILENAME, src }], { config });
+      expect(true).toBe(false);
+    } catch (err) {
+      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Invalid $ref. Expected string.
 
   4 |     "blue": {
   5 |       "100": {
@@ -290,5 +299,6 @@ describe('JSON $refs', () => {
   7 |       }
   8 |     }
   9 |   }`);
+    }
   });
 });

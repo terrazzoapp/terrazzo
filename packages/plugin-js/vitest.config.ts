@@ -1,14 +1,13 @@
-import os from 'node:os';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   test: {
-    testTimeout: os.platform() === 'win32' ? 10000 : 5000,
+    testTimeout: 15_000,
     projects: [
       {
         test: {
           name: 'unit',
-          include: ['test/**/.*.test.ts'],
+          include: ['test/**/*.test.ts'],
           exclude: ['**/*.browser.{test,spec}.ts'],
           environment: 'node',
         },

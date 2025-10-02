@@ -44,7 +44,7 @@ const rule: LintRule<
   },
   defaultOptions: {
     legacyFormat: false,
-    allowedUnits: ['px', 'rem'],
+    allowedUnits: ['px', 'em', 'rem'],
   },
   create({ tokens, options, report }) {
     for (const t of Object.values(tokens)) {

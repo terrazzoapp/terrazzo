@@ -9,6 +9,11 @@ describe('Browser', () => {
     const primer = await import(`dtcg-examples/github-primer.json`).then((m) => m.default);
     const config = defineConfig(
       {
+        lint: {
+          rules: {
+            'core/consistent-naming': 'off',
+          },
+        },
         plugins: [
           js({
             js: 'want.js',

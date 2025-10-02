@@ -153,7 +153,7 @@ describe('8.2 Dimension', () => {
       {
         given: [{ filename: DEFAULT_FILENAME, src: { md: { $type: 'dimension', $value: { value: 1, unit: 'vw' } } } }],
         want: {
-          error: `[lint:core/valid-dimension] Unit vw not allowed. Expected px or rem.
+          error: `[lint:core/valid-dimension] Unit vw not allowed. Expected px, em, or rem.
 
   4 |     "$value": {
   5 |       "value": 1,

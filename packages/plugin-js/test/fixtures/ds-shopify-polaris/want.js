@@ -15,30 +15,6 @@ export const tokens = {
       "hex": "#000000"
     },
   },
-  "color.blueLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9215686274509803,
-        0.9607843137254902,
-        0.9803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#ebf5fa"
-    },
-  },
-  "color.blueLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7058823529411765,
-        0.8823529411764706,
-        0.9803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#b4e1fa"
-    },
-  },
   "color.blue": {
     ".": {
       "colorSpace": "srgb",
@@ -75,6 +51,30 @@ export const tokens = {
       "hex": "#001429"
     },
   },
+  "color.blueLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7058823529411765,
+        0.8823529411764706,
+        0.9803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#b4e1fa"
+    },
+  },
+  "color.blueLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9215686274509803,
+        0.9607843137254902,
+        0.9803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#ebf5fa"
+    },
+  },
   "color.blueText": {
     ".": {
       "colorSpace": "srgb",
@@ -85,30 +85,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#3e4e57"
-    },
-  },
-  "color.greenLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8901960784313725,
-        0.9450980392156862,
-        0.8745098039215686
-      ],
-      "alpha": 1,
-      "hex": "#e3f1df"
-    },
-  },
-  "color.greenLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7333333333333333,
-        0.8980392156862745,
-        0.7019607843137254
-      ],
-      "alpha": 1,
-      "hex": "#bbe5b3"
     },
   },
   "color.green": {
@@ -147,6 +123,30 @@ export const tokens = {
       "hex": "#173630"
     },
   },
+  "color.greenLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7333333333333333,
+        0.8980392156862745,
+        0.7019607843137254
+      ],
+      "alpha": 1,
+      "hex": "#bbe5b3"
+    },
+  },
+  "color.greenLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8901960784313725,
+        0.9450980392156862,
+        0.8745098039215686
+      ],
+      "alpha": 1,
+      "hex": "#e3f1df"
+    },
+  },
   "color.greenText": {
     ".": {
       "colorSpace": "srgb",
@@ -157,30 +157,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#414f3e"
-    },
-  },
-  "color.indigoLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9568627450980393,
-        0.9607843137254902,
-        0.9803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#f4f5fa"
-    },
-  },
-  "color.indigoLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7019607843137254,
-        0.7372549019607844,
-        0.9607843137254902
-      ],
-      "alpha": 1,
-      "hex": "#b3bcf5"
     },
   },
   "color.indigo": {
@@ -219,6 +195,30 @@ export const tokens = {
       "hex": "#000639"
     },
   },
+  "color.indigoLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7019607843137254,
+        0.7372549019607844,
+        0.9607843137254902
+      ],
+      "alpha": 1,
+      "hex": "#b3bcf5"
+    },
+  },
+  "color.indigoLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9568627450980393,
+        0.9607843137254902,
+        0.9803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#f4f5fa"
+    },
+  },
   "color.indigoText": {
     ".": {
       "colorSpace": "srgb",
@@ -229,42 +229,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#3e4155"
-    },
-  },
-  "color.inkLightest": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5686274509803921,
-        0.6196078431372549,
-        0.6705882352941176
-      ],
-      "alpha": 1,
-      "hex": "#919eab"
-    },
-  },
-  "color.inkLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.38823529411764707,
-        0.45098039215686275,
-        0.5058823529411764
-      ],
-      "alpha": 1,
-      "hex": "#637381"
-    },
-  },
-  "color.inkLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.27058823529411763,
-        0.30980392156862746,
-        0.3568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#454f5b"
     },
   },
   "color.ink": {
@@ -279,28 +243,40 @@ export const tokens = {
       "hex": "#212b36"
     },
   },
-  "color.orangeLighter": {
+  "color.inkLight": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.9882352941176471,
-        0.9215686274509803,
-        0.8588235294117647
+        0.27058823529411763,
+        0.30980392156862746,
+        0.3568627450980392
       ],
       "alpha": 1,
-      "hex": "#fcebdb"
+      "hex": "#454f5b"
     },
   },
-  "color.orangeLight": {
+  "color.inkLighter": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        0.7725490196078432,
-        0.5450980392156862
+        0.38823529411764707,
+        0.45098039215686275,
+        0.5058823529411764
       ],
       "alpha": 1,
-      "hex": "#ffc58b"
+      "hex": "#637381"
+    },
+  },
+  "color.inkLightest": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5686274509803921,
+        0.6196078431372549,
+        0.6705882352941176
+      ],
+      "alpha": 1,
+      "hex": "#919eab"
     },
   },
   "color.orange": {
@@ -339,6 +315,30 @@ export const tokens = {
       "hex": "#4a1504"
     },
   },
+  "color.orangeLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.7725490196078432,
+        0.5450980392156862
+      ],
+      "alpha": 1,
+      "hex": "#ffc58b"
+    },
+  },
+  "color.orangeLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9882352941176471,
+        0.9215686274509803,
+        0.8588235294117647
+      ],
+      "alpha": 1,
+      "hex": "#fcebdb"
+    },
+  },
   "color.orangeText": {
     ".": {
       "colorSpace": "srgb",
@@ -349,30 +349,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#594430"
-    },
-  },
-  "color.purpleLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.9411764705882353,
-        0.9921568627450981
-      ],
-      "alpha": 1,
-      "hex": "#f6f0fd"
-    },
-  },
-  "color.purpleLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8901960784313725,
-        0.8156862745098039,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#e3d0ff"
     },
   },
   "color.purple": {
@@ -411,6 +387,30 @@ export const tokens = {
       "hex": "#230051"
     },
   },
+  "color.purpleLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8901960784313725,
+        0.8156862745098039,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#e3d0ff"
+    },
+  },
+  "color.purpleLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9647058823529412,
+        0.9411764705882353,
+        0.9921568627450981
+      ],
+      "alpha": 1,
+      "hex": "#f6f0fd"
+    },
+  },
   "color.purpleText": {
     ".": {
       "colorSpace": "srgb",
@@ -421,30 +421,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#50495a"
-    },
-  },
-  "color.redLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.984313725490196,
-        0.9176470588235294,
-        0.8980392156862745
-      ],
-      "alpha": 1,
-      "hex": "#fbeae5"
-    },
-  },
-  "color.redLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.6784313725490196,
-        0.6039215686274509
-      ],
-      "alpha": 1,
-      "hex": "#fead9a"
     },
   },
   "color.red": {
@@ -483,6 +459,30 @@ export const tokens = {
       "hex": "#330101"
     },
   },
+  "color.redLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.6784313725490196,
+        0.6039215686274509
+      ],
+      "alpha": 1,
+      "hex": "#fead9a"
+    },
+  },
+  "color.redLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.984313725490196,
+        0.9176470588235294,
+        0.8980392156862745
+      ],
+      "alpha": 1,
+      "hex": "#fbeae5"
+    },
+  },
   "color.redText": {
     ".": {
       "colorSpace": "srgb",
@@ -493,30 +493,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#583c35"
-    },
-  },
-  "color.skyLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.9803921568627451,
-        0.984313725490196
-      ],
-      "alpha": 1,
-      "hex": "#f9fafb"
-    },
-  },
-  "color.skyLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9568627450980393,
-        0.9647058823529412,
-        0.9725490196078431
-      ],
-      "alpha": 1,
-      "hex": "#f4f6f8"
     },
   },
   "color.sky": {
@@ -543,28 +519,28 @@ export const tokens = {
       "hex": "#c4cdd5"
     },
   },
-  "color.tealLighter": {
+  "color.skyLight": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.8784313725490196,
-        0.9607843137254902,
-        0.9607843137254902
+        0.9568627450980393,
+        0.9647058823529412,
+        0.9725490196078431
       ],
       "alpha": 1,
-      "hex": "#e0f5f5"
+      "hex": "#f4f6f8"
     },
   },
-  "color.tealLight": {
+  "color.skyLighter": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.7176470588235294,
-        0.9254901960784314,
-        0.9254901960784314
+        0.9764705882352941,
+        0.9803921568627451,
+        0.984313725490196
       ],
       "alpha": 1,
-      "hex": "#b7ecec"
+      "hex": "#f9fafb"
     },
   },
   "color.teal": {
@@ -603,6 +579,30 @@ export const tokens = {
       "hex": "#003135"
     },
   },
+  "color.tealLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7176470588235294,
+        0.9254901960784314,
+        0.9254901960784314
+      ],
+      "alpha": 1,
+      "hex": "#b7ecec"
+    },
+  },
+  "color.tealLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8784313725490196,
+        0.9607843137254902,
+        0.9607843137254902
+      ],
+      "alpha": 1,
+      "hex": "#e0f5f5"
+    },
+  },
   "color.tealText": {
     ".": {
       "colorSpace": "srgb",
@@ -625,30 +625,6 @@ export const tokens = {
       ],
       "alpha": 1,
       "hex": "#ffffff"
-    },
-  },
-  "color.yellowLighter": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9882352941176471,
-        0.9450980392156862,
-        0.803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#fcf1cd"
-    },
-  },
-  "color.yellowLight": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.9176470588235294,
-        0.5411764705882353
-      ],
-      "alpha": 1,
-      "hex": "#ffea8a"
     },
   },
   "color.yellow": {
@@ -687,6 +663,30 @@ export const tokens = {
       "hex": "#573b00"
     },
   },
+  "color.yellowLight": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.9176470588235294,
+        0.5411764705882353
+      ],
+      "alpha": 1,
+      "hex": "#ffea8a"
+    },
+  },
+  "color.yellowLighter": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9882352941176471,
+        0.9450980392156862,
+        0.803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#fcf1cd"
+    },
+  },
   "color.yellowText": {
     ".": {
       "colorSpace": "srgb",
@@ -718,21 +718,9 @@ export const tokens = {
       "monospace"
     ],
   },
-  "space.none": {
+  "space.base": {
     ".": {
-      "value": 0,
-      "unit": "px"
-    },
-  },
-  "space.extraTight": {
-    ".": {
-      "value": 4,
-      "unit": "px"
-    },
-  },
-  "space.tight": {
-    ".": {
-      "value": 8,
+      "value": 16,
       "unit": "px"
     },
   },
@@ -742,9 +730,15 @@ export const tokens = {
       "unit": "px"
     },
   },
-  "space.base": {
+  "space.extraLoose": {
     ".": {
-      "value": 16,
+      "value": 32,
+      "unit": "px"
+    },
+  },
+  "space.extraTight": {
+    ".": {
+      "value": 4,
       "unit": "px"
     },
   },
@@ -754,9 +748,15 @@ export const tokens = {
       "unit": "px"
     },
   },
-  "space.extraLoose": {
+  "space.none": {
     ".": {
-      "value": 32,
+      "value": 0,
+      "unit": "px"
+    },
+  },
+  "space.tight": {
+    ".": {
+      "value": 8,
       "unit": "px"
     },
   },

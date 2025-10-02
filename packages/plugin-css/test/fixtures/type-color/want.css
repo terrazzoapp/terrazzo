@@ -22,7 +22,7 @@
   --ds-color-hdr-blue: oklch(0.6334 0.2011 253.922);
   --ds-color-text-action: var(--ds-color-blue-6);
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
-  --ds-gradient-blue-pink: color(srgb 0.12941176470588237 0.5450980392156862 1) 0%, color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196) 100%;
+  --ds-gradient-blue-pink: color(srgb 0.129 0.545 1) 0%, color(srgb 0.91 0.353 0.678) 100%;
   --ds-gradient-default: var(--ds-gradient-blue-pink);
 }
 

@@ -162,8 +162,8 @@ const rule: LintRule<
           }
 
           // Component ranges
-          const components = 'components' in value && Array.isArray(value.components) ? value.components : undefined;
-          if (components) {
+          const components = 'components' in value ? value.components : undefined;
+          if (Array.isArray(components)) {
             if (csData?.ranges && components?.length === csData.ranges.length) {
               for (let i = 0; i < components.length; i++) {
                 if (
@@ -196,7 +196,12 @@ const rule: LintRule<
               });
             }
           } else {
-            report({ messageId: ERROR_MISSING_COMPONENTS, data: { got: JSON.stringify(components) }, node, filename });
+            report({
+              messageId: ERROR_MISSING_COMPONENTS,
+              data: { got: JSON.stringify(components) },
+              node: getObjMember(node as momoa.ObjectNode, 'components') ?? node,
+              filename,
+            });
           }
 
           // Alpha
@@ -236,6 +241,9 @@ const rule: LintRule<
             }
           }
         } else if (typeof value === 'string') {
+          if (isAlias(value)) {
+            return;
+          }
           if (!options.legacyFormat) {
             report({ messageId: ERROR_OBJ_FORMAT, data: { color: JSON.stringify(value) }, node, filename });
           } else {

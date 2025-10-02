@@ -4,9 +4,7 @@ export const vars = createThemeContract({
   "base": {
     "color": {
       "black": null,
-      "transparent": null,
-      "white": null,
-      "neutral": {
+      "blue": {
         "0": null,
         "1": null,
         "2": null,
@@ -18,7 +16,7 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
-      "blue": {
+      "coral": {
         "0": null,
         "1": null,
         "2": null,
@@ -42,7 +40,7 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
-      "yellow": {
+      "neutral": {
         "0": null,
         "1": null,
         "2": null,
@@ -66,7 +64,7 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
-      "red": {
+      "pink": {
         "0": null,
         "1": null,
         "2": null,
@@ -90,7 +88,7 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
-      "pink": {
+      "red": {
         "0": null,
         "1": null,
         "2": null,
@@ -102,7 +100,9 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
-      "coral": {
+      "transparent": null,
+      "white": null,
+      "yellow": {
         "0": null,
         "1": null,
         "2": null,
@@ -118,10 +118,10 @@ export const vars = createThemeContract({
     "icon": {
       "alert16": null,
       "alert24": null,
+      "alertFill12": null,
       "archive16": null,
       "archive24": null,
       "arrowBoth16": null,
-      "alertFill12": null,
       "arrowBoth24": null,
       "arrowDown16": null,
       "arrowDown24": null,
@@ -608,59 +608,185 @@ export const vars = createThemeContract({
     "text": {
       "weight": {
         "light": null,
-        "normal": null,
         "medium": null,
+        "normal": null,
         "semibold": null
       }
     }
   },
   "borderRadius": {
-    "small": null,
-    "medium": null,
+    "full": null,
     "large": null,
-    "full": null
+    "medium": null,
+    "small": null
   },
   "breakpoint": {
-    "xsmall": null,
-    "small": null,
-    "medium": null,
     "large": null,
+    "medium": null,
+    "small": null,
     "xlarge": null,
+    "xsmall": null,
     "xxlarge": null
   },
   "fontStack": {
-    "system": null,
+    "monospace": null,
     "sansSerif": null,
-    "monospace": null
+    "system": null
   },
-  "space": {
-    "xxsmall": null,
-    "xsmall": null,
-    "small": null,
-    "medium": null,
-    "large": null,
-    "xlarge": null
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": null,
-      "size": null,
-      "lineHeight": null,
-      "weight": null,
-      "shorthand": {
-        "fontWeight": null,
-        "fontSize": null,
-        "lineHeight": null,
-        "fontFamily": null
+  "motion": {
+    "loading": {
+      "delay": {
+        "default": null
       }
     },
-    "title": {
+    "skeletonLoader": {
+      "shimmer": {
+        "duration": {
+          "scale": null
+        }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": null
+      }
+    }
+  },
+  "space": {
+    "large": null,
+    "medium": null,
+    "small": null,
+    "xlarge": null,
+    "xsmall": null,
+    "xxsmall": null
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": null,
+        "medium": null,
+        "small": null
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "medium": {
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "small": {
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null,
+          "fontFamily": null
+        }
+      },
       "size": {
         "large": null,
         "medium": null,
         "small": null
       },
+      "weight": null
+    },
+    "caption": {
+      "lineHeight": null,
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "letterSpacing": null,
+        "lineHeight": null,
+        "fontFamily": null
+      },
+      "size": null,
+      "weight": null
+    },
+    "codeBlock": {
+      "lineHeight": null,
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "letterSpacing": null,
+        "lineHeight": null,
+        "fontFamily": null
+      },
+      "size": null,
+      "weight": null
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "fontFamily": null,
+        "letterSpacing": null,
+        "lineHeight": null
+      },
+      "size": null,
+      "weight": null
+    },
+    "display": {
+      "lineBoxHeight": null,
+      "lineHeight": null,
+      "shorthand": {
+        "fontFamily": null,
+        "fontWeight": null,
+        "fontSize": null,
+        "lineHeight": null,
+        "letterSpacing": null
+      },
+      "size": null,
+      "weight": null
+    },
+    "subtitle": {
+      "lineHeight": null,
+      "shorthand": {
+        "fontWeight": null,
+        "fontSize": null,
+        "letterSpacing": null,
+        "lineHeight": null,
+        "fontFamily": null
+      },
+      "size": null,
+      "weight": null
+    },
+    "title": {
       "lineHeight": {
+        "large": null,
+        "medium": null,
+        "small": null
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": null,
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null
+        },
+        "medium": {
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null,
+          "fontFamily": null
+        },
+        "small": {
+          "fontWeight": null,
+          "fontSize": null,
+          "letterSpacing": null,
+          "lineHeight": null,
+          "fontFamily": null
+        }
+      },
+      "size": {
         "large": null,
         "medium": null,
         "small": null
@@ -669,120 +795,6 @@ export const vars = createThemeContract({
         "large": null,
         "medium": null,
         "small": null
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        },
-        "medium": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        },
-        "small": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        }
-      }
-    },
-    "subtitle": {
-      "size": null,
-      "lineHeight": null,
-      "weight": null,
-      "shorthand": {
-        "fontWeight": null,
-        "fontSize": null,
-        "lineHeight": null,
-        "fontFamily": null
-      }
-    },
-    "body": {
-      "size": {
-        "large": null,
-        "medium": null,
-        "small": null
-      },
-      "lineHeight": {
-        "large": null,
-        "medium": null,
-        "small": null
-      },
-      "weight": null,
-      "shorthand": {
-        "large": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        },
-        "medium": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        },
-        "small": {
-          "fontWeight": null,
-          "fontSize": null,
-          "lineHeight": null,
-          "fontFamily": null
-        }
-      }
-    },
-    "caption": {
-      "size": null,
-      "lineHeight": null,
-      "weight": null,
-      "shorthand": {
-        "fontWeight": null,
-        "fontSize": null,
-        "lineHeight": null,
-        "fontFamily": null
-      }
-    },
-    "codeBlock": {
-      "size": null,
-      "lineHeight": null,
-      "weight": null,
-      "shorthand": {
-        "fontWeight": null,
-        "fontSize": null,
-        "lineHeight": null,
-        "fontFamily": null
-      }
-    },
-    "codeInline": {
-      "size": null,
-      "weight": null,
-      "shorthand": {
-        "fontWeight": null,
-        "fontSize": null,
-        "fontFamily": null
-      }
-    }
-  },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": null
-      }
-    },
-    "spinner": {
-      "duration": {
-        "rotation": null
-      }
-    },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": null
-        }
       }
     }
   }
@@ -792,20 +804,6 @@ export const [lightClass, light] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.12156862745098039 0.13725490196078433 0.1568627450980392)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
-        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
-        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
-        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
-        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
-        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
-        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
-        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
-        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
-        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
-      },
       "blue": {
         "0": "color(srgb 0.8666666666666667 0.9568627450980393 1)",
         "1": "color(srgb 0.7137254901960784 0.8901960784313725 1)",
@@ -817,6 +815,18 @@ export const [lightClass, light] = createTheme(vars, {
         "7": "color(srgb 0.011764705882352941 0.23921568627450981 0.5450980392156862)",
         "8": "color(srgb 0.0392156862745098 0.18823529411764706 0.4117647058823529)",
         "9": "color(srgb 0 0.12941176470588237 0.3333333333333333)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
+        "1": "color(srgb 1 0.8392156862745098 0.8)",
+        "2": "color(srgb 1 0.7058823529411765 0.6313725490196078)",
+        "3": "color(srgb 0.9921568627450981 0.5490196078431373 0.45098039215686275)",
+        "4": "color(srgb 0.9254901960784314 0.396078431372549 0.2784313725490196)",
+        "5": "color(srgb 0.7686274509803922 0.2627450980392157 0.16862745098039217)",
+        "6": "color(srgb 0.6196078431372549 0.1843137254901961 0.10980392156862745)",
+        "7": "color(srgb 0.5019607843137255 0.12156862745098039 0.058823529411764705)",
+        "8": "color(srgb 0.4117647058823529 0.06666666666666667 0.0196078431372549)",
+        "9": "color(srgb 0.3176470588235294 0.03529411764705882 0.00392156862745098)"
       },
       "green": {
         "0": "color(srgb 0.8549019607843137 0.984313725490196 0.8823529411764706)",
@@ -830,17 +840,17 @@ export const [lightClass, light] = createTheme(vars, {
         "8": "color(srgb 0 0.23921568627450981 0.08627450980392157)",
         "9": "color(srgb 0 0.17647058823529413 0.06666666666666667)"
       },
-      "yellow": {
-        "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
-        "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
-        "2": "color(srgb 0.9176470588235294 0.7725490196078432 0.30980392156862746)",
-        "3": "color(srgb 0.8313725490196079 0.6549019607843137 0.17254901960784313)",
-        "4": "color(srgb 0.7490196078431373 0.5294117647058824 0)",
-        "5": "color(srgb 0.6039215686274509 0.403921568627451 0)",
-        "6": "color(srgb 0.49019607843137253 0.3058823529411765 0)",
-        "7": "color(srgb 0.38823529411764707 0.23529411764705882 0.00392156862745098)",
-        "8": "color(srgb 0.30196078431372547 0.17647058823529413 0)",
-        "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
+      "neutral": {
+        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
+        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
+        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
+        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
+        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
+        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
+        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
+        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
+        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
+        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
       },
       "orange": {
         "0": "color(srgb 1 0.9450980392156862 0.8980392156862745)",
@@ -853,6 +863,30 @@ export const [lightClass, light] = createTheme(vars, {
         "7": "color(srgb 0.4627450980392157 0.17254901960784313 0)",
         "8": "color(srgb 0.3607843137254902 0.13333333333333333 0)",
         "9": "color(srgb 0.2784313725490196 0.09019607843137255 0)"
+      },
+      "pink": {
+        "0": "color(srgb 1 0.9372549019607843 0.9686274509803922)",
+        "1": "color(srgb 1 0.8274509803921568 0.9215686274509803)",
+        "2": "color(srgb 1 0.6784313725490196 0.8549019607843137)",
+        "3": "color(srgb 1 0.5019607843137255 0.7843137254901961)",
+        "4": "color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196)",
+        "5": "color(srgb 0.7490196078431373 0.2235294117647059 0.5372549019607843)",
+        "6": "color(srgb 0.6 0.1568627450980392 0.43137254901960786)",
+        "7": "color(srgb 0.4666666666666667 0.12549019607843137 0.3411764705882353)",
+        "8": "color(srgb 0.3803921568627451 0.07450980392156863 0.2784313725490196)",
+        "9": "color(srgb 0.30196078431372547 0.011764705882352941 0.21176470588235294)"
+      },
+      "purple": {
+        "0": "color(srgb 0.984313725490196 0.9372549019607843 1)",
+        "1": "color(srgb 0.9254901960784314 0.8470588235294118 1)",
+        "2": "color(srgb 0.8470588235294118 0.7254901960784313 1)",
+        "3": "color(srgb 0.7607843137254902 0.592156862745098 1)",
+        "4": "color(srgb 0.6431372549019608 0.4588235294117647 0.9764705882352941)",
+        "5": "color(srgb 0.5098039215686274 0.3137254901960784 0.8745098039215686)",
+        "6": "color(srgb 0.4 0.2235294117647059 0.7294117647058823)",
+        "7": "color(srgb 0.3176470588235294 0.16470588235294117 0.592156862745098)",
+        "8": "color(srgb 0.24313725490196078 0.12156862745098039 0.4745098039215686)",
+        "9": "color(srgb 0.1803921568627451 0.0784313725490196 0.3803921568627451)"
       },
       "red": {
         "0": "color(srgb 1 0.9215686274509803 0.9137254901960784)",
@@ -866,50 +900,28 @@ export const [lightClass, light] = createTheme(vars, {
         "8": "color(srgb 0.4 0 0.09411764705882353)",
         "9": "color(srgb 0.2980392156862745 0 0.0784313725490196)"
       },
-      "purple": {
-        "0": "color(srgb 0.984313725490196 0.9372549019607843 1)",
-        "1": "color(srgb 0.9254901960784314 0.8470588235294118 1)",
-        "2": "color(srgb 0.8470588235294118 0.7254901960784313 1)",
-        "3": "color(srgb 0.7607843137254902 0.592156862745098 1)",
-        "4": "color(srgb 0.6431372549019608 0.4588235294117647 0.9764705882352941)",
-        "5": "color(srgb 0.5098039215686274 0.3137254901960784 0.8745098039215686)",
-        "6": "color(srgb 0.4 0.2235294117647059 0.7294117647058823)",
-        "7": "color(srgb 0.3176470588235294 0.16470588235294117 0.592156862745098)",
-        "8": "color(srgb 0.24313725490196078 0.12156862745098039 0.4745098039215686)",
-        "9": "color(srgb 0.1803921568627451 0.0784313725490196 0.3803921568627451)"
-      },
-      "pink": {
-        "0": "color(srgb 1 0.9372549019607843 0.9686274509803922)",
-        "1": "color(srgb 1 0.8274509803921568 0.9215686274509803)",
-        "2": "color(srgb 1 0.6784313725490196 0.8549019607843137)",
-        "3": "color(srgb 1 0.5019607843137255 0.7843137254901961)",
-        "4": "color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196)",
-        "5": "color(srgb 0.7490196078431373 0.2235294117647059 0.5372549019607843)",
-        "6": "color(srgb 0.6 0.1568627450980392 0.43137254901960786)",
-        "7": "color(srgb 0.4666666666666667 0.12549019607843137 0.3411764705882353)",
-        "8": "color(srgb 0.3803921568627451 0.07450980392156863 0.2784313725490196)",
-        "9": "color(srgb 0.30196078431372547 0.011764705882352941 0.21176470588235294)"
-      },
-      "coral": {
-        "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
-        "1": "color(srgb 1 0.8392156862745098 0.8)",
-        "2": "color(srgb 1 0.7058823529411765 0.6313725490196078)",
-        "3": "color(srgb 0.9921568627450981 0.5490196078431373 0.45098039215686275)",
-        "4": "color(srgb 0.9254901960784314 0.396078431372549 0.2784313725490196)",
-        "5": "color(srgb 0.7686274509803922 0.2627450980392157 0.16862745098039217)",
-        "6": "color(srgb 0.6196078431372549 0.1843137254901961 0.10980392156862745)",
-        "7": "color(srgb 0.5019607843137255 0.12156862745098039 0.058823529411764705)",
-        "8": "color(srgb 0.4117647058823529 0.06666666666666667 0.0196078431372549)",
-        "9": "color(srgb 0.3176470588235294 0.03529411764705882 0.00392156862745098)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
+        "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
+        "2": "color(srgb 0.9176470588235294 0.7725490196078432 0.30980392156862746)",
+        "3": "color(srgb 0.8313725490196079 0.6549019607843137 0.17254901960784313)",
+        "4": "color(srgb 0.7490196078431373 0.5294117647058824 0)",
+        "5": "color(srgb 0.6039215686274509 0.403921568627451 0)",
+        "6": "color(srgb 0.49019607843137253 0.3058823529411765 0)",
+        "7": "color(srgb 0.38823529411764707 0.23529411764705882 0.00392156862745098)",
+        "8": "color(srgb 0.30196078431372547 0.17647058823529413 0)",
+        "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -1396,164 +1408,30 @@ export const [lightClass, light] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -1561,16 +1439,162 @@ export const [lightClass, light] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -1580,20 +1604,6 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.10588235294117647 0.12156862745098039 0.1411764705882353)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
-        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
-        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
-        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
-        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
-        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
-        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
-        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
-        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
-        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
-      },
       "blue": {
         "0": "color(srgb 0.8666666666666667 0.9568627450980393 1)",
         "1": "color(srgb 0.7137254901960784 0.8901960784313725 1)",
@@ -1605,6 +1615,18 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "7": "color(srgb 0.011764705882352941 0.23921568627450981 0.5450980392156862)",
         "8": "color(srgb 0.0392156862745098 0.18823529411764706 0.4117647058823529)",
         "9": "color(srgb 0 0.12941176470588237 0.3333333333333333)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
+        "1": "color(srgb 1 0.8392156862745098 0.8)",
+        "2": "color(srgb 1 0.7058823529411765 0.6313725490196078)",
+        "3": "color(srgb 0.9921568627450981 0.5490196078431373 0.45098039215686275)",
+        "4": "color(srgb 0.9254901960784314 0.396078431372549 0.2784313725490196)",
+        "5": "color(srgb 0.7686274509803922 0.2627450980392157 0.16862745098039217)",
+        "6": "color(srgb 0.6196078431372549 0.1843137254901961 0.10980392156862745)",
+        "7": "color(srgb 0.5019607843137255 0.12156862745098039 0.058823529411764705)",
+        "8": "color(srgb 0.4117647058823529 0.06666666666666667 0.0196078431372549)",
+        "9": "color(srgb 0.3176470588235294 0.03529411764705882 0.00392156862745098)"
       },
       "green": {
         "0": "color(srgb 0.7529411764705882 0.9647058823529412 1)",
@@ -1618,17 +1640,17 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "8": "color(srgb 0 0.17647058823529413 0.40784313725490196)",
         "9": "color(srgb 0 0.12156862745098039 0.3137254901960784)"
       },
-      "yellow": {
-        "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
-        "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
-        "2": "color(srgb 0.9176470588235294 0.7725490196078432 0.30980392156862746)",
-        "3": "color(srgb 0.8313725490196079 0.6549019607843137 0.17254901960784313)",
-        "4": "color(srgb 0.7490196078431373 0.5294117647058824 0)",
-        "5": "color(srgb 0.6039215686274509 0.403921568627451 0)",
-        "6": "color(srgb 0.49019607843137253 0.3058823529411765 0)",
-        "7": "color(srgb 0.38823529411764707 0.23529411764705882 0.00392156862745098)",
-        "8": "color(srgb 0.30196078431372547 0.17647058823529413 0)",
-        "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
+      "neutral": {
+        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
+        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
+        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
+        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
+        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
+        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
+        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
+        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
+        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
+        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
       },
       "orange": {
         "0": "color(srgb 1 0.9450980392156862 0.8980392156862745)",
@@ -1642,17 +1664,17 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "8": "color(srgb 0.3607843137254902 0.13333333333333333 0)",
         "9": "color(srgb 0.2784313725490196 0.09019607843137255 0)"
       },
-      "red": {
-        "0": "color(srgb 0.996078431372549 0.996078431372549 0.2823529411764706)",
-        "1": "color(srgb 0.996078431372549 0.8901960784313725 0.1450980392156863)",
-        "2": "color(srgb 0.9725490196078431 0.7607843137254902 0)",
-        "3": "color(srgb 0.9058823529411765 0.6313725490196078 0)",
-        "4": "color(srgb 0.8156862745098039 0.5019607843137255 0.00784313725490196)",
-        "5": "color(srgb 0.6745098039215687 0.3686274509803922 0)",
-        "6": "color(srgb 0.5450980392156862 0.27450980392156865 0)",
-        "7": "color(srgb 0.4235294117647059 0.2235294117647059 0)",
-        "8": "color(srgb 0.2980392156862745 0.19215686274509805 0)",
-        "9": "color(srgb 0.1843137254901961 0.1607843137254902 0)"
+      "pink": {
+        "0": "color(srgb 1 0.9372549019607843 0.9686274509803922)",
+        "1": "color(srgb 1 0.8274509803921568 0.9215686274509803)",
+        "2": "color(srgb 1 0.6784313725490196 0.8549019607843137)",
+        "3": "color(srgb 1 0.5019607843137255 0.7843137254901961)",
+        "4": "color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196)",
+        "5": "color(srgb 0.7490196078431373 0.2235294117647059 0.5372549019607843)",
+        "6": "color(srgb 0.6 0.1568627450980392 0.43137254901960786)",
+        "7": "color(srgb 0.4666666666666667 0.12549019607843137 0.3411764705882353)",
+        "8": "color(srgb 0.3803921568627451 0.07450980392156863 0.2784313725490196)",
+        "9": "color(srgb 0.30196078431372547 0.011764705882352941 0.21176470588235294)"
       },
       "purple": {
         "0": "color(srgb 0.984313725490196 0.9372549019607843 1)",
@@ -1666,38 +1688,40 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "8": "color(srgb 0.24313725490196078 0.12156862745098039 0.4745098039215686)",
         "9": "color(srgb 0.1803921568627451 0.0784313725490196 0.3803921568627451)"
       },
-      "pink": {
-        "0": "color(srgb 1 0.9372549019607843 0.9686274509803922)",
-        "1": "color(srgb 1 0.8274509803921568 0.9215686274509803)",
-        "2": "color(srgb 1 0.6784313725490196 0.8549019607843137)",
-        "3": "color(srgb 1 0.5019607843137255 0.7843137254901961)",
-        "4": "color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196)",
-        "5": "color(srgb 0.7490196078431373 0.2235294117647059 0.5372549019607843)",
-        "6": "color(srgb 0.6 0.1568627450980392 0.43137254901960786)",
-        "7": "color(srgb 0.4666666666666667 0.12549019607843137 0.3411764705882353)",
-        "8": "color(srgb 0.3803921568627451 0.07450980392156863 0.2784313725490196)",
-        "9": "color(srgb 0.30196078431372547 0.011764705882352941 0.21176470588235294)"
+      "red": {
+        "0": "color(srgb 0.996078431372549 0.996078431372549 0.2823529411764706)",
+        "1": "color(srgb 0.996078431372549 0.8901960784313725 0.1450980392156863)",
+        "2": "color(srgb 0.9725490196078431 0.7607843137254902 0)",
+        "3": "color(srgb 0.9058823529411765 0.6313725490196078 0)",
+        "4": "color(srgb 0.8156862745098039 0.5019607843137255 0.00784313725490196)",
+        "5": "color(srgb 0.6745098039215687 0.3686274509803922 0)",
+        "6": "color(srgb 0.5450980392156862 0.27450980392156865 0)",
+        "7": "color(srgb 0.4235294117647059 0.2235294117647059 0)",
+        "8": "color(srgb 0.2980392156862745 0.19215686274509805 0)",
+        "9": "color(srgb 0.1843137254901961 0.1607843137254902 0)"
       },
-      "coral": {
-        "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
-        "1": "color(srgb 1 0.8392156862745098 0.8)",
-        "2": "color(srgb 1 0.7058823529411765 0.6313725490196078)",
-        "3": "color(srgb 0.9921568627450981 0.5490196078431373 0.45098039215686275)",
-        "4": "color(srgb 0.9254901960784314 0.396078431372549 0.2784313725490196)",
-        "5": "color(srgb 0.7686274509803922 0.2627450980392157 0.16862745098039217)",
-        "6": "color(srgb 0.6196078431372549 0.1843137254901961 0.10980392156862745)",
-        "7": "color(srgb 0.5019607843137255 0.12156862745098039 0.058823529411764705)",
-        "8": "color(srgb 0.4117647058823529 0.06666666666666667 0.0196078431372549)",
-        "9": "color(srgb 0.3176470588235294 0.03529411764705882 0.00392156862745098)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
+        "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
+        "2": "color(srgb 0.9176470588235294 0.7725490196078432 0.30980392156862746)",
+        "3": "color(srgb 0.8313725490196079 0.6549019607843137 0.17254901960784313)",
+        "4": "color(srgb 0.7490196078431373 0.5294117647058824 0)",
+        "5": "color(srgb 0.6039215686274509 0.403921568627451 0)",
+        "6": "color(srgb 0.49019607843137253 0.3058823529411765 0)",
+        "7": "color(srgb 0.38823529411764707 0.23529411764705882 0.00392156862745098)",
+        "8": "color(srgb 0.30196078431372547 0.17647058823529413 0)",
+        "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -2184,164 +2208,30 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -2349,16 +2239,162 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -2368,20 +2404,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 1 1 1)",
-        "1": "color(srgb 0.9058823529411765 0.9254901960784314 0.9411764705882353)",
-        "2": "color(srgb 0.807843137254902 0.8352941176470589 0.8627450980392157)",
-        "3": "color(srgb 0.6745098039215687 0.7137254901960784 0.7529411764705882)",
-        "4": "color(srgb 0.5333333333333333 0.5725490196078431 0.615686274509804)",
-        "5": "color(srgb 0.4 0.4392156862745098 0.4823529411764706)",
-        "6": "color(srgb 0.29411764705882354 0.3254901960784314 0.36470588235294116)",
-        "7": "color(srgb 0.20392156862745098 0.23137254901960785 0.2627450980392157)",
-        "8": "color(srgb 0.12549019607843137 0.1450980392156863 0.17254901960784313)",
-        "9": "color(srgb 0.054901960784313725 0.06666666666666667 0.08627450980392157)"
-      },
       "blue": {
         "0": "color(srgb 0.8745098039215686 0.9686274509803922 1)",
         "1": "color(srgb 0.611764705882353 0.8431372549019608 1)",
@@ -2393,6 +2415,18 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "7": "color(srgb 0.00784313725490196 0.1843137254901961 0.47843137254901963)",
         "8": "color(srgb 0.011764705882352941 0.1450980392156863 0.38823529411764707)",
         "9": "color(srgb 0.00784313725490196 0.10196078431372549 0.2901960784313726)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.9411764705882353 0.9294117647058824)",
+        "1": "color(srgb 1 0.7607843137254902 0.7137254901960784)",
+        "2": "color(srgb 1 0.5607843137254902 0.49411764705882355)",
+        "3": "color(srgb 0.9372549019607843 0.3568627450980392 0.2823529411764706)",
+        "4": "color(srgb 0.803921568627451 0.20392156862745098 0.1450980392156863)",
+        "5": "color(srgb 0.6235294117647059 0.09019607843137255 0.06274509803921569)",
+        "6": "color(srgb 0.5294117647058824 0.027450980392156862 0.023529411764705882)",
+        "7": "color(srgb 0.43529411764705883 0.00392156862745098 0.027450980392156862)",
+        "8": "color(srgb 0.3568627450980392 0 0.00784313725490196)",
+        "9": "color(srgb 0.2627450980392157 0.00784313725490196 0)"
       },
       "green": {
         "0": "color(srgb 0.8235294117647058 0.996078431372549 0.8588235294117647)",
@@ -2406,17 +2440,17 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "8": "color(srgb 0 0.19215686274509805 0.06274509803921569)",
         "9": "color(srgb 0 0.13725490196078433 0.043137254901960784)"
       },
-      "yellow": {
-        "0": "color(srgb 0.9882352941176471 0.9686274509803922 0.7450980392156863)",
-        "1": "color(srgb 0.9411764705882353 0.807843137254902 0.3254901960784314)",
-        "2": "color(srgb 0.8352941176470589 0.6588235294117647 0.1411764705882353)",
-        "3": "color(srgb 0.7098039215686275 0.5176470588235295 0.027450980392156862)",
-        "4": "color(srgb 0.5843137254901961 0.39215686274509803 0)",
-        "5": "color(srgb 0.4549019607843137 0.27058823529411763 0)",
-        "6": "color(srgb 0.3764705882352941 0.21568627450980393 0)",
-        "7": "color(srgb 0.3058823529411765 0.17254901960784313 0)",
-        "8": "color(srgb 0.24705882352941178 0.13333333333333333 0)",
-        "9": "color(srgb 0.1803921568627451 0.09411764705882353 0)"
+      "neutral": {
+        "0": "color(srgb 1 1 1)",
+        "1": "color(srgb 0.9058823529411765 0.9254901960784314 0.9411764705882353)",
+        "2": "color(srgb 0.807843137254902 0.8352941176470589 0.8627450980392157)",
+        "3": "color(srgb 0.6745098039215687 0.7137254901960784 0.7529411764705882)",
+        "4": "color(srgb 0.5333333333333333 0.5725490196078431 0.615686274509804)",
+        "5": "color(srgb 0.4 0.4392156862745098 0.4823529411764706)",
+        "6": "color(srgb 0.29411764705882354 0.3254901960784314 0.36470588235294116)",
+        "7": "color(srgb 0.20392156862745098 0.23137254901960785 0.2627450980392157)",
+        "8": "color(srgb 0.12549019607843137 0.1450980392156863 0.17254901960784313)",
+        "9": "color(srgb 0.054901960784313725 0.06666666666666667 0.08627450980392157)"
       },
       "orange": {
         "0": "color(srgb 1 0.9490196078431372 0.8352941176470589)",
@@ -2430,17 +2464,17 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "8": "color(srgb 0.28627450980392155 0.10588235294117647 0)",
         "9": "color(srgb 0.21176470588235294 0.07058823529411765 0)"
       },
-      "red": {
-        "0": "color(srgb 1 0.9411764705882353 0.9333333333333333)",
-        "1": "color(srgb 1 0.7568627450980392 0.7372549019607844)",
-        "2": "color(srgb 1 0.5568627450980392 0.5411764705882353)",
-        "3": "color(srgb 0.9333333333333333 0.35294117647058826 0.36470588235294116)",
-        "4": "color(srgb 0.8352941176470589 0.13725490196078433 0.17254901960784313)",
-        "5": "color(srgb 0.6274509803921569 0.06666666666666667 0.12156862745098039)",
-        "6": "color(srgb 0.5254901960784314 0.023529411764705882 0.11372549019607843)",
-        "7": "color(srgb 0.43137254901960786 0.00392156862745098 0.10196078431372549)",
-        "8": "color(srgb 0.35294117647058826 0 0.08627450980392157)",
-        "9": "color(srgb 0.2627450980392157 0 0.06666666666666667)"
+      "pink": {
+        "0": "color(srgb 0.996078431372549 0.9372549019607843 0.9686274509803922)",
+        "1": "color(srgb 1 0.7411764705882353 0.8784313725490196)",
+        "2": "color(srgb 0.9882352941176471 0.5294117647058824 0.792156862745098)",
+        "3": "color(srgb 0.9294117647058824 0.29411764705882354 0.6862745098039216)",
+        "4": "color(srgb 0.788235294117647 0.1411764705882353 0.5568627450980392)",
+        "5": "color(srgb 0.592156862745098 0.07450980392156863 0.40784313725490196)",
+        "6": "color(srgb 0.49019607843137253 0.047058823529411764 0.3411764705882353)",
+        "7": "color(srgb 0.4 0.03137254901960784 0.2784313725490196)",
+        "8": "color(srgb 0.3254901960784314 0.01568627450980392 0.22745098039215686)",
+        "9": "color(srgb 0.24313725490196078 0.00784313725490196 0.16862745098039217)"
       },
       "purple": {
         "0": "color(srgb 0.9803921568627451 0.9411764705882353 0.996078431372549)",
@@ -2454,38 +2488,40 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "8": "color(srgb 0.20392156862745098 0.09019607843137255 0.38823529411764707)",
         "9": "color(srgb 0.14901960784313725 0.058823529411764705 0.28627450980392155)"
       },
-      "pink": {
-        "0": "color(srgb 0.996078431372549 0.9372549019607843 0.9686274509803922)",
-        "1": "color(srgb 1 0.7411764705882353 0.8784313725490196)",
-        "2": "color(srgb 0.9882352941176471 0.5294117647058824 0.792156862745098)",
-        "3": "color(srgb 0.9294117647058824 0.29411764705882354 0.6862745098039216)",
-        "4": "color(srgb 0.788235294117647 0.1411764705882353 0.5568627450980392)",
-        "5": "color(srgb 0.592156862745098 0.07450980392156863 0.40784313725490196)",
-        "6": "color(srgb 0.49019607843137253 0.047058823529411764 0.3411764705882353)",
-        "7": "color(srgb 0.4 0.03137254901960784 0.2784313725490196)",
-        "8": "color(srgb 0.3254901960784314 0.01568627450980392 0.22745098039215686)",
-        "9": "color(srgb 0.24313725490196078 0.00784313725490196 0.16862745098039217)"
+      "red": {
+        "0": "color(srgb 1 0.9411764705882353 0.9333333333333333)",
+        "1": "color(srgb 1 0.7568627450980392 0.7372549019607844)",
+        "2": "color(srgb 1 0.5568627450980392 0.5411764705882353)",
+        "3": "color(srgb 0.9333333333333333 0.35294117647058826 0.36470588235294116)",
+        "4": "color(srgb 0.8352941176470589 0.13725490196078433 0.17254901960784313)",
+        "5": "color(srgb 0.6274509803921569 0.06666666666666667 0.12156862745098039)",
+        "6": "color(srgb 0.5254901960784314 0.023529411764705882 0.11372549019607843)",
+        "7": "color(srgb 0.43137254901960786 0.00392156862745098 0.10196078431372549)",
+        "8": "color(srgb 0.35294117647058826 0 0.08627450980392157)",
+        "9": "color(srgb 0.2627450980392157 0 0.06666666666666667)"
       },
-      "coral": {
-        "0": "color(srgb 1 0.9411764705882353 0.9294117647058824)",
-        "1": "color(srgb 1 0.7607843137254902 0.7137254901960784)",
-        "2": "color(srgb 1 0.5607843137254902 0.49411764705882355)",
-        "3": "color(srgb 0.9372549019607843 0.3568627450980392 0.2823529411764706)",
-        "4": "color(srgb 0.803921568627451 0.20392156862745098 0.1450980392156863)",
-        "5": "color(srgb 0.6235294117647059 0.09019607843137255 0.06274509803921569)",
-        "6": "color(srgb 0.5294117647058824 0.027450980392156862 0.023529411764705882)",
-        "7": "color(srgb 0.43529411764705883 0.00392156862745098 0.027450980392156862)",
-        "8": "color(srgb 0.3568627450980392 0 0.00784313725490196)",
-        "9": "color(srgb 0.2627450980392157 0.00784313725490196 0)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 0.9882352941176471 0.9686274509803922 0.7450980392156863)",
+        "1": "color(srgb 0.9411764705882353 0.807843137254902 0.3254901960784314)",
+        "2": "color(srgb 0.8352941176470589 0.6588235294117647 0.1411764705882353)",
+        "3": "color(srgb 0.7098039215686275 0.5176470588235295 0.027450980392156862)",
+        "4": "color(srgb 0.5843137254901961 0.39215686274509803 0)",
+        "5": "color(srgb 0.4549019607843137 0.27058823529411763 0)",
+        "6": "color(srgb 0.3764705882352941 0.21568627450980393 0)",
+        "7": "color(srgb 0.3058823529411765 0.17254901960784313 0)",
+        "8": "color(srgb 0.24705882352941178 0.13333333333333333 0)",
+        "9": "color(srgb 0.1803921568627451 0.09411764705882353 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -2972,164 +3008,30 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -3137,16 +3039,162 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -3156,20 +3204,6 @@ export const [darkClass, dark] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
-        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
-        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
-        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
-        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
-        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
-        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
-        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
-        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
-        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
-      },
       "blue": {
         "0": "color(srgb 0.792156862745098 0.9098039215686274 1)",
         "1": "color(srgb 0.6470588235294118 0.8392156862745098 1)",
@@ -3181,6 +3215,18 @@ export const [darkClass, dark] = createTheme(vars, {
         "7": "color(srgb 0.050980392156862744 0.2549019607843137 0.615686274509804)",
         "8": "color(srgb 0.047058823529411764 0.17647058823529413 0.4196078431372549)",
         "9": "color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.8666666666666667 0.8235294117647058)",
+        "1": "color(srgb 1 0.7607843137254902 0.6980392156862745)",
+        "2": "color(srgb 1 0.6352941176470588 0.5450980392156862)",
+        "3": "color(srgb 0.9686274509803922 0.5058823529411764 0.4)",
+        "4": "color(srgb 0.9176470588235294 0.3764705882352941 0.27058823529411763)",
+        "5": "color(srgb 0.8117647058823529 0.27450980392156865 0.17647058823529413)",
+        "6": "color(srgb 0.6745098039215687 0.19607843137254902 0.12549019607843137)",
+        "7": "color(srgb 0.5294117647058824 0.12549019607843137 0.07058823529411765)",
+        "8": "color(srgb 0.39215686274509803 0.050980392156862744 0.01568627450980392)",
+        "9": "color(srgb 0.27450980392156865 0.027450980392156862 0.00392156862745098)"
       },
       "green": {
         "0": "color(srgb 0.6862745098039216 0.9607843137254902 0.7058823529411765)",
@@ -3194,17 +3240,17 @@ export const [darkClass, dark] = createTheme(vars, {
         "8": "color(srgb 0.011764705882352941 0.22745098039215686 0.08627450980392157)",
         "9": "color(srgb 0.01568627450980392 0.14901960784313725 0.058823529411764705)"
       },
-      "yellow": {
-        "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
-        "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
-        "2": "color(srgb 0.8901960784313725 0.7019607843137254 0.2549019607843137)",
-        "3": "color(srgb 0.8235294117647058 0.6 0.13333333333333333)",
-        "4": "color(srgb 0.7333333333333333 0.5019607843137255 0.03529411764705882)",
-        "5": "color(srgb 0.6196078431372549 0.41568627450980394 0.011764705882352941)",
-        "6": "color(srgb 0.5176470588235295 0.3254901960784314 0.023529411764705882)",
-        "7": "color(srgb 0.4117647058823529 0.24313725490196078 0)",
-        "8": "color(srgb 0.29411764705882354 0.1607843137254902 0)",
-        "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
+      "neutral": {
+        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
+        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
+        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
+        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
+        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
+        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
+        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
+        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
+        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
+        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
       },
       "orange": {
         "0": "color(srgb 1 0.8745098039215686 0.7137254901960784)",
@@ -3217,6 +3263,30 @@ export const [darkClass, dark] = createTheme(vars, {
         "7": "color(srgb 0.4627450980392157 0.17647058823529413 0.0392156862745098)",
         "8": "color(srgb 0.35294117647058826 0.11764705882352941 0.00784313725490196)",
         "9": "color(srgb 0.23921568627450981 0.07450980392156863 0)"
+      },
+      "pink": {
+        "0": "color(srgb 1 0.8549019607843137 0.9254901960784314)",
+        "1": "color(srgb 1 0.7450980392156863 0.8666666666666667)",
+        "2": "color(srgb 1 0.6078431372549019 0.807843137254902)",
+        "3": "color(srgb 0.9686274509803922 0.47058823529411764 0.7294117647058823)",
+        "4": "color(srgb 0.8588235294117647 0.3803921568627451 0.6352941176470588)",
+        "5": "color(srgb 0.7490196078431373 0.29411764705882354 0.5411764705882353)",
+        "6": "color(srgb 0.6196078431372549 0.21176470588235294 0.4392156862745098)",
+        "7": "color(srgb 0.49019607843137253 0.1411764705882353 0.3411764705882353)",
+        "8": "color(srgb 0.3686274509803922 0.06274509803921569 0.24313725490196078)",
+        "9": "color(srgb 0.25882352941176473 0.023529411764705882 0.16470588235294117)"
+      },
+      "purple": {
+        "0": "color(srgb 0.9294117647058824 0.8705882352941177 1)",
+        "1": "color(srgb 0.8862745098039215 0.7725490196078432 1)",
+        "2": "color(srgb 0.8235294117647058 0.6588235294117647 1)",
+        "3": "color(srgb 0.7372549019607844 0.5490196078431373 1)",
+        "4": "color(srgb 0.6392156862745098 0.44313725490196076 0.9686274509803922)",
+        "5": "color(srgb 0.5372549019607843 0.3411764705882353 0.8980392156862745)",
+        "6": "color(srgb 0.43137254901960786 0.25098039215686274 0.788235294117647)",
+        "7": "color(srgb 0.3333333333333333 0.18823529411764706 0.596078431372549)",
+        "8": "color(srgb 0.23529411764705882 0.11764705882352941 0.4392156862745098)",
+        "9": "color(srgb 0.15294117647058825 0.06274509803921569 0.3215686274509804)"
       },
       "red": {
         "0": "color(srgb 1 0.8627450980392157 0.8431372549019608)",
@@ -3230,50 +3300,28 @@ export const [darkClass, dark] = createTheme(vars, {
         "8": "color(srgb 0.403921568627451 0.023529411764705882 0.047058823529411764)",
         "9": "color(srgb 0.28627450980392155 0.00784313725490196 0.00784313725490196)"
       },
-      "purple": {
-        "0": "color(srgb 0.9294117647058824 0.8705882352941177 1)",
-        "1": "color(srgb 0.8862745098039215 0.7725490196078432 1)",
-        "2": "color(srgb 0.8235294117647058 0.6588235294117647 1)",
-        "3": "color(srgb 0.7372549019607844 0.5490196078431373 1)",
-        "4": "color(srgb 0.6392156862745098 0.44313725490196076 0.9686274509803922)",
-        "5": "color(srgb 0.5372549019607843 0.3411764705882353 0.8980392156862745)",
-        "6": "color(srgb 0.43137254901960786 0.25098039215686274 0.788235294117647)",
-        "7": "color(srgb 0.3333333333333333 0.18823529411764706 0.596078431372549)",
-        "8": "color(srgb 0.23529411764705882 0.11764705882352941 0.4392156862745098)",
-        "9": "color(srgb 0.15294117647058825 0.06274509803921569 0.3215686274509804)"
-      },
-      "pink": {
-        "0": "color(srgb 1 0.8549019607843137 0.9254901960784314)",
-        "1": "color(srgb 1 0.7450980392156863 0.8666666666666667)",
-        "2": "color(srgb 1 0.6078431372549019 0.807843137254902)",
-        "3": "color(srgb 0.9686274509803922 0.47058823529411764 0.7294117647058823)",
-        "4": "color(srgb 0.8588235294117647 0.3803921568627451 0.6352941176470588)",
-        "5": "color(srgb 0.7490196078431373 0.29411764705882354 0.5411764705882353)",
-        "6": "color(srgb 0.6196078431372549 0.21176470588235294 0.4392156862745098)",
-        "7": "color(srgb 0.49019607843137253 0.1411764705882353 0.3411764705882353)",
-        "8": "color(srgb 0.3686274509803922 0.06274509803921569 0.24313725490196078)",
-        "9": "color(srgb 0.25882352941176473 0.023529411764705882 0.16470588235294117)"
-      },
-      "coral": {
-        "0": "color(srgb 1 0.8666666666666667 0.8235294117647058)",
-        "1": "color(srgb 1 0.7607843137254902 0.6980392156862745)",
-        "2": "color(srgb 1 0.6352941176470588 0.5450980392156862)",
-        "3": "color(srgb 0.9686274509803922 0.5058823529411764 0.4)",
-        "4": "color(srgb 0.9176470588235294 0.3764705882352941 0.27058823529411763)",
-        "5": "color(srgb 0.8117647058823529 0.27450980392156865 0.17647058823529413)",
-        "6": "color(srgb 0.6745098039215687 0.19607843137254902 0.12549019607843137)",
-        "7": "color(srgb 0.5294117647058824 0.12549019607843137 0.07058823529411765)",
-        "8": "color(srgb 0.39215686274509803 0.050980392156862744 0.01568627450980392)",
-        "9": "color(srgb 0.27450980392156865 0.027450980392156862 0.00392156862745098)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
+        "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
+        "2": "color(srgb 0.8901960784313725 0.7019607843137254 0.2549019607843137)",
+        "3": "color(srgb 0.8235294117647058 0.6 0.13333333333333333)",
+        "4": "color(srgb 0.7333333333333333 0.5019607843137255 0.03529411764705882)",
+        "5": "color(srgb 0.6196078431372549 0.41568627450980394 0.011764705882352941)",
+        "6": "color(srgb 0.5176470588235295 0.3254901960784314 0.023529411764705882)",
+        "7": "color(srgb 0.4117647058823529 0.24313725490196078 0)",
+        "8": "color(srgb 0.29411764705882354 0.1607843137254902 0)",
+        "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -3760,164 +3808,30 @@ export const [darkClass, dark] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -3925,16 +3839,162 @@ export const [darkClass, dark] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -3944,20 +4004,6 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
-        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
-        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
-        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
-        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
-        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
-        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
-        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
-        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
-        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
-      },
       "blue": {
         "0": "color(srgb 0.792156862745098 0.9098039215686274 1)",
         "1": "color(srgb 0.6470588235294118 0.8392156862745098 1)",
@@ -3969,6 +4015,18 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "7": "color(srgb 0.050980392156862744 0.2549019607843137 0.615686274509804)",
         "8": "color(srgb 0.047058823529411764 0.17647058823529413 0.4196078431372549)",
         "9": "color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.8666666666666667 0.8235294117647058)",
+        "1": "color(srgb 1 0.7607843137254902 0.6980392156862745)",
+        "2": "color(srgb 1 0.6352941176470588 0.5450980392156862)",
+        "3": "color(srgb 0.9686274509803922 0.5058823529411764 0.4)",
+        "4": "color(srgb 0.9176470588235294 0.3764705882352941 0.27058823529411763)",
+        "5": "color(srgb 0.8117647058823529 0.27450980392156865 0.17647058823529413)",
+        "6": "color(srgb 0.6745098039215687 0.19607843137254902 0.12549019607843137)",
+        "7": "color(srgb 0.5294117647058824 0.12549019607843137 0.07058823529411765)",
+        "8": "color(srgb 0.39215686274509803 0.050980392156862744 0.01568627450980392)",
+        "9": "color(srgb 0.27450980392156865 0.027450980392156862 0.00392156862745098)"
       },
       "green": {
         "0": "color(srgb 0.6274509803921569 0.9098039215686274 1)",
@@ -3982,17 +4040,17 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "8": "color(srgb 0.0392156862745098 0.1568627450980392 0.3803921568627451)",
         "9": "color(srgb 0.01568627450980392 0.09411764705882353 0.2627450980392157)"
       },
-      "yellow": {
-        "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
-        "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
-        "2": "color(srgb 0.8901960784313725 0.7019607843137254 0.2549019607843137)",
-        "3": "color(srgb 0.8235294117647058 0.6 0.13333333333333333)",
-        "4": "color(srgb 0.7333333333333333 0.5019607843137255 0.03529411764705882)",
-        "5": "color(srgb 0.6196078431372549 0.41568627450980394 0.011764705882352941)",
-        "6": "color(srgb 0.5176470588235295 0.3254901960784314 0.023529411764705882)",
-        "7": "color(srgb 0.4117647058823529 0.24313725490196078 0)",
-        "8": "color(srgb 0.29411764705882354 0.1607843137254902 0)",
-        "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
+      "neutral": {
+        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
+        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
+        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
+        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
+        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
+        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
+        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
+        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
+        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
+        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
       },
       "orange": {
         "0": "color(srgb 1 0.8745098039215686 0.7137254901960784)",
@@ -4006,17 +4064,17 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "8": "color(srgb 0.35294117647058826 0.11764705882352941 0.00784313725490196)",
         "9": "color(srgb 0.23921568627450981 0.07450980392156863 0)"
       },
-      "red": {
-        "0": "color(srgb 0.9411764705882353 0.9254901960784314 0.34901960784313724)",
-        "1": "color(srgb 0.9254901960784314 0.8274509803921568 0.20392156862745098)",
-        "2": "color(srgb 0.9019607843137255 0.7176470588235294 0.08627450980392157)",
-        "3": "color(srgb 0.8392156862745098 0.6039215686274509 0)",
-        "4": "color(srgb 0.7647058823529411 0.5019607843137255 0)",
-        "5": "color(srgb 0.6509803921568628 0.4117647058823529 0)",
-        "6": "color(srgb 0.5254901960784314 0.32941176470588235 0.00392156862745098)",
-        "7": "color(srgb 0.38823529411764707 0.24313725490196078 0)",
-        "8": "color(srgb 0.27058823529411763 0.1843137254901961 0)",
-        "9": "color(srgb 0.1607843137254902 0.12941176470588237 0)"
+      "pink": {
+        "0": "color(srgb 1 0.8549019607843137 0.9254901960784314)",
+        "1": "color(srgb 1 0.7450980392156863 0.8666666666666667)",
+        "2": "color(srgb 1 0.6078431372549019 0.807843137254902)",
+        "3": "color(srgb 0.9686274509803922 0.47058823529411764 0.7294117647058823)",
+        "4": "color(srgb 0.8588235294117647 0.3803921568627451 0.6352941176470588)",
+        "5": "color(srgb 0.7490196078431373 0.29411764705882354 0.5411764705882353)",
+        "6": "color(srgb 0.6196078431372549 0.21176470588235294 0.4392156862745098)",
+        "7": "color(srgb 0.49019607843137253 0.1411764705882353 0.3411764705882353)",
+        "8": "color(srgb 0.3686274509803922 0.06274509803921569 0.24313725490196078)",
+        "9": "color(srgb 0.25882352941176473 0.023529411764705882 0.16470588235294117)"
       },
       "purple": {
         "0": "color(srgb 0.9294117647058824 0.8705882352941177 1)",
@@ -4030,38 +4088,40 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "8": "color(srgb 0.23529411764705882 0.11764705882352941 0.4392156862745098)",
         "9": "color(srgb 0.15294117647058825 0.06274509803921569 0.3215686274509804)"
       },
-      "pink": {
-        "0": "color(srgb 1 0.8549019607843137 0.9254901960784314)",
-        "1": "color(srgb 1 0.7450980392156863 0.8666666666666667)",
-        "2": "color(srgb 1 0.6078431372549019 0.807843137254902)",
-        "3": "color(srgb 0.9686274509803922 0.47058823529411764 0.7294117647058823)",
-        "4": "color(srgb 0.8588235294117647 0.3803921568627451 0.6352941176470588)",
-        "5": "color(srgb 0.7490196078431373 0.29411764705882354 0.5411764705882353)",
-        "6": "color(srgb 0.6196078431372549 0.21176470588235294 0.4392156862745098)",
-        "7": "color(srgb 0.49019607843137253 0.1411764705882353 0.3411764705882353)",
-        "8": "color(srgb 0.3686274509803922 0.06274509803921569 0.24313725490196078)",
-        "9": "color(srgb 0.25882352941176473 0.023529411764705882 0.16470588235294117)"
+      "red": {
+        "0": "color(srgb 0.9411764705882353 0.9254901960784314 0.34901960784313724)",
+        "1": "color(srgb 0.9254901960784314 0.8274509803921568 0.20392156862745098)",
+        "2": "color(srgb 0.9019607843137255 0.7176470588235294 0.08627450980392157)",
+        "3": "color(srgb 0.8392156862745098 0.6039215686274509 0)",
+        "4": "color(srgb 0.7647058823529411 0.5019607843137255 0)",
+        "5": "color(srgb 0.6509803921568628 0.4117647058823529 0)",
+        "6": "color(srgb 0.5254901960784314 0.32941176470588235 0.00392156862745098)",
+        "7": "color(srgb 0.38823529411764707 0.24313725490196078 0)",
+        "8": "color(srgb 0.27058823529411763 0.1843137254901961 0)",
+        "9": "color(srgb 0.1607843137254902 0.12941176470588237 0)"
       },
-      "coral": {
-        "0": "color(srgb 1 0.8666666666666667 0.8235294117647058)",
-        "1": "color(srgb 1 0.7607843137254902 0.6980392156862745)",
-        "2": "color(srgb 1 0.6352941176470588 0.5450980392156862)",
-        "3": "color(srgb 0.9686274509803922 0.5058823529411764 0.4)",
-        "4": "color(srgb 0.9176470588235294 0.3764705882352941 0.27058823529411763)",
-        "5": "color(srgb 0.8117647058823529 0.27450980392156865 0.17647058823529413)",
-        "6": "color(srgb 0.6745098039215687 0.19607843137254902 0.12549019607843137)",
-        "7": "color(srgb 0.5294117647058824 0.12549019607843137 0.07058823529411765)",
-        "8": "color(srgb 0.39215686274509803 0.050980392156862744 0.01568627450980392)",
-        "9": "color(srgb 0.27450980392156865 0.027450980392156862 0.00392156862745098)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
+        "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
+        "2": "color(srgb 0.8901960784313725 0.7019607843137254 0.2549019607843137)",
+        "3": "color(srgb 0.8235294117647058 0.6 0.13333333333333333)",
+        "4": "color(srgb 0.7333333333333333 0.5019607843137255 0.03529411764705882)",
+        "5": "color(srgb 0.6196078431372549 0.41568627450980394 0.011764705882352941)",
+        "6": "color(srgb 0.5176470588235295 0.3254901960784314 0.023529411764705882)",
+        "7": "color(srgb 0.4117647058823529 0.24313725490196078 0)",
+        "8": "color(srgb 0.29411764705882354 0.1607843137254902 0)",
+        "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -4548,164 +4608,30 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -4713,16 +4639,162 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -4732,20 +4804,6 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 1 1 1)",
-        "1": "color(srgb 0.9411764705882353 0.9529411764705882 0.9647058823529412)",
-        "2": "color(srgb 0.8509803921568627 0.8705882352941177 0.8901960784313725)",
-        "3": "color(srgb 0.7411764705882353 0.7686274509803922 0.8)",
-        "4": "color(srgb 0.6196078431372549 0.6549019607843137 0.7019607843137254)",
-        "5": "color(srgb 0.47843137254901963 0.5098039215686274 0.5568627450980392)",
-        "6": "color(srgb 0.3215686274509804 0.34901960784313724 0.39215686274509803)",
-        "7": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
-        "8": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
-        "9": "color(srgb 0.0392156862745098 0.047058823529411764 0.06274509803921569)"
-      },
       "blue": {
         "0": "color(srgb 0.792156862745098 0.9176470588235294 1)",
         "1": "color(srgb 0.6784313725490196 0.8627450980392157 1)",
@@ -4757,6 +4815,18 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "7": "color(srgb 0.14901960784313725 0.4470588235294118 0.9529411764705882)",
         "8": "color(srgb 0.11764705882352941 0.3764705882352941 0.8352941176470589)",
         "9": "color(srgb 0.09803921568627451 0.30980392156862746 0.6941176470588235)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.8705882352941177 0.8313725490196079)",
+        "1": "color(srgb 1 0.796078431372549 0.7254901960784313)",
+        "2": "color(srgb 1 0.7019607843137254 0.6078431372549019)",
+        "3": "color(srgb 1 0.5882352941176471 0.49019607843137253)",
+        "4": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
+        "5": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
+        "6": "color(srgb 0.9686274509803922 0.3176470588235294 0.2)",
+        "7": "color(srgb 0.8784313725490196 0.23137254901960785 0.12941176470588237)",
+        "8": "color(srgb 0.7764705882352941 0.14901960784313725 0.07058823529411765)",
+        "9": "color(srgb 0.6627450980392157 0.08235294117647059 0)"
       },
       "green": {
         "0": "color(srgb 0.6745098039215687 0.9686274509803922 0.7137254901960784)",
@@ -4770,17 +4840,17 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "8": "color(srgb 0 0.4666666666666667 0.1568627450980392)",
         "9": "color(srgb 0 0.3843137254901961 0.13333333333333333)"
       },
-      "yellow": {
-        "0": "color(srgb 0.984313725490196 0.8980392156862745 0.6196078431372549)",
-        "1": "color(srgb 0.984313725490196 0.8392156862745098 0.4117647058823529)",
-        "2": "color(srgb 0.9686274509803922 0.7843137254901961 0.2627450980392157)",
-        "3": "color(srgb 0.9411764705882353 0.7176470588235294 0.1843137254901961)",
-        "4": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
-        "5": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
-        "6": "color(srgb 0.7843137254901961 0.5215686274509804 0.03137254901960784)",
-        "7": "color(srgb 0.6823529411764706 0.44313725490196076 0.01568627450980392)",
-        "8": "color(srgb 0.5803921568627451 0.36470588235294116 0.00784313725490196)",
-        "9": "color(srgb 0.4823529411764706 0.28627450980392155 0)"
+      "neutral": {
+        "0": "color(srgb 1 1 1)",
+        "1": "color(srgb 0.9411764705882353 0.9529411764705882 0.9647058823529412)",
+        "2": "color(srgb 0.8509803921568627 0.8705882352941177 0.8901960784313725)",
+        "3": "color(srgb 0.7411764705882353 0.7686274509803922 0.8)",
+        "4": "color(srgb 0.6196078431372549 0.6549019607843137 0.7019607843137254)",
+        "5": "color(srgb 0.47843137254901963 0.5098039215686274 0.5568627450980392)",
+        "6": "color(srgb 0.3215686274509804 0.34901960784313724 0.39215686274509803)",
+        "7": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
+        "8": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
+        "9": "color(srgb 0.0392156862745098 0.047058823529411764 0.06274509803921569)"
       },
       "orange": {
         "0": "color(srgb 1 0.8823529411764706 0.7058823529411765)",
@@ -4794,17 +4864,17 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "8": "color(srgb 0.6549019607843137 0.2980392156862745 0)",
         "9": "color(srgb 0.5607843137254902 0.23529411764705882 0)"
       },
-      "red": {
-        "0": "color(srgb 1 0.8705882352941177 0.8588235294117647)",
-        "1": "color(srgb 1 0.788235294117647 0.7803921568627451)",
-        "2": "color(srgb 1 0.6941176470588235 0.6862745098039216)",
-        "3": "color(srgb 1 0.5803921568627451 0.5725490196078431)",
-        "4": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
-        "5": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
-        "6": "color(srgb 1 0.26666666666666666 0.27058823529411763)",
-        "7": "color(srgb 0.9098039215686274 0.16470588235294117 0.1843137254901961)",
-        "8": "color(srgb 0.8 0.0784313725490196 0.12941176470588237)",
-        "9": "color(srgb 0.6784313725490196 0.00392156862745098 0.08627450980392157)"
+      "pink": {
+        "0": "color(srgb 1 0.8627450980392157 0.9215686274509803)",
+        "1": "color(srgb 1 0.7803921568627451 0.8823529411764706)",
+        "2": "color(srgb 1 0.6784313725490196 0.8313725490196079)",
+        "3": "color(srgb 1 0.5529411764705883 0.7803921568627451)",
+        "4": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
+        "5": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
+        "6": "color(srgb 0.8941176470588236 0.33725490196078434 0.6392156862745098)",
+        "7": "color(srgb 0.8235294117647058 0.23921568627450981 0.5686274509803921)",
+        "8": "color(srgb 0.7176470588235294 0.17254901960784313 0.49019607843137253)",
+        "9": "color(srgb 0.611764705882353 0.11372549019607843 0.41568627450980394)"
       },
       "purple": {
         "0": "color(srgb 0.9411764705882353 0.8745098039215686 1)",
@@ -4818,38 +4888,40 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "8": "color(srgb 0.5019607843137255 0.19215686274509805 0.9686274509803922)",
         "9": "color(srgb 0.4117647058823529 0.12941176470588237 0.8431372549019608)"
       },
-      "pink": {
-        "0": "color(srgb 1 0.8627450980392157 0.9215686274509803)",
-        "1": "color(srgb 1 0.7803921568627451 0.8823529411764706)",
-        "2": "color(srgb 1 0.6784313725490196 0.8313725490196079)",
-        "3": "color(srgb 1 0.5529411764705883 0.7803921568627451)",
-        "4": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
-        "5": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
-        "6": "color(srgb 0.8941176470588236 0.33725490196078434 0.6392156862745098)",
-        "7": "color(srgb 0.8235294117647058 0.23921568627450981 0.5686274509803921)",
-        "8": "color(srgb 0.7176470588235294 0.17254901960784313 0.49019607843137253)",
-        "9": "color(srgb 0.611764705882353 0.11372549019607843 0.41568627450980394)"
+      "red": {
+        "0": "color(srgb 1 0.8705882352941177 0.8588235294117647)",
+        "1": "color(srgb 1 0.788235294117647 0.7803921568627451)",
+        "2": "color(srgb 1 0.6941176470588235 0.6862745098039216)",
+        "3": "color(srgb 1 0.5803921568627451 0.5725490196078431)",
+        "4": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
+        "5": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
+        "6": "color(srgb 1 0.26666666666666666 0.27058823529411763)",
+        "7": "color(srgb 0.9098039215686274 0.16470588235294117 0.1843137254901961)",
+        "8": "color(srgb 0.8 0.0784313725490196 0.12941176470588237)",
+        "9": "color(srgb 0.6784313725490196 0.00392156862745098 0.08627450980392157)"
       },
-      "coral": {
-        "0": "color(srgb 1 0.8705882352941177 0.8313725490196079)",
-        "1": "color(srgb 1 0.796078431372549 0.7254901960784313)",
-        "2": "color(srgb 1 0.7019607843137254 0.6078431372549019)",
-        "3": "color(srgb 1 0.5882352941176471 0.49019607843137253)",
-        "4": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
-        "5": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
-        "6": "color(srgb 0.9686274509803922 0.3176470588235294 0.2)",
-        "7": "color(srgb 0.8784313725490196 0.23137254901960785 0.12941176470588237)",
-        "8": "color(srgb 0.7764705882352941 0.14901960784313725 0.07058823529411765)",
-        "9": "color(srgb 0.6627450980392157 0.08235294117647059 0)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 0.984313725490196 0.8980392156862745 0.6196078431372549)",
+        "1": "color(srgb 0.984313725490196 0.8392156862745098 0.4117647058823529)",
+        "2": "color(srgb 0.9686274509803922 0.7843137254901961 0.2627450980392157)",
+        "3": "color(srgb 0.9411764705882353 0.7176470588235294 0.1843137254901961)",
+        "4": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
+        "5": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
+        "6": "color(srgb 0.7843137254901961 0.5215686274509804 0.03137254901960784)",
+        "7": "color(srgb 0.6823529411764706 0.44313725490196076 0.01568627450980392)",
+        "8": "color(srgb 0.5803921568627451 0.36470588235294116 0.00784313725490196)",
+        "9": "color(srgb 0.4823529411764706 0.28627450980392155 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -5336,164 +5408,30 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -5501,16 +5439,162 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }
@@ -5520,20 +5604,6 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
   "base": {
     "color": {
       "black": "color(srgb 0.10980392156862745 0.12941176470588237 0.1568627450980392)",
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "neutral": {
-        "0": "color(srgb 0.803921568627451 0.8509803921568627 0.8980392156862745)",
-        "1": "color(srgb 0.6784313725490196 0.7294117647058823 0.7803921568627451)",
-        "2": "color(srgb 0.5647058823529412 0.615686274509804 0.6705882352941176)",
-        "3": "color(srgb 0.4627450980392157 0.5137254901960784 0.5647058823529412)",
-        "4": "color(srgb 0.38823529411764707 0.43137254901960786 0.4823529411764706)",
-        "5": "color(srgb 0.32941176470588235 0.36470588235294116 0.40784313725490196)",
-        "6": "color(srgb 0.26666666666666666 0.2980392156862745 0.33725490196078434)",
-        "7": "color(srgb 0.21568627450980393 0.24313725490196078 0.2784313725490196)",
-        "8": "color(srgb 0.17647058823529413 0.2 0.23137254901960785)",
-        "9": "color(srgb 0.13333333333333333 0.15294117647058825 0.1803921568627451)"
-      },
       "blue": {
         "0": "color(srgb 0.7764705882352941 0.9019607843137255 1)",
         "1": "color(srgb 0.5882352941176471 0.8156862745098039 1)",
@@ -5545,6 +5615,18 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "7": "color(srgb 0.10588235294117647 0.29411764705882354 0.5686274509803921)",
         "8": "color(srgb 0.0784313725490196 0.23921568627450981 0.4745098039215686)",
         "9": "color(srgb 0.058823529411764705 0.17647058823529413 0.3607843137254902)"
+      },
+      "coral": {
+        "0": "color(srgb 1 0.8549019607843137 0.8117647058823529)",
+        "1": "color(srgb 1 0.7254901960784313 0.6470588235294118)",
+        "2": "color(srgb 0.9686274509803922 0.6 0.5058823529411764)",
+        "3": "color(srgb 0.9254901960784314 0.4666666666666667 0.3607843137254902)",
+        "4": "color(srgb 0.8705882352941177 0.3568627450980392 0.2549019607843137)",
+        "5": "color(srgb 0.7607843137254902 0.26666666666666666 0.17647058823529413)",
+        "6": "color(srgb 0.6627450980392157 0.20784313725490197 0.1411764705882353)",
+        "7": "color(srgb 0.5529411764705883 0.1607843137254902 0.10588235294117647)",
+        "8": "color(srgb 0.4666666666666667 0.11372549019607843 0.07450980392156863)",
+        "9": "color(srgb 0.36470588235294116 0.06274509803921569 0.03137254901960784)"
       },
       "green": {
         "0": "color(srgb 0.7058823529411765 0.9450980392156862 0.7058823529411765)",
@@ -5558,17 +5640,17 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "8": "color(srgb 0.10588235294117647 0.2784313725490196 0.12941176470588237)",
         "9": "color(srgb 0.06666666666666667 0.20392156862745098 0.09019607843137255)"
       },
-      "yellow": {
-        "0": "color(srgb 0.984313725490196 0.8784313725490196 0.5647058823529412)",
-        "1": "color(srgb 0.9176470588235294 0.7725490196078432 0.37254901960784315)",
-        "2": "color(srgb 0.8549019607843137 0.6666666666666666 0.24705882352941178)",
-        "3": "color(srgb 0.7764705882352941 0.5647058823529412 0.14901960784313725)",
-        "4": "color(srgb 0.6823529411764706 0.48627450980392156 0.0784313725490196)",
-        "5": "color(srgb 0.5882352941176471 0.4 0)",
-        "6": "color(srgb 0.5019607843137255 0.32941176470588235 0)",
-        "7": "color(srgb 0.4235294117647059 0.26666666666666666 0)",
-        "8": "color(srgb 0.34901960784313724 0.21176470588235294 0)",
-        "9": "color(srgb 0.27058823529411763 0.15294117647058825 0)"
+      "neutral": {
+        "0": "color(srgb 0.803921568627451 0.8509803921568627 0.8980392156862745)",
+        "1": "color(srgb 0.6784313725490196 0.7294117647058823 0.7803921568627451)",
+        "2": "color(srgb 0.5647058823529412 0.615686274509804 0.6705882352941176)",
+        "3": "color(srgb 0.4627450980392157 0.5137254901960784 0.5647058823529412)",
+        "4": "color(srgb 0.38823529411764707 0.43137254901960786 0.4823529411764706)",
+        "5": "color(srgb 0.32941176470588235 0.36470588235294116 0.40784313725490196)",
+        "6": "color(srgb 0.26666666666666666 0.2980392156862745 0.33725490196078434)",
+        "7": "color(srgb 0.21568627450980393 0.24313725490196078 0.2784313725490196)",
+        "8": "color(srgb 0.17647058823529413 0.2 0.23137254901960785)",
+        "9": "color(srgb 0.13333333333333333 0.15294117647058825 0.1803921568627451)"
       },
       "orange": {
         "0": "color(srgb 1 0.8666666666666667 0.6901960784313725)",
@@ -5582,17 +5664,17 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "8": "color(srgb 0.40784313725490196 0.17647058823529413 0.058823529411764705)",
         "9": "color(srgb 0.30196078431372547 0.12941176470588237 0.047058823529411764)"
       },
-      "red": {
-        "0": "color(srgb 1 0.8470588235294118 0.8274509803921568)",
-        "1": "color(srgb 1 0.7215686274509804 0.6901960784313725)",
-        "2": "color(srgb 1 0.5764705882352941 0.5411764705882353)",
-        "3": "color(srgb 0.9568627450980393 0.4392156862745098 0.403921568627451)",
-        "4": "color(srgb 0.8980392156862745 0.3254901960784314 0.29411764705882354)",
-        "5": "color(srgb 0.788235294117647 0.23529411764705882 0.21568627450980393)",
-        "6": "color(srgb 0.6784313725490196 0.1803921568627451 0.17254901960784313)",
-        "7": "color(srgb 0.5725490196078431 0.13725490196078433 0.13725490196078433)",
-        "8": "color(srgb 0.47058823529411764 0.09803921568627451 0.10588235294117647)",
-        "9": "color(srgb 0.36470588235294116 0.058823529411764705 0.07058823529411765)"
+      "pink": {
+        "0": "color(srgb 1 0.8431372549019608 0.9215686274509803)",
+        "1": "color(srgb 1 0.7019607843137254 0.8470588235294118)",
+        "2": "color(srgb 0.9882352941176471 0.5529411764705883 0.7803921568627451)",
+        "3": "color(srgb 0.8862745098039215 0.4588235294117647 0.6784313725490196)",
+        "4": "color(srgb 0.788235294117647 0.3803921568627451 0.596078431372549)",
+        "5": "color(srgb 0.6823529411764706 0.2980392156862745 0.5098039215686274)",
+        "6": "color(srgb 0.596078431372549 0.23137254901960785 0.43137254901960786)",
+        "7": "color(srgb 0.49411764705882355 0.19607843137254902 0.35294117647058826)",
+        "8": "color(srgb 0.4117647058823529 0.14901960784313725 0.2901960784313726)",
+        "9": "color(srgb 0.3333333333333333 0.08627450980392157 0.2235294117647059)"
       },
       "purple": {
         "0": "color(srgb 0.9333333333333333 0.8627450980392157 1)",
@@ -5606,38 +5688,40 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "8": "color(srgb 0.2784313725490196 0.17254901960784313 0.5098039215686274)",
         "9": "color(srgb 0.20784313725490197 0.12941176470588237 0.3764705882352941)"
       },
-      "pink": {
-        "0": "color(srgb 1 0.8431372549019608 0.9215686274509803)",
-        "1": "color(srgb 1 0.7019607843137254 0.8470588235294118)",
-        "2": "color(srgb 0.9882352941176471 0.5529411764705883 0.7803921568627451)",
-        "3": "color(srgb 0.8862745098039215 0.4588235294117647 0.6784313725490196)",
-        "4": "color(srgb 0.788235294117647 0.3803921568627451 0.596078431372549)",
-        "5": "color(srgb 0.6823529411764706 0.2980392156862745 0.5098039215686274)",
-        "6": "color(srgb 0.596078431372549 0.23137254901960785 0.43137254901960786)",
-        "7": "color(srgb 0.49411764705882355 0.19607843137254902 0.35294117647058826)",
-        "8": "color(srgb 0.4117647058823529 0.14901960784313725 0.2901960784313726)",
-        "9": "color(srgb 0.3333333333333333 0.08627450980392157 0.2235294117647059)"
+      "red": {
+        "0": "color(srgb 1 0.8470588235294118 0.8274509803921568)",
+        "1": "color(srgb 1 0.7215686274509804 0.6901960784313725)",
+        "2": "color(srgb 1 0.5764705882352941 0.5411764705882353)",
+        "3": "color(srgb 0.9568627450980393 0.4392156862745098 0.403921568627451)",
+        "4": "color(srgb 0.8980392156862745 0.3254901960784314 0.29411764705882354)",
+        "5": "color(srgb 0.788235294117647 0.23529411764705882 0.21568627450980393)",
+        "6": "color(srgb 0.6784313725490196 0.1803921568627451 0.17254901960784313)",
+        "7": "color(srgb 0.5725490196078431 0.13725490196078433 0.13725490196078433)",
+        "8": "color(srgb 0.47058823529411764 0.09803921568627451 0.10588235294117647)",
+        "9": "color(srgb 0.36470588235294116 0.058823529411764705 0.07058823529411765)"
       },
-      "coral": {
-        "0": "color(srgb 1 0.8549019607843137 0.8117647058823529)",
-        "1": "color(srgb 1 0.7254901960784313 0.6470588235294118)",
-        "2": "color(srgb 0.9686274509803922 0.6 0.5058823529411764)",
-        "3": "color(srgb 0.9254901960784314 0.4666666666666667 0.3607843137254902)",
-        "4": "color(srgb 0.8705882352941177 0.3568627450980392 0.2549019607843137)",
-        "5": "color(srgb 0.7607843137254902 0.26666666666666666 0.17647058823529413)",
-        "6": "color(srgb 0.6627450980392157 0.20784313725490197 0.1411764705882353)",
-        "7": "color(srgb 0.5529411764705883 0.1607843137254902 0.10588235294117647)",
-        "8": "color(srgb 0.4666666666666667 0.11372549019607843 0.07450980392156863)",
-        "9": "color(srgb 0.36470588235294116 0.06274509803921569 0.03137254901960784)"
+      "transparent": "color(srgb 1 1 1)",
+      "white": "color(srgb 1 1 1)",
+      "yellow": {
+        "0": "color(srgb 0.984313725490196 0.8784313725490196 0.5647058823529412)",
+        "1": "color(srgb 0.9176470588235294 0.7725490196078432 0.37254901960784315)",
+        "2": "color(srgb 0.8549019607843137 0.6666666666666666 0.24705882352941178)",
+        "3": "color(srgb 0.7764705882352941 0.5647058823529412 0.14901960784313725)",
+        "4": "color(srgb 0.6823529411764706 0.48627450980392156 0.0784313725490196)",
+        "5": "color(srgb 0.5882352941176471 0.4 0)",
+        "6": "color(srgb 0.5019607843137255 0.32941176470588235 0)",
+        "7": "color(srgb 0.4235294117647059 0.26666666666666666 0)",
+        "8": "color(srgb 0.34901960784313724 0.21176470588235294 0)",
+        "9": "color(srgb 0.27058823529411763 0.15294117647058825 0)"
       }
     },
     "icon": {
       "alert16": "url(\"/icon/alert-16.svg\")",
       "alert24": "url(\"/icon/alert-24.svg\")",
+      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "archive16": "url(\"/icon/archive-16.svg\")",
       "archive24": "url(\"/icon/archive-24.svg\")",
       "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
       "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
       "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
       "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
@@ -6124,164 +6208,30 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
     "text": {
       "weight": {
         "light": "300",
-        "normal": "400",
         "medium": "500",
+        "normal": "400",
         "semibold": "600"
       }
     }
   },
   "borderRadius": {
-    "small": "3px",
-    "medium": "6px",
+    "full": "9999px",
     "large": "12px",
-    "full": "9999px"
+    "medium": "6px",
+    "small": "3px"
   },
   "breakpoint": {
-    "xsmall": "320px",
-    "small": "544px",
-    "medium": "768px",
     "large": "1012px",
+    "medium": "768px",
+    "small": "544px",
     "xlarge": "1280px",
+    "xsmall": "320px",
     "xxlarge": "1440px"
   },
   "fontStack": {
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
+    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
     "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace"
-  },
-  "space": {
-    "xxsmall": "2px",
-    "xsmall": vars.base.size[4],
-    "small": "6px",
-    "medium": vars.base.size[8],
-    "large": vars.base.size[12],
-    "xlarge": vars.base.size[16]
-  },
-  "text": {
-    "display": {
-      "lineBoxHeight": "56px",
-      "size": "40px",
-      "lineHeight": "1.4",
-      "weight": vars.base.text.weight.medium,
-      "shorthand": {
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "title": {
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "lineHeight": vars.text.title.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "subtitle": {
-      "size": "20px",
-      "lineHeight": "1.6",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "body": {
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      }
-    },
-    "caption": {
-      "size": "12px",
-      "lineHeight": "1.3333",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      }
-    },
-    "codeBlock": {
-      "size": "13px",
-      "lineHeight": "1.5385",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      }
-    },
-    "codeInline": {
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal,
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace
-      }
-    }
+    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
   },
   "motion": {
     "loading": {
@@ -6289,16 +6239,162 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "default": "1000ms"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
-    },
     "skeletonLoader": {
       "shimmer": {
         "duration": {
           "scale": "1000ms"
         }
+      }
+    },
+    "spinner": {
+      "duration": {
+        "rotation": "1000ms"
+      }
+    }
+  },
+  "space": {
+    "large": vars.base.size[12],
+    "medium": vars.base.size[8],
+    "small": "6px",
+    "xlarge": vars.base.size[16],
+    "xsmall": vars.base.size[4],
+    "xxsmall": "2px"
+  },
+  "text": {
+    "body": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.4285",
+        "small": "1.6666"
+      },
+      "shorthand": {
+        "large": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.normal,
+          "fontSize": vars.text.body.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.body.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "16px",
+        "medium": "14px",
+        "small": "12px"
+      },
+      "weight": vars.base.text.weight.normal
+    },
+    "caption": {
+      "lineHeight": "1.3333",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.caption.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.caption.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "12px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeBlock": {
+      "lineHeight": "1.5385",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeBlock.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.codeBlock.lineHeight,
+        "fontFamily": vars.fontStack.monospace
+      },
+      "size": "13px",
+      "weight": vars.base.text.weight.normal
+    },
+    "codeInline": {
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.codeInline.size,
+        "fontFamily": vars.fontStack.monospace,
+        "letterSpacing": "0",
+        "lineHeight": "0"
+      },
+      "size": "0.9285em",
+      "weight": vars.base.text.weight.normal
+    },
+    "display": {
+      "lineBoxHeight": "56px",
+      "lineHeight": "1.4",
+      "shorthand": {
+        "fontFamily": vars.fontStack.sansSerif,
+        "fontWeight": vars.base.text.weight.medium,
+        "fontSize": vars.text.display.size,
+        "lineHeight": vars.text.display.lineHeight,
+        "letterSpacing": "0"
+      },
+      "size": "40px",
+      "weight": vars.base.text.weight.medium
+    },
+    "subtitle": {
+      "lineHeight": "1.6",
+      "shorthand": {
+        "fontWeight": vars.base.text.weight.normal,
+        "fontSize": vars.text.subtitle.size,
+        "letterSpacing": "0",
+        "lineHeight": vars.text.subtitle.lineHeight,
+        "fontFamily": vars.fontStack.sansSerif
+      },
+      "size": "20px",
+      "weight": vars.base.text.weight.normal
+    },
+    "title": {
+      "lineHeight": {
+        "large": "1.5",
+        "medium": "1.6",
+        "small": "1.5"
+      },
+      "shorthand": {
+        "large": {
+          "fontFamily": vars.fontStack.sansSerif,
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.large,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.large
+        },
+        "medium": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.medium,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.medium,
+          "fontFamily": vars.fontStack.sansSerif
+        },
+        "small": {
+          "fontWeight": vars.base.text.weight.semibold,
+          "fontSize": vars.text.title.size.small,
+          "letterSpacing": "0",
+          "lineHeight": vars.text.title.lineHeight.small,
+          "fontFamily": vars.fontStack.sansSerif
+        }
+      },
+      "size": {
+        "large": "32px",
+        "medium": "20px",
+        "small": "16px"
+      },
+      "weight": {
+        "large": vars.base.text.weight.semibold,
+        "medium": vars.base.text.weight.semibold,
+        "small": vars.base.text.weight.semibold
       }
     }
   }

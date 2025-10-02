@@ -7,8 +7,8 @@
   --ds-border-color-default: color(srgb 0.9725490196 0.9725490196 0.9725490196);
   --ds-border-size-default: 1px;
   --ds-border-style-default: solid;
-  --ds-color-base-blue: color(srgb 0.0784313725490196 0.47843137254901963 0.9529411764705882);
-  --ds-color-base-green: color(srgb 0 0.47843137254901963 0.30196078431372547);
+  --ds-color-base-blue: color(srgb 0.784 0.478 0.953);
+  --ds-color-base-green: color(srgb 0 0.478 0.302);
   --ds-color-gradient-blue-to-green: var(--ds-color-base-blue) 0%, var(--ds-color-base-green) 100%;
   --ds-color-semantic-primary: var(--ds-color-base-blue);
   --ds-shadow-md: 0 var(--ds-space-1) var(--ds-space-1) 0 color(srgb 0 0 0 / 0.1);
@@ -49,12 +49,12 @@
   }
 }
 
-.bg-color-semantic-primary {
-  background-color: var(--ds-color-semantic-primary);
-}
-
 .bg-color-gradient-blue-to-green {
   background-image: linear-gradient(var(--ds-color-gradient-blue-to-green));
+}
+
+.bg-color-semantic-primary {
+  background-color: var(--ds-color-semantic-primary);
 }
 
 .border-base {
@@ -149,24 +149,28 @@
   text-transform: var(--ds-typography-base-text-transform);
 }
 
-.font-typography-size-xs {
-  font-size: var(--ds-typography-size-xs);
-}
-
-.font-typography-size-sm {
-  font-size: var(--ds-typography-size-sm);
+.font-typography-size-lg {
+  font-size: var(--ds-typography-size-lg);
 }
 
 .font-typography-size-md {
   font-size: var(--ds-typography-size-md);
 }
 
-.font-typography-size-lg {
-  font-size: var(--ds-typography-size-lg);
+.font-typography-size-sm {
+  font-size: var(--ds-typography-size-sm);
 }
 
 .font-typography-size-xl {
   font-size: var(--ds-typography-size-xl);
+}
+
+.font-typography-size-xs {
+  font-size: var(--ds-typography-size-xs);
+}
+
+.font-typography-weight-bold {
+  font-weight: var(--ds-typography-weight-bold);
 }
 
 .font-typography-weight-light {
@@ -175,10 +179,6 @@
 
 .font-typography-weight-normal {
   font-weight: var(--ds-typography-weight-normal);
-}
-
-.font-typography-weight-bold {
-  font-weight: var(--ds-typography-weight-bold);
 }
 
 .gap-space-1 {
@@ -537,13 +537,13 @@
   box-shadow: var(--ds-shadow-md);
 }
 
-.text-color-semantic-primary {
-  color: var(--ds-color-semantic-primary);
-}
-
 .text-color-gradient-blue-to-green {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
+}
+
+.text-color-semantic-primary {
+  color: var(--ds-color-semantic-primary);
 }
 

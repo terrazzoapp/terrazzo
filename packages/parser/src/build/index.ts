@@ -146,32 +146,34 @@ export default async function build(
 
   // build()
   const startBuild = performance.now();
-  for (const plugin of config.plugins) {
-    if (typeof plugin.build === 'function') {
-      const pluginBuildStart = performance.now();
-      await plugin.build({
-        tokens,
-        sources,
-        getTransforms,
-        outputFile(filename, contents) {
-          const resolved = new URL(filename, config.outDir);
-          if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
-            logger.error({
-              group: 'plugin',
-              message: `Can’t overwrite file "${filename}"`,
-              label: plugin.name,
+  await Promise.all(
+    config.plugins.map(async (plugin) => {
+      if (typeof plugin.build === 'function') {
+        const pluginBuildStart = performance.now();
+        await plugin.build({
+          tokens,
+          sources,
+          getTransforms,
+          outputFile(filename, contents) {
+            const resolved = new URL(filename, config.outDir);
+            if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
+              logger.error({
+                group: 'plugin',
+                message: `Can’t overwrite file "${filename}"`,
+                label: plugin.name,
+              });
+            }
+            result.outputFiles.push({
+              filename,
+              contents,
+              plugin: plugin.name,
+              time: performance.now() - pluginBuildStart,
             });
-          }
-          result.outputFiles.push({
-            filename,
-            contents,
-            plugin: plugin.name,
-            time: performance.now() - pluginBuildStart,
-          });
-        },
-      });
-    }
-  }
+          },
+        });
+      }
+    }),
+  );
   logger.debug({
     group: 'parser',
     label: 'build',
@@ -181,11 +183,9 @@ export default async function build(
 
   // buildEnd()
   const startBuildEnd = performance.now();
-  for (const plugin of config.plugins) {
-    if (typeof plugin.buildEnd === 'function') {
-      await plugin.buildEnd({ outputFiles: structuredClone(result.outputFiles) });
-    }
-  }
+  await Promise.all(
+    config.plugins.map(async (plugin) => plugin.buildEnd?.({ outputFiles: structuredClone(result.outputFiles) })),
+  );
   logger.debug({
     group: 'parser',
     label: 'build',

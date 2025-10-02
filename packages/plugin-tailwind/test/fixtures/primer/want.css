@@ -78,10 +78,10 @@
   --spacing-md-: var(--size-8);
   --spacing-lg-: var(--size-12);
   --spacing-xl-: var(--size-16);
-  --radius-small: 3px;
-  --radius-medium: 6px;
-  --radius-large: 12px;
   --radius-full: 9999px;
+  --radius-large: 12px;
+  --radius-medium: 6px;
+  --radius-small: 3px;
   --fooArray-0: #dafbe1;
   --fooArray-1: #aceebb;
   --fooArray-2: #6fdd8b;

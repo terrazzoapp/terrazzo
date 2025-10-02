@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as momoa from '@humanwhocodes/momoa';
-import { getObjMembers, traverseAsync } from '@terrazzo/json-schema-tools';
+import { getObjMember, getObjMembers, traverseAsync } from '@terrazzo/json-schema-tools';
 import { defineConfig, type Logger, parse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
 import { cwd, printError } from './shared.js';
@@ -40,6 +40,7 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
               'core/valid-color': 'off',
               'core/valid-dimension': 'off',
               'core/valid-duration': 'off',
+              'core/valid-typography': 'off',
             },
           },
         },
@@ -57,34 +58,70 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
         const $valueI = node.value.members.findIndex(findMember('$value'));
 
         switch (token.$type) {
-          case 'color':
-          case 'dimension':
-          case 'duration': {
+          case 'color': {
             if (node.value.members[$valueI]!.value.type === 'String') {
-              const newValueContainer = momoa.parse(JSON.stringify({ $value: token.$value })).body as momoa.ObjectNode;
-              const newValueNode = newValueContainer.members.find(findMember('$value'))!;
-              node.value.members[$valueI] = newValueNode;
-
-              const { $extensions } = getObjMembers(node.value);
+              if (isAlias(node.value.members[$valueI]!.value.value)) {
+                return;
+              }
+              const hex = (node.value.members[$valueI]!.value as momoa.StringNode).value;
+              node.value.members[$valueI]!.value = momoa.parse(
+                JSON.stringify({
+                  ...token.$value,
+                  hex: hex.startsWith('#') ? hex.slice(0, 7) : undefined,
+                }),
+              ).body;
+              const $extensions = getObjMember(node.value, '$extensions');
               if ($extensions?.type === 'Object') {
-                const { mode } = getObjMembers($extensions);
+                const mode = getObjMember($extensions, 'mode');
                 if (mode?.type === 'Object') {
                   for (let i = 0; i < mode.members.length; i++) {
                     const modeName = (mode.members[i]!.name as momoa.StringNode).value;
-                    const modeValue = token.mode[modeName]!;
-                    if (typeof modeValue === 'string' && isAlias(modeValue)) {
-                      continue;
-                    }
-                    const newModeValueContainer = momoa.parse(
-                      JSON.stringify({ [modeName]: token.mode[modeName]!.$value }),
-                    ).body as momoa.ObjectNode;
-                    const newModeValueNode = newModeValueContainer.members.find(findMember(modeName))!;
-                    mode.members[i] = newModeValueNode;
+                    const hex = (mode.members[i]!.value as momoa.StringNode).value;
+                    mode.members[i]!.value = momoa.parse(
+                      JSON.stringify({
+                        ...token.mode[modeName]!.$value,
+                        hex: hex.startsWith('#') ? hex.slice(0, 7) : undefined,
+                      }),
+                    ).body;
                   }
                 }
               }
             }
             break;
+          }
+          case 'dimension':
+          case 'duration': {
+            if (node.value.members[$valueI]!.value.type === 'String') {
+              if (isAlias(node.value.members[$valueI]!.value.value)) {
+                return;
+              }
+              node.value.members[$valueI]!.value = normalizeDurationDimension(node.value.members[$valueI]!.value);
+              const $extensions = getObjMember(node.value, '$extensions');
+              if ($extensions?.type === 'Object') {
+                const mode = getObjMember($extensions, 'mode');
+                if (mode?.type === 'Object') {
+                  for (let i = 0; i < mode.members.length; i++) {
+                    mode.members[i]!.value = normalizeDurationDimension(node.value.members[$valueI]!.value);
+                  }
+                }
+              }
+            }
+            break;
+          }
+          case 'typography': {
+            if (node.value.members[$valueI]?.value.type !== 'Object') {
+              return;
+            }
+            node.value.members[$valueI].value = normalizeTypography(node.value.members[$valueI].value);
+            const $extensions = getObjMember(node.value, '$extensions');
+            if ($extensions?.type === 'Object') {
+              const mode = getObjMember($extensions, 'mode');
+              if (mode?.type === 'Object') {
+                for (let i = 0; i < mode.members.length; i++) {
+                  mode.members[i]!.value = normalizeTypography(mode.members[i]!.value as momoa.ObjectNode);
+                }
+              }
+            }
           }
         }
       },
@@ -97,4 +134,37 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
     printError((err as Error).message);
     process.exit(1);
   }
+}
+
+function normalizeDurationDimension(node: momoa.StringNode) {
+  const value = Number.parseFloat(node.value);
+  if (!Number.isFinite(value)) {
+    return node;
+  }
+  (node as any).type = 'Object';
+  (node as any).members = (
+    momoa.parse(JSON.stringify({ value, unit: node.value.replace(String(value), '') })).body as momoa.ObjectNode
+  ).members;
+  delete (node as any).value;
+  return node;
+}
+
+function normalizeTypography(node: momoa.ObjectNode) {
+  const { fontFamily, fontSize, fontWeight, letterSpacing, lineHeight } = getObjMembers(node);
+  if (!fontFamily) {
+    node.members.push((momoa.parse('{"fontFamily":["inherit"]}').body as momoa.ObjectNode).members[0]!);
+  }
+  if (!fontSize) {
+    node.members.push((momoa.parse('{"fontSize":{"value":1,"unit":"rem"}}').body as momoa.ObjectNode).members[0]!);
+  }
+  if (!fontWeight) {
+    node.members.push((momoa.parse('{"fontWeight":400}').body as momoa.ObjectNode).members[0]!);
+  }
+  if (!letterSpacing) {
+    node.members.push((momoa.parse('{"letterSpacing":{"value":0,"unit":"rem"}}').body as momoa.ObjectNode).members[0]!);
+  }
+  if (!lineHeight) {
+    node.members.push((momoa.parse('{"lineHeight":1}').body as momoa.ObjectNode).members[0]!);
+  }
+  return node;
 }

@@ -40,11 +40,18 @@ export default async function lintRunner({
           if (!(id in lint.rules) || lint.rules[id] === null) {
             return;
           }
+
+          // tick off used rule
+          const unusedLintRuleI = unusedLintRules.indexOf(id);
+          if (unusedLintRuleI !== -1) {
+            unusedLintRules.splice(unusedLintRuleI, 1);
+          }
+
           const [severity, options] = lint.rules[id]!;
+
           if (severity === 'off') {
             return;
           }
-
           // note: this usually isn’t a Promise, but it _might_ be!
           await rule.create({
             id,
@@ -102,11 +109,6 @@ export default async function lintRunner({
               options,
             ),
           });
-          // tick off used rule
-          const unusedLintRuleI = unusedLintRules.indexOf(id);
-          if (unusedLintRuleI !== -1) {
-            unusedLintRules.splice(unusedLintRuleI, 1);
-          }
         }),
       );
 

@@ -78,6 +78,7 @@ export interface VisitorContext {
 export type Visitor<T extends momoa.AnyNode = momoa.ObjectNode | momoa.DocumentNode> = (
   node: T,
   context: VisitorContext,
+  // biome-ignore lint/suspicious/noConfusingVoidType: TS requires void
 ) => T | void | null | undefined;
 
 export interface TransformVisitors {

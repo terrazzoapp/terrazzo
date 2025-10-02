@@ -1,8 +1,8 @@
 import type * as momoa from '@humanwhocodes/momoa';
 
 export interface TokenCore<E extends {} = Record<string, unknown>> {
-  $description?: string;
-  $deprecated?: string | boolean;
+  $description?: string | undefined;
+  $deprecated?: string | boolean | undefined;
   $extensions?: E;
 }
 
@@ -278,15 +278,17 @@ export interface TypographyValue {
 }
 
 export interface GroupCore {
-  $deprecated?: string | boolean;
-  $description?: string;
+  $deprecated?: string | boolean | undefined;
+  $description?: string | undefined;
   $type?: Token['$type'];
   $extensions?: Record<string, unknown>;
 }
 
-export type Group = GroupCore & {
-  [key: string]: GroupOrToken;
-};
+export type Group =
+  | GroupCore
+  | {
+      [key: string]: GroupOrToken;
+    };
 
 export type GroupOrToken = Group | Token;
 
@@ -295,7 +297,7 @@ export type TokenMode<T extends TokenNormalized> = Pick<
   T,
   '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies' | 'source'
 > & {
-  originalValue?: T['originalValue'] extends {} ? T['originalValue']['$value'] : never;
+  originalValue: NonNullable<T['originalValue']>['$value'] | undefined;
 };
 
 export type ModeMap<T extends TokenNormalized> = {
@@ -328,6 +330,7 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
   };
   /** JSON Schema form of ID */
   jsonID: string;
+  originalValue: unknown;
   /** The **final** aliased ID */
   aliasOf: string | undefined;
   /** The entire alias chain, starting from the source token. The last item will match `.aliasOf`. */
@@ -476,7 +479,7 @@ export interface GradientTokenNormalized extends TokenNormalizedCore<'gradient'>
   /** Parts of this token rely on others */
   partialAliasOf: Record<keyof GradientStopNormalized, string | undefined>[] | undefined;
   mode: ModeMap<GradientTokenNormalized>;
-  originalValue: GradientTokenNormalized | AliasToken | undefined;
+  originalValue: GradientToken | AliasToken | undefined;
 }
 
 export type GradientValueNormalized = GradientStopNormalized[];
@@ -524,7 +527,7 @@ export interface StringTokenNormalized extends TokenNormalizedCore<'string'> {
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
   mode: ModeMap<StringTokenNormalized>;
-  originalValue: StringTokenNormalized | AliasToken | undefined;
+  originalValue: StringToken | AliasToken | undefined;
 }
 
 export interface StrokeStyleTokenNormalized extends TokenNormalizedCore<'strokeStyle'> {

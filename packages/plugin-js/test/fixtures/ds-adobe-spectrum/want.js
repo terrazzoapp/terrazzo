@@ -3,65 +3,1481 @@
  * ------------------------------------------- */
 
 export const tokens = {
-  "global.color.opacity.0": {
-    ".": 0,
+  "alias.appframe.border-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
   },
-  "global.color.opacity.4": {
-    ".": 0.04,
+  "alias.appframe.separator-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
   },
-  "global.color.opacity.5": {
-    ".": 0.05,
+  "alias.background-color-hover-overly": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.04
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.06
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.08
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.04
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.04
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.05
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.04
+    },
   },
-  "global.color.opacity.6": {
-    ".": 0.06,
+  "alias.background-color-modal-overlay": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.4
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.5
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.6
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.4
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.4
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.4
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.4
+    },
   },
-  "global.color.opacity.7": {
-    ".": 0.07,
+  "alias.background-color-primary": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
   },
-  "global.color.opacity.8": {
-    ".": 0.08,
+  "alias.background-color-quickactions": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 0.9
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.19607843137254902,
+        0.19607843137254902,
+        0.19607843137254902
+      ],
+      "alpha": 0.9
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.11372549019607843,
+        0.11372549019607843,
+        0.11372549019607843
+      ],
+      "alpha": 0.9
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 0.9
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.9
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.29411764705882354,
+        0.29411764705882354,
+        0.29411764705882354
+      ],
+      "alpha": 0.9
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8588235294117647,
+        0.8588235294117647,
+        0.8588235294117647
+      ],
+      "alpha": 0.9
+    },
   },
-  "global.color.opacity.10": {
-    ".": 0.1,
+  "alias.background-color-secondary": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.9921568627450981,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.9921568627450981,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.9921568627450981,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.9725490196078431,
+        0.9725490196078431
+      ],
+      "alpha": 1
+    },
   },
-  "global.color.opacity.15": {
-    ".": 0.15,
+  "alias.border-color-translucent": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
   },
-  "global.color.opacity.20": {
-    ".": 0.2,
+  "alias.dropshadow-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.15
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.5
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.8
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.15
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.15
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.3
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.15
+    },
   },
-  "global.color.opacity.25": {
-    ".": 0.25,
+  "alias.highlight-down": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.15
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.1
+    },
   },
-  "global.color.opacity.30": {
-    ".": 0.3,
+  "alias.highlight-hover": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.06
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.07
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.08
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.06
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.06
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 0.06
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0,
+        0
+      ],
+      "alpha": 0.06
+    },
   },
-  "global.color.opacity.40": {
-    ".": 0.4,
+  "alias.highlight-selected": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.32941176470588235,
+        0.6392156862745098,
+        0.9647058823529412
+      ],
+      "alpha": 0.15
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.5882352941176471,
+        0.9529411764705882
+      ],
+      "alpha": 0.2
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.4117647058823529,
+        0.8901960784313725
+      ],
+      "alpha": 0.1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.6666666666666666,
+        0.9686274509803922
+      ],
+      "alpha": 0.1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.3411764705882353,
+        0.7450980392156863
+      ],
+      "alpha": 0.1
+    },
   },
-  "global.color.opacity.42": {
-    ".": 0.42,
+  "alias.highlight-selected-hover": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.2
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.32941176470588235,
+        0.6392156862745098,
+        0.9647058823529412
+      ],
+      "alpha": 0.25
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.5882352941176471,
+        0.9529411764705882
+      ],
+      "alpha": 0.3
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.2
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.4117647058823529,
+        0.8901960784313725
+      ],
+      "alpha": 0.2
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.6666666666666666,
+        0.9686274509803922
+      ],
+      "alpha": 0.2
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.3411764705882353,
+        0.7450980392156863
+      ],
+      "alpha": 0.2
+    },
   },
-  "global.color.opacity.50": {
-    ".": 0.5,
+  "alias.pasteboard-background-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8352941176470589,
+        0.8352941176470589,
+        0.8352941176470589
+      ],
+      "alpha": 1
+    },
   },
-  "global.color.opacity.55": {
-    ".": 0.55,
+  "alias.radial-reaction-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333
+      ],
+      "alpha": 0.6
+    },
   },
-  "global.color.opacity.60": {
-    ".": 0.6,
+  "alias.text-highlight-color": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.2
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.32941176470588235,
+        0.6392156862745098,
+        0.9647058823529412
+      ],
+      "alpha": 0.25
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.5882352941176471,
+        0.9529411764705882
+      ],
+      "alpha": 0.3
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 0.2
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.4117647058823529,
+        0.8901960784313725
+      ],
+      "alpha": 0.2
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.6666666666666666,
+        0.9686274509803922
+      ],
+      "alpha": 0.2
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.3411764705882353,
+        0.7450980392156863
+      ],
+      "alpha": 0.2
+    },
   },
-  "global.color.opacity.70": {
-    ".": 0.7,
+  "font.family.clean": {
+    ".": [
+      "Adobe Clean"
+    ],
   },
-  "global.color.opacity.80": {
-    ".": 0.8,
+  "font.family.cleanHan": {
+    ".": [
+      "Adobe Clean Han"
+    ],
   },
-  "global.color.opacity.90": {
-    ".": 0.9,
+  "font.family.cleanSerif": {
+    ".": [
+      "Adobe Clean Serif"
+    ],
   },
-  "global.color.opacity.100": {
-    ".": 1,
+  "font.family.sourceCode": {
+    ".": [
+      "Source Code Pro"
+    ],
+  },
+  "font.size.50": {
+    ".": {
+      "value": 11,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 11,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 13,
+      "unit": "px"
+    },
+  },
+  "font.size.75": {
+    ".": {
+      "value": 12,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 12,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 13,
+      "unit": "px"
+    },
+  },
+  "font.size.100": {
+    ".": {
+      "value": 14,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 14,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 17,
+      "unit": "px"
+    },
+  },
+  "font.size.200": {
+    ".": {
+      "value": 16,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 16,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 19,
+      "unit": "px"
+    },
+  },
+  "font.size.300": {
+    ".": {
+      "value": 18,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 18,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 22,
+      "unit": "px"
+    },
+  },
+  "font.size.400": {
+    ".": {
+      "value": 20,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 20,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 24,
+      "unit": "px"
+    },
+  },
+  "font.size.500": {
+    ".": {
+      "value": 22,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 22,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 27,
+      "unit": "px"
+    },
+  },
+  "font.size.600": {
+    ".": {
+      "value": 25,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 25,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 31,
+      "unit": "px"
+    },
+  },
+  "font.size.700": {
+    ".": {
+      "value": 28,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 28,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 34,
+      "unit": "px"
+    },
+  },
+  "font.size.800": {
+    ".": {
+      "value": 32,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 32,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 39,
+      "unit": "px"
+    },
+  },
+  "font.size.900": {
+    ".": {
+      "value": 36,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 36,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 44,
+      "unit": "px"
+    },
+  },
+  "font.size.1000": {
+    ".": {
+      "value": 40,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 40,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 49,
+      "unit": "px"
+    },
+  },
+  "font.size.1100": {
+    ".": {
+      "value": 45,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 45,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 45,
+      "unit": "px"
+    },
+  },
+  "font.size.1200": {
+    ".": {
+      "value": 50,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 50,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 52,
+      "unit": "px"
+    },
+  },
+  "font.size.1300": {
+    ".": {
+      "value": 60,
+      "unit": "px"
+    },
+    "desktop": {
+      "value": 60,
+      "unit": "px"
+    },
+    "mobile": {
+      "value": 60,
+      "unit": "px"
+    },
+  },
+  "global.color.blue.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0784313725490196,
+        0.47843137254901963,
+        0.9529411764705882
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.20392156862745098,
+        0.5607843137254902,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.11372549019607843,
+        0.5019607843137255,
+        0.9607843137254902
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0784313725490196,
+        0.47843137254901963,
+        0.9529411764705882
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.10588235294117647,
+        0.4980392156862745,
+        0.9607843137254902
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25882352941176473,
+        0.596078431372549,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.40784313725490196,
+        0.8823529411764706
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.blue.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.32941176470588235,
+        0.6392156862745098,
+        0.9647058823529412
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.5882352941176471,
+        0.9529411764705882
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.396078431372549,
+        0.8627450980392157
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.4117647058823529,
+        0.8901960784313725
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.6666666666666666,
+        0.9686274509803922
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.3411764705882353,
+        0.7450980392156863
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.blue.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.32941176470588235,
+        0.7137254901960784
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4470588235294118,
+        0.7176470588235294,
+        0.9764705882352941
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.6666666666666666,
+        0.9686274509803922
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.32941176470588235,
+        0.7137254901960784
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.3411764705882353,
+        0.7450980392156863
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.47843137254901963,
+        0.7372549019607844,
+        0.9803921568627451
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.2784313725490196,
+        0.596078431372549
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.blue.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.26666666666666666,
+        0.5686274509803921
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5607843137254902,
+        0.792156862745098,
+        0.9882352941176471
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.48627450980392156,
+        0.7411764705882353,
+        0.9803921568627451
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.26666666666666666,
+        0.5686274509803921
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.2823529411764706,
+        0.6
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5843137254901961,
+        0.803921568627451,
+        0.9882352941176471
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.21568627450980393,
+        0.4627450980392157
+      ],
+      "alpha": 1
+    },
   },
   "global.color.celery.400": {
     ".": {
@@ -583,526 +1999,6 @@ export const tokens = {
       "alpha": 1
     },
   },
-  "global.color.yellow.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9098039215686274,
-        0.7764705882352941,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8941176470588236,
-        0.7607843137254902,
-        0
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8470588235294118,
-        0.7098039215686275,
-        0
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9098039215686274,
-        0.7764705882352941,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9333333333333333,
-        0.803921568627451,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9098039215686274,
-        0.7725490196078432,
-        0
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8274509803921568,
-        0.6862745098039216,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.yellow.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8431372549019608,
-        0.7019607843137254,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9568627450980393,
-        0.8352941176470589,
-        0
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9137254901960784,
-        0.7803921568627451,
-        0
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8431372549019608,
-        0.7019607843137254,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8666666666666667,
-        0.7254901960784313,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.8431372549019608,
-        0.00784313725490196
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7607843137254902,
-        0.615686274509804,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.yellow.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7686274509803922,
-        0.6235294117647059,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.9098039215686274,
-        0.3607843137254902
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9686274509803922,
-        0.8470588235294118,
-        0.01568627450980392
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7686274509803922,
-        0.6235294117647059,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.788235294117647,
-        0.6431372549019608,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.9176470588235294,
-        0.38823529411764707
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6901960784313725,
-        0.5490196078431373,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.yellow.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6901960784313725,
-        0.5490196078431373,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9882352941176471,
-        0.9647058823529412,
-        0.7333333333333333
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.9137254901960784,
-        0.3803921568627451
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6901960784313725,
-        0.5490196078431373,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7098039215686275,
-        0.5647058823529412,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9921568627450981,
-        0.9647058823529412,
-        0.7490196078431373
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.615686274509804,
-        0.47843137254901963,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.magenta.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8705882352941177,
-        0.23921568627450981,
-        0.5098039215686274
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8705882352941177,
-        0.23921568627450981,
-        0.5098039215686274
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8196078431372549,
-        0.16862745098039217,
-        0.4470588235294118
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8705882352941177,
-        0.23921568627450981,
-        0.5098039215686274
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8862745098039215,
-        0.26666666666666666,
-        0.5294117647058824
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9058823529411765,
-        0.29411764705882354,
-        0.5529411764705883
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8,
-        0.15294117647058825,
-        0.43137254901960786
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.magenta.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7843137254901961,
-        0.13333333333333333,
-        0.4117647058823529
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9294117647058824,
-        0.3411764705882353,
-        0.5843137254901961
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8901960784313725,
-        0.27058823529411763,
-        0.5372549019607843
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7843137254901961,
-        0.13333333333333333,
-        0.4117647058823529
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.803921568627451,
-        0.1568627450980392,
-        0.43529411764705883
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9490196078431372,
-        0.38823529411764707,
-        0.615686274509804
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7019607843137254,
-        0.058823529411764705,
-        0.34509803921568627
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.magenta.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6784313725490196,
-        0.03529411764705882,
-        0.3333333333333333
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.4470588235294118,
-        0.6549019607843137
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9450980392156862,
-        0.3803921568627451,
-        0.611764705882353
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6784313725490196,
-        0.03529411764705882,
-        0.3333333333333333
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7019607843137254,
-        0.058823529411764705,
-        0.34901960784313724
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9882352941176471,
-        0.4823529411764706,
-        0.6784313725490196
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5843137254901961,
-        0,
-        0.2823529411764706
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.magenta.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5568627450980392,
-        0,
-        0.27058823529411763
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5607843137254902,
-        0.7254901960784313
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9882352941176471,
-        0.48627450980392156,
-        0.6784313725490196
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5568627450980392,
-        0,
-        0.27058823529411763
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5843137254901961,
-        0,
-        0.2823529411764706
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5882352941176471,
-        0.7411764705882353
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.4549019607843137,
-        0,
-        0.2235294117647059
-      ],
-      "alpha": 1
-    },
-  },
   "global.color.fuchsia.400": {
     ".": {
       "colorSpace": "srgb",
@@ -1359,1826 +2255,6 @@ export const tokens = {
         0.40784313725490196,
         0.01568627450980392,
         0.40784313725490196
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.purple.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.615686274509804,
-        0.3411764705882353,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.615686274509804,
-        0.3411764705882353,
-        0.9529411764705882
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5686274509803921,
-        0.27450980392156865,
-        0.9254901960784314
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.615686274509804,
-        0.3411764705882353,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6313725490196078,
-        0.36470588235294116,
-        0.9647058823529412
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6509803921568628,
-        0.39215686274509803,
-        0.9686274509803922
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5529411764705883,
-        0.25882352941176473,
-        0.9137254901960784
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.purple.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5372549019607843,
-        0.23921568627450981,
-        0.9058823529411765
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6745098039215687,
-        0.43529411764705883,
-        0.9764705882352941
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6352941176470588,
-        0.3686274509803922,
-        0.9647058823529412
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5372549019607843,
-        0.23921568627450981,
-        0.9058823529411765
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5568627450980392,
-        0.2627450980392157,
-        0.9176470588235294
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7019607843137254,
-        0.4745098039215686,
-        0.9803921568627451
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.47058823529411764,
-        0.16470588235294117,
-        0.8470588235294118
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.purple.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.45098039215686275,
-        0.14901960784313725,
-        0.8274509803921568
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7333333333333333,
-        0.5294117647058824,
-        0.984313725490196
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6980392156862745,
-        0.4666666666666667,
-        0.9803921568627451
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.45098039215686275,
-        0.14901960784313725,
-        0.8274509803921568
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.47058823529411764,
-        0.16862745098039217,
-        0.8470588235294118
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7529411764705882,
-        0.5607843137254902,
-        0.9882352941176471
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3803921568627451,
-        0.08627450980392157,
-        0.7450980392156863
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.purple.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.36470588235294116,
-        0.07450980392156863,
-        0.7176470588235294
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.792156862745098,
-        0.6235294117647059,
-        0.9882352941176471
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7529411764705882,
-        0.5607843137254902,
-        0.9882352941176471
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.36470588235294116,
-        0.07450980392156863,
-        0.7176470588235294
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3843137254901961,
-        0.09019607843137255,
-        0.7450980392156863
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.803921568627451,
-        0.6470588235294118,
-        0.9921568627450981
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2901960784313726,
-        0.047058823529411764,
-        0.6
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.indigo.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.40784313725490196,
-        0.42745098039215684,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.40784313725490196,
-        0.42745098039215684,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.35294117647058826,
-        0.3764705882352941,
-        0.9215686274509803
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.40784313725490196,
-        0.42745098039215684,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.42745098039215684,
-        0.45098039215686275,
-        0.9647058823529412
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.45098039215686275,
-        0.47058823529411764,
-        0.9725490196078431
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.33725490196078434,
-        0.3607843137254902,
-        0.9058823529411765
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.indigo.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3215686274509804,
-        0.34509803921568627,
-        0.8941176470588236
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.48627450980392156,
-        0.5058823529411764,
-        0.984313725490196
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.43137254901960786,
-        0.45098039215686275,
-        0.9647058823529412
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3215686274509804,
-        0.34509803921568627,
-        0.8941176470588236
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3411764705882353,
-        0.36470588235294116,
-        0.9098039215686274
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5215686274509804,
-        0.5411764705882353,
-        0.9921568627450981
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.26666666666666666,
-        0.28627450980392155,
-        0.8156862745098039
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.indigo.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.27450980392156865,
-        0.792156862745098
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5686274509803921,
-        0.5843137254901961,
-        1
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5176470588235295,
-        0.5333333333333333,
-        0.9921568627450981
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.27450980392156865,
-        0.792156862745098
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.26666666666666666,
-        0.2901960784313726,
-        0.8156862745098039
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.596078431372549,
-        0.615686274509804,
-        1
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.20392156862745098,
-        0.2235294117647059,
-        0.6901960784313725
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.indigo.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.19607843137254902,
-        0.21176470588235294,
-        0.6588235294117647
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6549019607843137,
-        0.6666666666666666,
-        1
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6,
-        0.615686274509804,
-        1
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.19607843137254902,
-        0.21176470588235294,
-        0.6588235294117647
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.20784313725490197,
-        0.22745098039215686,
-        0.6901960784313725
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6745098039215687,
-        0.6901960784313725,
-        1
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.15294117647058825,
-        0.16862745098039217,
-        0.5450980392156862
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.seafoam.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6313725490196078,
-        0.6039215686274509
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6196078431372549,
-        0.596078431372549
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5725490196078431,
-        0.5490196078431373
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6313725490196078,
-        0.6039215686274509
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6509803921568628,
-        0.6274509803921569
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6549019607843137,
-        0.6274509803921569
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5568627450980392,
-        0.5333333333333333
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.seafoam.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5490196078431373,
-        0.5294117647058824
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.011764705882352941,
-        0.6980392156862745,
-        0.6705882352941176
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.6470588235294118,
-        0.6235294117647059
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5490196078431373,
-        0.5294117647058824
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5686274509803921,
-        0.5450980392156862
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.09803921568627451,
-        0.7215686274509804,
-        0.6941176470588235
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.47843137254901963,
-        0.4588235294117647
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.seafoam.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.4666666666666667,
-        0.4470588235294118
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.21176470588235294,
-        0.7725490196078432,
-        0.7411764705882353
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.10196078431372549,
-        0.7254901960784313,
-        0.6980392156862745
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.4666666666666667,
-        0.4470588235294118
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.48627450980392156,
-        0.4627450980392157
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.788235294117647,
-        0.7607843137254902
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.403921568627451,
-        0.38823529411764707
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.seafoam.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.38823529411764707,
-        0.37254901960784315
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.36470588235294116,
-        0.8392156862745098,
-        0.8117647058823529
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25882352941176473,
-        0.792156862745098,
-        0.7647058823529411
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.38823529411764707,
-        0.37254901960784315
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.403921568627451,
-        0.38823529411764707
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.39215686274509803,
-        0.8509803921568627,
-        0.8235294117647058
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0392156862745098,
-        0.3254901960784314,
-        0.3137254901960784
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.red.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9176470588235294,
-        0.2196078431372549,
-        0.1607843137254902
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9176470588235294,
-        0.2196078431372549,
-        0.1607843137254902
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8666666666666667,
-        0.12941176470588237,
-        0.09411764705882353
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9176470588235294,
-        0.2196078431372549,
-        0.1607843137254902
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9294117647058824,
-        0.25098039215686274,
-        0.18823529411764706
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9450980392156862,
-        0.2901960784313726,
-        0.21568627450980393
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8470588235294118,
-        0.10196078431372549,
-        0.07450980392156863
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.red.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8274509803921568,
-        0.08235294117647059,
-        0.06274509803921569
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.34509803921568627,
-        0.2627450980392157
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9333333333333333,
-        0.2627450980392157,
-        0.19215686274509805
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8274509803921568,
-        0.08235294117647059,
-        0.06274509803921569
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8509803921568627,
-        0.10980392156862745,
-        0.08235294117647059
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9803921568627451,
-        0.396078431372549,
-        0.30980392156862746
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7333333333333333,
-        0.00784313725490196,
-        0.00784313725490196
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.red.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7058823529411765,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.4588235294117647,
-        0.3686274509803922
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.38823529411764707,
-        0.2980392156862745
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7058823529411765,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7333333333333333,
-        0.00784313725490196,
-        0.00784313725490196
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5058823529411764,
-        0.4196078431372549
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.red.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5764705882352941,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5843137254901961,
-        0.5058823529411764
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5058823529411764,
-        0.4196078431372549
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5764705882352941,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6039215686274509,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.611764705882353,
-        0.5372549019607843
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.47058823529411764,
-        0,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.orange.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.5215686274509804,
-        0.06666666666666667
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9568627450980393,
-        0.5058823529411764,
-        0.047058823529411764
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9098039215686274,
-        0.4549019607843137,
-        0
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.5215686274509804,
-        0.06666666666666667
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9803921568627451,
-        0.5450980392156862,
-        0.10196078431372549
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9725490196078431,
-        0.5372549019607843,
-        0.08627450980392157
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8941176470588236,
-        0.43529411764705883,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.orange.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8941176470588236,
-        0.43529411764705883,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.6039215686274509,
-        0.1803921568627451
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.5372549019607843,
-        0.09019607843137255
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8941176470588236,
-        0.43529411764705883,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9137254901960784,
-        0.4588235294117647,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.6313725490196078,
-        0.2235294117647059
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.803921568627451,
-        0.37254901960784315,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.orange.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.796078431372549,
-        0.36470588235294116,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.7098039215686275,
-        0.34509803921568627
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.6352941176470588,
-        0.23137254901960785
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.796078431372549,
-        0.36470588235294116,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8196078431372549,
-        0.3803921568627451,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.7294117647058823,
-        0.3803921568627451
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7098039215686275,
-        0.30980392156862746,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.orange.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6941176470588235,
-        0.2980392156862745,
-        0
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9921568627450981,
-        0.807843137254902,
-        0.5333333333333333
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.7372549019607844,
-        0.4
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6941176470588235,
-        0.2980392156862745,
-        0
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7137254901960784,
-        0.3137254901960784,
-        0
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9921568627450981,
-        0.8156862745098039,
-        0.5568627450980392
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6078431372549019,
-        0.25098039215686274,
-        0
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.green.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5607843137254902,
-        0.36470588235294116
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.07058823529411765,
-        0.6352941176470588,
-        0.4235294117647059
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5843137254901961,
-        0.3843137254901961
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5607843137254902,
-        0.36470588235294116
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.5803921568627451,
-        0.3803921568627451
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.11764705882352941,
-        0.6666666666666666,
-        0.4549019607843137
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.49019607843137253,
-        0.30980392156862746
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.green.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.47843137254901963,
-        0.30196078431372547
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.16862745098039217,
-        0.7058823529411765,
-        0.49019607843137253
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.10980392156862745,
-        0.6588235294117647,
-        0.4470588235294118
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.47843137254901963,
-        0.30196078431372547
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.49411764705882355,
-        0.3137254901960784
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2,
-        0.7333333333333333,
-        0.5137254901960784
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.4117647058823529,
-        0.2549019607843137
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.green.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.396078431372549,
-        0.24313725490196078
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2627450980392157,
-        0.7803921568627451,
-        0.5607843137254902
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.20392156862745098,
-        0.7333333333333333,
-        0.5176470588235295
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.396078431372549,
-        0.24313725490196078
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.4117647058823529,
-        0.2549019607843137
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2901960784313726,
-        0.8,
-        0.5803921568627451
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3333333333333333,
-        0.20392156862745098
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.green.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3176470588235294,
-        0.19607843137254902
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.8509803921568627,
-        0.6352941176470588
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.29411764705882354,
-        0.803921568627451,
-        0.5843137254901961
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3176470588235294,
-        0.19607843137254902
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.33725490196078434,
-        0.20784313725490197
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.396078431372549,
-        0.8666666666666667,
-        0.6549019607843137
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0196078431372549,
-        0.2549019607843137,
-        0.1568627450980392
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.blue.400": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0784313725490196,
-        0.47843137254901963,
-        0.9529411764705882
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.20392156862745098,
-        0.5607843137254902,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.11372549019607843,
-        0.5019607843137255,
-        0.9607843137254902
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0784313725490196,
-        0.47843137254901963,
-        0.9529411764705882
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.10588235294117647,
-        0.4980392156862745,
-        0.9607843137254902
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25882352941176473,
-        0.596078431372549,
-        0.9568627450980393
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.40784313725490196,
-        0.8823529411764706
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.blue.500": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.32941176470588235,
-        0.6392156862745098,
-        0.9647058823529412
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.5882352941176471,
-        0.9529411764705882
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.4117647058823529,
-        0.8901960784313725
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.6666666666666666,
-        0.9686274509803922
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3411764705882353,
-        0.7450980392156863
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.blue.600": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.32941176470588235,
-        0.7137254901960784
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.4470588235294118,
-        0.7176470588235294,
-        0.9764705882352941
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.6666666666666666,
-        0.9686274509803922
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.32941176470588235,
-        0.7137254901960784
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3411764705882353,
-        0.7450980392156863
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.47843137254901963,
-        0.7372549019607844,
-        0.9803921568627451
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.2784313725490196,
-        0.596078431372549
-      ],
-      "alpha": 1
-    },
-  },
-  "global.color.blue.700": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.26666666666666666,
-        0.5686274509803921
-      ],
-      "alpha": 1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5607843137254902,
-        0.792156862745098,
-        0.9882352941176471
-      ],
-      "alpha": 1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.48627450980392156,
-        0.7411764705882353,
-        0.9803921568627451
-      ],
-      "alpha": 1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.26666666666666666,
-        0.5686274509803921
-      ],
-      "alpha": 1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.2823529411764706,
-        0.6
-      ],
-      "alpha": 1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5843137254901961,
-        0.803921568627451,
-        0.9882352941176471
-      ],
-      "alpha": 1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.21568627450980393,
-        0.4627450980392157
       ],
       "alpha": 1
     },
@@ -3898,804 +2974,728 @@ export const tokens = {
       "alpha": 1
     },
   },
-  "alias.background-color-primary": {
+  "global.color.green.400": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0,
+        0.5607843137254902,
+        0.36470588235294116
       ],
       "alpha": 1
     },
     "dark": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0.07058823529411765,
+        0.6352941176470588,
+        0.4235294117647059
       ],
       "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0,
+        0.5843137254901961,
+        0.3843137254901961
       ],
       "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0,
+        0.5607843137254902,
+        0.36470588235294116
       ],
       "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0,
+        0.5803921568627451,
+        0.3803921568627451
       ],
       "alpha": 1
     },
     "middark": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0.11764705882352941,
+        0.6666666666666666,
+        0.4549019607843137
       ],
       "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0,
+        0.49019607843137253,
+        0.30980392156862746
       ],
       "alpha": 1
     },
   },
-  "alias.background-color-secondary": {
+  "global.color.green.500": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0,
+        0.47843137254901963,
+        0.30196078431372547
       ],
       "alpha": 1
     },
     "dark": {
       "colorSpace": "srgb",
       "components": [
-        0.9921568627450981,
-        0.9921568627450981,
-        0.9921568627450981
+        0.16862745098039217,
+        0.7058823529411765,
+        0.49019607843137253
       ],
       "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        0.9921568627450981,
-        0.9921568627450981,
-        0.9921568627450981
+        0.10980392156862745,
+        0.6588235294117647,
+        0.4470588235294118
       ],
       "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0,
+        0.47843137254901963,
+        0.30196078431372547
       ],
       "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0,
+        0.49411764705882355,
+        0.3137254901960784
       ],
       "alpha": 1
     },
     "middark": {
       "colorSpace": "srgb",
       "components": [
-        0.9921568627450981,
-        0.9921568627450981,
-        0.9921568627450981
+        0.2,
+        0.7333333333333333,
+        0.5137254901960784
       ],
       "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
+        0,
+        0.4117647058823529,
+        0.2549019607843137
       ],
       "alpha": 1
     },
   },
-  "alias.background-color-modal-overlay": {
+  "global.color.green.600": {
     ".": {
       "colorSpace": "srgb",
       "components": [
         0,
-        0,
-        0
+        0.396078431372549,
+        0.24313725490196078
       ],
-      "alpha": 0.4
+      "alpha": 1
     },
     "dark": {
       "colorSpace": "srgb",
       "components": [
-        0,
-        0,
-        0
+        0.2627450980392157,
+        0.7803921568627451,
+        0.5607843137254902
       ],
-      "alpha": 0.5
+      "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        0,
-        0,
-        0
+        0.20392156862745098,
+        0.7333333333333333,
+        0.5176470588235295
       ],
-      "alpha": 0.6
+      "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
         0,
-        0,
-        0
+        0.396078431372549,
+        0.24313725490196078
       ],
-      "alpha": 0.4
+      "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
         0,
-        0,
-        0
+        0.4117647058823529,
+        0.2549019607843137
       ],
-      "alpha": 0.4
+      "alpha": 1
     },
     "middark": {
       "colorSpace": "srgb",
       "components": [
-        0,
-        0,
-        0
+        0.2901960784313726,
+        0.8,
+        0.5803921568627451
       ],
-      "alpha": 0.4
+      "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
         0,
-        0,
-        0
+        0.3333333333333333,
+        0.20392156862745098
       ],
-      "alpha": 0.4
+      "alpha": 1
     },
   },
-  "alias.background-color-hover-overly": {
+  "global.color.green.700": {
     ".": {
       "colorSpace": "srgb",
       "components": [
         0,
-        0,
-        0
-      ],
-      "alpha": 0.04
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.06
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.08
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.04
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.04
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.05
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.04
-    },
-  },
-  "alias.background-color-quickactions": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9725490196078431,
-        0.9725490196078431,
-        0.9725490196078431
-      ],
-      "alpha": 0.9
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.19607843137254902,
-        0.19607843137254902,
+        0.3176470588235294,
         0.19607843137254902
       ],
-      "alpha": 0.9
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3686274509803922,
+        0.8509803921568627,
+        0.6352941176470588
+      ],
+      "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        0.11372549019607843,
-        0.11372549019607843,
-        0.11372549019607843
+        0.29411764705882354,
+        0.803921568627451,
+        0.5843137254901961
       ],
-      "alpha": 0.9
+      "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        0.9725490196078431,
-        0.9725490196078431,
+        0,
+        0.3176470588235294,
+        0.19607843137254902
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.33725490196078434,
+        0.20784313725490197
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.396078431372549,
+        0.8666666666666667,
+        0.6549019607843137
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0196078431372549,
+        0.2549019607843137,
+        0.1568627450980392
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.indigo.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.40784313725490196,
+        0.42745098039215684,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.40784313725490196,
+        0.42745098039215684,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.35294117647058826,
+        0.3764705882352941,
+        0.9215686274509803
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.40784313725490196,
+        0.42745098039215684,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.42745098039215684,
+        0.45098039215686275,
+        0.9647058823529412
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.45098039215686275,
+        0.47058823529411764,
         0.9725490196078431
       ],
-      "alpha": 0.9
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.33725490196078434,
+        0.3607843137254902,
+        0.9058823529411765
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.indigo.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3215686274509804,
+        0.34509803921568627,
+        0.8941176470588236
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.48627450980392156,
+        0.5058823529411764,
+        0.984313725490196
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.43137254901960786,
+        0.45098039215686275,
+        0.9647058823529412
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3215686274509804,
+        0.34509803921568627,
+        0.8941176470588236
+      ],
+      "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0.3411764705882353,
+        0.36470588235294116,
+        0.9098039215686274
       ],
-      "alpha": 0.9
+      "alpha": 1
     },
     "middark": {
       "colorSpace": "srgb",
       "components": [
+        0.5215686274509804,
+        0.5411764705882353,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.26666666666666666,
+        0.28627450980392155,
+        0.8156862745098039
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.indigo.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.27450980392156865,
+        0.792156862745098
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5686274509803921,
+        0.5843137254901961,
+        1
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5176470588235295,
+        0.5333333333333333,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.27450980392156865,
+        0.792156862745098
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.26666666666666666,
+        0.2901960784313726,
+        0.8156862745098039
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.596078431372549,
+        0.615686274509804,
+        1
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.20392156862745098,
+        0.2235294117647059,
+        0.6901960784313725
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.indigo.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.19607843137254902,
+        0.21176470588235294,
+        0.6588235294117647
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6549019607843137,
+        0.6666666666666666,
+        1
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6,
+        0.615686274509804,
+        1
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.19607843137254902,
+        0.21176470588235294,
+        0.6588235294117647
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.20784313725490197,
+        0.22745098039215686,
+        0.6901960784313725
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6745098039215687,
+        0.6901960784313725,
+        1
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.15294117647058825,
+        0.16862745098039217,
+        0.5450980392156862
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.magenta.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8705882352941177,
+        0.23921568627450981,
+        0.5098039215686274
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8705882352941177,
+        0.23921568627450981,
+        0.5098039215686274
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8196078431372549,
+        0.16862745098039217,
+        0.4470588235294118
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8705882352941177,
+        0.23921568627450981,
+        0.5098039215686274
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8862745098039215,
+        0.26666666666666666,
+        0.5294117647058824
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9058823529411765,
         0.29411764705882354,
-        0.29411764705882354,
-        0.29411764705882354
+        0.5529411764705883
       ],
-      "alpha": 0.9
+      "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        0.8588235294117647,
-        0.8588235294117647,
-        0.8588235294117647
+        0.8,
+        0.15294117647058825,
+        0.43137254901960786
       ],
-      "alpha": 0.9
+      "alpha": 1
     },
   },
-  "alias.dropshadow-color": {
+  "global.color.magenta.500": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.15
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.5
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.8
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.15
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.15
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.3
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.15
-    },
-  },
-  "alias.highlight-hover": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.06
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.07
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.08
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.06
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.06
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.06
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.06
-    },
-  },
-  "alias.highlight-down": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.15
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-  },
-  "alias.highlight-selected": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.32941176470588235,
-        0.6392156862745098,
-        0.9647058823529412
-      ],
-      "alpha": 0.15
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.5882352941176471,
-        0.9529411764705882
-      ],
-      "alpha": 0.2
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.4117647058823529,
-        0.8901960784313725
-      ],
-      "alpha": 0.1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.6666666666666666,
-        0.9686274509803922
-      ],
-      "alpha": 0.1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3411764705882353,
-        0.7450980392156863
-      ],
-      "alpha": 0.1
-    },
-  },
-  "alias.highlight-selected-hover": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.2
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.32941176470588235,
-        0.6392156862745098,
-        0.9647058823529412
-      ],
-      "alpha": 0.25
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.5882352941176471,
-        0.9529411764705882
-      ],
-      "alpha": 0.3
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.2
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.4117647058823529,
-        0.8901960784313725
-      ],
-      "alpha": 0.2
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.6666666666666666,
-        0.9686274509803922
-      ],
-      "alpha": 0.2
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3411764705882353,
-        0.7450980392156863
-      ],
-      "alpha": 0.2
-    },
-  },
-  "alias.text-highlight-color": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.2
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.32941176470588235,
-        0.6392156862745098,
-        0.9647058823529412
-      ],
-      "alpha": 0.25
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.5882352941176471,
-        0.9529411764705882
-      ],
-      "alpha": 0.3
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.396078431372549,
-        0.8627450980392157
-      ],
-      "alpha": 0.2
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.4117647058823529,
-        0.8901960784313725
-      ],
-      "alpha": 0.2
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3686274509803922,
-        0.6666666666666666,
-        0.9686274509803922
-      ],
-      "alpha": 0.2
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.3411764705882353,
-        0.7450980392156863
-      ],
-      "alpha": 0.2
-    },
-  },
-  "alias.border-color-translucent": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "dark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.1
-    },
-    "darkest": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.1
-    },
-    "light": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "lightest": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-    "middark": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 0.1
-    },
-    "midlight": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0,
-        0
-      ],
-      "alpha": 0.1
-    },
-  },
-  "alias.radial-reaction-color": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
+        0.7843137254901961,
         0.13333333333333333,
+        0.4117647058823529
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9294117647058824,
+        0.3411764705882353,
+        0.5843137254901961
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8901960784313725,
+        0.27058823529411763,
+        0.5372549019607843
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7843137254901961,
         0.13333333333333333,
-        0.13333333333333333
+        0.4117647058823529
       ],
-      "alpha": 0.6
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.803921568627451,
+        0.1568627450980392,
+        0.43529411764705883
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9490196078431372,
+        0.38823529411764707,
+        0.615686274509804
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7019607843137254,
+        0.058823529411764705,
+        0.34509803921568627
+      ],
+      "alpha": 1
     },
   },
-  "alias.pasteboard-background-color": {
+  "global.color.magenta.600": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.6784313725490196,
+        0.03529411764705882,
+        0.3333333333333333
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.4470588235294118,
+        0.6549019607843137
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9450980392156862,
+        0.3803921568627451,
+        0.611764705882353
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6784313725490196,
+        0.03529411764705882,
+        0.3333333333333333
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7019607843137254,
+        0.058823529411764705,
+        0.34901960784313724
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9882352941176471,
+        0.4823529411764706,
+        0.6784313725490196
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5843137254901961,
+        0,
+        0.2823529411764706
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.magenta.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5568627450980392,
+        0,
+        0.27058823529411763
       ],
       "alpha": 1
     },
@@ -4703,35 +3703,35 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.5607843137254902,
+        0.7254901960784313
       ],
       "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0.9882352941176471,
+        0.48627450980392156,
+        0.6784313725490196
       ],
       "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.5568627450980392,
+        0,
+        0.27058823529411763
       ],
       "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.5843137254901961,
+        0,
+        0.2823529411764706
       ],
       "alpha": 1
     },
@@ -4739,28 +3739,218 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.5882352941176471,
+        0.7411764705882353
       ],
       "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.4549019607843137,
+        0,
+        0.2235294117647059
       ],
       "alpha": 1
     },
   },
-  "alias.appframe.border-color": {
+  "global.color.opacity.0": {
+    ".": 0,
+  },
+  "global.color.opacity.4": {
+    ".": 0.04,
+  },
+  "global.color.opacity.5": {
+    ".": 0.05,
+  },
+  "global.color.opacity.6": {
+    ".": 0.06,
+  },
+  "global.color.opacity.7": {
+    ".": 0.07,
+  },
+  "global.color.opacity.8": {
+    ".": 0.08,
+  },
+  "global.color.opacity.10": {
+    ".": 0.1,
+  },
+  "global.color.opacity.15": {
+    ".": 0.15,
+  },
+  "global.color.opacity.20": {
+    ".": 0.2,
+  },
+  "global.color.opacity.25": {
+    ".": 0.25,
+  },
+  "global.color.opacity.30": {
+    ".": 0.3,
+  },
+  "global.color.opacity.40": {
+    ".": 0.4,
+  },
+  "global.color.opacity.42": {
+    ".": 0.42,
+  },
+  "global.color.opacity.50": {
+    ".": 0.5,
+  },
+  "global.color.opacity.55": {
+    ".": 0.55,
+  },
+  "global.color.opacity.60": {
+    ".": 0.6,
+  },
+  "global.color.opacity.70": {
+    ".": 0.7,
+  },
+  "global.color.opacity.80": {
+    ".": 0.8,
+  },
+  "global.color.opacity.90": {
+    ".": 0.9,
+  },
+  "global.color.opacity.100": {
+    ".": 1,
+  },
+  "global.color.orange.400": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.9647058823529412,
+        0.5215686274509804,
+        0.06666666666666667
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9568627450980393,
+        0.5058823529411764,
+        0.047058823529411764
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9098039215686274,
+        0.4549019607843137,
+        0
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9647058823529412,
+        0.5215686274509804,
+        0.06666666666666667
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9803921568627451,
+        0.5450980392156862,
+        0.10196078431372549
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9725490196078431,
+        0.5372549019607843,
+        0.08627450980392157
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8941176470588236,
+        0.43529411764705883,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.orange.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8941176470588236,
+        0.43529411764705883,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.6039215686274509,
+        0.1803921568627451
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.5372549019607843,
+        0.09019607843137255
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8941176470588236,
+        0.43529411764705883,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9137254901960784,
+        0.4588235294117647,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.6313725490196078,
+        0.2235294117647059
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.803921568627451,
+        0.37254901960784315,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.orange.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.796078431372549,
+        0.36470588235294116,
+        0
       ],
       "alpha": 1
     },
@@ -4768,8 +3958,8 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.7098039215686275,
+        0.34509803921568627
       ],
       "alpha": 1
     },
@@ -4777,26 +3967,26 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.6352941176470588,
+        0.23137254901960785
       ],
       "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.796078431372549,
+        0.36470588235294116,
+        0
       ],
       "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.8196078431372549,
+        0.3803921568627451,
+        0
       ],
       "alpha": 1
     },
@@ -4804,28 +3994,483 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.7294117647058823,
+        0.3803921568627451
       ],
       "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.7098039215686275,
+        0.30980392156862746,
+        0
       ],
       "alpha": 1
     },
   },
-  "alias.appframe.separator-color": {
+  "global.color.orange.700": {
     ".": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.6941176470588235,
+        0.2980392156862745,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.807843137254902,
+        0.5333333333333333
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.7372549019607844,
+        0.4
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6941176470588235,
+        0.2980392156862745,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7137254901960784,
+        0.3137254901960784,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.8156862745098039,
+        0.5568627450980392
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6078431372549019,
+        0.25098039215686274,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.purple.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.615686274509804,
+        0.3411764705882353,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.615686274509804,
+        0.3411764705882353,
+        0.9529411764705882
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5686274509803921,
+        0.27450980392156865,
+        0.9254901960784314
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.615686274509804,
+        0.3411764705882353,
+        0.9568627450980393
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6313725490196078,
+        0.36470588235294116,
+        0.9647058823529412
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6509803921568628,
+        0.39215686274509803,
+        0.9686274509803922
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5529411764705883,
+        0.25882352941176473,
+        0.9137254901960784
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.purple.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5372549019607843,
+        0.23921568627450981,
+        0.9058823529411765
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6745098039215687,
+        0.43529411764705883,
+        0.9764705882352941
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6352941176470588,
+        0.3686274509803922,
+        0.9647058823529412
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5372549019607843,
+        0.23921568627450981,
+        0.9058823529411765
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5568627450980392,
+        0.2627450980392157,
+        0.9176470588235294
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7019607843137254,
+        0.4745098039215686,
+        0.9803921568627451
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.47058823529411764,
+        0.16470588235294117,
+        0.8470588235294118
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.purple.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.45098039215686275,
+        0.14901960784313725,
+        0.8274509803921568
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7333333333333333,
+        0.5294117647058824,
+        0.984313725490196
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6980392156862745,
+        0.4666666666666667,
+        0.9803921568627451
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.45098039215686275,
+        0.14901960784313725,
+        0.8274509803921568
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.47058823529411764,
+        0.16862745098039217,
+        0.8470588235294118
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7529411764705882,
+        0.5607843137254902,
+        0.9882352941176471
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3803921568627451,
+        0.08627450980392157,
+        0.7450980392156863
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.purple.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.36470588235294116,
+        0.07450980392156863,
+        0.7176470588235294
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.792156862745098,
+        0.6235294117647059,
+        0.9882352941176471
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7529411764705882,
+        0.5607843137254902,
+        0.9882352941176471
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.36470588235294116,
+        0.07450980392156863,
+        0.7176470588235294
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3843137254901961,
+        0.09019607843137255,
+        0.7450980392156863
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.803921568627451,
+        0.6470588235294118,
+        0.9921568627450981
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.2901960784313726,
+        0.047058823529411764,
+        0.6
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.red.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9176470588235294,
+        0.2196078431372549,
+        0.1607843137254902
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9176470588235294,
+        0.2196078431372549,
+        0.1607843137254902
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8666666666666667,
+        0.12941176470588237,
+        0.09411764705882353
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9176470588235294,
+        0.2196078431372549,
+        0.1607843137254902
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9294117647058824,
+        0.25098039215686274,
+        0.18823529411764706
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9450980392156862,
+        0.2901960784313726,
+        0.21568627450980393
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8470588235294118,
+        0.10196078431372549,
+        0.07450980392156863
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.red.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8274509803921568,
+        0.08235294117647059,
+        0.06274509803921569
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9647058823529412,
+        0.34509803921568627,
+        0.2627450980392157
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9333333333333333,
+        0.2627450980392157,
+        0.19215686274509805
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8274509803921568,
+        0.08235294117647059,
+        0.06274509803921569
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8509803921568627,
+        0.10980392156862745,
+        0.08235294117647059
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9803921568627451,
+        0.396078431372549,
+        0.30980392156862746
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7333333333333333,
+        0.00784313725490196,
+        0.00784313725490196
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.red.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7058823529411765,
+        0,
+        0
       ],
       "alpha": 1
     },
@@ -4833,35 +4478,35 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.4588235294117647,
+        0.3686274509803922
       ],
       "alpha": 1
     },
     "darkest": {
       "colorSpace": "srgb",
       "components": [
-        1,
-        1,
-        1
+        0.9764705882352941,
+        0.38823529411764707,
+        0.2980392156862745
       ],
       "alpha": 1
     },
     "light": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.7058823529411765,
+        0,
+        0
       ],
       "alpha": 1
     },
     "lightest": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.7333333333333333,
+        0.00784313725490196,
+        0.00784313725490196
       ],
       "alpha": 1
     },
@@ -4869,22 +4514,607 @@ export const tokens = {
       "colorSpace": "srgb",
       "components": [
         1,
-        1,
-        1
+        0.5058823529411764,
+        0.4196078431372549
       ],
       "alpha": 1
     },
     "midlight": {
       "colorSpace": "srgb",
       "components": [
-        0.8352941176470589,
-        0.8352941176470589,
-        0.8352941176470589
+        0.6,
+        0,
+        0
       ],
       "alpha": 1
     },
   },
-  "scrollbar.mac.s.track-background-color": {
+  "global.color.red.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5764705882352941,
+        0,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.5843137254901961,
+        0.5058823529411764
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.5058823529411764,
+        0.4196078431372549
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5764705882352941,
+        0,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6039215686274509,
+        0,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.611764705882353,
+        0.5372549019607843
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.47058823529411764,
+        0,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.seafoam.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6313725490196078,
+        0.6039215686274509
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6196078431372549,
+        0.596078431372549
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.5725490196078431,
+        0.5490196078431373
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6313725490196078,
+        0.6039215686274509
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6509803921568628,
+        0.6274509803921569
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6549019607843137,
+        0.6274509803921569
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.5568627450980392,
+        0.5333333333333333
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.seafoam.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.5490196078431373,
+        0.5294117647058824
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.011764705882352941,
+        0.6980392156862745,
+        0.6705882352941176
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.6470588235294118,
+        0.6235294117647059
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.5490196078431373,
+        0.5294117647058824
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.5686274509803921,
+        0.5450980392156862
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.09803921568627451,
+        0.7215686274509804,
+        0.6941176470588235
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.47843137254901963,
+        0.4588235294117647
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.seafoam.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.4666666666666667,
+        0.4470588235294118
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.21176470588235294,
+        0.7725490196078432,
+        0.7411764705882353
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.10196078431372549,
+        0.7254901960784313,
+        0.6980392156862745
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.4666666666666667,
+        0.4470588235294118
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.48627450980392156,
+        0.4627450980392157
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.788235294117647,
+        0.7607843137254902
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.403921568627451,
+        0.38823529411764707
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.seafoam.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.38823529411764707,
+        0.37254901960784315
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.36470588235294116,
+        0.8392156862745098,
+        0.8117647058823529
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25882352941176473,
+        0.792156862745098,
+        0.7647058823529411
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.38823529411764707,
+        0.37254901960784315
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.403921568627451,
+        0.38823529411764707
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.39215686274509803,
+        0.8509803921568627,
+        0.8235294117647058
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0392156862745098,
+        0.3254901960784314,
+        0.3137254901960784
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.yellow.400": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9098039215686274,
+        0.7764705882352941,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8941176470588236,
+        0.7607843137254902,
+        0
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8470588235294118,
+        0.7098039215686275,
+        0
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9098039215686274,
+        0.7764705882352941,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9333333333333333,
+        0.803921568627451,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9098039215686274,
+        0.7725490196078432,
+        0
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8274509803921568,
+        0.6862745098039216,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.yellow.500": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8431372549019608,
+        0.7019607843137254,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9568627450980393,
+        0.8352941176470589,
+        0
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9137254901960784,
+        0.7803921568627451,
+        0
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8431372549019608,
+        0.7019607843137254,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8666666666666667,
+        0.7254901960784313,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9647058823529412,
+        0.8431372549019608,
+        0.00784313725490196
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7607843137254902,
+        0.615686274509804,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.yellow.600": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7686274509803922,
+        0.6235294117647059,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.9098039215686274,
+        0.3607843137254902
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9686274509803922,
+        0.8470588235294118,
+        0.01568627450980392
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7686274509803922,
+        0.6235294117647059,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.788235294117647,
+        0.6431372549019608,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.9176470588235294,
+        0.38823529411764707
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6901960784313725,
+        0.5490196078431373,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "global.color.yellow.700": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6901960784313725,
+        0.5490196078431373,
+        0
+      ],
+      "alpha": 1
+    },
+    "dark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9882352941176471,
+        0.9647058823529412,
+        0.7333333333333333
+      ],
+      "alpha": 1
+    },
+    "darkest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.9137254901960784,
+        0.3803921568627451
+      ],
+      "alpha": 1
+    },
+    "light": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6901960784313725,
+        0.5490196078431373,
+        0
+      ],
+      "alpha": 1
+    },
+    "lightest": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7098039215686275,
+        0.5647058823529412,
+        0
+      ],
+      "alpha": 1
+    },
+    "middark": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.9647058823529412,
+        0.7490196078431373
+      ],
+      "alpha": 1
+    },
+    "midlight": {
+      "colorSpace": "srgb",
+      "components": [
+        0.615686274509804,
+        0.47843137254901963,
+        0
+      ],
+      "alpha": 1
+    },
+  },
+  "scrollbar.mac.l.track-background-color": {
     ".": {
       "colorSpace": "srgb",
       "components": [
@@ -4996,7 +5226,7 @@ export const tokens = {
       "alpha": 0
     },
   },
-  "scrollbar.mac.l.track-background-color": {
+  "scrollbar.mac.s.track-background-color": {
     ".": {
       "colorSpace": "srgb",
       "components": [
@@ -5106,236 +5336,6 @@ export const tokens = {
         0.12941176470588237
       ],
       "alpha": 0.02
-    },
-  },
-  "font.family.clean": {
-    ".": [
-      "Adobe Clean"
-    ],
-  },
-  "font.family.cleanSerif": {
-    ".": [
-      "Adobe Clean Serif"
-    ],
-  },
-  "font.family.cleanHan": {
-    ".": [
-      "Adobe Clean Han"
-    ],
-  },
-  "font.family.sourceCode": {
-    ".": [
-      "Source Code Pro"
-    ],
-  },
-  "font.size.50": {
-    ".": {
-      "value": 11,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 11,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 13,
-      "unit": "px"
-    },
-  },
-  "font.size.75": {
-    ".": {
-      "value": 12,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 12,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 13,
-      "unit": "px"
-    },
-  },
-  "font.size.100": {
-    ".": {
-      "value": 14,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 14,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 17,
-      "unit": "px"
-    },
-  },
-  "font.size.200": {
-    ".": {
-      "value": 16,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 16,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 19,
-      "unit": "px"
-    },
-  },
-  "font.size.300": {
-    ".": {
-      "value": 18,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 18,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 22,
-      "unit": "px"
-    },
-  },
-  "font.size.400": {
-    ".": {
-      "value": 20,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 20,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 24,
-      "unit": "px"
-    },
-  },
-  "font.size.500": {
-    ".": {
-      "value": 22,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 22,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 27,
-      "unit": "px"
-    },
-  },
-  "font.size.600": {
-    ".": {
-      "value": 25,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 25,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 31,
-      "unit": "px"
-    },
-  },
-  "font.size.700": {
-    ".": {
-      "value": 28,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 28,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 34,
-      "unit": "px"
-    },
-  },
-  "font.size.800": {
-    ".": {
-      "value": 32,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 32,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 39,
-      "unit": "px"
-    },
-  },
-  "font.size.900": {
-    ".": {
-      "value": 36,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 36,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 44,
-      "unit": "px"
-    },
-  },
-  "font.size.1000": {
-    ".": {
-      "value": 40,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 40,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 49,
-      "unit": "px"
-    },
-  },
-  "font.size.1100": {
-    ".": {
-      "value": 45,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 45,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 45,
-      "unit": "px"
-    },
-  },
-  "font.size.1200": {
-    ".": {
-      "value": 50,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 50,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 52,
-      "unit": "px"
-    },
-  },
-  "font.size.1300": {
-    ".": {
-      "value": 60,
-      "unit": "px"
-    },
-    "desktop": {
-      "value": 60,
-      "unit": "px"
-    },
-    "mobile": {
-      "value": 60,
-      "unit": "px"
     },
   },
 };

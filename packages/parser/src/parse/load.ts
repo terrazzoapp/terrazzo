@@ -1,9 +1,16 @@
 import * as momoa from '@humanwhocodes/momoa';
-import { bundle, getObjMember, type RefMap, replaceNode, traverseAsync } from '@terrazzo/json-schema-tools';
+import {
+  type BundleOptions,
+  bundle,
+  getObjMember,
+  type RefMap,
+  replaceNode,
+  traverseAsync,
+} from '@terrazzo/json-schema-tools';
 import type { GroupNormalized, TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { toMomoa } from '../lib/momoa.js';
 import type Logger from '../logger.js';
-import type { InputSource, ParseOptions } from '../types.js';
+import type { InputSource, ParseOptions, TransformVisitors } from '../types.js';
 import { normalize } from './normalize.js';
 import {
   graphAliases,
@@ -72,58 +79,7 @@ export async function loadSources(
 
   try {
     const result = await bundle(sources, {
-      parse: transform
-        ? async (src, filename) => {
-            const document = toMomoa(src);
-            let lastPath = '#/';
-            let last$type: string | undefined;
-            await traverseAsync(src, {
-              async enter(node, parent, path) {
-                const ctx = { filename, parent, path };
-                switch (node.type) {
-                  case 'Document': {
-                    const result = transform.root?.(structuredClone(node), ctx);
-                    if (result) {
-                      if (result.type !== 'Document') {
-                        logger.error({ ...entry, message: `Expected Document, received ${result.type}` });
-                      }
-                      replaceNode(document, result);
-                    }
-                    break;
-                  }
-                  case 'Object': {
-                    const next$type = getObjMember(node, '$type');
-                    if (next$type?.type === 'String') {
-                      const jsonPath = `#/${path.join('/')}`;
-                      if (jsonPath.startsWith(lastPath)) {
-                        last$type = next$type.value;
-                      }
-                      lastPath = jsonPath;
-                    }
-                    if (getObjMember(node, '$value')) {
-                      let result: any = transform.token?.(structuredClone(node), ctx);
-                      if (result) {
-                        replaceNode(document, result);
-                        result = undefined;
-                      }
-                      result = transform[last$type as keyof typeof transform]?.(structuredClone(node as any), ctx);
-                      if (result) {
-                        replaceNode(document, result);
-                      }
-                    } else {
-                      const result = transform.group?.(structuredClone(node), ctx);
-                      if (result) {
-                        replaceNode(document, result);
-                      }
-                    }
-                    break;
-                  }
-                }
-              },
-            });
-            return document;
-          }
-        : undefined,
+      parse: transform ? transformer(transform) : undefined,
       yamlToMomoa,
     });
     document = result.document;
@@ -241,5 +197,58 @@ export async function loadSources(
     tokensSorted[id] = tokens[path]!;
   }
 
-  return { tokens: tokensSorted, sources };
+  return {
+    tokens: tokensSorted,
+    sources,
+  };
+}
+
+function transformer(transform: TransformVisitors): BundleOptions['parse'] {
+  return async (src, filename) => {
+    let document = toMomoa(src);
+    let lastPath = '#/';
+    let last$type: string | undefined;
+
+    if (transform.root) {
+      const result = transform.root(document, { filename, parent: undefined, path: [] });
+      if (result) {
+        document = result as momoa.DocumentNode;
+      }
+    }
+
+    await traverseAsync(document, {
+      async enter(node, parent, path) {
+        if (node.type !== 'Object' || !path.length) {
+          return;
+        }
+        const ctx = { filename, parent, path };
+        const next$type = getObjMember(node, '$type');
+        if (next$type?.type === 'String') {
+          const jsonPath = `#/${path.join('/')}`;
+          if (jsonPath.startsWith(lastPath)) {
+            last$type = next$type.value;
+          }
+          lastPath = jsonPath;
+        }
+        if (getObjMember(node, '$value')) {
+          let result: any = transform.token?.(structuredClone(node), ctx);
+          if (result) {
+            replaceNode(node, result);
+            result = undefined;
+          }
+          result = transform[last$type as keyof typeof transform]?.(structuredClone(node as any), ctx);
+          if (result) {
+            replaceNode(node, result);
+          }
+        } else if (!path.includes('$value')) {
+          const result = transform.group?.(structuredClone(node), ctx);
+          if (result) {
+            replaceNode(node, result);
+          }
+        }
+      },
+    });
+
+    return document;
+  };
 }

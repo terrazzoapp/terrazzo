@@ -173,7 +173,13 @@ export default function myPlugin() {
 
 :::
 
-### config()
+### config
+
+|               |                               |
+| :------------ | :---------------------------- |
+| Description   | Read the user’s final config. |
+| Previous step |                               |
+| Next step     | [lint](#lint)                 |
 
 The `config()` hook fires after all plugins have been registered and the final config is resolved. This is handy when you need to grab a value from `terrazzo.config.js` (but note you can’t modify anything!).
 
@@ -198,9 +204,16 @@ export default function myPlugin() {
 `config()` is **read-only**.
 :::
 
-### lint()
+### lint
 
-This is an optional step, where a plugin may register lint rules (similar to [ESLint](https://eslint.org/)) to warn or throw errors on your design tokens.
+| Quality       | Notes                   |
+| :------------ | :---------------------- |
+| Kind          | async, sequential       |
+| Description   | Run linters.            |
+| Previous step | [config](#config)       |
+| Next step     | [transform](#transform) |
+
+A plugin may register lint rules (similar to [ESLint](https://eslint.org/)) to warn or throw errors on your design tokens. Terrazzo ships with the [core linter plugin](/linting).
 
 :::warn
 If upgrading from Cobalt, the API has changed! Now it matches ESLint far more closely than before for an easier experience.
@@ -279,7 +292,14 @@ Unlike ESLint, there are a few notable differences:
 - **There’s no AST visitor.** Linting tokens is much simpler than linting an actual programming language. For that reason, there’s no AST visitor. Most token linters will simply iterate over `context.tokens` for everything they need. However, if you _really_ want to traverse an AST, you can do so by parsing and traversing `context.src` yourself.
 - **There’s no auto-fixing.** Linting tokens is also a bit different, in that the source of truth may not even be source code (it was likely generated from Figma, etc.). So the APIs around fixing aren’t there yet; we’re only concerned with raising issues.
 
-### transform()
+### transform
+
+| Quality       | Notes                          |
+| :------------ | :----------------------------- |
+| Kind          | async, sequential              |
+| Description   | Populate initial token values. |
+| Previous step | [lint](#lint)                  |
+| Next step     | [build](#build)                |
 
 The **transform** hook can populate a format with transformed values. A **format** is a **language** that tokens will be written to, such as, but not limited to: `css`, `scss`, `json`, `js`, `ts`, and more.
 
@@ -322,7 +342,14 @@ export default function myPlugin() {
 | `getTransforms` | `({ format: string, id?: string \| string[], $type?: string \| string[], mode?: string \| string[] }) => void`   | Get current token transforms (note that formats may be empty in this step if your plugin [runs first](#enforce))                                                                                                    |
 | `ast`           | `Object`                                                                                                         | A [JSON AST](https://github.com/humanwhocodes/momoa/tree/main/js) that represents the original tokens file (good for pointing to a specific line in the source file in case of an error, but otherwise not useful). |
 
-### build()
+### build
+
+| Quality       | Notes                                                              |
+| :------------ | :----------------------------------------------------------------- |
+| Kind          | async, parallel                                                    |
+| Description   | Assemble token values into built file(s) that get written to disk. |
+| Previous step | [transform](#transform)                                            |
+| Next step     | [buildEnd](#buildend)                                              |
 
 The build step is where a format’s values are read and converted into output file(s). Note that the build step does always have access to the original `tokens`, however, it’s advantageous to take advantage of any [transforms](#transform) that could save some work in this step.
 
@@ -375,7 +402,14 @@ Though `outputFile()` takes a string, you are free to use an [AST](https://astex
 
 :::
 
-### buildEnd()
+### buildEnd
+
+| Quality       | Notes                                        |
+| :------------ | :------------------------------------------- |
+| Kind          | async, parallel                              |
+| Description   | Inspect the final build and all built files. |
+| Previous step | [build](#build)                              |
+| Next step     |                                              |
 
 **buildEnd** is an optional step that is only useful for introspecting the files that were built. Though it’s too late to modify any tokens or output, you can see the final result of the build process.
 

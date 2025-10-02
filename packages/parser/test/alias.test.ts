@@ -300,6 +300,267 @@ font:
       },
     ],
     [
+      'valid: Shadow (object)',
+      {
+        given: [
+          {
+            src: {
+              space: {
+                $type: 'dimension',
+                0: { $value: { value: 0, unit: 'rem' } },
+                1: { $value: { value: 0.5, unit: 'rem' } },
+              },
+              color: {
+                $type: 'color',
+                shadow: {
+                  1: { $value: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 } },
+                },
+              },
+              shadow: {
+                base: {
+                  $type: 'shadow',
+                  $value: {
+                    offsetX: '{space.1}',
+                    offsetY: '{space.1}',
+                    spread: '{space.0}',
+                    blur: '{space.1}',
+                    color: '{color.shadow.1}',
+                  },
+                },
+              },
+            },
+            filename: DEFAULT_FILENAME,
+          },
+        ],
+        want: {
+          tokens: {
+            'color.shadow.1': {
+              $value: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+              aliasedBy: ['shadow.base'],
+            },
+            'space.0': { $value: { value: 0, unit: 'rem' }, aliasedBy: ['shadow.base'] },
+            'space.1': { $value: { value: 0.5, unit: 'rem' }, aliasedBy: ['shadow.base'] },
+            'shadow.base': {
+              $value: [
+                {
+                  inset: false,
+                  offsetX: { value: 0.5, unit: 'rem' },
+                  offsetY: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  color: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+                },
+              ],
+              partialAliasOf: [
+                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.1', offsetY: 'space.1', spread: 'space.0' },
+              ],
+              dependencies: ['#/color/shadow/1/$value', '#/space/0/$value', '#/space/1/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: Shadow (array)',
+      {
+        given: [
+          {
+            src: {
+              space: {
+                $type: 'dimension',
+                0: { $value: { value: 0, unit: 'rem' } },
+                1: { $value: { value: 0.5, unit: 'rem' } },
+                2: { $value: { value: 1, unit: 'rem' } },
+              },
+              color: {
+                $type: 'color',
+                shadow: {
+                  1: { $value: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 } },
+                },
+              },
+              shadow: {
+                base: {
+                  $type: 'shadow',
+                  $value: [
+                    {
+                      offsetX: '{space.1}',
+                      offsetY: '{space.1}',
+                      spread: '{space.0}',
+                      blur: '{space.1}',
+                      color: '{color.shadow.1}',
+                    },
+                    {
+                      offsetX: '{space.2}',
+                      offsetY: '{space.2}',
+                      spread: '{space.0}',
+                      blur: '{space.1}',
+                      color: '{color.shadow.1}',
+                    },
+                  ],
+                },
+              },
+            },
+            filename: DEFAULT_FILENAME,
+          },
+        ],
+        want: {
+          tokens: {
+            'color.shadow.1': {
+              $value: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+              aliasedBy: ['shadow.base'],
+            },
+            'space.0': { $value: { value: 0, unit: 'rem' }, aliasedBy: ['shadow.base'] },
+            'space.1': { $value: { value: 0.5, unit: 'rem' }, aliasedBy: ['shadow.base'] },
+            'space.2': { $value: { unit: 'rem', value: 1 }, aliasedBy: ['shadow.base'] },
+            'shadow.base': {
+              $value: [
+                {
+                  inset: false,
+                  offsetX: { value: 0.5, unit: 'rem' },
+                  offsetY: { value: 0.5, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  color: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+                },
+                {
+                  inset: false,
+                  offsetX: { value: 1, unit: 'rem' },
+                  offsetY: { value: 1, unit: 'rem' },
+                  spread: { value: 0, unit: 'rem' },
+                  blur: { value: 0.5, unit: 'rem' },
+                  color: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+                },
+              ],
+              partialAliasOf: [
+                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.1', offsetY: 'space.1', spread: 'space.0' },
+                { blur: 'space.1', color: 'color.shadow.1', offsetX: 'space.2', offsetY: 'space.2', spread: 'space.0' },
+              ],
+              dependencies: ['#/color/shadow/1/$value', '#/space/0/$value', '#/space/1/$value', '#/space/2/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
+      'valid: Typography',
+      {
+        given: [
+          {
+            src: {
+              size: {
+                $type: 'dimension',
+                md: { $value: { value: 1, unit: 'rem' } },
+                zero: { $value: { value: 0, unit: 'px' } },
+              },
+              family: {
+                $type: 'fontFamily',
+                base: { $value: ['Helvetica'] },
+              },
+              number: { $type: 'number', one: { $value: 1 } },
+              typography: {
+                $type: 'typography',
+                $value: {
+                  fontFamily: '{family.base}',
+                  fontWeight: '{weight.normal}',
+                  fontSize: '{size.md}',
+                  lineHeight: '{number.one}',
+                  letterSpacing: '{size.zero}',
+                },
+              },
+              weight: { $type: 'fontWeight', normal: { $value: 400 } },
+            },
+            filename: DEFAULT_FILENAME,
+          },
+        ],
+        want: {
+          tokens: {
+            'family.base': { $value: ['Helvetica'], aliasedBy: ['typography'] },
+            'number.one': { $value: 1, aliasedBy: ['typography'] },
+            'size.md': { $value: { unit: 'rem', value: 1 }, aliasedBy: ['typography'] },
+            'size.zero': { $value: { unit: 'px', value: 0 }, aliasedBy: ['typography'] },
+            typography: {
+              $value: {
+                fontFamily: ['Helvetica'],
+                fontSize: { unit: 'rem', value: 1 },
+                fontWeight: 400,
+                letterSpacing: { unit: 'px', value: 0 },
+                lineHeight: 1,
+              },
+              dependencies: [
+                '#/family/base/$value',
+                '#/number/one/$value',
+                '#/size/md/$value',
+                '#/size/zero/$value',
+                '#/weight/normal/$value',
+              ],
+              partialAliasOf: {
+                fontFamily: 'family.base',
+                fontSize: 'size.md',
+                fontWeight: 'weight.normal',
+                letterSpacing: 'size.zero',
+                lineHeight: 'number.one',
+              },
+            },
+            'weight.normal': { $value: 400, aliasedBy: ['typography'] },
+          },
+        },
+      },
+    ],
+    [
+      'valid: same type',
+      {
+        given: [
+          {
+            src: {
+              color: {
+                slate: {
+                  '700': {
+                    $type: 'color',
+                    $value: {
+                      colorSpace: 'srgb',
+                      components: [0.35294117647058826, 0.35294117647058826, 0.35294117647058826],
+                      alpha: 1,
+                      hex: '#5a5a5a',
+                    },
+                  },
+                },
+                bg: {
+                  neutral: {
+                    default: { $type: 'color', $value: '{color.slate.700}' },
+                  },
+                },
+              },
+            },
+            filename: DEFAULT_FILENAME,
+          },
+        ],
+        want: {
+          tokens: {
+            'color.slate.700': {
+              $value: {
+                colorSpace: 'srgb',
+                components: [0.35294117647058826, 0.35294117647058826, 0.35294117647058826],
+                alpha: 1,
+                hex: '#5a5a5a',
+              },
+              aliasedBy: ['color.bg.neutral.default'],
+            },
+            'color.bg.neutral.default': {
+              $value: {
+                colorSpace: 'srgb',
+                components: [0.35294117647058826, 0.35294117647058826, 0.35294117647058826],
+                alpha: 1,
+                hex: '#5a5a5a',
+              },
+              aliasChain: ['color.slate.700'],
+              aliasOf: 'color.slate.700',
+              dependencies: ['#/color/slate/700/$value'],
+            },
+          },
+        },
+      },
+    ],
+    [
       'valid: deep, but noncircular',
       {
         given: [
@@ -603,6 +864,32 @@ font:
   15 |     }
   16 |   }
   17 | }`,
+        },
+      },
+    ],
+    [
+      'invalid: wrong type (root)',
+      {
+        given: [
+          {
+            filename: DEFAULT_FILENAME,
+            src: {
+              $type: 'number',
+              100: { $value: 100 },
+              border: { base: { $type: 'color', $value: '{100}' } },
+            },
+          },
+        ],
+        want: {
+          error: `[parser:init] Cannot alias to $type "number" from $type "color".
+
+   7 |     "base": {
+   8 |       "$type": "color",
+>  9 |       "$value": "{100}"
+     |                 ^
+  10 |     }
+  11 |   }
+  12 | }`,
         },
       },
     ],

@@ -872,11 +872,13 @@ describe('Transform', () => {
           visits.push({ name: 'group', node, path });
         },
         color(node, { path }) {
+          visits.push({ name: 'color', node, path });
           if (path.join('.') === 'color.bg.neutral.hover') {
-            visits.push({ name: 'color', node, path });
-            const json = momoa.evaluate(node) as any;
-            json.$value = '{color.slate.900}';
-            return momoa.parse(json).body as momoa.ObjectNode;
+            (
+              (node as momoa.ObjectNode).members.find((m) => (m.name as momoa.StringNode).value === '$value')!
+                .value as momoa.StringNode
+            ).value = '{color.slate.900}';
+            return node;
           }
         },
       },
@@ -884,17 +886,17 @@ describe('Transform', () => {
 
     // assert visitors arrived in the right order
     expect(visits.map(({ name, path }) => ({ name, path }))).toEqual([
-      { name: 'root', path: '.' },
-      { name: 'group', path: 'color' },
-      { name: 'group', path: 'color.slate' },
-      { name: 'color', path: 'color.slate.700' },
-      { name: 'color', path: 'color.slate.800' },
-      { name: 'color', path: 'color.slate.900' },
-      { name: 'color', path: 'color.slate.1000' },
-      { name: 'group', path: 'color.bg' },
-      { name: 'group', path: 'color.bg.neutral' },
-      { name: 'color', path: 'color.bg.neutral.default' },
-      { name: 'color', path: 'color.bg.neutral.hover' },
+      { name: 'root', path: [] },
+      { name: 'group', path: ['color'] },
+      { name: 'group', path: ['color', 'slate'] },
+      { name: 'color', path: ['color', 'slate', '700'] },
+      { name: 'color', path: ['color', 'slate', '800'] },
+      { name: 'color', path: ['color', 'slate', '900'] },
+      { name: 'color', path: ['color', 'slate', '1000'] },
+      { name: 'group', path: ['color', 'bg'] },
+      { name: 'group', path: ['color', 'bg', 'neutral'] },
+      { name: 'color', path: ['color', 'bg', 'neutral', 'default'] },
+      { name: 'color', path: ['color', 'bg', 'neutral', 'hover'] },
     ]);
 
     // assert color.bg.neutral.hover was transformed to color.slate.900 (not color.slate.800 as originally authored)
@@ -911,10 +913,11 @@ describe('Transform', () => {
     const src = `{
   "color": {
     "slate": {
-      "700": { "$type": "color", "$value": "#5a5a5a" },
-      "800": { "$type": "color", "$value": "#434343" },
-      "900": { "$type": "color", "$value": "#303030" },
-      "1000": { "$type": "color", "$value": "#242424" }
+      "$type": "color",
+      "700": { "$value": { "colorSpace": "srgb", "components": [0.35294117647058826, 0.35294117647058826, 0.35294117647058826], "alpha": 1, "hex": "#5a5a5a" } },
+      "800": { "$value": { "colorSpace": "srgb", "components": [0.2627450980392157, 0.2627450980392157, 0.2627450980392157], "alpha": 1, "hex": "#434343" } },
+      "900": { "$value": { "colorSpace": "srgb", "components": [0.18823529411764706, 0.18823529411764706, 0.18823529411764706], "alpha": 1, "hex": "#303030" } },
+      "1000": {  "$value": { "colorSpace": "srgb", "components": [0.1411764705882353, 0.1411764705882353, 0.1411764705882353], "alpha": 1, "hex": "#242424" } }
     },
     "bg": {
       "neutral": {
@@ -925,7 +928,16 @@ describe('Transform', () => {
   }
 }`;
 
-    const config = defineConfig({}, { cwd });
+    const config = defineConfig(
+      {
+        lint: {
+          rules: {
+            'core/no-type-on-alias': 'off',
+          },
+        },
+      },
+      { cwd },
+    );
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
@@ -938,9 +950,11 @@ describe('Transform', () => {
         color(node, { path }) {
           visits.push({ name: 'color', node, path });
           if (path.join('.') === 'color.bg.neutral.hover') {
-            const json = momoa.evaluate(node) as any;
-            json.$value = '{color.slate.900}';
-            return momoa.parse(json);
+            (
+              (node as momoa.ObjectNode).members.find((m) => (m.name as momoa.StringNode).value === '$value')!
+                .value as momoa.StringNode
+            ).value = '{color.slate.900}';
+            return node;
           }
         },
       },
@@ -948,17 +962,17 @@ describe('Transform', () => {
 
     // assert visitors arrived in the right order
     expect(visits.map(({ name, path }) => ({ name, path }))).toEqual([
-      { name: 'root', path: '.' },
-      { name: 'group', path: 'color' },
-      { name: 'group', path: 'color.slate' },
-      { name: 'color', path: 'color.slate.700' },
-      { name: 'color', path: 'color.slate.800' },
-      { name: 'color', path: 'color.slate.900' },
-      { name: 'color', path: 'color.slate.1000' },
-      { name: 'group', path: 'color.bg' },
-      { name: 'group', path: 'color.bg.neutral' },
-      { name: 'color', path: 'color.bg.neutral.default' },
-      { name: 'color', path: 'color.bg.neutral.hover' },
+      { name: 'root', path: [] },
+      { name: 'group', path: ['color'] },
+      { name: 'group', path: ['color', 'slate'] },
+      { name: 'color', path: ['color', 'slate', '700'] },
+      { name: 'color', path: ['color', 'slate', '800'] },
+      { name: 'color', path: ['color', 'slate', '900'] },
+      { name: 'color', path: ['color', 'slate', '1000'] },
+      { name: 'group', path: ['color', 'bg'] },
+      { name: 'group', path: ['color', 'bg', 'neutral'] },
+      { name: 'color', path: ['color', 'bg', 'neutral', 'default'] },
+      { name: 'color', path: ['color', 'bg', 'neutral', 'hover'] },
     ]);
 
     // assert color.bg.neutral.hover was transformed to color.slate.900 (not color.slate.800 as originally authored)
@@ -989,9 +1003,10 @@ describe('Transform', () => {
       transform: {
         group(node, { path }) {
           if (path.join('.') === 'color.slate') {
-            const groupJSON = momoa.evaluate(node) as any;
-            delete groupJSON['900'];
-            return momoa.parse(groupJSON);
+            (node as momoa.ObjectNode).members = (node as momoa.ObjectNode).members.filter(
+              (m) => m.name.type === 'String' && m.name.value !== '900',
+            );
+            return node;
           }
         },
       },
@@ -1051,6 +1066,7 @@ describe('Transform', () => {
                 ).body as momoa.ObjectNode
               ).members[0]!,
             );
+            return node;
           }
         },
       },
@@ -1088,12 +1104,17 @@ describe('Transform', () => {
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {
-        foobar(json) {
-          return {
-            ...json,
-            $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0, 0.5333333333333333, 1], hex: '#0088ff' },
-          };
+        foobar(node) {
+          const members = (
+            momoa.parse(
+              JSON.stringify({
+                $type: 'color',
+                $value: { colorSpace: 'srgb', components: [0, 0.5333333333333333, 1], hex: '#0088ff' },
+              }),
+            ).body as momoa.ObjectNode
+          ).members;
+          (node as momoa.ObjectNode).members = members;
+          return node;
         },
       },
     });
