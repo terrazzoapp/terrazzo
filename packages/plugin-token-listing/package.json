@@ -46,6 +46,7 @@
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
+    "@vitest/coverage-v8": "3.2.4",
     "dtcg-examples": "^0.3.3"
   }
 }
