@@ -37,14 +37,15 @@ describe('tz build', () => {
 
     // poll for file creation (note: Vitest will handle timeouts)
     await new Promise((resolve) => {
-      setInterval(() => {
+      const interval = setInterval(() => {
         if (fs.existsSync(testFile)) {
+          clearInterval(interval);
           resolve(undefined);
         }
       }, 100);
     });
 
-    // abort process (preferred over child.kill()
+    // abort process (preferred over child.kill())
     controller.abort();
 
     // expect file isn’t empty
@@ -69,7 +70,7 @@ describe('tz build', () => {
         .replace(/file:\/\/\/[^"]+/g, 'file:///some-path/tokens.json')
         .replace(/"line": \d+/g, '"line": 0')
         .replace(/"column": \d+/g, '"column": 0')
-        .replace(/"offset": \d+/g, '"offset": 0')
+        .replace(/"offset": \d+/g, '"offset": 0');
       await expect(comparable).toMatchFileSnapshot(
         fileURLToPath(new URL('./styles/out/want.listing.json', cwd)),
       );
