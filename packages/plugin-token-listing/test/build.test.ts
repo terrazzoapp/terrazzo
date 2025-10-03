@@ -173,13 +173,29 @@ describe('token-listing plugin - Node.js API', () => {
       expect(mockNameFn).toHaveBeenCalledTimes(328);
     });
 
-    it('outputs names for a token by calling plugin logic when a plugin name is passed', async () => {
+    it('outputs names after plugin logic when a plugin name is passed', async () => {
       const options = {
         filename: 'actual.listing.json',
         platforms: {
           css: {
             description: 'CSS variables',
             name: '@terrazzo/plugin-css',
+          },
+        },
+      };
+      const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
+
+      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--colors-blue-1100');
+    });
+
+    it('outputs names after plugin logic when a plugin\'s format name is passed', async () => {
+      const options = {
+        filename: 'actual.listing.json',
+        platforms: {
+          css: {
+            description: 'CSS variables',
+            name: 'css',
           },
         },
       };

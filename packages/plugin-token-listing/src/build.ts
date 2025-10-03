@@ -16,12 +16,12 @@ function getNameFromPlugin({
   plugin: string;
   token: TokenNormalized;
 }): string | undefined {
-  const transformed = getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: token.id, mode });
+  const transformed = getTransforms({ format: plugin, id: token.id, mode });
   if (transformed[0]) {
     return transformed[0].meta?.['token-listing']?.name;
   }
 
-  const fallback = getTransforms({ format: plugin, id: token.id, mode });
+  const fallback = getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: token.id, mode });
   if (fallback[0]) {
     return fallback[0].meta?.['token-listing']?.name;
   }
