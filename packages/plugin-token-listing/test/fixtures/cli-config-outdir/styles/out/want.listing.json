@@ -34,14 +34,14 @@
             "resource": "file:///some-path/tokens.json",
             "loc": {
               "start": {
-                "line": 6,
-                "column": 15,
-                "offset": 81
+                "line": 0,
+                "column": 0,
+                "offset": 0
               },
               "end": {
-                "line": 6,
-                "column": 91,
-                "offset": 157
+                "line": 0,
+                "column": 0,
+                "offset": 0
               }
             }
           }

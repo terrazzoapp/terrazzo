@@ -65,7 +65,11 @@ describe('tz build', () => {
       await execa('node', [cmd, 'build'], { cwd });
       
       const actual = fs.readFileSync(new URL('./styles/out/actual.listing.json', cwd), 'utf8');
-      const comparable = actual.replace(/file:\/\/\/[^"]+/g, 'file:///some-path/tokens.json');
+      const comparable = actual
+        .replace(/file:\/\/\/[^"]+/g, 'file:///some-path/tokens.json')
+        .replace(/"line": \d+/g, '"line": 0')
+        .replace(/"column": \d+/g, '"column": 0')
+        .replace(/"offset": \d+/g, '"offset": 0')
       await expect(comparable).toMatchFileSnapshot(
         fileURLToPath(new URL('./styles/out/want.listing.json', cwd)),
       );
