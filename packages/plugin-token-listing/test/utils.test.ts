@@ -1,4 +1,4 @@
-import type { TokenNormalized } from '@terrazzo/parser';
+import type { Logger, TokenNormalized } from '@terrazzo/parser';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { computePreviewValue } from '../src/utils/previewValue.js';
 import { mapValues } from '../src/utils/utils.js';
@@ -28,20 +28,20 @@ vi.mock('@terrazzo/token-tools/css', () => ({
 }));
 
 describe('computePreviewValue', () => {
-  const mockLogger = {
+  const mockLogger: Logger = {
     warn: vi.fn(),
     error: vi.fn(),
     info: vi.fn(),
     debug: vi.fn(),
     level: 'info' as const,
-    debugScope: undefined,
+    debugScope: '',
     errorCount: 0,
     warnCount: 0,
     infoCount: 0,
     debugCount: 0,
     setLevel: vi.fn(),
     stats: vi.fn(),
-  } as any;
+  };
 
   const createMockToken = (
     id: string,

@@ -7,12 +7,16 @@ export * from './lib.js';
 
 function getNameFromPlugin({
   getTransforms,
+  logger,
   mode,
+  pid,
   plugin,
   token,
 }: {
   getTransforms: (params: TransformParams) => TokenTransformed[];
+  logger: Logger;
   mode: string | undefined;
+  pid: string;
   plugin: string;
   token: TokenNormalized;
 }): string | undefined {
@@ -25,12 +29,23 @@ function getNameFromPlugin({
   if (fallback[0]) {
     return fallback[0].meta?.['token-listing']?.name;
   }
+
+  if (getTransforms({ format: plugin, id: '*' }).length === 0 && getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: '*' }).length === 0) {
+    logger.error({
+      group: 'plugin',
+      label: 'token-listing',
+      message: `Could not find format "${plugin}" to compute token names for platform "${pid}", please check your configuration matches the format documented in the plugin you're attempting to use.`,
+    });
+  }
+
+  return undefined;
 }
 
 function getName({
   getTransforms,
   logger,
   mode,
+  pid,
   platform,
   tokensSet,
   token,
@@ -38,25 +53,26 @@ function getName({
   getTransforms: (params: TransformParams) => TokenTransformed[];
   logger: Logger;
   mode: string;
+  pid: string;
   platform: PlatformOption;
   tokensSet: Record<string, TokenNormalized>;
   token: TokenNormalized;
 }): string | undefined {
   // Whole platform is a Terrazzo plugin shorthand.
   if (typeof platform === 'string') {
-    return getNameFromPlugin({ getTransforms, mode, plugin: platform, token });
+    return getNameFromPlugin({ getTransforms, logger, mode, pid, plugin: platform, token });
   }
 
   let name: string | undefined;
   if ('name' in platform && typeof platform.name === 'string') {
-    name = getNameFromPlugin({ getTransforms, mode, plugin: platform.name, token });
+    name = getNameFromPlugin({ getTransforms, logger, mode, pid, plugin: platform.name, token });
   } else if ('name' in platform && typeof platform.name === 'function') {
     name = platform.name({ logger, mode, tokensSet, token });
   }
 
   let filter: boolean = true;
   if ('filter' in platform && typeof platform.filter === 'string') {
-    filter = !!getNameFromPlugin({ getTransforms, mode, plugin: platform.filter, token });
+    filter = !!getNameFromPlugin({ getTransforms, logger, mode, pid, plugin: platform.filter, token });
   } else if ('filter' in platform && typeof platform.filter === 'function') {
     filter = platform.filter({ logger, mode, tokensSet, token });
   }
@@ -90,7 +106,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
   }): TokenListingExtension => {
     const computedNames: Record<string, string> = {};
     for (const [pid, platform] of Object.entries(platforms)) {
-      const name = getName({ getTransforms, logger, mode, platform, tokensSet, token });
+      const name = getName({ getTransforms, logger, mode, pid, platform, tokensSet, token });
       if (name) {
         computedNames[pid] = name;
       }

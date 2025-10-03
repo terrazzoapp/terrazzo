@@ -1,34 +1,55 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { build, defineConfig, type Plugin, parse } from '@terrazzo/parser';
+import { build, defineConfig, type Plugin, parse, Logger } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import listing, { type CustomFunctionParams, type ListedToken, type TokenListingPluginOptions } from '../src/index.js';
+import { mock } from 'node:test';
 
-async function setupTest(
-  cwdPath: string,
-  options: TokenListingPluginOptions,
-  plugins: Plugin[] = [],
-  inputSrc: object | undefined = undefined,
-) {
-  const cwd = new URL(cwdPath, import.meta.url);
-  const config = defineConfig({ plugins: [...plugins, listing(options)] }, { cwd });
-  const tokensJSON = new URL('./tokens.json', cwd);
-  const { tokens, sources } = await parse(
-    [{ filename: tokensJSON, src: inputSrc ?? fs.readFileSync(tokensJSON, 'utf8') }],
-    {
-      config,
-    },
-  );
-
-  const result = await build(tokens, { sources, config });
-  const file = result.outputFiles.find((f) => f.filename === options.filename);
-  expect(file).toBeTruthy();
-
-  return JSON.parse(file!.contents.toString());
-}
 
 describe('token-listing plugin - Node.js API', () => {
+  const mockLogger: Logger = {
+    warn: vi.fn(),
+    error: vi.fn(),
+    info: vi.fn(),
+    debug: vi.fn(),
+    level: 'info' as const,
+    debugScope: '',
+    errorCount: 0,
+    warnCount: 0,
+    infoCount: 0,
+    debugCount: 0,
+    setLevel: vi.fn(),
+    stats: vi.fn(),
+  };
+
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  async function setupTest(
+    cwdPath: string,
+    options: TokenListingPluginOptions,
+    plugins: Plugin[] = [],
+    inputSrc: object | undefined = undefined,
+  ) {
+    const cwd = new URL(cwdPath, import.meta.url);
+    const config = defineConfig({ plugins: [...plugins, listing(options)] }, { cwd });
+    const tokensJSON = new URL('./tokens.json', cwd);
+    const { tokens, sources } = await parse(
+      [{ filename: tokensJSON, src: inputSrc ?? fs.readFileSync(tokensJSON, 'utf8') }],
+      {
+        config,
+      },
+    );
+
+    const result = await build(tokens, { sources, config, logger: mockLogger });
+    const file = result.outputFiles.find((f) => f.filename === options.filename);
+    expect(file).toBeTruthy();
+
+    return JSON.parse(file!.contents.toString());
+  }
+
   describe('base', () => {
     it('outputs DTCG fields like name, type, value', async () => {
       const options = {
@@ -167,6 +188,7 @@ describe('token-listing plugin - Node.js API', () => {
         },
       };
       const output = await setupTest('./fixtures/build-default/', options);
+      expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
       expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--custom-Colors-Blue-1100');
@@ -184,6 +206,7 @@ describe('token-listing plugin - Node.js API', () => {
         },
       };
       const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
+      expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
       expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--colors-blue-1100');
@@ -200,12 +223,13 @@ describe('token-listing plugin - Node.js API', () => {
         },
       };
       const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
+      expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
       const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
       expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--colors-blue-1100');
     });
 
-    it("does not output names using a plugin's naming logic if the plugin isn't called", async () => {
+    it("throws an error if asked to use the naming logic of a plugin that hasn't been called", async () => {
       const options = {
         filename: 'actual.listing.json',
         platforms: {
@@ -216,6 +240,7 @@ describe('token-listing plugin - Node.js API', () => {
         },
       };
       const output = await setupTest('./fixtures/build-default/', options);
+      expect(mockLogger.error).toHaveBeenCalledTimes(328);
 
       const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
       expect(listed.$extensions['app.terrazzo.listing'].names.css).toBeUndefined();

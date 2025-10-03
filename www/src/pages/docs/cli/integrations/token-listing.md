@@ -173,11 +173,23 @@ And an example of Token Listing content:
 
 The primary purpose of Token Listings is to map the names of design tokens on different platforms. For instance, `color/bg/primary` on Figma would be called `--color-bg-primary` in CSS or `bg-primary` in Tailwind.
 
+#### Naming
 This plugin lets you declare all platforms your design tokens exist on, and lets you provide names for each token on each platform. Platforms can have a description, which can be reused in documentation tools and can help LLMs contextualize platforms.
 
-You can map a specific platform to a compatible Terrazzo plugins (such as [plugin-css](./css) or [plugin-sass](./sass)), which will automatically compute a Token Listing name for that platform. You can also provide a custom `name` function for unsupported platforms, or to account for postprocessing you do on your built design tokens.
+You can map a specific platform to a compatible Terrazzo plugin (such as [plugin-css](./css) or [plugin-sass](./sass)), which will automatically compute a Token Listing name for that platform. You can also provide a custom `name` function for unsupported platforms, or to account for postprocessing you do on your built design tokens.
 
-When a Terrazzo plugin is used for a platform, names will only be included based on what that plugin exports. For instance, the CSS plugin does not export multi-valued tokens that do not have a CSS shorthand. Such tokens will not have a listed `css` name. You can pass a custom `filter` function to further filter which design tokens are listed, for instance if you want to hide internal-use tokens from your documentation or AI agents.
+> [!NOTE]
+> Terrazzo plugins transform tokens for a specific format. For example, `@terrazzo/plugin-css` registers transformed tokens in the `css` format. When a string is passed to the `name` property of a platform, it matches a format name, rather than a Terrazzo plugin name. Check the plugins you're using for the name of the format they transform tokens to, and use that format name to automate token name mapping.
+
+
+#### Filtering
+When a Terrazzo plugin is used for a platform, names will only be included based on what that plugin exports. For instance, the CSS plugin does not export multi-valued tokens that do not have a CSS shorthand. Such tokens will not have a listed `css` name, so they can never be included in a platform that uses the `css` name.
+
+You can pass a custom `filter` function to further filter the listed design tokens. For instance, you may want to hide internal-use tokens from your documentation or AI agents.
+
+Even if you use a custom `name` function, you can also pass a plugin's format name to `filter` (e.g. `css`), so that only tokens available on that format will be named in your token listing.
+
+#### Example
 
 See the example below that defines three platforms: `css`, `sass` and `figma`. The `sass` platform uses a custom filter to remove tokens computed within a mode from the listing, possibly because the team consuming SASS files does not use modes in its product. The `figma` platform does not have a Terrazzo plugin, so a custom naming function emulating Figma Variable naming is provided in the config.
 
@@ -188,10 +200,10 @@ export default defineConfig({
   plugins: [
     listing({
       platforms: {
-        css: '@terrazzo/plugin-css',
+        css: 'css',
         sass: {
           description: 'Design tokens as SASS variables (modes are not supported)',
-          name: '@terrazzo/plugin-sass',
+          name: 'sass',
           filter: ({ mode }) => mode === '.',
         },
         figma: {
@@ -203,6 +215,7 @@ export default defineConfig({
   ],
 };
 ```
+
 
 ### Source of truth declaration
 The Token Listing format lets you declare which platform acts as a source of truth for your design tokens. This plugin has a `sourceOfTruth` config key to which you can pass a platform name (or an arbitrary string).
