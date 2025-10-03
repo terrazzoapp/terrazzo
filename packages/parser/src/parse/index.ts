@@ -34,8 +34,8 @@ export default async function parse(
   });
 
   if (skipLint !== true && config?.plugins?.length) {
-    await lintRunner({ tokens, sources, config, logger });
     const lintStart = performance.now();
+    await lintRunner({ tokens, sources, config, logger });
     logger.debug({
       message: 'Lint finished',
       group: 'plugin',

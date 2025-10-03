@@ -49,7 +49,6 @@ export function tokenFromNode(
   const group = groups[groupID]!;
   if (group?.tokens && !group.tokens.includes(id)) {
     group.tokens.push(id);
-    group.tokens.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
   }
 
   const nodeSource = { filename: source.filename?.href, node };
@@ -325,12 +324,12 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
         const downstream = refToTokenID(upstream[j]!)!;
         if (!baseToken.aliasedBy.includes(downstream)) {
           baseToken.aliasedBy.push(downstream);
-          baseToken.aliasedBy.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true })); // sort, because the ordering is arbitrary and flaky
           if (mode === '.') {
             tokens[baseRef]!.aliasedBy = baseToken.aliasedBy;
           }
         }
       }
+      baseToken.aliasedBy.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true })); // sort, because the ordering is arbitrary and flaky
     }
 
     if (mode === '.') {
