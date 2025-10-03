@@ -1,12 +1,12 @@
 ---
-"@terrazzo/plugin-vanilla-extract": minor
+"@terrazzo/plugin-vanilla-extract": patch
 "@terrazzo/plugin-token-listing": minor
-"@terrazzo/plugin-swift": minor
-"@terrazzo/plugin-sass": minor
-"@terrazzo/plugin-css": minor
-"@terrazzo/plugin-js": minor
-"@terrazzo/parser": minor
-"@terrazzo/www": minor
+"@terrazzo/plugin-swift": patch
+"@terrazzo/plugin-sass": patch
+"@terrazzo/plugin-css": patch
+"@terrazzo/plugin-js": patch
+"@terrazzo/parser": patch
+"@terrazzo/www": patch
 ---
 
 Add support for the Token Listing format
