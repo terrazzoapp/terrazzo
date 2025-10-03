@@ -956,50 +956,62 @@
   --typography-body1-font-family: var(--typography-family-base); /* Body */
   --typography-body1-font-size: 0.875rem; /* Body */
   --typography-body1-font-weight: var(--typography-weight-regular); /* Body */
+  --typography-body1-letter-spacing: 0; /* Body */
   --typography-body1-line-height: 1.4285714286; /* Body */
   --typography-body1-strong-font-family: var(--typography-family-base); /* Body (unread), button */
   --typography-body1-strong-font-size: 0.875rem; /* Body (unread), button */
   --typography-body1-strong-font-weight: var(--typography-weight-semibold); /* Body (unread), button */
+  --typography-body1-strong-letter-spacing: 0; /* Body (unread), button */
   --typography-body1-strong-line-height: 1.4285714286; /* Body (unread), button */
   --typography-body1-stronger-font-family: var(--typography-family-base);
   --typography-body1-stronger-font-size: 0.875rem;
   --typography-body1-stronger-font-weight: var(--typography-weight-bold);
+  --typography-body1-stronger-letter-spacing: 0;
   --typography-body1-stronger-line-height: 1.4285714286;
   --typography-body2-font-family: var(--typography-family-base); /* Large size input, text area, and dropdown */
   --typography-body2-font-size: 1rem; /* Large size input, text area, and dropdown */
   --typography-body2-font-weight: var(--typography-weight-regular); /* Large size input, text area, and dropdown */
+  --typography-body2-letter-spacing: 0; /* Large size input, text area, and dropdown */
   --typography-body2-line-height: 1.375; /* Large size input, text area, and dropdown */
   --typography-body2-strong-font-family: var(--typography-family-base); /* Subject title */
   --typography-body2-strong-font-size: 1rem; /* Subject title */
   --typography-body2-strong-font-weight: var(--typography-weight-semibold); /* Subject title */
+  --typography-body2-strong-letter-spacing: 0; /* Subject title */
   --typography-body2-strong-line-height: 1.375; /* Subject title */
   --typography-body2-stronger-font-family: var(--typography-family-base);
   --typography-body2-stronger-font-size: 1rem;
   --typography-body2-stronger-font-weight: var(--typography-weight-bold);
+  --typography-body2-stronger-letter-spacing: 0;
   --typography-body2-stronger-line-height: 1.375;
   --typography-caption1-font-family: var(--typography-family-base); /* Caption */
   --typography-caption1-font-size: 0.75rem; /* Caption */
   --typography-caption1-font-weight: var(--typography-weight-regular); /* Caption */
+  --typography-caption1-letter-spacing: 0; /* Caption */
   --typography-caption1-line-height: 1.3333333333; /* Caption */
   --typography-caption1-strong-font-family: var(--typography-family-base); /* Caption (unread) */
   --typography-caption1-strong-font-size: 0.75rem; /* Caption (unread) */
   --typography-caption1-strong-font-weight: var(--typography-weight-semibold); /* Caption (unread) */
+  --typography-caption1-strong-letter-spacing: 0; /* Caption (unread) */
   --typography-caption1-strong-line-height: 1.3333333333; /* Caption (unread) */
   --typography-caption1-stronger-font-family: var(--typography-family-base);
   --typography-caption1-stronger-font-size: 0.75rem;
   --typography-caption1-stronger-font-weight: var(--typography-weight-bold);
+  --typography-caption1-stronger-letter-spacing: 0;
   --typography-caption1-stronger-line-height: 1.3333333333;
   --typography-caption2-font-family: var(--typography-family-base); /* Metadata (limited) */
   --typography-caption2-font-size: 0.625rem; /* Metadata (limited) */
   --typography-caption2-font-weight: var(--typography-weight-regular); /* Metadata (limited) */
+  --typography-caption2-letter-spacing: 0; /* Metadata (limited) */
   --typography-caption2-line-height: 1.4; /* Metadata (limited) */
   --typography-caption2-strong-font-family: var(--typography-family-base); /* Metadata (limited) */
   --typography-caption2-strong-font-size: 0.625rem; /* Metadata (limited) */
   --typography-caption2-strong-font-weight: var(--typography-weight-semibold); /* Metadata (limited) */
+  --typography-caption2-strong-letter-spacing: 0; /* Metadata (limited) */
   --typography-caption2-strong-line-height: 1.4; /* Metadata (limited) */
   --typography-display-font-family: var(--typography-family-base); /* XL Numerics (Limited) */
   --typography-display-font-size: 4.25rem; /* XL Numerics (Limited) */
   --typography-display-font-weight: var(--typography-weight-bold); /* XL Numerics (Limited) */
+  --typography-display-letter-spacing: 0; /* XL Numerics (Limited) */
   --typography-display-line-height: 1.3529411765; /* XL Numerics (Limited) */
   --typography-family-base: "Segoe UI Web (West European)", -apple-system, "BlinkMacSystemFont", "Roboto", "Helvetica Neue", sans-serif;
   --typography-family-monospace: "Consolas", "Courier New", "Courier", monospace;
@@ -1007,22 +1019,27 @@
   --typography-large-title-font-family: var(--typography-family-base); /* Hero title */
   --typography-large-title-font-size: 2.5rem; /* Hero title */
   --typography-large-title-font-weight: var(--typography-weight-semibold); /* Hero title */
+  --typography-large-title-letter-spacing: 0; /* Hero title */
   --typography-large-title-line-height: 1.3; /* Hero title */
   --typography-subtitle1-font-family: var(--typography-family-base); /* Page header / Pane header */
   --typography-subtitle1-font-size: 1.25rem; /* Page header / Pane header */
   --typography-subtitle1-font-weight: var(--typography-weight-regular); /* Page header / Pane header */
+  --typography-subtitle1-letter-spacing: 0; /* Page header / Pane header */
   --typography-subtitle1-line-height: 1.4; /* Page header / Pane header */
   --typography-title1-font-family: var(--typography-family-base); /* Greeting title */
   --typography-title1-font-size: 2rem; /* Greeting title */
   --typography-title1-font-weight: var(--typography-weight-semibold); /* Greeting title */
+  --typography-title1-letter-spacing: 0; /* Greeting title */
   --typography-title1-line-height: 1.25; /* Greeting title */
   --typography-title2-font-family: var(--typography-family-base); /* Page title */
   --typography-title2-font-size: 1.75rem; /* Page title */
   --typography-title2-font-weight: var(--typography-weight-semibold); /* Page title */
+  --typography-title2-letter-spacing: 0; /* Page title */
   --typography-title2-line-height: 1.2857142857; /* Page title */
   --typography-title3-font-family: var(--typography-family-base); /* Email header */
   --typography-title3-font-size: 1.5rem; /* Email header */
   --typography-title3-font-weight: var(--typography-weight-semibold); /* Email header */
+  --typography-title3-letter-spacing: 0; /* Email header */
   --typography-title3-line-height: 2; /* Email header */
   --typography-weight-bold: 700;
   --typography-weight-regular: 400;

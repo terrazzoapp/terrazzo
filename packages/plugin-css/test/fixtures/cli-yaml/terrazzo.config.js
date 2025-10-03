@@ -2,6 +2,11 @@ import { defineConfig } from '@terrazzo/cli';
 import pluginCSS from '../../../dist/index.js';
 
 export default defineConfig({
+  lint: {
+    rule: {
+      'core/consistent-naming': 'off',
+    },
+  },
   // expect Terrazzo to automatically pick up on "tokens.yaml" filename
   plugins: [
     pluginCSS({

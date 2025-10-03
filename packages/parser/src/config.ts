@@ -1,5 +1,5 @@
 import { merge } from 'merge-anything';
-import coreLintPlugin from './lint/plugin-core/index.js';
+import coreLintPlugin, { RECOMMENDED_CONFIG } from './lint/plugin-core/index.js';
 import Logger from './logger.js';
 import type { Config, ConfigInit, ConfigOptions, LintRuleSeverity } from './types.js';
 
@@ -56,12 +56,12 @@ function normalizeTokens({
 }) {
   if (rawConfig.tokens === undefined) {
     config.tokens = [
-      // @ts-ignore we’ll normalize in next step
+      // @ts-expect-error we’ll normalize in next step
       './tokens.json',
     ];
   } else if (typeof rawConfig.tokens === 'string') {
     config.tokens = [
-      // @ts-ignore we’ll normalize in next step
+      // @ts-expect-error we’ll normalize in next step
       rawConfig.tokens,
     ];
   } else if (Array.isArray(rawConfig.tokens)) {
@@ -69,7 +69,7 @@ function normalizeTokens({
     for (const file of rawConfig.tokens) {
       if (typeof file === 'string' || (file as URL) instanceof URL) {
         config.tokens.push(
-          // @ts-ignore we’ll normalize in next step
+          // @ts-expect-error we’ll normalize in next step
           file,
         );
       } else {
@@ -177,7 +177,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
     }
 
     if (config.lint.rules === undefined) {
-      config.lint.rules = {};
+      config.lint.rules = { ...RECOMMENDED_CONFIG };
     } else {
       if (config.lint.rules === null || typeof config.lint.rules !== 'object' || Array.isArray(config.lint.rules)) {
         logger.error({
@@ -268,11 +268,18 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           });
         }
       }
+
+      // Apply recommended config in places user hasn’t explicitly opted-out
+      for (const [id, severity] of Object.entries(RECOMMENDED_CONFIG)) {
+        if (!(id in config.lint.rules)) {
+          config.lint.rules[id] = severity;
+        }
+      }
     }
   } else {
     config.lint = {
       build: { enabled: true },
-      rules: {},
+      rules: { ...RECOMMENDED_CONFIG },
     };
   }
 }

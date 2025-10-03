@@ -6,15 +6,6 @@ export const tokens = {
   "shadow.base": {
     ".": [
       {
-        "color": {
-          "colorSpace": "srgb",
-          "components": [
-            0,
-            0,
-            0
-          ],
-          "alpha": 0.15
-        },
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -31,13 +22,6 @@ export const tokens = {
           "value": 0,
           "unit": "px"
         },
-        "inset": false
-      }
-    ],
-  },
-  "shadow.simple": {
-    ".": [
-      {
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -46,22 +30,6 @@ export const tokens = {
             0
           ],
           "alpha": 0.15
-        },
-        "offsetX": {
-          "value": 0,
-          "unit": "px"
-        },
-        "offsetY": {
-          "value": 4,
-          "unit": "px"
-        },
-        "blur": {
-          "value": 8,
-          "unit": "px"
-        },
-        "spread": {
-          "value": 0,
-          "unit": "px"
         },
         "inset": false
       }
@@ -70,6 +38,23 @@ export const tokens = {
   "shadow.inset": {
     ".": [
       {
+        "inset": true,
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        },
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -78,39 +63,13 @@ export const tokens = {
             0
           ],
           "alpha": 0.15
-        },
-        "offsetX": {
-          "value": 0,
-          "unit": "px"
-        },
-        "offsetY": {
-          "value": 4,
-          "unit": "px"
-        },
-        "blur": {
-          "value": 8,
-          "unit": "px"
-        },
-        "spread": {
-          "value": 0,
-          "unit": "px"
-        },
-        "inset": true
+        }
       }
     ],
   },
   "shadow.layered": {
     ".": [
       {
-        "color": {
-          "colorSpace": "srgb",
-          "components": [
-            0,
-            0,
-            0
-          ],
-          "alpha": 0.12
-        },
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -127,9 +86,6 @@ export const tokens = {
           "value": 0,
           "unit": "px"
         },
-        "inset": false
-      },
-      {
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -139,6 +95,9 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
+        "inset": false
+      },
+      {
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -155,9 +114,6 @@ export const tokens = {
           "value": 0,
           "unit": "px"
         },
-        "inset": false
-      },
-      {
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -167,6 +123,9 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
+        "inset": false
+      },
+      {
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -183,9 +142,6 @@ export const tokens = {
           "value": 0,
           "unit": "px"
         },
-        "inset": false
-      },
-      {
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -195,6 +151,9 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
+        "inset": false
+      },
+      {
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -211,9 +170,6 @@ export const tokens = {
           "value": 0,
           "unit": "px"
         },
-        "inset": false
-      },
-      {
         "color": {
           "colorSpace": "srgb",
           "components": [
@@ -223,6 +179,9 @@ export const tokens = {
           ],
           "alpha": 0.12
         },
+        "inset": false
+      },
+      {
         "offsetX": {
           "value": 0,
           "unit": "px"
@@ -238,6 +197,47 @@ export const tokens = {
         "spread": {
           "value": 0,
           "unit": "px"
+        },
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.12
+        },
+        "inset": false
+      }
+    ],
+  },
+  "shadow.simple": {
+    ".": [
+      {
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 4,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 8,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        },
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "alpha": 0.15
         },
         "inset": false
       }

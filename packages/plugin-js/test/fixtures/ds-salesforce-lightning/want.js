@@ -3,1866 +3,6 @@
  * ------------------------------------------- */
 
 export const tokens = {
-  "palette.blue10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.08627450980392157,
-        0.2235294117647059
-      ],
-      "alpha": 1,
-      "hex": "#001639"
-    },
-  },
-  "palette.blue15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.011764705882352941,
-        0.13725490196078433,
-        0.30196078431372547
-      ],
-      "alpha": 1,
-      "hex": "#03234d"
-    },
-  },
-  "palette.blue20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.011764705882352941,
-        0.17647058823529413,
-        0.3764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#032d60"
-    },
-  },
-  "palette.blue30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00392156862745098,
-        0.26666666666666666,
-        0.5254901960784314
-      ],
-      "alpha": 1,
-      "hex": "#014486"
-    },
-  },
-  "palette.blue40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.043137254901960784,
-        0.3607843137254902,
-        0.6705882352941176
-      ],
-      "alpha": 1,
-      "hex": "#0b5cab"
-    },
-  },
-  "palette.blue50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00392156862745098,
-        0.4627450980392157,
-        0.8274509803921568
-      ],
-      "alpha": 1,
-      "hex": "#0176d3"
-    },
-  },
-  "palette.blue60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.10588235294117647,
-        0.5882352941176471,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#1b96ff"
-    },
-  },
-  "palette.blue65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3411764705882353,
-        0.6392156862745098,
-        0.9921568627450981
-      ],
-      "alpha": 1,
-      "hex": "#57a3fd"
-    },
-  },
-  "palette.blue70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.47058823529411764,
-        0.6901960784313725,
-        0.9921568627450981
-      ],
-      "alpha": 1,
-      "hex": "#78b0fd"
-    },
-  },
-  "palette.blue80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6666666666666666,
-        0.796078431372549,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#aacbff"
-    },
-  },
-  "palette.blue90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8470588235294118,
-        0.9019607843137255,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#d8e6fe"
-    },
-  },
-  "palette.blue95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9333333333333333,
-        0.9568627450980393,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#eef4ff"
-    },
-  },
-  "palette.cloudBlue10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0,
-        0.10196078431372549,
-        0.1568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#001a28"
-    },
-  },
-  "palette.cloudBlue15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0392156862745098,
-        0.14901960784313725,
-        0.21176470588235294
-      ],
-      "alpha": 1,
-      "hex": "#0a2636"
-    },
-  },
-  "palette.cloudBlue20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.19607843137254902,
-        0.2823529411764706
-      ],
-      "alpha": 1,
-      "hex": "#023248"
-    },
-  },
-  "palette.cloudBlue30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.03137254901960784,
-        0.28627450980392155,
-        0.40784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#084968"
-    },
-  },
-  "palette.cloudBlue40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0196078431372549,
-        0.3843137254901961,
-        0.5411764705882353
-      ],
-      "alpha": 1,
-      "hex": "#05628a"
-    },
-  },
-  "palette.cloudBlue50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.06274509803921569,
-        0.48627450980392156,
-        0.6784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#107cad"
-    },
-  },
-  "palette.cloudBlue60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.050980392156862744,
-        0.615686274509804,
-        0.8549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#0d9dda"
-    },
-  },
-  "palette.cloudBlue65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.03137254901960784,
-        0.6705882352941176,
-        0.9294117647058824
-      ],
-      "alpha": 1,
-      "hex": "#08abed"
-    },
-  },
-  "palette.cloudBlue70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.10196078431372549,
-        0.7254901960784313,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#1ab9ff"
-    },
-  },
-  "palette.cloudBlue80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5647058823529412,
-        0.8156862745098039,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#90d0fe"
-    },
-  },
-  "palette.cloudBlue90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8117647058823529,
-        0.9137254901960784,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#cfe9fe"
-    },
-  },
-  "palette.cloudBlue95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9176470588235294,
-        0.9607843137254902,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#eaf5fe"
-    },
-  },
-  "palette.green10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.027450980392156862,
-        0.10588235294117647,
-        0.07058823529411765
-      ],
-      "alpha": 1,
-      "hex": "#071b12"
-    },
-  },
-  "palette.green15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.047058823529411764,
-        0.1607843137254902,
-        0.07058823529411765
-      ],
-      "alpha": 1,
-      "hex": "#0c2912"
-    },
-  },
-  "palette.green20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.054901960784313725,
-        0.20784313725490197,
-        0.13333333333333333
-      ],
-      "alpha": 1,
-      "hex": "#0e3522"
-    },
-  },
-  "palette.green30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.09803921568627451,
-        0.3058823529411765,
-        0.19215686274509805
-      ],
-      "alpha": 1,
-      "hex": "#194e31"
-    },
-  },
-  "palette.green40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.13333333333333333,
-        0.40784313725490196,
-        0.24313725490196078
-      ],
-      "alpha": 1,
-      "hex": "#22683e"
-    },
-  },
-  "palette.green50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1803921568627451,
-        0.5176470588235295,
-        0.2901960784313726
-      ],
-      "alpha": 1,
-      "hex": "#2e844a"
-    },
-  },
-  "palette.green60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.23137254901960785,
-        0.6549019607843137,
-        0.3333333333333333
-      ],
-      "alpha": 1,
-      "hex": "#3ba755"
-    },
-  },
-  "palette.green65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2549019607843137,
-        0.7137254901960784,
-        0.34509803921568627
-      ],
-      "alpha": 1,
-      "hex": "#41b658"
-    },
-  },
-  "palette.green70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.27058823529411763,
-        0.7764705882352941,
-        0.35294117647058826
-      ],
-      "alpha": 1,
-      "hex": "#45c65a"
-    },
-  },
-  "palette.green80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5686274509803921,
-        0.8588235294117647,
-        0.5450980392156862
-      ],
-      "alpha": 1,
-      "hex": "#91db8b"
-    },
-  },
-  "palette.green90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.803921568627451,
-        0.9372549019607843,
-        0.7686274509803922
-      ],
-      "alpha": 1,
-      "hex": "#cdefc4"
-    },
-  },
-  "palette.green95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9215686274509803,
-        0.9686274509803922,
-        0.9019607843137255
-      ],
-      "alpha": 1,
-      "hex": "#ebf7e6"
-    },
-  },
-  "palette.hotOrange10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1568627450980392,
-        0.07058823529411765,
-        0.00784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#281202"
-    },
-  },
-  "palette.hotOrange15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25882352941176473,
-        0.08627450980392157,
-        0.01568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#421604"
-    },
-  },
-  "palette.hotOrange20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.32941176470588235,
-        0.11372549019607843,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#541d01"
-    },
-  },
-  "palette.hotOrange30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.49411764705882355,
-        0.14901960784313725,
-        0
-      ],
-      "alpha": 1,
-      "hex": "#7e2600"
-    },
-  },
-  "palette.hotOrange40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6666666666666666,
-        0.18823529411764706,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#aa3001"
-    },
-  },
-  "palette.hotOrange50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8470588235294118,
-        0.22745098039215686,
-        0
-      ],
-      "alpha": 1,
-      "hex": "#d83a00"
-    },
-  },
-  "palette.hotOrange60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.36470588235294116,
-        0.17647058823529413
-      ],
-      "alpha": 1,
-      "hex": "#ff5d2d"
-    },
-  },
-  "palette.hotOrange65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.47058823529411764,
-        0.30980392156862746
-      ],
-      "alpha": 1,
-      "hex": "#ff784f"
-    },
-  },
-  "palette.hotOrange70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.5647058823529412,
-        0.43137254901960786
-      ],
-      "alpha": 1,
-      "hex": "#ff906e"
-    },
-  },
-  "palette.hotOrange80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.7254901960784313,
-        0.6470588235294118
-      ],
-      "alpha": 1,
-      "hex": "#feb9a5"
-    },
-  },
-  "palette.hotOrange90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.8705882352941177,
-        0.8352941176470589
-      ],
-      "alpha": 1,
-      "hex": "#ffded5"
-    },
-  },
-  "palette.hotOrange95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.9450980392156862,
-        0.9294117647058824
-      ],
-      "alpha": 1,
-      "hex": "#fef1ed"
-    },
-  },
-  "palette.indigo10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.12549019607843137,
-        0.023529411764705882,
-        0.2784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#200647"
-    },
-  },
-  "palette.indigo15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.12156862745098039,
-        0.03529411764705882,
-        0.4549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#1f0974"
-    },
-  },
-  "palette.indigo20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.14901960784313725,
-        0.058823529411764705,
-        0.5607843137254902
-      ],
-      "alpha": 1,
-      "hex": "#260f8f"
-    },
-  },
-  "palette.indigo30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1843137254901961,
-        0.17254901960784313,
-        0.7176470588235294
-      ],
-      "alpha": 1,
-      "hex": "#2f2cb7"
-    },
-  },
-  "palette.indigo40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.22745098039215686,
-        0.28627450980392155,
-        0.8549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#3a49da"
-    },
-  },
-  "palette.indigo50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.34509803921568627,
-        0.403921568627451,
-        0.9098039215686274
-      ],
-      "alpha": 1,
-      "hex": "#5867e8"
-    },
-  },
-  "palette.indigo60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.4980392156862745,
-        0.5490196078431373,
-        0.9294117647058824
-      ],
-      "alpha": 1,
-      "hex": "#7f8ced"
-    },
-  },
-  "palette.indigo65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5568627450980392,
-        0.6078431372549019,
-        0.9372549019607843
-      ],
-      "alpha": 1,
-      "hex": "#8e9bef"
-    },
-  },
-  "palette.indigo70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6196078431372549,
-        0.6627450980392157,
-        0.9450980392156862
-      ],
-      "alpha": 1,
-      "hex": "#9ea9f1"
-    },
-  },
-  "palette.indigo80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7450980392156863,
-        0.7803921568627451,
-        0.9647058823529412
-      ],
-      "alpha": 1,
-      "hex": "#bec7f6"
-    },
-  },
-  "palette.indigo90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8784313725490196,
-        0.8980392156862745,
-        0.9725490196078431
-      ],
-      "alpha": 1,
-      "hex": "#e0e5f8"
-    },
-  },
-  "palette.indigo95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9450980392156862,
-        0.9529411764705882,
-        0.984313725490196
-      ],
-      "alpha": 1,
-      "hex": "#f1f3fb"
-    },
-  },
-  "palette.neutral10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.09411764705882353,
-        0.09411764705882353,
-        0.09411764705882353
-      ],
-      "alpha": 1,
-      "hex": "#181818"
-    },
-  },
-  "palette.neutral20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1803921568627451,
-        0.1803921568627451,
-        0.1803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#2e2e2e"
-    },
-  },
-  "palette.neutral30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.26666666666666666,
-        0.26666666666666666,
-        0.26666666666666666
-      ],
-      "alpha": 1,
-      "hex": "#444444"
-    },
-  },
-  "palette.neutral40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3607843137254902,
-        0.3607843137254902,
-        0.3607843137254902
-      ],
-      "alpha": 1,
-      "hex": "#5c5c5c"
-    },
-  },
-  "palette.neutral50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.4549019607843137,
-        0.4549019607843137,
-        0.4549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#747474"
-    },
-  },
-  "palette.neutral60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5764705882352941,
-        0.5764705882352941,
-        0.5764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#939393"
-    },
-  },
-  "palette.neutral70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6823529411764706,
-        0.6823529411764706,
-        0.6823529411764706
-      ],
-      "alpha": 1,
-      "hex": "#aeaeae"
-    },
-  },
-  "palette.neutral80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.788235294117647,
-        0.788235294117647,
-        0.788235294117647
-      ],
-      "alpha": 1,
-      "hex": "#c9c9c9"
-    },
-  },
-  "palette.neutral90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8980392156862745,
-        0.8980392156862745,
-        0.8980392156862745
-      ],
-      "alpha": 1,
-      "hex": "#e5e5e5"
-    },
-  },
-  "palette.neutral95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9529411764705882,
-        0.9529411764705882,
-        0.9529411764705882
-      ],
-      "alpha": 1,
-      "hex": "#f3f3f3"
-    },
-  },
-  "palette.neutral100": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        1,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#ffffff"
-    },
-  },
-  "palette.orange10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.12549019607843137,
-        0.08627450980392157,
-        0
-      ],
-      "alpha": 1,
-      "hex": "#201600"
-    },
-  },
-  "palette.orange15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.21568627450980393,
-        0.11764705882352941,
-        0.011764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#371e03"
-    },
-  },
-  "palette.orange20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.24313725490196078,
-        0.16862745098039217,
-        0.00784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#3e2b02"
-    },
-  },
-  "palette.orange30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.37254901960784315,
-        0.24313725490196078,
-        0.00784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#5f3e02"
-    },
-  },
-  "palette.orange40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5098039215686274,
-        0.3176470588235294,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#825101"
-    },
-  },
-  "palette.orange50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6627450980392157,
-        0.39215686274509803,
-        0.01568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#a96404"
-    },
-  },
-  "palette.orange60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8666666666666667,
-        0.47843137254901963,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#dd7a01"
-    },
-  },
-  "palette.orange65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9529411764705882,
-        0.5137254901960784,
-        0.011764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#f38303"
-    },
-  },
-  "palette.orange70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.5764705882352941,
-        0.2235294117647059
-      ],
-      "alpha": 1,
-      "hex": "#fe9339"
-    },
-  },
-  "palette.orange80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.7294117647058823,
-        0.5647058823529412
-      ],
-      "alpha": 1,
-      "hex": "#ffba90"
-    },
-  },
-  "palette.orange90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.8745098039215686,
-        0.8156862745098039
-      ],
-      "alpha": 1,
-      "hex": "#fedfd0"
-    },
-  },
-  "palette.orange95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.9450980392156862,
-        0.9176470588235294
-      ],
-      "alpha": 1,
-      "hex": "#fff1ea"
-    },
-  },
-  "palette.pink10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.21568627450980393,
-        0.00392156862745098,
-        0.0784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#370114"
-    },
-  },
-  "palette.pink15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.29411764705882354,
-        0.023529411764705882,
-        0.12549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#4b0620"
-    },
-  },
-  "palette.pink20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3803921568627451,
-        0.00784313725490196,
-        0.16470588235294117
-      ],
-      "alpha": 1,
-      "hex": "#61022a"
-    },
-  },
-  "palette.pink30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5411764705882353,
-        0.011764705882352941,
-        0.24313725490196078
-      ],
-      "alpha": 1,
-      "hex": "#8a033e"
-    },
-  },
-  "palette.pink40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7137254901960784,
-        0.0196078431372549,
-        0.32941176470588235
-      ],
-      "alpha": 1,
-      "hex": "#b60554"
-    },
-  },
-  "palette.pink50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8901960784313725,
-        0.023529411764705882,
-        0.41568627450980394
-      ],
-      "alpha": 1,
-      "hex": "#e3066a"
-    },
-  },
-  "palette.pink60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        1,
-        0.3254901960784314,
-        0.5411764705882353
-      ],
-      "alpha": 1,
-      "hex": "#ff538a"
-    },
-  },
-  "palette.pink65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.4470588235294118,
-        0.596078431372549
-      ],
-      "alpha": 1,
-      "hex": "#fe7298"
-    },
-  },
-  "palette.pink70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.5411764705882353,
-        0.6549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#fe8aa7"
-    },
-  },
-  "palette.pink80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9921568627450981,
-        0.7137254901960784,
-        0.7725490196078432
-      ],
-      "alpha": 1,
-      "hex": "#fdb6c5"
-    },
-  },
-  "palette.pink90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9921568627450981,
-        0.8666666666666667,
-        0.8901960784313725
-      ],
-      "alpha": 1,
-      "hex": "#fddde3"
-    },
-  },
-  "palette.pink95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.9411764705882353,
-        0.9529411764705882
-      ],
-      "alpha": 1,
-      "hex": "#fef0f3"
-    },
-  },
-  "palette.purple10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1411764705882353,
-        0.023529411764705882,
-        0.2627450980392157
-      ],
-      "alpha": 1,
-      "hex": "#240643"
-    },
-  },
-  "palette.purple15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.18823529411764706,
-        0.043137254901960784,
-        0.3764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#300b60"
-    },
-  },
-  "palette.purple20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.25098039215686274,
-        0.06274509803921569,
-        0.4588235294117647
-      ],
-      "alpha": 1,
-      "hex": "#401075"
-    },
-  },
-  "palette.purple30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.35294117647058826,
-        0.10588235294117647,
-        0.6627450980392157
-      ],
-      "alpha": 1,
-      "hex": "#5a1ba9"
-    },
-  },
-  "palette.purple40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.4588235294117647,
-        0.14901960784313725,
-        0.8901960784313725
-      ],
-      "alpha": 1,
-      "hex": "#7526e3"
-    },
-  },
-  "palette.purple50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5647058823529412,
-        0.3137254901960784,
-        0.9137254901960784
-      ],
-      "alpha": 1,
-      "hex": "#9050e9"
-    },
-  },
-  "palette.purple60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6784313725490196,
-        0.4823529411764706,
-        0.9333333333333333
-      ],
-      "alpha": 1,
-      "hex": "#ad7bee"
-    },
-  },
-  "palette.purple65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7176470588235294,
-        0.5529411764705883,
-        0.9372549019607843
-      ],
-      "alpha": 1,
-      "hex": "#b78def"
-    },
-  },
-  "palette.purple70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7607843137254902,
-        0.6196078431372549,
-        0.9450980392156862
-      ],
-      "alpha": 1,
-      "hex": "#c29ef1"
-    },
-  },
-  "palette.purple80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8431372549019608,
-        0.5607843137254902,
-        0.9607843137254902
-      ],
-      "alpha": 1,
-      "hex": "#d78ff5"
-    },
-  },
-  "palette.purple90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9254901960784314,
-        0.8823529411764706,
-        0.9764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#ece1f9"
-    },
-  },
-  "palette.purple95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9647058823529412,
-        0.9490196078431372,
-        0.984313725490196
-      ],
-      "alpha": 1,
-      "hex": "#f6f2fb"
-    },
-  },
-  "palette.red10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.18823529411764706,
-        0.047058823529411764,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#300c01"
-    },
-  },
-  "palette.red15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.2901960784313726,
-        0.047058823529411764,
-        0.01568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#4a0c04"
-    },
-  },
-  "palette.red20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.39215686274509803,
-        0.00392156862745098,
-        0.011764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#640103"
-    },
-  },
-  "palette.red30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5568627450980392,
-        0.011764705882352941,
-        0.058823529411764705
-      ],
-      "alpha": 1,
-      "hex": "#8e030f"
-    },
-  },
-  "palette.red40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7294117647058823,
-        0.0196078431372549,
-        0.09019607843137255
-      ],
-      "alpha": 1,
-      "hex": "#ba0517"
-    },
-  },
-  "palette.red50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9176470588235294,
-        0,
-        0.11764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#ea001e"
-    },
-  },
-  "palette.red60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.3607843137254902,
-        0.2980392156862745
-      ],
-      "alpha": 1,
-      "hex": "#fe5c4c"
-    },
-  },
-  "palette.red65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.4666666666666667,
-        0.396078431372549
-      ],
-      "alpha": 1,
-      "hex": "#fe7765"
-    },
-  },
-  "palette.red70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.5607843137254902,
-        0.49019607843137253
-      ],
-      "alpha": 1,
-      "hex": "#fe8f7d"
-    },
-  },
-  "palette.red80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.7215686274509804,
-        0.6705882352941176
-      ],
-      "alpha": 1,
-      "hex": "#feb8ab"
-    },
-  },
-  "palette.red90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.8705882352941177,
-        0.8470588235294118
-      ],
-      "alpha": 1,
-      "hex": "#feded8"
-    },
-  },
-  "palette.red95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.996078431372549,
-        0.9450980392156862,
-        0.9333333333333333
-      ],
-      "alpha": 1,
-      "hex": "#fef1ee"
-    },
-  },
-  "palette.teal10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.027450980392156862,
-        0.10588235294117647,
-        0.07058823529411765
-      ],
-      "alpha": 1,
-      "hex": "#071b12"
-    },
-  },
-  "palette.teal15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.027450980392156862,
-        0.1568627450980392,
-        0.1450980392156863
-      ],
-      "alpha": 1,
-      "hex": "#072825"
-    },
-  },
-  "palette.teal20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.20392156862745098,
-        0.20392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#023434"
-    },
-  },
-  "palette.teal30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00784313725490196,
-        0.30196078431372547,
-        0.2980392156862745
-      ],
-      "alpha": 1,
-      "hex": "#024d4c"
-    },
-  },
-  "palette.teal40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.0196078431372549,
-        0.403921568627451,
-        0.39215686274509803
-      ],
-      "alpha": 1,
-      "hex": "#056764"
-    },
-  },
-  "palette.teal50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.043137254901960784,
-        0.5098039215686274,
-        0.48627450980392156
-      ],
-      "alpha": 1,
-      "hex": "#0b827c"
-    },
-  },
-  "palette.teal60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.023529411764705882,
-        0.6470588235294118,
-        0.6039215686274509
-      ],
-      "alpha": 1,
-      "hex": "#06a59a"
-    },
-  },
-  "palette.teal65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.011764705882352941,
-        0.7058823529411765,
-        0.6549019607843137
-      ],
-      "alpha": 1,
-      "hex": "#03b4a7"
-    },
-  },
-  "palette.teal70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.00392156862745098,
-        0.7647058823529411,
-        0.7019607843137254
-      ],
-      "alpha": 1,
-      "hex": "#01c3b3"
-    },
-  },
-  "palette.teal80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.01568627450980392,
-        0.8823529411764706,
-        0.796078431372549
-      ],
-      "alpha": 1,
-      "hex": "#04e1cb"
-    },
-  },
-  "palette.teal90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6745098039215687,
-        0.9529411764705882,
-        0.8941176470588236
-      ],
-      "alpha": 1,
-      "hex": "#acf3e4"
-    },
-  },
-  "palette.teal95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8705882352941177,
-        0.9764705882352941,
-        0.9529411764705882
-      ],
-      "alpha": 1,
-      "hex": "#def9f3"
-    },
-  },
-  "palette.violet10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1803921568627451,
-        0,
-        0.2235294117647059
-      ],
-      "alpha": 1,
-      "hex": "#2e0039"
-    },
-  },
-  "palette.violet15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.23921568627450981,
-        0.00392156862745098,
-        0.3411764705882353
-      ],
-      "alpha": 1,
-      "hex": "#3d0157"
-    },
-  },
-  "palette.violet20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.3215686274509804,
-        0,
-        0.4
-      ],
-      "alpha": 1,
-      "hex": "#520066"
-    },
-  },
-  "palette.violet30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.45098039215686275,
-        0.011764705882352941,
-        0.5803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#730394"
-    },
-  },
-  "palette.violet40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5882352941176471,
-        0.00784313725490196,
-        0.7803921568627451
-      ],
-      "alpha": 1,
-      "hex": "#9602c7"
-    },
-  },
-  "palette.violet50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.7294117647058823,
-        0.00392156862745098,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#ba01ff"
-    },
-  },
-  "palette.violet60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.796078431372549,
-        0.396078431372549,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#cb65ff"
-    },
-  },
-  "palette.violet65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8196078431372549,
-        0.49019607843137253,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#d17dfe"
-    },
-  },
-  "palette.violet70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8470588235294118,
-        0.5725490196078431,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#d892fe"
-    },
-  },
-  "palette.violet80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8980392156862745,
-        0.7254901960784313,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#e5b9fe"
-    },
-  },
-  "palette.violet90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9490196078431372,
-        0.8705882352941177,
-        0.996078431372549
-      ],
-      "alpha": 1,
-      "hex": "#f2defe"
-    },
-  },
-  "palette.violet95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.9411764705882353,
-        1
-      ],
-      "alpha": 1,
-      "hex": "#f9f0ff"
-    },
-  },
-  "palette.yellow10": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1568627450980392,
-        0.07058823529411765,
-        0.00784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#281202"
-    },
-  },
-  "palette.yellow15": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.1803921568627451,
-        0.13333333333333333,
-        0.01568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#2e2204"
-    },
-  },
-  "palette.yellow20": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.30980392156862746,
-        0.12941176470588237,
-        0
-      ],
-      "alpha": 1,
-      "hex": "#4f2100"
-    },
-  },
-  "palette.yellow30": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.43529411764705883,
-        0.20392156862745098,
-        0
-      ],
-      "alpha": 1,
-      "hex": "#6f3400"
-    },
-  },
-  "palette.yellow40": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.5490196078431373,
-        0.29411764705882354,
-        0.00784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#8c4b02"
-    },
-  },
-  "palette.yellow50": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.6588235294117647,
-        0.39215686274509803,
-        0.011764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#a86403"
-    },
-  },
-  "palette.yellow60": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.792156862745098,
-        0.5215686274509804,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#ca8501"
-    },
-  },
-  "palette.yellow65": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8431372549019608,
-        0.5764705882352941,
-        0.01568627450980392
-      ],
-      "alpha": 1,
-      "hex": "#d79304"
-    },
-  },
-  "palette.yellow70": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.8941176470588236,
-        0.6352941176470588,
-        0.00392156862745098
-      ],
-      "alpha": 1,
-      "hex": "#e4a201"
-    },
-  },
-  "palette.yellow80": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9882352941176471,
-        0.7529411764705882,
-        0.011764705882352941
-      ],
-      "alpha": 1,
-      "hex": "#fcc003"
-    },
-  },
-  "palette.yellow90": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.9764705882352941,
-        0.8901960784313725,
-        0.7137254901960784
-      ],
-      "alpha": 1,
-      "hex": "#f9e3b6"
-    },
-  },
-  "palette.yellow95": {
-    ".": {
-      "colorSpace": "srgb",
-      "components": [
-        0.984313725490196,
-        0.9529411764705882,
-        0.8784313725490196
-      ],
-      "alpha": 1,
-      "hex": "#fbf3e0"
-    },
-  },
   "color.background": {
     ".": {
       "colorSpace": "srgb",
@@ -3819,54 +1959,6 @@ export const tokens = {
       "hex": "#514f4d"
     },
   },
-  "icon.size.xxxSmall": {
-    ".": {
-      "value": 3,
-      "unit": "rem"
-    },
-  },
-  "icon.size.xxSmall": {
-    ".": {
-      "value": 6,
-      "unit": "rem"
-    },
-  },
-  "icon.size.xSmall": {
-    ".": {
-      "value": 12,
-      "unit": "rem"
-    },
-  },
-  "icon.size.small": {
-    ".": {
-      "value": 15,
-      "unit": "rem"
-    },
-  },
-  "icon.size.medium": {
-    ".": {
-      "value": 20,
-      "unit": "rem"
-    },
-  },
-  "icon.size.large": {
-    ".": {
-      "value": 25,
-      "unit": "rem"
-    },
-  },
-  "icon.size.xLarge": {
-    ".": {
-      "value": 40,
-      "unit": "rem"
-    },
-  },
-  "icon.size.xxLarge": {
-    ".": {
-      "value": 60,
-      "unit": "rem"
-    },
-  },
   "font.family.base": {
     ".": [
       "-apple-system",
@@ -3903,6 +1995,24 @@ export const tokens = {
       "Courier",
       "monospace"
     ],
+  },
+  "font.lineHeight.heading": {
+    ".": {
+      "value": 1.25,
+      "unit": "em"
+    },
+  },
+  "font.lineHeight.reset": {
+    ".": {
+      "value": 1,
+      "unit": "em"
+    },
+  },
+  "font.lineHeight.text": {
+    ".": {
+      "value": 1.5,
+      "unit": "em"
+    },
   },
   "font.size.1": {
     ".": {
@@ -3970,51 +2080,1917 @@ export const tokens = {
       "unit": "rem"
     },
   },
-  "font.lineHeight.heading": {
+  "icon.size.large": {
     ".": {
-      "value": 1.25,
-      "unit": "em"
+      "value": 25,
+      "unit": "rem"
     },
   },
-  "font.lineHeight.text": {
+  "icon.size.medium": {
+    ".": {
+      "value": 20,
+      "unit": "rem"
+    },
+  },
+  "icon.size.small": {
+    ".": {
+      "value": 15,
+      "unit": "rem"
+    },
+  },
+  "icon.size.xLarge": {
+    ".": {
+      "value": 40,
+      "unit": "rem"
+    },
+  },
+  "icon.size.xSmall": {
+    ".": {
+      "value": 12,
+      "unit": "rem"
+    },
+  },
+  "icon.size.xxLarge": {
+    ".": {
+      "value": 60,
+      "unit": "rem"
+    },
+  },
+  "icon.size.xxSmall": {
+    ".": {
+      "value": 6,
+      "unit": "rem"
+    },
+  },
+  "icon.size.xxxSmall": {
+    ".": {
+      "value": 3,
+      "unit": "rem"
+    },
+  },
+  "palette.blue10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.08627450980392157,
+        0.2235294117647059
+      ],
+      "alpha": 1,
+      "hex": "#001639"
+    },
+  },
+  "palette.blue15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.011764705882352941,
+        0.13725490196078433,
+        0.30196078431372547
+      ],
+      "alpha": 1,
+      "hex": "#03234d"
+    },
+  },
+  "palette.blue20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.011764705882352941,
+        0.17647058823529413,
+        0.3764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#032d60"
+    },
+  },
+  "palette.blue30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00392156862745098,
+        0.26666666666666666,
+        0.5254901960784314
+      ],
+      "alpha": 1,
+      "hex": "#014486"
+    },
+  },
+  "palette.blue40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.043137254901960784,
+        0.3607843137254902,
+        0.6705882352941176
+      ],
+      "alpha": 1,
+      "hex": "#0b5cab"
+    },
+  },
+  "palette.blue50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00392156862745098,
+        0.4627450980392157,
+        0.8274509803921568
+      ],
+      "alpha": 1,
+      "hex": "#0176d3"
+    },
+  },
+  "palette.blue60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.10588235294117647,
+        0.5882352941176471,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#1b96ff"
+    },
+  },
+  "palette.blue65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3411764705882353,
+        0.6392156862745098,
+        0.9921568627450981
+      ],
+      "alpha": 1,
+      "hex": "#57a3fd"
+    },
+  },
+  "palette.blue70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.47058823529411764,
+        0.6901960784313725,
+        0.9921568627450981
+      ],
+      "alpha": 1,
+      "hex": "#78b0fd"
+    },
+  },
+  "palette.blue80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6666666666666666,
+        0.796078431372549,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#aacbff"
+    },
+  },
+  "palette.blue90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8470588235294118,
+        0.9019607843137255,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#d8e6fe"
+    },
+  },
+  "palette.blue95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9333333333333333,
+        0.9568627450980393,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#eef4ff"
+    },
+  },
+  "palette.cloudBlue10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0,
+        0.10196078431372549,
+        0.1568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#001a28"
+    },
+  },
+  "palette.cloudBlue15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0392156862745098,
+        0.14901960784313725,
+        0.21176470588235294
+      ],
+      "alpha": 1,
+      "hex": "#0a2636"
+    },
+  },
+  "palette.cloudBlue20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.19607843137254902,
+        0.2823529411764706
+      ],
+      "alpha": 1,
+      "hex": "#023248"
+    },
+  },
+  "palette.cloudBlue30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.03137254901960784,
+        0.28627450980392155,
+        0.40784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#084968"
+    },
+  },
+  "palette.cloudBlue40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0196078431372549,
+        0.3843137254901961,
+        0.5411764705882353
+      ],
+      "alpha": 1,
+      "hex": "#05628a"
+    },
+  },
+  "palette.cloudBlue50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.06274509803921569,
+        0.48627450980392156,
+        0.6784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#107cad"
+    },
+  },
+  "palette.cloudBlue60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.050980392156862744,
+        0.615686274509804,
+        0.8549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#0d9dda"
+    },
+  },
+  "palette.cloudBlue65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.03137254901960784,
+        0.6705882352941176,
+        0.9294117647058824
+      ],
+      "alpha": 1,
+      "hex": "#08abed"
+    },
+  },
+  "palette.cloudBlue70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.10196078431372549,
+        0.7254901960784313,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#1ab9ff"
+    },
+  },
+  "palette.cloudBlue80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5647058823529412,
+        0.8156862745098039,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#90d0fe"
+    },
+  },
+  "palette.cloudBlue90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8117647058823529,
+        0.9137254901960784,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#cfe9fe"
+    },
+  },
+  "palette.cloudBlue95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9176470588235294,
+        0.9607843137254902,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#eaf5fe"
+    },
+  },
+  "palette.green10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.027450980392156862,
+        0.10588235294117647,
+        0.07058823529411765
+      ],
+      "alpha": 1,
+      "hex": "#071b12"
+    },
+  },
+  "palette.green15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.047058823529411764,
+        0.1607843137254902,
+        0.07058823529411765
+      ],
+      "alpha": 1,
+      "hex": "#0c2912"
+    },
+  },
+  "palette.green20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.054901960784313725,
+        0.20784313725490197,
+        0.13333333333333333
+      ],
+      "alpha": 1,
+      "hex": "#0e3522"
+    },
+  },
+  "palette.green30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.09803921568627451,
+        0.3058823529411765,
+        0.19215686274509805
+      ],
+      "alpha": 1,
+      "hex": "#194e31"
+    },
+  },
+  "palette.green40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.13333333333333333,
+        0.40784313725490196,
+        0.24313725490196078
+      ],
+      "alpha": 1,
+      "hex": "#22683e"
+    },
+  },
+  "palette.green50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1803921568627451,
+        0.5176470588235295,
+        0.2901960784313726
+      ],
+      "alpha": 1,
+      "hex": "#2e844a"
+    },
+  },
+  "palette.green60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.23137254901960785,
+        0.6549019607843137,
+        0.3333333333333333
+      ],
+      "alpha": 1,
+      "hex": "#3ba755"
+    },
+  },
+  "palette.green65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.2549019607843137,
+        0.7137254901960784,
+        0.34509803921568627
+      ],
+      "alpha": 1,
+      "hex": "#41b658"
+    },
+  },
+  "palette.green70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.27058823529411763,
+        0.7764705882352941,
+        0.35294117647058826
+      ],
+      "alpha": 1,
+      "hex": "#45c65a"
+    },
+  },
+  "palette.green80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5686274509803921,
+        0.8588235294117647,
+        0.5450980392156862
+      ],
+      "alpha": 1,
+      "hex": "#91db8b"
+    },
+  },
+  "palette.green90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.803921568627451,
+        0.9372549019607843,
+        0.7686274509803922
+      ],
+      "alpha": 1,
+      "hex": "#cdefc4"
+    },
+  },
+  "palette.green95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9215686274509803,
+        0.9686274509803922,
+        0.9019607843137255
+      ],
+      "alpha": 1,
+      "hex": "#ebf7e6"
+    },
+  },
+  "palette.hotOrange10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1568627450980392,
+        0.07058823529411765,
+        0.00784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#281202"
+    },
+  },
+  "palette.hotOrange15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25882352941176473,
+        0.08627450980392157,
+        0.01568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#421604"
+    },
+  },
+  "palette.hotOrange20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.32941176470588235,
+        0.11372549019607843,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#541d01"
+    },
+  },
+  "palette.hotOrange30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.49411764705882355,
+        0.14901960784313725,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#7e2600"
+    },
+  },
+  "palette.hotOrange40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6666666666666666,
+        0.18823529411764706,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#aa3001"
+    },
+  },
+  "palette.hotOrange50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8470588235294118,
+        0.22745098039215686,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#d83a00"
+    },
+  },
+  "palette.hotOrange60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.36470588235294116,
+        0.17647058823529413
+      ],
+      "alpha": 1,
+      "hex": "#ff5d2d"
+    },
+  },
+  "palette.hotOrange65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.47058823529411764,
+        0.30980392156862746
+      ],
+      "alpha": 1,
+      "hex": "#ff784f"
+    },
+  },
+  "palette.hotOrange70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.5647058823529412,
+        0.43137254901960786
+      ],
+      "alpha": 1,
+      "hex": "#ff906e"
+    },
+  },
+  "palette.hotOrange80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.7254901960784313,
+        0.6470588235294118
+      ],
+      "alpha": 1,
+      "hex": "#feb9a5"
+    },
+  },
+  "palette.hotOrange90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.8705882352941177,
+        0.8352941176470589
+      ],
+      "alpha": 1,
+      "hex": "#ffded5"
+    },
+  },
+  "palette.hotOrange95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.9450980392156862,
+        0.9294117647058824
+      ],
+      "alpha": 1,
+      "hex": "#fef1ed"
+    },
+  },
+  "palette.indigo10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.12549019607843137,
+        0.023529411764705882,
+        0.2784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#200647"
+    },
+  },
+  "palette.indigo15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.12156862745098039,
+        0.03529411764705882,
+        0.4549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#1f0974"
+    },
+  },
+  "palette.indigo20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.14901960784313725,
+        0.058823529411764705,
+        0.5607843137254902
+      ],
+      "alpha": 1,
+      "hex": "#260f8f"
+    },
+  },
+  "palette.indigo30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1843137254901961,
+        0.17254901960784313,
+        0.7176470588235294
+      ],
+      "alpha": 1,
+      "hex": "#2f2cb7"
+    },
+  },
+  "palette.indigo40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.22745098039215686,
+        0.28627450980392155,
+        0.8549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#3a49da"
+    },
+  },
+  "palette.indigo50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.34509803921568627,
+        0.403921568627451,
+        0.9098039215686274
+      ],
+      "alpha": 1,
+      "hex": "#5867e8"
+    },
+  },
+  "palette.indigo60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4980392156862745,
+        0.5490196078431373,
+        0.9294117647058824
+      ],
+      "alpha": 1,
+      "hex": "#7f8ced"
+    },
+  },
+  "palette.indigo65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5568627450980392,
+        0.6078431372549019,
+        0.9372549019607843
+      ],
+      "alpha": 1,
+      "hex": "#8e9bef"
+    },
+  },
+  "palette.indigo70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6196078431372549,
+        0.6627450980392157,
+        0.9450980392156862
+      ],
+      "alpha": 1,
+      "hex": "#9ea9f1"
+    },
+  },
+  "palette.indigo80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7450980392156863,
+        0.7803921568627451,
+        0.9647058823529412
+      ],
+      "alpha": 1,
+      "hex": "#bec7f6"
+    },
+  },
+  "palette.indigo90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8784313725490196,
+        0.8980392156862745,
+        0.9725490196078431
+      ],
+      "alpha": 1,
+      "hex": "#e0e5f8"
+    },
+  },
+  "palette.indigo95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9450980392156862,
+        0.9529411764705882,
+        0.984313725490196
+      ],
+      "alpha": 1,
+      "hex": "#f1f3fb"
+    },
+  },
+  "palette.neutral10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.09411764705882353,
+        0.09411764705882353,
+        0.09411764705882353
+      ],
+      "alpha": 1,
+      "hex": "#181818"
+    },
+  },
+  "palette.neutral20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1803921568627451,
+        0.1803921568627451,
+        0.1803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#2e2e2e"
+    },
+  },
+  "palette.neutral30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.26666666666666666,
+        0.26666666666666666,
+        0.26666666666666666
+      ],
+      "alpha": 1,
+      "hex": "#444444"
+    },
+  },
+  "palette.neutral40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3607843137254902,
+        0.3607843137254902,
+        0.3607843137254902
+      ],
+      "alpha": 1,
+      "hex": "#5c5c5c"
+    },
+  },
+  "palette.neutral50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4549019607843137,
+        0.4549019607843137,
+        0.4549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#747474"
+    },
+  },
+  "palette.neutral60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5764705882352941,
+        0.5764705882352941,
+        0.5764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#939393"
+    },
+  },
+  "palette.neutral70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6823529411764706,
+        0.6823529411764706,
+        0.6823529411764706
+      ],
+      "alpha": 1,
+      "hex": "#aeaeae"
+    },
+  },
+  "palette.neutral80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.788235294117647,
+        0.788235294117647,
+        0.788235294117647
+      ],
+      "alpha": 1,
+      "hex": "#c9c9c9"
+    },
+  },
+  "palette.neutral90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8980392156862745,
+        0.8980392156862745,
+        0.8980392156862745
+      ],
+      "alpha": 1,
+      "hex": "#e5e5e5"
+    },
+  },
+  "palette.neutral95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9529411764705882,
+        0.9529411764705882,
+        0.9529411764705882
+      ],
+      "alpha": 1,
+      "hex": "#f3f3f3"
+    },
+  },
+  "palette.neutral100": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        1,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#ffffff"
+    },
+  },
+  "palette.orange10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.12549019607843137,
+        0.08627450980392157,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#201600"
+    },
+  },
+  "palette.orange15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.21568627450980393,
+        0.11764705882352941,
+        0.011764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#371e03"
+    },
+  },
+  "palette.orange20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.24313725490196078,
+        0.16862745098039217,
+        0.00784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#3e2b02"
+    },
+  },
+  "palette.orange30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.37254901960784315,
+        0.24313725490196078,
+        0.00784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#5f3e02"
+    },
+  },
+  "palette.orange40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5098039215686274,
+        0.3176470588235294,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#825101"
+    },
+  },
+  "palette.orange50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6627450980392157,
+        0.39215686274509803,
+        0.01568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#a96404"
+    },
+  },
+  "palette.orange60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8666666666666667,
+        0.47843137254901963,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#dd7a01"
+    },
+  },
+  "palette.orange65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9529411764705882,
+        0.5137254901960784,
+        0.011764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#f38303"
+    },
+  },
+  "palette.orange70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.5764705882352941,
+        0.2235294117647059
+      ],
+      "alpha": 1,
+      "hex": "#fe9339"
+    },
+  },
+  "palette.orange80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.7294117647058823,
+        0.5647058823529412
+      ],
+      "alpha": 1,
+      "hex": "#ffba90"
+    },
+  },
+  "palette.orange90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.8745098039215686,
+        0.8156862745098039
+      ],
+      "alpha": 1,
+      "hex": "#fedfd0"
+    },
+  },
+  "palette.orange95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.9450980392156862,
+        0.9176470588235294
+      ],
+      "alpha": 1,
+      "hex": "#fff1ea"
+    },
+  },
+  "palette.pink10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.21568627450980393,
+        0.00392156862745098,
+        0.0784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#370114"
+    },
+  },
+  "palette.pink15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.29411764705882354,
+        0.023529411764705882,
+        0.12549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#4b0620"
+    },
+  },
+  "palette.pink20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3803921568627451,
+        0.00784313725490196,
+        0.16470588235294117
+      ],
+      "alpha": 1,
+      "hex": "#61022a"
+    },
+  },
+  "palette.pink30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5411764705882353,
+        0.011764705882352941,
+        0.24313725490196078
+      ],
+      "alpha": 1,
+      "hex": "#8a033e"
+    },
+  },
+  "palette.pink40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7137254901960784,
+        0.0196078431372549,
+        0.32941176470588235
+      ],
+      "alpha": 1,
+      "hex": "#b60554"
+    },
+  },
+  "palette.pink50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8901960784313725,
+        0.023529411764705882,
+        0.41568627450980394
+      ],
+      "alpha": 1,
+      "hex": "#e3066a"
+    },
+  },
+  "palette.pink60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        1,
+        0.3254901960784314,
+        0.5411764705882353
+      ],
+      "alpha": 1,
+      "hex": "#ff538a"
+    },
+  },
+  "palette.pink65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.4470588235294118,
+        0.596078431372549
+      ],
+      "alpha": 1,
+      "hex": "#fe7298"
+    },
+  },
+  "palette.pink70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.5411764705882353,
+        0.6549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#fe8aa7"
+    },
+  },
+  "palette.pink80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.7137254901960784,
+        0.7725490196078432
+      ],
+      "alpha": 1,
+      "hex": "#fdb6c5"
+    },
+  },
+  "palette.pink90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9921568627450981,
+        0.8666666666666667,
+        0.8901960784313725
+      ],
+      "alpha": 1,
+      "hex": "#fddde3"
+    },
+  },
+  "palette.pink95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.9411764705882353,
+        0.9529411764705882
+      ],
+      "alpha": 1,
+      "hex": "#fef0f3"
+    },
+  },
+  "palette.purple10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1411764705882353,
+        0.023529411764705882,
+        0.2627450980392157
+      ],
+      "alpha": 1,
+      "hex": "#240643"
+    },
+  },
+  "palette.purple15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.18823529411764706,
+        0.043137254901960784,
+        0.3764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#300b60"
+    },
+  },
+  "palette.purple20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.25098039215686274,
+        0.06274509803921569,
+        0.4588235294117647
+      ],
+      "alpha": 1,
+      "hex": "#401075"
+    },
+  },
+  "palette.purple30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.35294117647058826,
+        0.10588235294117647,
+        0.6627450980392157
+      ],
+      "alpha": 1,
+      "hex": "#5a1ba9"
+    },
+  },
+  "palette.purple40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.4588235294117647,
+        0.14901960784313725,
+        0.8901960784313725
+      ],
+      "alpha": 1,
+      "hex": "#7526e3"
+    },
+  },
+  "palette.purple50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5647058823529412,
+        0.3137254901960784,
+        0.9137254901960784
+      ],
+      "alpha": 1,
+      "hex": "#9050e9"
+    },
+  },
+  "palette.purple60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6784313725490196,
+        0.4823529411764706,
+        0.9333333333333333
+      ],
+      "alpha": 1,
+      "hex": "#ad7bee"
+    },
+  },
+  "palette.purple65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7176470588235294,
+        0.5529411764705883,
+        0.9372549019607843
+      ],
+      "alpha": 1,
+      "hex": "#b78def"
+    },
+  },
+  "palette.purple70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7607843137254902,
+        0.6196078431372549,
+        0.9450980392156862
+      ],
+      "alpha": 1,
+      "hex": "#c29ef1"
+    },
+  },
+  "palette.purple80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8431372549019608,
+        0.5607843137254902,
+        0.9607843137254902
+      ],
+      "alpha": 1,
+      "hex": "#d78ff5"
+    },
+  },
+  "palette.purple90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9254901960784314,
+        0.8823529411764706,
+        0.9764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#ece1f9"
+    },
+  },
+  "palette.purple95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9647058823529412,
+        0.9490196078431372,
+        0.984313725490196
+      ],
+      "alpha": 1,
+      "hex": "#f6f2fb"
+    },
+  },
+  "palette.red10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.18823529411764706,
+        0.047058823529411764,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#300c01"
+    },
+  },
+  "palette.red15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.2901960784313726,
+        0.047058823529411764,
+        0.01568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#4a0c04"
+    },
+  },
+  "palette.red20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.39215686274509803,
+        0.00392156862745098,
+        0.011764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#640103"
+    },
+  },
+  "palette.red30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5568627450980392,
+        0.011764705882352941,
+        0.058823529411764705
+      ],
+      "alpha": 1,
+      "hex": "#8e030f"
+    },
+  },
+  "palette.red40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7294117647058823,
+        0.0196078431372549,
+        0.09019607843137255
+      ],
+      "alpha": 1,
+      "hex": "#ba0517"
+    },
+  },
+  "palette.red50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9176470588235294,
+        0,
+        0.11764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#ea001e"
+    },
+  },
+  "palette.red60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.3607843137254902,
+        0.2980392156862745
+      ],
+      "alpha": 1,
+      "hex": "#fe5c4c"
+    },
+  },
+  "palette.red65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.4666666666666667,
+        0.396078431372549
+      ],
+      "alpha": 1,
+      "hex": "#fe7765"
+    },
+  },
+  "palette.red70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.5607843137254902,
+        0.49019607843137253
+      ],
+      "alpha": 1,
+      "hex": "#fe8f7d"
+    },
+  },
+  "palette.red80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.7215686274509804,
+        0.6705882352941176
+      ],
+      "alpha": 1,
+      "hex": "#feb8ab"
+    },
+  },
+  "palette.red90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.8705882352941177,
+        0.8470588235294118
+      ],
+      "alpha": 1,
+      "hex": "#feded8"
+    },
+  },
+  "palette.red95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.996078431372549,
+        0.9450980392156862,
+        0.9333333333333333
+      ],
+      "alpha": 1,
+      "hex": "#fef1ee"
+    },
+  },
+  "palette.teal10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.027450980392156862,
+        0.10588235294117647,
+        0.07058823529411765
+      ],
+      "alpha": 1,
+      "hex": "#071b12"
+    },
+  },
+  "palette.teal15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.027450980392156862,
+        0.1568627450980392,
+        0.1450980392156863
+      ],
+      "alpha": 1,
+      "hex": "#072825"
+    },
+  },
+  "palette.teal20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.20392156862745098,
+        0.20392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#023434"
+    },
+  },
+  "palette.teal30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00784313725490196,
+        0.30196078431372547,
+        0.2980392156862745
+      ],
+      "alpha": 1,
+      "hex": "#024d4c"
+    },
+  },
+  "palette.teal40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.0196078431372549,
+        0.403921568627451,
+        0.39215686274509803
+      ],
+      "alpha": 1,
+      "hex": "#056764"
+    },
+  },
+  "palette.teal50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.043137254901960784,
+        0.5098039215686274,
+        0.48627450980392156
+      ],
+      "alpha": 1,
+      "hex": "#0b827c"
+    },
+  },
+  "palette.teal60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.023529411764705882,
+        0.6470588235294118,
+        0.6039215686274509
+      ],
+      "alpha": 1,
+      "hex": "#06a59a"
+    },
+  },
+  "palette.teal65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.011764705882352941,
+        0.7058823529411765,
+        0.6549019607843137
+      ],
+      "alpha": 1,
+      "hex": "#03b4a7"
+    },
+  },
+  "palette.teal70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.00392156862745098,
+        0.7647058823529411,
+        0.7019607843137254
+      ],
+      "alpha": 1,
+      "hex": "#01c3b3"
+    },
+  },
+  "palette.teal80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.01568627450980392,
+        0.8823529411764706,
+        0.796078431372549
+      ],
+      "alpha": 1,
+      "hex": "#04e1cb"
+    },
+  },
+  "palette.teal90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6745098039215687,
+        0.9529411764705882,
+        0.8941176470588236
+      ],
+      "alpha": 1,
+      "hex": "#acf3e4"
+    },
+  },
+  "palette.teal95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8705882352941177,
+        0.9764705882352941,
+        0.9529411764705882
+      ],
+      "alpha": 1,
+      "hex": "#def9f3"
+    },
+  },
+  "palette.violet10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1803921568627451,
+        0,
+        0.2235294117647059
+      ],
+      "alpha": 1,
+      "hex": "#2e0039"
+    },
+  },
+  "palette.violet15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.23921568627450981,
+        0.00392156862745098,
+        0.3411764705882353
+      ],
+      "alpha": 1,
+      "hex": "#3d0157"
+    },
+  },
+  "palette.violet20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.3215686274509804,
+        0,
+        0.4
+      ],
+      "alpha": 1,
+      "hex": "#520066"
+    },
+  },
+  "palette.violet30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.45098039215686275,
+        0.011764705882352941,
+        0.5803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#730394"
+    },
+  },
+  "palette.violet40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5882352941176471,
+        0.00784313725490196,
+        0.7803921568627451
+      ],
+      "alpha": 1,
+      "hex": "#9602c7"
+    },
+  },
+  "palette.violet50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.7294117647058823,
+        0.00392156862745098,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#ba01ff"
+    },
+  },
+  "palette.violet60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.796078431372549,
+        0.396078431372549,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#cb65ff"
+    },
+  },
+  "palette.violet65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8196078431372549,
+        0.49019607843137253,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#d17dfe"
+    },
+  },
+  "palette.violet70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8470588235294118,
+        0.5725490196078431,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#d892fe"
+    },
+  },
+  "palette.violet80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8980392156862745,
+        0.7254901960784313,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#e5b9fe"
+    },
+  },
+  "palette.violet90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9490196078431372,
+        0.8705882352941177,
+        0.996078431372549
+      ],
+      "alpha": 1,
+      "hex": "#f2defe"
+    },
+  },
+  "palette.violet95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.9411764705882353,
+        1
+      ],
+      "alpha": 1,
+      "hex": "#f9f0ff"
+    },
+  },
+  "palette.yellow10": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1568627450980392,
+        0.07058823529411765,
+        0.00784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#281202"
+    },
+  },
+  "palette.yellow15": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.1803921568627451,
+        0.13333333333333333,
+        0.01568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#2e2204"
+    },
+  },
+  "palette.yellow20": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.30980392156862746,
+        0.12941176470588237,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#4f2100"
+    },
+  },
+  "palette.yellow30": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.43529411764705883,
+        0.20392156862745098,
+        0
+      ],
+      "alpha": 1,
+      "hex": "#6f3400"
+    },
+  },
+  "palette.yellow40": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.5490196078431373,
+        0.29411764705882354,
+        0.00784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#8c4b02"
+    },
+  },
+  "palette.yellow50": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.6588235294117647,
+        0.39215686274509803,
+        0.011764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#a86403"
+    },
+  },
+  "palette.yellow60": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.792156862745098,
+        0.5215686274509804,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#ca8501"
+    },
+  },
+  "palette.yellow65": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8431372549019608,
+        0.5764705882352941,
+        0.01568627450980392
+      ],
+      "alpha": 1,
+      "hex": "#d79304"
+    },
+  },
+  "palette.yellow70": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.8941176470588236,
+        0.6352941176470588,
+        0.00392156862745098
+      ],
+      "alpha": 1,
+      "hex": "#e4a201"
+    },
+  },
+  "palette.yellow80": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9882352941176471,
+        0.7529411764705882,
+        0.011764705882352941
+      ],
+      "alpha": 1,
+      "hex": "#fcc003"
+    },
+  },
+  "palette.yellow90": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.9764705882352941,
+        0.8901960784313725,
+        0.7137254901960784
+      ],
+      "alpha": 1,
+      "hex": "#f9e3b6"
+    },
+  },
+  "palette.yellow95": {
+    ".": {
+      "colorSpace": "srgb",
+      "components": [
+        0.984313725490196,
+        0.9529411764705882,
+        0.8784313725490196
+      ],
+      "alpha": 1,
+      "hex": "#fbf3e0"
+    },
+  },
+  "space.large": {
     ".": {
       "value": 1.5,
-      "unit": "em"
-    },
-  },
-  "font.lineHeight.reset": {
-    ".": {
-      "value": 1,
-      "unit": "em"
-    },
-  },
-  "space.none": {
-    ".": {
-      "value": 0,
-      "unit": "px"
-    },
-  },
-  "space.xxxSmall": {
-    ".": {
-      "value": 0.125,
-      "unit": "rem"
-    },
-  },
-  "space.xxSmall": {
-    ".": {
-      "value": 0.25,
-      "unit": "rem"
-    },
-  },
-  "space.xSmall": {
-    ".": {
-      "value": 0.5,
-      "unit": "rem"
-    },
-  },
-  "space.small": {
-    ".": {
-      "value": 0.75,
       "unit": "rem"
     },
   },
@@ -4024,9 +4000,15 @@ export const tokens = {
       "unit": "rem"
     },
   },
-  "space.large": {
+  "space.none": {
     ".": {
-      "value": 1.5,
+      "value": 0,
+      "unit": "px"
+    },
+  },
+  "space.small": {
+    ".": {
+      "value": 0.75,
       "unit": "rem"
     },
   },
@@ -4036,9 +4018,27 @@ export const tokens = {
       "unit": "rem"
     },
   },
+  "space.xSmall": {
+    ".": {
+      "value": 0.5,
+      "unit": "rem"
+    },
+  },
   "space.xxLarge": {
     ".": {
       "value": 3,
+      "unit": "rem"
+    },
+  },
+  "space.xxSmall": {
+    ".": {
+      "value": 0.25,
+      "unit": "rem"
+    },
+  },
+  "space.xxxSmall": {
+    ".": {
+      "value": 0.125,
       "unit": "rem"
     },
   },

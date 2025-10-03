@@ -3,6 +3,152 @@
  * ------------------------------------------- */
 
 export const tokens = {
+  "typography.body": {
+    ".": {
+      "fontFamily": [
+        "Helvetica"
+      ],
+      "fontSize": {
+        "value": 17,
+        "unit": "px"
+      },
+      "fontWeight": 400,
+      "lineHeight": {
+        "value": 22,
+        "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "xs": {
+      "fontSize": {
+        "value": 14,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 19,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "s": {
+      "fontSize": {
+        "value": 15,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 20,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "m": {
+      "fontSize": {
+        "value": 16,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 21,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "l": {
+      "fontSize": {
+        "value": 17,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 22,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "xl": {
+      "fontSize": {
+        "value": 19,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 24,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "2xl": {
+      "fontSize": {
+        "value": 21,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 26,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+    "3xl": {
+      "fontSize": {
+        "value": 23,
+        "unit": "px"
+      },
+      "lineHeight": {
+        "value": 29,
+        "unit": "px"
+      },
+      "fontFamily": [
+        "inherit"
+      ],
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
+    },
+  },
   "typography.family.body": {
     ".": [
       "IBM Plex Sans",
@@ -28,6 +174,10 @@ export const tokens = {
       "lineHeight": {
         "value": 41,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
       }
     },
     "xs": {
@@ -40,9 +190,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "s": {
       "fontSize": {
@@ -54,9 +208,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "m": {
       "fontSize": {
@@ -68,9 +226,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "l": {
       "fontSize": {
@@ -82,9 +244,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "xl": {
       "fontSize": {
@@ -96,9 +262,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "2xl": {
       "fontSize": {
@@ -110,9 +280,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
+      "fontWeight": 400,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
+      }
     },
     "3xl": {
       "fontSize": {
@@ -124,123 +298,13 @@ export const tokens = {
         "unit": "px"
       },
       "fontFamily": [
-        "Helvetica"
+        "inherit"
       ],
-      "fontWeight": 400
-    },
-  },
-  "typography.body": {
-    ".": {
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontSize": {
-        "value": 17,
-        "unit": "px"
-      },
       "fontWeight": 400,
-      "lineHeight": {
-        "value": 22,
-        "unit": "px"
+      "letterSpacing": {
+        "value": 0,
+        "unit": "rem"
       }
-    },
-    "xs": {
-      "fontSize": {
-        "value": 14,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 19,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "s": {
-      "fontSize": {
-        "value": 15,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 20,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "m": {
-      "fontSize": {
-        "value": 16,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 21,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "l": {
-      "fontSize": {
-        "value": 17,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 22,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "xl": {
-      "fontSize": {
-        "value": 19,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 24,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "2xl": {
-      "fontSize": {
-        "value": 21,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 26,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
-    },
-    "3xl": {
-      "fontSize": {
-        "value": 23,
-        "unit": "px"
-      },
-      "lineHeight": {
-        "value": 29,
-        "unit": "px"
-      },
-      "fontFamily": [
-        "Helvetica"
-      ],
-      "fontWeight": 400
     },
   },
 };

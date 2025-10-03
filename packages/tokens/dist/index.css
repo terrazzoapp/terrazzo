@@ -3,10 +3,10 @@
  * ------------------------------------------- */
 
 :root {
-  --tz-border-1: 1px solid var(--tz-color-border-1);
-  --tz-border-2: 1px solid var(--tz-color-border-2);
-  --tz-border-3: 1px solid var(--tz-color-border-3);
-  --tz-border-focus: 2px solid var(--tz-color-border-focus);
+  --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+  --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+  --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -72,17 +72,19 @@
   --tz-font-body-font-size: 0.875rem;
   --tz-font-body-font-variation-settings: "wght" 400;
   --tz-font-body-font-weight: 400;
+  --tz-font-body-letter-spacing: 0;
   --tz-font-body-line-height: 1.4375;
   --tz-font-body-longform-font-family: var(--tz-font-sans);
   --tz-font-body-longform-font-size: 1.125rem;
   --tz-font-body-longform-font-variation-settings: "wght" 400;
   --tz-font-body-longform-font-weight: 400;
-  --tz-font-body-longform-letter-spacing: -0.0025em;
+  --tz-font-body-longform-letter-spacing: -0.0025rem;
   --tz-font-body-longform-line-height: 1.4375;
   --tz-font-body-strong-font-family: var(--tz-font-sans);
   --tz-font-body-strong-font-size: 0.875rem;
   --tz-font-body-strong-font-variation-settings: "wght" 500;
   --tz-font-body-strong-font-weight: 400;
+  --tz-font-body-strong-letter-spacing: 0;
   --tz-font-body-strong-line-height: 1.4375;
   --tz-font-heading1-font-family: var(--tz-font-sans);
   --tz-font-heading1-font-size: 1.75rem;
@@ -112,11 +114,13 @@
   --tz-font-heading5-font-size: 1rem;
   --tz-font-heading5-font-variation-settings: "wght" 500;
   --tz-font-heading5-font-weight: 400;
+  --tz-font-heading5-letter-spacing: 0;
   --tz-font-heading5-line-height: 1.4375;
   --tz-font-heading6-font-family: var(--tz-font-body-strong-font-family);
   --tz-font-heading6-font-size: var(--tz-font-body-strong-font-size);
   --tz-font-heading6-font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
   --tz-font-heading6-font-weight: var(--tz-font-body-strong-font-weight);
+  --tz-font-heading6-letter-spacing: var(--tz-font-body-strong-letter-spacing);
   --tz-font-heading6-line-height: var(--tz-font-body-strong-line-height);
   --tz-font-label-small-font-family: var(--tz-font-sans);
   --tz-font-label-small-font-size: 0.75rem;
@@ -162,10 +166,10 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-border-1);
-    --tz-border-2: 1px solid var(--tz-color-border-2);
-    --tz-border-3: 1px solid var(--tz-color-border-3);
-    --tz-border-focus: 2px solid var(--tz-color-border-focus);
+    --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+    --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+    --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -227,10 +231,10 @@
 }
 
 [data-color-mode="light"][data-color-mode="light"] {
-  --tz-border-1: 1px solid var(--tz-color-border-1);
-  --tz-border-2: 1px solid var(--tz-color-border-2);
-  --tz-border-3: 1px solid var(--tz-color-border-3);
-  --tz-border-focus: 2px solid var(--tz-color-border-focus);
+  --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+  --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+  --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -292,10 +296,10 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-border-1);
-    --tz-border-2: 1px solid var(--tz-color-border-2);
-    --tz-border-3: 1px solid var(--tz-color-border-3);
-    --tz-border-focus: 2px solid var(--tz-color-border-focus);
+    --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+    --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+    --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
     --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
     --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
     --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);
@@ -357,10 +361,10 @@
 }
 
 [data-color-mode="dark"][data-color-mode="dark"] {
-  --tz-border-1: 1px solid var(--tz-color-border-1);
-  --tz-border-2: 1px solid var(--tz-color-border-2);
-  --tz-border-3: 1px solid var(--tz-color-border-3);
-  --tz-border-focus: 2px solid var(--tz-color-border-focus);
+  --tz-border-1: 1px solid var(--tz-color-base-gray-300);
+  --tz-border-2: 1px solid var(--tz-color-base-gray-600);
+  --tz-border-3: 1px solid var(--tz-color-base-gray-700);
+  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
   --tz-color-base-blue-100: color(srgb 0 0.09803921568627451 0.1450980392156863);
   --tz-color-base-blue-200: color(srgb 0 0.2549019607843137 0.32941176470588235);
   --tz-color-base-blue-300: color(srgb 0.03137254901960784 0.43137254901960786 0.5254901960784314);

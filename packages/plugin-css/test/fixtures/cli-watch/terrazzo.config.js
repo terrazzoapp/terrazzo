@@ -2,6 +2,9 @@ import { defineConfig } from '@terrazzo/cli';
 import pluginCSS from '../../../dist/index.js';
 
 export default defineConfig({
+  rule: {
+    'core/consistent-naming': 'off',
+  },
   plugins: [
     pluginCSS({
       modeSelectors: [

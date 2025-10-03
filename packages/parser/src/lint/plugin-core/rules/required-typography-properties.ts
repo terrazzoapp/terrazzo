@@ -5,12 +5,16 @@ import { docsLink } from '../lib/docs.js';
 export const REQUIRED_TYPOGRAPHY_PROPERTIES = 'core/required-typography-properties';
 
 export interface RuleRequiredTypographyPropertiesOptions {
-  /** Required typography properties */
+  /**
+   * Required typography properties.
+   * @default ["fontFamily", "fontWeight", "fontSize", "letterSpacing", "lineHeight"]
+   */
   properties: string[];
   /** Token globs to ignore */
   ignore?: string[];
 }
 
+/** @deprecated Use core/valid-typography instead */
 const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
   meta: {
     docs: {
@@ -18,7 +22,9 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
       url: docsLink(REQUIRED_TYPOGRAPHY_PROPERTIES),
     },
   },
-  defaultOptions: { properties: [] },
+  defaultOptions: {
+    properties: ['fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'lineHeight'],
+  },
   create({ tokens, options, report }) {
     if (!options) {
       return;
@@ -45,7 +51,11 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
 
       for (const p of options.properties) {
         if (!t.partialAliasOf?.[p] && !(p in t.$value)) {
-          report({ message: `${t.id} missing required typographic property "${p}"`, node: t.source.node });
+          report({
+            message: `This rule is deprecated. Use core/valid-typography. Missing required typographic property "${p}"`,
+            node: t.source.node,
+            filename: t.source.filename,
+          });
         }
       }
     }

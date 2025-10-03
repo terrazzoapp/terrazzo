@@ -20,4 +20,9 @@ export default defineConfig({
       ],
     }),
   ],
+  lint: {
+    rules: {
+      'core/valid-color': ['error', { legacyFormat: true }],
+    },
+  },
 });

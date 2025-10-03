@@ -153,35 +153,35 @@ export function tokenToCulori(value: ColorValueNormalized): Color | undefined {
       const [h, s, l] = value.components;
       const maxS = COLORSPACE[value.colorSpace].ranges[1]?.[1] ?? 1;
       const maxL = COLORSPACE[value.colorSpace].ranges[2]?.[1] ?? 1;
-      return { mode: 'hsl', h, s: s / maxS, l: l / maxL, alpha: value.alpha };
+      return { mode: 'hsl', h: h!, s: s! / maxS, l: l! / maxL, alpha: value.alpha };
     }
     case 'hwb': {
       const [h, w, b] = value.components;
       const maxW = COLORSPACE[value.colorSpace].ranges[1]?.[1] ?? 1;
       const maxB = COLORSPACE[value.colorSpace].ranges[2]?.[1] ?? 1;
-      return { mode: 'hwb', h, w: w / maxW, b: b / maxB, alpha: value.alpha };
+      return { mode: 'hwb', h: h!, w: w! / maxW, b: b! / maxB, alpha: value.alpha };
     }
     case 'lab':
     case 'lab-d65':
     case 'oklab': {
-      const [l, a, b] = value.components;
+      const [l = 0, a = 0, b = 0] = value.components;
       const mode = value.colorSpace === 'lab-d65' ? 'lab65' : value.colorSpace;
-      return { mode, l, a, b, alpha: value.alpha };
+      return { mode, l: l!, a: a!, b: b!, alpha: value.alpha };
     }
     case 'lch':
     case 'oklch': {
       const [l, c, h] = value.components;
-      return { mode: value.colorSpace, l, c, h, alpha: value.alpha };
+      return { mode: value.colorSpace, l: l!, c: c!, h: h!, alpha: value.alpha };
     }
     case 'okhsv': {
       const [h, s, v] = value.components;
-      return { mode: value.colorSpace, h, s, v, alpha: value.alpha };
+      return { mode: value.colorSpace, h: h!, s: s!, v: v!, alpha: value.alpha };
     }
     case 'xyz':
     case 'xyz-d50':
     case 'xyz-d65': {
       const [x, y, z] = value.components;
-      return { mode: CSS_TO_CULORI[value.colorSpace], x, y, z, alpha: value.alpha };
+      return { mode: CSS_TO_CULORI[value.colorSpace], x: x!, y: y!, z: z!, alpha: value.alpha };
     }
     default: {
       throw new Error(

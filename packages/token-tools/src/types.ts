@@ -1,8 +1,8 @@
-import type { ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 
 export interface TokenCore<E extends {} = Record<string, unknown>> {
-  $description?: string;
-  $deprecated?: string | boolean;
+  $description?: string | undefined;
+  $deprecated?: string | boolean | undefined;
   $extensions?: E;
 }
 
@@ -71,9 +71,8 @@ export type ColorValue =
   | {
       colorSpace: ColorSpace;
       /* @deprecated! Use "components" instead */
-      channels?: [number, number, number];
-      components: [number, number, number]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
-      alpha?: number;
+      components: (number | null | string)[]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
+      alpha?: string | number;
       hex?: string;
     };
 
@@ -82,7 +81,7 @@ export interface CubicBezierToken extends TokenCore {
   $value: CubicBezierValue | AliasValue;
 }
 
-export type CubicBezierValue = [number, number, number, number];
+export type CubicBezierValue = [number | string, number | string, number | string, number | string];
 
 /**
  * 8.2 Dimension
@@ -279,21 +278,26 @@ export interface TypographyValue {
 }
 
 export interface GroupCore {
-  $description?: string;
+  $deprecated?: string | boolean | undefined;
+  $description?: string | undefined;
   $type?: Token['$type'];
   $extensions?: Record<string, unknown>;
 }
 
-export type Group = GroupCore | { [key: string]: GroupOrToken | GroupCore };
+export type Group =
+  | GroupCore
+  | {
+      [key: string]: GroupOrToken;
+    };
 
 export type GroupOrToken = Group | Token;
 
 /** Modes only have a subset of information from the root token, that is allowed to diverge (e.g. id will never differ, so don’t bother storing it on mode). */
 export type TokenMode<T extends TokenNormalized> = Pick<
   T,
-  '$value' | 'aliasOf' | 'aliasChain' | 'partialAliasOf' | 'source'
+  '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies' | 'source'
 > & {
-  originalValue: T['originalValue']['$value'];
+  originalValue: NonNullable<T['originalValue']>['$value'] | undefined;
 };
 
 export type ModeMap<T extends TokenNormalized> = {
@@ -301,30 +305,41 @@ export type ModeMap<T extends TokenNormalized> = {
   [mode: string]: TokenMode<T> | undefined;
 };
 
+export interface GroupNormalized {
+  $description: string | undefined;
+  $deprecated: string | boolean | undefined;
+  $extensions: Record<string, unknown> | undefined;
+  $type: Token['$type'] | undefined;
+  id: string;
+  /** IDs of all tokens contained in this group */
+  tokens: string[];
+}
+
 export interface TokenNormalizedCore<$type extends Token['$type']> {
   $type: $type;
-  $description?: string;
-  $extensions?: Record<string, unknown>;
-  $deprecated?: string | boolean;
+  $description: string | undefined;
+  $extensions: Record<string, unknown> | undefined;
+  $deprecated: string | boolean | undefined;
   id: string;
+  /** Originating token location */
   source: {
+    /** @deprecated use filename instead */
     loc?: string;
-    node: ObjectNode;
+    filename: string | undefined;
+    node: momoa.ObjectNode;
   };
+  /** JSON Schema form of ID */
+  jsonID: string;
+  originalValue: unknown;
   /** The **final** aliased ID */
-  aliasOf?: string;
+  aliasOf: string | undefined;
   /** The entire alias chain, starting from the source token. The last item will match `.aliasOf`. */
-  aliasChain?: string[];
+  aliasChain: string[] | undefined;
   /** If this token is aliased in other tokens. */
-  aliasedBy?: string[];
-  group: {
-    $description?: string;
-    $extensions?: Record<string, unknown>;
-    $type?: $type;
-    id: string;
-    /** IDs of all tokens contained in this group */
-    tokens: string[];
-  };
+  aliasedBy: string[] | undefined;
+  /** All references from other tokens that compose this one, if any */
+  dependencies: string[] | undefined;
+  group: GroupNormalized;
 }
 
 export type TokenNormalized =
@@ -348,29 +363,36 @@ export type TokenNormalized =
 export type TokenNormalizedSet = Record<string, TokenNormalized>;
 export interface BooleanTokenNormalized extends TokenNormalizedCore<'boolean'> {
   $value: BooleanValue;
-  partialAliasOf?: never;
+  partialAliasOf: undefined;
   mode: ModeMap<BooleanTokenNormalized>;
-  originalValue: BooleanToken | AliasToken;
+  originalValue: BooleanToken | AliasToken | undefined;
 }
 
 export interface BorderTokenNormalized extends TokenNormalizedCore<'border'> {
   $value: BorderValueNormalized;
-  partialAliasOf?: Partial<Record<keyof BorderValueNormalized, string>>;
+  partialAliasOf: Record<keyof BorderValueNormalized, string | undefined> | undefined;
   mode: ModeMap<BorderTokenNormalized>;
-  originalValue: BorderToken | AliasToken;
+  originalValue: BorderToken | AliasToken | undefined;
 }
 
 export interface BorderValueNormalized {
   color: ColorValueNormalized;
   width: DimensionValue;
-  style: StrokeStyleValueExpanded;
+  style: StrokeStyleValue;
 }
 
 export interface ColorTokenNormalized extends TokenNormalizedCore<'color'> {
   $value: ColorValueNormalized;
   mode: ModeMap<ColorTokenNormalized>;
-  partialAliasOf?: never;
-  originalValue: ColorToken | AliasToken;
+  partialAliasOf:
+    | {
+        colorSpace: string | undefined;
+        components: (string | undefined)[];
+        alpha: string | undefined;
+        hex: string | undefined;
+      }
+    | undefined;
+  originalValue: ColorToken | AliasToken | undefined;
 }
 
 export interface ColorValueNormalized {
@@ -380,11 +402,9 @@ export interface ColorValueNormalized {
    * @see https://www.w3.org/TR/css-color-4/#predefined
    */
   colorSpace: ColorSpace;
-  /* @deprecated! Use "components" instead */
-  channels?: [number, number, number];
   /** Color components. Will be normalized to 1 unless the colorspace prevents it (e.g. XYZ, LAB) */
-  components: [number, number, number];
-  /** Alpha channel, normalized from 0 – 1 */
+  components: (number | null)[];
+  /** Alpha component, normalized from 0 – 1 */
   alpha: number;
   /** Hex fallback (for sRGB) */
   hex?: string;
@@ -411,31 +431,34 @@ export type ColorSpace =
 
 export interface CubicBezierTokenNormalized extends TokenNormalizedCore<'cubicBezier'> {
   $value: CubicBezierValue;
-  partialAliasOf?: [string | undefined, string | undefined, string | undefined, string | undefined];
+  /** Parts of this token rely on others */
+  partialAliasOf: [string | undefined, string | undefined, string | undefined, string | undefined] | undefined;
   mode: ModeMap<CubicBezierTokenNormalized>;
-  originalValue: CubicBezierToken | AliasToken;
+  originalValue: CubicBezierToken | AliasToken | undefined;
 }
 
 export interface DimensionTokenNormalized extends TokenNormalizedCore<'dimension'> {
   $value: DimensionValue;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<DimensionTokenNormalized>;
-  originalValue: DimensionToken | AliasToken;
+  originalValue: DimensionToken | AliasToken | undefined;
 }
 
 export interface DurationTokenNormalized extends TokenNormalizedCore<'duration'> {
   $value: DurationValue;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<DurationTokenNormalized>;
-  originalValue: DurationToken | AliasToken;
+  originalValue: DurationToken | AliasToken | undefined;
 }
 
 export interface FontFamilyTokenNormalized extends TokenNormalizedCore<'fontFamily'> {
   $value: FontFamilyValueNormalized;
-  aliasOf?: string;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<FontFamilyTokenNormalized>;
-  originalValue: FontFamilyToken | AliasToken;
+  originalValue: FontFamilyToken | AliasToken | undefined;
 }
 
 export type FontFamilyValueNormalized = string[];
@@ -443,19 +466,20 @@ export type FontFamilyValueNormalized = string[];
 export interface FontWeightTokenNormalized extends TokenNormalizedCore<'fontWeight'> {
   $type: 'fontWeight';
   $value: FontWeightValueNormalized;
-  aliasOf?: string;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<FontWeightTokenNormalized>;
-  originalValue: FontWeightToken | AliasToken;
+  originalValue: FontWeightToken | AliasToken | undefined;
 }
 
 export type FontWeightValueNormalized = number;
 
 export interface GradientTokenNormalized extends TokenNormalizedCore<'gradient'> {
   $value: GradientValueNormalized;
-  partialAliasOf?: Partial<Record<keyof GradientStopNormalized, string>>[];
+  /** Parts of this token rely on others */
+  partialAliasOf: Record<keyof GradientStopNormalized, string | undefined>[] | undefined;
   mode: ModeMap<GradientTokenNormalized>;
-  originalValue: GradientTokenNormalized | AliasToken;
+  originalValue: GradientToken | AliasToken | undefined;
 }
 
 export type GradientValueNormalized = GradientStopNormalized[];
@@ -467,23 +491,26 @@ export interface GradientStopNormalized {
 
 export interface LinkTokenNormalized extends TokenNormalizedCore<'link'> {
   $value: LinkValue;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<LinkTokenNormalized>;
-  originalValue: LinkToken | AliasToken;
+  originalValue: LinkToken | AliasToken | undefined;
 }
 
 export interface NumberTokenNormalized extends TokenNormalizedCore<'number'> {
   $value: NumberValue;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<NumberTokenNormalized>;
-  originalValue: NumberToken | AliasToken;
+  originalValue: NumberToken | AliasToken | undefined;
 }
 
 export interface ShadowTokenNormalized extends TokenNormalizedCore<'shadow'> {
   $value: ShadowValueNormalized[];
-  partialAliasOf?: Partial<Record<keyof ShadowValueNormalized, string>>[];
+  /** Parts of this token rely on others */
+  partialAliasOf: Record<keyof ShadowValue, string | undefined>[] | undefined;
   mode: ModeMap<ShadowTokenNormalized>;
-  originalValue: ShadowToken | AliasToken;
+  originalValue: ShadowToken | AliasToken | undefined;
 }
 
 export interface ShadowValueNormalized {
@@ -497,23 +524,29 @@ export interface ShadowValueNormalized {
 
 export interface StringTokenNormalized extends TokenNormalizedCore<'string'> {
   $value: StringValue;
-  partialAliasOf?: never;
+  /** Parts of this token rely on others */
+  partialAliasOf: undefined;
   mode: ModeMap<StringTokenNormalized>;
-  originalValue: StringTokenNormalized | AliasToken;
+  originalValue: StringToken | AliasToken | undefined;
 }
 
 export interface StrokeStyleTokenNormalized extends TokenNormalizedCore<'strokeStyle'> {
   $value: StrokeStyleValueExpanded;
-  partialAliasOf?: never;
+  partialAliasOf:
+    | {
+        dashArray: (string | undefined)[];
+      }
+    | undefined;
   mode: ModeMap<StrokeStyleTokenNormalized>;
-  originalValue: StrokeStyleToken | AliasToken;
+  originalValue: StrokeStyleToken | AliasToken | undefined;
 }
 
 export interface TransitionTokenNormalized extends TokenNormalizedCore<'transition'> {
   $value: TransitionValueNormalized;
-  partialAliasOf?: Partial<Record<keyof TransitionValueNormalized, string>>;
+  /** Parts of this token rely on others */
+  partialAliasOf: Record<keyof TransitionValueNormalized, string | undefined> | undefined;
   mode: ModeMap<TransitionTokenNormalized>;
-  originalValue: TransitionToken | AliasToken;
+  originalValue: TransitionToken | AliasToken | undefined;
 }
 
 export interface TransitionValueNormalized {
@@ -524,14 +557,15 @@ export interface TransitionValueNormalized {
 
 export interface TypographyTokenNormalized extends TokenNormalizedCore<'typography'> {
   $value: TypographyValueNormalized;
-  partialAliasOf?: Record<string, string>;
+  /** Parts of this token rely on others */
+  partialAliasOf: Record<keyof TypographyValueNormalized, string | undefined> | undefined;
   mode: ModeMap<TypographyTokenNormalized>;
-  originalValue: TypographyToken | AliasToken;
+  originalValue: TypographyToken | AliasToken | undefined;
 }
 
 export interface TypographyValueNormalized {
-  fontFamily?: FontFamilyValue;
-  fontSize?: DimensionValue;
+  fontFamily: FontFamilyValue;
+  fontSize: DimensionValue;
   fontStyle?: string;
   fontVariant?: string;
   fontVariantAlternatives?: string;
@@ -542,9 +576,9 @@ export interface TypographyValueNormalized {
   fontVariantNumeric?: string;
   fontVariantPosition?: string;
   fontVariationSettings?: string;
-  fontWeight?: FontWeightValue;
-  letterSpacing?: DimensionValue;
-  lineHeight?: DimensionValue | NumberValue;
+  fontWeight: FontWeightValue;
+  letterSpacing: DimensionValue;
+  lineHeight: DimensionValue | NumberValue;
   textDecoration?: string;
   textTransform?: string;
   [key: string]: unknown;

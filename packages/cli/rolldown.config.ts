@@ -11,6 +11,7 @@ export default defineConfig({
     '@clack/prompts',
     '@hono/node-server',
     '@humanwhocodes/momoa',
+    '@terrazzo/json-schema-tools',
     '@terrazzo/parser',
     '@terrazzo/token-lab',
     '@terrazzo/token-tools',

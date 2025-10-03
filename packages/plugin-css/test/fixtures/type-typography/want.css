@@ -7,12 +7,14 @@
   --ds-typography-body-font-size: 16px;
   --ds-typography-body-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
   --ds-typography-body-font-weight: 400;
+  --ds-typography-body-letter-spacing: 0;
   --ds-typography-body-line-height: 1.5;
   --ds-typography-callout-font-family: var(--ds-typography-family-body);
   --ds-typography-callout-font-size: 18px;
   --ds-typography-callout-font-style: italic;
   --ds-typography-callout-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
   --ds-typography-callout-font-weight: 300;
+  --ds-typography-callout-letter-spacing: 0;
   --ds-typography-callout-line-height: 1.5;
   --ds-typography-family-body: "IBM Plex Sans", system-ui, sans-serif;
   --ds-typography-family-footnote: var(--ds-typography-family-body);
@@ -21,6 +23,7 @@
   --ds-typography-label-font-size: var(--ds-typography-body-font-size);
   --ds-typography-label-font-variation-settings: var(--ds-typography-body-font-variation-settings);
   --ds-typography-label-font-weight: var(--ds-typography-body-font-weight);
+  --ds-typography-label-letter-spacing: var(--ds-typography-body-letter-spacing);
   --ds-typography-label-line-height: var(--ds-typography-body-line-height);
   --ds-typography-page-title-font-family: var(--ds-typography-family-heading);
   --ds-typography-page-title-font-size: 48px;
@@ -39,10 +42,11 @@
 
 @media (width >= 600px) {
   :root {
-    --ds-typography-body-font-family: "IBM Plex Sans", system-ui, sans-serif;
+    --ds-typography-body-font-family: inherit;
     --ds-typography-body-font-size: 14px;
     --ds-typography-body-font-variation-settings: "wght" 100, "opsz" 100, "wdth" 50;
     --ds-typography-body-font-weight: 400;
+    --ds-typography-body-letter-spacing: 0;
     --ds-typography-body-line-height: 1.5;
     --ds-typography-label-font-family: var(--ds-typography-subheading-font-family);
     --ds-typography-label-font-size: var(--ds-typography-subheading-font-size);

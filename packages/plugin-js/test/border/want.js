@@ -3,56 +3,6 @@
  * ------------------------------------------- */
 
 export const tokens = {
-  "border.solid": {
-    ".": {
-      "color": {
-        "colorSpace": "srgb",
-        "components": [
-          0.65,
-          0.69,
-          0.71
-        ],
-        "alpha": 1
-      },
-      "style": "solid",
-      "width": {
-        "value": 1,
-        "unit": "px"
-      }
-    },
-    "light": {
-      "color": {
-        "colorSpace": "srgb",
-        "components": [
-          0.65,
-          0.69,
-          0.71
-        ],
-        "alpha": 1
-      },
-      "style": "solid",
-      "width": {
-        "value": 1,
-        "unit": "px"
-      }
-    },
-    "dark": {
-      "color": {
-        "colorSpace": "srgb",
-        "components": [
-          0.08,
-          0.09,
-          0.11
-        ],
-        "alpha": 1
-      },
-      "style": "solid",
-      "width": {
-        "value": 1,
-        "unit": "px"
-      }
-    },
-  },
   "border.dashed": {
     ".": {
       "color": {
@@ -64,16 +14,22 @@ export const tokens = {
         ],
         "alpha": 1
       },
-      "style": {
-        "dashArray": [
-          "0.5rem",
-          "0.25rem"
-        ],
-        "lineCap": "round"
-      },
       "width": {
         "value": 1.5,
         "unit": "px"
+      },
+      "style": {
+        "dashArray": [
+          {
+            "value": 0.5,
+            "unit": "rem"
+          },
+          {
+            "value": 0.25,
+            "unit": "rem"
+          }
+        ],
+        "lineCap": "round"
       }
     },
     "light": {
@@ -86,16 +42,19 @@ export const tokens = {
         ],
         "alpha": 1
       },
+      "width": "1.5px",
       "style": {
         "dashArray": [
-          "0.5rem",
-          "0.25rem"
+          {
+            "value": 0.5,
+            "unit": "rem"
+          },
+          {
+            "value": 0.25,
+            "unit": "rem"
+          }
         ],
         "lineCap": "round"
-      },
-      "width": {
-        "value": 1.5,
-        "unit": "px"
       }
     },
     "dark": {
@@ -108,21 +67,23 @@ export const tokens = {
         ],
         "alpha": 1
       },
+      "width": "1.5px",
       "style": {
         "dashArray": [
           "0.5rem",
           "0.25rem"
         ],
         "lineCap": "round"
-      },
-      "width": {
-        "value": 1.5,
-        "unit": "px"
       }
     },
   },
   "border.default": {
     ".": {
+      "width": {
+        "value": 2.5,
+        "unit": "px"
+      },
+      "style": "solid",
       "color": {
         "colorSpace": "oklch",
         "components": [
@@ -131,12 +92,57 @@ export const tokens = {
           310
         ],
         "alpha": 1
-      },
-      "style": "solid",
-      "width": {
-        "value": 2.5,
-        "unit": "px"
       }
+    },
+  },
+  "border.solid": {
+    ".": {
+      "color": {
+        "colorSpace": "srgb",
+        "components": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
+      },
+      "width": {
+        "value": 1,
+        "unit": "px"
+      },
+      "style": "solid"
+    },
+    "light": {
+      "color": {
+        "colorSpace": "srgb",
+        "components": [
+          0.65,
+          0.69,
+          0.71
+        ],
+        "alpha": 1
+      },
+      "width": {
+        "value": 1,
+        "unit": "px"
+      },
+      "style": "solid"
+    },
+    "dark": {
+      "color": {
+        "colorSpace": "srgb",
+        "components": [
+          0.08,
+          0.09,
+          0.11
+        ],
+        "alpha": 1
+      },
+      "width": {
+        "value": 1,
+        "unit": "px"
+      },
+      "style": "solid"
     },
   },
   "color.base.gray.10": {
