@@ -1,4 +1,4 @@
-import type { Logger, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
+import type { Logger, ModeMap, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
 import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
 import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';
@@ -96,9 +96,13 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       }
     }
 
+    const originalValue = (token.originalValue?.$extensions as {
+        mode?: ModeMap<TokenNormalized>;
+      })?.mode?.[mode] ?? token.originalValue.$value;
+
     const output: TokenListingExtension = {
       names: computedNames,
-      originalValue: token.originalValue.$value,
+      originalValue,
     };
 
     const previewValue =

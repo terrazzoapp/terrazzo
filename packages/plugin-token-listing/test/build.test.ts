@@ -401,6 +401,22 @@ describe('token-listing plugin - Node.js API', () => {
     });
   });
 
+  describe('originalValue', () => {
+    it('outputs the original value of tokens', async () => {
+      const options = { filename: 'actual.listing.json' };
+      const output = await setupTest('./fixtures/build-default/', options);
+      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      expect(listed.$extensions['app.terrazzo.listing'].originalValue).toEqual("rgb(12, 119, 146)");
+    });
+
+    it('takes modes and aliases into account when computing original values', async () => {
+      const options = { filename: 'actual.listing.json' };
+      const output = await setupTest('./fixtures/build-default/', options);
+      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.500' && d.$extensions['app.terrazzo.listing'].mode === 'Dark blue');
+      expect(listed.$extensions['app.terrazzo.listing'].originalValue).toEqual("{Colors.Gray.300}");
+    });
+  });
+
   describe('sourceOfTruth', () => {
     it('outputs default sot in meta if set', async () => {
       const options = { filename: 'actual.listing.json', sourceOfTruth: 'figma' };
