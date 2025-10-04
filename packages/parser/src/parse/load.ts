@@ -63,7 +63,6 @@ export async function loadSources(
 
   // 1. Bundle root documents together
   const firstLoad = performance.now();
-  logger.debug({ ...entry, message: `Loading token files` });
   let document = {} as momoa.DocumentNode;
 
   /** The original user inputs, in original order, with parsed ASTs */
@@ -108,18 +107,17 @@ export async function loadSources(
     });
   }
 
-  logger.debug({
-    ...entry,
-    message: `Loading done`,
-    timing: performance.now() - firstLoad,
-  });
+  logger.debug({ ...entry, message: `JSON loaded`, timing: performance.now() - firstLoad });
   const artificialSource = { src: momoa.print(document, { indent: 2 }), document };
 
   // 2. Parse
-  const resolveStart = performance.now();
+  const firstPass = performance.now();
   const tokens: TokenNormalizedSet = {};
+  // micro-optimization: while we’re iterating over tokens, keeping a “hot”
+  // array in memory saves recreating arrays from object keys over and over again.
+  // it does produce a noticeable speedup > 1,000 tokens.
+  const tokenIDs: string[] = [];
   const groups: Record<string, GroupNormalized> = {};
-  logger.debug({ ...entry, message: 'Parsing tokens' });
 
   // 2a. Token & group population
   await traverseAsync(document, {
@@ -135,10 +133,14 @@ export async function loadSources(
         source: { src: artificialSource, document },
       });
       if (token) {
+        tokenIDs.push(token.jsonID);
         tokens[token.jsonID] = token;
       }
     },
   });
+
+  logger.debug({ ...entry, message: 'Parsing: 1st pass', timing: performance.now() - firstPass });
+  const secondPass = performance.now();
 
   // 2b. Resolve originalValue and original sources
   for (const source of Object.values(sourceByFilename)) {
@@ -162,39 +164,40 @@ export async function loadSources(
   }
 
   // 2c. DTCG alias resolution
-  // Note: these have to be resolved after $refs. Because they technically
-  // aren’t convertible to $refs until the final document is built.
+  // Unlike $refs which can be resolved as we go, these can’t happen until the final, flattened set
   resolveAliases(tokens, { logger, sources: sourceByFilename, refMap });
-  logger.debug({ ...entry, message: 'Parsing done', timing: performance.now() - resolveStart });
+  logger.debug({ ...entry, message: 'Parsing: 2nd pass', timing: performance.now() - secondPass });
 
   // 3. Alias graph
+  // We’ve resolved aliases, but we need this pass for reverse linking i.e. “aliasedBy”
   const aliasStart = performance.now();
-  logger.debug({ ...entry, message: 'Building alias graph' });
-  graphAliases(refMap, {
-    tokens,
-    logger,
-    sources: sourceByFilename,
-  });
+  graphAliases(refMap, { tokens, logger, sources: sourceByFilename });
   logger.debug({ ...entry, message: 'Alias graph built', timing: performance.now() - aliasStart });
 
   // 4. normalize
+  // Allow for some minor variance in inputs, and be nice to folks.
   const normalizeStart = performance.now();
-  logger.debug({ ...entry, message: 'Normalizing start' });
-  for (const token of Object.values(tokens)) {
+  for (const id of tokenIDs) {
+    const token = tokens[id]!;
     normalize(token as any, { logger, src: sourceByFilename[token.source.filename!]?.src });
   }
-  logger.debug({ ...entry, message: 'Normalizing done', timing: performance.now() - normalizeStart });
+  logger.debug({ ...entry, message: 'Normalized values', timing: performance.now() - normalizeStart });
 
   // 5. alphabetize & filter
+  // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.
   const tokensSorted: TokenNormalizedSet = {};
-  const sortedKeys = Object.keys(tokens).sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
-  for (const path of sortedKeys) {
+  tokenIDs.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+  for (const path of tokenIDs) {
     // Filter out any tokens in $defs (we needed to reference them earlier, but shouldn’t include them in the final assortment)
     if (path.includes('/$defs/')) {
       continue;
     }
     const id = refToTokenID(path)!;
     tokensSorted[id] = tokens[path]!;
+  }
+  // Sort group IDs once, too
+  for (const group of Object.values(groups)) {
+    group.tokens.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
   }
 
   return {
