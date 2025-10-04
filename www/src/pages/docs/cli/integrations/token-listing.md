@@ -252,8 +252,8 @@ export default defineConfig({
 
 This plugin keeps track of where each design token comes from. Each listed token has a `source` property pointing to the resource where the source token is found, and the location of the token within the resource.
 
-> [!NOTE]
-> Once the Resolver Spec is accepted into the DTCG spec, resources should match the names defined in your design tokens' `resolver.json` file.
+> [!WARNING]
+> Once the Resolver Spec is accepted into the DTCG spec, resources should match the names defined in your design tokens' `resolver.json` file. Expect potential changes to the format or config used in Terrazzo as a result of the Resolver Spec release.
 
 This information can be used to create links between documentation tools and token editors. No configuration is needed to produce `source` information. Source information typically looks like this:
 
@@ -261,7 +261,7 @@ This information can be used to create links between documentation tools and tok
 
 ```jsonc [tokens.listing.json]
 {
-  "resource": "file:///home/steve/Development/terrazzo/packages/debug/tokens.json",
+  "resource": "file://<root>/tokens.json",
   "loc": {
     "start": { "line": 21, "column": 14, "offset": 556 },
     "end": { "line": 28, "column": 8, "offset": 770 }
@@ -450,7 +450,9 @@ export default defineConfig({
         // A plugin name can be passed to the whole platform as a shorthand
         css: '@terrazzo/plugin-css',
       },
-      // 
+      // Root folder where the source design tokens consumed by Terrazzo are stored
+      resourceRoot: '~/Work/design-tokens/src/'
+      // Platform where the design tokens are authored and maintained
       sourceOfTruth: {
         // goes in the listing metadata
         default: 'figma',
@@ -485,6 +487,7 @@ export default defineConfig({
 | `filename`      | `string`                                                        | Filename to generate (default: `"tokens.listing.json"`).              |
 | `modes`         | `ModeOption[]`                                                  | Modes to include in this token listing.                               |
 | `platforms`     | `Record<string, PlatformOption>`                                | Platforms for which token names are included.                         |
+| `resourceRoot`  | `string`                                                        | Root folder containing the source design tokens used by Terrazzo.     |
 | `sourceOfTruth` | `SourceOfTruthOption`                                           | Source of truth for the design tokens.                                |
 | `previewValue`  | `(params: CustomFunctionParams) => string | number | undefined` | Custom function to compute preview values.                            |
 | `subtype`       | `(params: CustomFunctionParams) => Subtype | undefined`         | Custom function to provide more fine-grained types for design tokens. |

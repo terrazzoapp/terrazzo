@@ -64,10 +64,9 @@ describe('tz build', () => {
     it('outDir', async () => {
       const cwd = new URL('./fixtures/cli-config-outdir/', import.meta.url);
       await execa('node', [cmd, 'build'], { cwd });
-      
+
       const actual = fs.readFileSync(new URL('./styles/out/actual.listing.json', cwd), 'utf8');
       const comparable = actual
-        .replace(/file:\/\/\/[^"]+/g, 'file:///some-path/tokens.json')
         .replace(/"line": \d+/g, '"line": 0')
         .replace(/"column": \d+/g, '"column": 0')
         .replace(/"offset": \d+/g, '"offset": 0');

@@ -4,7 +4,6 @@ import { build, defineConfig, type Plugin, parse, Logger } from '@terrazzo/parse
 import css from '@terrazzo/plugin-css';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import listing, { type CustomFunctionParams, type ListedToken, type TokenListingPluginOptions } from '../src/index.js';
-import { mock } from 'node:test';
 
 
 describe('token-listing plugin - Node.js API', () => {
@@ -433,7 +432,20 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options);
       const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
       expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
-        resource: `file://${fileURLToPath(new URL('./fixtures/build-default/tokens.json', import.meta.url))}`,
+        resource: expect.any(String),
+        loc: {
+          start: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
+          end: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
+        },
+      });
+    });
+
+    it('respects resourceRoot option as absolute path to compute root of source URLs', async () => {
+      const options = { filename: 'actual.listing.json', resourceRoot: fileURLToPath(new URL('./fixtures/', import.meta.url)) };
+      const output = await setupTest('./fixtures/build-default/', options);
+      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
+        resource: 'file://<root>/build-default/tokens.json',
         loc: {
           start: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },
           end: { line: expect.any(Number), column: expect.any(Number), offset: expect.any(Number) },

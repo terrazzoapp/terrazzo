@@ -31,7 +31,7 @@
           },
           "previewValue": "#000000",
           "source": {
-            "resource": "file:///some-path/tokens.json",
+            "resource": "file://<root>/styles/tokens.json",
             "loc": {
               "start": {
                 "line": 0,

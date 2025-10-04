@@ -157,6 +157,12 @@ export interface TokenListingPluginOptions {
   platforms?: Record<string, PlatformOption>;
 
   /**
+   * Root URL or path where design token files are located. Helps compute the `source` property
+   * in listed tokens.
+   */
+  resourceRoot?: string;
+
+  /**
    * Identity of the platform acting as a source of truth for this listing's tokens. In
    * multi-source-of-truth systems, a custom function can be provided to compute the
    * source of truth on a per-token basis, and a default value can be specified.

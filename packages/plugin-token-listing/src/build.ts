@@ -2,6 +2,7 @@ import type { Logger, ModeMap, Plugin, TokenNormalized, TokenTransformed, Transf
 import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
 import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';
+import path from 'node:path';
 
 export * from './lib.js';
 
@@ -95,12 +96,14 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
     getTransforms,
     logger,
     mode,
+    resourceRoot = process.cwd(),
     token,
     tokensSet,
   }: {
     getTransforms: (params: TransformParams) => TokenTransformed[];
     logger: Logger;
     mode: string;
+    resourceRoot?: string;
     token: TokenNormalized;
     tokensSet: Record<string, TokenNormalized>;
   }): TokenListingExtension => {
@@ -145,14 +148,14 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       output.sourceOfTruth = sourceOfTruth;
     }
 
-    const source = token.source.loc
-      ? {
-          resource: token.source.loc,
-          loc: token.source.node.loc,
-        }
-      : undefined;
-    if (source) {
-      output.source = source;
+    if (token.source.loc) {
+      const fsLoc = token.source.loc.replace('file://', '');
+      const relativeLoc = path.relative(resourceRoot, fsLoc);
+    
+      output.source = {
+        resource: `file://<root>/${relativeLoc}`,
+        loc: token.source.node.loc,
+      };
     }
 
     return output;
@@ -166,7 +169,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
         $value: tokenInMode ? tokenInMode.$value : token.$value,
         $deprecated: token.$deprecated,
         $extensions: {
-          'app.terrazzo.listing': getListingMeta({ getTransforms, logger, token, tokensSet: tokens, mode }),
+          'app.terrazzo.listing': getListingMeta({ getTransforms, logger, token, resourceRoot: options.resourceRoot, tokensSet: tokens, mode }),
         },
       })),
     );
