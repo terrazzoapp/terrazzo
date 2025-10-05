@@ -97,11 +97,7 @@ Tools targeted by the Token Listing format include:
 * search indexes for design tokens
 
 
-Below are a few screenshots of what such tools can look like:
-
-// TODO
-
-And an example of Token Listing content:
+Below is an example of Token Listing content:
 
 :::code-group
 
