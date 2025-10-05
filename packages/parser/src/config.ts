@@ -56,12 +56,12 @@ function normalizeTokens({
 }) {
   if (rawConfig.tokens === undefined) {
     config.tokens = [
-      // @ts-ignore we’ll normalize in next step
+      // @ts-expect-error we’ll normalize in next step
       './tokens.json',
     ];
   } else if (typeof rawConfig.tokens === 'string') {
     config.tokens = [
-      // @ts-ignore we’ll normalize in next step
+      // @ts-expect-error we’ll normalize in next step
       rawConfig.tokens,
     ];
   } else if (Array.isArray(rawConfig.tokens)) {
@@ -69,7 +69,7 @@ function normalizeTokens({
     for (const file of rawConfig.tokens) {
       if (typeof file === 'string' || (file as URL) instanceof URL) {
         config.tokens.push(
-          // @ts-ignore we’ll normalize in next step
+          // @ts-expect-error we’ll normalize in next step
           file,
         );
       } else {

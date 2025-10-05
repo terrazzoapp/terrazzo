@@ -15,7 +15,7 @@ For **plugin authors,** there are quite a few breaking changes and new features 
 
 These aren’t breaking changes; just new features that warranted the breaking changes.
 
-- **Improved wide gamut support**: While Cobalt supported all [Color Module 4](https://www.w3.org/TR/css-color-4/) colorspaces like Display P3, it came with drawbacks and gotchas. Terrazzo’s improved color support lets you pick your tokens in any color, and it handles hardware requirements automatically based on the plugin.
+- **Improved wide gamut support**: While Cobalt supported all [Color Module 4](https://www.w3.org/TR/css-color-4/) color spaces like Display P3, it came with drawbacks and gotchas. Terrazzo’s improved color support lets you pick your tokens in any color, and it handles hardware requirements automatically based on the plugin.
 - **Plugin transform sharing**: Plugins can now share token transformations (e.g. the Sass plugin can now read the output from the CSS plugin).
 - **Code frame errors**: now when you have an error in your `tokens.json` file, Terrazzo points to the exact spot that erred so the fix is easier. Linting plugins can also return code snippets in error messages as well.
 - **Better parsing**: Terrazzo’s parser was overhauled to catch more mistakes while keeping performance fast.

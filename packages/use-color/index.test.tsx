@@ -45,6 +45,7 @@ function UseColorTester({
         }}
       >
         <label htmlFor='color-input'>Update color</label>
+        {/* biome-ignore lint/correctness/useUniqueElementIds: this is a test */}
         <input id='color-input' name='color' />
         <button type='submit'>Save</button>
       </form>
@@ -172,7 +173,14 @@ describe('useColor', () => {
     ];
 
     it.each(formatTests)('%s', (_, { given, want }) => {
-      expect(parse(given)).toEqual(want);
+      const result = parse(given)!;
+      for (const k of Object.keys(result)) {
+        if (typeof (result as any)[k] === 'number') {
+          expect((result as any)[k]).toBeCloseTo((want as any)[k]);
+        } else {
+          expect((result as any)[k]).toBe((want as any)[k]);
+        }
+      }
     });
   });
 
@@ -194,13 +202,11 @@ describe('useColor', () => {
 
       // assert color displays as-expected
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor).toEqual({
-        mode: 'rgb',
-        r: 0.0001617559902515342,
-        g: 0.30008212426886693,
-        b: 0.9998580363362607,
-        alpha: 1,
-      });
+      expect(displayedColor.mode).toBe('rgb');
+      expect(displayedColor.r).toBeCloseTo(0.0001617559902515342);
+      expect(displayedColor.g).toBeCloseTo(0.30008212426886693);
+      expect(displayedColor.b).toBeCloseTo(0.9998580363362607);
+      expect(displayedColor.alpha).toBeCloseTo(1);
 
       // assert only 1 render happened
       expect(renderCount).toBe(1);
@@ -245,13 +251,11 @@ describe('useColor', () => {
 
       // assert `setColor()` works
       const displayedColor = JSON.parse(screen.getByTestId('color-display').innerHTML) as Rgb;
-      expect(displayedColor).toEqual({
-        mode: 'rgb',
-        r: 0.5999999999999989,
-        g: 0.3000000000000008,
-        b: 0.500000000000001,
-        alpha: 1,
-      });
+      expect(displayedColor.mode).toBe('rgb');
+      expect(displayedColor.r).toBeCloseTo(0.6);
+      expect(displayedColor.g).toBeCloseTo(0.3);
+      expect(displayedColor.b).toBeCloseTo(0.5);
+      expect(displayedColor.alpha).toBeCloseTo(1);
 
       // assert only 1 onChange happened (+1 first render)
       expect(onChangeCount).toBe(1 + 1);

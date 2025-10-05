@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "version": 1,
+    "authoringTool": "Terrazzo",
+    "platforms": {}
+  },
+  "data": [
+    {
+      "$name": "color.base.gray.10",
+      "$type": "color",
+      "$value": {
+        "colorSpace": "lab",
+        "components": [
+          0.1,
+          0,
+          0
+        ],
+        "alpha": 1
+      },
+      "$extensions": {
+        "app.terrazzo.listing": {
+          "names": {},
+          "originalValue": {
+            "colorSpace": "lab",
+            "components": [
+              0.1,
+              0,
+              0
+            ],
+            "alpha": 1
+          },
+          "previewValue": "#000000",
+          "source": {
+            "resource": "file://<root>/styles/tokens.json",
+            "loc": {
+              "start": {
+                "line": 0,
+                "column": 0,
+                "offset": 0
+              },
+              "end": {
+                "line": 0,
+                "column": 0,
+                "offset": 0
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

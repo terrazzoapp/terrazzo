@@ -139,15 +139,15 @@ export async function initCmd({ logger }: InitOptions) {
     const pluginSelection = await multiselect({
       message: 'Install plugins?',
       options: [
-        { value: '@terrazzo/plugin-css', label: 'CSS' },
-        { value: '@terrazzo/plugin-js', label: 'JS + TS' },
-        { value: '@terrazzo/plugin-sass', label: 'Sass' },
-        { value: '@terrazzo/plugin-tailwind', label: 'Tailwind' },
+        { value: ['@terrazzo/plugin-css'], label: 'CSS' },
+        { value: ['@terrazzo/plugin-js'], label: 'JS + TS' },
+        { value: ['@terrazzo/plugin-css', '@terrazzo/plugin-sass'], label: 'Sass' },
+        { value: ['@terrazzo/plugin-tailwind'], label: 'Tailwind' },
       ],
       required: false,
     });
     const newPlugins = Array.isArray(pluginSelection)
-      ? pluginSelection.filter((p) => !existingPlugins.includes(p))
+      ? Array.from(new Set(pluginSelection.flat().filter((p) => !existingPlugins.includes(p))))
       : [];
     if (newPlugins?.length) {
       const plugins = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), package: p }));
@@ -220,6 +220,7 @@ export async function initCmd({ logger }: InitOptions) {
                 name: p.specifier,
               },
               arguments: [],
+              optional: false,
             }) as ESTree.CallExpression,
         );
         if (pluginsArray) {

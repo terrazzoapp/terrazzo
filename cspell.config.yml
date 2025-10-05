@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json
+
+version: "0.2"
+language: en
+caseSensitive: true
+enabledFileTypes:
+  "*": true
+dictionaries:
+  - html
+ignoreRegExpList:
+  - /@[A-Za-z0-9-_]+/ # ignore user handles
+ignorePaths:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/fixtures/**"
+  - "**/*.astro"
+  - "**/*.css"
+  - "**/*.json"
+words:
+  - Björn
+  - Brücke
+  - cubic-bezier
+  - cubicBezier
+  - Culori
+  - DTCG
+  - Graphik
+  - humanwhocodes
+  - illo
+  - lrgb
+  - meriyah
+  - momoa
+  - Noto
+  - Okhsv
+  - OKHSV
+  - OKHSL
+  - Ottosen
+  - okhsl
+  - okhsv
+  - Oklab
+  - OKLAB
+  - oklab
+  - Oklch
+  - OKLCH
+  - oklch
+  - prophoto
+  - Segoe
+  - shiki
+  - WCAG
+  - wcmatch

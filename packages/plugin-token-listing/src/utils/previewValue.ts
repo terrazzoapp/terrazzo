@@ -45,10 +45,35 @@ export function computePreviewValue({
 
     if (typeof computed === 'object') {
       if (token.$type === 'typography' && isCompositeTypography(computed)) {
-        return `${computed['font-weight'] || 400}${computed['font-style'] ? ` ${computed['font-style']}` : ''} ${computed['font-size'] || '1rem'}${computed['line-height'] ? `/${computed['line-height']}` : ''} ${computed['font-family'] ?? 'inherit'}`;
+        if (!computed['font-family'] || !computed['font-size']) {
+          logger.warn({
+            group: 'plugin',
+            label: `@terrazzo/plugin-token-listing > build > ${token.id}`,
+            message: `Composite typography token '${token.id}' is missing a font-family or font-size, so a preview value cannot be computed`,
+          });
+          return '';
+        }
+
+        return [
+          computed['font-weight'] || '',
+          computed['font-style'] || '',
+          `${computed['font-size']}${computed['line-height'] ? `/${computed['line-height']}` : ''}`,
+          computed['font-family'],
+        ]
+          .filter(Boolean)
+          .join(' ');
       }
 
-      // TODO: WideGamutColorValue
+      // WideGamutColorValue
+      if (
+        typeof computed === 'object' &&
+        '.' in computed &&
+        'srgb' in computed &&
+        'p3' in computed &&
+        'rec2020' in computed
+      ) {
+        return computed.srgb;
+      }
 
       logger.warn({
         group: 'plugin',

@@ -894,7 +894,7 @@ export default function validateTokenNode(
       : (members.$deprecated as BooleanNode).value
     : undefined;
   if (inheritedDeprecatedNode && !members.$deprecated) {
-    injectObjMembers(inheritedDeprecatedNode.value as ObjectNode, [inheritedDeprecatedNode]);
+    injectObjMembers(nodeWithType.value as ObjectNode, [inheritedDeprecatedNode]);
     $deprecated =
       inheritedDeprecatedNode.value.type === 'String'
         ? (inheritedDeprecatedNode.value as StringNode).value

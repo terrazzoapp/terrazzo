@@ -108,7 +108,7 @@ export default function normalizeValue<T extends Token>(token: T): T['$value'] {
       }
       return Math.min(
         999,
-        Math.max(1, typeof token.$value === 'string' ? Number.parseInt(token.$value) : token.$value),
+        Math.max(1, typeof token.$value === 'string' ? Number.parseInt(token.$value, 10) : token.$value),
       );
     }
     case 'gradient': {

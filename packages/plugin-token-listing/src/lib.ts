@@ -9,8 +9,9 @@ import type {
   FontFamilyValue,
   FontWeightValue,
   GradientValue,
-  NumberValue,
   LinkValue,
+  Logger,
+  NumberValue,
   ShadowValue,
   StringValue,
   StrokeStyleValue,
@@ -21,8 +22,15 @@ import type {
 
 export const FORMAT_ID = 'token-listing';
 
+export interface CustomFunctionParams {
+  logger: Logger;
+  mode: string;
+  token: TokenNormalized;
+  tokensSet: Record<string, TokenNormalized>;
+}
+
 /** Content of the DTCG $extension property computed by this plugin. */
-export interface ListedExtension {
+export interface TokenListingExtension {
   /** Dictionary of names for the current design token, in all platforms where it exists. */
   names: Record<string, string>;
 
@@ -44,8 +52,8 @@ export interface ListedExtension {
     };
   };
 
-  /** Value that can be used to preview this token in a Web environment. */
-  previewValue?: Value;
+  /** Value that can be used to preview this token in a CSS engine. */
+  previewValue?: string | number;
 
   /** Original value of the token, with aliases preserved. */
   originalValue?:
@@ -72,23 +80,11 @@ export interface ListedExtension {
 export interface ListedToken {
   $name: string;
   $type: string;
-  $description: string;
-  $value: Value;
-  $deprecated?: boolean;
+  $description?: string;
+  $value: string | number | boolean | Record<string, unknown>;
+  $deprecated?: string | boolean;
   $extensions: {
-    'app.terrazzo.listing': ListedExtension;
-  };
-}
-
-export interface ModeOutput {
-  name: string;
-  values: string[];
-  description?: string;
-}
-
-export interface NamesOutput {
-  [platform: string]: {
-    description?: string;
+    'app.terrazzo.listing': TokenListingExtension;
   };
 }
 
@@ -96,8 +92,9 @@ export interface TokenListing {
   meta: {
     version: 1;
     authoringTool: string;
-    modes: ModeOutput[];
-    names: NamesOutput;
+    modes?: ModeOption[];
+    platforms: Record<string, { description?: string }>;
+    /** Identity of the platform acting as a source of truth for this listing's tokens. */
     sourceOfTruth?: string;
   };
   data: ListedToken[];
@@ -107,13 +104,14 @@ export type ModeOption = {
   name: string;
   values: string[];
   description?: string;
+  default?: string;
 };
 
 export type PlatformOption =
   | {
       description?: string;
-      filter?: string | ((token: TokenNormalized, mode: string | undefined) => boolean);
-      name: string | ((token: TokenNormalized, mode: string | undefined) => string);
+      filter?: string | ((params: CustomFunctionParams) => boolean);
+      name: string | ((params: CustomFunctionParams) => string);
     }
   | string;
 
@@ -121,13 +119,8 @@ export type SourceOfTruthOption =
   | string
   | {
       default: string;
-      custom: (token: TokenNormalized) => string | undefined;
+      custom: (params: CustomFunctionParams) => string | undefined;
     };
-
-interface ValueObject {
-  [key: string]: string | number | boolean | ValueObject;
-}
-export type Value = string | number | boolean | ValueObject;
 
 export type Subtype =
   | 'bgColor'
@@ -166,6 +159,12 @@ export interface TokenListingPluginOptions {
   platforms?: Record<string, PlatformOption>;
 
   /**
+   * Root URL or path where design token files are located. Helps compute the `source` property
+   * in listed tokens.
+   */
+  resourceRoot?: string;
+
+  /**
    * Identity of the platform acting as a source of truth for this listing's tokens. In
    * multi-source-of-truth systems, a custom function can be provided to compute the
    * source of truth on a per-token basis, and a default value can be specified.
@@ -178,7 +177,7 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a preview value.
    * @returns The computed preview value, or `undefined` to use the automatically computed one.
    */
-  previewValue?: (token: TokenNormalized) => Value | undefined;
+  previewValue?: (params: CustomFunctionParams) => string | number | undefined;
 
   /**
    * Hook to compute subtypes for design tokens, e.g. to hint which colors are backgrounds, borders,
@@ -186,5 +185,5 @@ export interface TokenListingPluginOptions {
    * @param token The token for which to compute a subtype.
    * @returns The computed subtype, or `undefined` to use the DTCG $type for token presentation.
    */
-  subtype?: (token: TokenNormalized) => Subtype | undefined;
+  subtype?: (params: CustomFunctionParams) => Subtype | undefined;
 }
