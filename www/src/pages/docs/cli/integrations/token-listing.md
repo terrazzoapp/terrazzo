@@ -193,8 +193,9 @@ This plugin lets you declare all platforms your design tokens exist on, and lets
 
 You can map a specific platform to a compatible Terrazzo plugin (such as [plugin-css](./css) or [plugin-sass](./sass)), which will automatically compute a Token Listing name for that platform. You can also provide a custom `name` function for unsupported platforms, or to account for postprocessing you do on your built design tokens.
 
-> [!NOTE]
-> Terrazzo plugins transform tokens for a specific format. For example, `@terrazzo/plugin-css` registers transformed tokens in the `css` format. When a string is passed to the `name` property of a platform, it matches a format name, rather than a Terrazzo plugin name. Check the plugins you're using for the name of the format they transform tokens to, and use that format name to automate token name mapping.
+:::note
+Terrazzo plugins transform tokens for a specific format. For example, `@terrazzo/plugin-css` registers transformed tokens in the `css` format. When a string is passed to the `name` property of a platform, it matches a format name, rather than a Terrazzo plugin name. Check the plugins you're using for the name of the format they transform tokens to, and use that format name to automate token name mapping.
+:::
 
 
 #### Filtering
@@ -267,8 +268,9 @@ export default defineConfig({
 
 This plugin keeps track of where each design token comes from. Each listed token has a `source` property pointing to the resource where the source token is found, and the location of the token within the resource.
 
-> [!WARNING]
-> Once the Resolver Spec is accepted into the DTCG spec, resources should match the names defined in your design tokens' `resolver.json` file. Expect potential changes to the format or config used in Terrazzo as a result of the Resolver Spec release.
+:::note
+Once the Resolver Spec is accepted into the DTCG spec, resources should match the names defined in your design tokens' `resolver.json` file. Expect potential changes to the format or config used in Terrazzo as a result of the Resolver Spec release.
+:::
 
 This information can be used to create links between documentation tools and token editors. No configuration is needed to produce `source` information. Source information typically looks like this:
 
@@ -292,8 +294,9 @@ This information can be used to create links between documentation tools and tok
 
 The Token Listing format keeps track of which modes are available in your token system, and of which token is available in which mode. Listing metadata provides a list of modes with a description of each mode, their possible values and their default value. Each token has a mode field informing in which mode the token is available. This helps documentation tools build mode selection UI components, and filter the list of tokens based on the selected mode.
 
-> [!NOTE]
-> Once the Resolver Spec is accepted into the DTCG spec, we plan to make this plugin read modes directly from `resolver.json`.
+:::note
+Once the Resolver Spec is accepted into the DTCG spec, we plan to make this plugin read modes directly from `resolver.json`.
+:::
 
 In the below example, two modes are defined: one affects color tokens and has a default value, whereas the other affects dimension tokens and is not considered to have a default.
 
