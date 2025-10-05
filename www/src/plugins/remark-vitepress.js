@@ -24,7 +24,7 @@ const ICON = {
 
 export default function remarkVitepress() {
   return function transform(tree) {
-    visit(tree, (node, idx) => {
+    visit(tree, (node) => {
       if (node.type === CONTAINER_DIRECTIVE) {
         switch (node.name) {
           // :::note, :::tip, :::warning, etc.

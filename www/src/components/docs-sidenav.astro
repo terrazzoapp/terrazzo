@@ -2,7 +2,7 @@
 import { getAriaCurrent } from '../lib/navigation.js';
 import Terrazzo from './terrazzo.astro';
 
-const NAV_ITEMS = [
+const _NAV_ITEMS = [
   // {
   //   title: "Token Lab",
   //   items: [{ url: "/token-lab", title: "Coming Soon!" }],
@@ -70,7 +70,7 @@ const NAV_ITEMS = [
 
   <nav class="nav" aria-label="Table of Contents">
     {
-      NAV_ITEMS.map((section) => (
+      _NAV_ITEMS.map((section) => (
         <li class="section">
           <h4 class="section-title">{section.title}</h4>
           <ul class="section-nav">
