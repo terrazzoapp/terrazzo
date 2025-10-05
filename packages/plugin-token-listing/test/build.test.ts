@@ -401,8 +401,31 @@ describe('token-listing plugin - Node.js API', () => {
     });
   });
 
+  describe('description', () => {
+    it('outputs description', async () => {
+      const options = { filename: 'actual.listing.json' };
+      const output = await setupTest('./fixtures/build-default/', options, [], {
+        tokenOne: {
+          $type: 'color',
+          $value: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 },
+          $description: "Custom description",
+        },
+        group: {
+          $description: "Group description",
+          tokenTwo: {
+            $type: 'color',
+            $value: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 },
+            $deprecated: false,
+          },
+        }
+      });
+      expect(output.data[0].$description).toBe( "Custom description");
+      expect(output.data[1].$description).toBeUndefined(); // not inherited as per DTCG
+    });
+  });
+
   describe('deprecated', () => {
-    it('outputs subtypes when a subtype function is passed', async () => {
+    it('outputs deprecated', async () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options, [], {
         tokenOne: {
