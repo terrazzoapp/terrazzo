@@ -185,13 +185,15 @@ export default async function build(
   // buildEnd()
   const startBuildEnd = performance.now();
   await Promise.all(
-    config.plugins.map(async (plugin) => plugin.buildEnd?.({ 
+    config.plugins.map(async (plugin) =>
+      plugin.buildEnd?.({
         context: { logger },
         tokens,
         getTransforms,
         sources,
         outputFiles: structuredClone(result.outputFiles),
-      })),
+      }),
+    ),
   );
   logger.debug({
     group: 'parser',
