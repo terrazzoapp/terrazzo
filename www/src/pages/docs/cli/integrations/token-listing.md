@@ -3,9 +3,27 @@ title: Token Listing
 layout: ../../../../layouts/docs.astro
 ---
 
-# Token Listing
+
+# Token Listing (preview)
 
 Produce a Token Listing Format file for your design token build. The Token Listing Format is used by design token tool makers to understand the relationship between your source design tokens and your style files built in Terrazzo.
+
+## Foreword
+
+This implementation is a proof of concept for the Token Listing Format, which is near v1.0. There still are pending issues.
+
+:::note
+References in the `source` property may evolve after DTCG releases the Resolver Spec and the JSON `$refs` updates.
+:::
+
+:::note
+The `originalValue` prop may be removed in favor of an `aliasChain` prop.
+:::
+
+:::note
+The `names` prop in listed tokens may evolve into a `platforms` object with the following optional keys: `name`, `value`, `deprecated`.
+:::
+
 
 ## Setup
 
