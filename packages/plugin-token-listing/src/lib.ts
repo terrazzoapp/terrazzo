@@ -80,7 +80,9 @@ export interface TokenListingExtension {
 export interface ListedToken {
   $name: string;
   $type: string;
+  $description?: string;
   $value: string | number | boolean | Record<string, unknown>;
+  $deprecated?: string | boolean;
   $extensions: {
     'app.terrazzo.listing': TokenListingExtension;
   };

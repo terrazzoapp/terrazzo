@@ -166,6 +166,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       Object.entries(token.mode).map(([mode, tokenInMode]) => ({
         $name: token.id,
         $type: token.$type,
+        $description: token.$description,
         $value: tokenInMode ? tokenInMode.$value : token.$value,
         $deprecated: token.$deprecated,
         $extensions: {

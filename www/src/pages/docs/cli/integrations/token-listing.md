@@ -127,6 +127,7 @@ Below is an example of Token Listing content:
     {
       "$name": "color.black.100",
       "$type": "color",
+      "description": "Darkest grayscale color, use sparingly.",
       "$value": "rgba(12, 12, 13, 0.05)",
       "$extensions": {
         "app.terrazzo.listing": {
