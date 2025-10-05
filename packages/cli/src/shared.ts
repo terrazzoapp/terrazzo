@@ -38,7 +38,10 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       tokens: [DEFAULT_TOKENS_PATH],
       outDir: new URL('./tokens/', cwd),
       plugins: [],
-      lint: { build: { enabled: true }, rules: {} },
+      lint: {
+        build: { enabled: true },
+        rules: {},
+      },
       ignore: { tokens: [], deprecated: false },
     };
     let configPath: string | undefined;
@@ -69,7 +72,10 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       logger.error({ group: 'config', message: 'No config file found. Create one with `npx terrazzo init`.' });
     }
 
-    return { config, configPath: resolvedConfigPath! };
+    return {
+      config,
+      configPath: resolvedConfigPath!,
+    };
   } catch (err) {
     printError((err as Error).message);
     process.exit(1);

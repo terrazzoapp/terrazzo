@@ -1,11 +1,11 @@
-import type { DocumentNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
 import type { BuildRunnerResult, ConfigInit, TokenTransformed, TransformParams } from '../types.js';
 
 export interface BuildRunnerOptions {
-  sources: { filename?: URL; src: string; document: DocumentNode }[];
+  sources: { filename?: URL; src: string; document: momoa.DocumentNode }[];
   config: ConfigInit;
   logger?: Logger;
 }
@@ -101,17 +101,8 @@ export default async function build(
           }
           const token = tokens[id]!;
 
-          // allow `undefined` values, but remove them here
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
-          if (typeof cleanValue === 'object') {
-            for (const k of Object.keys(cleanValue)) {
-              if (cleanValue[k] === undefined) {
-                delete cleanValue[k];
-              }
-            }
-          }
-
           validateTransformParams({
             logger,
             params: { ...(params as any), value: cleanValue },
@@ -155,33 +146,35 @@ export default async function build(
 
   // build()
   const startBuild = performance.now();
-  for (const plugin of config.plugins) {
-    if (typeof plugin.build === 'function') {
-      const pluginBuildStart = performance.now();
-      await plugin.build({
-        context: { logger },
-        tokens,
-        sources,
-        getTransforms,
-        outputFile(filename, contents) {
-          const resolved = new URL(filename, config.outDir);
-          if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
-            logger.error({
-              group: 'plugin',
-              message: `Can’t overwrite file "${filename}"`,
-              label: plugin.name,
+  await Promise.all(
+    config.plugins.map(async (plugin) => {
+      if (typeof plugin.build === 'function') {
+        const pluginBuildStart = performance.now();
+        await plugin.build({
+          context: { logger },
+          tokens,
+          sources,
+          getTransforms,
+          outputFile(filename, contents) {
+            const resolved = new URL(filename, config.outDir);
+            if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {
+              logger.error({
+                group: 'plugin',
+                message: `Can’t overwrite file "${filename}"`,
+                label: plugin.name,
+              });
+            }
+            result.outputFiles.push({
+              filename,
+              contents,
+              plugin: plugin.name,
+              time: performance.now() - pluginBuildStart,
             });
-          }
-          result.outputFiles.push({
-            filename,
-            contents,
-            plugin: plugin.name,
-            time: performance.now() - pluginBuildStart,
-          });
-        },
-      });
-    }
-  }
+          },
+        });
+      }
+    }),
+  );
   logger.debug({
     group: 'parser',
     label: 'build',
@@ -191,17 +184,15 @@ export default async function build(
 
   // buildEnd()
   const startBuildEnd = performance.now();
-  for (const plugin of config.plugins) {
-    if (typeof plugin.buildEnd === 'function') {
-      await plugin.buildEnd({
+  await Promise.all(
+    config.plugins.map(async (plugin) => plugin.buildEnd?.({ 
         context: { logger },
         tokens,
         getTransforms,
         sources,
         outputFiles: structuredClone(result.outputFiles),
-      });
-    }
-  }
+      })),
+  );
   logger.debug({
     group: 'parser',
     label: 'build',

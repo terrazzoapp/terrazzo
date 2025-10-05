@@ -8,10 +8,10 @@ import type {
 } from "@terrazzo/parser";
 
 export declare const tokens: {
+  "typography.body": Record<"." | "xs" | "s" | "m" | "l" | "xl" | "2xl" | "3xl", TypographyTokenNormalized["$value"]>;
   "typography.family.body": Record<".", FontFamilyTokenNormalized["$value"]>;
   "typography.family.heading": Record<".", FontFamilyTokenNormalized["$value"]>;
   "typography.largeTitle": Record<"." | "xs" | "s" | "m" | "l" | "xl" | "2xl" | "3xl", TypographyTokenNormalized["$value"]>;
-  "typography.body": Record<"." | "xs" | "s" | "m" | "l" | "xl" | "2xl" | "3xl", TypographyTokenNormalized["$value"]>;
 };
 
 export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): (typeof tokens)[K]["."];

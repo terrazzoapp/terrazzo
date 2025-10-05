@@ -41,6 +41,10 @@ export interface CSSPluginOptions {
    * @default ":root"
    */
   baseSelector?: string;
+  /**
+   * Set the color-scheme CSS property for the base selector (e.g.: "light", "dark", "light dark")
+   */
+  baseScheme?: string;
 }
 
 export interface ModeSelector {
@@ -50,6 +54,8 @@ export interface ModeSelector {
   tokens?: string[];
   /** Provide CSS selectors to generate. (e.g.: `["@media (prefers-color-scheme: dark)", "[data-color-theme='dark']"]` ) */
   selectors: string[];
+  /** Set the color-scheme CSS property for this mode (e.g.: "light", "dark", "light dark") */
+  scheme?: string;
 }
 
 // A CSSRule is a sort of “we have AST at home” shortcut that provides the benefit of normalized formatting

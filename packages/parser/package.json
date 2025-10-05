@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/parser",
-  "version": "0.10.3",
+  "version": "0.10.4",
   "description": "Parser/validator for the Design Tokens Community Group (DTCG) standard.",
   "license": "MIT",
   "type": "module",
@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "@humanwhocodes/momoa": "catalog:",
+    "@terrazzo/json-schema-tools": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
     "@types/babel__code-frame": "^7.0.6",
     "@types/culori": "catalog:",

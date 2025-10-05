@@ -18,6 +18,11 @@ describe('Node.js API', () => {
         const cwd = new URL(`./fixtures/type-${dir}/`, import.meta.url);
         const config = defineConfig(
           {
+            lint: {
+              rules: {
+                'core/consistent-naming': 'off',
+              },
+            },
             plugins: [
               css({
                 filename: output,
@@ -74,6 +79,11 @@ describe('Node.js API', () => {
     const tokensJSON = new URL('./tokens.json', cwd);
     const config = defineConfig(
       {
+        lint: {
+          rules: {
+            'core/consistent-naming': 'off',
+          },
+        },
         plugins: [
           css({
             modeSelectors: [
@@ -129,34 +139,44 @@ describe('Node.js API', () => {
       'radix',
       'salesforce-lightning',
       'shopify-polaris',
-    ])('%s', async (name) => {
-      const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
-      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
-      const config = defineConfig(
-        {
-          plugins: [
-            css({
-              modeSelectors: [
-                {
-                  mode: 'light',
-                  tokens: ['color.*', 'gradient.*'],
-                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
-                },
-                {
-                  mode: 'dark',
-                  tokens: ['color.*', 'gradient.*'],
-                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
-                },
-              ],
-            }),
-          ],
-        },
-        { cwd },
-      );
-      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
-      const result = await build(tokens, { sources, config });
-      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
-    });
+    ])(
+      '%s',
+      async (name) => {
+        const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
+        const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+        const config = defineConfig(
+          {
+            lint: {
+              rules: {
+                'core/consistent-naming': 'off',
+                'core/no-type-on-alias': 'off',
+              },
+            },
+            plugins: [
+              css({
+                modeSelectors: [
+                  {
+                    mode: 'light',
+                    tokens: ['color.*', 'gradient.*'],
+                    selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+                  },
+                  {
+                    mode: 'dark',
+                    tokens: ['color.*', 'gradient.*'],
+                    selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+                  },
+                ],
+              }),
+            ],
+          },
+          { cwd },
+        );
+        const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+        const result = await build(tokens, { sources, config });
+        await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      },
+      30_000,
+    );
   });
 
   describe('options', () => {
@@ -165,6 +185,12 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/hex/', import.meta.url);
       const config = defineConfig(
         {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+              'core/valid-color': ['error', { legacyFormat: true }],
+            },
+          },
           plugins: [
             css({
               filename: output,
@@ -220,6 +246,11 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/utility-css/', import.meta.url);
       const config = defineConfig(
         {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+            },
+          },
           plugins: [
             css({
               filename: output,
@@ -253,10 +284,58 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/base-selector/', import.meta.url);
       const config = defineConfig(
         {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+            },
+          },
           plugins: [
             css({
               filename: output,
               baseSelector: ':host',
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const tokensJSON = new URL('./tokens.json', cwd);
+      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+        config,
+      });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+
+    it('color-scheme properties', async () => {
+      const output = 'actual.css';
+      const cwd = new URL('./fixtures/color-scheme/', import.meta.url);
+      const config = defineConfig(
+        {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+            },
+          },
+          plugins: [
+            css({
+              filename: output,
+              baseScheme: 'light dark',
+              modeSelectors: [
+                {
+                  mode: 'light',
+                  tokens: ['color.*'],
+                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+                  scheme: 'light',
+                },
+                {
+                  mode: 'dark',
+                  tokens: ['color.*'],
+                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+                  scheme: 'dark',
+                },
+              ],
             }),
           ],
         },

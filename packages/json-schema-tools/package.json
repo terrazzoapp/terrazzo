@@ -1,0 +1,52 @@
+{
+  "name": "@terrazzo/json-schema-tools",
+  "version": "0.0.1",
+  "description": "Bundle JSON Schema documents and tools for resolving $refs.",
+  "type": "module",
+  "keywords": [
+    "json",
+    "json schema",
+    "pointer",
+    "ref",
+    "rfc",
+    "6901"
+  ],
+  "author": {
+    "name": "Drew Powers",
+    "email": "drew@pow.rs"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": {
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./*": "./*"
+  },
+  "homepage": "https://terrazzo.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/json-schema-tools/"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "bench": "vitest bench",
+    "dev": "rolldown --watch -c",
+    "lint": "pnpm --filter @terrazzo/json-schema-tools run \"/^lint:(js|ts)/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "peerDependencies": {
+    "@humanwhocodes/momoa": "^3.0.0"
+  },
+  "dependencies": {
+    "@humanwhocodes/momoa": "catalog:"
+  },
+  "devDependencies": {
+    "@apidevtools/json-schema-ref-parser": "^11.9.3",
+    "yaml-to-momoa": "catalog:"
+  }
+}

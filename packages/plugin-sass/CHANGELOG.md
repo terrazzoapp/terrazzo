@@ -1,5 +1,16 @@
 # @terrazzo/plugin-sass
 
+## 0.10.4
+
+### Patch Changes
+
+- [#551](https://github.com/terrazzoapp/terrazzo/pull/551) [`6096445`](https://github.com/terrazzoapp/terrazzo/commit/60964453dc0ba6cc3740b202c5af27a8b2c38edc) Thanks [@nlemoine](https://github.com/nlemoine)! - Fix token Sass function
+
+- [#550](https://github.com/terrazzoapp/terrazzo/pull/550) [`936789e`](https://github.com/terrazzoapp/terrazzo/commit/936789eb0604c5d8adfa256f16322d11fd99da6a) Thanks [@nlemoine](https://github.com/nlemoine)! - Add support for color-scheme property
+
+- Updated dependencies [[`936789e`](https://github.com/terrazzoapp/terrazzo/commit/936789eb0604c5d8adfa256f16322d11fd99da6a)]:
+  - @terrazzo/plugin-css@0.10.4
+
 ## 0.10.3
 
 ### Patch Changes

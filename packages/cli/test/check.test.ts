@@ -32,14 +32,26 @@ describe('tz check', () => {
   it('invalid', async () => {
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
-      await execa('node', [cmd, 'check', 'test/fixtures/check-invalid/tokens.json'], { cwd });
+      await execa(
+        'node',
+        [
+          cmd,
+          'check',
+          'test/fixtures/check-invalid/tokens.json',
+          '--config',
+          'test/fixtures/check-invalid/terrazzo.config.mjs',
+        ],
+        { cwd, stdout: 'inherit' },
+      );
     };
 
     if (PLATFORM === 'win32') {
       await expect(command).rejects.toThrow(); // don’t test error snapshot on Windows; it formats too differently
       return;
     }
-    await expect(command).rejects.toThrowError(`Expected array, received "[0, 0.2, 1]"
+    await expect(
+      command,
+    ).rejects.toThrowError(`✗  [lint:core/valid-color] Expected components to be array of numbers, received "[0, 0.2, 1]".
 
   4 |       "100": {
   5 |         "$type": "color",
@@ -47,6 +59,8 @@ describe('tz check', () => {
     |                                                         ^
   7 |       }
   8 |     }
-  9 |   }`);
+  9 |   }
+
+[lint:lint] 1 error`);
   });
 });

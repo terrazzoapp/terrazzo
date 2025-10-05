@@ -11,6 +11,11 @@ describe('@terrazzo/plugin-js', () => {
       const cwd = new URL(`./${dir}/`, import.meta.url);
       const config = defineConfig(
         {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+            },
+          },
           plugins: [
             js({
               js: filename,
@@ -53,23 +58,32 @@ describe('@terrazzo/plugin-js', () => {
       'radix',
       'salesforce-lightning',
       'shopify-polaris',
-    ])('%s', async (name) => {
-      const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
-      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
-      const config = defineConfig(
-        {
-          plugins: [
-            js({
-              js: 'want.js',
-            }),
-          ],
-        },
-        { cwd },
-      );
-      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
-      const result = await build(tokens, { sources, config });
-      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
-      await expect(result.outputFiles[1]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
-    });
+    ])(
+      '%s',
+      async (name) => {
+        const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
+        const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+        const config = defineConfig(
+          {
+            lint: {
+              rules: {
+                'core/consistent-naming': 'off',
+              },
+            },
+            plugins: [
+              js({
+                js: 'want.js',
+              }),
+            ],
+          },
+          { cwd },
+        );
+        const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+        const result = await build(tokens, { sources, config });
+        await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+        await expect(result.outputFiles[1]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
+      },
+      30_000,
+    );
   });
 });

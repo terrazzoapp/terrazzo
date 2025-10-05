@@ -41,6 +41,7 @@ export default defineConfig({
       filename: "tokens.css",
       variableName: (id) => id.replace(/\./g, "-"),
       baseSelector: ":root",
+      baseScheme: "light dark", // Optional: support both light and dark themes
     }),
   ],
 });
@@ -309,6 +310,7 @@ export default defineConfig({
     css({
       filename: "tokens.css",
       exclude: [], // ex: ["beta.*"] will exclude all tokens in the "beta" top-level group
+      baseScheme: "light dark", // Optional: set base color-scheme
       modeSelectors: [
         {
           mode: "light",
@@ -316,6 +318,7 @@ export default defineConfig({
             "@media (prefers-color-scheme: light)",
             '[data-mode="light"]',
           ],
+          scheme: "light", // Optional: set color-scheme for this mode
         },
         {
           mode: "dark",
@@ -323,6 +326,7 @@ export default defineConfig({
             "@media (prefers-color-scheme: dark)",
             '[data-mode="dark"]',
           ],
+          scheme: "dark", // Optional: set color-scheme for this mode
         },
         { mode: "mobile", selectors: ["@media (width < 600px)"] },
         { mode: "desktop", selectors: ["@media (width >= 600px)"] },
@@ -350,14 +354,17 @@ export default defineConfig({
 | `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
 | `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
 | `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                                     |
+| `baseScheme`    | `string`                                                       | Sets the CSS `color-scheme` property on the base selector (e.g., `"light"`, `"dark"`, or `"light dark"`). See [Color Scheme](#color-scheme).                       |
 | `colorDepth`    | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
 ### Mode Selectors
 
 Mode selectors is the most powerful feature of the CSS plugin. It lets you convert your token [modes](/docs/guides/modes) into CSS media queries, classnames, or any CSS selector. To start, add a `modeSelectors` array to the CSS options. Every entry needs 2 things:
 
-1. The `mode` you’re targeting (this accepts globs, e.g. `"*-light"`!)
+1. The `mode` you're targeting (this accepts globs, e.g. `"*-light"`!)
 2. The CSS `selectors` that enable these modes
+
+You can also optionally specify a `scheme` to automatically set the CSS `color-scheme` property for each mode selector (see [Color Scheme](#color-scheme)).
 
 For example, a common pattern for `light` and `dark` mode, with the following config, will generate the respective CSS:
 
@@ -377,6 +384,7 @@ export default defineConfig({
             "@media (prefers-color-scheme: light)",
             '[data-mode="light"]',
           ],
+          scheme: "light", // Optional: set color-scheme for light mode
         },
         {
           mode: "dark",
@@ -384,6 +392,7 @@ export default defineConfig({
             "@media (prefers-color-scheme: dark)",
             '[data-mode="dark"]',
           ],
+          scheme: "dark", // Optional: set color-scheme for dark mode
         },
       ],
     }),
@@ -398,21 +407,25 @@ export default defineConfig({
 
 @media (prefers-color-scheme: light) {
   :root {
+    color-scheme: light;
     --color-blue-600: #0588f0;
   }
 }
 
 [data-mode="light"] {
+  color-scheme: light;
   --color-blue-600: #0588f0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --color-blue-600: #3b9eff;
   }
 }
 
 [data-mode="dark"] {
+  color-scheme: dark;
   --color-blue-600: #3b9eff;
 }
 ```
@@ -430,6 +443,122 @@ The sky is the limit with mode selectors, but some popular patterns are:
 - `typography`: viewport width (responsive styles)
 
 :::
+
+### Color Scheme
+
+The CSS plugin supports automatically generating the [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) property to help browsers respect users' prefered color schemes. This feature works with both the base selector and individual mode selectors.
+
+#### Base Color Scheme
+
+Use the `baseScheme` option to set a color-scheme on your base selector (typically `:root`):
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      baseScheme: "light dark", // Supports both light and dark
+      // ... other options
+    }),
+  ],
+});
+```
+
+```css [tokens/tokens.css]
+:root {
+  color-scheme: light dark;
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  /* ... other variables */
+}
+```
+
+:::
+
+#### Per-Mode Color Schemes
+
+For more granular control, specify a `scheme` for individual mode selectors:
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+
+export default defineConfig({
+  plugins: [
+    css({
+      baseScheme: "light dark",
+      modeSelectors: [
+        {
+          mode: "light",
+          selectors: [
+            "@media (prefers-color-scheme: light)",
+            '[data-theme="light"]',
+          ],
+          scheme: "light", // Forces light color scheme
+        },
+        {
+          mode: "dark",
+          selectors: [
+            "@media (prefers-color-scheme: dark)",
+            '[data-theme="dark"]',
+          ],
+          scheme: "dark", // Forces dark color scheme
+        },
+      ],
+    }),
+  ],
+});
+```
+
+```css [tokens/tokens.css]
+:root {
+  color-scheme: light dark;
+  --color-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --color-bg: #ffffff;
+  }
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-bg: #1a1a1a;
+  }
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #1a1a1a;
+}
+```
+
+:::
+
+The `color-scheme` property helps browsers:
+- Optimize form controls and scrollbars for the specified theme
+- Apply appropriate default styling for UI elements
+- Provide better accessibility and user experience
+
+You can use any valid [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) values:
+- `"light"` - Light theme only
+- `"dark"` - Dark theme only
+- `"light dark"` - Support both with light as default
+- `"dark light"` - Support both with dark as default
 
 ### transform()
 

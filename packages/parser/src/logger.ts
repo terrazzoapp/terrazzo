@@ -1,14 +1,11 @@
-import type { AnyNode } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import pc from 'picocolors';
 import wcmatch from 'wildcard-match';
 import { codeFrameColumns } from './lib/code-frame.js';
 
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
-
 export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
-
 export type LogLevel = LogSeverity | 'silent';
-
 export type LogGroup = 'config' | 'parser' | 'lint' | 'plugin' | 'server';
 
 export interface LogEntry {
@@ -26,7 +23,7 @@ export interface LogEntry {
    */
   continueOnError?: boolean;
   /** Show a code frame for the erring node */
-  node?: AnyNode;
+  node?: momoa.AnyNode;
   /** To show a code frame, provide the original source code */
   src?: string;
 }
@@ -64,13 +61,17 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity]!(message);
   }
-  if (entry.src) {
+  if (entry.node) {
     const start = entry.node?.loc?.start ?? { line: 0, column: 0 };
     //  strip "file://" protocol, but not href
     const loc = entry.filename
       ? `${entry.filename?.href.replace(/^file:\/\//, '')}:${start?.line ?? 0}:${start?.column ?? 0}\n\n`
       : '';
-    const codeFrame = codeFrameColumns(entry.src, { start }, { highlightCode: false });
+    const codeFrame = codeFrameColumns(
+      entry.src ?? momoa.print(entry.node, { indent: 2 }),
+      { start },
+      { highlightCode: false },
+    );
     message = `${message}\n\n${loc}${codeFrame}`;
   }
   return message;
@@ -98,77 +99,87 @@ export default class Logger {
   }
 
   /** Log an error message (always; can’t be silenced) */
-  error(entry: LogEntry) {
-    this.errorCount++;
-    const message = formatMessage(entry, 'error');
-    if (entry.continueOnError) {
-      // biome-ignore lint/suspicious/noConsole: this is a logger
-      console.error(message);
-      return;
+  error(...entries: LogEntry[]) {
+    const message: string[] = [];
+    let firstNode: momoa.AnyNode | undefined;
+    for (const entry of entries) {
+      this.errorCount++;
+      message.push(formatMessage(entry, 'error'));
+      if (entry.node) {
+        firstNode = entry.node;
+      }
     }
-    if (entry.node) {
-      throw new TokensJSONError(message);
+    if (entries.every((e) => e.continueOnError)) {
+      // biome-ignore lint/suspicious/noConsole: this is a logger
+      console.error(message.join('\n\n'));
     } else {
-      throw new Error(message);
+      const e = firstNode ? new TokensJSONError(message.join('\n\n')) : new Error(message.join('\n\n'));
+      throw e;
     }
   }
 
   /** Log an info message (if logging level permits) */
-  info(entry: LogEntry) {
-    this.infoCount++;
-    if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
-      return;
+  info(...entries: LogEntry[]) {
+    for (const entry of entries) {
+      this.infoCount++;
+      if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('info')) {
+        return;
+      }
+      const message = formatMessage(entry, 'info');
+      // biome-ignore lint/suspicious/noConsole: this is a logger
+      console.log(message);
     }
-    const message = formatMessage(entry, 'info');
-    // biome-ignore lint/suspicious/noConsole: this is a logger
-    console.log(message);
   }
 
   /** Log a warning message (if logging level permits) */
-  warn(entry: LogEntry) {
-    this.warnCount++;
-    if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
-      return;
+  warn(...entries: LogEntry[]) {
+    for (const entry of entries) {
+      this.warnCount++;
+      if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('warn')) {
+        return;
+      }
+      const message = formatMessage(entry, 'warn');
+      // biome-ignore lint/suspicious/noConsole: this is a logger
+      console.warn(message);
     }
-    const message = formatMessage(entry, 'warn');
-    // biome-ignore lint/suspicious/noConsole: this is a logger
-    console.warn(message);
   }
 
   /** Log a diagnostics message (if logging level permits) */
-  debug(entry: DebugEntry) {
-    if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
-      return;
-    }
-    this.debugCount++;
-
-    let message = formatMessage(entry, 'debug');
-
-    const debugPrefix = entry.label ? `${entry.group}:${entry.label}` : entry.group;
-    if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
-      return;
-    }
-
-    // debug color
-    message
-      .replace(/\[config[^\]]+\]/, (match) => pc.green(match))
-      .replace(/\[parser[^\]]+\]/, (match) => pc.magenta(match))
-      .replace(/\[lint[^\]]+\]/, (match) => pc.yellow(match))
-      .replace(/\[plugin[^\]]+\]/, (match) => pc.cyan(match));
-
-    message = `${pc.dim(timeFormatter.format(performance.now()))} ${message}`;
-    if (typeof entry.timing === 'number') {
-      let timing = '';
-      if (entry.timing < 1_000) {
-        timing = `${Math.round(entry.timing * 100) / 100}ms`;
-      } else if (entry.timing < 60_000) {
-        timing = `${Math.round(entry.timing * 100) / 100_000}s`;
+  debug(...entries: DebugEntry[]) {
+    for (const entry of entries) {
+      if (this.level === 'silent' || LOG_ORDER.indexOf(this.level) < LOG_ORDER.indexOf('debug')) {
+        return;
       }
-      message = `${message} ${pc.dim(`[${timing}]`)}`;
-    }
+      this.debugCount++;
 
-    // biome-ignore lint/suspicious/noConsole: this is a logger
-    console.log(message);
+      let message = formatMessage(entry, 'debug');
+
+      const debugPrefix = entry.label ? `${entry.group}:${entry.label}` : entry.group;
+      if (this.debugScope !== '*' && !wcmatch(this.debugScope)(debugPrefix)) {
+        return;
+      }
+
+      // debug color
+      message
+        .replace(/\[config[^\]]+\]/, (match) => pc.green(match))
+        .replace(/\[parser[^\]]+\]/, (match) => pc.magenta(match))
+        .replace(/\[lint[^\]]+\]/, (match) => pc.yellow(match))
+        .replace(/\[plugin[^\]]+\]/, (match) => pc.cyan(match));
+
+      message = `${pc.dim(timeFormatter.format(performance.now()))} ${message}`;
+      if (typeof entry.timing === 'number') {
+        let timing = '';
+        if (entry.timing < 1_000) {
+          timing = `${Math.round(entry.timing * 100) / 100}ms`;
+        } else if (entry.timing < 60_000) {
+          timing = `${Math.round(entry.timing * 100) / 100_000}s`;
+        }
+        message = `${message}${timing ? pc.dim(` [${timing}]`) : ''}`;
+      }
+
+      // biome-ignore lint/suspicious/noConsole: this is a logger
+      console.log(message);
+    }
   }
 
   /** Get stats for current logger instance */

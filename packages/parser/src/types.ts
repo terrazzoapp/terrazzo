@@ -1,5 +1,6 @@
-import type { AnyNode, DocumentNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import type { TokenNormalized } from '@terrazzo/token-tools';
+import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
 
 export interface PluginHookContext {
@@ -76,6 +77,40 @@ export interface Config {
   };
 }
 
+export interface VisitorContext {
+  parent?: momoa.AnyNode;
+  filename: URL;
+  path: string[];
+}
+
+export type Visitor<T extends momoa.AnyNode = momoa.ObjectNode | momoa.DocumentNode> = (
+  node: T,
+  context: VisitorContext,
+  // biome-ignore lint/suspicious/noConfusingVoidType: TS requires void
+) => T | void | null | undefined;
+
+export interface TransformVisitors {
+  boolean?: Visitor;
+  border?: Visitor;
+  color?: Visitor;
+  cubicBezier?: Visitor;
+  dimension?: Visitor;
+  duration?: Visitor;
+  fontFamily?: Visitor;
+  fontWeight?: Visitor;
+  gradient?: Visitor;
+  group?: Visitor;
+  link?: Visitor;
+  number?: Visitor;
+  root?: Visitor;
+  shadow?: Visitor;
+  strokeStyle?: Visitor;
+  token?: Visitor;
+  transition?: Visitor;
+  typography?: Visitor;
+  [key: string]: Visitor | undefined;
+}
+
 // normalized, finalized config
 export interface ConfigInit {
   tokens: URL[];
@@ -100,14 +135,14 @@ export interface ConfigOptions {
 export interface InputSource {
   filename?: URL;
   src: any;
-  document: DocumentNode;
+  document: momoa.DocumentNode;
 }
 
 export interface LintNotice {
   /** Lint message shown to the user */
   message: string;
   /** Erring node (used to point to a specific line) */
-  node?: AnyNode;
+  node?: momoa.AnyNode;
 }
 
 export type LintRuleSeverity = 'error' | 'warn' | 'off';
@@ -121,10 +156,10 @@ export interface LintRuleNormalized<O = any> {
 }
 
 export type LintReportDescriptor<MessageIds extends string> = {
-  /** To error on a specific token source file, provide an erring node */
-  node?: AnyNode;
-  /** To error on a specific token source file, also provide the source */
-  source?: InputSource;
+  /** To error on a specific token source file, provide a Momoa node */
+  node?: momoa.AnyNode;
+  /** To provide correct line numbers, specify the filename (usually found on `token.source.loc`) */
+  filename?: string;
   /** Provide data for messages */
   data?: Record<string, unknown>;
 } & (
@@ -147,7 +182,7 @@ export type LintReportDescriptor<MessageIds extends string> = {
 
 export interface LintRule<
   MessageIds extends string,
-  LintRuleOptions extends object | undefined = undefined,
+  LintRuleOptions extends Record<string, any> = Record<string, never>,
   LintRuleDocs = unknown,
 > {
   meta?: LintRuleMetaData<MessageIds, LintRuleOptions, LintRuleDocs>;
@@ -172,8 +207,11 @@ export interface LintRuleContext<MessageIds extends string, LintRuleOptions exte
   options: LintRuleOptions;
   /** The current working directory. */
   cwd?: URL;
-  /** Source file the token came from. */
-  src: string;
+  /**
+   * All source files present in this run. To find the original source, match a
+   * token’s `source.loc` filename to one of the source’s `filename`s.
+   */
+  sources: InputSource[];
   /** Source file location. */
   filename?: URL;
   /** ID:Token map of all tokens. */
@@ -227,6 +265,30 @@ export interface OutputFileExpanded extends OutputFile {
   plugin: string;
   /** How long this output took to make. */
   time: number;
+}
+
+export interface ParseOptions {
+  logger?: Logger;
+  config: ConfigInit;
+  /**
+   * Skip lint step
+   * @default false
+   */
+  skipLint?: boolean;
+  /**
+   * Continue on error? (Useful for `tz check`)
+   * @default false
+   */
+  continueOnError?: boolean;
+  /** Provide yamlToMomoa module to parse YAML (by default, this isn’t shipped to cut down on package weight) */
+  yamlToMomoa?: typeof ytm;
+  /**
+   * Transform API
+   * @see https://terrazzo.app/docs/api/js#transform-api
+   */
+  transform?: TransformVisitors;
+  /** (internal cache; do not use) */
+  _sources?: Record<string, InputSource>;
 }
 
 export interface Plugin {
@@ -319,4 +381,8 @@ export interface TransformHookOptions {
   ): void;
   /** Momoa documents */
   sources: InputSource[];
+}
+
+export interface ReferenceObject {
+  $ref: string;
 }

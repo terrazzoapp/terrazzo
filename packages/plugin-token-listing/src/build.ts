@@ -2,7 +2,6 @@ import type { Logger, ModeMap, Plugin, TokenNormalized, TokenTransformed, Transf
 import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
 import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';
-import path from 'node:path';
 
 export * from './lib.js';
 
@@ -31,7 +30,10 @@ function getNameFromPlugin({
     return fallback[0].meta?.['token-listing']?.name;
   }
 
-  if (getTransforms({ format: plugin, id: '*' }).length === 0 && getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: '*' }).length === 0) {
+  if (
+    getTransforms({ format: plugin, id: '*' }).length === 0 &&
+    getTransforms({ format: plugin.replace('@terrazzo/plugin-', ''), id: '*' }).length === 0
+  ) {
     logger.error({
       group: 'plugin',
       label: 'token-listing',
@@ -115,9 +117,12 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       }
     }
 
-    const originalValue = (token.originalValue?.$extensions as {
-        mode?: ModeMap<TokenNormalized>;
-      })?.mode?.[mode] ?? token.originalValue.$value;
+    const originalValue =
+      (
+        token.originalValue?.$extensions as {
+          mode?: ModeMap<TokenNormalized>;
+        }
+      )?.mode?.[mode] ?? token.originalValue?.$value;
 
     const output: TokenListingExtension = {
       names: computedNames,
@@ -148,12 +153,9 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
       output.sourceOfTruth = sourceOfTruth;
     }
 
-    if (token.source.loc) {
-      const fsLoc = token.source.loc.replace('file://', '');
-      const relativeLoc = path.relative(resourceRoot, fsLoc);
-    
+    if (token.source.filename) {
       output.source = {
-        resource: `file://<root>/${relativeLoc}`,
+        resource: token.source.filename.replace(resourceRoot, resourceRoot.endsWith('/') ? '<root>/' : '<root>'),
         loc: token.source.node.loc,
       };
     }
@@ -170,7 +172,14 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
         $value: tokenInMode ? tokenInMode.$value : token.$value,
         $deprecated: token.$deprecated,
         $extensions: {
-          'app.terrazzo.listing': getListingMeta({ getTransforms, logger, token, resourceRoot: options.resourceRoot, tokensSet: tokens, mode }),
+          'app.terrazzo.listing': getListingMeta({
+            getTransforms,
+            logger,
+            token,
+            resourceRoot: options.resourceRoot,
+            tokensSet: tokens,
+            mode,
+          }),
         },
       })),
     );

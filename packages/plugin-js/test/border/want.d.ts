@@ -8,11 +8,11 @@ import type {
 } from "@terrazzo/parser";
 
 export declare const tokens: {
-  /** Default border */
-  "border.solid": Record<"." | "light" | "dark", BorderTokenNormalized["$value"]>;
   /** Border for placeholder items */
   "border.dashed": Record<"." | "light" | "dark", BorderTokenNormalized["$value"]>;
   "border.default": Record<".", BorderTokenNormalized["$value"]>;
+  /** Default border */
+  "border.solid": Record<"." | "light" | "dark", BorderTokenNormalized["$value"]>;
   "color.base.gray.10": Record<".", ColorTokenNormalized["$value"]>;
   "color.base.gray.15": Record<".", ColorTokenNormalized["$value"]>;
   "color.base.gray.20": Record<".", ColorTokenNormalized["$value"]>;

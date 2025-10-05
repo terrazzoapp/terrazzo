@@ -8,7 +8,8 @@ export default defineConfig({
   platform: 'browser',
   plugins: [dts()],
   external: [
-    '@humanwhocodes/mamoa',
+    '@humanwhocodes/momoa',
+    '@terrazzo/json-schema-tools',
     '@terrazzo/token-tools',
     'culori',
     'merge-anything',

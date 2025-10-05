@@ -8,9 +8,9 @@ import type {
 
 export declare const tokens: {
   "shadow.base": Record<".", ShadowTokenNormalized["$value"]>;
-  "shadow.simple": Record<".", ShadowTokenNormalized["$value"]>;
   "shadow.inset": Record<".", ShadowTokenNormalized["$value"]>;
   "shadow.layered": Record<".", ShadowTokenNormalized["$value"]>;
+  "shadow.simple": Record<".", ShadowTokenNormalized["$value"]>;
 };
 
 export declare function token<K extends keyof typeof tokens>(tokenID: K, modeName?: never): (typeof tokens)[K]["."];

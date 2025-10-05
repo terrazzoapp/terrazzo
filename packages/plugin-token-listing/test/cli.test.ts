@@ -70,9 +70,7 @@ describe('tz build', () => {
         .replace(/"line": \d+/g, '"line": 0')
         .replace(/"column": \d+/g, '"column": 0')
         .replace(/"offset": \d+/g, '"offset": 0');
-      await expect(comparable).toMatchFileSnapshot(
-        fileURLToPath(new URL('./styles/out/want.listing.json', cwd)),
-      );
+      await expect(comparable).toMatchFileSnapshot(fileURLToPath(new URL('./styles/out/want.listing.json', cwd)));
     });
   });
 });

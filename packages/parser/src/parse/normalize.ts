@@ -1,199 +1,163 @@
-import {
-  type ColorValueNormalized,
-  type CubicBezierValue,
-  type DimensionValue,
-  type FontFamilyValue,
-  type GradientStopNormalized,
-  type GradientValueNormalized,
-  isAlias,
-  parseColor,
-  type ShadowValueNormalized,
-  type Token,
-  type TransitionValue,
-  type TypographyValueNormalized,
-} from '@terrazzo/token-tools';
+import type * as momoa from '@humanwhocodes/momoa';
+import { getObjMember } from '@terrazzo/json-schema-tools';
+import { FONT_WEIGHTS, isAlias, parseColor } from '@terrazzo/token-tools';
+import type Logger from '../logger.js';
 
-export const FONT_WEIGHT_MAP = {
-  thin: 100,
-  hairline: 100,
-  'extra-light': 200,
-  'ultra-light': 200,
-  light: 300,
-  normal: 400,
-  regular: 400,
-  book: 400,
-  medium: 500,
-  'semi-bold': 600,
-  'demi-bold': 600,
-  bold: 700,
-  'extra-bold': 800,
-  'ultra-bold': 800,
-  black: 900,
-  heavy: 900,
-  'extra-black': 950,
-  'ultra-black': 950,
-};
+interface PreValidatedToken {
+  id: string;
+  $type: string;
+  $value: unknown;
+  mode: Record<string, { $value: unknown; source: { node: any; filename: string | undefined } }>;
+}
 
-const NUMBER_WITH_UNIT_RE = /(-?\d*\.?\d+)(.*)/;
+/**
+ * Normalize token value.
+ * The reason for the “any” typing is this aligns various user-provided inputs to the type
+ */
+export function normalize(token: PreValidatedToken, { logger, src }: { logger: Logger; src: string }) {
+  const entry = { group: 'parser' as const, label: 'init', src };
 
-/** Fill in defaults, and return predictable shapes for tokens */
-export default function normalizeValue<T extends Token>(token: T): T['$value'] {
-  if (typeof token.$value === 'string' && isAlias(token.$value)) {
-    return token.$value;
+  function normalizeFontFamily(value: unknown): string[] {
+    return typeof value === 'string' ? [value] : (value as string[]);
   }
+
+  function normalizeFontWeight(value: unknown): number {
+    return (typeof value === 'string' && FONT_WEIGHTS[value as keyof typeof FONT_WEIGHTS]) || (value as number);
+  }
+
+  function normalizeColor(value: unknown, node: momoa.AnyNode | undefined) {
+    if (typeof value === 'string' && !isAlias(value)) {
+      logger.warn({
+        ...entry,
+        node,
+        message: `${token.id}: string colors will be deprecated in a future version. Please update to object notation`,
+      });
+      try {
+        return parseColor(value);
+      } catch {
+        return { colorSpace: 'srgb', components: [0, 0, 0], alpha: 1 };
+      }
+    } else if (value && typeof value === 'object') {
+      if ((value as any).alpha === undefined) {
+        (value as any).alpha = 1;
+      }
+    }
+    return value;
+  }
+
   switch (token.$type) {
-    case 'boolean': {
-      return !!token.$value;
-    }
-    case 'border': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      return {
-        color: normalizeValue({ $type: 'color', $value: token.$value.color ?? '#000000' }),
-        style: normalizeValue({ $type: 'strokeStyle', $value: token.$value.style ?? 'solid' }),
-        width: normalizeValue({ $type: 'dimension', $value: token.$value.width }),
-      };
-    }
     case 'color': {
-      if (typeof token.$value === 'string') {
-        return parseColor(token.$value);
+      for (const mode of Object.keys(token.mode)) {
+        token.mode[mode]!.$value = normalizeColor(token.mode[mode]!.$value, token.mode[mode]!.source.node);
       }
-      const newValue: ColorValueNormalized = {
-        colorSpace: token.$value.colorSpace,
-        components: token.$value.components ?? token.$value.channels,
-        alpha: token.$value.alpha ?? 1,
-      };
-      if ('hex' in token.$value) {
-        newValue.hex = token.$value.hex;
-      }
-      return newValue;
+      token.$value = token.mode['.']!.$value;
+      break;
     }
-    case 'cubicBezier': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      return token.$value.map((value) =>
-        typeof value === 'number' ? normalizeValue({ $type: 'number', $value: value }) : value,
-      ) as CubicBezierValue;
-    }
-    case 'dimension': {
-      if ((token as any).$value === 0) {
-        return { value: 0, unit: 'px' };
-      }
-      // Backwards compat: handle string
-      if (typeof token.$value === 'string') {
-        const match = token.$value.match(NUMBER_WITH_UNIT_RE);
-        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match?.[2] || 'px' };
-      }
-      return token.$value;
-    }
-    case 'duration': {
-      if ((token as any).$value === 0) {
-        return { value: 0, unit: 'ms' };
-      }
-      // Backwards compat: handle string
-      if (typeof token.$value === 'string') {
-        const match = token.$value.match(NUMBER_WITH_UNIT_RE);
-        return { value: Number.parseFloat(match?.[1] || token.$value), unit: match?.[2] || 'ms' };
-      }
-      return token.$value;
-    }
+
     case 'fontFamily': {
-      return Array.isArray(token.$value) ? token.$value : [token.$value];
+      for (const mode of Object.keys(token.mode)) {
+        token.mode[mode]!.$value = normalizeFontFamily(token.mode[mode]!.$value);
+      }
+      token.$value = token.mode['.']!.$value;
+      break;
     }
+
     case 'fontWeight': {
-      if (typeof token.$value === 'string' && FONT_WEIGHT_MAP[token.$value as keyof typeof FONT_WEIGHT_MAP]) {
-        return FONT_WEIGHT_MAP[token.$value as keyof typeof FONT_WEIGHT_MAP];
+      for (const mode of Object.keys(token.mode)) {
+        token.mode[mode]!.$value = normalizeFontWeight(token.mode[mode]!.$value);
       }
-      return Math.min(
-        999,
-        Math.max(1, typeof token.$value === 'string' ? Number.parseInt(token.$value, 10) : token.$value),
-      );
+      token.$value = token.mode['.']!.$value;
+      break;
     }
-    case 'gradient': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      const output: GradientValueNormalized = [];
-      for (let i = 0; i < token.$value.length; i++) {
-        const stop = structuredClone(token.$value[i] as GradientStopNormalized);
-        stop.color = normalizeValue({ $type: 'color', $value: stop.color! });
-        if (stop.position === undefined) {
-          stop.position = i / (token.$value.length - 1);
+
+    case 'border': {
+      for (const mode of Object.keys(token.mode)) {
+        const border = token.mode[mode]!.$value as any;
+        if (!border || typeof border !== 'object') {
+          continue;
         }
-        output.push(stop);
+        if (border.color) {
+          border.color = normalizeColor(
+            border.color,
+            getObjMember(token.mode[mode]!.source.node as momoa.ObjectNode, 'color'),
+          );
+        }
       }
-      return output;
+      token.$value = token.mode['.']!.$value;
+      break;
     }
-    case 'number': {
-      return typeof token.$value === 'number' ? token.$value : Number.parseFloat(token.$value);
-    }
+
     case 'shadow': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      return (Array.isArray(token.$value) ? token.$value : [token.$value]).map(
-        (layer) =>
-          ({
-            color: normalizeValue({ $type: 'color', $value: layer.color }),
-            offsetX: normalizeValue({ $type: 'dimension', $value: layer.offsetX ?? { value: 0, unit: 'px' } }),
-            offsetY: normalizeValue({ $type: 'dimension', $value: layer.offsetY ?? { value: 0, unit: 'px' } }),
-            blur: normalizeValue({ $type: 'dimension', $value: layer.blur ?? { value: 0, unit: 'px' } }),
-            spread: normalizeValue({ $type: 'dimension', $value: layer.spread ?? { value: 0, unit: 'px' } }),
-            inset: layer.inset === true,
-          }) as ShadowValueNormalized,
-      );
-    }
-    case 'strokeStyle': {
-      return token.$value;
-    }
-    case 'string': {
-      return String(token.$value);
-    }
-    case 'transition': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      return {
-        duration: normalizeValue({ $type: 'duration', $value: token.$value.duration ?? 0 }),
-        delay: normalizeValue({ $type: 'duration', $value: token.$value.delay ?? 0 }),
-        timingFunction: normalizeValue({ $type: 'cubicBezier', $value: token.$value.timingFunction }),
-      } as TransitionValue;
-    }
-    case 'typography': {
-      if (typeof token.$value === 'string') {
-        return token.$value;
-      }
-      const output: TypographyValueNormalized = {};
-      for (const [k, $value] of Object.entries(token.$value)) {
-        switch (k) {
-          case 'fontFamily': {
-            output[k] = normalizeValue({ $type: 'fontFamily', $value: $value as FontFamilyValue });
-            break;
+      for (const mode of Object.keys(token.mode)) {
+        // normalize to array
+        if (!Array.isArray(token.mode[mode]!.$value)) {
+          token.mode[mode]!.$value = [token.mode[mode]!.$value];
+        }
+        const $value = token.mode[mode]!.$value as any[];
+        for (let i = 0; i < $value.length; i++) {
+          const shadow = $value[i]!;
+          if (!shadow || typeof shadow !== 'object') {
+            continue;
           }
-          case 'fontSize':
-          case 'letterSpacing': {
-            output[k] = normalizeValue({ $type: 'dimension', $value: $value as DimensionValue });
-            break;
+          const shadowNode = (
+            token.mode[mode]!.source.node.type === 'Array'
+              ? token.mode[mode]!.source.node.elements[i]!.value
+              : token.mode[mode]!.source.node
+          ) as momoa.ObjectNode;
+          if (shadow.color) {
+            shadow.color = normalizeColor(shadow.color, getObjMember(shadowNode, 'color'));
           }
-          case 'lineHeight': {
-            output[k] = normalizeValue({
-              $type: typeof token.$value === 'number' ? 'number' : 'dimension',
-              $value: $value as any,
-            });
-            break;
-          }
-          default: {
-            output[k] = $value;
-            break;
+          if (!('inset' in shadow)) {
+            shadow.inset = false;
           }
         }
       }
-      return output;
+      token.$value = token.mode['.']!.$value;
+      break;
     }
-    default: {
-      return token.$value;
+
+    case 'gradient': {
+      for (const mode of Object.keys(token.mode)) {
+        if (!Array.isArray(token.mode[mode]!.$value)) {
+          continue;
+        }
+        const $value = token.mode[mode]!.$value as any[];
+        for (let i = 0; i < $value.length; i++) {
+          const stop = $value[i]!;
+          if (!stop || typeof stop !== 'object') {
+            continue;
+          }
+          const stopNode = (token.mode[mode]!.source.node as momoa.ArrayNode)?.elements?.[i]?.value as momoa.ObjectNode;
+          if (stop.color) {
+            stop.color = normalizeColor(stop.color, getObjMember(stopNode, 'color'));
+          }
+        }
+      }
+      token.$value = token.mode['.']!.$value;
+      break;
+    }
+
+    case 'typography': {
+      for (const mode of Object.keys(token.mode)) {
+        const $value = token.mode[mode]!.$value as any;
+        if (typeof $value !== 'object') {
+          return;
+        }
+        for (const [k, v] of Object.entries($value)) {
+          switch (k) {
+            case 'fontFamily': {
+              $value[k] = normalizeFontFamily(v);
+              break;
+            }
+            case 'fontWeight': {
+              $value[k] = normalizeFontWeight(v);
+              break;
+            }
+          }
+        }
+      }
+      token.$value = token.mode['.']!.$value;
+      break;
     }
   }
 }

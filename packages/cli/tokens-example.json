@@ -3,16 +3,36 @@
     "$description": "Color tokens",
     "$type": "color",
     "black": {
-      "100": { "$value": "#0c0c0d0d" },
-      "200": { "$value": "#0c0c0d1a" },
-      "300": { "$value": "#0c0c0d33" },
-      "400": { "$value": "#0c0c0456" },
-      "500": { "$value": "#0c0c0db2" },
-      "600": { "$value": "#0c0c0dcc" },
-      "700": { "$value": "#0c0c0dd9" },
-      "800": { "$value": "#0c0c0de5" },
-      "900": { "$value": "#0c0c0df2" },
-      "1000": { "$value": "#0c0c0d" }
+      "100": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.05, "hex": "#0c0c0d" }
+      },
+      "200": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.1, "hex": "#0c0c0d" }
+      },
+      "300": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.2, "hex": "#0c0c0d" }
+      },
+      "400": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.34, "hex": "#0c0c04" }
+      },
+      "500": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.7, "hex": "#0c0c0d" }
+      },
+      "600": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.8, "hex": "#0c0c0d" }
+      },
+      "700": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.85, "hex": "#0c0c0d" }
+      },
+      "800": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.9, "hex": "#0c0c0d" }
+      },
+      "900": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0.95, "hex": "#0c0c0d" }
+      },
+      "1000": {
+        "$value": { "colorSpace": "srgb", "components": [0.047, 0.047, 0.047], "alpha": 0, "hex": "#0c0c0d" }
+      }
     }
   },
   "border": {

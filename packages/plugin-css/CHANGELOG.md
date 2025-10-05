@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 0.10.4
+
+### Patch Changes
+
+- [#550](https://github.com/terrazzoapp/terrazzo/pull/550) [`936789e`](https://github.com/terrazzoapp/terrazzo/commit/936789eb0604c5d8adfa256f16322d11fd99da6a) Thanks [@nlemoine](https://github.com/nlemoine)! - Add support for color-scheme property
+
 ## 0.10.3
 
 ### Patch Changes

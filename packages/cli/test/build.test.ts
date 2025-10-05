@@ -21,7 +21,6 @@ describe('tz build', () => {
     // note: Parsing out the execa error is more hassle than just using inline
     // snapshots.  Ignoring that line, the error message below is what users
     // actually see.
-
     it('no tokens', async () => {
       const cwd = new URL('./fixtures/error-no-tokens/', import.meta.url);
       await expect(() => execa('node', [cmd, 'build'], { cwd })).rejects.toThrowErrorMatchingInlineSnapshot(`

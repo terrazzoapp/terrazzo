@@ -1,10 +1,9 @@
 import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { build, defineConfig, type Plugin, parse, Logger } from '@terrazzo/parser';
+import { build, defineConfig, type Logger, type Plugin, parse } from '@terrazzo/parser';
 import css from '@terrazzo/plugin-css';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import listing, { type CustomFunctionParams, type ListedToken, type TokenListingPluginOptions } from '../src/index.js';
-
 
 describe('token-listing plugin - Node.js API', () => {
   const mockLogger: Logger = {
@@ -33,7 +32,17 @@ describe('token-listing plugin - Node.js API', () => {
     inputSrc: object | undefined = undefined,
   ) {
     const cwd = new URL(cwdPath, import.meta.url);
-    const config = defineConfig({ plugins: [...plugins, listing(options)] }, { cwd });
+    const config = defineConfig(
+      {
+        lint: {
+          rules: {
+            'core/consistent-naming': 'off',
+          },
+        },
+        plugins: [...plugins, listing(options)],
+      },
+      { cwd },
+    );
     const tokensJSON = new URL('./tokens.json', cwd);
     const { tokens, sources } = await parse(
       [{ filename: tokensJSON, src: inputSrc ?? fs.readFileSync(tokensJSON, 'utf8') }],
@@ -57,14 +66,14 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options);
 
       expect(Array.isArray(output.data)).toBe(true);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.neutral.1');
       expect(listed).toBeTruthy();
-      expect(listed.$name).toBe('Colors.Blue.1100');
+      expect(listed.$name).toBe('base.color.neutral.1');
       expect(listed.$type).toBe('color');
       expect(listed.$value).toMatchObject({
         alpha: 1,
         colorSpace: 'srgb',
-        components: [0.047058823529411764, 0.4666666666666667, 0.5725490196078431],
+        components: [0.9176470588235294, 0.9333333333333333, 0.9490196078431372],
       });
       expect(listed.$deprecated).toBeUndefined();
     });
@@ -94,34 +103,34 @@ describe('token-listing plugin - Node.js API', () => {
       };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      const listed = output.data.filter((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.length).toBe(4);
+      const listed = output.data.filter((d: any) => d.$name === 'base.color.black');
+      expect(listed.length).toBe(9);
       expect(listed[0].$extensions['app.terrazzo.listing'].mode).toBeUndefined();
       expect(listed[0].$value).toMatchObject({
         alpha: 1,
         colorSpace: 'srgb',
-        components: [0.047058823529411764, 0.4666666666666667, 0.5725490196078431],
+        components: [0.12156862745098039, 0.13725490196078433, 0.1568627450980392],
       });
 
-      expect(listed[1].$extensions['app.terrazzo.listing'].mode).toBe('Light');
+      expect(listed[1].$extensions['app.terrazzo.listing'].mode).toBe('light');
       expect(listed[1].$value).toMatchObject({
         alpha: 1,
         colorSpace: 'srgb',
-        components: [0.047058823529411764, 0.4666666666666667, 0.5725490196078431],
+        components: [0.12156862745098039, 0.13725490196078433, 0.1568627450980392],
       });
 
-      expect(listed[2].$extensions['app.terrazzo.listing'].mode).toBe('Dark');
+      expect(listed[2].$extensions['app.terrazzo.listing'].mode).toBe('light-colorblind');
       expect(listed[2].$value).toMatchObject({
         alpha: 1,
         colorSpace: 'srgb',
-        components: [0.12549019607843137, 0.8156862745098039, 0.9529411764705882],
+        components: [0.10588235294117647, 0.12156862745098039, 0.1411764705882353],
       });
 
-      expect(listed[3].$extensions['app.terrazzo.listing'].mode).toBe('Dark blue');
+      expect(listed[3].$extensions['app.terrazzo.listing'].mode).toBe('light-high-contrast');
       expect(listed[3].$value).toMatchObject({
         alpha: 1,
         colorSpace: 'srgb',
-        components: [0.12549019607843137, 0.8156862745098039, 0.9529411764705882],
+        components: [0.00392156862745098, 0.01568627450980392, 0.03529411764705882],
       });
     });
 
@@ -189,9 +198,9 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options);
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--custom-Colors-Blue-1100');
-      expect(mockNameFn).toHaveBeenCalledTimes(328);
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--custom-base-color-black');
+      expect(mockNameFn).toHaveBeenCalledTimes(1294);
     });
 
     it('outputs names after plugin logic when a plugin name is passed', async () => {
@@ -207,11 +216,11 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--colors-blue-1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--base-color-black');
     });
 
-    it('outputs names after plugin logic when a plugin\'s format name is passed', async () => {
+    it("outputs names after plugin logic when a plugin's format name is passed", async () => {
       const options = {
         filename: 'actual.listing.json',
         platforms: {
@@ -224,8 +233,8 @@ describe('token-listing plugin - Node.js API', () => {
       const output = await setupTest('./fixtures/build-default/', options, [css({ filename: 'tokens.css' })]);
       expect(mockLogger.error).toHaveBeenCalledTimes(0);
 
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--colors-blue-1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].names.css).toEqual('--base-color-black');
     });
 
     it("throws an error if asked to use the naming logic of a plugin that hasn't been called", async () => {
@@ -239,9 +248,9 @@ describe('token-listing plugin - Node.js API', () => {
         },
       };
       const output = await setupTest('./fixtures/build-default/', options);
-      expect(mockLogger.error).toHaveBeenCalledTimes(328);
+      expect(mockLogger.error).toHaveBeenCalledTimes(1294);
 
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(listed.$extensions['app.terrazzo.listing'].names.css).toBeUndefined();
     });
 
@@ -259,13 +268,13 @@ describe('token-listing plugin - Node.js API', () => {
       };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      expect(output.data.length).toBe(328);
+      expect(output.data.length).toBe(1294);
       expect(
         output.data
           .map((token: ListedToken) => token.$extensions['app.terrazzo.listing'].names.css)
           .filter((n: string | undefined) => n !== undefined).length,
       ).toBe(0);
-      expect(filter).toHaveBeenCalledTimes(328);
+      expect(filter).toHaveBeenCalledTimes(1294);
     });
 
     it('filters names based on plugin logic when a plugin name is passed', async () => {
@@ -282,13 +291,13 @@ describe('token-listing plugin - Node.js API', () => {
       };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      expect(output.data.length).toBe(328);
+      expect(output.data.length).toBe(1294);
       expect(
         output.data
           .map((token: ListedToken) => token.$extensions['app.terrazzo.listing'].names.css)
           .filter((n: string | undefined) => n !== undefined).length,
       ).toBe(0);
-      expect(filter).toHaveBeenCalledTimes(328);
+      expect(filter).toHaveBeenCalledTimes(1294);
     });
 
     it('never outputs names that cannot be computed even if filter returns true', async () => {
@@ -306,14 +315,14 @@ describe('token-listing plugin - Node.js API', () => {
       };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      expect(output.data.length).toBe(328);
+      expect(output.data.length).toBe(1294);
       expect(
         output.data
           .map((token: ListedToken) => token.$extensions['app.terrazzo.listing'].names.css)
           .filter((n: string | undefined) => n !== undefined).length,
       ).toBe(0);
-      expect(name).toHaveBeenCalledTimes(328);
-      expect(filter).toHaveBeenCalledTimes(328);
+      expect(name).toHaveBeenCalledTimes(1294);
+      expect(filter).toHaveBeenCalledTimes(1294);
     });
   });
 
@@ -322,22 +331,22 @@ describe('token-listing plugin - Node.js API', () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('#0c7792');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('#1f2328');
     });
 
     it('outputs preview values for dimension tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      const listed = output.data.find((d: any) => d.$name === 'Layout.Space.200');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('8px');
+      const listed = output.data.find((d: any) => d.$name === 'base.size.32');
+      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('32px');
     });
 
     it('outputs preview values for font-weight tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
-      const output = await setupTest('./fixtures/ds-figma-sds/', options, [], src);
+      const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.weight.extralight');
       expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('200');
@@ -346,7 +355,7 @@ describe('token-listing plugin - Node.js API', () => {
     it('outputs preview values for font-size tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
-      const output = await setupTest('./fixtures/ds-figma-sds/', options, [], src);
+      const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.scale.04');
       expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('1.25rem');
@@ -355,7 +364,7 @@ describe('token-listing plugin - Node.js API', () => {
     it('outputs preview values for font-family tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
-      const output = await setupTest('./fixtures/ds-figma-sds/', options, [], src);
+      const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.family.serif');
       expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('"noto serif", serif');
@@ -365,8 +374,10 @@ describe('token-listing plugin - Node.js API', () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
 
-      const listed = output.data.find((d: any) => d.$name === 'Typography.type.300.bold');
-      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('600 16px/24px "Instrument Sans"');
+      const listed = output.data.find((d: any) => d.$name === 'text.subtitle.shorthand');
+      expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe(
+        '400 20px/1.6 -apple-system, "BlinkMacSystemFont", "Segoe UI", "Noto Sans", "Helvetica", "Arial", sans-serif, "Apple Color Emoji", "Segoe UI Emoji"',
+      );
     });
 
     it('calls a custom previewValue function when passed', async () => {
@@ -376,9 +387,9 @@ describe('token-listing plugin - Node.js API', () => {
         previewValue,
       };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(listed.$extensions['app.terrazzo.listing'].previewValue).toBe('custom');
-      expect(previewValue).toHaveBeenCalledTimes(328);
+      expect(previewValue).toHaveBeenCalledTimes(1294);
     });
   });
 
@@ -395,32 +406,20 @@ describe('token-listing plugin - Node.js API', () => {
         subtype,
       };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(listed.$extensions['app.terrazzo.listing'].subtype).toBe('bgColor');
-      expect(subtype).toHaveBeenCalledTimes(328);
+      expect(subtype).toHaveBeenCalledTimes(1294);
     });
   });
 
   describe('description', () => {
     it('outputs description', async () => {
       const options = { filename: 'actual.listing.json' };
-      const output = await setupTest('./fixtures/build-default/', options, [], {
-        tokenOne: {
-          $type: 'color',
-          $value: { colorSpace: 'srgb', components: [1, 0, 0], alpha: 1 },
-          $description: "Custom description",
-        },
-        group: {
-          $description: "Group description",
-          tokenTwo: {
-            $type: 'color',
-            $value: { colorSpace: 'srgb', components: [0, 1, 0], alpha: 1 },
-            $deprecated: false,
-          },
-        }
-      });
-      expect(output.data[0].$description).toBe( "Custom description");
-      expect(output.data[1].$description).toBeUndefined(); // not inherited as per DTCG
+      const output = await setupTest('./fixtures/build-default/', options);
+      const listed = output.data.find((d: any) => d.$name === 'text.subtitle.shorthand');
+      expect(listed.$description).toBe(
+        'Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium).',
+      );
     });
   });
 
@@ -443,9 +442,9 @@ describe('token-listing plugin - Node.js API', () => {
           $value: { colorSpace: 'srgb', components: [0, 0, 1], alpha: 1 },
         },
       });
-      expect(output.data[0].$deprecated).toBe(true);
-      expect(output.data[1].$deprecated).toBe(false);
-      expect(output.data[2].$deprecated).toBeUndefined();
+      expect(output.data.find((d: any) => d.$name === 'tokenOne').$deprecated).toBe(true);
+      expect(output.data.find((d: any) => d.$name === 'tokenTwo').$deprecated).toBe(false);
+      expect(output.data.find((d: any) => d.$name === 'tokenThree').$deprecated).toBeUndefined();
     });
   });
 
@@ -453,7 +452,7 @@ describe('token-listing plugin - Node.js API', () => {
     it('outputs token source as computed by Terrazzo', async () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
         resource: expect.any(String),
         loc: {
@@ -464,9 +463,12 @@ describe('token-listing plugin - Node.js API', () => {
     });
 
     it('respects resourceRoot option as absolute path to compute root of source URLs', async () => {
-      const options = { filename: 'actual.listing.json', resourceRoot: fileURLToPath(new URL('./fixtures/', import.meta.url)) };
+      const options = {
+        filename: 'actual.listing.json',
+        resourceRoot: fileURLToPath(new URL('./fixtures/', import.meta.url)),
+      };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(listed.$extensions['app.terrazzo.listing'].source).toEqual({
         resource: 'file://<root>/build-default/tokens.json',
         loc: {
@@ -481,15 +483,51 @@ describe('token-listing plugin - Node.js API', () => {
     it('outputs the original value of tokens', async () => {
       const options = { filename: 'actual.listing.json' };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
-      expect(listed.$extensions['app.terrazzo.listing'].originalValue).toEqual("rgb(12, 119, 146)");
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
+      expect(listed.$extensions['app.terrazzo.listing'].originalValue).toEqual({
+        alpha: 1,
+        colorSpace: 'srgb',
+        components: [0.12156862745098039, 0.13725490196078433, 0.1568627450980392],
+        hex: '#1f2328',
+      });
     });
 
     it('takes modes and aliases into account when computing original values', async () => {
       const options = { filename: 'actual.listing.json' };
-      const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.500' && d.$extensions['app.terrazzo.listing'].mode === 'Dark blue');
-      expect(listed.$extensions['app.terrazzo.listing'].originalValue).toEqual("{Colors.Gray.300}");
+      const output = await setupTest('./fixtures/build-default/', options, [], {
+        color: {
+          $type: 'color',
+          black: {
+            $value: {
+              colorSpace: 'srgb',
+              components: [0.12156862745098039, 0.13725490196078433, 0.1568627450980392],
+              alpha: 1,
+              hex: '#1f2328',
+            },
+          },
+          white: {
+            $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1, hex: '#ffffff' },
+          },
+          semantic: {
+            $value: '{color.white}',
+            $extensions: {
+              mode: {
+                light: '{color.white}',
+                dark: '{color.black}',
+              },
+            },
+          },
+        },
+      });
+
+      const lightListed = output.data.find(
+        (d: any) => d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'light',
+      );
+      expect(lightListed.$extensions['app.terrazzo.listing'].originalValue).toEqual('{color.white}');
+      const darkListed = output.data.find(
+        (d: any) => d.$name === 'color.semantic' && d.$extensions['app.terrazzo.listing'].mode === 'dark',
+      );
+      expect(darkListed.$extensions['app.terrazzo.listing'].originalValue).toEqual('{color.black}');
     });
   });
 
@@ -497,7 +535,7 @@ describe('token-listing plugin - Node.js API', () => {
     it('outputs default sot in meta if set', async () => {
       const options = { filename: 'actual.listing.json', sourceOfTruth: 'figma' };
       const output = await setupTest('./fixtures/build-default/', options);
-      const listed = output.data.find((d: any) => d.$name === 'Colors.Blue.1100');
+      const listed = output.data.find((d: any) => d.$name === 'base.color.black');
       expect(output.meta.sourceOfTruth).toBe('figma');
       expect(listed.$extensions['app.terrazzo.listing'].sourceOfTruth).toBeUndefined();
     });
