@@ -22,10 +22,11 @@ jobs:
         with:
           run_install: true
       - run: pnpm run build
+      - run: pnpm exec changesets pre alpha
       - uses: changesets/action@v1
         with:
           version: pnpm run version
-          publish: pnpm exec changeset publish
+          publish: pnpm exec changeset publish --dry-run
           commit: "[ci] release"
           title: "[ci] release"
         env:
