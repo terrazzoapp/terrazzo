@@ -1,5 +1,74 @@
 # @terrazzo/cli
 
+## 0.11.0
+
+### Minor Changes
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change; DTCG 2nd Editors draft format will throw errors by default. This means converting all colors and dimensions to the new object format.
+
+  Though this is a breaking change in default behavior, you can opt back into the old behavior by adjusting your config’s lint settings. See https://terrazzo.app/docs/cli/lint/.
+
+  List of changes:
+  - **color**: `channels` is invalid; `components` is required (“channels” was never part of the spec; this just deprecates an in-progress draft that was briefly supported)
+  - **dimension**: object notation (`{ value: 16, unit: 'px' }`) required.
+  - **dimension**: `0` is no longer automatically expanded to`{ value: 0, unit: 'px' }`.
+  - **duration**: object notation (`{ value: 100, unit: 'ms' }`) required.
+  - **dimension**: `{ $value: 0 }` no longer allowed.
+  - **typography**: `fontFamily`, `fontSize`, `fontWeight`, `lineHeight`, and `letterSpacing` are all required at a minimum (additional properties are still allowed).
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Soft deprecate core/required-typography-properties in favor of core/valid-typography
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Minor breaking change: the transform() API now returns the Momoa node as the 1st parameter. The 2nd parameter is now an object with more context. Lastly, it requires returning a momoa node, rather than raw JSON.
+
+  ```diff
+  + import * as momoa from "@humanwhocodes/momoa";
+
+    transform: {
+  -   color(json, path, node) {
+  +   color(node, { path, filename }) {
+  +     const json = momoa.evaluate(node);
+  -     return json;
+  +     return momoa.parse(json);
+      }
+  ```
+
+  This should result in a little less work overall. For example, instead of writing `if (typeof json === 'object' && !Array.isArray(json))` that could be shortened to `if (node.type === 'Object')`, among many other such advantages. You can call `evaluate()` manually if you’re more used to working with the raw JSON instead. Similarly, you can call `parse()` if you’re working with
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: lint on plugins no longer runs on individual files, rather, the full set once merged.
+
+  If your lint plugin is not using the `src` context value, no changes are needed. If it is, you’ll need to instead read from the `sources` array, and look up sources with a token’s `source.loc` filename manually. This change was because lint rules now run on all files in one pass, essentially.
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ [Plugin API] Minor breaking change: token.originalValue may be undefined for tokens created with $ref. This shouldn’t affect any tokens or plugins not using $refs. But going forward this value will be missing if the token was created dynamically via $ref.
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Minor breaking change: build() and buildEnd() plugin hooks are now executed in parallel. The other hooks are still executed sequentially.
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: the following token types have more strict requirements about all properties being present:
+  - Border
+  - Transition
+  - Typography
+
+  These behaviors may be opted out individually by adjusting the new lint rules ([see documentation](https://terrazzo.app/docs/cli/lint/)).
+
+### Patch Changes
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug where border tokens’ partial aliases would sometimes refer to themselves
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Fix bug of lint warning of rules turned off being unused
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Validation moved to lint rules, which means token validation can be individually configured, and optionally extended.
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Add first class support for JSON $refs, both remote and local.
+
+  Under-the-hood this transforms DTCG aliase to JSON $refs, so they’re interchangeable.
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix strokeStyle partialAliasOf
+
+- [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Add missing $deprecated property to group types
+
+- Updated dependencies [[`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3), [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3)]:
+  - @terrazzo/token-tools@0.11.0
+  - @terrazzo/parser@0.11.0
+
 ## 0.10.3
 
 ### Patch Changes
