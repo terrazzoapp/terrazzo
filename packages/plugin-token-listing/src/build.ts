@@ -98,7 +98,7 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
     getTransforms,
     logger,
     mode,
-    resourceRoot = process.cwd(),
+    resourceRoot,
     token,
     tokensSet,
   }: {
@@ -154,8 +154,17 @@ export default function getBuild(options: TokenListingPluginOptions): Plugin['bu
     }
 
     if (token.source.filename) {
+      const root = resourceRoot ?? process.cwd();
+      // Convert both paths to file URLs for consistent cross-platform handling
+      const rootUrl = new URL(`file://${root.replace(/\\/g, '/')}`);
+      const fileUrl = new URL(token.source.filename);
+
+      // Create relative URL from root to file
+      const relativeUrl = new URL(fileUrl.pathname, rootUrl);
+      const relativePath = relativeUrl.pathname.replace(rootUrl.pathname, '');
+
       output.source = {
-        resource: token.source.filename.replace(resourceRoot, resourceRoot.endsWith('/') ? '<root>/' : '<root>'),
+        resource: `file://<root>${relativePath.startsWith('/') ? '' : '/'}${relativePath}`,
         loc: token.source.node.loc,
       };
     }
