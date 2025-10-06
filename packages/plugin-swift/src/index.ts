@@ -49,6 +49,7 @@ export default function PluginSwift({ catalogName = 'Tokens' }: SwiftPluginOptio
                 format: FORMAT,
                 mode,
                 value: { red: String(red), green: String(green), blue: String(blue), alpha: String(alpha) },
+                meta: { 'token-listing': { name: `Color("${token.id}")` } },
               });
             }
             break;
