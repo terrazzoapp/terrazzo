@@ -6,7 +6,6 @@
 "@terrazzo/plugin-css": patch
 "@terrazzo/plugin-js": patch
 "@terrazzo/parser": patch
-"@terrazzo/www": patch
 ---
 
 Add support for the Token Listing format
