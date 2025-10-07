@@ -1,0 +1,28 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@terrazzo/cli": "2.0.0-alpha.1",
+    "@terrazzo/fonts": "0.1.0",
+    "@terrazzo/icons": "0.1.1",
+    "@terrazzo/json-schema-tools": "0.0.1",
+    "@terrazzo/parser": "2.0.0-alpha.1",
+    "@terrazzo/plugin-css": "2.0.0-alpha.1",
+    "@terrazzo/plugin-js": "2.0.0-alpha.1",
+    "@terrazzo/plugin-sass": "2.0.0-alpha.1",
+    "@terrazzo/plugin-swift": "0.3.0",
+    "@terrazzo/plugin-tailwind": "2.0.0-alpha.1",
+    "@terrazzo/plugin-token-listing": "0.0.0",
+    "@terrazzo/plugin-vanilla-extract": "2.0.0-alpha.1",
+    "@terrazzo/react-color-picker": "0.1.3",
+    "@terrazzo/storybook": "0.0.0",
+    "@terrazzo/tiles": "0.1.3",
+    "@terrazzo/token-lab": "0.0.0",
+    "@terrazzo/token-tools": "2.0.0-alpha.1",
+    "@terrazzo/tokens": "0.1.0",
+    "@terrazzo/use-color": "0.1.4"
+  },
+  "changesets": [
+    "full-webs-shake"
+  ]
+}
