@@ -4,12 +4,11 @@ import { dts } from 'rolldown-plugin-dts';
 export default defineConfig({
   input: {
     index: './src/index.ts',
-    css: './src/css/index.ts',
-    js: './src/js/index.ts',
     listing: './src/listing.ts',
+    token: './src/token.ts',
   },
   plugins: [dts()],
-  external: ['@humanwhocodes/momoa', 'culori', 'culori/css', 'culori/fn', 'wildcard-match'],
+  external: ['@humanwhocodes/momoa'],
   output: {
     dir: 'dist',
     format: 'es',
