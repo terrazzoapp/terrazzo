@@ -1,5 +1,14 @@
 # @terrazzo/plugin-vanilla-extract
 
+## 2.0.0-alpha.1
+
+### Patch Changes
+
+- [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
+
+- Updated dependencies [[`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076)]:
+  - @terrazzo/plugin-css@2.0.0-alpha.2
+
 ## 2.0.0
 
 ### Minor Changes
