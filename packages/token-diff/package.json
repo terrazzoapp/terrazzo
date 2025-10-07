@@ -1,7 +1,7 @@
 {
-  "name": "@terrazzo/plugin-token-listing",
+  "name": "@terrazzo/token-diff",
   "version": "0.0.0",
-  "description": "Produce a token listing file for built DTCG tokens, containing attributes you've computed during your build.",
+  "description": "Utility to compute a diff between two tokens, tokens trees or token listings",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -13,40 +13,37 @@
     "design system",
     "dtcg",
     "w3c",
-    "token listing"
+    "token listing",
+    "diff"
   ],
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
+    "./listing": "./dist/listing.js",
+    "./token": "./dist/token.js",
     "./package.json": "./package.json"
   },
-  "homepage": "https://terrazzo.app/docs/cli/integrations/token-listing",
+  "homepage": "https://terrazzo.app/docs/cli/-TODO-CONFIRM-LATER-/api/token-diff",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",
-    "directory": "./packages/plugin-token-listing/"
+    "directory": "./packages/plugin-token-diff/"
   },
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-token-listing run \"/^lint:(js|ts)/\"",
+    "lint": "pnpm --filter @terrazzo/token-diff run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"
   },
-  "peerDependencies": {
-    "@terrazzo/cli": "workspace:^"
-  },
   "dependencies": {
-    "@terrazzo/token-tools": "workspace:^",
-    "wildcard-match": "^5.1.4"
+    "@humanwhocodes/momoa": "^3.3.8"
   },
   "devDependencies": {
-    "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
-    "@terrazzo/plugin-css": "workspace:^",
-    "@vitest/coverage-v8": "3.2.4",
-    "dtcg-examples": "catalog:"
+    "@types/culori": "^4.0.0",
+    "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
   }
 }

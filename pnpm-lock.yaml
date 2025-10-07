@@ -595,6 +595,22 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0(vitest@3.2.4)
 
+  packages/token-diff:
+    dependencies:
+      '@humanwhocodes/momoa':
+        specifier: ^3.3.8
+        version: 3.3.9
+    devDependencies:
+      '@terrazzo/plugin-token-listing':
+        specifier: workspace:^
+        version: link:../plugin-token-listing
+      '@terrazzo/token-tools':
+        specifier: workspace:^
+        version: link:../token-tools
+      '@types/culori':
+        specifier: ^4.0.0
+        version: 4.0.1
+
   packages/token-lab:
     dependencies:
       '@radix-ui/react-popover':

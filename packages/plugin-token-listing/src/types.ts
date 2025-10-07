@@ -1,24 +1,11 @@
-import type {
-  AliasValue,
-  BooleanValue,
-  BorderValue,
-  ColorValue,
-  CubicBezierValue,
-  DimensionValue,
-  DurationValue,
-  FontFamilyValue,
-  FontWeightValue,
-  GradientValue,
-  LinkValue,
-  Logger,
-  NumberValue,
-  ShadowValue,
-  StringValue,
-  StrokeStyleValue,
-  TokenNormalized,
-  TransitionValue,
-  TypographyValue,
-} from '@terrazzo/parser';
+import type { Logger, TokenNormalized } from '@terrazzo/parser';
+import type { ListedMode } from '@terrazzo/token-tools/listing';
+export type { 
+  ListedMode,
+  ListedToken,
+  TokenListing,
+  TokenListingExtension,
+} from '@terrazzo/token-tools/listing';
 
 export const FORMAT_ID = 'token-listing';
 
@@ -28,84 +15,6 @@ export interface CustomFunctionParams {
   token: TokenNormalized;
   tokensSet: Record<string, TokenNormalized>;
 }
-
-/** Content of the DTCG $extension property computed by this plugin. */
-export interface TokenListingExtension {
-  /** Dictionary of names for the current design token, in all platforms where it exists. */
-  names: Record<string, string>;
-
-  /** Name of the mode used to compute this token. */
-  mode?: string;
-
-  /** Hint for tools to specialise how this token is visually presented. */
-  subtype?: string;
-
-  /** In multi-source-of-truth systems, name of the platform acting as a source of truth for this token, when different from the listing's default source of truth. */
-  sourceOfTruth?: string;
-
-  /** Resource where the source for this token is located, and location in the resource. */
-  source?: {
-    resource: string;
-    loc?: {
-      start: { line: number; column: number; offset: number };
-      end: { line: number; column: number; offset: number };
-    };
-  };
-
-  /** Value that can be used to preview this token in a CSS engine. */
-  previewValue?: string | number;
-
-  /** Original value of the token, with aliases preserved. */
-  originalValue?:
-    | AliasValue
-    | BooleanValue
-    | BorderValue
-    | ColorValue
-    | CubicBezierValue
-    | DimensionValue
-    | DurationValue
-    | FontFamilyValue
-    | FontWeightValue
-    | GradientValue
-    | LinkValue
-    | NumberValue
-    | ShadowValue
-    | ShadowValue[]
-    | StringValue
-    | StrokeStyleValue
-    | TransitionValue
-    | TypographyValue;
-}
-
-export interface ListedToken {
-  $name: string;
-  $type: string;
-  $description?: string;
-  $value: string | number | boolean | Record<string, unknown>;
-  $deprecated?: string | boolean;
-  $extensions: {
-    'app.terrazzo.listing': TokenListingExtension;
-  };
-}
-
-export interface TokenListing {
-  meta: {
-    version: 1;
-    authoringTool: string;
-    modes?: ModeOption[];
-    platforms: Record<string, { description?: string }>;
-    /** Identity of the platform acting as a source of truth for this listing's tokens. */
-    sourceOfTruth?: string;
-  };
-  data: ListedToken[];
-}
-
-export type ModeOption = {
-  name: string;
-  values: string[];
-  description?: string;
-  default?: string;
-};
 
 export type PlatformOption =
   | {
@@ -143,7 +52,7 @@ export interface TokenListingPluginOptions {
   /**
    * List of modes included in the listing.
    */
-  modes?: ModeOption[];
+  modes?: ListedMode[];
 
   /**
    * Platforms included in this listing. Used to produce the `names` metadata and to compute
