@@ -1,11 +1,5 @@
 # @terrazzo/plugin-js
 
-## 2.0.0-alpha.1
-
-### Patch Changes
-
-- [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
-
 ## 2.0.0
 
 ### Minor Changes
@@ -19,6 +13,7 @@
 ### Patch Changes
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Validation moved to lint rules, which means token validation can be individually configured, and optionally extended.
+- [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
 
 ## 0.10.3
 

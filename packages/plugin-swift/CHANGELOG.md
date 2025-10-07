@@ -1,6 +1,6 @@
 # @terrazzo/plugin-swift
 
-## 0.3.1-alpha.0
+## 0.3.1
 
 ### Patch Changes
 

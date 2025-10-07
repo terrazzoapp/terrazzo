@@ -1,11 +1,5 @@
 # @terrazzo/parser
 
-## 2.0.0-alpha.2
-
-### Patch Changes
-
-- [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
-
 ## 2.0.0
 
 ### Minor Changes
@@ -70,6 +64,8 @@
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Bugfix: fix strokeStyle partialAliasOf
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Add missing $deprecated property to group types
+
+- [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
 
 ## 0.10.4
 
