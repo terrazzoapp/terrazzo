@@ -37,7 +37,7 @@
   line-height: 1;
 
   &::before {
-    background-color: var(--tz-color-base-gray-800);
+    background-color: var(--tz-color-base-gray-500);
     border-radius: var(--tz-switch-width);
     content: "";
     height: var(--tz-switch-height);
@@ -50,7 +50,7 @@
   }
 
   &::after {
-    background-color: var(--tz-color-base-gray-000);
+    background-color: var(--tz-color-base-gray-1000);
     border-radius: var(--tz-switch-width);
     content: "";
     height: var(--tz-switch-handle-size);
@@ -69,7 +69,7 @@
 
 .tz-switch-field:checked ~ .tz-switch-label {
   &::before {
-    background-color: var(--tz-color-base-lime-1000);
+    background-color: var(--tz-color-base-lime-500);
   }
 
   &::after {

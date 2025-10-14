@@ -1,8 +1,12 @@
 .tz-kbd {
   align-items: center;
-  background-color: var(--tz-color-content-bg);
-  border: 1px solid var(--tz-color-content-border);
+  background-color: var(--tz-color-bg-1);
+  border-block-end-width: 2.5px;
+  border-block-start-width: 1px;
+  border-color: var(--tz-color-border-1);
+  border-inline-width: 1px;
   border-radius: var(--tz-radius-200);
+  border-style: solid;
   color: var(--tz-text-primary);
   cursor: default;
   display: inline-flex;

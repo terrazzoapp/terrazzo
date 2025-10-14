@@ -34,7 +34,7 @@
   text-decoration: none;
 
   &:focus-visible {
-    outline-color: var(--tz-color-base-lime-800);
+    outline-color: var(--tz-color-base-lime-600);
   }
 
   &[data-size="s"] {
@@ -45,21 +45,21 @@
   }
 
   &[data-variant="lime"] {
-    --tz-button-bg: var(--tz-color-base-lime-800);
+    --tz-button-bg: var(--tz-color-base-lime-600);
     --tz-button-text: var(--tz-color-base-lime-200);
-    --tz-button-border: var(--tz-color-base-lime-300);
+    --tz-button-border: var(--tz-color-base-lime-400);
   }
 
   &[data-variant="blue"] {
-    --tz-button-bg: var(--tz-color-base-blue-800);
+    --tz-button-bg: var(--tz-color-base-blue-700);
     --tz-button-text: var(--tz-color-base-blue-200);
-    --tz-button-border: var(--tz-color-base-blue-300);
+    --tz-button-border: var(--tz-color-base-blue-500);
   }
 
   &[data-variant="orange"] {
-    --tz-button-bg: var(--tz-color-base-orange-800);
+    --tz-button-bg: var(--tz-color-base-orange-700);
     --tz-button-text: var(--tz-color-base-orange-200);
-    --tz-button-border: var(--tz-color-base-orange-300);
+    --tz-button-border: var(--tz-color-base-orange-500);
   }
 
   &[data-variant="secondary"] {

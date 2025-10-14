@@ -101,7 +101,7 @@
   &[aria-selected="true"],
   &:hover,
   &:focus-within {
-    background-color: var(--tz-color-base-lime-800);
+    background-color: var(--tz-color-base-lime-600);
     color: var(--tz-color-base-lime-200);
   }
 }

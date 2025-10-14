@@ -261,19 +261,19 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: color-mix(in oklab, var(--tz-color-base-blue-600), transparent 80%);
+  background-color: color-mix(in oklab, var(--tz-color-base-blue-600), var(--tz-color-bg-1) 70%);
 
   .callout-indicator {
-    color: var(--tz-color-base-blue-300);
+    color: var(--tz-color-base-blue-600);
   }
 }
 
 .callout--caution,
 .callout--warning {
-  background-color: color-mix(in oklab, var(--tz-color-base-orange-600), transparent 80%);
+  background-color: color-mix(in oklab, var(--tz-color-base-orange-700), var(--tz-color-bg-1) 70%);
 
   .callout-indicator {
-    color: var(--tz-color-base-orange-300);
+    color: var(--tz-color-base-orange-600);
   }
 }
 
@@ -292,7 +292,7 @@
 }
 
 .astro-code {
-  --code-bg: #17191e;
+  --code-bg: #0b0e14;
   --code-padding: var(--tz-space-400);
 
   line-height: 1.5;
@@ -308,7 +308,7 @@
 }
 
 .code-group {
-  --code-bg: #141414;
+  --code-bg: #0b0e14;
   --code-padding: var(--tz-space-400);
 }
 
@@ -342,7 +342,7 @@
 }
 
 .code-group-tabs {
-  background-color: color-mix(in oklab, var(--code-bg), white 10%);
+  background-color: color-mix(in oklab, var(--code-bg), white 5%);
   display: flex;
   margin: 0;
 }
@@ -444,6 +444,9 @@
 }
 
 .toc {
+  --toc-height-1: 1.75rem;
+  --toc-height-2: 1.5rem;
+
   background: var(--tz-color-bg-1);
   font-family: var(--tz-font-sans);
   font-size: var(--tz-font-body-font-size);
@@ -477,7 +480,10 @@
     font-size: var(--tz-font-body-font-size);
     list-style: none;
     margin: 0;
+    overflow: hidden;
     padding: 0;
+    transition: height 100ms var(--tz-ease-quint-out);
+    will-change: height;
   }
 
   ol {
@@ -485,21 +491,21 @@
     padding: 0;
 
     ol {
-      @media (width >= 1200px) {
-        display: none;
+      li {
+        height: 0;
+      }
 
-        &:has(a[aria-current]) {
-          display: block;
-        }
+      &:has(a[aria-current]) li {
+        height: var(--toc-height-2);
+      }
+
+      a {
+        font-size: var(--tz-font-label-small-font-size);
       }
     }
 
-    a[aria-current] ~ ol {
-      display: block;
-    }
-
-    ol a {
-      font-size: var(--tz-font-label-small-font-size);
+    a[aria-current] ~ ol li {
+      height: var(--toc-height-2);
     }
   }
 

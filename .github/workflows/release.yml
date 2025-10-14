@@ -22,7 +22,6 @@ jobs:
         with:
           run_install: true
       - run: pnpm run build
-      - run: pnpm exec changeset pre enter alpha
       - uses: changesets/action@v1
         with:
           version: pnpm run version

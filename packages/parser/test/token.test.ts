@@ -211,7 +211,7 @@ describe('graphAliases', () => {
           aliasedBy: undefined,
           aliasChain: undefined,
           partialAliasOf: {
-            color: 'color.test-3-b',
+            color: 'color.test-3-a',
           },
           dependencies: ['#/color/test-3-a/$value', '#/color/test-3-b/$value'],
           mode: {
@@ -220,7 +220,7 @@ describe('graphAliases', () => {
               aliasedBy: undefined,
               aliasChain: undefined,
               partialAliasOf: {
-                color: 'color.test-3-b',
+                color: 'color.test-3-a',
               },
               dependencies: ['#/color/test-3-a/$value', '#/color/test-3-b/$value'],
             },
@@ -270,14 +270,14 @@ describe('graphAliases', () => {
           aliasOf: undefined,
           aliasedBy: undefined,
           aliasChain: undefined,
-          partialAliasOf: [undefined, 'number.test-4-b'] as any,
+          partialAliasOf: [undefined, 'number.test-4-a'] as any,
           dependencies: ['#/number/test-4-a/$value', '#/number/test-4-b/$value'],
           mode: {
             '.': {
               aliasOf: undefined,
               aliasedBy: undefined,
               aliasChain: undefined,
-              partialAliasOf: [undefined, 'number.test-4-b'] as any,
+              partialAliasOf: [undefined, 'number.test-4-a'] as any,
               dependencies: ['#/number/test-4-a/$value', '#/number/test-4-b/$value'],
             },
           },
@@ -328,7 +328,7 @@ describe('graphAliases', () => {
           aliasChain: undefined,
           partialAliasOf: [
             undefined,
-            { color: 'color.test-5-b', stop: 'number.test-5-a' },
+            { color: 'color.test-5-a', stop: 'number.test-5-a' },
             { stop: 'number.test-5-b' },
           ] as any,
           dependencies: [
@@ -344,7 +344,7 @@ describe('graphAliases', () => {
               aliasChain: undefined,
               partialAliasOf: [
                 undefined,
-                { color: 'color.test-5-b', stop: 'number.test-5-a' },
+                { color: 'color.test-5-a', stop: 'number.test-5-a' },
                 { stop: 'number.test-5-b' },
               ] as any,
               dependencies: [

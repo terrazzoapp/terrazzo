@@ -179,7 +179,18 @@ font:
             src: {
               color: {
                 $type: 'color',
-                semantic: { subdued: { $value: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 } } },
+                ramp: {
+                  gray: {
+                    200: { $value: { colorSpace: 'srgb', components: [0, 0, 0], alpha: 0.1 } },
+                    700: { $value: { colorSpace: 'srgb', components: [0.7, 0.7, 0.7], alpha: 0.1 } },
+                  },
+                },
+                semantic: {
+                  subdued: {
+                    $value: '{color.ramp.gray.200}',
+                    $extensions: { mode: { light: '{color.ramp.gray.200}', dark: '{color.ramp.gray.700}' } },
+                  },
+                },
               },
               border: {
                 size: { $type: 'dimension', default: { $value: { value: 1, unit: 'px' } } },
@@ -201,6 +212,17 @@ font:
             'color.semantic.subdued': {
               $value: { alpha: 0.1, components: [0, 0, 0], colorSpace: 'srgb' },
               aliasedBy: ['button-border'],
+              aliasOf: 'color.ramp.gray.200',
+              aliasChain: ['color.ramp.gray.200'],
+              dependencies: ['#/color/ramp/gray/200/$value'],
+            },
+            'color.ramp.gray.200': {
+              $value: { alpha: 0.1, colorSpace: 'srgb', components: [0, 0, 0] },
+              aliasedBy: ['button-border', 'color.semantic.subdued'],
+            },
+            'color.ramp.gray.700': {
+              $value: { alpha: 0.1, colorSpace: 'srgb', components: [0.7, 0.7, 0.7] },
+              aliasedBy: ['color.semantic.subdued'],
             },
             'border.size.default': { $value: { value: 1, unit: 'px' }, aliasedBy: ['button-border'] },
             'border.style.default': {
@@ -216,6 +238,7 @@ font:
               dependencies: [
                 '#/border/size/default/$value',
                 '#/border/style/default/$value',
+                '#/color/ramp/gray/200/$value',
                 '#/color/semantic/subdued/$value',
               ],
               partialAliasOf: {

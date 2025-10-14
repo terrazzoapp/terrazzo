@@ -14,7 +14,18 @@ export const Overview = {
     return (
       <StickerSheet
         columns={['size="m"', 'size="s"']}
-        rows={['primary', 'primary (disabled)', 'secondary', 'secondary (disabled)', 'tertiary', 'tertiary (disabled)']}
+        rows={[
+          'primary',
+          'primary (disabled)',
+          'secondary',
+          'secondary (disabled)',
+          'lime',
+          'lime (disabled)',
+          'blue',
+          'blue (disabled)',
+          'orange',
+          'orange (disabled)',
+        ]}
         variants={[
           <Button key='primary' variant='primary'>
             Primary
@@ -40,17 +51,41 @@ export const Overview = {
           <Button key='secondary-s-disabled' variant='secondary' disabled size='s'>
             Secondary (S)
           </Button>,
-          <Button key='tertiary' variant='tertiary'>
-            Tertiary
+          <Button key='lime' variant='lime'>
+            Lime
           </Button>,
-          <Button key='tertiary-s' variant='tertiary' size='s'>
-            Tertiary (S)
+          <Button key='lime-s' variant='lime' size='s'>
+            Lime (S)
           </Button>,
-          <Button key='tertiary-disabled' variant='tertiary' disabled>
-            Tertiary
+          <Button key='lime-disabled' variant='lime' disabled>
+            Lime
           </Button>,
-          <Button key='tertiary-s-disabled' variant='tertiary' disabled size='s'>
-            Tertiary (S)
+          <Button key='lime-s-disabled' variant='lime' disabled size='s'>
+            Lime (S)
+          </Button>,
+          <Button key='blue' variant='blue'>
+            Blue
+          </Button>,
+          <Button key='blue-s' variant='blue' size='s'>
+            Blue (S)
+          </Button>,
+          <Button key='blue-disabled' variant='blue' disabled>
+            Blue
+          </Button>,
+          <Button key='blue-s-disabled' variant='blue' disabled size='s'>
+            Blue (S)
+          </Button>,
+          <Button key='orange' variant='orange'>
+            Orange
+          </Button>,
+          <Button key='orange-s' variant='orange' size='s'>
+            Orange (S)
+          </Button>,
+          <Button key='orange-disabled' variant='orange' disabled>
+            Orange
+          </Button>,
+          <Button key='orange-s-disabled' variant='orange' disabled size='s'>
+            Orange (S)
           </Button>,
         ]}
       />

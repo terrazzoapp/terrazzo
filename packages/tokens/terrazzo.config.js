@@ -3,7 +3,7 @@ import { makeCSSVar } from '@terrazzo/token-tools/css';
 import css from '@terrazzo/plugin-css';
 
 export default defineConfig({
-  tokens: './tokens.json',
+  tokens: './tokens.yaml',
   outDir: './dist/',
   plugins: [
     css({
@@ -23,6 +23,7 @@ export default defineConfig({
   lint: {
     rules: {
       'core/valid-color': ['error', { legacyFormat: true }],
+      'core/consistent-naming': 'off'
     },
   },
 });
