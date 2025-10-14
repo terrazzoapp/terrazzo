@@ -3,10 +3,10 @@
  * ------------------------------------------- */
 
 :root {
-  --tz-border-1: 1px solid var(--tz-color-base-gray-700);
-  --tz-border-2: 1px solid var(--tz-color-base-gray-800);
-  --tz-border-3: 1px solid var(--tz-color-base-gray-900);
-  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
+  --tz-border-1: 1px solid var(--tz-color-border-1);
+  --tz-border-2: 1px solid var(--tz-color-border-2);
+  --tz-border-3: 1px solid var(--tz-color-border-3);
+  --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-base-blue-100: color(srgb 0 0.00392156862745098 0.011764705882352941);
   --tz-color-base-blue-200: color(srgb 0 0.07450980392156863 0.10980392156862745);
   --tz-color-base-blue-300: color(srgb 0 0.1803921568627451 0.2235294117647059);
@@ -27,7 +27,7 @@
   --tz-color-base-gray-800: color(srgb 0.7019607843137254 0.6784313725490196 0.6588235294117647);
   --tz-color-base-gray-900: color(srgb 0.8235294117647058 0.803921568627451 0.788235294117647);
   --tz-color-base-gray-950: color(srgb 0.9176470588235294 0.8941176470588236 0.8745098039215686);
-  --tz-color-base-gray-1000: color(srgb 0.9450980392156862 0.9333333333333333 0.9254901960784314);
+  --tz-color-base-gray-1000: color(srgb 1 1 1);
   --tz-color-base-lime-100: color(srgb 0 0.00392156862745098 0);
   --tz-color-base-lime-200: color(srgb 0.050980392156862744 0.14901960784313725 0);
   --tz-color-base-lime-300: color(srgb 0.19607843137254902 0.3411764705882353 0);
@@ -54,9 +54,9 @@
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-bg-selected: var(--tz-color-base-lime-800);
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
-  --tz-color-border-1: var(--tz-color-base-gray-700);
-  --tz-color-border-2: var(--tz-color-base-gray-800);
-  --tz-color-border-3: var(--tz-color-base-gray-900);
+  --tz-color-border-1: var(--tz-color-base-gray-500);
+  --tz-color-border-2: var(--tz-color-base-gray-600);
+  --tz-color-border-3: var(--tz-color-base-gray-700);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-100);
   --tz-color-text-2: var(--tz-color-base-gray-300);
@@ -165,19 +165,19 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-base-gray-700);
-    --tz-border-2: 1px solid var(--tz-color-base-gray-800);
-    --tz-border-3: 1px solid var(--tz-color-base-gray-900);
-    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
+    --tz-border-1: 1px solid var(--tz-color-border-1);
+    --tz-border-2: 1px solid var(--tz-color-border-2);
+    --tz-border-3: 1px solid var(--tz-color-border-3);
+    --tz-border-focus: 2px solid var(--tz-color-border-focus);
     --tz-color-bg-1: var(--tz-color-base-gray-1000);
     --tz-color-bg-2: var(--tz-color-base-gray-950);
     --tz-color-bg-3: var(--tz-color-base-gray-900);
     --tz-color-bg-error: var(--tz-color-base-orange-600);
     --tz-color-bg-selected: var(--tz-color-base-lime-800);
     --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
-    --tz-color-border-1: var(--tz-color-base-gray-700);
-    --tz-color-border-2: var(--tz-color-base-gray-800);
-    --tz-color-border-3: var(--tz-color-base-gray-900);
+    --tz-color-border-1: var(--tz-color-base-gray-500);
+    --tz-color-border-2: var(--tz-color-base-gray-600);
+    --tz-color-border-3: var(--tz-color-base-gray-700);
     --tz-color-border-focus: var(--tz-color-base-lime-600);
     --tz-color-text-1: var(--tz-color-base-gray-100);
     --tz-color-text-2: var(--tz-color-base-gray-300);
@@ -188,19 +188,19 @@
 }
 
 [data-color-mode="light"][data-color-mode="light"] {
-  --tz-border-1: 1px solid var(--tz-color-base-gray-700);
-  --tz-border-2: 1px solid var(--tz-color-base-gray-800);
-  --tz-border-3: 1px solid var(--tz-color-base-gray-900);
-  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
+  --tz-border-1: 1px solid var(--tz-color-border-1);
+  --tz-border-2: 1px solid var(--tz-color-border-2);
+  --tz-border-3: 1px solid var(--tz-color-border-3);
+  --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-950);
   --tz-color-bg-3: var(--tz-color-base-gray-900);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-bg-selected: var(--tz-color-base-lime-800);
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
-  --tz-color-border-1: var(--tz-color-base-gray-700);
-  --tz-color-border-2: var(--tz-color-base-gray-800);
-  --tz-color-border-3: var(--tz-color-base-gray-900);
+  --tz-color-border-1: var(--tz-color-base-gray-500);
+  --tz-color-border-2: var(--tz-color-base-gray-600);
+  --tz-color-border-3: var(--tz-color-base-gray-700);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-100);
   --tz-color-text-2: var(--tz-color-base-gray-300);
@@ -211,19 +211,19 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-base-gray-700);
-    --tz-border-2: 1px solid var(--tz-color-base-gray-800);
-    --tz-border-3: 1px solid var(--tz-color-base-gray-900);
-    --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
+    --tz-border-1: 1px solid var(--tz-color-border-1);
+    --tz-border-2: 1px solid var(--tz-color-border-2);
+    --tz-border-3: 1px solid var(--tz-color-border-3);
+    --tz-border-focus: 2px solid var(--tz-color-border-focus);
     --tz-color-bg-1: var(--tz-color-base-gray-100);
     --tz-color-bg-2: var(--tz-color-base-gray-200);
     --tz-color-bg-3: var(--tz-color-base-gray-300);
     --tz-color-bg-error: var(--tz-color-base-orange-600);
     --tz-color-bg-selected: var(--tz-color-base-lime-200);
     --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
-    --tz-color-border-1: var(--tz-color-base-gray-400);
-    --tz-color-border-2: var(--tz-color-base-gray-300);
-    --tz-color-border-3: var(--tz-color-base-gray-600);
+    --tz-color-border-1: var(--tz-color-base-gray-500);
+    --tz-color-border-2: var(--tz-color-base-gray-400);
+    --tz-color-border-3: var(--tz-color-base-gray-400);
     --tz-color-border-focus: var(--tz-color-base-lime-600);
     --tz-color-text-1: var(--tz-color-base-gray-900);
     --tz-color-text-2: var(--tz-color-base-gray-800);
@@ -234,19 +234,19 @@
 }
 
 [data-color-mode="dark"][data-color-mode="dark"] {
-  --tz-border-1: 1px solid var(--tz-color-base-gray-700);
-  --tz-border-2: 1px solid var(--tz-color-base-gray-800);
-  --tz-border-3: 1px solid var(--tz-color-base-gray-900);
-  --tz-border-focus: 2px solid var(--tz-color-base-lime-600);
+  --tz-border-1: 1px solid var(--tz-color-border-1);
+  --tz-border-2: 1px solid var(--tz-color-border-2);
+  --tz-border-3: 1px solid var(--tz-color-border-3);
+  --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-bg-1: var(--tz-color-base-gray-100);
   --tz-color-bg-2: var(--tz-color-base-gray-200);
   --tz-color-bg-3: var(--tz-color-base-gray-300);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-bg-selected: var(--tz-color-base-lime-200);
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
-  --tz-color-border-1: var(--tz-color-base-gray-400);
-  --tz-color-border-2: var(--tz-color-base-gray-300);
-  --tz-color-border-3: var(--tz-color-base-gray-600);
+  --tz-color-border-1: var(--tz-color-base-gray-500);
+  --tz-color-border-2: var(--tz-color-base-gray-400);
+  --tz-color-border-3: var(--tz-color-base-gray-400);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-900);
   --tz-color-text-2: var(--tz-color-base-gray-800);

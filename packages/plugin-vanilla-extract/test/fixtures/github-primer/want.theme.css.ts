@@ -1469,21 +1469,21 @@ export const [lightClass, light] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -1500,7 +1500,7 @@ export const [lightClass, light] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -1512,7 +1512,7 @@ export const [lightClass, light] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -1523,7 +1523,7 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -1537,7 +1537,7 @@ export const [lightClass, light] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -1548,7 +1548,7 @@ export const [lightClass, light] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -1566,20 +1566,20 @@ export const [lightClass, light] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -2269,21 +2269,21 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -2300,7 +2300,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -2312,7 +2312,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -2323,7 +2323,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -2337,7 +2337,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -2348,7 +2348,7 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -2366,20 +2366,20 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -3069,21 +3069,21 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -3100,7 +3100,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -3112,7 +3112,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -3123,7 +3123,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -3137,7 +3137,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -3148,7 +3148,7 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -3166,20 +3166,20 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -3869,21 +3869,21 @@ export const [darkClass, dark] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -3900,7 +3900,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -3912,7 +3912,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -3923,7 +3923,7 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -3937,7 +3937,7 @@ export const [darkClass, dark] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -3948,7 +3948,7 @@ export const [darkClass, dark] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -3966,20 +3966,20 @@ export const [darkClass, dark] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -4669,21 +4669,21 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -4700,7 +4700,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -4712,7 +4712,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -4723,7 +4723,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -4737,7 +4737,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -4748,7 +4748,7 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -4766,20 +4766,20 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -5469,21 +5469,21 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -5500,7 +5500,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -5512,7 +5512,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -5523,7 +5523,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -5537,7 +5537,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -5548,7 +5548,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -5566,20 +5566,20 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
@@ -6269,21 +6269,21 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.normal,
+          "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
@@ -6300,7 +6300,7 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
     "caption": {
       "lineHeight": "1.3333",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
@@ -6312,7 +6312,7 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
     "codeBlock": {
       "lineHeight": "1.5385",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
@@ -6323,7 +6323,7 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
     },
     "codeInline": {
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
         "fontFamily": vars.fontStack.monospace,
         "letterSpacing": "0",
@@ -6337,7 +6337,7 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "lineHeight": "1.4",
       "shorthand": {
         "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.base.text.weight.medium,
+        "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
         "letterSpacing": "0"
@@ -6348,7 +6348,7 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
     "subtitle": {
       "lineHeight": "1.6",
       "shorthand": {
-        "fontWeight": vars.base.text.weight.normal,
+        "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
         "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
@@ -6366,20 +6366,20 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "shorthand": {
         "large": {
           "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.large
         },
         "medium": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
-          "fontWeight": vars.base.text.weight.semibold,
+          "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
           "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,

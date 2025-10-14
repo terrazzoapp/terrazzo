@@ -39,6 +39,7 @@
 
   &[data-size="s"] {
     --tz-button-height: var(--tz-space-control-s);
+
     font-size: var(--tz-font-body-strong-font-size);
     letter-spacing: var(--tz-font-body-strong-letter-spacing);
   }
@@ -46,7 +47,7 @@
   &[data-variant="lime"] {
     --tz-button-bg: var(--tz-color-base-lime-600);
     --tz-button-text: var(--tz-color-base-lime-200);
-    --tz-button-border: var(--tz-color-base-lime-500);
+    --tz-button-border: var(--tz-color-base-lime-400);
   }
 
   &[data-variant="blue"] {

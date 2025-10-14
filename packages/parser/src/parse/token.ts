@@ -219,7 +219,6 @@ export interface GraphAliasesOptions {
  * Link and reverse-link tokens in one pass.
  */
 export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphAliasesOptions) {
-
   // mini-helper that probably shouldn’t be used outside this function
   const getTokenRef = (ref: string) => ref.replace(/\/(\$value|\$extensions)\/?.*/, '');
 

@@ -1,8 +1,8 @@
 .tz-kbd {
   align-items: center;
   background-color: var(--tz-color-bg-1);
-  border-block-start-width: 1px;
   border-block-end-width: 2.5px;
+  border-block-start-width: 1px;
   border-color: var(--tz-color-border-1);
   border-inline-width: 1px;
   border-radius: var(--tz-radius-200);

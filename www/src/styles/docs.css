@@ -261,7 +261,7 @@
 .callout--info,
 .callout--tip,
 .callout--note {
-  background-color: color-mix(in oklab, var(--tz-color-base-blue-500), transparent 85%);
+  background-color: color-mix(in oklab, var(--tz-color-base-blue-600), var(--tz-color-bg-1) 70%);
 
   .callout-indicator {
     color: var(--tz-color-base-blue-600);
@@ -270,7 +270,7 @@
 
 .callout--caution,
 .callout--warning {
-  background-color: color-mix(in oklab, var(--tz-color-base-orange-600), transparent 85%);
+  background-color: color-mix(in oklab, var(--tz-color-base-orange-700), var(--tz-color-bg-1) 70%);
 
   .callout-indicator {
     color: var(--tz-color-base-orange-600);
@@ -292,7 +292,7 @@
 }
 
 .astro-code {
-  --code-bg: #17191e;
+  --code-bg: #0b0e14;
   --code-padding: var(--tz-space-400);
 
   line-height: 1.5;
@@ -308,7 +308,7 @@
 }
 
 .code-group {
-  --code-bg: #141414;
+  --code-bg: #0b0e14;
   --code-padding: var(--tz-space-400);
 }
 
@@ -342,7 +342,7 @@
 }
 
 .code-group-tabs {
-  background-color: color-mix(in oklab, var(--code-bg), white 10%);
+  background-color: color-mix(in oklab, var(--code-bg), white 5%);
   display: flex;
   margin: 0;
 }

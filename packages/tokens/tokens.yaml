@@ -44,7 +44,7 @@ color:
       950:
         $value: "#eae4df"
       1000:
-        $value: "#F1EEEC"
+        $value: "#ffffff"
     lime:
       100:
         $value: "#000100"
@@ -157,23 +157,23 @@ color:
           dark: "{color.base.gray.1000}"
   border:
     1:
+      $value: "{color.base.gray.500}"
+      $extensions:
+        mode:
+          light: "{color.base.gray.500}"
+          dark: "{color.base.gray.500}"
+    2:
+      $value: "{color.base.gray.600}"
+      $extensions:
+        mode:
+          light: "{color.base.gray.600}"
+          dark: "{color.base.gray.400}"
+    3:
       $value: "{color.base.gray.700}"
       $extensions:
         mode:
           light: "{color.base.gray.700}"
           dark: "{color.base.gray.400}"
-    2:
-      $value: "{color.base.gray.800}"
-      $extensions:
-        mode:
-          light: "{color.base.gray.800}"
-          dark: "{color.base.gray.300}"
-    3:
-      $value: "{color.base.gray.900}"
-      $extensions:
-        mode:
-          light: "{color.base.gray.900}"
-          dark: "{color.base.gray.600}"
     focus:
       $value: "{color.base.lime.600}"
       $extensions:

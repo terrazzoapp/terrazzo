@@ -238,7 +238,7 @@ font:
               dependencies: [
                 '#/border/size/default/$value',
                 '#/border/style/default/$value',
-                "#/color/ramp/gray/200/$value",
+                '#/color/ramp/gray/200/$value',
                 '#/color/semantic/subdued/$value',
               ],
               partialAliasOf: {
