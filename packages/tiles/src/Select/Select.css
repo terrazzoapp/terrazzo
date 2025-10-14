@@ -32,12 +32,12 @@
   }
 
   &[data-highlighted] {
-    background-color: var(--tz-color-base-lime-800);
+    background-color: var(--tz-color-base-lime-600);
     color: var(--tz-color-base-lime-200);
     outline: none;
 
     .tz-select-item-indicator {
-      background-color: var(--tz-color-base-lime-800);
+      background-color: var(--tz-color-base-lime-600);
     }
   }
 }
@@ -115,7 +115,7 @@
 
   &:hover,
   &:focus-visible {
-    outline-color: var(--tz-color-base-lime-800);
+    outline-color: var(--tz-color-base-lime-500);
   }
 }
 

@@ -219,6 +219,7 @@ export interface GraphAliasesOptions {
  * Link and reverse-link tokens in one pass.
  */
 export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphAliasesOptions) {
+
   // mini-helper that probably shouldn’t be used outside this function
   const getTokenRef = (ref: string) => ref.replace(/\/(\$value|\$extensions)\/?.*/, '');
 
@@ -284,7 +285,10 @@ export function graphAliases(refMap: RefMap, { tokens, logger, sources }: GraphA
         }
         // last node: apply partial alias
         if (i === partial.length - 1) {
-          const aliasedID = getTokenRef(refChain.at(-1)!);
+          // important: we want to get only the immediate alias [0], not the final one [.length - 1].
+          // if we resolve this too far, we could get incorrect values especially in plugin-css if a
+          // user is applying cascades to the intermediate aliases but not the final one
+          const aliasedID = getTokenRef(refChain[0]!);
           if (!(aliasedID in tokens)) {
             logger.error({
               group: 'parser',

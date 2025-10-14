@@ -47,7 +47,7 @@ body {
 }
 
 ::selection {
-  background-color: var(--tz-color-base-lime-800);
+  background-color: var(--tz-color-base-lime-600);
   color: var(--tz-color-base-gray-100);
 }
 
