@@ -60,8 +60,8 @@
   a {
     &:hover,
     &:focus-visible {
-      background-color: var(--tz-color-base-lime-800);
-      color: var(--tz-color-base-gray-100);
+      background-color: var(--tz-color-bg-selected);
+      color: var(--tz-color-text-1);
     }
   }
 
@@ -496,9 +496,17 @@
     will-change: height;
   }
 
+  > ol > li:hover {
+    border-color: var(--tz-color-border-focus);
+  }
+
   > ol > li:has(a[aria-current]) {
     background: var(--tz-color-bg-selected);
-    border-color: var(--tz-color-border-1);
+    border-color: var(--tz-color-border-selected);
+  }
+
+  > ol > li:has(a:focus-visible) {
+    border-color: var(--tz-color-border-focus);
   }
 
   > ol > li > a {
@@ -507,7 +515,7 @@
   }
 
   > ol > li > a[aria-current] {
-    border-bottom-color: var(--tz-color-border-1);
+    border-bottom-color: var(--tz-color-border-focus);
   }
 
   > ol > li li {
@@ -518,7 +526,7 @@
   }
 
   > ol > li li:has(a[aria-current]) {
-    border-color: var(--tz-color-border-1);
+    border-color: var(--tz-color-border-selected);
     z-index: 2;
   }
 
@@ -561,6 +569,11 @@
 
     &[aria-current] {
       background: var(--tz-color-bg-1);
+    }
+
+    &:hover {
+      background: inherit;
+      color: inherit;
     }
   }
 

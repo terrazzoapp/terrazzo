@@ -180,6 +180,12 @@ color:
         mode:
           light: "{color.base.lime.600}"
           dark: "{color.base.lime.600}"
+    selected:
+      $value: "{color.base.gray.300}"
+      $extensions:
+        mode:
+          light: "{color.base.gray.300}"
+          dark: "{color.base.lime.700}"
 border:
   $type: border
   1:
