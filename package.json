@@ -18,14 +18,14 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
-    "@biomejs/biome": "^2.2.5",
+    "@biomejs/biome": "^2.2.6",
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
-    "@types/node": "^22.18.8",
+    "@types/node": "^22.18.10",
     "@vitest/browser": "catalog:",
     "cspell": "^9.2.1",
     "execa": "^9.6.0",
-    "playwright": "^1.55.1",
+    "playwright": "^1.56.0",
     "prettier": "^3.6.2",
     "rolldown": "1.0.0-beta.41",
     "rolldown-plugin-dts": "^0.16.11",
@@ -35,7 +35,7 @@
     "stylelint-order": "^6.0.4",
     "turbo": "^2.5.8",
     "typescript": "^5.9.3",
-    "vite": "^7.1.9",
+    "vite": "^7.1.10",
     "vitest": "^3.2.4"
   },
   "pnpm": {
