@@ -1,12 +1,13 @@
 ---
 import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
-import DocsSearch from './SearchBox.js';
+import SearchBox from './SearchBox.js';
 import ThemeSwitcher from './ThemeSwitcher.js';
 ---
 
 <header class="header-nav">
+  <div />
   <div class="search">
-    <DocsSearch client:only="react" />
+    <SearchBox client:only="react" />
   </div>
   <nav class="nav">
     <ul>
@@ -37,13 +38,21 @@ import ThemeSwitcher from './ThemeSwitcher.js';
   .header-nav {
     align-items: center;
     background-color: var(--tz-color-bg-1);
+    border-top: 1px solid var(--grid-color);
     border-bottom: 1px solid var(--grid-color);
     color: var(--tz-color-text-1);
-    display: flex;
+    display: grid;
+    grid-template-columns: 0px auto 1fr;
     max-height: var(--grid-size);
     justify-content: space-between;
     padding-inline: var(--tz-space-500);
     width: 100%;
+
+    @media (width >= 900px) {
+      border-top: none;
+      border-left: 1px solid var(--grid-color);
+      grid-template-columns: 1fr auto 1fr;
+    }
   }
 
   .search {
@@ -54,6 +63,7 @@ import ThemeSwitcher from './ThemeSwitcher.js';
     align-items: center;
     flex-grow: 0 0 auto;
     display: flex;
+    justify-content: flex-end;
     position: relative;
 
     ul {
@@ -71,12 +81,13 @@ import ThemeSwitcher from './ThemeSwitcher.js';
 
     a {
       align-items: center;
+      border-radius: var(--tz-radius-200);
       display: flex;
       font-size: var(--tz-font-body-font-size);
       font-weight: var(--tz-font-body-font-weight);
       font-variation-settings: var(--tz-font-body-font-variation-settings);
       gap: var(--tz-space-200);
-      height: var(--tz-space-900);
+      height: var(--grid-size);
       line-height: 1;
       padding-inline: var(--tz-space-100);
       text-decoration: none;

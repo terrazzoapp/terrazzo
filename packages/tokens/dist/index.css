@@ -50,19 +50,19 @@
   --tz-color-base-orange-1000: color(srgb 0.996078431372549 0.9176470588235294 0.8862745098039215);
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-950);
-  --tz-color-bg-3: var(--tz-color-base-gray-900);
+  --tz-color-bg-3: var(--tz-color-base-gray-950);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-bg-selected: var(--tz-color-base-lime-800);
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
   --tz-color-border-1: var(--tz-color-base-gray-500);
   --tz-color-border-2: var(--tz-color-base-gray-600);
-  --tz-color-border-3: var(--tz-color-base-gray-700);
+  --tz-color-border-3: var(--tz-color-base-gray-900);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-100);
   --tz-color-text-2: var(--tz-color-base-gray-300);
   --tz-color-text-3: var(--tz-color-base-gray-600);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
-  --tz-color-text-selected: var(--tz-color-base-blue-600);
+  --tz-color-text-selected: var(--tz-color-base-blue-700);
   --tz-ease-linear: cubic-bezier(0, 0, 1, 1);
   --tz-ease-quint-in: cubic-bezier(0.64, 0, 0.78, 0);
   --tz-ease-quint-in-out: cubic-bezier(0.83, 0, 0.17, 1);
@@ -171,19 +171,19 @@
     --tz-border-focus: 2px solid var(--tz-color-border-focus);
     --tz-color-bg-1: var(--tz-color-base-gray-1000);
     --tz-color-bg-2: var(--tz-color-base-gray-950);
-    --tz-color-bg-3: var(--tz-color-base-gray-900);
+    --tz-color-bg-3: var(--tz-color-base-gray-950);
     --tz-color-bg-error: var(--tz-color-base-orange-600);
     --tz-color-bg-selected: var(--tz-color-base-lime-800);
     --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
     --tz-color-border-1: var(--tz-color-base-gray-500);
     --tz-color-border-2: var(--tz-color-base-gray-600);
-    --tz-color-border-3: var(--tz-color-base-gray-700);
+    --tz-color-border-3: var(--tz-color-base-gray-900);
     --tz-color-border-focus: var(--tz-color-base-lime-600);
     --tz-color-text-1: var(--tz-color-base-gray-100);
     --tz-color-text-2: var(--tz-color-base-gray-300);
     --tz-color-text-3: var(--tz-color-base-gray-600);
     --tz-color-text-error: var(--tz-color-base-gray-1000);
-    --tz-color-text-selected: var(--tz-color-base-blue-600);
+    --tz-color-text-selected: var(--tz-color-base-blue-700);
   }
 }
 
@@ -194,19 +194,19 @@
   --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-950);
-  --tz-color-bg-3: var(--tz-color-base-gray-900);
+  --tz-color-bg-3: var(--tz-color-base-gray-950);
   --tz-color-bg-error: var(--tz-color-base-orange-600);
   --tz-color-bg-selected: var(--tz-color-base-lime-800);
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-700);
   --tz-color-border-1: var(--tz-color-base-gray-500);
   --tz-color-border-2: var(--tz-color-base-gray-600);
-  --tz-color-border-3: var(--tz-color-base-gray-700);
+  --tz-color-border-3: var(--tz-color-base-gray-900);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-100);
   --tz-color-text-2: var(--tz-color-base-gray-300);
   --tz-color-text-3: var(--tz-color-base-gray-600);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
-  --tz-color-text-selected: var(--tz-color-base-blue-600);
+  --tz-color-text-selected: var(--tz-color-base-blue-700);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -223,7 +223,7 @@
     --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
     --tz-color-border-1: var(--tz-color-base-gray-500);
     --tz-color-border-2: var(--tz-color-base-gray-400);
-    --tz-color-border-3: var(--tz-color-base-gray-400);
+    --tz-color-border-3: var(--tz-color-base-gray-300);
     --tz-color-border-focus: var(--tz-color-base-lime-600);
     --tz-color-text-1: var(--tz-color-base-gray-900);
     --tz-color-text-2: var(--tz-color-base-gray-800);
@@ -246,7 +246,7 @@
   --tz-color-bg-selected-hint: var(--tz-color-base-lime-200);
   --tz-color-border-1: var(--tz-color-base-gray-500);
   --tz-color-border-2: var(--tz-color-base-gray-400);
-  --tz-color-border-3: var(--tz-color-base-gray-400);
+  --tz-color-border-3: var(--tz-color-base-gray-300);
   --tz-color-border-focus: var(--tz-color-base-lime-600);
   --tz-color-text-1: var(--tz-color-base-gray-900);
   --tz-color-text-2: var(--tz-color-base-gray-800);

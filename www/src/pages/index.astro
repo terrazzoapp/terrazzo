@@ -228,6 +228,7 @@ import DefaultLayout from '../layouts/default.astro';
 
 <style>
   .card {
+    --card-width: calc(3 * var(--grid-size));
     --border-width: 1px;
 
     background: var(--tz-color-bg-1);
@@ -235,11 +236,12 @@ import DefaultLayout from '../layouts/default.astro';
     box-sizing: border-box;
     color: var(--tz-color-text-1);
     display: block;
-    margin-inline: auto;
+    margin-inline-start: round(calc(0.5 * (100vw - var(--card-width))), var(--grid-size));
     margin-block: var(--grid-size);
     max-width: 100%;
     padding: calc(0.5 * var(--grid-size));
     position: relative;
+    width: var(--card-width);
     z-index: 10;
   }
 
@@ -260,43 +262,41 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .w11 {
-    max-width: 100%;
-    width: calc(9 * var(--grid-size));
+    --card-width: calc(9 * var(--grid-size));
 
     @media (width >= 750px) {
-      width: calc(11 * var(--grid-size));
+      --card-width: calc(11 * var(--grid-size));
     }
   }
 
   .w13 {
-    max-width: 100%;
-    width: calc(9 * var(--grid-size));
+    --card-width:  calc(9 * var(--grid-size));
     @media (width >= 750px) {
-      width: calc(13 * var(--grid-size));
+      --card-width: calc(13 * var(--grid-size));
     }
   }
 
   .w15 {
-    max-width: 100%;
-    width: calc(11 * var(--grid-size));
+    --card-width: calc(11 * var(--grid-size));
     @media (width >= 750px) {
-      width: calc(15 * var(--grid-size));
+      --card-width: calc(15 * var(--grid-size));
     }
   }
 
   .illo {
+    --illo-width: calc(13 * var(--grid-size));
     height: 100vh;
-    left: 50%;
+    left: 0;
+    margin-inline-start: round(calc(0.5 * (100vw - var(--illo-width))), var(--grid-size));
     max-width: 100vw;
     overflow: hidden;
     position: absolute;
     top: calc(2 * var(--grid-size));
-    transform: translate3d(-50%, 0, 0);
-    width: calc(13 * var(--grid-size));
+    width: var(--illo-width);
     z-index: 0;
 
     @media (width >= 750px) {
-      width: calc(15 * var(--grid-size));
+      --illo-width: calc(15 * var(--grid-size));
     }
   }
 

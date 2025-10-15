@@ -101,10 +101,10 @@ color:
           light: "{color.base.gray.950}"
           dark: "{color.base.gray.200}"
     3:
-      $value: "{color.base.gray.900}"
+      $value: "{color.base.gray.950}"
       $extensions:
         mode:
-          light: "{color.base.gray.900}"
+          light: "{color.base.gray.950}"
           dark: "{color.base.gray.300}"
     selected-hint:
       $value: "{color.base.lime.700}"
@@ -144,10 +144,10 @@ color:
           light: "{color.base.gray.600}"
           dark: "{color.base.gray.700}"
     selected:
-      $value: "{color.base.blue.600}"
+      $value: "{color.base.blue.700}"
       $extensions:
         mode:
-          light: "{color.base.blue.600}"
+          light: "{color.base.blue.700}"
           dark: "{color.base.blue.600}"
     error:
       $value: "{color.base.gray.1000}"
@@ -169,11 +169,11 @@ color:
           light: "{color.base.gray.600}"
           dark: "{color.base.gray.400}"
     3:
-      $value: "{color.base.gray.700}"
+      $value: "{color.base.gray.900}"
       $extensions:
         mode:
-          light: "{color.base.gray.700}"
-          dark: "{color.base.gray.400}"
+          light: "{color.base.gray.900}"
+          dark: "{color.base.gray.300}"
     focus:
       $value: "{color.base.lime.600}"
       $extensions:

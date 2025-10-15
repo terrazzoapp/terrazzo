@@ -68,11 +68,15 @@ const { frontmatter } = Astro.props;
 
       .content {
         background: var(--tz-color-bg-1);
-        margin-inline-start: calc(2 * var(--grid-size) + 1px);
+        margin-inline: 0;
         max-width: calc(15 * var(--grid-size) - 1px);
         min-height: calc(100vh - var(--grid-size));
         padding-block-end: 6rem;
         padding-inline: var(--tz-space-600);
+
+        @media (width >= 900px) {
+          margin-inline-start: calc(2 * var(--grid-size) + 1px);
+        }
       }
     </style>
   </head>
