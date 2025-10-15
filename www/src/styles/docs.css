@@ -47,7 +47,7 @@
       background-size: 100% 100%;
       display: flex;
       height: var(--icon-size);
-      transform: translate3d(calc(-100% - var(--tz-space-200)), 0, 0);
+      transform: translate3d(calc(-100% - var(--tz-space-100)), 0, 0);
       width: var(--icon-size);
     }
 
@@ -203,10 +203,10 @@
   }
 
   table {
-    border-collapse: collapse;
-    contain: inline-size;
-    display: block;
+    border-collapse: separate;
+    border-spacing: 0;
     overflow-x: scroll;
+    width: 100%;
   }
 
   th {
@@ -215,9 +215,51 @@
     font-weight: var(--tz-font-body-strong-font-weight);
   }
 
+  thead tr th:first-of-type {
+    border-inline-start: var(--tz-border-1);
+    border-start-start-radius: var(--tz-radius-400);
+  }
+
+  thead tr th {
+    border-block: var(--tz-border-1);
+  }
+
+  thead tr th:last-of-type {
+    border-inline-end: var(--tz-border-1);
+    border-start-end-radius: var(--tz-radius-400);
+  }
+
+  tbody tr {
+    td:first-child,
+    th:first-child {
+      border-inline-start: var(--tz-border-1);
+    }
+
+    td:last-child,
+    th:last-child {
+      border-inline-end: var(--tz-border-1);
+    }
+
+    &:last-of-type {
+      td {
+        border-block-end: 2.5px solid var(--tz-color-border-1);
+      }
+
+      td:first-child,
+      th:first-child {
+        border-end-start-radius: var(--tz-radius-300);
+      }
+
+      td:last-child,
+      th:last-child {
+        border-end-end-radius: var(--tz-radius-300);
+      }
+    }
+  }
+
   th,
   td {
-    border: var(--tz-border-2);
+    border: none;
     font-size: var(--tz-font-body-font-size);
     letter-spacing: var(--tz-font-body-letter-spacing);
     line-height: var(--tz-font-body-line-height);
@@ -242,14 +284,14 @@
   --padding: var(--tz-space-400);
 
   background-color: var(--tz-color-bg-2);
+  border-color: var(--tz-color-border-2);
+  border-radius: var(--tz-radius-400);
+  border-style: solid;
+  border-width: 1px 1px 2.5px;
   color: var(--tz-text-secondary);
   margin-left: calc(-1 * var(--padding));
   padding: var(--padding);
   width: calc(100% + 2 * var(--padding));
-
-  @media (width >= 600px) {
-    --padding: var(--tz-space-600);
-  }
 
   p:first-of-type {
     margin-top: 0;
@@ -264,6 +306,7 @@
 .callout--tip,
 .callout--note {
   background-color: color-mix(in oklab, var(--tz-color-base-blue-600), var(--tz-color-bg-1) 70%);
+  border-color: var(--tz-color-base-blue-600);
 
   .callout-indicator {
     color: var(--tz-color-base-blue-600);
@@ -273,6 +316,7 @@
 .callout--caution,
 .callout--warning {
   background-color: color-mix(in oklab, var(--tz-color-base-orange-700), var(--tz-color-bg-1) 70%);
+  border-color: var(--tz-color-base-orange-600);
 
   .callout-indicator {
     color: var(--tz-color-base-orange-600);
@@ -527,12 +571,14 @@
     padding: 0;
 
     ol {
-      li {
-        height: 0;
-      }
+      @media (width >= 950px) {
+        li {
+          height: 0;
+        }
 
-      &:has(a[aria-current]) li {
-        height: var(--toc-height-2);
+        &:has(a[aria-current]) li {
+          height: var(--toc-height-2);
+        }
       }
 
       a {
