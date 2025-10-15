@@ -100,13 +100,15 @@
   li > code,
   li > p > code,
   td > code {
-    background-color: var(--tz-color-bg-2);
-    border: 1px solid var(--tz-color-border-3);
+    background-color: var(--tz-color-bg-1);
+    border-color: var(--tz-color-border-2);
+    border-style: solid;
+    border-width: 1px 1px 2.5px;
     border-radius: var(--tz-radius-200);
     display: inline-block;
     font-size: 0.875em;
     margin-inline: 0.125em;
-    padding: 0.125em;
+    padding: 0.125em 0.25em;
   }
 
   figure {
@@ -232,7 +234,7 @@
   }
 
   tr:nth-of-type(even) td {
-    background-color: var(--tz-color-bg-2);
+    background-color: var(--tz-color-bg-3);
   }
 }
 
@@ -445,7 +447,7 @@
 
 .toc {
   --toc-height-1: 1.75rem;
-  --toc-height-2: 1.5rem;
+  --toc-height-2: 1.625rem;
 
   background: var(--tz-color-bg-1);
   font-family: var(--tz-font-sans);
@@ -476,17 +478,48 @@
   }
 
   li {
+    border-width: 1px 1px 2.5px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--tz-radius-300);
     font-family: var(--tz-font-sans);
     font-size: var(--tz-font-body-font-size);
     list-style: none;
     margin: 0;
     overflow: hidden;
     padding: 0;
-    transition: height 100ms var(--tz-ease-quint-out);
+    position: relative;
+    transition: border-color 100ms linear, background-color 100ms linear, height 100ms var(--tz-ease-quint-out);
     will-change: height;
   }
 
-  ol {
+  > ol > li:has(a[aria-current]) {
+    background: var(--tz-color-bg-selected);
+    border-color: var(--tz-color-border-1);
+  }
+
+  > ol > li > a {
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+  }
+
+  > ol > li > a[aria-current]{
+    border-bottom-color: var(--tz-color-border-1);
+  }
+
+  > ol > li li {
+    margin-top: -1px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-bottom: -2px;
+  }
+
+  > ol > li li:has(a[aria-current]){
+    border-color: var(--tz-color-border-1);
+    z-index: 2;
+  }
+
+  ol{
     margin: 0;
     padding: 0;
 
@@ -510,27 +543,21 @@
   }
 
   a {
-    border-left: var(--tz-border-3);
-    color: var(--tz-color-text-3);
+    color: var(--tz-color-text-1);
     display: block;
-    max-width: 100%;
-    overflow: hidden;
-    padding: var(--tz-space-100) var(--tz-space-300);
+    margin-bottom: -2px;
+    margin-left: -1px;
+    margin-right: -1px;
+    margin-top: -1px;
+    min-width: calc(100% + 2px);
+    padding: var(--tz-space-100) var(--tz-space-200);
     text-decoration: none;
     text-overflow: ellipsis;
+    transition: background-color 100ms linear;
     white-space: nowrap;
 
-    &:hover,
-    &:focus-visible {
-      background-color: transparent;
-      color: var(--tz-color-text-1);
-    }
-
-    @media (width >= 1200px) {
-      &[aria-current] {
-        border-color: var(--tz-color-border-selected);
-        color: var(--tz-color-text-selected);
-      }
+    &[aria-current] {
+      background: var(--tz-color-bg-1);
     }
   }
 

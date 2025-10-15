@@ -4,7 +4,7 @@ html {
 
 body {
   --grid-color: color-mix(in oklab, var(--tz-color-base-blue-700), transparent 62.5%);
-  --grid-size: 2.5rem;
+  --grid-size: 40px;
 
   background-color: var(--tz-color-bg-1);
   background-image:
@@ -27,7 +27,7 @@ body {
 
 @media (width >= 600px) {
   body {
-    --grid-size: 3rem;
+    --grid-size: 48px;
   }
 }
 
@@ -35,10 +35,10 @@ body {
 *::before,
 *::after {
   box-sizing: border-box;
-  outline: 1px solid transparent;
+  outline: 2px solid transparent;
 
   &:focus-visible {
-    outline-color: color-mix(in oklab, var(--tz-color-base-lime-800), transparent 50%);
+    outline-color: var(--tz-color-border-focus);
   }
 }
 

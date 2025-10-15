@@ -17,7 +17,7 @@
 
   background-color: var(--tz-omnibar-input-bg);
   border: 1px solid var(--tz-omnibar-input-border);
-  border-radius: var(--tz-radius-200);
+  border-radius: var(--tz-radius-400);
   color: var(--tz-omnibar-input-text);
   font-family: var(--tz-font-sans);
   font-size: var(--tz-font-body-font-size);
@@ -40,8 +40,12 @@
     display: none;
   }
 
-  &:focus {
+  &:hover {
     --tz-omnibar-input-border: var(--tz-color-border-2);
+  }
+
+  &:focus {
+    --tz-omnibar-input-border: var(--tz-color-border-focus);
 
     width: 20rem;
   }

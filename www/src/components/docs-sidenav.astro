@@ -99,7 +99,7 @@ const _NAV_ITEMS = [
                                   Astro.request.url
                                 )}
                               >
-                                {subitem.title}
+                                <span class="nav-link-inner">{subitem.title}</span>
                               </a>
                             </li>
                           );
@@ -112,7 +112,7 @@ const _NAV_ITEMS = [
                       href={url}
                       aria-current={getAriaCurrent(url, Astro.request.url)}
                     >
-                      {item.title}
+                      <span class="nav-link-inner">{item.title}</span>
                     </a>
                   )}
                 </li>
@@ -225,42 +225,46 @@ const _NAV_ITEMS = [
   .nav-link,
   .nav-sublink {
     align-items: center;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 1px 1px 2.5px;
+    border-radius: var(--tz-radius-200);
     color: var(--tz-color-text-1);
     display: flex;
     font-size: var(--tz-font-body-font-size);
     height: var(--tz-space-control-s);
     text-decoration: none;
-    padding-inline: var(--grid);
+    outline: none;
+    padding-inline: calc(0.5 * var(--grid));
     position: relative;
 
-    &::before {
-      background-color: var(--tz-color-base-lime-800);
-      content: "";
-      display: block;
-      left: var(--tz-space-300);
-      height: 100%;
-      top: 0;
-      opacity: 0;
-      pointer-events: none;
-      position: absolute;
-      width: 2px;
-    }
-
-    &:hover {
-      background-color: var(--tz-color-bg-selected-hint);
-
-      &::before {
-        opacity: 0.5;
+    &:hover,
+    &:focus-visible {
+      .nav-link-inner {
+        background-color: var(--tz-color-bg-selected);
+        border-color: var(--tz-color-border-focus);
       }
     }
 
-    &[aria-current="page"] {
-      color: inherit;
-
-      &::before {
-        opacity: 1;
+    &[aria-current="page"],
+    &[aria-current="page"]:hover,
+    &[aria-current="page"]:focus-visible {
+      .nav-link-inner {
+        border-color: var(--tz-color-border-1);
+        z-index: 2;
       }
     }
+  }
+
+  .nav-link-inner {
+    border-width: 1px 1px 2.5px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: var(--tz-radius-300);
+    display: block;
+    padding: calc(0.125 * var(--grid)) calc(0.5 * var(--grid));
+    position: relative;
+    width: 100%;
   }
 
   .nav-sublink {
@@ -273,14 +277,6 @@ const _NAV_ITEMS = [
       margin-left: 0;
       padding-block: calc(0.25 * var(--grid));
     }
-
-    &:hover::before {
-      opacity: 0.5;
-    }
-
-    &[aria-current]::before {
-      opacity: 1;
-    }
   }
 
   .summary {
@@ -291,6 +287,12 @@ const _NAV_ITEMS = [
     padding: var(--tz-space-200) var(--tz-space-500);
     position: relative;
     user-select: none;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--tz-color-text-1);
+      cursor: pointer;
+    }
 
     &::marker,
     &::-webkit-details-marker {
