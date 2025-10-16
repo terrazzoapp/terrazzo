@@ -27,7 +27,7 @@ The idea of token linting is similar to any kind of code linting—you can run c
 | [core/valid-typography](#corevalid-typography)                             | Require [typography tokens](/docs/reference/tokens/#typography) to follow the format.     |
 | [core/colorspace](#corecolorspace)                                         | Enforce that all colors are declared in a specific colorspace (e.g. sRGB).                |
 | [core/consistent-naming](#coreconsistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                                       |
-| [core/duplicate-value](#coreduplicate-value)                               | Enforce tokens can’t redeclare the same value (excludes aliases).                         |
+| [core/duplicate-values](#coreduplicate-values)                             | Enforce tokens can’t redeclare the same value (excludes aliases).                         |
 | [core/descriptions](#coredescriptions)                                     | Enforce tokens have descriptions.                                                         |
 | [core/max-gamut](#coremax-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).                          |
 | [core/required-children](#corerequired-children)                           | Enforce token groups have specific children, whether tokens and/or groups.                |
@@ -472,7 +472,7 @@ export default defineConfig({
 | **format** | `kebab-case`, `camelCase`, `PascalCase`, `snake_case`, `SCREAMING_SNAKE_CASE`, or a custom validator function. |
 | **ignore** | Array of token globs to ignore, e.g. (`'["legacy.*"]`)                                                         |
 
-### core/duplicate-value
+### core/duplicate-values
 
 Enforce tokens can’t redeclare the same value (excludes aliases).
 
@@ -484,7 +484,7 @@ import { defineConfig } from "@terrazzo/cli";
 export default defineConfig({
   lint: {
     rules: {
-      "core/duplicate-value": "error",
+      "core/duplicate-values": "error",
     },
   },
 });
