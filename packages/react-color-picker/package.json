@@ -61,7 +61,7 @@
     "jsdom": "^24.1.3",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.52.3",
+    "rollup": "^4.52.4",
     "rollup-plugin-import-css": "^3.5.8",
     "size-limit": "^11.2.0",
     "vitest-axe": "^0.1.0"

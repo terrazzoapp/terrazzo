@@ -15,10 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
-          package-manager-cache: false # Why does this break?
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
@@ -30,10 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node-version }}
-          package-manager-cache: false # Why does this break?
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
@@ -43,10 +41,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
-          package-manager-cache: false # Why does this break?
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
@@ -56,10 +53,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v5
-      - uses: actions/setup-node@v5
+      - uses: actions/setup-node@v6
         with:
           node-version: 24
-          package-manager-cache: false # Why does this break?
       - uses: pnpm/action-setup@v4
         with:
           run_install: true
