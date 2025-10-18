@@ -1,8 +1,8 @@
 import type { Plugin } from '@terrazzo/parser';
 import getBuild from './build.js';
-import type { TokenListingPluginOptions } from './lib.js';
+import type { TokenListingPluginOptions } from './types.js';
 
-export * from './lib.js';
+export * from './types.js';
 
 export default function tokenListingPlugin(options: TokenListingPluginOptions): Plugin {
   return {
