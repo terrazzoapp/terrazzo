@@ -43,7 +43,7 @@
     "shiki": "^1.29.2"
   },
   "devDependencies": {
-    "@rollup/plugin-typescript": "^12.1.4",
+    "@rollup/plugin-typescript": "^12.3.0",
     "@size-limit/preset-small-lib": "^11.2.0",
     "@types/culori": "catalog:",
     "@types/react": "catalog:",
@@ -52,7 +52,7 @@
     "chokidar-cli": "^3.0.0",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.52.4",
+    "rollup": "^4.52.5",
     "rollup-plugin-import-css": "^3.5.8",
     "size-limit": "^11.2.0",
     "vitest-axe": "^0.1.0"

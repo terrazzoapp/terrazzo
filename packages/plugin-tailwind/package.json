@@ -47,6 +47,6 @@
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^",
-    "tailwindcss": "^4.1.14"
+    "tailwindcss": "^4.1.16"
   }
 }
