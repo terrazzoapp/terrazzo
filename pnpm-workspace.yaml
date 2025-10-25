@@ -21,6 +21,7 @@ catalog:
   '@types/react-dom': ^19.2.2
   '@vitejs/plugin-react-swc': ^4.2.0
   '@vitest/browser': ^4.0.3
+  '@vitest/browser-playwright': ^4.0.3
   '@vitest/coverage-v8': ^4.0.3
   culori: ^4.0.2
   dtcg-examples: ^0.3.4

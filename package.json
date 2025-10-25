@@ -34,6 +34,7 @@
     "@swc/core-win32-x64-msvc": "catalog:",
     "@types/node": "^22.18.12",
     "@vitest/browser": "catalog:",
+    "@vitest/browser-playwright": "catalog:",
     "cspell": "^9.2.2",
     "execa": "^9.6.0",
     "playwright": "catalog:",
