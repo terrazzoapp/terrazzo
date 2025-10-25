@@ -1,12 +1,12 @@
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { describe, expect, it } from 'vitest';
 import css from '../src/index.js';
+import { DS } from './lib.test.js';
 
 describe('Browser', () => {
   it('generates correct CSS', async () => {
     const cwd = new URL('file:///');
     const tokensJSON = new URL('./tokens.json', cwd);
-    const primer = await import(`dtcg-examples/github-primer.json`).then((m) => m.default);
     const config = defineConfig(
       {
         lint: {
@@ -34,7 +34,7 @@ describe('Browser', () => {
       },
       { cwd },
     );
-    const { tokens, sources } = await parse({ filename: tokensJSON, src: primer }, { config });
+    const { tokens, sources } = await parse({ filename: tokensJSON, src: DS['github-primer'] }, { config });
     const result = await build(tokens, { sources, config });
     await expect(result.outputFiles.find((f) => f.filename === 'index.css')?.contents).toMatchSnapshot();
   });

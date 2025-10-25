@@ -175,7 +175,7 @@ export default function myPlugin() {
 
 ### config
 
-|               |                               |
+| Quality       | Notes                         |
 | :------------ | :---------------------------- |
 | Description   | Read the user’s final config. |
 | Previous step |                               |
@@ -435,5 +435,5 @@ The [Terrazzo parser](/docs/cli/api/node) will create **normalized tokens** that
 | `aliasOf`       | `TokenNormalized \| undefined`         | The token this aliases, if any (or `undefined` if this is its original value).                                                                    |
 | `group`         | `Group`                                | Information about this token’s immediate parent group (including sibling tokens).                                                                 |
 | `mode`          | `Record<string, TokenNormalized>`      | A key–value map of mode name → mode value. _Note: the mode `"."` will always exist, and will always point to the default value._                  |
-| `originalValue` | `Token` \| `undefined`                 | This token’s original value from the source file. If `undefined`, then this token was generated dynamically (via `$ref`).                         |
+| `originalValue` | `Token`                                | This token’s original value from the source file.                                                                                                 |
 | `source`        | `{ node: ObjectNode, filename?: URL }` | Points to a file on disk as well as a [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node (including line number).               |

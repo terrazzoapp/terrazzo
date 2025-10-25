@@ -437,7 +437,11 @@ export function resolveAliases(
 
     for (const mode of Object.keys(token.mode)) {
       function resolveInner(alias: string, refChain: string[]): string {
-        const nextRef = aliasToRef(alias, mode)?.$ref!;
+        const nextRef = aliasToRef(alias, mode)?.$ref;
+        if (!nextRef) {
+          logger.error({ ...aliasEntry, message: `Internal error resolving ${JSON.stringify(refChain)}` });
+          throw new Error('Internal error');
+        }
         if (refChain.includes(nextRef)) {
           logger.error({ ...aliasEntry, message: 'Circular alias detected.' });
         }
@@ -464,6 +468,7 @@ export function resolveAliases(
                 continue;
               }
               value[i] = traverseAndResolve(value[i], {
+                // biome-ignore lint/suspicious/noNonNullAssertedOptionalChain: we checked for this earlier
                 node: (node as momoa.ArrayNode).elements?.[i]?.value!,
                 // special case: cubicBezier
                 expectedTypes: expectedTypes?.includes('cubicBezier') ? ['number'] : expectedTypes,

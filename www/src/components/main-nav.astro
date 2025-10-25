@@ -4,8 +4,8 @@ import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import { ButtonLink } from '@terrazzo/tiles';
 import Terrazzo from './terrazzo.astro';
 
-const pkgInfo = JSON.parse(fs.readFileSync(new URL('../../../packages/cli/package.json', import.meta.url), 'utf8'));
-const { version } = pkgInfo;
+// const pkgInfo = JSON.parse(fs.readFileSync(new URL('../../../packages/cli/package.json', import.meta.url), 'utf8'));
+// const { version } = pkgInfo;
 ---
 
 <nav class="nav" aria-label="Main">
@@ -21,7 +21,7 @@ const { version } = pkgInfo;
       <a
         class="nav-link"
         href="https://github.com/terrazzoapp/terrazzo/releases"
-        ><code class="version">v{version}</code></a
+        ><code class="version">v0.10.3</code></a
       >
     </li>
     <li class="nav-item nav-item--sub nav-item--secondary">

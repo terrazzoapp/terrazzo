@@ -793,6 +793,7 @@ describe('Additional cases', () => {
       const { tokens } = await parse(given, { config });
       for (const [id, value] of Object.entries(want)) {
         for (const [mode, wantedValue] of Object.entries(value!)) {
+          // biome-ignore lint/suspicious/noNonNullAssertedOptionalChain: this is a test
           const { source, ...modeValue } = tokens[id]?.mode[mode]!;
           expect(source).not.toBeFalsy();
           expect(modeValue).toEqual(wantedValue);
