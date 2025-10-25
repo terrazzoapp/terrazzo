@@ -1,6 +1,6 @@
 ---
-title: CSS
-layout: ../../../../layouts/docs.astro
+title: Swift
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Swift

@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # CLI

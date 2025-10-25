@@ -1,6 +1,6 @@
 ---
 title: DS Styleguide
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # DS Styleguide

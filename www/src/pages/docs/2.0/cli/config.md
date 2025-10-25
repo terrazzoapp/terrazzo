@@ -1,6 +1,6 @@
 ---
 title: Configuration
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # Config

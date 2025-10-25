@@ -1,6 +1,6 @@
 ---
 title: Integrations
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Integrations

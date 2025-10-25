@@ -1,6 +1,6 @@
 ---
 title: Tailwind
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Tailwind
@@ -177,9 +177,9 @@ tailwind({
     color: ["color.*"],
   },
   modeVariants: [
-      { variant: "dark", mode: "dark" },
-      { variant: "hc", mode: "high-contrast" },
-    ],
+    { variant: "dark", mode: "dark" },
+    { variant: "hc", mode: "high-contrast" },
+  ],
 });
 ```
 

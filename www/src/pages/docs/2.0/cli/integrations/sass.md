@@ -1,6 +1,6 @@
 ---
 title: Sass
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Sass

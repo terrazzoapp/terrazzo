@@ -1,6 +1,6 @@
 ---
 title: Custom Integration
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Custom Integration

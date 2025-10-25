@@ -1,6 +1,6 @@
 ---
 title: JS API
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # JS API
@@ -35,13 +35,13 @@ const config = defineConfig(
   {
     // config options
   },
-  { cwd: new URL(import.meta.url) }
+  { cwd: new URL(import.meta.url) },
 );
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const { tokens, sources } = await parse(
   [{ filename, src: await fs.readFile(filename) }],
-  { config }
+  { config },
 );
 const buildResult = await build(tokens, { sources, config });
 
@@ -88,7 +88,7 @@ const { tokens, ast } = await parse(
   {
     config,
     logger: new MyLogger(),
-  }
+  },
 );
 ```
 
@@ -148,7 +148,7 @@ const { sources } = await parse(
           node.members.push(
             momoa.parse({
               "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-            }).body.members[0]
+            }).body.members[0],
           );
         }
       },
@@ -161,7 +161,7 @@ const { sources } = await parse(
         const { mode: colorSpace, alpha, ...components } = color;
 
         return (node.members.find(
-          (m) => m.name.type === "String" && m.name.value === "$value"
+          (m) => m.name.type === "String" && m.name.value === "$value",
         ).value = momoa.parse({
           colorSpace,
           components,
@@ -169,7 +169,7 @@ const { sources } = await parse(
         })).body;
       },
     },
-  }
+  },
 );
 ```
 

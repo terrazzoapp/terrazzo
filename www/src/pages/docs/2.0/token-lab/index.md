@@ -1,6 +1,6 @@
 ---
 title: Token Lab
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # Token Lab

@@ -1,6 +1,6 @@
 ---
 title: Lint
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # Lint

@@ -1,6 +1,6 @@
 ---
 title: Commands
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 ## Init

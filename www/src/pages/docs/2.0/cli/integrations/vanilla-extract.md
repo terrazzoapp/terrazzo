@@ -1,6 +1,6 @@
 ---
 title: Vanilla Extract
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Vanilla Extract

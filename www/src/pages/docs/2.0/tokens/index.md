@@ -1,6 +1,6 @@
 ---
 title: What are Design Tokens?
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # What are Design Tokens?

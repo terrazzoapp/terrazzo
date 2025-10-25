@@ -1,6 +1,6 @@
 ---
 title: CSS
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # CSS
@@ -354,7 +354,7 @@ export default defineConfig({
 | `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
 | `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
 | `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                                     |
-| `baseScheme`    | `string`                                                       | Sets the CSS `color-scheme` property on the base selector (e.g., `"light"`, `"dark"`, or `"light dark"`). See [Color Scheme](#color-scheme).                       |
+| `baseScheme`    | `string`                                                       | Sets the CSS `color-scheme` property on the base selector (e.g., `"light"`, `"dark"`, or `"light dark"`). See [Color Scheme](#color-scheme).                    |
 | `colorDepth`    | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
 ### Mode Selectors
@@ -550,11 +550,13 @@ export default defineConfig({
 :::
 
 The `color-scheme` property helps browsers:
+
 - Optimize form controls and scrollbars for the specified theme
 - Apply appropriate default styling for UI elements
 - Provide better accessibility and user experience
 
 You can use any valid [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) values:
+
 - `"light"` - Light theme only
 - `"dark"` - Dark theme only
 - `"light dark"` - Support both with light as default

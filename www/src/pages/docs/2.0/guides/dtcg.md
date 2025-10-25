@@ -1,6 +1,6 @@
 ---
 title: DTCG Tokens
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # DTCG Tokens

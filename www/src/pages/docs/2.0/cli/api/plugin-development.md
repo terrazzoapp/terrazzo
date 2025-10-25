@@ -1,6 +1,6 @@
 ---
 title: Plugin Development
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # Plugin Development

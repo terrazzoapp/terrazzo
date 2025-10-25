@@ -1,6 +1,6 @@
 ---
 title: Modes + Theming
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # Modes + Theming

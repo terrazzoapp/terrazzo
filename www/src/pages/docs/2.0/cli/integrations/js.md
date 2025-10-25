@@ -1,6 +1,6 @@
 ---
 title: JS (and TS)
-layout: ../../../../layouts/docs.astro
+layout: ../../../../../layouts/docs.astro
 ---
 
 # JavaScript (and TypeScript)

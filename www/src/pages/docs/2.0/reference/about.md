@@ -1,6 +1,6 @@
 ---
 title: About Terrazzo
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # About Terrazzo
