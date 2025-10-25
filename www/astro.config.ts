@@ -10,7 +10,7 @@ import remarkVitepress from './src/plugins/remark-vitepress.js';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [react({ devTarget: 'esnext' }), mdx(), sitemap()],
   site: 'https://terrazzo.app',
   devToolbar: {
     enabled: false,

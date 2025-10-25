@@ -5,11 +5,23 @@ packages:
 
 catalog:
   '@humanwhocodes/momoa': ^3.3.10
+  '@swc/core': 1.13.19
+  '@swc/core-darwin-arm64': 1.13.19
+  '@swc/core-darwin-x64': 1.13.19
+  '@swc/core-linux-arm-gnueabihf': 1.13.19
+  '@swc/core-linux-arm64-gnu': 1.13.19
+  '@swc/core-linux-arm64-musl': 1.13.19
+  '@swc/core-linux-x64-gnu': 1.13.19
+  '@swc/core-linux-x64-musl': 1.13.19
+  '@swc/core-win32-arm64-msvc': 1.13.19
+  '@swc/core-win32-ia32-msvc': 1.13.19
+  '@swc/core-win32-x64-msvc': 1.13.19
   '@types/culori': ^4.0.1
   '@types/react': ^19.2.2
   '@types/react-dom': ^19.2.2
   '@vitejs/plugin-react-swc': ^4.2.0
-  '@vitest/browser': ^3.2.4
+  '@vitest/browser': ^4.0.3
+  '@vitest/coverage-v8': ^4.0.3
   culori: ^4.0.2
   dtcg-examples: ^0.3.4
   playwright: ^1.55.0
@@ -22,6 +34,14 @@ catalog:
 onlyBuiltDependencies:
   - '@biomejs/biome'
   - '@swc/core'
+  - '@swc/core-darwin-arm64'
+  - '@swc/core-darwin-x64'
+  - '@swc/core-linux-arm64-gnu'
+  - '@swc/core-linux-arm-gnueabihf'
+  - '@swc/core-linux-x64-gnu'
+  - '@swc/core-linux-x64-musl'
+  - '@swc/core-win32-arm64-msvc'
+  - '@swc/core-win32-x64-msvc'
   - esbuild
   - sharp
 
