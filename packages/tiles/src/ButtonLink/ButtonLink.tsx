@@ -5,7 +5,7 @@ import '../Button/Button.css'; // note: a component should NEVER import anotherâ
 export interface ButtonLinkProps extends ComponentProps<'a'> {
   /** default: "m" */
   size?: 's' | 'm';
-  /** default: "primary" */
+  /** default: "secondary" */
   variant?: 'lime' | 'blue' | 'orange' | 'secondary' | 'tertiary';
 }
 

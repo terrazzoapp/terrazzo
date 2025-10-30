@@ -5,7 +5,7 @@ import './Button.css';
 export interface ButtonProps extends Omit<ComponentProps<'button'>, 'size'> {
   /** default: "m" */
   size?: 's' | 'm';
-  /** default: "primary" */
+  /** default: "secondary" */
   variant?: 'lime' | 'blue' | 'orange' | 'secondary';
 }
 

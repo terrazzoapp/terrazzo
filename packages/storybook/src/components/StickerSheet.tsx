@@ -4,7 +4,7 @@ import c from './StickerSheet.module.css';
 export interface StickerSheetProps {
   columns: string[];
   rows: string[];
-  variants: { title: string; component: ReactElement }[];
+  variants: (ReactElement | { title: string; component: ReactElement })[];
 }
 
 export default function StickerSheet({ columns, rows, variants }: StickerSheetProps) {
@@ -30,8 +30,8 @@ export default function StickerSheet({ columns, rows, variants }: StickerSheetPr
                 {row}
               </th>
               {rowVariants.map((variant, i) => (
-                <td key={`${variant.title}-${i}`} className={c.td}>
-                  {variant}
+                <td key={'title' in variant ? `${variant.title}-${i}` : i} className={c.td}>
+                  {'component' in variant ? variant.component : variant}
                 </td>
               ))}
             </tr>
