@@ -21,16 +21,7 @@ export type Test = [
 ];
 
 export async function parserTest({ given, want }: Test[1]) {
-  const config = defineConfig(
-    {
-      lint: {
-        rules: {
-          'core/no-type-on-alias': 'off', // for most parser tests, we don’t need this
-        },
-      },
-    },
-    { cwd },
-  );
+  const config = defineConfig({}, { cwd });
   let result: Awaited<ReturnType<typeof parse>> | undefined;
   try {
     result = await parse(given, { config, yamlToMomoa });

@@ -11,6 +11,7 @@ import {
   MAX_GAMUT,
   REQUIRED_CHILDREN,
   REQUIRED_MODES,
+  REQUIRED_TYPE,
   REQUIRED_TYPOGRAPHY_PROPERTIES,
   type RuleA11yMinContrastOptions,
   type RuleA11yMinFontSizeOptions,
@@ -37,6 +38,7 @@ interface TestOptions {
     | { rule: typeof MAX_GAMUT; options: RuleMaxGamutOptions }
     | { rule: typeof REQUIRED_CHILDREN; options: RuleRequiredChildrenOptions }
     | { rule: typeof REQUIRED_MODES; options: RuleRequiredModesOptions }
+    | { rule: typeof REQUIRED_TYPE; options?: never }
     | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
     | { rule: typeof A11Y_MIN_CONTRAST; options: RuleA11yMinContrastOptions }
     | { rule: typeof A11Y_MIN_FONT_SIZE; options: RuleA11yMinFontSizeOptions }
@@ -663,6 +665,18 @@ describe('rules', () => {
           },
         },
         want: { errors: ['typography.small font size too small. Expected minimum of 1rem'] },
+      },
+    ],
+    [
+      `[${REQUIRED_TYPE}]: fail`,
+      {
+        given: {
+          rule: REQUIRED_TYPE,
+          tokens: {
+            color: { $type: 'color', blue: { 100: { $value: { colorSpace: 'srgb', components: [0, 0, 0.2] } } } },
+          },
+        },
+        want: { errors: ['Token missing $type.'] },
       },
     ],
   ];

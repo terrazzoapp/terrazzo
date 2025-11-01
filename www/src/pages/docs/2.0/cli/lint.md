@@ -27,11 +27,12 @@ The idea of token linting is similar to any kind of code linting—you can run c
 | [core/valid-typography](#corevalid-typography)                             | Require [typography tokens](/docs/reference/tokens/#typography) to follow the format.     |
 | [core/colorspace](#corecolorspace)                                         | Enforce that all colors are declared in a specific colorspace (e.g. sRGB).                |
 | [core/consistent-naming](#coreconsistent-naming)                           | Enforce a consistent naming style (e.g. camelCase).                                       |
-| [core/duplicate-values](#coreduplicate-values)                             | Enforce tokens can’t redeclare the same value (excludes aliases).                         |
 | [core/descriptions](#coredescriptions)                                     | Enforce tokens have descriptions.                                                         |
+| [core/duplicate-values](#coreduplicate-values)                             | Enforce tokens can’t redeclare the same value (excludes aliases).                         |
 | [core/max-gamut](#coremax-gamut)                                           | Enforce colors are within the specified gamut (e.g. display-p3).                          |
 | [core/required-children](#corerequired-children)                           | Enforce token groups have specific children, whether tokens and/or groups.                |
 | [core/required-modes](#corerequired-modes)                                 | Enforce certain tokens have specific modes.                                               |
+| [core/required-type](#corerequired-type)                                   | Enforce all tokens and aliases have `$type`.                                              |
 | [core/required-typography-properties](#corerequired-typography-properties) | Enforce typography tokens have required properties (e.g. `lineHeight`).                   |
 | [a11y/min-contrast](#a11ymin-contrast)                                     | Ensure minimum WCAG 2.2 contrast given token pairs.                                       |
 | [a11y/min-font-size](#a11ymin-font-size)                                   | Ensure minimum font size.                                                                 |
@@ -627,6 +628,26 @@ export default defineConfig({
 | **matches**          | Array of Matches.                                                             |
 | matches[n].**match** | Array of token globs to include, e.g. `["size.*", "typography.*"]`            |
 | matches[n].**modes** | Array of strings to match against mode names, e.g. `["mobile", "desktop", …]` |
+
+### core/required-type
+
+Enforce tokens and aliases have `$type`.
+
+:::code-group
+
+```js [terrazzo.config.js]
+import { defineConfig } from "@terrazzo/cli";
+
+export default defineConfig({
+  lint: {
+    rules: {
+      "core/required-type": "error",
+    },,
+  },
+});
+```
+
+:::
 
 ### core/required-typography-properites
 
