@@ -239,3 +239,65 @@ The **root** visitor always fires first, no matter what.
 If you need a more advanced usecase than what the Transform API can deliver, you can always process tokens in multiple passes! For example, you could always simply use `parse()` to generate a clean, easy-to-work-with tokens object in memory, you could operate on that, and you could re-run it through `parse()` again.
 
 :::
+
+## Resolvers
+
+The v2025.10 version of the DTCG spec introduced [resolvers](https://www.designtokens.org/tr/2025.10/resolver/), meta-documents that describe how multiple sets of tokens relate to one another to form one tokens manifest or even apply contextual values such as themes or modes.
+
+Because DTCG tokens can be used with or without a resolver file, this is a separate API.
+
+### Basic usage
+
+```ts
+import { createResolver, parse } from "@terrazzo/parser";
+
+const sources = [
+  { filename: new URL("file:///my-resolver.resolver.json"), src: {/* contents */} },
+]
+
+const { resolver } = await parse(sources, { config });
+const r = createResolver(resolver);
+
+r.apply(); // get base set ⚠️ only possible if resolver declared 0 modifiers
+r.apply({ theme: "light", size: "desktop" }); // tokens for theme: light; size: desktop
+r.apply({ theme: "dark", size: "mobile" }); // tokens for theme: dark; size: mobile
+```
+
+The parser will only return a `resolver` if it was handed one. This will be `undefined` otherwise.
+
+It must be passed to `createResolver()`
+
+:::tip
+
+The resolver should always be passed to `parse()` first because resolvers can contain inline tokens and `$ref`s. Providing your own resolver to `createResolver()` is technically doable, but very tricky.
+
+:::
+
+### Working with permutations
+
+```ts
+import { createResolver, parse } from "@terrazzo/parser";
+
+const { resolver } = await parse(sources, { config });
+const r = createResolver(resolver);
+
+for (const input of r.inputPermutations) {
+  r.apply(input); // tokens for this input
+}
+```
+
+It’s up to you to specify all the permutations desired. `.getAllInputPermutations()` will return an array of all possible inputs for the specified modifiers.
+
+If the resolver specified zero modifiers, the array will be `[{}]` so you can still produce at least 1 valid tokens set. Thus, it will never be an empty array.
+
+### API
+
+#### createResolver
+
+`createResolver(resolver)` returns a resolver with the following methods:
+
+| Name                  | Type                                           | Description                                                                                            |
+|:----------------------|:-----------------------------------------------|:-------------------------------------------------------------------------------------------------------|
+| **apply**             | `(input: Record<string, string>) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.              |
+| **inputPermutations** | `Record<string, string>[]`                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers). |
+| **isValidInput**      | `(input: Record<string, string>) => boolean`   | Returns whether or not a given object is a valid input for this resolver.                              |

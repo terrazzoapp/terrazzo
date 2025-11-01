@@ -10,7 +10,7 @@ import {
 import type { GroupNormalized, TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { toMomoa } from '../lib/momoa.js';
 import type Logger from '../logger.js';
-import type { InputSource, ParseOptions, TransformVisitors } from '../types.js';
+import type { InputSource, ParseOptions, ResolverNormalized, TransformVisitors } from '../types.js';
 import { normalize } from './normalize.js';
 import {
   graphAliases,
@@ -54,11 +54,17 @@ export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnEr
   logger: Logger;
 }
 
+export interface LoadSourcesResult {
+  tokens: TokenNormalizedSet;
+  sources: InputSource[];
+  resolver: ResolverNormalized | undefined;
+}
+
 /** Load from multiple entries, while resolving remote files */
 export async function loadSources(
   inputs: Omit<InputSource, 'document'>[],
   { config, logger, continueOnError, yamlToMomoa, transform }: LoadOptions,
-): Promise<{ tokens: TokenNormalizedSet; sources: InputSource[] }> {
+): Promise<LoadSourcesResult> {
   const entry = { group: 'parser' as const, label: 'init' };
 
   // 1. Bundle root documents together
@@ -203,6 +209,7 @@ export async function loadSources(
   return {
     tokens: tokensSorted,
     sources,
+    resolver: undefined,
   };
 }
 

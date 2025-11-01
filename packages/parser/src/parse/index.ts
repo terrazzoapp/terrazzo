@@ -1,12 +1,13 @@
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
-import type { ConfigInit, InputSource, ParseOptions } from '../types.js';
+import type { ConfigInit, InputSource, ParseOptions, ResolverNormalized } from '../types.js';
 import { loadSources } from './load.js';
 
 export interface ParseResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];
+  resolver?: ResolverNormalized | undefined;
 }
 
 /** Parse */
@@ -25,7 +26,13 @@ export default async function parse(
 
   const totalStart = performance.now();
   const initStart = performance.now();
-  const { tokens, sources } = await loadSources(inputs, { logger, config, continueOnError, yamlToMomoa, transform });
+  const { tokens, sources, resolver } = await loadSources(inputs, {
+    logger,
+    config,
+    continueOnError,
+    yamlToMomoa,
+    transform,
+  });
   logger.debug({
     message: 'Loaded tokens',
     group: 'parser',
@@ -64,5 +71,6 @@ export default async function parse(
   return {
     tokens,
     sources,
+    resolver,
   };
 }
