@@ -150,7 +150,6 @@ describe('Node.js API', () => {
             lint: {
               rules: {
                 'core/consistent-naming': 'off',
-                'core/no-type-on-alias': 'off',
               },
             },
             plugins: [

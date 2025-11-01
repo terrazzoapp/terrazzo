@@ -929,16 +929,7 @@ describe('Transform', () => {
   }
 }`;
 
-    const config = defineConfig(
-      {
-        lint: {
-          rules: {
-            'core/no-type-on-alias': 'off',
-          },
-        },
-      },
-      { cwd },
-    );
+    const config = defineConfig({}, { cwd });
     const { tokens } = await parse([{ filename: DEFAULT_FILENAME, src }], {
       config,
       transform: {

@@ -282,7 +282,6 @@ export default defineConfig({
       'core/valid-gradient': 'error',
       'core/valid-typography': 'error',
       'core/consistent-naming': 'warn',
-      'no-type-on-alias': 'warn',
     },
   },
 });`,
