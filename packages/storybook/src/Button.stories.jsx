@@ -15,8 +15,6 @@ export const Overview = {
       <StickerSheet
         columns={['size="m"', 'size="s"']}
         rows={[
-          'primary',
-          'primary (disabled)',
           'secondary',
           'secondary (disabled)',
           'lime',
@@ -27,18 +25,6 @@ export const Overview = {
           'orange (disabled)',
         ]}
         variants={[
-          <Button key='primary' variant='primary'>
-            Primary
-          </Button>,
-          <Button key='primary-s' variant='primary' size='s'>
-            Primary (S)
-          </Button>,
-          <Button key='primary-disabled' variant='primary' disabled>
-            Primary
-          </Button>,
-          <Button key='primary-s-disabled' variant='primary' disabled size='s'>
-            Primary (S)
-          </Button>,
           <Button key='secondary' variant='secondary'>
             Secondary
           </Button>,
