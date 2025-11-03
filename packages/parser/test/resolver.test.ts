@@ -1,10 +1,12 @@
-import { describe, expect, it } from 'vitest';
 import fs from 'node:fs/promises';
-import parse from '../src/parse/index.js';
-import { calculatePermutations, createResolver } from '../src/resolver.js';
+import { parse as parseJSON } from '@humanwhocodes/momoa';
+import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/config.js';
+import Logger from '../src/logger.js';
+import parse from '../src/parse/index.js';
+import { calculatePermutations, createResolver, validateResolver } from '../src/resolver/index.js';
 
-describe.skip('Resolver module', () => {
+describe('Resolver module', () => {
   const tests: [string, { given: any; want: any }][] = [
     [
       'errors on multiple resolvers',
@@ -20,7 +22,10 @@ describe.skip('Resolver module', () => {
           },
         ],
         want: {
-          error: 'Found 2 resolvers',
+          error: `[parser:init] [parser:init] Multiple resolver documents found. Only one resolver may be loaded per build.
+
+> 1 | {"name":"Resolver 2","version":"2025.10","resolutionOrder":[]}
+    | ^`,
         },
       },
     ],
@@ -35,6 +40,119 @@ describe.skip('Resolver module', () => {
 
     const { tokens } = await parse(given, { config });
     expect(tokens).toEqual(want.tokens);
+  });
+
+  describe('validation', () => {
+    const tests: [string, { given: any; want: string | undefined }][] = [
+      [
+        'minimal valid',
+        {
+          given: {
+            version: '2025.10',
+            resolutionOrder: [{ $ref: '#/sets/base' }],
+          },
+          want: undefined,
+        },
+      ],
+      [
+        'version: missing',
+        {
+          given: {
+            resolutionOrder: [],
+          },
+          want: `[parser:resolver] Missing "version".
+
+> 1 | {
+    | ^
+  2 |   "resolutionOrder": []
+  3 | }`,
+        },
+      ],
+      [
+        'version: wrong type',
+        {
+          given: {
+            version: 1,
+            resolutionOrder: [],
+          },
+          want: `[parser:resolver] Expected "version" to be "2025.10".
+
+  1 | {
+> 2 |   "version": 1,
+    |              ^
+  3 |   "resolutionOrder": []
+  4 | }`,
+        },
+      ],
+      [
+        'modifier: some context is bad type',
+        {
+          given: {
+            version: '2025.10',
+            modifiers: {
+              theme: {
+                contexts: {
+                  light: [{ $ref: 'theme/light.json' }],
+                  dark: { $ref: 'theme/light.json' },
+                },
+              },
+            },
+            resolutionOrder: [{ $ref: '#/modifiers/theme' }],
+          },
+          want: `[parser:resolver] Expected array.
+
+   9 |           }
+  10 |         ],
+> 11 |         "dark": {
+     |                 ^
+  12 |           "$ref": "theme/light.json"
+  13 |         }
+  14 |       }`,
+        },
+      ],
+      [
+        'resolutionOrder: missing',
+        {
+          given: {
+            version: '2025.10',
+          },
+          want: `[parser:resolver] Missing "resolutionOrder".
+
+> 1 | {
+    | ^
+  2 |   "version": "2025.10"
+  3 | }`,
+        },
+      ],
+      [
+        'resolutionOrder: wrong type',
+        {
+          given: {
+            version: '2025.10',
+            resolutionOrder: { foo: 'bar' },
+          },
+          want: `[parser:resolver] Expected array.
+
+  1 | {
+  2 |   "version": "2025.10",
+> 3 |   "resolutionOrder": {
+    |                      ^
+  4 |     "foo": "bar"
+  5 |   }
+  6 | }`,
+        },
+      ],
+    ];
+
+    it.each(tests)('%s', (_, { given, want }) => {
+      const logger = new Logger();
+      const src = JSON.stringify(given, undefined, 2);
+      if (want === undefined) {
+        expect(() => validateResolver(parseJSON(src), { logger, src })).not.toThrow();
+      } else {
+        expect(() => validateResolver(parseJSON(src), { logger, src })).toThrowError(want);
+      }
+    });
   });
 
   describe('Additional cases', () => {
@@ -55,7 +173,7 @@ describe.skip('Resolver module', () => {
 
       expect(tokens).toEqual({});
 
-      const r = createResolver(resolver!);
+      const r = createResolver(resolver!, { logger: new Logger({ level: 'silent' }) });
       expect(r.apply({ theme: 'light' })).toEqual({
         'color.blue.6': {
           $type: 'color',

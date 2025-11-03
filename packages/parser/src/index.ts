@@ -90,6 +90,6 @@ export { default as Logger } from './logger.js';
 export * from './parse/index.js';
 export { default as parse } from './parse/index.js';
 
-export * from './resolver.js';
+export * from './resolver/index.js';
 
 export * from './types.js';

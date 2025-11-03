@@ -1,8 +1,10 @@
+import type { Group } from '@terrazzo/token-tools';
 import eq from 'fast-deep-equal';
 import type Logger from 'logger.js';
-import type { Resolver, ResolverModifier, ResolverNormalized } from './types.js';
-import type { Group } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
+import type { ResolverNormalized } from '../types.js';
+
+export * from './validate.js';
 
 export interface CreateResolverOptions {
   logger: Logger;
