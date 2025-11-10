@@ -21,7 +21,7 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
-  "homepage": "https://terrazzo.app/docs/cli/integrations/swift",
+  "homepage": "https://terrazzo.app/docs/integrations/swift",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

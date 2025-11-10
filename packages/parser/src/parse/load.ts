@@ -54,11 +54,16 @@ export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnEr
   logger: Logger;
 }
 
+export interface LoadSourcesResult {
+  tokens: TokenNormalizedSet;
+  sources: InputSource[];
+}
+
 /** Load from multiple entries, while resolving remote files */
 export async function loadSources(
   inputs: Omit<InputSource, 'document'>[],
   { config, logger, continueOnError, yamlToMomoa, transform }: LoadOptions,
-): Promise<{ tokens: TokenNormalizedSet; sources: InputSource[] }> {
+): Promise<LoadSourcesResult> {
   const entry = { group: 'parser' as const, label: 'init' };
 
   // 1. Bundle root documents together
@@ -200,10 +205,7 @@ export async function loadSources(
     group.tokens.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
   }
 
-  return {
-    tokens: tokensSorted,
-    sources,
-  };
+  return { tokens: tokensSorted, sources };
 }
 
 function transformer(transform: TransformVisitors): BundleOptions['parse'] {

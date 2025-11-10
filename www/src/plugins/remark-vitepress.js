@@ -53,10 +53,49 @@ export default function remarkVitepress() {
             node.children.unshift({ type: 'html', value: `<summary>${node.attributes.title ?? ''}</summary>` });
             break;
           }
+          // :::npm (codeblock but with npm/bun/pnpm) {
+          case 'npm': {
+            node.type = 'paragraph';
+            node.data = { hName: 'div', hProperties: { className: ['code-group'] } };
+            const id = nanoid(5);
+            const cmd = node.children.find((c) => c.type === 'code');
+            node.children = [
+              {
+                type: 'html',
+                value: `<div class="code-group-tabs" role="tablist">${['npm', 'pnpm', 'bun']
+                  .map(
+                    (cli, i) =>
+                      `<button class="code-group-tab" type="button" role="tab" aria-controls="tab-${id}-${i}"${
+                        i === 0 ? ' aria-selected="true"' : ''
+                      }>${cli}</button>`,
+                  )
+                  .join('')}</div>`,
+              },
+              ...['npm', 'pnpm', 'bun'].map((cli, i) => ({
+                type: 'paragraph',
+                data: {
+                  hName: 'div',
+                  hProperties: {
+                    id: `tab-${id}-${i}`,
+                    className: ['code-group-tabpanel'],
+                    role: 'tabpanel',
+                    hidden: i !== 0 ? 'hidden' : undefined,
+                  },
+                },
+                children: [
+                  {
+                    ...cmd,
+                    value: cmd.value.replace(/^(npm|pnpm|bun)/, cli),
+                  },
+                ],
+              })),
+            ];
+            break;
+          }
 
           // :::code-group
           case 'code-group': {
-            node.type = 'paragram';
+            node.type = 'paragraph';
             node.data = { hName: 'div', hProperties: { className: ['code-group'] } };
             const children = [...node.children];
             const id = nanoid(5);

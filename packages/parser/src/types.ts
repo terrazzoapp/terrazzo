@@ -1,5 +1,5 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import type { TokenNormalized } from '@terrazzo/token-tools';
+import type { Group, TokenNormalized } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
 
@@ -231,7 +231,7 @@ export interface LintRuleMetaData<
   docs?: LintRuleDocs & LintRuleMetaDataDocs;
   /**
    * A map of messages which the rule can report. The key is the messageId, and
-   * the string is the parameterised error string.
+   * the string is the parameterized error string.
    */
   messages?: Record<MessageIds, string>;
   /**
@@ -310,6 +310,82 @@ export interface Plugin {
   buildEnd?(options: BuildEndHookOptions): Promise<void>;
 }
 
+export interface ReferenceObject {
+  $ref: string;
+}
+
+export interface Resolver {
+  /** Human-friendly name of this resolver */
+  name?: string;
+  /** DTCG version */
+  version: '2025.10';
+  /** Description of this resolver */
+  description?: string;
+  /** Mapping of sets */
+  sets?: Record<string, ResolverSet>;
+  /** Mapping of modifiers */
+  modifiers?: Record<string, ResolverModifier>;
+  resolutionOrder: (ResolverSetInline | ResolverModifierInline | ReferenceObject)[];
+  $extensions?: Record<string, unknown>;
+  $defs?: Record<string, unknown>;
+}
+
+/** Resolver where all tokens are loaded and flattened in-memory, so only the final merging is left */
+export interface ResolverNormalized {
+  name: string | undefined;
+  version: '2025.10';
+  description: string | undefined;
+  sets: Record<string, ResolverSet> | undefined;
+  modifiers: Record<string, ResolverModifier> | undefined;
+  /**
+   * Array of all sets and modifiers that have been converted to inline,
+   * regardless of original declaration. In a normalized resolver, only a single
+   * pass over the resolutionOrder array is needed.
+   */
+  resolutionOrder: (ResolverSetNormalized | ResolverModifierNormalized)[];
+}
+
+export interface ResolverModifier<Context extends string = string> {
+  description?: string;
+  contexts: Record<Context, (Group | ReferenceObject)[]>;
+  default?: Context;
+  $extensions?: Record<string, unknown>;
+  $defs?: Record<string, unknown>;
+}
+
+export type ResolverModifierInline<Context extends string = string> = ResolverModifier<Context> & {
+  name: string;
+  type: 'modifier';
+};
+
+export interface ResolverModifierNormalized {
+  name: string;
+  type: 'modifier';
+  description: string | undefined;
+  contexts: Record<string, Group[]>;
+  default: string | undefined;
+  $extensions: Record<string, unknown> | undefined;
+  $defs: Record<string, unknown> | undefined;
+}
+
+export interface ResolverSet {
+  description?: string;
+  sources: (Group | ReferenceObject)[];
+  $extensions?: Record<string, unknown>;
+  $defs?: Record<string, unknown>;
+}
+
+export type ResolverSetInline = ResolverSet & { name: string; type: 'set' };
+
+export interface ResolverSetNormalized {
+  name: string;
+  type: 'set';
+  description: string | undefined;
+  sources: Group[];
+  $extensions: Record<string, unknown> | undefined;
+  $defs: Record<string, unknown> | undefined;
+}
+
 interface TokenTransformedBase {
   /** Original Token ID */
   id: string;
@@ -381,8 +457,4 @@ export interface TransformHookOptions {
   ): void;
   /** Momoa documents */
   sources: InputSource[];
-}
-
-export interface ReferenceObject {
-  $ref: string;
 }

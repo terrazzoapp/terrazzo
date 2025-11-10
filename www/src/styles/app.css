@@ -1,8 +1,4 @@
 html {
-  height: 100%;
-}
-
-body {
   --grid-color: color-mix(in oklab, var(--tz-color-base-blue-700), transparent 62.5%);
   --grid-size: 40px;
 
@@ -18,6 +14,10 @@ body {
   background-position: 0 calc(-1 / 16 * 1rem);
   background-repeat: repeat;
   background-size: var(--grid-size) var(--grid-size);
+  height: 100%;
+}
+
+body {
   color: var(--tz-color-text-1);
   font-family: var(--tz-font-sans);
   font-size: 100%;
@@ -26,7 +26,7 @@ body {
 }
 
 @media (width >= 600px) {
-  body {
+  html {
     --grid-size: 48px;
   }
 }

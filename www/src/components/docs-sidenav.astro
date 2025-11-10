@@ -1,124 +1,40 @@
 ---
+import { DOCS_NAV, DOCS_NAV_V2 } from '../config/pages.js';
 import { getAriaCurrent } from '../lib/navigation.js';
 import Terrazzo from './terrazzo.astro';
-
-const _NAV_ITEMS = [
-  // {
-  //   title: "Token Lab",
-  //   items: [{ url: "/token-lab", title: "Coming Soon!" }],
-  // },
-  {
-    title: 'Guides',
-    items: [
-      { url: '/guides/dtcg', title: 'DTCG Tokens' },
-      { url: '/guides/modes', title: 'Modes + Theming' },
-      { url: '/guides/styleguide', title: 'DS Styleguide' },
-    ],
-  },
-  {
-    title: 'CLI',
-    items: [
-      { url: '/cli', title: 'Getting Started' },
-      { url: '/cli/lint', title: 'Linting' },
-      { url: '/cli/commands', title: 'Commands' },
-      { url: '/cli/config', title: 'Configuration' },
-      { url: '/cli/migrating', title: 'Migrating from Cobalt' },
-      {
-        title: 'Integrations',
-        url: '/cli/integrations',
-        items: [
-          { url: 'css', title: 'CSS' },
-          { url: 'sass', title: 'Sass' },
-          { url: 'js', title: 'JS/TS' },
-          { url: 'swift', title: 'Swift' },
-          { url: 'tailwind', title: 'Tailwind' },
-          { url: 'vanilla-extract', title: 'Vanilla Extract' },
-          { url: 'custom', title: 'Custom' },
-          { url: 'token-listing', title: 'Token Listing' },
-        ],
-      },
-      {
-        url: '/cli/api',
-        title: 'API',
-        items: [
-          { url: 'plugin-development', title: 'Plugin Development' },
-          { url: 'js', title: 'JS API' },
-        ],
-      },
-    ],
-  },
-  // {
-  //   title: "Components",
-  //   items: [
-  //     { url: "/components/color-picker", title: "ColorPicker" },
-  //     { url: "/components/demo", title: "Demo" },
-  //     { url: "/components/slider", title: "Slider" },
-  //   ],
-  // },
-  {
-    title: 'Reference',
-    items: [
-      { url: '/reference/tokens', title: 'Token Types' },
-      { url: '/reference/about', title: 'About' },
-    ],
-  },
-];
 ---
 
 <div class="sidenav">
-  <a class="logo-link" href="/"><Terrazzo size="1.25rem" /></a>
-
   <nav class="nav" aria-label="Table of Contents">
     {
-      _NAV_ITEMS.map((section) => (
+      (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).map((section) => section.url ? (
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href={section.url}
+            aria-current={getAriaCurrent(section.url, Astro.request.url)}
+          >
+            <span class="nav-link-inner">{section.title}</span>
+          </a>
+        </li>
+      ) : (
         <li class="section">
-          <h4 class="section-title">{section.title}</h4>
-          <ul class="section-nav">
-            {section.items?.map((item) => {
-              const url = `/docs${item.url}`;
-              return (
-                <li class="nav-item">
-                  {item.items ? (
-                    <details
-                      class="details"
-                      open={
-                        !!getAriaCurrent(url, Astro.request.url) || undefined
-                      }
-                    >
-                      <summary class="summary">{item.title}</summary>
-                      <ul class="nav-subnav">
-                        {(item.items ?? []).map((subitem) => {
-                          const subURL = `${url}/${subitem.url}`;
-                          return (
-                            <li class="nav-subitem">
-                              <a
-                                class="nav-sublink"
-                                href={subURL}
-                                aria-current={getAriaCurrent(
-                                  subURL,
-                                  Astro.request.url
-                                )}
-                              >
-                                <span class="nav-link-inner">{subitem.title}</span>
-                              </a>
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    </details>
-                  ) : (
+        <details class="details" open>
+          <summary class="summary">{section.title}</summary>
+            <ul class="section-nav">
+              {section.items?.map((item) => (
+                  <li class="nav-item">
                     <a
                       class="nav-link"
-                      href={url}
-                      aria-current={getAriaCurrent(url, Astro.request.url)}
+                      href={item.url}
+                      aria-current={getAriaCurrent(item.url, Astro.request.url)}
                     >
                       <span class="nav-link-inner">{item.title}</span>
                     </a>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
+                  </li>
+              ))}
+            </ul>
+          </details>
         </li>
       ))
     }
@@ -182,8 +98,12 @@ const _NAV_ITEMS = [
     color: var(--tz-color-text-2);
     display: flex;
     flex-direction: column;
-    height: 100%;
     width: 100%;
+
+    @media (width >= 750px) {
+      padding-block-start: var(--grid-size);
+      height: calc(100vh - var(--grid-size));
+    }
   }
 
   .logo {
@@ -199,8 +119,9 @@ const _NAV_ITEMS = [
   .nav {
     display: flex;
     flex-direction: column;
-    gap: var(--grid);
+    gap: calc(0.5 * var(--grid));
     list-style: none;
+    padding-block-start: calc(0.375 * var(--grid-size));
   }
 
   .nav-item,
@@ -262,6 +183,7 @@ const _NAV_ITEMS = [
     border-color: transparent;
     border-radius: var(--tz-radius-300);
     display: block;
+    margin-inline: -1px; /* offset border width */
     padding: calc(0.125 * var(--grid)) calc(0.5 * var(--grid));
     position: relative;
     width: 100%;
@@ -284,7 +206,7 @@ const _NAV_ITEMS = [
     color: var(--tz-color-text-3);
     display: flex;
     gap: var(--tz-space-200);
-    padding: var(--tz-space-200) var(--tz-space-500);
+    padding: var(--tz-space-200) var(--grid);
     position: relative;
     user-select: none;
 

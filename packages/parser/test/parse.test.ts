@@ -42,10 +42,10 @@ describe('Additional cases', () => {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
         "[parser:init] Install yaml-to-momoa package to parse YAML, and pass in as option, e.g.:
 
-            import { bundle } from '@terrazzo/json-schema-tools';
-            import yamlToMomoa from 'yaml-to-momoa';
+          import { bundle } from '@terrazzo/json-schema-tools';
+          import yamlToMomoa from 'yaml-to-momoa';
 
-            bundle(yamlString, { yamlToMomoa });"
+          bundle(yamlString, { yamlToMomoa });"
       `);
     }
   });
@@ -67,7 +67,7 @@ describe('Additional cases', () => {
       expect(() => result).toThrow();
     } catch (err) {
       expect(stripAnsi((err as Error).message)).toMatchInlineSnapshot(`
-        "[parser:init] All mapping items must start at the same column at line 3, column 1:
+        "All mapping items must start at the same column at line 3, column 1:
 
   - foo: true
   false

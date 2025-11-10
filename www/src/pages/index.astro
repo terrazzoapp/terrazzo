@@ -221,7 +221,7 @@ import DefaultLayout from '../layouts/default.astro';
       <ButtonLink href="https://github.com/terrazzoapp/terrazzo" target="_blank"
         >View on GitHub</ButtonLink
       >
-      <ButtonLink href="/docs/cli" variant="lime">Get Started</ButtonLink>
+      <ButtonLink href="/docs" variant="lime">Get Started</ButtonLink>
     </menu>
   </section>
 </DefaultLayout>
@@ -262,7 +262,7 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .w11 {
-    --card-width: calc(9 * var(--grid-size));
+    --card-width: calc(8 * var(--grid-size));
 
     @media (width >= 750px) {
       --card-width: calc(11 * var(--grid-size));
@@ -270,14 +270,14 @@ import DefaultLayout from '../layouts/default.astro';
   }
 
   .w13 {
-    --card-width:  calc(9 * var(--grid-size));
+    --card-width:  calc(8 * var(--grid-size));
     @media (width >= 750px) {
       --card-width: calc(13 * var(--grid-size));
     }
   }
 
   .w15 {
-    --card-width: calc(11 * var(--grid-size));
+    --card-width: calc(10 * var(--grid-size));
     @media (width >= 750px) {
       --card-width: calc(15 * var(--grid-size));
     }
@@ -286,7 +286,7 @@ import DefaultLayout from '../layouts/default.astro';
   .illo {
     --illo-width: calc(13 * var(--grid-size));
     height: 100vh;
-    left: 0;
+    left: calc(2 * var(--grid-size));
     margin-inline-start: round(calc(0.5 * (100vw - var(--illo-width))), var(--grid-size));
     max-width: 100vw;
     overflow: hidden;
@@ -297,6 +297,7 @@ import DefaultLayout from '../layouts/default.astro';
 
     @media (width >= 750px) {
       --illo-width: calc(15 * var(--grid-size));
+      left: 0;
     }
   }
 

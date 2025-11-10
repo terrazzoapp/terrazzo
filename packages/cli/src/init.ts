@@ -262,7 +262,7 @@ export default defineConfig({
   ],
   outDir: './dist/',
   lint: {
-    /** @see https://terrazzo.app/docs/cli/lint */
+    /** @see https://terrazzo.app/docs/linting */
     enabled: true,
     rules: {
       'core/valid-color': 'error',

@@ -42,4 +42,4 @@ Click the **Save** button in the top menu, or hit <kbd>⌘</kbd> + <kbd>S</kbd> 
 
 ### 4. Use the Terrazzo CLI to generate code
 
-The [Terrazzo CLI](/docs/cli) can generate [CSS](/docs/cli/integrations/css), [Sass](/docs/cli/integrations/sass), [JavaScript/TypeScript](/docs/cli/integrations/js), [JSON](/docs/cli/integrations/json), [Tailwind](/docs/cli/integrations/tailwind), and more. You can also [write your own plugin easily](/docs/cli/api/plugin-development) to generate any type of format you need.
+The [Terrazzo CLI](/docs) can generate [CSS](/docs/integrations/css), [Sass](/docs/integrations/sass), [JavaScript/TypeScript](/docs/integrations/js), [JSON](/docs/integrations/json), [Tailwind](/docs/integrations/tailwind), and more. You can also [write your own plugin easily](/docs/reference/plugin-api) to generate any type of format you need.

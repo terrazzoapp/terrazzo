@@ -1,0 +1,21 @@
+{
+  "name": "Resolver Example",
+  "version": "2025.10",
+  "sets": {
+    "foundation": {
+      "sources": [{ "$ref": "./foundation/colors.tokens.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [],
+        "dark": [{ "$ref": "./theme/dark.tokens.json" }]
+      }
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/sets/foundation" },
+    { "$ref": "#/modifiers/theme" }
+  ]
+}

@@ -183,7 +183,7 @@ Beyond the obvious usecase of existing to work with design tokens and generate c
 
 1. **Enforce standards.** Terrazzo supports the full DTCG design token specification, with some extensions. This means there are _some_ restrictions on how tokens are authored. But it’s done in service of creating more universal systems.
 1. **Empower plugins.** This library is heavily influenced by [Rollup](https://rollupjs.org/introduction/) and [Vite](https://vite.dev), and the idea that generating code should be as easy as adding a plugin.
-1. **Support linting.** Standards are great, because they can be [linted](https://terrazzo.app/docs/cli/lint/)!
+1. **Support linting.** Standards are great, because they can be [linted](https://terrazzo.app/docs/linting/)!
 
 Any/all iterations to this library will always be pointing towards these goalposts and strengthening them. At this stage, deviating from any one of these goals would (in my opinion) constitute a different project and different North Star.
 

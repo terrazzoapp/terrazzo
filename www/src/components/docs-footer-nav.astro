@@ -1,0 +1,58 @@
+---
+import { DOCS_NAV, DOCS_NAV_V2 } from '../config/pages.js';
+
+const nav = (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).flatMap((section) =>
+  section.url ? section : (section.items ?? []),
+);
+
+let prev: { url?: string; title?: string } | undefined;
+let next: { url?: string; title?: string } | undefined;
+
+for (let i = 0; i < nav.length; i++) {
+  if (nav[i]?.url && Astro.url.pathname.replace(/\/?$/, '/') === nav[i]?.url) {
+    prev = nav[i - 1];
+    next = nav[i + 1];
+  }
+}
+---
+
+<div class="footer-nav">
+  {prev ? <a href={prev.url} class="link"><small>Prev</small>{prev.title}</a> : <span />}
+  {next ? <a href={next.url} class="link"><small>Next</small>{next.title}</a> : <span />}
+</div>
+
+<style>
+.footer-nav {
+  display: flex;
+  gap: var(--tz-space-300);
+  width: 100%;
+
+  > * {
+    flex: 1 0 auto;
+    width: 50%;
+  }
+}
+
+.link {
+  border: var(--tz-border-2);
+  border-bottom-width: 2.5px;
+  border-radius: var(--tz-radius-300);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+  padding: var(--tz-space-300);
+  text-decoration: none;
+
+  small {
+    color: var(--tz-color-text-3);
+    display: block;
+    font-size: 0.75rem;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: var(--tz-color-border-focus);
+  }
+}
+</style>

@@ -35,4 +35,4 @@ It’s worth noting the JS API is a little more manual work than the [CLI](../cl
 - The AST generated from `parse()` must get passed into `build()` so the error messages can point to the right lines in the source file.
 - The `build()` step only returns a final array of `outputFiles`in memory but doesn’t write them to disk. It’s up to you to write them to disk, upload them somewhere, etc.
 
-[Full documentation](https://terrazzo.app/docs/cli/api/js/)
+[Full documentation](https://terrazzo.app/docs/reference/js-api/)

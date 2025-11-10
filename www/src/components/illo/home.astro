@@ -88,10 +88,14 @@ import Tri from '../tri.astro';
   .circle {
     background: var(--tz-color-base-lime-600);
     border-radius: 50%;
+    left: calc(6 * var(--grid-size));
     height: calc(3 * var(--grid-size));
     position: absolute;
-    right: calc(3 * var(--grid-size));
     top: calc(1 * var(--grid-size));
     width: calc(3 * var(--grid-size));
+
+    @media (width >= 750px) {
+      left: calc(9 * var(--grid-size));
+    }
   }
 </style>

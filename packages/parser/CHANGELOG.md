@@ -15,7 +15,7 @@
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change; DTCG 2nd Editors draft format will throw errors by default. This means converting all colors and dimensions to the new object format.
 
-  Though this is a breaking change in default behavior, you can opt back into the old behavior by adjusting your config’s lint settings. See https://terrazzo.app/docs/cli/lint/.
+  Though this is a breaking change in default behavior, you can opt back into the old behavior by adjusting your config’s lint settings. See https://terrazzo.app/docs/linting/.
 
   List of changes:
   - **color**: `channels` is invalid; `components` is required (“channels” was never part of the spec; this just deprecates an in-progress draft that was briefly supported)
@@ -56,7 +56,7 @@
   - Transition
   - Typography
 
-  These behaviors may be opted out individually by adjusting the new lint rules ([see documentation](https://terrazzo.app/docs/cli/lint/)).
+  These behaviors may be opted out individually by adjusting the new lint rules ([see documentation](https://terrazzo.app/docs/linting/)).
 
 ### Patch Changes
 
