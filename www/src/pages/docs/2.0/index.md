@@ -33,7 +33,7 @@ npx tz init
 
 ![tz init screenshot](/assets/cli-init.png)
 
-This will create a `terrazzo.config.js` starter config file, and even start your token system from a popular open source design system.
+This will create a `terrazzo.config.ts` starter config file, and even start your token system from a popular open source design system.
 
 ## Comparison
 

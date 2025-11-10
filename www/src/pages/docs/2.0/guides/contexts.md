@@ -123,7 +123,7 @@ How you provide that “input” for the modifier depends on the tool. In Terraz
 
 :::code-group
 
-```ts [terrazzo.config.mjs]
+```ts [terrazzo.config.ts]
 import css from "@terrazzo/plugin-css";
 
 export default {
@@ -162,7 +162,7 @@ Here’s an example how the options would change for the CSS plugin:
 
 :::code-group
 
-```diff [terrazzo.config.mjs]
+```diff [terrazzo.config.ts]
   import css from "@terrazzo/plugin-css";
 
   export default {

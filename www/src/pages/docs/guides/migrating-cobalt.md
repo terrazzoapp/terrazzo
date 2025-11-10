@@ -70,7 +70,7 @@ The next step is replacing the `cobalt` / `co` commands with `terrazzo` or `tz`:
 
 The new CLI commands only have a few changes, but see [the CLI docs](/docs/reference/cli) for more info.
 
-## 3. Change to terrazzo.config.js
+## 3. Change to terrazzo.config.ts
 
 First, rename `tokens.config.js` → `terrazzo.config.js`.
 

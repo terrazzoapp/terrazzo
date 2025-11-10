@@ -72,22 +72,23 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         // because in most scenarios we only ever need this once and never again.
         // even in watch mode we don’t reload the config, so keeping a vite-node
         // “hot” instance doesn’t provide obvious benefits (only potential memory leaks)
-        viteServer = await createServer({
-          configFile: false,
-          mode: 'development',
-        });
+        viteServer = await createServer({ mode: 'development' });
         const viteNodeServer = new ViteNodeServer(viteServer);
         const viteNodeRunner = new ViteNodeRunner({
           root: viteServer.config.root,
           base: viteServer.config.base,
-          fetchModule: viteNodeServer.fetchModule,
-          resolveId: viteNodeServer.resolveId,
+          fetchModule(...args) {
+            return viteNodeServer.fetchModule(...args);
+          },
+          resolveId(...args) {
+            return viteNodeServer.resolveId(...args);
+          },
         });
         const mod = await viteNodeRunner.executeFile(resolvedConfigPath);
         if (!mod.default) {
           // we format it immediately below
           throw new Error(
-            `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs for instructions.`,
+            `No default export found in ${resolvedConfigPath}. See https://terrazzo.dev/docs for instructions.`,
           );
         }
         config = defineConfig(mod.default, { cwd, logger });
@@ -227,22 +228,19 @@ export function printSuccess(message: string, startTime?: number) {
 }
 
 /** Resolve config */
-export function resolveConfig(filename?: string) {
+export function resolveConfig(filename?: string): string | undefined {
   // --config [configpath]
-  if (filename) {
-    const configPath = new URL(filename, cwd);
-    if (fs.existsSync(configPath)) {
-      return configPath.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.
-    }
-    return undefined;
+  if (filename && fs.existsSync(new URL(filename, cwd))) {
+    return filename;
   }
-
   // note: the order isn’t significant; just try for most-common first.
-  // if a user has multiple files differing only by file extension, behavior is
-  // unpredictable and that’s on them.
-  return ['.ts', '.js', '.mjs', '.cjs']
-    .map((ext) => new URL(`./terrazzo.config${ext}`, cwd))
-    .find((configPath) => fs.existsSync(configPath))?.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.;
+  // if a user has multiple config files with different extensions that’s their fault
+  for (const ext of ['.ts', '.js', '.mts', '.cts', '.mjs', '.cjs']) {
+    const maybeFilename = `terrazzo.config${ext}`;
+    if (fs.existsSync(maybeFilename)) {
+      return maybeFilename;
+    }
+  }
 }
 
 /** Resolve tokens.json path (for lint command) */

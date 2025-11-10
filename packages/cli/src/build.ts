@@ -30,7 +30,7 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
     if (!Array.isArray(config.plugins) || !config.plugins.length) {
       logger.error({
         group: 'config',
-        message: `No plugins defined! Add some in ${configPath || 'terrazzo.config.js'}`,
+        message: `No plugins defined! Add some in ${configPath || 'terrazzo.config.ts'}`,
       });
     }
 

@@ -35,11 +35,11 @@ npm i -D @terrazzo/cli @terrazzo/plugin-token-listing
 
 :::
 
-And add it to `terrazzo.config.js` under `plugins`:
+And add it to `terrazzo.config.ts` under `plugins`:
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import listing from "@terrazzo/plugin-token-listing";
@@ -201,7 +201,7 @@ See the example below that defines three platforms: `css`, `sass` and `figma`. T
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     listing({
@@ -232,7 +232,7 @@ See the example below where some design tokens are created and handled by develo
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     listing({
@@ -289,7 +289,7 @@ In the below example, two modes are defined: one affects color tokens and has a 
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     listing({
@@ -323,7 +323,7 @@ The below example includes all the supported subtypes in version 1 of the Token 
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     listing({
@@ -360,7 +360,7 @@ Below is an example of a custom `previewValue` function that forces the use of s
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     listing({
@@ -407,11 +407,11 @@ In some design token workflows (particularly QA and documentation), it can be im
 
 ## Sample Config
 
-Configure options in [terrazzo.config.js](/docs/reference/config):
+Configure options in [terrazzo.config.ts](/docs/reference/config):
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import listing from "@terrazzo/plugin-listing";
 import { kebabCase } from "scule";

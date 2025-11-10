@@ -69,6 +69,8 @@
 
 - An error is now thrown if `--config [path]` points to a bad location.
 
+- TypeScript config files now fully supported! `terrazzo.config.ts` is now the default.
+
 ## 0.10.3
 
 ### Patch Changes

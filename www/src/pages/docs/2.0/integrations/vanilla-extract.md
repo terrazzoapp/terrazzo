@@ -19,7 +19,7 @@ npm i -D @terrazzo/cli @terrazzo/plugin-css @terrazzo/plugin-vanilla-extract
 
 :::
 
-Add a `terrazzo.config.js` to the root of your project with:
+Add a `terrazzo.config.ts` to the root of your project with:
 
 ```js
 import { defineConfig } from "@terrazzo/cli";

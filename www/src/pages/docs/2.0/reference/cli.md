@@ -67,7 +67,7 @@ Flags available for any command
 
 | Name               | Description                                     |
 | :----------------- | :---------------------------------------------- |
-| `--config` \| `-c` | Path to config (default: `terrazzo.config.js`). |
+| `--config` \| `-c` | Path to config (default: `terrazzo.config.ts`). |
 | `--silent`         | Suppress warnings.                              |
 | `--help`           | Show help message and exit.                     |
 | `--version`        | Show version and exit.                          |

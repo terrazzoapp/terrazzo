@@ -51,7 +51,7 @@ Lastly, many rules accept additional options. If passing options, use the `[seve
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -75,7 +75,7 @@ Require all color tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -103,7 +103,7 @@ Require all dimension tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -134,7 +134,7 @@ Require all fontFamily tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -154,7 +154,7 @@ Require all fontWeight tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -178,7 +178,7 @@ Require all duration tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -198,7 +198,7 @@ Require all cubicBezier tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -218,7 +218,7 @@ Require all number tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -238,7 +238,7 @@ Require all link tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -258,7 +258,7 @@ Require all boolean tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -278,7 +278,7 @@ Require all string tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -298,7 +298,7 @@ Require all strokeStyle tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -318,7 +318,7 @@ Require all border tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -338,7 +338,7 @@ Require all transition tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -358,7 +358,7 @@ Require all shadow tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -378,7 +378,7 @@ Require all gradient tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -398,7 +398,7 @@ Require all typography tokens to follow the format.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -429,7 +429,7 @@ Enforce that all colors are declared in a specific color space (e.g. sRGB).
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -454,7 +454,7 @@ Enforce a consistent naming style (e.g. camelCase).
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -479,7 +479,7 @@ Enforce tokens can’t redeclare the same value (excludes aliases).
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -503,7 +503,7 @@ Enforce tokens have descriptions. Having a description on a group doesn’t coun
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -527,7 +527,7 @@ Enforce colors are within the specified gamut.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -555,7 +555,7 @@ A Match consists of a `match` glob to match against, along with either `required
 :::code-group
 
 <!-- prettier-ignore -->
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -599,7 +599,7 @@ Enforce certain tokens have specific modes.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -635,7 +635,7 @@ Enforce tokens and aliases have `$type`.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -661,7 +661,7 @@ Enforce typography tokens have required properties.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -700,7 +700,7 @@ Each pair consists of a `foreground` and `background` color to test (note that w
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
@@ -747,7 +747,7 @@ Enforce font sizes are no smaller than the given value.
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 
 export default defineConfig({
