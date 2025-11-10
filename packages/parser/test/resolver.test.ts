@@ -157,7 +157,7 @@ describe('Resolver module', () => {
 
   describe('Additional cases', () => {
     it('filesystem', async () => {
-      const cwd = new URL('./test/fixtures/resolver/', import.meta.url);
+      const cwd = new URL('./fixtures/resolver/', import.meta.url);
 
       const filename = new URL('example.resolver.json', cwd);
       const config = defineConfig({}, { cwd });

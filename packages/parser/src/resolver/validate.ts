@@ -80,9 +80,9 @@ const MESSAGE_EXPECTED = {
  * There’s a ton of boilerplate here, only to surface detailed code frames. Is there a better abstraction?
  */
 export function validateResolver(node: DocumentNode, { logger, src }: ValidateResolverOptions) {
-  const baseMessage = { group: 'parser', label: 'resolver', src } as const;
+  const entry = { group: 'parser', label: 'resolver', src } as const;
   if (node.body.type !== 'Object') {
-    logger.error({ ...baseMessage, message: MESSAGE_EXPECTED.OBJECT, node });
+    logger.error({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node });
   }
   const errors: LogEntry[] = [];
 
@@ -98,7 +98,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
       case 'name':
       case 'description': {
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING });
         }
         break;
       }
@@ -106,7 +106,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
       case 'version': {
         hasVersion = true;
         if (member.value.type !== 'String' || member.value.value !== '2025.10') {
-          errors.push({ ...baseMessage, message: `Expected "version" to be "2025.10".`, node: member.value });
+          errors.push({ ...entry, message: `Expected "version" to be "2025.10".`, node: member.value });
         }
         break;
       }
@@ -114,11 +114,11 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
       case 'sets':
       case 'modifiers': {
         if (member.value.type !== 'Object') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
         } else {
           for (const item of member.value.members) {
             if (item.value.type !== 'Object') {
-              errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
             } else {
               const validator = member.name.value === 'sets' ? validateSet : validateModifier;
               errors.push(...validator(item.value, false, { logger, src }));
@@ -131,13 +131,13 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
       case 'resolutionOrder': {
         hasResolutionOrder = true;
         if (member.value.type !== 'Array') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
         } else if (member.value.elements.length === 0) {
-          errors.push({ ...baseMessage, message: `"resolutionOrder" can’t be empty array.`, node: member.value });
+          errors.push({ ...entry, message: `"resolutionOrder" can’t be empty array.`, node: member.value });
         } else {
           for (const item of member.value.elements) {
             if (item.value.type !== 'Object') {
-              errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: item.value });
             } else {
               const itemMembers = getObjMembers(item.value);
               if (itemMembers.$ref?.type === 'String') {
@@ -151,7 +151,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
                   validateModifier(item.value, true, { logger, src });
                 } else {
                   errors.push({
-                    ...baseMessage,
+                    ...entry,
                     message: `Unknown type ${JSON.stringify(itemMembers.type.value)}`,
                     node: itemMembers.type,
                   });
@@ -170,21 +170,20 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
         }
         break;
       }
-
       case '$defs':
       case '$extensions':
+        if (member.value.type !== 'Object') {
+          errors.push({ ...entry, message: `Expected object`, node: member.value });
+        }
+        break;
       case '$ref': {
-        // noop
+        if (member.value.type !== 'String') {
+          errors.push({ ...entry, message: `Expected string`, node: member.value });
+        }
         break;
       }
-
       default: {
-        errors.push({
-          ...baseMessage,
-          message: `Unknown key ${JSON.stringify(member.name.value)}`,
-          node: member.name,
-          src,
-        });
+        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name, src });
         break;
       }
     }
@@ -192,10 +191,10 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
 
   // handle required keys
   if (!hasVersion) {
-    errors.push({ ...baseMessage, message: `Missing "version".`, node, src });
+    errors.push({ ...entry, message: `Missing "version".`, node, src });
   }
   if (!hasResolutionOrder) {
-    errors.push({ ...baseMessage, message: `Missing "resolutionOrder".`, node, src });
+    errors.push({ ...entry, message: `Missing "resolutionOrder".`, node, src });
   }
 
   if (errors.length) {
@@ -204,7 +203,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
 }
 
 export function validateSet(node: ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
-  const baseMessage = { group: 'parser', label: 'resolver', src } as const;
+  const entry = { group: 'parser', label: 'resolver', src } as const;
   const errors: LogEntry[] = [];
   let hasName = !isInline;
   let hasType = !isInline;
@@ -217,46 +216,48 @@ export function validateSet(node: ObjectNode, isInline = false, { src }: Validat
       case 'name': {
         hasName = true;
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         }
         break;
       }
       case 'description': {
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         }
         break;
       }
       case 'type': {
         hasType = true;
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         } else if (member.value.value !== 'set') {
-          errors.push({ ...baseMessage, message: '"type" must be "set".' });
+          errors.push({ ...entry, message: '"type" must be "set".' });
         }
         break;
       }
       case 'sources': {
         hasSources = true;
         if (member.value.type !== 'Array') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
         } else if (member.value.elements.length === 0) {
-          errors.push({ ...baseMessage, message: `"sources" can’t be empty array.`, node: member.value });
+          errors.push({ ...entry, message: `"sources" can’t be empty array.`, node: member.value });
         }
         break;
       }
       case '$defs':
       case '$extensions':
+        if (member.value.type !== 'Object') {
+          errors.push({ ...entry, message: `Expected object`, node: member.value });
+        }
+        break;
       case '$ref': {
-        // noop
+        if (member.value.type !== 'String') {
+          errors.push({ ...entry, message: `Expected string`, node: member.value });
+        }
         break;
       }
       default: {
-        errors.push({
-          ...baseMessage,
-          message: `Unknown key ${JSON.stringify(member.name.value)}`,
-          node: member.name,
-        });
+        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name });
         break;
       }
     }
@@ -264,13 +265,13 @@ export function validateSet(node: ObjectNode, isInline = false, { src }: Validat
 
   // handle required keys
   if (!hasName) {
-    errors.push({ ...baseMessage, message: `Missing "name".`, node });
+    errors.push({ ...entry, message: `Missing "name".`, node });
   }
   if (!hasType) {
-    errors.push({ ...baseMessage, message: `"type": "set" missing.`, node });
+    errors.push({ ...entry, message: `"type": "set" missing.`, node });
   }
   if (!hasSources) {
-    errors.push({ ...baseMessage, message: `Missing "sources".`, node });
+    errors.push({ ...entry, message: `Missing "sources".`, node });
   }
 
   return errors;
@@ -278,7 +279,7 @@ export function validateSet(node: ObjectNode, isInline = false, { src }: Validat
 
 export function validateModifier(node: ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
   const errors: LogEntry[] = [];
-  const baseMessage = { group: 'parser', label: 'resolver', src } as const;
+  const entry = { group: 'parser', label: 'resolver', src } as const;
   let hasName = !isInline;
   let hasType = !isInline;
   let hasContexts = false;
@@ -290,35 +291,35 @@ export function validateModifier(node: ObjectNode, isInline = false, { src }: Va
       case 'name': {
         hasName = true;
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         }
         break;
       }
       case 'description': {
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         }
         break;
       }
       case 'type': {
         hasType = true;
         if (member.value.type !== 'String') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.STRING, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.STRING, node: member.value });
         } else if (member.value.value !== 'modifier') {
-          errors.push({ ...baseMessage, message: '"type" must be "modifier".' });
+          errors.push({ ...entry, message: '"type" must be "modifier".' });
         }
         break;
       }
       case 'contexts': {
         hasContexts = true;
         if (member.value.type !== 'Object') {
-          errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
+          errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: member.value });
         } else if (member.value.members.length === 0) {
-          errors.push({ ...baseMessage, message: `"contexts" can’t be empty object.`, node: member.value });
+          errors.push({ ...entry, message: `"contexts" can’t be empty object.`, node: member.value });
         } else {
           for (const context of member.value.members) {
             if (context.value.type !== 'Array') {
-              errors.push({ ...baseMessage, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
             }
           }
         }
@@ -326,16 +327,18 @@ export function validateModifier(node: ObjectNode, isInline = false, { src }: Va
       }
       case '$defs':
       case '$extensions':
+        if (member.value.type !== 'Object') {
+          errors.push({ ...entry, message: `Expected object`, node: member.value });
+        }
+        break;
       case '$ref': {
-        // noop
+        if (member.value.type !== 'String') {
+          errors.push({ ...entry, message: `Expected string`, node: member.value });
+        }
         break;
       }
       default: {
-        errors.push({
-          ...baseMessage,
-          message: `Unknown key ${JSON.stringify(member.name.value)}`,
-          node: member.name,
-        });
+        errors.push({ ...entry, message: `Unknown key ${JSON.stringify(member.name.value)}`, node: member.name });
         break;
       }
     }
@@ -343,13 +346,13 @@ export function validateModifier(node: ObjectNode, isInline = false, { src }: Va
 
   // handle required keys
   if (!hasName) {
-    errors.push({ ...baseMessage, message: `Missing "name".`, node });
+    errors.push({ ...entry, message: `Missing "name".`, node });
   }
   if (!hasType) {
-    errors.push({ ...baseMessage, message: `"type": "modifier" missing.`, node });
+    errors.push({ ...entry, message: `"type": "modifier" missing.`, node });
   }
   if (!hasContexts) {
-    errors.push({ ...baseMessage, message: `Missing "contexts".`, node });
+    errors.push({ ...entry, message: `Missing "contexts".`, node });
   }
 
   return errors;

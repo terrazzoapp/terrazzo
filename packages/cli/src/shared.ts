@@ -61,7 +61,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         if (!mod.default) {
           // we format it immediately below
           throw new Error(
-            `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs/cli for instructions.`,
+            `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs for instructions.`,
           );
         }
         config = defineConfig(mod.default, { cwd, logger });

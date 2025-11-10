@@ -27,7 +27,7 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
-  "homepage": "https://terrazzo.app/docs/cli/api/js",
+  "homepage": "https://terrazzo.app/docs/reference/js-api",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

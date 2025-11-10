@@ -291,7 +291,7 @@ However, it can be used for `lineHeight` within a [typography token](#typography
 - [Gradient](#gradient)
 - [Typography](#typography)
 
-## Link
+## Link (extension)
 
 **Terrazzo extension**. A link to a [resource](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) such as an image. Not a supported token type outside of Terrazzo.
 
@@ -312,19 +312,45 @@ However, it can be used for `lineHeight` within a [typography token](#typography
 
 ### Usage
 
-Assets such as icons, images, and logos are a critical part of any design system. The behavior of how assets are handled depends on the [plugin](/docs/cli) used. For example, the [CSS plugin](/docs/integrations/css) can optionally embed small files directly into CSS for performance.
+Assets such as icons, images, and logos are a critical part of any design system. The behavior of how assets are handled depends on the [plugin](/docs) used. For example, the [CSS plugin](/docs/integrations/css) can optionally embed small files directly into CSS for performance.
 
 There’s also the image optimization plugin (coming soon) that can optimize image and icon assets.
 
 Refer to each plugin’s documentation to learn what special features are available for Link token types.
 
-## Boolean
+## Boolean (extension)
 
-**Terrazzo extension**. TODO
+**Terrazzo extension**. A true/false token used for simple logic.
+
+```json
+{
+  "isDisabled": {
+    "$type": "boolean",
+    "$value": false
+  }
+}
+```
 
 ## String (extension)
 
-**Terrazzo extension**. TODO
+**Terrazzo extension**. An undefined token that requires the user to define its purpose.
+
+```json
+{
+  "myCustomValue": {
+    "$type": "boolean",
+    "$value": ""
+  }
+}
+```
+
+### Usage
+
+:::warning
+
+String types don’t have behavior in most plugins, and are only an escape hatch for custom plugins. String tokens are NOT RECOMMENDED for user-readable content, since tokens are not meant for internationalization.
+
+:::
 
 ## Stroke Style
 

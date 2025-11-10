@@ -4,15 +4,15 @@ import type Logger from 'logger.js';
 import { merge } from 'merge-anything';
 import type { ResolverNormalized } from '../types.js';
 
+export * from './load.js';
+export * from './normalize.js';
 export * from './validate.js';
 
 export interface CreateResolverOptions {
   logger: Logger;
 }
 
-/**
- *
- */
+/** Create an interface to resolve permutations */
 export function createResolver(resolver: ResolverNormalized, { logger }: CreateResolverOptions) {
   const inputDefaults: Record<string, string> = {};
   const modifierPermutations: [string, string[]][] = []; // figure out modifiers

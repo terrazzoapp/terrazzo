@@ -2,6 +2,7 @@
 import DocsHeaderNav from '../components/docs-header-nav.astro';
 import DocsSidenav from '../components/docs-sidenav.astro';
 import HeadMeta from '../components/head-meta.astro';
+import DocsFooterNav from '../components/docs-footer-nav.astro';
 import '../styles/docs.css';
 
 const { frontmatter } = Astro.props;
@@ -24,74 +25,68 @@ const { frontmatter } = Astro.props;
       .docs {
         --sidebar-width: calc(5 * (var(--grid-size)));
 
-        display: grid;
-        grid-template-areas: "sidenav" "header-nav" "toc" "main";
-        grid-template-columns: auto;
-
-        @media (width >= 900px) {
-          grid-template-areas: "sidenav header-nav header-nav" "sidenav main toc";
-          grid-template-columns: var(--sidebar-width) auto;
-          grid-template-rows: min-content 1fr;
-        }
-
-        @media (width >= 1200px) {
-          grid-template-columns: var(--sidebar-width) auto var(--sidebar-width);
-        }
+        display: flex;
+        flex-direction: column;;
       }
 
       .docs-header-nav {
         grid-area: header-nav;
 
         @media (width >= 900px) {
-          position: sticky;
+          position: fixed;
           top: 0;
           z-index: var(--tz-layer-nav);
+          width: 100%;
         }
       }
 
       .docs-sidenav {
         background-color: var(--tz-color-bg-1);
+        border-block-end: 1px solid var(--grid-color);
         display: flex;
-        grid-area: sidenav;
+
+        @media (width >= 750px) {
+          border-block-end: none;
+        }
 
         @media (width >= 900px) {
           height: 100vh;
+          left: 0;
           overflow-y: auto;
-          position: sticky;
+          position: fixed;
           top: 0;
+          width: var(--sidebar-width);
         }
-      }
-
-      .main {
-        grid-area: main;
       }
 
       .content {
         background: var(--tz-color-bg-1);
-        margin-inline: 0;
         max-width: calc(15 * var(--grid-size) - 1px);
         min-height: calc(100vh - var(--grid-size));
+        padding-block-start: var(--grid-size);
         padding-block-end: 6rem;
-        padding-inline: var(--tz-space-600);
+        padding-inline: calc(0.5 * var(--grid-size));
 
         @media (width >= 900px) {
-          margin-inline-start: calc(2 * var(--grid-size) + 1px);
+          margin-inline-start: calc(var(--sidebar-width) + 2 * var(--grid-size) + 1px);
         }
       }
     </style>
   </head>
   <body>
     <div class="docs">
-      <div class="docs-sidenav">
-        <DocsSidenav />
-      </div>
-      <div class="docs-header-nav">
+      <header class="docs-header-nav">
         <DocsHeaderNav />
-      </div>
+      </header>
       <main class="main">
+        <div class="docs-sidenav">
+          <DocsSidenav />
+        </div>
         <div class="content md-content">
           <slot />
+          <DocsFooterNav />
         </div>
+        <div />
       </main>
     </div>
     <script src="../scripts/copy-code.js"></script>

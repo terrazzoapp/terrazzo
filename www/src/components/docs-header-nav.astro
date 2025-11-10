@@ -1,38 +1,27 @@
 ---
 import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import SearchBox from './SearchBox.js';
+import Terrazzo from './Terrazzo.astro';
 import ThemeSwitcher from './ThemeSwitcher.js';
 ---
 
-<header class="header-nav">
-  <div />
-  <div class="search">
-    <SearchBox client:only="react" />
-  </div>
+<div class="header-nav">
+  <a class="logo-link" href="/"><Terrazzo size="1.25rem" /></a>
+  <div class="search"><SearchBox client:only="react" /></div>
   <nav class="nav">
     <ul>
       <li>
         <ThemeSwitcher client:load />
       </li>
       <li>
-        <a
-          href="https://github.com/terrazzoapp/terrazzo"
-          title="Terrazzo on GitHub"
-        >
-          <GitHubLogo />
-        </a>
+        <a href="https://github.com/terrazzoapp/terrazzo" title="Terrazzo on GitHub"><GitHubLogo /></a>
       </li>
       <li>
-        <a
-          href="https://discord.gg/cju3dXyHNd"
-          title="Join Terrazzo on Discord"
-        >
-          <DiscordLogo />
-        </a>
+        <a href="https://discord.gg/cju3dXyHNd" title="Join Terrazzo on Discord"><DiscordLogo /></a>
       </li>
     </ul>
   </nav>
-</header>
+</div>
 
 <style>
   .header-nav {
@@ -41,22 +30,30 @@ import ThemeSwitcher from './ThemeSwitcher.js';
     border-top: 1px solid var(--grid-color);
     border-bottom: 1px solid var(--grid-color);
     color: var(--tz-color-text-1);
-    display: grid;
-    grid-template-columns: 0px auto 1fr;
+    display: flex;
     max-height: var(--grid-size);
-    justify-content: space-between;
-    padding-inline: var(--tz-space-500);
+    padding-inline-end: var(--tz-space-500);
     width: 100%;
 
     @media (width >= 900px) {
       border-top: none;
-      border-left: 1px solid var(--grid-color);
-      grid-template-columns: 1fr auto 1fr;
+    }
+  }
+
+  .logo-link {
+    align-items: center;
+    border-inline-end: 1px solid var(--grid-color);
+    padding-inline-start: calc(0.5 * var(--grid-size));
+    padding-inline-end: calc(0.5 * var(--grid-size));
+    display: flex;
+    height: var(--grid-size);
+
+    @media (width >= 750px) {
+      width: calc(var(--sidebar-width) + 1px);
     }
   }
 
   .search {
-    flex: 1 0 auto;
   }
 
   .nav {
@@ -64,15 +61,23 @@ import ThemeSwitcher from './ThemeSwitcher.js';
     flex-grow: 0 0 auto;
     display: flex;
     justify-content: flex-end;
+    margin-inline-start: auto;
     position: relative;
+
+    @media (width >= 750px) {
+      border-inline-start: 1px solid var(--grid-color);
+    }
 
     ul {
       align-items: center;
       display: flex;
-      gap: var(--tz-space-300);
       list-style: none;
       margin: 0;
       padding: 0;
+
+      @media (width >= 750px) {
+        gap: var(--tz-space-300);
+      }
     }
 
     li {

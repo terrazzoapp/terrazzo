@@ -1,6 +1,7 @@
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
+import { loadResolver } from '../resolver/load.js';
 import type { ConfigInit, InputSource, ParseOptions, ResolverNormalized } from '../types.js';
 import { loadSources } from './load.js';
 
@@ -25,8 +26,13 @@ export default async function parse(
   const inputs = Array.isArray(_input) ? _input : [_input];
 
   const totalStart = performance.now();
+
+  // 1. Resolver
+  const resolver = loadResolver(inputs, { logger, yamlToMomoa });
+
+  // 2. No resolver (tokens)
   const initStart = performance.now();
-  const { tokens, sources, resolver } = await loadSources(inputs, {
+  const { tokens, sources } = await loadSources(inputs, {
     logger,
     config,
     continueOnError,

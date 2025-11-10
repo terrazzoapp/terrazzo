@@ -21,7 +21,7 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
-  "homepage": "https://terrazzo.app/docs/cli/integrations/vanilla-extract",
+  "homepage": "https://terrazzo.app/docs/integrations/vanilla-extract",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

@@ -331,31 +331,18 @@ export interface Resolver {
 }
 
 /** Resolver where all tokens are loaded and flattened in-memory, so only the final merging is left */
-export interface ResolverNormalized extends Omit<Resolver, 'resolutionOrder'> {
+export interface ResolverNormalized {
+  name: string | undefined;
+  version: '2025.10';
+  description: string | undefined;
+  sets: Record<string, ResolverSet> | undefined;
+  modifiers: Record<string, ResolverModifier> | undefined;
   /**
    * Array of all sets and modifiers that have been converted to inline,
    * regardless of original declaration. In a normalized resolver, only a single
    * pass over the resolutionOrder array is needed.
    */
-  resolutionOrder: (
-    | {
-        name: string;
-        type: 'set';
-        description: string | undefined;
-        sources: Group[];
-        $extensions: Record<string, unknown> | undefined;
-        $defs: Record<string, unknown> | undefined;
-      }
-    | {
-        name: string;
-        type: 'modifier';
-        description: string | undefined;
-        contexts: Record<string, Group[]>;
-        default: string | undefined;
-        $extensions: Record<string, unknown> | undefined;
-        $defs: Record<string, unknown> | undefined;
-      }
-  )[];
+  resolutionOrder: (ResolverSetNormalized | ResolverModifierNormalized)[];
 }
 
 export interface ResolverModifier<Context extends string = string> {
@@ -371,6 +358,16 @@ export type ResolverModifierInline<Context extends string = string> = ResolverMo
   type: 'modifier';
 };
 
+export interface ResolverModifierNormalized {
+  name: string;
+  type: 'modifier';
+  description: string | undefined;
+  contexts: Record<string, Group[]>;
+  default: string | undefined;
+  $extensions: Record<string, unknown> | undefined;
+  $defs: Record<string, unknown> | undefined;
+}
+
 export interface ResolverSet {
   description?: string;
   sources: (Group | ReferenceObject)[];
@@ -379,6 +376,15 @@ export interface ResolverSet {
 }
 
 export type ResolverSetInline = ResolverSet & { name: string; type: 'set' };
+
+export interface ResolverSetNormalized {
+  name: string;
+  type: 'set';
+  description: string | undefined;
+  sources: Group[];
+  $extensions: Record<string, unknown> | undefined;
+  $defs: Record<string, unknown> | undefined;
+}
 
 interface TokenTransformedBase {
   /** Original Token ID */

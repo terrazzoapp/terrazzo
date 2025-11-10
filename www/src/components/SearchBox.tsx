@@ -59,7 +59,6 @@ function DocsSearchHitLvl1({ hit }: { hit: Hit }) {
       <span className='tz-searchbox-result-overflow'>
         <span
           className='tz-searchbox-result-title'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1.value ?? hit.hierarchy?.lvl1,
           }}
@@ -76,14 +75,12 @@ function DocsSearchHitLvl2({ hit }: { hit: Hit }) {
       <span className='tz-searchbox-result-overflow'>
         <span
           className='tz-searchbox-result-title'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl2?.value ?? hit.hierarchy?.lvl2,
           }}
         />
         <span
           className='tz-searchbox-result-desc'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -100,14 +97,12 @@ function DocsSearchHitLvl3({ hit }: { hit: Hit }) {
       <span className='tz-searchbox-result-overflow'>
         <span
           className='tz-searchbox-result-title'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl3?.value ?? hit.hierarchy?.lvl3,
           }}
         />
         <span
           className='tz-searchbox-result-desc'
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -123,13 +118,13 @@ function DocsSearchHitLvl4({ hit }: { hit: Hit }) {
       <Heading className='tz-searchbox-result-icon' />
       <span className='tz-searchbox-result-overflow'>
         <span
-          className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-title'
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl4?.value ?? hit.hierarchy?.lvl4,
           }}
         />
         <span
-          className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-desc'
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}
@@ -145,13 +140,13 @@ function DocsSearchContent({ hit }: { hit: Hit }) {
       <Pilcrow className='tz-searchbox-result-icon' />
       <span className='tz-searchbox-result-overflow'>
         <span
-          className='tz-searchbox-result-title' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-title'
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.content?.value,
           }}
         />
         <span
-          className='tz-searchbox-result-desc' // biome-ignore lint/security/noDangerouslySetInnerHtml: Algolia-provided
+          className='tz-searchbox-result-desc'
           dangerouslySetInnerHTML={{
             __html: hit._highlightResult?.hierarchy?.lvl1?.value ?? hit.hierarchy?.lvl1,
           }}

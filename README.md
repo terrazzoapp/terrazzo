@@ -2,12 +2,12 @@
 
 This repo serves as the home for:
 
-- [Terrazzo CLI](https://terrazzo.app/docs/cli): generate code from [DTCG tokens](https://tr.designtokens.org/format/) (formerly known as “Cobalt UI”)
-  - [CSS](https://terrazzo.app/docs/cli/integrations/css)
-  - [Sass](https://terrazzo.app/docs/cli/integrations/sass)
-  - [JS/TS](https://terrazzo.app/docs/cli/integrations/js)
-  - [Swift](https://terrazzo.app/docs/cli/integrations/swift)
-  - [Tailwind](https://terrazzo.app/docs/cli/integrations/tailwind)
+- [Terrazzo CLI](https://terrazzo.app/docs): generate code from [DTCG tokens](https://tr.designtokens.org/format/) (formerly known as “Cobalt UI”)
+  - [CSS](https://terrazzo.app/docs/integrations/css)
+  - [Sass](https://terrazzo.app/docs/integrations/sass)
+  - [JS/TS](https://terrazzo.app/docs/integrations/js)
+  - [Swift](https://terrazzo.app/docs/integrations/swift)
+  - [Tailwind](https://terrazzo.app/docs/integrations/tailwind)
 - [Terrazzo Color Picker](https://terrazzo.app/docs/components/color-picker), a futuristic colorpicker that can handle wide gamut and high bit-depth colors in stunning color reproduction
 - Token Lab (coming soon): generate design systems from scratch, or start from an existing OSS design system
 

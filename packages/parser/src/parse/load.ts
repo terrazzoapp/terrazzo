@@ -10,7 +10,7 @@ import {
 import type { GroupNormalized, TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { toMomoa } from '../lib/momoa.js';
 import type Logger from '../logger.js';
-import type { InputSource, ParseOptions, ResolverNormalized, TransformVisitors } from '../types.js';
+import type { InputSource, ParseOptions, TransformVisitors } from '../types.js';
 import { normalize } from './normalize.js';
 import {
   graphAliases,
@@ -20,7 +20,6 @@ import {
   tokenFromNode,
   tokenRawValuesFromNode,
 } from './token.js';
-import { isLikelyResolver } from '../resolver/validate.js';
 
 /** Ephemeral format that only exists while parsing the document. This is not confirmed to be DTCG yet. */
 export interface IntermediaryToken {
@@ -58,7 +57,6 @@ export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnEr
 export interface LoadSourcesResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];
-  resolver: ResolverNormalized | undefined;
 }
 
 /** Load from multiple entries, while resolving remote files */
@@ -91,22 +89,7 @@ export async function loadSources(
     document = result.document;
     sourceByFilename = result.sources;
     refMap = result.refMap;
-    let hasResolver = false;
     for (const [filename, source] of Object.entries(result.sources)) {
-      // Only 1 resolver can be loaded. Check here, even after bundling, since a resolver may be loaded async via a $ref,
-      // and we want to err on those too.
-      if (isLikelyResolver(source.document)) {
-        if (hasResolver) {
-          logger.error({
-            ...entry,
-            message: 'Multiple resolver documents found. Only one resolver may be loaded per build.',
-            node: source.document,
-            src: source.src,
-          });
-        }
-        hasResolver = true;
-      }
-
       const i = sources.findIndex((s) => s.filename.href === filename);
       if (i === -1) {
         sources.push(source);
@@ -222,11 +205,7 @@ export async function loadSources(
     group.tokens.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
   }
 
-  return {
-    tokens: tokensSorted,
-    sources,
-    resolver: undefined,
-  };
+  return { tokens: tokensSorted, sources };
 }
 
 function transformer(transform: TransformVisitors): BundleOptions['parse'] {
