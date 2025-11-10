@@ -6,7 +6,9 @@ layout: ../../../layouts/docs.astro
 # Modes + Theming
 
 :::note
-As of Dec 2024, the DTCG spec is in the process of reviewing a new proposal that can tackle modes and theming at a greater scale. These docs outline the approach that Terrazzo pioneered in 2021, and still supports today. [See the Resolver Proposal section](#dtcg-resolver-proposal) to learn more.
+
+**Update Oct 2025**: The first stable version, [v2025.10](https://www.designtokens.org/technical-reports/), is live! Among the many updates, DTCG now supports [resolvers](https://www.designtokens.org/tr/2025.10/resolver/) which are the standard way to solve this problem. See the [resolver section](#dtcg-resolvers).
+
 :::
 
 Modes are **alternate values of a token.** Token modes aren’t supported by the DTCG spec yet, but even so are a common part of most design systems. Modes can solve common problems like theming, responsive design, accessibility options, user preference, and more!
@@ -384,43 +386,16 @@ Don’t use modes for things that can be used on the same page:
 - Color shades/hues
 - Components (e.g. Card or Button)
 
-## DTCG Resolver proposal
+## DTCG Resolvers
 
-The [Resolver proposal](https://resolver-spec.netlify.app/info/rationale/) is a currently-under-review proposal that is the next iteration on the modes idea. It keeps all of the functionality, while solving for additional problems in an elegant and performant way. While this modes approach was pioneered by Cobalt in 2021, and Figma Variables took the same approach, there were some problems left to be solved by this method.
+In Oct 2025, about 4 years after Cobalt pioneered the modes approach in 2021, DTCG has decided [resolvers](https://www.designtokens.org/tr/2025.10/resolver/) will be the way forward to solve this. Resolvers were suggested by Tokens Studio folks, taking into account Terrazzo modes and dozens of other implementations, while solving some of the problems (in fact, the Terrazzo team worked on this as well!).
 
-### Response to modes
+Namely, the following problems are solved by using a resolver instead of Terrazzo modes:
 
-This section is a background of why the Resolver proposal was sought due to limitations with modes.
+1. **Fallbacks**: this is the main one. Say you have a `dark-protanopia` mode that’s not available for some tokens. How do you specify you want to fall back to `dark` mode, not `light`? With a resolver you can!
+2. **Duplication**: another way of framing the previous problem, was that you had to duplicate values over and over again so all modes had 100% coverage. But resolvers require only _unique_ values, resulting in smaller, simpler systems.
+3. **Semantics**: Terrazzo modes all coexist in the same space, for instance `light` and `large` may conflict when they should have nothing to do with each other. A resolver has separate “swimlanes” where those would be associated with `theme` and `size` respectively, keeping intent and application clearer.
 
-#### Problem 1: multi-axis modes
+However, the resolver spec _does not_ solve a problem where multiple contexts all fight over the same token—that, ultimately is up to decisions and architecture you make that allows that to be possible.
 
-The main problem with modes is that in many ways they can only represent one axis. This is why many systems, including Figma Variables, represent the values in a table—rows represent tokens, columns represent modes. But what if you need “columns” in a different dimension?
-
-Consider GitHub’s color example just above—you have light and dark mode, and high contrast and colorblind modes. You could interpret those as 2 “axes:” theme and diminished color vision. Though it’s possible to manage those with modes, you have to calculate every permutation of both axes, which results in a _lot_ of tokens to manage. Multiply that across your entire design system, and you [just have a headache](https://www.youtube.com/watch?v=-qlAjXbbn6k).
-
-#### Problem 2: fallbacks
-
-Continuing the same train of thought, say along the diminished color vision axis, many modes shared several values. You would have to redeclare and duplicate those values over-and-over again, since modes only allow for a single default fallback\*. The Resolver proposal allows you, for every axis, to declare the fallback order, so you can create more of a “tree” of tokens.
-
-While that may sound more complex, in practice it results in an exponentially-reduced number of tokens to manage. And allows you to more-easily scale your design system, because you “opt in” to complexity, rather than having to engineer your way out of day 1 complexity.
-
-:::note
-
-Terrazzo 1.0 (Cobalt) experimented with a way to use modes in aliases (`{token.foo#mode}`), but the value was ambiguous! Saying “pretend we’re in mode X while we’re in mode Y” is doable across a single mode. But opening up that can of worms doesn’t stop people from having _those_ alias to other modes as well, and you end up in a state of confusion where neither user nor machine is quite sure what mode to apply if the aliases can jump back-and-forth across multiple modes at any time (_“If everything is a mode, nothing is!“_).
-
-:::
-
-#### Problem 3: which mode when?
-
-The last major problem of modes is that there’s no clear boundary as to what triggers what mode, and when—that is up for you to decide. While there are best practices outlined here, that mechanism is opaque. That can lead to unnecessary complexity when you have “mixed modes,” pulling tokens from multiple modes at once.
-
-While the Resolver Proposal doesn’t fully outline the mode changes in code form, it does do some work of providing stronger “hints” around the mechanisms to load a certain set of tokens. It implements the principles of [functional purity](https://en.wikipedia.org/wiki/Pure_function), and makes it simple to tell given a couple “inputs” (e.g. “light + high contrast” or “dark + deuteranopia”), what the outputs (tokens) will be.
-
-### Resources
-
-So while we’ve outlined some of the shortfalls of modes, the actual syntax is still under editor review and will be shared more in detail later. The current draft version is **able to solve all problems mentioned here, plus some.** But making sure other problems don’t sneak in accidentally, and simplifying the syntax to be as easy-to-use as possible, is still in progress. So rather than go into further detail on the “how,” you can consult the following resources until more is ready to share:
-
-- [Resolver proposal site, with examples](https://resolver-spec.netlify.app/)
-- [Resolver proposal early prototype proof of concept](https://0lrskm.csb.app/)
-
-Look forward to hear more about the Resolver proposal in early 2025!
+As of Nov 2025, Terrazzo is actively working on supporting resolvers, as well as the full v2025.10 version of DTCG, in Terrazzo’s first stable release. Stay tuned!
