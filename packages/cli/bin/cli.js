@@ -38,9 +38,9 @@ const require = createRequire(process.cwd());
 dotenv.config();
 
 const [, , ...argsRaw] = process.argv;
-
 const { values: flags, positionals } = parseArgs({
   args: argsRaw,
+  strict: true,
   allowPositionals: true,
   options: {
     config: { type: 'string', short: 'c' },

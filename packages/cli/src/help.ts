@@ -12,7 +12,7 @@ export function helpCmd() {
 
   [options]
     --help          Show this message
-    --config, -c    Path to config (default: ./terrazzo.config.js)
+    --config, -c    Path to config (default: ./terrazzo.config.ts)
     --quiet         Suppress warnings
 `);
 }

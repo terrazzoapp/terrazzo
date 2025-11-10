@@ -29,6 +29,15 @@ describe('tz check', () => {
     expect(output).toMatch('✔  No errors');
   });
 
+  it('TS', async () => {
+    const cwd = new URL('../', import.meta.url);
+    const { stdout } = await execa('node', [cmd, '--config', 'test/fixtures/check-ts/terrazzo.config.ts', 'check'], {
+      cwd,
+    });
+    const output = stripAnsi(stdout);
+    expect(output).toMatch('✔  No errors');
+  });
+
   it('invalid', async () => {
     const command = async () => {
       const cwd = new URL('../', import.meta.url);
