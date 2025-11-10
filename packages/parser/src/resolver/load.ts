@@ -1,9 +1,9 @@
-import { type DocumentNode, evaluate } from '@humanwhocodes/momoa';
-import { type InputSource, maybeRawJSON } from '@terrazzo/json-schema-tools';
+import type { DocumentNode } from '@humanwhocodes/momoa';
+import { maybeRawJSON } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
 import type Logger from '../logger.js';
-import type { Resolver, ResolverNormalized } from '../types.js';
+import type { InputSource, ResolverNormalized } from '../types.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
 
@@ -59,7 +59,7 @@ export async function loadResolver(
   if (resolverDoc) {
     validateResolver(resolverDoc, { logger, src: inputs[0]!.src });
     return await normalizeResolver(resolverDoc, {
-      filename: inputs[0]!.filename,
+      filename: inputs[0]!.filename!,
       logger,
       src: inputs[0]!.src,
       yamlToMomoa,

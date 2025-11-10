@@ -1,7 +1,7 @@
 html {
   --grid-color: color-mix(in oklab, var(--tz-color-base-blue-700), transparent 62.5%);
   --grid-size: 40px;
-  height: 100%;
+
   background-color: var(--tz-color-bg-1);
   background-image:
     linear-gradient(
@@ -14,6 +14,7 @@ html {
   background-position: 0 calc(-1 / 16 * 1rem);
   background-repeat: repeat;
   background-size: var(--grid-size) var(--grid-size);
+  height: 100%;
 }
 
 body {

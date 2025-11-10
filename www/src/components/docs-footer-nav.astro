@@ -1,16 +1,15 @@
 ---
 import { DOCS_NAV, DOCS_NAV_V2 } from '../config/pages.js';
 
-const nav = (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV)
-  .map((section) => (section.url ? section : (section.items ?? [])))
-  .flat();
+const nav = (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).flatMap((section) =>
+  section.url ? section : (section.items ?? []),
+);
 
-let prev;
-let next;
+let prev: { url?: string; title?: string } | undefined;
+let next: { url?: string; title?: string } | undefined;
 
 for (let i = 0; i < nav.length; i++) {
-  console.log(nav[i].url, Astro.url.pathname.replace(/\/?$/, '/'));
-  if (nav[i].url && Astro.url.pathname.replace(/\/?$/, '/') === nav[i].url) {
+  if (nav[i]?.url && Astro.url.pathname.replace(/\/?$/, '/') === nav[i]?.url) {
     prev = nav[i - 1];
     next = nav[i + 1];
   }
@@ -49,6 +48,11 @@ for (let i = 0; i < nav.length; i++) {
     color: var(--tz-color-text-3);
     display: block;
     font-size: 0.75rem;
+  }
+
+  &:hover,
+  &:focus {
+    border-color: var(--tz-color-border-focus);
   }
 }
 </style>

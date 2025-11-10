@@ -96,8 +96,8 @@
 }
 
 .tz-omnibar-input {
-  border-block-start: none;
   border-block-end: 1px solid var(--grid-color);
+  border-block-start: none;
   border-inline-end: 1px solid var(--grid-color);
   border-inline-start: none;
   border-radius: 0;

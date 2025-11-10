@@ -1,5 +1,5 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import type { Group, TokenNormalized, TokensSet } from '@terrazzo/token-tools';
+import type { Group, TokenNormalized } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
 

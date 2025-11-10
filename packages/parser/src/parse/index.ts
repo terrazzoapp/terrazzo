@@ -28,7 +28,7 @@ export default async function parse(
   const totalStart = performance.now();
 
   // 1. Resolver
-  const resolver = loadResolver(inputs, { logger, yamlToMomoa });
+  const resolver = await loadResolver(inputs, { logger, yamlToMomoa });
 
   // 2. No resolver (tokens)
   const initStart = performance.now();

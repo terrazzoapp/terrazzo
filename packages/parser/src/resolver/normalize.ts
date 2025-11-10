@@ -1,3 +1,4 @@
+import { type ArrayNode, type DocumentNode, evaluate, type ObjectNode, type StringNode } from '@humanwhocodes/momoa';
 import { bundle, getObjMember, getObjMembers, parseRef } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
@@ -9,7 +10,6 @@ import type {
   ResolverSetInline,
   ResolverSetNormalized,
 } from '../types.js';
-import { evaluate, type ArrayNode, type DocumentNode, type ObjectNode, type StringNode } from '@humanwhocodes/momoa';
 import { validateModifier, validateSet } from './validate.js';
 
 export interface NormalizeResolverOptions {
@@ -30,6 +30,7 @@ export async function normalizeResolver(
   return {
     name: resolver.name,
     version: resolver.version,
+    description: resolver.description,
     sets: resolver.sets,
     modifiers: resolver.modifiers,
     resolutionOrder: await Promise.all(
