@@ -206,7 +206,6 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
           // Note: sometimes plugins will be loaded multiple times, in which case it’s expected
           // they’re register rules again for lint(). Only throw an error if plugin A and plugin B’s
           // rules conflict.
-
           if (allRules.get(rule) && allRules.get(rule) !== plugin.name) {
             logger.error({
               group: 'config',
@@ -229,7 +228,7 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
 
         const value = config.lint.rules[id];
         let severity: LintRuleSeverity = 'off';
-        let options: any;
+        let options: any = {};
         if (typeof value === 'number' || typeof value === 'string') {
           severity = value;
         } else if (Array.isArray(value)) {

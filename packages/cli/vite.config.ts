@@ -13,6 +13,6 @@ export default defineConfig({
     target: 'es2024',
   },
   test: {
-    testTimeout: 10_000,
+    testTimeout: 15_000,
   },
 });

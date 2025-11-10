@@ -70,15 +70,15 @@ The next step is replacing the `cobalt` / `co` commands with `terrazzo` or `tz`:
 
 The new CLI commands only have a few changes, but see [the CLI docs](/docs/reference/cli) for more info.
 
-## 3. Change to terrazzo.config.js
+## 3. Change to terrazzo.config.ts
 
-First, rename `tokens.config.js` → `terrazzo.config.js`.
+First, rename `tokens.config.js` → `terrazzo.config.ts`.
 
 Next, you can use the wrapper to fully type the config and provide helpful validation:
 
 :::code-group
 
-```diff [terrazzo.config.js]
+```diff [terrazzo.config.ts]
 + import { defineConfig } from "@terrazzo/cli";
 
 - export default {
@@ -98,7 +98,7 @@ With the release of the [Resolver spec](https://www.designtokens.org/TR/2025.10/
 
 :::code-group
 
-```diff [terrazzo.config.mjs]
+```diff [terrazzo.config.ts]
   import css from "@terrazzo/plugin-css";
 
   export default {

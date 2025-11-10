@@ -15,7 +15,7 @@ Requires [Node.js 20 or later](https://nodejs.org). With that installed, and a `
 npm i -D @terrazzo/cli @terrazzo/plugin-swift
 ```
 
-Add a `terrazzo.config.js` to the root of your project with:
+Add a `terrazzo.config.ts` to the root of your project with:
 
 ```ts
 import { defineConfig } from "@terrazzo/cli";

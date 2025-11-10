@@ -19,7 +19,7 @@ npm i -D @terrazzo/plugin-js
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import pluginJS from "@terrazzo/plugin-js";
 
@@ -46,11 +46,11 @@ token("color.blue.500");
 
 ## Config
 
-Configure options in [terrazzo.config.js](/docs/reference/config):
+Configure options in [terrazzo.config.ts](/docs/reference/config):
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import pluginJS from "@terrazzo/plugin-js";
 

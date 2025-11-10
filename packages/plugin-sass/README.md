@@ -10,7 +10,7 @@ Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](https
 npm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
 ```
 
-Add a `terrazzo.config.js` to the root of your project:
+Add a `terrazzo.config.ts` to the root of your project:
 
 ```ts
 import { defineConfig } from "@terrazzo/cli";

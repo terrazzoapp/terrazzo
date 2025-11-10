@@ -19,11 +19,11 @@ npm i -D @terrazzo/plugin-css @terrazzo/plugin-sass
 
 :::
 
-And add both to your `terrazzo.config.js` under `plugins` (order doesn’t matter):
+And add both to your `terrazzo.config.ts` under `plugins` (order doesn’t matter):
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import sass from "@terrazzo/plugin-sass";
@@ -57,7 +57,7 @@ Be sure to **load both files in your project!** Otherwise you’ll have missing 
 
 :::code-group
 
-```ts [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import sass from "@terrazzo/plugin-sass";

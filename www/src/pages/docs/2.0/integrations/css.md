@@ -19,11 +19,11 @@ npm i -D @terrazzo/cli @terrazzo/plugin-css
 
 :::
 
-And add it to `terrazzo.config.js` under `plugins`:
+And add it to `terrazzo.config.ts` under `plugins`:
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import pluginCSS from "@terrazzo/plugin-css";
 
@@ -125,7 +125,7 @@ By default, Terrazzo rounds colors to [30-bit depth](<https://en.wikipedia.org/w
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 export default defineConfig({
   plugins: [
     css({
@@ -165,7 +165,7 @@ Rather than scanning your code like Tailwind does, this takes a simpler approach
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import { kebabCase } from "scule";
@@ -288,11 +288,11 @@ While the general philosophy is similar to Tailwind, this approach differs:
 
 ## Config
 
-Configure options in [terrazzo.config.js](/docs/reference/config):
+Configure options in [terrazzo.config.ts](/docs/reference/config):
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import { kebabCase } from "scule";
@@ -362,7 +362,7 @@ For example, a common pattern for `light` and `dark` mode, with the following co
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 
@@ -446,7 +446,7 @@ Use the `baseScheme` option to set a color-scheme on your base selector (typical
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 
@@ -477,7 +477,7 @@ For more granular control, specify a `scheme` for individual mode selectors:
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 
@@ -560,7 +560,7 @@ You can use any valid [`color-scheme`](https://developer.mozilla.org/en-US/docs/
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 

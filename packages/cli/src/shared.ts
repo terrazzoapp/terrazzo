@@ -3,9 +3,12 @@ import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
+import { createServer, type ViteDevServer } from 'vite';
+import { ViteNodeRunner } from 'vite-node/client';
+import { ViteNodeServer } from 'vite-node/server';
 
 export const cwd = new URL(`${pathToFileURL(process.cwd())}/`); // trailing slash needed to interpret as directory
-export const DEFAULT_CONFIG_PATH = new URL('./terrazzo.config.mjs', cwd);
+export const DEFAULT_CONFIG_PATH = new URL('./terrazzo.config.ts', cwd);
 export const DEFAULT_TOKENS_PATH = new URL('./tokens.json', cwd);
 
 export type Command = 'build' | 'check' | 'help' | 'init' | 'version';
@@ -33,6 +36,11 @@ export interface LoadConfigOptions {
 
 /** Load config */
 export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
+  /**
+   * Vite server for loading .ts config files
+   * TODO: remove me when Node 24 is the oldest-supported Node version
+   */
+  let viteServer: ViteDevServer | undefined;
   try {
     let config: ConfigInit = {
       tokens: [DEFAULT_TOKENS_PATH],
@@ -52,16 +60,35 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         process.exit(1);
       }
       configPath = resolveConfig(flags.config);
+      if (!configPath) {
+        logger.error({ group: 'config', message: `Could not locate ${flags.config}` });
+      }
     }
 
     const resolvedConfigPath = resolveConfig(configPath);
     if (resolvedConfigPath) {
       try {
-        const mod = await import(resolvedConfigPath);
+        // Note: we create a vite-node instance only when resolving the config,
+        // because in most scenarios we only ever need this once and never again.
+        // even in watch mode we don’t reload the config, so keeping a vite-node
+        // “hot” instance doesn’t provide obvious benefits (only potential memory leaks)
+        viteServer = await createServer({ mode: 'development' });
+        const viteNodeServer = new ViteNodeServer(viteServer);
+        const viteNodeRunner = new ViteNodeRunner({
+          root: viteServer.config.root,
+          base: viteServer.config.base,
+          fetchModule(...args) {
+            return viteNodeServer.fetchModule(...args);
+          },
+          resolveId(...args) {
+            return viteNodeServer.resolveId(...args);
+          },
+        });
+        const mod = await viteNodeRunner.executeFile(resolvedConfigPath);
         if (!mod.default) {
           // we format it immediately below
           throw new Error(
-            `No default export found in ${path.relative(cwd.href, resolvedConfigPath)}. See https://terrazzo.dev/docs for instructions.`,
+            `No default export found in ${resolvedConfigPath}. See https://terrazzo.dev/docs for instructions.`,
           );
         }
         config = defineConfig(mod.default, { cwd, logger });
@@ -72,12 +99,23 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
       logger.error({ group: 'config', message: 'No config file found. Create one with `npx terrazzo init`.' });
     }
 
+    // clean up
+    if (viteServer) {
+      await viteServer?.close();
+    }
+
     return {
       config,
       configPath: resolvedConfigPath!,
     };
   } catch (err) {
     printError((err as Error).message);
+
+    // clean up
+    if (viteServer) {
+      await viteServer.close();
+    }
+
     process.exit(1);
   }
 }
@@ -190,22 +228,19 @@ export function printSuccess(message: string, startTime?: number) {
 }
 
 /** Resolve config */
-export function resolveConfig(filename?: string) {
+export function resolveConfig(filename?: string): string | undefined {
   // --config [configpath]
-  if (filename) {
-    const configPath = new URL(filename, cwd);
-    if (fs.existsSync(configPath)) {
-      return configPath.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.
-    }
-    return undefined;
+  if (filename && fs.existsSync(new URL(filename, cwd))) {
+    return filename;
   }
-
   // note: the order isn’t significant; just try for most-common first.
-  // if a user has multiple files differing only by file extension, behavior is
-  // unpredictable and that’s on them.
-  return ['.js', '.mjs', '.cjs']
-    .map((ext) => new URL(`./terrazzo.config${ext}`, cwd))
-    .find((configPath) => fs.existsSync(configPath))?.href; // ⚠️ ESM wants "file://..." URLs on Windows & Unix.;
+  // if a user has multiple config files with different extensions that’s their fault
+  for (const ext of ['.ts', '.js', '.mts', '.cts', '.mjs', '.cjs']) {
+    const maybeFilename = `terrazzo.config${ext}`;
+    if (fs.existsSync(maybeFilename)) {
+      return maybeFilename;
+    }
+  }
 }
 
 /** Resolve tokens.json path (for lint command) */

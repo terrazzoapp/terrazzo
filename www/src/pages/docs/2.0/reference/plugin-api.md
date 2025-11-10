@@ -90,11 +90,11 @@ All of this creates a “database” for the `css` format that can be queried in
 
 The build step can run as many queries as it wants, requesting the tokens in any order, so that the output file can be built in any order. When the file is complete, calling `buildFile(filename, contents)` will save the file and Terrazzo will write the file to disk. The build step can output as many files as it wants.
 
-Lastly, you can test your own plugin out locally! Simply add it to `terrazzo.config.js`:
+Lastly, you can test your own plugin out locally! Simply add it to `terrazzo.config.ts`:
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import myCssPlugin from "./my-css-plugin.js";
 
@@ -181,7 +181,7 @@ export default function myPlugin() {
 | Previous step |                               |
 | Next step     | [lint](#lint)                 |
 
-The `config()` hook fires after all plugins have been registered and the final config is resolved. This is handy when you need to grab a value from `terrazzo.config.js` (but note you can’t modify anything!).
+The `config()` hook fires after all plugins have been registered and the final config is resolved. This is handy when you need to grab a value from `terrazzo.config.ts` (but note you can’t modify anything!).
 
 :::code-group
 
@@ -266,7 +266,7 @@ Like ESLint, every rule must have a `create(context)` callback. In there, you ca
 
 :::code-group
 
-```js [terrazzo.config.js]
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import myPlugin from "./my-plugin/index.js";
 

@@ -1,16 +1,5 @@
 # @terrazzo/plugin-tailwind
 
-## 2.0.0-alpha.2
-
-### Patch Changes
-
-- [#568](https://github.com/terrazzoapp/terrazzo/pull/568) [`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48) Thanks [@drwpow](https://github.com/drwpow)! - Fix border tokens not cascading correctly across modes
-
-- Updated dependencies [[`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48)]:
-  - @terrazzo/plugin-css@2.0.0-alpha.2
-  - @terrazzo/cli@2.0.0-alpha.2
-  - @terrazzo/token-tools@2.0.0-alpha.2
-
 ## 2.0.0
 
 ### Minor Changes
@@ -24,6 +13,8 @@
 ### Patch Changes
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - Validation moved to lint rules, which means token validation can be individually configured, and optionally extended.
+
+- [#568](https://github.com/terrazzoapp/terrazzo/pull/568) [`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48) Thanks [@drwpow](https://github.com/drwpow)! - Fix border tokens not cascading correctly across modes
 
 ## 0.3.3
 
