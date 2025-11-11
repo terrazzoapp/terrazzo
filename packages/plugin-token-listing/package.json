@@ -20,7 +20,7 @@
     ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
-  "homepage": "TBC",
+  "homepage": "https://terrazzo.app/docs/cli/integrations/token-listing",
   "repository": {
     "type": "git",
     "url": "https://github.com/terrazzoapp/terrazzo.git",

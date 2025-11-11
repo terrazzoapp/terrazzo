@@ -1,0 +1,49 @@
+{
+  "name": "@terrazzo/token-diff",
+  "version": "0.0.0",
+  "description": "Utility to compute a diff between two tokens, tokens trees or token listings",
+  "license": "MIT",
+  "type": "module",
+  "author": {
+    "name": "Steve Dodier-Lazaro",
+    "email": "sidnioulz@gmail.com"
+  },
+  "keywords": [
+    "design tokens",
+    "design system",
+    "dtcg",
+    "w3c",
+    "token listing",
+    "diff"
+  ],
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./listing": "./dist/listing.js",
+    "./token": "./dist/token.js",
+    "./package.json": "./package.json"
+  },
+  "homepage": "https://terrazzo.app/docs/cli/-TODO-CONFIRM-LATER-/api/token-diff",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/terrazzoapp/terrazzo.git",
+    "directory": "./packages/plugin-token-diff/"
+  },
+  "scripts": {
+    "build": "rolldown -c && attw --profile esm-only --pack .",
+    "dev": "rolldown -w -c",
+    "format": "biome check --fix --unsafe .",
+    "lint": "pnpm --filter @terrazzo/token-diff run \"/^lint:(js|ts)/\"",
+    "lint:js": "biome check .",
+    "lint:ts": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@humanwhocodes/momoa": "^3.3.8"
+  },
+  "devDependencies": {
+    "@types/culori": "^4.0.0",
+    "@terrazzo/plugin-token-listing": "workspace:^",
+    "@terrazzo/token-tools": "workspace:^"
+  }
+}
