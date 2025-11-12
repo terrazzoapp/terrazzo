@@ -19,7 +19,10 @@ const documents = [
   },
 ];
 
-const { document, refMap } = await bundle(documents);
+const { document, refMap } = await bundle(
+  documents,
+  { req: (url) => fetch(url).then((res) => res.text()) }
+);
 
 console.log(document); // Momoa AST
 console.log(momoa.evaluate(document)); // produce in-memory JSON object
@@ -34,6 +37,7 @@ The `bundle()` method takes an options param as its 2nd argument. These are all 
 
 | Name            | Type                                       | Description                                                                                                                                                                                                        |
 | :-------------- | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **req**         | (src: URL, origin: URL) => Promise<string> | Handle remote requests, either via fetching or file system reads.                                                                                                                                                  |
 | **parse**       | (src: any, filename: URL) => DocumentNode; | Optional wrapper around Momoa’s parser. You may want to do this if you want to transform the sources as they come in, before they are parsed. If providing this function, you must `parse()` using Momoa yourself. |
 | **yamlToMomoa** | `yaml-to-momoa`                            | Pass in the module for `yaml-to-momoa` to add support for YAML (`import` it, then pass it as a param).                                                                                                             |
 

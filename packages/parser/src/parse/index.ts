@@ -1,4 +1,5 @@
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
+import type fsType from 'node:fs/promises';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import { loadResolver } from '../resolver/load.js';
@@ -16,6 +17,7 @@ export default async function parse(
   _input: Omit<InputSource, 'document'> | Omit<InputSource, 'document'>[],
   {
     logger = new Logger(),
+    req = defaultReq,
     skipLint = false,
     config = {} as ConfigInit,
     continueOnError = false,
@@ -33,6 +35,7 @@ export default async function parse(
   // 2. No resolver (tokens)
   const initStart = performance.now();
   const { tokens, sources } = await loadSources(inputs, {
+    req,
     logger,
     config,
     continueOnError,
@@ -79,4 +82,21 @@ export default async function parse(
     sources,
     resolver,
   };
+}
+
+let fs: typeof fsType | undefined;
+
+/** Fallback req */
+async function defaultReq(src: URL, _origin: URL) {
+  if (src.protocol === 'file:') {
+    if (!fs) {
+      fs = await import('node:fs/promises');
+    }
+    return await fs.readFile(src, 'utf8');
+  }
+  const res = await fetch(src);
+  if (!res.ok) {
+    throw new Error(`${src} responded with ${res.status}\n${await res.text()}`);
+  }
+  return await res.text();
 }

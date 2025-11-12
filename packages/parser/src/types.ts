@@ -271,6 +271,12 @@ export interface ParseOptions {
   logger?: Logger;
   config: ConfigInit;
   /**
+   * Handle requests to loading remote files, either from a remote URL or on the filesystem.
+   * - Remote requests will have an "https:' protocol
+   * - Filesystem files will have a "file:" protocol
+   */
+  req: (src: URL, origin: URL) => Promise<string>;
+  /**
    * Skip lint step
    * @default false
    */
