@@ -3,8 +3,8 @@
  * ------------------------------------------- */
 
 :root {
-  --foo: oklch(0.6334 0.2011 253.922);
   color-scheme: light dark;
+  --foo: oklch(0.6334 0.2011 253.922);
 }
 
 @media (color-gamut: p3) {

@@ -126,7 +126,16 @@ function _printRule(rule: CSSRule): string {
   }
 
   const declarations = Object.entries(rule.declarations);
-  declarations.sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
+  declarations.sort((a, b) => {
+    // Always put color-scheme first
+    if (a[0] === 'color-scheme') {
+      return -1;
+    }
+    if (b[0] === 'color-scheme') {
+      return 1;
+    }
+    return a[0].localeCompare(b[0], 'en-us', { numeric: true });
+  });
   for (const [k, d] of declarations) {
     output.push(`${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
   }
