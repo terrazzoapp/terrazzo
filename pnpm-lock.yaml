@@ -85,8 +85,8 @@ catalogs:
       specifier: ^4.0.10
       version: 4.0.10
     yaml-to-momoa:
-      specifier: 0.0.6
-      version: 0.0.6
+      specifier: 0.0.8
+      version: 0.0.8
 
 patchedDependencies:
   vite-plugin-sass-dts:
@@ -242,14 +242,14 @@ importers:
         specifier: ^1.1.1
         version: 1.1.1
       vite:
-        specifier: ^7.2.2
+        specifier: 'catalog:'
         version: 7.2.2(@types/node@24.10.1)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.1)
       vite-node:
         specifier: ^5.2.0
         version: 5.2.0(@types/node@24.10.1)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.1)
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.6
+        version: 0.0.8
     devDependencies:
       '@swc/core':
         specifier: 'catalog:'
@@ -331,7 +331,7 @@ importers:
         version: 11.9.3
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.6
+        version: 0.0.8
 
   packages/parser:
     dependencies:
@@ -371,7 +371,7 @@ importers:
     devDependencies:
       yaml-to-momoa:
         specifier: 'catalog:'
-        version: 0.0.6
+        version: 0.0.8
 
   packages/plugin-css:
     dependencies:
@@ -3613,8 +3613,8 @@ packages:
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
 
-  electron-to-chromium@1.5.257:
-    resolution: {integrity: sha512-VNSOB6JZan5IQNMqaurYpZC4bDPXcvKlUwVD/ztMeVD7SwOpMYGOY7dgt+4lNiIHIpvv/FdULnZKqKEy2KcuHQ==}
+  electron-to-chromium@1.5.258:
+    resolution: {integrity: sha512-rHUggNV5jKQ0sSdWwlaRDkFc3/rRJIVnOSe9yR4zrR07m3ZxhP4N27Hlg8VeJGGYgFTxK5NqDmWI4DSH72vIJg==}
 
   emoji-regex-xs@1.0.0:
     resolution: {integrity: sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==}
@@ -6255,8 +6255,8 @@ packages:
   yallist@3.1.1:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
 
-  yaml-to-momoa@0.0.6:
-    resolution: {integrity: sha512-H6OxymcTIB5fTCQV7/+ETO9Wh6v1vpBDpmW94XnscKE+jQl6x58us/G6r6z5IiPCi5wuSvJ+0wipUsp0s2/Yyg==}
+  yaml-to-momoa@0.0.8:
+    resolution: {integrity: sha512-ukog7yNG9jM/2lwG9RFnAYabuVl9wCqudfnXKsk1jkVIImPfS6JizmXNHqq7ansuJtWQN95sAP8m1PfoCOuLsQ==}
 
   yaml@2.8.1:
     resolution: {integrity: sha512-lcYcMxX2PO9XMGvAJkJ3OsNMw+/7FKes7/hgerGUYWIoWu5j/+YQqcZr5JnPZWzOsEBgMbSbiSTn/dv/69Mkpw==}
@@ -8224,7 +8224,7 @@ snapshots:
 
   '@types/fontkit@2.0.8':
     dependencies:
-      '@types/node': 22.19.1
+      '@types/node': 24.10.1
 
   '@types/google.maps@3.58.1': {}
 
@@ -8832,7 +8832,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.8.29
       caniuse-lite: 1.0.30001756
-      electron-to-chromium: 1.5.257
+      electron-to-chromium: 1.5.258
       node-releases: 2.0.27
       update-browserslist-db: 1.1.4(browserslist@4.28.0)
 
@@ -9234,7 +9234,7 @@ snapshots:
 
   eastasianwidth@0.2.0: {}
 
-  electron-to-chromium@1.5.257: {}
+  electron-to-chromium@1.5.258: {}
 
   emoji-regex-xs@1.0.0: {}
 
@@ -12339,7 +12339,7 @@ snapshots:
 
   yallist@3.1.1: {}
 
-  yaml-to-momoa@0.0.6:
+  yaml-to-momoa@0.0.8:
     dependencies:
       '@humanwhocodes/momoa': 3.3.10
       yaml: 2.8.1

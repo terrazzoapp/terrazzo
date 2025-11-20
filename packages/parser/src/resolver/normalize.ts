@@ -1,4 +1,4 @@
-import { type ArrayNode, type DocumentNode, evaluate, type ObjectNode, type StringNode } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import { bundle, getObjMember, getObjMembers, parseRef } from '@terrazzo/json-schema-tools';
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
@@ -21,11 +21,11 @@ export interface NormalizeResolverOptions {
 
 /** Normalize resolver (assuming it’s been validated) */
 export async function normalizeResolver(
-  node: DocumentNode,
+  node: momoa.DocumentNode,
   { filename, req, src, logger, yamlToMomoa }: NormalizeResolverOptions,
 ): Promise<ResolverSourceNormalized> {
-  const resolverSource = evaluate(node) as unknown as ResolverSourceNormalized;
-  const resolutionOrder = getObjMember(node.body as ObjectNode, 'resolutionOrder') as ArrayNode;
+  const resolverSource = momoa.evaluate(node) as unknown as ResolverSourceNormalized;
+  const resolutionOrder = getObjMember(node.body as momoa.ObjectNode, 'resolutionOrder') as momoa.ArrayNode;
 
   return {
     name: resolverSource.name,
@@ -35,7 +35,7 @@ export async function normalizeResolver(
     modifiers: resolverSource.modifiers,
     resolutionOrder: await Promise.all(
       resolutionOrder.elements.map(async (element, i) => {
-        const layer = element.value as ObjectNode;
+        const layer = element.value as momoa.ObjectNode;
         const members = getObjMembers(layer);
 
         // If this is an inline set or modifier it’s already been validated; we only need
@@ -45,7 +45,7 @@ export async function normalizeResolver(
         // 1. $ref
         if (members.$ref) {
           const entry = { group: 'parser', label: 'init', node: members.$ref, src } as const;
-          const { url, subpath } = parseRef((members.$ref as unknown as StringNode).value);
+          const { url, subpath } = parseRef((members.$ref as unknown as momoa.StringNode).value);
           if (url === '.') {
             // 1a. local $ref: pull from local document
             if (!subpath?.[0]) {
@@ -79,11 +79,11 @@ export async function normalizeResolver(
             if (result.document.body.type === 'Object') {
               const type = getObjMember(result.document.body, 'type');
               if (type?.type === 'String' && type.value === 'set') {
-                validateSet(result.document.body as ObjectNode, true, src);
-                item = evaluate(result.document.body) as unknown as ResolverSetInline;
+                validateSet(result.document.body as momoa.ObjectNode, true, src);
+                item = momoa.evaluate(result.document.body) as unknown as ResolverSetInline;
               } else if (type?.type === 'String' && type.value === 'modifier') {
-                validateModifier(result.document.body as ObjectNode, true, src);
-                item = evaluate(result.document.body) as unknown as ResolverModifierInline;
+                validateModifier(result.document.body as momoa.ObjectNode, true, src);
+                item = momoa.evaluate(result.document.body) as unknown as ResolverModifierInline;
               }
             }
             logger.error({ ...entry, message: '$ref did not resolve to a valid Set or Modifier.' });
@@ -92,7 +92,9 @@ export async function normalizeResolver(
 
         // 2. resolve inline sources & contexts
         const finalResult = await bundle([{ filename, src: item }], { req, yamlToMomoa });
-        return evaluate(finalResult.document.body) as unknown as ResolverSetNormalized | ResolverModifierNormalized;
+        return momoa.evaluate(finalResult.document.body) as unknown as
+          | ResolverSetNormalized
+          | ResolverModifierNormalized;
       }),
     ),
   };

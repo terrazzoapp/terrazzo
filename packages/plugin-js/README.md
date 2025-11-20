@@ -20,8 +20,7 @@ export default defineConfig({
   outDir: "./tokens/",
   plugins: [
     js({
-      js: "index.js",
-      // json: "tokens.json",
+      filename: "tokens.js", // Note: `.d.ts` is generated too, so this is TypeScript-compatible!
     }),
   ],
 });
@@ -33,6 +32,6 @@ Lastly, run:
 npx tz build
 ```
 
-And you’ll see a `./tokens/index.js` file generated in your project.
+And you’ll see a `./tokens/tokens.js` file generated in your project.
 
 [Full Documentation](https://terrazzo.app/docs/integrations/js)

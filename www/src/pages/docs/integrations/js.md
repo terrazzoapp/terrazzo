@@ -27,11 +27,11 @@ npm i -D @terrazzo/plugin-js
 
 ```js [terrazzo.config.js]
 import { defineConfig } from "@terrazzo/cli";
-import pluginJS from "@terrazzo/plugin-js";
+import js from "@terrazzo/plugin-js";
 
 export default defineConfig({
   plugins: [
-    pluginJS({
+    js({
       js: "index.js",
       ts: "index.d.ts",
       json: false, // set to a filename to generate JSON
@@ -58,11 +58,11 @@ Configure options in [terrazzo.config.js](/docs/reference/config):
 
 ```js [terrazzo.config.js]
 import { defineConfig } from "@terrazzo/cli";
-import pluginJS from "@terrazzo/plugin-js";
+import js from "@terrazzo/plugin-js";
 
 export default defineConfig({
   plugins: [
-    pluginJS({
+    js({
       /* options */
     }),
   ],
