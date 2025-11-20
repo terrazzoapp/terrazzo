@@ -23,6 +23,7 @@
     "@terrazzo/use-color": "0.1.4"
   },
   "changesets": [
+    "bold-pandas-smell",
     "full-webs-shake",
     "short-wings-pay"
   ]

@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-token-listing",
-  "version": "0.1.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Produce a token listing file for built DTCG tokens, containing attributes you've computed during your build.",
   "license": "MIT",
   "type": "module",
