@@ -12,67 +12,74 @@ import { DS } from './lib.test.js';
 
 describe('Node.js API', () => {
   describe('token types', () => {
-    it.each(['boolean', 'border', 'color', 'dimension', 'gradient', 'shadow', 'string', 'typography', 'transition'])(
-      '%s',
-      async (dir) => {
-        const output = 'actual.css';
-        const cwd = new URL(`./fixtures/type-${dir}/`, import.meta.url);
-        const config = defineConfig(
-          {
-            lint: {
-              rules: {
-                'core/consistent-naming': 'off',
-              },
+    it.each([
+      'boolean',
+      'border',
+      'color',
+      'dimension',
+      'gradient',
+      'shadow',
+      'string',
+      'typography',
+      'transition',
+    ])('%s', async (dir) => {
+      const output = 'actual.css';
+      const cwd = new URL(`./fixtures/type-${dir}/`, import.meta.url);
+      const config = defineConfig(
+        {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
             },
-            plugins: [
-              css({
-                filename: output,
-                variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
-                modeSelectors: [
-                  {
-                    mode: 'light',
-                    tokens: ['color.*', 'gradient.*'],
-                    selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
-                  },
-                  {
-                    mode: 'dark',
-                    tokens: ['color.*', 'gradient.*'],
-                    selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
-                  },
-                  {
-                    mode: 'light-colorblind',
-                    tokens: ['color.*'],
-                    selectors: ['[data-color-theme="light-colorblind"]'],
-                  },
-                  {
-                    mode: 'light-high-contrast',
-                    tokens: ['color.*'],
-                    selectors: ['[data-color-theme="light-high-contrast"]'],
-                  },
-                  { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
-                  {
-                    mode: 'dark-high-contrast',
-                    tokens: ['color.*'],
-                    selectors: ['[data-color-theme="dark-high-contrast"]'],
-                  },
-                  { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
-                  { mode: 'desktop', selectors: ['@media (width >= 600px)'] },
-                ],
-              }),
-            ],
           },
-          { cwd },
-        );
-        const tokensJSON = new URL('./tokens.json', cwd);
-        const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-          config,
-        });
-        const result = await build(tokens, { sources, config });
-        await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
-          fileURLToPath(new URL('./want.css', cwd)),
-        );
-      },
-    );
+          plugins: [
+            css({
+              filename: output,
+              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
+              modeSelectors: [
+                {
+                  mode: 'light',
+                  tokens: ['color.*', 'gradient.*'],
+                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+                },
+                {
+                  mode: 'dark',
+                  tokens: ['color.*', 'gradient.*'],
+                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+                },
+                {
+                  mode: 'light-colorblind',
+                  tokens: ['color.*'],
+                  selectors: ['[data-color-theme="light-colorblind"]'],
+                },
+                {
+                  mode: 'light-high-contrast',
+                  tokens: ['color.*'],
+                  selectors: ['[data-color-theme="light-high-contrast"]'],
+                },
+                { mode: 'dark-dimmed', tokens: ['color.*'], selectors: ['[data-color-theme="dark-dimmed"]'] },
+                {
+                  mode: 'dark-high-contrast',
+                  tokens: ['color.*'],
+                  selectors: ['[data-color-theme="dark-high-contrast"]'],
+                },
+                { mode: 'dark-colorblind', tokens: ['color.*'], selectors: ['[data-color-theme="dark-colorblind"]'] },
+                { mode: 'desktop', selectors: ['@media (width >= 600px)'] },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const tokensJSON = new URL('./tokens.json', cwd);
+      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
+        config,
+      });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
   });
 
   it('chained selector', async () => {
@@ -140,43 +147,39 @@ describe('Node.js API', () => {
       'radix',
       'salesforce-lightning',
       'shopify-polaris',
-    ] as const)(
-      '%s',
-      async (name) => {
-        const src = DS[name];
-        const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
-        const config = defineConfig(
-          {
-            lint: {
-              rules: {
-                'core/consistent-naming': 'off',
-              },
+    ] as const)('%s', async (name) => {
+      const src = DS[name];
+      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+      const config = defineConfig(
+        {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
             },
-            plugins: [
-              css({
-                modeSelectors: [
-                  {
-                    mode: 'light',
-                    tokens: ['color.*', 'gradient.*'],
-                    selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
-                  },
-                  {
-                    mode: 'dark',
-                    tokens: ['color.*', 'gradient.*'],
-                    selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
-                  },
-                ],
-              }),
-            ],
           },
-          { cwd },
-        );
-        const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
-        const result = await build(tokens, { sources, config });
-        await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
-      },
-      30_000,
-    );
+          plugins: [
+            css({
+              modeSelectors: [
+                {
+                  mode: 'light',
+                  tokens: ['color.*', 'gradient.*'],
+                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+                },
+                {
+                  mode: 'dark',
+                  tokens: ['color.*', 'gradient.*'],
+                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+                },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+    }, 30_000);
   });
 
   describe('options', () => {
