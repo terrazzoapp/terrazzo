@@ -12,10 +12,14 @@ import {
 import { parseRef } from './parse-ref.js';
 import type { InputSource, InputSourceWithDocument, RefMap } from './types.js';
 
-/** Placeholder for node:fs. Not loaded directly, in case this package is used in browser. */
-let fs: any;
-
 export interface BundleOptions {
+  /**
+   * Provide an interface for fetching and/or filesystem reads.
+   * - Remote files will have an "https:" protocol
+   * - Files will have a "file:" protocol
+   * Circular requests are already prevented internally. This will only request net-new resources.
+   */
+  req: (url: URL, origin: URL) => Promise<string>;
   /** Optionally provide a parser that produces a Momoa document. Useful if you are transforming on-the-fly. */
   parse?: (src: any, filename: URL) => Promise<momoa.DocumentNode>;
   /** Optionally provide YAML support via the yaml-to-momoa package. */
@@ -25,7 +29,7 @@ export interface BundleOptions {
 /** Flatten multiple Momoa documents into one, while resolving refs. */
 export async function bundle(
   sources: InputSource[],
-  { parse: userParse, yamlToMomoa }: BundleOptions,
+  { req, parse: userParse, yamlToMomoa }: BundleOptions,
 ): Promise<{ document: momoa.DocumentNode; sources: Record<string, InputSourceWithDocument>; refMap: RefMap }> {
   const cache: Record<string, InputSourceWithDocument> = {};
   const refMap: RefMap = {};
@@ -66,6 +70,7 @@ export async function bundle(
           if (node.type === 'Object' && getObjMember(node, '$ref')) {
             const refChain: string[] = [];
             const newNode = await resolveRef(node, {
+              req,
               source: resolved,
               sources: cache,
               visited: [],
@@ -96,6 +101,7 @@ export function maybeRawJSON(input: string): boolean {
 }
 
 export interface ResolveRefOptions {
+  req: (src: URL, origin: URL) => Promise<string>;
   parse: NonNullable<BundleOptions['parse']>;
   source: InputSourceWithDocument;
   sources: Record<string, InputSourceWithDocument>;
@@ -111,34 +117,10 @@ export async function resolveRef(
   if (node.type !== 'Object') {
     return node;
   }
-  const { parse, visited, source, sources, refChain } = options;
+  const { req, parse, visited, source, sources, refChain } = options;
   const $ref = getObjMember(node, '$ref');
   if (!$ref) {
     return node;
-  }
-
-  /**
-   * Resolve a URL and return its unparsed content in Node.js or browser environments safely.
-   * Note: response could be JSON or YAML (tip: pair with maybeRawJSON helper)
-   */
-  async function resolveRaw(path: URL, init?: RequestInit): Promise<string> {
-    // load node:fs if we‘re trying to load files. throw error if we try and open files from a browser context.
-    if (path.protocol === 'file:') {
-      if (!fs) {
-        try {
-          fs = await import('node:fs/promises').then((m) => m.default);
-        } catch {
-          throw new Error(`Tried to load file ${path.href} outside a Node.js environment`);
-        }
-      }
-      return await fs.readFile(path, 'utf8');
-    }
-
-    const res = await fetch(path, { redirect: 'follow', ...init });
-    if (!res.ok) {
-      throw new Error(`${path.href} responded with ${res.status}:\n${res.text()}`);
-    }
-    return res.text();
   }
 
   if ($ref.type !== 'String') {
@@ -164,12 +146,11 @@ export async function resolveRef(
   refChain.push(nextPath);
 
   if (!sources[filename.href]) {
-    const rawSource = await resolveRaw(filename);
+    const rawSource = await req(filename, options.source.filename);
     sources[filename.href] = { filename, src: rawSource, document: await parse(rawSource, filename) };
   }
 
   const resolved = findNode(sources[filename.href]!.document, subpath) as momoa.ObjectNode | undefined;
-
   if (!resolved) {
     throw new Error(`Could not resolve $ref "${$ref.value}"`);
   }

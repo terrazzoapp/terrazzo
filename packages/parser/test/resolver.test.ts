@@ -5,7 +5,7 @@ import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/config.js';
 import Logger from '../src/logger.js';
 import parse from '../src/parse/index.js';
-import { calculatePermutations, createResolver, validateResolver } from '../src/resolver/index.js';
+import { calculatePermutations, validateResolver } from '../src/resolver/index.js';
 
 describe('Resolver module', () => {
   describe('core', () => {
@@ -186,8 +186,7 @@ describe('Resolver module', () => {
         'color.blue.6': {},
       });
 
-      const r = createResolver(resolver!, { logger: new Logger({ level: 'silent' }) });
-      expect(r.apply({ theme: 'light' })).toEqual({
+      expect(resolver?.apply({ theme: 'light' })).toEqual({
         'color.blue.6': {
           $type: 'color',
           $value: {
@@ -197,7 +196,7 @@ describe('Resolver module', () => {
           },
         },
       });
-      expect(r.apply({ theme: 'dark' })).toEqual({
+      expect(resolver?.apply({ theme: 'dark' })).toEqual({
         'color.blue.6': {
           $type: 'color',
           $value: {
@@ -208,11 +207,11 @@ describe('Resolver module', () => {
         },
       });
 
-      expect(r.inputPermutations).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+      expect(resolver?.permutations).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
 
-      expect(r.isValidInput({ theme: 'dark' })).toBe(true);
-      expect(r.isValidInput({})).toBe(false);
-      expect(r.isValidInput({ theme: 'foobar' })).toBe(false);
+      expect(resolver?.isValidInput({ theme: 'dark' })).toBe(true);
+      expect(resolver?.isValidInput({})).toBe(false);
+      expect(resolver?.isValidInput({ theme: 'foobar' })).toBe(false);
     });
   });
 });

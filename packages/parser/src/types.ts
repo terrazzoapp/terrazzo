@@ -1,5 +1,5 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import type { Group, TokenNormalized } from '@terrazzo/token-tools';
+import type { Group, TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
 
@@ -271,6 +271,12 @@ export interface ParseOptions {
   logger?: Logger;
   config: ConfigInit;
   /**
+   * Handle requests to loading remote files, either from a remote URL or on the filesystem.
+   * - Remote requests will have an "https:' protocol
+   * - Filesystem files will have a "file:" protocol
+   */
+  req?: (src: URL, origin: URL) => Promise<string>;
+  /**
    * Skip lint step
    * @default false
    */
@@ -314,7 +320,21 @@ export interface ReferenceObject {
   $ref: string;
 }
 
-export interface Resolver {
+export interface Resolver<
+  Inputs extends Record<string, string[]> = Record<string, string[]>,
+  Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
+> {
+  /** Supply values to modifiers to produce a final tokens set */
+  apply: (input: Partial<Input>) => TokenNormalizedSet;
+  /** List all possible valid input combinations. Ignores default values, as they would duplicate some other permutations. */
+  permutations: Input[];
+  /** The original resolver document, simplified */
+  source: ResolverSourceNormalized;
+  /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
+  isValidInput: (input: Input) => boolean;
+}
+
+export interface ResolverSource {
   /** Human-friendly name of this resolver */
   name?: string;
   /** DTCG version */
@@ -331,7 +351,7 @@ export interface Resolver {
 }
 
 /** Resolver where all tokens are loaded and flattened in-memory, so only the final merging is left */
-export interface ResolverNormalized {
+export interface ResolverSourceNormalized {
   name: string | undefined;
   version: '2025.10';
   description: string | undefined;

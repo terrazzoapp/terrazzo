@@ -51,6 +51,7 @@ export interface IntermediaryToken {
 }
 
 export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'transform'> {
+  req: NonNullable<ParseOptions['req']>;
   logger: Logger;
 }
 
@@ -62,7 +63,7 @@ export interface LoadSourcesResult {
 /** Load from multiple entries, while resolving remote files */
 export async function loadSources(
   inputs: Omit<InputSource, 'document'>[],
-  { config, logger, continueOnError, yamlToMomoa, transform }: LoadOptions,
+  { config, logger, req, continueOnError, yamlToMomoa, transform }: LoadOptions,
 ): Promise<LoadSourcesResult> {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -83,6 +84,7 @@ export async function loadSources(
 
   try {
     const result = await bundle(sources, {
+      req,
       parse: transform ? transformer(transform) : undefined,
       yamlToMomoa,
     });
