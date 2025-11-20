@@ -1,4 +1,4 @@
-import type { DocumentNode, ObjectNode } from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LogEntry, default as Logger } from '../logger.js';
 
@@ -10,7 +10,7 @@ import type { LogEntry, default as Logger } from '../logger.js';
  * guesswork here, but we try and find a reasonable edge case where we sniff out
  * invalid DTCG syntax that a resolver doc would have.
  */
-export function isLikelyResolver(doc: DocumentNode): boolean {
+export function isLikelyResolver(doc: momoa.DocumentNode): boolean {
   if (doc.body.type !== 'Object') {
     return false;
   }
@@ -79,7 +79,7 @@ const MESSAGE_EXPECTED = {
  * Validate a resolver document.
  * There’s a ton of boilerplate here, only to surface detailed code frames. Is there a better abstraction?
  */
-export function validateResolver(node: DocumentNode, { logger, src }: ValidateResolverOptions) {
+export function validateResolver(node: momoa.DocumentNode, { logger, src }: ValidateResolverOptions) {
   const entry = { group: 'parser', label: 'resolver', src } as const;
   if (node.body.type !== 'Object') {
     logger.error({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node });
@@ -89,7 +89,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
   let hasVersion = false;
   let hasResolutionOrder = false;
 
-  for (const member of (node.body as ObjectNode).members) {
+  for (const member of (node.body as momoa.ObjectNode).members) {
     if (member.name.type !== 'String') {
       continue; // IDK, don’t ask
     }
@@ -202,7 +202,7 @@ export function validateResolver(node: DocumentNode, { logger, src }: ValidateRe
   }
 }
 
-export function validateSet(node: ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
+export function validateSet(node: momoa.ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
   const entry = { group: 'parser', label: 'resolver', src } as const;
   const errors: LogEntry[] = [];
   let hasName = !isInline;
@@ -277,7 +277,11 @@ export function validateSet(node: ObjectNode, isInline = false, { src }: Validat
   return errors;
 }
 
-export function validateModifier(node: ObjectNode, isInline = false, { src }: ValidateResolverOptions): LogEntry[] {
+export function validateModifier(
+  node: momoa.ObjectNode,
+  isInline = false,
+  { src }: ValidateResolverOptions,
+): LogEntry[] {
   const errors: LogEntry[] = [];
   const entry = { group: 'parser', label: 'resolver', src } as const;
   let hasName = !isInline;

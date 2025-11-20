@@ -1,4 +1,4 @@
-import type { DocumentNode } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import { maybeRawJSON } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import eq from 'fast-deep-equal';
@@ -21,14 +21,14 @@ export async function loadResolver(
   inputs: Omit<InputSource, 'document'>[],
   { logger, req, yamlToMomoa }: LoadResolverOptions,
 ): Promise<Resolver | undefined> {
-  let resolverDoc: DocumentNode | undefined;
+  let resolverDoc: momoa.DocumentNode | undefined;
   const entry = {
     group: 'parser',
     label: 'init',
   } as const;
 
   for (const input of inputs) {
-    let document: DocumentNode | undefined;
+    let document: momoa.DocumentNode | undefined;
     if (typeof input.src === 'string') {
       if (maybeRawJSON(input.src)) {
         document = toMomoa(input.src);

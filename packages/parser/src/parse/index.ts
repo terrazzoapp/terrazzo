@@ -2,6 +2,7 @@ import type fsType from 'node:fs/promises';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
+import { createSyntheticResolver } from '../resolver/create-synthetic-resolver.js';
 import { loadResolver } from '../resolver/load.js';
 import type { ConfigInit, InputSource, ParseOptions, Resolver } from '../types.js';
 import { loadSources } from './load.js';
@@ -9,7 +10,7 @@ import { loadSources } from './load.js';
 export interface ParseResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];
-  resolver?: Resolver | undefined;
+  resolver: Resolver;
 }
 
 /** Parse */
@@ -80,7 +81,7 @@ export default async function parse(
   return {
     tokens,
     sources,
-    resolver,
+    resolver: resolver || (await createSyntheticResolver(tokens, { logger, req })),
   };
 }
 

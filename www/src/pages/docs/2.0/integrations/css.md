@@ -25,11 +25,11 @@ And add it to `terrazzo.config.ts` under `plugins`:
 
 ```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
-import pluginCSS from "@terrazzo/plugin-css";
+import css from "@terrazzo/plugin-css";
 
 export default defineConfig({
   plugins: [
-    pluginCSS({
+    css({
       filename: "tokens.css",
       variableName: (id) => id.replace(/\./g, "-"),
       baseSelector: ":root",

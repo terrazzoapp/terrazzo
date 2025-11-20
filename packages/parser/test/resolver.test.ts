@@ -1,5 +1,5 @@
 import fs from 'node:fs/promises';
-import { parse as parseJSON } from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import stripAnsi from 'strip-ansi';
 import { describe, expect, it } from 'vitest';
 import defineConfig from '../src/config.js';
@@ -150,14 +150,92 @@ describe('Resolver module', () => {
       ],
     ];
 
+    describe('Legacy modes', () => {
+      it('simple', async () => {
+        const cwd = new URL('file:///');
+        const config = defineConfig({}, { cwd });
+        const src = JSON.stringify(
+          {
+            color: {
+              blue: {
+                600: {
+                  $type: 'color',
+                  $value: { colorSpace: 'srgb', components: [0.02, 0.31, 0.68] },
+                  $extensions: {
+                    mode: {
+                      light: { colorSpace: 'srgb', components: [0.02, 0.31, 0.68] },
+                      dark: { colorSpace: 'srgb', components: [0.07, 0.35, 0.78] },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          undefined,
+          2,
+        );
+        const { resolver } = await parse(
+          [
+            {
+              filename: new URL('example.resolver.json', cwd),
+              src,
+            },
+          ],
+          { config },
+        );
+        const lightToken = {
+          $type: 'color',
+          $value: { alpha: 1, colorSpace: 'srgb', components: [0.02, 0.31, 0.68] },
+        };
+        const darkToken = {
+          $type: 'color',
+          $value: { alpha: 1, colorSpace: 'srgb', components: [0.07, 0.35, 0.78] },
+        };
+        expect(resolver.source).toEqual({
+          name: 'Terrazzo',
+          version: '2025.10',
+          description: undefined,
+          resolutionOrder: [
+            // Note: the inlining here is intentional when normalized; Terrazzo reduces lookups by duplicating + flattening into one array ($refs are all resolved)
+            {
+              type: 'set',
+              sources: [{ color: { blue: { '600': lightToken } } }],
+            },
+            {
+              type: 'modifier',
+              description: 'Automatically built from $extensions.mode',
+              contexts: {
+                light: [{ color: { blue: { '600': lightToken } } }],
+                dark: [{ color: { blue: { '600': darkToken } } }],
+              },
+            },
+          ],
+          sets: {
+            allTokens: {
+              sources: [{ color: { blue: { '600': lightToken } } }],
+            },
+          },
+          modifiers: {
+            tzMode: {
+              description: 'Automatically built from $extensions.mode',
+              contexts: {
+                light: [{ color: { blue: { '600': lightToken } } }],
+                dark: [{ color: { blue: { '600': darkToken } } }],
+              },
+            },
+          },
+        });
+      });
+    });
+
     it.each(tests)('%s', (_, { given, want }) => {
       const logger = new Logger();
       const src = JSON.stringify(given, undefined, 2);
       if (want === undefined) {
-        expect(() => validateResolver(parseJSON(src), { logger, src })).not.toThrow();
+        expect(() => validateResolver(momoa.parse(src), { logger, src })).not.toThrow();
       } else {
         try {
-          validateResolver(parseJSON(src), { logger, src });
+          validateResolver(momoa.parse(src), { logger, src });
           expect(true).toBe(false);
         } catch (err) {
           expect(stripAnsi((err as Error).message)).toBe(want);

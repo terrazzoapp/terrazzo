@@ -28,7 +28,20 @@ const TZ_CONFIG = defineConfig(
 // - the terrazzo parser works with strings better (for column/row errors)
 const $tokens = atom('{}');
 const $tokensLoaded = atom(false); // singleton to prevent multiple loads from IndexedDB
-const $parseResult = atom<ParseResult>({ tokens: {}, sources: [] });
+const $parseResult = atom<ParseResult>({
+  tokens: {},
+  sources: [],
+  resolver: {
+    apply() {
+      return {};
+    },
+    source: {} as any,
+    permutations: [],
+    isValidInput() {
+      return false;
+    },
+  },
+});
 const $parseError = atom<TokensJSONError | undefined>();
 
 /**
