@@ -1,4 +1,5 @@
-import type { Logger, ModeMap, Plugin, TokenNormalized, TokenTransformed, TransformParams } from '@terrazzo/parser';
+import type { Logger, ModeMap, Plugin, TokenNormalized, TransformParams } from '@terrazzo/parser';
+import type { TokenTransformed } from '@terrazzo/token-tools';
 import type { PlatformOption, TokenListing, TokenListingExtension, TokenListingPluginOptions } from './lib.js';
 import { computePreviewValue } from './utils/previewValue.js';
 import mapValues from './utils/utils.js';

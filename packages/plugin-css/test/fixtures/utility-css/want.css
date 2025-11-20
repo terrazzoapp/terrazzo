@@ -19,12 +19,13 @@
   --ds-typography-base-font-family: "Helvetica";
   --ds-typography-base-font-size: var(--ds-typography-size-sm);
   --ds-typography-base-font-style: normal;
-  --ds-typography-base-font-variant-numeric: tabular-nums;
   --ds-typography-base-font-weight: 400;
+  --ds-typography-base-font-variant-numeric: tabular-nums;
   --ds-typography-base-letter-spacing: 0;
   --ds-typography-base-line-height: 1.4;
   --ds-typography-base-text-decoration: none;
   --ds-typography-base-text-transform: none;
+  --ds-typography-base: var(--ds-typography-base-font-style) var(--ds-typography-base-font-weight) var(--ds-typography-base-font-size)/var(--ds-typography-base-line-height) var(--ds-typography-base-font-family);
   --ds-typography-size-lg: 1.25rem;
   --ds-typography-size-md: 1rem;
   --ds-typography-size-sm: 0.875rem;
@@ -40,12 +41,13 @@
     --ds-typography-base-font-family: "Helvetica";
     --ds-typography-base-font-size: 1rem;
     --ds-typography-base-font-style: normal;
-    --ds-typography-base-font-variant-numeric: tabular-nums;
     --ds-typography-base-font-weight: 400;
+    --ds-typography-base-font-variant-numeric: tabular-nums;
     --ds-typography-base-letter-spacing: 0;
     --ds-typography-base-line-height: 1.4;
     --ds-typography-base-text-decoration: none;
     --ds-typography-base-text-transform: none;
+    --ds-typography-base: var(--ds-typography-base-font-style) var(--ds-typography-base-font-weight) var(--ds-typography-base-font-size)/var(--ds-typography-base-line-height) var(--ds-typography-base-font-family);
   }
 }
 
@@ -141,8 +143,8 @@
   font-family: var(--ds-typography-base-font-family);
   font-size: var(--ds-typography-base-font-size);
   font-style: var(--ds-typography-base-font-style);
-  font-variant-numeric: var(--ds-typography-base-font-variant-numeric);
   font-weight: var(--ds-typography-base-font-weight);
+  font-variant-numeric: var(--ds-typography-base-font-variant-numeric);
   letter-spacing: var(--ds-typography-base-letter-spacing);
   line-height: var(--ds-typography-base-line-height);
   text-decoration: var(--ds-typography-base-text-decoration);
@@ -538,9 +540,9 @@
 }
 
 .text-color-gradient-blue-to-green {
+  background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
 }
 
 .text-color-semantic-primary {

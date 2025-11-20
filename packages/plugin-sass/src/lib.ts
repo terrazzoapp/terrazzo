@@ -42,3 +42,9 @@ export const MIXIN_TYPOGRAPHY = `@mixin typography($tokenName, $modeName: ".") {
     #{$_property}: #{$_value};
   }
 }`;
+
+const INDENT_NUM_SPACES = 2;
+
+export function getIndent(indentationLevel: number): string {
+  return indentationLevel > 0 ? ' '.repeat(indentationLevel * INDENT_NUM_SPACES) : '';
+}

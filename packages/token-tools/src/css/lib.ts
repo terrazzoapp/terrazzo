@@ -11,15 +11,33 @@ export function defaultAliasTransform(token: TokenNormalized) {
 }
 
 /** Generate shorthand CSS for select token types */
-export function generateShorthand({ $type, localID }: { $type: string; localID: string }): string | undefined {
-  switch ($type) {
+export function generateShorthand({ token, localID }: { token: TokenNormalized; localID: string }): string | undefined {
+  switch (token.$type) {
     case 'transition': {
       return ['duration', 'delay', 'timing-function']
         .map((p) => makeCSSVar(`${localID}-${p}`, { wrapVar: true }))
         .join(' ');
     }
-    // note: "typography" is not set in shorthand because it can often unset values unintentionally.
-    // @see https://developer.mozilla.org/en-US/docs/Web/CSS/font
+    case 'typography': {
+      const typeVar = (name: string) => makeCSSVar(`${localID}-${name}`, { wrapVar: true });
+      // Note: typography tokens should have both of these properties, but this is just being defensive
+      if ('font-size' in token.$value && 'font-family' in token.$value) {
+        let output = '';
+        for (const prop of ['font-style', 'font-variant', 'font-weight']) {
+          if (prop in token.$value) {
+            output += ` ${typeVar(prop)}`;
+          }
+        }
+        let fontSizeVar = typeVar('font-size');
+        if ('line-height' in token.$value) {
+          fontSizeVar += `/${typeVar('line-height')}`;
+        }
+        output += ` ${fontSizeVar}`;
+        output += ` ${typeVar('font-family')}`;
+        return output.trim();
+      }
+      break;
+    }
   }
 }
 

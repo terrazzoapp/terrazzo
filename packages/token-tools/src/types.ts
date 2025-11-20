@@ -26,7 +26,6 @@ export type Token =
 
 export type TokensSet = Record<string, Token>;
 
-// TODO: Update with JSON pointer
 export type AliasValue = string;
 
 export interface AliasToken extends TokenCore {
@@ -583,3 +582,40 @@ export interface TypographyValueNormalized {
   textTransform?: string;
   [key: string]: unknown;
 }
+
+export interface TokenTransformedBase {
+  /** Original Token ID */
+  id: string;
+  /** ID unique to this format. */
+  localID?: string;
+  /**
+   * The mode of this value
+   * @default "."
+   */
+  mode: string;
+  /** The original token. */
+  token: TokenNormalized;
+  /** Arbitrary metadata set by plugins. */
+  meta?: Record<string | number | symbol, unknown> & {
+    /**
+     * Metadata for the token-listing plugin. Plugins can
+     * set this to be the name of a token as it appears in code,
+     * and the token-listing plugin will pick it up and use it.
+     */
+    'token-listing'?: { name: string | undefined };
+  };
+}
+
+/** Transformed token with a single value. Note that this may be any type! */
+export interface TokenTransformedSingleValue extends TokenTransformedBase {
+  type: 'SINGLE_VALUE';
+  value: string;
+}
+
+/** Transformed token with multiple values. Note that this may be any type! */
+export interface TokenTransformedMultiValue extends TokenTransformedBase {
+  type: 'MULTI_VALUE';
+  value: Record<string, string>;
+}
+
+export type TokenTransformed = TokenTransformedSingleValue | TokenTransformedMultiValue;

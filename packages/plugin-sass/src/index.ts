@@ -3,7 +3,9 @@ import { FORMAT_ID as CSS_FORMAT_ID } from '@terrazzo/plugin-css';
 import build from './build.js';
 import { FORMAT_ID, type SassPluginOptions } from './lib.js';
 
+export * from './build.js';
 export * from './lib.js';
+export * from './node.js';
 
 export default function pluginSass(options?: SassPluginOptions): Plugin {
   const filename = options?.filename ?? 'index.scss';
@@ -41,7 +43,7 @@ Please install @terrazzo/plugin-css and follow setup to add to your config.`,
     },
 
     async build({ getTransforms, outputFile }) {
-      const output = build({ getTransforms, options });
+      const output = await build({ getTransforms, options });
       outputFile(filename, output);
     },
   };
