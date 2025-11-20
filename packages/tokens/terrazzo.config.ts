@@ -23,7 +23,7 @@ export default defineConfig({
   lint: {
     rules: {
       'core/valid-color': ['error', { legacyFormat: true }],
-      'core/consistent-naming': 'off'
+      'core/consistent-naming': 'off',
     },
   },
 });

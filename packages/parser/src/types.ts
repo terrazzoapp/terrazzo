@@ -1,7 +1,22 @@
 import type * as momoa from '@humanwhocodes/momoa';
-import type { Group, TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
+import type {
+  Group,
+  TokenNormalized,
+  TokenNormalizedSet,
+  TokenTransformed,
+  TokenTransformedBase,
+} from '@terrazzo/token-tools';
 import type ytm from 'yaml-to-momoa';
 import type Logger from './logger.js';
+
+// Export some types as a convenience, because they originally came from this package
+export type {
+  Group,
+  TokenNormalized,
+  TokenNormalizedSet,
+  TokenTransformed,
+  TokenTransformedBase,
+} from '@terrazzo/token-tools';
 
 export interface PluginHookContext {
   logger: Logger;
@@ -405,43 +420,6 @@ export interface ResolverSetNormalized {
   $extensions: Record<string, unknown> | undefined;
   $defs: Record<string, unknown> | undefined;
 }
-
-interface TokenTransformedBase {
-  /** Original Token ID */
-  id: string;
-  /** ID unique to this format. */
-  localID?: string;
-  /**
-   * The mode of this value
-   * @default "."
-   */
-  mode: string;
-  /** The original token. */
-  token: TokenNormalized;
-  /** Arbitrary metadata set by plugins. */
-  meta?: Record<string | number | symbol, unknown> & {
-    /**
-     * Metadata for the token-listing plugin. Plugins can
-     * set this to be the name of a token as it appears in code,
-     * and the token-listing plugin will pick it up and use it.
-     */
-    'token-listing'?: { name: string | undefined };
-  };
-}
-
-/** Transformed token with a single value. Note that this may be any type! */
-export interface TokenTransformedSingleValue extends TokenTransformedBase {
-  type: 'SINGLE_VALUE';
-  value: string;
-}
-
-/** Transformed token with multiple values. Note that this may be any type! */
-export interface TokenTransformedMultiValue extends TokenTransformedBase {
-  type: 'MULTI_VALUE';
-  value: Record<string, string>;
-}
-
-export type TokenTransformed = TokenTransformedSingleValue | TokenTransformedMultiValue;
 
 export interface TransformParams {
   /** ID of an existing format */

@@ -88,16 +88,17 @@ export default function buildFormat({
 
       // multi-value token
       else if (token.type === 'MULTI_VALUE') {
-        const shorthand = generateShorthand({ $type: token.token.$type, localID });
-        if (shorthand) {
-          rootRule.declarations[token.localID ?? token.token.id] = {
-            value: shorthand,
-            description: token.token.$description,
-          };
-        }
         for (const [name, value] of Object.entries(token.value)) {
           rootRule.declarations[name === '.' ? localID : [localID, name].join('-')] = {
             value,
+            description: token.token.$description,
+          };
+        }
+        // Note: always place shorthand after other values
+        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        if (shorthand) {
+          rootRule.declarations[token.localID ?? token.token.id] = {
+            value: shorthand,
             description: token.token.$description,
           };
         }
@@ -166,12 +167,13 @@ export default function buildFormat({
 
       // multi-value token
       else {
-        const shorthand = generateShorthand({ $type: token.token.$type, localID });
-        if (shorthand) {
-          selectorRule.declarations[localID] = { value: shorthand, description: token.token.$description };
-        }
         for (const [name, subvalue] of Object.entries(token.value)) {
           selectorRule.declarations[`${localID}-${name}`] = { value: subvalue, description: token.token.$description };
+        }
+        // Note: always generate shorthand after other declarations
+        const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
+        if (shorthand) {
+          selectorRule.declarations[localID] = { value: shorthand, description: token.token.$description };
         }
       }
 

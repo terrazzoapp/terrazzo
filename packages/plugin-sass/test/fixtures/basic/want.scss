@@ -4,88 +4,66 @@
 
 @use "sass:list";
 @use "sass:map";
-@use "sass:meta";
 
 $__token-values: (
-  "border.std": (var(--ds-border-std)),
-  "color.blue": (var(--ds-color-blue)),
-  "color.green": (var(--ds-color-green)),
-  "color.red": (var(--ds-color-red)),
-  "color.redgreenblue": (var(--ds-color-redgreenblue)),
-  "gradient.g-b": (var(--ds-gradient-g-b)),
-  "shadow": (var(--ds-shadow)),
-  "transition": (var(--ds-transition)),
-  "typography.body": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.body")` instead.',
-  ),
-  "typography.callout": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.callout")` instead.',
-  ),
-  "typography.family.body": (var(--ds-typography-family-body)),
-  "typography.family.heading": (var(--ds-typography-family-heading)),
-  "typography.page-title": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.page-title")` instead.',
-  ),
-  "typography.subheading": (
-    "__tz-error": 'This is a typography mixin. Use `@include typography("typography.subheading")` instead.',
-  ),
+  "border.std": var(--border-std),
+  "color.blue": var(--color-blue),
+  "color.green": var(--color-green),
+  "color.red": var(--color-red),
+  "color.redgreenblue": var(--color-redgreenblue),
+  "gradient.g-b": var(--gradient-g-b),
+  "shadow": var(--shadow),
+  "transition": var(--transition),
+  "typography.body": var(--typography-body),
+  "typography.callout": var(--typography-callout),
+  "typography.family.body": var(--typography-family-body),
+  "typography.family.heading": var(--typography-family-heading),
+  "typography.page-title": var(--typography-page-title),
+  "typography.subheading": var(--typography-subheading)
 );
 
 $__token-typography-mixins: (
   "typography.body": (
-    "font-family": (var(--ds-typography-body-font-family)),
-    "font-size": (var(--ds-typography-body-font-size)),
-    "font-weight": (var(--ds-typography-body-font-weight)),
-    "line-height": (var(--ds-typography-body-line-height)),
-    "letter-spacing": (var(--ds-typography-body-letter-spacing)),
+    "font": var(--ds-typography-body),
+    "letter-spacing": var(--ds-typography-body-letter-spacing)
   ),
   "typography.callout": (
-    "font-family": (var(--ds-typography-callout-font-family)),
-    "font-size": (var(--ds-typography-callout-font-size)),
-    "font-weight": (var(--ds-typography-callout-font-weight)),
-    "font-style": (var(--ds-typography-callout-font-style)),
-    "line-height": (var(--ds-typography-callout-line-height)),
-    "letter-spacing": (var(--ds-typography-callout-letter-spacing)),
+    "font": var(--ds-typography-callout),
+    "letter-spacing": var(--ds-typography-callout-letter-spacing)
   ),
   "typography.page-title": (
-    "font-family": (var(--ds-typography-page-title-font-family)),
-    "font-size": (var(--ds-typography-page-title-font-size)),
-    "font-weight": (var(--ds-typography-page-title-font-weight)),
-    "line-height": (var(--ds-typography-page-title-line-height)),
-    "letter-spacing": (var(--ds-typography-page-title-letter-spacing)),
+    "font": var(--ds-typography-page-title),
+    "letter-spacing": var(--ds-typography-page-title-letter-spacing)
   ),
   "typography.subheading": (
-    "font-family": (var(--ds-typography-subheading-font-family)),
-    "font-size": (var(--ds-typography-subheading-font-size)),
-    "font-weight": (var(--ds-typography-subheading-font-weight)),
-    "line-height": (var(--ds-typography-subheading-line-height)),
-    "letter-spacing": (var(--ds-typography-subheading-letter-spacing)),
-    "text-transform": (var(--ds-typography-subheading-text-transform)),
-  ),
+    "font": var(--ds-typography-subheading),
+    "letter-spacing": var(--ds-typography-subheading-letter-spacing),
+    "text-transform": var(--ds-typography-subheading-text-transform)
+  )
 );
 
 @function token($tokenName) {
-  @if map.has-key($__token-values, $tokenName) == false {
+  @if not map.has-key($__token-values, $tokenName) {
     @error 'No token named "#{$tokenName}"';
   }
-  $_token: map.get($__token-values, $tokenName);
-  @if meta.type-of($_token) == map and map.has-key($_token, "__tz-error") {
-    @error map.get($_token, "__tz-error");
+
+  $token: map.get($__token-values, $tokenName);
+
+  @if $token == "__tz-error-typography" {
+    @error "This is a typography mixin. Use `@include typography("#{tokenId}")` instead.";
   }
 
-  @return $_token;
+  @return $token;
 }
 
-@mixin typography($tokenName, $modeName: ".") {
-  @if map.has-key($__token-typography-mixins, $tokenName) == false {
+@mixin typography($tokenName) {
+  @if not map.has-key($__token-typography-mixins, $tokenName) {
     @error 'No typography mixin named "#{$tokenName}"';
   }
-  $_mixin: map.get($__token-typography-mixins, $tokenName);
-  $_properties: map.get($_mixin, ".");
-  @if map.has-key($_mixin) {
-    $_properties: map.get($_mixin);
-  }
-  @each $_property, $_value in $_properties {
+
+  $mixin: map.get($__token-typography-mixins, $tokenName);
+
+  @each $_property, $_value in $mixin {
     #{$_property}: #{$_value};
   }
 }

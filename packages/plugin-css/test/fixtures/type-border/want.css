@@ -30,111 +30,111 @@
 
 @media (color-gamut: p3) {
   :root {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.64 0.2889 16.5768);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (color-gamut: rec2020) {
   :root {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.6388 0.3368 16.2926);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
     --ds-color-border: var(--ds-color-base-gray-20);
     --ds-color-red: oklch(0.6347 0.254 16.4402);
+    --ds-border-thick: 2.5px solid var(--ds-color-border);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="light"] {
-  --ds-border-red: 1px solid var(--ds-color-red);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
   --ds-color-border: var(--ds-color-base-gray-20);
   --ds-color-red: oklch(0.6347 0.254 16.4402);
+  --ds-border-thick: 2.5px solid var(--ds-color-border);
+  --ds-border-red: 1px solid var(--ds-color-red);
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: p3) {
     :root {
-      --ds-border-red: 1px solid var(--ds-color-red);
       --ds-color-red: oklch(0.64 0.2889 16.5768);
+      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.64 0.2889 16.5768);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: light) {
   @media (color-gamut: rec2020) {
     :root {
-      --ds-border-red: 1px solid var(--ds-color-red);
       --ds-color-red: oklch(0.6388 0.3368 16.2926);
+      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.6388 0.3368 16.2926);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --ds-border-red: 1px solid var(--ds-color-red);
-    --ds-border-thick: 2.5px solid var(--ds-color-border);
     --ds-color-border: var(--ds-color-base-gray-80);
     --ds-color-red: oklch(0.353 0.1415 18.1514);
+    --ds-border-thick: 2.5px solid var(--ds-color-border);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="dark"] {
-  --ds-border-red: 1px solid var(--ds-color-red);
-  --ds-border-thick: 2.5px solid var(--ds-color-border);
   --ds-color-border: var(--ds-color-base-gray-80);
   --ds-color-red: oklch(0.353 0.1415 18.1514);
+  --ds-border-thick: 2.5px solid var(--ds-color-border);
+  --ds-border-red: 1px solid var(--ds-color-red);
 }
 
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: p3) {
     :root {
-      --ds-border-red: 1px solid var(--ds-color-red);
       --ds-color-red: oklch(0.3518 0.159 17.9744);
+      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 }
 
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.3518 0.159 17.9744);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 @media (prefers-color-scheme: dark) {
   @media (color-gamut: rec2020) {
     :root {
-      --ds-border-red: 1px solid var(--ds-color-red);
       --ds-color-red: oklch(0.3505 0.1849 17.4534);
+      --ds-border-red: 1px solid var(--ds-color-red);
     }
   }
 }
 
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
-    --ds-border-red: 1px solid var(--ds-color-red);
     --ds-color-red: oklch(0.3505 0.1849 17.4534);
+    --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 

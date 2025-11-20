@@ -424,21 +424,6 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --border-color-default: var(--color-primitive-gray-6);
-    --border-color-hover: var(--color-primitive-gray-7);
-    --color-bg-action-default: var(--color-primitive-iris-9);
-    --color-bg-action-hover: var(--color-primitive-iris-10);
-    --color-bg-active: var(--color-primitive-gray-5);
-    --color-bg-default: var(--color-primitive-gray-1);
-    --color-bg-error-default: var(--color-primitive-ruby-9);
-    --color-bg-error-hover: var(--color-primitive-ruby-10);
-    --color-bg-hover: var(--color-primitive-gray-4);
-    --color-bg-subtle: var(--color-primitive-gray-2);
-    --color-bg-success-default: var(--color-primitive-grass-9);
-    --color-bg-success-hover: var(--color-primitive-grass-10);
-    --color-bg-ui: var(--color-primitive-gray-3);
-    --color-bg-warn-default: var(--color-primitive-amber-9);
-    --color-bg-warn-hover: var(--color-primitive-amber-10);
     --color-primitive-amber-1: color(srgb 0.996078431372549 0.9921568627450981 0.984313725490196);
     --color-primitive-amber-2: color(srgb 0.996078431372549 0.984313725490196 0.9137254901960784);
     --color-primitive-amber-3: color(srgb 1 0.9686274509803922 0.7607843137254902);
@@ -811,31 +796,31 @@
     --color-primitive-yellow-10: color(srgb 1 0.8627450980392157 0);
     --color-primitive-yellow-11: color(srgb 0.6196078431372549 0.4235294117647059 0);
     --color-primitive-yellow-12: color(srgb 0.2784313725490196 0.23137254901960785 0.12156862745098039);
+    --color-bg-warn-default: var(--color-primitive-amber-9);
+    --color-bg-warn-hover: var(--color-primitive-amber-10);
+    --color-bg-success-default: var(--color-primitive-grass-9);
+    --color-bg-success-hover: var(--color-primitive-grass-10);
+    --color-bg-default: var(--color-primitive-gray-1);
     --color-text-action-default: var(--color-primitive-gray-1);
-    --color-text-default: var(--color-primitive-gray-12);
     --color-text-error-default: var(--color-primitive-gray-1);
-    --color-text-subtle: var(--color-primitive-gray-11);
     --color-text-success-default: var(--color-primitive-gray-1);
     --color-text-warn-default: var(--color-primitive-gray-1);
+    --color-bg-subtle: var(--color-primitive-gray-2);
+    --color-bg-ui: var(--color-primitive-gray-3);
+    --color-bg-hover: var(--color-primitive-gray-4);
+    --color-bg-active: var(--color-primitive-gray-5);
+    --border-color-default: var(--color-primitive-gray-6);
+    --border-color-hover: var(--color-primitive-gray-7);
+    --color-text-subtle: var(--color-primitive-gray-11);
+    --color-text-default: var(--color-primitive-gray-12);
+    --color-bg-action-default: var(--color-primitive-iris-9);
+    --color-bg-action-hover: var(--color-primitive-iris-10);
+    --color-bg-error-default: var(--color-primitive-ruby-9);
+    --color-bg-error-hover: var(--color-primitive-ruby-10);
   }
 }
 
 [data-color-theme="light"] {
-  --border-color-default: var(--color-primitive-gray-6);
-  --border-color-hover: var(--color-primitive-gray-7);
-  --color-bg-action-default: var(--color-primitive-iris-9);
-  --color-bg-action-hover: var(--color-primitive-iris-10);
-  --color-bg-active: var(--color-primitive-gray-5);
-  --color-bg-default: var(--color-primitive-gray-1);
-  --color-bg-error-default: var(--color-primitive-ruby-9);
-  --color-bg-error-hover: var(--color-primitive-ruby-10);
-  --color-bg-hover: var(--color-primitive-gray-4);
-  --color-bg-subtle: var(--color-primitive-gray-2);
-  --color-bg-success-default: var(--color-primitive-grass-9);
-  --color-bg-success-hover: var(--color-primitive-grass-10);
-  --color-bg-ui: var(--color-primitive-gray-3);
-  --color-bg-warn-default: var(--color-primitive-amber-9);
-  --color-bg-warn-hover: var(--color-primitive-amber-10);
   --color-primitive-amber-1: color(srgb 0.996078431372549 0.9921568627450981 0.984313725490196);
   --color-primitive-amber-2: color(srgb 0.996078431372549 0.984313725490196 0.9137254901960784);
   --color-primitive-amber-3: color(srgb 1 0.9686274509803922 0.7607843137254902);
@@ -1208,31 +1193,31 @@
   --color-primitive-yellow-10: color(srgb 1 0.8627450980392157 0);
   --color-primitive-yellow-11: color(srgb 0.6196078431372549 0.4235294117647059 0);
   --color-primitive-yellow-12: color(srgb 0.2784313725490196 0.23137254901960785 0.12156862745098039);
+  --color-bg-warn-default: var(--color-primitive-amber-9);
+  --color-bg-warn-hover: var(--color-primitive-amber-10);
+  --color-bg-success-default: var(--color-primitive-grass-9);
+  --color-bg-success-hover: var(--color-primitive-grass-10);
+  --color-bg-default: var(--color-primitive-gray-1);
   --color-text-action-default: var(--color-primitive-gray-1);
-  --color-text-default: var(--color-primitive-gray-12);
   --color-text-error-default: var(--color-primitive-gray-1);
-  --color-text-subtle: var(--color-primitive-gray-11);
   --color-text-success-default: var(--color-primitive-gray-1);
   --color-text-warn-default: var(--color-primitive-gray-1);
+  --color-bg-subtle: var(--color-primitive-gray-2);
+  --color-bg-ui: var(--color-primitive-gray-3);
+  --color-bg-hover: var(--color-primitive-gray-4);
+  --color-bg-active: var(--color-primitive-gray-5);
+  --border-color-default: var(--color-primitive-gray-6);
+  --border-color-hover: var(--color-primitive-gray-7);
+  --color-text-subtle: var(--color-primitive-gray-11);
+  --color-text-default: var(--color-primitive-gray-12);
+  --color-bg-action-default: var(--color-primitive-iris-9);
+  --color-bg-action-hover: var(--color-primitive-iris-10);
+  --color-bg-error-default: var(--color-primitive-ruby-9);
+  --color-bg-error-hover: var(--color-primitive-ruby-10);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --border-color-default: var(--color-primitive-gray-6);
-    --border-color-hover: var(--color-primitive-gray-7);
-    --color-bg-action-default: var(--color-primitive-iris-9);
-    --color-bg-action-hover: var(--color-primitive-iris-10);
-    --color-bg-active: var(--color-primitive-gray-5);
-    --color-bg-default: var(--color-primitive-gray-1);
-    --color-bg-error-default: var(--color-primitive-ruby-9);
-    --color-bg-error-hover: var(--color-primitive-ruby-10);
-    --color-bg-hover: var(--color-primitive-gray-4);
-    --color-bg-subtle: var(--color-primitive-gray-2);
-    --color-bg-success-default: var(--color-primitive-grass-9);
-    --color-bg-success-hover: var(--color-primitive-grass-10);
-    --color-bg-ui: var(--color-primitive-gray-3);
-    --color-bg-warn-default: var(--color-primitive-amber-9);
-    --color-bg-warn-hover: var(--color-primitive-amber-10);
     --color-primitive-amber-1: color(srgb 0.08627450980392157 0.07058823529411765 0.047058823529411764);
     --color-primitive-amber-2: color(srgb 0.11372549019607843 0.09411764705882353 0.058823529411764705);
     --color-primitive-amber-3: color(srgb 0.18823529411764706 0.12549019607843137 0.03137254901960784);
@@ -1605,31 +1590,31 @@
     --color-primitive-yellow-10: color(srgb 1 1 0.3411764705882353);
     --color-primitive-yellow-11: color(srgb 0.9607843137254902 0.8823529411764706 0.2784313725490196);
     --color-primitive-yellow-12: color(srgb 0.9647058823529412 0.9333333333333333 0.7058823529411765);
+    --color-bg-warn-default: var(--color-primitive-amber-9);
+    --color-bg-warn-hover: var(--color-primitive-amber-10);
+    --color-bg-success-default: var(--color-primitive-grass-9);
+    --color-bg-success-hover: var(--color-primitive-grass-10);
+    --color-bg-default: var(--color-primitive-gray-1);
     --color-text-action-default: var(--color-primitive-gray-1);
-    --color-text-default: var(--color-primitive-gray-12);
     --color-text-error-default: var(--color-primitive-gray-1);
-    --color-text-subtle: var(--color-primitive-gray-11);
     --color-text-success-default: var(--color-primitive-gray-1);
     --color-text-warn-default: var(--color-primitive-gray-1);
+    --color-bg-subtle: var(--color-primitive-gray-2);
+    --color-bg-ui: var(--color-primitive-gray-3);
+    --color-bg-hover: var(--color-primitive-gray-4);
+    --color-bg-active: var(--color-primitive-gray-5);
+    --border-color-default: var(--color-primitive-gray-6);
+    --border-color-hover: var(--color-primitive-gray-7);
+    --color-text-subtle: var(--color-primitive-gray-11);
+    --color-text-default: var(--color-primitive-gray-12);
+    --color-bg-action-default: var(--color-primitive-iris-9);
+    --color-bg-action-hover: var(--color-primitive-iris-10);
+    --color-bg-error-default: var(--color-primitive-ruby-9);
+    --color-bg-error-hover: var(--color-primitive-ruby-10);
   }
 }
 
 [data-color-theme="dark"] {
-  --border-color-default: var(--color-primitive-gray-6);
-  --border-color-hover: var(--color-primitive-gray-7);
-  --color-bg-action-default: var(--color-primitive-iris-9);
-  --color-bg-action-hover: var(--color-primitive-iris-10);
-  --color-bg-active: var(--color-primitive-gray-5);
-  --color-bg-default: var(--color-primitive-gray-1);
-  --color-bg-error-default: var(--color-primitive-ruby-9);
-  --color-bg-error-hover: var(--color-primitive-ruby-10);
-  --color-bg-hover: var(--color-primitive-gray-4);
-  --color-bg-subtle: var(--color-primitive-gray-2);
-  --color-bg-success-default: var(--color-primitive-grass-9);
-  --color-bg-success-hover: var(--color-primitive-grass-10);
-  --color-bg-ui: var(--color-primitive-gray-3);
-  --color-bg-warn-default: var(--color-primitive-amber-9);
-  --color-bg-warn-hover: var(--color-primitive-amber-10);
   --color-primitive-amber-1: color(srgb 0.08627450980392157 0.07058823529411765 0.047058823529411764);
   --color-primitive-amber-2: color(srgb 0.11372549019607843 0.09411764705882353 0.058823529411764705);
   --color-primitive-amber-3: color(srgb 0.18823529411764706 0.12549019607843137 0.03137254901960784);
@@ -2002,11 +1987,26 @@
   --color-primitive-yellow-10: color(srgb 1 1 0.3411764705882353);
   --color-primitive-yellow-11: color(srgb 0.9607843137254902 0.8823529411764706 0.2784313725490196);
   --color-primitive-yellow-12: color(srgb 0.9647058823529412 0.9333333333333333 0.7058823529411765);
+  --color-bg-warn-default: var(--color-primitive-amber-9);
+  --color-bg-warn-hover: var(--color-primitive-amber-10);
+  --color-bg-success-default: var(--color-primitive-grass-9);
+  --color-bg-success-hover: var(--color-primitive-grass-10);
+  --color-bg-default: var(--color-primitive-gray-1);
   --color-text-action-default: var(--color-primitive-gray-1);
-  --color-text-default: var(--color-primitive-gray-12);
   --color-text-error-default: var(--color-primitive-gray-1);
-  --color-text-subtle: var(--color-primitive-gray-11);
   --color-text-success-default: var(--color-primitive-gray-1);
   --color-text-warn-default: var(--color-primitive-gray-1);
+  --color-bg-subtle: var(--color-primitive-gray-2);
+  --color-bg-ui: var(--color-primitive-gray-3);
+  --color-bg-hover: var(--color-primitive-gray-4);
+  --color-bg-active: var(--color-primitive-gray-5);
+  --border-color-default: var(--color-primitive-gray-6);
+  --border-color-hover: var(--color-primitive-gray-7);
+  --color-text-subtle: var(--color-primitive-gray-11);
+  --color-text-default: var(--color-primitive-gray-12);
+  --color-bg-action-default: var(--color-primitive-iris-9);
+  --color-bg-action-hover: var(--color-primitive-iris-10);
+  --color-bg-error-default: var(--color-primitive-ruby-9);
+  --color-bg-error-hover: var(--color-primitive-ruby-10);
 }
 

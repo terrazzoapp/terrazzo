@@ -69,65 +69,75 @@
   --tz-ease-quint-in-out: cubic-bezier(0.83, 0, 0.17, 1);
   --tz-ease-quint-out: cubic-bezier(0.22, 1, 0.36, 1);
   --tz-font-body-font-family: var(--tz-font-sans);
-  --tz-font-body-font-size: 0.875rem;
   --tz-font-body-font-variation-settings: "wght" 400;
   --tz-font-body-font-weight: 400;
+  --tz-font-body-font-size: 0.875rem;
   --tz-font-body-letter-spacing: 0;
   --tz-font-body-line-height: 1.4375;
+  --tz-font-body: var(--tz-font-body-font-weight) var(--tz-font-body-font-size)/var(--tz-font-body-line-height) var(--tz-font-body-font-family);
   --tz-font-body-longform-font-family: var(--tz-font-sans);
-  --tz-font-body-longform-font-size: 1.125rem;
   --tz-font-body-longform-font-variation-settings: "wght" 400;
   --tz-font-body-longform-font-weight: 400;
-  --tz-font-body-longform-letter-spacing: -0.0025rem;
+  --tz-font-body-longform-font-size: 1.125rem;
   --tz-font-body-longform-line-height: 1.4375;
+  --tz-font-body-longform-letter-spacing: -0.0025rem;
+  --tz-font-body-longform: var(--tz-font-body-longform-font-weight) var(--tz-font-body-longform-font-size)/var(--tz-font-body-longform-line-height) var(--tz-font-body-longform-font-family);
   --tz-font-body-strong-font-family: var(--tz-font-sans);
-  --tz-font-body-strong-font-size: 0.875rem;
   --tz-font-body-strong-font-variation-settings: "wght" 500;
   --tz-font-body-strong-font-weight: 400;
+  --tz-font-body-strong-font-size: 0.875rem;
   --tz-font-body-strong-letter-spacing: 0;
   --tz-font-body-strong-line-height: 1.4375;
+  --tz-font-body-strong: var(--tz-font-body-strong-font-weight) var(--tz-font-body-strong-font-size)/var(--tz-font-body-strong-line-height) var(--tz-font-body-strong-font-family);
   --tz-font-heading1-font-family: var(--tz-font-sans);
-  --tz-font-heading1-font-size: 1.75rem;
   --tz-font-heading1-font-variation-settings: "wght" 600;
   --tz-font-heading1-font-weight: 400;
-  --tz-font-heading1-letter-spacing: -0.0075rem;
+  --tz-font-heading1-font-size: 1.75rem;
   --tz-font-heading1-line-height: 1.5;
+  --tz-font-heading1-letter-spacing: -0.0075rem;
+  --tz-font-heading1: var(--tz-font-heading1-font-weight) var(--tz-font-heading1-font-size)/var(--tz-font-heading1-line-height) var(--tz-font-heading1-font-family);
   --tz-font-heading2-font-family: var(--tz-font-sans);
-  --tz-font-heading2-font-size: 1.5rem;
   --tz-font-heading2-font-variation-settings: "wght" 600;
   --tz-font-heading2-font-weight: 400;
-  --tz-font-heading2-letter-spacing: -0.00625rem;
+  --tz-font-heading2-font-size: 1.5rem;
   --tz-font-heading2-line-height: 1.875rem;
+  --tz-font-heading2-letter-spacing: -0.00625rem;
+  --tz-font-heading2: var(--tz-font-heading2-font-weight) var(--tz-font-heading2-font-size)/var(--tz-font-heading2-line-height) var(--tz-font-heading2-font-family);
   --tz-font-heading3-font-family: var(--tz-font-sans);
-  --tz-font-heading3-font-size: 1.25rem;
   --tz-font-heading3-font-variation-settings: "wght" 500;
   --tz-font-heading3-font-weight: 400;
-  --tz-font-heading3-letter-spacing: -0.005rem;
+  --tz-font-heading3-font-size: 1.25rem;
   --tz-font-heading3-line-height: 1.4;
+  --tz-font-heading3-letter-spacing: -0.005rem;
+  --tz-font-heading3: var(--tz-font-heading3-font-weight) var(--tz-font-heading3-font-size)/var(--tz-font-heading3-line-height) var(--tz-font-heading3-font-family);
   --tz-font-heading4-font-family: var(--tz-font-sans);
-  --tz-font-heading4-font-size: 1.125rem;
   --tz-font-heading4-font-variation-settings: "wght" 500;
   --tz-font-heading4-font-weight: 400;
+  --tz-font-heading4-font-size: 1.125rem;
   --tz-font-heading4-letter-spacing: -0.0025rem;
   --tz-font-heading4-line-height: 1.4375;
+  --tz-font-heading4: var(--tz-font-heading4-font-weight) var(--tz-font-heading4-font-size)/var(--tz-font-heading4-line-height) var(--tz-font-heading4-font-family);
   --tz-font-heading5-font-family: var(--tz-font-sans);
-  --tz-font-heading5-font-size: 1rem;
   --tz-font-heading5-font-variation-settings: "wght" 500;
   --tz-font-heading5-font-weight: 400;
+  --tz-font-heading5-font-size: 1rem;
   --tz-font-heading5-letter-spacing: 0;
   --tz-font-heading5-line-height: 1.4375;
+  --tz-font-heading5: var(--tz-font-heading5-font-weight) var(--tz-font-heading5-font-size)/var(--tz-font-heading5-line-height) var(--tz-font-heading5-font-family);
   --tz-font-heading6-font-family: var(--tz-font-body-strong-font-family);
-  --tz-font-heading6-font-size: var(--tz-font-body-strong-font-size);
   --tz-font-heading6-font-variation-settings: var(--tz-font-body-strong-font-variation-settings);
   --tz-font-heading6-font-weight: var(--tz-font-body-strong-font-weight);
+  --tz-font-heading6-font-size: var(--tz-font-body-strong-font-size);
   --tz-font-heading6-letter-spacing: var(--tz-font-body-strong-letter-spacing);
   --tz-font-heading6-line-height: var(--tz-font-body-strong-line-height);
+  --tz-font-heading6: var(--tz-font-heading6-font-weight) var(--tz-font-heading6-font-size)/var(--tz-font-heading6-line-height) var(--tz-font-heading6-font-family);
   --tz-font-label-small-font-family: var(--tz-font-sans);
-  --tz-font-label-small-font-size: 0.75rem;
   --tz-font-label-small-font-variation-settings: "wght" 500;
   --tz-font-label-small-font-weight: 400;
-  --tz-font-label-small-letter-spacing: 0.0025rem;
+  --tz-font-label-small-font-size: 0.75rem;
   --tz-font-label-small-line-height: 1.25;
+  --tz-font-label-small-letter-spacing: 0.0025rem;
+  --tz-font-label-small: var(--tz-font-label-small-font-weight) var(--tz-font-label-small-font-size)/var(--tz-font-label-small-line-height) var(--tz-font-label-small-font-family);
   --tz-font-mono: "Fragment Mono", ui-monospace, monospace;
   --tz-font-sans: "Instrument Sans", system-ui, -apple-system, "Aptos", "Helvetica Neue", "Helvetica", "Arial", "Noto Sans", sans-serif, "Helvetica", "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji";
   --tz-layer-base: 10;
@@ -166,10 +176,6 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-border-1);
-    --tz-border-2: 1px solid var(--tz-color-border-2);
-    --tz-border-3: 1px solid var(--tz-color-border-3);
-    --tz-border-focus: 2px solid var(--tz-color-border-focus);
     --tz-color-bg-1: var(--tz-color-base-gray-1000);
     --tz-color-bg-2: var(--tz-color-base-gray-950);
     --tz-color-bg-3: var(--tz-color-base-gray-950);
@@ -186,14 +192,14 @@
     --tz-color-text-3: var(--tz-color-base-gray-600);
     --tz-color-text-error: var(--tz-color-base-gray-1000);
     --tz-color-text-selected: var(--tz-color-base-blue-700);
+    --tz-border-1: 1px solid var(--tz-color-border-1);
+    --tz-border-2: 1px solid var(--tz-color-border-2);
+    --tz-border-3: 1px solid var(--tz-color-border-3);
+    --tz-border-focus: 2px solid var(--tz-color-border-focus);
   }
 }
 
 [data-color-mode="light"][data-color-mode="light"] {
-  --tz-border-1: 1px solid var(--tz-color-border-1);
-  --tz-border-2: 1px solid var(--tz-color-border-2);
-  --tz-border-3: 1px solid var(--tz-color-border-3);
-  --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-bg-1: var(--tz-color-base-gray-1000);
   --tz-color-bg-2: var(--tz-color-base-gray-950);
   --tz-color-bg-3: var(--tz-color-base-gray-950);
@@ -210,14 +216,14 @@
   --tz-color-text-3: var(--tz-color-base-gray-600);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
   --tz-color-text-selected: var(--tz-color-base-blue-700);
+  --tz-border-1: 1px solid var(--tz-color-border-1);
+  --tz-border-2: 1px solid var(--tz-color-border-2);
+  --tz-border-3: 1px solid var(--tz-color-border-3);
+  --tz-border-focus: 2px solid var(--tz-color-border-focus);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --tz-border-1: 1px solid var(--tz-color-border-1);
-    --tz-border-2: 1px solid var(--tz-color-border-2);
-    --tz-border-3: 1px solid var(--tz-color-border-3);
-    --tz-border-focus: 2px solid var(--tz-color-border-focus);
     --tz-color-bg-1: var(--tz-color-base-gray-100);
     --tz-color-bg-2: var(--tz-color-base-gray-200);
     --tz-color-bg-3: var(--tz-color-base-gray-300);
@@ -234,14 +240,14 @@
     --tz-color-text-3: var(--tz-color-base-gray-700);
     --tz-color-text-error: var(--tz-color-base-gray-1000);
     --tz-color-text-selected: var(--tz-color-base-blue-600);
+    --tz-border-1: 1px solid var(--tz-color-border-1);
+    --tz-border-2: 1px solid var(--tz-color-border-2);
+    --tz-border-3: 1px solid var(--tz-color-border-3);
+    --tz-border-focus: 2px solid var(--tz-color-border-focus);
   }
 }
 
 [data-color-mode="dark"][data-color-mode="dark"] {
-  --tz-border-1: 1px solid var(--tz-color-border-1);
-  --tz-border-2: 1px solid var(--tz-color-border-2);
-  --tz-border-3: 1px solid var(--tz-color-border-3);
-  --tz-border-focus: 2px solid var(--tz-color-border-focus);
   --tz-color-bg-1: var(--tz-color-base-gray-100);
   --tz-color-bg-2: var(--tz-color-base-gray-200);
   --tz-color-bg-3: var(--tz-color-base-gray-300);
@@ -258,5 +264,9 @@
   --tz-color-text-3: var(--tz-color-base-gray-700);
   --tz-color-text-error: var(--tz-color-base-gray-1000);
   --tz-color-text-selected: var(--tz-color-base-blue-600);
+  --tz-border-1: 1px solid var(--tz-color-border-1);
+  --tz-border-2: 1px solid var(--tz-color-border-2);
+  --tz-border-3: 1px solid var(--tz-color-border-3);
+  --tz-border-focus: 2px solid var(--tz-color-border-focus);
 }
 

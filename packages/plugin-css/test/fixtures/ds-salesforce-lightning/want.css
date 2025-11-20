@@ -6,8 +6,8 @@
   --color-background: var(--color-gray3);
   --color-background-actionbar-icon-utility: var(--color-gray9);
   --color-background-alt: var(--palette-neutral100);
-  --color-background-alt-inverse: var(--palette-blue20);
   --color-background-alt2: var(--color-gray3);
+  --color-background-alt-inverse: var(--palette-blue20);
   --color-background-anchor: var(--color-gray3);
   --color-background-backdrop: color(srgb 1 1 1 / 0.7490196078431373);
   --color-background-backdrop-tint: var(--color-gray2);

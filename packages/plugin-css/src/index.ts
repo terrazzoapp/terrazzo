@@ -71,10 +71,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
             let listingName: string | undefined = localID;
 
             // Composite tokens without a shorthand won't get generated in the output, so we don't list them.
-            if (
-              typeof transformedValue === 'object' &&
-              generateShorthand({ $type: token.$type, localID }) === undefined
-            ) {
+            if (typeof transformedValue === 'object' && generateShorthand({ token, localID }) === undefined) {
               listingName = undefined;
             }
 

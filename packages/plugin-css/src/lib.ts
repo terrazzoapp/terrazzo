@@ -125,9 +125,7 @@ function _printRule(rule: CSSRule): string {
     indent += '  ';
   }
 
-  const declarations = Object.entries(rule.declarations);
-  declarations.sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }));
-  for (const [k, d] of declarations) {
+  for (const [k, d] of Object.entries(rule.declarations)) {
     output.push(`${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
   }
 
