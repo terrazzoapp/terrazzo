@@ -3,12 +3,11 @@ import { bundle, getObjMember, getObjMembers, parseRef } from '@terrazzo/json-sc
 import type yamlToMomoa from 'yaml-to-momoa';
 import type Logger from '../logger.js';
 import type {
-  Resolver,
   ResolverModifierInline,
   ResolverModifierNormalized,
-  ResolverNormalized,
   ResolverSetInline,
   ResolverSetNormalized,
+  ResolverSourceNormalized,
 } from '../types.js';
 import { validateModifier, validateSet } from './validate.js';
 
@@ -16,23 +15,24 @@ export interface NormalizeResolverOptions {
   logger: Logger;
   yamlToMomoa?: typeof yamlToMomoa;
   filename: URL;
+  req: (url: URL, origin: URL) => Promise<string>;
   src?: any;
 }
 
 /** Normalize resolver (assuming it’s been validated) */
 export async function normalizeResolver(
   node: DocumentNode,
-  { filename, src, logger, yamlToMomoa }: NormalizeResolverOptions,
-): Promise<ResolverNormalized> {
-  const resolver = evaluate(node) as unknown as Resolver;
+  { filename, req, src, logger, yamlToMomoa }: NormalizeResolverOptions,
+): Promise<ResolverSourceNormalized> {
+  const resolverSource = evaluate(node) as unknown as ResolverSourceNormalized;
   const resolutionOrder = getObjMember(node.body as ObjectNode, 'resolutionOrder') as ArrayNode;
 
   return {
-    name: resolver.name,
-    version: resolver.version,
-    description: resolver.description,
-    sets: resolver.sets,
-    modifiers: resolver.modifiers,
+    name: resolverSource.name,
+    version: resolverSource.version,
+    description: resolverSource.description,
+    sets: resolverSource.sets,
+    modifiers: resolverSource.modifiers,
     resolutionOrder: await Promise.all(
       resolutionOrder.elements.map(async (element, i) => {
         const layer = element.value as ObjectNode;
@@ -57,7 +57,7 @@ export async function normalizeResolver(
                 message: 'Local $ref in resolutionOrder must point to either #/sets/[set] or #/modifiers/[modifiers].',
               });
             } else {
-              const resolvedItem = resolver[subpath[0] as 'sets' | 'modifiers']?.[subpath[1]!];
+              const resolvedItem = resolverSource[subpath[0] as 'sets' | 'modifiers']?.[subpath[1]!];
               if (!resolvedItem) {
                 logger.error({ ...entry, message: 'Invalid $ref' });
               } else {
@@ -69,9 +69,13 @@ export async function normalizeResolver(
             }
           } else {
             // 1b. remote $ref: load and validate
-            const result = await bundle([{ filename: new URL(url, filename), src: resolver.resolutionOrder[i]! }], {
-              yamlToMomoa,
-            });
+            const result = await bundle(
+              [{ filename: new URL(url, filename), src: resolverSource.resolutionOrder[i]! }],
+              {
+                req,
+                yamlToMomoa,
+              },
+            );
             if (result.document.body.type === 'Object') {
               const type = getObjMember(result.document.body, 'type');
               if (type?.type === 'String' && type.value === 'set') {
@@ -87,7 +91,7 @@ export async function normalizeResolver(
         }
 
         // 2. resolve inline sources & contexts
-        const finalResult = await bundle([{ filename, src: item }], { yamlToMomoa });
+        const finalResult = await bundle([{ filename, src: item }], { req, yamlToMomoa });
         return evaluate(finalResult.document.body) as unknown as ResolverSetNormalized | ResolverModifierNormalized;
       }),
     ),

@@ -50,8 +50,8 @@ export interface IntermediaryToken {
   };
 }
 
-export interface LoadOptions
-  extends Pick<ParseOptions, 'config' | 'continueOnError' | 'req' | 'yamlToMomoa' | 'transform'> {
+export interface LoadOptions extends Pick<ParseOptions, 'config' | 'continueOnError' | 'yamlToMomoa' | 'transform'> {
+  req: NonNullable<ParseOptions['req']>;
   logger: Logger;
 }
 

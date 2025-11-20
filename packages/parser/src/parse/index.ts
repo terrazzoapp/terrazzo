@@ -1,15 +1,15 @@
-import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import type fsType from 'node:fs/promises';
+import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import { loadResolver } from '../resolver/load.js';
-import type { ConfigInit, InputSource, ParseOptions, ResolverNormalized } from '../types.js';
+import type { ConfigInit, InputSource, ParseOptions, Resolver } from '../types.js';
 import { loadSources } from './load.js';
 
 export interface ParseResult {
   tokens: TokenNormalizedSet;
   sources: InputSource[];
-  resolver?: ResolverNormalized | undefined;
+  resolver?: Resolver | undefined;
 }
 
 /** Parse */
@@ -30,7 +30,7 @@ export default async function parse(
   const totalStart = performance.now();
 
   // 1. Resolver
-  const resolver = await loadResolver(inputs, { logger, yamlToMomoa });
+  const resolver = await loadResolver(inputs, { logger, req, yamlToMomoa });
 
   // 2. No resolver (tokens)
   const initStart = performance.now();
