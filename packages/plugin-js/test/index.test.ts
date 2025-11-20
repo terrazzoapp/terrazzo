@@ -79,32 +79,28 @@ describe('@terrazzo/plugin-js', () => {
       'radix',
       'salesforce-lightning',
       'shopify-polaris',
-    ] as const)(
-      '%s',
-      async (name) => {
-        const src = DS[name];
-        const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
-        const config = defineConfig(
-          {
-            lint: {
-              rules: {
-                'core/consistent-naming': 'off',
-              },
+    ] as const)('%s', async (name) => {
+      const src = DS[name];
+      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+      const config = defineConfig(
+        {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
             },
-            plugins: [
-              js({
-                js: 'want.js',
-              }),
-            ],
           },
-          { cwd },
-        );
-        const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
-        const result = await build(tokens, { sources, config });
-        await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
-        await expect(result.outputFiles[1]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
-      },
-      30_000,
-    );
+          plugins: [
+            js({
+              js: 'want.js',
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
+      const result = await build(tokens, { sources, config });
+      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.js', cwd)));
+      await expect(result.outputFiles[1]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.d.ts', cwd)));
+    }, 30_000);
   });
 });
