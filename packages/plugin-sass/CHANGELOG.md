@@ -1,18 +1,5 @@
 # @terrazzo/plugin-sass
 
-## 2.0.0-alpha.3
-
-### Minor Changes
-
-- [#589](https://github.com/terrazzoapp/terrazzo/pull/589) [`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7) Thanks [@drwpow](https://github.com/drwpow)! - feat: add typography shorthand, improve Sass plugin
-
-### Patch Changes
-
-- Updated dependencies [[`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7)]:
-  - @terrazzo/token-tools@2.0.0-alpha.3
-  - @terrazzo/plugin-css@2.0.0-alpha.3
-  - @terrazzo/cli@2.0.0-alpha.3
-
 ## 2.0.0
 
 ### Minor Changes
@@ -22,6 +9,8 @@
   If your lint plugin is not using the `src` context value, no changes are needed. If it is, you’ll need to instead read from the `sources` array, and look up sources with a token’s `source.loc` filename manually. This change was because lint rules now run on all files in one pass, essentially.
 
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ [Plugin API] Minor breaking change: token.originalValue may be undefined for tokens created with $ref. This shouldn’t affect any tokens or plugins not using $refs. But going forward this value will be missing if the token was created dynamically via $ref.
+
+- [#589](https://github.com/terrazzoapp/terrazzo/pull/589) [`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7) Thanks [@michaelurban](https://github.com/michaelurban)! - feat: add typography shorthand, improve Sass plugin
 
 ### Patch Changes
 

@@ -1,16 +1,5 @@
 # @terrazzo/parser
 
-## 2.0.0-alpha.3
-
-### Minor Changes
-
-- [#589](https://github.com/terrazzoapp/terrazzo/pull/589) [`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7) Thanks [@drwpow](https://github.com/drwpow)! - feat: add typography shorthand, improve Sass plugin
-
-### Patch Changes
-
-- Updated dependencies [[`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7)]:
-  - @terrazzo/token-tools@2.0.0-alpha.3
-
 ## 2.0.0
 
 ### Minor Changes
@@ -59,6 +48,8 @@
   - Typography
 
   These behaviors may be opted out individually by adjusting the new lint rules ([see documentation](https://terrazzo.app/docs/linting/)).
+  
+- [#589](https://github.com/terrazzoapp/terrazzo/pull/589) [`8f32d44`](https://github.com/terrazzoapp/terrazzo/commit/8f32d44792bba62194e674c9b60cfdeb366c96c7) Thanks [@michaelurban](https://github.com/michaelurban)! - feat: add typography shorthand, improve Sass plugin
 
 ### Patch Changes
 
