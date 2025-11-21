@@ -97,7 +97,7 @@ export async function bundle(
 
 /** Determine if an input is likely a JSON string */
 export function maybeRawJSON(input: string): boolean {
-  return typeof input === 'string' && input.trim().startsWith('{');
+  return typeof input === 'string' && /^\s*\{/.test(input);
 }
 
 export interface ResolveRefOptions {

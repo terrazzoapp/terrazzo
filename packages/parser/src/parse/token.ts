@@ -1,5 +1,5 @@
 import * as momoa from '@humanwhocodes/momoa';
-import { getObjMember, parseRef, type RefMap } from '@terrazzo/json-schema-tools';
+import { getObjMember, type InputSourceWithDocument, parseRef, type RefMap } from '@terrazzo/json-schema-tools';
 import {
   type GroupNormalized,
   isAlias,
@@ -9,7 +9,7 @@ import {
 } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import type { default as Logger } from '../logger.js';
-import type { Config, InputSource, ReferenceObject } from '../types.js';
+import type { Config, ReferenceObject } from '../types.js';
 
 /** Convert valid DTCG alias to $ref */
 export function aliasToRef(alias: string, mode?: string): ReferenceObject | undefined {
@@ -26,7 +26,7 @@ export function aliasToRef(alias: string, mode?: string): ReferenceObject | unde
 export interface TokenFromNodeOptions {
   groups: Record<string, GroupNormalized>;
   path: string[];
-  source: InputSource;
+  source: InputSourceWithDocument;
   ignore: Config['ignore'];
 }
 
@@ -51,7 +51,7 @@ export function tokenFromNode(
     group.tokens.push(id);
   }
 
-  const nodeSource = { filename: source.filename?.href, node };
+  const nodeSource = { filename: source.filename.href, node };
   const token: TokenNormalized = {
     id,
     $type: originalToken.$type || group.$type,
@@ -211,7 +211,7 @@ export function groupFromNode(
 
 export interface GraphAliasesOptions {
   tokens: TokenNormalizedSet;
-  sources: Record<string, InputSource>;
+  sources: Record<string, InputSourceWithDocument>;
   logger: Logger;
 }
 
@@ -425,7 +425,7 @@ const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {
  */
 export function resolveAliases(
   tokens: TokenNormalizedSet,
-  { logger, refMap, sources }: { logger: Logger; refMap: RefMap; sources: Record<string, InputSource> },
+  { logger, refMap, sources }: { logger: Logger; refMap: RefMap; sources: Record<string, InputSourceWithDocument> },
 ): void {
   for (const token of Object.values(tokens)) {
     const aliasEntry = {

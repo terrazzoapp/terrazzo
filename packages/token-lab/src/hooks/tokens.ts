@@ -36,7 +36,7 @@ const $parseResult = atom<ParseResult>({
       return {};
     },
     source: {} as any,
-    permutations: [],
+    listPermutations: () => [],
     isValidInput() {
       return false;
     },

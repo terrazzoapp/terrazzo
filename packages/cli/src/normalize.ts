@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import * as momoa from '@humanwhocodes/momoa';
-import { getObjMember, getObjMembers, traverseAsync } from '@terrazzo/json-schema-tools';
+import { getObjMember, getObjMembers, traverse } from '@terrazzo/json-schema-tools';
 import { defineConfig, type Logger, parse } from '@terrazzo/parser';
 import { isAlias } from '@terrazzo/token-tools';
 import { cwd, printError } from './shared.js';
@@ -49,8 +49,8 @@ export async function normalizeCmd(filename: string, { logger, output }: Normali
       logger,
     });
 
-    await traverseAsync(document, {
-      async enter(node, _parent, nodePath) {
+    traverse(document, {
+      enter(node, _parent, nodePath) {
         const token = tokens[nodePath.join('.')];
         if (!token || token.aliasOf || node.type !== 'Member' || node.value.type !== 'Object') {
           return;

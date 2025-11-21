@@ -1,21 +1,22 @@
 import type fsType from 'node:fs/promises';
+import type { InputSource, InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import lintRunner from '../lint/index.js';
 import Logger from '../logger.js';
 import { createSyntheticResolver } from '../resolver/create-synthetic-resolver.js';
 import { loadResolver } from '../resolver/load.js';
-import type { ConfigInit, InputSource, ParseOptions, Resolver } from '../types.js';
+import type { ConfigInit, ParseOptions, Resolver } from '../types.js';
 import { loadSources } from './load.js';
 
 export interface ParseResult {
   tokens: TokenNormalizedSet;
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
   resolver: Resolver;
 }
 
 /** Parse */
 export default async function parse(
-  _input: Omit<InputSource, 'document'> | Omit<InputSource, 'document'>[],
+  _input: InputSource | InputSource[],
   {
     logger = new Logger(),
     req = defaultReq,
@@ -27,22 +28,33 @@ export default async function parse(
   }: ParseOptions = {} as ParseOptions,
 ): Promise<ParseResult> {
   const inputs = Array.isArray(_input) ? _input : [_input];
+  let tokens: TokenNormalizedSet = {};
+  let resolver: Resolver | undefined;
+  let sources: InputSourceWithDocument[] = [];
 
   const totalStart = performance.now();
 
-  // 1. Resolver
-  const resolver = await loadResolver(inputs, { logger, req, yamlToMomoa });
-
-  // 2. No resolver (tokens)
+  // 1. Load tokens
   const initStart = performance.now();
-  const { tokens, sources } = await loadSources(inputs, {
-    req,
-    logger,
-    config,
-    continueOnError,
-    yamlToMomoa,
-    transform,
-  });
+  const resolverResult = await loadResolver(inputs, { config, logger, req, yamlToMomoa });
+  // 1a. Resolver
+  if (resolverResult.resolver) {
+    tokens = resolverResult.tokens;
+    sources = resolverResult.sources;
+    resolver = resolverResult.resolver;
+  } else {
+    // 1b. No resolver
+    const tokenResult = await loadSources(inputs, {
+      req,
+      logger,
+      config,
+      continueOnError,
+      yamlToMomoa,
+      transform,
+    });
+    tokens = tokenResult.tokens;
+    sources = tokenResult.sources;
+  }
   logger.debug({
     message: 'Loaded tokens',
     group: 'parser',
@@ -81,7 +93,7 @@ export default async function parse(
   return {
     tokens,
     sources,
-    resolver: resolver || (await createSyntheticResolver(tokens, { logger, req })),
+    resolver: resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources })),
   };
 }
 

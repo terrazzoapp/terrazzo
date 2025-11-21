@@ -142,6 +142,75 @@ export function replaceNode(a: momoa.AnyNode, b: momoa.AnyNode) {
   }
 }
 
+export interface JSONVisitor {
+  enter?: (node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[]) => void;
+  exit?: (node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[]) => void;
+}
+
+/**
+ * Variation of Momoa’s traverse() that also keeps track of global path.
+ * Allows crude mutation of AST during traversal (along with any consequences).
+ */
+export function traverse(root: momoa.AnyNode, visitor: JSONVisitor): void {
+  /**
+   * Recursively visits a node.
+   * @param {AnyNode} node The node to visit.
+   * @param {AnyNode} [parent] The parent of the node to visit.
+   * @return {void}
+   */
+  function visitNode(node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[] = []) {
+    const nextPath = [...path];
+    visitor.enter?.(node, parent, nextPath);
+    switch (node.type) {
+      case 'Document': {
+        visitNode(node.body, node, nextPath);
+        break;
+      }
+      case 'Array': {
+        let i = 0;
+        let len = node.elements.length;
+        let prevElements = node.elements;
+        while (i < len) {
+          visitNode(node.elements[i]!, node, [...nextPath, String(i)]);
+          // if this node mutated, the current array in memory is invalidated and we must start over
+          if (node.elements !== prevElements) {
+            i = 0;
+            len = node.elements.length;
+            prevElements = node.elements;
+            continue;
+          }
+          i++;
+        }
+        break;
+      }
+      case 'Element':
+      case 'Member': {
+        visitNode(node.value, node, nextPath);
+        break;
+      }
+      case 'Object': {
+        let i = 0;
+        let len = node.members.length;
+        let prevMembers = node.members;
+        while (i < len) {
+          visitNode(node.members[i]!, node, [...nextPath, (node.members[i]!.name as momoa.StringNode).value]);
+          // if this node mutated, the current array in memory is invalidated and we must start over
+          if (node.members !== prevMembers) {
+            i = 0;
+            len = node.members.length;
+            prevMembers = node.members;
+            continue;
+          }
+          i++;
+        }
+        break;
+      }
+    }
+    visitor.exit?.(node, parent, nextPath);
+  }
+  visitNode(root, undefined, []);
+}
+
 export interface AsyncJSONVisitor {
   enter?: (node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[]) => Promise<void>;
   exit?: (node: momoa.AnyNode, parent: momoa.AnyNode | undefined, path: string[]) => Promise<void>;

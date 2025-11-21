@@ -199,10 +199,12 @@ describe('Resolver module', () => {
             // Note: the inlining here is intentional when normalized; Terrazzo reduces lookups by duplicating + flattening into one array ($refs are all resolved)
             {
               type: 'set',
+              name: 'allTokens',
               sources: [{ color: { blue: { '600': lightToken } } }],
             },
             {
               type: 'modifier',
+              name: 'tzMode',
               description: 'Automatically built from $extensions.mode',
               contexts: {
                 light: [{ color: { blue: { '600': lightToken } } }],
@@ -224,6 +226,7 @@ describe('Resolver module', () => {
               },
             },
           },
+          _source: expect.objectContaining({}), // ignore specifics here, as long as it exists
         });
       });
     });
@@ -245,7 +248,7 @@ describe('Resolver module', () => {
   });
 
   describe('Additional cases', () => {
-    it.skip('filesystem', async () => {
+    it('filesystem', async () => {
       const cwd = new URL('./fixtures/resolver/', import.meta.url);
 
       const filename = new URL('example.resolver.json', cwd);
@@ -261,32 +264,41 @@ describe('Resolver module', () => {
       );
 
       expect(tokens).toEqual({
-        'color.blue.6': {},
-      });
-
-      expect(resolver?.apply({ theme: 'light' })).toEqual({
-        'color.blue.6': {
+        'color.blue.6': expect.objectContaining({
           $type: 'color',
           $value: {
+            colorSpace: 'srgb',
             components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
             alpha: 1,
             hex: '#0550ae',
           },
-        },
+        }),
       });
-      expect(resolver?.apply({ theme: 'dark' })).toEqual({
-        'color.blue.6': {
+
+      expect(resolver?.apply({ theme: 'light' })).toEqual({
+        'color.blue.6': expect.objectContaining({
           $type: 'color',
           $value: {
+            colorSpace: 'srgb',
+            components: [0.0196078431372549, 0.3137254901960784, 0.6823529411764706],
+            alpha: 1,
+            hex: '#0550ae',
+          },
+        }),
+      });
+      expect(resolver?.apply({ theme: 'dark' })).toEqual({
+        'color.blue.6': expect.objectContaining({
+          $type: 'color',
+          $value: {
+            colorSpace: 'srgb',
             components: [0.06666666666666667, 0.34509803921568627, 0.7803921568627451],
             alpha: 1,
             hex: '#1158c7',
           },
-        },
+        }),
       });
 
-      expect(resolver?.permutations).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
-
+      expect(resolver?.listPermutations()).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
       expect(resolver?.isValidInput({ theme: 'dark' })).toBe(true);
       expect(resolver?.isValidInput({})).toBe(false);
       expect(resolver?.isValidInput({ theme: 'foobar' })).toBe(false);

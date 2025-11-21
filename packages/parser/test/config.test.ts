@@ -110,6 +110,7 @@ describe('config', () => {
       const result = await parse(
         [
           {
+            filename: new URL('file:///tokens.json'),
             src: {
               color: { red: { $type: 'color', $value: { colorSpace: 'display-p3', components: [1, 0, 0] } } },
               'color-legacy': { red: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 0, 0] } } },
