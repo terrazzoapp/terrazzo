@@ -91,13 +91,13 @@ darkTokens.get("color.blue.600")
 
 ### API
 
-| Name           | Type                                          | Description                                                                                              |
-|:---------------|:----------------------------------------------|:---------------------------------------------------------------------------------------------------------|
-| get()          | `(name: string) => Token`                     | Get a token by ID. Will throw an error if a resolver is used.                                            |
-| listAll()      | `() => Token[]`                               | Return an array of all tokens.                                                                           |
-| apply()        | `(input: Record<string, string>) => TokenAPI` | Apply context values to produce a new token interface (use `get()` and `listAll()`).                     |
-| permutations   | `Record<string, string>[]`                    | Get all possible input values of the resolver (ignores default values).                                  |
-| isValidInput() | `(input: Record<string, string>) => boolean`  | Determine whether an input value is valid for the given resolver (automatically applies default values). |
+| Name               | Type                                          | Description                                                                                              |
+|:-------------------|:----------------------------------------------|:---------------------------------------------------------------------------------------------------------|
+| get()              | `(name: string) => Token`                     | Get a token by ID. Will throw an error if a resolver is used.                                            |
+| listAll()          | `() => Token[]`                               | Return an array of all tokens.                                                                           |
+| apply()            | `(input: Record<string, string>) => TokenAPI` | Apply context values to produce a new token interface (use `get()` and `listAll()`).                     |
+| listPermutations() | `() => Record<string, string>[]`              | Get all possible input values of the resolver (ignores default values).                                  |
+| isValidInput()     | `(input: Record<string, string>) => boolean`  | Determine whether an input value is valid for the given resolver (automatically applies default values). |
 
 ## Config
 

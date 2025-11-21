@@ -1,11 +1,11 @@
-import type * as momoa from '@humanwhocodes/momoa';
+import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
 import type { BuildRunnerResult, ConfigInit, TokenTransformed, TransformParams } from '../types.js';
 
 export interface BuildRunnerOptions {
-  sources: { filename?: URL; src: string; document: momoa.DocumentNode }[];
+  sources: InputSourceWithDocument[];
   config: ConfigInit;
   logger?: Logger;
 }

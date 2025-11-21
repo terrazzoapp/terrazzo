@@ -1,4 +1,5 @@
 import type * as momoa from '@humanwhocodes/momoa';
+import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import type {
   Group,
   TokenNormalized,
@@ -30,7 +31,7 @@ export interface BuildHookOptions {
   /** Query transformed values */
   getTransforms(params: TransformParams): TokenTransformed[];
   /** Momoa documents */
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
   outputFile: (
     /** Filename to output (relative to outDir) */
     filename: string,
@@ -51,7 +52,7 @@ export interface BuildEndHookOptions {
   /** Query transformed values */
   getTransforms(params: TransformParams): TokenTransformed[];
   /** Momoa documents */
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
   /** Final files to be written */
   outputFiles: OutputFileExpanded[];
 }
@@ -147,12 +148,6 @@ export interface ConfigOptions {
   cwd: URL;
 }
 
-export interface InputSource {
-  filename?: URL;
-  src: any;
-  document: momoa.DocumentNode;
-}
-
 export interface LintNotice {
   /** Lint message shown to the user */
   message: string;
@@ -226,7 +221,7 @@ export interface LintRuleContext<MessageIds extends string, LintRuleOptions exte
    * All source files present in this run. To find the original source, match a
    * token’s `source.loc` filename to one of the source’s `filename`s.
    */
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
   /** Source file location. */
   filename?: URL;
   /** ID:Token map of all tokens. */
@@ -309,7 +304,7 @@ export interface ParseOptions {
    */
   transform?: TransformVisitors;
   /** (internal cache; do not use) */
-  _sources?: Record<string, InputSource>;
+  _sources?: Record<string, InputSourceWithDocument>;
 }
 
 export interface Plugin {
@@ -342,7 +337,7 @@ export interface Resolver<
   /** Supply values to modifiers to produce a final tokens set */
   apply: (input: Partial<Input>) => TokenNormalizedSet;
   /** List all possible valid input combinations. Ignores default values, as they would duplicate some other permutations. */
-  permutations: Input[];
+  listPermutations: () => Input[];
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
@@ -378,6 +373,10 @@ export interface ResolverSourceNormalized {
    * pass over the resolutionOrder array is needed.
    */
   resolutionOrder: (ResolverSetNormalized | ResolverModifierNormalized)[];
+  _source: {
+    filename?: URL;
+    node: momoa.DocumentNode;
+  };
 }
 
 export interface ResolverModifier<Context extends string = string> {
@@ -454,5 +453,5 @@ export interface TransformHookOptions {
     },
   ): void;
   /** Momoa documents */
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
 }

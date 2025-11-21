@@ -63,6 +63,7 @@ export async function normalizeResolver(
               } else {
                 item = {
                   type: subpath[0] === 'sets' ? 'set' : 'modifier',
+                  name: subpath[1],
                   ...(resolvedItem as any), // Note: as long as this exists, this has already been validated to be correct
                 };
               }
@@ -97,5 +98,9 @@ export async function normalizeResolver(
           | ResolverModifierNormalized;
       }),
     ),
+    _source: {
+      filename,
+      node,
+    },
   };
 }

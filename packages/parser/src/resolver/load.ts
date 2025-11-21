@@ -1,16 +1,18 @@
 import * as momoa from '@humanwhocodes/momoa';
-import { maybeRawJSON } from '@terrazzo/json-schema-tools';
+import { type InputSource, type InputSourceWithDocument, maybeRawJSON } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
-import eq from 'fast-deep-equal';
 import { merge } from 'merge-anything';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
+import { makeInputKey } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
-import type { InputSource, Resolver, ResolverSourceNormalized } from '../types.js';
+import { processTokens } from '../parse/process.js';
+import type { ConfigInit, Resolver, ResolverSourceNormalized } from '../types.js';
 import { normalizeResolver } from './normalize.js';
 import { isLikelyResolver, validateResolver } from './validate.js';
 
 export interface LoadResolverOptions {
+  config: ConfigInit;
   logger: Logger;
   req: (url: URL, origin: URL) => Promise<string>;
   yamlToMomoa?: typeof yamlToMomoa;
@@ -18,10 +20,11 @@ export interface LoadResolverOptions {
 
 /** Quick-parse input sources and find a resolver */
 export async function loadResolver(
-  inputs: Omit<InputSource, 'document'>[],
-  { logger, req, yamlToMomoa }: LoadResolverOptions,
-): Promise<Resolver | undefined> {
+  inputs: InputSource[],
+  { config, logger, req, yamlToMomoa }: LoadResolverOptions,
+): Promise<{ resolver: Resolver | undefined; tokens: TokenNormalizedSet; sources: InputSourceWithDocument[] }> {
   let resolverDoc: momoa.DocumentNode | undefined;
+  let tokens: TokenNormalizedSet = {};
   const entry = {
     group: 'parser',
     label: 'init',
@@ -60,6 +63,7 @@ export async function loadResolver(
     break;
   }
 
+  let resolver: Resolver | undefined;
   if (resolverDoc) {
     validateResolver(resolverDoc, { logger, src: inputs[0]!.src });
     const normalized = await normalizeResolver(resolverDoc, {
@@ -69,45 +73,67 @@ export async function loadResolver(
       src: inputs[0]!.src,
       yamlToMomoa,
     });
-    return createResolver(normalized, { logger });
+    resolver = createResolver(normalized, { config, logger, sources: [{ ...inputs[0]!, document: resolverDoc }] });
+
+    // If a resolver is present, load a single permutation to get a base token set.
+    const firstInput: Record<string, string> = {};
+    for (const m of resolver.source.resolutionOrder) {
+      if (m.type !== 'modifier') {
+        continue;
+      }
+      firstInput[m.name] = typeof m.default === 'string' ? m.default : Object.keys(m.contexts)[0]!;
+    }
+    tokens = resolver.apply(firstInput);
   }
+
+  return {
+    resolver,
+    tokens,
+    sources: [{ ...inputs[0]!, document: resolverDoc! }],
+  };
 }
 
 export interface CreateResolverOptions {
+  config: ConfigInit;
   logger: Logger;
+  sources: InputSourceWithDocument[];
 }
 
 /** Create an interface to resolve permutations */
-export function createResolver(resolverSource: ResolverSourceNormalized, { logger }: CreateResolverOptions): Resolver {
+export function createResolver(
+  resolverSource: ResolverSourceNormalized,
+  { config, logger, sources }: CreateResolverOptions,
+): Resolver {
   const inputDefaults: Record<string, string> = {};
-  const modifierPermutations: [string, string[]][] = []; // figure out modifiers
-  for (const [name, m] of Object.entries(resolverSource.modifiers ?? {})) {
-    if (typeof m.default === 'string') {
-      inputDefaults[name] = m.default;
-    }
-    modifierPermutations.push([name, Object.keys(m.contexts)]);
-  }
-  for (const m of resolverSource.resolutionOrder) {
-    if (!('type' in m) || m.type !== 'modifier') {
-      continue;
-    }
-    if (typeof m.default === 'string') {
-      inputDefaults[m.name] = m.default;
-    }
-    modifierPermutations.push([m.name, Object.keys(m.contexts)]);
-  }
+  const validContexts: Record<string, string[]> = {};
+  const allPermutations: Record<string, string>[] = [];
 
-  const permutations = calculatePermutations(modifierPermutations);
+  const resolverCache: Record<string, any> = {};
+
+  for (const m of resolverSource.resolutionOrder) {
+    if (m.type === 'modifier') {
+      if (typeof m.default === 'string') {
+        inputDefaults[m.name] = m.default!;
+      }
+      validContexts[m.name] = Object.keys(m.contexts);
+    }
+  }
 
   return {
     apply(inputRaw): TokenNormalizedSet {
-      let tokens: TokenNormalizedSet = {};
+      let tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
+      const inputKey = makeInputKey(input);
+
+      if (resolverCache[inputKey]) {
+        return resolverCache[inputKey];
+      }
+
       for (const item of resolverSource.resolutionOrder) {
         switch (item.type) {
           case 'set': {
             for (const s of item.sources) {
-              tokens = merge(tokens, s) as TokenNormalizedSet;
+              tokensRaw = merge(tokensRaw, s) as TokenNormalizedSet;
             }
             break;
           }
@@ -122,22 +148,51 @@ export function createResolver(resolverSource: ResolverSourceNormalized, { logge
               });
             }
             for (const s of sources ?? []) {
-              tokens = merge(tokens, s) as TokenNormalizedSet;
+              tokensRaw = merge(tokensRaw, s) as TokenNormalizedSet;
             }
             break;
           }
         }
       }
+
+      const src = JSON.stringify(tokensRaw, undefined, 2);
+      const rootSource = { filename: resolverSource._source.filename!, document: toMomoa(src), src };
+      const tokens = processTokens(rootSource, {
+        config,
+        logger,
+        sourceByFilename: {},
+        refMap: {},
+        sources,
+      });
+      resolverCache[inputKey] = tokens;
       return tokens;
     },
     source: resolverSource,
-    permutations,
-    isValidInput(inputRaw: Record<string, string>) {
-      if (!inputRaw || typeof inputRaw !== 'object') {
-        logger.error({ group: 'parser', label: 'resolver', message: `Invalid input: ${JSON.stringify(inputRaw)}.` });
+    listPermutations() {
+      // only do work on first call, then cache subsequent work. this could be thousands of possible values!
+      if (!allPermutations.length) {
+        allPermutations.push(...calculatePermutations(Object.entries(validContexts)));
       }
-      const input = { ...inputDefaults, ...inputRaw };
-      return permutations.findIndex((p) => eq(input, p)) !== -1;
+      return allPermutations;
+    },
+    isValidInput(input: Record<string, string>) {
+      if (!input || typeof input !== 'object') {
+        logger.error({ group: 'parser', label: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
+      }
+      if (!Object.keys(input).every((k) => k in validContexts)) {
+        return false; // 1. invalid if unknown modifier name
+      }
+      for (const [name, contexts] of Object.entries(validContexts)) {
+        // Note: empty strings are valid! Don’t check for truthiness.
+        if (name in input) {
+          if (!contexts.includes(input[name]!)) {
+            return false; // 2. invalid if unknown context
+          }
+        } else if (!(name in inputDefaults)) {
+          return false; // 3. invalid if omitted, and no default
+        }
+      }
+      return true;
     },
   };
 }

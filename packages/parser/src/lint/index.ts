@@ -1,7 +1,8 @@
+import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import { pluralize, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import type { LogEntry, default as Logger } from '../logger.js';
-import type { ConfigInit, InputSource } from '../types.js';
+import type { ConfigInit } from '../types.js';
 
 export { RECOMMENDED_CONFIG } from './plugin-core/index.js';
 
@@ -9,7 +10,7 @@ export interface LintRunnerOptions {
   tokens: TokenNormalizedSet;
   filename?: URL;
   config: ConfigInit;
-  sources: InputSource[];
+  sources: InputSourceWithDocument[];
   logger: Logger;
 }
 
@@ -21,7 +22,7 @@ export default async function lintRunner({
   logger,
 }: LintRunnerOptions): Promise<void> {
   const { plugins = [], lint } = config;
-  const sourceByFilename: Record<string, InputSource> = {};
+  const sourceByFilename: Record<string, InputSourceWithDocument> = {};
   for (const source of sources) {
     sourceByFilename[source.filename!.href] = source;
   }

@@ -1,15 +1,23 @@
 import * as momoa from '@humanwhocodes/momoa';
+import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import type Logger from '../logger.js';
-import type { Group, Resolver, TokenNormalized, TokenNormalizedSet } from '../types.js';
+import type { ConfigInit, Group, Resolver, TokenNormalized, TokenNormalizedSet } from '../types.js';
 import { createResolver } from './load.js';
 import { normalizeResolver } from './normalize.js';
+
+export interface CreateSyntheticResolverOptions {
+  config: ConfigInit;
+  logger: Logger;
+  req: (url: URL, origin: URL) => Promise<string>;
+  sources: InputSourceWithDocument[];
+}
 
 /**
  * Interop layer upgrading legacy Terrazzo modes to resolvers
  */
 export async function createSyntheticResolver(
   tokens: TokenNormalizedSet,
-  { logger, req }: { logger: Logger; req: (url: URL, origin: URL) => Promise<string> },
+  { config, logger, req, sources }: CreateSyntheticResolverOptions,
 ): Promise<Resolver> {
   const contexts: Record<string, any[]> = {};
   for (const token of Object.values(tokens)) {
@@ -48,7 +56,7 @@ export async function createSyntheticResolver(
     req,
     src,
   });
-  return createResolver(normalized, { logger });
+  return createResolver(normalized, { config, logger, sources });
 }
 
 /** Add a normalized token back into an arbitrary, hierarchial structure */
