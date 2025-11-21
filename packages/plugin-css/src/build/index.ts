@@ -31,6 +31,12 @@ export default function buildFormat({
   if (rootTokens.length) {
     const rootRule: CSSRule = { selectors: [baseSelector], declarations: {} };
 
+    // add base color-scheme declaration first if configured
+    // (must be before other properties to ensure it appears first in output)
+    if (baseScheme) {
+      rootRule.declarations['color-scheme'] = { value: baseScheme };
+    }
+
     // note: `nestedQuery` was designed specifically for higher-gamut colors to
     // apply color-gamut media queries to existing selectors (i.e. keep the same
     // targets, and apply another nested layer of media query filtering based on
@@ -42,11 +48,6 @@ export default function buildFormat({
     rules.push(rootRule, p3Rule, rec2020Rule);
 
     const shouldExclude = wcmatch(exclude ?? []);
-
-    // add base color-scheme declaration if configured
-    if (baseScheme) {
-      rootRule.declarations['color-scheme'] = { value: baseScheme };
-    }
 
     for (const token of rootTokens) {
       // handle exclude (if any)
@@ -117,15 +118,17 @@ export default function buildFormat({
     }
 
     const selectorRule: CSSRule = { selectors, declarations: {} };
+
+    // add color-scheme declaration first if configured for this mode
+    // (must be before other properties to ensure it appears first in output)
+    if (scheme) {
+      selectorRule.declarations['color-scheme'] = { value: scheme };
+    }
+
     const selectorP3Rule: CSSRule = { selectors, nestedQuery: P3_MQ, declarations: {} };
     const selectorRec2020Rule: CSSRule = { selectors, nestedQuery: REC2020_MQ, declarations: {} };
     const selectorAliasDeclarations: CSSRule['declarations'] = {};
     rules.push(selectorRule, selectorP3Rule, selectorRec2020Rule);
-
-    // add color-scheme declaration if configured for this mode
-    if (scheme) {
-      selectorRule.declarations['color-scheme'] = { value: scheme };
-    }
 
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
