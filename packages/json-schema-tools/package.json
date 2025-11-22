@@ -42,11 +42,9 @@
   "peerDependencies": {
     "@humanwhocodes/momoa": "^3.0.0"
   },
-  "dependencies": {
-    "@humanwhocodes/momoa": "catalog:"
-  },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^11.9.3",
+    "@humanwhocodes/momoa": "catalog:",
     "yaml-to-momoa": "catalog:"
   }
 }
