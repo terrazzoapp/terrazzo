@@ -37,6 +37,7 @@
     "@vitest/browser-playwright": "catalog:",
     "cspell": "^9.3.2",
     "execa": "^9.6.0",
+    "merge-anything": "^5.1.7",
     "playwright": "catalog:",
     "prettier": "^3.6.2",
     "rolldown": "1.0.0-beta.51",
