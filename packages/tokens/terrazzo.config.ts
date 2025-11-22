@@ -1,6 +1,6 @@
 import { defineConfig } from '@terrazzo/cli';
-import { makeCSSVar } from '@terrazzo/token-tools/css';
 import css from '@terrazzo/plugin-css';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 export default defineConfig({
   tokens: './tokens.yaml',

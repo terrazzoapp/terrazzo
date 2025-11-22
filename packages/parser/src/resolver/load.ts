@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import { type InputSource, type InputSourceWithDocument, maybeRawJSON } from '@terrazzo/json-schema-tools';
 import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';

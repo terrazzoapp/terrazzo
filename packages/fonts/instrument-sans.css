@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'Instrument Sans';
+  font-family: "Instrument Sans";
   font-style: normal;
-  src: url('./InstrumentSans-VF.woff2') format('woff2');
+  src: url("./InstrumentSans-VF.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Instrument Sans';
+  font-family: "Instrument Sans";
   font-style: italic;
-  src: url('./InstrumentSans-Italic-VF.woff2') format('woff2');
+  src: url("./InstrumentSans-Italic-VF.woff2") format("woff2");
 }

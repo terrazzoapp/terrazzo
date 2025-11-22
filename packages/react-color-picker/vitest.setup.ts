@@ -9,6 +9,7 @@ afterEach(cleanup);
 
 // vitest-axe
 import * as matchers from 'vitest-axe/matchers';
+
 expect.extend(matchers);
 
 // WebGL mock
