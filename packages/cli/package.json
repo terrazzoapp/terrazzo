@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/cli",
-  "version": "0.10.3",
+  "version": "0.10.5",
   "description": "CLI for managing design tokens using the Design Tokens Community Group (DTCG) standard and generating code for any platform via plugins.",
   "license": "MIT",
   "type": "module",
@@ -46,10 +46,10 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.9.1",
-    "@hono/node-server": "^1.19.5",
-    "@humanwhocodes/momoa": "^3.3.9",
-    "@terrazzo/parser": "workspace:^",
-    "@terrazzo/token-tools": "workspace:^",
+    "@hono/node-server": "^1.19.6",
+    "@humanwhocodes/momoa": "^3.3.10",
+    "@terrazzo/parser": "workspace:",
+    "@terrazzo/token-tools": "workspace:",
     "@types/escodegen": "^0.0.10",
     "chokidar": "^3.6.0",
     "detect-package-manager": "^3.0.2",
@@ -59,7 +59,7 @@
     "meriyah": "^6.1.4",
     "mime": "^4.1.0",
     "picocolors": "^1.1.1",
-    "yaml-to-momoa": "catalog:"
+    "yaml-to-momoa": "^0.0.8"
   },
   "devDependencies": {
     "@vitejs/plugin-react-swc": "catalog:",

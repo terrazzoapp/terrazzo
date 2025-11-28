@@ -9266,12 +9266,6 @@ export const tokens = {
   },
   "text.display.shorthand": {
     ".": {
-      "fontWeight": 500,
-      "fontSize": {
-        "value": 40,
-        "unit": "px"
-      },
-      "lineHeight": 1.4,
       "fontFamily": [
         "-apple-system",
         "BlinkMacSystemFont",
@@ -9282,7 +9276,17 @@ export const tokens = {
         "sans-serif",
         "Apple Color Emoji",
         "Segoe UI Emoji"
-      ]
+      ],
+      "fontWeight": 500,
+      "fontSize": {
+        "value": 40,
+        "unit": "px"
+      },
+      "lineHeight": 1.4,
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      }
     },
   },
   "text.title.size.large": {
@@ -9323,12 +9327,6 @@ export const tokens = {
   },
   "text.title.shorthand.large": {
     ".": {
-      "fontWeight": 600,
-      "fontSize": {
-        "value": 32,
-        "unit": "px"
-      },
-      "lineHeight": 1.5,
       "fontFamily": [
         "-apple-system",
         "BlinkMacSystemFont",
@@ -9339,7 +9337,17 @@ export const tokens = {
         "sans-serif",
         "Apple Color Emoji",
         "Segoe UI Emoji"
-      ]
+      ],
+      "fontWeight": 600,
+      "fontSize": {
+        "value": 32,
+        "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      },
+      "lineHeight": 1.5
     },
   },
   "text.title.shorthand.medium": {
@@ -9348,6 +9356,10 @@ export const tokens = {
       "fontSize": {
         "value": 20,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
       },
       "lineHeight": 1.6,
       "fontFamily": [
@@ -9369,6 +9381,10 @@ export const tokens = {
       "fontSize": {
         "value": 16,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
       },
       "lineHeight": 1.5,
       "fontFamily": [
@@ -9402,6 +9418,10 @@ export const tokens = {
       "fontSize": {
         "value": 20,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
       },
       "lineHeight": 1.6,
       "fontFamily": [
@@ -9454,6 +9474,10 @@ export const tokens = {
         "value": 16,
         "unit": "px"
       },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      },
       "lineHeight": 1.5,
       "fontFamily": [
         "-apple-system",
@@ -9475,6 +9499,10 @@ export const tokens = {
         "value": 14,
         "unit": "px"
       },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      },
       "lineHeight": 1.4285,
       "fontFamily": [
         "-apple-system",
@@ -9495,6 +9523,10 @@ export const tokens = {
       "fontSize": {
         "value": 12,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
       },
       "lineHeight": 1.6666,
       "fontFamily": [
@@ -9529,6 +9561,10 @@ export const tokens = {
         "value": 12,
         "unit": "px"
       },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      },
       "lineHeight": 1.3333,
       "fontFamily": [
         "-apple-system",
@@ -9561,6 +9597,10 @@ export const tokens = {
       "fontSize": {
         "value": 13,
         "unit": "px"
+      },
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
       },
       "lineHeight": 1.5385,
       "fontFamily": [
@@ -9598,7 +9638,15 @@ export const tokens = {
         "Consolas",
         "Liberation Mono",
         "monospace"
-      ]
+      ],
+      "letterSpacing": {
+        "value": 0,
+        "unit": "em"
+      },
+      "lineHeight": {
+        "value": 0,
+        "unit": "em"
+      }
     },
   },
   "motion.loading.delay.default": {

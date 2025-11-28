@@ -1,5 +1,11 @@
 # @terrazzo/token-tools
 
+## 0.10.5
+
+### Patch Changes
+
+- Fix bug in `tz init` where it’s not clear that <kbd>Space</kbd> is needed to install plugins, rather than <kbd>Enter</kbd>.
+
 ## 0.10.3
 
 ### Patch Changes

@@ -360,108 +360,146 @@ export const vars = createGlobalThemeContract({
     "titleHero": {
       "fontFamily": "typography-title-hero-font-family",
       "fontSize": "typography-title-hero-font-size",
-      "fontWeight": "typography-title-hero-font-weight"
+      "fontWeight": "typography-title-hero-font-weight",
+      "letterSpacing": "typography-title-hero-letter-spacing",
+      "lineHeight": "typography-title-hero-line-height"
     },
     "titlePage": {
       "small": {
         "fontFamily": "typography-title-page-small-font-family",
         "fontSize": "typography-title-page-small-font-size",
-        "fontWeight": "typography-title-page-small-font-weight"
+        "fontWeight": "typography-title-page-small-font-weight",
+        "letterSpacing": "typography-title-page-small-letter-spacing",
+        "lineHeight": "typography-title-page-small-line-height"
       },
       "base": {
         "fontFamily": "typography-title-page-base-font-family",
         "fontSize": "typography-title-page-base-font-size",
-        "fontWeight": "typography-title-page-base-font-weight"
+        "fontWeight": "typography-title-page-base-font-weight",
+        "letterSpacing": "typography-title-page-base-letter-spacing",
+        "lineHeight": "typography-title-page-base-line-height"
       },
       "large": {
         "fontFamily": "typography-title-page-large-font-family",
         "fontSize": "typography-title-page-large-font-size",
-        "fontWeight": "typography-title-page-large-font-weight"
+        "fontWeight": "typography-title-page-large-font-weight",
+        "letterSpacing": "typography-title-page-large-letter-spacing",
+        "lineHeight": "typography-title-page-large-line-height"
       }
     },
     "subtitle": {
       "small": {
         "fontFamily": "typography-subtitle-small-font-family",
         "fontSize": "typography-subtitle-small-font-size",
-        "fontWeight": "typography-subtitle-small-font-weight"
+        "fontWeight": "typography-subtitle-small-font-weight",
+        "letterSpacing": "typography-subtitle-small-letter-spacing",
+        "lineHeight": "typography-subtitle-small-line-height"
       },
       "base": {
         "fontFamily": "typography-subtitle-base-font-family",
         "fontSize": "typography-subtitle-base-font-size",
-        "fontWeight": "typography-subtitle-base-font-weight"
+        "fontWeight": "typography-subtitle-base-font-weight",
+        "letterSpacing": "typography-subtitle-base-letter-spacing",
+        "lineHeight": "typography-subtitle-base-line-height"
       },
       "large": {
         "fontFamily": "typography-subtitle-large-font-family",
         "fontSize": "typography-subtitle-large-font-size",
-        "fontWeight": "typography-subtitle-large-font-weight"
+        "fontWeight": "typography-subtitle-large-font-weight",
+        "letterSpacing": "typography-subtitle-large-letter-spacing",
+        "lineHeight": "typography-subtitle-large-line-height"
       }
     },
     "heading": {
       "small": {
         "fontFamily": "typography-heading-small-font-family",
         "fontSize": "typography-heading-small-font-size",
-        "fontWeight": "typography-heading-small-font-weight"
+        "fontWeight": "typography-heading-small-font-weight",
+        "letterSpacing": "typography-heading-small-letter-spacing",
+        "lineHeight": "typography-heading-small-line-height"
       },
       "base": {
         "fontFamily": "typography-heading-base-font-family",
         "fontSize": "typography-heading-base-font-size",
-        "fontWeight": "typography-heading-base-font-weight"
+        "fontWeight": "typography-heading-base-font-weight",
+        "letterSpacing": "typography-heading-base-letter-spacing",
+        "lineHeight": "typography-heading-base-line-height"
       },
       "large": {
         "fontFamily": "typography-heading-large-font-family",
         "fontSize": "typography-heading-large-font-size",
-        "fontWeight": "typography-heading-large-font-weight"
+        "fontWeight": "typography-heading-large-font-weight",
+        "letterSpacing": "typography-heading-large-letter-spacing",
+        "lineHeight": "typography-heading-large-line-height"
       }
     },
     "subheading": {
       "small": {
         "fontFamily": "typography-subheading-small-font-family",
         "fontSize": "typography-subheading-small-font-size",
-        "fontWeight": "typography-subheading-small-font-weight"
+        "fontWeight": "typography-subheading-small-font-weight",
+        "letterSpacing": "typography-subheading-small-letter-spacing",
+        "lineHeight": "typography-subheading-small-line-height"
       },
       "base": {
         "fontFamily": "typography-subheading-base-font-family",
         "fontSize": "typography-subheading-base-font-size",
-        "fontWeight": "typography-subheading-base-font-weight"
+        "fontWeight": "typography-subheading-base-font-weight",
+        "letterSpacing": "typography-subheading-base-letter-spacing",
+        "lineHeight": "typography-subheading-base-line-height"
       },
       "large": {
         "fontFamily": "typography-subheading-large-font-family",
         "fontSize": "typography-subheading-large-font-size",
-        "fontWeight": "typography-subheading-large-font-weight"
+        "fontWeight": "typography-subheading-large-font-weight",
+        "letterSpacing": "typography-subheading-large-letter-spacing",
+        "lineHeight": "typography-subheading-large-line-height"
       }
     },
     "body": {
       "small": {
         "fontFamily": "typography-body-small-font-family",
         "fontSize": "typography-body-small-font-size",
-        "fontWeight": "typography-body-small-font-weight"
+        "fontWeight": "typography-body-small-font-weight",
+        "letterSpacing": "typography-body-small-letter-spacing",
+        "lineHeight": "typography-body-small-line-height"
       },
       "medium": {
         "fontFamily": "typography-body-medium-font-family",
         "fontSize": "typography-body-medium-font-size",
-        "fontWeight": "typography-body-medium-font-weight"
+        "fontWeight": "typography-body-medium-font-weight",
+        "letterSpacing": "typography-body-medium-letter-spacing",
+        "lineHeight": "typography-body-medium-line-height"
       },
       "large": {
         "fontFamily": "typography-body-large-font-family",
         "fontSize": "typography-body-large-font-size",
-        "fontWeight": "typography-body-large-font-weight"
+        "fontWeight": "typography-body-large-font-weight",
+        "letterSpacing": "typography-body-large-letter-spacing",
+        "lineHeight": "typography-body-large-line-height"
       }
     },
     "code": {
       "small": {
         "fontFamily": "typography-code-small-font-family",
         "fontSize": "typography-code-small-font-size",
-        "fontWeight": "typography-code-small-font-weight"
+        "fontWeight": "typography-code-small-font-weight",
+        "letterSpacing": "typography-code-small-letter-spacing",
+        "lineHeight": "typography-code-small-line-height"
       },
       "medium": {
         "fontFamily": "typography-code-medium-font-family",
         "fontSize": "typography-code-medium-font-size",
-        "fontWeight": "typography-code-medium-font-weight"
+        "fontWeight": "typography-code-medium-font-weight",
+        "letterSpacing": "typography-code-medium-letter-spacing",
+        "lineHeight": "typography-code-medium-line-height"
       },
       "large": {
         "fontFamily": "typography-code-large-font-family",
         "fontSize": "typography-code-large-font-size",
-        "fontWeight": "typography-code-large-font-weight"
+        "fontWeight": "typography-code-large-font-weight",
+        "letterSpacing": "typography-code-large-letter-spacing",
+        "lineHeight": "typography-code-large-line-height"
       }
     },
     "family": {
@@ -855,108 +893,146 @@ export const [lightClass, light] = createTheme(vars, {
     "titleHero": {
       "fontFamily": vars.typography.family.sans,
       "fontSize": vars.typography.scale[10],
-      "fontWeight": vars.typography.weight.bold
+      "fontWeight": vars.typography.weight.bold,
+      "letterSpacing": "0",
+      "lineHeight": "1"
     },
     "titlePage": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['08'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['09'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "subtitle": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "heading": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "subheading": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "body": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['02'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "code": {
       "small": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['02'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "family": {
@@ -1350,108 +1426,146 @@ export const [darkClass, dark] = createTheme(vars, {
     "titleHero": {
       "fontFamily": vars.typography.family.sans,
       "fontSize": vars.typography.scale[10],
-      "fontWeight": vars.typography.weight.bold
+      "fontWeight": vars.typography.weight.bold,
+      "letterSpacing": "0",
+      "lineHeight": "1"
     },
     "titlePage": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['08'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['09'],
-        "fontWeight": vars.typography.weight.bold
+        "fontWeight": vars.typography.weight.bold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "subtitle": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['07'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "heading": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['06'],
-        "fontWeight": vars.typography.weight.semibold
+        "fontWeight": vars.typography.weight.semibold,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "subheading": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "base": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['05'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "body": {
       "small": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['02'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.sans,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "code": {
       "small": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['02'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "medium": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['03'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       },
       "large": {
         "fontFamily": vars.typography.family.mono,
         "fontSize": vars.typography.scale['04'],
-        "fontWeight": vars.typography.weight.regular
+        "fontWeight": vars.typography.weight.regular,
+        "letterSpacing": "0",
+        "lineHeight": "1"
       }
     },
     "family": {

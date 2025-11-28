@@ -54,7 +54,7 @@ describe('@terrazzo/plugin-js', () => {
       'salesforce-lightning',
       'shopify-polaris',
     ])('%s', async (name) => {
-      const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
+      const src = await import(`dtcg-examples/${name}.json`, { with: { type: 'json' } }).then((m) => m.default);
       const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
       const config = defineConfig(
         {

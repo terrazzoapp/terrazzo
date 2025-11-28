@@ -45,6 +45,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
+    "@vitest/browser-playwright": "^4.0.14",
     "dtcg-examples": "catalog:"
   }
 }

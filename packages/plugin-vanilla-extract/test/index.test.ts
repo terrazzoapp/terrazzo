@@ -12,24 +12,20 @@ describe('vanilla-extract', () => {
     const examples = ['figma-sds', 'github-primer'];
     const EXAMPLES_DIR = new URL('./fixtures/', import.meta.url);
 
-    it.each(examples)(
-      '%s',
-      async (name) => {
-        const cwd = new URL(`${name}/`, EXAMPLES_DIR);
+    it.each(examples)('%s', async (name) => {
+      const cwd = new URL(`${name}/`, EXAMPLES_DIR);
 
-        // 1. evaluate TZ output
-        await execa({ cwd })`pnpm exec tz build -c test/fixtures/${name}/terrazzo.config.js`;
-        // TODO: support renaming?
-        await expect(fs.readFileSync(new URL('theme.css.ts', cwd), 'utf8')).toMatchFileSnapshot(
-          fileURLToPath(new URL('want.theme.css.ts', cwd)),
-        );
+      // 1. evaluate TZ output
+      await execa({ cwd })`pnpm exec tz build -c test/fixtures/${name}/terrazzo.config.js`;
+      // TODO: support renaming?
+      await expect(fs.readFileSync(new URL('theme.css.ts', cwd), 'utf8')).toMatchFileSnapshot(
+        fileURLToPath(new URL('want.theme.css.ts', cwd)),
+      );
 
-        // 2. evalute whether Vanilla CSS (Vite plugin) can build this, without trying to snapshot a third-party library
-        await execa({ cwd })`pnpm exec vite build ${fileURLToPath(cwd)}`;
-        expect(fs.existsSync(new URL('dist/', cwd))).toBeTruthy();
-      },
-      30_000, // these are doing large builds + building with Vite. They may take extra time in CI
-    );
+      // 2. evalute whether Vanilla CSS (Vite plugin) can build this, without trying to snapshot a third-party library
+      await execa({ cwd })`pnpm exec vite build ${fileURLToPath(cwd)}`;
+      expect(fs.existsSync(new URL('dist/', cwd))).toBeTruthy();
+    }, 30_000); // these are doing large builds + building with Vite. They may take extra time in CI
   });
 
   describe('options', () => {
