@@ -1,5 +1,6 @@
 import { exec } from 'node:child_process';
-import fs from 'node:fs';
+import fsSync from 'node:fs';
+import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { confirm, intro, multiselect, outro, select, spinner } from '@clack/prompts';
@@ -96,10 +97,10 @@ export async function initCmd({ logger }: InitOptions) {
       : undefined;
 
     let tokensPath = config.tokens[0]!;
-    let startFromDS = !(tokensPath && fs.existsSync(tokensPath));
+    let startFromDS = !(tokensPath && fsSync.existsSync(tokensPath));
 
     // 1. tokens
-    if (tokensPath && fs.existsSync(tokensPath)) {
+    if (tokensPath && fsSync.existsSync(tokensPath)) {
       if (
         await confirm({
           message: `Found tokens at ${path.relative(fileURLToPath(cwd), fileURLToPath(tokensPath))}. Overwrite with a new design system?`,
@@ -129,7 +130,7 @@ export async function initCmd({ logger }: InitOptions) {
         const s = spinner();
         s.start('Downloading');
         const tokenSource = await fetch(new URL(ds.tokens[0]!, DTCG_ROOT_URL)).then((res) => res.text());
-        fs.writeFileSync(tokensPath, tokenSource);
+        await fs.writeFile(tokensPath, tokenSource);
         s.stop('Download complete');
       }
     }
@@ -147,18 +148,14 @@ export async function initCmd({ logger }: InitOptions) {
       ],
       required: true,
     });
+
     const newPlugins = Array.isArray(pluginSelection)
-      ? Array.from(new Set(pluginSelection.flat().filter((p) => !existingPlugins.includes(p))))
+      ? Array.from(new Set(pluginSelection.flat().filter((p) => p !== 'NONE' && !existingPlugins.includes(p))))
       : [];
-    let plugins: { specifier: string; package: string }[] = [];
-    const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
-    const s = spinner();
-
-    if (!(newPlugins.length === 1 && newPlugins[0] === 'NONE')) {
-      plugins = newPlugins
-        .filter((p) => p !== 'NONE')
-        .map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), package: p }));
-
+    const plugins = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), package: p }));
+    const pluginCount = `${plugins.length} ${pluralize(plugins.length, 'plugin', 'plugins')}`;
+    if (plugins.length) {
+      const s = spinner();
       s.start(`Installing ${pluginCount}`);
       // note: thi sis async to show the spinner
       await new Promise((resolve, reject) => {
@@ -168,110 +165,103 @@ export async function initCmd({ logger }: InitOptions) {
         subprocess.on('error', reject);
         subprocess.on('exit', resolve);
       });
-    }
-    s.message('Updating config');
-    if (configPath) {
-      const ast = parseModule(fs.readFileSync(configPath, 'utf8'));
-      const astExport = ast.body.find((node) => node.type === 'ExportDefaultDeclaration');
 
-      // 2a. add plugin imports
-      // note: this has the potential to duplicate plugins, but we tried our
-      // best to filter already, and this may be the user’s fault if they
-      // selected to install a plugin already installed. But also, this is
-      // easily-fixable, so let’s not waste too much time here (and possibly
-      // introduce bugs).
-      ast.body.push(
-        ...plugins.map(
+      s.message('Updating config');
+      if (configPath) {
+        const ast = parseModule(await fs.readFile(configPath, 'utf8'));
+        const astExport = ast.body.find((node) => node.type === 'ExportDefaultDeclaration');
+
+        // 2a. add plugin imports
+        // note: this has the potential to duplicate plugins, but we tried our
+        // best to filter already, and this may be the user’s fault if they
+        // selected to install a plugin already installed. But also, this is
+        // easily-fixable, so let’s not waste too much time here (and possibly
+        // introduce bugs).
+        ast.body.push(
+          ...plugins.map(
+            (p) =>
+              ({
+                type: 'ImportDeclaration',
+                source: { type: 'Literal', value: p.package },
+                specifiers: [{ type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } }],
+                attributes: [],
+              }) as ESTree.ImportDeclaration,
+          ),
+        );
+
+        // 2b. add plugins to config.plugins
+        if (!astExport) {
+          logger.error({ group: 'config', message: `SyntaxError: ${relConfigPath} does not have default export.` });
+          return;
+        }
+        const astConfig = (
+          astExport.declaration.type === 'CallExpression'
+            ? // export default defineConfig({ ... })
+              astExport.declaration.arguments[0]
+            : // export default { ... }
+              astExport.declaration
+        ) as ESTree.ObjectExpression;
+        if (astConfig.type !== 'ObjectExpression') {
+          logger.error({
+            group: 'config',
+            message: `Config: expected object default export, received ${astConfig.type}`,
+          });
+          return;
+        }
+        const pluginsArray = (
+          astConfig.properties.find(
+            (property) =>
+              property.type === 'Property' && property.key.type === 'Identifier' && property.key.name === 'plugins', // ASTs are so fun 😑
+          ) as ESTree.Property
+        )?.value as ESTree.ArrayExpression | undefined;
+        const pluginsAst = plugins.map(
           (p) =>
             ({
-              type: 'ImportDeclaration',
-              source: { type: 'Literal', value: p.package },
-              specifiers: [{ type: 'ImportDefaultSpecifier', local: { type: 'Identifier', name: p.specifier } }],
-              attributes: [],
-            }) as ESTree.ImportDeclaration,
-        ),
-      );
+              type: 'CallExpression',
+              callee: {
+                type: 'Identifier',
+                name: p.specifier,
+              },
+              arguments: [],
+              optional: false,
+            }) as ESTree.CallExpression,
+        );
+        if (pluginsArray) {
+          pluginsArray.elements.push(...pluginsAst);
+        } else {
+          astConfig.properties.push({
+            type: 'Property',
+            key: { type: 'Identifier', name: 'plugins' },
+            value: { type: 'ArrayExpression', elements: pluginsAst },
+            kind: 'init',
+            computed: false,
+            method: false,
+            shorthand: false,
+          });
+        }
 
-      // 2b. add plugins to config.plugins
-      if (!astExport) {
-        logger.error({ group: 'config', message: `SyntaxError: ${relConfigPath} does not have default export.` });
-        return;
-      }
-      const astConfig = (
-        astExport.declaration.type === 'CallExpression'
-          ? // export default defineConfig({ ... })
-            astExport.declaration.arguments[0]
-          : // export default { ... }
-            astExport.declaration
-      ) as ESTree.ObjectExpression;
-      if (astConfig.type !== 'ObjectExpression') {
-        logger.error({
-          group: 'config',
-          message: `Config: expected object default export, received ${astConfig.type}`,
-        });
-        return;
-      }
-      const pluginsArray = (
-        astConfig.properties.find(
-          (property) =>
-            property.type === 'Property' && property.key.type === 'Identifier' && property.key.name === 'plugins', // ASTs are so fun 😑
-        ) as ESTree.Property
-      )?.value as ESTree.ArrayExpression | undefined;
-      const pluginsAst = plugins.map(
-        (p) =>
-          ({
-            type: 'CallExpression',
-            callee: {
-              type: 'Identifier',
-              name: p.specifier,
+        // 2c. update new file (and we’ll probably format it wrong but hey)
+        await fs.writeFile(
+          configPath,
+          generate(ast, {
+            format: {
+              indent: { style: '  ' },
+              quotes: 'single',
+              semicolons: true,
             },
-            arguments: [],
-            optional: false,
-          }) as ESTree.CallExpression,
-      );
-      if (pluginsArray) {
-        pluginsArray.elements.push(...pluginsAst);
+          }),
+        );
       } else {
-        astConfig.properties.push({
-          type: 'Property',
-          key: { type: 'Identifier', name: 'plugins' },
-          value: { type: 'ArrayExpression', elements: pluginsAst },
-          kind: 'init',
-          computed: false,
-          method: false,
-          shorthand: false,
-        });
+        // 2a. write new config file (easy)
+        await fs.writeFile(DEFAULT_CONFIG_PATH, createConfig(plugins));
       }
-
-      // 2c. update new file (and we’ll probably format it wrong but hey)
-      fs.writeFileSync(
-        configPath,
-        generate(ast, {
-          format: {
-            indent: { style: '  ' },
-            quotes: 'single',
-            semicolons: true,
-          },
-        }),
-      );
-    } else {
-      // 2a. write new config file (easy)
-      fs.writeFileSync(
-        DEFAULT_CONFIG_PATH,
-        `import { defineConfig } from '@terrazzo/cli';
-${plugins.map((p) => `import ${p.specifier} from '${p.package}';`).join('\n')}
-export default defineConfig({
-  tokens: ['./tokens.json'],
-  plugins: [
-    ${plugins.map((p) => `${p.specifier}(),`).join('\n    ')}
-  ],
-  outDir: './dist/',
-  lint: {
-    /** @see https://terrazzo.app/docs/cli/lint */
-  },
-});`,
-      );
       s.stop(`Installed ${pluginCount}`);
+    } else if (!configPath) {
+      // 3. if no plugins being installed, write terrazzo.config.mjs anyway
+      const s = spinner();
+      s.message('Writing config');
+      await fs.writeFile(DEFAULT_CONFIG_PATH, createConfig([]));
+      s.stop('Wrote terrazzo.config.js');
     }
 
     outro('⛋ Done! 🎉');
@@ -279,4 +269,18 @@ export default defineConfig({
     printError((err as Error).message);
     process.exit(1);
   }
+}
+
+function createConfig(plugins: { specifier: string; package: string }[]) {
+  return `import { defineConfig } from '@terrazzo/cli';
+${plugins.map((p) => `import ${p.specifier} from '${p.package}';`).join('\n')}
+export default defineConfig({
+  tokens: ['./tokens.json'],
+  plugins: [${plugins.map((p) => `\n    ${p.specifier}(),`).join('')}
+  ],
+  outDir: './dist/',
+  lint: {
+    /** @see https://terrazzo.app/docs/cli/lint */
+  },
+  });`;
 }
