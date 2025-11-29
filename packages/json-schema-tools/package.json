@@ -40,7 +40,13 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@humanwhocodes/momoa": "^3.0.0"
+    "@humanwhocodes/momoa": "^3.0.0",
+    "yaml-to-momoa": "catalog:"
+  },
+  "peerDependenciesMeta": {
+    "yaml-to-momoa": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@apidevtools/json-schema-ref-parser": "^11.9.3",

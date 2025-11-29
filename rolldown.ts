@@ -10,11 +10,10 @@ export const defineConfig = (options: RolldownOptions): RolldownOptions => {
     {
       platform: 'browser',
       plugins: [dts({ resolve: true })],
-      external: [
-        'yaml-to-momoa',
-        ...Object.keys(pkg.peerDependencies ?? {}),
-        ...Object.keys(pkg.dependencies ?? {}),
-      ].flatMap((k) => [k, new RegExp(`^${k}/`)]),
+      external: [...Object.keys(pkg.peerDependencies ?? {}), ...Object.keys(pkg.dependencies ?? {})].flatMap((k) => [
+        k,
+        new RegExp(`^${k}/`),
+      ]),
       output: {
         dir: 'dist',
         format: 'es',
