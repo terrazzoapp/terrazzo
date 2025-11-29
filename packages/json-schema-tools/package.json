@@ -34,6 +34,7 @@
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "bench": "vitest bench",
     "dev": "rolldown --watch -c",
+    "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/json-schema-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",

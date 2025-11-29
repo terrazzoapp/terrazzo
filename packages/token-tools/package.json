@@ -37,10 +37,10 @@
   "scripts": {
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
+    "format": "biome check --fix --unsafe .",
     "lint": "pnpm --filter @terrazzo/token-tools run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
-    "format": "biome check --fix --unsafe .",
     "test": "vitest run"
   },
   "dependencies": {
