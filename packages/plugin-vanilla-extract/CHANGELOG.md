@@ -1,5 +1,14 @@
 # @terrazzo/plugin-vanilla-extract
 
+## 2.0.0-alpha.4
+
+### Patch Changes
+
+- [#586](https://github.com/terrazzoapp/terrazzo/pull/586) [`d25bfce`](https://github.com/terrazzoapp/terrazzo/commit/d25bfce6d8c9a14a40db0e6367c86249218cf19f) Thanks [@nlemoine](https://github.com/nlemoine)! - Place `color-scheme` before CSS properties
+
+- Updated dependencies [[`d25bfce`](https://github.com/terrazzoapp/terrazzo/commit/d25bfce6d8c9a14a40db0e6367c86249218cf19f)]:
+  - @terrazzo/plugin-css@2.0.0-alpha.4
+
 ## 2.0.0
 
 ### Minor Changes
