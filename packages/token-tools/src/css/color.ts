@@ -64,7 +64,7 @@ export function transformColor(
 
   return displayable(color)
     ? formatColor(color)
-    : downsample({ colorSpace, components, alpha }, color, options.color?.depth);
+    : downsample({ colorSpace, components, alpha }, { culoriColor: color, depth: options.color?.depth });
 }
 
 const converters: Record<keyof typeof CULORI_TO_CSS, (color: Color) => Color> = {
@@ -95,13 +95,24 @@ export const DEPTH_ROUNDING = {
 
 export type Depth = keyof typeof DEPTH_ROUNDING | 'unlimited';
 
+export interface DownsampleOptions {
+  /** Color depth, in bits, for 3 channels (24 = 8 bits per channel) @default 30 */
+  depth?: Depth;
+  /** Save work re-parsing color if it’s parsed already */
+  culoriColor?: Color;
+}
+
 /**
  * Downsample color to sRGB/Display P3/Rec2020 colorspaces.
  * Note: because Culori tends to convert to RGB color spaces to ensure the operation,
  * we have to do an additional step of converting back. So we’re not really converting;
  * we’re just preserving the original colorspace.
  */
-function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color, depth: Depth = 30) {
+function downsample(
+  $value: ColorTokenNormalized['$value'],
+  { culoriColor: inputCuloriColor, depth = 30 }: DownsampleOptions,
+) {
+  const culoriColor = inputCuloriColor ?? tokenToCulori($value)!;
   if (!($value.colorSpace in CSS_TO_CULORI)) {
     throw new Error(
       `Invalid colorSpace "${$value.colorSpace}". Expected one of: ${Object.keys(CSS_TO_CULORI).join(', ')}`,
@@ -129,7 +140,7 @@ function downsample($value: ColorTokenNormalized['$value'], culoriColor: Color, 
   }
   return {
     '.': formatCss(culoriColor),
-    srgb: formatCss(srgb),
+    srgb: $value.hex ?? formatCss(srgb),
     p3: formatCss(p3),
     rec2020: formatCss(rec2020),
   };

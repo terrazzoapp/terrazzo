@@ -3,8 +3,8 @@
  * ------------------------------------------- */
 
 :root {
-  --ds-bool-idk: var(--ds-bool-nuh-uh);
-  --ds-bool-nuh-uh: 0;
   --ds-bool-uh-huh: 1;
+  --ds-bool-nuh-uh: 0;
+  --ds-bool-idk: var(--ds-bool-nuh-uh);
 }
 

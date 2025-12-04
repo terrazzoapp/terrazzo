@@ -4,6 +4,7 @@ import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, it } from 'vitest';
 import css from '../src/index.js';
+import { DS } from './lib.test.js';
 
 // note: many colors’ hex fallbacks are intentionally different from what Culori
 // clamps to. this is done intentionally to test the users’ fallbacks are
@@ -136,8 +137,8 @@ describe('Node.js API', () => {
       'radix',
       'salesforce-lightning',
       'shopify-polaris',
-    ])('%s', async (name) => {
-      const src = await import(`dtcg-examples/${name}.json`).then((m) => m.default);
+    ] as const)('%s', async (name) => {
+      const src = DS[name];
       const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
       const config = defineConfig(
         {

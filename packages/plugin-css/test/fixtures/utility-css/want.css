@@ -9,8 +9,8 @@
   --ds-border-style-default: solid;
   --ds-color-base-blue: color(srgb 0.0784313725490196 0.47843137254901963 0.9529411764705882);
   --ds-color-base-green: color(srgb 0 0.47843137254901963 0.30196078431372547);
-  --ds-color-gradient-blue-to-green: var(--ds-color-base-blue) 0%, var(--ds-color-base-green) 100%;
   --ds-color-semantic-primary: var(--ds-color-base-blue);
+  --ds-color-gradient-blue-to-green: var(--ds-color-base-blue) 0%, var(--ds-color-base-green) 100%;
   --ds-shadow-md: 0 var(--ds-space-1) var(--ds-space-1) 0 color(srgb 0 0 0 / 0.1);
   --ds-space-1: 0.25rem;
   --ds-space-2: 0.5rem;
@@ -19,29 +19,29 @@
   --ds-typography-base-font-family: "Helvetica";
   --ds-typography-base-font-size: var(--ds-typography-size-sm);
   --ds-typography-base-font-style: normal;
-  --ds-typography-base-font-variant-numeric: tabular-nums;
   --ds-typography-base-font-weight: 400;
+  --ds-typography-base-font-variant-numeric: tabular-nums;
   --ds-typography-base-letter-spacing: 0;
   --ds-typography-base-line-height: 1.4;
   --ds-typography-base-text-decoration: none;
   --ds-typography-base-text-transform: none;
-  --ds-typography-size-lg: 1.25rem;
-  --ds-typography-size-md: 1rem;
-  --ds-typography-size-sm: 0.875rem;
-  --ds-typography-size-xl: 1.5rem;
   --ds-typography-size-xs: 0.75rem;
-  --ds-typography-weight-bold: 700;
+  --ds-typography-size-sm: 0.875rem;
+  --ds-typography-size-md: 1rem;
+  --ds-typography-size-lg: 1.25rem;
+  --ds-typography-size-xl: 1.5rem;
   --ds-typography-weight-light: 300;
   --ds-typography-weight-normal: 400;
+  --ds-typography-weight-bold: 700;
 }
 
 @media (width >= 600px) {
   :root {
-    --ds-typography-base-font-family: "Helvetica";
     --ds-typography-base-font-size: 1rem;
+    --ds-typography-base-font-family: "Helvetica";
     --ds-typography-base-font-style: normal;
-    --ds-typography-base-font-variant-numeric: tabular-nums;
     --ds-typography-base-font-weight: 400;
+    --ds-typography-base-font-variant-numeric: tabular-nums;
     --ds-typography-base-letter-spacing: 0;
     --ds-typography-base-line-height: 1.4;
     --ds-typography-base-text-decoration: none;
@@ -141,8 +141,8 @@
   font-family: var(--ds-typography-base-font-family);
   font-size: var(--ds-typography-base-font-size);
   font-style: var(--ds-typography-base-font-style);
-  font-variant-numeric: var(--ds-typography-base-font-variant-numeric);
   font-weight: var(--ds-typography-base-font-weight);
+  font-variant-numeric: var(--ds-typography-base-font-variant-numeric);
   letter-spacing: var(--ds-typography-base-letter-spacing);
   line-height: var(--ds-typography-base-line-height);
   text-decoration: var(--ds-typography-base-text-decoration);
@@ -542,8 +542,8 @@
 }
 
 .text-color-gradient-blue-to-green {
+  background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background: -webkit-linear-gradient(var(--ds-color-gradient-blue-to-green));
 }
 

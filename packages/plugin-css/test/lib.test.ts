@@ -1,5 +1,26 @@
+import adobeSpectrum from 'dtcg-examples/adobe-spectrum.json' with { type: 'json' };
+import appleHig from 'dtcg-examples/apple-hig.json' with { type: 'json' };
+import figmaSds from 'dtcg-examples/figma-sds.json' with { type: 'json' };
+import githubPrimer from 'dtcg-examples/github-primer.json' with { type: 'json' };
+import ibmCarbon from 'dtcg-examples/ibm-carbon.json' with { type: 'json' };
+import microsoftFluent from 'dtcg-examples/microsoft-fluent.json' with { type: 'json' };
+import radix from 'dtcg-examples/radix.json' with { type: 'json' };
+import salesforceLightning from 'dtcg-examples/salesforce-lightning.json' with { type: 'json' };
+import shopifyPolaris from 'dtcg-examples/shopify-polaris.json' with { type: 'json' };
 import { describe, expect, it } from 'vitest';
 import { type CSSRule, printRules } from '../src/lib.js';
+
+export const DS = {
+  'adobe-spectrum': adobeSpectrum,
+  'apple-hig': appleHig,
+  'figma-sds': figmaSds,
+  'github-primer': githubPrimer,
+  'ibm-carbon': ibmCarbon,
+  'microsoft-fluent': microsoftFluent,
+  radix: radix,
+  'salesforce-lightning': salesforceLightning,
+  'shopify-polaris': shopifyPolaris,
+};
 
 describe('printRules', () => {
   it('basic', () => {

@@ -31,6 +31,11 @@ export default function buildFormat({
   if (rootTokens.length) {
     const rootRule: CSSRule = { selectors: [baseSelector], declarations: {} };
 
+    // add base color-scheme declaration if configured
+    if (baseScheme) {
+      rootRule.declarations['color-scheme'] = { value: baseScheme };
+    }
+
     // note: `nestedQuery` was designed specifically for higher-gamut colors to
     // apply color-gamut media queries to existing selectors (i.e. keep the same
     // targets, and apply another nested layer of media query filtering based on
@@ -42,11 +47,6 @@ export default function buildFormat({
     rules.push(rootRule, p3Rule, rec2020Rule);
 
     const shouldExclude = wcmatch(exclude ?? []);
-
-    // add base color-scheme declaration if configured
-    if (baseScheme) {
-      rootRule.declarations['color-scheme'] = { value: baseScheme };
-    }
 
     for (const token of rootTokens) {
       // handle exclude (if any)
