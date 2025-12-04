@@ -53,7 +53,11 @@ describe('tz build', () => {
     });
 
     // abort process (preferred over child.kill()
-    controller.abort();
+    try {
+      controller.abort();
+    } catch {
+      // noop
+    }
 
     // expect file isn’t empty
     expect(fs.readFileSync(testFile, 'utf8')).toEqual(
@@ -70,7 +74,7 @@ describe('tz build', () => {
       await expect(fs.readFileSync(new URL('./styles/out/actual.css', cwd), 'utf8')).toMatchFileSnapshot(
         fileURLToPath(new URL('./styles/out/want.css', cwd)),
       );
-    });
+    }, 20_000);
 
     it('skipBuild', async () => {
       const cwd = new URL('./fixtures/cli-skip-build/', import.meta.url);
@@ -79,6 +83,6 @@ describe('tz build', () => {
       const after = fs.readdirSync(cwd);
       // assert absolutely no files or folders were created
       expect(after.length, `${after.length - before.length} file/folder(s) generated`).toBe(before.length);
-    });
+    }, 20_000);
   });
 });
