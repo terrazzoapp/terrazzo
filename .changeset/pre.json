@@ -22,5 +22,10 @@
     "@terrazzo/tokens": "0.1.0",
     "@terrazzo/use-color": "0.1.4"
   },
-  "changesets": ["bold-pandas-smell", "full-webs-shake", "short-wings-pay"]
+  "changesets": [
+    "bold-pandas-smell",
+    "full-webs-shake",
+    "modern-foxes-wave",
+    "short-wings-pay"
+  ]
 }
