@@ -1,0 +1,38 @@
+{
+  tooltip: {
+    bgColor: {
+      $value: '{bgColor.emphasis}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          'dark-high-contrast': '{bgColor.inverse}',
+          'dark-dimmed-high-contrast': '{bgColor.inverse}',
+          'dark-protanopia-deuteranopia-high-contrast': '{bgColor.inverse}',
+          'dark-tritanopia-high-contrast': '{bgColor.inverse}',
+        },
+      },
+    },
+    fgColor: {
+      $value: '{fgColor.onEmphasis}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component',
+          scopes: ['fgColor'],
+        },
+        'org.primer.overrides': {
+          'dark-high-contrast': '{fgColor.onInverse}',
+          'dark-dimmed-high-contrast': '{fgColor.onInverse}',
+          'dark-protanopia-deuteranopia-high-contrast': '{fgColor.onInverse}',
+          'dark-tritanopia-high-contrast': '{fgColor.onInverse}',
+        },
+      },
+    },
+  },
+}

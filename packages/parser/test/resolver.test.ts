@@ -150,7 +150,7 @@ describe('Resolver module', () => {
       ],
     ];
 
-    describe('Legacy modes', () => {
+    describe('legacy modes', () => {
       it('simple', async () => {
         const cwd = new URL('file:///');
         const config = defineConfig({}, { cwd });
@@ -247,7 +247,71 @@ describe('Resolver module', () => {
     });
   });
 
-  describe('Additional cases', () => {
+  describe('resolution', () => {
+    it('alias in modifier', async () => {
+      const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+      const { resolver } = await parse(
+        [
+          {
+            filename: new URL('file:///'),
+            src: JSON.stringify(
+              {
+                version: '2025.10',
+                resolutionOrder: [{ $ref: '#/sets/semantic' }, { $ref: '#/modifiers/theme' }],
+                sets: {
+                  semantic: {
+                    sources: [{ color: { bg: { avatar: { $type: 'color', $value: '{color.bg}' } } } }],
+                  },
+                },
+                modifiers: {
+                  theme: {
+                    contexts: {
+                      light: [
+                        {
+                          color: { bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [1, 1, 1] } } },
+                        },
+                      ],
+                      dark: [
+                        {
+                          color: {
+                            bg: { $type: 'color', $value: { colorSpace: 'srgb', components: [0.1, 0.1, 0.1] } },
+                          },
+                        },
+                      ],
+                    },
+                  },
+                },
+              },
+              undefined,
+              2,
+            ),
+          },
+        ],
+        { config },
+      );
+
+      const lightTokens = resolver.apply({ theme: 'light' });
+      expect(lightTokens['color.bg.avatar'], 'light').toEqual(
+        expect.objectContaining({
+          $type: 'color',
+          $value: { colorSpace: 'srgb', components: [1, 1, 1], alpha: 1 },
+          aliasChain: ['color.bg'],
+          aliasOf: 'color.bg',
+        }),
+      );
+      const darkTokens = resolver.apply({ theme: 'dark' });
+      expect(darkTokens['color.bg.avatar'], 'dark').toEqual(
+        expect.objectContaining({
+          $type: 'color',
+          $value: { colorSpace: 'srgb', components: [0.1, 0.1, 0.1], alpha: 1 },
+          aliasChain: ['color.bg'],
+          aliasOf: 'color.bg',
+        }),
+      );
+    });
+  });
+
+  describe('additional cases', () => {
     it('filesystem', async () => {
       const cwd = new URL('./fixtures/resolver/', import.meta.url);
 

@@ -1,0 +1,181 @@
+{
+  "$schema": "https://deploy-preview-360--designtokensorg.netlify.app/schemas/2025.10/format/format.json",
+  "size": {
+    "blur": {
+      "100": {
+        "$type": "dimension",
+        "$value": { "value": 0.25, "unit": "rem" }
+      }
+    },
+    "depth": {
+      "0": {
+        "$type": "dimension",
+        "$value": { "value": 0, "unit": "rem" }
+      },
+      "025": {
+        "$type": "dimension",
+        "$value": { "value": 0.0625, "unit": "rem" }
+      },
+      "100": {
+        "$type": "dimension",
+        "$value": { "value": 0.25, "unit": "rem" }
+      },
+      "200": {
+        "$type": "dimension",
+        "$value": { "value": 0.5, "unit": "rem" }
+      },
+      "400": {
+        "$type": "dimension",
+        "$value": { "value": 1, "unit": "rem" }
+      },
+      "800": {
+        "$type": "dimension",
+        "$value": { "value": 2, "unit": "rem" }
+      },
+      "1200": {
+        "$type": "dimension",
+        "$value": { "value": 3, "unit": "rem" }
+      },
+      "negative-025": {
+        "$type": "dimension",
+        "$value": { "value": -0.0625, "unit": "rem" }
+      },
+      "negative-100": {
+        "$type": "dimension",
+        "$value": { "value": -0.25, "unit": "rem" }
+      },
+      "negative-200": {
+        "$type": "dimension",
+        "$value": { "value": -0.5, "unit": "rem" }
+      },
+      "negative-400": {
+        "$type": "dimension",
+        "$value": { "value": -1, "unit": "rem" }
+      },
+      "negative-800": {
+        "$type": "dimension",
+        "$value": { "value": -2, "unit": "rem" }
+      },
+      "negative-1200": {
+        "$type": "dimension",
+        "$value": { "value": -3, "unit": "rem" }
+      }
+    },
+    "icon": {
+      "small": {
+        "$type": "dimension",
+        "$value": { "value": 1.5, "unit": "rem" }
+      },
+      "medium": {
+        "$type": "dimension",
+        "$value": { "value": 2, "unit": "rem" }
+      },
+      "large": {
+        "$type": "dimension",
+        "$value": { "value": 2.5, "unit": "rem" }
+      }
+    },
+    "radius": {
+      "100": {
+        "$type": "dimension",
+        "$value": { "value": 0.25, "unit": "rem" }
+      },
+      "200": {
+        "$type": "dimension",
+        "$value": { "value": 0.5, "unit": "rem" }
+      },
+      "400": {
+        "$type": "dimension",
+        "$value": { "value": 1, "unit": "rem" }
+      },
+      "full": {
+        "$type": "dimension",
+        "$value": { "value": 624.9375, "unit": "rem" }
+      }
+    },
+    "space": {
+      "0": {
+        "$type": "dimension",
+        "$value": { "value": 0, "unit": "rem" }
+      },
+      "050": {
+        "$type": "dimension",
+        "$value": { "value": 0.125, "unit": "rem" }
+      },
+      "100": {
+        "$type": "dimension",
+        "$value": { "value": 0.25, "unit": "rem" }
+      },
+      "150": {
+        "$type": "dimension",
+        "$value": { "value": 0.375, "unit": "rem" }
+      },
+      "200": {
+        "$type": "dimension",
+        "$value": { "value": 0.5, "unit": "rem" }
+      },
+      "300": {
+        "$type": "dimension",
+        "$value": { "value": 0.75, "unit": "rem" }
+      },
+      "400": {
+        "$type": "dimension",
+        "$value": { "value": 1, "unit": "rem" }
+      },
+      "600": {
+        "$type": "dimension",
+        "$value": { "value": 1.5, "unit": "rem" }
+      },
+      "800": {
+        "$type": "dimension",
+        "$value": { "value": 2, "unit": "rem" }
+      },
+      "1200": {
+        "$type": "dimension",
+        "$value": { "value": 3, "unit": "rem" }
+      },
+      "1600": {
+        "$type": "dimension",
+        "$value": { "value": 4, "unit": "rem" }
+      },
+      "2400": {
+        "$type": "dimension",
+        "$value": { "value": 6, "unit": "rem" }
+      },
+      "4000": {
+        "$type": "dimension",
+        "$value": { "value": 0, "unit": "rem" }
+      },
+      "negative-100": {
+        "$type": "dimension",
+        "$value": { "value": -0.25, "unit": "rem" }
+      },
+      "negative-200": {
+        "$type": "dimension",
+        "$value": { "value": -0.5, "unit": "rem" }
+      },
+      "negative-300": {
+        "$type": "dimension",
+        "$value": { "value": -0.75, "unit": "rem" }
+      },
+      "negative-400": {
+        "$type": "dimension",
+        "$value": { "value": -1, "unit": "rem" }
+      },
+      "negative-600": {
+        "$type": "dimension",
+        "$value": { "value": -1.5, "unit": "rem" }
+      }
+    },
+    "stroke": {
+      "border": {
+        "$type": "dimension",
+        "$value": { "value": 0.0625, "unit": "rem" }
+      },
+      "focus-ring": {
+        "$type": "dimension",
+        "$value": { "value": 0.125, "unit": "rem" }
+      }
+    }
+  }
+}

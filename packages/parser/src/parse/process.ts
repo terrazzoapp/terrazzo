@@ -44,12 +44,11 @@ export function processTokens(
       if (node.type !== 'Object') {
         return;
       }
-      const path = isResolver ? filterResolverPaths(rawPath) : rawPath;
-      groupFromNode(node, { path, groups });
+      groupFromNode(node, { path: isResolver ? filterResolverPaths(rawPath) : rawPath, groups });
       const token = tokenFromNode(node, {
         groups,
         ignore: config.ignore,
-        path,
+        path: isResolver ? filterResolverPaths(rawPath) : rawPath,
         source: rootSource,
       });
       if (token) {

@@ -43,8 +43,8 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
       });
       return;
     }
-    let { tokens, sources } = await parse(rawSchemas, { config, logger, yamlToMomoa });
-    let result = await build(tokens, { sources, config, logger });
+    let { tokens, resolver, sources } = await parse(rawSchemas, { config, logger, yamlToMomoa });
+    let result = await build(tokens, { resolver, sources, config, logger });
     writeFiles(result, { config, logger });
 
     // --watch (handle rebuild)
@@ -68,7 +68,8 @@ export async function buildCmd({ config, configPath, flags, logger }: BuildOptio
           const parseResult = await parse(rawSchemas, { config, logger, yamlToMomoa });
           tokens = parseResult.tokens;
           sources = parseResult.sources;
-          result = await build(tokens, { sources, config, logger });
+          resolver = parseResult.resolver;
+          result = await build(tokens, { resolver, sources, config, logger });
           if (messageAfter) {
             logger.info({ group: 'plugin', label: 'watch', message: messageAfter });
           }

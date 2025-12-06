@@ -29,7 +29,7 @@ export default function defineConfig(
 
   // 2. Start build by calling config()
   for (const plugin of config.plugins) {
-    plugin.config?.({ ...config });
+    plugin.config?.({ ...config }, { logger });
   }
 
   // 3. finish
@@ -265,13 +265,6 @@ function normalizeLint({ config, logger }: { config: ConfigInit; logger: Logger 
             label: `lint › rule › ${id}`,
             message: `Expected string or number, received ${JSON.stringify(value)}`,
           });
-        }
-      }
-
-      // Apply recommended config in places user hasn’t explicitly opted-out
-      for (const [id, severity] of Object.entries(RECOMMENDED_CONFIG)) {
-        if (!(id in config.lint.rules)) {
-          config.lint.rules[id] = severity;
         }
       }
     }

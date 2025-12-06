@@ -1,0 +1,34 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Apple Human Interface Guidelines",
+  "version": "2025.10",
+  "sets": {
+    "typography": {
+      "sources": [{ "$ref": "./apple-hig/font/design.tokens.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [{ "$ref": "./color/light.tokens.json" }],
+        "light_ax": [{ "$ref": "./color/light_ax.tokens.json" }],
+        "dark": [{ "$ref": "./color/dark.tokens.json" }],
+        "dark_ax": [{ "$ref": "./color/dark_ax.tokens.json" }]
+      },
+      "default": "light"
+    },
+    "size": {
+      "contexts": {
+        "xSmall": [{ "$ref": "./font/textStyle/xSmall.tokens.json" }],
+        "small": [{ "$ref": "./font/textStyle/small.tokens.json" }],
+        "medium": [{ "$ref": "./font/textStyle/medium.tokens.json" }],
+        "large": [{ "$ref": "./font/textStyle/large.tokens.json" }],
+        "xLarge": [{ "$ref": "./font/textStyle/xLarge.tokens.json" }],
+        "xxLarge": [{ "$ref": "./font/textStyle/xxLarge.tokens.json" }],
+        "xxxLarge": [{ "$ref": "./font/textStyle/xxxLarge.tokens.json" }]
+      },
+      "default": "medium"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/modifiers/theme" }, { "$ref": "#/modifiers/size" }]
+}

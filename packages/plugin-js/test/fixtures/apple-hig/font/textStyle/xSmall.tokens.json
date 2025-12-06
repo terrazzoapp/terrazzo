@@ -1,0 +1,116 @@
+{
+  "font": {
+    "textStyle": {
+      "largeTitle": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 31, "unit": "px" },
+          "lineHeight": { "value": 38, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "title1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 25, "unit": "px" },
+          "lineHeight": { "value": 31, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "title2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 19, "unit": "px" },
+          "lineHeight": { "value": 24, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "title3": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 25, "unit": "px" },
+          "lineHeight": { "value": 22, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "headline": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 14, "unit": "px" },
+          "lineHeight": { "value": 19, "unit": "px" },
+          "fontWeight": 600,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "body": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 14, "unit": "px" },
+          "lineHeight": { "value": 19, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "callout": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 13, "unit": "px" },
+          "lineHeight": { "value": 18, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "subhead": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 12, "unit": "px" },
+          "lineHeight": { "value": 16, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "footnote": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 12, "unit": "px" },
+          "lineHeight": { "value": 16, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "caption1": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 11, "unit": "px" },
+          "lineHeight": { "value": 13, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      },
+      "caption2": {
+        "$type": "typography",
+        "$value": {
+          "fontFamily": "{font.design.default}",
+          "fontSize": { "value": 11, "unit": "px" },
+          "lineHeight": { "value": 13, "unit": "px" },
+          "fontWeight": 400,
+          "letterSpacing": { "value": 0, "unit": "em" }
+        }
+      }
+    }
+  }
+}

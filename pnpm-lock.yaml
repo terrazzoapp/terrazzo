@@ -396,19 +396,13 @@ importers:
 
   packages/plugin-js:
     dependencies:
-      '@terrazzo/token-tools':
+      '@terrazzo/parser':
         specifier: workspace:^
-        version: link:../token-tools
+        version: link:../parser
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^
         version: link:../cli
-      '@terrazzo/parser':
-        specifier: workspace:^
-        version: link:../parser
-      dtcg-examples:
-        specifier: 'catalog:'
-        version: 0.3.4
 
   packages/plugin-sass:
     dependencies:

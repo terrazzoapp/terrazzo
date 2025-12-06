@@ -72,10 +72,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
@@ -129,10 +132,13 @@ describe('Node.js API', () => {
       },
       { cwd },
     );
-    const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-      config,
-    });
-    const result = await build(tokens, { sources, config });
+    const { tokens, resolver, sources } = await parse(
+      [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+      {
+        config,
+      },
+    );
+    const result = await build(tokens, { resolver, sources, config });
     await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
   });
 
@@ -176,8 +182,8 @@ describe('Node.js API', () => {
         },
         { cwd },
       );
-      const { tokens, sources } = await parse([{ filename: cwd, src }], { config });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse([{ filename: cwd, src }], { config });
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
     }, 30_000);
   });
@@ -235,10 +241,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
@@ -273,10 +282,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
@@ -302,10 +314,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );
@@ -345,10 +360,13 @@ describe('Node.js API', () => {
         { cwd },
       );
       const tokensJSON = new URL('./tokens.json', cwd);
-      const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { sources, config });
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
       await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
         fileURLToPath(new URL('./want.css', cwd)),
       );

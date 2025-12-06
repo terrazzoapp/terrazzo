@@ -1,0 +1,64 @@
+{
+  "breakpoint": {
+    "xsmall": {
+      "$value": "320px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    },
+    "small": {
+      "$value": "544px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    },
+    "medium": {
+      "$value": "768px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    },
+    "large": {
+      "$value": "1012px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    },
+    "xlarge": {
+      "$value": "1280px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    },
+    "xxlarge": {
+      "$value": "1400px",
+      "$type": "dimension",
+      "$extensions": {
+        "org.primer.figma": {
+          "collection": "functional/size",
+          "scopes": ["size"]
+        }
+      }
+    }
+  }
+}

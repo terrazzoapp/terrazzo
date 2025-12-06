@@ -1,0 +1,20 @@
+{
+  page: {
+    header: {
+      bgColor: {
+        $value: '{bgColor.muted}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component',
+            scopes: ['bgColor'],
+          },
+          'org.primer.overrides': {
+            dark: '{bgColor.default}',
+          },
+        },
+      },
+    },
+  },
+}

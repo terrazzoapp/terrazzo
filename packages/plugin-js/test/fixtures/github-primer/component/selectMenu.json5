@@ -1,0 +1,38 @@
+{
+  selectMenu: {
+    borderColor: {
+      $value: '{base.color.transparent}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component (internal)',
+          scopes: ['borderColor'],
+        },
+        'org.primer.overrides': {
+          dark: {
+            $value: '{borderColor.default}',
+          },
+        },
+      },
+    },
+    bgColor: {
+      active: {
+        $value: '{base.color.blue.1}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component (internal)',
+            scopes: ['bgColor'],
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: '{base.color.blue.8}',
+            },
+          },
+        },
+      },
+    },
+  },
+}

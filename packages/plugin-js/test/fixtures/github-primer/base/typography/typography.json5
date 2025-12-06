@@ -1,0 +1,48 @@
+{
+  base: {
+    text: {
+      weight: {
+        light: {
+          $type: 'fontWeight',
+          $value: 300,
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+        normal: {
+          $value: 400,
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+        medium: {
+          $value: 500,
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+        semibold: {
+          $value: 600,
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+      },
+    },
+  },
+}

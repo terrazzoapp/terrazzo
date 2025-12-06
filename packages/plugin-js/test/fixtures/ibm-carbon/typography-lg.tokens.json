@@ -1,0 +1,280 @@
+{
+  "type": {
+    "display01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.375,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "display02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.375,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "display03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.16
+      }
+    },
+    "display04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 5.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.11
+      }
+    },
+    "expressiveHeading05": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "expressiveHeading06": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "expressiveParagraph01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 1.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.28572
+      }
+    },
+    "fluidDisplay01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.375,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "fluidDisplay02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.375,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "fluidDisplay03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.16
+      }
+    },
+    "fluidDisplay04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 5.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.11
+      }
+    },
+    "fluidHeading05": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "fluidHeading06": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "fluidParagraph01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 1.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.28572
+      }
+    },
+    "fluidQuotation01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 1.5,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.334
+      }
+    },
+    "fluidQuotation02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    },
+    "quotation01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 1.5,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.334
+      }
+    },
+    "quotation02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 2.625,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.19
+      }
+    }
+  }
+}

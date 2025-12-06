@@ -1,0 +1,1155 @@
+/**
+ * Dark dimmed
+ * @extends ./dark.json
+ */
+{
+  base: {
+    color: {
+      white: {
+        $value: '#cdd9e5',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'base/color/dark-dimmed',
+          },
+        },
+      },
+      blue: {
+        '0': {
+          $value: '#c6e6ff',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#96d0ff',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#6cb6ff',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#539bf5',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#4184e4',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#316dca',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#255ab2',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#1b4b91',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#143d79',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#0f2d5c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      green: {
+        '0': {
+          $value: '#b4f1b4',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#8ddb8c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#6bc46d',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#57ab5a',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#46954a',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#347d39',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#2b6a30',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#245829',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#1b4721',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#113417',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      yellow: {
+        '0': {
+          $value: '#fbe090',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#eac55f',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#daaa3f',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#c69026',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#ae7c14',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#966600',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#805400',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#6c4400',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#593600',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#452700',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      orange: {
+        '0': {
+          $value: '#ffddb0',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#ffbc6f',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#f69d50',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#e0823d',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#cc6b2c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#ae5622',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#94471b',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#7f3913',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#682d0f',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#4d210c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      red: {
+        '0': {
+          $value: '#ffd8d3',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#ffb8b0',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#ff938a',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#f47067',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#e5534b',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#c93c37',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#ad2e2c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#922323',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#78191b',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#5d0f12',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      purple: {
+        '0': {
+          $value: '#eedcff',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#dcbdfb',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#dcbdfb',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#b083f0',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#986ee2',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#8256d0',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#6b44bc',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#5936a2',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#472c82',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#352160',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      pink: {
+        '0': {
+          $value: '#ffd7eb',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#ffb3d8',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#fc8dc7',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#e275ad',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#c96198',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#ae4c82',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#983b6e',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#7e325a',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#69264a',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#551639',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+      coral: {
+        '0': {
+          $value: '#ffdacf',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '1': {
+          $value: '#ffb9a5',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '2': {
+          $value: '#f79981',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '3': {
+          $value: '#ec775c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '4': {
+          $value: '#de5b41',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '5': {
+          $value: '#c2442d',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '6': {
+          $value: '#a93524',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '7': {
+          $value: '#8d291b',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '8': {
+          $value: '#771d13',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+        '9': {
+          $value: '#5d1008',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'base/color/dark-dimmed',
+            },
+          },
+        },
+      },
+    },
+  },
+}

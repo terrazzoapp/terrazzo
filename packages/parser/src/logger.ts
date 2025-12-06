@@ -26,6 +26,8 @@ export interface LogEntry {
   node?: momoa.AnyNode;
   /** To show a code frame, provide the original source code */
   src?: string;
+  /** Display performance timing */
+  timing?: number;
 }
 
 export interface DebugEntry {
@@ -60,6 +62,9 @@ export function formatMessage(entry: LogEntry, severity: LogSeverity) {
   message = `[${entry.group}${entry.label ? `:${entry.label}` : ''}] ${message}`;
   if (severity in MESSAGE_COLOR) {
     message = MESSAGE_COLOR[severity]!(message);
+  }
+  if (typeof entry.timing === 'number') {
+    message = `${message} ${formatTiming(entry.timing)}`;
   }
   if (entry.node) {
     const start = entry.node?.loc?.start ?? { line: 0, column: 0 };
@@ -139,6 +144,7 @@ export default class Logger {
         return;
       }
       const message = formatMessage(entry, 'warn');
+
       // biome-ignore lint/suspicious/noConsole: this is a logger
       console.warn(message);
     }
@@ -168,13 +174,7 @@ export default class Logger {
 
       message = `${pc.dim(timeFormatter.format(performance.now()))} ${message}`;
       if (typeof entry.timing === 'number') {
-        let timing = '';
-        if (entry.timing < 1_000) {
-          timing = `${Math.round(entry.timing * 100) / 100}ms`;
-        } else if (entry.timing < 60_000) {
-          timing = `${Math.round(entry.timing * 100) / 100_000}s`;
-        }
-        message = `${message}${timing ? pc.dim(` [${timing}]`) : ''}`;
+        message = `${message} ${formatTiming(entry.timing)}`;
       }
 
       // biome-ignore lint/suspicious/noConsole: this is a logger
@@ -191,6 +191,18 @@ export default class Logger {
       debugCount: this.debugCount,
     };
   }
+}
+
+function formatTiming(timing: number): string {
+  let output = '';
+  if (timing < 1_000) {
+    output = `${Math.round(timing * 100) / 100}ms`;
+  } else if (timing < 60_000) {
+    output = `${Math.round(timing) / 1_000}s`;
+  } else {
+    output = `${Math.round(timing / 1_000) / 60}m`;
+  }
+  return pc.dim(`[${output}]`);
 }
 
 export class TokensJSONError extends Error {

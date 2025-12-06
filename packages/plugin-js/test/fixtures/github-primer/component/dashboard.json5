@@ -1,0 +1,35 @@
+{
+  dashboard: {
+    bgColor: {
+      $value: '{bgColor.default}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component (internal)',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          dark: {
+            $value: '{bgColor.inset}',
+          },
+          'dark-dimmed': {
+            $value: '{bgColor.inset}',
+          },
+          'dark-dimmed-high-contrast': {
+            $value: '{bgColor.inset}',
+          },
+          'dark-high-contrast': {
+            $value: '{bgColor.inset}',
+          },
+          'dark-protanopia-deuteranopia-high-contrast': {
+            $value: '{bgColor.inset}',
+          },
+          'dark-tritanopia-high-contrast': {
+            $value: '{bgColor.inset}',
+          },
+        },
+      },
+    },
+  },
+}

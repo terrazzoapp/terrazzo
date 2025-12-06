@@ -160,7 +160,7 @@ export function createResolver(
       const tokens = processTokens(rootSource, {
         config,
         logger,
-        sourceByFilename: {},
+        sourceByFilename: { [resolverSource._source.filename!.href]: rootSource },
         refMap: {},
         sources,
       });

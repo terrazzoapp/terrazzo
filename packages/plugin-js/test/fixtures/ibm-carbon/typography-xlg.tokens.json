@@ -1,0 +1,312 @@
+{
+  "type": {
+    "display01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "display02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.16
+      }
+    },
+    "display03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 4.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.13
+      }
+    },
+    "display04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 7.625,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.07
+      }
+    },
+    "expressiveHeading03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 1.25,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.4
+      }
+    },
+    "expressiveHeading04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.25
+      }
+    },
+    "expressiveHeading05": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "expressiveHeading06": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "fluidDisplay01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "fluidDisplay02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3.75,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.16
+      }
+    },
+    "fluidDisplay03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 4.75,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.13
+      }
+    },
+    "fluidDisplay04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 7.625,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": "-0.64px",
+        "lineHeight": 1.07
+      }
+    },
+    "fluidHeading03": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 1.25,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.4
+      }
+    },
+    "fluidHeading04": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 2,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.25
+      }
+    },
+    "fluidHeading05": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "fluidHeading06": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": [
+          "system-ui",
+          "sans-serif"
+        ],
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 600,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "fluidQuotation01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 1.75,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.28572
+      }
+    },
+    "fluidQuotation02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    },
+    "quotation01": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 1.75,
+          "unit": "rem"
+        },
+        "fontWeight": 400,
+        "letterSpacing": 0,
+        "lineHeight": 1.28572
+      }
+    },
+    "quotation02": {
+      "$type": "typography",
+      "$value": {
+        "fontFamily": "'IBM Plex Serif', 'Georgia', Times, serif",
+        "fontSize": {
+          "value": 3,
+          "unit": "rem"
+        },
+        "fontWeight": 300,
+        "letterSpacing": 0,
+        "lineHeight": 1.17
+      }
+    }
+  }
+}

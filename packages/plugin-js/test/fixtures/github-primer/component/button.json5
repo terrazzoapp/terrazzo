@@ -1,0 +1,1917 @@
+{
+  button: {
+    default: {
+      fgColor: {
+        rest: {
+          $value: '{control.fgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.rest}',
+              },
+            },
+          },
+        },
+      },
+      bgColor: {
+        rest: {
+          $value: '{control.bgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{control.bgColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.hover}',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{control.bgColor.active}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+          },
+        },
+        selected: {
+          $value: '{control.bgColor.active}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.bgColor.disabled}',
+          $type: 'color',
+          $extensions: {},
+        },
+      },
+      borderColor: {
+        rest: {
+          $value: '{control.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        hover: {
+          $value: '{button.default.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        active: {
+          $value: '{control.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{button.default.borderColor.rest}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.borderColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.borderColor.disabled}',
+              },
+            },
+          },
+        },
+      },
+      shadow: {
+        resting: {
+          $value: [
+            {
+              color: '{base.color.neutral.13}',
+              alpha: 0.04,
+              offsetX: '0px',
+              offsetY: '1px',
+              blur: '0px',
+              spread: '0px',
+              inset: false,
+            },
+          ],
+          $type: 'shadow',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component shadow',
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: [
+                  {
+                    color: '{base.color.transparent}',
+                    alpha: 0,
+                    offsetX: '0px',
+                    offsetY: '0px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: false,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
+    primary: {
+      fgColor: {
+        rest: {
+          $value: '{fgColor.white}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.white}',
+              },
+              'dark-dimmed': {
+                $value: '#ffffff',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '#ffffff',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+                alpha: 0.4,
+              },
+            },
+          },
+          alpha: 0.8,
+        },
+      },
+      iconColor: {
+        rest: {
+          $value: '{fgColor.white}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              light: {
+                $value: '{fgColor.white}',
+                alpha: 0.8,
+              },
+              dark: {
+                $value: '{fgColor.white}',
+              },
+              'dark-dimmed': {
+                $value: '#ffffff',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '#ffffff',
+              },
+            },
+          },
+        },
+      },
+      bgColor: {
+        rest: {
+          $value: '{bgColor.success.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{bgColor.success.emphasis}',
+              },
+              'light-high-contrast': {
+                $value: '{base.color.green.5}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '#1c8139',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '#29903B',
+              },
+              'dark-dimmed': {
+                $value: '#3b8640',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.green.6}',
+              },
+              'dark-tritanopia': {
+                $value: '#2a7aef',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '#2a7aef',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '#2a7aef',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '#2a7aef',
+              },
+              'dark-high-contrast': {
+                $value: '#08792b',
+              },
+              'light-tritanopia': {
+                $value: '#0864d1',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '#0864d1',
+              },
+              'light-protanopia-deuteranopia': {
+                $value: '#0864d1',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '#0864d1',
+              },
+              'light-high-contrast': {
+                $value: '#04571e',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '#197935',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '#2E9A40',
+              },
+              'dark-dimmed': {
+                $value: '#428f46',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.green.5}',
+              },
+              'dark-tritanopia': {
+                $value: '#3685f3',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '#3685f3',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '#3685f3',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '#3685f3',
+              },
+              'dark-high-contrast': {
+                $value: '#109135',
+              },
+              'light-tritanopia': {
+                $value: '#075fc8',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '#075fc8',
+              },
+              'light-protanopia-deuteranopia': {
+                $value: '#075fc8',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '#075fc8',
+              },
+              'light-high-contrast': {
+                $value: '#03501b',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '#95d8a6',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '#105823',
+              },
+              'dark-dimmed': {
+                $value: '#105823',
+              },
+              'dark-tritanopia': {
+                $value: '#5fabfe',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '#5fabfe',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '{base.color.blue.6}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.blue.6}',
+              },
+              'dark-high-contrast': {
+                $value: '#048f2f',
+              },
+              'light-tritanopia': {
+                $value: '#92caff',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '#92caff',
+              },
+              'light-protanopia-deuteranopia': {
+                $value: '#92caff',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '#92caff',
+              },
+              'light-high-contrast': {
+                $value: '#85cb97',
+              },
+            },
+          },
+        },
+      },
+      borderColor: {
+        rest: {
+          $value: '{borderColor.translucent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              'dark-high-contrast': {
+                $value: '{base.color.green.2}',
+                alpha: 1,
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.green.2}',
+                alpha: 1,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.blue.2}',
+                alpha: 1,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.blue.2}',
+                alpha: 1,
+              },
+              'light-high-contrast': {
+                $value: '{base.color.green.7}',
+                alpha: 1,
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.blue.7}',
+                alpha: 1,
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.blue.7}',
+                alpha: 1,
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{button.primary.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        active: {
+          $value: '{button.primary.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        disabled: {
+          $value: '{button.primary.bgColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '#105823',
+              },
+              'dark-dimmed': {
+                $value: '#105823',
+              },
+              'dark-tritanopia': {
+                $value: '#5fabfe',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '#5fabfe',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '#1158c7',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '#1158c7',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.green.2}',
+                alpha: 0.4,
+              },
+              'light-high-contrast': {
+                $value: '#85cb97',
+              },
+            },
+          },
+        },
+      },
+      shadow: {
+        selected: {
+          $value: [
+            {
+              color: '{base.color.green.9}',
+              alpha: 0.3,
+              offsetX: '0px',
+              offsetY: '1px',
+              blur: '0px',
+              spread: '0px',
+              inset: true,
+            },
+          ],
+          $type: 'shadow',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component shadow',
+            },
+            'org.primer.overrides': {
+              'light-tritanopia': {
+                $value: [
+                  {
+                    color: '{base.color.blue.9}',
+                    alpha: 0.3,
+                    offsetX: '0px',
+                    offsetY: '1px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: true,
+                  },
+                ],
+              },
+              'light-protanopia-deuteranopia': {
+                $value: [
+                  {
+                    color: '{base.color.blue.9}',
+                    alpha: 0.3,
+                    offsetX: '0px',
+                    offsetY: '1px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: true,
+                  },
+                ],
+              },
+              dark: {
+                $value: [
+                  {
+                    color: '{base.color.transparent}',
+                    alpha: 0,
+                    offsetX: '0px',
+                    offsetY: '0px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: false,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
+    invisible: {
+      fgColor: {
+        rest: {
+          $value: '{control.fgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{control.fgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.rest}',
+              },
+              'light-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{control.fgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.rest}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.fgColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.disabled}',
+              },
+            },
+          },
+        },
+      },
+      iconColor: {
+        rest: {
+          $value: '{fgColor.muted}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.muted}',
+              },
+              'dark-dimmed': {
+                $value: '{base.color.neutral.10}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{fgColor.muted}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.muted}',
+              },
+              'dark-dimmed': {
+                $value: '{base.color.neutral.10}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'light-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.11}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.fgColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.fgColor.disabled}',
+              },
+            },
+          },
+        },
+      },
+      bgColor: {
+        rest: {
+          $value: '{control.transparent.bgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.transparent.bgColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{control.transparent.bgColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.transparent.bgColor.hover}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.2}',
+                alpha: null,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.2}',
+                alpha: null,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.2}',
+                alpha: null,
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{control.transparent.bgColor.active}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.transparent.bgColor.active}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.3}',
+                alpha: null,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.3}',
+                alpha: null,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.3}',
+                alpha: null,
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{base.color.transparent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.transparent}',
+              },
+            },
+          },
+        },
+      },
+      borderColor: {
+        rest: {
+          $value: '{control.transparent.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.transparent.borderColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{control.transparent.borderColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.transparent.borderColor.hover}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{base.color.transparent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.transparent}',
+              },
+            },
+          },
+        },
+      },
+    },
+    outline: {
+      fgColor: {
+        rest: {
+          $value: '{fgColor.accent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.4}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.3}',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{fgColor.accent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.accent}',
+                alpha: 0.5,
+              },
+              'dark-dimmed': {
+                $value: '#478be680',
+              },
+            },
+          },
+          alpha: 0.5,
+        },
+      },
+      bgColor: {
+        rest: {
+          $value: '{control.bgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.12}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{bgColor.accent.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.hover}',
+              },
+              'dark-tritanopia': {
+                $value: '#262c36',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '#0757ba',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.7}',
+              },
+              'dark-tritanopia': {
+                $value: '#0d419d',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '#0d419d',
+              },
+              'light-high-contrast': {
+                $value: '#033f9d',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '#033f9d',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '#033f9d',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.bgColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.disabled}',
+              },
+              'dark-tritanopia': {
+                $value: '#212830',
+              },
+            },
+          },
+        },
+      },
+      borderColor: {
+        hover: {
+          $value: '{button.primary.borderColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{button.default.borderColor.hover}',
+              },
+              'light-high-contrast': {
+                $value: '{base.color.blue.7}',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.blue.7}',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.blue.7}',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{button.outline.borderColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+      },
+      shadow: {
+        selected: {
+          $value: [
+            {
+              color: '{base.color.blue.9}',
+              alpha: 0.2,
+              offsetX: '0px',
+              offsetY: '1px',
+              blur: '0px',
+              spread: '0px',
+              inset: true,
+            },
+          ],
+          $type: 'shadow',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component shadow',
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: [
+                  {
+                    color: '{base.color.transparent}',
+                    alpha: 0,
+                    offsetX: '0px',
+                    offsetY: '0px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: false,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
+    danger: {
+      fgColor: {
+        rest: {
+          $value: '{fgColor.danger}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '#FA5E55',
+              },
+              'dark-dimmed': {
+                $value: '#ea5c53',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.red.1}',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '{fgColor.danger}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.red.2}',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.red.2}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.orange.2}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '#ffffff',
+              },
+              'dark-dimmed': {
+                $value: '#ffffff',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '#ffffff',
+              },
+              'dark-dimmed': {
+                $value: '#ffffff',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{fgColor.danger}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.danger}',
+                alpha: 0.5,
+              },
+            },
+          },
+          alpha: 0.5,
+        },
+      },
+      iconColor: {
+        rest: {
+          $value: '{button.danger.fgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+          },
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '#ffffff',
+              },
+            },
+          },
+        },
+      },
+      bgColor: {
+        rest: {
+          $value: '{control.bgColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{bgColor.danger.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.red.6}',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '{base.color.orange.6}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.red.9}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.red.7}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.orange.9}',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.red.9}',
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{base.color.red.6}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-dimmed': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-protanopia-deuteranopia': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-high-contrast': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{bgColor.danger.emphasis}',
+              },
+              'light-protanopia-deuteranopia': {
+                $value: '{base.color.orange.6}',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.orange.6}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{control.bgColor.disabled}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.bgColor.disabled}',
+              },
+            },
+          },
+        },
+      },
+      borderColor: {
+        rest: {
+          $value: '{control.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{control.borderColor.rest}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{button.primary.borderColor.rest}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{button.primary.borderColor.rest}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.red.2}',
+                alpha: 1,
+              },
+              'dark-dimmed-high-contrast': {
+                $value: '{base.color.red.1}',
+                alpha: 1,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.orange.2}',
+                alpha: 1,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.red.2}',
+                alpha: 1,
+              },
+              'light-high-contrast': {
+                $value: '{base.color.red.7}',
+                alpha: 1,
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.orange.7}',
+                alpha: 1,
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.red.7}',
+                alpha: 1,
+              },
+            },
+          },
+        },
+        active: {
+          $value: '{button.danger.borderColor.hover}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{button.danger.borderColor.hover}',
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.red.2}',
+                alpha: 1,
+              },
+            },
+          },
+        },
+      },
+      shadow: {
+        selected: {
+          $value: [
+            {
+              color: '{base.color.red.9}',
+              alpha: 0.2,
+              offsetX: '0px',
+              offsetY: '1px',
+              blur: '0px',
+              spread: '0px',
+              inset: true,
+            },
+          ],
+          $type: 'shadow',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component shadow',
+            },
+            'org.primer.overrides': {
+              'light-protanopia-deuteranopia': {
+                $value: [
+                  {
+                    color: '{base.color.orange.9}',
+                    alpha: 0.2,
+                    offsetX: '0px',
+                    offsetY: '1px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: true,
+                  },
+                ],
+              },
+              dark: {
+                $value: [
+                  {
+                    color: '{base.color.transparent}',
+                    alpha: 0,
+                    offsetX: '0px',
+                    offsetY: '0px',
+                    blur: '0px',
+                    spread: '0px',
+                    inset: false,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
+    inactive: {
+      fgColor: {
+        $value: '{base.color.neutral.9}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component (internal)',
+            scopes: ['fgColor'],
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: '{base.color.neutral.9}',
+            },
+            'dark-dimmed': {
+              $value: '{base.color.neutral.8}',
+            },
+            'dark-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+            'dark-protanopia-deuteranopia-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+            'dark-tritanopia-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+            'light-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+            'light-protanopia-deuteranopia-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+            'light-tritanopia-high-contrast': {
+              $value: '{base.color.neutral.10}',
+            },
+          },
+        },
+      },
+      bgColor: {
+        $value: '{base.color.neutral.3}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component (internal)',
+            scopes: ['bgColor'],
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: '{base.color.neutral.4}',
+            },
+            'dark-dimmed': {
+              $value: '{base.color.neutral.5}',
+            },
+            'dark-high-contrast': {
+              $value: '{control.bgColor.rest}',
+            },
+            'light-high-contrast': {
+              $value: '{control.bgColor.rest}',
+            },
+          },
+        },
+      },
+    },
+    star: {
+      iconColor: {
+        $value: '{base.color.yellow.2}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component (internal)',
+            scopes: ['bgColor'],
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: '{base.color.yellow.2}',
+            },
+          },
+        },
+      },
+    },
+  },
+  buttonCounter: {
+    default: {
+      bgColor: {
+        rest: {
+          $value: '{bgColor.neutral.muted}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.6}',
+              },
+              'light-high-contrast': '{base.color.neutral.7}',
+              'light-protanopia-deuteranopia-high-contrast': '{base.color.neutral.7}',
+              'light-tritanopia-high-contrast': '{base.color.neutral.7}',
+            },
+          },
+        },
+      },
+    },
+    invisible: {
+      bgColor: {
+        rest: {
+          $value: '{bgColor.neutral.muted}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{bgColor.neutral.muted}',
+              },
+            },
+          },
+        },
+      },
+    },
+    primary: {
+      bgColor: {
+        rest: {
+          $value: '{base.color.green.9}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.green.9}',
+                alpha: 0.2,
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+            },
+          },
+          alpha: 0.2,
+        },
+      },
+    },
+    outline: {
+      bgColor: {
+        rest: {
+          $value: '{bgColor.accent.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.9}',
+                alpha: 0.2,
+              },
+            },
+          },
+          alpha: 0.1,
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.9}',
+                alpha: 0.2,
+              },
+            },
+          },
+          alpha: 0.2,
+        },
+        disabled: {
+          $value: '{bgColor.accent.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{bgColor.accent.emphasis}',
+                alpha: 0.05,
+              },
+            },
+          },
+          alpha: 0.05,
+        },
+      },
+      fgColor: {
+        rest: {
+          $value: '{base.color.blue.6}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.4}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.blue.3}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{fgColor.accent}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.accent}',
+                alpha: 0.5,
+              },
+            },
+          },
+          alpha: 0.5,
+        },
+      },
+    },
+    danger: {
+      bgColor: {
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+                alpha: 0.2,
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+            },
+          },
+          alpha: 0.2,
+        },
+        disabled: {
+          $value: '{bgColor.danger.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{bgColor.danger.emphasis}',
+                alpha: 0.05,
+              },
+            },
+          },
+          alpha: 0.05,
+        },
+        rest: {
+          $value: '{bgColor.danger.emphasis}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.red.9}',
+                alpha: 0.2,
+              },
+              'dark-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.neutral.0}',
+                alpha: 0.15,
+              },
+            },
+          },
+          alpha: 0.1,
+        },
+      },
+      fgColor: {
+        rest: {
+          $value: '#c21c2c',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.danger}',
+              },
+              'light-high-contrast': {
+                $value: '{fgColor.danger}',
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{fgColor.danger}',
+              },
+              'light-protanopia-deuteranopia': {
+                $value: '{base.color.orange.6}',
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{fgColor.danger}',
+              },
+            },
+          },
+        },
+        hover: {
+          $value: '{base.color.neutral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{base.color.neutral.13}',
+              },
+            },
+          },
+        },
+        disabled: {
+          $value: '{fgColor.danger}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['fgColor'],
+            },
+            'org.primer.overrides': {
+              dark: {
+                $value: '{fgColor.danger}',
+                alpha: 0.5,
+              },
+            },
+          },
+          alpha: 0.5,
+        },
+      },
+    },
+  },
+}

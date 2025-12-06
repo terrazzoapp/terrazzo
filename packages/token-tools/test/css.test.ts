@@ -110,6 +110,7 @@ describe('transformCSSValue', () => {
             $deprecated: undefined,
             $description: undefined,
             $extensions: undefined,
+            $extends: undefined,
             source: {} as any,
             aliasOf: 'bool.nuh-uh',
             aliasChain: ['bool.nuh-uh'],
