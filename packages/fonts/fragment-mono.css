@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'Fragment Mono';
+  font-family: "Fragment Mono";
   font-style: normal;
-  src: url('./FragmentMono-Regular.woff2') format('woff2');
+  src: url("./FragmentMono-Regular.woff2") format("woff2");
 }
 
 @font-face {
-  font-family: 'Fragment Mono';
+  font-family: "Fragment Mono";
   font-style: italic;
-  src: url('./FragmentMono-Italic.woff2') format('woff2');
+  src: url("./FragmentMono-Italic.woff2") format("woff2");
 }

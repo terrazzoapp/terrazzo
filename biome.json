@@ -6,7 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["**", "!**/test/fixtures/**", "!**/test/**/want.*"],
+    "includes": ["**", "!**/test/fixtures", "!**/test/**/want.*"],
     "ignoreUnknown": true
   },
   "formatter": {

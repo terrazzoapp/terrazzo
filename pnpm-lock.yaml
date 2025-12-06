@@ -157,6 +157,9 @@ importers:
       execa:
         specifier: ^9.6.1
         version: 9.6.1
+      merge-anything:
+        specifier: ^5.1.7
+        version: 5.1.7
       playwright:
         specifier: 'catalog:'
         version: 1.57.0
@@ -321,14 +324,13 @@ importers:
         version: 3.5.8(rollup@4.53.3)
 
   packages/json-schema-tools:
-    dependencies:
-      '@humanwhocodes/momoa':
-        specifier: 'catalog:'
-        version: 3.3.10
     devDependencies:
       '@apidevtools/json-schema-ref-parser':
         specifier: ^11.9.3
         version: 11.9.3
+      '@humanwhocodes/momoa':
+        specifier: 'catalog:'
+        version: 3.3.10
       yaml-to-momoa:
         specifier: 'catalog:'
         version: 0.0.8

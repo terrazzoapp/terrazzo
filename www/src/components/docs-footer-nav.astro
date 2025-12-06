@@ -5,13 +5,13 @@ const nav = (Astro.url.pathname.includes('/docs/2.0') ? DOCS_NAV_V2 : DOCS_NAV).
   section.url ? section : (section.items ?? []),
 );
 
-let prev: { url?: string; title?: string } | undefined;
-let next: { url?: string; title?: string } | undefined;
+let _prev: { url?: string; title?: string } | undefined;
+let _next: { url?: string; title?: string } | undefined;
 
 for (let i = 0; i < nav.length; i++) {
   if (nav[i]?.url && Astro.url.pathname.replace(/\/?$/, '/') === nav[i]?.url) {
-    prev = nav[i - 1];
-    next = nav[i + 1];
+    _prev = nav[i - 1];
+    _next = nav[i + 1];
   }
 }
 ---
