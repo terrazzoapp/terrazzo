@@ -1,11 +1,10 @@
 import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { merge } from 'merge-anything';
 import type { RolldownOptions } from 'rolldown';
 import { dts } from 'rolldown-plugin-dts';
 
 export const defineConfig = (options: RolldownOptions): RolldownOptions => {
-  const pkg = JSON.parse(readFileSync(join(process.cwd(), 'package.json'), 'utf8'));
+  const pkg = JSON.parse(readFileSync(new URL('package.json', `file://${process.cwd()}/`), 'utf8'));
   return merge(
     {
       platform: 'browser',
