@@ -598,7 +598,7 @@ Its usage has changed slightly from Cobalt 1.x, because now it must return eithe
 
 :::warning
 
-Some token types that require multiple values (like [typography](http://localhost:4321/docs/reference/tokens#typography)) must return an object.
+Some token types that require multiple values (like [typography](/docs/reference/tokens#typography)) must return an object.
 
 :::
 
