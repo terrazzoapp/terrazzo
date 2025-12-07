@@ -37,7 +37,7 @@ export default defineConfig({
 
       theme: {
         /** @see https://tailwindcss.com/docs/configuration#theme */
-        colors: ["color.*"],
+        color: ["color.*"],
         font: {
           sans: "typography.family.base",
         },
