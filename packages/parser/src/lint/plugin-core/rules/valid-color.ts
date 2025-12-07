@@ -54,7 +54,7 @@ const rule: LintRule<
   meta: {
     messages: {
       [ERROR_ALPHA]: `Alpha {{ alpha }} not in range 0 – 1.`,
-      [ERROR_INVALID_COLOR_SPACE]: `Invalid color space: {{ colorSpace }}. Expected ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(Object.keys(COLORSPACE))}`,
+      [ERROR_INVALID_COLOR_SPACE]: `Invalid color space: {{ colorSpace }}. Expected ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(COLORSPACE))}`,
       [ERROR_INVALID_COLOR]: `Could not parse color {{ color }}.`,
       [ERROR_INVALID_COMPONENT_LENGTH]: 'Expected {{ expected }} components, received {{ got }}.',
       [ERROR_INVALID_HEX8]: `Hex value can’t be semi-transparent.`,

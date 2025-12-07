@@ -20,9 +20,9 @@ const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 const rule: LintRule<typeof ERROR_STR | typeof ERROR_OBJ | typeof ERROR_LINE_CAP | typeof ERROR_INVALID_PROP> = {
   meta: {
     messages: {
-      [ERROR_STR]: `Value most be one of ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(STROKE_STYLE_STRING_VALUES)}.`,
-      [ERROR_OBJ]: `Missing required properties: ${new Intl.ListFormat(undefined, { type: 'conjunction' }).format(TRANSITION_REQUIRED_PROPERTIES)}.`,
-      [ERROR_LINE_CAP]: `lineCap must be one of ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(STROKE_STYLE_LINE_CAP_VALUES)}.`,
+      [ERROR_STR]: `Value most be one of ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(STROKE_STYLE_STRING_VALUES)}.`,
+      [ERROR_OBJ]: `Missing required properties: ${new Intl.ListFormat('en-us', { type: 'conjunction' }).format(TRANSITION_REQUIRED_PROPERTIES)}.`,
+      [ERROR_LINE_CAP]: `lineCap must be one of ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(STROKE_STYLE_LINE_CAP_VALUES)}.`,
       [ERROR_INVALID_PROP]: 'Unknown property: {{ key }}.',
     },
     docs: {

@@ -21,7 +21,7 @@ export interface RuleFontWeightOptions {
 const rule: LintRule<typeof ERROR | typeof ERROR_STYLE, RuleFontWeightOptions> = {
   meta: {
     messages: {
-      [ERROR]: `Must either be a valid number (0 - 999) or a valid font weight: ${new Intl.ListFormat(undefined, { type: 'disjunction' }).format(Object.keys(FONT_WEIGHTS))}.`,
+      [ERROR]: `Must either be a valid number (0 - 999) or a valid font weight: ${new Intl.ListFormat('en-us', { type: 'disjunction' }).format(Object.keys(FONT_WEIGHTS))}.`,
       [ERROR_STYLE]: 'Expected style {{ style }}, received {{ value }}.',
     },
     docs: {

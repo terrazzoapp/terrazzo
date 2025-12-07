@@ -12,7 +12,7 @@ const ERROR_INVALID_PROP = 'ERROR_INVALID_PROP';
 const rule: LintRule<typeof ERROR | typeof ERROR_INVALID_PROP> = {
   meta: {
     messages: {
-      [ERROR]: `Missing required properties: ${new Intl.ListFormat(undefined, { type: 'conjunction' }).format(TRANSITION_REQUIRED_PROPERTIES)}.`,
+      [ERROR]: `Missing required properties: ${new Intl.ListFormat('en-us', { type: 'conjunction' }).format(TRANSITION_REQUIRED_PROPERTIES)}.`,
       [ERROR_INVALID_PROP]: 'Unknown property: {{ key }}.',
     },
     docs: {
