@@ -1,6 +1,6 @@
 {
   "name": "@terrazzo/plugin-css-in-js",
-  "version": "2.0.0-alpha.3",
+  "version": "2.0.0-alpha.5",
   "description": "Use CSS Vars in clientside JS. Compatible with Linaria, StyleX, Vanilla Extract, Styled Components, and most CSS-in-JS libraries.",
   "license": "MIT",
   "type": "module",
