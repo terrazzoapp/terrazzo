@@ -37,7 +37,8 @@
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "workspace:^"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^"
   },
   "dependencies": {
     "@terrazzo/parser": "workspace:^",
