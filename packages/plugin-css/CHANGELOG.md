@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 2.0.0-alpha.6
+
+### Patch Changes
+
+- [#606](https://github.com/terrazzoapp/terrazzo/pull/606) [`1fc1d99`](https://github.com/terrazzoapp/terrazzo/commit/1fc1d99e7156923e86e872e4750b7e28b6292b20) Thanks [@yuheiy](https://github.com/yuheiy)! - Allow partial utility CSS groups configuration
+
 ## 2.0.0
 
 ### Minor Changes

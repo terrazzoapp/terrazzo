@@ -20,7 +20,10 @@
     "@terrazzo/token-lab": "0.0.0",
     "@terrazzo/token-tools": "2.0.0-alpha.1",
     "@terrazzo/tokens": "0.1.0",
-    "@terrazzo/use-color": "0.1.4"
+    "@terrazzo/use-color": "0.1.4",
+    "@terrazzo/plugin-css-in-js": "2.0.0-alpha.5"
   },
-  "changesets": ["bold-pandas-smell", "full-webs-shake", "short-wings-pay"]
+  "changesets": [
+    "partial-utility-groups"
+  ]
 }
