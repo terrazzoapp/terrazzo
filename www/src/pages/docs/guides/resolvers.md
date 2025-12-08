@@ -1,6 +1,6 @@
 ---
 title: Resolvers
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 ## Resolvers

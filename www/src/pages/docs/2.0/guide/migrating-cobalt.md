@@ -1,6 +1,6 @@
 ---
 title: Migrating from Cobalt
-layout: ../../../layouts/docs.astro
+layout: ../../../../layouts/docs.astro
 ---
 
 # Migrating from Cobalt 1.0
@@ -49,7 +49,7 @@ If you were using `@cobalt-ui/core` or `@cobalt-ui/utils` those packages were de
 - `@terrazzo/parser` is now the [JS API](/docs/reference/js-api/) and runs in a browser, Node.js, or Bun
 - `@terrazzo/cli` is a thin wrapper around the parser, and only provides quality of life improvements
 - `@terrazzo/token-tools` is an improved version of `@cobalt-ui/utils`, and has most common utilities you need for building your own plugin
-    - For example, take a look at the source code of the [CSS plugin](https://github.com/terrazzoapp/terrazzo/tree/main/packages/plugin-css)—more of the CSS operations are handled by `token-tools` than you may have realized!
+  - For example, take a look at the source code of the [CSS plugin](https://github.com/terrazzoapp/terrazzo/tree/main/packages/plugin-css)—more of the CSS operations are handled by `token-tools` than you may have realized!
 
 ## 2. Change CLI commands
 

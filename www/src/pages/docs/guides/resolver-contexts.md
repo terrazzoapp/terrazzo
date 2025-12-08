@@ -1,6 +1,6 @@
 ---
 title: Resolver Contexts (Themes)
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 # Resolver Contexts (Themes)
