@@ -4,7 +4,7 @@ Generate Swift code from DTCG tokens.
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org). With that installed, and a `package.json`, run:
+Requires [Node.js](https://nodejs.org). With that installed, and a `package.json`, run:
 
 ```sh
 npm i -D @terrazzo/cli @terrazzo/plugin-swift

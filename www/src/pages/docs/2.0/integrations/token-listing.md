@@ -25,7 +25,7 @@ The `names` prop in listed tokens may evolve into a `platforms` object with the 
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app). With both installed, run:
+Requires [Node.js](https://nodejs.org) and [the CLI installed](https://terrazzo.app). With both installed, run:
 
 :::npm
 

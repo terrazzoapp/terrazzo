@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { pathToFileURL } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import { type ConfigInit, defineConfig, type Logger } from '@terrazzo/parser';
 import pc from 'picocolors';
 import { createServer, type ViteDevServer } from 'vite';
@@ -88,7 +88,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         if (!mod.default) {
           // we format it immediately below
           throw new Error(
-            `No default export found in ${resolvedConfigPath}. See https://terrazzo.dev/docs for instructions.`,
+            `No default export found in ${resolvedConfigPath.replace(fileURLToPath(cwd), '')}. See https://terrazzo.dev/docs for instructions.`,
           );
         }
         config = defineConfig(mod.default, { cwd, logger });
@@ -237,8 +237,8 @@ export function resolveConfig(filename?: string): string | undefined {
   // if a user has multiple config files with different extensions that’s their fault
   for (const ext of ['.ts', '.js', '.mts', '.cts', '.mjs', '.cjs']) {
     const maybeFilename = `terrazzo.config${ext}`;
-    if (fs.existsSync(maybeFilename)) {
-      return maybeFilename;
+    if (fs.existsSync(new URL(maybeFilename, cwd))) {
+      return fileURLToPath(new URL(maybeFilename, cwd));
     }
   }
 }

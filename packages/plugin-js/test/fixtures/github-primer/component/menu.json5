@@ -1,0 +1,24 @@
+{
+  menu: {
+    bgColor: {
+      active: {
+        $value: '{base.color.transparent}',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'component (internal)',
+            scopes: [
+              'bgColor',
+            ],
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: '{base.color.neutral.2}',
+            },
+          },
+        },
+      },
+    },
+  },
+}

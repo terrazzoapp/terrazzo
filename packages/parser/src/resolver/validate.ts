@@ -1,4 +1,4 @@
-import type * as momoa from '@humanwhocodes/momoa';
+import * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LogEntry, default as Logger } from '../logger.js';
 
@@ -24,7 +24,7 @@ export function isLikelyResolver(doc: momoa.DocumentNode): boolean {
       case 'description':
       case 'version': {
         // 1. name, description, or version are a string
-        if (member.name.type === 'String') {
+        if (member.value.type === 'String') {
           return true;
         }
         break;
@@ -176,6 +176,7 @@ export function validateResolver(node: momoa.DocumentNode, { logger, src }: Vali
           errors.push({ ...entry, message: `Expected object`, node: member.value });
         }
         break;
+      case '$schema':
       case '$ref': {
         if (member.value.type !== 'String') {
           errors.push({ ...entry, message: `Expected string`, node: member.value });
@@ -325,6 +326,17 @@ export function validateModifier(
             if (context.value.type !== 'Array') {
               errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
             }
+          }
+        }
+        break;
+      }
+      case 'default': {
+        if (member.value.type !== 'String') {
+          errors.push({ ...entry, message: `Expected string`, node: member.value });
+        } else {
+          const contexts = getObjMember(node, 'contexts') as momoa.ObjectNode | undefined;
+          if (!contexts || !getObjMember(contexts, member.value.value)) {
+            errors.push({ ...entry, message: 'Invalid default context', node: member.value });
           }
         }
         break;

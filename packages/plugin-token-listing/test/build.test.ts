@@ -44,14 +44,14 @@ describe('token-listing plugin - Node.js API', () => {
       { cwd },
     );
     const tokensJSON = new URL('./tokens.json', cwd);
-    const { tokens, sources } = await parse(
+    const { tokens, resolver, sources } = await parse(
       [{ filename: tokensJSON, src: inputSrc ?? fs.readFileSync(tokensJSON, 'utf8') }],
       {
         config,
       },
     );
 
-    const result = await build(tokens, { sources, config, logger: mockLogger });
+    const result = await build(tokens, { resolver, sources, config, logger: mockLogger });
     const file = result.outputFiles.find((f) => f.filename === options.filename);
     expect(file).toBeTruthy();
 

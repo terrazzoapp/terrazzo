@@ -1,0 +1,19 @@
+{
+  timelineBadge: {
+    bgColor: {
+      $value: '{bgColor.muted}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component (internal)',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          dark: '{base.color.neutral.3}',
+          'dark-dimmed': '{base.color.neutral.4}',
+        },
+      },
+    },
+  },
+}

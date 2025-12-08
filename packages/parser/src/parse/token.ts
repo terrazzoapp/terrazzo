@@ -35,7 +35,7 @@ export function tokenFromNode(
   node: momoa.AnyNode,
   { groups, path, source, ignore }: TokenFromNodeOptions,
 ): TokenNormalized | undefined {
-  const isToken = node.type === 'Object' && getObjMember(node, '$value') && !path.includes('$extensions');
+  const isToken = node.type === 'Object' && !!getObjMember(node, '$value') && !path.includes('$extensions');
   if (!isToken) {
     return undefined;
   }
@@ -59,6 +59,7 @@ export function tokenFromNode(
     $deprecated: originalToken.$deprecated ?? group.$deprecated ?? undefined, // ⚠️ MUST use ?? here to inherit false correctly
     $value: originalToken.$value,
     $extensions: originalToken.$extensions || undefined,
+    $extends: originalToken.$extends || undefined,
     aliasChain: undefined,
     aliasedBy: undefined,
     aliasOf: undefined,
@@ -94,7 +95,7 @@ export function tokenFromNode(
   const $extensions = getObjMember(node, '$extensions');
   if ($extensions) {
     const modeNode = getObjMember($extensions as momoa.ObjectNode, 'mode') as momoa.ObjectNode;
-    for (const mode of Object.keys((token.$extensions as any).mode)) {
+    for (const mode of Object.keys((token.$extensions as any).mode ?? {})) {
       const modeValue = (token.$extensions as any).mode[mode];
       token.mode[mode] = {
         $value: modeValue,

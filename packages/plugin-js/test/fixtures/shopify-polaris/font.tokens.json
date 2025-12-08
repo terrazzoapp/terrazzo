@@ -1,0 +1,13 @@
+{
+  "font": {
+    "$type": "fontFamily",
+    "family": {
+      "base": {
+        "$value": ["-apple-system", "BlinkMacSystemFont", "San Francisco", "Segoe UI", "Roboto", "Helvetica Neue", "sans-serif"]
+      },
+      "mono": {
+        "$value": ["Monaco", "Consolas", "Lucida Console", "monospace"]
+      }
+    }
+  }
+}

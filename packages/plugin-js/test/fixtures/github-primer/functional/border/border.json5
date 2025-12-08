@@ -1,0 +1,236 @@
+{
+  focus: {
+    outline: {
+      $value: {
+        color: '{focus.outlineColor}',
+        style: 'solid',
+        width: '2px',
+      },
+      $type: 'border',
+    },
+  },
+  border: {
+    default: {
+      $value: {
+        color: '{borderColor.default}',
+        style: 'solid',
+        width: '{borderWidth.default}',
+      },
+      $type: 'border',
+    },
+    muted: {
+      $value: {
+        color: '{borderColor.muted}',
+        style: 'solid',
+        width: '{borderWidth.default}',
+      },
+      $type: 'border',
+    },
+    emphasis: {
+      $value: {
+        color: '{borderColor.emphasis}',
+        style: 'solid',
+        width: '{borderWidth.default}',
+      },
+      $type: 'border',
+    },
+    disabled: {
+      $value: {
+        color: '{borderColor.disabled}',
+        style: 'solid',
+        width: '{borderWidth.default}',
+      },
+      $type: 'border',
+    },
+    transparent: {
+      $value: {
+        color: '{borderColor.transparent}',
+        style: 'solid',
+        width: '{borderWidth.default}',
+      },
+      $type: 'border',
+    },
+    neutral: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.neutral.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.neutral.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    accent: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.accent.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.accent.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    success: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.success.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.success.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    open: {
+      emphasis: {
+        $value: '{border.success.emphasis}',
+        $type: 'border',
+      },
+      muted: {
+        $value: '{border.success.muted}',
+        $type: 'border',
+      },
+    },
+    danger: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.danger.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.danger.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    closed: {
+      emphasis: {
+        $value: '{border.danger.emphasis}',
+        $type: 'border',
+      },
+      muted: {
+        $value: '{border.danger.muted}',
+        $type: 'border',
+      },
+    },
+    attention: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.attention.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.attention.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    severe: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.severe.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.severe.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    done: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.done.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.done.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    upsell: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.upsell.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.upsell.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+    sponsors: {
+      emphasis: {
+        $value: {
+          color: '{borderColor.sponsors.emphasis}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+      muted: {
+        $value: {
+          color: '{borderColor.sponsors.muted}',
+          style: 'solid',
+          width: '{borderWidth.default}',
+        },
+        $type: 'border',
+      },
+    },
+  },
+}

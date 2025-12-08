@@ -1,0 +1,88 @@
+{
+  avatar: {
+    bgColor: {
+      $value: '{base.color.neutral.0}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component (internal)',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          dark: {
+            $value: '{base.color.neutral.13}',
+            alpha: 0.1,
+          },
+        },
+      },
+    },
+    borderColor: {
+      $value: '{borderColor.translucent}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component (internal)',
+          scopes: ['borderColor'],
+        },
+        'org.primer.overrides': {
+          'dark-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'dark-dimmed-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'light-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'light-tritanopia-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'light-protanopia-deuteranopia-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'dark-tritanopia-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+          'dark-protanopia-deuteranopia-high-contrast': {
+            $value: '{borderColor.emphasis}',
+          },
+        },
+      },
+    },
+    shadow: {
+      $value: [
+        {
+          color: '{base.color.neutral.0}',
+          alpha: 0.8,
+          offsetX: '0px',
+          offsetY: '0px',
+          blur: '0px',
+          spread: '2px',
+        },
+      ],
+      $type: 'shadow',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component shadow',
+        },
+        'org.primer.overrides': {
+          dark: {
+            $value: [
+              {
+                color: '{base.color.neutral.1}',
+                alpha: 1,
+                offsetX: '0px',
+                offsetY: '0px',
+                blur: '0px',
+                spread: '2px',
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+}

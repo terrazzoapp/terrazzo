@@ -1,0 +1,3310 @@
+{
+  "base": {
+    "display": {
+      "color": {
+        "gray": {
+          "0": {
+            "$value": {
+              "components": [
+                0.10980392156862745,
+                0.10980392156862745,
+                0.10980392156862745
+              ],
+              "alpha": 1,
+              "hex": "#1c1c1c"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.16470588235294117,
+                0.16862745098039217,
+                0.17647058823529413
+              ],
+              "alpha": 1,
+              "hex": "#2a2b2d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.2235294117647059,
+                0.23921568627450981,
+                0.2549019607843137
+              ],
+              "alpha": 1,
+              "hex": "#393d41"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.2784313725490196,
+                0.3058823529411765,
+                0.3411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#474e57"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.3411764705882353,
+                0.3843137254901961,
+                0.4392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#576270"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.43137254901960786,
+                0.4980392156862745,
+                0.5882352941176471
+              ],
+              "alpha": 1,
+              "hex": "#6e7f96"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.5725490196078431,
+                0.6313725490196078,
+                0.7098039215686275
+              ],
+              "alpha": 1,
+              "hex": "#92a1b5"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.6078431372549019,
+                0.6705882352941176,
+                0.7490196078431373
+              ],
+              "alpha": 1,
+              "hex": "#9babbf"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.7019607843137254,
+                0.7529411764705882,
+                0.8196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#b3c0d1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.7686274509803922,
+                0.8117647058823529,
+                0.8705882352941177
+              ],
+              "alpha": 1,
+              "hex": "#c4cfde"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "red": {
+          "0": {
+            "$value": {
+              "components": [
+                0.23529411764705882,
+                0.023529411764705882,
+                0.0784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#3c0614"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.34509803921568627,
+                0.03529411764705882,
+                0.10196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#58091a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.4745098039215686,
+                0.047058823529411764,
+                0.12549019607843137
+              ],
+              "alpha": 1,
+              "hex": "#790c20"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.6,
+                0.058823529411764705,
+                0.1411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#990f24"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.7647058823529411,
+                0.07450980392156863,
+                0.1568627450980392
+              ],
+              "alpha": 1,
+              "hex": "#c31328"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.9215686274509803,
+                0.2,
+                0.25882352941176473
+              ],
+              "alpha": 1,
+              "hex": "#eb3342"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.9490196078431372,
+                0.49019607843137253,
+                0.5137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#f27d83"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.9568627450980393,
+                0.5450980392156862,
+                0.5529411764705883
+              ],
+              "alpha": 1,
+              "hex": "#f48b8d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.9686274509803922,
+                0.6784313725490196,
+                0.6705882352941176
+              ],
+              "alpha": 1,
+              "hex": "#f7adab"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.9764705882352941,
+                0.7568627450980392,
+                0.7450980392156863
+              ],
+              "alpha": 1,
+              "hex": "#f9c1be"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "coral": {
+          "0": {
+            "$value": {
+              "components": [
+                0.20784313725490197,
+                0.06274509803921569,
+                0.03137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#351008"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.3176470588235294,
+                0.09411764705882353,
+                0.043137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#51180b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.4470588235294118,
+                0.13333333333333333,
+                0.050980392156862744
+              ],
+              "alpha": 1,
+              "hex": "#72220d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.5647058823529412,
+                0.16470588235294117,
+                0.054901960784313725
+              ],
+              "alpha": 1,
+              "hex": "#902a0e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.7019607843137254,
+                0.20784313725490197,
+                0.058823529411764705
+              ],
+              "alpha": 1,
+              "hex": "#b3350f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.8823529411764706,
+                0.2627450980392157,
+                0.054901960784313725
+              ],
+              "alpha": 1,
+              "hex": "#e1430e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.9686274509803922,
+                0.4745098039215686,
+                0.29411764705882354
+              ],
+              "alpha": 1,
+              "hex": "#f7794b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.9803921568627451,
+                0.5490196078431373,
+                0.3803921568627451
+              ],
+              "alpha": 1,
+              "hex": "#fa8c61"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.9921568627450981,
+                0.6666666666666666,
+                0.5254901960784314
+              ],
+              "alpha": 1,
+              "hex": "#fdaa86"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                1,
+                0.7529411764705882,
+                0.6392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#ffc0a3"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "orange": {
+          "0": {
+            "$value": {
+              "components": [
+                0.19215686274509805,
+                0.09019607843137255,
+                0.03137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#311708"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.2627450980392157,
+                0.12549019607843137,
+                0.0392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#43200a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.38823529411764707,
+                0.1843137254901961,
+                0.050980392156862744
+              ],
+              "alpha": 1,
+              "hex": "#632f0d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.4823529411764706,
+                0.23529411764705882,
+                0.054901960784313725
+              ],
+              "alpha": 1,
+              "hex": "#7b3c0e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.596078431372549,
+                0.29411764705882354,
+                0.06274509803921569
+              ],
+              "alpha": 1,
+              "hex": "#984b10"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.7686274509803922,
+                0.3843137254901961,
+                0.07058823529411765
+              ],
+              "alpha": 1,
+              "hex": "#c46212"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.9294117647058824,
+                0.5137254901960784,
+                0.14901960784313725
+              ],
+              "alpha": 1,
+              "hex": "#ed8326"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.9450980392156862,
+                0.5764705882352941,
+                0.23137254901960785
+              ],
+              "alpha": 1,
+              "hex": "#f1933b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.9647058823529412,
+                0.6901960784313725,
+                0.41568627450980394
+              ],
+              "alpha": 1,
+              "hex": "#f6b06a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.9803921568627451,
+                0.7764705882352941,
+                0.5607843137254902
+              ],
+              "alpha": 1,
+              "hex": "#fac68f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "yellow": {
+          "0": {
+            "$value": {
+              "components": [
+                0.1803921568627451,
+                0.10196078431372549,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#2e1a00"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.23921568627450981,
+                0.1411764705882353,
+                0.00392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#3d2401"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.35294117647058826,
+                0.21568627450980393,
+                0.00784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#5a3702"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.42745098039215684,
+                0.26666666666666666,
+                0.011764705882352941
+              ],
+              "alpha": 1,
+              "hex": "#6d4403"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.5372549019607843,
+                0.34901960784313724,
+                0.023529411764705882
+              ],
+              "alpha": 1,
+              "hex": "#895906"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.6666666666666666,
+                0.44313725490196076,
+                0.03529411764705882
+              ],
+              "alpha": 1,
+              "hex": "#aa7109"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.8274509803921568,
+                0.5686274509803921,
+                0.050980392156862744
+              ],
+              "alpha": 1,
+              "hex": "#d3910d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.8745098039215686,
+                0.6196078431372549,
+                0.06666666666666667
+              ],
+              "alpha": 1,
+              "hex": "#df9e11"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.9294117647058824,
+                0.7058823529411765,
+                0.19215686274509805
+              ],
+              "alpha": 1,
+              "hex": "#edb431"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.9411764705882353,
+                0.792156862745098,
+                0.41568627450980394
+              ],
+              "alpha": 1,
+              "hex": "#f0ca6a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "lemon": {
+          "0": {
+            "$value": {
+              "components": [
+                0.1607843137254902,
+                0.11372549019607843,
+                0
+              ],
+              "alpha": 1,
+              "hex": "#291d00"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.21568627450980393,
+                0.1607843137254902,
+                0.00392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#372901"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.30980392156862746,
+                0.23529411764705882,
+                0.00784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#4f3c02"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.3803921568627451,
+                0.2980392156862745,
+                0.0196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#614c05"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.47058823529411764,
+                0.3764705882352941,
+                0.03137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#786008"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.592156862745098,
+                0.4823529411764706,
+                0.047058823529411764
+              ],
+              "alpha": 1,
+              "hex": "#977b0c"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.7294117647058823,
+                0.6078431372549019,
+                0.07058823529411765
+              ],
+              "alpha": 1,
+              "hex": "#ba9b12"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.7686274509803922,
+                0.6549019607843137,
+                0.09019607843137255
+              ],
+              "alpha": 1,
+              "hex": "#c4a717"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.8431372549019608,
+                0.7372549019607844,
+                0.11372549019607843
+              ],
+              "alpha": 1,
+              "hex": "#d7bc1d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.8901960784313725,
+                0.8156862745098039,
+                0.30980392156862746
+              ],
+              "alpha": 1,
+              "hex": "#e3d04f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "olive": {
+          "0": {
+            "$value": {
+              "components": [
+                0.09019607843137255,
+                0.11764705882352941,
+                0.043137254901960784
+              ],
+              "alpha": 1,
+              "hex": "#171e0b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.1450980392156863,
+                0.17647058823529413,
+                0.06274509803921569
+              ],
+              "alpha": 1,
+              "hex": "#252d10"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.21568627450980393,
+                0.2549019607843137,
+                0.08235294117647059
+              ],
+              "alpha": 1,
+              "hex": "#374115"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.2823529411764706,
+                0.3215686274509804,
+                0.09803921568627451
+              ],
+              "alpha": 1,
+              "hex": "#485219"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.3686274509803922,
+                0.40784313725490196,
+                0.11372549019607843
+              ],
+              "alpha": 1,
+              "hex": "#5e681d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.47843137254901963,
+                0.5137254901960784,
+                0.12941176470588237
+              ],
+              "alpha": 1,
+              "hex": "#7a8321"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.6352941176470588,
+                0.6509803921568628,
+                0.14901960784313725
+              ],
+              "alpha": 1,
+              "hex": "#a2a626"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.6980392156862745,
+                0.6862745098039216,
+                0.1411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#b2af24"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.796078431372549,
+                0.7529411764705882,
+                0.1450980392156863
+              ],
+              "alpha": 1,
+              "hex": "#cbc025"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.8862745098039215,
+                0.8156862745098039,
+                0.29411764705882354
+              ],
+              "alpha": 1,
+              "hex": "#e2d04b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "lime": {
+          "0": {
+            "$value": {
+              "components": [
+                0.0784313725490196,
+                0.12156862745098039,
+                0.058823529411764705
+              ],
+              "alpha": 1,
+              "hex": "#141f0f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.12156862745098039,
+                0.19215686274509805,
+                0.08627450980392157
+              ],
+              "alpha": 1,
+              "hex": "#1f3116"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.17254901960784313,
+                0.26666666666666666,
+                0.11372549019607843
+              ],
+              "alpha": 1,
+              "hex": "#2c441d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.21568627450980393,
+                0.32941176470588235,
+                0.12941176470588237
+              ],
+              "alpha": 1,
+              "hex": "#375421"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.28627450980392155,
+                0.4235294117647059,
+                0.1568627450980392
+              ],
+              "alpha": 1,
+              "hex": "#496c28"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.37254901960784315,
+                0.5372549019607843,
+                0.1843137254901961
+              ],
+              "alpha": 1,
+              "hex": "#5f892f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.49019607843137253,
+                0.6823529411764706,
+                0.21568627450980393
+              ],
+              "alpha": 1,
+              "hex": "#7dae37"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.5372549019607843,
+                0.7294117647058823,
+                0.21176470588235294
+              ],
+              "alpha": 1,
+              "hex": "#89ba36"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.6235294117647059,
+                0.8,
+                0.24313725490196078
+              ],
+              "alpha": 1,
+              "hex": "#9fcc3e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.7372549019607844,
+                0.8549019607843137,
+                0.403921568627451
+              ],
+              "alpha": 1,
+              "hex": "#bcda67"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "green": {
+          "0": {
+            "$value": {
+              "components": [
+                0.07058823529411765,
+                0.12941176470588237,
+                0.09019607843137255
+              ],
+              "alpha": 1,
+              "hex": "#122117"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.09411764705882353,
+                0.1843137254901961,
+                0.12156862745098039
+              ],
+              "alpha": 1,
+              "hex": "#182f1f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.12941176470588237,
+                0.27058823529411763,
+                0.1607843137254902
+              ],
+              "alpha": 1,
+              "hex": "#214529"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.1568627450980392,
+                0.34509803921568627,
+                0.18823529411764706
+              ],
+              "alpha": 1,
+              "hex": "#285830"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.1843137254901961,
+                0.43529411764705883,
+                0.21568627450980393
+              ],
+              "alpha": 1,
+              "hex": "#2f6f37"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.2196078431372549,
+                0.5607843137254902,
+                0.24705882352941178
+              ],
+              "alpha": 1,
+              "hex": "#388f3f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.2549019607843137,
+                0.7058823529411765,
+                0.27058823529411763
+              ],
+              "alpha": 1,
+              "hex": "#41b445"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.27450980392156865,
+                0.7568627450980392,
+                0.26666666666666666
+              ],
+              "alpha": 1,
+              "hex": "#46c144"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.4588235294117647,
+                0.8274509803921568,
+                0.43529411764705883
+              ],
+              "alpha": 1,
+              "hex": "#75d36f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.6,
+                0.8784313725490196,
+                0.5647058823529412
+              ],
+              "alpha": 1,
+              "hex": "#99e090"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "pine": {
+          "0": {
+            "$value": {
+              "components": [
+                0.03137254901960784,
+                0.12941176470588237,
+                0.09803921568627451
+              ],
+              "alpha": 1,
+              "hex": "#082119"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.043137254901960784,
+                0.19607843137254902,
+                0.1411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#0b3224"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.054901960784313725,
+                0.26666666666666666,
+                0.18823529411764706
+              ],
+              "alpha": 1,
+              "hex": "#0e4430"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.06666666666666667,
+                0.35294117647058826,
+                0.24313725490196078
+              ],
+              "alpha": 1,
+              "hex": "#115a3e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.0784313725490196,
+                0.44313725490196076,
+                0.2980392156862745
+              ],
+              "alpha": 1,
+              "hex": "#14714c"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.09411764705882353,
+                0.5686274509803921,
+                0.3686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#18915e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.10588235294117647,
+                0.7137254901960784,
+                0.45098039215686275
+              ],
+              "alpha": 1,
+              "hex": "#1bb673"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.10196078431372549,
+                0.7568627450980392,
+                0.4627450980392157
+              ],
+              "alpha": 1,
+              "hex": "#1ac176"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.10588235294117647,
+                0.8549019607843137,
+                0.5058823529411764
+              ],
+              "alpha": 1,
+              "hex": "#1bda81"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.24313725490196078,
+                0.9176470588235294,
+                0.592156862745098
+              ],
+              "alpha": 1,
+              "hex": "#3eea97"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "teal": {
+          "0": {
+            "$value": {
+              "components": [
+                0.01568627450980392,
+                0.12156862745098039,
+                0.1450980392156863
+              ],
+              "alpha": 1,
+              "hex": "#041f25"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.027450980392156862,
+                0.18823529411764706,
+                0.21176470588235294
+              ],
+              "alpha": 1,
+              "hex": "#073036"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.0392156862745098,
+                0.27450980392156865,
+                0.30196078431372547
+              ],
+              "alpha": 1,
+              "hex": "#0a464d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.047058823529411764,
+                0.3333333333333333,
+                0.35294117647058826
+              ],
+              "alpha": 1,
+              "hex": "#0c555a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.06274509803921569,
+                0.4235294117647059,
+                0.4392156862745098
+              ],
+              "alpha": 1,
+              "hex": "#106c70"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.08235294117647059,
+                0.5411764705882353,
+                0.5411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#158a8a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.10980392156862745,
+                0.6901960784313725,
+                0.6705882352941176
+              ],
+              "alpha": 1,
+              "hex": "#1cb0ab"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.12156862745098039,
+                0.7411764705882353,
+                0.6980392156862745
+              ],
+              "alpha": 1,
+              "hex": "#1fbdb2"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.1411764705882353,
+                0.8392156862745098,
+                0.7686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#24d6c4"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.37254901960784315,
+                0.8901960784313725,
+                0.8196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#5fe3d1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "cyan": {
+          "0": {
+            "$value": {
+              "components": [
+                0,
+                0.12156862745098039,
+                0.1607843137254902
+              ],
+              "alpha": 1,
+              "hex": "#001f29"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0,
+                0.1803921568627451,
+                0.23921568627450981
+              ],
+              "alpha": 1,
+              "hex": "#002e3d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.00392156862745098,
+                0.2549019607843137,
+                0.33725490196078434
+              ],
+              "alpha": 1,
+              "hex": "#014156"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.00784313725490196,
+                0.3254901960784314,
+                0.43529411764705883
+              ],
+              "alpha": 1,
+              "hex": "#02536f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.011764705882352941,
+                0.41568627450980394,
+                0.5490196078431373
+              ],
+              "alpha": 1,
+              "hex": "#036a8c"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.0196078431372549,
+                0.5294117647058824,
+                0.7019607843137254
+              ],
+              "alpha": 1,
+              "hex": "#0587b3"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.027450980392156862,
+                0.6745098039215687,
+                0.8941176470588236
+              ],
+              "alpha": 1,
+              "hex": "#07ace4"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.03529411764705882,
+                0.7176470588235294,
+                0.9450980392156862
+              ],
+              "alpha": 1,
+              "hex": "#09b7f1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.27058823529411763,
+                0.796078431372549,
+                0.9686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#45cbf7"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.5019607843137255,
+                0.8588235294117647,
+                0.9764705882352941
+              ],
+              "alpha": 1,
+              "hex": "#80dbf9"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "blue": {
+          "0": {
+            "$value": {
+              "components": [
+                0,
+                0.10196078431372549,
+                0.2784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#001a47"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0,
+                0.15294117647058825,
+                0.4
+              ],
+              "alpha": 1,
+              "hex": "#002766"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0,
+                0.21568627450980393,
+                0.5411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#00378a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0,
+                0.27450980392156865,
+                0.6588235294117647
+              ],
+              "alpha": 1,
+              "hex": "#0046a8"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0,
+                0.3568627450980392,
+                0.8196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#005bd1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.0196078431372549,
+                0.4627450980392157,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#0576ff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.30196078431372547,
+                0.6274509803921569,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#4da0ff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.3803921568627451,
+                0.6784313725490196,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#61adff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.5215686274509804,
+                0.7607843137254902,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#85c2ff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.6392156862745098,
+                0.8274509803921568,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#a3d3ff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "indigo": {
+          "0": {
+            "$value": {
+              "components": [
+                0.10588235294117647,
+                0.09411764705882353,
+                0.24705882352941178
+              ],
+              "alpha": 1,
+              "hex": "#1b183f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.1450980392156863,
+                0.12941176470588237,
+                0.37254901960784315
+              ],
+              "alpha": 1,
+              "hex": "#25215f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.19215686274509805,
+                0.17254901960784313,
+                0.5647058823529412
+              ],
+              "alpha": 1,
+              "hex": "#312c90"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.2235294117647059,
+                0.20784313725490197,
+                0.7529411764705882
+              ],
+              "alpha": 1,
+              "hex": "#3935c0"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.3176470588235294,
+                0.3058823529411765,
+                0.8313725490196079
+              ],
+              "alpha": 1,
+              "hex": "#514ed4"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.4392156862745098,
+                0.4392156862745098,
+                0.8823529411764706
+              ],
+              "alpha": 1,
+              "hex": "#7070e1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.596078431372549,
+                0.6,
+                0.9254901960784314
+              ],
+              "alpha": 1,
+              "hex": "#9899ec"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.6352941176470588,
+                0.6470588235294118,
+                0.9450980392156862
+              ],
+              "alpha": 1,
+              "hex": "#a2a5f1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.7176470588235294,
+                0.7294117647058823,
+                0.9647058823529412
+              ],
+              "alpha": 1,
+              "hex": "#b7baf6"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.7843137254901961,
+                0.796078431372549,
+                0.9764705882352941
+              ],
+              "alpha": 1,
+              "hex": "#c8cbf9"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "purple": {
+          "0": {
+            "$value": {
+              "components": [
+                0.12941176470588237,
+                0.06274509803921569,
+                0.2784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#211047"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.19215686274509805,
+                0.0784313725490196,
+                0.4196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#31146b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.2823529411764706,
+                0.10196078431372549,
+                0.6196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#481a9e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.3568627450980392,
+                0.10980392156862745,
+                0.792156862745098
+              ],
+              "alpha": 1,
+              "hex": "#5b1cca"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.4666666666666667,
+                0.18823529411764706,
+                0.9098039215686274
+              ],
+              "alpha": 1,
+              "hex": "#7730e8"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.592156862745098,
+                0.3568627450980392,
+                0.9450980392156862
+              ],
+              "alpha": 1,
+              "hex": "#975bf1"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.7137254901960784,
+                0.5294117647058824,
+                0.9686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#b687f7"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.7647058823529411,
+                0.596078431372549,
+                0.984313725490196
+              ],
+              "alpha": 1,
+              "hex": "#c398fb"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.8235294117647058,
+                0.6862745098039216,
+                0.9921568627450981
+              ],
+              "alpha": 1,
+              "hex": "#d2affd"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.8823529411764706,
+                0.7803921568627451,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#e1c7ff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "plum": {
+          "0": {
+            "$value": {
+              "components": [
+                0.16470588235294117,
+                0.054901960784313725,
+                0.24705882352941178
+              ],
+              "alpha": 1,
+              "hex": "#2a0e3f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.25098039215686274,
+                0.07058823529411765,
+                0.3686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#40125e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.3607843137254902,
+                0.08627450980392157,
+                0.5333333333333333
+              ],
+              "alpha": 1,
+              "hex": "#5c1688"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.4588235294117647,
+                0.09019607843137255,
+                0.6705882352941176
+              ],
+              "alpha": 1,
+              "hex": "#7517ab"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.5843137254901961,
+                0.09411764705882353,
+                0.8470588235294118
+              ],
+              "alpha": 1,
+              "hex": "#9518d8"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.7137254901960784,
+                0.2627450980392157,
+                0.9372549019607843
+              ],
+              "alpha": 1,
+              "hex": "#b643ef"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.8156862745098039,
+                0.49411764705882355,
+                0.9686274509803922
+              ],
+              "alpha": 1,
+              "hex": "#d07ef7"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.8470588235294118,
+                0.5372549019607843,
+                0.9803921568627451
+              ],
+              "alpha": 1,
+              "hex": "#d889fa"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.8941176470588236,
+                0.6470588235294118,
+                0.9921568627450981
+              ],
+              "alpha": 1,
+              "hex": "#e4a5fd"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.9294117647058824,
+                0.7411764705882353,
+                1
+              ],
+              "alpha": 1,
+              "hex": "#edbdff"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "pink": {
+          "0": {
+            "$value": {
+              "components": [
+                0.17647058823529413,
+                0.08235294117647059,
+                0.1411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#2d1524"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.27058823529411763,
+                0.10980392156862745,
+                0.20784313725490197
+              ],
+              "alpha": 1,
+              "hex": "#451c35"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.396078431372549,
+                0.1411764705882353,
+                0.2901960784313726
+              ],
+              "alpha": 1,
+              "hex": "#65244a"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.5176470588235295,
+                0.16470588235294117,
+                0.36470588235294116
+              ],
+              "alpha": 1,
+              "hex": "#842a5d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.6745098039215687,
+                0.1843137254901961,
+                0.4549019607843137
+              ],
+              "alpha": 1,
+              "hex": "#ac2f74"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.8274509803921568,
+                0.27058823529411763,
+                0.5686274509803921
+              ],
+              "alpha": 1,
+              "hex": "#d34591"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.8980392156862745,
+                0.4823529411764706,
+                0.6980392156862745
+              ],
+              "alpha": 1,
+              "hex": "#e57bb2"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.9254901960784314,
+                0.5529411764705883,
+                0.7411764705882353
+              ],
+              "alpha": 1,
+              "hex": "#ec8dbd"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.9568627450980393,
+                0.6627450980392157,
+                0.803921568627451
+              ],
+              "alpha": 1,
+              "hex": "#f4a9cd"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.9764705882352941,
+                0.7450980392156863,
+                0.8509803921568627
+              ],
+              "alpha": 1,
+              "hex": "#f9bed9"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "auburn": {
+          "0": {
+            "$value": {
+              "components": [
+                0.15294117647058825,
+                0.09411764705882353,
+                0.09019607843137255
+              ],
+              "alpha": 1,
+              "hex": "#271817"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.22745098039215686,
+                0.1411764705882353,
+                0.13333333333333333
+              ],
+              "alpha": 1,
+              "hex": "#3a2422"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.32941176470588235,
+                0.2,
+                0.19215686274509805
+              ],
+              "alpha": 1,
+              "hex": "#543331"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.42745098039215684,
+                0.2627450980392157,
+                0.25098039215686274
+              ],
+              "alpha": 1,
+              "hex": "#6d4340"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.5294117647058824,
+                0.3254901960784314,
+                0.30980392156862746
+              ],
+              "alpha": 1,
+              "hex": "#87534f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.6588235294117647,
+                0.43529411764705883,
+                0.4196078431372549
+              ],
+              "alpha": 1,
+              "hex": "#a86f6b"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.7490196078431373,
+                0.5843137254901961,
+                0.5725490196078431
+              ],
+              "alpha": 1,
+              "hex": "#bf9592"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.7764705882352941,
+                0.6313725490196078,
+                0.6235294117647059
+              ],
+              "alpha": 1,
+              "hex": "#c6a19f"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.8313725490196079,
+                0.7176470588235294,
+                0.7098039215686275
+              ],
+              "alpha": 1,
+              "hex": "#d4b7b5"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.8745098039215686,
+                0.792156862745098,
+                0.7843137254901961
+              ],
+              "alpha": 1,
+              "hex": "#dfcac8"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "brown": {
+          "0": {
+            "$value": {
+              "components": [
+                0.1411764705882353,
+                0.10980392156862745,
+                0.0784313725490196
+              ],
+              "alpha": 1,
+              "hex": "#241c14"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "1": {
+            "$value": {
+              "components": [
+                0.20392156862745098,
+                0.16470588235294117,
+                0.11372549019607843
+              ],
+              "alpha": 1,
+              "hex": "#342a1d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "2": {
+            "$value": {
+              "components": [
+                0.2823529411764706,
+                0.22745098039215686,
+                0.1568627450980392
+              ],
+              "alpha": 1,
+              "hex": "#483a28"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "3": {
+            "$value": {
+              "components": [
+                0.36470588235294116,
+                0.2901960784313726,
+                0.19607843137254902
+              ],
+              "alpha": 1,
+              "hex": "#5d4a32"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "4": {
+            "$value": {
+              "components": [
+                0.4588235294117647,
+                0.3686274509803922,
+                0.24313725490196078
+              ],
+              "alpha": 1,
+              "hex": "#755e3e"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "5": {
+            "$value": {
+              "components": [
+                0.5803921568627451,
+                0.4666666666666667,
+                0.2980392156862745
+              ],
+              "alpha": 1,
+              "hex": "#94774c"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "6": {
+            "$value": {
+              "components": [
+                0.7137254901960784,
+                0.6039215686274509,
+                0.42745098039215684
+              ],
+              "alpha": 1,
+              "hex": "#b69a6d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "7": {
+            "$value": {
+              "components": [
+                0.7490196078431373,
+                0.6549019607843137,
+                0.49019607843137253
+              ],
+              "alpha": 1,
+              "hex": "#bfa77d"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "8": {
+            "$value": {
+              "components": [
+                0.803921568627451,
+                0.7333333333333333,
+                0.596078431372549
+              ],
+              "alpha": 1,
+              "hex": "#cdbb98"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          },
+          "9": {
+            "$value": {
+              "components": [
+                0.8588235294117647,
+                0.807843137254902,
+                0.7019607843137254
+              ],
+              "alpha": 1,
+              "hex": "#dbceb3"
+            },
+            "$type": "color",
+            "$extensions": {
+              "org.primer.figma": {
+                "collection": "base/color/dark"
+              }
+            }
+          }
+        },
+        "black": {
+          "$value": {
+            "components": [
+              0.050980392156862744,
+              0.06666666666666667,
+              0.09019607843137255
+            ],
+            "alpha": 1,
+            "hex": "#0d1117"
+          },
+          "$type": "color",
+          "$extensions": {
+            "org.primer.figma": {
+              "collection": "base/color/dark"
+            }
+          }
+        },
+        "white": {
+          "$value": {
+            "components": [
+              1,
+              1,
+              1
+            ],
+            "alpha": 1,
+            "hex": "#ffffff"
+          },
+          "$type": "color",
+          "$extensions": {
+            "org.primer.figma": {
+              "collection": "base/color/dark"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "base": {
+    "size": {
+      "2": {
+        "$value": "2px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "4": {
+        "$value": "4px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "6": {
+        "$value": "6px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "8": {
+        "$value": "8px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "12": {
+        "$value": "12px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "16": {
+        "$value": "16px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "20": {
+        "$value": "20px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "24": {
+        "$value": "24px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "28": {
+        "$value": "28px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "32": {
+        "$value": "32px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "36": {
+        "$value": "36px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "40": {
+        "$value": "40px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "44": {
+        "$value": "44px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "48": {
+        "$value": "48px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "64": {
+        "$value": "64px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "80": {
+        "$value": "80px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "96": {
+        "$value": "96px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "112": {
+        "$value": "112px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      },
+      "128": {
+        "$value": "128px",
+        "$type": "dimension",
+        "$extensions": {
+          "org.primer.figma": {
+            "collection": "base/size",
+            "scopes": ["size", "gap"]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,527 @@
+{
+  fontStack: {
+    system: {
+      $value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'",
+      $type: 'fontFamily',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'typography',
+          scopes: ['fontFamily'],
+        },
+      },
+    },
+    sansSerif: {
+      $value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'",
+      $type: 'fontFamily',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'typography',
+          scopes: ['fontFamily'],
+        },
+      },
+    },
+    sansSerifDisplay: {
+      $value: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'",
+      $type: 'fontFamily',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'typography',
+          scopes: ['fontFamily'],
+        },
+      },
+    },
+    monospace: {
+      $value: 'ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace',
+      $type: 'fontFamily',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'typography',
+          scopes: ['fontFamily'],
+        },
+      },
+    },
+  },
+  text: {
+    display: {
+      lineBoxHeight: {
+        $value: 1.4,
+        $type: 'number',
+        $extensions: {
+          'org.primer.data': {
+            fontSize: 40,
+          },
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['lineHeight'],
+            fontSizeInPx: 40,
+          },
+        },
+      },
+      size: {
+        $value: '40px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontSize'],
+          },
+        },
+      },
+      lineHeight: {
+        $value: 1.4,
+        $type: 'number',
+        $extensions: {
+          'org.primer.data': {
+            fontSize: 40,
+          },
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['lineHeight'],
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.medium}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        $value: {
+          fontWeight: '{text.display.weight}',
+          fontSize: '{text.display.size}',
+          lineHeight: '{text.display.lineHeight}',
+          fontFamily: '{fontStack.sansSerifDisplay}',
+        },
+        $type: 'typography',
+        $description: 'Hero-style text for brand to product transition pages. Utilize Title (large) styles on narrow viewports.',
+      },
+    },
+    title: {
+      size: {
+        large: {
+          $value: '32px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+        medium: {
+          $value: '20px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+        small: {
+          $value: '16px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+      },
+      lineHeight: {
+        large: {
+          $value: 1.5,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 32,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+        medium: {
+          $value: 1.6,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 20,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+        small: {
+          $value: 1.5,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 16,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+      },
+      weight: {
+        large: {
+          $value: '{base.text.weight.semibold}',
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+        medium: {
+          $value: '{base.text.weight.semibold}',
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+        small: {
+          $value: '{base.text.weight.semibold}',
+          $type: 'fontWeight',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontWeight'],
+            },
+          },
+        },
+      },
+      shorthand: {
+        large: {
+          $value: {
+            fontWeight: '{text.title.weight.large}',
+            fontSize: '{text.title.size.large}',
+            lineHeight: '{text.title.lineHeight.large}',
+            fontFamily: '{fontStack.sansSerifDisplay}',
+          },
+          $type: 'typography',
+          $description: 'Page headings for user-created objects, such as issues or pull requests. Utilize title (medium) styles on narrow viewports.',
+        },
+        medium: {
+          $value: {
+            fontWeight: '{text.title.weight.medium}',
+            fontSize: '{text.title.size.medium}',
+            lineHeight: '{text.title.lineHeight.medium}',
+            fontFamily: '{fontStack.sansSerifDisplay}',
+          },
+          $type: 'typography',
+          $description: 'Default page title. The 32px-equivalent line-height matches with button and other medium control heights. Great for page header composition.',
+        },
+        small: {
+          $value: {
+            fontWeight: '{text.title.weight.small}',
+            fontSize: '{text.title.size.small}',
+            lineHeight: '{text.title.lineHeight.small}',
+            fontFamily: '{fontStack.sansSerif}',
+          },
+          $type: 'typography',
+          $description: 'Uses the same size as body (large) with a heavier weight of semibold (600).',
+        },
+      },
+    },
+    subtitle: {
+      size: {
+        $value: '20px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontSize'],
+          },
+        },
+      },
+      lineHeight: {
+        $value: 1.6,
+        $type: 'number',
+        $extensions: {
+          'org.primer.data': {
+            fontSize: 20,
+          },
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['lineHeight'],
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.normal}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        $value: {
+          fontWeight: '{text.subtitle.weight}',
+          fontSize: '{text.subtitle.size}',
+          lineHeight: '{text.subtitle.lineHeight}',
+          fontFamily: '{fontStack.sansSerifDisplay}',
+        },
+        $type: 'typography',
+        $description: 'Page sections/sub headings, or less important object names in page titles (automated action titles, for example). Same line-height as title (medium).',
+      },
+    },
+    body: {
+      size: {
+        large: {
+          $value: '16px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+        medium: {
+          $value: '14px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+        small: {
+          $value: '12px',
+          $type: 'dimension',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['fontSize'],
+            },
+          },
+        },
+      },
+      lineHeight: {
+        large: {
+          $value: 1.5,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 16,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+        medium: {
+          $value: 1.4285,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 14,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+        small: {
+          $value: 1.6666,
+          $type: 'number',
+          $extensions: {
+            'org.primer.data': {
+              fontSize: 12,
+            },
+            'org.primer.figma': {
+              collection: 'typography',
+              scopes: ['lineHeight'],
+            },
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.normal}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        large: {
+          $value: {
+            fontWeight: '{text.body.weight}',
+            fontSize: '{text.body.size.large}',
+            lineHeight: '{text.body.lineHeight.large}',
+            fontFamily: '{fontStack.sansSerif}',
+          },
+          $type: 'typography',
+          $description: 'User-generated content, markdown rendering.',
+        },
+        medium: {
+          $value: {
+            fontWeight: '{text.body.weight}',
+            fontSize: '{text.body.size.medium}',
+            lineHeight: '{text.body.lineHeight.medium}',
+            fontFamily: '{fontStack.sansSerif}',
+          },
+          $type: 'typography',
+          $description: 'Default UI font. Most commonly used for body text.',
+        },
+        small: {
+          $value: {
+            fontWeight: '{text.body.weight}',
+            fontSize: '{text.body.size.small}',
+            lineHeight: '{text.body.lineHeight.small}',
+            fontFamily: '{fontStack.sansSerif}',
+          },
+          $type: 'typography',
+          $description: 'Small body text for discrete UI applications, such as helper, footnote text. Should be used sparingly across pages. Line-height matches Body (medium) at 20px.',
+        },
+      },
+    },
+    caption: {
+      size: {
+        $value: '12px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontSize'],
+          },
+        },
+      },
+      lineHeight: {
+        $value: 1.3333,
+        $type: 'number',
+        $extensions: {
+          'org.primer.data': {
+            fontSize: 12,
+          },
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['lineHeight'],
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.normal}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        $value: {
+          fontWeight: '{text.caption.weight}',
+          fontSize: '{text.caption.size}',
+          lineHeight: '{text.caption.lineHeight}',
+          fontFamily: '{fontStack.sansSerif}',
+        },
+        $type: 'typography',
+        $description: 'Compact small font with a smaller line height of 16px. Use it for single-line scenarios, as the small sizing doesn’t pass accessibility requirements.',
+      },
+    },
+    codeBlock: {
+      size: {
+        $value: '13px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontSize'],
+          },
+        },
+      },
+      lineHeight: {
+        $value: 1.5385,
+        $type: 'number',
+        $extensions: {
+          'org.primer.data': {
+            fontSize: 13,
+          },
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['lineHeight'],
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.normal}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        $value: {
+          fontWeight: '{text.codeBlock.weight}',
+          fontSize: '{text.codeBlock.size}',
+          lineHeight: '{text.codeBlock.lineHeight}',
+          fontFamily: '{fontStack.monospace}',
+        },
+        $type: 'typography',
+        $description: 'Default style for rendering code blocks.',
+      },
+    },
+    codeInline: {
+      size: {
+        $value: '0.9285em',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontSize'],
+          },
+        },
+      },
+      weight: {
+        $value: '{base.text.weight.normal}',
+        $type: 'fontWeight',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'typography',
+            scopes: ['fontWeight'],
+          },
+        },
+      },
+      shorthand: {
+        $value: {
+          fontWeight: '{text.codeInline.weight}',
+          fontSize: '{text.codeInline.size}',
+          fontFamily: '{fontStack.monospace}',
+        },
+        $type: 'typography',
+        $description: 'Inline code blocks using em units to inherit size from its parent.',
+      },
+    },
+  },
+}

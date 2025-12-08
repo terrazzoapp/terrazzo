@@ -73,6 +73,15 @@ export default async function parse(
     });
   }
 
+  const resolverTiming = performance.now();
+  const finalResolver = resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources }));
+  logger.debug({
+    message: 'Resolver finalized',
+    group: 'parser',
+    label: 'core',
+    timing: performance.now() - resolverTiming,
+  });
+
   logger.debug({
     message: 'Finish all parser tasks',
     group: 'parser',
@@ -93,7 +102,7 @@ export default async function parse(
   return {
     tokens,
     sources,
-    resolver: resolver || (await createSyntheticResolver(tokens, { config, logger, req, sources })),
+    resolver: finalResolver,
   };
 }
 

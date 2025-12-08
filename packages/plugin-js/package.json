@@ -1,7 +1,7 @@
 {
   "name": "@terrazzo/plugin-js",
   "version": "2.0.0-alpha.3",
-  "description": "Generate JS, TS, and JSON from your DTCG design tokens JSON.",
+  "description": "Use DTCG tokens in Node.js for server-rendered applications.",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -40,11 +40,10 @@
     "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
-    "@terrazzo/token-tools": "workspace:^"
+    "@terrazzo/parser": "workspace:^",
+    "scule": "^1.3.0"
   },
   "devDependencies": {
-    "@terrazzo/cli": "workspace:^",
-    "@terrazzo/parser": "workspace:^",
-    "dtcg-examples": "catalog:"
+    "@terrazzo/cli": "workspace:^"
   }
 }

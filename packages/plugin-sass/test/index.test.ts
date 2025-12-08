@@ -26,10 +26,13 @@ describe('@terrazzo/plugin-scss', () => {
       { cwd },
     );
     const tokensJSON = new URL('./tokens.json', cwd);
-    const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-      config,
-    });
-    const result = await build(tokens, { sources, config });
+    const { tokens, resolver, sources } = await parse(
+      [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+      {
+        config,
+      },
+    );
+    const result = await build(tokens, { sources, resolver, config });
     await expect(result.outputFiles.find((f) => f.filename === filename)?.contents).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.scss', cwd)),
     );

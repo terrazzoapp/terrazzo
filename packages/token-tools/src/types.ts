@@ -318,6 +318,7 @@ export interface TokenNormalizedCore<$type extends Token['$type']> {
   $type: $type;
   $description: string | undefined;
   $extensions: Record<string, unknown> | undefined;
+  $extends: string | undefined;
   $deprecated: string | boolean | undefined;
   id: string;
   /** Originating token location */

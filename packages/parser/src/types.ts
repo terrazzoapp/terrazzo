@@ -32,6 +32,8 @@ export interface BuildHookOptions {
   getTransforms(params: TransformParams): TokenTransformed[];
   /** Momoa documents */
   sources: InputSourceWithDocument[];
+  /** Resolver */
+  resolver: Resolver;
   outputFile: (
     /** Filename to output (relative to outDir) */
     filename: string,
@@ -311,7 +313,7 @@ export interface Plugin {
   name: string;
   /** Read config, and optionally modify */
   // biome-ignore lint/suspicious/noConfusingVoidType format: this helps plugins be a little looser on their typing
-  config?(config: ConfigInit): void | ConfigInit | undefined;
+  config?(config: ConfigInit, context: PluginHookContext): void | ConfigInit | undefined;
   /**
    * Declare:
    * - `"pre"`: run this plugin BEFORE all others
@@ -452,6 +454,8 @@ export interface TransformHookOptions {
       meta?: TokenTransformedBase['meta'];
     },
   ): void;
+  /** Resolver */
+  resolver: Resolver;
   /** Momoa documents */
   sources: InputSourceWithDocument[];
 }

@@ -1,0 +1,151 @@
+{
+  boxShadow: {
+    thin: {
+      $value: 'inset 0 0 0 {borderWidth.thin}',
+      $description: 'Thin shadow for borders',
+      $type: 'string',
+    },
+    thick: {
+      $value: 'inset 0 0 0 {borderWidth.thick}',
+      $type: 'string',
+    },
+    thicker: {
+      $value: 'inset 0 0 0 {borderWidth.thicker}',
+      $type: 'string',
+    },
+  },
+  borderWidth: {
+    default: {
+      $value: '{borderWidth.thin}',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['borderWidth', 'effectFloat'],
+        },
+      },
+    },
+    thin: {
+      $value: '1px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['borderWidth', 'effectFloat'],
+        },
+      },
+    },
+    thick: {
+      $value: '2px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['borderWidth', 'effectFloat'],
+        },
+      },
+    },
+    thicker: {
+      $value: '4px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['borderWidth', 'effectFloat'],
+        },
+      },
+    },
+  },
+  borderRadius: {
+    small: {
+      $value: '3px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['radius'],
+          codeSyntax: {
+            web: 'var(--borderRadius-small) /* utility class: .rounded-1 */',
+          },
+        },
+      },
+    },
+    medium: {
+      $value: '6px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['radius'],
+          codeSyntax: {
+            web: 'var(--borderRadius-medium) /* utility class: .rounded-2 */',
+          },
+        },
+      },
+    },
+    large: {
+      $value: '12px',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['radius'],
+          codeSyntax: {
+            web: 'var(--borderRadius-large) /* utility class: .rounded-3 */',
+          },
+        },
+      },
+    },
+    full: {
+      $value: '9999px',
+      $type: 'dimension',
+      $description: 'Use this border radius for pill shaped elements',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['radius'],
+          codeSyntax: {
+            web: 'var(--borderRadius-full) /* utility class: .circle */',
+          },
+        },
+      },
+    },
+    default: {
+      $value: '{borderRadius.medium}',
+      $type: 'dimension',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'functional/size',
+          scopes: ['radius'],
+          codeSyntax: {
+            web: 'var(--borderRadius-default) /* utility class: .rounded-2 */',
+          },
+        },
+      },
+    },
+  },
+  outline: {
+    focus: {
+      offset: {
+        $value: '-2px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'functional/size',
+            scopes: ['borderWidth', 'effectFloat'],
+          },
+        },
+      },
+      width: {
+        $value: '2px',
+        $type: 'dimension',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'functional/size',
+            scopes: ['borderWidth', 'effectFloat'],
+          },
+        },
+      },
+    },
+  },
+}

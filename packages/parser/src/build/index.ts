@@ -2,11 +2,12 @@ import type { InputSourceWithDocument } from '@terrazzo/json-schema-tools';
 import type { TokenNormalized } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import Logger, { type LogEntry } from '../logger.js';
-import type { BuildRunnerResult, ConfigInit, TokenTransformed, TransformParams } from '../types.js';
+import type { BuildRunnerResult, ConfigInit, Resolver, TokenTransformed, TransformParams } from '../types.js';
 
 export interface BuildRunnerOptions {
   sources: InputSourceWithDocument[];
   config: ConfigInit;
+  resolver: Resolver;
   logger?: Logger;
 }
 export const SINGLE_VALUE = 'SINGLE_VALUE';
@@ -48,7 +49,7 @@ function validateTransformParams({
 /** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
-  { sources, logger = new Logger(), config }: BuildRunnerOptions,
+  { resolver, sources, logger = new Logger(), config }: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
   const formats: Record<string, TokenTransformed[]> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
@@ -133,6 +134,7 @@ export default async function build(
             formats[params.format]![foundTokenI]!.type = typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
           }
         },
+        resolver,
       });
     }
   }
@@ -155,6 +157,7 @@ export default async function build(
           tokens,
           sources,
           getTransforms,
+          resolver,
           outputFile(filename, contents) {
             const resolved = new URL(filename, config.outDir);
             if (result.outputFiles.some((f) => new URL(f.filename, config.outDir).href === resolved.href)) {

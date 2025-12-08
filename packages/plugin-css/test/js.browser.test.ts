@@ -34,8 +34,8 @@ describe('Browser', () => {
       },
       { cwd },
     );
-    const { tokens, sources } = await parse({ filename: tokensJSON, src: DS['github-primer'] }, { config });
-    const result = await build(tokens, { sources, config });
+    const { tokens, resolver, sources } = await parse({ filename: tokensJSON, src: DS['github-primer'] }, { config });
+    const result = await build(tokens, { resolver, sources, config });
     await expect(result.outputFiles.find((f) => f.filename === 'index.css')?.contents).toMatchSnapshot();
   });
 });

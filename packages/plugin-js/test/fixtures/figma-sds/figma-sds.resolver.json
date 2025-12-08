@@ -1,0 +1,26 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "Figma Simple Design System",
+  "version": "2025.10",
+  "sets": {
+    "color": {
+      "sources": [{ "$ref": "./color.tokens.json" }]
+    },
+    "size": {
+      "sources": [{ "$ref": "./size.tokens.json" }]
+    },
+    "typography": {
+      "sources": [{ "$ref": "./typography.tokens.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [{ "$ref": "./theme-light.tokens.json" }],
+        "dark": [{ "$ref": "./theme-dark.tokens.json" }]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [{ "$ref": "#/sets/color" }, { "$ref": "#/modifiers/theme" }, { "$ref": "#/sets/size" }, { "$ref": "#/sets/typography" }]
+}

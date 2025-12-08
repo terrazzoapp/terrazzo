@@ -1,0 +1,755 @@
+/**
+ * Light high contrast
+ * @extends ./light.json
+ */
+{
+  base: {
+    color: {
+      black: {
+        $value: '#010409',
+        $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+      },
+      blue: {
+        '0': {
+          $value: '#dff7ff',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#9cd7ff',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#67b3fd',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#368cf9',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#1168e3',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#0349b4',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#023b95',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#022f7a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#032563',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#021a4a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      green: {
+        '0': {
+          $value: '#d2fedb',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#82e596',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#43c663',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#26a148',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#117f32',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#055d20',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#024c1a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#013d14',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#003110',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#00230b',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      yellow: {
+        '0': {
+          $value: '#fcf7be',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#f0ce53',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#d5a824',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#b58407',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#956400',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#744500',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#603700',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#4e2c00',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#3f2200',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#2e1800',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      orange: {
+        '0': {
+          $value: '#fff2d5',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#ffc67b',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#f99636',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#dc6d1a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#b45105',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#873800',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#702c00',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#5b2300',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#491b00',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#361200',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      red: {
+        '0': {
+          $value: '#fff0ee',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#ffc1bc',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#ff8e8a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#ee5a5d',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#d5232c',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#a0111f',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#86061d',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#6e011a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#5a0016',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#430011',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      purple: {
+        '0': {
+          $value: '#faf0fe',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#e0c5ff',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#c49bff',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#a371f7',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#844ae7',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#622cbc',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#512598',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#411d7b',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#341763',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#260f49',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      pink: {
+        '0': {
+          $value: '#feeff7',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#ffbde0',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#fc87ca',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#ed4baf',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#c9248e',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#971368',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#7d0c57',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#660847',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#53043a',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#3e022b',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+      coral: {
+        '0': {
+          $value: '#fff0ed',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '1': {
+          $value: '#ffc2b6',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '2': {
+          $value: '#ff8f7e',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '4': {
+          $value: '#ef5b48',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '3': {
+          $value: '#cd3425',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '5': {
+          $value: '#9f1710',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '6': {
+          $value: '#870706',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '7': {
+          $value: '#6f0107',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '8': {
+          $value: '#5b0002',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+        '9': {
+          $value: '#430200',
+          $type: 'color',
+        $extensions: {
+          'org.primer.figma': {
+            "collection": "base/color/light-high-contrast",
+          },
+        },
+        },
+      },
+    },
+  },
+}

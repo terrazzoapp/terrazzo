@@ -1,0 +1,285 @@
+{
+  contribution: {
+    default: {
+      bgColor: {
+        '0': {
+          $value: '{base.color.neutral.2}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              'dark-high-contrast': '{base.color.neutral.0}',
+              'dark-tritanopia-high-contrast': '{base.color.neutral.0}',
+              'dark-protanopia-deuteranopia-high-contrast': '{base.color.neutral.0}',
+              'light-high-contrast': '{base.color.neutral.0}',
+              'light-tritanopia-high-contrast': '{base.color.neutral.0}',
+              'light-protanopia-deuteranopia-high-contrast': '{base.color.neutral.0}',
+              'dark-dimmed': '{base.color.neutral.5}',
+            },
+          },
+        },
+        '1': {
+          $value: '{base.color.green.1}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.green.8}',
+            },
+          },
+        },
+        '2': {
+          $value: '{base.color.green.3}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.green.6}',
+            },
+          },
+        },
+        '3': {
+          $value: '{base.color.green.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+          },
+        },
+        '4': {
+          $value: '{base.color.green.6}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.green.2}',
+            },
+          },
+        },
+      },
+      borderColor: {
+        '0': {
+          $value: '{base.color.black}',
+          alpha: 0.05,
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+            'org.primer.overrides': {
+              'dark-high-contrast': {
+                $value: '{base.color.white}',
+                alpha: 1,
+              },
+              'light-high-contrast': {
+                $value: '{base.color.black}',
+                alpha: 1,
+              },
+              'dark-tritanopia-high-contrast': {
+                $value: '{base.color.white}',
+                alpha: 1,
+              },
+              'light-tritanopia-high-contrast': {
+                $value: '{base.color.black}',
+                alpha: 1,
+              },
+              'dark-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.white}',
+                alpha: 1,
+              },
+              'light-protanopia-deuteranopia-high-contrast': {
+                $value: '{base.color.black}',
+                alpha: 1,
+              },
+            },
+          },
+        },
+        '1': {
+          $value: '{contribution.default.borderColor.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        '2': {
+          $value: '{contribution.default.borderColor.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        '3': {
+          $value: '{contribution.default.borderColor.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+        '4': {
+          $value: '{contribution.default.borderColor.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['borderColor'],
+            },
+          },
+        },
+      },
+    },
+    winter: {
+      bgColor: {
+        '1': {
+          $value: '{base.color.blue.1}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.blue.8}',
+            },
+          },
+        },
+        '2': {
+          $value: '{base.color.blue.3}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.blue.6}',
+            },
+          },
+        },
+        '3': {
+          $value: '{base.color.blue.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.blue.3}',
+            },
+          },
+        },
+        '4': {
+          $value: '{base.color.blue.8}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.color.blue.0}',
+            },
+          },
+        },
+      },
+    },
+    halloween: {
+      bgColor: {
+        '1': {
+          $value: '{base.display.color.lemon.1}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.orange.9}',
+            },
+          },
+        },
+        '2': {
+          $value: '{base.display.color.yellow.1}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.orange.5}',
+            },
+          },
+        },
+        '3': {
+          $value: '{base.display.color.orange.3}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.orange.4}',
+            },
+          },
+        },
+        '4': {
+          $value: '{base.color.black}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component (internal)',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.lemon.9}',
+            },
+          },
+        },
+      },
+    },
+  },
+}

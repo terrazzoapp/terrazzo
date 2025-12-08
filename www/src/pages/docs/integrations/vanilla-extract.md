@@ -9,7 +9,7 @@ Generate [Vanilla Extract](https://vanilla-extract.style) themes from DTCG token
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js](https://nodejs.org). With that installed, run:
 
 :::npm
 

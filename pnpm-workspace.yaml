@@ -28,7 +28,7 @@ catalog:
   playwright: ^1.57.0
   react: ^19.2.1
   react-dom: ^19.2.1
-  vite: ^7.2.6
+  vite: ^7.2.7
   vitest: ^4.0.15
   yaml-to-momoa: 0.0.8
 

@@ -1,0 +1,18 @@
+{
+  card: {
+    bgColor: {
+      $value: '{bgColor.default}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          dark: '{bgColor.muted}',
+        },
+      },
+    },
+  },
+}

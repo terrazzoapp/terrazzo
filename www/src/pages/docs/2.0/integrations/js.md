@@ -1,11 +1,11 @@
 ---
-title: JS (and TS)
+title: JS
 layout: ../../../../layouts/docs.astro
 ---
 
-# JavaScript / TypeScript
+# JavaScript
 
-Terrazzo’s JS plugin generates TypeScript-compatible JS for your tokens. This plugin generates **fast** code but it’s not necessarily lightweight, and for that usage is probably better-used in a Node.js context rather than the client (for client applications, the [css-in-js plugin](./css-in-js/) is preferred).
+Terrazzo’s JS plugin generates a resolver API for Node.js clients from your token system. It produces code that is **fast but heavy**, so it is better-suited for server-side rendering. For client applications, prefer the [css-in-js plugin](./css-in-js/) instead.
 
 :::note
 
@@ -32,7 +32,12 @@ import js from "@terrazzo/plugin-js";
 export default defineConfig({
   plugins: [
     js({
-      filename: "tokens.js",
+      filename: "my-ds.js",
+      // optional: only generate outputs for the following modifier contexts
+      contexts: {
+        theme: ["light", "dark"],
+        size: ["sm", "md", "lg"],
+      },
     }),
   ],
 });
@@ -42,13 +47,14 @@ export default defineConfig({
 
 ## Usage
 
-### Single-mode (no resolver)
-
 ```ts
-import tokens from "./tokens/tokens.js";
+import { resolver } from "./tokens/my-ds.js";
 
-tokens.get("color.blue.200"); // { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0, 0.23, 0.853] } }
-tokens.listAll() // [{ id: "color.blue.100", $type: "color", … }, …]
+const lightMd = resolver.apply({ theme: "light", size: "sm" });
+lightMd["color.bg"].$type; // "color"
+lightMd["color.bg"].$value; // { "colorSpace": "srgb", "components": [1, 1, 1] }
+
+resolver.apply({ foo: "bar" }); // ❌ Invalid input { "foo": "bar" }
 ```
 
 :::tip
@@ -56,48 +62,6 @@ tokens.listAll() // [{ id: "color.blue.100", $type: "color", … }, …]
 Need to work with color? Use [color.js’ procedural API](https://colorjs.io/docs/procedural) for modern, efficient color tools.
 
 :::
-
-### Multi-mode (resolver)
-
-If using a [Resolver](https://designtokens.org/TR/2025.10/resolver/) (the official DTCG way to declare multi-modal tokens), you’ll need to set your context first before getting all tokens:
-
-```ts
-import resolver from "./tokens/tokens.js";
-
-// Note: A resolver doesn’t have “default values,” so you’ll need to apply() a context first
-resolver.get("color.blue.600"); // ❌ Error: multiple values found
-
-// Token set 1: theme: light + size: md
-const lightMd = resolver.apply({ theme: "light", size: "md" });
-lightMd.get("color.blue.600"); // { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0, 0.23, 0.853] } }
-lightMd.listAll(); // [{ id: "color.blue.100", $type: "color", … }, …]
-
-// Token set 2: theme: dark + size: lg
-const darkLg = resolver.apply({ theme: "dark", size: "lg" });
-darkLg.get("color.blue.600"); // { "$type": "color", "$value": { "colorSpace": "srgb", "components": [0, 0.17, 0.654] } }
-darkLg.listAll()  // [{ id: "color.blue.100", $type: "color", … }, …]
-```
-
-### Legacy modes
-
-If using `$extensions.mode` (legacy syntax), use the resolver API but with `tzMode`:
-
-```ts
-import resolver from "./tokens/tokens.js";
-
-const darkTokens = resolver.apply({ tzMode: "dark" });
-darkTokens.get("color.blue.600")
-```
-
-### API
-
-| Name               | Type                                          | Description                                                                                              |
-|:-------------------|:----------------------------------------------|:---------------------------------------------------------------------------------------------------------|
-| get()              | `(name: string) => Token`                     | Get a token by ID. Will throw an error if a resolver is used.                                            |
-| listAll()          | `() => Token[]`                               | Return an array of all tokens.                                                                           |
-| apply()            | `(input: Record<string, string>) => TokenAPI` | Apply context values to produce a new token interface (use `get()` and `listAll()`).                     |
-| listPermutations() | `() => Record<string, string>[]`              | Get all possible input values of the resolver (ignores default values).                                  |
-| isValidInput()     | `(input: Record<string, string>) => boolean`  | Determine whether an input value is valid for the given resolver (automatically applies default values). |
 
 ## Config
 
@@ -122,9 +86,47 @@ export default defineConfig({
 
 ### Options
 
-| Name       | Type     | Description                               |
-| :--------- | :------- | :---------------------------------------- |
-| `filename` | `string` | Set to a filename (default: `tokens.js`). |
+| Name         | Type                        | Description                                                                                              |
+| :----------- | :-------------------------- | :------------------------------------------------------------------------------------------------------- |
+| `filename`   | `string`                    | Set to a filename (default: `tokens.js`).                                                                |
+| `contexts`   | `Record<string, string[]>`  | Set this to “tree-shake” modifiers. By default, all permutations will be built.                          |
+| `properties` | `(keyof TokenNormalized)[]` | Only include the specified properties on all tokens. Use to reduce generated filesize and memory impact. |
+
+#### properties
+
+Here are all valid properties, from the `TokenNormalized` type:
+
+- `$type`
+- `$description`
+- `$value`
+- `$extensions`
+- `$deprecated`
+- `id` (excluded by default)
+- `jsonID` (excluded by default)
+- `originalValue` (excluded by default)
+- `source` (excluded by default)
+- `aliasOf` (excluded by default)
+- `aliasChain` (excluded by default)
+- `aliasedBy` (excluded by default)
+- `dependencies` (excluded by default)
+- `group` (excluded by default)
+
+## When to use plugin-js
+
+### vs Node.js APi
+
+**Node.js API is better for the initial build; plugin-js is better for runtime.**
+
+- plugin-js has better type safety meant for JS applications
+- plugin-js frontloads the heavy work of resolution, meant for high-scale **on-demand** use (i.e. server generation)
+  - Example: GitHub Primer, on a 2024 Macbook Air, takes about ~4s to build a single permutation; plugin-js takes 20ms for the same permutation
+
+### vs plugin-css-in-js
+
+**[plugin-css-in-js](/docs/integrations/css-in-js/) should be used when pairing with [plugin-css](/docs/integrations/css/)**.
+
+- plugin-js doesn’t have access to which CSS variables were generated
+- plugin-js _does_ have access to granular token data and design system information present in the resolver.
 
 ## Migrating from 0.x
 
@@ -144,6 +146,26 @@ export default defineConfig({
 +     filename: "tokens.js",
 -     ts: "tokens.d.ts",
 -     json: false, // set to a filename to generate JSON
+    }),
+  ],
+});
+```
+
+:::
+
+Next, if you’re still using legacy `$extensions.mode`, you’ll want to use `tz.mode` as the context name, e.g.:
+
+:::code-group
+
+```diff [terrazzo.config.ts]
+import js from "@terrazzo/plugin-js";
+
+export default defineConfig({
+  plugins: [
+    js({
++     contexts: {
++       'tz.mode': ['light', 'dark'],
++     }
     }),
   ],
 });

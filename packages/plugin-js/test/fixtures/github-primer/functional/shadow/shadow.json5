@@ -1,0 +1,478 @@
+{
+  shadow: {
+    inset: {
+      $value: {
+        color: '{base.color.neutral.13}',
+        alpha: 0.04,
+        offsetX: '0px',
+        offsetY: '1px',
+        blur: '0px',
+        spread: '0px',
+        inset: true,
+      },
+      $type: 'shadow',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'shadow',
+        },
+        'org.primer.overrides': {
+          dark: {
+            $value: {
+              color: '{base.color.neutral.0}',
+              alpha: 0.24,
+              offsetX: '0px',
+              offsetY: '1px',
+              blur: '0px',
+              spread: '0px',
+              inset: true,
+            },
+          },
+        },
+      },
+    },
+    resting: {
+      xsmall: {
+        $value: {
+          color: '{base.color.neutral.13}',
+          alpha: 0.06,
+          offsetX: '0px',
+          offsetY: '1px',
+          blur: '1px',
+          spread: '0px',
+          inset: false,
+        },
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: {
+                color: '{base.color.neutral.0}',
+                alpha: 0.8,
+                offsetX: '0px',
+                offsetY: '1px',
+                blur: '1px',
+                spread: '0px',
+                inset: false,
+              },
+            },
+          },
+        },
+      },
+      small: {
+        $value: [
+          {
+            color: '{base.color.neutral.13}',
+            alpha: 0.06,
+            offsetX: '0px',
+            offsetY: '1px',
+            blur: '1px',
+            spread: '0px',
+            inset: false,
+          },
+          {
+            color: '{base.color.neutral.13}',
+            alpha: 0.06,
+            offsetX: '0px',
+            offsetY: '1px',
+            blur: '3px',
+            spread: '0px',
+            inset: false,
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.6,
+                  offsetX: '0px',
+                  offsetY: '1px',
+                  blur: '1px',
+                  spread: '0px',
+                  inset: false,
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.6,
+                  offsetX: '0px',
+                  offsetY: '1px',
+                  blur: '3px',
+                  spread: '0px',
+                  inset: false,
+                },
+              ],
+            },
+          },
+        },
+      },
+      medium: {
+        $value: [
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.1,
+            offsetX: '0px',
+            offsetY: '1px',
+            blur: '1px',
+            spread: '0px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.12,
+            offsetX: '0px',
+            offsetY: '3px',
+            blur: '6px',
+            spread: '0px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '1px',
+                  blur: '1px',
+                  spread: '0px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.8,
+                  offsetX: '0px',
+                  offsetY: '3px',
+                  blur: '6px',
+                  spread: '0px',
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+    floating: {
+      small: {
+        $value: [
+          {
+            color: '{overlay.borderColor}',
+            alpha: 0.5,
+            offsetX: '0px',
+            offsetY: '0px',
+            blur: '0px',
+            spread: '1px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.04,
+            offsetX: '0px',
+            offsetY: '6px',
+            blur: '12px',
+            spread: '-3px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.12,
+            offsetX: '0px',
+            offsetY: '6px',
+            blur: '18px',
+            spread: '0px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{overlay.borderColor}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '0px',
+                  blur: '0px',
+                  spread: '1px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '6px',
+                  blur: '12px',
+                  spread: '-3px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '6px',
+                  blur: '18px',
+                  spread: '0px',
+                },
+              ],
+            },
+          },
+        },
+      },
+      medium: {
+        $value: [
+          {
+            color: '{overlay.borderColor}',
+            alpha: 0,
+            offsetX: '0px',
+            offsetY: '0px',
+            blur: '0px',
+            spread: '1px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.08,
+            offsetX: '0px',
+            offsetY: '8px',
+            blur: '16px',
+            spread: '-4px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.08,
+            offsetX: '0px',
+            offsetY: '4px',
+            blur: '32px',
+            spread: '-4px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.08,
+            offsetX: '0px',
+            offsetY: '24px',
+            blur: '48px',
+            spread: '-12px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.08,
+            offsetX: '0px',
+            offsetY: '48px',
+            blur: '96px',
+            spread: '-24px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{overlay.borderColor}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '0px',
+                  blur: '0px',
+                  spread: '1px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '8px',
+                  blur: '16px',
+                  spread: '-4px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '4px',
+                  blur: '32px',
+                  spread: '-4px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '24px',
+                  blur: '48px',
+                  spread: '-12px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '48px',
+                  blur: '96px',
+                  spread: '-24px',
+                },
+              ],
+            },
+          },
+        },
+      },
+      large: {
+        $value: [
+          {
+            color: '{overlay.borderColor}',
+            alpha: 0,
+            offsetX: '0px',
+            offsetY: '0px',
+            blur: '0px',
+            spread: '1px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.24,
+            offsetX: '0px',
+            offsetY: '40px',
+            blur: '80px',
+            spread: '0px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{overlay.borderColor}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '0px',
+                  blur: '0px',
+                  spread: '1px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '24px',
+                  blur: '48px',
+                  spread: '0px',
+                },
+              ],
+            },
+          },
+        },
+      },
+      xlarge: {
+        $value: [
+          {
+            color: '{overlay.borderColor}',
+            alpha: 0,
+            offsetX: '0px',
+            offsetY: '0px',
+            blur: '0px',
+            spread: '1px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.32,
+            offsetX: '0px',
+            offsetY: '56px',
+            blur: '112px',
+            spread: '0px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {
+            collection: 'mode',
+            group: 'shadow',
+          },
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{overlay.borderColor}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '0px',
+                  blur: '0px',
+                  spread: '1px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 1,
+                  offsetX: '0px',
+                  offsetY: '32px',
+                  blur: '64px',
+                  spread: '0px',
+                },
+              ],
+            },
+          },
+        },
+      },
+      legacy: {
+        $value: [
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.04,
+            offsetX: '0px',
+            offsetY: '6px',
+            blur: '12px',
+            spread: '-3px',
+          },
+          {
+            color: '{base.color.neutral.12}',
+            alpha: 0.12,
+            offsetX: '0px',
+            offsetY: '6px',
+            blur: '18px',
+            spread: '0px',
+          },
+        ],
+        $type: 'shadow',
+        $extensions: {
+          'org.primer.figma': {},
+          'org.primer.overrides': {
+            dark: {
+              $value: [
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '6px',
+                  blur: '12px',
+                  spread: '-3px',
+                },
+                {
+                  color: '{base.color.neutral.0}',
+                  alpha: 0.4,
+                  offsetX: '0px',
+                  offsetY: '6px',
+                  blur: '18px',
+                  spread: '0px',
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  },
+}

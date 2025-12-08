@@ -1,0 +1,28 @@
+{
+  "control": {
+    "minTarget": {
+      "auto": {
+        "$value": "{base.size.16}",
+        "$type": "dimension"
+      }
+    }
+  },
+  "controlStack": {
+    "small": {
+      "gap": {
+        "auto": {
+          "$value": "{base.size.8}",
+          "$type": "dimension"
+        }
+      }
+    },
+    "medium": {
+      "gap": {
+        "auto": {
+          "$value": "{base.size.8}",
+          "$type": "dimension"
+        }
+      }
+    }
+  }
+}

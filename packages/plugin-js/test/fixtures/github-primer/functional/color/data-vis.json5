@@ -1,0 +1,548 @@
+{
+  data: {
+    blue: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.blue.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.blue.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.blue.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.blue.0}',
+            },
+          },
+        },
+      },
+    },
+    auburn: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.auburn.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.auburn.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.auburn.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.auburn.0}',
+            },
+          },
+        },
+      },
+    },
+    orange: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.orange.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.orange.4}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.orange.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.orange.0}',
+            },
+          },
+        },
+      },
+    },
+    yellow: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.yellow.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.yellow.4}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.yellow.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.yellow.0}',
+            },
+          },
+        },
+      },
+    },
+    green: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.green.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.green.4}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.green.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.green.0}',
+            },
+          },
+        },
+      },
+    },
+    teal: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.teal.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.teal.4}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.teal.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.teal.0}',
+            },
+          },
+        },
+      },
+    },
+    purple: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.purple.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.purple.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.purple.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.purple.0}',
+            },
+          },
+        },
+      },
+    },
+    pink: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.pink.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.pink.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.pink.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.pink.0}',
+            },
+          },
+        },
+      },
+    },
+    plum: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.plum.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.plum.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.plum.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.plum.0}',
+            },
+          },
+        },
+      },
+    },
+    red: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.red.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.red.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.red.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.red.0}',
+            },
+          },
+        },
+      },
+    },
+    gray: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.gray.4}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.gray.4}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.gray.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.gray.0}',
+            },
+          },
+        },
+      },
+    },
+    coral: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.coral.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.coral.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.coral.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.coral.0}',
+            },
+          },
+        },
+      },
+    },
+    brown: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.brown.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.brown.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.brown.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.brown.0}',
+            },
+          },
+        },
+      },
+    },
+    lemon: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.lemon.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.lemon.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.lemon.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.lemon.0}',
+            },
+          },
+        },
+      },
+    },
+    olive: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.olive.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.olive.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.olive.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.olive.0}',
+            },
+          },
+        },
+      },
+    },
+    lime: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.lime.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.lime.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.lime.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.lime.0}',
+            },
+          },
+        },
+      },
+    },
+    pine: {
+      color: {
+        emphasis: {
+          $value: '{base.display.color.pine.5}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor', 'borderColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.pine.5}',
+            },
+          },
+        },
+        muted: {
+          $value: '{base.display.color.pine.0}',
+          $type: 'color',
+          $extensions: {
+            'org.primer.figma': {
+              collection: 'mode',
+              group: 'component',
+              scopes: ['bgColor'],
+            },
+            'org.primer.overrides': {
+              dark: '{base.display.color.pine.0}',
+            },
+          },
+        },
+      },
+    },
+  },
+}

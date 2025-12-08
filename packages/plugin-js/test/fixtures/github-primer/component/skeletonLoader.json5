@@ -1,0 +1,49 @@
+{
+  skeletonLoader: {
+    bgColor: {
+      $value: '{base.color.neutral.8}',
+      $type: 'color',
+      $extensions: {
+        'org.primer.figma': {
+          collection: 'mode',
+          group: 'component',
+          scopes: ['bgColor'],
+        },
+        'org.primer.overrides': {
+          dark: {
+            alpha: 0.2,
+          },
+          'light-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'light-protanopia-deuteranopia-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'light-tritanopia-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'dark-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'dark-dimmed-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'dark-protanopia-deuteranopia-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+          'dark-tritanopia-high-contrast': {
+            $value: '{base.color.neutral.5}',
+            alpha: 1,
+          },
+        },
+      },
+      alpha: 0.1,
+    },
+  },
+}

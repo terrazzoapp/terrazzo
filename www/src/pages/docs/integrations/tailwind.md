@@ -9,7 +9,7 @@ The Tailwind Terrazzo plugin can generate a [Tailwind v4 Theme](https://tailwind
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](/docs). With both installed, run:
+Requires [Node.js](https://nodejs.org) and [the CLI installed](/docs). With both installed, run:
 
 :::npm
 
@@ -169,9 +169,9 @@ tailwind({
     color: ["color.*"],
   },
   modeVariants: [
-      { variant: "dark", mode: "dark" },
-      { variant: "hc", mode: "high-contrast" },
-    ],
+    { variant: "dark", mode: "dark" },
+    { variant: "hc", mode: "high-contrast" },
+  ],
 });
 ```
 

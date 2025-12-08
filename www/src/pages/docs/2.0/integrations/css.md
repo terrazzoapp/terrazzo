@@ -7,9 +7,11 @@ layout: ../../../../layouts/docs.astro
 
 Convert DTCG tokens into CSS variables for use in any web application or native app with webview. Convert your modes into any CSS selector for complete flexibility.
 
+Use with [plugin-css-in-js](/docs/integrations/css-in-js/) if using a CSS-in-JS library.
+
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](/docs). With both installed, run:
+Requires [Node.js](https://nodejs.org) and [the CLI installed](/docs). With both installed, run:
 
 :::npm
 
@@ -64,6 +66,28 @@ This plugin outputs standard CSS variables that correspond directly to your toke
 ```
 
 :::
+
+### JS
+
+If using a CSS-in-JS library like StyleX, pair this with [plugin-css-in-js](/docs/integrations/css-in-js/) to use the same CSS vars in runtime JS.
+
+:::code-group
+
+```tsx
+import stylex from "@stylexjs/stylex";
+import { color } from "../tokens/vars.js";
+
+const styles = stylex.create({
+  button: {
+    background: color.bg.brand,
+    color: color.text.onBrand,
+  },
+});
+```
+
+:::
+
+[Full documentation](/docs/integrations/css-in-js/)
 
 ## Features
 
@@ -435,6 +459,10 @@ The sky is the limit with mode selectors, but some popular patterns are:
 - `typography`: viewport width (responsive styles)
 
 :::
+
+#### Note on “duplication” (staleness)
+
+If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
 
 ### Color Scheme
 

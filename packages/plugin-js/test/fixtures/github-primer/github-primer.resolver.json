@@ -1,0 +1,96 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "GitHub Primer",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/sets/functional" },
+    { "$ref": "#/sets/component" },
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/modifiers/size" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        { "$ref": "./base/color/light/light.tokens.json" },
+        { "$ref": "./base/color/light/display-light.tokens.json" },
+        { "$ref": "./base/motion/easing.tokens.json" },
+        { "$ref": "./base/motion/timing.tokens.json" },
+        { "$ref": "./base/size/size.tokens.json" },
+        { "$ref": "./base/typography/typography.tokens.json" }
+      ]
+    },
+    "functional": {
+      "sources": [
+        { "$ref": "./functional/border/border.tokens.json" },
+        { "$ref": "./functional/color/bgColor.tokens.json" },
+        { "$ref": "./functional/color/borderColor.tokens.json" },
+        { "$ref": "./functional/color/control.tokens.json" },
+        { "$ref": "./functional/color/data-vis.tokens.json" },
+        { "$ref": "./functional/color/display.tokens.json" },
+        { "$ref": "./functional/color/fgColor.tokens.json" },
+        { "$ref": "./functional/color/focus.tokens.json" },
+        { "$ref": "./functional/color/selection.tokens.json" },
+        { "$ref": "./functional/color/syntax.tokens.json" },
+        { "$ref": "./functional/shadow/shadow.tokens.json" },
+        { "$ref": "./functional/size/border.tokens.json" },
+        { "$ref": "./functional/size/breakpoints.tokens.json" },
+        { "$ref": "./functional/size/size.tokens.json" },
+        { "$ref": "./functional/typography/typography.tokens.json" }
+      ]
+    },
+    "component": {
+      "sources": [
+        { "$ref": "./component/avatar.tokens.json" },
+        { "$ref": "./component/button.tokens.json" },
+        { "$ref": "./component/card.tokens.json" },
+        { "$ref": "./component/codeMirror.tokens.json" },
+        { "$ref": "./component/contribution.tokens.json" },
+        { "$ref": "./component/counter.tokens.json" },
+        { "$ref": "./component/dashboard.tokens.json" },
+        { "$ref": "./component/diffBlob.tokens.json" },
+        { "$ref": "./component/header.tokens.json" },
+        { "$ref": "./component/headerSerach.tokens.json" },
+        { "$ref": "./component/highlight.tokens.json" },
+        { "$ref": "./component/label.tokens.json" },
+        { "$ref": "./component/menu.tokens.json" },
+        { "$ref": "./component/overlay.tokens.json" },
+        { "$ref": "./component/page.tokens.json" },
+        { "$ref": "./component/progressBar.tokens.json" },
+        { "$ref": "./component/reactionButton.tokens.json" },
+        { "$ref": "./component/selectMenu.tokens.json" },
+        { "$ref": "./component/sideNav.tokens.json" },
+        { "$ref": "./component/skeletonLoader.tokens.json" },
+        { "$ref": "./component/timelineBadge.tokens.json" },
+        { "$ref": "./component/tooltip.tokens.json" },
+        { "$ref": "./component/topicTag.tokens.json" },
+        { "$ref": "./component/treeView.tokens.json" },
+        { "$ref": "./component/underlineNav.tokens.json" }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [{ "$ref": "./base/color/light/light.tokens.json" }],
+        "light-hc": [
+          { "$ref": "./base/color/light/light.tokens.json" },
+          {
+            "$ref": "./base/color/light/light.high-contrast.tokens.json"
+          }
+        ],
+        "dark": [{ "$ref": "./base/color/dark/dark.tokens.json" }],
+        "dark-hc": [{ "$ref": "./base/color/dark/dark.high-contrast.tokens.json" }]
+      },
+      "default": "light"
+    },
+    "size": {
+      "contexts": {
+        "default": [],
+        "coarse": [{ "$ref": "./functional/size/size-coarse.tokens.json" }],
+        "fine": [{ "$ref": "./functional/size/size-fine.tokens.json" }]
+      },
+      "default": "default"
+    }
+  }
+}
