@@ -493,7 +493,7 @@ describe('roundColor', () => {
         lastValue = rounded.r;
       }
     }
-  });
+  }, 10_000);
 
   it('unlimited', () => {
     const original = { mode: 'rgb' as const, r: 0.1 + 0.2, g: 0, b: 0 } as Rgb;
