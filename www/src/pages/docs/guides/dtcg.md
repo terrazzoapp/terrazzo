@@ -9,6 +9,8 @@ The <abbr title="Design Tokens Community Group">DTCG</abbr> format is a [W3C Com
 
 DTCG tokens are stored in JSON, and look something like the following:
 
+:::code-group
+
 ```json [my-ds.tokens.json]
 {
   "rebeccapurple": {
@@ -21,8 +23,9 @@ DTCG tokens are stored in JSON, and look something like the following:
 }
 ```
 
-By storing tokens in a universal format like JSON, you can centrally manage them and generate code for any output target including web and native apps.
+:::
 
+By storing tokens in a universal format like JSON, you can centrally manage them and generate code for any output target including web and native apps.
 
 ## Types
 
@@ -45,7 +48,6 @@ Currently, the DTCG format defines the following types:
 | [Typography](/docs/reference/tokens#typography) | A complete typographic style, including family, weight, line height, and more. |
 
 In addition, Terrazzo also allows 3 additional custom types: [Link](/docs/reference/tokens), [Boolean](/docs/reference/tokens), and [String](/docs/reference/tokens). But it may require writing your own to take full advantage of these types.
-
 
 ## Hierarchy
 
@@ -86,7 +88,7 @@ It would be easy to miss the typo of “bleu!” But by declaring every group na
 
 ## Format
 
-You can [find the official format here](https://tr.designtokens.org/format/). But for convenience, we also have [a list of token types](/docs/reference/tokens) Terrazzo supports.
+You can [find the official format here](https://designtokens.org/TR/2025.10/format/). But for convenience, we also have [a list of token types](/docs/reference/tokens) Terrazzo supports.
 
 ## Further Reading
 

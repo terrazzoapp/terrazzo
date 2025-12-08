@@ -1,7 +1,7 @@
 {
-  "name": "@terrazzo/plugin-js",
+  "name": "@terrazzo/plugin-css-in-js",
   "version": "2.0.0-alpha.3",
-  "description": "Use DTCG tokens in Node.js for server-rendered applications.",
+  "description": "Use CSS Vars in clientside JS. Compatible with Linaria, StyleX, Vanilla Extract, Styled Components, and most CSS-in-JS libraries.",
   "license": "MIT",
   "type": "module",
   "author": {
@@ -13,6 +13,14 @@
     "design system",
     "dtcg",
     "w3c",
+    "css",
+    "styled components",
+    "vanilla-extract",
+    "stylex",
+    "linearia",
+    "emotion",
+    "react",
+    "vue",
     "ts",
     "typescript"
   ],
@@ -31,18 +39,19 @@
     "build": "rolldown -c && attw --profile esm-only --pack .",
     "dev": "rolldown -w -c",
     "format": "biome check --fix --unsafe .",
-    "lint": "pnpm --filter @terrazzo/plugin-js run \"/^lint:(js|ts)/\"",
+    "lint": "pnpm --filter @terrazzo/plugin-css-in-js run \"/^lint:(js|ts)/\"",
     "lint:js": "biome check .",
     "lint:ts": "tsc --noEmit",
     "test": "vitest run"
   },
   "peerDependencies": {
-    "@terrazzo/cli": "workspace:^"
-  },
-  "dependencies": {
-    "@terrazzo/parser": "workspace:^"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^"
   },
   "devDependencies": {
-    "@terrazzo/cli": "workspace:^"
+    "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
+    "@terrazzo/plugin-css": "workspace:^",
+    "scule": "^1.3.0"
   }
 }

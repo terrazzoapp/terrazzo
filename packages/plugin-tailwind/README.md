@@ -4,7 +4,7 @@ Generate a Tailwind v4 theme from DTCG tokens.
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js](https://nodejs.org). With that installed, run:
 
 ```sh
 npm i -D @terrazzo/cli @terrazzo/plugin-css @terrazzo/plugin-tailwind

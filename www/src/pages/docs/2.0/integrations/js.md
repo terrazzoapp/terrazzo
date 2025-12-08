@@ -1,9 +1,9 @@
 ---
-title: JS (and TS)
+title: JS
 layout: ../../../../layouts/docs.astro
 ---
 
-# JavaScript / TypeScript
+# JavaScript
 
 Terrazzo’s JS plugin generates a resolver API for Node.js clients from your token system. It produces code that is **fast but heavy**, so it is better-suited for server-side rendering. For client applications, prefer the [css-in-js plugin](./css-in-js/) instead.
 
@@ -110,6 +110,23 @@ Here are all valid properties, from the `TokenNormalized` type:
 - `aliasedBy` (excluded by default)
 - `dependencies` (excluded by default)
 - `group` (excluded by default)
+
+## When to use plugin-js
+
+### vs Node.js APi
+
+**Node.js API is better for the initial build; plugin-js is better for runtime.**
+
+- plugin-js has better type safety meant for JS applications
+- plugin-js frontloads the heavy work of resolution, meant for high-scale **on-demand** use (i.e. server generation)
+  - Example: GitHub Primer, on a 2024 Macbook Air, takes about ~4s to build a single permutation; plugin-js takes 20ms for the same permutation
+
+### vs plugin-css-in-js
+
+**[plugin-css-in-js](/docs/integrations/css-in-js/) should be used when pairing with [plugin-css](/docs/integrations/css/)**.
+
+- plugin-js doesn’t have access to which CSS variables were generated
+- plugin-js _does_ have access to granular token data and design system information present in the resolver.
 
 ## Migrating from 0.x
 

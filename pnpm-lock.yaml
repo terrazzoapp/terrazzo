@@ -394,6 +394,21 @@ importers:
         specifier: 'catalog:'
         version: 0.3.4
 
+  packages/plugin-css-in-js:
+    devDependencies:
+      '@terrazzo/cli':
+        specifier: workspace:^
+        version: link:../cli
+      '@terrazzo/parser':
+        specifier: workspace:^
+        version: link:../parser
+      '@terrazzo/plugin-css':
+        specifier: workspace:^
+        version: link:../plugin-css
+      scule:
+        specifier: ^1.3.0
+        version: 1.3.0
+
   packages/plugin-js:
     dependencies:
       '@terrazzo/parser':

@@ -1,6 +1,6 @@
 ---
 title: Migrating from Cobalt
-layout: ../../../../layouts/docs.astro
+layout: ../../../layouts/docs.astro
 ---
 
 # Migrating from Cobalt 1.0

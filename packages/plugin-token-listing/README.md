@@ -4,7 +4,7 @@ Produce a Token Listing Format file for your design token build. The Token Listi
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs). With both installed, run:
+Requires [Node.js](https://nodejs.org) and [the CLI installed](https://terrazzo.app/docs). With both installed, run:
 
 ```sh
 npm i -D @terrazzo/plugin-token-listing
@@ -27,21 +27,21 @@ export default defineConfig({
 
     // Configure the token listing
     listing({
-      filename: 'terrazzo.listing.json',
+      filename: "terrazzo.listing.json",
       // Pass mode information so documentation tools can generate mode selectors
       modes: [
         {
-          name: 'color-scheme',
-          values: ['light', 'dark'],
-          description: 'Color theme matching user device preferences',
+          name: "color-scheme",
+          values: ["light", "dark"],
+          description: "Color theme matching user device preferences",
         },
       ],
       // Define platforms included in the Terrazzo build
       platforms: {
         css: {
-          description: 'Tokens built as CSS variables for the developers',
-          filter: '@terrazzo/plugin-css',
-          name: '@terrazzo/plugin-css',
+          description: "Tokens built as CSS variables for the developers",
+          filter: "@terrazzo/plugin-css",
+          name: "@terrazzo/plugin-css",
         },
       },
     }),

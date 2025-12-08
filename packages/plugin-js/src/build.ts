@@ -3,9 +3,10 @@ import {
   type Logger,
   type Resolver,
   type ResolverModifierNormalized,
+  type Token,
   type TokenNormalized,
 } from '@terrazzo/parser';
-import { FILE_HEADER } from './lib.js';
+import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';
 
@@ -19,8 +20,9 @@ export function buildJS({
   properties: Set<keyof TokenNormalized>;
   contexts?: Record<string, string[]>;
   logger: Logger;
-}): string {
+}): { code: string; typeMap: Record<string, Token['$type']> } {
   const entry = { group: 'plugin' as const, label: '@terrazzo/plugin-js' };
+  const typeMap: Record<string, Token['$type']> = {};
 
   // here, output not being an array drastically reduces memory usage for large token sets
   let output = FILE_HEADER;
@@ -45,6 +47,9 @@ export function buildJS({
       output += `  ${JSON.stringify(id)}: {\n`;
       for (const id of Object.keys(tokens)) {
         output += `    ${serializeToken(tokens[id]!, properties)},\n`;
+        if (!(id in typeMap)) {
+          typeMap[id] = tokens[id]!.$type;
+        }
       }
       output += '  },\n';
     } catch (err) {
@@ -85,18 +90,42 @@ export function buildJS({
   },
 };\n`;
 
-  return output;
+  return { code: output, typeMap };
 }
 
-export function buildDTS({ resolver, contexts }: { resolver: Resolver; contexts?: Record<string, string[]> }): string {
+export function buildDTS({
+  resolver,
+  contexts,
+  typeMap,
+}: {
+  resolver: Resolver;
+  contexts?: Record<string, string[]>;
+  typeMap: Record<string, Token['$type']>;
+}): string {
   let output = FILE_HEADER;
+  output += 'import type {';
+  for (const $type of new Set(Object.values(typeMap))) {
+    if ($type in TYPE_MAP) {
+      output += `  ${$type},`;
+    }
+  }
+  output += '} from "@terrazzo/parser";';
   output += '\n\n';
-  output += 'import type { Resolver, TokenNormalizedSet } from "@terrazzo/parser";\n\n';
   output += 'export const PERMUTATIONS: Record<string, TokenNormalizedSet>;\n\n';
   output += `type InputType = ${buildInputType(resolver, contexts)};\n\n`;
+  output += 'interface Tokens {\n';
+  for (const [id, $type] of Object.entries(typeMap)) {
+    output += `  ${JSON.stringify(id)}: ${TYPE_MAP[$type] || 'any'};\n`;
+  }
+  output += '}\n';
+  output += '\n';
   output += RESOLVER_JSDOC_COMMENT;
   output += '\n';
-  output += 'export const resolver: Pick<Resolver<InputType>, "apply" | "listPermutations">;\n';
+  output += `export const resolver: {
+  apply(input: InputType): Tokens;
+  listPermutations(): InputType[];
+};
+`;
   return output;
 }
 

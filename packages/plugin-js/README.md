@@ -1,10 +1,14 @@
 # ⛋ @terrazzo/plugin-js
 
-Generate JavaScript, TypeScript, and JSON from DTCG tokens.
+Use DTCG resolvers in Node.js for server-rendered applications.
+
+> [!NOTE]
+>
+> Since adding support for [resolvers](https://terrazzo.app/docs/), plugin-js has added more weight and metadata than is practical for most clientside uses. You may want to consider using [plugin-css-in-js](https://github.com/terrazzoapp/terrazzo/blob/main/packages/plugin-css-in-js) instead.
 
 ## Setup
 
-Requires [Node.js 20 or later](https://nodejs.org). With that installed, run:
+Requires [Node.js](https://nodejs.org). With that installed, run:
 
 ```sh
 npm i -D @terrazzo/cli @terrazzo/plugin-js
@@ -20,7 +24,7 @@ export default defineConfig({
   outDir: "./tokens/",
   plugins: [
     js({
-      filename: "tokens.js", // Note: `.d.ts` is generated too, so this is TypeScript-compatible!
+      filename: "tokens.js", // Note: `.d.ts` is generated too
     }),
   ],
 });
