@@ -1,11 +1,5 @@
 # @terrazzo/plugin-css
 
-## 2.0.0-alpha.6
-
-### Patch Changes
-
-- [#606](https://github.com/terrazzoapp/terrazzo/pull/606) [`1fc1d99`](https://github.com/terrazzoapp/terrazzo/commit/1fc1d99e7156923e86e872e4750b7e28b6292b20) Thanks [@yuheiy](https://github.com/yuheiy)! - Allow partial utility CSS groups configuration
-
 ## 2.0.0
 
 ### Minor Changes
@@ -25,6 +19,8 @@
 - [#553](https://github.com/terrazzoapp/terrazzo/pull/553) [`e63a627`](https://github.com/terrazzoapp/terrazzo/commit/e63a6277f61282fb608744a8348689b16f977076) Thanks [@Sidnioulz](https://github.com/Sidnioulz)! - Add support for the Token Listing format
 
 - [#568](https://github.com/terrazzoapp/terrazzo/pull/568) [`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48) Thanks [@drwpow](https://github.com/drwpow)! - Fix border tokens not cascading correctly across modes
+
+- [#606](https://github.com/terrazzoapp/terrazzo/pull/606) [`1fc1d99`](https://github.com/terrazzoapp/terrazzo/commit/1fc1d99e7156923e86e872e4750b7e28b6292b20) Thanks [@yuheiy](https://github.com/yuheiy)! - Allow partial utility CSS groups configuration
 
 ## 0.10.4
 
