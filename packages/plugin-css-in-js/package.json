@@ -46,6 +46,7 @@
   },
   "peerDependencies": {
     "@terrazzo/cli": "workspace:^",
+    "@terrazzo/parser": "workspace:^",
     "@terrazzo/plugin-css": "workspace:^"
   },
   "dependencies": {
