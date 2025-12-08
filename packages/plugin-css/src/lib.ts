@@ -25,7 +25,7 @@ export interface CSSPluginOptions {
   /** Override certain token values */
   transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
   /** Generate utility CSS from groups */
-  utility?: Record<UtilityCSSGroup, string[]>;
+  utility?: Partial<Record<UtilityCSSGroup, string[]>>;
   /**
    * Output colors as hex-6/hex-8 instead of color() function
    * @default false

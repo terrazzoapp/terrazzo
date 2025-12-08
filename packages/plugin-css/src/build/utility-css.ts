@@ -26,7 +26,7 @@ function makeVarValue(token: TokenTransformed): CSSRuleDeclaration {
 }
 
 export default function generateUtilityCSS(
-  groups: Record<UtilityCSSGroup, string[]>,
+  groups: Partial<Record<UtilityCSSGroup, string[]>>,
   tokens: TokenTransformed[],
 ): CSSRule[] {
   const output: CSSRule[] = [];
