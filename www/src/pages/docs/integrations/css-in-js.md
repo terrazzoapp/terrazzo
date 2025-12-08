@@ -1,6 +1,6 @@
 ---
-title: CSS
-layout: ../../../../layouts/docs.astro
+title: CSS-in-JS
+layout: ../../../layouts/docs.astro
 ---
 
 # CSS-in-JS
