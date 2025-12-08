@@ -40,7 +40,8 @@
     "@terrazzo/cli": "workspace:^"
   },
   "dependencies": {
-    "@terrazzo/parser": "workspace:^"
+    "@terrazzo/parser": "workspace:^",
+    "scule": "^1.3.0"
   },
   "devDependencies": {
     "@terrazzo/cli": "workspace:^"

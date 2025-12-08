@@ -414,6 +414,9 @@ importers:
       '@terrazzo/parser':
         specifier: workspace:^
         version: link:../parser
+      scule:
+        specifier: ^1.3.0
+        version: 1.3.0
     devDependencies:
       '@terrazzo/cli':
         specifier: workspace:^

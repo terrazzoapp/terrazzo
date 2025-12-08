@@ -6,6 +6,7 @@ import {
   type Token,
   type TokenNormalized,
 } from '@terrazzo/parser';
+import { pascalCase } from 'scule';
 import { FILE_HEADER, TYPE_MAP } from './lib.js';
 
 const RESOLVER_JSDOC_COMMENT = '/** Produce a token set from a given input. */';
@@ -96,26 +97,37 @@ export function buildJS({
 export function buildDTS({
   resolver,
   contexts,
+  properties,
   typeMap,
 }: {
   resolver: Resolver;
   contexts?: Record<string, string[]>;
+  properties: Set<keyof TokenNormalized>;
   typeMap: Record<string, Token['$type']>;
 }): string {
+  const unique$type = new Set(Object.values(typeMap));
+
   let output = FILE_HEADER;
-  output += 'import type {';
-  for (const $type of new Set(Object.values(typeMap))) {
+  output += '\n';
+  output += 'import type {\n';
+  for (const $type of unique$type) {
     if ($type in TYPE_MAP) {
-      output += `  ${$type},`;
+      output += `  ${TYPE_MAP[$type]},\n`;
     }
   }
   output += '} from "@terrazzo/parser";';
   output += '\n\n';
   output += 'export const PERMUTATIONS: Record<string, TokenNormalizedSet>;\n\n';
   output += `type InputType = ${buildInputType(resolver, contexts)};\n\n`;
-  output += 'interface Tokens {\n';
+  for (const $type of unique$type) {
+    if (!($type in TYPE_MAP)) {
+      continue;
+    }
+    output += `export type ${localTypeName($type)} = Pick<${TYPE_MAP[$type]}, ${[...properties].map((p) => JSON.stringify(p)).join(' | ')}>;\n`;
+  }
+  output += '\nexport interface Tokens {\n';
   for (const [id, $type] of Object.entries(typeMap)) {
-    output += `  ${JSON.stringify(id)}: ${TYPE_MAP[$type] || 'any'};\n`;
+    output += `  ${JSON.stringify(id)}: ${$type in TYPE_MAP ? localTypeName($type) : 'any'};\n`;
   }
   output += '}\n';
   output += '\n';
@@ -150,6 +162,10 @@ function buildInputType(resolver: Resolver, contexts?: Record<string, string[]>)
   }
   output += '\n};';
   return output;
+}
+
+function localTypeName($type: Token['$type']): string {
+  return pascalCase($type);
 }
 
 /** Serialize normalized Tokens set into a string */
