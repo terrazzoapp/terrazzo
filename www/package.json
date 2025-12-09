@@ -23,7 +23,7 @@
     "nanoid": "^5.1.6",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-instantsearch": "^7.20.1",
+    "react-instantsearch": "^7.20.2",
     "shiki": "^1.29.2"
   },
   "devDependencies": {

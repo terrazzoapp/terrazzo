@@ -2,21 +2,21 @@ import * as momoa from '@humanwhocodes/momoa';
 import type { ValueNodeWithIndex } from './types.js';
 
 /** Find Momoa node by traversing paths */
-export function findNode<T = momoa.AnyNode>(node: momoa.AnyNode, path?: string[]): T {
+export function findNode<T = momoa.AnyNode>(within: momoa.AnyNode, path?: string[]): T {
   if (!path?.length) {
-    return node as T;
+    return within as T;
   }
 
   let nextNode: momoa.AnyNode | undefined;
 
-  switch (node.type) {
+  switch (within.type) {
     // for Document nodes, dive into body for “free” (not part of the path)
     case 'Document': {
-      return findNode(node.body, path);
+      return findNode(within.body, path);
     }
     case 'Object': {
       const [member, ...rest] = path;
-      nextNode = node.members.find((m) => m.name.type === 'String' && m.name.value === member)?.value;
+      nextNode = within.members.find((m) => m.name.type === 'String' && m.name.value === member)?.value;
       if (nextNode && rest.length) {
         return findNode(nextNode, path.slice(1));
       }
@@ -25,7 +25,7 @@ export function findNode<T = momoa.AnyNode>(node: momoa.AnyNode, path?: string[]
     case 'Array': {
       const [_index, ...rest] = path;
       const index = Number.parseInt(_index!, 10);
-      nextNode = node.elements[index]?.value;
+      nextNode = within.elements[index]?.value;
       if (nextNode && rest.length) {
         return findNode(nextNode, path.slice(1));
       }
@@ -58,30 +58,6 @@ export function getObjMembers(node: momoa.ObjectNode): Record<string | number, V
     members[m.name.value] = { ...m.value, index: i };
   }
   return members;
-}
-
-/** Merge multiple Momoa documents from different sources. Conflicts will be overridden  */
-export function mergeDocuments(documents: momoa.DocumentNode[]): momoa.DocumentNode {
-  if (!documents.length) {
-    throw new Error(`Can’t merge 0 documents.`);
-  }
-  if (documents.length === 1) {
-    return documents[0]!;
-  }
-  if (documents.some((d) => d.body.type !== 'Object')) {
-    throw new Error(`mergeDocuments() can only merge top-level objects`);
-  }
-  const final = structuredClone(documents[0]!);
-  for (const next of documents.slice(1)) {
-    final.body = mergeObjects(final.body as momoa.ObjectNode, next.body as momoa.ObjectNode);
-
-    // take the longer end point. this is wrong, but it’s… less wrong
-    if (next.body.loc.end.offset > final.body.loc.end.offset) {
-      final.loc.end = { ...next.body.loc.end };
-    }
-  }
-
-  return final;
 }
 
 /** Merge Momoa Objects. */
