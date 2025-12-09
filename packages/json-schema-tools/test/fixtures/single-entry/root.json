@@ -1,0 +1,9 @@
+{
+  "root": {
+    "type": "object",
+    "properties": {
+      "$ref": "./properties/a.json",
+      "c": { "$ref": "./properties/nested/c.json" }
+    }
+  }
+}
