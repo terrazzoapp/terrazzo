@@ -307,8 +307,8 @@ The **transform** hook can populate a format with transformed values. A **format
 import { rgb } from "culori";
 
 export default function myPlugin() {
-  name: "my-plugin",
   return {
+    name: "my-plugin",
     async transform({ tokens, setTransform }) {
       setTransform("color.base.blue.500", {
         format: "js",
