@@ -1,6 +1,6 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
-import { findNode, getObjMember, JSONError, traverseAsync } from './momoa.js';
+import { findNode, getObjMember, JSONError, mergeDocuments, traverseAsync } from './momoa.js';
 import { parseRef } from './parse-ref.js';
 import type { InputSource, InputSourceWithDocument, RefMap } from './types.js';
 import { relPath } from './utils.js';
@@ -53,6 +53,7 @@ export async function bundle(
         });
   };
 
+  const originalSourceLength = sources.length; // distinguish user-provided source vs dynamic $ref source
   const origin = sources[0]!.filename;
   let document = {} as momoa.DocumentNode;
   for (let i = 0; i < sources.length; i++) {
@@ -121,33 +122,43 @@ export async function bundle(
           }
 
           const resolved = await resolveRef($refNode.value, sources[i]!.filename);
-          // if this is for another document, transform the ref
-          if (resolved.url.href !== sources[i]!.filename.href) {
+          const resolvedIsOriginalSource = sources
+            .slice(0, originalSourceLength)
+            .some((s) => s.filename.href === resolved.url.href);
+          // if this is for a new, remote document, transform the ref
+          if (!resolvedIsOriginalSource && resolved.url.href !== sources[i]!.filename.href) {
             $refNode.value = `#/$defs/${relPath(origin, resolved.url)}${resolved.subpath?.length ? `#/${resolved.subpath.join('/')}` : ''}`;
           }
         }
       },
     });
 
-    let $defs = getObjMember(document.body as momoa.ObjectNode, '$defs') as momoa.ObjectNode | undefined;
-    if (!$defs) {
-      const $defsMember = {
-        type: 'Member',
-        name: { type: 'String', value: '$defs', loc: VIRTUAL_LOC },
-        value: { type: 'Object', members: [], loc: VIRTUAL_LOC },
-        loc: VIRTUAL_LOC,
-      } as momoa.MemberNode;
-      $defs = $defsMember.value as momoa.ObjectNode;
-      (document.body as momoa.ObjectNode).members.push($defsMember);
-    }
-
     if (i > 0) {
-      $defs!.members.push({
-        type: 'Member',
-        name: { type: 'String', value: relPath(origin, resolved.filename), loc: VIRTUAL_LOC },
-        value: resolved.document.body,
-        loc: VIRTUAL_LOC,
-      });
+      // For sources a user provided, merge them together
+      if (i < originalSourceLength) {
+        document = mergeDocuments([document, resolved.document]);
+      }
+      // For all other sources discovered dynamically via $refs, hoist into $defs
+      // This is to allow for $refs pulling in document partials, and other un-mergeable structures.
+      else {
+        let $defs = getObjMember(document.body as momoa.ObjectNode, '$defs') as momoa.ObjectNode | undefined;
+        if (!$defs) {
+          const $defsMember = {
+            type: 'Member',
+            name: { type: 'String', value: '$defs', loc: VIRTUAL_LOC },
+            value: { type: 'Object', members: [], loc: VIRTUAL_LOC },
+            loc: VIRTUAL_LOC,
+          } as momoa.MemberNode;
+          $defs = $defsMember.value as momoa.ObjectNode;
+          (document.body as momoa.ObjectNode).members.push($defsMember);
+        }
+        $defs!.members.push({
+          type: 'Member',
+          name: { type: 'String', value: relPath(origin, resolved.filename), loc: VIRTUAL_LOC },
+          value: resolved.document.body,
+          loc: VIRTUAL_LOC,
+        });
+      }
     }
   }
 

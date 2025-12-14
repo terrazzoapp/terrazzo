@@ -44,4 +44,24 @@ describe('bundle', () => {
       }"
     `);
   });
+
+  it('multiple', async () => {
+    const sources = [
+      { filename: new URL('file:///a.json'), src: '{"a":"a"}' },
+      { filename: new URL('file:///b.json'), src: '{"b":"b"}' },
+      { filename: new URL('file:///c.json'), src: '{"c":"c"}' },
+    ];
+    const { document } = await bundle(sources, {
+      async req() {
+        return '';
+      },
+    });
+    expect(momoa.print(document, { indent: 2 })).toMatchInlineSnapshot(`
+      "{
+        "a": "a",
+        "b": "b",
+        "c": "c"
+      }"
+    `);
+  });
 });

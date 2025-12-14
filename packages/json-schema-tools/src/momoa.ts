@@ -60,6 +60,30 @@ export function getObjMembers(node: momoa.ObjectNode): Record<string | number, V
   return members;
 }
 
+/** Merge multiple Momoa documents from different sources. Conflicts will be overridden  */
+export function mergeDocuments(documents: momoa.DocumentNode[]): momoa.DocumentNode {
+  if (!documents.length) {
+    throw new Error(`Can’t merge 0 documents.`);
+  }
+  if (documents.length === 1) {
+    return documents[0]!;
+  }
+  if (documents.some((d) => d.body.type !== 'Object')) {
+    throw new Error(`mergeDocuments() can only merge top-level objects`);
+  }
+  const final = structuredClone(documents[0]!);
+  for (const next of documents.slice(1)) {
+    final.body = mergeObjects(final.body as momoa.ObjectNode, next.body as momoa.ObjectNode);
+
+    // take the longer end point. this is wrong, but it’s… less wrong
+    if (next.body.loc.end.offset > final.body.loc.end.offset) {
+      final.loc.end = { ...next.body.loc.end };
+    }
+  }
+
+  return final;
+}
+
 /** Merge Momoa Objects. */
 export function mergeObjects(a: momoa.ObjectNode, b: momoa.ObjectNode): momoa.ObjectNode {
   const obj: momoa.ObjectNode = structuredClone(a);
