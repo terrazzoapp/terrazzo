@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [
     css({
       // Optional: control the final CSS variable names
-      variableName: (id) => id.replace(/\./g, "-"),
+      variableName: (token) => token.id.replace(/\./g, "-"),
       // Optional: pass `skipBuild: true` to not generate a .css file if only using Vanilla Extract.
       skipBuild: false,
     }),
