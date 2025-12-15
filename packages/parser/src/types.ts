@@ -377,7 +377,7 @@ export interface ResolverSourceNormalized {
   resolutionOrder: (ResolverSetNormalized | ResolverModifierNormalized)[];
   _source: {
     filename?: URL;
-    node: momoa.DocumentNode;
+    document: momoa.DocumentNode;
   };
 }
 
@@ -459,3 +459,10 @@ export interface TransformHookOptions {
   /** Momoa documents */
   sources: InputSourceWithDocument[];
 }
+
+export interface RefMapEntry {
+  filename: string;
+  refChain: string[];
+}
+
+export type RefMap = Record<string, RefMapEntry>;

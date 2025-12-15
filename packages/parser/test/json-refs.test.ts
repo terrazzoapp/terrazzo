@@ -241,15 +241,12 @@ describe('JSON $refs', () => {
       await parse([{ filename: DEFAULT_FILENAME, src }], { config });
       expect(true).toBe(false);
     } catch (err) {
-      expect(stripAnsi((err as Error).message)).toMatch(`[parser:init] Can’t recursively embed a document within itself.
+      expect(
+        stripAnsi((err as Error).message),
+      ).toMatch(`[parser:init] $ref "#/" can’t recursively embed its parent document
 
-  3 |     "$type": "color",
-  4 |     "gray": {
-> 5 |       "$ref": "#/"
-    |               ^
-  6 |     }
-  7 |   }
-  8 | }`);
+  2 |   "$ref": "#\\/"
+  3 | }`);
     }
   });
 

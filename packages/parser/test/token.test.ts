@@ -1,22 +1,23 @@
 import * as momoa from '@humanwhocodes/momoa';
-import type { RefMap } from '@terrazzo/json-schema-tools';
 import type { TokenNormalized, TokenNormalizedSet } from '@terrazzo/token-tools';
 import { describe, expect, it } from 'vitest';
 import Logger from '../src/logger.js';
-import { aliasToRef, graphAliases, refToTokenID } from '../src/parse/token.js';
+import { aliasToTokenRef, graphAliases, refToTokenID } from '../src/parse/token.js';
+import type { RefMap } from '../src/types.js';
 
-describe('aliasToRef', () => {
-  const tests: [string, { given: Parameters<typeof aliasToRef>[0]; want: ReturnType<typeof aliasToRef> }][] = [
-    ['valid: simple', { given: '{color.blue.500}', want: { $ref: '#/color/blue/500/$value' } }],
-    ['valid: single-level', { given: '{red}', want: { $ref: '#/red/$value' } }],
-    ['valid: / char', { given: '{transition/ease/fast}', want: { $ref: '#/transition~1ease~1fast/$value' } }],
-    ['valid: ~ char', { given: '{spacing.~.200}', want: { $ref: '#/spacing/~0/200/$value' } }],
-    ['valid: ~0', { given: '{my.~0token.200}', want: { $ref: '#/my/~00token/200/$value' } }],
-    ['invalid: bad alias', { given: '{color.text.bg', want: undefined }],
-  ];
+describe('aliasToTokenRef', () => {
+  const tests: [string, { given: Parameters<typeof aliasToTokenRef>[0]; want: ReturnType<typeof aliasToTokenRef> }][] =
+    [
+      ['valid: simple', { given: '{color.blue.500}', want: { $ref: '#/color/blue/500/$value' } }],
+      ['valid: single-level', { given: '{red}', want: { $ref: '#/red/$value' } }],
+      ['valid: / char', { given: '{transition/ease/fast}', want: { $ref: '#/transition~1ease~1fast/$value' } }],
+      ['valid: ~ char', { given: '{spacing.~.200}', want: { $ref: '#/spacing/~0/200/$value' } }],
+      ['valid: ~0', { given: '{my.~0token.200}', want: { $ref: '#/my/~00token/200/$value' } }],
+      ['invalid: bad alias', { given: '{color.text.bg', want: undefined }],
+    ];
 
   it.each(tests)('%s', (_, { given, want }) => {
-    expect(aliasToRef(given)).toEqual(want);
+    expect(aliasToTokenRef(given)).toEqual(want);
   });
 });
 

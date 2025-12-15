@@ -2,10 +2,10 @@ import * as momoa from '@humanwhocodes/momoa';
 import {
   type BundleOptions,
   bundle,
+  encodeFragment,
   getObjMember,
   type InputSource,
   type InputSourceWithDocument,
-  type RefMap,
   replaceNode,
   traverse,
 } from '@terrazzo/json-schema-tools';
@@ -75,9 +75,6 @@ export async function loadSources(
   }));
   /** The sources array, indexed by filename */
   let sourceByFilename: Record<string, InputSourceWithDocument> = {};
-  /** Mapping of all final $ref resolutions. This will be used to generate the graph later. */
-  let refMap: RefMap = {};
-
   try {
     const result = await bundle(sources, {
       req,
@@ -86,7 +83,6 @@ export async function loadSources(
     });
     document = result.document;
     sourceByFilename = result.sources;
-    refMap = result.refMap;
     for (const [filename, source] of Object.entries(result.sources)) {
       const i = sources.findIndex((s) => s.filename.href === filename);
       if (i === -1) {
@@ -111,9 +107,14 @@ export async function loadSources(
   }
   logger.debug({ ...entry, message: `JSON loaded`, timing: performance.now() - firstLoad });
 
-  const rootSource = { filename: sources[0]!.filename!, document, src: momoa.print(document, { indent: 2 }) };
+  const rootSource = {
+    filename: sources[0]!.filename!,
+    document,
+    src: momoa.print(document, { indent: 2 }).replace(/\\\//g, '/'),
+  };
+
   return {
-    tokens: processTokens(rootSource, { config, logger, refMap, sources, sourceByFilename }),
+    tokens: processTokens(rootSource, { config, logger, sources, sourceByFilename }),
     sources,
   };
 }
@@ -141,7 +142,7 @@ function transformer(transform: TransformVisitors): BundleOptions['parse'] {
         const ctx = { filename, parent, path };
         const next$type = getObjMember(node, '$type');
         if (next$type?.type === 'String') {
-          const jsonPath = `#/${path.join('/')}`;
+          const jsonPath = encodeFragment(path);
           if (jsonPath.startsWith(lastPath)) {
             last$type = next$type.value;
           }

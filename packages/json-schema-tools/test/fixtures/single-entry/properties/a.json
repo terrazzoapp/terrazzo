@@ -1,0 +1,6 @@
+{
+  "$ref": "./b.json",
+  "a": {
+    "type": "string"
+  }
+}

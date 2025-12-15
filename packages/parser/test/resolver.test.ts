@@ -214,11 +214,15 @@ describe('Resolver module', () => {
           ],
           sets: {
             allTokens: {
+              name: 'allTokens', // Note: this is “incorrect,” however, these actually share the same point in memory
+              type: 'set',
               sources: [{ color: { blue: { '600': lightToken } } }],
             },
           },
           modifiers: {
             tzMode: {
+              name: 'tzMode',
+              type: 'modifier',
               description: 'Automatically built from $extensions.mode',
               contexts: {
                 light: [{ color: { blue: { '600': lightToken } } }],
@@ -327,7 +331,7 @@ describe('Resolver module', () => {
         { config },
       );
 
-      expect(tokens).toEqual({
+      expect(tokens, 'tokens').toEqual({
         'color.blue.6': expect.objectContaining({
           $type: 'color',
           $value: {
@@ -339,7 +343,7 @@ describe('Resolver module', () => {
         }),
       });
 
-      expect(resolver?.apply({ theme: 'light' })).toEqual({
+      expect(resolver?.apply({ theme: 'light' }), '{theme: light}').toEqual({
         'color.blue.6': expect.objectContaining({
           $type: 'color',
           $value: {
@@ -350,7 +354,7 @@ describe('Resolver module', () => {
           },
         }),
       });
-      expect(resolver?.apply({ theme: 'dark' })).toEqual({
+      expect(resolver?.apply({ theme: 'dark' }), '{theme: dark}').toEqual({
         'color.blue.6': expect.objectContaining({
           $type: 'color',
           $value: {
@@ -362,10 +366,10 @@ describe('Resolver module', () => {
         }),
       });
 
-      expect(resolver?.listPermutations()).toEqual([{ theme: 'light' }, { theme: 'dark' }]);
-      expect(resolver?.isValidInput({ theme: 'dark' })).toBe(true);
-      expect(resolver?.isValidInput({})).toBe(false);
-      expect(resolver?.isValidInput({ theme: 'foobar' })).toBe(false);
+      expect(resolver?.listPermutations(), 'listPermutations()').toEqual([{ theme: 'light' }, { theme: 'dark' }]);
+      expect(resolver?.isValidInput({ theme: 'dark' }), 'isValidInput({theme: dark})').toBe(true);
+      expect(resolver?.isValidInput({}), 'isValidInput({})').toBe(false);
+      expect(resolver?.isValidInput({ theme: 'foobar' }), 'isValidInput({theme: foobar})').toBe(false);
     });
   });
 });

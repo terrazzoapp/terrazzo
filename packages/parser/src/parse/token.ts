@@ -1,5 +1,5 @@
 import * as momoa from '@humanwhocodes/momoa';
-import { getObjMember, type InputSourceWithDocument, parseRef, type RefMap } from '@terrazzo/json-schema-tools';
+import { encodeFragment, getObjMember, type InputSourceWithDocument, parseRef } from '@terrazzo/json-schema-tools';
 import {
   type GroupNormalized,
   isAlias,
@@ -9,10 +9,20 @@ import {
 } from '@terrazzo/token-tools';
 import wcmatch from 'wildcard-match';
 import type { default as Logger } from '../logger.js';
-import type { Config, ReferenceObject } from '../types.js';
+import type { Config, ReferenceObject, RefMap } from '../types.js';
 
 /** Convert valid DTCG alias to $ref */
-export function aliasToRef(alias: string, mode?: string): ReferenceObject | undefined {
+export function aliasToGroupRef(alias: string): ReferenceObject | undefined {
+  const id = parseAlias(alias);
+  // if this is invalid, stop
+  if (id === alias) {
+    return;
+  }
+  return { $ref: `#/${id.replace(/~/g, '~0').replace(/\//g, '~1').replace(/\./g, '/')}` };
+}
+
+/** Convert valid DTCG alias to $ref */
+export function aliasToTokenRef(alias: string, mode?: string): ReferenceObject | undefined {
   const id = parseAlias(alias);
   // if this is invalid, stop
   if (id === alias) {
@@ -40,12 +50,12 @@ export function tokenFromNode(
     return undefined;
   }
 
-  const jsonID = `#/${path.join('/')}`;
+  const jsonID = encodeFragment(path);
   const id = path.join('.');
 
   const originalToken = momoa.evaluate(node) as any;
 
-  const groupID = `#/${path.slice(0, -1).join('/')}`;
+  const groupID = encodeFragment(path.slice(0, -1));
   const group = groups[groupID]!;
   if (group?.tokens && !group.tokens.includes(id)) {
     group.tokens.push(id);
@@ -132,7 +142,7 @@ export function tokenRawValuesFromNode(
     return undefined;
   }
 
-  const jsonID = `#/${path.join('/')}`;
+  const jsonID = encodeFragment(path);
   const rawValues: TokenRawValues = {
     jsonID,
     originalValue: momoa.evaluate(node),
@@ -173,7 +183,7 @@ export function groupFromNode(
   { path, groups }: { path: string[]; groups: Record<string, GroupNormalized> },
 ): GroupNormalized {
   const id = path.join('.');
-  const jsonID = `#/${path.join('/')}`;
+  const jsonID = encodeFragment(path);
 
   // group
   if (!groups[jsonID]) {
@@ -354,7 +364,7 @@ export function aliasToMomoa(
     end: { line: -1, column: -1, offset: 0 },
   },
 ): momoa.ObjectNode | undefined {
-  const $ref = aliasToRef(alias);
+  const $ref = aliasToTokenRef(alias);
   if (!$ref) {
     return;
   }
@@ -383,6 +393,10 @@ export function refToTokenID($ref: ReferenceObject | string): string | undefined
     return;
   }
   const { subpath } = parseRef(path);
+  // if this ID comes from #/$defs/…, strip the first 2 segments to get the global ID
+  if (subpath?.[0] === '$defs') {
+    subpath.splice(0, 2);
+  }
   return (subpath?.length && subpath.join('.').replace(/\.(\$value|\$extensions).*$/, '')) || undefined;
 }
 
@@ -422,7 +436,7 @@ const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {
 };
 
 /**
- * Resolve DTCG aliases
+ * Resolve DTCG aliases, $extends, and $ref
  */
 export function resolveAliases(
   tokens: TokenNormalizedSet,
@@ -438,7 +452,7 @@ export function resolveAliases(
 
     for (const mode of Object.keys(token.mode)) {
       function resolveInner(alias: string, refChain: string[]): string {
-        const nextRef = aliasToRef(alias, mode)?.$ref;
+        const nextRef = aliasToTokenRef(alias, mode)?.$ref;
         if (!nextRef) {
           logger.error({ ...aliasEntry, message: `Internal error resolving ${JSON.stringify(refChain)}` });
           throw new Error('Internal error');

@@ -4,43 +4,6 @@ Library for bundling JSON Schema files and parsing [JSON refs](https://datatrack
 
 ## API
 
-### bundle
-
-Given an array of JSON schema documents, will bundle them in array order, and produces a [Momoa AST](https://github.com/humanwhocodes/momoa) as well as mapping of all `$ref`s resolved.
-
-```ts
-import { bundle } from "@terrazzo/json-schema-tools";
-import * as momoa from "@humanwhocodes/momoa";
-
-const documents = [
-  {
-    filename: new URL("file:///foo.json"),
-    src: "…", // src may be
-  },
-];
-
-const { document, refMap } = await bundle(
-  documents,
-  { req: (url) => fetch(url).then((res) => res.text()) }
-);
-
-console.log(document); // Momoa AST
-console.log(momoa.evaluate(document)); // produce in-memory JSON object
-console.log(momoa.print(document)); // produce JSON string, with original indentation and everything preserved
-
-console.log(refMap); // Key–value mapping of all $refs resolved.
-```
-
-#### Options
-
-The `bundle()` method takes an options param as its 2nd argument. These are all the options:
-
-| Name            | Type                                       | Description                                                                                                                                                                                                        |
-| :-------------- | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **req**         | (src: URL, origin: URL) => Promise<string> | Handle remote requests, either via fetching or file system reads.                                                                                                                                                  |
-| **parse**       | (src: any, filename: URL) => DocumentNode; | Optional wrapper around Momoa’s parser. You may want to do this if you want to transform the sources as they come in, before they are parsed. If providing this function, you must `parse()` using Momoa yourself. |
-| **yamlToMomoa** | `yaml-to-momoa`                            | Pass in the module for `yaml-to-momoa` to add support for YAML (`import` it, then pass it as a param).                                                                                                             |
-
 ### parseRef
 
 Lower-level function to parse a `$ref` path. Accepts either a string or reference object.
@@ -64,14 +27,63 @@ parseRef({ $ref: "#/baz/bat" }); // { url: '.', subpath: ['baz', 'bat'] }
 
 _Note: for every package tested, we’re comparing against the lowest-level method that does equivalent work. We’re not comparing apples to oranges and testing extraneous codepaths._
 
+### bundle
+
+Given an array of JSON schema documents, will bundle them together as a [Momoa AST](https://github.com/humanwhocodes/momoa).
+
+```ts
+import { bundle } from "@terrazzo/json-schema-tools";
+import * as momoa from "@humanwhocodes/momoa";
+
+const documents = [
+  {
+    filename: new URL("file:///a.json"),
+    src: '{"a":"a"}',
+  },
+  {
+    filename: new URL("file:///b.json"),
+    src: '{"b":"b"}',
+  },
+  {
+    filename: new URL("file:///b.json"),
+    src: '{"c":"c"}',
+  },
+];
+
+const document = await bundle(documents, {
+  req: (url) => fetch(url).then((res) => res.text()),
+});
+
+console.log(momoa.print(document)); // produce JSON string, with original indentation and everything preserved
+console.log(momoa.evaluate(document)); // produce in-memory JS
+```
+
+#### Options
+
+The `bundle()` method takes an options param as its 2nd argument. These are all the options:
+
+| Name            | Type                                       | Description                                                                                                                                                                                                        |
+| :-------------- | :----------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **req**         | (src: URL, origin: URL) => Promise<string> | Handle remote requests, either via fetching or file system reads.                                                                                                                                                  |
+| **parse**       | (src: any, filename: URL) => DocumentNode; | Optional wrapper around Momoa’s parser. You may want to do this if you want to transform the sources as they come in, before they are parsed. If providing this function, you must `parse()` using Momoa yourself. |
+| **yamlToMomoa** | `yaml-to-momoa`                            | Pass in the module for `yaml-to-momoa` to add support for YAML (`import` it, then pass it as a param).                                                                                                             |
+
+### encodeFragment
+
+Re-encode a path array back into a pointer string.
+
+```ts
+encodeFragment(["components", "schemas", "FooBar"]); // #/components/schemas/FooBar
+```
+
 ## Additional information
 
 ### Why Momoa?
 
 There are 3 main problems with relying on JavaScript’s major parser alone:
 
-1. **It doesn’t preserve original source locations.** For hand-authored JSON, it’s helpful to preserve source maps, and original syntax. That way in case of an error, we can point back to the origin.
-2. **It doesn’t support JSONC (JSON with comments) and other quality of life improvements.** Momoa handles JSONC, and when encountering invalid JSON, it can point to the exact file and line of the error, rather than an obscure “somewhere there was a parsing error.”
-3. **Transformations are easier.** The native replacer/reviver API isn’t as intuitive as standard AST operations.
+1. **It doesn’t preserve original source locations.** For hand-authored JSON, it’s helpful to preserve source maps, and original syntax. That way we can provide exact line & column in errors.
+2. **It doesn’t support JSONC (JSON with comments) and other quality of life improvements.** Momoa handles comments in JSONC and JSON5, something standard `JSON.parse()` can’t do.
+3. **Transformations are easier.** The native replacer/reviver API isn’t as intuitive and flexible as standard AST operations.
 
-Both of these improvements make working with Momoa preferable to raw JSON. And don’t incur a significant performance cost. If you only need the end result, you can simply call `evaluate()` or `print()` from Momoa to flatten it into an object or string respectively. But all the source mapping and AST layers are there if needed.
+All of these improvements make working with Momoa preferable to raw JSON, and also without incurring significant performance cost (`JSON.parse()` will always be a little faster, sure, but this isn’t that much slower either).

@@ -153,7 +153,7 @@ export default defineConfig({
 
 :::
 
-Next, if you’re still using legacy `$extensions.mode`, you’ll want to use `tz.mode` as the context name, e.g.:
+Next, if you’re still using legacy `$extensions.mode`, you’ll want to use `tzMode` as the context name, e.g.:
 
 :::code-group
 
@@ -164,7 +164,7 @@ export default defineConfig({
   plugins: [
     js({
 +     contexts: {
-+       'tz.mode': ['light', 'dark'],
++       'tzMode': ['light', 'dark'],
 +     }
     }),
   ],
