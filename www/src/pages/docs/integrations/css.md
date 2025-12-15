@@ -31,7 +31,7 @@ export default defineConfig({
   plugins: [
     css({
       filename: "tokens.css",
-      variableName: (id) => id.replace(/\./g, "-"),
+      variableName: (token) => token.id.replace(/\./g, "-"),
       baseSelector: ":root",
       baseScheme: "light dark", // Optional: support both light and dark themes
     }),
@@ -327,7 +327,7 @@ export default defineConfig({
           selectors: ["@media (prefers-reduced-motion)"],
         },
       ],
-      variableName: (id) => kebabCase(id),
+      variableName: (token) => kebabCase(token.id),
     }),
   ],
 });
@@ -340,7 +340,7 @@ export default defineConfig({
 | `filename`      | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
 | `exclude`       | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
 | `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                                            |
-| `variableName`  | `(id: string) => string`                                       | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
+| `variableName`  | `(token: TokenNormalized) => string`                           | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
 | `transform`     | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
 | `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
 | `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
