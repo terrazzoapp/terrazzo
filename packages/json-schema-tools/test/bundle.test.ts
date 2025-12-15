@@ -12,34 +12,44 @@ describe('bundle', () => {
         return await fs.readFile(url, 'utf8');
       },
     });
-    expect(momoa.print(document, { indent: 2 })).toMatchInlineSnapshot(`
+    expect(momoa.print(document, { indent: 2 }).replace(/\\\//g, '/')).toMatchInlineSnapshot(`
       "{
         "root": {
           "type": "object",
           "properties": {
-            "$ref": "#\\/$defs\\/.\\/properties\\/a.json",
+            "$ref": "#/$defs/.~1properties~1a.json",
             "c": {
-              "$ref": "#\\/$defs\\/.\\/properties\\/nested\\/c.json"
+              "$ref": "#/$defs/.~1properties~1nested~1c.json"
+            },
+            "partial": {
+              "$ref": "#/$defs/.~1properties~1partial.json/deeply/nested/value"
             }
           }
         },
         "$defs": {
-          ".\\/properties\\/a.json": {
-            "$ref": "#\\/$defs\\/.\\/properties\\/b.json",
+          ".~1properties~1a.json": {
+            "$ref": "#/$defs/.~1properties~1b.json",
             "a": {
               "type": "string"
             }
           },
-          ".\\/properties\\/nested\\/c.json": {
+          ".~1properties~1nested~1c.json": {
             "description": {
-              "$ref": "#\\/$defs\\/.\\/_desc.json"
+              "$ref": "#/$defs/.~1_desc.json"
             },
             "type": "number"
           },
-          ".\\/properties\\/b.json": {
+          ".~1properties~1partial.json": {
+            "deeply": {
+              "nested": {
+                "value": true
+              }
+            }
+          },
+          ".~1properties~1b.json": {
             "type": "boolean"
           },
-          ".\\/_desc.json": "Generic description"
+          ".~1_desc.json": "Generic description"
         }
       }"
     `);

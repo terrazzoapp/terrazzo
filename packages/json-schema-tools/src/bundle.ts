@@ -1,8 +1,8 @@
 import * as momoa from '@humanwhocodes/momoa';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { findNode, getObjMember, JSONError, mergeDocuments, traverseAsync } from './momoa.js';
-import { parseRef } from './parse-ref.js';
-import type { InputSource, InputSourceWithDocument, RefMap } from './types.js';
+import { encodeFragment, parseRef } from './parse-ref.js';
+import type { InputSource, InputSourceWithDocument } from './types.js';
 import { relPath } from './utils.js';
 
 export interface BundleOptions {
@@ -28,9 +28,8 @@ const VIRTUAL_LOC: momoa.LocationRange = {
 export async function bundle(
   sources: InputSource[],
   { req, parse: userParse, yamlToMomoa }: BundleOptions,
-): Promise<{ document: momoa.DocumentNode; sources: Record<string, InputSourceWithDocument>; refMap: RefMap }> {
+): Promise<{ document: momoa.DocumentNode; sources: Record<string, InputSourceWithDocument> }> {
   const cache: Record<string, InputSourceWithDocument> = {};
-  const refMap: RefMap = {};
   const parse: NonNullable<BundleOptions['parse']> = async (src, filename) => {
     if (typeof src === 'string' && !maybeRawJSON(src)) {
       if (yamlToMomoa) {
@@ -127,7 +126,7 @@ export async function bundle(
             .some((s) => s.filename.href === resolved.url.href);
           // if this is for a new, remote document, transform the ref
           if (!resolvedIsOriginalSource && resolved.url.href !== sources[i]!.filename.href) {
-            $refNode.value = `#/$defs/${relPath(origin, resolved.url)}${resolved.subpath?.length ? `#/${resolved.subpath.join('/')}` : ''}`;
+            $refNode.value = `#/$defs/${makeDefsKey(origin, resolved.url)}${resolved.subpath?.length ? encodeFragment(resolved.subpath!).replace(/^#/, '') : ''}`;
           }
         }
       },
@@ -154,7 +153,7 @@ export async function bundle(
         }
         $defs!.members.push({
           type: 'Member',
-          name: { type: 'String', value: relPath(origin, resolved.filename), loc: VIRTUAL_LOC },
+          name: { type: 'String', value: makeDefsKey(origin, resolved.filename), loc: VIRTUAL_LOC },
           value: resolved.document.body,
           loc: VIRTUAL_LOC,
         });
@@ -165,11 +164,15 @@ export async function bundle(
   return {
     document,
     sources: cache,
-    refMap,
   };
 }
 
 /** Determine if an input is likely a JSON string */
 export function maybeRawJSON(input: string): boolean {
   return typeof input === 'string' && /^\s*[{"[]/.test(input);
+}
+
+/** Make safe key for $defs */
+function makeDefsKey(origin: URL, resolved: URL): string {
+  return relPath(origin, resolved).replace(/~/g, '~0').replace(/\//g, '~1');
 }

@@ -12,10 +12,3 @@ export interface InputSourceWithDocument extends InputSource {
 }
 
 export type ValueNodeWithIndex = momoa.ValueNode & { index: number };
-
-export interface RefMapEntry {
-  filename: string;
-  refChain: string[];
-}
-
-export type RefMap = Record<string, RefMapEntry>;

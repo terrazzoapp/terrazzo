@@ -161,7 +161,6 @@ export function createResolver(
         config,
         logger,
         sourceByFilename: { [resolverSource._source.filename!.href]: rootSource },
-        refMap: {},
         sources,
       });
       resolverCache[inputKey] = tokens;

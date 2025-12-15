@@ -68,6 +68,14 @@ The `bundle()` method takes an options param as its 2nd argument. These are all 
 | **parse**       | (src: any, filename: URL) => DocumentNode; | Optional wrapper around Momoa’s parser. You may want to do this if you want to transform the sources as they come in, before they are parsed. If providing this function, you must `parse()` using Momoa yourself. |
 | **yamlToMomoa** | `yaml-to-momoa`                            | Pass in the module for `yaml-to-momoa` to add support for YAML (`import` it, then pass it as a param).                                                                                                             |
 
+### encodeFragment
+
+Re-encode a path array back into a pointer string.
+
+```ts
+encodeFragment(["components", "schemas", "FooBar"]); // #/components/schemas/FooBar
+```
+
 ## Additional information
 
 ### Why Momoa?

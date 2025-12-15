@@ -70,3 +70,17 @@ export function subpathFragment(fragment: string) {
   }
   return subpath.length ? subpath : undefined;
 }
+
+/**
+ * Re-encode a subpath array back into a string
+ */
+export function encodeFragment(path: (string | number | boolean)[]): string {
+  if (!path.length) {
+    return '#/';
+  }
+  let pointer = '#';
+  for (const part of path) {
+    pointer += `/${typeof part === 'string' ? part.replace(/~/g, '~0').replace(/\//g, '~1') : part}`;
+  }
+  return pointer;
+}

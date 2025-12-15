@@ -15,8 +15,9 @@ export function findNode<T = momoa.AnyNode>(within: momoa.AnyNode, path?: string
       return findNode(within.body, path);
     }
     case 'Object': {
-      const [member, ...rest] = path;
-      nextNode = within.members.find((m) => m.name.type === 'String' && m.name.value === member)?.value;
+      const [memberRaw, ...rest] = path;
+      const memberName = memberRaw?.replace(/~/g, '~0').replace(/\//g, '~1');
+      nextNode = within.members.find((m) => m.name.type === 'String' && m.name.value === memberName)?.value;
       if (nextNode && rest.length) {
         return findNode(nextNode, path.slice(1));
       }

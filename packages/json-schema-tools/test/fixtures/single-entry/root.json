@@ -3,7 +3,8 @@
     "type": "object",
     "properties": {
       "$ref": "./properties/a.json",
-      "c": { "$ref": "./properties/nested/c.json" }
+      "c": { "$ref": "./properties/nested/c.json" },
+      "partial": {"$ref": "./properties/partial.json#/deeply/nested/value"}
     }
   }
 }
