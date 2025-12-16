@@ -33,6 +33,8 @@ describe('computePreviewValue', () => {
     error: vi.fn(),
     info: vi.fn(),
     debug: vi.fn(),
+    assert: vi.fn(),
+    assertTest: vi.fn(),
     level: 'info' as const,
     debugScope: '',
     errorCount: 0,
