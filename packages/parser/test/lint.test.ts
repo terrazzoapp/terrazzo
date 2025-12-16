@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
 
-import { defineConfig, type Logger, parse } from '../src/index.js';
+import { defineConfig, type LogEntry, Logger, parse } from '../src/index.js';
 import {
   A11Y_MIN_CONTRAST,
   A11Y_MIN_FONT_SIZE,
@@ -694,26 +694,16 @@ describe('rules', () => {
       },
       { cwd },
     );
+
+    class MockLogger extends Logger {
+      error({ message }: LogEntry) {
+        errors.push(message);
+      }
+    }
+
     result = await parse([{ filename: DEFAULT_FILENAME, src: given.tokens }], {
       config,
-      logger: {
-        level: 'error',
-        debugCount: 0,
-        debugScope: '*',
-        errorCount: 0,
-        infoCount: 0,
-        warnCount: 0,
-        error({ message }) {
-          errors.push(message);
-        },
-        warn() {},
-        info() {},
-        debug() {},
-        stats() {
-          return { debugCount: 0, errorCount: 0, infoCount: 0, warnCount: 0 };
-        },
-        setLevel() {},
-      } as Logger,
+      logger: new MockLogger(),
     });
     if (want.success) {
       expect(result).toBeTruthy();
