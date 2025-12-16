@@ -101,8 +101,6 @@ export function processTokens(
   function flatten$extends(node: momoa.ObjectNode, chain: string[]) {
     const memberKeys = node.members.map((m) => m.name.type === 'String' && m.name.value).filter(Boolean) as string[];
 
-    let extended: momoa.ObjectNode | undefined;
-
     if (memberKeys.includes('$extends')) {
       const $extends = getObjMember(node, '$extends') as momoa.StringNode;
       if ($extends.type !== 'String') {
@@ -125,11 +123,12 @@ export function processTokens(
       }
 
       chain.push(next!.$ref);
-      extended = findNode(rootSource.document, parseRef(next!.$ref).subpath ?? []) as momoa.ObjectNode | undefined;
+      const extended = findNode(rootSource.document, parseRef(next!.$ref).subpath ?? []);
       logger.assert(extended, { ...entry, message: 'Could not resolve $extends', node: $extends, src: rootSource.src });
-      if (extended.type !== 'Object') {
-        logger.error({ ...entry, message: '$extends must resolve to a group of tokens', node });
-      }
+      const isObject = (v: momoa.AnyNode): v is momoa.ObjectNode => {
+        return v.type === 'Object';
+      };
+      logger.assertTest(extended, isObject, { ...entry, message: '$extends must resolve to a group of tokens', node });
 
       // To ensure this is resolvable, try and flatten this node first (will catch circular refs)
       flatten$extends(extended, chain);

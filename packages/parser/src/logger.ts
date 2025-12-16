@@ -110,6 +110,13 @@ export default class Logger {
     }
   }
 
+  /** Asserts a given value passes the provided test; if it isn't, log errors (and exit) */
+  assertTest<I, T extends I>(value: I, test: (value: I) => value is T, ...entries: LogEntry[]): asserts value is T {
+    if (!test(value)) {
+      this.error(...entries);
+    }
+  }
+
   /** Log an error message (always; can’t be silenced) */
   error(...entries: LogEntry[]) {
     const message: string[] = [];
