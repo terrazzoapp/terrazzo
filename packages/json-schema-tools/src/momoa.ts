@@ -2,9 +2,9 @@ import * as momoa from '@humanwhocodes/momoa';
 import type { ValueNodeWithIndex } from './types.js';
 
 /** Find Momoa node by traversing paths */
-export function findNode<T = momoa.AnyNode>(within: momoa.AnyNode, path?: string[]): T {
+export function findNode(within: momoa.AnyNode, path?: string[]): momoa.AnyNode | undefined {
   if (!path?.length) {
-    return within as T;
+    return within;
   }
 
   let nextNode: momoa.AnyNode | undefined;
@@ -34,7 +34,7 @@ export function findNode<T = momoa.AnyNode>(within: momoa.AnyNode, path?: string
     }
   }
 
-  return nextNode as T;
+  return nextNode;
 }
 
 /** Get single member by name. Better when you only need a single value. */

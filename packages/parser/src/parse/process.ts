@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import {
   encodeFragment,
   findNode,
@@ -34,19 +34,23 @@ export interface ProcessTokensOptions {
 
 export function processTokens(
   rootSource: InputSourceWithDocument,
-  { config, logger, sourceByFilename }: ProcessTokensOptions,
+  { config, logger: _logger, sourceByFilename }: ProcessTokensOptions,
 ): TokenNormalizedSet {
+  const logger: Logger = _logger;
   const entry = { group: 'parser' as const, label: 'init' };
 
   // 1. Inline $refs to discover any additional tokens
   const refMap: RefMap = {};
   function resolveRef(node: momoa.StringNode, chain: string[]): momoa.AnyNode {
     const { subpath } = parseRef(node.value);
-    if (!subpath) {
-      logger.error({ ...entry, message: 'Can’t resolve $ref', node, src: rootSource.src });
-      // exit
-    }
+    logger.assert(subpath, { ...entry, message: 'Can’t resolve $ref', node, src: rootSource.src });
     const next = findNode(rootSource.document, subpath);
+    logger.assert(next, {
+      ...entry,
+      message: "Can't find $ref",
+      node,
+      src: rootSource.src,
+    });
     if (next?.type === 'Object') {
       const next$ref = getObjMember(next, '$ref');
       if (next$ref && next$ref.type === 'String') {
@@ -121,18 +125,16 @@ export function processTokens(
       }
 
       chain.push(next!.$ref);
-      extended = findNode(rootSource.document, parseRef(next!.$ref).subpath ?? []);
-      if (!extended) {
-        logger.error({ ...entry, message: 'Could not resolve $extends', node: $extends, src: rootSource.src });
-      }
-      if (extended!.type !== 'Object') {
+      extended = findNode(rootSource.document, parseRef(next!.$ref).subpath ?? []) as momoa.ObjectNode | undefined;
+      logger.assert(extended, { ...entry, message: 'Could not resolve $extends', node: $extends, src: rootSource.src });
+      if (extended.type !== 'Object') {
         logger.error({ ...entry, message: '$extends must resolve to a group of tokens', node });
       }
 
       // To ensure this is resolvable, try and flatten this node first (will catch circular refs)
-      flatten$extends(extended!, chain);
+      flatten$extends(extended, chain);
 
-      replaceNode(node, mergeObjects(extended!, node));
+      replaceNode(node, mergeObjects(extended, node));
     }
 
     // Deeply-traverse for any interior $extends (even if it wasn’t at the top level)
