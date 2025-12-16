@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LogEntry, default as Logger } from '../logger.js';
 
