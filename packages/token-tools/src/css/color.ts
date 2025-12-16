@@ -42,8 +42,10 @@ export function transformColor(
   options: TransformCSSValueOptions,
 ): string | WideGamutColorValue {
   const { transformAlias = defaultAliasTransform, tokensSet } = options;
-  if (token.aliasChain?.[0]) {
-    return transformAlias(tokensSet[token.aliasChain[0]]!);
+
+  const firstAlias = token.aliasChain?.[0];
+  if (firstAlias && tokensSet[firstAlias]) {
+    return transformAlias(tokensSet[firstAlias]);
   }
 
   const {
