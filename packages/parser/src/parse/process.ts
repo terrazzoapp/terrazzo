@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import {
   encodeFragment,
   findNode,
