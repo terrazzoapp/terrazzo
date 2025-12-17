@@ -1,5 +1,5 @@
 import type { TokenNormalizedSet } from '../types.js';
-import type { IDGenerator } from './lib.js';
+import type { IDGenerator, StrictIDGenerator } from './lib.js';
 
 export interface TransformCSSValueOptions {
   /** Complete set of tokens (needed to resolve full and partial aliases) */
@@ -15,4 +15,8 @@ export interface TransformCSSValueOptions {
      */
     depth?: 24 | 30 | 36 | 48 | 'unlimited';
   };
+}
+
+export interface StrictTransformCSSValueOptions extends TransformCSSValueOptions {
+  transformAlias?: StrictIDGenerator;
 }

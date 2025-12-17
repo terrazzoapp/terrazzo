@@ -8,7 +8,7 @@ import type {
   TokenNormalized,
   TypographyTokenNormalized,
 } from '../types.js';
-import type { TransformCSSValueOptions } from './css-types.js';
+import type { StrictTransformCSSValueOptions } from './css-types.js';
 import { transformDimension } from './dimension.js';
 import { transformFontFamily } from './font-family.js';
 import { transformFontWeight } from './font-weight.js';
@@ -17,7 +17,7 @@ import { transformNumber } from './number.js';
 import { transformString } from './string.js';
 
 /** Convert typography value to multiple CSS values */
-export function transformTypography(token: TypographyTokenNormalized, options: TransformCSSValueOptions) {
+export function transformTypography(token: TypographyTokenNormalized, options: StrictTransformCSSValueOptions) {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   const output: Record<string, string> = {};
   for (const [property, subvalue] of Object.entries(token.$value)) {

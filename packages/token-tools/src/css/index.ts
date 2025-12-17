@@ -2,13 +2,14 @@ import type { TokenNormalized } from '../types.js';
 import { transformBoolean } from './boolean.js';
 import { transformBorder } from './border.js';
 import { transformColor } from './color.js';
-import type { TransformCSSValueOptions } from './css-types.js';
+import type { StrictTransformCSSValueOptions, TransformCSSValueOptions } from './css-types.js';
 import { transformCubicBezier } from './cubic-bezier.js';
 import { transformDimension } from './dimension.js';
 import { transformDuration } from './duration.js';
 import { transformFontFamily } from './font-family.js';
 import { transformFontWeight } from './font-weight.js';
 import { transformGradient } from './gradient.js';
+import { defaultAliasTransform } from './lib.js';
 import { transformLink } from './link.js';
 import { transformNumber } from './number.js';
 import { transformShadow } from './shadow.js';
@@ -38,12 +39,22 @@ export * from './typography.js';
 /** Main CSS Transform */
 export function transformCSSValue<T extends TokenNormalized = TokenNormalized>(
   token: T,
-  { mode, ...options }: { mode: keyof T['mode'] } & TransformCSSValueOptions,
+  { mode, transformAlias = defaultAliasTransform, ...rest }: { mode: keyof T['mode'] } & TransformCSSValueOptions,
 ) {
   const selectedMode = token.mode[mode as keyof typeof token.mode];
   if (!selectedMode) {
     return;
   }
+
+  const options: StrictTransformCSSValueOptions = {
+    transformAlias: (token) => {
+      if (!token) {
+        throw new Error('Undefined token');
+      }
+      return transformAlias(token);
+    },
+    ...rest,
+  };
   const tokenWithModeValue: T = {
     id: token.id,
     $type: token.$type,

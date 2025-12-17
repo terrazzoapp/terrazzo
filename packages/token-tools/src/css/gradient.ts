@@ -1,16 +1,16 @@
 import type { ColorTokenNormalized, GradientTokenNormalized } from '../types.js';
 import { transformColor, type WideGamutColorValue } from './color.js';
-import type { TransformCSSValueOptions } from './css-types.js';
+import type { StrictTransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
 /** Convert gradient value to CSS */
 export function transformGradient(
   token: GradientTokenNormalized,
-  options: TransformCSSValueOptions,
+  options: StrictTransformCSSValueOptions,
 ): string | WideGamutColorValue {
   const { tokensSet, transformAlias = defaultAliasTransform } = options;
   if (token.aliasChain?.[0]) {
-    return transformAlias(tokensSet[token.aliasChain[0]]!);
+    return transformAlias(tokensSet[token.aliasChain[0]]);
   }
 
   let isHDR = false;
@@ -21,7 +21,7 @@ export function transformGradient(
   for (let i = 0; i < token.$value.length; i++) {
     const { color, position } = token.$value[i]!;
     const colorValue = token.partialAliasOf?.[i]?.color
-      ? transformAlias(tokensSet[token.partialAliasOf[i]!.color!]!)
+      ? transformAlias(tokensSet[token.partialAliasOf![i]!.color!])
       : transformColor({ $value: color } as ColorTokenNormalized, options);
     if (typeof colorValue !== 'string') {
       isHDR = true;
@@ -29,7 +29,7 @@ export function transformGradient(
     colors.push(colorValue);
     positions.push(
       token.partialAliasOf?.[i]?.position
-        ? transformAlias(tokensSet[token.partialAliasOf[i]!.position!]!)
+        ? transformAlias(tokensSet[token.partialAliasOf[i]!.position!])
         : `${100 * position}%`,
     );
   }

@@ -1,9 +1,14 @@
 import type { TokenNormalized } from '../types.js';
 
+/**
+ * Function that generates a var(…) statement
+ * Will throw error if token not provided
+ * */
+export type StrictIDGenerator<T = TokenNormalized> = (token: T | undefined) => string;
 /** Function that generates a var(…) statement */
 export type IDGenerator<T = TokenNormalized> = (token: T) => string;
 
-export function defaultAliasTransform(token: TokenNormalized) {
+export function defaultAliasTransform(token: TokenNormalized | undefined) {
   if (!token) {
     throw new Error('Undefined token');
   }
