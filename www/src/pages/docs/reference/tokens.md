@@ -338,7 +338,7 @@ Refer to each plugin’s documentation to learn what special features are availa
 ```json
 {
   "myCustomValue": {
-    "$type": "boolean",
+    "$type": "string",
     "$value": ""
   }
 }
