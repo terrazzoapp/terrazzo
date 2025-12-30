@@ -1,5 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { flattenThemeObj, type TailwindPluginOptions } from './lib.js';
 
 export const FORMAT_ID = 'tailwind';
@@ -41,7 +42,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
             }
             setTransform(token.id, {
               format: FORMAT_ID,
-              localID: `--${path.join('-')}-${relName.replace(/\./g, '-')}`,
+              localID: makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`),
               value: typeof token.value === 'object' ? token.value['.']! : token.value,
               mode: variant, // ! <- not the original mode!
             });
