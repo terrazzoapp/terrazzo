@@ -23,7 +23,7 @@ An emerging pattern in design token naming is layering **Primitive** → **Seman
 | Semantic  | 2nd layer. Consists of **Meaning** and **usage** (e.g. `color.success`).                      |
 | Component | 3rd layer. Maps tokens from previous layers to component properties (e.g. `button.bg-color`). |
 
-All layers will use [modes](/guides/modes). And for that reason, every additional layer of tokens exponentially increases the possible number of tokens you’ll have to manage. But by the time you’ve reached the component layer, you’ve already reached an order of magnitude that is unsustainable for most teams (Atlassian quoted their number of tokens at 37,000 due to component tokens [source from Config 2024; talk upload pending]!). And for that reason, limiting your tokens to **2 layers: primitive and semantic** will yield dividends in saved time and complexity.
+All layers will use [modes](/docs/guides/modes). And for that reason, every additional layer of tokens exponentially increases the possible number of tokens you’ll have to manage. But by the time you’ve reached the component layer, you’ve already reached an order of magnitude that is unsustainable for most teams (Atlassian quoted their number of tokens at 37,000 due to component tokens [source from Config 2024; talk upload pending]!). And for that reason, limiting your tokens to **2 layers: primitive and semantic** will yield dividends in saved time and complexity.
 
 :::warning
 
