@@ -13,7 +13,7 @@ export interface BuildFormatOptions {
   modeSelectors: CSSPluginOptions['modeSelectors'];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
-  baseScheme: CSSPluginOptions['baseScheme'];
+  baseColorScheme: CSSPluginOptions['baseColorScheme'];
 }
 
 export default function buildFormat({
@@ -22,7 +22,7 @@ export default function buildFormat({
   utility,
   modeSelectors,
   baseSelector,
-  baseScheme,
+  baseColorScheme,
 }: BuildFormatOptions): string {
   const rules: CSSRule[] = [];
 
@@ -33,8 +33,8 @@ export default function buildFormat({
 
     // add base color-scheme declaration first if configured
     // (must be before other properties to ensure it appears first in output)
-    if (baseScheme) {
-      rootRule.declarations['color-scheme'] = { value: baseScheme };
+    if (baseColorScheme) {
+      rootRule.declarations['color-scheme'] = { value: baseColorScheme };
     }
 
     // note: `nestedQuery` was designed specifically for higher-gamut colors to

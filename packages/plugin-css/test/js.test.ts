@@ -36,6 +36,88 @@ describe('Node.js API', () => {
             css({
               filename: output,
               variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
+              baseContext: {
+                mode: 'light',
+                size: 'mobile',
+              },
+              contextSelectors: [
+                {
+                  context: { mode: 'light' },
+                  selector: '[data-color-theme="light"]',
+                },
+                {
+                  context: { mode: 'dark' },
+                  selector: '[data-color-theme="dark"]',
+                },
+                {
+                  context: { mode: 'light-colorblind' },
+                  selector: '[data-color-theme="light-colorblind"]',
+                },
+                {
+                  context: { mode: 'light-high-contrast' },
+                  selector: '[data-color-theme="light-high-contrast"]',
+                },
+                {
+                  context: { mode: 'dark-dimmed' },
+                  selector: '[data-color-theme="dark-dimmed"]',
+                },
+                {
+                  context: { mode: 'dark-high-contrast' },
+                  selector: '[data-color-theme="dark-high-contrast"]',
+                },
+                {
+                  context: { mode: 'dark-colorblind' },
+                  selector: '[data-color-theme="dark-colorblind"]',
+                },
+                {
+                  context: { mode: 'desktop' },
+                  selector: '@media (width >= 600px)',
+                },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const tokensJSON = new URL('./tokens.json', cwd);
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+        {
+          config,
+        },
+      );
+      const result = await build(tokens, { resolver, sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+  });
+
+  describe('token types (legacy modes)', () => {
+    it.each([
+      'boolean',
+      'border',
+      'color',
+      'dimension',
+      'gradient',
+      'shadow',
+      'string',
+      'typography',
+      'transition',
+    ])('%s', async (dir) => {
+      const output = 'actual.css';
+      const cwd = new URL(`./fixtures/mode-type-${dir}/`, import.meta.url);
+      const config = defineConfig(
+        {
+          lint: {
+            rules: {
+              'core/consistent-naming': 'off',
+            },
+          },
+          plugins: [
+            css({
+              filename: output,
+              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
               modeSelectors: [
                 {
                   mode: 'light',
@@ -339,19 +421,17 @@ describe('Node.js API', () => {
           plugins: [
             css({
               filename: output,
-              baseScheme: 'light dark',
-              modeSelectors: [
+              baseColorScheme: 'light dark',
+              contextSelectors: [
                 {
-                  mode: 'light',
-                  tokens: ['color.*'],
-                  selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
-                  scheme: 'light',
+                  context: { mode: 'light' },
+                  selector: '[data-color-theme="light"]',
+                  colorScheme: 'light',
                 },
                 {
-                  mode: 'dark',
-                  tokens: ['color.*'],
-                  selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
-                  scheme: 'dark',
+                  context: { mode: 'dark' },
+                  selector: '[data-color-theme="dark"]',
+                  colorScheme: 'dark',
                 },
               ],
             }),

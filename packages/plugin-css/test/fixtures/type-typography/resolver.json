@@ -1,0 +1,104 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/size" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "typography": {
+            "family": {
+              "body": { "$type": "fontFamily", "$value": ["IBM Plex Sans", "system-ui", "sans-serif"] },
+              "footnote": { "$type": "fontFamily", "$value": "{typography.family.body}" },
+              "heading": { "$type": "fontFamily", "$value": "Helvetica" }
+            },
+            "page-title": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.heading}",
+                "fontSize": {
+                  "value": 48,
+                  "unit": "px"
+                },
+                "fontVariationSettings": "\"wght\" 140, \"opsz\" 100, \"wdth\" 50",
+                "fontWeight": 600,
+                "lineHeight": 1.25,
+                "letterSpacing": { "value": 0.125, "unit": "em" }
+              }
+            },
+            "subheading": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.heading}",
+                "fontSize": { "value": 18, "unit": "px" },
+                "fontVariationSettings": "\"wght\" 130, \"opsz\" 100, \"wdth\" 50",
+                "fontWeight": 500,
+                "lineHeight": { "value": 24, "unit": "px" },
+                "letterSpacing": { "value": 0.25, "unit": "em" },
+                "textTransform": "uppercase"
+              }
+            },
+            "callout": {
+              "$type": "typography",
+              "$value": {
+                "fontFamily": "{typography.family.body}",
+                "fontSize": { "value": 18, "unit": "px" },
+                "fontVariationSettings": "\"wght\" 100, \"opsz\" 100, \"wdth\" 50",
+                "fontWeight": 300,
+                "fontStyle": "italic",
+                "lineHeight": 1.5,
+                "letterSpacing": { "value": 0, "unit": "rem" }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "size": {
+      "contexts": {
+        "mobile": [
+          {
+            "typography": {
+              "body": {
+                "$type": "typography",
+                "$value": {
+                  "fontSize": { "value": 16, "unit": "px" },
+                  "fontFamily": ["inherit"],
+                  "fontVariationSettings":"\"wght\" 100, \"opsz\" 100, \"wdth\" 50",
+                  "fontWeight": 400,
+                  "letterSpacing": { "value": 0, "unit": "rem" },
+                  "lineHeight": 1.5
+                }
+              },
+              "label": { "$type": "typography", "$value": "{typography.body}" }
+            }
+          }
+        ],
+        "desktop": [
+          {
+            "typography": {
+              "body": {
+                "$type": "typography",
+                "$value": {
+                  "fontSize": { "value": 14, "unit": "px" },
+                  "fontFamily": ["inherit"],
+                  "fontVariationSettings":"\"wght\" 100, \"opsz\" 100, \"wdth\" 50",
+                  "fontWeight": 400,
+                  "letterSpacing": { "value": 0, "unit": "rem" },
+                  "lineHeight": 1.5
+                }
+              },
+              "label": { "$type": "typography", "$value": "{typography.subheading}" }
+            }
+          }
+        ]
+      },
+      "default": "mobile"
+    }
+  }
+}

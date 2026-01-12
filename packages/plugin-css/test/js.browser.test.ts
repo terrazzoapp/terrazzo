@@ -4,7 +4,47 @@ import css from '../src/index.js';
 import { DS } from './lib.test.js';
 
 describe('Browser', () => {
-  it('generates correct CSS', async () => {
+  it('generates correct CSS ', async () => {
+    const cwd = new URL('file:///');
+    const tokensJSON = new URL('./tokens.json', cwd);
+    const config = defineConfig(
+      {
+        lint: {
+          rules: {
+            'core/consistent-naming': 'off',
+          },
+        },
+        plugins: [
+          css({
+            baseColorScheme: 'light dark',
+            contextSelectors: [
+              {
+                selector: '[data-color-theme="light"]',
+                context: { mode: 'light' },
+                colorScheme: 'light',
+              },
+              {
+                selector: '@media (prefers-color-scheme: dark)',
+                context: { mode: 'dark' },
+                colorScheme: 'dark',
+              },
+              {
+                selector: '[data-color-theme="dark"]',
+                context: { mode: 'dark' },
+                colorScheme: 'dark',
+              },
+            ],
+          }),
+        ],
+      },
+      { cwd },
+    );
+    const { tokens, resolver, sources } = await parse({ filename: tokensJSON, src: DS['github-primer'] }, { config });
+    const result = await build(tokens, { resolver, sources, config });
+    await expect(result.outputFiles.find((f) => f.filename === 'index.css')?.contents).toMatchSnapshot();
+  });
+
+  it('generates correct CSS (legacy modeSelectors)', async () => {
     const cwd = new URL('file:///');
     const tokensJSON = new URL('./tokens.json', cwd);
     const config = defineConfig(

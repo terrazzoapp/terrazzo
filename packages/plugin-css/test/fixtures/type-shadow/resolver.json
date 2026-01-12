@@ -1,0 +1,91 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "shadow": {
+            "base": {
+              "$value": "{shadow.simple}"
+            },
+            "simple": {
+              "$type": "shadow",
+              "$value": {
+                "offsetX": { "value": 0, "unit": "px" },
+                "offsetY": { "value": 4, "unit": "px" },
+                "blur": { "value": 8, "unit": "px" },
+                "spread": { "value": 0, "unit": "px" },
+                "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.15 }
+              }
+            },
+            "neon": {
+              "$type": "shadow",
+              "$value": {
+                "offsetX": { "value": 0, "unit": "px" },
+                "offsetY": { "value": 0, "unit": "px" },
+                "blur": { "value": 0, "unit": "px" },
+                "spread": { "value": 0.5, "unit": "rem" },
+                "color": { "colorSpace": "oklch", "components": [0.7765, 0.353, 147.18] }
+              }
+            },
+            "inset": {
+              "$type": "shadow",
+              "$value": {
+                "inset": true,
+                "offsetX": { "value": 0, "unit": "px" },
+                "offsetY": { "value": 4, "unit": "px" },
+                "blur": { "value": 8, "unit": "px" },
+                "spread": { "value": 0, "unit": "px" },
+                "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.15 }
+              }
+            },
+            "layered": {
+              "$type": "shadow",
+              "$value": [
+                {
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 1, "unit": "px" },
+                  "blur": { "value": 1, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
+                },
+                {
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 2, "unit": "px" },
+                  "blur": { "value": 2, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
+                },
+                {
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 4, "unit": "px" },
+                  "blur": { "value": 4, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
+                },
+                {
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 8, "unit": "px" },
+                  "blur": { "value": 8, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
+                },
+                {
+                  "offsetX": { "value": 0, "unit": "px" },
+                  "offsetY": { "value": 16, "unit": "px" },
+                  "blur": { "value": 16, "unit": "px" },
+                  "spread": { "value": 0, "unit": "px" },
+                  "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

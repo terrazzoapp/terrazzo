@@ -1,0 +1,27 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    {
+      "name": "base",
+      "type": "set",
+      "sources": [
+        {
+          "bool": {
+            "uh-huh": {
+              "$type": "boolean",
+              "$value": true
+            },
+            "nuh-uh": {
+              "$type": "boolean",
+              "$value": false
+            },
+            "idk": {
+              "$value": "{bool.nuh-uh}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
