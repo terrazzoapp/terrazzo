@@ -1,0 +1,53 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/mode" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "color": {
+            "text-hdr": { "$type": "color", "$value": "{color.hdr-blue}" },
+            "alias-1": { "$type": "color", "$value": "{color.blue.6}" },
+            "alias-2": { "$type": "color", "$value": "{color.alias-1}" },
+            "alias-3": { "$type": "color", "$value": "{color.alias-2}" },
+            "alias-4": { "$type": "color", "$value": "{color.alias-3}" },
+            "alias-5": { "$type": "color",  "$value": "{color.alias-4}" }
+          },
+          "gradient": {
+            "blue-pink": {
+              "$type": "gradient",
+              "$value": [
+                {
+                  "color": { "colorSpace": "srgb", "components": [0.129, 0.545, 1], "hex": "#218bff" },
+                  "position": 0
+                },
+                {
+                  "color": { "colorSpace": "srgb", "components": [0.91, 0.353, 0.678], "hex": "#e85aad" },
+                  "position": 1
+                }
+              ]
+            },
+            "default": { "$type": "gradient", "$value": "{gradient.blue-pink}" }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "mode": {
+      "contexts": {
+        "light": ["./light.tokens.json"],
+        "light-colorblind": ["./light.tokens.json", "./light-colorblind.tokens.json"],
+        "light-high-contrast": ["./light.tokens.json", "./light-high-contrast.tokens.json"],
+        "dark": ["./dark.tokens.json"],
+        "dark-dimmed": ["./dark.tokens.json", "./dark-dimmed.tokens.json"],
+        "dark-high-contrast":["./dark.tokens.json", "./dark-high-contrast.tokens.json"],
+        "dark-colorblind": ["./dark.tokens.json", "./dark-colorblind.tokens.json"]
+      }
+    }
+  }
+}

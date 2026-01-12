@@ -1,0 +1,51 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "blue": {
+      "0": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.7764705882352941, 0.9019607843137255, 1], "alpha": 1, "hex": "#c6e6ff" }
+      },
+      "1": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.5882352941176471, 0.8156862745098039, 1], "alpha": 1, "hex": "#96d0ff" }
+      },
+      "2": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.4235294117647059, 0.7137254901960784, 1], "alpha": 1, "hex": "#6cb6ff" }
+      },
+      "3": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.3254901960784314, 0.6078431372549019, 0.9607843137254902], "alpha": 1, "hex": "#539bf5" }
+      },
+      "4": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.2549019607843137, 0.5176470588235295, 0.8941176470588236], "alpha": 1, "hex": "#4184e4" }
+      },
+      "5": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.19215686274509805, 0.42745098039215684, 0.792156862745098], "alpha": 1, "hex": "#316dca" }
+      },
+      "6": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.1450980392156863, 0.35294117647058826, 0.6980392156862745], "alpha": 1, "hex": "#255ab2" }
+      },
+      "7": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.10588235294117647, 0.29411764705882354, 0.5686274509803921], "alpha": 1, "hex": "#1b4b91" }
+      },
+      "8": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.0784313725490196, 0.23921568627450981, 0.4745098039215686], "alpha": 1, "hex": "#143d79" }
+      },
+      "9": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.058823529411764705, 0.17647058823529413, 0.3607843137254902], "alpha": 1, "hex": "#0f2d5c" }
+      }
+    },
+    "hdr-blue": {
+      "$type": "color",
+      "$value": { "colorSpace": "oklch", "components": [0.6177, 0.161, 257.75] }
+    }
+  }
+}

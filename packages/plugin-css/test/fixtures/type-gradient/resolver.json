@@ -1,0 +1,52 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/mode" }
+  ],
+  "modifiers": {
+    "mode": {
+      "contexts": {
+        "light": [
+          {
+            "gradient": {
+              "blue-to-green": {
+                "$type": "gradient",
+                "$value": [
+                  {
+                    "color": { "colorSpace": "oklch", "components": [0.4559, 0.328, 265.76], "hex": "#051fcf" },
+                    "position": 0
+                  },
+                  {
+                    "color": { "colorSpace": "oklch", "components": [0.8206, 0.286, 156.71], "hex": "#00e089" },
+                    "position": 1
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "dark": [
+          {
+            "gradient": {
+              "blue-to-green": {
+                "$type": "gradient",
+                "$value": [
+                  {
+                    "color": { "colorSpace": "srgb", "components": [0, 0.109, 0.643], "hex": "#001aa4" },
+                    "position": 0
+                  },
+                  {
+                    "color": { "colorSpace": "srgb", "components": [0, 0.769, 0.3772], "hex": "#00c456" },
+                    "position": 1
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "default": "light"
+    }
+  }
+}
