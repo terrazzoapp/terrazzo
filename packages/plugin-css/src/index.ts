@@ -6,7 +6,7 @@ export * from './build/index.js';
 export * from './lib.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
-  const { exclude, contextSelectors, modeSelectors, utility, skipBuild, baseScheme } = options ?? {};
+  const { exclude, contextSelectors, modeSelectors, utility, skipBuild, baseColorScheme, baseContext } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
   const baseSelector = options?.baseSelector ?? ':root';
@@ -49,7 +49,15 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
 
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
-        buildFormat({ exclude, getTransforms, modeSelectors, utility, baseSelector, baseScheme }),
+        buildFormat({
+          exclude,
+          getTransforms,
+          contextSelectors,
+          modeSelectors,
+          utility,
+          baseSelector,
+          baseColorScheme,
+        }),
         '\n', // EOF newline
       );
       outputFile(filename, output.join('\n'));

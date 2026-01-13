@@ -2,6 +2,7 @@
   "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
   "version": "2025.10",
   "resolutionOrder": [
+    { "$ref": "#/sets/base" },
     { "$ref": "#/modifiers/mode" }
   ],
   "sets": {

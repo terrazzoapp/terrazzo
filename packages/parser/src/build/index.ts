@@ -54,31 +54,44 @@ export default async function build(
   const formats: Record<string, TokenTransformed[]> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
-  function getTransforms(params: TransformParams) {
-    if (!params?.format) {
-      logger.warn({ group: 'plugin', message: '"format" missing from getTransforms(), no tokens returned.' });
-      return [];
-    }
+  function getTransforms(plugin: string) {
+    return function getTransforms(params: TransformParams) {
+      if (!params?.format) {
+        logger.warn({
+          group: 'plugin',
+          label: plugin,
+          message: '"format" missing from getTransforms(), no tokens returned.',
+        });
+        return [];
+      }
 
-    const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
-    const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+      const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
+      const modeMatcher = params.mode ? wcmatch(params.mode) : null;
 
-    return (formats[params.format!] ?? []).filter((token) => {
-      if (params.$type) {
-        if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
-          return false;
-        } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.$type === $type)) {
+      return (formats[params.format!] ?? []).filter((token) => {
+        if (params.$type) {
+          if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
+            return false;
+          } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.$type === $type)) {
+            return false;
+          }
+        }
+        if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
-      }
-      if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
-        return false;
-      }
-      if (modeMatcher && !modeMatcher(token.mode)) {
-        return false;
-      }
-      return true;
-    });
+        if (
+          params.modifier &&
+          params.context &&
+          (token.modifier !== params.modifier || token.context !== params.context)
+        ) {
+          return false;
+        }
+        if (modeMatcher && !modeMatcher(token.mode)) {
+          return false;
+        }
+        return true;
+      });
+    };
   }
 
   // transform()
@@ -90,7 +103,7 @@ export default async function build(
         context: { logger },
         tokens,
         sources,
-        getTransforms,
+        getTransforms: getTransforms(plugin.name),
         setTransform(id, params) {
           if (transformsLocked) {
             logger.warn({
@@ -114,13 +127,34 @@ export default async function build(
           if (!formats[params.format]) {
             formats[params.format] = [];
           }
-          const foundTokenI = formats[params.format]!.findIndex(
-            (t) =>
-              id === t.id &&
-              (!params.localID || params.localID === t.localID) &&
-              (!params.mode || params.mode === t.mode),
-          );
+          let foundTokenI = -1;
+          if (params.mode) {
+            foundTokenI = formats[params.format]!.findIndex(
+              (t) => id === t.id && (!params.localID || params.localID === t.localID) && params.mode === t.mode,
+            );
+          } else if (params.context && params.modifier) {
+            foundTokenI = formats[params.format]!.findIndex(
+              (t) =>
+                id === t.id &&
+                (!params.localID || params.localID === t.localID) &&
+                params.context === t.context &&
+                params.modifier === t.modifier,
+            );
+          } else {
+            foundTokenI = formats[params.format]!.findIndex(
+              (t) =>
+                id === t.id &&
+                (!params.localID || params.localID === t.localID) &&
+                t.context === undefined &&
+                t.modifier === undefined,
+            );
+          }
           if (foundTokenI === -1) {
+            // backwards compat: upconvert mode into "tzMode" modifier. This
+            // allows newer plugins to use resolver syntax without disrupting
+            // older plugins.
+            const modifier = !params.modifier && params.mode ? 'tzMode' : params.modifier;
+            const context = !params.modifier ? params.mode || '.' : params.context;
             formats[params.format]!.push({
               ...params,
               id,
@@ -128,6 +162,8 @@ export default async function build(
               type: typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE,
               mode: params.mode || '.',
               token: structuredClone(token),
+              modifier,
+              context,
             } as TokenTransformed);
           } else {
             formats[params.format]![foundTokenI]!.value = cleanValue;
@@ -156,7 +192,7 @@ export default async function build(
           context: { logger },
           tokens,
           sources,
-          getTransforms,
+          getTransforms: getTransforms(plugin.name),
           resolver,
           outputFile(filename, contents) {
             const resolved = new URL(filename, config.outDir);
@@ -192,7 +228,7 @@ export default async function build(
       plugin.buildEnd?.({
         context: { logger },
         tokens,
-        getTransforms,
+        getTransforms: getTransforms(plugin.name),
         sources,
         outputFiles: structuredClone(result.outputFiles),
       }),

@@ -336,9 +336,18 @@ export interface Resolver<
   Inputs extends Record<string, string[]> = Record<string, string[]>,
   Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
 > {
-  /** Supply values to modifiers to produce a final tokens set */
+  /**
+   * Supply values to modifiers to produce a final tokens set. This caches the
+   * results, so calling a 2nd time with the same inputs will return the same
+   * results (it ignores object key order, and takes defaults into account for
+   * better caching).
+   */
   apply: (input: Partial<Input>) => TokenNormalizedSet;
-  /** List all possible valid input combinations. Ignores default values, as they would duplicate some other permutations. */
+  /**
+   * List all possible valid input combinations. Ignores default values, as they
+   * would duplicate some other permutations. This also caches results, so it’s
+   * only computed once on the first call.
+   */
   listPermutations: () => Input[];
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
@@ -422,18 +431,36 @@ export interface ResolverSetNormalized {
   $defs: Record<string, unknown> | undefined;
 }
 
-export interface TransformParams {
+export type TransformParams = TransformParamsLegacy | TransformParamsWithModifier;
+
+export interface TransformParamsBase {
   /** ID of an existing format */
   format: string;
   /** Glob of tokens to select (e.g. `"color.*"` to select all tokens starting with `"color."`) */
   id?: string | string[];
   /** $type(s) to filter for */
   $type?: string | string[];
+}
+
+export interface TransformParamsLegacy extends TransformParamsBase {
   /**
    * Mode name, if selecting a mode
+   * @deprecated Use context/modifier instead.
    * @default "."
    */
   mode?: string | string[];
+  /** Modifier name. @example "size" */
+  modifier?: never;
+  /** Context within `modifier`. @example "desktop" */
+  context?: never;
+}
+
+export interface TransformParamsWithModifier extends TransformParamsBase {
+  mode?: never;
+  /** Modifier name. @example "size" */
+  modifier: string;
+  /** Context within `modifier`. @example "desktop" */
+  context: string;
 }
 
 export interface TransformHookOptions {
@@ -446,13 +473,26 @@ export interface TransformHookOptions {
   /** Update transformed values */
   setTransform(
     id: string,
-    params: {
-      format: string;
-      localID?: string;
-      value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
-      mode?: string;
-      meta?: TokenTransformedBase['meta'];
-    },
+    params:
+      | {
+          format: string;
+          localID?: string;
+          value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
+          /** @deprecated */
+          mode?: string;
+          modifier?: never;
+          context?: never;
+          meta?: TokenTransformedBase['meta'];
+        }
+      | {
+          format: string;
+          localID?: string;
+          value: string | Record<string, string>;
+          mode?: never;
+          modifier: string;
+          context: string;
+          meta?: TokenTransformedBase['meta'];
+        },
   ): void;
   /** Resolver */
   resolver: Resolver;
