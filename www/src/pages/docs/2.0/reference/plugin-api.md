@@ -7,6 +7,12 @@ layout: ../../../../layouts/docs.astro
 
 Terrazzo plugins are inspired by [Rollup](https://rollupjs.org/), and the philosophy that token management should be as easy as possible. Though making a Terrazzo plugin doesn’t require any knowledge of Rollup, those familiar with Rollup will find a quick ramp-up.
 
+:::tip
+
+To update your plugin to 2.x, [see the migration guide](/guides/migrating-v2).
+
+:::
+
 ## Getting Started
 
 Terrazzo’s plugin system revolves around 2 key steps: **transform**, then **build**. In the transform step, you are generating possible values for a <b>format</b>, e.g. `css` or `js`, almost as if you’re populating a database. In the build step, you <b>query</b> those values, and assemble the output format however you’d like. In other words, **transform is for generating values,** and **build is for assembling those values.**
@@ -38,19 +44,31 @@ import { kebabCase } from "scule";
 export default function clampColor(userOptions) {
   return {
     name: "my-css-plugin",
-    async transform({ tokens, setTransform }) {
-      for (const [id, token] of Object.entries(tokens)) {
-        switch (token.$type) {
-          case "color": {
-            setTransform(id, {
-              format: "css",
-              localID: `--${kebabCase(id)}`,
-              value: formatCss(token.$value), // convert original format into CSS-friendly value
-            });
-            break;
-          }
+    async transform({ resolver, setTransform }) {
+      const modifiers = resolver.source.resolutionOrder.filter(
+        (m) => m.type === "modifier"
+      );
+      // Note: this iterates over ALL modifiers; you may want
+      // to be more restrictive rather than building everything
+      for (const modifier of modifiers) {
+        for (const context of Object.keys(modifier.contexts)) {
+          const tokens = resolver.apply({ [modifier.name]: context });
+          for (const [id, token] of Object.entries(tokens)) {
+            switch (token.$type) {
+              case "color": {
+                setTransform(id, {
+                  format: "css",
+                  localID: `--${kebabCase(id)}`,
+                  value: formatCss(token.$value), // convert original format into CSS-friendly value
+                  modifier,
+                  context,
+                });
+                break;
+              }
 
-          // … other $types here
+              // … other $types here
+            }
+          }
         }
       }
     },
@@ -79,14 +97,13 @@ In the **transform** step we’re:
    - **localID**: What this token is referred to within the format (e.g. `color.base.blue.500` becomes `--color-base-blue-500` in CSS)
    - **value**: The transformed value for this format.
      - _Note: values can be either a `string` for simple values, or `Record<string, string>` if a token stores multiple values (needed for [typography](/docs/json/tokens/typography), [border](/docs/json/tokens/border), etc.)_
-   - **mode**: (not shown) Configures the value to show up for a certain [mode](/docs/tokens/mode) (if omitted, it’s the default or “global” mode)
+   - **modifier** and **context** if this is relevant to a specific resolver modifier
 
 All of this creates a “database” for the `css` format that can be queried in the next step. Inside the **build** step, we query those with `getTransforms()` which accepts an object as its param with the keys:
 
 1. **format**: the same Format produced in the previous step
 2. **id**: (optional) a glob or array of glob patterns to filter tokens
 3. **$type**: (optional) [Token type(s)](/docs/tokens) to filter by (if omitted, it will return all modes)
-4. **mode**: (not shown) Query only for specific modes (also accepts globs)
 
 The build step can run as many queries as it wants, requesting the tokens in any order, so that the output file can be built in any order. When the file is complete, calling `buildFile(filename, contents)` will save the file and Terrazzo will write the file to disk. The build step can output as many files as it wants.
 
@@ -107,23 +124,17 @@ export default defineConfig({
 
 ## FAQ
 
-:::details{title="What are the formats Terrazzo supports?"}
+### What are the formats Terrazzo supports?
 
 Anything! When we talk about a “format,” it’s up to the plugin to name that format, and it can be any name it wants. A format is merely a query key that `build()` steps will query tokens by, so make it predictable and intuitive (file extensions are encouraged, e.g. `css`, `js`, `json`).
 
-:::
-
-:::details{title="Can my plugin read from another plugin’s transform() step?"}
+### Can my plugin read from another plugin’s transform() step?
 
 Yup! Just be sure you know what **format** that plugin is generating so you can query it. Also set [enforce: "post"](#enforce) to run your plugin last so it can be sure the other plugin already ran.
 
-:::
-
-:::details{title="Can I use any JavaScript in a plugin?"}
+### Can I use any JavaScript in a plugin?
 
 Yes, although you’ll get the most mileage out of avoiding Node.js code (such as reading from the filesystem). Terrazzo’s Plugin API is designed to work in any environment, including in a browser (like the [Token Lab](/lab)!). While there’s nothing stopping you from using Node.js behavior, by avoiding it you’ll have a more portable plugin that can run in any environment (e.g. a browser or a serverless function).
-
-:::
 
 ## API
 
@@ -215,10 +226,6 @@ export default function myPlugin() {
 
 A plugin may register lint rules (similar to [ESLint](https://eslint.org/)) to warn or throw errors on your design tokens. Terrazzo ships with the [core linter plugin](/linting).
 
-:::warn
-If upgrading from Cobalt, the API has changed! Now it matches ESLint far more closely than before for an easier experience.
-:::
-
 The `lint()` hook returns an object where the key is the rule name, and the value is a rule.
 
 :::code-group
@@ -232,10 +239,10 @@ export default {
     },
   },
   defaultOptions: [],
-  create(context) {
-    for (const [id, token] of Object.entries(context.tokens)) {
+  create({ tokens, report }) {
+    for (const [id, token] of Object.entries(tokens)) {
       if (["primary", "secondary"].includes(id.toLowerCase())) {
-        context.report({
+        report({
           message: `Invalid token name: "${id}"`, // Error message to display to the user
           node: token.source.node, // this will point to the precise token in source code
         });
@@ -316,13 +323,11 @@ export default function myPlugin() {
         format: "js",
         localID: "color.base.blue.500",
         value: rgb(tokens["color.base.blue.500"].$value),
-        mode: ".",
       });
       setTransform("color.base.blue.500", {
         format: "ts",
         localID: "color.base.blue.500",
         value: "ReturnType<typeof rgb>",
-        mode: ".",
       });
     }
   };
@@ -335,13 +340,13 @@ export default function myPlugin() {
 
 `transform()` takes a single object as its only parameter with the following options:
 
-| Option          | Type                                                                                                             | Description                                                                                                                                                                |
-| :-------------- | :--------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `tokens`        | `Object`                                                                                                         | A shallow, read-only object of all tokens with IDs as keys.                                                                                                                |
-| `setTransform`  | `(string, { format: string, localID?: string, value: string \| Record<string, string>, mode?: string }) => void` | Set a token value for an output format. Accepts a token ID along with **format**, **localID**, **value**, and **mode** that can all be queried for with `getTransforms()`. |
-| `getTransforms` | `({ format: string, id?: string \| string[], $type?: string \| string[], mode?: string \| string[] }) => void`   | Get current token transforms (note that formats may be empty in this step if your plugin [runs first](#enforce))                                                           |
-| `resolver`      | `Resolver`                                                                                                       | A [Resolver](#resolver), in case one was loaded.                                                                                                                           |
-| `sources`       | `{ src: any, filename?: URL, document: Momoa.DocumentNode }[]`                                                   | All sources loaded as part of these token files. You can use these to refer to the original source code.                                                                   |
+| Option          | Type                                                                                                                                   | Description                                                                                                                                                                |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tokens`        | `Object`                                                                                                                               | A shallow, read-only object of all tokens with IDs as keys.                                                                                                                |
+| `setTransform`  | `(string, { format: string, localID?: string, value: string \| Record<string, string>, modifier?: string, context?: string }) => void` | Set a token value for an output format. Accepts a token ID along with **format**, **localID**, **value**, and **mode** that can all be queried for with `getTransforms()`. |
+| `getTransforms` | `({ format: string, id?: string \| string[], $type?: string \| string[], modifier?: string, context?: string  }) => void`              | Get current token transforms (note that formats may be empty in this step if your plugin [runs first](#enforce))                                                           |
+| `resolver`      | `Resolver`                                                                                                                             | A [Resolver](#resolver), in case one was loaded.                                                                                                                           |
+| `sources`       | `{ src: any, filename?: URL, document: Momoa.DocumentNode }[]`                                                                         | All sources loaded as part of these token files. You can use these to refer to the original source code.                                                                   |
 
 ### build
 
@@ -368,7 +373,6 @@ export default function myPlugin() {
       const colorTokens = getTransforms({
         format: "js",
         id: "color.*",
-        mode: ".",
       });
       for (const token of colorTokens) {
         output.push(`  ${token.localID ?? token.token.id}: ${token.value},`);
@@ -389,17 +393,17 @@ Though `outputFile()` takes a string, you are free to use an [AST](https://astex
 
 `build()` takes a single object as its only parameter with the following options:
 
-| Option          | Type                                                                                                            | Description                                                                                                                           |
-| :-------------- | :-------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
-| `tokens`        | `Object`                                                                                                        | A shallow, read-only object of all tokens with IDs as keys.                                                                           |
-| `getTransforms` | `({ format: string, id?: string \| string[], $type?: string \| string[],  mode?: string \| string[] }) => void` | Get final token transforms. Note that unlike [transform()](#transform), when called in this step this list is complete and read-only. |
-| `outputFile`    | `(name: string, contents: string) => void`                                                                      | A callback to create an output file. This can be called multiple times if creating multiple files.                                    |
-| `resolver`      | `Resolver`                                                                                                      | A [Resolver](#resolver), in case one was loaded.                                                                                      |
-| `sources`       | `{ src: any, filename?: URL, document: Momoa.DocumentNode }[]`                                                  | All sources loaded as part of these token files. You can use these to refer to the original source code.                              |
+| Option          | Type                                                                                | Description                                                                                                                           |
+| :-------------- | :---------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------ |
+| `tokens`        | `Object`                                                                            | A shallow, read-only object of all tokens with IDs as keys.                                                                           |
+| `getTransforms` | `({ format: string, id?: string \| string[], $type?: string \| string[] }) => void` | Get final token transforms. Note that unlike [transform()](#transform), when called in this step this list is complete and read-only. |
+| `outputFile`    | `(name: string, contents: string) => void`                                          | A callback to create an output file. This can be called multiple times if creating multiple files.                                    |
+| `resolver`      | `Resolver`                                                                          | A [Resolver](#resolver), in case one was loaded.                                                                                      |
+| `sources`       | `{ src: any, filename?: URL, document: Momoa.DocumentNode }[]`                      | All sources loaded as part of these token files. You can use these to refer to the original source code.                              |
 
 :::tip
 
-- `getTransforms()` will return all modes unless you filter with `"mode": "."`. You might see “duplicates” that aren’t really duplicates!
+- `getTransforms()`, if using a resolver, will only return the default context. You’ll need to specify `modifier` + `context` to get alternate versions.
 - `outputFile()`’s name is **relative to `outDir` in [config](/docs/reference/config)**. Prefer simple filenames when possible, though if your plugin works by creating directories, use POSIX-style paths (`"my-dir/my-file.json"`) and Terrazzo will create directories for you.
 
 :::
@@ -436,7 +440,6 @@ The [Terrazzo parser](/docs/reference/js-api/) will create **normalized tokens**
 | `$value`        | `TokenValue`                           | The token `$value` ([docs](/docs/tokens)). This will always be the final value (even if this is an [alias](/docs/tokens/alias) of another token). |
 | `aliasOf`       | `TokenNormalized \| undefined`         | The token this aliases, if any (or `undefined` if this is its original value).                                                                    |
 | `group`         | `Group`                                | Information about this token’s immediate parent group (including sibling tokens).                                                                 |
-| `mode`          | `Record<string, TokenNormalized>`      | A key–value map of mode name → mode value. _Note: the mode `"."` will always exist, and will always point to the default value._                  |
 | `originalValue` | `Token` \| `undefined`                 | This token’s original value from the source file. If `undefined`, then this token was generated dynamically (via `$ref`).                         |
 | `source`        | `{ node: ObjectNode, filename?: URL }` | Points to a file on disk as well as a [Momoa](https://www.npmjs.com/package/@humanwhocodes/momoa) AST node (including line number).               |
 
@@ -448,7 +451,7 @@ Resolvers are an alternate way of getting tokens, different than `getTransforms(
 
 :::note
 
-As of Terrazzo 2.0, most official plugins still use legacy modes for transformations and building internally. Terrazzo 2.0 maintains backwards-compatibility with all previous versions, but expect some deprecations in the future in favor of more resolver-centric APIs.
+As of Terrazzo 2.0, most official plugins still use legacy modes for transformations and building internally, but are recommended to upgrade [following the migration guide](/guides/migrating-v2).
 
 :::
 
@@ -478,8 +481,11 @@ export function MyPlugin(): Plugin {
         const filename = `${Object.entries(permutation)
           .map(([k, v]) => `${k}-${v}`)
           .join("-")}.json`; // e.g. theme-dark-size-md.json
-        const contents = resolver.apply(permutation);
-        outputFile(filename, JSON.stringify(contents, null, 2));
+
+        const tokens = resolver.apply(permutation);
+        const contents = JSON.stringify(tokens, null, 2);
+
+        outputFile(filename, contents);
       }
     },
   };

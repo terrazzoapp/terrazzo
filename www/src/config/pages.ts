@@ -49,7 +49,7 @@ export const DOCS_NAV_V2 = [
       { url: '/docs/guides/resolvers/', title: 'Resolvers' },
       { url: '/docs/guides/resolver-contexts/', title: 'Resolver Contexts' },
       { url: '/docs/guides/styleguide/', title: 'DS Styleguide' },
-      { url: '/docs/2.0/guides/migrating-cobalt/', title: 'Migrating from Cobalt' },
+      { url: '/docs/2.0/guides/migrating-v2/', title: 'Migrating to 2.x' },
     ],
   },
   {

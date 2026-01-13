@@ -10,6 +10,7 @@ const REC2020_MQ = '@media (color-gamut: rec2020)';
 export interface BuildFormatOptions {
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
+  contextSelectors: CSSPluginOptions['contextSelectors'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
@@ -20,6 +21,7 @@ export default function buildFormat({
   getTransforms,
   exclude,
   utility,
+  contextSelectors,
   modeSelectors,
   baseSelector,
   baseColorScheme,
@@ -107,7 +109,7 @@ export default function buildFormat({
     }
   }
 
-  // modeSelectors (note: without these, modes won't get written to CSS)
+  // legacy modeSelectors
   for (const { selectors, tokens, mode, scheme } of modeSelectors ?? []) {
     if (!selectors.length) {
       continue;

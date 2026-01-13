@@ -69,7 +69,6 @@ export type ColorValue =
   | string
   | {
       colorSpace: ColorSpace;
-      /* @deprecated! Use "components" instead */
       components: (number | null | string)[]; // note: in the future the length will vary based on colorSpace but it’s 3 for now
       alpha?: string | number;
       hex?: string;
@@ -291,7 +290,11 @@ export type Group =
 
 export type GroupOrToken = Group | Token;
 
-/** Modes only have a subset of information from the root token, that is allowed to diverge (e.g. id will never differ, so don’t bother storing it on mode). */
+/**
+ * Modes only have a subset of information from the root token, that is allowed
+ * to diverge (e.g. id will never differ, so don’t bother storing it on mode).
+ * @deprecated Use resolver.apply() to retrieve alternate token values
+ */
 export type TokenMode<T extends TokenNormalized> = Pick<
   T,
   '$value' | 'aliasOf' | 'aliasChain' | 'aliasedBy' | 'partialAliasOf' | 'dependencies' | 'source'
@@ -364,6 +367,7 @@ export type TokenNormalizedSet = Record<string, TokenNormalized>;
 export interface BooleanTokenNormalized extends TokenNormalizedCore<'boolean'> {
   $value: BooleanValue;
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<BooleanTokenNormalized>;
   originalValue: BooleanToken | AliasToken | undefined;
 }
@@ -371,6 +375,7 @@ export interface BooleanTokenNormalized extends TokenNormalizedCore<'boolean'> {
 export interface BorderTokenNormalized extends TokenNormalizedCore<'border'> {
   $value: BorderValueNormalized;
   partialAliasOf: Record<keyof BorderValueNormalized, string | undefined> | undefined;
+  /** @deprecated */
   mode: ModeMap<BorderTokenNormalized>;
   originalValue: BorderToken | AliasToken | undefined;
 }
@@ -383,6 +388,7 @@ export interface BorderValueNormalized {
 
 export interface ColorTokenNormalized extends TokenNormalizedCore<'color'> {
   $value: ColorValueNormalized;
+  /** @deprecated */
   mode: ModeMap<ColorTokenNormalized>;
   partialAliasOf:
     | {
@@ -433,6 +439,7 @@ export interface CubicBezierTokenNormalized extends TokenNormalizedCore<'cubicBe
   $value: CubicBezierValue;
   /** Parts of this token rely on others */
   partialAliasOf: [string | undefined, string | undefined, string | undefined, string | undefined] | undefined;
+  /** @deprecated */
   mode: ModeMap<CubicBezierTokenNormalized>;
   originalValue: CubicBezierToken | AliasToken | undefined;
 }
@@ -441,6 +448,7 @@ export interface DimensionTokenNormalized extends TokenNormalizedCore<'dimension
   $value: DimensionValue;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<DimensionTokenNormalized>;
   originalValue: DimensionToken | AliasToken | undefined;
 }
@@ -449,6 +457,7 @@ export interface DurationTokenNormalized extends TokenNormalizedCore<'duration'>
   $value: DurationValue;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<DurationTokenNormalized>;
   originalValue: DurationToken | AliasToken | undefined;
 }
@@ -457,6 +466,7 @@ export interface FontFamilyTokenNormalized extends TokenNormalizedCore<'fontFami
   $value: FontFamilyValueNormalized;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<FontFamilyTokenNormalized>;
   originalValue: FontFamilyToken | AliasToken | undefined;
 }
@@ -468,6 +478,7 @@ export interface FontWeightTokenNormalized extends TokenNormalizedCore<'fontWeig
   $value: FontWeightValueNormalized;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<FontWeightTokenNormalized>;
   originalValue: FontWeightToken | AliasToken | undefined;
 }
@@ -478,6 +489,7 @@ export interface GradientTokenNormalized extends TokenNormalizedCore<'gradient'>
   $value: GradientValueNormalized;
   /** Parts of this token rely on others */
   partialAliasOf: Record<keyof GradientStopNormalized, string | undefined>[] | undefined;
+  /** @deprecated */
   mode: ModeMap<GradientTokenNormalized>;
   originalValue: GradientToken | AliasToken | undefined;
 }
@@ -493,6 +505,7 @@ export interface LinkTokenNormalized extends TokenNormalizedCore<'link'> {
   $value: LinkValue;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<LinkTokenNormalized>;
   originalValue: LinkToken | AliasToken | undefined;
 }
@@ -501,6 +514,7 @@ export interface NumberTokenNormalized extends TokenNormalizedCore<'number'> {
   $value: NumberValue;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<NumberTokenNormalized>;
   originalValue: NumberToken | AliasToken | undefined;
 }
@@ -509,6 +523,7 @@ export interface ShadowTokenNormalized extends TokenNormalizedCore<'shadow'> {
   $value: ShadowValueNormalized[];
   /** Parts of this token rely on others */
   partialAliasOf: Record<keyof ShadowValue, string | undefined>[] | undefined;
+  /** @deprecated */
   mode: ModeMap<ShadowTokenNormalized>;
   originalValue: ShadowToken | AliasToken | undefined;
 }
@@ -526,6 +541,7 @@ export interface StringTokenNormalized extends TokenNormalizedCore<'string'> {
   $value: StringValue;
   /** Parts of this token rely on others */
   partialAliasOf: undefined;
+  /** @deprecated */
   mode: ModeMap<StringTokenNormalized>;
   originalValue: StringToken | AliasToken | undefined;
 }
@@ -537,6 +553,7 @@ export interface StrokeStyleTokenNormalized extends TokenNormalizedCore<'strokeS
         dashArray: (string | undefined)[];
       }
     | undefined;
+  /** @deprecated */
   mode: ModeMap<StrokeStyleTokenNormalized>;
   originalValue: StrokeStyleToken | AliasToken | undefined;
 }
@@ -545,6 +562,7 @@ export interface TransitionTokenNormalized extends TokenNormalizedCore<'transiti
   $value: TransitionValueNormalized;
   /** Parts of this token rely on others */
   partialAliasOf: Record<keyof TransitionValueNormalized, string | undefined> | undefined;
+  /** @deprecated */
   mode: ModeMap<TransitionTokenNormalized>;
   originalValue: TransitionToken | AliasToken | undefined;
 }
@@ -559,6 +577,7 @@ export interface TypographyTokenNormalized extends TokenNormalizedCore<'typograp
   $value: TypographyValueNormalized;
   /** Parts of this token rely on others */
   partialAliasOf: Record<keyof TypographyValueNormalized, string | undefined> | undefined;
+  /** @deprecated */
   mode: ModeMap<TypographyTokenNormalized>;
   originalValue: TypographyToken | AliasToken | undefined;
 }
@@ -589,11 +608,12 @@ export interface TokenTransformedBase {
   id: string;
   /** ID unique to this format. */
   localID?: string;
-  /**
-   * The mode of this value
-   * @default "."
-   */
+  /** @deprecated Prefer modifier/context */
   mode: string;
+  /** The modifier name this exists in, if any. */
+  modifier: string | undefined;
+  /** The modifier context this exists in, if any. */
+  context: string | undefined;
   /** The original token. */
   token: TokenNormalized;
   /** Arbitrary metadata set by plugins. */

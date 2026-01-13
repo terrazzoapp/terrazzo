@@ -110,6 +110,8 @@ export function createResolver(
 
   const resolverCache: Record<string, any> = {};
 
+  // Important: by iterating over resolutionOrder, we
+  // filter out unused modifiers/irrelevant contexts.
   for (const m of resolverSource.resolutionOrder) {
     if (m.type === 'modifier') {
       if (typeof m.default === 'string') {
