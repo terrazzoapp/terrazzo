@@ -46,7 +46,7 @@
     "@humanwhocodes/momoa": "catalog:",
     "@terrazzo/json-schema-tools": "workspace:^",
     "@terrazzo/token-tools": "workspace:^",
-    "@types/babel__code-frame": "^7.0.6",
+    "@types/babel__code-frame": "^7.27.0",
     "@types/culori": "catalog:",
     "culori": "catalog:",
     "fast-deep-equal": "^3.1.3",
