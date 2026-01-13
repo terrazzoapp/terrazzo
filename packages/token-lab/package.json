@@ -50,7 +50,7 @@
     "@terrazzo/use-color": "workspace:^",
     "clsx": "^2.1.1",
     "dtcg-examples": "catalog:",
-    "jotai": "^2.16.0",
+    "jotai": "^2.16.2",
     "monaco-editor": "^0.52.2"
   },
   "devDependencies": {
