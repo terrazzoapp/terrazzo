@@ -31,7 +31,6 @@ export default defineConfig({
 
 :::
 
-
 ### tokens
 
 All your token files to parse. Can be one file (`tokens: "tokens.json"`), or multiple (`tokens: ["colors.json", "typography.json", "spacing.json"]`).
@@ -55,6 +54,10 @@ It’s recommended to add `outputDir` to your `.gitignore`.
 [Plugins](/docs/integrations) for Terrazzo. Each plugin generates one or more outputs (generally). Plugins can even be chained together.
 
 You can use [an existing plugin](/docs/integrations), or [write your own](/docs/reference/plugin-api).
+
+### alphabetize
+
+Set to `false` to skip alphabetizing tokens by ID to make output generally more consistent (default: `true`).
 
 ### lint
 

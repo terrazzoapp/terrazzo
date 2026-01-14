@@ -26,7 +26,7 @@
     --ds-space-000: 0.25rem;
     --ds-space-100: 0.375rem;
     --ds-space-200: 0.75rem;
-    --ds-space-300: 1.25rem;
+    --ds-space-300: 1rem;
     --ds-space-400: 1.25rem;
     --ds-space-500: 1.75rem;
     --ds-space-600: 2.5rem;
@@ -37,4 +37,3 @@
     --ds-control-default-size: var(--ds-space-600);
   }
 }
-

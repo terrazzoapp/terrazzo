@@ -20,17 +20,20 @@ describe('Browser', () => {
             contextSelectors: [
               {
                 selector: '[data-color-theme="light"]',
-                context: { mode: 'light' },
+                modifier: 'mode',
+                context: 'light',
                 colorScheme: 'light',
               },
               {
                 selector: '@media (prefers-color-scheme: dark)',
-                context: { mode: 'dark' },
+                modifier: 'mode',
+                context: 'dark',
                 colorScheme: 'dark',
               },
               {
                 selector: '[data-color-theme="dark"]',
-                context: { mode: 'dark' },
+                modifier: 'mode',
+                context: 'dark',
                 colorScheme: 'dark',
               },
             ],

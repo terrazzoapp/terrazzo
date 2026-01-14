@@ -94,55 +94,50 @@
   "modifiers": {
     "mode": {
       "contexts": {
-        "light": [
-          {
-            "border": {
-              "color": {
-                "$type": "color",
-                "$value":  {
-                  "colorSpace": "srgb",
-                  "components": [0.6509803921568628, 0.6901960784313725, 0.7098039215686275],
-                  "alpha": 1,
-                  "hex": "#a6b0b5"
-                }
-              }
-            },
-            "color": {
-              "border": { "$type": "color", "$value": "{color.base.gray.20}" },
-              "red": {
-                "$type": "color",
-                "$value": {  "colorSpace": "oklch", "components": [0.6294, 0.355, 14.82]}
-              }
-            }
+        "light": [{ "$ref": "#/$defs/light.tokens.json" }],
+        "dark": [{ "$ref": "#/$defs/dark.tokens.json" }]
+      }
+    }
+  },
+  "$defs": {
+    "light.tokens.json": {
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value":  {
+            "colorSpace": "srgb",
+            "components": [0.6509803921568628, 0.6901960784313725, 0.7098039215686275],
+            "alpha": 1,
+            "hex": "#a6b0b5"
           }
-        ],
-        "dark": [
-          {
-            "border": {
-              "color": {
-                "$type": "color",
-                "$value":  {
-                  "colorSpace": "srgb",
-                  "components": [0.0784313725490196, 0.09019607843137255, 0.10588235294117647],
-                  "alpha": 1,
-                  "hex": "#14171b"
-                }
-              }
-            },
-            "color": {
-              "border": { "$type": "color", "$value": "{color.base.gray.80}" },
-              "red": {
-                "$type": "color",
-                "$value": {"colorSpace": "oklch", "components": [0.3412, 0.254, 14.82]}
-              }
-            }
+        }
+      },
+      "color": {
+        "border": { "$type": "color", "$value": "{color.base.gray.20}" },
+        "red": {
+          "$type": "color",
+          "$value": {  "colorSpace": "oklch", "components": [0.6294, 0.355, 14.82]}
+        }
+      }
+    },
+    "dark.tokens.json": {
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value":  {
+            "colorSpace": "srgb",
+            "components": [0.0784313725490196, 0.09019607843137255, 0.10588235294117647],
+            "alpha": 1,
+            "hex": "#14171b"
           }
-        ],
-        "light-colorblind": [],
-        "light-high-contrast": [],
-        "dark-colorblind": [],
-        "dark-dimmed": [],
-        "dark-high-contrast": []
+        }
+      },
+      "color": {
+        "border": { "$type": "color", "$value": "{color.base.gray.80}" },
+        "red": {
+          "$type": "color",
+          "$value": {"colorSpace": "oklch", "components": [0.3412, 0.254, 14.82]}
+        }
       }
     }
   }

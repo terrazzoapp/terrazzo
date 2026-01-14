@@ -1,10 +1,9 @@
 {
-  "$schema": "https://deploy-preview-360--designtokensorg.netlify.app/schemas/2025.10/format/format.json",
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
   "color": {
     "black": {
       "50": { "$type": "color" },
       "100": {
-        "$schema": "https://deploy-preview-360--designtokensorg.netlify.app/schemas/2025.10/format/format.json",
         "$type": "color",
         "$value": {
           "colorSpace": "srgb",

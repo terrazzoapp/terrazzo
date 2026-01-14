@@ -52,4 +52,3 @@
   --ds-transition-linear-quick: var(--ds-timing-quick) var(--ds-timing-none) var(--ds-ease-linear);
   --ds-transition-linear-slow: var(--ds-timing-slow) var(--ds-timing-none) var(--ds-ease-linear);
 }
-

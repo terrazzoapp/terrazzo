@@ -73,6 +73,8 @@ export interface Config {
   outDir?: string;
   /** Specify plugins */
   plugins?: Plugin[];
+  /** Alphabetize tokens by ID to make output more consistent (note: some plugins may not preserve this order). @default true */
+  alphabetize?: boolean;
   /** Specify linting settings */
   lint?: {
     /** Configure build behavior */
@@ -134,6 +136,7 @@ export interface ConfigInit {
   tokens: URL[];
   outDir: URL;
   plugins: Plugin[];
+  alphabetize: boolean;
   lint: {
     build: NonNullable<NonNullable<Config['lint']>['build']>;
     rules: Record<string, LintRuleLonghand>;
