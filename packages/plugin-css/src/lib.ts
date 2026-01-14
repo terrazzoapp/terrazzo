@@ -23,7 +23,7 @@ export interface CSSPluginOptions {
   /** Control the final CSS variable name */
   variableName?: (token: TokenNormalized) => string;
   /** Override certain token values */
-  transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'];
+  transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'] | undefined | null;
   /** Generate utility CSS from groups */
   utility?: Partial<Record<UtilityCSSGroup, string[]>>;
   /**
