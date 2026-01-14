@@ -46,7 +46,11 @@ export interface CSSPluginOptions {
   /** Control the final CSS variable name */
   variableName?: (token: TokenNormalized) => string;
   /** Override certain token values */
-  transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'] | undefined | null;
+  transform?: (
+    token: TokenNormalized,
+    /** @deprecated */
+    mode?: string,
+  ) => TokenTransformed['value'] | undefined | null;
   /** Generate utility CSS from groups */
   utility?: Partial<Record<UtilityCSSGroup, string[]>>;
   /**
@@ -104,7 +108,7 @@ export interface CSSRule {
 
 /** Convert CSSRules into a formatted, indented CSS string */
 export function printRules(rules: CSSRule[]): string {
-  const output: string[] = [];
+  let output = '';
   for (const rule of rules) {
     if (!rule.selectors.length || !Object.keys(rule.declarations).length) {
       continue;
@@ -117,56 +121,62 @@ export function printRules(rules: CSSRule[]): string {
     }
     // @media-query selectors get pushed individually
     for (const s of mqSelectors) {
-      output.push(_printRule({ ...rule, selectors: [s] }));
+      const next = _printRule({ ...rule, selectors: [s] });
+      if (next) {
+        output += `\n\n${next}`;
+      }
     }
     // all other selectors get joined as one
     if (joinableSelectors.length) {
-      output.push(_printRule({ ...rule, selectors: joinableSelectors }));
+      const next = _printRule({ ...rule, selectors: joinableSelectors });
+      if (next) {
+        output += `\n\n${next}`;
+      }
     }
   }
-  return output.join('\n\n');
+  return output.trim();
 }
 
 function _printRule(rule: CSSRule): string {
-  const output: string[] = [];
+  let output = '';
   const isMediaQuery = rule.selectors.some((s) => s.startsWith('@'));
   let indent = '';
 
   // if both levels are media queries, preserve order
   if (rule.nestedQuery && isMediaQuery) {
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
     indent += '  ';
-    output.push(`${indent}${rule.nestedQuery} {`);
+    output += `\n${indent}${rule.nestedQuery} {`;
   }
   // otherwise if nested query exists but parens aren’t media queries, reverse order (media queries on top)
   else if (rule.nestedQuery && !isMediaQuery) {
-    output.push(`${indent}${rule.nestedQuery} {`);
+    output += `\n${indent}${rule.nestedQuery} {`;
     indent += '  ';
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
   }
   // if no media queries, just print selectors
   else {
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
   }
   indent += '  ';
 
   // note: this is ONLY dependent on whether the top level is a media query (ignores nestedQuery)
   if (isMediaQuery) {
-    output.push(`${indent}:root {`);
+    output += `\n${indent}:root {`;
     indent += '  ';
   }
 
   for (const [k, d] of Object.entries(rule.declarations)) {
-    output.push(`${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
+    output += `\n${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`;
   }
 
   // base closing brackets on indent level
   while (indent !== '') {
     indent = indent.substring(0, indent.length - 2);
-    output.push(`${indent}}`);
+    output += `\n${indent}}`;
   }
 
-  return output.join('\n');
+  return output.trim();
 }
 
 export interface GetRuleOptions {

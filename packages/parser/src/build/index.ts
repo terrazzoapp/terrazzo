@@ -51,7 +51,7 @@ export default async function build(
   tokens: Record<string, TokenNormalized>,
   { resolver, sources, logger = new Logger(), config }: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
-  const formats: Record<string, TokenTransformed[]> = {};
+  const formats: Record<string, { tzMode: TokenTransformed[]; [context: string]: TokenTransformed[] }> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
   function getTransforms(plugin: string) {
@@ -68,7 +68,7 @@ export default async function build(
       const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
       const modeMatcher = params.mode ? wcmatch(params.mode) : null;
 
-      return (formats[params.format!] ?? []).filter((token) => {
+      return (formats[params.format!]?.[params.modifier ?? 'tzMode'] ?? []).filter((token) => {
         if (params.$type) {
           if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
             return false;
@@ -79,11 +79,7 @@ export default async function build(
         if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
-        if (
-          params.modifier &&
-          params.context &&
-          (token.modifier !== params.modifier || token.context !== params.context)
-        ) {
+        if (params.context && token.context !== params.context) {
           return false;
         }
         if (modeMatcher && !modeMatcher(token.mode)) {
@@ -125,15 +121,18 @@ export default async function build(
 
           // upsert
           if (!formats[params.format]) {
-            formats[params.format] = [];
+            formats[params.format] = { tzMode: [] };
           }
           let foundTokenI = -1;
           if (params.mode) {
-            foundTokenI = formats[params.format]!.findIndex(
+            foundTokenI = formats[params.format]!.tzMode.findIndex(
               (t) => id === t.id && (!params.localID || params.localID === t.localID) && params.mode === t.mode,
             );
           } else if (params.context && params.modifier) {
-            foundTokenI = formats[params.format]!.findIndex(
+            if (!formats[params.format]![params.modifier]) {
+              formats[params.format]![params.modifier] = [];
+            }
+            foundTokenI = formats[params.format]![params.modifier]!.findIndex(
               (t) =>
                 id === t.id &&
                 (!params.localID || params.localID === t.localID) &&
@@ -141,7 +140,7 @@ export default async function build(
                 params.modifier === t.modifier,
             );
           } else {
-            foundTokenI = formats[params.format]!.findIndex(
+            foundTokenI = formats[params.format]!.tzMode.findIndex(
               (t) =>
                 id === t.id &&
                 (!params.localID || params.localID === t.localID) &&
@@ -153,9 +152,9 @@ export default async function build(
             // backwards compat: upconvert mode into "tzMode" modifier. This
             // allows newer plugins to use resolver syntax without disrupting
             // older plugins.
-            const modifier = !params.modifier && params.mode ? 'tzMode' : params.modifier;
+            const modifier = params.modifier || 'tzMode';
             const context = !params.modifier ? params.mode || '.' : params.context;
-            formats[params.format]!.push({
+            formats[params.format]![modifier]!.push({
               ...params,
               id,
               value: cleanValue,
@@ -166,8 +165,9 @@ export default async function build(
               context,
             } as TokenTransformed);
           } else {
-            formats[params.format]![foundTokenI]!.value = cleanValue;
-            formats[params.format]![foundTokenI]!.type = typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
+            formats[params.format]![params.modifier ?? 'tzMode']![foundTokenI]!.value = cleanValue;
+            formats[params.format]![params.modifier ?? 'tzMode']![foundTokenI]!.type =
+              typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
           }
         },
         resolver,

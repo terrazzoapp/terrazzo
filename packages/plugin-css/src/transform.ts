@@ -1,21 +1,30 @@
-import type { TokenNormalized, TransformHookOptions } from '@terrazzo/parser';
+import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
 import { type CSSPluginOptions, FORMAT_ID } from './lib.js';
 
-export type TransformOptions = Pick<TransformHookOptions, 'context' | 'resolver' | 'setTransform' | 'tokens'> &
-  Pick<CSSPluginOptions, 'baseContext' | 'contextSelectors' | 'exclude' | 'modeSelectors' | 'variableName'>;
+export interface TransformOptions {
+  transform: TransformHookOptions;
+  options: CSSPluginOptions;
+}
 
-export function transform({
-  baseContext,
-  context: { logger },
-  contextSelectors,
-  exclude: userExclude,
-  modeSelectors,
-  resolver,
-  setTransform,
-  tokens: initialSet,
-  variableName,
+export default function transformCSS({
+  transform: {
+    context: { logger },
+    resolver,
+    getTransforms,
+    setTransform,
+    tokens: initialSet,
+  },
+  options: {
+    baseContext,
+    contextSelectors,
+    exclude: userExclude,
+    legacyHex,
+    modeSelectors,
+    transform: customTransform,
+    variableName,
+  },
 }: TransformOptions) {
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
@@ -41,28 +50,41 @@ export function transform({
     if (exclude?.(token.id)) {
       continue;
     }
-    const value = transformCSSValue(token, { tokensSet: baseTokens, transformAlias });
+    const value =
+      customTransform?.(token, '.') ??
+      transformCSSValue(token, { tokensSet: baseTokens, transformAlias, color: { legacyHex } });
     if (value) {
-      setTransform(token.id, { format: FORMAT_ID, value });
+      const localID = transformName(token);
+      setTransform(token.id, {
+        format: FORMAT_ID,
+        localID,
+        value,
+        meta: { 'token-listing': { name: localID } },
+      });
     }
   }
 
   // contextSelectors
   for (const selector of contextSelectors ?? []) {
     const ignore = selector.ignore ? wcmatch(selector.ignore) : undefined;
-    const tokens = resolver.apply({ [selector.modifier]: selector.context });
+    const tokens = resolver.apply({ ...baseContext, [selector.modifier]: selector.context });
     for (const token of Object.values(tokens)) {
       if (ignore?.(token.id) || exclude?.(token.id)) {
         continue;
       }
-      const value = transformCSSValue(token, { tokensSet: tokens, transformAlias });
-      if (value) {
+      const value =
+        customTransform?.(token) ??
+        transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
+      // Don’t duplicate values when unnecessary
+      if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
+        const localID = transformName(token);
         setTransform(token.id, {
           format: FORMAT_ID,
           value,
-          localID: transformName(token),
+          localID,
           modifier: selector.modifier,
           context: selector.context,
+          meta: { 'token-listing': { name: localID } },
         });
       }
     }
@@ -75,13 +97,48 @@ export function transform({
       if ((include && !include(token.id)) || !token.mode[selector.mode]) {
         continue;
       }
-      const value = transformCSSValue(
-        { ...token, ...(token.mode[selector.mode] as any) },
-        { tokensSet: baseTokens, transformAlias },
-      );
+      const value =
+        customTransform?.(token, selector.mode) ??
+        transformCSSValue(
+          { ...token, ...(token.mode[selector.mode] as any) },
+          { tokensSet: baseTokens, transformAlias, color: { legacyHex } },
+        );
       if (value) {
-        setTransform(token.id, { format: FORMAT_ID, value, localID: transformName(token), mode: selector.mode });
+        const localID = transformName(token);
+        setTransform(token.id, {
+          format: FORMAT_ID,
+          value,
+          localID,
+          mode: selector.mode,
+          meta: { 'token-listing': { name: localID } },
+        });
       }
     }
   }
+}
+
+/** Is the transformed value different from the base value? */
+function isDifferentValue(
+  value: TokenTransformed['value'] | undefined,
+  baseValue: TokenTransformed['value'] | undefined,
+): boolean {
+  if (!value || !baseValue || typeof value !== typeof baseValue) {
+    return true;
+  }
+  if (typeof value === 'string' && typeof baseValue === 'string') {
+    return value !== baseValue;
+  }
+  const keysA = Object.keys(value);
+  const keysB = Object.keys(baseValue);
+  if (keysA.length !== keysB.length) {
+    return true;
+  }
+  if (
+    !keysA.every(
+      (k) => keysB.includes(k) && (value as Record<string, string>)[k] === (baseValue as Record<string, string>)[k],
+    )
+  ) {
+    return true;
+  }
+  return false;
 }
