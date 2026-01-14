@@ -1,6 +1,4 @@
-import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
-import { validateCustomTransform } from '@terrazzo/token-tools';
-import { generateShorthand, makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
+import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
 
@@ -66,8 +64,10 @@ export interface CSSPluginOptions {
 export interface ContextSelector {
   /** Provide CSS selector to generate. */
   selector: string;
-  /** Context to apply. Can be for just one modifier (`{ theme: "light" }`) or multiple ( `{ a: "one", b: "two", … }` ). */
-  context: Record<string, string>;
+  /** Modifier to apply. Only one modifier can apply to a CSS selector. */
+  modifier: string;
+  /** Context to apply. Must be a valid context. */
+  context: string;
   /** Provide token(s) to ignore (Note: ignoring tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
   ignore?: string[];
   /**
@@ -172,70 +172,4 @@ function _printRule(rule: CSSRule): string {
 export interface GetRuleOptions {
   /** Combine a selector with parent selectors (e.g. if adding a @media-query within another selector list) */
   parentSelectors?: string[];
-}
-
-/**
- * Transform using legacy modeSelectors.
- * It’s not ideal for the old and new way to diverge this much, but this was
- * done to freeze the legacy behavior in place while allowing the new resolver
- * behavior to improve over time without regressions. The legacy behavior
- * transforms all contexts for all modes, which means it is guilty of doing work
- * even when not requested. In the new resolver world, world, work is only done
- * when needed, which means faster computations.
- */
-export function legacyTransform(ctx: TransformHookOptions, options?: CSSPluginOptions) {
-  function transformName(token: TokenNormalized) {
-    const customName = options?.variableName?.(token);
-    if (customName !== undefined) {
-      if (typeof customName !== 'string') {
-        throw new Error(`variableName() must return a string; received ${customName}`);
-      }
-      return customName;
-    }
-    return makeCSSVar(token.id);
-  }
-  const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
-
-  for (const [id, token] of Object.entries(ctx.tokens)) {
-    const localID = transformName(token);
-    for (const mode of Object.keys(token.mode)) {
-      if (options?.transform) {
-        const value = options.transform(token, mode);
-        if (value !== undefined && value !== null) {
-          validateCustomTransform(value, { $type: token.$type });
-          ctx.setTransform(id, {
-            format: FORMAT_ID,
-            localID,
-            value,
-            mode,
-            meta: { 'token-listing': { name: localID } },
-          });
-          continue;
-        }
-      }
-
-      const transformedValue = transformCSSValue(token, {
-        mode,
-        tokensSet: ctx.tokens,
-        transformAlias,
-        color: { legacyHex: options?.legacyHex },
-      });
-      if (transformedValue !== undefined) {
-        let listingName: string | undefined = localID;
-
-        // Composite tokens without a shorthand won't get generated in the output, so we don't list them.
-        if (typeof transformedValue === 'object' && generateShorthand({ token, localID }) === undefined) {
-          listingName = undefined;
-        }
-
-        ctx.setTransform(id, {
-          format: FORMAT_ID,
-          localID,
-          value: transformedValue,
-          mode,
-          meta: { 'token-listing': { name: listingName } },
-        });
-      }
-    }
-  }
 }

@@ -1,12 +1,14 @@
 import type { Plugin } from '@terrazzo/parser';
 import buildFormat from './build/index.js';
-import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, legacyTransform } from './lib.js';
+import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
+import { transform } from './transform.js';
 
 export * from './build/index.js';
 export * from './lib.js';
+export * from './transform.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
-  const { exclude, contextSelectors, modeSelectors, utility, skipBuild, baseColorScheme, baseContext } = options ?? {};
+  const { utility, skipBuild, baseColorScheme } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
   const baseSelector = options?.baseSelector ?? ':root';
@@ -14,7 +16,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
   return {
     name: '@terrazzo/plugin-css',
     config(_config, context) {
-      if (contextSelectors && modeSelectors) {
+      if (options?.contextSelectors && options?.modeSelectors) {
         context.logger.error({
           group: 'plugin',
           label: '@terrazzo/plugin-css',
@@ -22,25 +24,13 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         });
       }
     },
-    async transform(ctx) {
+    async transform(hookOptions) {
       // skip work if another .css plugin has already run
-      const cssTokens = ctx.getTransforms({ format: FORMAT_ID, id: '*', mode: '*' });
+      const cssTokens = hookOptions.getTransforms({ format: FORMAT_ID, id: '*' });
       if (cssTokens.length) {
         return;
       }
-
-      // handle legacy behavior
-      if (modeSelectors) {
-        legacyTransform(ctx, options);
-        return;
-      }
-
-      // Resolvers
-      if (contextSelectors) {
-        return;
-      }
-
-      // Basic output
+      transform({ ...hookOptions, ...options });
     },
     async build({ getTransforms, outputFile }) {
       if (skipBuild === true) {
@@ -50,10 +40,10 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       const output: string[] = [FILE_PREFIX, ''];
       output.push(
         buildFormat({
-          exclude,
+          exclude: options?.exclude,
           getTransforms,
-          contextSelectors,
-          modeSelectors,
+          contextSelectors: options?.contextSelectors,
+          modeSelectors: options?.modeSelectors,
           utility,
           baseSelector,
           baseColorScheme,
