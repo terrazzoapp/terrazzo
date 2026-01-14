@@ -44,7 +44,12 @@
               }
             }
           }
-        ]
+        ],
+        "light-colorblind": [],
+        "light-high-contrast": [],
+        "dark-colorblind": [],
+        "dark-dimmed": [],
+        "dark-high-contrast": []
       },
       "default": "light"
     }

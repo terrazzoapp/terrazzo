@@ -17,7 +17,7 @@ export interface BuildFormatOptions {
   baseColorScheme: CSSPluginOptions['baseColorScheme'];
 }
 
-export default function buildFormat({
+export default function buildCSS({
   getTransforms,
   exclude,
   utility,

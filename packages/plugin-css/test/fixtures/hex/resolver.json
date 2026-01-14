@@ -9,6 +9,9 @@
     "base": {
       "sources": [
         {
+          "color": {
+            "text-hdr": { "$type": "color", "$value": "{color.hdr-blue}" }
+          },
           "gradient": {
             "blue-pink": {
               "$type": "gradient",
@@ -60,8 +63,7 @@
                 "color": { "colorSpace": "srgb", "components": [0, 0, 0], "alpha": 0.12 }
               }
             ]
-          },
-          "text-hdr": { "$type": "color", "$value": "{color.hdr-blue}" }
+          }
         }
       ]
     }
@@ -462,7 +464,7 @@
           }
         ]
       },
-      "default": "dark"
+      "default": "light"
     }
   }
 }

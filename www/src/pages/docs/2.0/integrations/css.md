@@ -327,33 +327,38 @@ export default defineConfig({
       filename: "tokens.css",
       exclude: [], // ex: ["beta.*"] will exclude all tokens in the "beta" top-level group
       baseContext: {
-        mode: "light",
+        theme: "light",
         size: "mobile",
       },
       baseScheme: "light dark",
       contextSelectors: [
         {
           selector: '[data-mode="light"]',
-          context: { mode: "light" },
+          modifier: "theme",
+          context: "light",
           colorScheme: "light",
         },
         {
           selector: "@media (prefers-color-scheme: dark)",
-          context: { mode: "dark" },
+          modifier: "theme",
+          context: "dark",
           colorScheme: "dark",
         },
         {
           selector: '[data-mode="dark"]',
-          context: { mode: "dark" },
+          modifier: "theme",
+          context: "dark",
           colorScheme: "dark",
         },
         {
           selector: "@media (width >= 600px)",
-          context: { size: "desktop" },
+          modifier: "size",
+          context: "desktop",
         },
         {
           selector: "@media (prefers-reduced-motion)",
-          context: { motion: "reduced-motion" },
+          modifier: "motion",
+          context: "reduced-motion",
         },
       ],
       variableName: (token) => kebabCase(token.id),

@@ -1,7 +1,7 @@
 import type { Plugin } from '@terrazzo/parser';
-import buildFormat from './build/index.js';
+import buildCSS from './build/index.js';
 import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
-import { transform } from './transform.js';
+import transformCSS from './transform.js';
 
 export * from './build/index.js';
 export * from './lib.js';
@@ -24,33 +24,30 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
         });
       }
     },
-    async transform(hookOptions) {
+    async transform(transformOptions) {
       // skip work if another .css plugin has already run
-      const cssTokens = hookOptions.getTransforms({ format: FORMAT_ID, id: '*' });
+      const cssTokens = transformOptions.getTransforms({ format: FORMAT_ID, id: '*' });
       if (cssTokens.length) {
         return;
       }
-      transform({ ...hookOptions, ...options });
+      transformCSS({ transform: transformOptions, options: options ?? {} });
     },
     async build({ getTransforms, outputFile }) {
       if (skipBuild === true) {
         return;
       }
 
-      const output: string[] = [FILE_PREFIX, ''];
-      output.push(
-        buildFormat({
-          exclude: options?.exclude,
-          getTransforms,
-          contextSelectors: options?.contextSelectors,
-          modeSelectors: options?.modeSelectors,
-          utility,
-          baseSelector,
-          baseColorScheme,
-        }),
-        '\n', // EOF newline
-      );
-      outputFile(filename, output.join('\n'));
+      let contents = `${FILE_PREFIX}\n\n`;
+      contents += buildCSS({
+        exclude: options?.exclude,
+        getTransforms,
+        contextSelectors: options?.contextSelectors,
+        modeSelectors: options?.modeSelectors,
+        utility,
+        baseSelector,
+        baseColorScheme,
+      });
+      outputFile(filename, contents.replace(/\n*$/, '\n'));
     },
   };
 }
