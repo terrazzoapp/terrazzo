@@ -24,7 +24,7 @@ catalog:
   '@vitest/browser-playwright': ^4.0.17
   '@vitest/coverage-v8': ^4.0.17
   culori: ^4.0.2
-  dtcg-examples: ^0.3.4
+  dtcg-examples: ^1.0.2
   playwright: ^1.57.0
   react: ^19.2.3
   react-dom: ^19.2.3

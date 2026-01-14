@@ -1,5 +1,5 @@
 {
-  "$schema": "https://deploy-preview-360--designtokensorg.netlify.app/schemas/2025.10/format/format.json",
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
   "size": {
     "blur": {
       "100": {

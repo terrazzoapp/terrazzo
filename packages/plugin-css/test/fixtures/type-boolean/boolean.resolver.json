@@ -22,19 +22,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "mode",
-      "type": "modifier",
-      "contexts": {
-        "light": [],
-        "light-colorblind": [],
-        "light-high-contrast": [],
-        "dark": [],
-        "dark-colorblind": [],
-        "dark-dimmed": [],
-        "dark-high-contrast": []
-      }
     }
   ]
 }
