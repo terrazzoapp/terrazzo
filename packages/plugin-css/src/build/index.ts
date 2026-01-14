@@ -1,7 +1,7 @@
 import type { BuildHookOptions } from '@terrazzo/parser';
 import { generateShorthand } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import { type CSSPluginOptions, type CSSRule, FORMAT_ID, printRules } from '../lib.js';
+import { type CSSPluginOptions, type CSSRule, FORMAT_ID, type ModeSelector, printRules } from '../lib.js';
 import generateUtilityCSS from './utility-css.js';
 
 const P3_MQ = '@media (color-gamut: p3)';
@@ -110,21 +110,24 @@ export default function buildFormat({
   }
 
   // legacy modeSelectors
-  for (const { selectors, tokens, mode, scheme } of modeSelectors ?? []) {
-    if (!selectors.length) {
-      continue;
-    }
-    const selectorTokens = getTransforms({ format: FORMAT_ID, id: tokens, mode });
+  for (const selector of [...(modeSelectors ?? []), ...(contextSelectors ?? [])]) {
+    const selectorTokens =
+      'mode' in selector
+        ? getTransforms({ format: FORMAT_ID, id: selector.tokens, mode: selector.mode })
+        : getTransforms({ format: FORMAT_ID, modifier: selector.modifier, context: selector.context });
     if (!selectorTokens.length) {
       continue;
     }
 
+    const selectors = 'selectors' in selector ? selector.selectors : [selector.selector];
     const selectorRule: CSSRule = { selectors, declarations: {} };
 
     // add color-scheme declaration first if configured for this mode
     // (must be before other properties to ensure it appears first in output)
-    if (scheme) {
-      selectorRule.declarations['color-scheme'] = { value: scheme };
+    if ('scheme' in selector || 'colorScheme' in selector) {
+      selectorRule.declarations['color-scheme'] = {
+        value: 'colorScheme' in selector ? selector.colorScheme! : (selector as ModeSelector).scheme!,
+      };
     }
 
     const selectorP3Rule: CSSRule = { selectors, nestedQuery: P3_MQ, declarations: {} };
