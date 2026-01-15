@@ -67,8 +67,8 @@ catalogs:
       specifier: ^4.0.2
       version: 4.0.2
     dtcg-examples:
-      specifier: ^0.3.4
-      version: 0.3.4
+      specifier: ^1.0.2
+      version: 1.0.2
     playwright:
       specifier: ^1.57.0
       version: 1.57.0
@@ -203,8 +203,8 @@ importers:
         specifier: ^0.11.0
         version: 0.11.0
       '@hono/node-server':
-        specifier: ^1.19.8
-        version: 1.19.8(hono@4.7.4)
+        specifier: ^1.19.9
+        version: 1.19.9(hono@4.7.4)
       '@humanwhocodes/momoa':
         specifier: 'catalog:'
         version: 3.3.10
@@ -392,7 +392,7 @@ importers:
         version: link:../parser
       dtcg-examples:
         specifier: 'catalog:'
-        version: 0.3.4
+        version: 1.0.2
 
   packages/plugin-css-in-js:
     dependencies:
@@ -422,6 +422,9 @@ importers:
       '@terrazzo/cli':
         specifier: workspace:^
         version: link:../cli
+      dtcg-examples:
+        specifier: 'catalog:'
+        version: 1.0.2
 
   packages/plugin-sass:
     dependencies:
@@ -503,7 +506,7 @@ importers:
         version: 4.0.17(@vitest/browser@4.0.17(vite@7.3.1(@types/node@25.0.8)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.2))(vitest@4.0.17))(vitest@4.0.17)
       dtcg-examples:
         specifier: 'catalog:'
-        version: 0.3.4
+        version: 1.0.2
 
   packages/plugin-vanilla-extract:
     dependencies:
@@ -534,7 +537,7 @@ importers:
         version: 5.1.4(@types/node@25.0.8)(jiti@2.6.1)(sass-embedded@1.85.1)(vite@7.3.1(@types/node@25.0.8)(jiti@2.6.1)(sass-embedded@1.85.1)(yaml@2.8.2))(yaml@2.8.2)
       dtcg-examples:
         specifier: 'catalog:'
-        version: 0.3.4
+        version: 1.0.2
       react:
         specifier: 'catalog:'
         version: 19.2.3
@@ -770,7 +773,7 @@ importers:
         version: 2.1.1
       dtcg-examples:
         specifier: 'catalog:'
-        version: 0.3.4
+        version: 1.0.2
       jotai:
         specifier: ^2.16.2
         version: 2.16.2(@babel/core@7.28.6)(@babel/template@7.28.6)(@types/react@19.2.8)(react@19.2.3)
@@ -1933,8 +1936,8 @@ packages:
   '@floating-ui/utils@0.2.10':
     resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
-  '@hono/node-server@1.19.8':
-    resolution: {integrity: sha512-0/g2lIOPzX8f3vzW1ggQgvG5mjtFBDBHFAzI5SFAi2DzSqS9luJwqg9T6O/gKYLi+inS7eNxBeIFkkghIPvrMA==}
+  '@hono/node-server@1.19.9':
+    resolution: {integrity: sha512-vHL6w3ecZsky+8P5MD+eFfaGTyCeOHUIFYMGpQGbrBTSmNNoxv0if69rEZ5giu36weC5saFuznL411gRX7bJDw==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
@@ -3812,8 +3815,8 @@ packages:
     resolution: {integrity: sha512-2QF/g9/zTaPDc3BjNcVTGoBbXBgYfMTTceLaYcFJ/W9kggFUkhxD/hMEeuLKbugyef9SqAx8cpgwlIP/jinUTA==}
     engines: {node: '>=4'}
 
-  dtcg-examples@0.3.4:
-    resolution: {integrity: sha512-7uVQyjY7L4PRC5RV6+CLF25kY7pHN/apGFjBy4rQap7Z5srYvsNzYnEviGe/CvYTHoBlftJMgjYP26oQNZamWg==}
+  dtcg-examples@1.0.2:
+    resolution: {integrity: sha512-g8d2zqxa/fvEp1kraGjVCbNN4F4bigFrOzfCxpUU/jbBS4GHhxCezjEWBvupVaTJ5urNAlCarwYNaFc84y9B2g==}
 
   dts-resolver@2.1.3:
     resolution: {integrity: sha512-bihc7jPC90VrosXNzK0LTE2cuLP6jr0Ro8jk+kMugHReJVLIpHz/xadeq3MhuwyO4TD4OA3L1Q8pBBFRc08Tsw==}
@@ -7604,7 +7607,7 @@ snapshots:
 
   '@floating-ui/utils@0.2.10': {}
 
-  '@hono/node-server@1.19.8(hono@4.7.4)':
+  '@hono/node-server@1.19.9(hono@4.7.4)':
     dependencies:
       hono: 4.7.4
 
@@ -9607,7 +9610,7 @@ snapshots:
 
   dset@3.1.4: {}
 
-  dtcg-examples@0.3.4: {}
+  dtcg-examples@1.0.2: {}
 
   dts-resolver@2.1.3: {}
 

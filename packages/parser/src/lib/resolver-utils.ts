@@ -25,11 +25,8 @@ export function filterResolverPaths(path: string[]): string[] {
   return path;
 }
 
-/**
- * Make a deterministic string from an object
- */
-export function makeInputKey(input: Record<string, string | undefined>): string {
-  return JSON.stringify(
-    Object.fromEntries(Object.entries(input).sort((a, b) => a[0].localeCompare(b[0], 'en-us', { numeric: true }))),
-  );
+/** Make a deterministic string from an object */
+export function getPermutationID(input: Record<string, string | undefined>): string {
+  const keys = Object.keys(input).sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));
+  return JSON.stringify(Object.fromEntries(keys.map((k) => [k, input[k]])));
 }

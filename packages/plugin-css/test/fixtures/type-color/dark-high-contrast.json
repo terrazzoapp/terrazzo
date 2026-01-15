@@ -1,0 +1,51 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "blue": {
+      "0": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.792156862745098, 0.9176470588235294, 1], "alpha": 1, "hex": "#caeaff" }
+      },
+      "1": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.6784313725490196, 0.8627450980392157, 1], "alpha": 1, "hex": "#addcff" }
+      },
+      "2": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.5686274509803921, 0.796078431372549, 1], "alpha": 1, "hex": "#91cbff" }
+      },
+      "3": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.44313725490196076, 0.7176470588235294, 1], "alpha": 1, "hex": "#71b7ff" }
+      },
+      "4": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.25098039215686274, 0.6196078431372549, 1], "alpha": 1, "hex": "#409eff" }
+      },
+      "5": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.25098039215686274, 0.6196078431372549, 1], "alpha": 1, "hex": "#409eff" }
+      },
+      "6": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.19215686274509805, 0.5450980392156862, 0.9725490196078431], "alpha": 1, "hex": "#318bf8" }
+      },
+      "7": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.14901960784313725, 0.4470588235294118, 0.9529411764705882], "alpha": 1, "hex": "#2672f3" }
+      },
+      "8": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.11764705882352941, 0.3764705882352941, 0.8352941176470589], "alpha": 1, "hex": "#1e60d5" }
+      },
+      "9": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.09803921568627451, 0.30980392156862746, 0.6941176470588235], "alpha": 1, "hex": "#194fb1" }
+      }
+    },
+    "hdr-blue": {
+      "$type": "color",
+      "$value": { "colorSpace": "oklch", "components": [0.6971, 0.183, 252.17790084227943] }
+    }
+  }
+}

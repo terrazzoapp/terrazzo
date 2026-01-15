@@ -1,4 +1,4 @@
-import { exec } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -27,56 +27,43 @@ type DesignSystem =
   | 'github-primer'
   | 'ibm-carbon'
   | 'microsoft-fluent'
-  | 'radix'
-  | 'salesforce-lightning'
   | 'shopify-polaris';
 
-const DTCG_ROOT_URL = 'https://raw.githubusercontent.com/terrazzoapp/dtcg-examples/refs/heads/main/';
 const DESIGN_SYSTEMS: Record<DesignSystem, { name: string; author: string; tokens: string[] }> = {
   'adobe-spectrum': {
     name: 'Spectrum',
     author: 'Adobe',
-    tokens: ['adobe-spectrum.json'],
+    tokens: ['dtcg-examples/adobe-spectrum.resolver.json'],
   },
   'apple-hig': {
     name: 'Human Interface Guidelines',
     author: 'Apple',
-    tokens: ['apple-hig.json'],
+    tokens: ['dtcg-examples/apple-hig.resolver.json'],
   },
   'figma-sds': {
     name: 'Simple Design System',
     author: 'Figma',
-    tokens: ['figma-sds.json'],
+    tokens: ['dtcg-examples/figma-sds.resolver.json'],
   },
   'github-primer': {
     name: 'Primer',
     author: 'GitHub',
-    tokens: ['github-primer.json'],
+    tokens: ['dtcg-examples/github-primer.resolver.json'],
   },
   'ibm-carbon': {
     name: 'Carbon',
     author: 'IBM',
-    tokens: ['ibm-carbon.json'],
+    tokens: ['dtcg-examples/ibm-carbon.resolver.json'],
   },
   'microsoft-fluent': {
     name: 'Fluent',
     author: 'Microsoft',
-    tokens: ['microsoft-fluent.json'],
-  },
-  radix: {
-    name: 'Radix',
-    author: 'Radix',
-    tokens: ['radix.json'],
-  },
-  'salesforce-lightning': {
-    name: 'Lightning',
-    author: 'Salesforce',
-    tokens: ['salesforce-lightning.json'],
+    tokens: ['dtcg-examples/microsoft-fluent.resolver.json'],
   },
   'shopify-polaris': {
     name: 'Polaris',
     author: 'Shopify',
-    tokens: ['shopify-polaris.json'],
+    tokens: ['dtcg-examples/shopify-polaris.resolver.json'],
   },
 };
 
@@ -125,12 +112,15 @@ export async function initCmd({ logger }: InitOptions) {
         })) as keyof typeof DESIGN_SYSTEMS
       ] as (typeof DESIGN_SYSTEMS)[DesignSystem] | undefined;
       if (ds) {
-        // TODO: support multiple tokens files?
         const s = spinner();
         s.start('Downloading');
-        const tokenSource = await fetch(new URL(ds.tokens[0]!, DTCG_ROOT_URL)).then((res) => res.text());
-        fs.writeFileSync(tokensPath, tokenSource);
-        s.stop('Download complete');
+        await new Promise((resolve, reject) => {
+          // security: spawn() is much safer than exec()
+          const subprocess = spawn(packageManager, [INSTALL_COMMAND[packageManager], 'dtcg-examples'], { cwd });
+          subprocess.on('error', reject);
+          subprocess.on('exit', resolve);
+        });
+        await s.stop('Download complete');
       }
     }
 
@@ -152,14 +142,12 @@ export async function initCmd({ logger }: InitOptions) {
     if (newPlugins?.length) {
       const plugins = newPlugins.map((p) => ({ specifier: p.replace('@terrazzo/plugin-', ''), package: p }));
       const pluginCount = `${newPlugins.length} ${pluralize(newPlugins.length, 'plugin', 'plugins')}`;
-
       const s = spinner();
       s.start(`Installing ${pluginCount}`);
       // note: thi sis async to show the spinner
       await new Promise((resolve, reject) => {
-        const subprocess = exec([packageManager, INSTALL_COMMAND[packageManager], newPlugins.join(' ')].join(' '), {
-          cwd,
-        });
+        // security: spawn() is much safer than exec()
+        const subprocess = spawn(packageManager, [INSTALL_COMMAND[packageManager], newPlugins.join(' ')], { cwd });
         subprocess.on('error', reject);
         subprocess.on('exit', resolve);
       });

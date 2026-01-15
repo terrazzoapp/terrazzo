@@ -1,0 +1,144 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "version": "2025.10",
+  "resolutionOrder": [
+    { "$ref": "#/sets/base" },
+    { "$ref": "#/modifiers/mode" }
+  ],
+  "sets": {
+    "base": {
+      "sources": [
+        {
+          "border": {
+            "solid": {
+              "$type": "border",
+              "$value": {
+                "color": "{border.color}",
+                "width": { "value": 1, "unit": "px" },
+                "style": "solid"
+              }
+            },
+            "ridge": {
+              "$type": "border",
+              "$value": {
+                "color": "{border.color}",
+                "width": { "value": 1, "unit": "px" },
+                "style": "ridge"
+              }
+            },
+            "dashed": {
+              "$type": "border",
+              "$value": {
+                "color": "{border.color}",
+                "width": { "value": 1.5, "unit": "px" },
+                "style": {
+                  "dashArray": [
+                    { "value": 0.5, "unit": "rem" },
+                    { "value": 0.25, "unit": "rem" }
+                  ],
+                  "lineCap": "round"
+                }
+              }
+            },
+            "red": {
+              "$type": "border",
+              "$value": {
+                "color": "{color.red}",
+                "width": { "value": 1, "unit": "px" },
+                "style": "solid"
+              }
+            },
+            "default": {
+              "$type": "border",
+              "$value": "{border.solid}"
+            },
+            "thick": {
+              "$type": "border",
+              "$value": { "width": { "value": 2.5, "unit": "px" }, "style": "solid", "color": "{color.border}" }
+            }
+          },
+          "color": {
+            "base": {
+              "gray": {
+                "10": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.1, 0.002, 270] } },
+                "15": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.15, 0.001577, 290] } },
+                "20": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.2, 0.001422, 310] } },
+                "25": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.25, 0.001614, 340] } },
+                "30": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.3, 0.002057, 0] } },
+                "40": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.4, 0.003261, 18] } },
+                "50": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.5, 0.004607, 27] } },
+                "60": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.6, 0.006, 31] } },
+                "70": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.7, 0.00575, 31] } },
+                "80": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.8, 0.0055, 31] } },
+                "85": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.85, 0.005375, 31] } },
+                "90": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.9, 0.00525, 31] } },
+                "95": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [0.94, 0.005125, 31] } },
+                "100": { "$type": "color", "$value": { "colorSpace": "oklch", "components": [1, 0, 0] } }
+              }
+            },
+            "border": {
+              "$type": "color",
+              "$value": "{color.base.gray.20}",
+              "$extensions": {
+                "mode": {
+                  "light": "{color.base.gray.20}",
+                  "dark": "{color.base.gray.80}"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "mode": {
+      "contexts": {
+        "light": [{ "$ref": "#/$defs/light.tokens.json" }],
+        "dark": [{ "$ref": "#/$defs/dark.tokens.json" }]
+      }
+    }
+  },
+  "$defs": {
+    "light.tokens.json": {
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value":  {
+            "colorSpace": "srgb",
+            "components": [0.6509803921568628, 0.6901960784313725, 0.7098039215686275],
+            "alpha": 1,
+            "hex": "#a6b0b5"
+          }
+        }
+      },
+      "color": {
+        "border": { "$type": "color", "$value": "{color.base.gray.20}" },
+        "red": {
+          "$type": "color",
+          "$value": {  "colorSpace": "oklch", "components": [0.6294, 0.355, 14.82]}
+        }
+      }
+    },
+    "dark.tokens.json": {
+      "border": {
+        "color": {
+          "$type": "color",
+          "$value":  {
+            "colorSpace": "srgb",
+            "components": [0.0784313725490196, 0.09019607843137255, 0.10588235294117647],
+            "alpha": 1,
+            "hex": "#14171b"
+          }
+        }
+      },
+      "color": {
+        "border": { "$type": "color", "$value": "{color.base.gray.80}" },
+        "red": {
+          "$type": "color",
+          "$value": {"colorSpace": "oklch", "components": [0.3412, 0.254, 14.82]}
+        }
+      }
+    }
+  }
+}

@@ -18,12 +18,36 @@ export interface CSSPluginOptions {
   filename?: string;
   /** Glob patterns to exclude tokens from output */
   exclude?: string[];
-  /** Define mode selectors as media queries or CSS classes */
+  /**
+   * Set the base selector, like ":root" or ":host".
+   * @deprecated use permutations instead.
+   * @default ":root"
+   */
+  baseSelector?: string;
+  /**
+   * Set the color-scheme CSS property for `baseSelector`.
+   * @deprecated use permutations instead.
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
+   * @example "light dark"
+   */
+  baseScheme?: string;
+  /**
+   * Build resolver contexts into media queries
+   */
+  permutations?: Permutation[];
+  /**
+   * Define mode selectors as media queries or CSS classes
+   * @deprecated Migrate to permutations
+   */
   modeSelectors?: ModeSelector[];
   /** Control the final CSS variable name */
   variableName?: (token: TokenNormalized) => string;
   /** Override certain token values */
-  transform?: (token: TokenNormalized, mode: string) => TokenTransformed['value'] | undefined | null;
+  transform?: (
+    token: TokenNormalized,
+    /** @deprecated */
+    mode?: string,
+  ) => TokenTransformed['value'] | undefined | null;
   /** Generate utility CSS from groups */
   utility?: Partial<Record<UtilityCSSGroup, string[]>>;
   /**
@@ -36,15 +60,15 @@ export interface CSSPluginOptions {
    * @default false
    */
   skipBuild?: boolean;
-  /**
-   * Set the base selector, like ":root" or ":host".
-   * @default ":root"
-   */
-  baseSelector?: string;
-  /**
-   * Set the color-scheme CSS property for the base selector (e.g.: "light", "dark", "light dark")
-   */
-  baseScheme?: string;
+}
+
+export interface Permutation<T extends Record<string, string> = Record<string, string>> {
+  /** Generate the final CSS string, wrapping content in the selector(s) of your choice. */
+  prepare(css: string): string;
+  /** Input for this permutation. */
+  input: T;
+  /** Provide token(s) to ignore (Note: ignoring tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
+  ignore?: string[];
 }
 
 export interface ModeSelector {
@@ -73,7 +97,7 @@ export interface CSSRule {
 
 /** Convert CSSRules into a formatted, indented CSS string */
 export function printRules(rules: CSSRule[]): string {
-  const output: string[] = [];
+  let output = '';
   for (const rule of rules) {
     if (!rule.selectors.length || !Object.keys(rule.declarations).length) {
       continue;
@@ -86,59 +110,96 @@ export function printRules(rules: CSSRule[]): string {
     }
     // @media-query selectors get pushed individually
     for (const s of mqSelectors) {
-      output.push(_printRule({ ...rule, selectors: [s] }));
+      const next = _printRule({ ...rule, selectors: [s] });
+      if (next) {
+        output += `\n\n${next}`;
+      }
     }
     // all other selectors get joined as one
     if (joinableSelectors.length) {
-      output.push(_printRule({ ...rule, selectors: joinableSelectors }));
+      const next = _printRule({ ...rule, selectors: joinableSelectors });
+      if (next) {
+        output += `\n\n${next}`;
+      }
     }
   }
-  return output.join('\n\n');
+  return output.trim();
 }
 
 function _printRule(rule: CSSRule): string {
-  const output: string[] = [];
+  let output = '';
   const isMediaQuery = rule.selectors.some((s) => s.startsWith('@'));
   let indent = '';
 
   // if both levels are media queries, preserve order
   if (rule.nestedQuery && isMediaQuery) {
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
     indent += '  ';
-    output.push(`${indent}${rule.nestedQuery} {`);
+    output += `\n${indent}${rule.nestedQuery} {`;
   }
   // otherwise if nested query exists but parens aren’t media queries, reverse order (media queries on top)
   else if (rule.nestedQuery && !isMediaQuery) {
-    output.push(`${indent}${rule.nestedQuery} {`);
+    output += `\n${indent}${rule.nestedQuery} {`;
     indent += '  ';
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
   }
   // if no media queries, just print selectors
   else {
-    output.push(`${indent}${rule.selectors.join(`,\n${indent}`)} {`);
+    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
   }
   indent += '  ';
 
   // note: this is ONLY dependent on whether the top level is a media query (ignores nestedQuery)
   if (isMediaQuery) {
-    output.push(`${indent}:root {`);
+    output += `\n${indent}:root {`;
     indent += '  ';
   }
 
   for (const [k, d] of Object.entries(rule.declarations)) {
-    output.push(`${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`);
+    output += `\n${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`;
   }
 
   // base closing brackets on indent level
   while (indent !== '') {
     indent = indent.substring(0, indent.length - 2);
-    output.push(`${indent}}`);
+    output += `\n${indent}}`;
   }
 
-  return output.join('\n');
+  return output.trim();
 }
 
 export interface GetRuleOptions {
   /** Combine a selector with parent selectors (e.g. if adding a @media-query within another selector list) */
   parentSelectors?: string[];
+}
+
+/** Provide standard formatting for basic CSS printing */
+export function printDeclaration(property: string, value: string, { comment }: { comment?: string } = {}): string {
+  return `${property}: ${value};${comment ? ` /* ${comment} */` : ''}`;
+}
+
+/** Provide lazy formatting for CSS, going off bracket counts */
+export function prettify(input: string): string {
+  const lines = input
+    .replace(/\{\s*/g, '{\n') // format opening brackets
+    .replace(/\s*\}\s*/g, '\n}\n\n') // format closing brackets
+    .replace(/\n\n+/g, '\n\n') // don’t allow anything beyond double-spacing
+    .split('\n');
+  let indent = 0;
+  let indentStr = '  '.repeat(indent);
+  for (let i = 0; i < lines.length; i++) {
+    // dedent
+    if (lines[i]!.includes('}')) {
+      indent = Math.max(0, indent - 1);
+      indentStr = '  '.repeat(indent);
+    }
+    // format
+    lines[i] = lines[i]!.replace(/^\s*/, indentStr);
+    // indent
+    if (lines[i]!.includes('{')) {
+      indent++;
+      indentStr = '  '.repeat(indent);
+    }
+  }
+  return lines.join('\n');
 }

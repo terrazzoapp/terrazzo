@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { filterResolverPaths, makeInputKey } from '../../src/lib/resolver-utils.js';
+import { filterResolverPaths, getPermutationID } from '../../src/lib/resolver-utils.js';
 
 describe('filterResolverPaths', () => {
   const tests: [
@@ -36,8 +36,8 @@ describe('filterResolverPaths', () => {
   });
 });
 
-it('makeInputKey', () => {
-  expect(makeInputKey({ a: 'A', c: 'C', b: 'B' })).toBe('{"a":"A","b":"B","c":"C"}');
-  expect(makeInputKey({ 0: '0', 11: '11', 2: '2' })).toBe('{"0":"0","2":"2","11":"11"}');
-  expect(makeInputKey({})).toBe('{}');
+it('getPermutationID', () => {
+  expect(getPermutationID({ a: 'A', c: 'C', b: 'B' })).toBe('{"a":"A","b":"B","c":"C"}');
+  expect(getPermutationID({ 0: '0', 11: '11', 2: '2' })).toBe('{"0":"0","2":"2","11":"11"}');
+  expect(getPermutationID({})).toBe('{}');
 });

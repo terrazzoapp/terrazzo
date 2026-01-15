@@ -1,0 +1,51 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "blue": {
+      "0": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.8666666666666667, 0.9568627450980393, 1], "alpha": 1, "hex": "#ddf4ff" }
+      },
+      "1": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.7137254901960784, 0.8901960784313725, 1], "alpha": 1, "hex": "#b6e3ff" }
+      },
+      "2": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.5019607843137255, 0.8, 1], "alpha": 1, "hex": "#80ccff" }
+      },
+      "3": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.32941176470588235, 0.6823529411764706, 1], "alpha": 1, "hex": "#54aeff" }
+      },
+      "4": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.12941176470588237, 0.5450980392156862, 1], "alpha": 1, "hex": "#218bff" }
+      },
+      "5": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.03529411764705882, 0.4117647058823529, 0.8549019607843137], "alpha": 1, "hex": "#0969da" }
+      },
+      "6": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.0196078431372549, 0.3137254901960784, 0.6823529411764706], "alpha": 1, "hex": "#0550ae" }
+      },
+      "7": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.011764705882352941, 0.23921568627450981, 0.5450980392156862], "alpha": 1, "hex": "#033d8b" }
+      },
+      "8": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0.0392156862745098, 0.18823529411764706, 0.4117647058823529], "alpha": 1, "hex": "#0a3069" }
+      },
+      "9": {
+        "$type": "color",
+        "$value": { "colorSpace": "srgb", "components": [0, 0.12941176470588237, 0.3333333333333333], "alpha": 1, "hex": "#002155" }
+      }
+    },
+    "hdr-blue": {
+      "$type": "color",
+      "$value": { "colorSpace": "oklch", "components": [0.6412, 0.239, 254.98] }
+    }
+  }
+}
