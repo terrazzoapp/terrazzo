@@ -352,6 +352,8 @@ export interface Resolver<
    * only computed once on the first call.
    */
   listPermutations: () => Input[];
+  /* Generate a stable ID from any input */
+  getPermutationID: (input: Input) => string;
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
@@ -434,7 +436,7 @@ export interface ResolverSetNormalized {
   $defs: Record<string, unknown> | undefined;
 }
 
-export type TransformParams = TransformParamsLegacy | TransformParamsWithModifier;
+export type TransformParams = TransformParamsLegacy | TransformParamsResolver;
 
 export interface TransformParamsBase {
   /** ID of an existing format */
@@ -448,22 +450,18 @@ export interface TransformParamsBase {
 export interface TransformParamsLegacy extends TransformParamsBase {
   /**
    * Mode name, if selecting a mode
-   * @deprecated Use context/modifier instead.
+   * @deprecated Use input instead.
    * @default "."
    */
   mode?: string | string[];
-  /** Modifier name. @example "size" */
-  modifier?: never;
-  /** Context within `modifier`. @example "desktop" */
-  context?: never;
+  /** Input that marks the transformation as a permutation */
+  input?: never;
 }
 
-export interface TransformParamsWithModifier extends TransformParamsBase {
+export interface TransformParamsResolver extends TransformParamsBase {
   mode?: never;
-  /** Modifier name. @example "size" */
-  modifier: string;
-  /** Context within `modifier`. @example "desktop" */
-  context: string;
+  /** Input that marks the transformation as a permutation */
+  input: Record<string, string>;
 }
 
 export interface TransformHookOptions {
@@ -483,8 +481,7 @@ export interface TransformHookOptions {
           value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
           /** @deprecated */
           mode?: string;
-          modifier?: never;
-          context?: never;
+          input?: never;
           meta?: TokenTransformedBase['meta'];
         }
       | {
@@ -492,8 +489,7 @@ export interface TransformHookOptions {
           localID?: string;
           value: string | Record<string, string>;
           mode?: never;
-          modifier: string;
-          context: string;
+          input: Record<string, string>;
           meta?: TokenTransformedBase['meta'];
         },
   ): void;

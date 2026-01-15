@@ -51,7 +51,7 @@ export default async function build(
   tokens: Record<string, TokenNormalized>,
   { resolver, sources, logger = new Logger(), config }: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
-  const formats: Record<string, { tzMode: TokenTransformed[]; [context: string]: TokenTransformed[] }> = {};
+  const formats: Record<string, { [permutationID: string]: TokenTransformed[] }> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
   function getTransforms(plugin: string) {
@@ -67,8 +67,9 @@ export default async function build(
 
       const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
       const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+      const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
 
-      return (formats[params.format!]?.[params.modifier ?? 'tzMode'] ?? []).filter((token) => {
+      return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
         if (params.$type) {
           if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
             return false;
@@ -79,7 +80,7 @@ export default async function build(
         if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
-        if (params.context && token.context !== params.context) {
+        if (params.input && token.permutationID !== resolver.getPermutationID(params.input)) {
           return false;
         }
         if (modeMatcher && !modeMatcher(token.mode)) {
@@ -110,7 +111,9 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-
+          const permutationID = params.input
+            ? resolver.getPermutationID(params.input)
+            : JSON.stringify({ tzMode: '*' });
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
@@ -121,52 +124,46 @@ export default async function build(
 
           // upsert
           if (!formats[params.format]) {
-            formats[params.format] = { tzMode: [] };
+            formats[params.format] = {};
+          }
+          if (!formats[params.format]![permutationID]) {
+            formats[params.format]![permutationID] = [];
           }
           let foundTokenI = -1;
           if (params.mode) {
-            foundTokenI = formats[params.format]!.tzMode.findIndex(
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
               (t) => id === t.id && (!params.localID || params.localID === t.localID) && params.mode === t.mode,
             );
-          } else if (params.context && params.modifier) {
-            if (!formats[params.format]![params.modifier]) {
-              formats[params.format]![params.modifier] = [];
+          } else if (params.input) {
+            if (!formats[params.format]![permutationID]) {
+              formats[params.format]![permutationID] = [];
             }
-            foundTokenI = formats[params.format]![params.modifier]!.findIndex(
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
               (t) =>
-                id === t.id &&
-                (!params.localID || params.localID === t.localID) &&
-                params.context === t.context &&
-                params.modifier === t.modifier,
+                id === t.id && (!params.localID || params.localID === t.localID) && permutationID === t.permutationID,
             );
           } else {
-            foundTokenI = formats[params.format]!.tzMode.findIndex(
-              (t) =>
-                id === t.id &&
-                (!params.localID || params.localID === t.localID) &&
-                t.context === undefined &&
-                t.modifier === undefined,
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
+              (t) => id === t.id && (!params.localID || params.localID === t.localID),
             );
           }
           if (foundTokenI === -1) {
             // backwards compat: upconvert mode into "tzMode" modifier. This
             // allows newer plugins to use resolver syntax without disrupting
             // older plugins.
-            const modifier = params.modifier || 'tzMode';
-            const context = !params.modifier ? params.mode || '.' : params.context;
-            formats[params.format]![modifier]!.push({
+            formats[params.format]![permutationID]!.push({
               ...params,
               id,
               value: cleanValue,
               type: typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE,
               mode: params.mode || '.',
               token: structuredClone(token),
-              modifier,
-              context,
+              permutationID,
+              input: JSON.parse(permutationID),
             } as TokenTransformed);
           } else {
-            formats[params.format]![params.modifier ?? 'tzMode']![foundTokenI]!.value = cleanValue;
-            formats[params.format]![params.modifier ?? 'tzMode']![foundTokenI]!.type =
+            formats[params.format]![permutationID]![foundTokenI]!.value = cleanValue;
+            formats[params.format]![permutationID]![foundTokenI]!.type =
               typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
           }
         },

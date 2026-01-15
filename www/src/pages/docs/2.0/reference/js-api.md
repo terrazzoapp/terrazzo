@@ -27,13 +27,13 @@ const config = defineConfig(
   {
     // config options
   },
-  { cwd: new URL(import.meta.url) },
+  { cwd: new URL(import.meta.url) }
 );
 
 const filename = new URL("./tokens/my-tokens.json", import.meta.url);
 const { tokens, sources } = await parse(
   [{ filename, src: await fs.readFile(filename) }],
-  { config },
+  { config }
 );
 const buildResult = await build(tokens, { sources, config });
 
@@ -80,7 +80,7 @@ const { tokens, ast } = await parse(
   {
     config,
     logger: new MyLogger(),
-  },
+  }
 );
 ```
 
@@ -132,7 +132,7 @@ const { sources } = await parse(
           node.members.push(
             momoa.parse({
               "1000": { $value: "#242424" }, // dynamically inject color.base.slate.1000
-            }).body.members[0],
+            }).body.members[0]
           );
         }
       },
@@ -145,7 +145,7 @@ const { sources } = await parse(
         const { mode: colorSpace, alpha, ...components } = color;
 
         return (node.members.find(
-          (m) => m.name.type === "String" && m.name.value === "$value",
+          (m) => m.name.type === "String" && m.name.value === "$value"
         ).value = momoa.parse({
           colorSpace,
           components,
@@ -153,7 +153,7 @@ const { sources } = await parse(
         })).body;
       },
     },
-  },
+  }
 );
 ```
 
@@ -236,8 +236,13 @@ Because DTCG tokens can be used with or without a resolver file, this is a separ
 import { createResolver, parse } from "@terrazzo/parser";
 
 const sources = [
-  { filename: new URL("file:///my-resolver.resolver.json"), src: {/* contents */} },
-]
+  {
+    filename: new URL("file:///my-resolver.resolver.json"),
+    src: {
+      /* contents */
+    },
+  },
+];
 
 const { resolver } = await parse(sources, { config });
 const r = createResolver(resolver);
@@ -280,8 +285,10 @@ If the resolver specified zero modifiers, the array will be `[{}]` so you can st
 
 `createResolver(resolver)` returns a resolver with the following methods:
 
-| Name                  | Type                                           | Description                                                                                            |
-|:----------------------|:-----------------------------------------------|:-------------------------------------------------------------------------------------------------------|
-| **apply**             | `(input: Record<string, string>) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.              |
-| **inputPermutations** | `Record<string, string>[]`                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers). |
-| **isValidInput**      | `(input: Record<string, string>) => boolean`   | Returns whether or not a given object is a valid input for this resolver.                              |
+| Name                  | Type                                           | Description                                                                                                     |
+| :-------------------- | :--------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **apply**             | `(input: Record<string, string>) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                       |
+| **inputPermutations** | `Record<string, string>[]`                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).          |
+| **isValidInput**      | `(input: Record<string, string>) => boolean`   | Returns whether or not a given object is a valid input for this resolver.                                       |
+| **getPermutationID**  | `(input: Record<string, string>) => string`    | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input. |
+| **source**            | Resolver                                       | Original resolver, in case you want to manually verify something or implement new logic.                        |

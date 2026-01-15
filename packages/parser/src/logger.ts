@@ -6,7 +6,7 @@ import { codeFrameColumns } from './lib/code-frame.js';
 export const LOG_ORDER = ['error', 'warn', 'info', 'debug'] as const;
 export type LogSeverity = 'error' | 'warn' | 'info' | 'debug';
 export type LogLevel = LogSeverity | 'silent';
-export type LogGroup = 'config' | 'parser' | 'lint' | 'plugin' | 'server';
+export type LogGroup = 'config' | 'parser' | 'resolver' | 'lint' | 'plugin' | 'server';
 
 export interface LogEntry {
   /** Originator of log message */

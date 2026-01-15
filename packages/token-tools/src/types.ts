@@ -610,10 +610,13 @@ export interface TokenTransformedBase {
   localID?: string;
   /** @deprecated Prefer modifier/context */
   mode: string;
-  /** The modifier name this exists in, if any. */
-  modifier: string | undefined;
-  /** The modifier context this exists in, if any. */
-  context: string | undefined;
+  /** The normalized input given (this will include defaults) */
+  input: Record<string, string>;
+  /**
+   * A unique ID for the permutation of this token. Note that any input that
+   * produces the same set will have the same permutation ID.
+   */
+  permutationID: string | undefined;
   /** The original token. */
   token: TokenNormalized;
   /** Arbitrary metadata set by plugins. */

@@ -14,17 +14,9 @@ export default function transformCSS({
     resolver,
     getTransforms,
     setTransform,
-    tokens: initialSet,
+    tokens: baseTokens,
   },
-  options: {
-    baseContext,
-    contextSelectors,
-    exclude: userExclude,
-    legacyHex,
-    modeSelectors,
-    transform: customTransform,
-    variableName,
-  },
+  options: { permutations, exclude: userExclude, legacyHex, modeSelectors, transform: customTransform, variableName },
 }: TransformOptions) {
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
@@ -44,8 +36,49 @@ export default function transformCSS({
 
   const exclude = userExclude ? wcmatch(userExclude) : undefined;
 
+  // permutations
+  if (permutations?.length) {
+    for (const p of permutations) {
+      const input = p.input;
+      const ignore = p.ignore ? wcmatch(p.ignore) : undefined;
+      // Note: if we throw an error here without specifying the input, a user may
+      // find it impossible to debug the issue
+      try {
+        const tokens = resolver.apply(input);
+        for (const token of Object.values(tokens)) {
+          if (ignore?.(token.id) || exclude?.(token.id)) {
+            continue;
+          }
+          const value =
+            customTransform?.(token) ??
+            transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
+          // Don’t duplicate values when unnecessary
+          if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
+            const localID = transformName(token);
+            setTransform(token.id, {
+              format: FORMAT_ID,
+              value,
+              localID,
+              input,
+              meta: { 'token-listing': { name: localID } },
+            });
+          }
+        }
+      } catch (err) {
+        logger.error({
+          group: 'plugin',
+          label: '@terrazzo/plugin-css',
+          message: `There was an error trying to apply input ${resolver.getPermutationID(input)}.`,
+          continueOnError: true, // throw below
+        });
+        throw err; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
+      }
+    }
+
+    return;
+  }
+
   // base set
-  const baseTokens = baseContext ? resolver.apply(baseContext) : initialSet;
   for (const token of Object.values(baseTokens)) {
     if (exclude?.(token.id)) {
       continue;
@@ -61,45 +94,6 @@ export default function transformCSS({
         value,
         meta: { 'token-listing': { name: localID } },
       });
-    }
-  }
-
-  // contextSelectors
-  for (const selector of contextSelectors ?? []) {
-    const ignore = selector.ignore ? wcmatch(selector.ignore) : undefined;
-    // Note: if we throw an error here without specifying the input, a user may
-    // find it impossible to debug the issue
-    try {
-      const input = { [selector.modifier]: selector.context };
-      const tokens = resolver.apply(input);
-      for (const token of Object.values(tokens)) {
-        if (ignore?.(token.id) || exclude?.(token.id)) {
-          continue;
-        }
-        const value =
-          customTransform?.(token) ??
-          transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
-        // Don’t duplicate values when unnecessary
-        if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
-          const localID = transformName(token);
-          setTransform(token.id, {
-            format: FORMAT_ID,
-            value,
-            localID,
-            modifier: selector.modifier,
-            context: selector.context,
-            meta: { 'token-listing': { name: localID } },
-          });
-        }
-      }
-    } catch (err) {
-      logger.error({
-        group: 'plugin',
-        label: '@terrazzo/plugin-css',
-        message: `There was an error trying to apply resolver input ${selector.modifier}:${selector.context}.`,
-        continueOnError: true, // throw below
-      });
-      throw err; // note: this is most likely a nicely-formatted message from another logger instance; just pass it through
     }
   }
 
