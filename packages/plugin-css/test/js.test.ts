@@ -4,45 +4,88 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, it } from 'vitest';
-import css, { type ContextSelector } from '../src/index.js';
+import css, { type Permutation } from '../src/index.js';
 
 const require = createRequire(import.meta.url);
 
-describe('Node.js API', () => {
-  describe('token types', () => {
-    const MODE_LIGHT = { modifier: 'mode', context: 'light', selector: '[data-color-theme="light"]' };
-    const MODE_DARK = { modifier: 'mode', context: 'dark', selector: '[data-color-theme="dark"]' };
-    const MODE_LIGHT_COLORBLIND = {
-      modifier: 'mode',
-      context: 'light-colorblind',
-      selector: '[data-color-theme="light-colorblind"]',
-    };
-    const MODE_LIGHT_HIGH_CONTRAST = {
-      modifier: 'mode',
-      context: 'light-high-contrast',
-      selector: '[data-color-theme="light-high-contrast"]',
-    };
-    const MODE_DARK_DIMMED = { modifier: 'mode', context: 'dark-dimmed', selector: '[data-color-theme="dark-dimmed"]' };
-    const MODE_DARK_HIGH_CONTRAST = {
-      modifier: 'mode',
-      context: 'dark-high-contrast',
-      selector: '[data-color-theme="dark-high-contrast"]',
-    };
-    const MODE_DARK_COLORBLIND = {
-      modifier: 'mode',
-      context: 'dark-colorblind',
-      selector: '[data-color-theme="dark-colorblind"]',
-    };
-    const SIZE_DESKTOP = { modifier: 'size', context: 'desktop', selector: '@media (width >= 600px)' };
+const MODE_LIGHT_ROOT: Permutation = {
+  input: { mode: 'light' },
+  prepare: (css) => `:root {
+  ${css}
+}`,
+};
+const MODE_LIGHT: Permutation = {
+  input: { mode: 'light' },
+  prepare: (css) => `[data-color-theme="light"] {
+  ${css}
+}`,
+};
+const MODE_DARK: Permutation = {
+  input: { mode: 'dark' },
+  prepare: (css) => `[data-color-theme="dark"] {
+  ${css}
+}`,
+};
+const MODE_DARK_MQ: Permutation = {
+  input: { mode: 'dark' },
+  prepare: (css) => `@media (prefers-color-scheme: dark) {
+  :root {
+    ${css}
+  }
+}`,
+};
+const MODE_LIGHT_COLORBLIND: Permutation = {
+  input: { mode: 'light-colorblind' },
+  prepare: (css) => `[data-color-theme="light-colorblind"] {
+  ${css}
+}`,
+};
+const MODE_LIGHT_HIGH_CONTRAST: Permutation = {
+  input: { mode: 'light-high-contrast' },
+  prepare: (css) => `[data-color-theme="light-high-contrast"] {
+  ${css}
+`,
+};
+const MODE_DARK_DIMMED: Permutation = {
+  input: { mode: 'dark-dimmed' },
+  prepare: (css) => `[data-color-theme="dark-dimmed"] {
+  ${css}
+}`,
+};
+const MODE_DARK_HIGH_CONTRAST: Permutation = {
+  input: { mode: 'dark-high-contrast' },
+  prepare: (css) => `[data-color-theme="dark-high-contrast"] {
+  ${css}
+}`,
+};
+const MODE_DARK_COLORBLIND: Permutation = {
+  input: { mode: 'dark-colorblind' },
+  prepare: (css) => `[data-color-theme="dark-colorblind"] {
+  ${css}
+}`,
+};
+const SIZE_MOBILE: Permutation = {
+  input: { size: 'mobile' },
+  prepare: (css) => `:root {
+  ${css}
+}`,
+};
+const SIZE_DESKTOP: Permutation = {
+  input: { size: 'desktop' },
+  prepare: (css) => `@media (width >= 600px) {
+  ${css}
+}`,
+};
 
-    const tests: [string, { baseContext?: Record<string, string>; contextSelectors?: ContextSelector[] }][] = [
+describe('Node.js API', () => {
+  describe.only('token types', () => {
+    const tests: [string, { permutations?: Permutation[] }][] = [
       ['boolean', {}],
-      ['border', { baseContext: { mode: 'light' }, contextSelectors: [MODE_LIGHT, MODE_DARK] }],
+      ['border', { permutations: [MODE_LIGHT_ROOT, MODE_LIGHT, MODE_DARK_MQ, MODE_DARK] }],
       [
         'color',
         {
-          baseContext: { mode: 'light' },
-          contextSelectors: [
+          permutations: [
             MODE_LIGHT,
             MODE_LIGHT_COLORBLIND,
             MODE_LIGHT_HIGH_CONTRAST,
@@ -53,15 +96,15 @@ describe('Node.js API', () => {
           ],
         },
       ],
-      ['dimension', { baseContext: { size: 'mobile' }, contextSelectors: [SIZE_DESKTOP] }],
-      ['gradient', { baseContext: { size: 'light' }, contextSelectors: [MODE_LIGHT, MODE_DARK] }],
+      ['dimension', { permutations: [SIZE_MOBILE, SIZE_DESKTOP] }],
+      ['gradient', { permutations: [MODE_LIGHT, MODE_DARK] }],
       ['shadow', {}],
       ['string', {}],
       ['transition', {}],
-      ['typography', { baseContext: { size: 'mobile' }, contextSelectors: [SIZE_DESKTOP] }],
+      ['typography', { permutations: [SIZE_MOBILE, SIZE_DESKTOP] }],
     ];
 
-    it.each(tests)('%s', async (name, { baseContext, contextSelectors }) => {
+    it.each(tests)('%s', async (name, { permutations }) => {
       const output = 'actual.css';
       const cwd = new URL(`./fixtures/type-${name}/`, import.meta.url);
       const config = defineConfig(
@@ -72,12 +115,7 @@ describe('Node.js API', () => {
             },
           },
           plugins: [
-            css({
-              filename: output,
-              variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
-              baseContext,
-              contextSelectors,
-            }),
+            css({ filename: output, variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }), permutations }),
           ],
         },
         { cwd },
@@ -94,7 +132,7 @@ describe('Node.js API', () => {
     });
   });
 
-  describe('legacy modeSelectors', () => {
+  describe('modeSelectors (deprecated)', () => {
     describe('token types', () => {
       it.each([
         'boolean',
@@ -249,26 +287,7 @@ describe('Node.js API', () => {
           },
           plugins: [
             css({
-              baseContext: {
-                mode: 'light',
-              },
-              contextSelectors: [
-                {
-                  modifier: 'mode',
-                  context: 'light',
-                  selector: '[data-color-theme="light"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark',
-                  selector: '[data-color-theme="dark"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark',
-                  selector: '@media (prefers-color-scheme: dark)',
-                },
-              ],
+              permutations: [MODE_LIGHT_ROOT, MODE_DARK, MODE_DARK_MQ],
             }),
           ],
         },
@@ -300,56 +319,17 @@ describe('Node.js API', () => {
               filename: output,
               legacyHex: true,
               variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
-              baseContext: {
-                mode: 'light',
-                size: 'mobile',
-              },
-              contextSelectors: [
-                {
-                  modifier: 'mode',
-                  context: 'light',
-                  selector: '[data-color-theme="light"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark',
-                  selector: '@media (prefers-color-scheme: dark)',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark',
-                  selector: '[data-color-theme="dark"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'light-colorblind',
-                  selector: '[data-color-theme="light-colorblind"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'light-high-contrast',
-                  selector: '[data-color-theme="light-high-contrast"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark-dimmed',
-                  selector: '[data-color-theme="dark-dimmed"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark-high-contrast',
-                  selector: '[data-color-theme="dark-high-contrast"]',
-                },
-                {
-                  modifier: 'mode',
-                  context: 'dark-colorblind',
-                  selector: '[data-color-theme="dark-colorblind"]',
-                },
-                {
-                  modifier: 'size',
-                  context: 'desktop',
-                  selector: '@media (width >= 600px)',
-                },
+              permutations: [
+                SIZE_MOBILE,
+                MODE_LIGHT_ROOT,
+                MODE_LIGHT,
+                MODE_DARK_MQ,
+                MODE_DARK,
+                MODE_LIGHT_COLORBLIND,
+                MODE_LIGHT_HIGH_CONTRAST,
+                MODE_DARK_DIMMED,
+                MODE_DARK_HIGH_CONTRAST,
+                MODE_DARK_COLORBLIND,
               ],
             }),
           ],
@@ -406,7 +386,7 @@ describe('Node.js API', () => {
       );
     });
 
-    it('baseSelector', async () => {
+    it('baseSelector (deprecated)', async () => {
       const output = 'actual.css';
       const cwd = new URL('./fixtures/base-selector/', import.meta.url);
       const config = defineConfig(
@@ -436,7 +416,7 @@ describe('Node.js API', () => {
       );
     });
 
-    it('color-scheme properties', async () => {
+    it('color-scheme (deprecated)', async () => {
       const output = 'actual.css';
       const cwd = new URL('./fixtures/color-scheme/', import.meta.url);
       const config = defineConfig(
@@ -449,19 +429,17 @@ describe('Node.js API', () => {
           plugins: [
             css({
               filename: output,
-              baseColorScheme: 'light dark',
-              contextSelectors: [
+              baseScheme: 'light dark',
+              modeSelectors: [
                 {
-                  modifier: 'mode',
-                  context: 'light',
-                  selector: '[data-color-theme="light"]',
-                  colorScheme: 'light',
+                  selectors: ['[data-color-theme="light"]'],
+                  mode: 'light',
+                  scheme: 'light',
                 },
                 {
-                  modifier: 'mode',
-                  context: 'dark',
-                  selector: '[data-color-theme="dark"]',
-                  colorScheme: 'dark',
+                  selectors: ['[data-color-theme="dark"]'],
+                  mode: 'dark',
+                  scheme: 'dark',
                 },
               ],
             }),

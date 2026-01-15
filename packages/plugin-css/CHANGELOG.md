@@ -4,6 +4,8 @@
 
 ### Minor Changes
 
+- The `baseSelector`, `baseScheme`, and `modeSelectors` options are marked `@deprecated` for remove in 3.0. The new `permutations` API provides all functionality and then some, and should be migrated to as soon as possible.
+
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: lint on plugins no longer runs on individual files, rather, the full set once merged.
 
   If your lint plugin is not using the `src` context value, no changes are needed. If it is, you’ll need to instead read from the `sources` array, and look up sources with a token’s `source.loc` filename manually. This change was because lint rules now run on all files in one pass, essentially.

@@ -369,49 +369,21 @@ export default defineConfig({
 
 :::
 
-| Name               | Type                                                           | Description                                                                                                                                                     |
-| :----------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filename`         | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
-| `exclude`          | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
-| `baseContext`      | `Record<string, string>`                                       | See [contexts](#contexts).                                                                                                                                      |
-| `contextSelectors` | `ContextSelector[]`                                            | See [contexts](#contexts).                                                                                                                                      |
-| `variableName`     | `(token: TokenNormalized) => string`                           | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
-| `transform`        | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
-| `utility`          | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
-| `legacyHex`        | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
-| `skipBuild`        | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
-| `baseSelector`     | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                                     |
-| `baseScheme`       | `string`                                                       | Sets the CSS `color-scheme` property on the base selector (e.g., `"light"`, `"dark"`, or `"light dark"`). See [Color Scheme](#color-scheme).                    |
-| `colorDepth`       | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
+| Name           | Type                                                           | Description                                                                                                                                                     |
+| :------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filename`     | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
+| `exclude`      | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
+| `permutations` | `Permutation[]`                                                | See [resolvers](#resolvers).                                                                                                                                    |
+| `variableName` | `(token: TokenNormalized) => string`                           | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
+| `transform`    | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
+| `utility`      | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
+| `legacyHex`    | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
+| `skipBuild`    | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
+| `colorDepth`   | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
-### Contexts
+### Resolvers
 
-The CSS plugin can map [resolver contexts](/docs/guides/resolvers) into CSS media queries, classnames, or any CSS selector.
-
-You’ll want to first declare your `baseContext` to set the root context:
-
-:::code-group
-
-```ts [terrazzo.config.ts]
-import { defineConfig } from "@terrazzo/cli";
-import css from "@terrazzo/plugin-css";
-
-export default defineConfig({
-  plugins: [
-    css({
-      baseContext: {
-        mode: "light",
-        size: "mobile",
-      },
-      baseColorScheme: "light dark",
-    }),
-  ],
-});
-```
-
-:::
-
-From there, add `contextSelectors` which is an array of CSS selectors. Every selector will build out the appropriate context:
+The CSS plugin can map [resolver contexts](/docs/guides/resolvers) into CSS media queries, classnames, or any CSS selector. To get started, add `permutations` which map inputs to CSS selectors:
 
 :::code-group
 
@@ -422,30 +394,44 @@ From there, add `contextSelectors` which is an array of CSS selectors. Every sel
   export default defineConfig({
     plugins: [
       css({
-        baseContext: {
+        basePermutation: {
           mode: "light",
           size: "mobile",
         },
-        baseColorScheme: "light dark",
-+       contextSelectors: [
++       permutations: [
 +         {
-+           selector: '[data-theme="light"],
-+           context: { mode: "light" },
-+           colorScheme: "light",
++           input: {} // default
++           prepare: (css) => `:root {
++             color-scheme: light dark;
++             ${css}
++           }`,
 +         },
 +         {
-+           selector: '@media (prefers-color-scheme: "dark")',
-+           context: { mode: "dark" },
-+           colorScheme: "dark",
++           input: { mode: "light" },
++           prepare: (css) => `[data-theme="light"] {
++             color-scheme: light;
++             ${css}
++           }`,
 +         },
 +         {
-+           selector: '[data-theme="dark"]',
-+           context: { mode: "dark" },
-+           colorScheme: "dark",
++           input: { mode: "dark" },
++           prepare: (css) => `@media (prefers-color-scheme: "dark") {
++             :root {
+=               color-scheme: dark;
++               ${css}
++             }
++           }
++
++           [data-theme="dark"] {
++             color-scheme: dark;
++             ${css}
++           }`,
 +         },
 +         {
-+           selector: '@media (width >= 600px)',
-+           context: { size: "desktop" },
++           input: { size: "desktop" },
++           prepare: (css) => `@media (width >= 600px) {
++             ${css}
++           }`,
 +         },
 +       ],
       }),
@@ -454,6 +440,8 @@ From there, add `contextSelectors` which is an array of CSS selectors. Every sel
 ```
 
 :::
+
+Terrazzo will then combine all the permutations in declaration order, into one `.css` file:
 
 ```css [tokens/tokens.css]
 /* { mode: "light", size: "mobile" } */
@@ -496,16 +484,6 @@ Now, in your code, whenever you reference `var(--color-blue-600)`, the value wil
 #### Note on “duplication” (staleness)
 
 If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
-
-### colorScheme
-
-You can add `baseColorScheme` as a top-level option, or `colorScheme` inside [contextSelectors](#contexts) to use the `color-scheme` property. This helps browsers:
-
-- Optimize form controls and scrollbars for the specified theme
-- Apply appropriate default styling for UI elements
-- Provide better accessibility and user experience
-
-[See color-scheme on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) to learn more.
 
 ### transform()
 

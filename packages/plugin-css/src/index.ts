@@ -8,7 +8,7 @@ export * from './lib.js';
 export * from './transform.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
-  const { utility, skipBuild, baseColorScheme } = options ?? {};
+  const { utility, skipBuild, baseScheme } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
   const baseSelector = options?.baseSelector ?? ':root';
@@ -16,11 +16,11 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
   return {
     name: '@terrazzo/plugin-css',
     config(_config, context) {
-      if (options?.contextSelectors && options?.modeSelectors) {
+      if (options?.permutations && (options?.modeSelectors || options?.baseSelector || options?.baseScheme)) {
         context.logger.error({
           group: 'plugin',
           label: '@terrazzo/plugin-css',
-          message: 'Must provide either contextSelectors or modeSelectors, not both.',
+          message: 'Permutations option is incompatible with modeSelectors, baseSelector, and baseScheme.',
         });
       }
     },
@@ -32,7 +32,7 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       }
       transformCSS({ transform: transformOptions, options: options ?? {} });
     },
-    async build({ getTransforms, outputFile }) {
+    async build({ getTransforms, outputFile, context }) {
       if (skipBuild === true) {
         return;
       }
@@ -41,11 +41,12 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       contents += buildCSS({
         exclude: options?.exclude,
         getTransforms,
-        contextSelectors: options?.contextSelectors,
+        permutations: options?.permutations,
         modeSelectors: options?.modeSelectors,
         utility,
         baseSelector,
-        baseColorScheme,
+        baseScheme,
+        logger: context.logger,
       });
       outputFile(filename, contents.replace(/\n*$/, '\n'));
     },

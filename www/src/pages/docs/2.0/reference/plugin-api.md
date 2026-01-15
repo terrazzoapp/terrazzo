@@ -45,30 +45,21 @@ export default function clampColor(userOptions) {
   return {
     name: "my-css-plugin",
     async transform({ resolver, setTransform }) {
-      const modifiers = resolver.source.resolutionOrder.filter(
-        (m) => m.type === "modifier"
-      );
-      // Note: this iterates over ALL modifiers; you may want
-      // to be more restrictive rather than building everything
-      for (const modifier of modifiers) {
-        for (const context of Object.keys(modifier.contexts)) {
-          const tokens = resolver.apply({ [modifier.name]: context });
-          for (const [id, token] of Object.entries(tokens)) {
-            switch (token.$type) {
-              case "color": {
-                setTransform(id, {
-                  format: "css",
-                  localID: `--${kebabCase(id)}`,
-                  value: formatCss(token.$value), // convert original format into CSS-friendly value
-                  modifier,
-                  context,
-                });
-                break;
-              }
-
-              // … other $types here
+      const permutations = [{ colorMode: 'light', size: 'mobile' }, { colorMode: 'dark', size: 'mobile' }, { colorMode: 'light', size: 'desktop' }, { colorMode: 'light', size: 'desktop' }]
+      for (const input of permutations) {
+        const tokens = resolver.apply(input);
+        for (const [id, token] of Object.entries(tokens)) {
+          switch (token.$type) {
+            case "color": {
+              setTransform(id, {
+                format: "css",
+                localID: `--${kebabCase(id)}`,
+                value: formatCss(token.$value), // convert original format into CSS-friendly value
+                input,
+              });
+              break;
             }
-          }
+            // … other $types here
         }
       }
     },
@@ -97,7 +88,7 @@ In the **transform** step we’re:
    - **localID**: What this token is referred to within the format (e.g. `color.base.blue.500` becomes `--color-base-blue-500` in CSS)
    - **value**: The transformed value for this format.
      - _Note: values can be either a `string` for simple values, or `Record<string, string>` if a token stores multiple values (needed for [typography](/docs/json/tokens/typography), [border](/docs/json/tokens/border), etc.)_
-   - **modifier** and **context** if this is relevant to a specific resolver modifier
+   - **input**: This marks the transformation as a _permutation_ that’s an alternate value.
 
 All of this creates a “database” for the `css` format that can be queried in the next step. Inside the **build** step, we query those with `getTransforms()` which accepts an object as its param with the keys:
 
@@ -119,6 +110,14 @@ export default defineConfig({
   plugins: [myCssPlugin()],
 });
 ```
+
+:::
+
+:::note
+
+Declaring an `input` on `setTransform()` or `getTransforms()` is “smart” in that it takes defaults into accounts, and ignores object order.
+
+For example, imagine a resolver had modifiers A and B with default values 1 and 2. Inputs `undefined`, `{}`, `{ "A": "1", "B": "2" }`, and `{ "B": "2", "A": "1" }` would all refer to the same “scope” of tokens because they all resolve to the same end-permutation.
 
 :::
 

@@ -4,7 +4,7 @@ import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
-import { makeInputKey } from '../lib/resolver-utils.js';
+import { getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import { processTokens } from '../parse/process.js';
 import type { ConfigInit, Resolver, ResolverSourceNormalized } from '../types.js';
@@ -125,10 +125,10 @@ export function createResolver(
     apply(inputRaw): TokenNormalizedSet {
       let tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
-      const inputKey = makeInputKey(input);
+      const permutationID = getPermutationID(input);
 
-      if (resolverCache[inputKey]) {
-        return resolverCache[inputKey];
+      if (resolverCache[permutationID]) {
+        return resolverCache[permutationID];
       }
 
       for (const item of resolverSource.resolutionOrder) {
@@ -144,8 +144,7 @@ export function createResolver(
             const sources = item.contexts[context];
             if (!sources) {
               logger.error({
-                group: 'parser',
-                label: 'resolver',
+                group: 'resolver',
                 message: `Modifier ${item.name} has no context ${JSON.stringify(context)}.`,
               });
             }
@@ -166,7 +165,7 @@ export function createResolver(
         isResolver: true,
         sources,
       });
-      resolverCache[inputKey] = tokens;
+      resolverCache[permutationID] = tokens;
       return tokens;
     },
     source: resolverSource,
@@ -179,7 +178,7 @@ export function createResolver(
     },
     isValidInput(input: Record<string, string>) {
       if (!input || typeof input !== 'object') {
-        logger.error({ group: 'parser', label: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
+        logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
       }
       if (!Object.keys(input).every((k) => k in validContexts)) {
         return false; // 1. invalid if unknown modifier name
@@ -195,6 +194,12 @@ export function createResolver(
         }
       }
       return true;
+    },
+    getPermutationID(input: Record<string, string>) {
+      if (!this.isValidInput(input)) {
+        logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
+      }
+      return getPermutationID({ ...inputDefaults, ...input });
     },
   };
 }

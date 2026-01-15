@@ -20,27 +20,24 @@ export interface CSSPluginOptions {
   exclude?: string[];
   /**
    * Set the base selector, like ":root" or ":host".
+   * @deprecated use permutations instead.
    * @default ":root"
    */
   baseSelector?: string;
   /**
    * Set the color-scheme CSS property for `baseSelector`.
+   * @deprecated use permutations instead.
    * @see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
    * @example "light dark"
    */
-  baseColorScheme?: string;
-  /**
-   * Set the resolver context(s) that should be applied for the root styles. If
-   * using a resolver, this is required.
-   */
-  baseContext?: Record<string, string>;
+  baseScheme?: string;
   /**
    * Build resolver contexts into media queries
    */
-  contextSelectors?: ContextSelector[];
+  permutations?: Permutation[];
   /**
    * Define mode selectors as media queries or CSS classes
-   * @deprecated Migrate to contextSelectors
+   * @deprecated Migrate to permutations
    */
   modeSelectors?: ModeSelector[];
   /** Control the final CSS variable name */
@@ -65,21 +62,13 @@ export interface CSSPluginOptions {
   skipBuild?: boolean;
 }
 
-export interface ContextSelector {
-  /** Provide CSS selector to generate. */
-  selector: string;
-  /** Modifier to apply. Only one modifier can apply to a CSS selector. */
-  modifier: string;
-  /** Context to apply. Must be a valid context. */
-  context: string;
+export interface Permutation<T extends Record<string, string> = Record<string, string>> {
+  /** Generate the final CSS string, wrapping content in the selector(s) of your choice. */
+  prepare(css: string): string;
+  /** Input for this permutation. */
+  input: T;
   /** Provide token(s) to ignore (Note: ignoring tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
   ignore?: string[];
-  /**
-   * Set the color-scheme CSS property for this mode.
-   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme
-   * @example "light dark"
-   */
-  colorScheme?: string;
 }
 
 export interface ModeSelector {
@@ -182,4 +171,35 @@ function _printRule(rule: CSSRule): string {
 export interface GetRuleOptions {
   /** Combine a selector with parent selectors (e.g. if adding a @media-query within another selector list) */
   parentSelectors?: string[];
+}
+
+/** Provide standard formatting for basic CSS printing */
+export function printDeclaration(property: string, value: string, { comment }: { comment?: string } = {}): string {
+  return `${property}: ${value};${comment ? ` /* ${comment} */` : ''}`;
+}
+
+/** Provide lazy formatting for CSS, going off bracket counts */
+export function prettify(input: string): string {
+  const lines = input
+    .replace(/\{\s*/g, '{\n') // format opening brackets
+    .replace(/\s*\}\s*/g, '\n}\n\n') // format closing brackets
+    .replace(/\n\n+/g, '\n\n') // don’t allow anything beyond double-spacing
+    .split('\n');
+  let indent = 0;
+  let indentStr = '  '.repeat(indent);
+  for (let i = 0; i < lines.length; i++) {
+    // dedent
+    if (lines[i]!.includes('}')) {
+      indent = Math.max(0, indent - 1);
+      indentStr = '  '.repeat(indent);
+    }
+    // format
+    lines[i] = lines[i]!.replace(/^\s*/, indentStr);
+    // indent
+    if (lines[i]!.includes('{')) {
+      indent++;
+      indentStr = '  '.repeat(indent);
+    }
+  }
+  return lines.join('\n');
 }
