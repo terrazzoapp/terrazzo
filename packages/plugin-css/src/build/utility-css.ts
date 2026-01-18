@@ -164,11 +164,19 @@ export default function generateUtilityCSS(
             output.push(
               {
                 selectors: [makeSelector(token, prefix, 'x')],
-                declarations: { [`${property}-inline`]: value, [`${property}-left`]: value, [`${property}-right`]: value },
+                declarations: {
+                  [`${property}-inline`]: value,
+                  [`${property}-left`]: value,
+                  [`${property}-right`]: value,
+                },
               },
               {
                 selectors: [makeSelector(token, prefix, 'y')],
-                declarations: { [`${property}-block`]: value, [`${property}-bottom`]: value, [`${property}-top`]: value },
+                declarations: {
+                  [`${property}-block`]: value,
+                  [`${property}-bottom`]: value,
+                  [`${property}-top`]: value,
+                },
               },
             );
           }
@@ -183,11 +191,11 @@ export default function generateUtilityCSS(
           for (const token of filteredTokens) {
             const value = makeVarValue(token);
             output.push(
-							{ selectors: [makeSelector(token, prefix, 'bs')], declarations: { [`${property}-block-start`]: value } },
-							{ selectors: [makeSelector(token, prefix, 'be')], declarations: { [`${property}-block-end`]: value } },
-							{ selectors: [makeSelector(token, prefix, 'is')], declarations: { [`${property}-inline-start`]: value } },
-							{ selectors: [makeSelector(token, prefix, 'ie')], declarations: { [`${property}-inline-end`]: value } },
-						);
+              { selectors: [makeSelector(token, prefix, 'bs')], declarations: { [`${property}-block-start`]: value } },
+              { selectors: [makeSelector(token, prefix, 'be')], declarations: { [`${property}-block-end`]: value } },
+              { selectors: [makeSelector(token, prefix, 'is')], declarations: { [`${property}-inline-start`]: value } },
+              { selectors: [makeSelector(token, prefix, 'ie')], declarations: { [`${property}-inline-end`]: value } },
+            );
           }
         }
         break;
