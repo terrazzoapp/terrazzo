@@ -26,7 +26,7 @@ import {
 } from 'culori/fn';
 import { CSS_TO_CULORI, type CULORI_TO_CSS, parseColor, tokenToCulori } from '../color.js';
 import type { ColorTokenNormalized } from '../types.js';
-import type { TransformCSSValueOptions } from './css-types.js';
+import type { StrictTransformCSSValueOptions } from './css-types.js';
 import { defaultAliasTransform } from './lib.js';
 
 export type WideGamutColorValue = {
@@ -39,13 +39,11 @@ export type WideGamutColorValue = {
 /** Convert color value to CSS string */
 export function transformColor(
   token: ColorTokenNormalized,
-  options: TransformCSSValueOptions,
+  options: StrictTransformCSSValueOptions,
 ): string | WideGamutColorValue {
   const { transformAlias = defaultAliasTransform, tokensSet } = options;
-
-  const firstAlias = token.aliasChain?.[0];
-  if (firstAlias && tokensSet[firstAlias]) {
-    return transformAlias(tokensSet[firstAlias]);
+  if (token.aliasChain?.[0]) {
+    return transformAlias(tokensSet[token.aliasChain[0]]);
   }
 
   const {
