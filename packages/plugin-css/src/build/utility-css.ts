@@ -1,8 +1,8 @@
-import type { TokenTransformed } from '@terrazzo/parser';
+import type { Logger, TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import type { CSSRule, CSSRuleDeclaration, UtilityCSSGroup, UtilityCSSPrefix } from '../lib.js';
+import { type CSSRule, declaration, PLUGIN_NAME, rule, type UtilityCSSGroup, type UtilityCSSPrefix } from '../lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
 const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
@@ -17,17 +17,18 @@ const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {
 };
 
 /** Make CSS class name from transformed token */
-function makeSelector(token: TokenTransformed, prefix: UtilityCSSPrefix, subgroup?: string): string {
-  return `.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`;
+function makePrelude(token: TokenTransformed, prefix: UtilityCSSPrefix, subgroup?: string): CSSRule['prelude'] {
+  return [`.${prefix}${subgroup || ''}-${kebabCase(token.token.id).replace(GROUP_REGEX[prefix], '')}`];
 }
 
-function makeVarValue(token: TokenTransformed): CSSRuleDeclaration {
-  return { value: makeCSSVar(token.localID ?? token.token.id, { wrapVar: true }) };
+function makeVarValue(token: TokenTransformed): string {
+  return makeCSSVar(token.localID ?? token.token.id, { wrapVar: true });
 }
 
 export default function generateUtilityCSS(
   groups: Partial<Record<UtilityCSSGroup, string[]>>,
   tokens: TokenTransformed[],
+  { logger }: { logger: Logger },
 ): CSSRule[] {
   const output: CSSRule[] = [];
 
@@ -38,28 +39,28 @@ export default function generateUtilityCSS(
     const selectorMatcher = wcmatch(selectors);
     const matchingTokens = tokens.filter((token) => selectorMatcher(token.token.id));
     if (!matchingTokens.length) {
-      // biome-ignore lint/suspicious/noConsole: intentional user log
-      console.warn(`[@terrazzo/plugin-css] utility group "${group}" matched 0 tokens: ${JSON.stringify(selectors)}`);
+      logger.warn({
+        group: 'plugin',
+        label: PLUGIN_NAME,
+        message: `utility group "${group}" matched 0 tokens: ${JSON.stringify(selectors)}`,
+      });
       break;
     }
     switch (group) {
       case 'bg': {
         for (const token of matchingTokens) {
-          const selector = makeSelector(token, 'bg');
+          const prelude = makePrelude(token, 'bg');
           switch (token.token.$type) {
             case 'color': {
-              output.push({ selectors: [selector], declarations: { 'background-color': makeVarValue(token) } });
+              output.push(rule(prelude, [declaration('background-color', makeVarValue(token))]));
               break;
             }
             case 'gradient': {
-              output.push({
-                selectors: [selector],
-                declarations: {
-                  'background-image': {
-                    value: `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
-                  },
-                },
-              });
+              const value = declaration(
+                'background-image',
+                `linear-gradient(${makeCSSVar(token.localID ?? token.token.id, { wrapVar: true })})`,
+              );
+              output.push(rule(prelude, [value]));
             }
           }
         }
@@ -75,10 +76,7 @@ export default function generateUtilityCSS(
             strokeStyle: 'border-style',
           }[token.token.$type as string];
           if (property) {
-            output.push({
-              selectors: [makeSelector(token, 'border')],
-              declarations: { [property]: makeVarValue(token) },
-            });
+            output.push(rule(makePrelude(token, 'border'), [declaration(property, makeVarValue(token))]));
           }
         }
         // specific properties
@@ -91,10 +89,7 @@ export default function generateUtilityCSS(
               strokeStyle: `border-${side}-style`,
             }[token.token.$type as string];
             if (property) {
-              output.push({
-                selectors: [makeSelector(token, 'border', `-${side}`)],
-                declarations: { [property]: makeVarValue(token) },
-              });
+              output.push(rule(makePrelude(token, 'border', `-${side}`), [declaration(property, makeVarValue(token))]));
             }
           }
         }
@@ -102,14 +97,12 @@ export default function generateUtilityCSS(
       }
       case 'font': {
         for (const token of matchingTokens) {
-          const selector = makeSelector(token, 'font');
-
+          const prelude = makePrelude(token, 'font');
           if (token.token.$type === 'typography' && token.type === 'MULTI_VALUE') {
-            const declarations: Record<string, CSSRuleDeclaration> = {};
-            for (const k of Object.keys(token.value)) {
-              declarations[k] = { value: makeCSSVar(`${token.localID ?? token.token.id}-${k}`, { wrapVar: true }) };
-            }
-            output.push({ selectors: [selector], declarations });
+            const value = Object.keys(token.value).map((property) =>
+              declaration(property, makeCSSVar(`${token.localID ?? token.token.id}-${property}`, { wrapVar: true })),
+            );
+            output.push(rule(prelude, value));
           } else {
             const property = {
               dimension: 'font-size',
@@ -117,10 +110,7 @@ export default function generateUtilityCSS(
               fontWeight: 'font-weight',
             }[token.token.$type as string];
             if (property) {
-              output.push({
-                selectors: [selector],
-                declarations: { [property]: makeVarValue(token) },
-              });
+              output.push(rule(prelude, [declaration(property, makeVarValue(token))]));
             }
           }
         }
@@ -131,21 +121,15 @@ export default function generateUtilityCSS(
         // gap
         // ALL generic properties (gap) must come before specific properties (column-gap)
         for (const token of filteredTokens) {
-          output.push({ selectors: [makeSelector(token, 'gap')], declarations: { gap: makeVarValue(token) } });
+          output.push(rule(makePrelude(token, 'gap'), [declaration('gap', makeVarValue(token))]));
         }
         // specific properties
         for (const token of filteredTokens) {
-          output.push({
-            selectors: [makeSelector(token, 'gap', '-col')],
-            declarations: { 'column-gap': makeVarValue(token) },
-          });
+          output.push(rule(makePrelude(token, 'gap', '-col'), [declaration('column-gap', makeVarValue(token))]));
         }
         // specific properties
         for (const token of filteredTokens) {
-          output.push({
-            selectors: [makeSelector(token, 'gap', '-row')],
-            declarations: { 'row-gap': makeVarValue(token) },
-          });
+          output.push(rule(makePrelude(token, 'gap', '-row'), [declaration('row-gap', makeVarValue(token))]));
         }
 
         // margin/padding
@@ -154,47 +138,37 @@ export default function generateUtilityCSS(
           // note: ALL generic properties (margin: [value]) MUST come before specific properties (margin-top: [value])
           // this is why we loop through all tokens so many times
           for (const token of filteredTokens) {
-            output.push({
-              selectors: [makeSelector(token, prefix, 'a')],
-              declarations: { [property]: makeVarValue(token) },
-            });
+            output.push(rule(makePrelude(token, prefix, 'a'), [declaration(property, makeVarValue(token))]));
           }
           for (const token of filteredTokens) {
             const value = makeVarValue(token);
             output.push(
-              {
-                selectors: [makeSelector(token, prefix, 'x')],
-                declarations: {
-                  [`${property}-inline`]: value,
-                  [`${property}-left`]: value,
-                  [`${property}-right`]: value,
-                },
-              },
-              {
-                selectors: [makeSelector(token, prefix, 'y')],
-                declarations: {
-                  [`${property}-block`]: value,
-                  [`${property}-bottom`]: value,
-                  [`${property}-top`]: value,
-                },
-              },
+              rule(makePrelude(token, prefix, 'x'), [
+                declaration(`${property}-inline`, value),
+                declaration(`${property}-left`, value),
+                declaration(`${property}-right`, value),
+              ]),
+              rule(makePrelude(token, prefix, 'y'), [
+                declaration(`${property}-block`, value),
+                declaration(`${property}-bottom`, value),
+                declaration(`${property}-top`, value),
+              ]),
             );
           }
           for (const side of ['top', 'right', 'bottom', 'left']) {
             for (const token of filteredTokens) {
-              output.push({
-                selectors: [makeSelector(token, prefix, side[0])],
-                declarations: { [`${property}-${side}`]: makeVarValue(token) },
-              });
+              output.push(
+                rule(makePrelude(token, prefix, side[0]), [declaration(`${property}-${side}`, makeVarValue(token))]),
+              );
             }
           }
           for (const token of filteredTokens) {
             const value = makeVarValue(token);
             output.push(
-              { selectors: [makeSelector(token, prefix, 'bs')], declarations: { [`${property}-block-start`]: value } },
-              { selectors: [makeSelector(token, prefix, 'be')], declarations: { [`${property}-block-end`]: value } },
-              { selectors: [makeSelector(token, prefix, 'is')], declarations: { [`${property}-inline-start`]: value } },
-              { selectors: [makeSelector(token, prefix, 'ie')], declarations: { [`${property}-inline-end`]: value } },
+              rule(makePrelude(token, prefix, 'bs'), [declaration(`${property}-block-start`, value)]),
+              rule(makePrelude(token, prefix, 'be'), [declaration(`${property}-block-end`, value)]),
+              rule(makePrelude(token, prefix, 'is'), [declaration(`${property}-inline-start`, value)]),
+              rule(makePrelude(token, prefix, 'ie'), [declaration(`${property}-inline-end`, value)]),
             );
           }
         }
@@ -203,32 +177,28 @@ export default function generateUtilityCSS(
       case 'shadow': {
         for (const token of matchingTokens) {
           if (token.token.$type === 'shadow') {
-            output.push({
-              selectors: [makeSelector(token, 'shadow')],
-              declarations: { 'box-shadow': makeVarValue(token) },
-            });
+            output.push(rule(makePrelude(token, 'shadow'), [declaration('box-shadow', makeVarValue(token))]));
           }
         }
         break;
       }
       case 'text': {
         for (const token of matchingTokens) {
-          const selector = makeSelector(token, 'text');
+          const prelude = makePrelude(token, 'text');
           const value = makeVarValue(token);
           switch (token.token.$type) {
             case 'color': {
-              output.push({ selectors: [selector], declarations: { color: value } });
+              output.push(rule(prelude, [declaration('color', value)]));
               break;
             }
             case 'gradient': {
-              output.push({
-                selectors: [selector],
-                declarations: {
-                  background: { value: `-webkit-linear-gradient(${value.value})` },
-                  '-webkit-background-clip': { value: 'text' },
-                  '-webkit-text-fill-color': { value: 'transparent' },
-                },
-              });
+              output.push(
+                rule(prelude, [
+                  declaration('background', `-webkit-linear-gradient(${value})`),
+                  declaration('-webkit-background-clip', 'text'),
+                  declaration('-webkit-text-fill-color', 'transparent'),
+                ]),
+              );
               break;
             }
           }
@@ -236,8 +206,7 @@ export default function generateUtilityCSS(
         break;
       }
       default: {
-        // biome-ignore lint/suspicious/noConsole: intentional user log
-        console.warn(`[@terrazzo/plugin-css] unknown utility CSS group "${group}", ignoring`);
+        logger.warn({ group: 'plugin', label: PLUGIN_NAME, message: `unknown utility CSS group "${group}", ignoring` });
         break;
       }
     }

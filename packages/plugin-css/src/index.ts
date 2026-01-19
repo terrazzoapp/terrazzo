@@ -1,6 +1,6 @@
 import type { Plugin } from '@terrazzo/parser';
 import buildCSS from './build/index.js';
-import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
+import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 import transformCSS from './transform.js';
 
 export * from './build/index.js';
@@ -14,12 +14,12 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
   const baseSelector = options?.baseSelector ?? ':root';
 
   return {
-    name: '@terrazzo/plugin-css',
+    name: PLUGIN_NAME,
     config(_config, context) {
       if (options?.permutations && (options?.modeSelectors || options?.baseSelector || options?.baseScheme)) {
         context.logger.error({
           group: 'plugin',
-          label: '@terrazzo/plugin-css',
+          label: PLUGIN_NAME,
           message: 'Permutations option is incompatible with modeSelectors, baseSelector, and baseScheme.',
         });
       }

@@ -16,69 +16,47 @@ const MODE_LIGHT_ROOT: Permutation = {
 };
 const MODE_LIGHT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `[data-color-theme="light"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="light"] {\n  ${css}\n}`,
 };
 const MODE_DARK: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `[data-color-theme="dark"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="dark"] {\n  ${css}\n}`,
 };
 const MODE_DARK_MQ: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `@media (prefers-color-scheme: dark) {
-  :root {
-    ${css}
-  }
-}`,
+  prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
 };
 const MODE_LIGHT_COLORBLIND: Permutation = {
   input: { mode: 'light-colorblind' },
-  prepare: (css) => `[data-color-theme="light-colorblind"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="light-colorblind"] {\n  ${css}\n}`,
 };
 const MODE_LIGHT_HIGH_CONTRAST: Permutation = {
   input: { mode: 'light-high-contrast' },
-  prepare: (css) => `[data-color-theme="light-high-contrast"] {
-  ${css}
-`,
+  prepare: (css) => `[data-color-theme="light-high-contrast"] {\n  ${css}\n}`,
 };
 const MODE_DARK_DIMMED: Permutation = {
   input: { mode: 'dark-dimmed' },
-  prepare: (css) => `[data-color-theme="dark-dimmed"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="dark-dimmed"] {\n  ${css}\n}`,
 };
 const MODE_DARK_HIGH_CONTRAST: Permutation = {
   input: { mode: 'dark-high-contrast' },
-  prepare: (css) => `[data-color-theme="dark-high-contrast"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="dark-high-contrast"] {\n  ${css}\n}`,
 };
 const MODE_DARK_COLORBLIND: Permutation = {
   input: { mode: 'dark-colorblind' },
-  prepare: (css) => `[data-color-theme="dark-colorblind"] {
-  ${css}
-}`,
+  prepare: (css) => `[data-color-theme="dark-colorblind"] {\n  ${css}\n}`,
 };
 const SIZE_MOBILE: Permutation = {
   input: { size: 'mobile' },
-  prepare: (css) => `:root {
-  ${css}
-}`,
+  prepare: (css) => `:root {\n  ${css}\n}`,
 };
 const SIZE_DESKTOP: Permutation = {
   input: { size: 'desktop' },
-  prepare: (css) => `@media (width >= 600px) {
-  ${css}
-}`,
+  prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
 };
 
 describe('Node.js API', () => {
-  describe.only('token types', () => {
+  describe('token types', () => {
     const tests: [string, { permutations?: Permutation[] }][] = [
       ['boolean', {}],
       ['border', { permutations: [MODE_LIGHT_ROOT, MODE_LIGHT, MODE_DARK_MQ, MODE_DARK] }],
@@ -86,13 +64,13 @@ describe('Node.js API', () => {
         'color',
         {
           permutations: [
-            MODE_LIGHT,
-            MODE_LIGHT_COLORBLIND,
-            MODE_LIGHT_HIGH_CONTRAST,
-            MODE_DARK,
-            MODE_DARK_DIMMED,
-            MODE_DARK_COLORBLIND,
-            MODE_DARK_HIGH_CONTRAST,
+            { ...MODE_LIGHT, ignore: ['gradient.*'] },
+            { ...MODE_LIGHT_COLORBLIND, ignore: ['gradient.*'] },
+            { ...MODE_LIGHT_HIGH_CONTRAST, ignore: ['gradient.*'] },
+            { ...MODE_DARK, ignore: ['gradient.*'] },
+            { ...MODE_DARK_DIMMED, ignore: ['gradient.*'] },
+            { ...MODE_DARK_HIGH_CONTRAST, ignore: ['gradient.*'] },
+            { ...MODE_DARK_COLORBLIND, ignore: ['gradient.*'] },
           ],
         },
       ],

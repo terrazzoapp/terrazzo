@@ -40,13 +40,13 @@
   "modifiers": {
     "mode": {
       "contexts": {
-        "light": ["./light.tokens.json"],
-        "light-colorblind": ["./light.tokens.json", "./light-colorblind.tokens.json"],
-        "light-high-contrast": ["./light.tokens.json", "./light-high-contrast.tokens.json"],
-        "dark": ["./dark.tokens.json"],
-        "dark-dimmed": ["./dark.tokens.json", "./dark-dimmed.tokens.json"],
-        "dark-high-contrast":["./dark.tokens.json", "./dark-high-contrast.tokens.json"],
-        "dark-colorblind": ["./dark.tokens.json", "./dark-colorblind.tokens.json"]
+        "light": [{ "$ref":"./light.tokens.json" }],
+        "light-colorblind": [{ "$ref": "./light.tokens.json" }, { "$ref": "./light-colorblind.tokens.json" }],
+        "light-high-contrast": [{ "$ref": "./light.tokens.json" }, { "$ref": "./light-high-contrast.tokens.json" }],
+        "dark": [{ "$ref": "./dark.tokens.json" }],
+        "dark-dimmed": [{ "$ref": "./dark.tokens.json" }, { "$ref": "./dark-dimmed.tokens.json" }],
+        "dark-high-contrast":[{ "$ref": "./dark.tokens.json" }, { "$ref": "./dark-high-contrast.tokens.json" }],
+        "dark-colorblind": [{ "$ref":"./dark.tokens.json" }, { "$ref":"./dark-colorblind.tokens.json" }]
       }
     }
   }

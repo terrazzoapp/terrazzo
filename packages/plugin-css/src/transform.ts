@@ -1,7 +1,7 @@
 import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import { type CSSPluginOptions, FORMAT_ID } from './lib.js';
+import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
   transform: TransformHookOptions;
@@ -24,7 +24,7 @@ export default function transformCSS({
       if (typeof customName !== 'string') {
         logger.error({
           group: 'plugin',
-          label: '@terrazzo/plugin-css',
+          label: PLUGIN_NAME,
           message: `variableName() must return a string; received ${customName}`,
         });
       }
@@ -67,7 +67,7 @@ export default function transformCSS({
       } catch (err) {
         logger.error({
           group: 'plugin',
-          label: '@terrazzo/plugin-css',
+          label: PLUGIN_NAME,
           message: `There was an error trying to apply input ${resolver.getPermutationID(input)}.`,
           continueOnError: true, // throw below
         });

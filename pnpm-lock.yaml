@@ -6,87 +6,9 @@ settings:
 
 catalogs:
   default:
-    '@humanwhocodes/momoa':
-      specifier: ^3.3.10
-      version: 3.3.10
-    '@swc/core':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-darwin-arm64':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-darwin-x64':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-linux-arm-gnueabihf':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-linux-arm64-gnu':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-linux-arm64-musl':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-linux-x64-gnu':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-linux-x64-musl':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-win32-arm64-msvc':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-win32-ia32-msvc':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@swc/core-win32-x64-msvc':
-      specifier: 1.13.19
-      version: 1.13.19
-    '@types/culori':
-      specifier: ^4.0.1
-      version: 4.0.1
-    '@types/react':
-      specifier: ^19.2.8
-      version: 19.2.8
-    '@types/react-dom':
-      specifier: ^19.2.3
-      version: 19.2.3
-    '@vitejs/plugin-react-swc':
-      specifier: ^4.2.2
-      version: 4.2.2
-    '@vitest/browser':
-      specifier: ^4.0.17
-      version: 4.0.17
-    '@vitest/browser-playwright':
-      specifier: ^4.0.17
-      version: 4.0.17
-    '@vitest/coverage-v8':
-      specifier: ^4.0.17
-      version: 4.0.17
-    culori:
-      specifier: ^4.0.2
-      version: 4.0.2
     dtcg-examples:
       specifier: ^1.0.2
       version: 1.0.2
-    playwright:
-      specifier: ^1.57.0
-      version: 1.57.0
-    react:
-      specifier: ^19.2.3
-      version: 19.2.3
-    react-dom:
-      specifier: ^19.2.3
-      version: 19.2.3
-    vite:
-      specifier: ^7.3.1
-      version: 7.3.1
-    vitest:
-      specifier: ^4.0.17
-      version: 4.0.17
-    yaml-to-momoa:
-      specifier: 0.0.8
-      version: 0.0.8
 
 patchedDependencies:
   vite-plugin-sass-dts:
@@ -229,6 +151,9 @@ importers:
       dotenv:
         specifier: ^16.6.1
         version: 16.6.1
+      dtcg-examples:
+        specifier: ^1.x
+        version: 1.0.2
       escodegen:
         specifier: ^2.1.0
         version: 2.1.0

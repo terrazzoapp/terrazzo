@@ -86,32 +86,28 @@
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
-@media (prefers-color-scheme: light) {
-  @media (color-gamut: p3) {
+@media (color-gamut: p3) {
+  @media (prefers-color-scheme: light) {
     :root {
       --ds-color-hdr-blue: oklch(0.6313 0.2184 253.284);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
-}
 
-@media (color-gamut: p3) {
   [data-color-theme="light"] {
     --ds-color-hdr-blue: oklch(0.6313 0.2184 253.284);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
-@media (prefers-color-scheme: light) {
-  @media (color-gamut: rec2020) {
+@media (color-gamut: rec2020) {
+  @media (prefers-color-scheme: light) {
     :root {
       --ds-color-hdr-blue: oklch(0.6337 0.2187 254.2013);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
-}
 
-@media (color-gamut: rec2020) {
   [data-color-theme="light"] {
     --ds-color-hdr-blue: oklch(0.6337 0.2187 254.2013);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
@@ -164,32 +160,28 @@
   --ds-color-text-hdr: var(--ds-color-hdr-blue);
 }
 
-@media (prefers-color-scheme: dark) {
-  @media (color-gamut: p3) {
+@media (color-gamut: p3) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --ds-color-hdr-blue: oklch(0.6373 0.2123 255.9389);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
-}
 
-@media (color-gamut: p3) {
   [data-color-theme="dark"] {
     --ds-color-hdr-blue: oklch(0.6373 0.2123 255.9389);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  @media (color-gamut: rec2020) {
+@media (color-gamut: rec2020) {
+  @media (prefers-color-scheme: dark) {
     :root {
       --ds-color-hdr-blue: oklch(0.6397 0.2128 256.8441);
       --ds-color-text-hdr: var(--ds-color-hdr-blue);
     }
   }
-}
 
-@media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
     --ds-color-hdr-blue: oklch(0.6397 0.2128 256.8441);
     --ds-color-text-hdr: var(--ds-color-hdr-blue);

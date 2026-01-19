@@ -4,6 +4,8 @@ export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | '
 
 export type UtilityCSSPrefix = 'bg' | 'border' | 'font' | 'gap' | 'm' | 'p' | 'shadow' | 'text';
 
+export const PLUGIN_NAME = '@terrazzo/plugin-css';
+
 export const FORMAT_ID = 'css';
 
 export const FILE_PREFIX = `/* -------------------------------------------
@@ -82,90 +84,82 @@ export interface ModeSelector {
   scheme?: string;
 }
 
-// A CSSRule is a sort of “we have AST at home” shortcut that provides the benefit of normalized formatting
-// but without the overhead/complexity of a full AST. It’s useful because we only generate a limited CSS
-// syntax, and is a good balance between spec-compliance vs ease-of-use.
-export interface CSSRuleDeclaration {
+// Simple AST types loosely-inspired by csstree.
+export interface CSSDeclaration {
+  type: 'Declaration';
+  property: string;
   value: string;
-  description?: string;
+  comment?: string;
 }
+
 export interface CSSRule {
-  selectors: string[];
-  nestedQuery?: string;
-  declarations: Record<string, CSSRuleDeclaration>;
+  type: 'Rule';
+  prelude: string[];
+  children: (CSSRule | CSSDeclaration)[];
 }
 
 /** Convert CSSRules into a formatted, indented CSS string */
-export function printRules(rules: CSSRule[]): string {
+export function printRules(
+  nodes: (CSSRule | CSSDeclaration)[],
+  { indentChar = '  ', indentLv = 0 }: { indentChar?: string; indentLv?: number } = {},
+): string {
   let output = '';
-  for (const rule of rules) {
-    if (!rule.selectors.length || !Object.keys(rule.declarations).length) {
-      continue;
+  for (const node of nodes) {
+    if (output && node.type === 'Rule') {
+      output += '\n';
     }
-
-    const mqSelectors: string[] = [];
-    const joinableSelectors: string[] = [];
-    for (const s of rule.selectors) {
-      (s.startsWith('@') ? mqSelectors : joinableSelectors).push(s);
-    }
-    // @media-query selectors get pushed individually
-    for (const s of mqSelectors) {
-      const next = _printRule({ ...rule, selectors: [s] });
-      if (next) {
-        output += `\n\n${next}`;
-      }
-    }
-    // all other selectors get joined as one
-    if (joinableSelectors.length) {
-      const next = _printRule({ ...rule, selectors: joinableSelectors });
-      if (next) {
-        output += `\n\n${next}`;
-      }
-    }
+    output += printNode(node, { indentChar, indentLv });
   }
   return output.trim();
 }
 
-function _printRule(rule: CSSRule): string {
+export function printNode(
+  node: CSSRule | CSSDeclaration,
+  { indentChar, indentLv }: { indentChar: string; indentLv: number },
+): string {
   let output = '';
-  const isMediaQuery = rule.selectors.some((s) => s.startsWith('@'));
-  let indent = '';
 
-  // if both levels are media queries, preserve order
-  if (rule.nestedQuery && isMediaQuery) {
-    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
-    indent += '  ';
-    output += `\n${indent}${rule.nestedQuery} {`;
-  }
-  // otherwise if nested query exists but parens aren’t media queries, reverse order (media queries on top)
-  else if (rule.nestedQuery && !isMediaQuery) {
-    output += `\n${indent}${rule.nestedQuery} {`;
-    indent += '  ';
-    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
-  }
-  // if no media queries, just print selectors
-  else {
-    output += `\n${indent}${rule.selectors.join(`,\n${indent}`)} {`;
-  }
-  indent += '  ';
+  const indent = indentChar.repeat(indentLv);
 
-  // note: this is ONLY dependent on whether the top level is a media query (ignores nestedQuery)
-  if (isMediaQuery) {
-    output += `\n${indent}:root {`;
-    indent += '  ';
+  if (node.type === 'Declaration') {
+    if (node.comment) {
+      output += `${indent}/* ${node.comment} */\n`;
+    }
+    output += `${indent}${node.property}: ${node.value};\n`;
+    return output;
   }
 
-  for (const [k, d] of Object.entries(rule.declarations)) {
-    output += `\n${indent}${k}: ${d.value};${d.description ? ` /* ${d.description} */` : ''}`;
+  if (!node.prelude.length || !node.children.length) {
+    return output;
   }
 
-  // base closing brackets on indent level
-  while (indent !== '') {
-    indent = indent.substring(0, indent.length - 2);
-    output += `\n${indent}}`;
+  // legacy behavior: mediaQueryWithDecls should be removed in 3.0. This
+  // was originally introduced in modeSelectors, but it generates unexpected CSS.
+  const mediaQueryWithDecls = node.children.some((s) => s.type === 'Declaration')
+    ? node.prelude.find((s) => s.startsWith('@'))
+    : undefined;
+  if (mediaQueryWithDecls) {
+    const nonMedia = node.prelude.filter((s) => s !== mediaQueryWithDecls);
+    output += `${indent}${mediaQueryWithDecls} {\n`;
+    output += printNode(rule([':root'], node.children), { indentChar, indentLv: indentLv + 1 });
+    output += `${indent}}\n\n`;
+    output += printNode(rule(nonMedia, node.children), { indentChar, indentLv });
+    return output;
   }
 
-  return output.trim();
+  // Note: nested rules may eventually resolve to no declarations. This prevents that by rendering children first before the wrapper.
+  let childOutput = '';
+  for (const child of node.children) {
+    childOutput += printNode(child, { indentChar, indentLv: indentLv + 1 });
+  }
+  childOutput = childOutput.trim();
+  if (!childOutput) {
+    return output;
+  }
+  output += `${indent}${node.prelude.join(', ')} {\n`;
+  output += `${indentChar.repeat(indentLv + 1)}${childOutput}\n`;
+  output += `${indent}}\n`;
+  return output;
 }
 
 export interface GetRuleOptions {
@@ -173,33 +167,48 @@ export interface GetRuleOptions {
   parentSelectors?: string[];
 }
 
-/** Provide standard formatting for basic CSS printing */
-export function printDeclaration(property: string, value: string, { comment }: { comment?: string } = {}): string {
-  return `${property}: ${value};${comment ? ` /* ${comment} */` : ''}`;
-}
-
-/** Provide lazy formatting for CSS, going off bracket counts */
-export function prettify(input: string): string {
-  const lines = input
-    .replace(/\{\s*/g, '{\n') // format opening brackets
-    .replace(/\s*\}\s*/g, '\n}\n\n') // format closing brackets
-    .replace(/\n\n+/g, '\n\n') // don’t allow anything beyond double-spacing
-    .split('\n');
-  let indent = 0;
-  let indentStr = '  '.repeat(indent);
-  for (let i = 0; i < lines.length; i++) {
-    // dedent
-    if (lines[i]!.includes('}')) {
-      indent = Math.max(0, indent - 1);
-      indentStr = '  '.repeat(indent);
-    }
-    // format
-    lines[i] = lines[i]!.replace(/^\s*/, indentStr);
-    // indent
-    if (lines[i]!.includes('{')) {
-      indent++;
-      indentStr = '  '.repeat(indent);
+/** We give users a way to wrap CSS. From it we can infer their indentation style. */
+export function getIndentFromPrepare(prepare: (css: string) => string): { indentChar: string; indentLv: number } {
+  const str = '//css//'; // this is a string that’s invalid CSS that wouldn’t be in the fn itself
+  const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
+  let indentChar = '  ';
+  let indentLv = 0;
+  let lineStartChar = 0;
+  for (let i = 0; i < output.length; i++) {
+    if (output[i] === '{') {
+      lineStartChar = i + 1;
+      indentLv++;
+    } else if (output[i] === '}') {
+      indentLv--;
+    } else if (output[i] === '\n') {
+      lineStartChar = i + 1;
+    } else if (output[i] === str[0] && output.slice(i).startsWith(str)) {
+      indentChar = output.slice(lineStartChar, i);
+      indentChar = indentChar.slice(0, Math.floor(indentChar.length / indentLv));
+      break;
     }
   }
-  return lines.join('\n');
+  return {
+    indentChar: indentChar || '  ', // fall back to 2 spaces rather than no indentation
+    indentLv,
+  };
+}
+
+/** Syntactic sugar over Rule boilerplate */
+export function rule(prelude: CSSRule['prelude'], children: CSSRule['children'] = []): CSSRule {
+  return { type: 'Rule', prelude, children };
+}
+
+/** Syntactic sugar over Declaration boilerplate */
+export function declaration(
+  property: CSSDeclaration['property'],
+  value: CSSDeclaration['value'],
+  comment?: CSSDeclaration['comment'],
+): CSSDeclaration {
+  return { type: 'Declaration', property, value, comment };
+}
+
+/** Does a node list contain a root-level declaration with this property? */
+export function hasDeclarationProperty(list: (CSSRule | CSSDeclaration)[], property: string): boolean {
+  return list.some((d) => d.type === 'Declaration' && d.property === property);
 }
