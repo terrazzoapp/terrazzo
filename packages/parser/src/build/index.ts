@@ -65,8 +65,8 @@ export default async function build(
         return [];
       }
 
-      const tokenMatcher = params.id ? wcmatch(params.id) : null;
-      const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+      const tokenMatcher = params.id && params.id !== '*' ? wcmatch(params.id) : null;
+      const modeMatcher = params.mode && params.mode !== '.' ? wcmatch(params.mode) : null;
       const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
 
       return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
@@ -77,7 +77,7 @@ export default async function build(
             return false;
           }
         }
-        if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
+        if (tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
         if (params.input && token.permutationID !== resolver.getPermutationID(params.input)) {

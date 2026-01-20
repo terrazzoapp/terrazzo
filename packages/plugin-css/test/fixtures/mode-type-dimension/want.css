@@ -29,11 +29,11 @@
     --ds-space-300: 1rem;
     --ds-space-400: 1.25rem;
     --ds-space-500: 1.75rem;
+    --ds-control-small-size: var(--ds-space-500);
     --ds-space-600: 2.5rem;
+    --ds-control-default-size: var(--ds-space-600);
     --ds-space-700: 3.5rem;
     --ds-space-800: 4rem;
     --ds-space-900: 6rem;
-    --ds-control-small-size: var(--ds-space-500);
-    --ds-control-default-size: var(--ds-space-600);
   }
 }

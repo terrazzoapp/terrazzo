@@ -10,9 +10,7 @@ const require = createRequire(import.meta.url);
 
 const MODE_LIGHT_ROOT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `:root {
-  ${css}
-}`,
+  prepare: (css) => `:root {\n  ${css}\n}`,
 };
 const MODE_LIGHT: Permutation = {
   input: { mode: 'light' },
@@ -127,11 +125,7 @@ describe('Node.js API', () => {
         const cwd = new URL(`./fixtures/mode-type-${dir}/`, import.meta.url);
         const config = defineConfig(
           {
-            lint: {
-              rules: {
-                'core/consistent-naming': 'off',
-              },
-            },
+            lint: { rules: { 'core/consistent-naming': 'off' } },
             plugins: [
               css({
                 filename: output,
@@ -188,11 +182,7 @@ describe('Node.js API', () => {
       const tokensJSON = new URL('./tokens.json', cwd);
       const config = defineConfig(
         {
-          lint: {
-            rules: {
-              'core/consistent-naming': 'off',
-            },
-          },
+          lint: { rules: { 'core/consistent-naming': 'off' } },
           plugins: [
             css({
               modeSelectors: [
@@ -258,11 +248,7 @@ describe('Node.js API', () => {
       const config = defineConfig(
         {
           tokens: [src],
-          lint: {
-            rules: {
-              'core/consistent-naming': 'off',
-            },
-          },
+          lint: { rules: { 'core/consistent-naming': 'off' } },
           plugins: [
             css({
               permutations: [MODE_LIGHT_ROOT, MODE_DARK, MODE_DARK_MQ],
@@ -298,7 +284,6 @@ describe('Node.js API', () => {
               legacyHex: true,
               variableName: (token) => makeCSSVar(token.id, { prefix: 'ds' }),
               permutations: [
-                SIZE_MOBILE,
                 MODE_LIGHT_ROOT,
                 MODE_LIGHT,
                 MODE_DARK_MQ,
@@ -330,11 +315,7 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/utility-css/', import.meta.url);
       const config = defineConfig(
         {
-          lint: {
-            rules: {
-              'core/consistent-naming': 'off',
-            },
-          },
+          lint: { rules: { 'core/consistent-naming': 'off' } },
           plugins: [
             css({
               filename: output,
@@ -369,11 +350,7 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/base-selector/', import.meta.url);
       const config = defineConfig(
         {
-          lint: {
-            rules: {
-              'core/consistent-naming': 'off',
-            },
-          },
+          lint: { rules: { 'core/consistent-naming': 'off' } },
           plugins: [
             css({
               filename: output,
@@ -399,11 +376,7 @@ describe('Node.js API', () => {
       const cwd = new URL('./fixtures/color-scheme/', import.meta.url);
       const config = defineConfig(
         {
-          lint: {
-            rules: {
-              'core/consistent-naming': 'off',
-            },
-          },
+          lint: { rules: { 'core/consistent-naming': 'off' } },
           plugins: [
             css({
               filename: output,

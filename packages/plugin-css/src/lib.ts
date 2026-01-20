@@ -98,7 +98,19 @@ export interface CSSRule {
   children: (CSSRule | CSSDeclaration)[];
 }
 
-/** Convert CSSRules into a formatted, indented CSS string */
+/**
+ * Convert CSSRules into a formatted, indented CSS string.
+ * The reason we’re using this homemade version instead of something like css-tree is:
+ *
+ * 1. css-tree doesn’t support comments :(
+ * 2. we are only generating PARTIALS, not full CSS (the user controls the
+ *    wrapper). So with a proper AST, we’d be hacking it a little anyway because
+ *    we never really have a true, valid, finalized document.
+ * 3. we want @terrazzo/plugin-css to run in the browser AND be lean (i.e. don’t
+ *    load Prettier or 25MB of wasm).
+ * 4. we only have to deal with a small subset of CSS—this doesn’t have to be robust
+ *    by any means (even future additions won’t push the limits of the spec).
+ */
 export function printRules(
   nodes: (CSSRule | CSSDeclaration)[],
   { indentChar = '  ', indentLv = 0 }: { indentChar?: string; indentLv?: number } = {},
@@ -113,6 +125,7 @@ export function printRules(
   return output.trim();
 }
 
+/** Internal printer for individual nodes */
 export function printNode(
   node: CSSRule | CSSDeclaration,
   { indentChar, indentLv }: { indentChar: string; indentLv: number },
@@ -162,12 +175,7 @@ export function printNode(
   return output;
 }
 
-export interface GetRuleOptions {
-  /** Combine a selector with parent selectors (e.g. if adding a @media-query within another selector list) */
-  parentSelectors?: string[];
-}
-
-/** We give users a way to wrap CSS. From it we can infer their indentation style. */
+/** Infer indentation preferences from a user-defined wrapping method. */
 export function getIndentFromPrepare(prepare: (css: string) => string): { indentChar: string; indentLv: number } {
   const str = '//css//'; // this is a string that’s invalid CSS that wouldn’t be in the fn itself
   const output = prepare(str).replace(/\/\*.*\*\//g, ''); // strip comments because we don’t need them
@@ -200,7 +208,7 @@ export function rule(prelude: CSSRule['prelude'], children: CSSRule['children'] 
 }
 
 /** Syntactic sugar over Declaration boilerplate */
-export function declaration(
+export function decl(
   property: CSSDeclaration['property'],
   value: CSSDeclaration['value'],
   comment?: CSSDeclaration['comment'],
@@ -209,6 +217,13 @@ export function declaration(
 }
 
 /** Does a node list contain a root-level declaration with this property? */
-export function hasDeclarationProperty(list: (CSSRule | CSSDeclaration)[], property: string): boolean {
+export function hasDecl(list: (CSSRule | CSSDeclaration)[], property: string): boolean {
   return list.some((d) => d.type === 'Declaration' && d.property === property);
+}
+
+/** Add a declaration only if it’s unique (note: CSS, by design, allows duplication—it’s how fallbacks happen. Only use this if fallbacks aren’t needed. */
+export function addDeclUnique(list: (CSSRule | CSSDeclaration)[], declaration: CSSDeclaration): void {
+  if (!hasDecl(list, declaration.property)) {
+    list.push(declaration);
+  }
 }

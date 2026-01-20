@@ -2,13 +2,13 @@ import type { BuildHookOptions, Logger } from '@terrazzo/parser';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
 import {
+  addDeclUnique,
   type CSSDeclaration,
   type CSSPluginOptions,
   type CSSRule,
-  declaration,
+  decl,
   FORMAT_ID,
   getIndentFromPrepare,
-  hasDeclarationProperty,
   PLUGIN_NAME,
   printRules,
   rule,
@@ -66,31 +66,23 @@ export default function buildCSS({
 
         // single-value token
         if (token.type === 'SINGLE_VALUE') {
-          if (!hasDeclarationProperty(root, localID)) {
-            root.push(declaration(localID, token.value, token.token.$description));
-          }
+          addDeclUnique(root, decl(localID, token.value, token.token.$description));
         }
 
         // multi-value token (wide gamut color)
         else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
-          if (!hasDeclarationProperty(root, localID)) {
-            root.push(declaration(localID, token.value.srgb!, token.token.$description));
-          }
+          addDeclUnique(root, decl(localID, token.value.srgb!, token.token.$description));
 
           if (token.value.p3 !== token.value.srgb) {
-            hdrColors.p3.push(declaration(localID, token.value.p3!, token.token.$description));
-            hdrColors.rec2020.push(declaration(localID, token.value.rec2020!, token.token.$description));
+            addDeclUnique(hdrColors.p3, decl(localID, token.value.p3!, token.token.$description));
+            addDeclUnique(hdrColors.rec2020, decl(localID, token.value.rec2020!, token.token.$description));
 
             // handle aliases within color gamut media queries
             for (const alias of aliasTokens) {
               if (alias.localID && typeof alias.value === 'string') {
                 const aliasID = makeCSSVar(alias.localID);
-                if (!hasDeclarationProperty(hdrColors.p3, aliasID)) {
-                  hdrColors.p3.push(declaration(aliasID, alias.value, alias.token.$description));
-                }
-                if (!hasDeclarationProperty(hdrColors.rec2020, aliasID)) {
-                  hdrColors.rec2020.push(declaration(aliasID, alias.value, alias.token.$description));
-                }
+                addDeclUnique(hdrColors.p3, decl(aliasID, alias.value, alias.token.$description));
+                addDeclUnique(hdrColors.rec2020, decl(aliasID, alias.value, alias.token.$description));
               }
             }
           }
@@ -100,19 +92,19 @@ export default function buildCSS({
         else {
           for (const [name, subValue] of Object.entries(token.value)) {
             const subValueID = `${localID}-${name}`;
-            root.push(declaration(subValueID, subValue, token.token.$description));
+            addDeclUnique(root, decl(subValueID, subValue, token.token.$description));
           }
           // Note: always generate shorthand AFTER other declarations
           const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
-          if (shorthand && hasDeclarationProperty(root, localID)) {
-            root.push(declaration(localID, shorthand, token.token.$description));
+          if (shorthand) {
+            addDeclUnique(root, decl(localID, shorthand, token.token.$description));
           }
         }
 
         // redeclare aliases so they have the correct scope
         for (const alias of aliasTokens) {
-          if (alias.localID && typeof alias.value === 'string' && !hasDeclarationProperty(root, alias.localID)) {
-            root.push(declaration(alias.localID, alias.value, token.token.$description));
+          if (alias.localID && typeof alias.value === 'string') {
+            addDeclUnique(root, decl(alias.localID, alias.value, token.token.$description));
           }
         }
       }
@@ -138,6 +130,9 @@ export default function buildCSS({
 
     // add utility CSS
     if (utility && Object.keys(utility).length) {
+      if (output) {
+        output += '\n\n';
+      }
       output += generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID }), { logger });
     }
 
@@ -161,11 +156,10 @@ export default function buildCSS({
     // add base color-scheme declaration first if configured
     // (must be before other properties to ensure it appears first in output)
     if (baseScheme) {
-      rootRule.children.unshift(declaration('color-scheme', baseScheme));
+      rootRule.children.unshift(decl('color-scheme', baseScheme));
     }
 
     const shouldExclude = wcmatch(exclude ?? []);
-
     for (const token of rootTokens) {
       // handle exclude (if any)
       if (shouldExclude(token.token.id)) {
@@ -174,30 +168,26 @@ export default function buildCSS({
 
       const localID = token.localID ?? token.token.id;
       const aliasTokens = token.token.aliasedBy?.length
-        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
+        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy, mode: '.' })
         : [];
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
-        rootRule.children.push(declaration(localID, token.value, token.token.$description));
+        addDeclUnique(rootRule.children, decl(localID, token.value, token.token.$description));
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
-        rootRule.children.push(declaration(localID, token.value.srgb!, token.token.$description));
+        addDeclUnique(rootRule.children, decl(localID, token.value.srgb!, token.token.$description));
 
         if (token.value.p3 !== token.value.srgb) {
-          p3Rule.children.push(declaration(localID, token.value.p3!, token.token.$description));
-          rec2020Rule.children.push(declaration(localID, token.value.rec2020!, token.token.$description));
+          addDeclUnique(p3Rule.children, decl(localID, token.value.p3!, token.token.$description));
+          addDeclUnique(rec2020Rule.children, decl(localID, token.value.rec2020!, token.token.$description));
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
-              if (!hasDeclarationProperty(p3Rule.children, alias.localID)) {
-                p3Rule.children.push(declaration(alias.localID, alias.value, token.token.$description));
-              }
-              if (!hasDeclarationProperty(rec2020Rule.children, alias.localID)) {
-                rec2020Rule.children.push(declaration(alias.localID, alias.value, token.token.$description));
-              }
+              addDeclUnique(p3Rule.children, decl(alias.localID, alias.value, token.token.$description));
+              addDeclUnique(rec2020Rule.children, decl(alias.localID, alias.value, token.token.$description));
             }
           }
         }
@@ -207,12 +197,12 @@ export default function buildCSS({
       else if (token.type === 'MULTI_VALUE') {
         for (const [name, value] of Object.entries(token.value)) {
           const property = name === '.' ? localID : [localID, name].join('-');
-          rootRule.children.push(declaration(property, value, token.token.$description));
+          addDeclUnique(rootRule.children, decl(property, value, token.token.$description));
         }
         // Note: always place shorthand after other values
         const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
-        if (shorthand && !hasDeclarationProperty(rootRule.children, token.localID!)) {
-          rootRule.children.push(declaration(token.localID ?? token.token.id, shorthand, token.token.$description));
+        if (shorthand) {
+          addDeclUnique(rootRule.children, decl(token.localID ?? token.token.id, shorthand, token.token.$description));
         }
       }
     }
@@ -234,7 +224,7 @@ export default function buildCSS({
     // add color-scheme declaration first if configured for this mode
     // (must be before other properties to ensure it appears first in output)
     if (selector.scheme) {
-      modeRule.children.unshift(declaration('color-scheme', selector.scheme));
+      modeRule.children.unshift(decl('color-scheme', selector.scheme));
     }
     const hdrColors = {
       p3: [] as CSSDeclaration[],
@@ -243,28 +233,26 @@ export default function buildCSS({
     for (const token of selectorTokens) {
       const localID = token.localID ?? token.token.id;
       const aliasTokens = token.token.aliasedBy?.length
-        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy, mode: selector.mode || '.' })
+        ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy })
         : [];
 
       // single-value token
       if (token.type === 'SINGLE_VALUE') {
-        modeRule.children.push(declaration(localID, token.value, token.token.$description));
+        addDeclUnique(modeRule.children, decl(localID, token.value, token.token.$description));
       }
 
       // multi-value token (wide gamut color)
       else if (token.value.srgb && token.value.p3 && token.value.rec2020) {
-        modeRule.children.push(declaration(localID, token.value.srgb!, token.token.$description));
+        addDeclUnique(modeRule.children, decl(localID, token.value.srgb!, token.token.$description));
         if (token.value.p3 !== token.value.srgb) {
-          hdrColors.p3.push(declaration(localID, token.value.p3!, token.token.$description));
-          hdrColors.rec2020.push(declaration(localID, token.value.rec2020!, token.token.$description));
+          addDeclUnique(hdrColors.p3, decl(localID, token.value.p3!, token.token.$description));
+          addDeclUnique(hdrColors.rec2020, decl(localID, token.value.rec2020!, token.token.$description));
 
           // handle aliases within color gamut media queries
           for (const alias of aliasTokens) {
             if (alias.localID && typeof alias.value === 'string') {
               for (const gamut of ['p3', 'rec2020'] as const) {
-                if (!hasDeclarationProperty(hdrColors[gamut], alias.localID)) {
-                  hdrColors[gamut].push(declaration(alias.localID, alias.value, token.token.$description));
-                }
+                addDeclUnique(hdrColors[gamut], decl(alias.localID, alias.value, token.token.$description));
               }
             }
           }
@@ -274,23 +262,19 @@ export default function buildCSS({
       // multi-value token
       else {
         for (const [name, subValue] of Object.entries(token.value)) {
-          modeRule.children.push(declaration(`${localID}-${name}`, subValue, token.token.$description));
+          addDeclUnique(modeRule.children, decl(`${localID}-${name}`, subValue, token.token.$description));
         }
         // Note: always generate shorthand after other declarations
         const shorthand = generateShorthand({ token: { ...token.token, $value: token.value as any }, localID });
         if (shorthand) {
-          modeRule.children.push(declaration(localID, shorthand, token.token.$description));
+          addDeclUnique(modeRule.children, decl(localID, shorthand, token.token.$description));
         }
       }
 
       // redeclare aliases so they have the correct scope
       for (const alias of aliasTokens) {
-        if (
-          alias.localID &&
-          typeof alias.value === 'string' &&
-          !hasDeclarationProperty(modeRule.children, alias.localID)
-        ) {
-          modeRule.children.push(declaration(alias.localID, alias.value, token.token.$description));
+        if (alias.localID && typeof alias.value === 'string') {
+          addDeclUnique(modeRule.children, decl(alias.localID, alias.value, token.token.$description));
         }
       }
     }
@@ -307,6 +291,9 @@ export default function buildCSS({
 
   // add utility CSS
   if (utility && Object.keys(utility).length) {
+    if (output) {
+      output += '\n\n';
+    }
     output += printRules(generateUtilityCSS(utility, getTransforms({ format: FORMAT_ID, mode: '.' }), { logger }));
   }
 

@@ -45,16 +45,16 @@
 @media (prefers-color-scheme: light) {
   :root {
     --ds-color-border: var(--ds-color-base-gray-20);
-    --ds-color-red: oklch(0.6347 0.254 16.4402);
     --ds-border-thick: 2.5px solid var(--ds-color-border);
+    --ds-color-red: oklch(0.6347 0.254 16.4402);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="light"] {
   --ds-color-border: var(--ds-color-base-gray-20);
-  --ds-color-red: oklch(0.6347 0.254 16.4402);
   --ds-border-thick: 2.5px solid var(--ds-color-border);
+  --ds-color-red: oklch(0.6347 0.254 16.4402);
   --ds-border-red: 1px solid var(--ds-color-red);
 }
 
@@ -89,16 +89,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --ds-color-border: var(--ds-color-base-gray-80);
-    --ds-color-red: oklch(0.353 0.1415 18.1514);
     --ds-border-thick: 2.5px solid var(--ds-color-border);
+    --ds-color-red: oklch(0.353 0.1415 18.1514);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="dark"] {
   --ds-color-border: var(--ds-color-base-gray-80);
-  --ds-color-red: oklch(0.353 0.1415 18.1514);
   --ds-border-thick: 2.5px solid var(--ds-color-border);
+  --ds-color-red: oklch(0.353 0.1415 18.1514);
   --ds-border-red: 1px solid var(--ds-color-red);
 }
 
