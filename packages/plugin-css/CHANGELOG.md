@@ -24,6 +24,8 @@
 
 - [#606](https://github.com/terrazzoapp/terrazzo/pull/606) [`1fc1d99`](https://github.com/terrazzoapp/terrazzo/commit/1fc1d99e7156923e86e872e4750b7e28b6292b20) Thanks [@yuheiy](https://github.com/yuheiy)! - Allow partial utility CSS groups configuration
 
+- [#632](https://github.com/terrazzoapp/terrazzo/pull/632) [`21c61d3`](https://github.com/terrazzoapp/terrazzo/commit/21c61d30c2cb137411deaec673d03cdc14445208) Thanks [@aduth](https://github.com/aduth)! - Fix `transform` option TypeScript type to allow `undefined` or `null` return values
+
 - [#636](https://github.com/terrazzoapp/terrazzo/pull/636) Thanks [@geebru](https://github.com/geebru)! - Add missing CSS logical property directions for utility class generation
 
 ## 0.10.4
