@@ -8,6 +8,11 @@ export default defineConfig({
     css({
       legacyHex: true,
       skipBuild: true,
+      modeSelectors: [
+        { mode:'dark', selectors: ['[data-theme="dark"]]'] },
+        { mode:'light-high-contrast', selectors: ['[data-theme="light-high-contrast"]]'] },
+        { mode:'dark-high-contrast', selectors: ['[data-theme="dark-high-contrast"]]'] },
+      ],
     }),
     tailwind({
       filename: 'actual.css',

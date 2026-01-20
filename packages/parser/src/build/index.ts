@@ -46,6 +46,8 @@ function validateTransformParams({
   }
 }
 
+const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
+
 /** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
@@ -111,9 +113,7 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-          const permutationID = params.input
-            ? resolver.getPermutationID(params.input)
-            : JSON.stringify({ tzMode: '*' });
+          const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
