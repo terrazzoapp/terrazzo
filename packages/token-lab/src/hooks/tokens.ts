@@ -37,9 +37,7 @@ const $parseResult = atom<ParseResult>({
     },
     source: {} as any,
     listPermutations: () => [],
-    isValidInput() {
-      return false;
-    },
+    validateInput() {},
   },
 });
 const $parseError = atom<TokensJSONError | undefined>();

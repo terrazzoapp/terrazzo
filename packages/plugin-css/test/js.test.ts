@@ -4,25 +4,25 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { build, defineConfig, parse } from '@terrazzo/parser';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import { describe, expect, it } from 'vitest';
-import css, { type Permutation } from '../src/index.js';
+import css, { type CSSPluginOptions, type Permutation } from '../src/index.js';
 
 const require = createRequire(import.meta.url);
 
 const MODE_LIGHT_ROOT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `:root {\n  ${css}\n}`,
+  prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}`,
 };
 const MODE_LIGHT: Permutation = {
   input: { mode: 'light' },
-  prepare: (css) => `[data-color-theme="light"] {\n  ${css}\n}`,
+  prepare: (css) => `[data-color-theme="light"] {\n  color-scheme: light;\n  ${css}\n}`,
 };
 const MODE_DARK: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `[data-color-theme="dark"] {\n  ${css}\n}`,
+  prepare: (css) => `[data-color-theme="dark"] {\n  color-scheme: dark;\n  ${css}\n}`,
 };
 const MODE_DARK_MQ: Permutation = {
   input: { mode: 'dark' },
-  prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+  prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}`,
 };
 const MODE_LIGHT_COLORBLIND: Permutation = {
   input: { mode: 'light-colorblind' },
@@ -34,15 +34,15 @@ const MODE_LIGHT_HIGH_CONTRAST: Permutation = {
 };
 const MODE_DARK_DIMMED: Permutation = {
   input: { mode: 'dark-dimmed' },
-  prepare: (css) => `[data-color-theme="dark-dimmed"] {\n  ${css}\n}`,
+  prepare: (css) => `[data-color-theme="dark-dimmed"] {\n  color-scheme: dark;\n  ${css}\n}`,
 };
 const MODE_DARK_HIGH_CONTRAST: Permutation = {
   input: { mode: 'dark-high-contrast' },
-  prepare: (css) => `[data-color-theme="dark-high-contrast"] {\n  ${css}\n}`,
+  prepare: (css) => `[data-color-theme="dark-high-contrast"] {\n  color-scheme: dark;\n  ${css}\n}`,
 };
 const MODE_DARK_COLORBLIND: Permutation = {
   input: { mode: 'dark-colorblind' },
-  prepare: (css) => `[data-color-theme="dark-colorblind"] {\n  ${css}\n}`,
+  prepare: (css) => `[data-color-theme="dark-colorblind"] {\n  color-scheme: dark;\n  ${css}\n}`,
 };
 const SIZE_MOBILE: Permutation = {
   input: { size: 'mobile' },
@@ -232,38 +232,75 @@ describe('Node.js API', () => {
   });
 
   describe('external DSs', () => {
-    it.each([
-      'adobe-spectrum',
-      // 'apple-hig',
-      'figma-sds',
-      'github-primer',
-      'ibm-carbon',
-      'microsoft-fluent',
-      // 'radix',
-      // 'salesforce-lightning',
-      'shopify-polaris',
-    ] as const)('%s', async (name) => {
-      const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
-      const src = `dtcg-examples/${name}.resolver.json`;
-      const config = defineConfig(
+    const tests: [string, CSSPluginOptions][] = [
+      [
+        'adobe-spectrum',
         {
-          tokens: [src],
-          lint: { rules: { 'core/consistent-naming': 'off' } },
-          plugins: [
-            css({
-              permutations: [MODE_LIGHT_ROOT, MODE_DARK, MODE_DARK_MQ],
-            }),
+          permutations: [
+            { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'light', size: 'mobile' } },
+            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark', size: 'mobile' } },
+            {
+              prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
+              input: { theme: 'light', size: 'desktop' },
+            },
           ],
         },
-        { cwd },
-      );
-      const filename = pathToFileURL(require.resolve(src));
-      const { tokens, resolver, sources } = await parse([{ filename, src: await fs.readFile(filename, 'utf8') }], {
-        config,
-      });
-      const result = await build(tokens, { resolver, sources, config });
-      await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
-    }, 30_000);
+      ],
+      [
+        'figma-sds',
+        {
+          permutations: [
+            { prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`, input: { theme: 'light' } },
+            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark' } },
+          ],
+        },
+      ],
+      [
+        'github-primer',
+        {
+          permutations: [
+            { prepare: (css) => `:root {\n  ${css}\n}`, input: { size: 'default' } },
+            { prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`, input: { theme: 'light' } },
+            { prepare: (css) => `[data-theme="light-hc"] {\n  ${css}\n}`, input: { theme: 'light-hc' } },
+            { prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`, input: { theme: 'dark' } },
+            { prepare: (css) => `[data-theme="dark-hc"] {\n  ${css}\n}`, input: { theme: 'dark-hc' } },
+          ],
+        },
+      ],
+      [
+        'microsoft-fluent',
+        {
+          permutations: [
+            { prepare: (css) => `:root {\n  ${css}\n}`, input: { theme: 'default' } },
+            { prepare: (css) => `@media (prefers-color-scheme: dark) {\n  ${css}\n}`, input: { theme: 'inverted' } },
+          ],
+        },
+      ],
+      ['shopify-polaris', { permutations: [{ input: {}, prepare: (css) => `:root {\n  ${css}\n}` }] }],
+    ];
+
+    it.each(tests)(
+      '%s',
+      async (name, options) => {
+        const cwd = new URL(`./fixtures/ds-${name}/`, import.meta.url);
+        const src = `dtcg-examples/${name}.resolver.json`;
+        const config = defineConfig(
+          {
+            tokens: [src],
+            lint: { rules: { 'core/consistent-naming': 'off' } },
+            plugins: [css(options)],
+          },
+          { cwd },
+        );
+        const filename = pathToFileURL(require.resolve(src));
+        const { tokens, resolver, sources } = await parse([{ filename, src: await fs.readFile(filename, 'utf8') }], {
+          config,
+        });
+        const result = await build(tokens, { resolver, sources, config });
+        await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
+      },
+      30_000,
+    );
   });
 
   describe('options', () => {

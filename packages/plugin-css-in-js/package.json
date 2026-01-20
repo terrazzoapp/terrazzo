@@ -55,6 +55,7 @@
   "devDependencies": {
     "@terrazzo/cli": "workspace:^",
     "@terrazzo/parser": "workspace:^",
-    "@terrazzo/plugin-css": "workspace:^"
+    "@terrazzo/plugin-css": "workspace:^",
+    "dtcg-examples": "catalog:"
   }
 }

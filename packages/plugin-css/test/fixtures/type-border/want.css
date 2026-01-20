@@ -3,6 +3,7 @@
  * ------------------------------------------- */
 
 :root {
+  color-scheme: light dark;
   --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
@@ -30,6 +31,7 @@
 
 @media (color-gamut: p3) {
   :root {
+    color-scheme: light dark;
     --ds-color-red: oklch(0.64 0.2889 16.5768);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
@@ -37,12 +39,14 @@
 
 @media (color-gamut: rec2020) {
   :root {
+    color-scheme: light dark;
     --ds-color-red: oklch(0.6388 0.3368 16.2926);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
 }
 
 [data-color-theme="light"] {
+  color-scheme: light;
   --ds-border-color: color(srgb 0.6509803921568628 0.6901960784313725 0.7098039215686275);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
@@ -70,6 +74,7 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="light"] {
+    color-scheme: light;
     --ds-color-red: oklch(0.64 0.2889 16.5768);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
@@ -77,6 +82,7 @@
 
 @media (color-gamut: rec2020) {
   [data-color-theme="light"] {
+    color-scheme: light;
     --ds-color-red: oklch(0.6388 0.3368 16.2926);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
@@ -84,6 +90,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
+    color-scheme: dark;
     --ds-border-color: color(srgb 0.0784313725490196 0.09019607843137255 0.10588235294117647);
     --ds-border-dashed: 1.5px dashed var(--ds-border-color);
     --ds-border-ridge: 1px ridge var(--ds-border-color);
@@ -113,6 +120,7 @@
 @media (color-gamut: p3) {
   @media (prefers-color-scheme: dark) {
     :root {
+      color-scheme: dark;
       --ds-color-red: oklch(0.3518 0.159 17.9744);
       --ds-border-red: 1px solid var(--ds-color-red);
     }
@@ -122,6 +130,7 @@
 @media (color-gamut: rec2020) {
   @media (prefers-color-scheme: dark) {
     :root {
+      color-scheme: dark;
       --ds-color-red: oklch(0.3505 0.1849 17.4534);
       --ds-border-red: 1px solid var(--ds-color-red);
     }
@@ -129,6 +138,7 @@
 }
 
 [data-color-theme="dark"] {
+  color-scheme: dark;
   --ds-border-color: color(srgb 0.0784313725490196 0.09019607843137255 0.10588235294117647);
   --ds-border-dashed: 1.5px dashed var(--ds-border-color);
   --ds-border-ridge: 1px ridge var(--ds-border-color);
@@ -156,6 +166,7 @@
 
 @media (color-gamut: p3) {
   [data-color-theme="dark"] {
+    color-scheme: dark;
     --ds-color-red: oklch(0.3518 0.159 17.9744);
     --ds-border-red: 1px solid var(--ds-color-red);
   }
@@ -163,6 +174,7 @@
 
 @media (color-gamut: rec2020) {
   [data-color-theme="dark"] {
+    color-scheme: dark;
     --ds-color-red: oklch(0.3505 0.1849 17.4534);
     --ds-border-red: 1px solid var(--ds-color-red);
   }

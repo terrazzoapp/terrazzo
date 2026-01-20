@@ -456,12 +456,12 @@ As of Terrazzo 2.0, most official plugins still use legacy modes for transformat
 
 In a plugin API, the resolver can be accessed like so:
 
-| Property           | Type                                                    | Description                                                                                                                     |
-| :----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `apply`            | `(input: Record<string, string>) => TokenNormalizedSet` | Calling `resolver.apply({ … })` will produce a single tokens set. This must be called **once per permutation** you want to get. |
-| `listPermutations` | `() => Record<string, string>[]`                        | Returns an array of all possible inputs.                                                                                        |
-| `source`           | `ResolverSource`                                        | The raw JSON source of the original resolver. This contains metadata like `name` and `description`, if provided.                |
-| `isValidInput`     | `(input: Record<string, string>) => boolean`            | Given an object of strings, return `true` or `false` if this is a legal input as determined by the original resolver rules.     |
+| Property             | Type                                                               | Description                                                                                                                                           |
+| :------------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apply**            | `(input: Record<string, string>) => TokenNormalizedSet`            | Calling `resolver.apply({ … })` will produce a single tokens set. This must be called **once per permutation** you want to get.                       |
+| **listPermutations** | `() => Record<string, string>[]`                                   | Returns an array of all possible inputs.                                                                                                              |
+| **source**           | `ResolverSource`                                                   | The raw JSON source of the original resolver. This contains metadata like `name` and `description`, if provided.                                      |
+| **isValidInput**     | `(input: Record<string, string>, throwError?: boolean) => boolean` | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
 
 ### Example
 

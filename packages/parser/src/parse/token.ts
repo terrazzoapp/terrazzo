@@ -51,7 +51,7 @@ export function tokenFromNode(
   }
 
   const jsonID = encodeFragment(path);
-  const id = path.join('.');
+  const id = path.join('.').replace(/\.\$root$/, '');
 
   const originalToken = momoa.evaluate(node) as any;
 
@@ -397,7 +397,7 @@ export function refToTokenID($ref: ReferenceObject | string): string | undefined
   if (subpath?.[0] === '$defs') {
     subpath.splice(0, 2);
   }
-  return (subpath?.length && subpath.join('.').replace(/\.(\$value|\$extensions).*$/, '')) || undefined;
+  return (subpath?.length && subpath.join('.').replace(/\.(\$root|\$value|\$extensions).*$/, '')) || undefined;
 }
 
 const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {

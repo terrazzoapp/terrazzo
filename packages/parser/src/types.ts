@@ -357,7 +357,7 @@ export interface Resolver<
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
-  isValidInput: (input: Input) => boolean;
+  isValidInput: (input: Input, throwError?: boolean) => boolean;
 }
 
 export interface ResolverSource {

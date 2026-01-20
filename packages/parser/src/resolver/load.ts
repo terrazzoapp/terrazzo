@@ -122,7 +122,7 @@ export function createResolver(
   }
 
   return {
-    apply(inputRaw): TokenNormalizedSet {
+    apply(inputRaw) {
       let tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
       const permutationID = getPermutationID(input);
@@ -176,29 +176,44 @@ export function createResolver(
       }
       return allPermutations;
     },
-    isValidInput(input: Record<string, string>) {
+    isValidInput(input, throwError = false) {
       if (!input || typeof input !== 'object') {
         logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
       }
-      if (!Object.keys(input).every((k) => k in validContexts)) {
-        return false; // 1. invalid if unknown modifier name
+      for (const k of Object.keys(input)) {
+        if (!(k in validContexts)) {
+          if (throwError) {
+            logger.error({ group: 'resolver', message: `No such modifier ${JSON.stringify(k)}` });
+          }
+          return false; // 1. invalid if unknown modifier name
+        }
       }
       for (const [name, contexts] of Object.entries(validContexts)) {
         // Note: empty strings are valid! Don’t check for truthiness.
         if (name in input) {
           if (!contexts.includes(input[name]!)) {
+            if (throwError) {
+              logger.error({
+                group: 'resolver',
+                message: `Modifier "${name}" has no context ${JSON.stringify(input[name])}.`,
+              });
+            }
             return false; // 2. invalid if unknown context
           }
         } else if (!(name in inputDefaults)) {
+          if (throwError) {
+            logger.error({
+              group: 'resolver',
+              message: `Modifier "${name}" missing value (no default set).`,
+            });
+          }
           return false; // 3. invalid if omitted, and no default
         }
       }
       return true;
     },
-    getPermutationID(input: Record<string, string>) {
-      if (!this.isValidInput(input)) {
-        logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
-      }
+    getPermutationID(input) {
+      this.isValidInput(input, true);
       return getPermutationID({ ...inputDefaults, ...input });
     },
   };
