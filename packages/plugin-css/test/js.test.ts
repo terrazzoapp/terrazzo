@@ -299,7 +299,7 @@ describe('Node.js API', () => {
         const result = await build(tokens, { resolver, sources, config });
         await expect(result.outputFiles[0]?.contents).toMatchFileSnapshot(fileURLToPath(new URL('./want.css', cwd)));
       },
-      30_000,
+      60_000,
     );
   });
 

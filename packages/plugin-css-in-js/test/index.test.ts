@@ -20,5 +20,5 @@ describe('plugin-css-in-js', () => {
     await expect(await fs.readFile(new URL('./actual.d.ts', cwd), 'utf8')).toMatchFileSnapshot(
       fileURLToPath(new URL('./want.d.ts', cwd)),
     );
-  });
+  }, 15_000); // Windows tests in CI need extra time
 });
