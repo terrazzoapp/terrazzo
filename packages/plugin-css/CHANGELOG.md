@@ -1,5 +1,11 @@
 # @terrazzo/plugin-css
 
+## 2.0.0-alpha.8
+
+### Patch Changes
+
+- [#632](https://github.com/terrazzoapp/terrazzo/pull/632) [`21c61d3`](https://github.com/terrazzoapp/terrazzo/commit/21c61d30c2cb137411deaec673d03cdc14445208) Thanks [@aduth](https://github.com/aduth)! - Fix `transform` option TypeScript type to allow `undefined` or `null` return values
+
 ## 2.0.0
 
 ### Minor Changes
