@@ -50,6 +50,7 @@ export async function loadConfig({ cmd, flags, logger }: LoadConfigOptions) {
         build: { enabled: true },
         rules: {},
       },
+      alphabetize: false,
       ignore: { tokens: [], deprecated: false },
     };
     let configPath: string | undefined;

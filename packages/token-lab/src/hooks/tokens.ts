@@ -1,5 +1,5 @@
 import { defineConfig, type ParseResult, parse, type TokensJSONError } from '@terrazzo/parser';
-import radix from 'dtcg-examples/figma-sds.json' with { type: 'json' };
+import figmaSDS from 'dtcg-examples/figma-sds.resolver.json' with { type: 'json' };
 import { atom, useAtom } from 'jotai';
 import { createContext, use, useEffect, useMemo } from 'react';
 import { getDB } from '../lib/indexed-db.js';
@@ -37,7 +37,8 @@ const $parseResult = atom<ParseResult>({
     },
     source: {} as any,
     listPermutations: () => [],
-    validateInput() {},
+    isValidInput: () => false,
+    getPermutationID: () => '',
   },
 });
 const $parseError = atom<TokensJSONError | undefined>();
@@ -69,7 +70,7 @@ export default function useTokens(filename = DEFAULT_FILENAME) {
         setTokens(contextTokens);
       } else {
         // Fallback to default Figma SDS tokens
-        setTokens(JSON.stringify(radix, null, 2));
+        setTokens(JSON.stringify(figmaSDS, null, 2));
       }
     });
   }, []);

@@ -93,7 +93,7 @@ describe('transformCSSValue', () => {
               },
             },
           } as any,
-          { mode: '.', tokensSet: {}, transformAlias: (id) => `--${id}` },
+          { tokensSet: {}, transformAlias: (id) => `--${id}` },
         ],
         want: { success: 'color(srgb 0 0 1)' },
       },
@@ -142,7 +142,6 @@ describe('transformCSSValue', () => {
             },
           },
           {
-            mode: '.',
             tokensSet: {
               'bool.idk': {
                 $type: 'boolean',
