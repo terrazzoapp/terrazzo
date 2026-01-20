@@ -54,7 +54,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       const output = ['@import "tailwindcss";', ''];
 
       const variants: Record<string, string[]> = { '.': [] };
-      for (const token of getTransforms({ format: FORMAT_ID })) {
+      for (const token of getTransforms({ format: FORMAT_ID, mode: '*' })) {
         const { localID, value, mode } = token;
         if (!variants[mode]) {
           variants[mode] = [];

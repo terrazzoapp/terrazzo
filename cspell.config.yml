@@ -17,6 +17,7 @@ ignorePaths:
   - "**/*.css"
   - "**/*.json"
 words:
+  - Atrule
   - Björn
   - Brücke
   - cubic-bezier

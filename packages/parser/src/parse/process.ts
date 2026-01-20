@@ -12,7 +12,6 @@ import {
 import { type GroupNormalized, isAlias, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
-import { isLikelyResolver } from '../resolver/validate.js';
 import type { ConfigInit, RefMap } from '../types.js';
 import { assert, assertObjectNode, assertStringNode } from './assert.js';
 import { normalize } from './normalize.js';
@@ -31,11 +30,12 @@ export interface ProcessTokensOptions {
   logger: Logger;
   sourceByFilename: Record<string, InputSourceWithDocument>;
   sources: InputSourceWithDocument[];
+  isResolver?: boolean;
 }
 
 export function processTokens(
   rootSource: InputSourceWithDocument,
-  { config, logger, sourceByFilename }: ProcessTokensOptions,
+  { config, logger, sourceByFilename, isResolver }: ProcessTokensOptions,
 ): TokenNormalizedSet {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -182,7 +182,6 @@ export function processTokens(
   const groups: Record<string, GroupNormalized> = {};
 
   // 3a. Token & group population
-  const isResolver = isLikelyResolver(rootSource.document);
   traverse(rootSource.document, {
     enter(node, _parent, rawPath) {
       if (node.type !== 'Object') {
@@ -248,6 +247,10 @@ export function processTokens(
 
   // 6. alphabetize & filter
   // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.
+  if (config.alphabetize === false) {
+    return tokens;
+  }
+
   const sortStart = performance.now();
   const tokensSorted: TokenNormalizedSet = {};
   tokenIDs.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));

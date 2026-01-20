@@ -46,39 +46,51 @@ function validateTransformParams({
   }
 }
 
+const FALLBACK_PERMUTATION_ID = JSON.stringify({ tzMode: '*' });
+
 /** Run build stage */
 export default async function build(
   tokens: Record<string, TokenNormalized>,
   { resolver, sources, logger = new Logger(), config }: BuildRunnerOptions,
 ): Promise<BuildRunnerResult> {
-  const formats: Record<string, TokenTransformed[]> = {};
+  const formats: Record<string, { [permutationID: string]: TokenTransformed[] }> = {};
   const result: BuildRunnerResult = { outputFiles: [] };
 
-  function getTransforms(params: TransformParams) {
-    if (!params?.format) {
-      logger.warn({ group: 'plugin', message: '"format" missing from getTransforms(), no tokens returned.' });
-      return [];
-    }
+  function getTransforms(plugin: string) {
+    return function getTransforms(params: TransformParams) {
+      if (!params?.format) {
+        logger.warn({
+          group: 'plugin',
+          label: plugin,
+          message: '"format" missing from getTransforms(), no tokens returned.',
+        });
+        return [];
+      }
 
-    const tokenMatcher = params.id ? wcmatch(Array.isArray(params.id) ? params.id : [params.id]) : null;
-    const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+      const tokenMatcher = params.id && params.id !== '*' ? wcmatch(params.id) : null;
+      const modeMatcher = params.mode ? wcmatch(params.mode) : null;
+      const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
 
-    return (formats[params.format!] ?? []).filter((token) => {
-      if (params.$type) {
-        if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
-          return false;
-        } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.$type === $type)) {
+      return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
+        if (params.$type) {
+          if (typeof params.$type === 'string' && token.token.$type !== params.$type) {
+            return false;
+          } else if (Array.isArray(params.$type) && !params.$type.some(($type) => token.token.$type === $type)) {
+            return false;
+          }
+        }
+        if (tokenMatcher && !tokenMatcher(token.token.id)) {
           return false;
         }
-      }
-      if (params.id && params.id !== '*' && tokenMatcher && !tokenMatcher(token.token.id)) {
-        return false;
-      }
-      if (modeMatcher && !modeMatcher(token.mode)) {
-        return false;
-      }
-      return true;
-    });
+        if (params.input && token.permutationID !== resolver.getPermutationID(params.input)) {
+          return false;
+        }
+        if (modeMatcher && !modeMatcher(token.mode)) {
+          return false;
+        }
+        return true;
+      });
+    };
   }
 
   // transform()
@@ -90,7 +102,7 @@ export default async function build(
         context: { logger },
         tokens,
         sources,
-        getTransforms,
+        getTransforms: getTransforms(plugin.name),
         setTransform(id, params) {
           if (transformsLocked) {
             logger.warn({
@@ -101,7 +113,7 @@ export default async function build(
             return;
           }
           const token = tokens[id]!;
-
+          const permutationID = params.input ? resolver.getPermutationID(params.input) : FALLBACK_PERMUTATION_ID;
           const cleanValue: TokenTransformed['value'] =
             typeof params.value === 'string' ? params.value : { ...(params.value as Record<string, string>) };
           validateTransformParams({
@@ -112,26 +124,47 @@ export default async function build(
 
           // upsert
           if (!formats[params.format]) {
-            formats[params.format] = [];
+            formats[params.format] = {};
           }
-          const foundTokenI = formats[params.format]!.findIndex(
-            (t) =>
-              id === t.id &&
-              (!params.localID || params.localID === t.localID) &&
-              (!params.mode || params.mode === t.mode),
-          );
+          if (!formats[params.format]![permutationID]) {
+            formats[params.format]![permutationID] = [];
+          }
+          let foundTokenI = -1;
+          if (params.mode) {
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
+              (t) => id === t.id && (!params.localID || params.localID === t.localID) && params.mode === t.mode,
+            );
+          } else if (params.input) {
+            if (!formats[params.format]![permutationID]) {
+              formats[params.format]![permutationID] = [];
+            }
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
+              (t) =>
+                id === t.id && (!params.localID || params.localID === t.localID) && permutationID === t.permutationID,
+            );
+          } else {
+            foundTokenI = formats[params.format]![permutationID]!.findIndex(
+              (t) => id === t.id && (!params.localID || params.localID === t.localID),
+            );
+          }
           if (foundTokenI === -1) {
-            formats[params.format]!.push({
+            // backwards compat: upconvert mode into "tzMode" modifier. This
+            // allows newer plugins to use resolver syntax without disrupting
+            // older plugins.
+            formats[params.format]![permutationID]!.push({
               ...params,
               id,
               value: cleanValue,
               type: typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE,
               mode: params.mode || '.',
               token: structuredClone(token),
+              permutationID,
+              input: JSON.parse(permutationID),
             } as TokenTransformed);
           } else {
-            formats[params.format]![foundTokenI]!.value = cleanValue;
-            formats[params.format]![foundTokenI]!.type = typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
+            formats[params.format]![permutationID]![foundTokenI]!.value = cleanValue;
+            formats[params.format]![permutationID]![foundTokenI]!.type =
+              typeof cleanValue === 'string' ? SINGLE_VALUE : MULTI_VALUE;
           }
         },
         resolver,
@@ -156,7 +189,7 @@ export default async function build(
           context: { logger },
           tokens,
           sources,
-          getTransforms,
+          getTransforms: getTransforms(plugin.name),
           resolver,
           outputFile(filename, contents) {
             const resolved = new URL(filename, config.outDir);
@@ -192,7 +225,7 @@ export default async function build(
       plugin.buildEnd?.({
         context: { logger },
         tokens,
-        getTransforms,
+        getTransforms: getTransforms(plugin.name),
         sources,
         outputFiles: structuredClone(result.outputFiles),
       }),

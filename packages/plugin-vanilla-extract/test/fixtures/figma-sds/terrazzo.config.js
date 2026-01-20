@@ -4,13 +4,23 @@ import vanillaExtract from '../../../dist/index.js';
 
 export default defineConfig({
   outDir: './test/fixtures/figma-sds',
-  tokens: ['dtcg-examples/figma-sds.json'],
+  tokens: ['dtcg-examples/figma-sds.resolver.json'],
+  lint: {
+    rules: {
+      'core/consistent-naming': 'off',
+    },
+  },
   plugins: [
-    css(),
+    css({
+      permutations: [
+        { input: { theme: 'light' }, prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}` },
+        { input: { theme: 'dark' }, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}` },
+      ]
+    }),
     vanillaExtract({
       themes: {
-        light: { selector: '[data-color-mode=light]', mode: ['.', 'light'] },
-        dark: { selector: '[data-color-mode=dark]', mode: ['.', 'dark'] },
+        light: { selector: '[data-color-mode=light]', input: { theme:'light' } },
+        dark: { selector: '[data-color-mode=dark]', input: { theme: 'dark' } },
       },
     }),
   ],

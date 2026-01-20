@@ -3,7 +3,7 @@ import css from '@terrazzo/plugin-css'
 import cssInJs from '../../../dist/index.js'
 
 export default defineConfig({
-  tokens: 'figma-sds.resolver.json',
+  tokens: 'dtcg-examples/figma-sds.resolver.json',
   outDir: '.',
   plugins: [
     css({ skipBuild: true }),

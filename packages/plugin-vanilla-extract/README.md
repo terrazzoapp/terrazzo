@@ -31,14 +31,20 @@ export default defineConfig({
 
       // generate createTheme()
       themes: [
-        { name: "light", mode: "light" },
-        { name: "dark", mode: "dark" },
+        { name: "light", input: { theme: "light" } },
+        { name: "dark", input: { theme: "dark" } },
       ],
 
       // generate createGlobalTheme()
       globalThemes: [
-        { selector: "@media (prefers-color-scheme: light)", mode: "light" },
-        { selector: "@media (prefers-color-scheme: dark)", mode: "dark" },
+        {
+          selector: "@media (prefers-color-scheme: light)",
+          input: { theme: "light" },
+        },
+        {
+          selector: "@media (prefers-color-scheme: dark)",
+          input: { theme: "dark" },
+        },
       ],
     }),
   ],

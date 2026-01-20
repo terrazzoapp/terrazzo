@@ -4,7 +4,7 @@ export const vars = createGlobalThemeContract({
   "color": {
     "background": {
       "brand": {
-        "default": "color-background-brand-default",
+        "$root": "color-background-brand",
         "hover": "color-background-brand-hover",
         "secondary": "color-background-brand-secondary",
         "secondaryHover": "color-background-brand-secondary-hover",
@@ -12,7 +12,7 @@ export const vars = createGlobalThemeContract({
         "tertiaryHover": "color-background-brand-tertiary-hover"
       },
       "danger": {
-        "default": "color-background-danger-default",
+        "$root": "color-background-danger",
         "hover": "color-background-danger-hover",
         "secondary": "color-background-danger-secondary",
         "secondaryHover": "color-background-danger-secondary-hover",
@@ -20,7 +20,7 @@ export const vars = createGlobalThemeContract({
         "tertiaryHover": "color-background-danger-tertiary-hover"
       },
       "default": {
-        "default": "color-background-default-default",
+        "$root": "color-background-default",
         "hover": "color-background-default-hover",
         "secondary": "color-background-default-secondary",
         "secondaryHover": "color-background-default-secondary-hover",
@@ -28,10 +28,10 @@ export const vars = createGlobalThemeContract({
         "tertiaryHover": "color-background-default-tertiary-hover"
       },
       "disabled": {
-        "default": "color-background-disabled-default"
+        "$root": "color-background-disabled"
       },
       "neutral": {
-        "default": "color-background-neutral-default",
+        "$root": "color-background-neutral",
         "hover": "color-background-neutral-hover",
         "secondary": "color-background-neutral-secondary",
         "secondaryHover": "color-background-neutral-secondary-hover",
@@ -39,7 +39,7 @@ export const vars = createGlobalThemeContract({
         "tertiaryHover": "color-background-neutral-tertiary-hover"
       },
       "positive": {
-        "default": "color-background-positive-default",
+        "$root": "color-background-positive",
         "hover": "color-background-positive-hover",
         "secondary": "color-background-positive-secondary",
         "secondaryHover": "color-background-positive-secondary-hover",
@@ -47,7 +47,7 @@ export const vars = createGlobalThemeContract({
         "tertiaryHover": "color-background-positive-tertiary-hover"
       },
       "warning": {
-        "default": "color-background-warning-default",
+        "$root": "color-background-warning",
         "hover": "color-background-warning-hover",
         "secondary": "color-background-warning-secondary",
         "secondaryHover": "color-background-warning-secondary-hover",
@@ -69,35 +69,35 @@ export const vars = createGlobalThemeContract({
     },
     "border": {
       "brand": {
-        "default": "color-border-brand-default",
+        "$root": "color-border-brand",
         "secondary": "color-border-brand-secondary",
         "tertiary": "color-border-brand-tertiary"
       },
       "danger": {
-        "default": "color-border-danger-default",
+        "$root": "color-border-danger",
         "secondary": "color-border-danger-secondary",
         "tertiary": "color-border-danger-tertiary"
       },
       "default": {
-        "default": "color-border-default-default",
+        "$root": "color-border-default",
         "secondary": "color-border-default-secondary",
         "tertiary": "color-border-default-tertiary"
       },
       "disabled": {
-        "default": "color-border-disabled-default"
+        "$root": "color-border-disabled"
       },
       "neutral": {
-        "default": "color-border-neutral-default",
+        "$root": "color-border-neutral",
         "secondary": "color-border-neutral-secondary",
         "tertiary": "color-border-neutral-tertiary"
       },
       "positive": {
-        "default": "color-border-positive-default",
+        "$root": "color-border-positive",
         "secondary": "color-border-positive-secondary",
         "tertiary": "color-border-positive-tertiary"
       },
       "warning": {
-        "default": "color-border-warning-default",
+        "$root": "color-border-warning",
         "secondary": "color-border-warning-secondary",
         "tertiary": "color-border-warning-tertiary"
       }
@@ -140,7 +140,7 @@ export const vars = createGlobalThemeContract({
     },
     "icon": {
       "brand": {
-        "default": "color-icon-brand-default",
+        "$root": "color-icon-brand",
         "onBrand": "color-icon-brand-on-brand",
         "onBrandSecondary": "color-icon-brand-on-brand-secondary",
         "onBrandTertiary": "color-icon-brand-on-brand-tertiary",
@@ -148,7 +148,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-icon-brand-tertiary"
       },
       "danger": {
-        "default": "color-icon-danger-default",
+        "$root": "color-icon-danger",
         "onDanger": "color-icon-danger-on-danger",
         "onDangerSecondary": "color-icon-danger-on-danger-secondary",
         "onDangerTertiary": "color-icon-danger-on-danger-tertiary",
@@ -156,16 +156,16 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-icon-danger-tertiary"
       },
       "default": {
-        "default": "color-icon-default-default",
+        "$root": "color-icon-default",
         "secondary": "color-icon-default-secondary",
         "tertiary": "color-icon-default-tertiary"
       },
       "disabled": {
-        "default": "color-icon-disabled-default",
+        "$root": "color-icon-disabled",
         "onDisabled": "color-icon-disabled-on-disabled"
       },
       "neutral": {
-        "default": "color-icon-neutral-default",
+        "$root": "color-icon-neutral",
         "onNeutral": "color-icon-neutral-on-neutral",
         "onNeutralSecondary": "color-icon-neutral-on-neutral-secondary",
         "onNeutralTertiary": "color-icon-neutral-on-neutral-tertiary",
@@ -173,7 +173,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-icon-neutral-tertiary"
       },
       "positive": {
-        "default": "color-icon-positive-default",
+        "$root": "color-icon-positive",
         "onPositive": "color-icon-positive-on-positive",
         "onPositiveSecondary": "color-icon-positive-on-positive-secondary",
         "onPositiveTertiary": "color-icon-positive-on-positive-tertiary",
@@ -181,7 +181,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-icon-positive-tertiary"
       },
       "warning": {
-        "default": "color-icon-warning-default",
+        "$root": "color-icon-warning",
         "onWarning": "color-icon-warning-on-warning",
         "onWarningSecondary": "color-icon-warning-on-warning-secondary",
         "onWarningTertiary": "color-icon-warning-on-warning-tertiary",
@@ -227,7 +227,7 @@ export const vars = createGlobalThemeContract({
     },
     "text": {
       "brand": {
-        "default": "color-text-brand-default",
+        "$root": "color-text-brand",
         "onBrand": "color-text-brand-on-brand",
         "onBrandSecondary": "color-text-brand-on-brand-secondary",
         "onBrandTertiary": "color-text-brand-on-brand-tertiary",
@@ -235,7 +235,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-text-brand-tertiary"
       },
       "danger": {
-        "default": "color-text-danger-default",
+        "$root": "color-text-danger",
         "onDanger": "color-text-danger-on-danger",
         "onDangerSecondary": "color-text-danger-on-danger-secondary",
         "onDangerTertiary": "color-text-danger-on-danger-tertiary",
@@ -243,16 +243,16 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-text-danger-tertiary"
       },
       "default": {
-        "default": "color-text-default-default",
+        "$root": "color-text-default",
         "secondary": "color-text-default-secondary",
         "tertiary": "color-text-default-tertiary"
       },
       "disabled": {
-        "default": "color-text-disabled-default",
+        "$root": "color-text-disabled",
         "onDisabled": "color-text-disabled-on-disabled"
       },
       "neutral": {
-        "default": "color-text-neutral-default",
+        "$root": "color-text-neutral",
         "onNeutral": "color-text-neutral-on-neutral",
         "onNeutralSecondary": "color-text-neutral-on-neutral-secondary",
         "onNeutralTertiary": "color-text-neutral-on-neutral-tertiary",
@@ -260,7 +260,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-text-neutral-tertiary"
       },
       "positive": {
-        "default": "color-text-positive-default",
+        "$root": "color-text-positive",
         "onPositive": "color-text-positive-on-positive",
         "onPositiveSecondary": "color-text-positive-on-positive-secondary",
         "onPositiveTertiary": "color-text-positive-on-positive-tertiary",
@@ -268,7 +268,7 @@ export const vars = createGlobalThemeContract({
         "tertiary": "color-text-positive-tertiary"
       },
       "warning": {
-        "default": "color-text-warning-default",
+        "$root": "color-text-warning",
         "onWarning": "color-text-warning-on-warning",
         "onWarningSecondary": "color-text-warning-on-warning-secondary",
         "onWarningTertiary": "color-text-warning-on-warning-tertiary",
@@ -537,7 +537,7 @@ export const [lightClass, light] = createTheme(vars, {
   "color": {
     "background": {
       "brand": {
-        "default": vars.color.brand[800],
+        "$root": vars.color.brand[800],
         "hover": vars.color.brand[900],
         "secondary": vars.color.brand[200],
         "secondaryHover": vars.color.brand[300],
@@ -545,7 +545,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiaryHover": vars.color.brand[200]
       },
       "danger": {
-        "default": vars.color.red[500],
+        "$root": vars.color.red[500],
         "hover": vars.color.red[600],
         "secondary": vars.color.red[200],
         "secondaryHover": vars.color.red[300],
@@ -553,7 +553,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiaryHover": vars.color.red[200]
       },
       "default": {
-        "default": vars.color.white[1000],
+        "$root": vars.color.white[1000],
         "hover": vars.color.gray[100],
         "secondary": vars.color.gray[100],
         "secondaryHover": vars.color.gray[200],
@@ -561,10 +561,10 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiaryHover": vars.color.gray[400]
       },
       "disabled": {
-        "default": vars.color.brand[300]
+        "$root": vars.color.brand[300]
       },
       "neutral": {
-        "default": vars.color.slate[700],
+        "$root": vars.color.slate[700],
         "hover": vars.color.slate[800],
         "secondary": vars.color.slate[300],
         "secondaryHover": vars.color.slate[400],
@@ -572,7 +572,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiaryHover": vars.color.slate[300]
       },
       "positive": {
-        "default": vars.color.green[500],
+        "$root": vars.color.green[500],
         "hover": vars.color.green[600],
         "secondary": vars.color.green[200],
         "secondaryHover": vars.color.green[300],
@@ -580,7 +580,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiaryHover": vars.color.green[200]
       },
       "warning": {
-        "default": vars.color.yellow[400],
+        "$root": vars.color.yellow[400],
         "hover": vars.color.yellow[500],
         "secondary": vars.color.yellow[200],
         "secondaryHover": vars.color.yellow[300],
@@ -602,35 +602,35 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "border": {
       "brand": {
-        "default": vars.color.brand[800],
+        "$root": vars.color.brand[800],
         "secondary": vars.color.brand[600],
         "tertiary": vars.color.brand[500]
       },
       "danger": {
-        "default": vars.color.red[700],
+        "$root": vars.color.red[700],
         "secondary": vars.color.red[600],
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.gray[300],
+        "$root": vars.color.gray[300],
         "secondary": vars.color.gray[500],
         "tertiary": vars.color.gray[700]
       },
       "disabled": {
-        "default": vars.color.brand[400]
+        "$root": vars.color.brand[400]
       },
       "neutral": {
-        "default": vars.color.slate[900],
+        "$root": vars.color.slate[900],
         "secondary": vars.color.slate[600],
         "tertiary": vars.color.slate[400]
       },
       "positive": {
-        "default": vars.color.green[800],
+        "$root": vars.color.green[800],
         "secondary": vars.color.green[600],
         "tertiary": vars.color.green[500]
       },
       "warning": {
-        "default": vars.color.yellow[900],
+        "$root": vars.color.yellow[900],
         "secondary": vars.color.yellow[700],
         "tertiary": vars.color.yellow[600]
       }
@@ -673,7 +673,7 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "icon": {
       "brand": {
-        "default": vars.color.brand[800],
+        "$root": vars.color.brand[800],
         "onBrand": vars.color.brand[100],
         "onBrandSecondary": vars.color.brand[900],
         "onBrandTertiary": vars.color.brand[800],
@@ -681,7 +681,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.brand[500]
       },
       "danger": {
-        "default": vars.color.red[700],
+        "$root": vars.color.red[700],
         "onDanger": vars.color.red[100],
         "onDangerSecondary": vars.color.red[700],
         "onDangerTertiary": vars.color.red[700],
@@ -689,16 +689,16 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.gray[900],
+        "$root": vars.color.gray[900],
         "secondary": vars.color.gray[500],
         "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": vars.color.brand[400],
+        "$root": vars.color.brand[400],
         "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": vars.color.slate[900],
+        "$root": vars.color.slate[900],
         "onNeutral": vars.color.slate[100],
         "onNeutralSecondary": vars.color.slate[900],
         "onNeutralTertiary": vars.color.slate[800],
@@ -706,15 +706,15 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.slate[600]
       },
       "positive": {
-        "default": vars.color.green[800],
+        "$root": vars.color.green[800],
         "onPositive": vars.color.green[100],
         "onPositiveSecondary": vars.color.green[800],
-        "onPositiveTertiary": vars.color.green[900],
+        "onPositiveTertiary": vars.color.green[500],
         "secondary": vars.color.green[600],
         "tertiary": vars.color.green[500]
       },
       "warning": {
-        "default": vars.color.yellow[900],
+        "$root": vars.color.yellow[900],
         "onWarning": vars.color.yellow[1000],
         "onWarningSecondary": vars.color.yellow[800],
         "onWarningTertiary": vars.color.yellow[900],
@@ -760,7 +760,7 @@ export const [lightClass, light] = createTheme(vars, {
     },
     "text": {
       "brand": {
-        "default": vars.color.brand[800],
+        "$root": vars.color.brand[800],
         "onBrand": vars.color.brand[100],
         "onBrandSecondary": vars.color.brand[900],
         "onBrandTertiary": vars.color.brand[800],
@@ -768,7 +768,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.brand[500]
       },
       "danger": {
-        "default": vars.color.red[700],
+        "$root": vars.color.red[700],
         "onDanger": vars.color.red[100],
         "onDangerSecondary": vars.color.red[700],
         "onDangerTertiary": vars.color.red[700],
@@ -776,16 +776,16 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.gray[900],
+        "$root": vars.color.gray[900],
         "secondary": vars.color.gray[500],
         "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": vars.color.brand[400],
+        "$root": vars.color.brand[400],
         "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": vars.color.slate[900],
+        "$root": vars.color.slate[900],
         "onNeutral": vars.color.slate[100],
         "onNeutralSecondary": vars.color.slate[900],
         "onNeutralTertiary": vars.color.slate[800],
@@ -793,7 +793,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.slate[600]
       },
       "positive": {
-        "default": vars.color.green[800],
+        "$root": vars.color.green[800],
         "onPositive": vars.color.green[100],
         "onPositiveSecondary": vars.color.green[800],
         "onPositiveTertiary": vars.color.green[800],
@@ -801,7 +801,7 @@ export const [lightClass, light] = createTheme(vars, {
         "tertiary": vars.color.green[500]
       },
       "warning": {
-        "default": vars.color.yellow[900],
+        "$root": vars.color.yellow[900],
         "onWarning": vars.color.yellow[1000],
         "onWarningSecondary": vars.color.yellow[800],
         "onWarningTertiary": vars.color.yellow[900],
@@ -1070,7 +1070,7 @@ export const [darkClass, dark] = createTheme(vars, {
   "color": {
     "background": {
       "brand": {
-        "default": vars.color.white[100],
+        "$root": vars.color.white[100],
         "hover": vars.color.brand[300],
         "secondary": vars.color.brand[600],
         "secondaryHover": vars.color.brand[500],
@@ -1078,7 +1078,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiaryHover": vars.color.brand[800]
       },
       "danger": {
-        "default": vars.color.red[600],
+        "$root": vars.color.red[600],
         "hover": vars.color.red[700],
         "secondary": vars.color.red[800],
         "secondaryHover": vars.color.red[900],
@@ -1086,7 +1086,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiaryHover": vars.color.red[1000]
       },
       "default": {
-        "default": vars.color.gray[900],
+        "$root": vars.color.gray[900],
         "hover": vars.color.gray[700],
         "secondary": vars.color.gray[800],
         "secondaryHover": vars.color.gray[900],
@@ -1094,10 +1094,10 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiaryHover": vars.color.gray[700]
       },
       "disabled": {
-        "default": vars.color.brand[700]
+        "$root": vars.color.brand[700]
       },
       "neutral": {
-        "default": vars.color.slate[400],
+        "$root": vars.color.slate[400],
         "hover": vars.color.slate[500],
         "secondary": vars.color.slate[900],
         "secondaryHover": vars.color.slate[1000],
@@ -1105,7 +1105,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiaryHover": vars.color.slate[1000]
       },
       "positive": {
-        "default": vars.color.green[700],
+        "$root": vars.color.green[700],
         "hover": vars.color.green[800],
         "secondary": vars.color.green[800],
         "secondaryHover": vars.color.green[900],
@@ -1113,7 +1113,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiaryHover": vars.color.green[1000]
       },
       "warning": {
-        "default": vars.color.yellow[400],
+        "$root": vars.color.yellow[400],
         "hover": vars.color.yellow[500],
         "secondary": vars.color.yellow[800],
         "secondaryHover": vars.color.yellow[900],
@@ -1135,35 +1135,35 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "border": {
       "brand": {
-        "default": vars.color.brand[100],
+        "$root": vars.color.brand[100],
         "secondary": vars.color.brand[300],
         "tertiary": vars.color.brand[400]
       },
       "danger": {
-        "default": vars.color.red[200],
+        "$root": vars.color.red[200],
         "secondary": vars.color.red[400],
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.gray[600],
+        "$root": vars.color.gray[600],
         "secondary": vars.color.gray[500],
         "tertiary": vars.color.gray[400]
       },
       "disabled": {
-        "default": vars.color.brand[600]
+        "$root": vars.color.brand[600]
       },
       "neutral": {
-        "default": vars.color.slate[100],
+        "$root": vars.color.slate[100],
         "secondary": vars.color.slate[500],
         "tertiary": vars.color.slate[600]
       },
       "positive": {
-        "default": vars.color.green[200],
+        "$root": vars.color.green[200],
         "secondary": vars.color.green[400],
         "tertiary": vars.color.green[600]
       },
       "warning": {
-        "default": vars.color.yellow[200],
+        "$root": vars.color.yellow[200],
         "secondary": vars.color.yellow[400],
         "tertiary": vars.color.yellow[600]
       }
@@ -1206,7 +1206,7 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "icon": {
       "brand": {
-        "default": vars.color.brand[100],
+        "$root": vars.color.brand[100],
         "onBrand": vars.color.brand[900],
         "onBrandSecondary": vars.color.brand[100],
         "onBrandTertiary": vars.color.brand[100],
@@ -1214,7 +1214,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.brand[400]
       },
       "danger": {
-        "default": vars.color.red[200],
+        "$root": vars.color.red[200],
         "onDanger": vars.color.red[100],
         "onDangerSecondary": vars.color.red[100],
         "onDangerTertiary": vars.color.red[100],
@@ -1222,16 +1222,16 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.white[1000],
+        "$root": vars.color.white[1000],
         "secondary": vars.color.white[500],
         "tertiary": vars.color.white[400]
       },
       "disabled": {
-        "default": vars.color.brand[500],
+        "$root": vars.color.brand[500],
         "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": vars.color.slate[200],
+        "$root": vars.color.slate[200],
         "onNeutral": vars.color.slate[1000],
         "onNeutralSecondary": vars.color.slate[100],
         "onNeutralTertiary": vars.color.slate[100],
@@ -1239,7 +1239,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.slate[400]
       },
       "positive": {
-        "default": vars.color.green[200],
+        "$root": vars.color.green[200],
         "onPositive": vars.color.green[100],
         "onPositiveSecondary": vars.color.green[100],
         "onPositiveTertiary": vars.color.green[100],
@@ -1247,7 +1247,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.green[600]
       },
       "warning": {
-        "default": vars.color.yellow[200],
+        "$root": vars.color.yellow[200],
         "onWarning": vars.color.yellow[1000],
         "onWarningSecondary": vars.color.yellow[100],
         "onWarningTertiary": vars.color.yellow[100],
@@ -1293,7 +1293,7 @@ export const [darkClass, dark] = createTheme(vars, {
     },
     "text": {
       "brand": {
-        "default": vars.color.brand[100],
+        "$root": vars.color.brand[100],
         "onBrand": vars.color.brand[900],
         "onBrandSecondary": vars.color.brand[100],
         "onBrandTertiary": vars.color.brand[100],
@@ -1301,7 +1301,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.brand[400]
       },
       "danger": {
-        "default": vars.color.red[200],
+        "$root": vars.color.red[200],
         "onDanger": vars.color.red[100],
         "onDangerSecondary": vars.color.red[100],
         "onDangerTertiary": vars.color.red[100],
@@ -1309,16 +1309,16 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.red[500]
       },
       "default": {
-        "default": vars.color.white[1000],
+        "$root": vars.color.white[1000],
         "secondary": vars.color.white[500],
         "tertiary": vars.color.white[400]
       },
       "disabled": {
-        "default": vars.color.brand[500],
+        "$root": vars.color.brand[500],
         "onDisabled": vars.color.brand[400]
       },
       "neutral": {
-        "default": vars.color.slate[200],
+        "$root": vars.color.slate[200],
         "onNeutral": vars.color.slate[1000],
         "onNeutralSecondary": vars.color.slate[100],
         "onNeutralTertiary": vars.color.slate[100],
@@ -1326,7 +1326,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.slate[400]
       },
       "positive": {
-        "default": vars.color.green[200],
+        "$root": vars.color.green[200],
         "onPositive": vars.color.green[100],
         "onPositiveSecondary": vars.color.green[100],
         "onPositiveTertiary": vars.color.green[100],
@@ -1334,7 +1334,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "tertiary": vars.color.green[600]
       },
       "warning": {
-        "default": vars.color.yellow[200],
+        "$root": vars.color.yellow[200],
         "onWarning": vars.color.yellow[1000],
         "onWarningSecondary": vars.color.yellow[100],
         "onWarningTertiary": vars.color.yellow[100],

@@ -35,13 +35,14 @@ export function computePreviewValue({
      * always, yield the correct value. This algorithm prints wrong values when an aliased token
      * is affected by a different set of modes. */
     const modeToTransformWith = mode && mode in rToken.mode ? mode : '.';
-
-    const computed = transformCSSValue(rToken, {
-      mode: modeToTransformWith,
-      tokensSet,
-      transformAlias: recursiveNoAliasTransform,
-      color: { legacyHex: true },
-    });
+    const computed = transformCSSValue(
+      { ...rToken, ...(modeToTransformWith === '.' ? undefined : (rToken.mode[modeToTransformWith] as any)) },
+      {
+        tokensSet,
+        transformAlias: recursiveNoAliasTransform,
+        color: { legacyHex: true },
+      },
+    );
 
     if (typeof computed === 'object') {
       if (token.$type === 'typography' && isCompositeTypography(computed)) {

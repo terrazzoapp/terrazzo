@@ -345,7 +345,7 @@ describe('token-listing plugin - Node.js API', () => {
 
     it('outputs preview values for font-weight tokens', async () => {
       const options = { filename: 'actual.listing.json' };
-      const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
+      const src = await import('./fixtures/figma-sds-legacy.tokens.json').then((m) => m.default);
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.weight.extralight');
@@ -354,7 +354,7 @@ describe('token-listing plugin - Node.js API', () => {
 
     it('outputs preview values for font-size tokens', async () => {
       const options = { filename: 'actual.listing.json' };
-      const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
+      const src = await import('./fixtures/figma-sds-legacy.tokens.json').then((m) => m.default);
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.scale.04');
@@ -363,7 +363,7 @@ describe('token-listing plugin - Node.js API', () => {
 
     it('outputs preview values for font-family tokens', async () => {
       const options = { filename: 'actual.listing.json' };
-      const src = await import(`dtcg-examples/figma-sds.json`).then((m) => m.default);
+      const src = await import('./fixtures/figma-sds-legacy.tokens.json').then((m) => m.default);
       const output = await setupTest('./fixtures/build-default/', options, [], src);
 
       const listed = output.data.find((d: any) => d.$name === 'typography.family.serif');

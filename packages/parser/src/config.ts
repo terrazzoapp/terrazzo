@@ -98,6 +98,8 @@ function normalizeTokens({
       logger.error({ group: 'config', label: 'tokens', message: `Invalid URL ${filepath}` });
     }
   }
+
+  config.alphabetize = rawConfig.alphabetize ?? true;
 }
 
 /** Normalize config.outDir */

@@ -19,10 +19,13 @@ describe('@terrazzo/plugin-swift', () => {
       { cwd },
     );
     const tokensJSON = new URL('./tokens.json', cwd);
-    const { tokens, sources } = await parse([{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }], {
-      config,
-    });
-    const result = await build(tokens, { config, sources });
+    const { tokens, resolver, sources } = await parse(
+      [{ filename: tokensJSON, src: fs.readFileSync(tokensJSON, 'utf8') }],
+      {
+        config,
+      },
+    );
+    const result = await build(tokens, { config, resolver, sources });
     for (const { filename, contents } of result.outputFiles) {
       await expect(contents).toMatchFileSnapshot(fileURLToPath(new URL(filename, cwd)));
     }

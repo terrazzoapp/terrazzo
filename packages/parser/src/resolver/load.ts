@@ -4,7 +4,7 @@ import type { TokenNormalizedSet } from '@terrazzo/token-tools';
 import { merge } from 'merge-anything';
 import type yamlToMomoa from 'yaml-to-momoa';
 import { toMomoa } from '../lib/momoa.js';
-import { makeInputKey } from '../lib/resolver-utils.js';
+import { getPermutationID } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
 import { processTokens } from '../parse/process.js';
 import type { ConfigInit, Resolver, ResolverSourceNormalized } from '../types.js';
@@ -110,6 +110,8 @@ export function createResolver(
 
   const resolverCache: Record<string, any> = {};
 
+  // Important: by iterating over resolutionOrder, we
+  // filter out unused modifiers/irrelevant contexts.
   for (const m of resolverSource.resolutionOrder) {
     if (m.type === 'modifier') {
       if (typeof m.default === 'string') {
@@ -120,13 +122,13 @@ export function createResolver(
   }
 
   return {
-    apply(inputRaw): TokenNormalizedSet {
+    apply(inputRaw) {
       let tokensRaw: TokenNormalizedSet = {};
       const input = { ...inputDefaults, ...inputRaw };
-      const inputKey = makeInputKey(input);
+      const permutationID = getPermutationID(input);
 
-      if (resolverCache[inputKey]) {
-        return resolverCache[inputKey];
+      if (resolverCache[permutationID]) {
+        return resolverCache[permutationID];
       }
 
       for (const item of resolverSource.resolutionOrder) {
@@ -142,8 +144,7 @@ export function createResolver(
             const sources = item.contexts[context];
             if (!sources) {
               logger.error({
-                group: 'parser',
-                label: 'resolver',
+                group: 'resolver',
                 message: `Modifier ${item.name} has no context ${JSON.stringify(context)}.`,
               });
             }
@@ -161,9 +162,10 @@ export function createResolver(
         config,
         logger,
         sourceByFilename: { [resolverSource._source.filename!.href]: rootSource },
+        isResolver: true,
         sources,
       });
-      resolverCache[inputKey] = tokens;
+      resolverCache[permutationID] = tokens;
       return tokens;
     },
     source: resolverSource,
@@ -174,24 +176,45 @@ export function createResolver(
       }
       return allPermutations;
     },
-    isValidInput(input: Record<string, string>) {
+    isValidInput(input, throwError = false) {
       if (!input || typeof input !== 'object') {
-        logger.error({ group: 'parser', label: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
+        logger.error({ group: 'resolver', message: `Invalid input: ${JSON.stringify(input)}.` });
       }
-      if (!Object.keys(input).every((k) => k in validContexts)) {
-        return false; // 1. invalid if unknown modifier name
+      for (const k of Object.keys(input)) {
+        if (!(k in validContexts)) {
+          if (throwError) {
+            logger.error({ group: 'resolver', message: `No such modifier ${JSON.stringify(k)}` });
+          }
+          return false; // 1. invalid if unknown modifier name
+        }
       }
       for (const [name, contexts] of Object.entries(validContexts)) {
         // Note: empty strings are valid! Don’t check for truthiness.
         if (name in input) {
           if (!contexts.includes(input[name]!)) {
+            if (throwError) {
+              logger.error({
+                group: 'resolver',
+                message: `Modifier "${name}" has no context ${JSON.stringify(input[name])}.`,
+              });
+            }
             return false; // 2. invalid if unknown context
           }
         } else if (!(name in inputDefaults)) {
+          if (throwError) {
+            logger.error({
+              group: 'resolver',
+              message: `Modifier "${name}" missing value (no default set).`,
+            });
+          }
           return false; // 3. invalid if omitted, and no default
         }
       }
       return true;
+    },
+    getPermutationID(input) {
+      this.isValidInput(input, true);
+      return getPermutationID({ ...inputDefaults, ...input });
     },
   };
 }

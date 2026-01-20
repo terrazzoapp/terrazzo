@@ -34,8 +34,6 @@ export default defineConfig({
     css({
       filename: "tokens.css",
       variableName: (token) => token.id.replace(/\./g, "-"),
-      baseSelector: ":root",
-      baseScheme: "light dark", // Optional: support both light and dark themes
     }),
   ],
 });
@@ -161,25 +159,103 @@ export default defineConfig({
 
 :::
 
-### Dynamic mode handling
+### Resolvers
 
-Variable modes can be tricky! That’s why Terrazzo redeclares all aliases in CSS whenever their upstream values change. For example:
+The CSS plugin can map [resolver contexts](/docs/guides/resolvers) into CSS media queries, classnames, or any CSS selector. To get started, add `permutations` which map inputs to CSS selectors:
 
-```diff
-  :root {
-    --neutral-3: #e6eaef;
-    --color-bg-alt: var(--neutral-3);
-  }
+:::code-group
 
-  [data-theme='dark'] {
-    --neutral-3: #212830;
-+   --color-bg-alt: var(--neutral-3);
-  }
+```diff [terrazzo.config.ts]
+  import { defineConfig } from "@terrazzo/cli";
+  import css from "@terrazzo/plugin-css";
+
+  export default defineConfig({
+    plugins: [
+      css({
++       permutations: [
++         {
++           input: {} // default
++           prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}`,
++         },
++         {
++           input: { mode: "light" },
++           prepare: (css) => `[data-theme="light"] {\n  color-scheme: light;\n  ${css}}`,
++         },
++         {
++           input: { mode: "dark" },
++           prepare: (css) => `@media (prefers-color-scheme: "dark") {
++   :root {
++     color-scheme: dark;
++     ${css}
++   }
++ }
++
++ [data-theme="dark"] {
++   color-scheme: dark;
++   ${css}
++ }`,
++         },
++         {
++           input: { size: "desktop" },
++           prepare: (css) => `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
++         },
++       ],
+      }),
+    ],
+  });
 ```
 
-Whenever any value updates, so, too must all its aliases. Terrazzo correctly implements this behavior in CSS so your values are always correct when changing modes.
+:::
 
-[See example](https://codepen.io/dangodev/pen/EaaeELN).
+Terrazzo will then combine all the permutations in declaration order, into one `.css` file:
+
+```css [tokens/tokens.css]
+/* { mode: "light", size: "mobile" } */
+:root {
+  --color-blue-600: #0588f0;
+  --font-size: 0.875rem;
+  color-scheme: light;
+}
+
+/* { mode: "light" } */
+[data-mode="light"] {
+  color-scheme: light;
+  --color-blue-600: #0588f0;
+}
+
+/* { mode: "dark" } */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --color-blue-600: #3b9eff;
+  }
+}
+
+/* { mode: "dark" } */
+[data-mode="dark"] {
+  color-scheme: dark;
+  --color-blue-600: #3b9eff;
+}
+
+/* { size: "desktop" } */
+@media (width >= 600px) {
+  --font-size: 1rem;
+}
+```
+
+:::
+
+Now, in your code, whenever you reference `var(--color-blue-600)`, the value will depend on which media query is active, and/or which other selectors apply.
+
+:::tip
+
+You control the wrapper CSS, so check for mistakes! If using `@media` queries, remember that you’ll need to add a selector within for CSS variables to apply, such as `:root` or `body`.
+
+:::
+
+#### Note on “duplication” (staleness)
+
+If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
 
 ### Utility CSS
 
@@ -325,30 +401,33 @@ export default defineConfig({
   plugins: [
     css({
       filename: "tokens.css",
-      exclude: [], // ex: ["beta.*"] will exclude all tokens in the "beta" top-level group
-      baseScheme: "light dark", // Optional: set base color-scheme
-      modeSelectors: [
+      permutations: [
         {
-          mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-mode="light"]',
-          ],
-          scheme: "light", // Optional: set color-scheme for this mode
+          prepare: (css) => `:root {\n  ${css}\n}`,
+          input: { size: "mobile" },
         },
         {
-          mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-mode="dark"]',
-          ],
-          scheme: "dark", // Optional: set color-scheme for this mode
+          prepare: (css) => `[data-theme="light"] {\n  ${css}\n}`,
+          input: { theme: "light" },
         },
-        { mode: "mobile", selectors: ["@media (width < 600px)"] },
-        { mode: "desktop", selectors: ["@media (width >= 600px)"] },
         {
-          mode: "reduced-motion",
-          selectors: ["@media (prefers-reduced-motion)"],
+          prepare: (css) =>
+            `@media (prefers-color-scheme: dark) {\n  :root {\n    ${css}\n  }\n}`,
+          input: { theme: "dark" },
+        },
+        {
+          prepare: (css) => `[data-theme="dark"] {\n  ${css}\n}`,
+          input: { theme: "dark" },
+        },
+        {
+          prepare: (css) =>
+            `@media (width >= 600px) {\n  :root {\n    ${css}\n  }\n}`,
+          input: { size: "desktop" },
+        },
+        {
+          prepare: (css) =>
+            `@media (prefers-reduced-motion) {\n  :root {\n    ${css}\n  }\n}`,
+          input: { motion: "reduced-motion" },
         },
       ],
       variableName: (token) => kebabCase(token.id),
@@ -359,228 +438,17 @@ export default defineConfig({
 
 :::
 
-| Name            | Type                                                           | Description                                                                                                                                                     |
-| :-------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `filename`      | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
-| `exclude`       | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
-| `modeSelectors` | `ModeSelector[]`                                               | See [modes](#modes).                                                                                                                                            |
-| `variableName`  | `(token: TokenNormalized) => string`                           | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
-| `transform`     | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
-| `utility`       | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
-| `legacyHex`     | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
-| `skipBuild`     | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
-| `baseSelector`  | `string`                                                       | Specifies the selector where CSS variables are defined (e.g., `:root`, `:host`, or a custom selector). Defaults to `:root`.                                     |
-| `baseScheme`    | `string`                                                       | Sets the CSS `color-scheme` property on the base selector (e.g., `"light"`, `"dark"`, or `"light dark"`). See [Color Scheme](#color-scheme).                    |
-| `colorDepth`    | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
-
-### Mode Selectors
-
-Mode selectors is the most powerful feature of the CSS plugin. It lets you convert your token [modes](/docs/guides/modes) into CSS media queries, classnames, or any CSS selector. To start, add a `modeSelectors` array to the CSS options. Every entry needs 2 things:
-
-1. The `mode` you're targeting (this accepts globs, e.g. `"*-light"`!)
-2. The CSS `selectors` that enable these modes
-
-You can also optionally specify a `scheme` to automatically set the CSS `color-scheme` property for each mode selector (see [Color Scheme](#color-scheme)).
-
-For example, a common pattern for `light` and `dark` mode, with the following config, will generate the respective CSS:
-
-:::code-group
-
-```ts [terrazzo.config.ts]
-import { defineConfig } from "@terrazzo/cli";
-import css from "@terrazzo/plugin-css";
-
-export default defineConfig({
-  plugins: [
-    css({
-      modeSelectors: [
-        {
-          mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-mode="light"]',
-          ],
-          scheme: "light", // Optional: set color-scheme for light mode
-        },
-        {
-          mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-mode="dark"]',
-          ],
-          scheme: "dark", // Optional: set color-scheme for dark mode
-        },
-      ],
-    }),
-  ],
-});
-```
-
-```css [tokens/tokens.css]
-:root {
-  --color-blue-600: #0588f0;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --color-blue-600: #0588f0;
-  }
-}
-
-[data-mode="light"] {
-  color-scheme: light;
-  --color-blue-600: #0588f0;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --color-blue-600: #3b9eff;
-  }
-}
-
-[data-mode="dark"] {
-  color-scheme: dark;
-  --color-blue-600: #3b9eff;
-}
-```
-
-:::
-
-Now, in your code, whenever you reference `var(--color-blue-600)`, the value will depend on which media query is active, and/or which other selectors apply.
-
-:::tip
-
-The sky is the limit with mode selectors, but some popular patterns are:
-
-- `color`: [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme), [prefers-contrast](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast)
-- `duration`: [prefers-reduced-motion](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion)
-- `typography`: viewport width (responsive styles)
-
-:::
-
-#### Note on “duplication” (staleness)
-
-If you inspect the output CSS, you may find more variables than expected in the media queries. This is necessary the way CSS works: if a CSS variable is an alias of another, when the base value changes, all aliases must be redeclared otherwise they are referencing the old value in the parent scope. At first glance, this seems like a bug, with variables being redeclared with the same values, but in actuality it’s necessary so your mode selectors cascade correctly.
-
-### Color Scheme
-
-The CSS plugin supports automatically generating the [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) property to help browsers respect users' prefered color schemes. This feature works with both the base selector and individual mode selectors.
-
-#### Base Color Scheme
-
-Use the `baseScheme` option to set a color-scheme on your base selector (typically `:root`):
-
-:::code-group
-
-```ts [terrazzo.config.ts]
-import { defineConfig } from "@terrazzo/cli";
-import css from "@terrazzo/plugin-css";
-
-export default defineConfig({
-  plugins: [
-    css({
-      baseScheme: "light dark", // Supports both light and dark
-      // ... other options
-    }),
-  ],
-});
-```
-
-```css [tokens/tokens.css]
-:root {
-  color-scheme: light dark;
-  --color-bg: #ffffff;
-  --color-text: #000000;
-  /* ... other variables */
-}
-```
-
-:::
-
-#### Per-Mode Color Schemes
-
-For more granular control, specify a `scheme` for individual mode selectors:
-
-:::code-group
-
-```ts [terrazzo.config.ts]
-import { defineConfig } from "@terrazzo/cli";
-import css from "@terrazzo/plugin-css";
-
-export default defineConfig({
-  plugins: [
-    css({
-      baseScheme: "light dark",
-      modeSelectors: [
-        {
-          mode: "light",
-          selectors: [
-            "@media (prefers-color-scheme: light)",
-            '[data-theme="light"]',
-          ],
-          scheme: "light", // Forces light color scheme
-        },
-        {
-          mode: "dark",
-          selectors: [
-            "@media (prefers-color-scheme: dark)",
-            '[data-theme="dark"]',
-          ],
-          scheme: "dark", // Forces dark color scheme
-        },
-      ],
-    }),
-  ],
-});
-```
-
-```css [tokens/tokens.css]
-:root {
-  color-scheme: light dark;
-  --color-bg: #ffffff;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color-scheme: light;
-    --color-bg: #ffffff;
-  }
-}
-
-[data-theme="light"] {
-  color-scheme: light;
-  --color-bg: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --color-bg: #1a1a1a;
-  }
-}
-
-[data-theme="dark"] {
-  color-scheme: dark;
-  --color-bg: #1a1a1a;
-}
-```
-
-:::
-
-The `color-scheme` property helps browsers:
-
-- Optimize form controls and scrollbars for the specified theme
-- Apply appropriate default styling for UI elements
-- Provide better accessibility and user experience
-
-You can use any valid [`color-scheme`](https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme) values:
-
-- `"light"` - Light theme only
-- `"dark"` - Dark theme only
-- `"light dark"` - Support both with light as default
-- `"dark light"` - Support both with dark as default
+| Name           | Type                                                           | Description                                                                                                                                                     |
+| :------------- | :------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `filename`     | `string`                                                       | Filename to generate (default: `"tokens.css"`).                                                                                                                 |
+| `exclude`      | `string[]`                                                     | Glob pattern(s) of token IDs to exclude.                                                                                                                        |
+| `permutations` | `Permutation[]`                                                | See [resolvers](#resolvers).                                                                                                                                    |
+| `variableName` | `(token: TokenNormalized) => string`                           | Function that takes in a token ID and returns a CSS variable name. Use this if you want to prefix your CSS variables, or rename them in any way.                |
+| `transform`    | `(token: TokenNormalized) => string \| Record<string, string>` | Override certain token values by [transforming them](#transform)                                                                                                |
+| `utility`      | [Utility CSS mapping](#utility-css)                            | Generate Utility CSS from your tokens ([docs](#utility-css)                                                                                                     |
+| `legacyHex`    | `boolean`                                                      | Output colors as hex-6/hex-8 instead of [color() function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color)                                  |
+| `skipBuild`    | `boolean`                                                      | Skip generating any `.css` files (useful if you are consuming values in your own plugin and don’t need any `.css` files written to disk).                       |
+| `colorDepth`   | `24 \| 30 \| 36 \| 48 \| 'unlimited'`                          | When [downsampling colors](#color-gamut-handling), handle [color bit depth](https://en.wikipedia.org/wiki/Color_depth). _Default: `30` (10 bits per component)_ |
 
 ### transform()
 
@@ -629,11 +497,3 @@ Its usage has changed slightly from Cobalt 1.x, because now it must return eithe
 Some token types that require multiple values (like [typography](/docs/reference/tokens#typography)) must return an object.
 
 :::
-
-## Migrating from Cobalt 1.x
-
-For the most part, the 2.x version doesn’t have significant breaking changes and only improvements. But you’ll find the following minor differences:
-
-- sRGB colors don’t automatically expand into P3, which resulted in oversaturated (and innaccurate) colors. See [CSS Color Module 4 Support](#css-color-module-4-support) for more details
-- The mode alias `#` character (`{color.base.blue.600#dark}`) has been deprecated (because it generated unpredictable CSS)
-- Colors now use [the `color()` function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/color) so that it’s future-proof (supports deep color, wide color gamuts, and is overall a more future-friendly standard) while still maintaining good support (all modern browsers have great support).
