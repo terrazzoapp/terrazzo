@@ -38,7 +38,12 @@ export default function cssInJs({ filename = 'vars.js' }: CssInJsOptions = {}): 
           }
           node = node[next];
         }
-        node[camelCase(last)] = `var(${token.localID})`;
+
+        if (token.token.jsonID.endsWith('/$root')) {
+          node[camelCase(last)] = { $root: `var(${token.localID})` };
+        } else {
+          node[camelCase(last)] = `var(${token.localID})`;
+        }
       }
 
       // 2. for groups with $root, flatten the nesting

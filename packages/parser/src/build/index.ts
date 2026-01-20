@@ -66,7 +66,7 @@ export default async function build(
       }
 
       const tokenMatcher = params.id && params.id !== '*' ? wcmatch(params.id) : null;
-      const modeMatcher = params.mode && params.mode !== '.' ? wcmatch(params.mode) : null;
+      const modeMatcher = params.mode ? wcmatch(params.mode) : null;
       const permutationID = params.input ? resolver.getPermutationID(params.input) : JSON.stringify({ tzMode: '*' });
 
       return (formats[params.format!]?.[permutationID] ?? []).filter((token) => {
