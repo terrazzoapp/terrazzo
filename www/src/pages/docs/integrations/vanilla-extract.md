@@ -19,9 +19,11 @@ npm i -D @terrazzo/cli @terrazzo/plugin-css @terrazzo/plugin-vanilla-extract
 
 :::
 
-Add a `terrazzo.config.js` to the root of your project with:
+Add a `terrazzo.config.ts` to the root of your project with:
 
-```js
+:::code-group
+
+```ts [terrazzo.config.ts]
 import { defineConfig } from "@terrazzo/cli";
 import css from "@terrazzo/plugin-css";
 import vanillaExtract from "@terrazzo/plugin-vanilla-extract";
@@ -56,21 +58,53 @@ export default defineConfig({
 });
 ```
 
+## Resolvers (new)
+
+To use resolvers in this plugin, you MUST specify your `permutations` in plugin-css, and use `input` instead, like so:
+
+:::code-group
+
+```ts [terrazzo.config.ts]
+import { defineConfig } from "@terrazzo/cli";
+import css from "@terrazzo/plugin-css";
+import vanillaExtract from "@terrazzo/plugin-vanilla-extract";
+
+const light = { theme: 'light' }
+const dark = { theme: 'dark' }
+
+export default defineConfig({
+  plugins: [
+    css({
+      permutations: [
+        { ...light, prepare: (css) => `:root {\n  color-scheme: light dark;\n  ${css}\n}` },
+        { ...dark, prepare: (css) => `@media (prefers-color-scheme: dark) {\n  :root {\n    color-scheme: dark;\n    ${css}\n  }\n}` },
+      ],
+    }),
+
+    vanillaExtract({
+      globalThemeContract: true,
+      globalThemes: {
+        globalLight: { selector: "[data-color-mode=light]", input: light },
+        globalDark: { selector: "[data-color-mode=dark]", input: dark },
+      ],
+    }),
+  ],
+});
+```
+
+:::
+
+Specifying permutations is required because in the world of resolvers, there are too many possible combinations that may not match up, so plugin-css won’t generate those variables unless you ask for them.
+
 ## Options
 
 | Name                | Type                                                                 | Default                 | Description                                                                                                                                                                         |
 | :------------------ | :------------------------------------------------------------------- | :---------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | filename            | `string`                                                             | `theme.css.ts`          | The filename to generate.                                                                                                                                                           |
 | globalThemeContract | `boolean`                                                            | `true`                  | If `false`, it will generate a scoped [createThemeContract()](https://vanilla-extract.style/documentation/api/create-theme-contract/) instead.                                      |
-| themes              | `{ [name: string]: { mode: string \| string[] } }`                   |                         | Generate one [createTheme()](https://vanilla-extract.style/documentation/api/create-theme/) per object key. The key is the variable name that will be exported.                     |
-| globalThemes        | `{ [name: string]: { selector: string, mode: string \| string[] } }` |                         | Generate one [createGlobalTheme()](https://vanilla-extract.style/documentation/global-api/create-global-theme/) per object key. The key is the variable name that will be exported. |
+| themes              | `{ [name: string]: { mode: string \| string[] }`                     |                         | Generate one [createTheme()](https://vanilla-extract.style/documentation/api/create-theme/) per object key. The key is the variable name that will be exported.                     |
+| globalThemes        | `{ [name: string]: { mode: string \| string[], selector: string } }` |                         | Generate one [createGlobalTheme()](https://vanilla-extract.style/documentation/global-api/create-global-theme/) per object key. The key is the variable name that will be exported. |
 | themeVarNaming      | `(name: string) => [class, vars]`                                    | `[{name}Class, {name}]` | Change the naming strategy for the [createTheme()](https://vanilla-extract.style/documentation/api/create-theme/) API’s `[class, vars]` tuple.                                      |
-
-:::tip
-
-For many token setups in Vanilla Extract, you’ll usually have better results loading both the default token mode (`"."`) and the target mode, e.g. `mode: [".", "light"]`. This just helps completeness and reduces type errors, and is fairly safe. Globs are NOT supported for modes—you must be explicit.
-
-:::
 
 ## Interop with plugin-css
 
@@ -78,6 +112,7 @@ This plugin is a thin wrapper around [plugin-css](/docs/integrations/css/), whic
 
 | Option          | Applies to Vanilla Extract                                                                        |
 | :-------------- | :------------------------------------------------------------------------------------------------ |
+| `permutations`  | **Yes** If using resolvers, these are required!                                                   |
 | `variableName`  | **Yes** (if `globalThemeContract: true`)                                                          |
 | `exclude`       | **Yes**                                                                                           |
 | `skipBuild`     | **Yes**                                                                                           |

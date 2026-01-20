@@ -16,7 +16,7 @@ export default function transformCSS({
     setTransform,
     tokens: baseTokens,
   },
-  options: { permutations, exclude: userExclude, legacyHex, modeSelectors, transform: customTransform, variableName },
+  options: { permutations, exclude: userExclude, legacyHex, transform: customTransform, variableName },
 }: TransformOptions) {
   function transformName(token: TokenNormalized) {
     const customName = variableName?.(token);
@@ -78,45 +78,25 @@ export default function transformCSS({
     return;
   }
 
-  // base set
+  // modes (legacy)
   for (const token of Object.values(baseTokens)) {
     if (exclude?.(token.id)) {
       continue;
     }
-    const value =
-      customTransform?.(token, '.') ??
-      transformCSSValue(token, { tokensSet: baseTokens, transformAlias, color: { legacyHex } });
-    if (value) {
-      const localID = transformName(token);
-      setTransform(token.id, {
-        format: FORMAT_ID,
-        localID,
-        value,
-        meta: { 'token-listing': { name: localID } },
-      });
-    }
-  }
-
-  // modeSelectors (legacy)
-  for (const selector of modeSelectors ?? []) {
-    const include = selector.tokens ? wcmatch(selector.tokens) : undefined;
-    for (const token of Object.values(baseTokens)) {
-      if ((include && !include(token.id)) || !token.mode[selector.mode]) {
-        continue;
-      }
+    for (const mode of Object.keys(token.mode)) {
       const value =
-        customTransform?.(token, selector.mode) ??
+        customTransform?.(token, '.') ??
         transformCSSValue(
-          { ...token, ...(token.mode[selector.mode] as any) },
+          { ...token, ...(token.mode[mode] as any) },
           { tokensSet: baseTokens, transformAlias, color: { legacyHex } },
         );
       if (value) {
         const localID = transformName(token);
         setTransform(token.id, {
           format: FORMAT_ID,
-          value,
           localID,
-          mode: selector.mode,
+          value,
+          mode,
           meta: { 'token-listing': { name: localID } },
         });
       }

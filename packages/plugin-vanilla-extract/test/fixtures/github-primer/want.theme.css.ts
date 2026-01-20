@@ -1,6 +1,11 @@
 import { createTheme, createThemeContract } from "@vanilla-extract/css";
 
 export const vars = createThemeContract({
+  "avatar": {
+    "bgColor": null,
+    "borderColor": null,
+    "shadow": null
+  },
   "base": {
     "color": {
       "black": null,
@@ -40,6 +45,7 @@ export const vars = createThemeContract({
         "8": null,
         "9": null
       },
+      "inset": null,
       "neutral": {
         "0": null,
         "1": null,
@@ -50,7 +56,11 @@ export const vars = createThemeContract({
         "6": null,
         "7": null,
         "8": null,
-        "9": null
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": null,
+        "13": null
       },
       "orange": {
         "0": null,
@@ -115,479 +125,264 @@ export const vars = createThemeContract({
         "9": null
       }
     },
-    "icon": {
-      "alert16": null,
-      "alert24": null,
-      "alertFill12": null,
-      "archive16": null,
-      "archive24": null,
-      "arrowBoth16": null,
-      "arrowBoth24": null,
-      "arrowDown16": null,
-      "arrowDown24": null,
-      "arrowDownLeft24": null,
-      "arrowDownRight24": null,
-      "arrowLeft16": null,
-      "arrowLeft24": null,
-      "arrowRight16": null,
-      "arrowRight24": null,
-      "arrowSwitch16": null,
-      "arrowSwitch24": null,
-      "arrowUp16": null,
-      "arrowUp24": null,
-      "arrowUpLeft24": null,
-      "arrowUpRight24": null,
-      "beaker16": null,
-      "beaker24": null,
-      "bell16": null,
-      "bell24": null,
-      "bellFill16": null,
-      "bellFill24": null,
-      "bellSlash16": null,
-      "bellSlash24": null,
-      "blocked16": null,
-      "blocked24": null,
-      "bold16": null,
-      "bold24": null,
-      "book16": null,
-      "book24": null,
-      "bookmark16": null,
-      "bookmark24": null,
-      "bookmarkFill24": null,
-      "bookmarkSlash16": null,
-      "bookmarkSlash24": null,
-      "bookmarkSlashFill24": null,
-      "briefcase16": null,
-      "briefcase24": null,
-      "broadcast16": null,
-      "broadcast24": null,
-      "browser16": null,
-      "browser24": null,
-      "bug16": null,
-      "bug24": null,
-      "calendar16": null,
-      "calendar24": null,
-      "check16": null,
-      "check24": null,
-      "checkCircle16": null,
-      "checkCircle24": null,
-      "checkCircleFill12": null,
-      "checkCircleFill16": null,
-      "checkCircleFill24": null,
-      "checklist16": null,
-      "checklist24": null,
-      "chevronDown16": null,
-      "chevronDown24": null,
-      "chevronLeft16": null,
-      "chevronLeft24": null,
-      "chevronRight16": null,
-      "chevronRight24": null,
-      "chevronUp16": null,
-      "chevronUp24": null,
-      "circle16": null,
-      "circle24": null,
-      "circleSlash16": null,
-      "circleSlash24": null,
-      "clock16": null,
-      "clock24": null,
-      "code16": null,
-      "code24": null,
-      "codeOfConduct16": null,
-      "codeOfConduct24": null,
-      "codeReview16": null,
-      "codeReview24": null,
-      "codeSquare16": null,
-      "codeSquare24": null,
-      "codescan16": null,
-      "codescan24": null,
-      "codescanCheckmark16": null,
-      "codescanCheckmark24": null,
-      "codespaces16": null,
-      "codespaces24": null,
-      "columns16": null,
-      "columns24": null,
-      "comment16": null,
-      "comment24": null,
-      "commentDiscussion16": null,
-      "commentDiscussion24": null,
-      "commit24": null,
-      "container16": null,
-      "container24": null,
-      "copy16": null,
-      "copy24": null,
-      "cpu16": null,
-      "cpu24": null,
-      "creditCard16": null,
-      "creditCard24": null,
-      "crossReference16": null,
-      "crossReference24": null,
-      "dash16": null,
-      "dash24": null,
-      "database16": null,
-      "database24": null,
-      "dependabot16": null,
-      "dependabot24": null,
-      "desktopDownload16": null,
-      "desktopDownload24": null,
-      "deviceCamera16": null,
-      "deviceCameraVideo16": null,
-      "deviceCameraVideo24": null,
-      "deviceDesktop16": null,
-      "deviceDesktop24": null,
-      "deviceMobile16": null,
-      "deviceMobile24": null,
-      "diamond16": null,
-      "diamond24": null,
-      "diff16": null,
-      "diff24": null,
-      "diffAdded16": null,
-      "diffIgnored16": null,
-      "diffModified16": null,
-      "diffRemoved16": null,
-      "diffRenamed16": null,
-      "dot16": null,
-      "dot24": null,
-      "dotFill16": null,
-      "dotFill24": null,
-      "download16": null,
-      "download24": null,
-      "duplicate16": null,
-      "duplicate24": null,
-      "ellipsis16": null,
-      "eye16": null,
-      "eye24": null,
-      "eyeClosed16": null,
-      "eyeClosed24": null,
-      "file16": null,
-      "file24": null,
-      "fileBadge16": null,
-      "fileBinary16": null,
-      "fileBinary24": null,
-      "fileCode16": null,
-      "fileCode24": null,
-      "fileDiff16": null,
-      "fileDiff24": null,
-      "fileDirectory16": null,
-      "fileDirectory24": null,
-      "fileDirectoryFill24": null,
-      "fileMedia24": null,
-      "fileSubmodule16": null,
-      "fileSubmodule24": null,
-      "fileSymlinkFile16": null,
-      "fileSymlinkFile24": null,
-      "fileZip16": null,
-      "fileZip24": null,
-      "filter16": null,
-      "filter24": null,
-      "flame16": null,
-      "flame24": null,
-      "fold16": null,
-      "fold24": null,
-      "foldDown16": null,
-      "foldDown24": null,
-      "foldUp16": null,
-      "foldUp24": null,
-      "gear16": null,
-      "gear24": null,
-      "gift16": null,
-      "gift24": null,
-      "gitBranch16": null,
-      "gitBranch24": null,
-      "gitCommit16": null,
-      "gitCommit24": null,
-      "gitCompare16": null,
-      "gitCompare24": null,
-      "gitMerge16": null,
-      "gitMerge24": null,
-      "gitPullRequest16": null,
-      "gitPullRequest24": null,
-      "gitPullRequestClosed16": null,
-      "gitPullRequestClosed24": null,
-      "gitPullRequestDraft16": null,
-      "gitPullRequestDraft24": null,
-      "globe16": null,
-      "globe24": null,
-      "grabber16": null,
-      "grabber24": null,
-      "graph16": null,
-      "graph24": null,
-      "hash16": null,
-      "hash24": null,
-      "heading16": null,
-      "heading24": null,
-      "heart16": null,
-      "heart24": null,
-      "heartFill16": null,
-      "heartFill24": null,
-      "history16": null,
-      "history24": null,
-      "home16": null,
-      "home24": null,
-      "homeFill24": null,
-      "horizontalRule16": null,
-      "horizontalRule24": null,
-      "hourglass16": null,
-      "hourglass24": null,
-      "hubot16": null,
-      "hubot24": null,
-      "image16": null,
-      "image24": null,
-      "inbox16": null,
-      "inbox24": null,
-      "infinity16": null,
-      "infinity24": null,
-      "info16": null,
-      "info24": null,
-      "issueClosed16": null,
-      "issueClosed24": null,
-      "issueDraft16": null,
-      "issueDraft24": null,
-      "issueOpened16": null,
-      "issueOpened24": null,
-      "issueReopened16": null,
-      "issueReopened24": null,
-      "italic16": null,
-      "italic24": null,
-      "iterations16": null,
-      "iterations24": null,
-      "kebabHorizontal16": null,
-      "kebabHorizontal24": null,
-      "key16": null,
-      "key24": null,
-      "keyAsterisk16": null,
-      "law16": null,
-      "law24": null,
-      "lightBulb16": null,
-      "lightBulb24": null,
-      "link16": null,
-      "link24": null,
-      "linkExternal16": null,
-      "linkExternal24": null,
-      "listOrdered16": null,
-      "listOrdered24": null,
-      "listUnordered16": null,
-      "listUnordered24": null,
-      "location16": null,
-      "location24": null,
-      "lock16": null,
-      "lock24": null,
-      "logoGist16": null,
-      "logoGithub16": null,
-      "mail16": null,
-      "mail24": null,
-      "markGithub16": null,
-      "markdown16": null,
-      "megaphone16": null,
-      "megaphone24": null,
-      "mention16": null,
-      "mention24": null,
-      "meter16": null,
-      "milestone16": null,
-      "milestone24": null,
-      "mirror16": null,
-      "mirror24": null,
-      "moon16": null,
-      "moon24": null,
-      "mortarBoard16": null,
-      "mortarBoard24": null,
-      "multiSelect16": null,
-      "multiSelect24": null,
-      "mute16": null,
-      "mute24": null,
-      "noEntry16": null,
-      "noEntry24": null,
-      "noEntryFill12": null,
-      "northStar16": null,
-      "northStar24": null,
-      "note16": null,
-      "note24": null,
-      "number16": null,
-      "number24": null,
-      "organization16": null,
-      "organization24": null,
-      "package16": null,
-      "package24": null,
-      "packageDependencies16": null,
-      "packageDependencies24": null,
-      "packageDependents16": null,
-      "packageDependents24": null,
-      "paintbrush16": null,
-      "paperAirplane16": null,
-      "paperAirplane24": null,
-      "paste16": null,
-      "paste24": null,
-      "pencil16": null,
-      "pencil24": null,
-      "people16": null,
-      "people24": null,
-      "person16": null,
-      "person24": null,
-      "personAdd16": null,
-      "personAdd24": null,
-      "personFill16": null,
-      "personFill24": null,
-      "pin16": null,
-      "pin24": null,
-      "play16": null,
-      "play24": null,
-      "plug16": null,
-      "plug24": null,
-      "plus16": null,
-      "plus24": null,
-      "plusCircle16": null,
-      "plusCircle24": null,
-      "project16": null,
-      "project24": null,
-      "pulse16": null,
-      "pulse24": null,
-      "question16": null,
-      "question24": null,
-      "quote16": null,
-      "quote24": null,
-      "reply16": null,
-      "reply24": null,
-      "repo16": null,
-      "repo24": null,
-      "repoClone16": null,
-      "repoForked16": null,
-      "repoForked24": null,
-      "repoPull16": null,
-      "repoPush16": null,
-      "repoPush24": null,
-      "repoTemplate16": null,
-      "repoTemplate24": null,
-      "report16": null,
-      "report24": null,
-      "rocket16": null,
-      "rocket24": null,
-      "rows16": null,
-      "rows24": null,
-      "rss16": null,
-      "rss24": null,
-      "ruby16": null,
-      "ruby24": null,
-      "screenFull16": null,
-      "screenFull24": null,
-      "screenNormal16": null,
-      "screenNormal24": null,
-      "search16": null,
-      "search24": null,
-      "server16": null,
-      "server24": null,
-      "share16": null,
-      "share24": null,
-      "shareAndroid16": null,
-      "shareAndroid24": null,
-      "shield16": null,
-      "shield24": null,
-      "shieldCheck16": null,
-      "shieldCheck24": null,
-      "shieldLock16": null,
-      "shieldLock24": null,
-      "shieldX16": null,
-      "shieldX24": null,
-      "sidebarCollapse16": null,
-      "sidebarCollapse24": null,
-      "sidebarExpand16": null,
-      "sidebarExpand24": null,
-      "signIn16": null,
-      "signIn24": null,
-      "signOut16": null,
-      "signOut24": null,
-      "singleSelect16": null,
-      "singleSelect24": null,
-      "skip16": null,
-      "skip24": null,
-      "smiley16": null,
-      "smiley24": null,
-      "sortAsc16": null,
-      "sortAsc24": null,
-      "sortDesc16": null,
-      "sortDesc24": null,
-      "square16": null,
-      "square24": null,
-      "squareFill16": null,
-      "squareFill24": null,
-      "squirrel16": null,
-      "squirrel24": null,
-      "stack16": null,
-      "stack24": null,
-      "star16": null,
-      "star24": null,
-      "starFill16": null,
-      "starFill24": null,
-      "stop16": null,
-      "stop24": null,
-      "stopwatch16": null,
-      "stopwatch24": null,
-      "strikethrough16": null,
-      "strikethrough24": null,
-      "sun16": null,
-      "sun24": null,
-      "sync16": null,
-      "sync24": null,
-      "tab24": null,
-      "table16": null,
-      "table24": null,
-      "tag16": null,
-      "tag24": null,
-      "tasklist16": null,
-      "tasklist24": null,
-      "telescope16": null,
-      "telescope24": null,
-      "telescopeFill16": null,
-      "telescopeFill24": null,
-      "terminal16": null,
-      "terminal24": null,
-      "threeBars16": null,
-      "thumbsdown16": null,
-      "thumbsdown24": null,
-      "thumbsup16": null,
-      "thumbsup24": null,
-      "tools16": null,
-      "tools24": null,
-      "trash16": null,
-      "trash24": null,
-      "triangleDown16": null,
-      "triangleDown24": null,
-      "triangleLeft16": null,
-      "triangleLeft24": null,
-      "triangleRight16": null,
-      "triangleRight24": null,
-      "triangleUp16": null,
-      "triangleUp24": null,
-      "typography16": null,
-      "typography24": null,
-      "unfold16": null,
-      "unfold24": null,
-      "unlock16": null,
-      "unlock24": null,
-      "unmute16": null,
-      "unmute24": null,
-      "unverified16": null,
-      "unverified24": null,
-      "upload16": null,
-      "upload24": null,
-      "verified16": null,
-      "verified24": null,
-      "versions16": null,
-      "versions24": null,
-      "video16": null,
-      "video24": null,
-      "workflow16": null,
-      "workflow24": null,
-      "x16": null,
-      "x24": null,
-      "xCircle16": null,
-      "xCircle24": null,
-      "xCircleFill12": null,
-      "xCircleFill16": null,
-      "xCircleFill24": null,
-      "zap16": null,
-      "zap24": null
+    "display": {
+      "color": {
+        "auburn": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "black": null,
+        "blue": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "brown": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "coral": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "cyan": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "gray": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "green": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "indigo": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "lemon": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "lime": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "olive": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "orange": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "pine": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "pink": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "plum": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "purple": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "red": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "teal": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        },
+        "white": null,
+        "yellow": {
+          "0": null,
+          "1": null,
+          "2": null,
+          "3": null,
+          "4": null,
+          "5": null,
+          "6": null,
+          "7": null,
+          "8": null,
+          "9": null
+        }
+      }
+    },
+    "duration": {
+      "0": null,
+      "50": null,
+      "100": null,
+      "200": null,
+      "300": null,
+      "400": null,
+      "500": null,
+      "600": null,
+      "700": null,
+      "800": null,
+      "900": null,
+      "1000": null
+    },
+    "easing": {
+      "easeIn": null,
+      "easeInOut": null,
+      "easeOut": null,
+      "linear": null
     },
     "size": {
+      "2": null,
       "4": null,
+      "6": null,
       "8": null,
       "12": null,
       "16": null,
@@ -614,11 +409,189 @@ export const vars = createThemeContract({
       }
     }
   },
+  "bgColor": {
+    "accent": {
+      "emphasis": null,
+      "muted": null
+    },
+    "attention": {
+      "emphasis": null,
+      "muted": null
+    },
+    "black": null,
+    "closed": {
+      "emphasis": null,
+      "muted": null
+    },
+    "danger": {
+      "emphasis": null,
+      "muted": null
+    },
+    "default": null,
+    "disabled": null,
+    "done": {
+      "emphasis": null,
+      "muted": null
+    },
+    "draft": {
+      "emphasis": null,
+      "muted": null
+    },
+    "emphasis": null,
+    "inset": null,
+    "inverse": null,
+    "muted": null,
+    "neutral": {
+      "emphasis": null,
+      "muted": null
+    },
+    "open": {
+      "emphasis": null,
+      "muted": null
+    },
+    "severe": {
+      "emphasis": null,
+      "muted": null
+    },
+    "sponsors": {
+      "emphasis": null,
+      "muted": null
+    },
+    "success": {
+      "emphasis": null,
+      "muted": null
+    },
+    "transparent": null,
+    "upsell": {
+      "emphasis": null,
+      "muted": null
+    },
+    "white": null
+  },
+  "border": {
+    "accent": {
+      "emphasis": null,
+      "muted": null
+    },
+    "attention": {
+      "emphasis": null,
+      "muted": null
+    },
+    "closed": {
+      "emphasis": null,
+      "muted": null
+    },
+    "danger": {
+      "emphasis": null,
+      "muted": null
+    },
+    "default": null,
+    "disabled": null,
+    "done": {
+      "emphasis": null,
+      "muted": null
+    },
+    "emphasis": null,
+    "muted": null,
+    "neutral": {
+      "emphasis": null,
+      "muted": null
+    },
+    "open": {
+      "emphasis": null,
+      "muted": null
+    },
+    "severe": {
+      "emphasis": null,
+      "muted": null
+    },
+    "sponsors": {
+      "emphasis": null,
+      "muted": null
+    },
+    "success": {
+      "emphasis": null,
+      "muted": null
+    },
+    "transparent": null,
+    "upsell": {
+      "emphasis": null,
+      "muted": null
+    }
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": null,
+      "muted": null
+    },
+    "attention": {
+      "emphasis": null,
+      "muted": null
+    },
+    "closed": {
+      "emphasis": null,
+      "muted": null
+    },
+    "danger": {
+      "emphasis": null,
+      "muted": null
+    },
+    "default": null,
+    "disabled": null,
+    "done": {
+      "emphasis": null,
+      "muted": null
+    },
+    "draft": {
+      "emphasis": null,
+      "muted": null
+    },
+    "emphasis": null,
+    "muted": null,
+    "neutral": {
+      "emphasis": null,
+      "muted": null
+    },
+    "open": {
+      "emphasis": null,
+      "muted": null
+    },
+    "severe": {
+      "emphasis": null,
+      "muted": null
+    },
+    "sponsors": {
+      "emphasis": null,
+      "muted": null
+    },
+    "success": {
+      "emphasis": null,
+      "muted": null
+    },
+    "translucent": null,
+    "transparent": null,
+    "upsell": {
+      "emphasis": null,
+      "muted": null
+    }
+  },
   "borderRadius": {
+    "default": null,
     "full": null,
     "large": null,
     "medium": null,
     "small": null
+  },
+  "borderWidth": {
+    "default": null,
+    "thick": null,
+    "thicker": null,
+    "thin": null
+  },
+  "boxShadow": {
+    "thick": null,
+    "thicker": null,
+    "thin": null
   },
   "breakpoint": {
     "large": null,
@@ -628,37 +601,1612 @@ export const vars = createThemeContract({
     "xsmall": null,
     "xxlarge": null
   },
-  "fontStack": {
-    "monospace": null,
-    "sansSerif": null,
-    "system": null
+  "button": {
+    "danger": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "iconColor": {
+        "hover": null,
+        "rest": null
+      },
+      "shadow": {
+        "selected": null
+      }
+    },
+    "default": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null,
+        "selected": null
+      },
+      "borderColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "rest": null
+      },
+      "shadow": {
+        "resting": null
+      }
+    },
+    "inactive": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "invisible": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "iconColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "active": null,
+        "hover": null
+      },
+      "fgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "shadow": {
+        "selected": null
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "iconColor": {
+        "rest": null
+      },
+      "shadow": {
+        "selected": null
+      }
+    },
+    "star": {
+      "iconColor": null
+    }
   },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": null
+  "buttonCounter": {
+    "danger": {
+      "bgColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
       }
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": null
-        }
+    "default": {
+      "bgColor": {
+        "rest": null
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": null
+    "invisible": {
+      "bgColor": {
+        "rest": null
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "rest": null
       }
     }
   },
-  "space": {
-    "large": null,
-    "medium": null,
-    "small": null,
-    "xlarge": null,
-    "xsmall": null,
-    "xxsmall": null
+  "buttonKeybindingHint": {
+    "danger": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "default": {
+      "bgColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "borderColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "rest": null
+      }
+    },
+    "inactive": {
+      "bgColor": null,
+      "borderColor": null,
+      "fgColor": null
+    },
+    "invisible": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "rest": null
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "borderColor": {
+        "disabled": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "rest": null
+      }
+    }
+  },
+  "card": {
+    "bgColor": null
+  },
+  "codeMirror": {
+    "activeline": {
+      "bgColor": null
+    },
+    "bgColor": null,
+    "cursor": {
+      "fgColor": null
+    },
+    "fgColor": null,
+    "gutterMarker": {
+      "fgColor": {
+        "default": null,
+        "muted": null
+      }
+    },
+    "gutters": {
+      "bgColor": null
+    },
+    "lineNumber": {
+      "fgColor": null
+    },
+    "lines": {
+      "bgColor": null
+    },
+    "matchingBracket": {
+      "fgColor": null
+    },
+    "selection": {
+      "bgColor": null
+    },
+    "syntax": {
+      "fgColor": {
+        "comment": null,
+        "constant": null,
+        "entity": null,
+        "keyword": null,
+        "storage": null,
+        "string": null,
+        "support": null,
+        "variable": null
+      }
+    }
+  },
+  "color": {
+    "ansi": {
+      "black": null,
+      "blackBright": null,
+      "blue": null,
+      "blueBright": null,
+      "cyan": null,
+      "cyanBright": null,
+      "gray": null,
+      "green": null,
+      "greenBright": null,
+      "magenta": null,
+      "magentaBright": null,
+      "red": null,
+      "redBright": null,
+      "white": null,
+      "whiteBright": null,
+      "yellow": null,
+      "yellowBright": null
+    },
+    "prettylights": {
+      "syntax": {
+        "brackethighlighter": {
+          "angle": null,
+          "unmatched": null
+        },
+        "carriage": {
+          "return": {
+            "bg": null,
+            "text": null
+          }
+        },
+        "comment": null,
+        "constant": null,
+        "constantOtherReferenceLink": null,
+        "entity": null,
+        "entityTag": null,
+        "invalid": {
+          "illegal": {
+            "bg": null,
+            "text": null
+          }
+        },
+        "keyword": null,
+        "markup": {
+          "bold": null,
+          "changed": {
+            "bg": null,
+            "text": null
+          },
+          "deleted": {
+            "bg": null,
+            "text": null
+          },
+          "heading": null,
+          "ignored": {
+            "bg": null,
+            "text": null
+          },
+          "inserted": {
+            "bg": null,
+            "text": null
+          },
+          "italic": null,
+          "list": null
+        },
+        "meta": {
+          "diff": {
+            "range": null
+          }
+        },
+        "storage": {
+          "modifier": {
+            "import": null
+          }
+        },
+        "string": null,
+        "stringRegexp": null,
+        "sublimelinter": {
+          "gutter": {
+            "mark": null
+          }
+        },
+        "variable": null
+      }
+    }
+  },
+  "contribution": {
+    "default": {
+      "bgColor": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null
+      },
+      "borderColor": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null
+      }
+    },
+    "halloween": {
+      "bgColor": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null
+      }
+    },
+    "winter": {
+      "bgColor": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null
+      }
+    }
+  },
+  "control": {
+    "bgColor": {
+      "active": null,
+      "disabled": null,
+      "hover": null,
+      "rest": null,
+      "selected": null
+    },
+    "borderColor": {
+      "danger": null,
+      "disabled": null,
+      "emphasis": null,
+      "rest": null,
+      "selected": null,
+      "success": null,
+      "warning": null
+    },
+    "checked": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "disabled": null,
+        "rest": null
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": null,
+        "hover": null
+      },
+      "fgColor": {
+        "hover": null,
+        "rest": null
+      }
+    },
+    "fgColor": {
+      "disabled": null,
+      "placeholder": null,
+      "rest": null
+    },
+    "iconColor": {
+      "rest": null
+    },
+    "large": {
+      "gap": null,
+      "lineBoxHeight": null,
+      "paddingBlock": null,
+      "paddingInline": {
+        "normal": null,
+        "spacious": null
+      },
+      "size": null
+    },
+    "medium": {
+      "gap": null,
+      "lineBoxHeight": null,
+      "paddingBlock": null,
+      "paddingInline": {
+        "condensed": null,
+        "normal": null,
+        "spacious": null
+      },
+      "size": null
+    },
+    "minTarget": {
+      "coarse": null,
+      "fine": null
+    },
+    "small": {
+      "gap": null,
+      "lineBoxHeight": null,
+      "paddingBlock": null,
+      "paddingInline": {
+        "condensed": null,
+        "normal": null
+      },
+      "size": null
+    },
+    "transparent": {
+      "bgColor": {
+        "active": null,
+        "disabled": null,
+        "hover": null,
+        "rest": null,
+        "selected": null
+      },
+      "borderColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "xlarge": {
+      "gap": null,
+      "lineBoxHeight": null,
+      "paddingBlock": null,
+      "paddingInline": {
+        "normal": null,
+        "spacious": null
+      },
+      "size": null
+    },
+    "xsmall": {
+      "gap": null,
+      "lineBoxHeight": null,
+      "paddingBlock": null,
+      "paddingInline": {
+        "condensed": null,
+        "normal": null,
+        "spacious": null
+      },
+      "size": null
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": null,
+      "disabled": null,
+      "rest": null
+    },
+    "borderColor": {
+      "checked": null,
+      "disabled": null,
+      "rest": null
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": null,
+        "condensed": null,
+        "spacious": null
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": null,
+        "spacious": null
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": null,
+        "spacious": null
+      }
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": null,
+      "disabled": null,
+      "hover": null,
+      "rest": null
+    },
+    "borderColor": {
+      "disabled": null,
+      "rest": null
+    },
+    "fgColor": {
+      "disabled": null,
+      "rest": null
+    }
+  },
+  "counter": {
+    "bgColor": {
+      "emphasis": null,
+      "muted": null
+    },
+    "borderColor": null
+  },
+  "dashboard": {
+    "bgColor": null
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": null,
+        "muted": null
+      }
+    }
+  },
+  "diffBlob": {
+    "additionLine": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "additionNum": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "additionWord": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "deletionLine": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "deletionNum": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "deletionWord": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "emptyLine": {
+      "bgColor": null
+    },
+    "emptyNum": {
+      "bgColor": null
+    },
+    "expander": {
+      "iconColor": null
+    },
+    "hunkLine": {
+      "bgColor": null,
+      "fgColor": null
+    },
+    "hunkNum": {
+      "bgColor": {
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "hover": null,
+        "rest": null
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "borderColor": {
+        "emphasis": null,
+        "muted": null
+      },
+      "fgColor": null,
+      "scale": {
+        "0": null,
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null,
+        "8": null,
+        "9": null
+      }
+    }
+  },
+  "fgColor": {
+    "accent": null,
+    "attention": null,
+    "black": null,
+    "closed": null,
+    "danger": null,
+    "default": null,
+    "disabled": null,
+    "done": null,
+    "draft": null,
+    "link": null,
+    "muted": null,
+    "neutral": null,
+    "onEmphasis": null,
+    "onInverse": null,
+    "open": null,
+    "severe": null,
+    "sponsors": null,
+    "success": null,
+    "upsell": null,
+    "white": null
+  },
+  "focus": {
+    "outline": null,
+    "outlineColor": null
+  },
+  "fontStack": {
+    "monospace": null,
+    "sansSerif": null,
+    "sansSerifDisplay": null,
+    "system": null
+  },
+  "header": {
+    "bgColor": null,
+    "borderColor": {
+      "divider": null
+    },
+    "fgColor": {
+      "default": null,
+      "logo": null
+    }
+  },
+  "headerSearch": {
+    "bgColor": null,
+    "borderColor": null
+  },
+  "highlight": {
+    "neutral": {
+      "bgColor": null
+    }
+  },
+  "label": {
+    "auburn": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "green": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "red": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      },
+      "borderColor": null,
+      "fgColor": {
+        "active": null,
+        "hover": null,
+        "rest": null
+      }
+    }
+  },
+  "menu": {
+    "bgColor": {
+      "active": null
+    }
+  },
+  "outline": {
+    "focus": {
+      "offset": null,
+      "width": null
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "bgColor": null
+    },
+    "bgColor": null,
+    "borderColor": null,
+    "borderRadius": null,
+    "height": {
+      "large": null,
+      "medium": null,
+      "small": null,
+      "xlarge": null
+    },
+    "offset": null,
+    "padding": {
+      "condensed": null,
+      "normal": null
+    },
+    "paddingBlock": {
+      "condensed": null,
+      "normal": null
+    },
+    "width": {
+      "large": null,
+      "medium": null,
+      "small": null,
+      "xlarge": null,
+      "xsmall": null
+    }
+  },
+  "page": {
+    "header": {
+      "bgColor": null
+    }
+  },
+  "progressBar": {
+    "bgColor": {
+      "accent": null,
+      "attention": null,
+      "danger": null,
+      "done": null,
+      "neutral": null,
+      "severe": null,
+      "sponsors": null,
+      "success": null
+    },
+    "track": {
+      "bgColor": null,
+      "borderColor": null
+    }
+  },
+  "reactionButton": {
+    "selected": {
+      "bgColor": {
+        "hover": null,
+        "rest": null
+      },
+      "fgColor": {
+        "hover": null,
+        "rest": null
+      }
+    }
+  },
+  "selection": {
+    "bgColor": null
+  },
+  "selectMenu": {
+    "bgColor": {
+      "active": null
+    },
+    "borderColor": null
+  },
+  "shadow": {
+    "floating": {
+      "large": null,
+      "legacy": null,
+      "medium": null,
+      "small": null,
+      "xlarge": null
+    },
+    "inset": null,
+    "resting": {
+      "medium": null,
+      "small": null,
+      "xsmall": null
+    }
+  },
+  "sideNav": {
+    "bgColor": {
+      "selected": null
+    }
+  },
+  "skeletonLoader": {
+    "bgColor": null
+  },
+  "spinner": {
+    "size": {
+      "large": null,
+      "medium": null,
+      "small": null
+    },
+    "strokeWidth": {
+      "default": null
+    }
+  },
+  "stack": {
+    "gap": {
+      "condensed": null,
+      "normal": null,
+      "spacious": null
+    },
+    "padding": {
+      "condensed": null,
+      "normal": null,
+      "spacious": null
+    }
   },
   "text": {
     "body": {
@@ -671,21 +2219,18 @@ export const vars = createThemeContract({
         "large": {
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
           "lineHeight": null,
           "fontFamily": null
         },
         "medium": {
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
           "lineHeight": null,
           "fontFamily": null
         },
         "small": {
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
           "lineHeight": null,
           "fontFamily": null
         }
@@ -702,7 +2247,6 @@ export const vars = createThemeContract({
       "shorthand": {
         "fontWeight": null,
         "fontSize": null,
-        "letterSpacing": null,
         "lineHeight": null,
         "fontFamily": null
       },
@@ -714,7 +2258,6 @@ export const vars = createThemeContract({
       "shorthand": {
         "fontWeight": null,
         "fontSize": null,
-        "letterSpacing": null,
         "lineHeight": null,
         "fontFamily": null
       },
@@ -725,9 +2268,7 @@ export const vars = createThemeContract({
       "shorthand": {
         "fontWeight": null,
         "fontSize": null,
-        "fontFamily": null,
-        "letterSpacing": null,
-        "lineHeight": null
+        "fontFamily": null
       },
       "size": null,
       "weight": null
@@ -736,11 +2277,10 @@ export const vars = createThemeContract({
       "lineBoxHeight": null,
       "lineHeight": null,
       "shorthand": {
-        "fontFamily": null,
         "fontWeight": null,
         "fontSize": null,
         "lineHeight": null,
-        "letterSpacing": null
+        "fontFamily": null
       },
       "size": null,
       "weight": null
@@ -750,7 +2290,6 @@ export const vars = createThemeContract({
       "shorthand": {
         "fontWeight": null,
         "fontSize": null,
-        "letterSpacing": null,
         "lineHeight": null,
         "fontFamily": null
       },
@@ -765,23 +2304,20 @@ export const vars = createThemeContract({
       },
       "shorthand": {
         "large": {
-          "fontFamily": null,
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
-          "lineHeight": null
+          "lineHeight": null,
+          "fontFamily": null
         },
         "medium": {
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
           "lineHeight": null,
           "fontFamily": null
         },
         "small": {
           "fontWeight": null,
           "fontSize": null,
-          "letterSpacing": null,
           "lineHeight": null,
           "fontFamily": null
         }
@@ -797,10 +2333,41 @@ export const vars = createThemeContract({
         "small": null
       }
     }
+  },
+  "timelineBadge": {
+    "bgColor": null
+  },
+  "tooltip": {
+    "bgColor": null,
+    "fgColor": null
+  },
+  "topicTag": {
+    "borderColor": null
+  },
+  "treeViewItem": {
+    "leadingVisual": {
+      "iconColor": {
+        "rest": null
+      }
+    }
+  },
+  "underlineNav": {
+    "borderColor": {
+      "active": null,
+      "hover": null
+    },
+    "iconColor": {
+      "rest": null
+    }
   }
 });
 
 export const [lightClass, light] = createTheme(vars, {
+  "avatar": {
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.translucent,
+    "shadow": "0 0 0 2px var(--base-color-neutral-0)"
+  },
   "base": {
     "color": {
       "black": "color(srgb 0.12156862745098039 0.13725490196078433 0.1568627450980392)",
@@ -840,17 +2407,22 @@ export const [lightClass, light] = createTheme(vars, {
         "8": "color(srgb 0 0.23921568627450981 0.08627450980392157)",
         "9": "color(srgb 0 0.17647058823529413 0.06666666666666667)"
       },
+      "inset": vars.base.color.neutral['0'],
       "neutral": {
-        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
-        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
-        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
-        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
-        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
-        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
-        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
-        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
-        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
-        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
+        "0": vars.base.color.white,
+        "1": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
+        "2": "color(srgb 0.9372549019607843 0.9490196078431372 0.9607843137254902)",
+        "3": "color(srgb 0.9019607843137255 0.9176470588235294 0.9372549019607843)",
+        "4": "color(srgb 0.8784313725490196 0.9019607843137255 0.9215686274509803)",
+        "5": "color(srgb 0.8549019607843137 0.8784313725490196 0.9058823529411765)",
+        "6": "color(srgb 0.8196078431372549 0.8509803921568627 0.8784313725490196)",
+        "7": "color(srgb 0.7843137254901961 0.8196078431372549 0.8549019607843137)",
+        "8": "color(srgb 0.5058823529411764 0.5450980392156862 0.596078431372549)",
+        "9": "color(srgb 0.34901960784313724 0.38823529411764707 0.43137254901960786)",
+        "10": "color(srgb 0.27058823529411763 0.2980392156862745 0.32941176470588235)",
+        "11": "color(srgb 0.2235294117647059 0.24705882352941178 0.27450980392156865)",
+        "12": "color(srgb 0.1450980392156863 0.1607843137254902 0.1803921568627451)",
+        "13": vars.base.color.black
       },
       "orange": {
         "0": "color(srgb 1 0.9450980392156862 0.8980392156862745)",
@@ -915,479 +2487,264 @@ export const [lightClass, light] = createTheme(vars, {
         "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
       }
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "display": {
+      "color": {
+        "auburn": {
+          "0": "color(srgb 0.9490196078431372 0.9137254901960784 0.9137254901960784)",
+          "1": "color(srgb 0.9019607843137255 0.8392156862745098 0.8352941176470589)",
+          "2": "color(srgb 0.8313725490196079 0.7176470588235294 0.7098039215686275)",
+          "3": "color(srgb 0.7725490196078432 0.6196078431372549 0.6078431372549019)",
+          "4": "color(srgb 0.7058823529411765 0.5098039215686274 0.49411764705882355)",
+          "5": "color(srgb 0.615686274509804 0.3803921568627451 0.3607843137254902)",
+          "6": "color(srgb 0.5411764705882353 0.3333333333333333 0.3176470588235294)",
+          "7": "color(srgb 0.4549019607843137 0.2784313725490196 0.26666666666666666)",
+          "8": "color(srgb 0.36470588235294116 0.2235294117647059 0.21568627450980393)",
+          "9": "color(srgb 0.2627450980392157 0.1607843137254902 0.1568627450980392)"
+        },
+        "black": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)",
+        "blue": {
+          "0": "color(srgb 0.8196078431372549 0.9411764705882353 1)",
+          "1": "color(srgb 0.6784313725490196 0.8823529411764706 1)",
+          "2": "color(srgb 0.4588235294117647 0.7843137254901961 1)",
+          "3": "color(srgb 0.2784313725490196 0.6862745098039216 1)",
+          "4": "color(srgb 0.058823529411764705 0.5607843137254902 1)",
+          "5": "color(srgb 0 0.43137254901960786 0.8588235294117647)",
+          "6": "color(srgb 0 0.37254901960784315 0.8)",
+          "7": "color(srgb 0 0.30196078431372547 0.7019607843137254)",
+          "8": "color(srgb 0 0.23921568627450981 0.6)",
+          "9": "color(srgb 0 0.16862745098039217 0.4588235294117647)"
+        },
+        "brown": {
+          "0": "color(srgb 0.9333333333333333 0.9176470588235294 0.8862745098039215)",
+          "1": "color(srgb 0.8745098039215686 0.8431372549019608 0.7843137254901961)",
+          "2": "color(srgb 0.796078431372549 0.7411764705882353 0.6431372549019608)",
+          "3": "color(srgb 0.7215686274509804 0.6431372549019608 0.5176470588235295)",
+          "4": "color(srgb 0.6509803921568628 0.5450980392156862 0.39215686274509803)",
+          "5": "color(srgb 0.5215686274509804 0.42745098039215684 0.2980392156862745)",
+          "6": "color(srgb 0.4588235294117647 0.37254901960784315 0.2627450980392157)",
+          "7": "color(srgb 0.39215686274509803 0.3176470588235294 0.22745098039215686)",
+          "8": "color(srgb 0.3176470588235294 0.2549019607843137 0.1843137254901961)",
+          "9": "color(srgb 0.22745098039215686 0.1803921568627451 0.13333333333333333)"
+        },
+        "coral": {
+          "0": "color(srgb 1 0.8980392156862745 0.8588235294117647)",
+          "1": "color(srgb 0.996078431372549 0.807843137254902 0.7450980392156863)",
+          "2": "color(srgb 0.9882352941176471 0.6705882352941176 0.5725490196078431)",
+          "3": "color(srgb 0.9725490196078431 0.5294117647058824 0.40784313725490196)",
+          "4": "color(srgb 0.9490196078431372 0.37254901960784315 0.22745098039215686)",
+          "5": "color(srgb 0.8313725490196079 0.20784313725490197 0.06666666666666667)",
+          "6": "color(srgb 0.7294117647058823 0.1803921568627451 0.07058823529411765)",
+          "7": "color(srgb 0.6078431372549019 0.15294117647058825 0.07058823529411765)",
+          "8": "color(srgb 0.49411764705882355 0.12549019607843137 0.06666666666666667)",
+          "9": "color(srgb 0.36470588235294116 0.09411764705882353 0.054901960784313725)"
+        },
+        "cyan": {
+          "0": "color(srgb 0.7411764705882353 0.9568627450980393 1)",
+          "1": "color(srgb 0.47843137254901963 0.9137254901960784 1)",
+          "2": "color(srgb 0 0.8156862745098039 0.9803921568627451)",
+          "3": "color(srgb 0 0.7176470588235294 0.8588235294117647)",
+          "4": "color(srgb 0 0.6 0.7215686274509804)",
+          "5": "color(srgb 0 0.4823529411764706 0.5803921568627451)",
+          "6": "color(srgb 0 0.41568627450980394 0.5019607843137255)",
+          "7": "color(srgb 0 0.34901960784313724 0.4196078431372549)",
+          "8": "color(srgb 0 0.2823529411764706 0.3411764705882353)",
+          "9": "color(srgb 0 0.21568627450980393 0.25882352941176473)"
+        },
+        "gray": {
+          "0": "color(srgb 0.9098039215686274 0.9254901960784314 0.9490196078431372)",
+          "1": "color(srgb 0.8235294117647058 0.8549019607843137 0.8941176470588236)",
+          "2": "color(srgb 0.7058823529411765 0.7529411764705882 0.8117647058823529)",
+          "3": "color(srgb 0.6078431372549019 0.6627450980392157 0.7333333333333333)",
+          "4": "color(srgb 0.5019607843137255 0.5607843137254902 0.6392156862745098)",
+          "5": "color(srgb 0.39215686274509803 0.44313725490196076 0.5098039215686274)",
+          "6": "color(srgb 0.3607843137254902 0.396078431372549 0.4392156862745098)",
+          "7": "color(srgb 0.3058823529411765 0.3254901960784314 0.35294117647058826)",
+          "8": "color(srgb 0.25882352941176473 0.26666666666666666 0.2823529411764706)",
+          "9": "color(srgb 0.18823529411764706 0.18823529411764706 0.19215686274509805)"
+        },
+        "green": {
+          "0": "color(srgb 0.792156862745098 0.9686274509803922 0.792156862745098)",
+          "1": "color(srgb 0.611764705882353 0.9294117647058824 0.6274509803921569)",
+          "2": "color(srgb 0.32941176470588235 0.8509803921568627 0.3803921568627451)",
+          "3": "color(srgb 0.19215686274509805 0.7490196078431373 0.27450980392156865)",
+          "4": "color(srgb 0.18823529411764706 0.6313725490196078 0.2784313725490196)",
+          "5": "color(srgb 0.17254901960784313 0.5058823529411764 0.2549019607843137)",
+          "6": "color(srgb 0.16862745098039217 0.43137254901960786 0.24705882352941178)",
+          "7": "color(srgb 0.1568627450980392 0.3607843137254902 0.23137254901960785)",
+          "8": "color(srgb 0.1450980392156863 0.29411764705882354 0.20392156862745098)",
+          "9": "color(srgb 0.11372549019607843 0.20784313725490197 0.1568627450980392)"
+        },
+        "indigo": {
+          "0": "color(srgb 0.8980392156862745 0.9137254901960784 1)",
+          "1": "color(srgb 0.8235294117647058 0.8431372549019608 0.996078431372549)",
+          "2": "color(srgb 0.6941176470588235 0.7254901960784313 0.984313725490196)",
+          "3": "color(srgb 0.592156862745098 0.6235294117647059 0.9686274509803922)",
+          "4": "color(srgb 0.47843137254901963 0.5098039215686274 0.9411764705882353)",
+          "5": "color(srgb 0.35294117647058826 0.3803921568627451 0.9058823529411765)",
+          "6": "color(srgb 0.28627450980392155 0.3058823529411765 0.8745098039215686)",
+          "7": "color(srgb 0.2235294117647059 0.23529411764705882 0.8352941176470589)",
+          "8": "color(srgb 0.17647058823529413 0.17647058823529413 0.7058823529411765)",
+          "9": "color(srgb 0.1450980392156863 0.1411764705882353 0.4823529411764706)"
+        },
+        "lemon": {
+          "0": "color(srgb 0.9686274509803922 0.9333333333333333 0.6313725490196078)",
+          "1": "color(srgb 0.9411764705882353 0.8588235294117647 0.23921568627450981)",
+          "2": "color(srgb 0.8470588235294118 0.7411764705882353 0.054901960784313725)",
+          "3": "color(srgb 0.7607843137254902 0.6509803921568628 0.0392156862745098)",
+          "4": "color(srgb 0.6509803921568628 0.5490196078431373 0.027450980392156862)",
+          "5": "color(srgb 0.5254901960784314 0.43137254901960786 0.01568627450980392)",
+          "6": "color(srgb 0.47058823529411764 0.3764705882352941 0.00784313725490196)",
+          "7": "color(srgb 0.396078431372549 0.30980392156862746 0.00392156862745098)",
+          "8": "color(srgb 0.3215686274509804 0.24705882352941178 0)",
+          "9": "color(srgb 0.23921568627450981 0.1803921568627451 0)"
+        },
+        "lime": {
+          "0": "color(srgb 0.8901960784313725 0.9490196078431372 0.7098039215686275)",
+          "1": "color(srgb 0.7803921568627451 0.8980392156862745 0.5019607843137255)",
+          "2": "color(srgb 0.6078431372549019 0.8156862745098039 0.2235294117647059)",
+          "3": "color(srgb 0.5019607843137255 0.7098039215686275 0.18823529411764706)",
+          "4": "color(srgb 0.4235294117647059 0.615686274509804 0.1843137254901961)",
+          "5": "color(srgb 0.3215686274509804 0.47843137254901963 0.1607843137254902)",
+          "6": "color(srgb 0.2784313725490196 0.4235294117647059 0.1568627450980392)",
+          "7": "color(srgb 0.22745098039215686 0.3568627450980392 0.1450980392156863)",
+          "8": "color(srgb 0.1843137254901961 0.2901960784313726 0.12941176470588237)",
+          "9": "color(srgb 0.12941176470588237 0.2 0.09803921568627451)"
+        },
+        "olive": {
+          "0": "color(srgb 0.9411764705882353 0.9411764705882353 0.6784313725490196)",
+          "1": "color(srgb 0.8588235294117647 0.8823529411764706 0.4392156862745098)",
+          "2": "color(srgb 0.7254901960784313 0.7843137254901961 0.19607843137254902)",
+          "3": "color(srgb 0.6078431372549019 0.6823529411764706 0.19607843137254902)",
+          "4": "color(srgb 0.5058823529411764 0.5843137254901961 0.19607843137254902)",
+          "5": "color(srgb 0.39215686274509803 0.4627450980392157 0.17647058823529413)",
+          "6": "color(srgb 0.33725490196078434 0.40784313725490196 0.17254901960784313)",
+          "7": "color(srgb 0.28627450980392155 0.35294117647058826 0.16862745098039217)",
+          "8": "color(srgb 0.23137254901960785 0.28627450980392155 0.15294117647058825)",
+          "9": "color(srgb 0.16470588235294117 0.2 0.12156862745098039)"
+        },
+        "orange": {
+          "0": "color(srgb 1 0.9058823529411765 0.8196078431372549)",
+          "1": "color(srgb 0.996078431372549 0.8117647058823529 0.6666666666666666)",
+          "2": "color(srgb 0.984313725490196 0.6862745098039216 0.4549019607843137)",
+          "3": "color(srgb 0.9647058823529412 0.5490196078431373 0.2549019607843137)",
+          "4": "color(srgb 0.9215686274509803 0.403921568627451 0.058823529411764705)",
+          "5": "color(srgb 0.7215686274509804 0.3137254901960784 0.058823529411764705)",
+          "6": "color(srgb 0.6352941176470588 0.27450980392156865 0.06274509803921569)",
+          "7": "color(srgb 0.5529411764705883 0.23529411764705882 0.06666666666666667)",
+          "8": "color(srgb 0.4392156862745098 0.18823529411764706 0.058823529411764705)",
+          "9": "color(srgb 0.32941176470588235 0.13725490196078433 0.050980392156862744)"
+        },
+        "pine": {
+          "0": "color(srgb 0.7490196078431373 0.9725490196078431 0.8588235294117647)",
+          "1": "color(srgb 0.5019607843137255 0.9372549019607843 0.7254901960784313)",
+          "2": "color(srgb 0.11372549019607843 0.8431372549019608 0.5058823529411764)",
+          "3": "color(srgb 0.11372549019607843 0.7490196078431373 0.4627450980392157)",
+          "4": "color(srgb 0.10196078431372549 0.6352941176470588 0.403921568627451)",
+          "5": "color(srgb 0.08627450980392157 0.49411764705882355 0.3254901960784314)",
+          "6": "color(srgb 0.08235294117647059 0.43529411764705883 0.29411764705882354)",
+          "7": "color(srgb 0.07450980392156863 0.36470588235294116 0.2549019607843137)",
+          "8": "color(srgb 0.06666666666666667 0.29411764705882354 0.21176470588235294)",
+          "9": "color(srgb 0.050980392156862744 0.21176470588235294 0.15294117647058825)"
+        },
+        "pink": {
+          "0": "color(srgb 1 0.8980392156862745 0.9450980392156862)",
+          "1": "color(srgb 0.9921568627450981 0.788235294117647 0.8862745098039215)",
+          "2": "color(srgb 0.9725490196078431 0.6470588235294118 0.8117647058823529)",
+          "3": "color(srgb 0.9450980392156862 0.5176470588235295 0.7372549019607844)",
+          "4": "color(srgb 0.8980392156862745 0.36470588235294116 0.6470588235294118)",
+          "5": "color(srgb 0.807843137254902 0.17254901960784313 0.5215686274509804)",
+          "6": "color(srgb 0.6941176470588235 0.1843137254901961 0.4745098039215686)",
+          "7": "color(srgb 0.5568627450980392 0.1803921568627451 0.4)",
+          "8": "color(srgb 0.43137254901960786 0.16862745098039217 0.3254901960784314)",
+          "9": "color(srgb 0.30196078431372547 0.13725490196078433 0.23921568627450981)"
+        },
+        "plum": {
+          "0": "color(srgb 0.9725490196078431 0.8980392156862745 1)",
+          "1": "color(srgb 0.9411764705882353 0.803921568627451 0.996078431372549)",
+          "2": "color(srgb 0.8862745098039215 0.6549019607843137 0.984313725490196)",
+          "3": "color(srgb 0.8313725490196079 0.5294117647058824 0.9686274509803922)",
+          "4": "color(srgb 0.7607843137254902 0.39215686274509803 0.9490196078431372)",
+          "5": "color(srgb 0.6588235294117647 0.18823529411764706 0.9098039215686274)",
+          "6": "color(srgb 0.5882352941176471 0.11764705882352941 0.8627450980392157)",
+          "7": "color(srgb 0.49019607843137253 0.11764705882352941 0.7215686274509804)",
+          "8": "color(srgb 0.396078431372549 0.11372549019607843 0.5882352941176471)",
+          "9": "color(srgb 0.2784313725490196 0.09019607843137255 0.4117647058823529)"
+        },
+        "purple": {
+          "0": "color(srgb 0.9450980392156862 0.8980392156862745 1)",
+          "1": "color(srgb 0.9019607843137255 0.8235294117647058 0.996078431372549)",
+          "2": "color(srgb 0.8196078431372549 0.6941176470588235 0.9882352941176471)",
+          "3": "color(srgb 0.7372549019607844 0.5686274509803921 0.9725490196078431)",
+          "4": "color(srgb 0.6509803921568628 0.4470588235294118 0.9529411764705882)",
+          "5": "color(srgb 0.5372549019607843 0.2980392156862745 0.9215686274509803)",
+          "6": "color(srgb 0.47058823529411764 0.22745098039215686 0.8941176470588236)",
+          "7": "color(srgb 0.3843137254901961 0.13725490196078433 0.8431372549019608)",
+          "8": "color(srgb 0.30980392156862746 0.12941176470588237 0.6705882352941176)",
+          "9": "color(srgb 0.2235294117647059 0.10588235294117647 0.4745098039215686)"
+        },
+        "red": {
+          "0": "color(srgb 1 0.8862745098039215 0.8784313725490196)",
+          "1": "color(srgb 0.996078431372549 0.803921568627451 0.803921568627451)",
+          "2": "color(srgb 0.9921568627450981 0.6470588235294118 0.6549019607843137)",
+          "3": "color(srgb 0.984313725490196 0.5137254901960784 0.5372549019607843)",
+          "4": "color(srgb 0.9725490196078431 0.32941176470588235 0.3803921568627451)",
+          "5": "color(srgb 0.8745098039215686 0.047058823529411764 0.1411764705882353)",
+          "6": "color(srgb 0.7725490196078432 0.050980392156862744 0.1568627450980392)",
+          "7": "color(srgb 0.6509803921568628 0.047058823529411764 0.1607843137254902)",
+          "8": "color(srgb 0.5333333333333333 0.047058823529411764 0.15294117647058825)",
+          "9": "color(srgb 0.3803921568627451 0.0392156862745098 0.12549019607843137)"
+        },
+        "teal": {
+          "0": "color(srgb 0.7803921568627451 0.9607843137254902 0.9372549019607843)",
+          "1": "color(srgb 0.5372549019607843 0.9215686274509803 0.8823529411764706)",
+          "2": "color(srgb 0.13333333333333333 0.8274509803921568 0.7803921568627451)",
+          "3": "color(srgb 0.11372549019607843 0.7254901960784313 0.7058823529411765)",
+          "4": "color(srgb 0.09019607843137255 0.6078431372549019 0.6078431372549019)",
+          "5": "color(srgb 0.07058823529411765 0.49411764705882355 0.5058823529411764)",
+          "6": "color(srgb 0.06274509803921569 0.43137254901960786 0.4588235294117647)",
+          "7": "color(srgb 0.050980392156862744 0.3568627450980392 0.38823529411764707)",
+          "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
+          "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
+        },
+        "white": "color(srgb 1 1 1)",
+        "yellow": {
+          "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
+          "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
+          "2": "color(srgb 0.9215686274509803 0.7058823529411765 0)",
+          "3": "color(srgb 0.8196078431372549 0.615686274509804 0)",
+          "4": "color(srgb 0.7215686274509804 0.5294117647058824 0)",
+          "5": "color(srgb 0.5803921568627451 0.41568627450980394 0)",
+          "6": "color(srgb 0.5019607843137255 0.34901960784313724 0)",
+          "7": "color(srgb 0.4392156862745098 0.30196078431372547 0)",
+          "8": "color(srgb 0.3607843137254902 0.23921568627450981 0)",
+          "9": "color(srgb 0.25882352941176473 0.16862745098039217 0)"
+        }
+      }
+    },
+    "duration": {
+      "0": "0",
+      "50": "50ms",
+      "100": "100ms",
+      "200": "200ms",
+      "300": "300ms",
+      "400": "400ms",
+      "500": "500ms",
+      "600": "600ms",
+      "700": "700ms",
+      "800": "800ms",
+      "900": "900ms",
+      "1000": "1000ms"
+    },
+    "easing": {
+      "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
+      "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
+      "linear": "cubic-bezier(0, 0, 1, 1)"
     },
     "size": {
+      "2": "2px",
       "4": "4px",
+      "6": "6px",
       "8": "8px",
       "12": "12px",
       "16": "16px",
@@ -1414,11 +2771,189 @@ export const [lightClass, light] = createTheme(vars, {
       }
     }
   },
+  "bgColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue['0']
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow['0']
+    },
+    "black": vars.base.color.neutral[13],
+    "closed": {
+      "emphasis": vars.bgColor.danger.emphasis,
+      "muted": vars.bgColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red['0']
+    },
+    "default": vars.base.color.neutral['0'],
+    "disabled": vars.base.color.neutral[2],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple['0']
+    },
+    "draft": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[12],
+    "inset": vars.bgColor.muted,
+    "inverse": vars.base.color.neutral[12],
+    "muted": vars.base.color.neutral[1],
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.base.color.neutral[8]
+    },
+    "open": {
+      "emphasis": vars.bgColor.success.emphasis,
+      "muted": vars.bgColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange['0']
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink['0']
+    },
+    "success": {
+      "emphasis": "color(srgb 0.12156862745098039 0.5333333333333333 0.23921568627450981)",
+      "muted": vars.base.color.green['0']
+    },
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.bgColor.done.emphasis,
+      "muted": vars.bgColor.done.muted
+    },
+    "white": vars.base.color.neutral['0']
+  },
+  "border": {
+    "accent": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-accent-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-accent-muted)"
+    },
+    "attention": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-attention-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-attention-muted)"
+    },
+    "closed": {
+      "emphasis": vars.border.danger.emphasis,
+      "muted": vars.border.danger.muted
+    },
+    "danger": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-danger-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-danger-muted)"
+    },
+    "default": "var(--border-width-default) solid var(--border-color-default)",
+    "disabled": "var(--border-width-default) solid var(--border-color-disabled)",
+    "done": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
+    },
+    "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
+    "muted": "var(--border-width-default) solid var(--border-color-muted)",
+    "neutral": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-neutral-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-neutral-muted)"
+    },
+    "open": {
+      "emphasis": vars.border.success.emphasis,
+      "muted": vars.border.success.muted
+    },
+    "severe": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-severe-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-severe-muted)"
+    },
+    "sponsors": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-sponsors-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-sponsors-muted)"
+    },
+    "success": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
+    },
+    "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
+    "upsell": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-upsell-muted)"
+    }
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue[3]
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow[3]
+    },
+    "closed": {
+      "emphasis": vars.borderColor.danger.emphasis,
+      "muted": vars.borderColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red[3]
+    },
+    "default": vars.base.color.neutral[6],
+    "disabled": vars.base.color.neutral[8],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple[3]
+    },
+    "draft": {
+      "emphasis": vars.borderColor.neutral.emphasis,
+      "muted": vars.borderColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[8],
+    "muted": vars.borderColor.default,
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.borderColor.muted
+    },
+    "open": {
+      "emphasis": vars.borderColor.success.emphasis,
+      "muted": vars.borderColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange[3]
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink[3]
+    },
+    "success": {
+      "emphasis": vars.base.color.green[5],
+      "muted": vars.base.color.green[3]
+    },
+    "translucent": vars.base.color.neutral[13],
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.borderColor.done.emphasis,
+      "muted": vars.borderColor.done.muted
+    }
+  },
   "borderRadius": {
+    "default": vars.borderRadius.medium,
     "full": "9999px",
     "large": "12px",
     "medium": "6px",
     "small": "3px"
+  },
+  "borderWidth": {
+    "default": vars.borderWidth.thin,
+    "thick": "2px",
+    "thicker": "4px",
+    "thin": "1px"
+  },
+  "boxShadow": {
+    "thick": "inset 0 0 0 {borderWidth.thick}",
+    "thicker": "inset 0 0 0 {borderWidth.thicker}",
+    "thin": "inset 0 0 0 {borderWidth.thin}"
   },
   "breakpoint": {
     "large": "1012px",
@@ -1426,866 +2961,1638 @@ export const [lightClass, light] = createTheme(vars, {
     "small": "544px",
     "xlarge": "1280px",
     "xsmall": "320px",
-    "xxlarge": "1440px"
+    "xxlarge": "1400px"
+  },
+  "button": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.red[6],
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.danger.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.danger.borderColor.hover,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.danger
+      },
+      "iconColor": {
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.button.danger.fgColor.rest
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-red-9)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "active": vars.control.bgColor.active,
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.control.bgColor.hover,
+        "rest": vars.control.bgColor.rest,
+        "selected": vars.control.bgColor.active
+      },
+      "borderColor": {
+        "active": vars.control.borderColor.rest,
+        "disabled": vars.control.borderColor.disabled,
+        "hover": vars.button.default.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "rest": vars.control.fgColor.rest
+      },
+      "shadow": {
+        "resting": "0 1px 0 0 var(--base-color-neutral-13)"
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[3],
+      "fgColor": vars.base.color.neutral[9]
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.control.transparent.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.borderColor.hover,
+        "rest": vars.control.transparent.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.control.fgColor.rest,
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.control.fgColor.rest,
+        "rest": vars.control.fgColor.rest
+      },
+      "iconColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.fgColor.muted,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.outline.borderColor.hover,
+        "hover": vars.button.primary.borderColor.hover
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.accent
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-blue-9)"
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "active": "color(srgb 0.09803921568627451 0.4745098039215686 0.20784313725490197)",
+        "disabled": "color(srgb 0.5843137254901961 0.8470588235294118 0.6509803921568628)",
+        "hover": "color(srgb 0.10980392156862745 0.5058823529411764 0.2235294117647059)",
+        "rest": vars.bgColor.success.emphasis
+      },
+      "borderColor": {
+        "active": vars.button.primary.borderColor.rest,
+        "disabled": vars.button.primary.bgColor.disabled,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.white
+      },
+      "iconColor": {
+        "rest": vars.fgColor.white
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-green-9)"
+      }
+    },
+    "star": {
+      "iconColor": vars.base.color.yellow[2]
+    }
+  },
+  "buttonCounter": {
+    "danger": {
+      "bgColor": {
+        "disabled": vars.bgColor.danger.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.danger.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": "color(srgb 0.7607843137254902 0.10980392156862745 0.17254901960784313)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "invisible": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "disabled": vars.bgColor.accent.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.base.color.blue[6]
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "rest": vars.base.color.green[9]
+      }
+    }
+  },
+  "buttonKeybindingHint": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.black,
+        "disabled": vars.buttonKeybindingHint.default.bgColor.disabled,
+        "hover": vars.base.color.black,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.buttonKeybindingHint.danger.borderColor.hover,
+        "disabled": vars.buttonKeybindingHint.default.borderColor.disabled,
+        "hover": vars.borderColor.translucent,
+        "rest": vars.buttonKeybindingHint.default.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.fgColor.onEmphasis,
+        "disabled": vars.buttonKeybindingHint.default.fgColor.disabled,
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.buttonKeybindingHint.default.fgColor.rest
+      }
+    },
+    "default": {
+      "bgColor": {
+        "disabled": vars.buttonKeybindingHint.default.bgColor.rest,
+        "rest": vars.base.color.neutral[2]
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.muted
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[2],
+      "borderColor": vars.borderColor.muted,
+      "fgColor": vars.button.inactive.fgColor
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.button.invisible.bgColor.disabled,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.base.color.transparent
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "disabled": vars.buttonCounter.primary.bgColor.rest,
+        "rest": vars.buttonCounter.primary.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
+        "rest": vars.fgColor.onEmphasis
+      }
+    }
+  },
+  "card": {
+    "bgColor": vars.bgColor.default
+  },
+  "codeMirror": {
+    "activeline": {
+      "bgColor": vars.bgColor.neutral.muted
+    },
+    "bgColor": vars.bgColor.default,
+    "cursor": {
+      "fgColor": vars.fgColor.default
+    },
+    "fgColor": vars.fgColor.default,
+    "gutterMarker": {
+      "fgColor": {
+        "default": vars.bgColor.default,
+        "muted": vars.fgColor.muted
+      }
+    },
+    "gutters": {
+      "bgColor": vars.bgColor.default
+    },
+    "lineNumber": {
+      "fgColor": vars.fgColor.muted
+    },
+    "lines": {
+      "bgColor": vars.bgColor.default
+    },
+    "matchingBracket": {
+      "fgColor": vars.fgColor.default
+    },
+    "selection": {
+      "bgColor": vars.borderColor.accent.muted
+    },
+    "syntax": {
+      "fgColor": {
+        "comment": vars.base.color.neutral[13],
+        "constant": vars.base.color.blue[6],
+        "entity": vars.base.color.purple[5],
+        "keyword": vars.base.color.red[5],
+        "storage": vars.base.color.red[5],
+        "string": vars.base.color.blue[8],
+        "support": vars.base.color.blue[6],
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "color": {
+    "ansi": {
+      "black": vars.base.color.neutral[13],
+      "blackBright": vars.base.color.neutral[11],
+      "blue": vars.base.color.blue[5],
+      "blueBright": vars.base.color.blue[4],
+      "cyan": "color(srgb 0.10588235294117647 0.48627450980392156 0.5137254901960784)",
+      "cyanBright": "color(srgb 0.19215686274509805 0.5725490196078431 0.6666666666666666)",
+      "gray": vars.base.color.neutral[9],
+      "green": vars.base.color.green[6],
+      "greenBright": vars.base.color.green[5],
+      "magenta": vars.base.color.purple[5],
+      "magentaBright": vars.base.color.purple[4],
+      "red": vars.base.color.red[5],
+      "redBright": vars.base.color.red[6],
+      "white": vars.base.color.neutral[9],
+      "whiteBright": vars.base.color.neutral[8],
+      "yellow": vars.base.color.yellow[8],
+      "yellowBright": vars.base.color.yellow[7]
+    },
+    "prettylights": {
+      "syntax": {
+        "brackethighlighter": {
+          "angle": vars.base.color.neutral[9],
+          "unmatched": vars.base.color.red[7]
+        },
+        "carriage": {
+          "return": {
+            "bg": vars.base.color.red[5],
+            "text": vars.base.color.neutral[1]
+          }
+        },
+        "comment": vars.base.color.neutral[9],
+        "constant": vars.base.color.blue[6],
+        "constantOtherReferenceLink": vars.base.color.blue[8],
+        "entity": vars.base.color.purple[6],
+        "entityTag": vars.base.color.blue[6],
+        "invalid": {
+          "illegal": {
+            "bg": vars.bgColor.danger.muted,
+            "text": vars.fgColor.danger
+          }
+        },
+        "keyword": vars.base.color.red[5],
+        "markup": {
+          "bold": vars.base.color.neutral[13],
+          "changed": {
+            "bg": vars.base.color.orange[1],
+            "text": vars.base.color.orange[6]
+          },
+          "deleted": {
+            "bg": vars.base.color.red['0'],
+            "text": vars.base.color.red[7]
+          },
+          "heading": vars.base.color.blue[6],
+          "ignored": {
+            "bg": vars.base.color.blue[6],
+            "text": vars.base.color.neutral[6]
+          },
+          "inserted": {
+            "bg": vars.base.color.green['0'],
+            "text": vars.base.color.green[6]
+          },
+          "italic": vars.base.color.neutral[13],
+          "list": vars.base.color.yellow[9]
+        },
+        "meta": {
+          "diff": {
+            "range": vars.base.color.purple[5]
+          }
+        },
+        "storage": {
+          "modifier": {
+            "import": vars.base.color.neutral[13]
+          }
+        },
+        "string": vars.base.color.blue[8],
+        "stringRegexp": vars.base.color.green[6],
+        "sublimelinter": {
+          "gutter": {
+            "mark": vars.base.color.neutral[8]
+          }
+        },
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "contribution": {
+    "default": {
+      "bgColor": {
+        "0": vars.base.color.neutral[2],
+        "1": vars.base.color.green[1],
+        "2": vars.base.color.green[3],
+        "3": vars.base.color.green[4],
+        "4": vars.base.color.green[6]
+      },
+      "borderColor": {
+        "0": vars.base.color.black,
+        "1": vars.contribution.default.borderColor['0'],
+        "2": vars.contribution.default.borderColor['0'],
+        "3": vars.contribution.default.borderColor['0'],
+        "4": vars.contribution.default.borderColor['0']
+      }
+    },
+    "halloween": {
+      "bgColor": {
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.yellow[1],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.color.black
+      }
+    },
+    "winter": {
+      "bgColor": {
+        "1": vars.base.color.blue[1],
+        "2": vars.base.color.blue[3],
+        "3": vars.base.color.blue[5],
+        "4": vars.base.color.blue[8]
+      }
+    }
+  },
+  "control": {
+    "bgColor": {
+      "active": vars.base.color.neutral[3],
+      "disabled": vars.bgColor.disabled,
+      "hover": vars.base.color.neutral[2],
+      "rest": vars.base.color.neutral[1],
+      "selected": vars.control.bgColor.rest
+    },
+    "borderColor": {
+      "danger": vars.borderColor.danger.emphasis,
+      "disabled": vars.borderColor.disabled,
+      "emphasis": vars.borderColor.emphasis,
+      "rest": vars.borderColor.default,
+      "selected": vars.control.bgColor.selected,
+      "success": vars.borderColor.success.emphasis,
+      "warning": vars.borderColor.attention.emphasis
+    },
+    "checked": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.fgColor.disabled,
+        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "borderColor": {
+        "active": vars.control.checked.bgColor.active,
+        "disabled": vars.control.checked.bgColor.disabled,
+        "hover": vars.control.checked.bgColor.hover,
+        "rest": vars.control.checked.bgColor.rest
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.onEmphasis
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": vars.bgColor.danger.muted,
+        "hover": vars.bgColor.danger.muted
+      },
+      "fgColor": {
+        "hover": vars.fgColor.danger,
+        "rest": vars.fgColor.danger
+      }
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.disabled,
+      "placeholder": vars.fgColor.muted,
+      "rest": vars.base.color.neutral[12]
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
+    },
+    "large": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "10px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[40]
+    },
+    "medium": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "6px",
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[32]
+    },
+    "minTarget": {
+      "coarse": vars.base.size[44],
+      "fine": vars.base.size[16]
+    },
+    "small": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": vars.base.size[4],
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12]
+      },
+      "size": vars.base.size[28]
+    },
+    "transparent": {
+      "bgColor": {
+        "active": vars.base.color.neutral[8],
+        "disabled": vars.bgColor.disabled,
+        "hover": vars.base.color.neutral[8],
+        "rest": vars.base.color.transparent,
+        "selected": vars.base.color.neutral[8]
+      },
+      "borderColor": {
+        "active": vars.base.color.transparent,
+        "hover": vars.base.color.transparent,
+        "rest": vars.base.color.transparent
+      }
+    },
+    "xlarge": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "14px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[48]
+    },
+    "xsmall": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "2px",
+      "paddingInline": {
+        "condensed": vars.base.size[4],
+        "normal": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      },
+      "size": vars.base.size[24]
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": vars.base.color.neutral['0'],
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.base.color.neutral['0']
+    },
+    "borderColor": {
+      "checked": vars.control.checked.bgColor.rest,
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.control.borderColor.rest
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": vars.base.size[8],
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[16]
+      }
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": vars.base.color.neutral[5],
+      "disabled": vars.fgColor.disabled,
+      "hover": vars.base.color.neutral[4],
+      "rest": vars.base.color.neutral[3]
+    },
+    "borderColor": {
+      "disabled": vars.fgColor.disabled,
+      "rest": vars.borderColor.default
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.onEmphasis,
+      "rest": vars.base.color.neutral[9]
+    }
+  },
+  "counter": {
+    "bgColor": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "borderColor": vars.base.color.transparent
+  },
+  "dashboard": {
+    "bgColor": vars.bgColor.default
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": vars.base.display.color.gray[4],
+        "muted": vars.base.display.color.gray['0']
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": vars.base.display.color.green[4],
+        "muted": vars.base.display.color.green['0']
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": vars.base.display.color.orange[4],
+        "muted": vars.base.display.color.orange['0']
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": vars.base.display.color.teal[4],
+        "muted": vars.base.display.color.teal['0']
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": vars.base.display.color.yellow[4],
+        "muted": vars.base.display.color.yellow['0']
+      }
+    }
+  },
+  "diffBlob": {
+    "additionLine": {
+      "bgColor": vars.bgColor.success.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "additionNum": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "additionWord": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionLine": {
+      "bgColor": vars.bgColor.danger.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "deletionNum": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionWord": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "emptyLine": {
+      "bgColor": vars.bgColor.muted
+    },
+    "emptyNum": {
+      "bgColor": vars.bgColor.muted
+    },
+    "expander": {
+      "iconColor": vars.fgColor.muted
+    },
+    "hunkLine": {
+      "bgColor": vars.bgColor.accent.muted,
+      "fgColor": vars.fgColor.muted
+    },
+    "hunkNum": {
+      "bgColor": {
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.base.color.blue[1]
+      },
+      "fgColor": {
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.default
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn[1]
+      },
+      "fgColor": vars.base.display.color.auburn[6],
+      "scale": {
+        "0": vars.base.display.color.auburn['0'],
+        "1": vars.base.display.color.auburn[1],
+        "2": vars.base.display.color.auburn[2],
+        "3": vars.base.display.color.auburn[3],
+        "4": vars.base.display.color.auburn[4],
+        "5": vars.base.display.color.auburn[5],
+        "6": vars.base.display.color.auburn[6],
+        "7": vars.base.display.color.auburn[7],
+        "8": vars.base.display.color.auburn[8],
+        "9": vars.base.display.color.auburn[9]
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue[1]
+      },
+      "fgColor": vars.base.display.color.blue[6],
+      "scale": {
+        "0": vars.base.display.color.blue['0'],
+        "1": vars.base.display.color.blue[1],
+        "2": vars.base.display.color.blue[2],
+        "3": vars.base.display.color.blue[3],
+        "4": vars.base.display.color.blue[4],
+        "5": vars.base.display.color.blue[5],
+        "6": vars.base.display.color.blue[6],
+        "7": vars.base.display.color.blue[7],
+        "8": vars.base.display.color.blue[8],
+        "9": vars.base.display.color.blue[9]
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown[1]
+      },
+      "fgColor": vars.base.display.color.brown[6],
+      "scale": {
+        "0": vars.base.display.color.brown['0'],
+        "1": vars.base.display.color.brown[1],
+        "2": vars.base.display.color.brown[2],
+        "3": vars.base.display.color.brown[3],
+        "4": vars.base.display.color.brown[4],
+        "5": vars.base.display.color.brown[5],
+        "6": vars.base.display.color.brown[6],
+        "7": vars.base.display.color.brown[7],
+        "8": vars.base.display.color.brown[8],
+        "9": vars.base.display.color.brown[9]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral[1]
+      },
+      "fgColor": vars.base.display.color.coral[6],
+      "scale": {
+        "0": vars.base.display.color.coral['0'],
+        "1": vars.base.display.color.coral[1],
+        "2": vars.base.display.color.coral[2],
+        "3": vars.base.display.color.coral[3],
+        "4": vars.base.display.color.coral[4],
+        "5": vars.base.display.color.coral[5],
+        "6": vars.base.display.color.coral[6],
+        "7": vars.base.display.color.coral[7],
+        "8": vars.base.display.color.coral[8],
+        "9": vars.base.display.color.coral[9]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan[1]
+      },
+      "fgColor": vars.base.display.color.cyan[6],
+      "scale": {
+        "0": vars.base.display.color.cyan['0'],
+        "1": vars.base.display.color.cyan[1],
+        "2": vars.base.display.color.cyan[2],
+        "3": vars.base.display.color.cyan[3],
+        "4": vars.base.display.color.cyan[4],
+        "5": vars.base.display.color.cyan[5],
+        "6": vars.base.display.color.cyan[6],
+        "7": vars.base.display.color.cyan[7],
+        "8": vars.base.display.color.cyan[8],
+        "9": vars.base.display.color.cyan[9]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray[1]
+      },
+      "fgColor": vars.base.display.color.gray[6],
+      "scale": {
+        "0": vars.base.display.color.gray['0'],
+        "1": vars.base.display.color.gray[1],
+        "2": vars.base.display.color.gray[2],
+        "3": vars.base.display.color.gray[3],
+        "4": vars.base.display.color.gray[4],
+        "5": vars.base.display.color.gray[5],
+        "6": vars.base.display.color.gray[6],
+        "7": vars.base.display.color.gray[7],
+        "8": vars.base.display.color.gray[8],
+        "9": vars.base.display.color.gray[9]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green[1]
+      },
+      "fgColor": vars.base.display.color.green[6],
+      "scale": {
+        "0": vars.base.display.color.green['0'],
+        "1": vars.base.display.color.green[1],
+        "2": vars.base.display.color.green[2],
+        "3": vars.base.display.color.green[3],
+        "4": vars.base.display.color.green[4],
+        "5": vars.base.display.color.green[5],
+        "6": vars.base.display.color.green[6],
+        "7": vars.base.display.color.green[7],
+        "8": vars.base.display.color.green[8],
+        "9": vars.base.display.color.green[9]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo[1]
+      },
+      "fgColor": vars.base.display.color.indigo[6],
+      "scale": {
+        "0": vars.base.display.color.indigo['0'],
+        "1": vars.base.display.color.indigo[1],
+        "2": vars.base.display.color.indigo[2],
+        "3": vars.base.display.color.indigo[3],
+        "4": vars.base.display.color.indigo[4],
+        "5": vars.base.display.color.indigo[5],
+        "6": vars.base.display.color.indigo[6],
+        "7": vars.base.display.color.indigo[7],
+        "8": vars.base.display.color.indigo[8],
+        "9": vars.base.display.color.indigo[9]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon[1]
+      },
+      "fgColor": vars.base.display.color.lemon[6],
+      "scale": {
+        "0": vars.base.display.color.lemon['0'],
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.lemon[2],
+        "3": vars.base.display.color.lemon[3],
+        "4": vars.base.display.color.lemon[4],
+        "5": vars.base.display.color.lemon[5],
+        "6": vars.base.display.color.lemon[6],
+        "7": vars.base.display.color.lemon[7],
+        "8": vars.base.display.color.lemon[8],
+        "9": vars.base.display.color.lemon[9]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime[1]
+      },
+      "fgColor": vars.base.display.color.lime[6],
+      "scale": {
+        "0": vars.base.display.color.lime['0'],
+        "1": vars.base.display.color.lime[1],
+        "2": vars.base.display.color.lime[2],
+        "3": vars.base.display.color.lime[3],
+        "4": vars.base.display.color.lime[4],
+        "5": vars.base.display.color.lime[5],
+        "6": vars.base.display.color.lime[6],
+        "7": vars.base.display.color.lime[7],
+        "8": vars.base.display.color.lime[8],
+        "9": vars.base.display.color.lime[9]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive[1]
+      },
+      "fgColor": vars.base.display.color.olive[6],
+      "scale": {
+        "0": vars.base.display.color.olive['0'],
+        "1": vars.base.display.color.olive[1],
+        "2": vars.base.display.color.olive[2],
+        "3": vars.base.display.color.olive[3],
+        "4": vars.base.display.color.olive[4],
+        "5": vars.base.display.color.olive[5],
+        "6": vars.base.display.color.olive[6],
+        "7": vars.base.display.color.olive[7],
+        "8": vars.base.display.color.olive[8],
+        "9": vars.base.display.color.olive[9]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange[1]
+      },
+      "fgColor": vars.base.display.color.orange[6],
+      "scale": {
+        "0": vars.base.display.color.orange['0'],
+        "1": vars.base.display.color.orange[1],
+        "2": vars.base.display.color.orange[2],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.display.color.orange[4],
+        "5": vars.base.display.color.orange[5],
+        "6": vars.base.display.color.orange[6],
+        "7": vars.base.display.color.orange[7],
+        "8": vars.base.display.color.orange[8],
+        "9": vars.base.display.color.orange[9]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine[1]
+      },
+      "fgColor": vars.base.display.color.pine[6],
+      "scale": {
+        "0": vars.base.display.color.pine['0'],
+        "1": vars.base.display.color.pine[1],
+        "2": vars.base.display.color.pine[2],
+        "3": vars.base.display.color.pine[3],
+        "4": vars.base.display.color.pine[4],
+        "5": vars.base.display.color.pine[5],
+        "6": vars.base.display.color.pine[6],
+        "7": vars.base.display.color.pine[7],
+        "8": vars.base.display.color.pine[8],
+        "9": vars.base.display.color.pine[9]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink[1]
+      },
+      "fgColor": vars.base.display.color.pink[6],
+      "scale": {
+        "0": vars.base.display.color.pink['0'],
+        "1": vars.base.display.color.pink[1],
+        "2": vars.base.display.color.pink[2],
+        "3": vars.base.display.color.pink[3],
+        "4": vars.base.display.color.pink[4],
+        "5": vars.base.display.color.pink[5],
+        "6": vars.base.display.color.pink[6],
+        "7": vars.base.display.color.pink[7],
+        "8": vars.base.display.color.pink[8],
+        "9": vars.base.display.color.pink[9]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum[1]
+      },
+      "fgColor": vars.base.display.color.plum[6],
+      "scale": {
+        "0": vars.base.display.color.plum['0'],
+        "1": vars.base.display.color.plum[1],
+        "2": vars.base.display.color.plum[2],
+        "3": vars.base.display.color.plum[3],
+        "4": vars.base.display.color.plum[4],
+        "5": vars.base.display.color.plum[5],
+        "6": vars.base.display.color.plum[6],
+        "7": vars.base.display.color.plum[7],
+        "8": vars.base.display.color.plum[8],
+        "9": vars.base.display.color.plum[9]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple[1]
+      },
+      "fgColor": vars.base.display.color.purple[6],
+      "scale": {
+        "0": vars.base.display.color.purple['0'],
+        "1": vars.base.display.color.purple[1],
+        "2": vars.base.display.color.purple[2],
+        "3": vars.base.display.color.purple[3],
+        "4": vars.base.display.color.purple[4],
+        "5": vars.base.display.color.purple[5],
+        "6": vars.base.display.color.purple[6],
+        "7": vars.base.display.color.purple[7],
+        "8": vars.base.display.color.purple[8],
+        "9": vars.base.display.color.purple[9]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red[1]
+      },
+      "fgColor": vars.base.display.color.red[6],
+      "scale": {
+        "0": vars.base.display.color.red['0'],
+        "1": vars.base.display.color.red[1],
+        "2": vars.base.display.color.red[2],
+        "3": vars.base.display.color.red[3],
+        "4": vars.base.display.color.red[4],
+        "5": vars.base.display.color.red[5],
+        "6": vars.base.display.color.red[6],
+        "7": vars.base.display.color.red[7],
+        "8": vars.base.display.color.red[8],
+        "9": vars.base.display.color.red[9]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal[1]
+      },
+      "fgColor": vars.base.display.color.teal[6],
+      "scale": {
+        "0": vars.base.display.color.teal['0'],
+        "1": vars.base.display.color.teal[1],
+        "2": vars.base.display.color.teal[2],
+        "3": vars.base.display.color.teal[3],
+        "4": vars.base.display.color.teal[4],
+        "5": vars.base.display.color.teal[5],
+        "6": vars.base.display.color.teal[6],
+        "7": vars.base.display.color.teal[7],
+        "8": vars.base.display.color.teal[8],
+        "9": vars.base.display.color.teal[9]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow[1]
+      },
+      "fgColor": vars.base.display.color.yellow[6],
+      "scale": {
+        "0": vars.base.display.color.yellow['0'],
+        "1": vars.base.display.color.yellow[1],
+        "2": vars.base.display.color.yellow[2],
+        "3": vars.base.display.color.yellow[3],
+        "4": vars.base.display.color.yellow[4],
+        "5": vars.base.display.color.yellow[5],
+        "6": vars.base.display.color.yellow[6],
+        "7": vars.base.display.color.yellow[7],
+        "8": vars.base.display.color.yellow[8],
+        "9": vars.base.display.color.yellow[9]
+      }
+    }
+  },
+  "fgColor": {
+    "accent": vars.base.color.blue[5],
+    "attention": vars.base.color.yellow[5],
+    "black": vars.base.color.neutral[13],
+    "closed": vars.fgColor.danger,
+    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "default": vars.base.color.neutral[13],
+    "disabled": vars.base.color.neutral[8],
+    "done": vars.base.color.purple[5],
+    "draft": vars.fgColor.neutral,
+    "link": vars.fgColor.accent,
+    "muted": vars.base.color.neutral[9],
+    "neutral": vars.base.color.neutral[9],
+    "onEmphasis": vars.base.color.neutral['0'],
+    "onInverse": vars.base.color.neutral['0'],
+    "open": vars.fgColor.success,
+    "severe": vars.base.color.orange[5],
+    "sponsors": vars.base.color.pink[5],
+    "success": vars.base.color.green[5],
+    "upsell": vars.fgColor.done,
+    "white": vars.base.color.neutral['0']
+  },
+  "focus": {
+    "outline": "2px solid var(--focus-outline-color)",
+    "outlineColor": vars.borderColor.accent.emphasis
   },
   "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
+    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
+  "header": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": {
+      "divider": vars.base.color.neutral[8]
+    },
+    "fgColor": {
+      "default": vars.base.color.neutral['0'],
+      "logo": vars.base.color.neutral['0']
+    }
+  },
+  "headerSearch": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": vars.base.color.neutral[8]
+  },
+  "highlight": {
+    "neutral": {
+      "bgColor": vars.base.color.yellow['0']
+    }
+  },
+  "label": {
+    "auburn": {
+      "bgColor": {
+        "active": vars.base.display.color.auburn[2],
+        "hover": vars.base.display.color.auburn[1],
+        "rest": vars.base.display.color.auburn['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.auburn[8],
+        "hover": vars.base.display.color.auburn[7],
+        "rest": vars.base.display.color.auburn[6]
       }
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
+    "blue": {
+      "bgColor": {
+        "active": vars.base.display.color.blue[2],
+        "hover": vars.base.display.color.blue[1],
+        "rest": vars.base.display.color.blue['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.blue[8],
+        "hover": vars.base.display.color.blue[7],
+        "rest": vars.base.display.color.blue[6]
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
+    "brown": {
+      "bgColor": {
+        "active": vars.base.display.color.brown[2],
+        "hover": vars.base.display.color.brown[1],
+        "rest": vars.base.display.color.brown['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.brown[8],
+        "hover": vars.base.display.color.brown[7],
+        "rest": vars.base.display.color.brown[6]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "active": vars.base.display.color.coral[2],
+        "hover": vars.base.display.color.coral[1],
+        "rest": vars.base.display.color.coral['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.coral[8],
+        "hover": vars.base.display.color.coral[7],
+        "rest": vars.base.display.color.coral[6]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "active": vars.base.display.color.cyan[2],
+        "hover": vars.base.display.color.cyan[1],
+        "rest": vars.base.display.color.cyan['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.cyan[8],
+        "hover": vars.base.display.color.cyan[7],
+        "rest": vars.base.display.color.cyan[6]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "active": vars.base.display.color.gray[2],
+        "hover": vars.base.display.color.gray[1],
+        "rest": vars.base.display.color.gray['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.gray[8],
+        "hover": vars.base.display.color.gray[7],
+        "rest": vars.base.display.color.gray[6]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "active": vars.base.display.color.green[2],
+        "hover": vars.base.display.color.green[1],
+        "rest": vars.base.display.color.green['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.green[8],
+        "hover": vars.base.display.color.green[7],
+        "rest": vars.base.display.color.green[6]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "active": vars.base.display.color.indigo[2],
+        "hover": vars.base.display.color.indigo[1],
+        "rest": vars.base.display.color.indigo['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.indigo[8],
+        "hover": vars.base.display.color.indigo[7],
+        "rest": vars.base.display.color.indigo[6]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "active": vars.base.display.color.lemon[2],
+        "hover": vars.base.display.color.lemon[1],
+        "rest": vars.base.display.color.lemon['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lemon[8],
+        "hover": vars.base.display.color.lemon[7],
+        "rest": vars.base.display.color.lemon[6]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "active": vars.base.display.color.lime[2],
+        "hover": vars.base.display.color.lime[1],
+        "rest": vars.base.display.color.lime['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lime[8],
+        "hover": vars.base.display.color.lime[7],
+        "rest": vars.base.display.color.lime[6]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "active": vars.base.display.color.olive[2],
+        "hover": vars.base.display.color.olive[1],
+        "rest": vars.base.display.color.olive['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.olive[8],
+        "hover": vars.base.display.color.olive[7],
+        "rest": vars.base.display.color.olive[6]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "active": vars.base.display.color.orange[2],
+        "hover": vars.base.display.color.orange[1],
+        "rest": vars.base.display.color.orange['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.orange[8],
+        "hover": vars.base.display.color.orange[7],
+        "rest": vars.base.display.color.orange[6]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "active": vars.base.display.color.pine[2],
+        "hover": vars.base.display.color.pine[1],
+        "rest": vars.base.display.color.pine['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pine[8],
+        "hover": vars.base.display.color.pine[7],
+        "rest": vars.base.display.color.pine[6]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "active": vars.base.display.color.pink[2],
+        "hover": vars.base.display.color.pink[1],
+        "rest": vars.base.display.color.pink['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pink[8],
+        "hover": vars.base.display.color.pink[7],
+        "rest": vars.base.display.color.pink[6]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "active": vars.base.display.color.plum[2],
+        "hover": vars.base.display.color.plum[1],
+        "rest": vars.base.display.color.plum['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.plum[8],
+        "hover": vars.base.display.color.plum[7],
+        "rest": vars.base.display.color.plum[6]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "active": vars.base.display.color.purple[2],
+        "hover": vars.base.display.color.purple[1],
+        "rest": vars.base.display.color.purple['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.purple[8],
+        "hover": vars.base.display.color.purple[7],
+        "rest": vars.base.display.color.purple[6]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "active": vars.base.display.color.red[2],
+        "hover": vars.base.display.color.red[1],
+        "rest": vars.base.display.color.red['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.red[8],
+        "hover": vars.base.display.color.red[7],
+        "rest": vars.base.display.color.red[6]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "active": vars.base.display.color.teal[2],
+        "hover": vars.base.display.color.teal[1],
+        "rest": vars.base.display.color.teal['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.teal[8],
+        "hover": vars.base.display.color.teal[7],
+        "rest": vars.base.display.color.teal[6]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "active": vars.base.display.color.yellow[2],
+        "hover": vars.base.display.color.yellow[1],
+        "rest": vars.base.display.color.yellow['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.yellow[8],
+        "hover": vars.base.display.color.yellow[7],
+        "rest": vars.base.display.color.yellow[6]
       }
     }
   },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
+  "menu": {
+    "bgColor": {
+      "active": vars.base.color.transparent
+    }
   },
-  "text": {
-    "body": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "weight": vars.base.text.weight.normal
+  "outline": {
+    "focus": {
+      "offset": "-2px",
+      "width": "2px"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "bgColor": vars.base.color.neutral[7]
     },
-    "caption": {
-      "lineHeight": "1.3333",
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      },
-      "size": "12px",
-      "weight": vars.base.text.weight.normal
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.muted,
+    "borderRadius": vars.borderRadius.medium,
+    "height": {
+      "large": "432px",
+      "medium": "320px",
+      "small": "256px",
+      "xlarge": "600px"
     },
-    "codeBlock": {
-      "lineHeight": "1.5385",
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      },
-      "size": "13px",
-      "weight": vars.base.text.weight.normal
+    "offset": "4px",
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16]
     },
-    "codeInline": {
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
-      },
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal
+    "paddingBlock": {
+      "condensed": vars.base.size[4],
+      "normal": vars.base.size[12]
     },
-    "display": {
-      "lineBoxHeight": "56px",
-      "lineHeight": "1.4",
-      "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
-      },
-      "size": "40px",
-      "weight": vars.base.text.weight.medium
+    "width": {
+      "large": "640px",
+      "medium": "480px",
+      "small": "320px",
+      "xlarge": "960px",
+      "xsmall": "192px"
+    }
+  },
+  "page": {
+    "header": {
+      "bgColor": vars.bgColor.muted
+    }
+  },
+  "progressBar": {
+    "bgColor": {
+      "accent": vars.bgColor.accent.emphasis,
+      "attention": vars.bgColor.attention.emphasis,
+      "danger": vars.bgColor.danger.emphasis,
+      "done": vars.bgColor.done.emphasis,
+      "neutral": vars.bgColor.neutral.emphasis,
+      "severe": vars.bgColor.severe.emphasis,
+      "sponsors": vars.bgColor.sponsors.emphasis,
+      "success": vars.bgColor.success.emphasis
     },
-    "subtitle": {
-      "lineHeight": "1.6",
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+    "track": {
+      "bgColor": vars.borderColor.default,
+      "borderColor": vars.base.color.transparent
+    }
+  },
+  "reactionButton": {
+    "selected": {
+      "bgColor": {
+        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "rest": vars.base.color.blue['0']
       },
-      "size": "20px",
-      "weight": vars.base.text.weight.normal
-    },
-    "title": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "shorthand": {
-        "large": {
-          "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
+      "fgColor": {
+        "hover": vars.base.color.blue[6],
+        "rest": vars.fgColor.link
       }
     }
-  }
-});
-
-export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
-  "base": {
-    "color": {
-      "black": "color(srgb 0.10588235294117647 0.12156862745098039 0.1411764705882353)",
-      "blue": {
-        "0": "color(srgb 0.8666666666666667 0.9568627450980393 1)",
-        "1": "color(srgb 0.7137254901960784 0.8901960784313725 1)",
-        "2": "color(srgb 0.5019607843137255 0.8 1)",
-        "3": "color(srgb 0.32941176470588235 0.6823529411764706 1)",
-        "4": "color(srgb 0.12941176470588237 0.5450980392156862 1)",
-        "5": "color(srgb 0.03529411764705882 0.4117647058823529 0.8549019607843137)",
-        "6": "color(srgb 0.0196078431372549 0.3137254901960784 0.6823529411764706)",
-        "7": "color(srgb 0.011764705882352941 0.23921568627450981 0.5450980392156862)",
-        "8": "color(srgb 0.0392156862745098 0.18823529411764706 0.4117647058823529)",
-        "9": "color(srgb 0 0.12941176470588237 0.3333333333333333)"
-      },
-      "coral": {
-        "0": "color(srgb 1 0.9411764705882353 0.9215686274509803)",
-        "1": "color(srgb 1 0.8392156862745098 0.8)",
-        "2": "color(srgb 1 0.7058823529411765 0.6313725490196078)",
-        "3": "color(srgb 0.9921568627450981 0.5490196078431373 0.45098039215686275)",
-        "4": "color(srgb 0.9254901960784314 0.396078431372549 0.2784313725490196)",
-        "5": "color(srgb 0.7686274509803922 0.2627450980392157 0.16862745098039217)",
-        "6": "color(srgb 0.6196078431372549 0.1843137254901961 0.10980392156862745)",
-        "7": "color(srgb 0.5019607843137255 0.12156862745098039 0.058823529411764705)",
-        "8": "color(srgb 0.4117647058823529 0.06666666666666667 0.0196078431372549)",
-        "9": "color(srgb 0.3176470588235294 0.03529411764705882 0.00392156862745098)"
-      },
-      "green": {
-        "0": "color(srgb 0.7529411764705882 0.9647058823529412 1)",
-        "1": "color(srgb 0.5882352941176471 0.8980392156862745 1)",
-        "2": "color(srgb 0.396078431372549 0.8 1)",
-        "3": "color(srgb 0.20784313725490197 0.6784313725490196 1)",
-        "4": "color(srgb 0 0.5333333333333333 1)",
-        "5": "color(srgb 0.0196078431372549 0.4 0.8352941176470589)",
-        "6": "color(srgb 0.0196078431372549 0.30196078431372547 0.6627450980392157)",
-        "7": "color(srgb 0.011764705882352941 0.22745098039215686 0.5254901960784314)",
-        "8": "color(srgb 0 0.17647058823529413 0.40784313725490196)",
-        "9": "color(srgb 0 0.12156862745098039 0.3137254901960784)"
-      },
-      "neutral": {
-        "0": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
-        "1": "color(srgb 0.9176470588235294 0.9333333333333333 0.9490196078431372)",
-        "2": "color(srgb 0.8156862745098039 0.8431372549019608 0.8705882352941177)",
-        "3": "color(srgb 0.6862745098039216 0.7215686274509804 0.7568627450980392)",
-        "4": "color(srgb 0.5490196078431373 0.5843137254901961 0.6235294117647059)",
-        "5": "color(srgb 0.43137254901960786 0.4666666666666667 0.5058823529411764)",
-        "6": "color(srgb 0.3411764705882353 0.3764705882352941 0.41568627450980394)",
-        "7": "color(srgb 0.25882352941176473 0.2901960784313726 0.3254901960784314)",
-        "8": "color(srgb 0.19607843137254902 0.2196078431372549 0.24705882352941178)",
-        "9": "color(srgb 0.1411764705882353 0.1607843137254902 0.1843137254901961)"
-      },
-      "orange": {
-        "0": "color(srgb 1 0.9450980392156862 0.8980392156862745)",
-        "1": "color(srgb 1 0.8470588235294118 0.7098039215686275)",
-        "2": "color(srgb 1 0.7176470588235294 0.48627450980392156)",
-        "3": "color(srgb 0.984313725490196 0.5607843137254902 0.26666666666666666)",
-        "4": "color(srgb 0.8823529411764706 0.43529411764705883 0.1411764705882353)",
-        "5": "color(srgb 0.7372549019607844 0.2980392156862745 0)",
-        "6": "color(srgb 0.5843137254901961 0.2196078431372549 0)",
-        "7": "color(srgb 0.4627450980392157 0.17254901960784313 0)",
-        "8": "color(srgb 0.3607843137254902 0.13333333333333333 0)",
-        "9": "color(srgb 0.2784313725490196 0.09019607843137255 0)"
-      },
-      "pink": {
-        "0": "color(srgb 1 0.9372549019607843 0.9686274509803922)",
-        "1": "color(srgb 1 0.8274509803921568 0.9215686274509803)",
-        "2": "color(srgb 1 0.6784313725490196 0.8549019607843137)",
-        "3": "color(srgb 1 0.5019607843137255 0.7843137254901961)",
-        "4": "color(srgb 0.9098039215686274 0.35294117647058826 0.6784313725490196)",
-        "5": "color(srgb 0.7490196078431373 0.2235294117647059 0.5372549019607843)",
-        "6": "color(srgb 0.6 0.1568627450980392 0.43137254901960786)",
-        "7": "color(srgb 0.4666666666666667 0.12549019607843137 0.3411764705882353)",
-        "8": "color(srgb 0.3803921568627451 0.07450980392156863 0.2784313725490196)",
-        "9": "color(srgb 0.30196078431372547 0.011764705882352941 0.21176470588235294)"
-      },
-      "purple": {
-        "0": "color(srgb 0.984313725490196 0.9372549019607843 1)",
-        "1": "color(srgb 0.9254901960784314 0.8470588235294118 1)",
-        "2": "color(srgb 0.8470588235294118 0.7254901960784313 1)",
-        "3": "color(srgb 0.7607843137254902 0.592156862745098 1)",
-        "4": "color(srgb 0.6431372549019608 0.4588235294117647 0.9764705882352941)",
-        "5": "color(srgb 0.5098039215686274 0.3137254901960784 0.8745098039215686)",
-        "6": "color(srgb 0.4 0.2235294117647059 0.7294117647058823)",
-        "7": "color(srgb 0.3176470588235294 0.16470588235294117 0.592156862745098)",
-        "8": "color(srgb 0.24313725490196078 0.12156862745098039 0.4745098039215686)",
-        "9": "color(srgb 0.1803921568627451 0.0784313725490196 0.3803921568627451)"
-      },
-      "red": {
-        "0": "color(srgb 0.996078431372549 0.996078431372549 0.2823529411764706)",
-        "1": "color(srgb 0.996078431372549 0.8901960784313725 0.1450980392156863)",
-        "2": "color(srgb 0.9725490196078431 0.7607843137254902 0)",
-        "3": "color(srgb 0.9058823529411765 0.6313725490196078 0)",
-        "4": "color(srgb 0.8156862745098039 0.5019607843137255 0.00784313725490196)",
-        "5": "color(srgb 0.6745098039215687 0.3686274509803922 0)",
-        "6": "color(srgb 0.5450980392156862 0.27450980392156865 0)",
-        "7": "color(srgb 0.4235294117647059 0.2235294117647059 0)",
-        "8": "color(srgb 0.2980392156862745 0.19215686274509805 0)",
-        "9": "color(srgb 0.1843137254901961 0.1607843137254902 0)"
-      },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "yellow": {
-        "0": "color(srgb 1 0.9725490196078431 0.7725490196078432)",
-        "1": "color(srgb 0.9803921568627451 0.8823529411764706 0.49019607843137253)",
-        "2": "color(srgb 0.9176470588235294 0.7725490196078432 0.30980392156862746)",
-        "3": "color(srgb 0.8313725490196079 0.6549019607843137 0.17254901960784313)",
-        "4": "color(srgb 0.7490196078431373 0.5294117647058824 0)",
-        "5": "color(srgb 0.6039215686274509 0.403921568627451 0)",
-        "6": "color(srgb 0.49019607843137253 0.3058823529411765 0)",
-        "7": "color(srgb 0.38823529411764707 0.23529411764705882 0.00392156862745098)",
-        "8": "color(srgb 0.30196078431372547 0.17647058823529413 0)",
-        "9": "color(srgb 0.23137254901960785 0.13725490196078433 0)"
-      }
+  },
+  "selection": {
+    "bgColor": vars.bgColor.accent.emphasis
+  },
+  "selectMenu": {
+    "bgColor": {
+      "active": vars.base.color.blue[1]
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "borderColor": vars.base.color.transparent
+  },
+  "shadow": {
+    "floating": {
+      "large": "0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12)",
+      "legacy": "0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "medium": "0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12)",
+      "small": "0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "xlarge": "0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12)"
     },
+    "inset": "inset 0 1px 0 0 var(--base-color-neutral-13)",
+    "resting": {
+      "medium": "0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12)",
+      "small": "0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13)",
+      "xsmall": "0 1px 1px 0 var(--base-color-neutral-13)"
+    }
+  },
+  "sideNav": {
+    "bgColor": {
+      "selected": vars.base.color.neutral['0']
+    }
+  },
+  "skeletonLoader": {
+    "bgColor": vars.base.color.neutral[8]
+  },
+  "spinner": {
     "size": {
-      "4": "4px",
-      "8": "8px",
-      "12": "12px",
-      "16": "16px",
-      "20": "20px",
-      "24": "24px",
-      "28": "28px",
-      "32": "32px",
-      "36": "36px",
-      "40": "40px",
-      "44": "44px",
-      "48": "48px",
-      "64": "64px",
-      "80": "80px",
-      "96": "96px",
-      "112": "112px",
-      "128": "128px"
+      "large": vars.base.size[64],
+      "medium": vars.base.size[32],
+      "small": vars.base.size[16]
     },
-    "text": {
-      "weight": {
-        "light": "300",
-        "medium": "500",
-        "normal": "400",
-        "semibold": "600"
-      }
+    "strokeWidth": {
+      "default": "2px"
     }
   },
-  "borderRadius": {
-    "full": "9999px",
-    "large": "12px",
-    "medium": "6px",
-    "small": "3px"
-  },
-  "breakpoint": {
-    "large": "1012px",
-    "medium": "768px",
-    "small": "544px",
-    "xlarge": "1280px",
-    "xsmall": "320px",
-    "xxlarge": "1440px"
-  },
-  "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
-  },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
-      }
+  "stack": {
+    "gap": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
-      }
-    },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     }
-  },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
   },
   "text": {
     "body": {
       "lineHeight": {
         "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
+        "medium": "1.42857",
+        "small": "1.66667"
       },
       "shorthand": {
         "large": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -2302,7 +4609,6 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
@@ -2314,7 +4620,6 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
         "fontFamily": vars.fontStack.monospace
       },
@@ -2325,22 +4630,19 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
+        "fontFamily": vars.fontStack.monospace
       },
       "size": "0.9285em",
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "56px",
+      "lineBoxHeight": "1.4",
       "lineHeight": "1.4",
       "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "40px",
       "weight": vars.base.text.weight.medium
@@ -2350,9 +4652,8 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "20px",
       "weight": vars.base.text.weight.normal
@@ -2365,23 +4666,20 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontFamily": vars.fontStack.sansSerif,
           "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "medium": {
           "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "small": {
           "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -2396,11 +4694,42 @@ export const [lightColorblindClass, lightColorblind] = createTheme(vars, {
         "medium": vars.base.text.weight.semibold,
         "small": vars.base.text.weight.semibold
       }
+    }
+  },
+  "timelineBadge": {
+    "bgColor": vars.bgColor.muted
+  },
+  "tooltip": {
+    "bgColor": vars.bgColor.emphasis,
+    "fgColor": vars.fgColor.onEmphasis
+  },
+  "topicTag": {
+    "borderColor": vars.base.color.transparent
+  },
+  "treeViewItem": {
+    "leadingVisual": {
+      "iconColor": {
+        "rest": vars.base.color.blue[3]
+      }
+    }
+  },
+  "underlineNav": {
+    "borderColor": {
+      "active": vars.base.color.coral[3],
+      "hover": vars.borderColor.muted
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
     }
   }
 });
 
 export const [lightHCClass, lightHC] = createTheme(vars, {
+  "avatar": {
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.translucent,
+    "shadow": "0 0 0 2px var(--base-color-neutral-0)"
+  },
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -2420,8 +4749,8 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "0": "color(srgb 1 0.9411764705882353 0.9294117647058824)",
         "1": "color(srgb 1 0.7607843137254902 0.7137254901960784)",
         "2": "color(srgb 1 0.5607843137254902 0.49411764705882355)",
-        "3": "color(srgb 0.9372549019607843 0.3568627450980392 0.2823529411764706)",
-        "4": "color(srgb 0.803921568627451 0.20392156862745098 0.1450980392156863)",
+        "3": "color(srgb 0.803921568627451 0.20392156862745098 0.1450980392156863)",
+        "4": "color(srgb 0.9372549019607843 0.3568627450980392 0.2823529411764706)",
         "5": "color(srgb 0.6235294117647059 0.09019607843137255 0.06274509803921569)",
         "6": "color(srgb 0.5294117647058824 0.027450980392156862 0.023529411764705882)",
         "7": "color(srgb 0.43529411764705883 0.00392156862745098 0.027450980392156862)",
@@ -2440,17 +4769,22 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "8": "color(srgb 0 0.19215686274509805 0.06274509803921569)",
         "9": "color(srgb 0 0.13725490196078433 0.043137254901960784)"
       },
+      "inset": vars.base.color.neutral['0'],
       "neutral": {
-        "0": "color(srgb 1 1 1)",
-        "1": "color(srgb 0.9058823529411765 0.9254901960784314 0.9411764705882353)",
-        "2": "color(srgb 0.807843137254902 0.8352941176470589 0.8627450980392157)",
-        "3": "color(srgb 0.6745098039215687 0.7137254901960784 0.7529411764705882)",
-        "4": "color(srgb 0.5333333333333333 0.5725490196078431 0.615686274509804)",
-        "5": "color(srgb 0.4 0.4392156862745098 0.4823529411764706)",
-        "6": "color(srgb 0.29411764705882354 0.3254901960784314 0.36470588235294116)",
-        "7": "color(srgb 0.20392156862745098 0.23137254901960785 0.2627450980392157)",
-        "8": "color(srgb 0.12549019607843137 0.1450980392156863 0.17254901960784313)",
-        "9": "color(srgb 0.054901960784313725 0.06666666666666667 0.08627450980392157)"
+        "0": vars.base.color.white,
+        "1": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
+        "2": "color(srgb 0.9372549019607843 0.9490196078431372 0.9607843137254902)",
+        "3": "color(srgb 0.9019607843137255 0.9176470588235294 0.9372549019607843)",
+        "4": "color(srgb 0.8784313725490196 0.9019607843137255 0.9215686274509803)",
+        "5": "color(srgb 0.8549019607843137 0.8784313725490196 0.9058823529411765)",
+        "6": "color(srgb 0.8196078431372549 0.8509803921568627 0.8784313725490196)",
+        "7": "color(srgb 0.7843137254901961 0.8196078431372549 0.8549019607843137)",
+        "8": "color(srgb 0.5058823529411764 0.5450980392156862 0.596078431372549)",
+        "9": "color(srgb 0.34901960784313724 0.38823529411764707 0.43137254901960786)",
+        "10": "color(srgb 0.27058823529411763 0.2980392156862745 0.32941176470588235)",
+        "11": "color(srgb 0.2235294117647059 0.24705882352941178 0.27450980392156865)",
+        "12": "color(srgb 0.1450980392156863 0.1607843137254902 0.1803921568627451)",
+        "13": vars.base.color.black
       },
       "orange": {
         "0": "color(srgb 1 0.9490196078431372 0.8352941176470589)",
@@ -2515,479 +4849,264 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "9": "color(srgb 0.1803921568627451 0.09411764705882353 0)"
       }
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "display": {
+      "color": {
+        "auburn": {
+          "0": "color(srgb 0.9490196078431372 0.9137254901960784 0.9137254901960784)",
+          "1": "color(srgb 0.9019607843137255 0.8392156862745098 0.8352941176470589)",
+          "2": "color(srgb 0.8313725490196079 0.7176470588235294 0.7098039215686275)",
+          "3": "color(srgb 0.7725490196078432 0.6196078431372549 0.6078431372549019)",
+          "4": "color(srgb 0.7058823529411765 0.5098039215686274 0.49411764705882355)",
+          "5": "color(srgb 0.615686274509804 0.3803921568627451 0.3607843137254902)",
+          "6": "color(srgb 0.5411764705882353 0.3333333333333333 0.3176470588235294)",
+          "7": "color(srgb 0.4549019607843137 0.2784313725490196 0.26666666666666666)",
+          "8": "color(srgb 0.36470588235294116 0.2235294117647059 0.21568627450980393)",
+          "9": "color(srgb 0.2627450980392157 0.1607843137254902 0.1568627450980392)"
+        },
+        "black": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)",
+        "blue": {
+          "0": "color(srgb 0.8196078431372549 0.9411764705882353 1)",
+          "1": "color(srgb 0.6784313725490196 0.8823529411764706 1)",
+          "2": "color(srgb 0.4588235294117647 0.7843137254901961 1)",
+          "3": "color(srgb 0.2784313725490196 0.6862745098039216 1)",
+          "4": "color(srgb 0.058823529411764705 0.5607843137254902 1)",
+          "5": "color(srgb 0 0.43137254901960786 0.8588235294117647)",
+          "6": "color(srgb 0 0.37254901960784315 0.8)",
+          "7": "color(srgb 0 0.30196078431372547 0.7019607843137254)",
+          "8": "color(srgb 0 0.23921568627450981 0.6)",
+          "9": "color(srgb 0 0.16862745098039217 0.4588235294117647)"
+        },
+        "brown": {
+          "0": "color(srgb 0.9333333333333333 0.9176470588235294 0.8862745098039215)",
+          "1": "color(srgb 0.8745098039215686 0.8431372549019608 0.7843137254901961)",
+          "2": "color(srgb 0.796078431372549 0.7411764705882353 0.6431372549019608)",
+          "3": "color(srgb 0.7215686274509804 0.6431372549019608 0.5176470588235295)",
+          "4": "color(srgb 0.6509803921568628 0.5450980392156862 0.39215686274509803)",
+          "5": "color(srgb 0.5215686274509804 0.42745098039215684 0.2980392156862745)",
+          "6": "color(srgb 0.4588235294117647 0.37254901960784315 0.2627450980392157)",
+          "7": "color(srgb 0.39215686274509803 0.3176470588235294 0.22745098039215686)",
+          "8": "color(srgb 0.3176470588235294 0.2549019607843137 0.1843137254901961)",
+          "9": "color(srgb 0.22745098039215686 0.1803921568627451 0.13333333333333333)"
+        },
+        "coral": {
+          "0": "color(srgb 1 0.8980392156862745 0.8588235294117647)",
+          "1": "color(srgb 0.996078431372549 0.807843137254902 0.7450980392156863)",
+          "2": "color(srgb 0.9882352941176471 0.6705882352941176 0.5725490196078431)",
+          "3": "color(srgb 0.9725490196078431 0.5294117647058824 0.40784313725490196)",
+          "4": "color(srgb 0.9490196078431372 0.37254901960784315 0.22745098039215686)",
+          "5": "color(srgb 0.8313725490196079 0.20784313725490197 0.06666666666666667)",
+          "6": "color(srgb 0.7294117647058823 0.1803921568627451 0.07058823529411765)",
+          "7": "color(srgb 0.6078431372549019 0.15294117647058825 0.07058823529411765)",
+          "8": "color(srgb 0.49411764705882355 0.12549019607843137 0.06666666666666667)",
+          "9": "color(srgb 0.36470588235294116 0.09411764705882353 0.054901960784313725)"
+        },
+        "cyan": {
+          "0": "color(srgb 0.7411764705882353 0.9568627450980393 1)",
+          "1": "color(srgb 0.47843137254901963 0.9137254901960784 1)",
+          "2": "color(srgb 0 0.8156862745098039 0.9803921568627451)",
+          "3": "color(srgb 0 0.7176470588235294 0.8588235294117647)",
+          "4": "color(srgb 0 0.6 0.7215686274509804)",
+          "5": "color(srgb 0 0.4823529411764706 0.5803921568627451)",
+          "6": "color(srgb 0 0.41568627450980394 0.5019607843137255)",
+          "7": "color(srgb 0 0.34901960784313724 0.4196078431372549)",
+          "8": "color(srgb 0 0.2823529411764706 0.3411764705882353)",
+          "9": "color(srgb 0 0.21568627450980393 0.25882352941176473)"
+        },
+        "gray": {
+          "0": "color(srgb 0.9098039215686274 0.9254901960784314 0.9490196078431372)",
+          "1": "color(srgb 0.8235294117647058 0.8549019607843137 0.8941176470588236)",
+          "2": "color(srgb 0.7058823529411765 0.7529411764705882 0.8117647058823529)",
+          "3": "color(srgb 0.6078431372549019 0.6627450980392157 0.7333333333333333)",
+          "4": "color(srgb 0.5019607843137255 0.5607843137254902 0.6392156862745098)",
+          "5": "color(srgb 0.39215686274509803 0.44313725490196076 0.5098039215686274)",
+          "6": "color(srgb 0.3607843137254902 0.396078431372549 0.4392156862745098)",
+          "7": "color(srgb 0.3058823529411765 0.3254901960784314 0.35294117647058826)",
+          "8": "color(srgb 0.25882352941176473 0.26666666666666666 0.2823529411764706)",
+          "9": "color(srgb 0.18823529411764706 0.18823529411764706 0.19215686274509805)"
+        },
+        "green": {
+          "0": "color(srgb 0.792156862745098 0.9686274509803922 0.792156862745098)",
+          "1": "color(srgb 0.611764705882353 0.9294117647058824 0.6274509803921569)",
+          "2": "color(srgb 0.32941176470588235 0.8509803921568627 0.3803921568627451)",
+          "3": "color(srgb 0.19215686274509805 0.7490196078431373 0.27450980392156865)",
+          "4": "color(srgb 0.18823529411764706 0.6313725490196078 0.2784313725490196)",
+          "5": "color(srgb 0.17254901960784313 0.5058823529411764 0.2549019607843137)",
+          "6": "color(srgb 0.16862745098039217 0.43137254901960786 0.24705882352941178)",
+          "7": "color(srgb 0.1568627450980392 0.3607843137254902 0.23137254901960785)",
+          "8": "color(srgb 0.1450980392156863 0.29411764705882354 0.20392156862745098)",
+          "9": "color(srgb 0.11372549019607843 0.20784313725490197 0.1568627450980392)"
+        },
+        "indigo": {
+          "0": "color(srgb 0.8980392156862745 0.9137254901960784 1)",
+          "1": "color(srgb 0.8235294117647058 0.8431372549019608 0.996078431372549)",
+          "2": "color(srgb 0.6941176470588235 0.7254901960784313 0.984313725490196)",
+          "3": "color(srgb 0.592156862745098 0.6235294117647059 0.9686274509803922)",
+          "4": "color(srgb 0.47843137254901963 0.5098039215686274 0.9411764705882353)",
+          "5": "color(srgb 0.35294117647058826 0.3803921568627451 0.9058823529411765)",
+          "6": "color(srgb 0.28627450980392155 0.3058823529411765 0.8745098039215686)",
+          "7": "color(srgb 0.2235294117647059 0.23529411764705882 0.8352941176470589)",
+          "8": "color(srgb 0.17647058823529413 0.17647058823529413 0.7058823529411765)",
+          "9": "color(srgb 0.1450980392156863 0.1411764705882353 0.4823529411764706)"
+        },
+        "lemon": {
+          "0": "color(srgb 0.9686274509803922 0.9333333333333333 0.6313725490196078)",
+          "1": "color(srgb 0.9411764705882353 0.8588235294117647 0.23921568627450981)",
+          "2": "color(srgb 0.8470588235294118 0.7411764705882353 0.054901960784313725)",
+          "3": "color(srgb 0.7607843137254902 0.6509803921568628 0.0392156862745098)",
+          "4": "color(srgb 0.6509803921568628 0.5490196078431373 0.027450980392156862)",
+          "5": "color(srgb 0.5254901960784314 0.43137254901960786 0.01568627450980392)",
+          "6": "color(srgb 0.47058823529411764 0.3764705882352941 0.00784313725490196)",
+          "7": "color(srgb 0.396078431372549 0.30980392156862746 0.00392156862745098)",
+          "8": "color(srgb 0.3215686274509804 0.24705882352941178 0)",
+          "9": "color(srgb 0.23921568627450981 0.1803921568627451 0)"
+        },
+        "lime": {
+          "0": "color(srgb 0.8901960784313725 0.9490196078431372 0.7098039215686275)",
+          "1": "color(srgb 0.7803921568627451 0.8980392156862745 0.5019607843137255)",
+          "2": "color(srgb 0.6078431372549019 0.8156862745098039 0.2235294117647059)",
+          "3": "color(srgb 0.5019607843137255 0.7098039215686275 0.18823529411764706)",
+          "4": "color(srgb 0.4235294117647059 0.615686274509804 0.1843137254901961)",
+          "5": "color(srgb 0.3215686274509804 0.47843137254901963 0.1607843137254902)",
+          "6": "color(srgb 0.2784313725490196 0.4235294117647059 0.1568627450980392)",
+          "7": "color(srgb 0.22745098039215686 0.3568627450980392 0.1450980392156863)",
+          "8": "color(srgb 0.1843137254901961 0.2901960784313726 0.12941176470588237)",
+          "9": "color(srgb 0.12941176470588237 0.2 0.09803921568627451)"
+        },
+        "olive": {
+          "0": "color(srgb 0.9411764705882353 0.9411764705882353 0.6784313725490196)",
+          "1": "color(srgb 0.8588235294117647 0.8823529411764706 0.4392156862745098)",
+          "2": "color(srgb 0.7254901960784313 0.7843137254901961 0.19607843137254902)",
+          "3": "color(srgb 0.6078431372549019 0.6823529411764706 0.19607843137254902)",
+          "4": "color(srgb 0.5058823529411764 0.5843137254901961 0.19607843137254902)",
+          "5": "color(srgb 0.39215686274509803 0.4627450980392157 0.17647058823529413)",
+          "6": "color(srgb 0.33725490196078434 0.40784313725490196 0.17254901960784313)",
+          "7": "color(srgb 0.28627450980392155 0.35294117647058826 0.16862745098039217)",
+          "8": "color(srgb 0.23137254901960785 0.28627450980392155 0.15294117647058825)",
+          "9": "color(srgb 0.16470588235294117 0.2 0.12156862745098039)"
+        },
+        "orange": {
+          "0": "color(srgb 1 0.9058823529411765 0.8196078431372549)",
+          "1": "color(srgb 0.996078431372549 0.8117647058823529 0.6666666666666666)",
+          "2": "color(srgb 0.984313725490196 0.6862745098039216 0.4549019607843137)",
+          "3": "color(srgb 0.9647058823529412 0.5490196078431373 0.2549019607843137)",
+          "4": "color(srgb 0.9215686274509803 0.403921568627451 0.058823529411764705)",
+          "5": "color(srgb 0.7215686274509804 0.3137254901960784 0.058823529411764705)",
+          "6": "color(srgb 0.6352941176470588 0.27450980392156865 0.06274509803921569)",
+          "7": "color(srgb 0.5529411764705883 0.23529411764705882 0.06666666666666667)",
+          "8": "color(srgb 0.4392156862745098 0.18823529411764706 0.058823529411764705)",
+          "9": "color(srgb 0.32941176470588235 0.13725490196078433 0.050980392156862744)"
+        },
+        "pine": {
+          "0": "color(srgb 0.7490196078431373 0.9725490196078431 0.8588235294117647)",
+          "1": "color(srgb 0.5019607843137255 0.9372549019607843 0.7254901960784313)",
+          "2": "color(srgb 0.11372549019607843 0.8431372549019608 0.5058823529411764)",
+          "3": "color(srgb 0.11372549019607843 0.7490196078431373 0.4627450980392157)",
+          "4": "color(srgb 0.10196078431372549 0.6352941176470588 0.403921568627451)",
+          "5": "color(srgb 0.08627450980392157 0.49411764705882355 0.3254901960784314)",
+          "6": "color(srgb 0.08235294117647059 0.43529411764705883 0.29411764705882354)",
+          "7": "color(srgb 0.07450980392156863 0.36470588235294116 0.2549019607843137)",
+          "8": "color(srgb 0.06666666666666667 0.29411764705882354 0.21176470588235294)",
+          "9": "color(srgb 0.050980392156862744 0.21176470588235294 0.15294117647058825)"
+        },
+        "pink": {
+          "0": "color(srgb 1 0.8980392156862745 0.9450980392156862)",
+          "1": "color(srgb 0.9921568627450981 0.788235294117647 0.8862745098039215)",
+          "2": "color(srgb 0.9725490196078431 0.6470588235294118 0.8117647058823529)",
+          "3": "color(srgb 0.9450980392156862 0.5176470588235295 0.7372549019607844)",
+          "4": "color(srgb 0.8980392156862745 0.36470588235294116 0.6470588235294118)",
+          "5": "color(srgb 0.807843137254902 0.17254901960784313 0.5215686274509804)",
+          "6": "color(srgb 0.6941176470588235 0.1843137254901961 0.4745098039215686)",
+          "7": "color(srgb 0.5568627450980392 0.1803921568627451 0.4)",
+          "8": "color(srgb 0.43137254901960786 0.16862745098039217 0.3254901960784314)",
+          "9": "color(srgb 0.30196078431372547 0.13725490196078433 0.23921568627450981)"
+        },
+        "plum": {
+          "0": "color(srgb 0.9725490196078431 0.8980392156862745 1)",
+          "1": "color(srgb 0.9411764705882353 0.803921568627451 0.996078431372549)",
+          "2": "color(srgb 0.8862745098039215 0.6549019607843137 0.984313725490196)",
+          "3": "color(srgb 0.8313725490196079 0.5294117647058824 0.9686274509803922)",
+          "4": "color(srgb 0.7607843137254902 0.39215686274509803 0.9490196078431372)",
+          "5": "color(srgb 0.6588235294117647 0.18823529411764706 0.9098039215686274)",
+          "6": "color(srgb 0.5882352941176471 0.11764705882352941 0.8627450980392157)",
+          "7": "color(srgb 0.49019607843137253 0.11764705882352941 0.7215686274509804)",
+          "8": "color(srgb 0.396078431372549 0.11372549019607843 0.5882352941176471)",
+          "9": "color(srgb 0.2784313725490196 0.09019607843137255 0.4117647058823529)"
+        },
+        "purple": {
+          "0": "color(srgb 0.9450980392156862 0.8980392156862745 1)",
+          "1": "color(srgb 0.9019607843137255 0.8235294117647058 0.996078431372549)",
+          "2": "color(srgb 0.8196078431372549 0.6941176470588235 0.9882352941176471)",
+          "3": "color(srgb 0.7372549019607844 0.5686274509803921 0.9725490196078431)",
+          "4": "color(srgb 0.6509803921568628 0.4470588235294118 0.9529411764705882)",
+          "5": "color(srgb 0.5372549019607843 0.2980392156862745 0.9215686274509803)",
+          "6": "color(srgb 0.47058823529411764 0.22745098039215686 0.8941176470588236)",
+          "7": "color(srgb 0.3843137254901961 0.13725490196078433 0.8431372549019608)",
+          "8": "color(srgb 0.30980392156862746 0.12941176470588237 0.6705882352941176)",
+          "9": "color(srgb 0.2235294117647059 0.10588235294117647 0.4745098039215686)"
+        },
+        "red": {
+          "0": "color(srgb 1 0.8862745098039215 0.8784313725490196)",
+          "1": "color(srgb 0.996078431372549 0.803921568627451 0.803921568627451)",
+          "2": "color(srgb 0.9921568627450981 0.6470588235294118 0.6549019607843137)",
+          "3": "color(srgb 0.984313725490196 0.5137254901960784 0.5372549019607843)",
+          "4": "color(srgb 0.9725490196078431 0.32941176470588235 0.3803921568627451)",
+          "5": "color(srgb 0.8745098039215686 0.047058823529411764 0.1411764705882353)",
+          "6": "color(srgb 0.7725490196078432 0.050980392156862744 0.1568627450980392)",
+          "7": "color(srgb 0.6509803921568628 0.047058823529411764 0.1607843137254902)",
+          "8": "color(srgb 0.5333333333333333 0.047058823529411764 0.15294117647058825)",
+          "9": "color(srgb 0.3803921568627451 0.0392156862745098 0.12549019607843137)"
+        },
+        "teal": {
+          "0": "color(srgb 0.7803921568627451 0.9607843137254902 0.9372549019607843)",
+          "1": "color(srgb 0.5372549019607843 0.9215686274509803 0.8823529411764706)",
+          "2": "color(srgb 0.13333333333333333 0.8274509803921568 0.7803921568627451)",
+          "3": "color(srgb 0.11372549019607843 0.7254901960784313 0.7058823529411765)",
+          "4": "color(srgb 0.09019607843137255 0.6078431372549019 0.6078431372549019)",
+          "5": "color(srgb 0.07058823529411765 0.49411764705882355 0.5058823529411764)",
+          "6": "color(srgb 0.06274509803921569 0.43137254901960786 0.4588235294117647)",
+          "7": "color(srgb 0.050980392156862744 0.3568627450980392 0.38823529411764707)",
+          "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
+          "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
+        },
+        "white": "color(srgb 1 1 1)",
+        "yellow": {
+          "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
+          "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
+          "2": "color(srgb 0.9215686274509803 0.7058823529411765 0)",
+          "3": "color(srgb 0.8196078431372549 0.615686274509804 0)",
+          "4": "color(srgb 0.7215686274509804 0.5294117647058824 0)",
+          "5": "color(srgb 0.5803921568627451 0.41568627450980394 0)",
+          "6": "color(srgb 0.5019607843137255 0.34901960784313724 0)",
+          "7": "color(srgb 0.4392156862745098 0.30196078431372547 0)",
+          "8": "color(srgb 0.3607843137254902 0.23921568627450981 0)",
+          "9": "color(srgb 0.25882352941176473 0.16862745098039217 0)"
+        }
+      }
+    },
+    "duration": {
+      "0": "0",
+      "50": "50ms",
+      "100": "100ms",
+      "200": "200ms",
+      "300": "300ms",
+      "400": "400ms",
+      "500": "500ms",
+      "600": "600ms",
+      "700": "700ms",
+      "800": "800ms",
+      "900": "900ms",
+      "1000": "1000ms"
+    },
+    "easing": {
+      "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
+      "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
+      "linear": "cubic-bezier(0, 0, 1, 1)"
     },
     "size": {
+      "2": "2px",
       "4": "4px",
+      "6": "6px",
       "8": "8px",
       "12": "12px",
       "16": "16px",
@@ -3014,11 +5133,189 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       }
     }
   },
+  "bgColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue['0']
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow['0']
+    },
+    "black": vars.base.color.neutral[13],
+    "closed": {
+      "emphasis": vars.bgColor.danger.emphasis,
+      "muted": vars.bgColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red['0']
+    },
+    "default": vars.base.color.neutral['0'],
+    "disabled": vars.base.color.neutral[2],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple['0']
+    },
+    "draft": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[12],
+    "inset": vars.bgColor.muted,
+    "inverse": vars.base.color.neutral[12],
+    "muted": vars.base.color.neutral[1],
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.base.color.neutral[8]
+    },
+    "open": {
+      "emphasis": vars.bgColor.success.emphasis,
+      "muted": vars.bgColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange['0']
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink['0']
+    },
+    "success": {
+      "emphasis": "color(srgb 0.12156862745098039 0.5333333333333333 0.23921568627450981)",
+      "muted": vars.base.color.green['0']
+    },
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.bgColor.done.emphasis,
+      "muted": vars.bgColor.done.muted
+    },
+    "white": vars.base.color.neutral['0']
+  },
+  "border": {
+    "accent": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-accent-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-accent-muted)"
+    },
+    "attention": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-attention-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-attention-muted)"
+    },
+    "closed": {
+      "emphasis": vars.border.danger.emphasis,
+      "muted": vars.border.danger.muted
+    },
+    "danger": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-danger-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-danger-muted)"
+    },
+    "default": "var(--border-width-default) solid var(--border-color-default)",
+    "disabled": "var(--border-width-default) solid var(--border-color-disabled)",
+    "done": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
+    },
+    "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
+    "muted": "var(--border-width-default) solid var(--border-color-muted)",
+    "neutral": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-neutral-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-neutral-muted)"
+    },
+    "open": {
+      "emphasis": vars.border.success.emphasis,
+      "muted": vars.border.success.muted
+    },
+    "severe": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-severe-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-severe-muted)"
+    },
+    "sponsors": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-sponsors-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-sponsors-muted)"
+    },
+    "success": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
+    },
+    "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
+    "upsell": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-upsell-muted)"
+    }
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue[3]
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow[3]
+    },
+    "closed": {
+      "emphasis": vars.borderColor.danger.emphasis,
+      "muted": vars.borderColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red[3]
+    },
+    "default": vars.base.color.neutral[6],
+    "disabled": vars.base.color.neutral[8],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple[3]
+    },
+    "draft": {
+      "emphasis": vars.borderColor.neutral.emphasis,
+      "muted": vars.borderColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[8],
+    "muted": vars.borderColor.default,
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.borderColor.muted
+    },
+    "open": {
+      "emphasis": vars.borderColor.success.emphasis,
+      "muted": vars.borderColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange[3]
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink[3]
+    },
+    "success": {
+      "emphasis": vars.base.color.green[5],
+      "muted": vars.base.color.green[3]
+    },
+    "translucent": vars.base.color.neutral[13],
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.borderColor.done.emphasis,
+      "muted": vars.borderColor.done.muted
+    }
+  },
   "borderRadius": {
+    "default": vars.borderRadius.medium,
     "full": "9999px",
     "large": "12px",
     "medium": "6px",
     "small": "3px"
+  },
+  "borderWidth": {
+    "default": vars.borderWidth.thin,
+    "thick": "2px",
+    "thicker": "4px",
+    "thin": "1px"
+  },
+  "boxShadow": {
+    "thick": "inset 0 0 0 {borderWidth.thick}",
+    "thicker": "inset 0 0 0 {borderWidth.thicker}",
+    "thin": "inset 0 0 0 {borderWidth.thin}"
   },
   "breakpoint": {
     "large": "1012px",
@@ -3026,66 +5323,1638 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
     "small": "544px",
     "xlarge": "1280px",
     "xsmall": "320px",
-    "xxlarge": "1440px"
+    "xxlarge": "1400px"
   },
-  "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
-  },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
+  "button": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.red[6],
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.danger.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.danger.borderColor.hover,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.danger
+      },
+      "iconColor": {
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.button.danger.fgColor.rest
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-red-9)"
       }
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
+    "default": {
+      "bgColor": {
+        "active": vars.control.bgColor.active,
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.control.bgColor.hover,
+        "rest": vars.control.bgColor.rest,
+        "selected": vars.control.bgColor.active
+      },
+      "borderColor": {
+        "active": vars.control.borderColor.rest,
+        "disabled": vars.control.borderColor.disabled,
+        "hover": vars.button.default.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "rest": vars.control.fgColor.rest
+      },
+      "shadow": {
+        "resting": "0 1px 0 0 var(--base-color-neutral-13)"
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
+    "inactive": {
+      "bgColor": vars.base.color.neutral[3],
+      "fgColor": vars.base.color.neutral[9]
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.control.transparent.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.borderColor.hover,
+        "rest": vars.control.transparent.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.control.fgColor.rest,
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.control.fgColor.rest,
+        "rest": vars.control.fgColor.rest
+      },
+      "iconColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.fgColor.muted,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.outline.borderColor.hover,
+        "hover": vars.button.primary.borderColor.hover
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.accent
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-blue-9)"
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "active": "color(srgb 0.09803921568627451 0.4745098039215686 0.20784313725490197)",
+        "disabled": "color(srgb 0.5843137254901961 0.8470588235294118 0.6509803921568628)",
+        "hover": "color(srgb 0.10980392156862745 0.5058823529411764 0.2235294117647059)",
+        "rest": vars.bgColor.success.emphasis
+      },
+      "borderColor": {
+        "active": vars.button.primary.borderColor.rest,
+        "disabled": vars.button.primary.bgColor.disabled,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.white
+      },
+      "iconColor": {
+        "rest": vars.fgColor.white
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-green-9)"
+      }
+    },
+    "star": {
+      "iconColor": vars.base.color.yellow[2]
+    }
+  },
+  "buttonCounter": {
+    "danger": {
+      "bgColor": {
+        "disabled": vars.bgColor.danger.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.danger.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": "color(srgb 0.7607843137254902 0.10980392156862745 0.17254901960784313)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "invisible": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "disabled": vars.bgColor.accent.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.base.color.blue[6]
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "rest": vars.base.color.green[9]
       }
     }
   },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
+  "buttonKeybindingHint": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.black,
+        "disabled": vars.buttonKeybindingHint.default.bgColor.disabled,
+        "hover": vars.base.color.black,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.buttonKeybindingHint.danger.borderColor.hover,
+        "disabled": vars.buttonKeybindingHint.default.borderColor.disabled,
+        "hover": vars.borderColor.translucent,
+        "rest": vars.buttonKeybindingHint.default.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.fgColor.onEmphasis,
+        "disabled": vars.buttonKeybindingHint.default.fgColor.disabled,
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.buttonKeybindingHint.default.fgColor.rest
+      }
+    },
+    "default": {
+      "bgColor": {
+        "disabled": vars.buttonKeybindingHint.default.bgColor.rest,
+        "rest": vars.base.color.neutral[2]
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.muted
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[2],
+      "borderColor": vars.borderColor.muted,
+      "fgColor": vars.button.inactive.fgColor
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.button.invisible.bgColor.disabled,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.base.color.transparent
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "disabled": vars.buttonCounter.primary.bgColor.rest,
+        "rest": vars.buttonCounter.primary.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
+        "rest": vars.fgColor.onEmphasis
+      }
+    }
+  },
+  "card": {
+    "bgColor": vars.bgColor.default
+  },
+  "codeMirror": {
+    "activeline": {
+      "bgColor": vars.bgColor.neutral.muted
+    },
+    "bgColor": vars.bgColor.default,
+    "cursor": {
+      "fgColor": vars.fgColor.default
+    },
+    "fgColor": vars.fgColor.default,
+    "gutterMarker": {
+      "fgColor": {
+        "default": vars.bgColor.default,
+        "muted": vars.fgColor.muted
+      }
+    },
+    "gutters": {
+      "bgColor": vars.bgColor.default
+    },
+    "lineNumber": {
+      "fgColor": vars.fgColor.muted
+    },
+    "lines": {
+      "bgColor": vars.bgColor.default
+    },
+    "matchingBracket": {
+      "fgColor": vars.fgColor.default
+    },
+    "selection": {
+      "bgColor": vars.borderColor.accent.muted
+    },
+    "syntax": {
+      "fgColor": {
+        "comment": vars.base.color.neutral[13],
+        "constant": vars.base.color.blue[6],
+        "entity": vars.base.color.purple[5],
+        "keyword": vars.base.color.red[5],
+        "storage": vars.base.color.red[5],
+        "string": vars.base.color.blue[8],
+        "support": vars.base.color.blue[6],
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "color": {
+    "ansi": {
+      "black": vars.base.color.neutral[13],
+      "blackBright": vars.base.color.neutral[11],
+      "blue": vars.base.color.blue[5],
+      "blueBright": vars.base.color.blue[4],
+      "cyan": "color(srgb 0.10588235294117647 0.48627450980392156 0.5137254901960784)",
+      "cyanBright": "color(srgb 0.19215686274509805 0.5725490196078431 0.6666666666666666)",
+      "gray": vars.base.color.neutral[9],
+      "green": vars.base.color.green[6],
+      "greenBright": vars.base.color.green[5],
+      "magenta": vars.base.color.purple[5],
+      "magentaBright": vars.base.color.purple[4],
+      "red": vars.base.color.red[5],
+      "redBright": vars.base.color.red[6],
+      "white": vars.base.color.neutral[9],
+      "whiteBright": vars.base.color.neutral[8],
+      "yellow": vars.base.color.yellow[8],
+      "yellowBright": vars.base.color.yellow[7]
+    },
+    "prettylights": {
+      "syntax": {
+        "brackethighlighter": {
+          "angle": vars.base.color.neutral[9],
+          "unmatched": vars.base.color.red[7]
+        },
+        "carriage": {
+          "return": {
+            "bg": vars.base.color.red[5],
+            "text": vars.base.color.neutral[1]
+          }
+        },
+        "comment": vars.base.color.neutral[9],
+        "constant": vars.base.color.blue[6],
+        "constantOtherReferenceLink": vars.base.color.blue[8],
+        "entity": vars.base.color.purple[6],
+        "entityTag": vars.base.color.blue[6],
+        "invalid": {
+          "illegal": {
+            "bg": vars.bgColor.danger.muted,
+            "text": vars.fgColor.danger
+          }
+        },
+        "keyword": vars.base.color.red[5],
+        "markup": {
+          "bold": vars.base.color.neutral[13],
+          "changed": {
+            "bg": vars.base.color.orange[1],
+            "text": vars.base.color.orange[6]
+          },
+          "deleted": {
+            "bg": vars.base.color.red['0'],
+            "text": vars.base.color.red[7]
+          },
+          "heading": vars.base.color.blue[6],
+          "ignored": {
+            "bg": vars.base.color.blue[6],
+            "text": vars.base.color.neutral[6]
+          },
+          "inserted": {
+            "bg": vars.base.color.green['0'],
+            "text": vars.base.color.green[6]
+          },
+          "italic": vars.base.color.neutral[13],
+          "list": vars.base.color.yellow[9]
+        },
+        "meta": {
+          "diff": {
+            "range": vars.base.color.purple[5]
+          }
+        },
+        "storage": {
+          "modifier": {
+            "import": vars.base.color.neutral[13]
+          }
+        },
+        "string": vars.base.color.blue[8],
+        "stringRegexp": vars.base.color.green[6],
+        "sublimelinter": {
+          "gutter": {
+            "mark": vars.base.color.neutral[8]
+          }
+        },
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "contribution": {
+    "default": {
+      "bgColor": {
+        "0": vars.base.color.neutral[2],
+        "1": vars.base.color.green[1],
+        "2": vars.base.color.green[3],
+        "3": vars.base.color.green[4],
+        "4": vars.base.color.green[6]
+      },
+      "borderColor": {
+        "0": vars.base.color.black,
+        "1": vars.contribution.default.borderColor['0'],
+        "2": vars.contribution.default.borderColor['0'],
+        "3": vars.contribution.default.borderColor['0'],
+        "4": vars.contribution.default.borderColor['0']
+      }
+    },
+    "halloween": {
+      "bgColor": {
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.yellow[1],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.color.black
+      }
+    },
+    "winter": {
+      "bgColor": {
+        "1": vars.base.color.blue[1],
+        "2": vars.base.color.blue[3],
+        "3": vars.base.color.blue[5],
+        "4": vars.base.color.blue[8]
+      }
+    }
+  },
+  "control": {
+    "bgColor": {
+      "active": vars.base.color.neutral[3],
+      "disabled": vars.bgColor.disabled,
+      "hover": vars.base.color.neutral[2],
+      "rest": vars.base.color.neutral[1],
+      "selected": vars.control.bgColor.rest
+    },
+    "borderColor": {
+      "danger": vars.borderColor.danger.emphasis,
+      "disabled": vars.borderColor.disabled,
+      "emphasis": vars.borderColor.emphasis,
+      "rest": vars.borderColor.default,
+      "selected": vars.control.bgColor.selected,
+      "success": vars.borderColor.success.emphasis,
+      "warning": vars.borderColor.attention.emphasis
+    },
+    "checked": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.fgColor.disabled,
+        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "borderColor": {
+        "active": vars.control.checked.bgColor.active,
+        "disabled": vars.control.checked.bgColor.disabled,
+        "hover": vars.control.checked.bgColor.hover,
+        "rest": vars.control.checked.bgColor.rest
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.onEmphasis
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": vars.bgColor.danger.muted,
+        "hover": vars.bgColor.danger.muted
+      },
+      "fgColor": {
+        "hover": vars.fgColor.danger,
+        "rest": vars.fgColor.danger
+      }
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.disabled,
+      "placeholder": vars.fgColor.muted,
+      "rest": vars.base.color.neutral[12]
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
+    },
+    "large": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "10px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[40]
+    },
+    "medium": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "6px",
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[32]
+    },
+    "minTarget": {
+      "coarse": vars.base.size[44],
+      "fine": vars.base.size[16]
+    },
+    "small": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": vars.base.size[4],
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12]
+      },
+      "size": vars.base.size[28]
+    },
+    "transparent": {
+      "bgColor": {
+        "active": vars.base.color.neutral[8],
+        "disabled": vars.bgColor.disabled,
+        "hover": vars.base.color.neutral[8],
+        "rest": vars.base.color.transparent,
+        "selected": vars.base.color.neutral[8]
+      },
+      "borderColor": {
+        "active": vars.base.color.transparent,
+        "hover": vars.base.color.transparent,
+        "rest": vars.base.color.transparent
+      }
+    },
+    "xlarge": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "14px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[48]
+    },
+    "xsmall": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "2px",
+      "paddingInline": {
+        "condensed": vars.base.size[4],
+        "normal": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      },
+      "size": vars.base.size[24]
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": vars.base.color.neutral['0'],
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.base.color.neutral['0']
+    },
+    "borderColor": {
+      "checked": vars.control.checked.bgColor.rest,
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.control.borderColor.rest
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": vars.base.size[8],
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[16]
+      }
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": vars.base.color.neutral[5],
+      "disabled": vars.fgColor.disabled,
+      "hover": vars.base.color.neutral[4],
+      "rest": vars.base.color.neutral[3]
+    },
+    "borderColor": {
+      "disabled": vars.fgColor.disabled,
+      "rest": vars.borderColor.default
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.onEmphasis,
+      "rest": vars.base.color.neutral[9]
+    }
+  },
+  "counter": {
+    "bgColor": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "borderColor": vars.base.color.transparent
+  },
+  "dashboard": {
+    "bgColor": vars.bgColor.default
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": vars.base.display.color.gray[4],
+        "muted": vars.base.display.color.gray['0']
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": vars.base.display.color.green[4],
+        "muted": vars.base.display.color.green['0']
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": vars.base.display.color.orange[4],
+        "muted": vars.base.display.color.orange['0']
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": vars.base.display.color.teal[4],
+        "muted": vars.base.display.color.teal['0']
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": vars.base.display.color.yellow[4],
+        "muted": vars.base.display.color.yellow['0']
+      }
+    }
+  },
+  "diffBlob": {
+    "additionLine": {
+      "bgColor": vars.bgColor.success.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "additionNum": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "additionWord": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionLine": {
+      "bgColor": vars.bgColor.danger.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "deletionNum": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionWord": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "emptyLine": {
+      "bgColor": vars.bgColor.muted
+    },
+    "emptyNum": {
+      "bgColor": vars.bgColor.muted
+    },
+    "expander": {
+      "iconColor": vars.fgColor.muted
+    },
+    "hunkLine": {
+      "bgColor": vars.bgColor.accent.muted,
+      "fgColor": vars.fgColor.muted
+    },
+    "hunkNum": {
+      "bgColor": {
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.base.color.blue[1]
+      },
+      "fgColor": {
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.default
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn[1]
+      },
+      "fgColor": vars.base.display.color.auburn[6],
+      "scale": {
+        "0": vars.base.display.color.auburn['0'],
+        "1": vars.base.display.color.auburn[1],
+        "2": vars.base.display.color.auburn[2],
+        "3": vars.base.display.color.auburn[3],
+        "4": vars.base.display.color.auburn[4],
+        "5": vars.base.display.color.auburn[5],
+        "6": vars.base.display.color.auburn[6],
+        "7": vars.base.display.color.auburn[7],
+        "8": vars.base.display.color.auburn[8],
+        "9": vars.base.display.color.auburn[9]
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue[1]
+      },
+      "fgColor": vars.base.display.color.blue[6],
+      "scale": {
+        "0": vars.base.display.color.blue['0'],
+        "1": vars.base.display.color.blue[1],
+        "2": vars.base.display.color.blue[2],
+        "3": vars.base.display.color.blue[3],
+        "4": vars.base.display.color.blue[4],
+        "5": vars.base.display.color.blue[5],
+        "6": vars.base.display.color.blue[6],
+        "7": vars.base.display.color.blue[7],
+        "8": vars.base.display.color.blue[8],
+        "9": vars.base.display.color.blue[9]
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown[1]
+      },
+      "fgColor": vars.base.display.color.brown[6],
+      "scale": {
+        "0": vars.base.display.color.brown['0'],
+        "1": vars.base.display.color.brown[1],
+        "2": vars.base.display.color.brown[2],
+        "3": vars.base.display.color.brown[3],
+        "4": vars.base.display.color.brown[4],
+        "5": vars.base.display.color.brown[5],
+        "6": vars.base.display.color.brown[6],
+        "7": vars.base.display.color.brown[7],
+        "8": vars.base.display.color.brown[8],
+        "9": vars.base.display.color.brown[9]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral[1]
+      },
+      "fgColor": vars.base.display.color.coral[6],
+      "scale": {
+        "0": vars.base.display.color.coral['0'],
+        "1": vars.base.display.color.coral[1],
+        "2": vars.base.display.color.coral[2],
+        "3": vars.base.display.color.coral[3],
+        "4": vars.base.display.color.coral[4],
+        "5": vars.base.display.color.coral[5],
+        "6": vars.base.display.color.coral[6],
+        "7": vars.base.display.color.coral[7],
+        "8": vars.base.display.color.coral[8],
+        "9": vars.base.display.color.coral[9]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan[1]
+      },
+      "fgColor": vars.base.display.color.cyan[6],
+      "scale": {
+        "0": vars.base.display.color.cyan['0'],
+        "1": vars.base.display.color.cyan[1],
+        "2": vars.base.display.color.cyan[2],
+        "3": vars.base.display.color.cyan[3],
+        "4": vars.base.display.color.cyan[4],
+        "5": vars.base.display.color.cyan[5],
+        "6": vars.base.display.color.cyan[6],
+        "7": vars.base.display.color.cyan[7],
+        "8": vars.base.display.color.cyan[8],
+        "9": vars.base.display.color.cyan[9]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray[1]
+      },
+      "fgColor": vars.base.display.color.gray[6],
+      "scale": {
+        "0": vars.base.display.color.gray['0'],
+        "1": vars.base.display.color.gray[1],
+        "2": vars.base.display.color.gray[2],
+        "3": vars.base.display.color.gray[3],
+        "4": vars.base.display.color.gray[4],
+        "5": vars.base.display.color.gray[5],
+        "6": vars.base.display.color.gray[6],
+        "7": vars.base.display.color.gray[7],
+        "8": vars.base.display.color.gray[8],
+        "9": vars.base.display.color.gray[9]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green[1]
+      },
+      "fgColor": vars.base.display.color.green[6],
+      "scale": {
+        "0": vars.base.display.color.green['0'],
+        "1": vars.base.display.color.green[1],
+        "2": vars.base.display.color.green[2],
+        "3": vars.base.display.color.green[3],
+        "4": vars.base.display.color.green[4],
+        "5": vars.base.display.color.green[5],
+        "6": vars.base.display.color.green[6],
+        "7": vars.base.display.color.green[7],
+        "8": vars.base.display.color.green[8],
+        "9": vars.base.display.color.green[9]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo[1]
+      },
+      "fgColor": vars.base.display.color.indigo[6],
+      "scale": {
+        "0": vars.base.display.color.indigo['0'],
+        "1": vars.base.display.color.indigo[1],
+        "2": vars.base.display.color.indigo[2],
+        "3": vars.base.display.color.indigo[3],
+        "4": vars.base.display.color.indigo[4],
+        "5": vars.base.display.color.indigo[5],
+        "6": vars.base.display.color.indigo[6],
+        "7": vars.base.display.color.indigo[7],
+        "8": vars.base.display.color.indigo[8],
+        "9": vars.base.display.color.indigo[9]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon[1]
+      },
+      "fgColor": vars.base.display.color.lemon[6],
+      "scale": {
+        "0": vars.base.display.color.lemon['0'],
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.lemon[2],
+        "3": vars.base.display.color.lemon[3],
+        "4": vars.base.display.color.lemon[4],
+        "5": vars.base.display.color.lemon[5],
+        "6": vars.base.display.color.lemon[6],
+        "7": vars.base.display.color.lemon[7],
+        "8": vars.base.display.color.lemon[8],
+        "9": vars.base.display.color.lemon[9]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime[1]
+      },
+      "fgColor": vars.base.display.color.lime[6],
+      "scale": {
+        "0": vars.base.display.color.lime['0'],
+        "1": vars.base.display.color.lime[1],
+        "2": vars.base.display.color.lime[2],
+        "3": vars.base.display.color.lime[3],
+        "4": vars.base.display.color.lime[4],
+        "5": vars.base.display.color.lime[5],
+        "6": vars.base.display.color.lime[6],
+        "7": vars.base.display.color.lime[7],
+        "8": vars.base.display.color.lime[8],
+        "9": vars.base.display.color.lime[9]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive[1]
+      },
+      "fgColor": vars.base.display.color.olive[6],
+      "scale": {
+        "0": vars.base.display.color.olive['0'],
+        "1": vars.base.display.color.olive[1],
+        "2": vars.base.display.color.olive[2],
+        "3": vars.base.display.color.olive[3],
+        "4": vars.base.display.color.olive[4],
+        "5": vars.base.display.color.olive[5],
+        "6": vars.base.display.color.olive[6],
+        "7": vars.base.display.color.olive[7],
+        "8": vars.base.display.color.olive[8],
+        "9": vars.base.display.color.olive[9]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange[1]
+      },
+      "fgColor": vars.base.display.color.orange[6],
+      "scale": {
+        "0": vars.base.display.color.orange['0'],
+        "1": vars.base.display.color.orange[1],
+        "2": vars.base.display.color.orange[2],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.display.color.orange[4],
+        "5": vars.base.display.color.orange[5],
+        "6": vars.base.display.color.orange[6],
+        "7": vars.base.display.color.orange[7],
+        "8": vars.base.display.color.orange[8],
+        "9": vars.base.display.color.orange[9]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine[1]
+      },
+      "fgColor": vars.base.display.color.pine[6],
+      "scale": {
+        "0": vars.base.display.color.pine['0'],
+        "1": vars.base.display.color.pine[1],
+        "2": vars.base.display.color.pine[2],
+        "3": vars.base.display.color.pine[3],
+        "4": vars.base.display.color.pine[4],
+        "5": vars.base.display.color.pine[5],
+        "6": vars.base.display.color.pine[6],
+        "7": vars.base.display.color.pine[7],
+        "8": vars.base.display.color.pine[8],
+        "9": vars.base.display.color.pine[9]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink[1]
+      },
+      "fgColor": vars.base.display.color.pink[6],
+      "scale": {
+        "0": vars.base.display.color.pink['0'],
+        "1": vars.base.display.color.pink[1],
+        "2": vars.base.display.color.pink[2],
+        "3": vars.base.display.color.pink[3],
+        "4": vars.base.display.color.pink[4],
+        "5": vars.base.display.color.pink[5],
+        "6": vars.base.display.color.pink[6],
+        "7": vars.base.display.color.pink[7],
+        "8": vars.base.display.color.pink[8],
+        "9": vars.base.display.color.pink[9]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum[1]
+      },
+      "fgColor": vars.base.display.color.plum[6],
+      "scale": {
+        "0": vars.base.display.color.plum['0'],
+        "1": vars.base.display.color.plum[1],
+        "2": vars.base.display.color.plum[2],
+        "3": vars.base.display.color.plum[3],
+        "4": vars.base.display.color.plum[4],
+        "5": vars.base.display.color.plum[5],
+        "6": vars.base.display.color.plum[6],
+        "7": vars.base.display.color.plum[7],
+        "8": vars.base.display.color.plum[8],
+        "9": vars.base.display.color.plum[9]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple[1]
+      },
+      "fgColor": vars.base.display.color.purple[6],
+      "scale": {
+        "0": vars.base.display.color.purple['0'],
+        "1": vars.base.display.color.purple[1],
+        "2": vars.base.display.color.purple[2],
+        "3": vars.base.display.color.purple[3],
+        "4": vars.base.display.color.purple[4],
+        "5": vars.base.display.color.purple[5],
+        "6": vars.base.display.color.purple[6],
+        "7": vars.base.display.color.purple[7],
+        "8": vars.base.display.color.purple[8],
+        "9": vars.base.display.color.purple[9]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red[1]
+      },
+      "fgColor": vars.base.display.color.red[6],
+      "scale": {
+        "0": vars.base.display.color.red['0'],
+        "1": vars.base.display.color.red[1],
+        "2": vars.base.display.color.red[2],
+        "3": vars.base.display.color.red[3],
+        "4": vars.base.display.color.red[4],
+        "5": vars.base.display.color.red[5],
+        "6": vars.base.display.color.red[6],
+        "7": vars.base.display.color.red[7],
+        "8": vars.base.display.color.red[8],
+        "9": vars.base.display.color.red[9]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal[1]
+      },
+      "fgColor": vars.base.display.color.teal[6],
+      "scale": {
+        "0": vars.base.display.color.teal['0'],
+        "1": vars.base.display.color.teal[1],
+        "2": vars.base.display.color.teal[2],
+        "3": vars.base.display.color.teal[3],
+        "4": vars.base.display.color.teal[4],
+        "5": vars.base.display.color.teal[5],
+        "6": vars.base.display.color.teal[6],
+        "7": vars.base.display.color.teal[7],
+        "8": vars.base.display.color.teal[8],
+        "9": vars.base.display.color.teal[9]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow[1]
+      },
+      "fgColor": vars.base.display.color.yellow[6],
+      "scale": {
+        "0": vars.base.display.color.yellow['0'],
+        "1": vars.base.display.color.yellow[1],
+        "2": vars.base.display.color.yellow[2],
+        "3": vars.base.display.color.yellow[3],
+        "4": vars.base.display.color.yellow[4],
+        "5": vars.base.display.color.yellow[5],
+        "6": vars.base.display.color.yellow[6],
+        "7": vars.base.display.color.yellow[7],
+        "8": vars.base.display.color.yellow[8],
+        "9": vars.base.display.color.yellow[9]
+      }
+    }
+  },
+  "fgColor": {
+    "accent": vars.base.color.blue[5],
+    "attention": vars.base.color.yellow[5],
+    "black": vars.base.color.neutral[13],
+    "closed": vars.fgColor.danger,
+    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "default": vars.base.color.neutral[13],
+    "disabled": vars.base.color.neutral[8],
+    "done": vars.base.color.purple[5],
+    "draft": vars.fgColor.neutral,
+    "link": vars.fgColor.accent,
+    "muted": vars.base.color.neutral[9],
+    "neutral": vars.base.color.neutral[9],
+    "onEmphasis": vars.base.color.neutral['0'],
+    "onInverse": vars.base.color.neutral['0'],
+    "open": vars.fgColor.success,
+    "severe": vars.base.color.orange[5],
+    "sponsors": vars.base.color.pink[5],
+    "success": vars.base.color.green[5],
+    "upsell": vars.fgColor.done,
+    "white": vars.base.color.neutral['0']
+  },
+  "focus": {
+    "outline": "2px solid var(--focus-outline-color)",
+    "outlineColor": vars.borderColor.accent.emphasis
+  },
+  "fontStack": {
+    "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
+    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
+  },
+  "header": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": {
+      "divider": vars.base.color.neutral[8]
+    },
+    "fgColor": {
+      "default": vars.base.color.neutral['0'],
+      "logo": vars.base.color.neutral['0']
+    }
+  },
+  "headerSearch": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": vars.base.color.neutral[8]
+  },
+  "highlight": {
+    "neutral": {
+      "bgColor": vars.base.color.yellow['0']
+    }
+  },
+  "label": {
+    "auburn": {
+      "bgColor": {
+        "active": vars.base.display.color.auburn[2],
+        "hover": vars.base.display.color.auburn[1],
+        "rest": vars.base.display.color.auburn['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.auburn[8],
+        "hover": vars.base.display.color.auburn[7],
+        "rest": vars.base.display.color.auburn[6]
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "active": vars.base.display.color.blue[2],
+        "hover": vars.base.display.color.blue[1],
+        "rest": vars.base.display.color.blue['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.blue[8],
+        "hover": vars.base.display.color.blue[7],
+        "rest": vars.base.display.color.blue[6]
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "active": vars.base.display.color.brown[2],
+        "hover": vars.base.display.color.brown[1],
+        "rest": vars.base.display.color.brown['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.brown[8],
+        "hover": vars.base.display.color.brown[7],
+        "rest": vars.base.display.color.brown[6]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "active": vars.base.display.color.coral[2],
+        "hover": vars.base.display.color.coral[1],
+        "rest": vars.base.display.color.coral['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.coral[8],
+        "hover": vars.base.display.color.coral[7],
+        "rest": vars.base.display.color.coral[6]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "active": vars.base.display.color.cyan[2],
+        "hover": vars.base.display.color.cyan[1],
+        "rest": vars.base.display.color.cyan['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.cyan[8],
+        "hover": vars.base.display.color.cyan[7],
+        "rest": vars.base.display.color.cyan[6]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "active": vars.base.display.color.gray[2],
+        "hover": vars.base.display.color.gray[1],
+        "rest": vars.base.display.color.gray['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.gray[8],
+        "hover": vars.base.display.color.gray[7],
+        "rest": vars.base.display.color.gray[6]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "active": vars.base.display.color.green[2],
+        "hover": vars.base.display.color.green[1],
+        "rest": vars.base.display.color.green['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.green[8],
+        "hover": vars.base.display.color.green[7],
+        "rest": vars.base.display.color.green[6]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "active": vars.base.display.color.indigo[2],
+        "hover": vars.base.display.color.indigo[1],
+        "rest": vars.base.display.color.indigo['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.indigo[8],
+        "hover": vars.base.display.color.indigo[7],
+        "rest": vars.base.display.color.indigo[6]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "active": vars.base.display.color.lemon[2],
+        "hover": vars.base.display.color.lemon[1],
+        "rest": vars.base.display.color.lemon['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lemon[8],
+        "hover": vars.base.display.color.lemon[7],
+        "rest": vars.base.display.color.lemon[6]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "active": vars.base.display.color.lime[2],
+        "hover": vars.base.display.color.lime[1],
+        "rest": vars.base.display.color.lime['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lime[8],
+        "hover": vars.base.display.color.lime[7],
+        "rest": vars.base.display.color.lime[6]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "active": vars.base.display.color.olive[2],
+        "hover": vars.base.display.color.olive[1],
+        "rest": vars.base.display.color.olive['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.olive[8],
+        "hover": vars.base.display.color.olive[7],
+        "rest": vars.base.display.color.olive[6]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "active": vars.base.display.color.orange[2],
+        "hover": vars.base.display.color.orange[1],
+        "rest": vars.base.display.color.orange['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.orange[8],
+        "hover": vars.base.display.color.orange[7],
+        "rest": vars.base.display.color.orange[6]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "active": vars.base.display.color.pine[2],
+        "hover": vars.base.display.color.pine[1],
+        "rest": vars.base.display.color.pine['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pine[8],
+        "hover": vars.base.display.color.pine[7],
+        "rest": vars.base.display.color.pine[6]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "active": vars.base.display.color.pink[2],
+        "hover": vars.base.display.color.pink[1],
+        "rest": vars.base.display.color.pink['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pink[8],
+        "hover": vars.base.display.color.pink[7],
+        "rest": vars.base.display.color.pink[6]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "active": vars.base.display.color.plum[2],
+        "hover": vars.base.display.color.plum[1],
+        "rest": vars.base.display.color.plum['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.plum[8],
+        "hover": vars.base.display.color.plum[7],
+        "rest": vars.base.display.color.plum[6]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "active": vars.base.display.color.purple[2],
+        "hover": vars.base.display.color.purple[1],
+        "rest": vars.base.display.color.purple['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.purple[8],
+        "hover": vars.base.display.color.purple[7],
+        "rest": vars.base.display.color.purple[6]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "active": vars.base.display.color.red[2],
+        "hover": vars.base.display.color.red[1],
+        "rest": vars.base.display.color.red['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.red[8],
+        "hover": vars.base.display.color.red[7],
+        "rest": vars.base.display.color.red[6]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "active": vars.base.display.color.teal[2],
+        "hover": vars.base.display.color.teal[1],
+        "rest": vars.base.display.color.teal['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.teal[8],
+        "hover": vars.base.display.color.teal[7],
+        "rest": vars.base.display.color.teal[6]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "active": vars.base.display.color.yellow[2],
+        "hover": vars.base.display.color.yellow[1],
+        "rest": vars.base.display.color.yellow['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.yellow[8],
+        "hover": vars.base.display.color.yellow[7],
+        "rest": vars.base.display.color.yellow[6]
+      }
+    }
+  },
+  "menu": {
+    "bgColor": {
+      "active": vars.base.color.transparent
+    }
+  },
+  "outline": {
+    "focus": {
+      "offset": "-2px",
+      "width": "2px"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "bgColor": vars.base.color.neutral[7]
+    },
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.muted,
+    "borderRadius": vars.borderRadius.medium,
+    "height": {
+      "large": "432px",
+      "medium": "320px",
+      "small": "256px",
+      "xlarge": "600px"
+    },
+    "offset": "4px",
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16]
+    },
+    "paddingBlock": {
+      "condensed": vars.base.size[4],
+      "normal": vars.base.size[12]
+    },
+    "width": {
+      "large": "640px",
+      "medium": "480px",
+      "small": "320px",
+      "xlarge": "960px",
+      "xsmall": "192px"
+    }
+  },
+  "page": {
+    "header": {
+      "bgColor": vars.bgColor.muted
+    }
+  },
+  "progressBar": {
+    "bgColor": {
+      "accent": vars.bgColor.accent.emphasis,
+      "attention": vars.bgColor.attention.emphasis,
+      "danger": vars.bgColor.danger.emphasis,
+      "done": vars.bgColor.done.emphasis,
+      "neutral": vars.bgColor.neutral.emphasis,
+      "severe": vars.bgColor.severe.emphasis,
+      "sponsors": vars.bgColor.sponsors.emphasis,
+      "success": vars.bgColor.success.emphasis
+    },
+    "track": {
+      "bgColor": vars.borderColor.default,
+      "borderColor": vars.base.color.transparent
+    }
+  },
+  "reactionButton": {
+    "selected": {
+      "bgColor": {
+        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "rest": vars.base.color.blue['0']
+      },
+      "fgColor": {
+        "hover": vars.base.color.blue[6],
+        "rest": vars.fgColor.link
+      }
+    }
+  },
+  "selection": {
+    "bgColor": vars.bgColor.accent.emphasis
+  },
+  "selectMenu": {
+    "bgColor": {
+      "active": vars.base.color.blue[1]
+    },
+    "borderColor": vars.base.color.transparent
+  },
+  "shadow": {
+    "floating": {
+      "large": "0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12)",
+      "legacy": "0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "medium": "0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12)",
+      "small": "0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "xlarge": "0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12)"
+    },
+    "inset": "inset 0 1px 0 0 var(--base-color-neutral-13)",
+    "resting": {
+      "medium": "0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12)",
+      "small": "0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13)",
+      "xsmall": "0 1px 1px 0 var(--base-color-neutral-13)"
+    }
+  },
+  "sideNav": {
+    "bgColor": {
+      "selected": vars.base.color.neutral['0']
+    }
+  },
+  "skeletonLoader": {
+    "bgColor": vars.base.color.neutral[8]
+  },
+  "spinner": {
+    "size": {
+      "large": vars.base.size[64],
+      "medium": vars.base.size[32],
+      "small": vars.base.size[16]
+    },
+    "strokeWidth": {
+      "default": "2px"
+    }
+  },
+  "stack": {
+    "gap": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
+    },
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
+    }
   },
   "text": {
     "body": {
       "lineHeight": {
         "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
+        "medium": "1.42857",
+        "small": "1.66667"
       },
       "shorthand": {
         "large": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -3102,7 +6971,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
@@ -3114,7 +6982,6 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
         "fontFamily": vars.fontStack.monospace
       },
@@ -3125,22 +6992,19 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
+        "fontFamily": vars.fontStack.monospace
       },
       "size": "0.9285em",
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "56px",
+      "lineBoxHeight": "1.4",
       "lineHeight": "1.4",
       "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "40px",
       "weight": vars.base.text.weight.medium
@@ -3150,9 +7014,8 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "20px",
       "weight": vars.base.text.weight.normal
@@ -3165,23 +7028,20 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontFamily": vars.fontStack.sansSerif,
           "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "medium": {
           "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "small": {
           "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -3197,10 +7057,41 @@ export const [lightHCClass, lightHC] = createTheme(vars, {
         "small": vars.base.text.weight.semibold
       }
     }
+  },
+  "timelineBadge": {
+    "bgColor": vars.bgColor.muted
+  },
+  "tooltip": {
+    "bgColor": vars.bgColor.emphasis,
+    "fgColor": vars.fgColor.onEmphasis
+  },
+  "topicTag": {
+    "borderColor": vars.base.color.transparent
+  },
+  "treeViewItem": {
+    "leadingVisual": {
+      "iconColor": {
+        "rest": vars.base.color.blue[3]
+      }
+    }
+  },
+  "underlineNav": {
+    "borderColor": {
+      "active": vars.base.color.coral[3],
+      "hover": vars.borderColor.muted
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
+    }
   }
 });
 
 export const [darkClass, dark] = createTheme(vars, {
+  "avatar": {
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.translucent,
+    "shadow": "0 0 0 2px var(--base-color-neutral-0)"
+  },
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -3240,17 +7131,22 @@ export const [darkClass, dark] = createTheme(vars, {
         "8": "color(srgb 0.011764705882352941 0.22745098039215686 0.08627450980392157)",
         "9": "color(srgb 0.01568627450980392 0.14901960784313725 0.058823529411764705)"
       },
+      "inset": vars.base.color.black,
       "neutral": {
-        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
-        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
-        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
-        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
-        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
-        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
-        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
-        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
-        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
-        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
+        "0": vars.base.color.black,
+        "1": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)",
+        "2": "color(srgb 0.08235294117647059 0.10588235294117647 0.13725490196078433)",
+        "3": "color(srgb 0.12941176470588237 0.1568627450980392 0.18823529411764706)",
+        "4": "color(srgb 0.14901960784313725 0.17254901960784313 0.21176470588235294)",
+        "5": "color(srgb 0.16470588235294117 0.19215686274509805 0.23529411764705882)",
+        "6": "color(srgb 0.1843137254901961 0.21568627450980393 0.25882352941176473)",
+        "7": "color(srgb 0.23921568627450981 0.26666666666666666 0.30196078431372547)",
+        "8": "color(srgb 0.396078431372549 0.4235294117647059 0.4627450980392157)",
+        "9": "color(srgb 0.5686274509803921 0.596078431372549 0.6313725490196078)",
+        "10": "color(srgb 0.7176470588235294 0.7411764705882353 0.7843137254901961)",
+        "11": "color(srgb 0.8196078431372549 0.8431372549019608 0.8784313725490196)",
+        "12": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
+        "13": vars.base.color.white
       },
       "orange": {
         "0": "color(srgb 1 0.8745098039215686 0.7137254901960784)",
@@ -3280,8 +7176,8 @@ export const [darkClass, dark] = createTheme(vars, {
         "0": "color(srgb 0.9294117647058824 0.8705882352941177 1)",
         "1": "color(srgb 0.8862745098039215 0.7725490196078432 1)",
         "2": "color(srgb 0.8235294117647058 0.6588235294117647 1)",
-        "3": "color(srgb 0.7372549019607844 0.5490196078431373 1)",
-        "4": "color(srgb 0.6392156862745098 0.44313725490196076 0.9686274509803922)",
+        "3": "color(srgb 0.7450980392156863 0.5607843137254902 1)",
+        "4": "color(srgb 0.6705882352941176 0.49019607843137253 0.9725490196078431)",
         "5": "color(srgb 0.5372549019607843 0.3411764705882353 0.8980392156862745)",
         "6": "color(srgb 0.43137254901960786 0.25098039215686274 0.788235294117647)",
         "7": "color(srgb 0.3333333333333333 0.18823529411764706 0.596078431372549)",
@@ -3300,7 +7196,7 @@ export const [darkClass, dark] = createTheme(vars, {
         "8": "color(srgb 0.403921568627451 0.023529411764705882 0.047058823529411764)",
         "9": "color(srgb 0.28627450980392155 0.00784313725490196 0.00784313725490196)"
       },
-      "transparent": "color(srgb 1 1 1)",
+      "transparent": "color(srgb 0 0 0)",
       "white": "color(srgb 1 1 1)",
       "yellow": {
         "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
@@ -3315,479 +7211,264 @@ export const [darkClass, dark] = createTheme(vars, {
         "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
       }
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "display": {
+      "color": {
+        "auburn": {
+          "0": "color(srgb 0.9490196078431372 0.9137254901960784 0.9137254901960784)",
+          "1": "color(srgb 0.9019607843137255 0.8392156862745098 0.8352941176470589)",
+          "2": "color(srgb 0.8313725490196079 0.7176470588235294 0.7098039215686275)",
+          "3": "color(srgb 0.7725490196078432 0.6196078431372549 0.6078431372549019)",
+          "4": "color(srgb 0.7058823529411765 0.5098039215686274 0.49411764705882355)",
+          "5": "color(srgb 0.615686274509804 0.3803921568627451 0.3607843137254902)",
+          "6": "color(srgb 0.5411764705882353 0.3333333333333333 0.3176470588235294)",
+          "7": "color(srgb 0.4549019607843137 0.2784313725490196 0.26666666666666666)",
+          "8": "color(srgb 0.36470588235294116 0.2235294117647059 0.21568627450980393)",
+          "9": "color(srgb 0.2627450980392157 0.1607843137254902 0.1568627450980392)"
+        },
+        "black": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)",
+        "blue": {
+          "0": "color(srgb 0.8196078431372549 0.9411764705882353 1)",
+          "1": "color(srgb 0.6784313725490196 0.8823529411764706 1)",
+          "2": "color(srgb 0.4588235294117647 0.7843137254901961 1)",
+          "3": "color(srgb 0.2784313725490196 0.6862745098039216 1)",
+          "4": "color(srgb 0.058823529411764705 0.5607843137254902 1)",
+          "5": "color(srgb 0 0.43137254901960786 0.8588235294117647)",
+          "6": "color(srgb 0 0.37254901960784315 0.8)",
+          "7": "color(srgb 0 0.30196078431372547 0.7019607843137254)",
+          "8": "color(srgb 0 0.23921568627450981 0.6)",
+          "9": "color(srgb 0 0.16862745098039217 0.4588235294117647)"
+        },
+        "brown": {
+          "0": "color(srgb 0.9333333333333333 0.9176470588235294 0.8862745098039215)",
+          "1": "color(srgb 0.8745098039215686 0.8431372549019608 0.7843137254901961)",
+          "2": "color(srgb 0.796078431372549 0.7411764705882353 0.6431372549019608)",
+          "3": "color(srgb 0.7215686274509804 0.6431372549019608 0.5176470588235295)",
+          "4": "color(srgb 0.6509803921568628 0.5450980392156862 0.39215686274509803)",
+          "5": "color(srgb 0.5215686274509804 0.42745098039215684 0.2980392156862745)",
+          "6": "color(srgb 0.4588235294117647 0.37254901960784315 0.2627450980392157)",
+          "7": "color(srgb 0.39215686274509803 0.3176470588235294 0.22745098039215686)",
+          "8": "color(srgb 0.3176470588235294 0.2549019607843137 0.1843137254901961)",
+          "9": "color(srgb 0.22745098039215686 0.1803921568627451 0.13333333333333333)"
+        },
+        "coral": {
+          "0": "color(srgb 1 0.8980392156862745 0.8588235294117647)",
+          "1": "color(srgb 0.996078431372549 0.807843137254902 0.7450980392156863)",
+          "2": "color(srgb 0.9882352941176471 0.6705882352941176 0.5725490196078431)",
+          "3": "color(srgb 0.9725490196078431 0.5294117647058824 0.40784313725490196)",
+          "4": "color(srgb 0.9490196078431372 0.37254901960784315 0.22745098039215686)",
+          "5": "color(srgb 0.8313725490196079 0.20784313725490197 0.06666666666666667)",
+          "6": "color(srgb 0.7294117647058823 0.1803921568627451 0.07058823529411765)",
+          "7": "color(srgb 0.6078431372549019 0.15294117647058825 0.07058823529411765)",
+          "8": "color(srgb 0.49411764705882355 0.12549019607843137 0.06666666666666667)",
+          "9": "color(srgb 0.36470588235294116 0.09411764705882353 0.054901960784313725)"
+        },
+        "cyan": {
+          "0": "color(srgb 0.7411764705882353 0.9568627450980393 1)",
+          "1": "color(srgb 0.47843137254901963 0.9137254901960784 1)",
+          "2": "color(srgb 0 0.8156862745098039 0.9803921568627451)",
+          "3": "color(srgb 0 0.7176470588235294 0.8588235294117647)",
+          "4": "color(srgb 0 0.6 0.7215686274509804)",
+          "5": "color(srgb 0 0.4823529411764706 0.5803921568627451)",
+          "6": "color(srgb 0 0.41568627450980394 0.5019607843137255)",
+          "7": "color(srgb 0 0.34901960784313724 0.4196078431372549)",
+          "8": "color(srgb 0 0.2823529411764706 0.3411764705882353)",
+          "9": "color(srgb 0 0.21568627450980393 0.25882352941176473)"
+        },
+        "gray": {
+          "0": "color(srgb 0.9098039215686274 0.9254901960784314 0.9490196078431372)",
+          "1": "color(srgb 0.8235294117647058 0.8549019607843137 0.8941176470588236)",
+          "2": "color(srgb 0.7058823529411765 0.7529411764705882 0.8117647058823529)",
+          "3": "color(srgb 0.6078431372549019 0.6627450980392157 0.7333333333333333)",
+          "4": "color(srgb 0.5019607843137255 0.5607843137254902 0.6392156862745098)",
+          "5": "color(srgb 0.39215686274509803 0.44313725490196076 0.5098039215686274)",
+          "6": "color(srgb 0.3607843137254902 0.396078431372549 0.4392156862745098)",
+          "7": "color(srgb 0.3058823529411765 0.3254901960784314 0.35294117647058826)",
+          "8": "color(srgb 0.25882352941176473 0.26666666666666666 0.2823529411764706)",
+          "9": "color(srgb 0.18823529411764706 0.18823529411764706 0.19215686274509805)"
+        },
+        "green": {
+          "0": "color(srgb 0.792156862745098 0.9686274509803922 0.792156862745098)",
+          "1": "color(srgb 0.611764705882353 0.9294117647058824 0.6274509803921569)",
+          "2": "color(srgb 0.32941176470588235 0.8509803921568627 0.3803921568627451)",
+          "3": "color(srgb 0.19215686274509805 0.7490196078431373 0.27450980392156865)",
+          "4": "color(srgb 0.18823529411764706 0.6313725490196078 0.2784313725490196)",
+          "5": "color(srgb 0.17254901960784313 0.5058823529411764 0.2549019607843137)",
+          "6": "color(srgb 0.16862745098039217 0.43137254901960786 0.24705882352941178)",
+          "7": "color(srgb 0.1568627450980392 0.3607843137254902 0.23137254901960785)",
+          "8": "color(srgb 0.1450980392156863 0.29411764705882354 0.20392156862745098)",
+          "9": "color(srgb 0.11372549019607843 0.20784313725490197 0.1568627450980392)"
+        },
+        "indigo": {
+          "0": "color(srgb 0.8980392156862745 0.9137254901960784 1)",
+          "1": "color(srgb 0.8235294117647058 0.8431372549019608 0.996078431372549)",
+          "2": "color(srgb 0.6941176470588235 0.7254901960784313 0.984313725490196)",
+          "3": "color(srgb 0.592156862745098 0.6235294117647059 0.9686274509803922)",
+          "4": "color(srgb 0.47843137254901963 0.5098039215686274 0.9411764705882353)",
+          "5": "color(srgb 0.35294117647058826 0.3803921568627451 0.9058823529411765)",
+          "6": "color(srgb 0.28627450980392155 0.3058823529411765 0.8745098039215686)",
+          "7": "color(srgb 0.2235294117647059 0.23529411764705882 0.8352941176470589)",
+          "8": "color(srgb 0.17647058823529413 0.17647058823529413 0.7058823529411765)",
+          "9": "color(srgb 0.1450980392156863 0.1411764705882353 0.4823529411764706)"
+        },
+        "lemon": {
+          "0": "color(srgb 0.9686274509803922 0.9333333333333333 0.6313725490196078)",
+          "1": "color(srgb 0.9411764705882353 0.8588235294117647 0.23921568627450981)",
+          "2": "color(srgb 0.8470588235294118 0.7411764705882353 0.054901960784313725)",
+          "3": "color(srgb 0.7607843137254902 0.6509803921568628 0.0392156862745098)",
+          "4": "color(srgb 0.6509803921568628 0.5490196078431373 0.027450980392156862)",
+          "5": "color(srgb 0.5254901960784314 0.43137254901960786 0.01568627450980392)",
+          "6": "color(srgb 0.47058823529411764 0.3764705882352941 0.00784313725490196)",
+          "7": "color(srgb 0.396078431372549 0.30980392156862746 0.00392156862745098)",
+          "8": "color(srgb 0.3215686274509804 0.24705882352941178 0)",
+          "9": "color(srgb 0.23921568627450981 0.1803921568627451 0)"
+        },
+        "lime": {
+          "0": "color(srgb 0.8901960784313725 0.9490196078431372 0.7098039215686275)",
+          "1": "color(srgb 0.7803921568627451 0.8980392156862745 0.5019607843137255)",
+          "2": "color(srgb 0.6078431372549019 0.8156862745098039 0.2235294117647059)",
+          "3": "color(srgb 0.5019607843137255 0.7098039215686275 0.18823529411764706)",
+          "4": "color(srgb 0.4235294117647059 0.615686274509804 0.1843137254901961)",
+          "5": "color(srgb 0.3215686274509804 0.47843137254901963 0.1607843137254902)",
+          "6": "color(srgb 0.2784313725490196 0.4235294117647059 0.1568627450980392)",
+          "7": "color(srgb 0.22745098039215686 0.3568627450980392 0.1450980392156863)",
+          "8": "color(srgb 0.1843137254901961 0.2901960784313726 0.12941176470588237)",
+          "9": "color(srgb 0.12941176470588237 0.2 0.09803921568627451)"
+        },
+        "olive": {
+          "0": "color(srgb 0.9411764705882353 0.9411764705882353 0.6784313725490196)",
+          "1": "color(srgb 0.8588235294117647 0.8823529411764706 0.4392156862745098)",
+          "2": "color(srgb 0.7254901960784313 0.7843137254901961 0.19607843137254902)",
+          "3": "color(srgb 0.6078431372549019 0.6823529411764706 0.19607843137254902)",
+          "4": "color(srgb 0.5058823529411764 0.5843137254901961 0.19607843137254902)",
+          "5": "color(srgb 0.39215686274509803 0.4627450980392157 0.17647058823529413)",
+          "6": "color(srgb 0.33725490196078434 0.40784313725490196 0.17254901960784313)",
+          "7": "color(srgb 0.28627450980392155 0.35294117647058826 0.16862745098039217)",
+          "8": "color(srgb 0.23137254901960785 0.28627450980392155 0.15294117647058825)",
+          "9": "color(srgb 0.16470588235294117 0.2 0.12156862745098039)"
+        },
+        "orange": {
+          "0": "color(srgb 1 0.9058823529411765 0.8196078431372549)",
+          "1": "color(srgb 0.996078431372549 0.8117647058823529 0.6666666666666666)",
+          "2": "color(srgb 0.984313725490196 0.6862745098039216 0.4549019607843137)",
+          "3": "color(srgb 0.9647058823529412 0.5490196078431373 0.2549019607843137)",
+          "4": "color(srgb 0.9215686274509803 0.403921568627451 0.058823529411764705)",
+          "5": "color(srgb 0.7215686274509804 0.3137254901960784 0.058823529411764705)",
+          "6": "color(srgb 0.6352941176470588 0.27450980392156865 0.06274509803921569)",
+          "7": "color(srgb 0.5529411764705883 0.23529411764705882 0.06666666666666667)",
+          "8": "color(srgb 0.4392156862745098 0.18823529411764706 0.058823529411764705)",
+          "9": "color(srgb 0.32941176470588235 0.13725490196078433 0.050980392156862744)"
+        },
+        "pine": {
+          "0": "color(srgb 0.7490196078431373 0.9725490196078431 0.8588235294117647)",
+          "1": "color(srgb 0.5019607843137255 0.9372549019607843 0.7254901960784313)",
+          "2": "color(srgb 0.11372549019607843 0.8431372549019608 0.5058823529411764)",
+          "3": "color(srgb 0.11372549019607843 0.7490196078431373 0.4627450980392157)",
+          "4": "color(srgb 0.10196078431372549 0.6352941176470588 0.403921568627451)",
+          "5": "color(srgb 0.08627450980392157 0.49411764705882355 0.3254901960784314)",
+          "6": "color(srgb 0.08235294117647059 0.43529411764705883 0.29411764705882354)",
+          "7": "color(srgb 0.07450980392156863 0.36470588235294116 0.2549019607843137)",
+          "8": "color(srgb 0.06666666666666667 0.29411764705882354 0.21176470588235294)",
+          "9": "color(srgb 0.050980392156862744 0.21176470588235294 0.15294117647058825)"
+        },
+        "pink": {
+          "0": "color(srgb 1 0.8980392156862745 0.9450980392156862)",
+          "1": "color(srgb 0.9921568627450981 0.788235294117647 0.8862745098039215)",
+          "2": "color(srgb 0.9725490196078431 0.6470588235294118 0.8117647058823529)",
+          "3": "color(srgb 0.9450980392156862 0.5176470588235295 0.7372549019607844)",
+          "4": "color(srgb 0.8980392156862745 0.36470588235294116 0.6470588235294118)",
+          "5": "color(srgb 0.807843137254902 0.17254901960784313 0.5215686274509804)",
+          "6": "color(srgb 0.6941176470588235 0.1843137254901961 0.4745098039215686)",
+          "7": "color(srgb 0.5568627450980392 0.1803921568627451 0.4)",
+          "8": "color(srgb 0.43137254901960786 0.16862745098039217 0.3254901960784314)",
+          "9": "color(srgb 0.30196078431372547 0.13725490196078433 0.23921568627450981)"
+        },
+        "plum": {
+          "0": "color(srgb 0.9725490196078431 0.8980392156862745 1)",
+          "1": "color(srgb 0.9411764705882353 0.803921568627451 0.996078431372549)",
+          "2": "color(srgb 0.8862745098039215 0.6549019607843137 0.984313725490196)",
+          "3": "color(srgb 0.8313725490196079 0.5294117647058824 0.9686274509803922)",
+          "4": "color(srgb 0.7607843137254902 0.39215686274509803 0.9490196078431372)",
+          "5": "color(srgb 0.6588235294117647 0.18823529411764706 0.9098039215686274)",
+          "6": "color(srgb 0.5882352941176471 0.11764705882352941 0.8627450980392157)",
+          "7": "color(srgb 0.49019607843137253 0.11764705882352941 0.7215686274509804)",
+          "8": "color(srgb 0.396078431372549 0.11372549019607843 0.5882352941176471)",
+          "9": "color(srgb 0.2784313725490196 0.09019607843137255 0.4117647058823529)"
+        },
+        "purple": {
+          "0": "color(srgb 0.9450980392156862 0.8980392156862745 1)",
+          "1": "color(srgb 0.9019607843137255 0.8235294117647058 0.996078431372549)",
+          "2": "color(srgb 0.8196078431372549 0.6941176470588235 0.9882352941176471)",
+          "3": "color(srgb 0.7372549019607844 0.5686274509803921 0.9725490196078431)",
+          "4": "color(srgb 0.6509803921568628 0.4470588235294118 0.9529411764705882)",
+          "5": "color(srgb 0.5372549019607843 0.2980392156862745 0.9215686274509803)",
+          "6": "color(srgb 0.47058823529411764 0.22745098039215686 0.8941176470588236)",
+          "7": "color(srgb 0.3843137254901961 0.13725490196078433 0.8431372549019608)",
+          "8": "color(srgb 0.30980392156862746 0.12941176470588237 0.6705882352941176)",
+          "9": "color(srgb 0.2235294117647059 0.10588235294117647 0.4745098039215686)"
+        },
+        "red": {
+          "0": "color(srgb 1 0.8862745098039215 0.8784313725490196)",
+          "1": "color(srgb 0.996078431372549 0.803921568627451 0.803921568627451)",
+          "2": "color(srgb 0.9921568627450981 0.6470588235294118 0.6549019607843137)",
+          "3": "color(srgb 0.984313725490196 0.5137254901960784 0.5372549019607843)",
+          "4": "color(srgb 0.9725490196078431 0.32941176470588235 0.3803921568627451)",
+          "5": "color(srgb 0.8745098039215686 0.047058823529411764 0.1411764705882353)",
+          "6": "color(srgb 0.7725490196078432 0.050980392156862744 0.1568627450980392)",
+          "7": "color(srgb 0.6509803921568628 0.047058823529411764 0.1607843137254902)",
+          "8": "color(srgb 0.5333333333333333 0.047058823529411764 0.15294117647058825)",
+          "9": "color(srgb 0.3803921568627451 0.0392156862745098 0.12549019607843137)"
+        },
+        "teal": {
+          "0": "color(srgb 0.7803921568627451 0.9607843137254902 0.9372549019607843)",
+          "1": "color(srgb 0.5372549019607843 0.9215686274509803 0.8823529411764706)",
+          "2": "color(srgb 0.13333333333333333 0.8274509803921568 0.7803921568627451)",
+          "3": "color(srgb 0.11372549019607843 0.7254901960784313 0.7058823529411765)",
+          "4": "color(srgb 0.09019607843137255 0.6078431372549019 0.6078431372549019)",
+          "5": "color(srgb 0.07058823529411765 0.49411764705882355 0.5058823529411764)",
+          "6": "color(srgb 0.06274509803921569 0.43137254901960786 0.4588235294117647)",
+          "7": "color(srgb 0.050980392156862744 0.3568627450980392 0.38823529411764707)",
+          "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
+          "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
+        },
+        "white": "color(srgb 1 1 1)",
+        "yellow": {
+          "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
+          "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
+          "2": "color(srgb 0.9215686274509803 0.7058823529411765 0)",
+          "3": "color(srgb 0.8196078431372549 0.615686274509804 0)",
+          "4": "color(srgb 0.7215686274509804 0.5294117647058824 0)",
+          "5": "color(srgb 0.5803921568627451 0.41568627450980394 0)",
+          "6": "color(srgb 0.5019607843137255 0.34901960784313724 0)",
+          "7": "color(srgb 0.4392156862745098 0.30196078431372547 0)",
+          "8": "color(srgb 0.3607843137254902 0.23921568627450981 0)",
+          "9": "color(srgb 0.25882352941176473 0.16862745098039217 0)"
+        }
+      }
+    },
+    "duration": {
+      "0": "0",
+      "50": "50ms",
+      "100": "100ms",
+      "200": "200ms",
+      "300": "300ms",
+      "400": "400ms",
+      "500": "500ms",
+      "600": "600ms",
+      "700": "700ms",
+      "800": "800ms",
+      "900": "900ms",
+      "1000": "1000ms"
+    },
+    "easing": {
+      "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
+      "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
+      "linear": "cubic-bezier(0, 0, 1, 1)"
     },
     "size": {
+      "2": "2px",
       "4": "4px",
+      "6": "6px",
       "8": "8px",
       "12": "12px",
       "16": "16px",
@@ -3814,11 +7495,189 @@ export const [darkClass, dark] = createTheme(vars, {
       }
     }
   },
+  "bgColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue['0']
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow['0']
+    },
+    "black": vars.base.color.neutral[13],
+    "closed": {
+      "emphasis": vars.bgColor.danger.emphasis,
+      "muted": vars.bgColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red['0']
+    },
+    "default": vars.base.color.neutral['0'],
+    "disabled": vars.base.color.neutral[2],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple['0']
+    },
+    "draft": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[12],
+    "inset": vars.bgColor.muted,
+    "inverse": vars.base.color.neutral[12],
+    "muted": vars.base.color.neutral[1],
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.base.color.neutral[8]
+    },
+    "open": {
+      "emphasis": vars.bgColor.success.emphasis,
+      "muted": vars.bgColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange['0']
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink['0']
+    },
+    "success": {
+      "emphasis": "color(srgb 0.12156862745098039 0.5333333333333333 0.23921568627450981)",
+      "muted": vars.base.color.green['0']
+    },
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.bgColor.done.emphasis,
+      "muted": vars.bgColor.done.muted
+    },
+    "white": vars.base.color.neutral['0']
+  },
+  "border": {
+    "accent": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-accent-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-accent-muted)"
+    },
+    "attention": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-attention-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-attention-muted)"
+    },
+    "closed": {
+      "emphasis": vars.border.danger.emphasis,
+      "muted": vars.border.danger.muted
+    },
+    "danger": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-danger-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-danger-muted)"
+    },
+    "default": "var(--border-width-default) solid var(--border-color-default)",
+    "disabled": "var(--border-width-default) solid var(--border-color-disabled)",
+    "done": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
+    },
+    "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
+    "muted": "var(--border-width-default) solid var(--border-color-muted)",
+    "neutral": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-neutral-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-neutral-muted)"
+    },
+    "open": {
+      "emphasis": vars.border.success.emphasis,
+      "muted": vars.border.success.muted
+    },
+    "severe": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-severe-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-severe-muted)"
+    },
+    "sponsors": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-sponsors-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-sponsors-muted)"
+    },
+    "success": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
+    },
+    "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
+    "upsell": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-upsell-muted)"
+    }
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue[3]
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow[3]
+    },
+    "closed": {
+      "emphasis": vars.borderColor.danger.emphasis,
+      "muted": vars.borderColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red[3]
+    },
+    "default": vars.base.color.neutral[6],
+    "disabled": vars.base.color.neutral[8],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple[3]
+    },
+    "draft": {
+      "emphasis": vars.borderColor.neutral.emphasis,
+      "muted": vars.borderColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[8],
+    "muted": vars.borderColor.default,
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.borderColor.muted
+    },
+    "open": {
+      "emphasis": vars.borderColor.success.emphasis,
+      "muted": vars.borderColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange[3]
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink[3]
+    },
+    "success": {
+      "emphasis": vars.base.color.green[5],
+      "muted": vars.base.color.green[3]
+    },
+    "translucent": vars.base.color.neutral[13],
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.borderColor.done.emphasis,
+      "muted": vars.borderColor.done.muted
+    }
+  },
   "borderRadius": {
+    "default": vars.borderRadius.medium,
     "full": "9999px",
     "large": "12px",
     "medium": "6px",
     "small": "3px"
+  },
+  "borderWidth": {
+    "default": vars.borderWidth.thin,
+    "thick": "2px",
+    "thicker": "4px",
+    "thin": "1px"
+  },
+  "boxShadow": {
+    "thick": "inset 0 0 0 {borderWidth.thick}",
+    "thicker": "inset 0 0 0 {borderWidth.thicker}",
+    "thin": "inset 0 0 0 {borderWidth.thin}"
   },
   "breakpoint": {
     "large": "1012px",
@@ -3826,866 +7685,1638 @@ export const [darkClass, dark] = createTheme(vars, {
     "small": "544px",
     "xlarge": "1280px",
     "xsmall": "320px",
-    "xxlarge": "1440px"
+    "xxlarge": "1400px"
+  },
+  "button": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.red[6],
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.danger.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.danger.borderColor.hover,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.danger
+      },
+      "iconColor": {
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.button.danger.fgColor.rest
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-red-9)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "active": vars.control.bgColor.active,
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.control.bgColor.hover,
+        "rest": vars.control.bgColor.rest,
+        "selected": vars.control.bgColor.active
+      },
+      "borderColor": {
+        "active": vars.control.borderColor.rest,
+        "disabled": vars.control.borderColor.disabled,
+        "hover": vars.button.default.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "rest": vars.control.fgColor.rest
+      },
+      "shadow": {
+        "resting": "0 1px 0 0 var(--base-color-neutral-13)"
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[3],
+      "fgColor": vars.base.color.neutral[9]
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.control.transparent.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.borderColor.hover,
+        "rest": vars.control.transparent.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.control.fgColor.rest,
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.control.fgColor.rest,
+        "rest": vars.control.fgColor.rest
+      },
+      "iconColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.fgColor.muted,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.outline.borderColor.hover,
+        "hover": vars.button.primary.borderColor.hover
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.accent
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-blue-9)"
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "active": "color(srgb 0.09803921568627451 0.4745098039215686 0.20784313725490197)",
+        "disabled": "color(srgb 0.5843137254901961 0.8470588235294118 0.6509803921568628)",
+        "hover": "color(srgb 0.10980392156862745 0.5058823529411764 0.2235294117647059)",
+        "rest": vars.bgColor.success.emphasis
+      },
+      "borderColor": {
+        "active": vars.button.primary.borderColor.rest,
+        "disabled": vars.button.primary.bgColor.disabled,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.white
+      },
+      "iconColor": {
+        "rest": vars.fgColor.white
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-green-9)"
+      }
+    },
+    "star": {
+      "iconColor": vars.base.color.yellow[2]
+    }
+  },
+  "buttonCounter": {
+    "danger": {
+      "bgColor": {
+        "disabled": vars.bgColor.danger.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.danger.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": "color(srgb 0.7607843137254902 0.10980392156862745 0.17254901960784313)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "invisible": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "disabled": vars.bgColor.accent.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.base.color.blue[6]
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "rest": vars.base.color.green[9]
+      }
+    }
+  },
+  "buttonKeybindingHint": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.black,
+        "disabled": vars.buttonKeybindingHint.default.bgColor.disabled,
+        "hover": vars.base.color.black,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.buttonKeybindingHint.danger.borderColor.hover,
+        "disabled": vars.buttonKeybindingHint.default.borderColor.disabled,
+        "hover": vars.borderColor.translucent,
+        "rest": vars.buttonKeybindingHint.default.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.fgColor.onEmphasis,
+        "disabled": vars.buttonKeybindingHint.default.fgColor.disabled,
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.buttonKeybindingHint.default.fgColor.rest
+      }
+    },
+    "default": {
+      "bgColor": {
+        "disabled": vars.buttonKeybindingHint.default.bgColor.rest,
+        "rest": vars.base.color.neutral[2]
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.muted
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[2],
+      "borderColor": vars.borderColor.muted,
+      "fgColor": vars.button.inactive.fgColor
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.button.invisible.bgColor.disabled,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.base.color.transparent
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "disabled": vars.buttonCounter.primary.bgColor.rest,
+        "rest": vars.buttonCounter.primary.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
+        "rest": vars.fgColor.onEmphasis
+      }
+    }
+  },
+  "card": {
+    "bgColor": vars.bgColor.default
+  },
+  "codeMirror": {
+    "activeline": {
+      "bgColor": vars.bgColor.neutral.muted
+    },
+    "bgColor": vars.bgColor.default,
+    "cursor": {
+      "fgColor": vars.fgColor.default
+    },
+    "fgColor": vars.fgColor.default,
+    "gutterMarker": {
+      "fgColor": {
+        "default": vars.bgColor.default,
+        "muted": vars.fgColor.muted
+      }
+    },
+    "gutters": {
+      "bgColor": vars.bgColor.default
+    },
+    "lineNumber": {
+      "fgColor": vars.fgColor.muted
+    },
+    "lines": {
+      "bgColor": vars.bgColor.default
+    },
+    "matchingBracket": {
+      "fgColor": vars.fgColor.default
+    },
+    "selection": {
+      "bgColor": vars.borderColor.accent.muted
+    },
+    "syntax": {
+      "fgColor": {
+        "comment": vars.base.color.neutral[13],
+        "constant": vars.base.color.blue[6],
+        "entity": vars.base.color.purple[5],
+        "keyword": vars.base.color.red[5],
+        "storage": vars.base.color.red[5],
+        "string": vars.base.color.blue[8],
+        "support": vars.base.color.blue[6],
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "color": {
+    "ansi": {
+      "black": vars.base.color.neutral[13],
+      "blackBright": vars.base.color.neutral[11],
+      "blue": vars.base.color.blue[5],
+      "blueBright": vars.base.color.blue[4],
+      "cyan": "color(srgb 0.10588235294117647 0.48627450980392156 0.5137254901960784)",
+      "cyanBright": "color(srgb 0.19215686274509805 0.5725490196078431 0.6666666666666666)",
+      "gray": vars.base.color.neutral[9],
+      "green": vars.base.color.green[6],
+      "greenBright": vars.base.color.green[5],
+      "magenta": vars.base.color.purple[5],
+      "magentaBright": vars.base.color.purple[4],
+      "red": vars.base.color.red[5],
+      "redBright": vars.base.color.red[6],
+      "white": vars.base.color.neutral[9],
+      "whiteBright": vars.base.color.neutral[8],
+      "yellow": vars.base.color.yellow[8],
+      "yellowBright": vars.base.color.yellow[7]
+    },
+    "prettylights": {
+      "syntax": {
+        "brackethighlighter": {
+          "angle": vars.base.color.neutral[9],
+          "unmatched": vars.base.color.red[7]
+        },
+        "carriage": {
+          "return": {
+            "bg": vars.base.color.red[5],
+            "text": vars.base.color.neutral[1]
+          }
+        },
+        "comment": vars.base.color.neutral[9],
+        "constant": vars.base.color.blue[6],
+        "constantOtherReferenceLink": vars.base.color.blue[8],
+        "entity": vars.base.color.purple[6],
+        "entityTag": vars.base.color.blue[6],
+        "invalid": {
+          "illegal": {
+            "bg": vars.bgColor.danger.muted,
+            "text": vars.fgColor.danger
+          }
+        },
+        "keyword": vars.base.color.red[5],
+        "markup": {
+          "bold": vars.base.color.neutral[13],
+          "changed": {
+            "bg": vars.base.color.orange[1],
+            "text": vars.base.color.orange[6]
+          },
+          "deleted": {
+            "bg": vars.base.color.red['0'],
+            "text": vars.base.color.red[7]
+          },
+          "heading": vars.base.color.blue[6],
+          "ignored": {
+            "bg": vars.base.color.blue[6],
+            "text": vars.base.color.neutral[6]
+          },
+          "inserted": {
+            "bg": vars.base.color.green['0'],
+            "text": vars.base.color.green[6]
+          },
+          "italic": vars.base.color.neutral[13],
+          "list": vars.base.color.yellow[9]
+        },
+        "meta": {
+          "diff": {
+            "range": vars.base.color.purple[5]
+          }
+        },
+        "storage": {
+          "modifier": {
+            "import": vars.base.color.neutral[13]
+          }
+        },
+        "string": vars.base.color.blue[8],
+        "stringRegexp": vars.base.color.green[6],
+        "sublimelinter": {
+          "gutter": {
+            "mark": vars.base.color.neutral[8]
+          }
+        },
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "contribution": {
+    "default": {
+      "bgColor": {
+        "0": vars.base.color.neutral[2],
+        "1": vars.base.color.green[1],
+        "2": vars.base.color.green[3],
+        "3": vars.base.color.green[4],
+        "4": vars.base.color.green[6]
+      },
+      "borderColor": {
+        "0": vars.base.color.black,
+        "1": vars.contribution.default.borderColor['0'],
+        "2": vars.contribution.default.borderColor['0'],
+        "3": vars.contribution.default.borderColor['0'],
+        "4": vars.contribution.default.borderColor['0']
+      }
+    },
+    "halloween": {
+      "bgColor": {
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.yellow[1],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.color.black
+      }
+    },
+    "winter": {
+      "bgColor": {
+        "1": vars.base.color.blue[1],
+        "2": vars.base.color.blue[3],
+        "3": vars.base.color.blue[5],
+        "4": vars.base.color.blue[8]
+      }
+    }
+  },
+  "control": {
+    "bgColor": {
+      "active": vars.base.color.neutral[3],
+      "disabled": vars.bgColor.disabled,
+      "hover": vars.base.color.neutral[2],
+      "rest": vars.base.color.neutral[1],
+      "selected": vars.control.bgColor.rest
+    },
+    "borderColor": {
+      "danger": vars.borderColor.danger.emphasis,
+      "disabled": vars.borderColor.disabled,
+      "emphasis": vars.borderColor.emphasis,
+      "rest": vars.borderColor.default,
+      "selected": vars.control.bgColor.selected,
+      "success": vars.borderColor.success.emphasis,
+      "warning": vars.borderColor.attention.emphasis
+    },
+    "checked": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.fgColor.disabled,
+        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "borderColor": {
+        "active": vars.control.checked.bgColor.active,
+        "disabled": vars.control.checked.bgColor.disabled,
+        "hover": vars.control.checked.bgColor.hover,
+        "rest": vars.control.checked.bgColor.rest
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.onEmphasis
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": vars.bgColor.danger.muted,
+        "hover": vars.bgColor.danger.muted
+      },
+      "fgColor": {
+        "hover": vars.fgColor.danger,
+        "rest": vars.fgColor.danger
+      }
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.disabled,
+      "placeholder": vars.fgColor.muted,
+      "rest": vars.base.color.neutral[12]
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
+    },
+    "large": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "10px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[40]
+    },
+    "medium": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "6px",
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[32]
+    },
+    "minTarget": {
+      "coarse": vars.base.size[44],
+      "fine": vars.base.size[16]
+    },
+    "small": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": vars.base.size[4],
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12]
+      },
+      "size": vars.base.size[28]
+    },
+    "transparent": {
+      "bgColor": {
+        "active": vars.base.color.neutral[8],
+        "disabled": vars.bgColor.disabled,
+        "hover": vars.base.color.neutral[8],
+        "rest": vars.base.color.transparent,
+        "selected": vars.base.color.neutral[8]
+      },
+      "borderColor": {
+        "active": vars.base.color.transparent,
+        "hover": vars.base.color.transparent,
+        "rest": vars.base.color.transparent
+      }
+    },
+    "xlarge": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "14px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[48]
+    },
+    "xsmall": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "2px",
+      "paddingInline": {
+        "condensed": vars.base.size[4],
+        "normal": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      },
+      "size": vars.base.size[24]
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": vars.base.color.neutral['0'],
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.base.color.neutral['0']
+    },
+    "borderColor": {
+      "checked": vars.control.checked.bgColor.rest,
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.control.borderColor.rest
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": vars.base.size[8],
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[16]
+      }
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": vars.base.color.neutral[5],
+      "disabled": vars.fgColor.disabled,
+      "hover": vars.base.color.neutral[4],
+      "rest": vars.base.color.neutral[3]
+    },
+    "borderColor": {
+      "disabled": vars.fgColor.disabled,
+      "rest": vars.borderColor.default
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.onEmphasis,
+      "rest": vars.base.color.neutral[9]
+    }
+  },
+  "counter": {
+    "bgColor": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "borderColor": vars.base.color.transparent
+  },
+  "dashboard": {
+    "bgColor": vars.bgColor.default
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": vars.base.display.color.gray[4],
+        "muted": vars.base.display.color.gray['0']
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": vars.base.display.color.green[4],
+        "muted": vars.base.display.color.green['0']
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": vars.base.display.color.orange[4],
+        "muted": vars.base.display.color.orange['0']
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": vars.base.display.color.teal[4],
+        "muted": vars.base.display.color.teal['0']
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": vars.base.display.color.yellow[4],
+        "muted": vars.base.display.color.yellow['0']
+      }
+    }
+  },
+  "diffBlob": {
+    "additionLine": {
+      "bgColor": vars.bgColor.success.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "additionNum": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "additionWord": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionLine": {
+      "bgColor": vars.bgColor.danger.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "deletionNum": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionWord": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "emptyLine": {
+      "bgColor": vars.bgColor.muted
+    },
+    "emptyNum": {
+      "bgColor": vars.bgColor.muted
+    },
+    "expander": {
+      "iconColor": vars.fgColor.muted
+    },
+    "hunkLine": {
+      "bgColor": vars.bgColor.accent.muted,
+      "fgColor": vars.fgColor.muted
+    },
+    "hunkNum": {
+      "bgColor": {
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.base.color.blue[1]
+      },
+      "fgColor": {
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.default
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn[1]
+      },
+      "fgColor": vars.base.display.color.auburn[6],
+      "scale": {
+        "0": vars.base.display.color.auburn['0'],
+        "1": vars.base.display.color.auburn[1],
+        "2": vars.base.display.color.auburn[2],
+        "3": vars.base.display.color.auburn[3],
+        "4": vars.base.display.color.auburn[4],
+        "5": vars.base.display.color.auburn[5],
+        "6": vars.base.display.color.auburn[6],
+        "7": vars.base.display.color.auburn[7],
+        "8": vars.base.display.color.auburn[8],
+        "9": vars.base.display.color.auburn[9]
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue[1]
+      },
+      "fgColor": vars.base.display.color.blue[6],
+      "scale": {
+        "0": vars.base.display.color.blue['0'],
+        "1": vars.base.display.color.blue[1],
+        "2": vars.base.display.color.blue[2],
+        "3": vars.base.display.color.blue[3],
+        "4": vars.base.display.color.blue[4],
+        "5": vars.base.display.color.blue[5],
+        "6": vars.base.display.color.blue[6],
+        "7": vars.base.display.color.blue[7],
+        "8": vars.base.display.color.blue[8],
+        "9": vars.base.display.color.blue[9]
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown[1]
+      },
+      "fgColor": vars.base.display.color.brown[6],
+      "scale": {
+        "0": vars.base.display.color.brown['0'],
+        "1": vars.base.display.color.brown[1],
+        "2": vars.base.display.color.brown[2],
+        "3": vars.base.display.color.brown[3],
+        "4": vars.base.display.color.brown[4],
+        "5": vars.base.display.color.brown[5],
+        "6": vars.base.display.color.brown[6],
+        "7": vars.base.display.color.brown[7],
+        "8": vars.base.display.color.brown[8],
+        "9": vars.base.display.color.brown[9]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral[1]
+      },
+      "fgColor": vars.base.display.color.coral[6],
+      "scale": {
+        "0": vars.base.display.color.coral['0'],
+        "1": vars.base.display.color.coral[1],
+        "2": vars.base.display.color.coral[2],
+        "3": vars.base.display.color.coral[3],
+        "4": vars.base.display.color.coral[4],
+        "5": vars.base.display.color.coral[5],
+        "6": vars.base.display.color.coral[6],
+        "7": vars.base.display.color.coral[7],
+        "8": vars.base.display.color.coral[8],
+        "9": vars.base.display.color.coral[9]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan[1]
+      },
+      "fgColor": vars.base.display.color.cyan[6],
+      "scale": {
+        "0": vars.base.display.color.cyan['0'],
+        "1": vars.base.display.color.cyan[1],
+        "2": vars.base.display.color.cyan[2],
+        "3": vars.base.display.color.cyan[3],
+        "4": vars.base.display.color.cyan[4],
+        "5": vars.base.display.color.cyan[5],
+        "6": vars.base.display.color.cyan[6],
+        "7": vars.base.display.color.cyan[7],
+        "8": vars.base.display.color.cyan[8],
+        "9": vars.base.display.color.cyan[9]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray[1]
+      },
+      "fgColor": vars.base.display.color.gray[6],
+      "scale": {
+        "0": vars.base.display.color.gray['0'],
+        "1": vars.base.display.color.gray[1],
+        "2": vars.base.display.color.gray[2],
+        "3": vars.base.display.color.gray[3],
+        "4": vars.base.display.color.gray[4],
+        "5": vars.base.display.color.gray[5],
+        "6": vars.base.display.color.gray[6],
+        "7": vars.base.display.color.gray[7],
+        "8": vars.base.display.color.gray[8],
+        "9": vars.base.display.color.gray[9]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green[1]
+      },
+      "fgColor": vars.base.display.color.green[6],
+      "scale": {
+        "0": vars.base.display.color.green['0'],
+        "1": vars.base.display.color.green[1],
+        "2": vars.base.display.color.green[2],
+        "3": vars.base.display.color.green[3],
+        "4": vars.base.display.color.green[4],
+        "5": vars.base.display.color.green[5],
+        "6": vars.base.display.color.green[6],
+        "7": vars.base.display.color.green[7],
+        "8": vars.base.display.color.green[8],
+        "9": vars.base.display.color.green[9]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo[1]
+      },
+      "fgColor": vars.base.display.color.indigo[6],
+      "scale": {
+        "0": vars.base.display.color.indigo['0'],
+        "1": vars.base.display.color.indigo[1],
+        "2": vars.base.display.color.indigo[2],
+        "3": vars.base.display.color.indigo[3],
+        "4": vars.base.display.color.indigo[4],
+        "5": vars.base.display.color.indigo[5],
+        "6": vars.base.display.color.indigo[6],
+        "7": vars.base.display.color.indigo[7],
+        "8": vars.base.display.color.indigo[8],
+        "9": vars.base.display.color.indigo[9]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon[1]
+      },
+      "fgColor": vars.base.display.color.lemon[6],
+      "scale": {
+        "0": vars.base.display.color.lemon['0'],
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.lemon[2],
+        "3": vars.base.display.color.lemon[3],
+        "4": vars.base.display.color.lemon[4],
+        "5": vars.base.display.color.lemon[5],
+        "6": vars.base.display.color.lemon[6],
+        "7": vars.base.display.color.lemon[7],
+        "8": vars.base.display.color.lemon[8],
+        "9": vars.base.display.color.lemon[9]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime[1]
+      },
+      "fgColor": vars.base.display.color.lime[6],
+      "scale": {
+        "0": vars.base.display.color.lime['0'],
+        "1": vars.base.display.color.lime[1],
+        "2": vars.base.display.color.lime[2],
+        "3": vars.base.display.color.lime[3],
+        "4": vars.base.display.color.lime[4],
+        "5": vars.base.display.color.lime[5],
+        "6": vars.base.display.color.lime[6],
+        "7": vars.base.display.color.lime[7],
+        "8": vars.base.display.color.lime[8],
+        "9": vars.base.display.color.lime[9]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive[1]
+      },
+      "fgColor": vars.base.display.color.olive[6],
+      "scale": {
+        "0": vars.base.display.color.olive['0'],
+        "1": vars.base.display.color.olive[1],
+        "2": vars.base.display.color.olive[2],
+        "3": vars.base.display.color.olive[3],
+        "4": vars.base.display.color.olive[4],
+        "5": vars.base.display.color.olive[5],
+        "6": vars.base.display.color.olive[6],
+        "7": vars.base.display.color.olive[7],
+        "8": vars.base.display.color.olive[8],
+        "9": vars.base.display.color.olive[9]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange[1]
+      },
+      "fgColor": vars.base.display.color.orange[6],
+      "scale": {
+        "0": vars.base.display.color.orange['0'],
+        "1": vars.base.display.color.orange[1],
+        "2": vars.base.display.color.orange[2],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.display.color.orange[4],
+        "5": vars.base.display.color.orange[5],
+        "6": vars.base.display.color.orange[6],
+        "7": vars.base.display.color.orange[7],
+        "8": vars.base.display.color.orange[8],
+        "9": vars.base.display.color.orange[9]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine[1]
+      },
+      "fgColor": vars.base.display.color.pine[6],
+      "scale": {
+        "0": vars.base.display.color.pine['0'],
+        "1": vars.base.display.color.pine[1],
+        "2": vars.base.display.color.pine[2],
+        "3": vars.base.display.color.pine[3],
+        "4": vars.base.display.color.pine[4],
+        "5": vars.base.display.color.pine[5],
+        "6": vars.base.display.color.pine[6],
+        "7": vars.base.display.color.pine[7],
+        "8": vars.base.display.color.pine[8],
+        "9": vars.base.display.color.pine[9]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink[1]
+      },
+      "fgColor": vars.base.display.color.pink[6],
+      "scale": {
+        "0": vars.base.display.color.pink['0'],
+        "1": vars.base.display.color.pink[1],
+        "2": vars.base.display.color.pink[2],
+        "3": vars.base.display.color.pink[3],
+        "4": vars.base.display.color.pink[4],
+        "5": vars.base.display.color.pink[5],
+        "6": vars.base.display.color.pink[6],
+        "7": vars.base.display.color.pink[7],
+        "8": vars.base.display.color.pink[8],
+        "9": vars.base.display.color.pink[9]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum[1]
+      },
+      "fgColor": vars.base.display.color.plum[6],
+      "scale": {
+        "0": vars.base.display.color.plum['0'],
+        "1": vars.base.display.color.plum[1],
+        "2": vars.base.display.color.plum[2],
+        "3": vars.base.display.color.plum[3],
+        "4": vars.base.display.color.plum[4],
+        "5": vars.base.display.color.plum[5],
+        "6": vars.base.display.color.plum[6],
+        "7": vars.base.display.color.plum[7],
+        "8": vars.base.display.color.plum[8],
+        "9": vars.base.display.color.plum[9]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple[1]
+      },
+      "fgColor": vars.base.display.color.purple[6],
+      "scale": {
+        "0": vars.base.display.color.purple['0'],
+        "1": vars.base.display.color.purple[1],
+        "2": vars.base.display.color.purple[2],
+        "3": vars.base.display.color.purple[3],
+        "4": vars.base.display.color.purple[4],
+        "5": vars.base.display.color.purple[5],
+        "6": vars.base.display.color.purple[6],
+        "7": vars.base.display.color.purple[7],
+        "8": vars.base.display.color.purple[8],
+        "9": vars.base.display.color.purple[9]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red[1]
+      },
+      "fgColor": vars.base.display.color.red[6],
+      "scale": {
+        "0": vars.base.display.color.red['0'],
+        "1": vars.base.display.color.red[1],
+        "2": vars.base.display.color.red[2],
+        "3": vars.base.display.color.red[3],
+        "4": vars.base.display.color.red[4],
+        "5": vars.base.display.color.red[5],
+        "6": vars.base.display.color.red[6],
+        "7": vars.base.display.color.red[7],
+        "8": vars.base.display.color.red[8],
+        "9": vars.base.display.color.red[9]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal[1]
+      },
+      "fgColor": vars.base.display.color.teal[6],
+      "scale": {
+        "0": vars.base.display.color.teal['0'],
+        "1": vars.base.display.color.teal[1],
+        "2": vars.base.display.color.teal[2],
+        "3": vars.base.display.color.teal[3],
+        "4": vars.base.display.color.teal[4],
+        "5": vars.base.display.color.teal[5],
+        "6": vars.base.display.color.teal[6],
+        "7": vars.base.display.color.teal[7],
+        "8": vars.base.display.color.teal[8],
+        "9": vars.base.display.color.teal[9]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow[1]
+      },
+      "fgColor": vars.base.display.color.yellow[6],
+      "scale": {
+        "0": vars.base.display.color.yellow['0'],
+        "1": vars.base.display.color.yellow[1],
+        "2": vars.base.display.color.yellow[2],
+        "3": vars.base.display.color.yellow[3],
+        "4": vars.base.display.color.yellow[4],
+        "5": vars.base.display.color.yellow[5],
+        "6": vars.base.display.color.yellow[6],
+        "7": vars.base.display.color.yellow[7],
+        "8": vars.base.display.color.yellow[8],
+        "9": vars.base.display.color.yellow[9]
+      }
+    }
+  },
+  "fgColor": {
+    "accent": vars.base.color.blue[5],
+    "attention": vars.base.color.yellow[5],
+    "black": vars.base.color.neutral[13],
+    "closed": vars.fgColor.danger,
+    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "default": vars.base.color.neutral[13],
+    "disabled": vars.base.color.neutral[8],
+    "done": vars.base.color.purple[5],
+    "draft": vars.fgColor.neutral,
+    "link": vars.fgColor.accent,
+    "muted": vars.base.color.neutral[9],
+    "neutral": vars.base.color.neutral[9],
+    "onEmphasis": vars.base.color.neutral['0'],
+    "onInverse": vars.base.color.neutral['0'],
+    "open": vars.fgColor.success,
+    "severe": vars.base.color.orange[5],
+    "sponsors": vars.base.color.pink[5],
+    "success": vars.base.color.green[5],
+    "upsell": vars.fgColor.done,
+    "white": vars.base.color.neutral['0']
+  },
+  "focus": {
+    "outline": "2px solid var(--focus-outline-color)",
+    "outlineColor": vars.borderColor.accent.emphasis
   },
   "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
+    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
+  "header": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": {
+      "divider": vars.base.color.neutral[8]
+    },
+    "fgColor": {
+      "default": vars.base.color.neutral['0'],
+      "logo": vars.base.color.neutral['0']
+    }
+  },
+  "headerSearch": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": vars.base.color.neutral[8]
+  },
+  "highlight": {
+    "neutral": {
+      "bgColor": vars.base.color.yellow['0']
+    }
+  },
+  "label": {
+    "auburn": {
+      "bgColor": {
+        "active": vars.base.display.color.auburn[2],
+        "hover": vars.base.display.color.auburn[1],
+        "rest": vars.base.display.color.auburn['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.auburn[8],
+        "hover": vars.base.display.color.auburn[7],
+        "rest": vars.base.display.color.auburn[6]
       }
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
+    "blue": {
+      "bgColor": {
+        "active": vars.base.display.color.blue[2],
+        "hover": vars.base.display.color.blue[1],
+        "rest": vars.base.display.color.blue['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.blue[8],
+        "hover": vars.base.display.color.blue[7],
+        "rest": vars.base.display.color.blue[6]
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
+    "brown": {
+      "bgColor": {
+        "active": vars.base.display.color.brown[2],
+        "hover": vars.base.display.color.brown[1],
+        "rest": vars.base.display.color.brown['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.brown[8],
+        "hover": vars.base.display.color.brown[7],
+        "rest": vars.base.display.color.brown[6]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "active": vars.base.display.color.coral[2],
+        "hover": vars.base.display.color.coral[1],
+        "rest": vars.base.display.color.coral['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.coral[8],
+        "hover": vars.base.display.color.coral[7],
+        "rest": vars.base.display.color.coral[6]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "active": vars.base.display.color.cyan[2],
+        "hover": vars.base.display.color.cyan[1],
+        "rest": vars.base.display.color.cyan['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.cyan[8],
+        "hover": vars.base.display.color.cyan[7],
+        "rest": vars.base.display.color.cyan[6]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "active": vars.base.display.color.gray[2],
+        "hover": vars.base.display.color.gray[1],
+        "rest": vars.base.display.color.gray['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.gray[8],
+        "hover": vars.base.display.color.gray[7],
+        "rest": vars.base.display.color.gray[6]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "active": vars.base.display.color.green[2],
+        "hover": vars.base.display.color.green[1],
+        "rest": vars.base.display.color.green['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.green[8],
+        "hover": vars.base.display.color.green[7],
+        "rest": vars.base.display.color.green[6]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "active": vars.base.display.color.indigo[2],
+        "hover": vars.base.display.color.indigo[1],
+        "rest": vars.base.display.color.indigo['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.indigo[8],
+        "hover": vars.base.display.color.indigo[7],
+        "rest": vars.base.display.color.indigo[6]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "active": vars.base.display.color.lemon[2],
+        "hover": vars.base.display.color.lemon[1],
+        "rest": vars.base.display.color.lemon['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lemon[8],
+        "hover": vars.base.display.color.lemon[7],
+        "rest": vars.base.display.color.lemon[6]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "active": vars.base.display.color.lime[2],
+        "hover": vars.base.display.color.lime[1],
+        "rest": vars.base.display.color.lime['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lime[8],
+        "hover": vars.base.display.color.lime[7],
+        "rest": vars.base.display.color.lime[6]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "active": vars.base.display.color.olive[2],
+        "hover": vars.base.display.color.olive[1],
+        "rest": vars.base.display.color.olive['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.olive[8],
+        "hover": vars.base.display.color.olive[7],
+        "rest": vars.base.display.color.olive[6]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "active": vars.base.display.color.orange[2],
+        "hover": vars.base.display.color.orange[1],
+        "rest": vars.base.display.color.orange['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.orange[8],
+        "hover": vars.base.display.color.orange[7],
+        "rest": vars.base.display.color.orange[6]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "active": vars.base.display.color.pine[2],
+        "hover": vars.base.display.color.pine[1],
+        "rest": vars.base.display.color.pine['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pine[8],
+        "hover": vars.base.display.color.pine[7],
+        "rest": vars.base.display.color.pine[6]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "active": vars.base.display.color.pink[2],
+        "hover": vars.base.display.color.pink[1],
+        "rest": vars.base.display.color.pink['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pink[8],
+        "hover": vars.base.display.color.pink[7],
+        "rest": vars.base.display.color.pink[6]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "active": vars.base.display.color.plum[2],
+        "hover": vars.base.display.color.plum[1],
+        "rest": vars.base.display.color.plum['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.plum[8],
+        "hover": vars.base.display.color.plum[7],
+        "rest": vars.base.display.color.plum[6]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "active": vars.base.display.color.purple[2],
+        "hover": vars.base.display.color.purple[1],
+        "rest": vars.base.display.color.purple['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.purple[8],
+        "hover": vars.base.display.color.purple[7],
+        "rest": vars.base.display.color.purple[6]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "active": vars.base.display.color.red[2],
+        "hover": vars.base.display.color.red[1],
+        "rest": vars.base.display.color.red['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.red[8],
+        "hover": vars.base.display.color.red[7],
+        "rest": vars.base.display.color.red[6]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "active": vars.base.display.color.teal[2],
+        "hover": vars.base.display.color.teal[1],
+        "rest": vars.base.display.color.teal['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.teal[8],
+        "hover": vars.base.display.color.teal[7],
+        "rest": vars.base.display.color.teal[6]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "active": vars.base.display.color.yellow[2],
+        "hover": vars.base.display.color.yellow[1],
+        "rest": vars.base.display.color.yellow['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.yellow[8],
+        "hover": vars.base.display.color.yellow[7],
+        "rest": vars.base.display.color.yellow[6]
       }
     }
   },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
+  "menu": {
+    "bgColor": {
+      "active": vars.base.color.transparent
+    }
   },
-  "text": {
-    "body": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "weight": vars.base.text.weight.normal
+  "outline": {
+    "focus": {
+      "offset": "-2px",
+      "width": "2px"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "bgColor": vars.base.color.neutral[7]
     },
-    "caption": {
-      "lineHeight": "1.3333",
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      },
-      "size": "12px",
-      "weight": vars.base.text.weight.normal
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.muted,
+    "borderRadius": vars.borderRadius.medium,
+    "height": {
+      "large": "432px",
+      "medium": "320px",
+      "small": "256px",
+      "xlarge": "600px"
     },
-    "codeBlock": {
-      "lineHeight": "1.5385",
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      },
-      "size": "13px",
-      "weight": vars.base.text.weight.normal
+    "offset": "4px",
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16]
     },
-    "codeInline": {
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
-      },
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal
+    "paddingBlock": {
+      "condensed": vars.base.size[4],
+      "normal": vars.base.size[12]
     },
-    "display": {
-      "lineBoxHeight": "56px",
-      "lineHeight": "1.4",
-      "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
-      },
-      "size": "40px",
-      "weight": vars.base.text.weight.medium
+    "width": {
+      "large": "640px",
+      "medium": "480px",
+      "small": "320px",
+      "xlarge": "960px",
+      "xsmall": "192px"
+    }
+  },
+  "page": {
+    "header": {
+      "bgColor": vars.bgColor.muted
+    }
+  },
+  "progressBar": {
+    "bgColor": {
+      "accent": vars.bgColor.accent.emphasis,
+      "attention": vars.bgColor.attention.emphasis,
+      "danger": vars.bgColor.danger.emphasis,
+      "done": vars.bgColor.done.emphasis,
+      "neutral": vars.bgColor.neutral.emphasis,
+      "severe": vars.bgColor.severe.emphasis,
+      "sponsors": vars.bgColor.sponsors.emphasis,
+      "success": vars.bgColor.success.emphasis
     },
-    "subtitle": {
-      "lineHeight": "1.6",
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+    "track": {
+      "bgColor": vars.borderColor.default,
+      "borderColor": vars.base.color.transparent
+    }
+  },
+  "reactionButton": {
+    "selected": {
+      "bgColor": {
+        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "rest": vars.base.color.blue['0']
       },
-      "size": "20px",
-      "weight": vars.base.text.weight.normal
-    },
-    "title": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "shorthand": {
-        "large": {
-          "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
+      "fgColor": {
+        "hover": vars.base.color.blue[6],
+        "rest": vars.fgColor.link
       }
     }
-  }
-});
-
-export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
-  "base": {
-    "color": {
-      "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
-      "blue": {
-        "0": "color(srgb 0.792156862745098 0.9098039215686274 1)",
-        "1": "color(srgb 0.6470588235294118 0.8392156862745098 1)",
-        "2": "color(srgb 0.4745098039215686 0.7529411764705882 1)",
-        "3": "color(srgb 0.34509803921568627 0.6509803921568628 1)",
-        "4": "color(srgb 0.2196078431372549 0.5450980392156862 0.9921568627450981)",
-        "5": "color(srgb 0.12156862745098039 0.43529411764705883 0.9215686274509803)",
-        "6": "color(srgb 0.06666666666666667 0.34509803921568627 0.7803921568627451)",
-        "7": "color(srgb 0.050980392156862744 0.2549019607843137 0.615686274509804)",
-        "8": "color(srgb 0.047058823529411764 0.17647058823529413 0.4196078431372549)",
-        "9": "color(srgb 0.0196078431372549 0.11372549019607843 0.30196078431372547)"
-      },
-      "coral": {
-        "0": "color(srgb 1 0.8666666666666667 0.8235294117647058)",
-        "1": "color(srgb 1 0.7607843137254902 0.6980392156862745)",
-        "2": "color(srgb 1 0.6352941176470588 0.5450980392156862)",
-        "3": "color(srgb 0.9686274509803922 0.5058823529411764 0.4)",
-        "4": "color(srgb 0.9176470588235294 0.3764705882352941 0.27058823529411763)",
-        "5": "color(srgb 0.8117647058823529 0.27450980392156865 0.17647058823529413)",
-        "6": "color(srgb 0.6745098039215687 0.19607843137254902 0.12549019607843137)",
-        "7": "color(srgb 0.5294117647058824 0.12549019607843137 0.07058823529411765)",
-        "8": "color(srgb 0.39215686274509803 0.050980392156862744 0.01568627450980392)",
-        "9": "color(srgb 0.27450980392156865 0.027450980392156862 0.00392156862745098)"
-      },
-      "green": {
-        "0": "color(srgb 0.6274509803921569 0.9098039215686274 1)",
-        "1": "color(srgb 0.5137254901960784 0.8313725490196079 1)",
-        "2": "color(srgb 0.4 0.7294117647058823 1)",
-        "3": "color(srgb 0.25882352941176473 0.6274509803921569 1)",
-        "4": "color(srgb 0.08235294117647059 0.5215686274509804 0.9921568627450981)",
-        "5": "color(srgb 0.11372549019607843 0.4117647058823529 0.8784313725490196)",
-        "6": "color(srgb 0.058823529411764705 0.3254901960784314 0.7372549019607844)",
-        "7": "color(srgb 0.043137254901960784 0.23529411764705882 0.5725490196078431)",
-        "8": "color(srgb 0.0392156862745098 0.1568627450980392 0.3803921568627451)",
-        "9": "color(srgb 0.01568627450980392 0.09411764705882353 0.2627450980392157)"
-      },
-      "neutral": {
-        "0": "color(srgb 0.9411764705882353 0.9647058823529412 0.9882352941176471)",
-        "1": "color(srgb 0.788235294117647 0.8196078431372549 0.8509803921568627)",
-        "2": "color(srgb 0.6941176470588235 0.7294117647058823 0.7686274509803922)",
-        "3": "color(srgb 0.5450980392156862 0.5803921568627451 0.6196078431372549)",
-        "4": "color(srgb 0.43137254901960786 0.4627450980392157 0.5058823529411764)",
-        "5": "color(srgb 0.2823529411764706 0.30980392156862746 0.34509803921568627)",
-        "6": "color(srgb 0.18823529411764706 0.21176470588235294 0.23921568627450981)",
-        "7": "color(srgb 0.12941176470588237 0.14901960784313725 0.17647058823529413)",
-        "8": "color(srgb 0.08627450980392157 0.10588235294117647 0.13333333333333333)",
-        "9": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)"
-      },
-      "orange": {
-        "0": "color(srgb 1 0.8745098039215686 0.7137254901960784)",
-        "1": "color(srgb 1 0.7764705882352941 0.5019607843137255)",
-        "2": "color(srgb 1 0.6509803921568628 0.3411764705882353)",
-        "3": "color(srgb 0.9411764705882353 0.5333333333333333 0.24313725490196078)",
-        "4": "color(srgb 0.8588235294117647 0.42745098039215684 0.1568627450980392)",
-        "5": "color(srgb 0.7411764705882353 0.33725490196078434 0.11372549019607843)",
-        "6": "color(srgb 0.6078431372549019 0.25882352941176473 0.08235294117647059)",
-        "7": "color(srgb 0.4627450980392157 0.17647058823529413 0.0392156862745098)",
-        "8": "color(srgb 0.35294117647058826 0.11764705882352941 0.00784313725490196)",
-        "9": "color(srgb 0.23921568627450981 0.07450980392156863 0)"
-      },
-      "pink": {
-        "0": "color(srgb 1 0.8549019607843137 0.9254901960784314)",
-        "1": "color(srgb 1 0.7450980392156863 0.8666666666666667)",
-        "2": "color(srgb 1 0.6078431372549019 0.807843137254902)",
-        "3": "color(srgb 0.9686274509803922 0.47058823529411764 0.7294117647058823)",
-        "4": "color(srgb 0.8588235294117647 0.3803921568627451 0.6352941176470588)",
-        "5": "color(srgb 0.7490196078431373 0.29411764705882354 0.5411764705882353)",
-        "6": "color(srgb 0.6196078431372549 0.21176470588235294 0.4392156862745098)",
-        "7": "color(srgb 0.49019607843137253 0.1411764705882353 0.3411764705882353)",
-        "8": "color(srgb 0.3686274509803922 0.06274509803921569 0.24313725490196078)",
-        "9": "color(srgb 0.25882352941176473 0.023529411764705882 0.16470588235294117)"
-      },
-      "purple": {
-        "0": "color(srgb 0.9294117647058824 0.8705882352941177 1)",
-        "1": "color(srgb 0.8862745098039215 0.7725490196078432 1)",
-        "2": "color(srgb 0.8235294117647058 0.6588235294117647 1)",
-        "3": "color(srgb 0.7372549019607844 0.5490196078431373 1)",
-        "4": "color(srgb 0.6392156862745098 0.44313725490196076 0.9686274509803922)",
-        "5": "color(srgb 0.5372549019607843 0.3411764705882353 0.8980392156862745)",
-        "6": "color(srgb 0.43137254901960786 0.25098039215686274 0.788235294117647)",
-        "7": "color(srgb 0.3333333333333333 0.18823529411764706 0.596078431372549)",
-        "8": "color(srgb 0.23529411764705882 0.11764705882352941 0.4392156862745098)",
-        "9": "color(srgb 0.15294117647058825 0.06274509803921569 0.3215686274509804)"
-      },
-      "red": {
-        "0": "color(srgb 0.9411764705882353 0.9254901960784314 0.34901960784313724)",
-        "1": "color(srgb 0.9254901960784314 0.8274509803921568 0.20392156862745098)",
-        "2": "color(srgb 0.9019607843137255 0.7176470588235294 0.08627450980392157)",
-        "3": "color(srgb 0.8392156862745098 0.6039215686274509 0)",
-        "4": "color(srgb 0.7647058823529411 0.5019607843137255 0)",
-        "5": "color(srgb 0.6509803921568628 0.4117647058823529 0)",
-        "6": "color(srgb 0.5254901960784314 0.32941176470588235 0.00392156862745098)",
-        "7": "color(srgb 0.38823529411764707 0.24313725490196078 0)",
-        "8": "color(srgb 0.27058823529411763 0.1843137254901961 0)",
-        "9": "color(srgb 0.1607843137254902 0.12941176470588237 0)"
-      },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "yellow": {
-        "0": "color(srgb 0.9725490196078431 0.8901960784313725 0.6313725490196078)",
-        "1": "color(srgb 0.9490196078431372 0.8 0.3764705882352941)",
-        "2": "color(srgb 0.8901960784313725 0.7019607843137254 0.2549019607843137)",
-        "3": "color(srgb 0.8235294117647058 0.6 0.13333333333333333)",
-        "4": "color(srgb 0.7333333333333333 0.5019607843137255 0.03529411764705882)",
-        "5": "color(srgb 0.6196078431372549 0.41568627450980394 0.011764705882352941)",
-        "6": "color(srgb 0.5176470588235295 0.3254901960784314 0.023529411764705882)",
-        "7": "color(srgb 0.4117647058823529 0.24313725490196078 0)",
-        "8": "color(srgb 0.29411764705882354 0.1607843137254902 0)",
-        "9": "color(srgb 0.20392156862745098 0.10196078431372549 0)"
-      }
+  },
+  "selection": {
+    "bgColor": vars.bgColor.accent.emphasis
+  },
+  "selectMenu": {
+    "bgColor": {
+      "active": vars.base.color.blue[1]
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "borderColor": vars.base.color.transparent
+  },
+  "shadow": {
+    "floating": {
+      "large": "0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12)",
+      "legacy": "0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "medium": "0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12)",
+      "small": "0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "xlarge": "0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12)"
     },
+    "inset": "inset 0 1px 0 0 var(--base-color-neutral-13)",
+    "resting": {
+      "medium": "0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12)",
+      "small": "0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13)",
+      "xsmall": "0 1px 1px 0 var(--base-color-neutral-13)"
+    }
+  },
+  "sideNav": {
+    "bgColor": {
+      "selected": vars.base.color.neutral['0']
+    }
+  },
+  "skeletonLoader": {
+    "bgColor": vars.base.color.neutral[8]
+  },
+  "spinner": {
     "size": {
-      "4": "4px",
-      "8": "8px",
-      "12": "12px",
-      "16": "16px",
-      "20": "20px",
-      "24": "24px",
-      "28": "28px",
-      "32": "32px",
-      "36": "36px",
-      "40": "40px",
-      "44": "44px",
-      "48": "48px",
-      "64": "64px",
-      "80": "80px",
-      "96": "96px",
-      "112": "112px",
-      "128": "128px"
+      "large": vars.base.size[64],
+      "medium": vars.base.size[32],
+      "small": vars.base.size[16]
     },
-    "text": {
-      "weight": {
-        "light": "300",
-        "medium": "500",
-        "normal": "400",
-        "semibold": "600"
-      }
+    "strokeWidth": {
+      "default": "2px"
     }
   },
-  "borderRadius": {
-    "full": "9999px",
-    "large": "12px",
-    "medium": "6px",
-    "small": "3px"
-  },
-  "breakpoint": {
-    "large": "1012px",
-    "medium": "768px",
-    "small": "544px",
-    "xlarge": "1280px",
-    "xsmall": "320px",
-    "xxlarge": "1440px"
-  },
-  "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
-  },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
-      }
+  "stack": {
+    "gap": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
-      }
-    },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     }
-  },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
   },
   "text": {
     "body": {
       "lineHeight": {
         "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
+        "medium": "1.42857",
+        "small": "1.66667"
       },
       "shorthand": {
         "large": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -4702,7 +9333,6 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
@@ -4714,7 +9344,6 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
         "fontFamily": vars.fontStack.monospace
       },
@@ -4725,22 +9354,19 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
+        "fontFamily": vars.fontStack.monospace
       },
       "size": "0.9285em",
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "56px",
+      "lineBoxHeight": "1.4",
       "lineHeight": "1.4",
       "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "40px",
       "weight": vars.base.text.weight.medium
@@ -4750,9 +9376,8 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "20px",
       "weight": vars.base.text.weight.normal
@@ -4765,23 +9390,20 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontFamily": vars.fontStack.sansSerif,
           "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "medium": {
           "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "small": {
           "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -4796,11 +9418,42 @@ export const [darkColorblindClass, darkColorblind] = createTheme(vars, {
         "medium": vars.base.text.weight.semibold,
         "small": vars.base.text.weight.semibold
       }
+    }
+  },
+  "timelineBadge": {
+    "bgColor": vars.bgColor.muted
+  },
+  "tooltip": {
+    "bgColor": vars.bgColor.emphasis,
+    "fgColor": vars.fgColor.onEmphasis
+  },
+  "topicTag": {
+    "borderColor": vars.base.color.transparent
+  },
+  "treeViewItem": {
+    "leadingVisual": {
+      "iconColor": {
+        "rest": vars.base.color.blue[3]
+      }
+    }
+  },
+  "underlineNav": {
+    "borderColor": {
+      "active": vars.base.color.coral[3],
+      "hover": vars.borderColor.muted
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
     }
   }
 });
 
 export const [darkHCClass, darkHC] = createTheme(vars, {
+  "avatar": {
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.translucent,
+    "shadow": "0 0 0 2px var(--base-color-neutral-0)"
+  },
   "base": {
     "color": {
       "black": "color(srgb 0.00392156862745098 0.01568627450980392 0.03529411764705882)",
@@ -4809,7 +9462,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 0.6784313725490196 0.8627450980392157 1)",
         "2": "color(srgb 0.5686274509803921 0.796078431372549 1)",
         "3": "color(srgb 0.44313725490196076 0.7176470588235294 1)",
-        "4": "color(srgb 0.25098039215686274 0.6196078431372549 1)",
+        "4": "color(srgb 0.3607843137254902 0.6745098039215687 1)",
         "5": "color(srgb 0.25098039215686274 0.6196078431372549 1)",
         "6": "color(srgb 0.19215686274509805 0.5450980392156862 0.9725490196078431)",
         "7": "color(srgb 0.14901960784313725 0.4470588235294118 0.9529411764705882)",
@@ -4821,7 +9474,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 1 0.796078431372549 0.7254901960784313)",
         "2": "color(srgb 1 0.7019607843137254 0.6078431372549019)",
         "3": "color(srgb 1 0.5882352941176471 0.49019607843137253)",
-        "4": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
+        "4": "color(srgb 0.9921568627450981 0.5176470588235295 0.40784313725490196)",
         "5": "color(srgb 0.9882352941176471 0.4392156862745098 0.30980392156862746)",
         "6": "color(srgb 0.9686274509803922 0.3176470588235294 0.2)",
         "7": "color(srgb 0.8784313725490196 0.23137254901960785 0.12941176470588237)",
@@ -4832,32 +9485,37 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "0": "color(srgb 0.6745098039215687 0.9686274509803922 0.7137254901960784)",
         "1": "color(srgb 0.4470588235294118 0.9411764705882353 0.5333333333333333)",
         "2": "color(srgb 0.2901960784313726 0.8823529411764706 0.40784313725490196)",
-        "3": "color(srgb 0.14901960784313725 0.803921568627451 0.30196078431372547)",
-        "4": "color(srgb 0.03529411764705882 0.7058823529411765 0.22745098039215686)",
+        "3": "color(srgb 0.1568627450980392 0.8431372549019608 0.3176470588235294)",
+        "4": "color(srgb 0.0392156862745098 0.7803921568627451 0.25098039215686274)",
         "5": "color(srgb 0.03529411764705882 0.7058823529411765 0.22745098039215686)",
         "6": "color(srgb 0.00784313725490196 0.6352941176470588 0.19607843137254902)",
         "7": "color(srgb 0 0.5490196078431373 0.17254901960784313)",
         "8": "color(srgb 0 0.4666666666666667 0.1568627450980392)",
         "9": "color(srgb 0 0.3843137254901961 0.13333333333333333)"
       },
+      "inset": vars.base.color.neutral['0'],
       "neutral": {
-        "0": "color(srgb 1 1 1)",
-        "1": "color(srgb 0.9411764705882353 0.9529411764705882 0.9647058823529412)",
-        "2": "color(srgb 0.8509803921568627 0.8705882352941177 0.8901960784313725)",
-        "3": "color(srgb 0.7411764705882353 0.7686274509803922 0.8)",
-        "4": "color(srgb 0.6196078431372549 0.6549019607843137 0.7019607843137254)",
-        "5": "color(srgb 0.47843137254901963 0.5098039215686274 0.5568627450980392)",
-        "6": "color(srgb 0.3215686274509804 0.34901960784313724 0.39215686274509803)",
-        "7": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
-        "8": "color(srgb 0.15294117647058825 0.16862745098039217 0.2)",
-        "9": "color(srgb 0.0392156862745098 0.047058823529411764 0.06274509803921569)"
+        "0": vars.base.color.white,
+        "1": "color(srgb 0.9647058823529412 0.9725490196078431 0.9803921568627451)",
+        "2": "color(srgb 0.9372549019607843 0.9490196078431372 0.9607843137254902)",
+        "3": "color(srgb 0.9019607843137255 0.9176470588235294 0.9372549019607843)",
+        "4": "color(srgb 0.8784313725490196 0.9019607843137255 0.9215686274509803)",
+        "5": "color(srgb 0.8549019607843137 0.8784313725490196 0.9058823529411765)",
+        "6": "color(srgb 0.8196078431372549 0.8509803921568627 0.8784313725490196)",
+        "7": "color(srgb 0.7843137254901961 0.8196078431372549 0.8549019607843137)",
+        "8": "color(srgb 0.5058823529411764 0.5450980392156862 0.596078431372549)",
+        "9": "color(srgb 0.34901960784313724 0.38823529411764707 0.43137254901960786)",
+        "10": "color(srgb 0.27058823529411763 0.2980392156862745 0.32941176470588235)",
+        "11": "color(srgb 0.2235294117647059 0.24705882352941178 0.27450980392156865)",
+        "12": "color(srgb 0.1450980392156863 0.1607843137254902 0.1803921568627451)",
+        "13": vars.base.color.black
       },
       "orange": {
         "0": "color(srgb 1 0.8823529411764706 0.7058823529411765)",
         "1": "color(srgb 1 0.8117647058823529 0.5254901960784314)",
         "2": "color(srgb 1 0.7176470588235294 0.3411764705882353)",
         "3": "color(srgb 0.996078431372549 0.6039215686274509 0.17647058823529413)",
-        "4": "color(srgb 0.9058823529411765 0.5058823529411764 0.11372549019607843)",
+        "4": "color(srgb 0.9568627450980393 0.5450980392156862 0.1450980392156863)",
         "5": "color(srgb 0.9058823529411765 0.5058823529411764 0.11372549019607843)",
         "6": "color(srgb 0.8352941176470589 0.4392156862745098 0.0784313725490196)",
         "7": "color(srgb 0.7490196078431373 0.3686274509803922 0.0392156862745098)",
@@ -4869,7 +9527,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 1 0.7803921568627451 0.8823529411764706)",
         "2": "color(srgb 1 0.6784313725490196 0.8313725490196079)",
         "3": "color(srgb 1 0.5529411764705883 0.7803921568627451)",
-        "4": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
+        "4": "color(srgb 0.9725490196078431 0.48627450980392156 0.7411764705882353)",
         "5": "color(srgb 0.9372549019607843 0.43137254901960786 0.6941176470588235)",
         "6": "color(srgb 0.8941176470588236 0.33725490196078434 0.6392156862745098)",
         "7": "color(srgb 0.8235294117647058 0.23921568627450981 0.5686274509803921)",
@@ -4881,7 +9539,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 0.9019607843137255 0.8 1)",
         "2": "color(srgb 0.8588235294117647 0.7176470588235294 1)",
         "3": "color(srgb 0.796078431372549 0.6196078431372549 1)",
-        "4": "color(srgb 0.7176470588235294 0.5019607843137255 1)",
+        "4": "color(srgb 0.7490196078431373 0.5607843137254902 1)",
         "5": "color(srgb 0.7215686274509804 0.4980392156862745 1)",
         "6": "color(srgb 0.6509803921568628 0.4196078431372549 1)",
         "7": "color(srgb 0.5843137254901961 0.30980392156862746 0.9921568627450981)",
@@ -4893,7 +9551,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 1 0.788235294117647 0.7803921568627451)",
         "2": "color(srgb 1 0.6941176470588235 0.6862745098039216)",
         "3": "color(srgb 1 0.5803921568627451 0.5725490196078431)",
-        "4": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
+        "4": "color(srgb 1 0.5019607843137255 0.5019607843137255)",
         "5": "color(srgb 1 0.41568627450980394 0.4117647058823529)",
         "6": "color(srgb 1 0.26666666666666666 0.27058823529411763)",
         "7": "color(srgb 0.9098039215686274 0.16470588235294117 0.1843137254901961)",
@@ -4907,7 +9565,7 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "1": "color(srgb 0.984313725490196 0.8392156862745098 0.4117647058823529)",
         "2": "color(srgb 0.9686274509803922 0.7843137254901961 0.2627450980392157)",
         "3": "color(srgb 0.9411764705882353 0.7176470588235294 0.1843137254901961)",
-        "4": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
+        "4": "color(srgb 0.9294117647058824 0.6666666666666666 0.15294117647058825)",
         "5": "color(srgb 0.8784313725490196 0.6078431372549019 0.07450980392156863)",
         "6": "color(srgb 0.7843137254901961 0.5215686274509804 0.03137254901960784)",
         "7": "color(srgb 0.6823529411764706 0.44313725490196076 0.01568627450980392)",
@@ -4915,479 +9573,264 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
         "9": "color(srgb 0.4823529411764706 0.28627450980392155 0)"
       }
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "display": {
+      "color": {
+        "auburn": {
+          "0": "color(srgb 0.9490196078431372 0.9137254901960784 0.9137254901960784)",
+          "1": "color(srgb 0.9019607843137255 0.8392156862745098 0.8352941176470589)",
+          "2": "color(srgb 0.8313725490196079 0.7176470588235294 0.7098039215686275)",
+          "3": "color(srgb 0.7725490196078432 0.6196078431372549 0.6078431372549019)",
+          "4": "color(srgb 0.7058823529411765 0.5098039215686274 0.49411764705882355)",
+          "5": "color(srgb 0.615686274509804 0.3803921568627451 0.3607843137254902)",
+          "6": "color(srgb 0.5411764705882353 0.3333333333333333 0.3176470588235294)",
+          "7": "color(srgb 0.4549019607843137 0.2784313725490196 0.26666666666666666)",
+          "8": "color(srgb 0.36470588235294116 0.2235294117647059 0.21568627450980393)",
+          "9": "color(srgb 0.2627450980392157 0.1607843137254902 0.1568627450980392)"
+        },
+        "black": "color(srgb 0.050980392156862744 0.06666666666666667 0.09019607843137255)",
+        "blue": {
+          "0": "color(srgb 0.8196078431372549 0.9411764705882353 1)",
+          "1": "color(srgb 0.6784313725490196 0.8823529411764706 1)",
+          "2": "color(srgb 0.4588235294117647 0.7843137254901961 1)",
+          "3": "color(srgb 0.2784313725490196 0.6862745098039216 1)",
+          "4": "color(srgb 0.058823529411764705 0.5607843137254902 1)",
+          "5": "color(srgb 0 0.43137254901960786 0.8588235294117647)",
+          "6": "color(srgb 0 0.37254901960784315 0.8)",
+          "7": "color(srgb 0 0.30196078431372547 0.7019607843137254)",
+          "8": "color(srgb 0 0.23921568627450981 0.6)",
+          "9": "color(srgb 0 0.16862745098039217 0.4588235294117647)"
+        },
+        "brown": {
+          "0": "color(srgb 0.9333333333333333 0.9176470588235294 0.8862745098039215)",
+          "1": "color(srgb 0.8745098039215686 0.8431372549019608 0.7843137254901961)",
+          "2": "color(srgb 0.796078431372549 0.7411764705882353 0.6431372549019608)",
+          "3": "color(srgb 0.7215686274509804 0.6431372549019608 0.5176470588235295)",
+          "4": "color(srgb 0.6509803921568628 0.5450980392156862 0.39215686274509803)",
+          "5": "color(srgb 0.5215686274509804 0.42745098039215684 0.2980392156862745)",
+          "6": "color(srgb 0.4588235294117647 0.37254901960784315 0.2627450980392157)",
+          "7": "color(srgb 0.39215686274509803 0.3176470588235294 0.22745098039215686)",
+          "8": "color(srgb 0.3176470588235294 0.2549019607843137 0.1843137254901961)",
+          "9": "color(srgb 0.22745098039215686 0.1803921568627451 0.13333333333333333)"
+        },
+        "coral": {
+          "0": "color(srgb 1 0.8980392156862745 0.8588235294117647)",
+          "1": "color(srgb 0.996078431372549 0.807843137254902 0.7450980392156863)",
+          "2": "color(srgb 0.9882352941176471 0.6705882352941176 0.5725490196078431)",
+          "3": "color(srgb 0.9725490196078431 0.5294117647058824 0.40784313725490196)",
+          "4": "color(srgb 0.9490196078431372 0.37254901960784315 0.22745098039215686)",
+          "5": "color(srgb 0.8313725490196079 0.20784313725490197 0.06666666666666667)",
+          "6": "color(srgb 0.7294117647058823 0.1803921568627451 0.07058823529411765)",
+          "7": "color(srgb 0.6078431372549019 0.15294117647058825 0.07058823529411765)",
+          "8": "color(srgb 0.49411764705882355 0.12549019607843137 0.06666666666666667)",
+          "9": "color(srgb 0.36470588235294116 0.09411764705882353 0.054901960784313725)"
+        },
+        "cyan": {
+          "0": "color(srgb 0.7411764705882353 0.9568627450980393 1)",
+          "1": "color(srgb 0.47843137254901963 0.9137254901960784 1)",
+          "2": "color(srgb 0 0.8156862745098039 0.9803921568627451)",
+          "3": "color(srgb 0 0.7176470588235294 0.8588235294117647)",
+          "4": "color(srgb 0 0.6 0.7215686274509804)",
+          "5": "color(srgb 0 0.4823529411764706 0.5803921568627451)",
+          "6": "color(srgb 0 0.41568627450980394 0.5019607843137255)",
+          "7": "color(srgb 0 0.34901960784313724 0.4196078431372549)",
+          "8": "color(srgb 0 0.2823529411764706 0.3411764705882353)",
+          "9": "color(srgb 0 0.21568627450980393 0.25882352941176473)"
+        },
+        "gray": {
+          "0": "color(srgb 0.9098039215686274 0.9254901960784314 0.9490196078431372)",
+          "1": "color(srgb 0.8235294117647058 0.8549019607843137 0.8941176470588236)",
+          "2": "color(srgb 0.7058823529411765 0.7529411764705882 0.8117647058823529)",
+          "3": "color(srgb 0.6078431372549019 0.6627450980392157 0.7333333333333333)",
+          "4": "color(srgb 0.5019607843137255 0.5607843137254902 0.6392156862745098)",
+          "5": "color(srgb 0.39215686274509803 0.44313725490196076 0.5098039215686274)",
+          "6": "color(srgb 0.3607843137254902 0.396078431372549 0.4392156862745098)",
+          "7": "color(srgb 0.3058823529411765 0.3254901960784314 0.35294117647058826)",
+          "8": "color(srgb 0.25882352941176473 0.26666666666666666 0.2823529411764706)",
+          "9": "color(srgb 0.18823529411764706 0.18823529411764706 0.19215686274509805)"
+        },
+        "green": {
+          "0": "color(srgb 0.792156862745098 0.9686274509803922 0.792156862745098)",
+          "1": "color(srgb 0.611764705882353 0.9294117647058824 0.6274509803921569)",
+          "2": "color(srgb 0.32941176470588235 0.8509803921568627 0.3803921568627451)",
+          "3": "color(srgb 0.19215686274509805 0.7490196078431373 0.27450980392156865)",
+          "4": "color(srgb 0.18823529411764706 0.6313725490196078 0.2784313725490196)",
+          "5": "color(srgb 0.17254901960784313 0.5058823529411764 0.2549019607843137)",
+          "6": "color(srgb 0.16862745098039217 0.43137254901960786 0.24705882352941178)",
+          "7": "color(srgb 0.1568627450980392 0.3607843137254902 0.23137254901960785)",
+          "8": "color(srgb 0.1450980392156863 0.29411764705882354 0.20392156862745098)",
+          "9": "color(srgb 0.11372549019607843 0.20784313725490197 0.1568627450980392)"
+        },
+        "indigo": {
+          "0": "color(srgb 0.8980392156862745 0.9137254901960784 1)",
+          "1": "color(srgb 0.8235294117647058 0.8431372549019608 0.996078431372549)",
+          "2": "color(srgb 0.6941176470588235 0.7254901960784313 0.984313725490196)",
+          "3": "color(srgb 0.592156862745098 0.6235294117647059 0.9686274509803922)",
+          "4": "color(srgb 0.47843137254901963 0.5098039215686274 0.9411764705882353)",
+          "5": "color(srgb 0.35294117647058826 0.3803921568627451 0.9058823529411765)",
+          "6": "color(srgb 0.28627450980392155 0.3058823529411765 0.8745098039215686)",
+          "7": "color(srgb 0.2235294117647059 0.23529411764705882 0.8352941176470589)",
+          "8": "color(srgb 0.17647058823529413 0.17647058823529413 0.7058823529411765)",
+          "9": "color(srgb 0.1450980392156863 0.1411764705882353 0.4823529411764706)"
+        },
+        "lemon": {
+          "0": "color(srgb 0.9686274509803922 0.9333333333333333 0.6313725490196078)",
+          "1": "color(srgb 0.9411764705882353 0.8588235294117647 0.23921568627450981)",
+          "2": "color(srgb 0.8470588235294118 0.7411764705882353 0.054901960784313725)",
+          "3": "color(srgb 0.7607843137254902 0.6509803921568628 0.0392156862745098)",
+          "4": "color(srgb 0.6509803921568628 0.5490196078431373 0.027450980392156862)",
+          "5": "color(srgb 0.5254901960784314 0.43137254901960786 0.01568627450980392)",
+          "6": "color(srgb 0.47058823529411764 0.3764705882352941 0.00784313725490196)",
+          "7": "color(srgb 0.396078431372549 0.30980392156862746 0.00392156862745098)",
+          "8": "color(srgb 0.3215686274509804 0.24705882352941178 0)",
+          "9": "color(srgb 0.23921568627450981 0.1803921568627451 0)"
+        },
+        "lime": {
+          "0": "color(srgb 0.8901960784313725 0.9490196078431372 0.7098039215686275)",
+          "1": "color(srgb 0.7803921568627451 0.8980392156862745 0.5019607843137255)",
+          "2": "color(srgb 0.6078431372549019 0.8156862745098039 0.2235294117647059)",
+          "3": "color(srgb 0.5019607843137255 0.7098039215686275 0.18823529411764706)",
+          "4": "color(srgb 0.4235294117647059 0.615686274509804 0.1843137254901961)",
+          "5": "color(srgb 0.3215686274509804 0.47843137254901963 0.1607843137254902)",
+          "6": "color(srgb 0.2784313725490196 0.4235294117647059 0.1568627450980392)",
+          "7": "color(srgb 0.22745098039215686 0.3568627450980392 0.1450980392156863)",
+          "8": "color(srgb 0.1843137254901961 0.2901960784313726 0.12941176470588237)",
+          "9": "color(srgb 0.12941176470588237 0.2 0.09803921568627451)"
+        },
+        "olive": {
+          "0": "color(srgb 0.9411764705882353 0.9411764705882353 0.6784313725490196)",
+          "1": "color(srgb 0.8588235294117647 0.8823529411764706 0.4392156862745098)",
+          "2": "color(srgb 0.7254901960784313 0.7843137254901961 0.19607843137254902)",
+          "3": "color(srgb 0.6078431372549019 0.6823529411764706 0.19607843137254902)",
+          "4": "color(srgb 0.5058823529411764 0.5843137254901961 0.19607843137254902)",
+          "5": "color(srgb 0.39215686274509803 0.4627450980392157 0.17647058823529413)",
+          "6": "color(srgb 0.33725490196078434 0.40784313725490196 0.17254901960784313)",
+          "7": "color(srgb 0.28627450980392155 0.35294117647058826 0.16862745098039217)",
+          "8": "color(srgb 0.23137254901960785 0.28627450980392155 0.15294117647058825)",
+          "9": "color(srgb 0.16470588235294117 0.2 0.12156862745098039)"
+        },
+        "orange": {
+          "0": "color(srgb 1 0.9058823529411765 0.8196078431372549)",
+          "1": "color(srgb 0.996078431372549 0.8117647058823529 0.6666666666666666)",
+          "2": "color(srgb 0.984313725490196 0.6862745098039216 0.4549019607843137)",
+          "3": "color(srgb 0.9647058823529412 0.5490196078431373 0.2549019607843137)",
+          "4": "color(srgb 0.9215686274509803 0.403921568627451 0.058823529411764705)",
+          "5": "color(srgb 0.7215686274509804 0.3137254901960784 0.058823529411764705)",
+          "6": "color(srgb 0.6352941176470588 0.27450980392156865 0.06274509803921569)",
+          "7": "color(srgb 0.5529411764705883 0.23529411764705882 0.06666666666666667)",
+          "8": "color(srgb 0.4392156862745098 0.18823529411764706 0.058823529411764705)",
+          "9": "color(srgb 0.32941176470588235 0.13725490196078433 0.050980392156862744)"
+        },
+        "pine": {
+          "0": "color(srgb 0.7490196078431373 0.9725490196078431 0.8588235294117647)",
+          "1": "color(srgb 0.5019607843137255 0.9372549019607843 0.7254901960784313)",
+          "2": "color(srgb 0.11372549019607843 0.8431372549019608 0.5058823529411764)",
+          "3": "color(srgb 0.11372549019607843 0.7490196078431373 0.4627450980392157)",
+          "4": "color(srgb 0.10196078431372549 0.6352941176470588 0.403921568627451)",
+          "5": "color(srgb 0.08627450980392157 0.49411764705882355 0.3254901960784314)",
+          "6": "color(srgb 0.08235294117647059 0.43529411764705883 0.29411764705882354)",
+          "7": "color(srgb 0.07450980392156863 0.36470588235294116 0.2549019607843137)",
+          "8": "color(srgb 0.06666666666666667 0.29411764705882354 0.21176470588235294)",
+          "9": "color(srgb 0.050980392156862744 0.21176470588235294 0.15294117647058825)"
+        },
+        "pink": {
+          "0": "color(srgb 1 0.8980392156862745 0.9450980392156862)",
+          "1": "color(srgb 0.9921568627450981 0.788235294117647 0.8862745098039215)",
+          "2": "color(srgb 0.9725490196078431 0.6470588235294118 0.8117647058823529)",
+          "3": "color(srgb 0.9450980392156862 0.5176470588235295 0.7372549019607844)",
+          "4": "color(srgb 0.8980392156862745 0.36470588235294116 0.6470588235294118)",
+          "5": "color(srgb 0.807843137254902 0.17254901960784313 0.5215686274509804)",
+          "6": "color(srgb 0.6941176470588235 0.1843137254901961 0.4745098039215686)",
+          "7": "color(srgb 0.5568627450980392 0.1803921568627451 0.4)",
+          "8": "color(srgb 0.43137254901960786 0.16862745098039217 0.3254901960784314)",
+          "9": "color(srgb 0.30196078431372547 0.13725490196078433 0.23921568627450981)"
+        },
+        "plum": {
+          "0": "color(srgb 0.9725490196078431 0.8980392156862745 1)",
+          "1": "color(srgb 0.9411764705882353 0.803921568627451 0.996078431372549)",
+          "2": "color(srgb 0.8862745098039215 0.6549019607843137 0.984313725490196)",
+          "3": "color(srgb 0.8313725490196079 0.5294117647058824 0.9686274509803922)",
+          "4": "color(srgb 0.7607843137254902 0.39215686274509803 0.9490196078431372)",
+          "5": "color(srgb 0.6588235294117647 0.18823529411764706 0.9098039215686274)",
+          "6": "color(srgb 0.5882352941176471 0.11764705882352941 0.8627450980392157)",
+          "7": "color(srgb 0.49019607843137253 0.11764705882352941 0.7215686274509804)",
+          "8": "color(srgb 0.396078431372549 0.11372549019607843 0.5882352941176471)",
+          "9": "color(srgb 0.2784313725490196 0.09019607843137255 0.4117647058823529)"
+        },
+        "purple": {
+          "0": "color(srgb 0.9450980392156862 0.8980392156862745 1)",
+          "1": "color(srgb 0.9019607843137255 0.8235294117647058 0.996078431372549)",
+          "2": "color(srgb 0.8196078431372549 0.6941176470588235 0.9882352941176471)",
+          "3": "color(srgb 0.7372549019607844 0.5686274509803921 0.9725490196078431)",
+          "4": "color(srgb 0.6509803921568628 0.4470588235294118 0.9529411764705882)",
+          "5": "color(srgb 0.5372549019607843 0.2980392156862745 0.9215686274509803)",
+          "6": "color(srgb 0.47058823529411764 0.22745098039215686 0.8941176470588236)",
+          "7": "color(srgb 0.3843137254901961 0.13725490196078433 0.8431372549019608)",
+          "8": "color(srgb 0.30980392156862746 0.12941176470588237 0.6705882352941176)",
+          "9": "color(srgb 0.2235294117647059 0.10588235294117647 0.4745098039215686)"
+        },
+        "red": {
+          "0": "color(srgb 1 0.8862745098039215 0.8784313725490196)",
+          "1": "color(srgb 0.996078431372549 0.803921568627451 0.803921568627451)",
+          "2": "color(srgb 0.9921568627450981 0.6470588235294118 0.6549019607843137)",
+          "3": "color(srgb 0.984313725490196 0.5137254901960784 0.5372549019607843)",
+          "4": "color(srgb 0.9725490196078431 0.32941176470588235 0.3803921568627451)",
+          "5": "color(srgb 0.8745098039215686 0.047058823529411764 0.1411764705882353)",
+          "6": "color(srgb 0.7725490196078432 0.050980392156862744 0.1568627450980392)",
+          "7": "color(srgb 0.6509803921568628 0.047058823529411764 0.1607843137254902)",
+          "8": "color(srgb 0.5333333333333333 0.047058823529411764 0.15294117647058825)",
+          "9": "color(srgb 0.3803921568627451 0.0392156862745098 0.12549019607843137)"
+        },
+        "teal": {
+          "0": "color(srgb 0.7803921568627451 0.9607843137254902 0.9372549019607843)",
+          "1": "color(srgb 0.5372549019607843 0.9215686274509803 0.8823529411764706)",
+          "2": "color(srgb 0.13333333333333333 0.8274509803921568 0.7803921568627451)",
+          "3": "color(srgb 0.11372549019607843 0.7254901960784313 0.7058823529411765)",
+          "4": "color(srgb 0.09019607843137255 0.6078431372549019 0.6078431372549019)",
+          "5": "color(srgb 0.07058823529411765 0.49411764705882355 0.5058823529411764)",
+          "6": "color(srgb 0.06274509803921569 0.43137254901960786 0.4588235294117647)",
+          "7": "color(srgb 0.050980392156862744 0.3568627450980392 0.38823529411764707)",
+          "8": "color(srgb 0.0392156862745098 0.2823529411764706 0.3215686274509804)",
+          "9": "color(srgb 0.027450980392156862 0.21568627450980393 0.25098039215686274)"
+        },
+        "white": "color(srgb 1 1 1)",
+        "yellow": {
+          "0": "color(srgb 1 0.9254901960784314 0.6196078431372549)",
+          "1": "color(srgb 1 0.8392156862745098 0.25882352941176473)",
+          "2": "color(srgb 0.9215686274509803 0.7058823529411765 0)",
+          "3": "color(srgb 0.8196078431372549 0.615686274509804 0)",
+          "4": "color(srgb 0.7215686274509804 0.5294117647058824 0)",
+          "5": "color(srgb 0.5803921568627451 0.41568627450980394 0)",
+          "6": "color(srgb 0.5019607843137255 0.34901960784313724 0)",
+          "7": "color(srgb 0.4392156862745098 0.30196078431372547 0)",
+          "8": "color(srgb 0.3607843137254902 0.23921568627450981 0)",
+          "9": "color(srgb 0.25882352941176473 0.16862745098039217 0)"
+        }
+      }
+    },
+    "duration": {
+      "0": "0",
+      "50": "50ms",
+      "100": "100ms",
+      "200": "200ms",
+      "300": "300ms",
+      "400": "400ms",
+      "500": "500ms",
+      "600": "600ms",
+      "700": "700ms",
+      "800": "800ms",
+      "900": "900ms",
+      "1000": "1000ms"
+    },
+    "easing": {
+      "easeIn": "cubic-bezier(0.7, 0.1, 0.75, 0.9)",
+      "easeInOut": "cubic-bezier(0.6, 0, 0.2, 1)",
+      "easeOut": "cubic-bezier(0.3, 0.8, 0.6, 1)",
+      "linear": "cubic-bezier(0, 0, 1, 1)"
     },
     "size": {
+      "2": "2px",
       "4": "4px",
+      "6": "6px",
       "8": "8px",
       "12": "12px",
       "16": "16px",
@@ -5414,11 +9857,189 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
       }
     }
   },
+  "bgColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue['0']
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow['0']
+    },
+    "black": vars.base.color.neutral[13],
+    "closed": {
+      "emphasis": vars.bgColor.danger.emphasis,
+      "muted": vars.bgColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red['0']
+    },
+    "default": vars.base.color.neutral['0'],
+    "disabled": vars.base.color.neutral[2],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple['0']
+    },
+    "draft": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[12],
+    "inset": vars.bgColor.muted,
+    "inverse": vars.base.color.neutral[12],
+    "muted": vars.base.color.neutral[1],
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.base.color.neutral[8]
+    },
+    "open": {
+      "emphasis": vars.bgColor.success.emphasis,
+      "muted": vars.bgColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange['0']
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink['0']
+    },
+    "success": {
+      "emphasis": "color(srgb 0.12156862745098039 0.5333333333333333 0.23921568627450981)",
+      "muted": vars.base.color.green['0']
+    },
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.bgColor.done.emphasis,
+      "muted": vars.bgColor.done.muted
+    },
+    "white": vars.base.color.neutral['0']
+  },
+  "border": {
+    "accent": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-accent-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-accent-muted)"
+    },
+    "attention": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-attention-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-attention-muted)"
+    },
+    "closed": {
+      "emphasis": vars.border.danger.emphasis,
+      "muted": vars.border.danger.muted
+    },
+    "danger": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-danger-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-danger-muted)"
+    },
+    "default": "var(--border-width-default) solid var(--border-color-default)",
+    "disabled": "var(--border-width-default) solid var(--border-color-disabled)",
+    "done": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-done-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-done-muted)"
+    },
+    "emphasis": "var(--border-width-default) solid var(--border-color-emphasis)",
+    "muted": "var(--border-width-default) solid var(--border-color-muted)",
+    "neutral": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-neutral-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-neutral-muted)"
+    },
+    "open": {
+      "emphasis": vars.border.success.emphasis,
+      "muted": vars.border.success.muted
+    },
+    "severe": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-severe-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-severe-muted)"
+    },
+    "sponsors": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-sponsors-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-sponsors-muted)"
+    },
+    "success": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-success-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-success-muted)"
+    },
+    "transparent": "var(--border-width-default) solid var(--border-color-transparent)",
+    "upsell": {
+      "emphasis": "var(--border-width-default) solid var(--border-color-upsell-emphasis)",
+      "muted": "var(--border-width-default) solid var(--border-color-upsell-muted)"
+    }
+  },
+  "borderColor": {
+    "accent": {
+      "emphasis": vars.base.color.blue[5],
+      "muted": vars.base.color.blue[3]
+    },
+    "attention": {
+      "emphasis": vars.base.color.yellow[5],
+      "muted": vars.base.color.yellow[3]
+    },
+    "closed": {
+      "emphasis": vars.borderColor.danger.emphasis,
+      "muted": vars.borderColor.danger.muted
+    },
+    "danger": {
+      "emphasis": vars.base.color.red[5],
+      "muted": vars.base.color.red[3]
+    },
+    "default": vars.base.color.neutral[6],
+    "disabled": vars.base.color.neutral[8],
+    "done": {
+      "emphasis": vars.base.color.purple[5],
+      "muted": vars.base.color.purple[3]
+    },
+    "draft": {
+      "emphasis": vars.borderColor.neutral.emphasis,
+      "muted": vars.borderColor.neutral.muted
+    },
+    "emphasis": vars.base.color.neutral[8],
+    "muted": vars.borderColor.default,
+    "neutral": {
+      "emphasis": vars.base.color.neutral[9],
+      "muted": vars.borderColor.muted
+    },
+    "open": {
+      "emphasis": vars.borderColor.success.emphasis,
+      "muted": vars.borderColor.success.muted
+    },
+    "severe": {
+      "emphasis": vars.base.color.orange[5],
+      "muted": vars.base.color.orange[3]
+    },
+    "sponsors": {
+      "emphasis": vars.base.color.pink[5],
+      "muted": vars.base.color.pink[3]
+    },
+    "success": {
+      "emphasis": vars.base.color.green[5],
+      "muted": vars.base.color.green[3]
+    },
+    "translucent": vars.base.color.neutral[13],
+    "transparent": vars.base.color.transparent,
+    "upsell": {
+      "emphasis": vars.borderColor.done.emphasis,
+      "muted": vars.borderColor.done.muted
+    }
+  },
   "borderRadius": {
+    "default": vars.borderRadius.medium,
     "full": "9999px",
     "large": "12px",
     "medium": "6px",
     "small": "3px"
+  },
+  "borderWidth": {
+    "default": vars.borderWidth.thin,
+    "thick": "2px",
+    "thicker": "4px",
+    "thin": "1px"
+  },
+  "boxShadow": {
+    "thick": "inset 0 0 0 {borderWidth.thick}",
+    "thicker": "inset 0 0 0 {borderWidth.thicker}",
+    "thin": "inset 0 0 0 {borderWidth.thin}"
   },
   "breakpoint": {
     "large": "1012px",
@@ -5426,866 +10047,1638 @@ export const [darkHCClass, darkHC] = createTheme(vars, {
     "small": "544px",
     "xlarge": "1280px",
     "xsmall": "320px",
-    "xxlarge": "1440px"
+    "xxlarge": "1400px"
+  },
+  "button": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.red[6],
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.danger.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.danger.borderColor.hover,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.danger
+      },
+      "iconColor": {
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.button.danger.fgColor.rest
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-red-9)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "active": vars.control.bgColor.active,
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.control.bgColor.hover,
+        "rest": vars.control.bgColor.rest,
+        "selected": vars.control.bgColor.active
+      },
+      "borderColor": {
+        "active": vars.control.borderColor.rest,
+        "disabled": vars.control.borderColor.disabled,
+        "hover": vars.button.default.borderColor.rest,
+        "rest": vars.control.borderColor.rest
+      },
+      "fgColor": {
+        "rest": vars.control.fgColor.rest
+      },
+      "shadow": {
+        "resting": "0 1px 0 0 var(--base-color-neutral-13)"
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[3],
+      "fgColor": vars.base.color.neutral[9]
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.control.transparent.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.base.color.transparent,
+        "hover": vars.control.transparent.borderColor.hover,
+        "rest": vars.control.transparent.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.control.fgColor.rest,
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.control.fgColor.rest,
+        "rest": vars.control.fgColor.rest
+      },
+      "iconColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "hover": vars.fgColor.muted,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.control.bgColor.disabled,
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.control.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.button.outline.borderColor.hover,
+        "hover": vars.button.primary.borderColor.hover
+      },
+      "fgColor": {
+        "active": vars.base.color.neutral['0'],
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.accent
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-blue-9)"
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "active": "color(srgb 0.09803921568627451 0.4745098039215686 0.20784313725490197)",
+        "disabled": "color(srgb 0.5843137254901961 0.8470588235294118 0.6509803921568628)",
+        "hover": "color(srgb 0.10980392156862745 0.5058823529411764 0.2235294117647059)",
+        "rest": vars.bgColor.success.emphasis
+      },
+      "borderColor": {
+        "active": vars.button.primary.borderColor.rest,
+        "disabled": vars.button.primary.bgColor.disabled,
+        "hover": vars.button.primary.borderColor.rest,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.base.color.neutral['0'],
+        "rest": vars.fgColor.white
+      },
+      "iconColor": {
+        "rest": vars.fgColor.white
+      },
+      "shadow": {
+        "selected": "inset 0 1px 0 0 var(--base-color-green-9)"
+      }
+    },
+    "star": {
+      "iconColor": vars.base.color.yellow[2]
+    }
+  },
+  "buttonCounter": {
+    "danger": {
+      "bgColor": {
+        "disabled": vars.bgColor.danger.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.danger.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.danger,
+        "hover": vars.base.color.neutral['0'],
+        "rest": "color(srgb 0.7607843137254902 0.10980392156862745 0.17254901960784313)"
+      }
+    },
+    "default": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "invisible": {
+      "bgColor": {
+        "rest": vars.bgColor.neutral.muted
+      }
+    },
+    "outline": {
+      "bgColor": {
+        "disabled": vars.bgColor.accent.emphasis,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.accent,
+        "hover": vars.base.color.neutral['0'],
+        "rest": vars.base.color.blue[6]
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "rest": vars.base.color.green[9]
+      }
+    }
+  },
+  "buttonKeybindingHint": {
+    "danger": {
+      "bgColor": {
+        "active": vars.base.color.black,
+        "disabled": vars.buttonKeybindingHint.default.bgColor.disabled,
+        "hover": vars.base.color.black,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "active": vars.buttonKeybindingHint.danger.borderColor.hover,
+        "disabled": vars.buttonKeybindingHint.default.borderColor.disabled,
+        "hover": vars.borderColor.translucent,
+        "rest": vars.buttonKeybindingHint.default.borderColor.rest
+      },
+      "fgColor": {
+        "active": vars.fgColor.onEmphasis,
+        "disabled": vars.buttonKeybindingHint.default.fgColor.disabled,
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.buttonKeybindingHint.default.fgColor.rest
+      }
+    },
+    "default": {
+      "bgColor": {
+        "disabled": vars.buttonKeybindingHint.default.bgColor.rest,
+        "rest": vars.base.color.neutral[2]
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.muted
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "inactive": {
+      "bgColor": vars.base.color.neutral[2],
+      "borderColor": vars.borderColor.muted,
+      "fgColor": vars.button.inactive.fgColor
+    },
+    "invisible": {
+      "bgColor": {
+        "active": vars.control.transparent.bgColor.active,
+        "disabled": vars.button.invisible.bgColor.disabled,
+        "hover": vars.control.transparent.bgColor.hover,
+        "rest": vars.buttonKeybindingHint.default.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.base.color.transparent
+      },
+      "fgColor": {
+        "disabled": vars.control.fgColor.disabled,
+        "rest": vars.fgColor.muted
+      }
+    },
+    "primary": {
+      "bgColor": {
+        "disabled": vars.buttonCounter.primary.bgColor.rest,
+        "rest": vars.buttonCounter.primary.bgColor.rest
+      },
+      "borderColor": {
+        "disabled": vars.control.borderColor.disabled,
+        "rest": vars.borderColor.translucent
+      },
+      "fgColor": {
+        "disabled": vars.button.primary.fgColor.disabled,
+        "rest": vars.fgColor.onEmphasis
+      }
+    }
+  },
+  "card": {
+    "bgColor": vars.bgColor.default
+  },
+  "codeMirror": {
+    "activeline": {
+      "bgColor": vars.bgColor.neutral.muted
+    },
+    "bgColor": vars.bgColor.default,
+    "cursor": {
+      "fgColor": vars.fgColor.default
+    },
+    "fgColor": vars.fgColor.default,
+    "gutterMarker": {
+      "fgColor": {
+        "default": vars.bgColor.default,
+        "muted": vars.fgColor.muted
+      }
+    },
+    "gutters": {
+      "bgColor": vars.bgColor.default
+    },
+    "lineNumber": {
+      "fgColor": vars.fgColor.muted
+    },
+    "lines": {
+      "bgColor": vars.bgColor.default
+    },
+    "matchingBracket": {
+      "fgColor": vars.fgColor.default
+    },
+    "selection": {
+      "bgColor": vars.borderColor.accent.muted
+    },
+    "syntax": {
+      "fgColor": {
+        "comment": vars.base.color.neutral[13],
+        "constant": vars.base.color.blue[6],
+        "entity": vars.base.color.purple[5],
+        "keyword": vars.base.color.red[5],
+        "storage": vars.base.color.red[5],
+        "string": vars.base.color.blue[8],
+        "support": vars.base.color.blue[6],
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "color": {
+    "ansi": {
+      "black": vars.base.color.neutral[13],
+      "blackBright": vars.base.color.neutral[11],
+      "blue": vars.base.color.blue[5],
+      "blueBright": vars.base.color.blue[4],
+      "cyan": "color(srgb 0.10588235294117647 0.48627450980392156 0.5137254901960784)",
+      "cyanBright": "color(srgb 0.19215686274509805 0.5725490196078431 0.6666666666666666)",
+      "gray": vars.base.color.neutral[9],
+      "green": vars.base.color.green[6],
+      "greenBright": vars.base.color.green[5],
+      "magenta": vars.base.color.purple[5],
+      "magentaBright": vars.base.color.purple[4],
+      "red": vars.base.color.red[5],
+      "redBright": vars.base.color.red[6],
+      "white": vars.base.color.neutral[9],
+      "whiteBright": vars.base.color.neutral[8],
+      "yellow": vars.base.color.yellow[8],
+      "yellowBright": vars.base.color.yellow[7]
+    },
+    "prettylights": {
+      "syntax": {
+        "brackethighlighter": {
+          "angle": vars.base.color.neutral[9],
+          "unmatched": vars.base.color.red[7]
+        },
+        "carriage": {
+          "return": {
+            "bg": vars.base.color.red[5],
+            "text": vars.base.color.neutral[1]
+          }
+        },
+        "comment": vars.base.color.neutral[9],
+        "constant": vars.base.color.blue[6],
+        "constantOtherReferenceLink": vars.base.color.blue[8],
+        "entity": vars.base.color.purple[6],
+        "entityTag": vars.base.color.blue[6],
+        "invalid": {
+          "illegal": {
+            "bg": vars.bgColor.danger.muted,
+            "text": vars.fgColor.danger
+          }
+        },
+        "keyword": vars.base.color.red[5],
+        "markup": {
+          "bold": vars.base.color.neutral[13],
+          "changed": {
+            "bg": vars.base.color.orange[1],
+            "text": vars.base.color.orange[6]
+          },
+          "deleted": {
+            "bg": vars.base.color.red['0'],
+            "text": vars.base.color.red[7]
+          },
+          "heading": vars.base.color.blue[6],
+          "ignored": {
+            "bg": vars.base.color.blue[6],
+            "text": vars.base.color.neutral[6]
+          },
+          "inserted": {
+            "bg": vars.base.color.green['0'],
+            "text": vars.base.color.green[6]
+          },
+          "italic": vars.base.color.neutral[13],
+          "list": vars.base.color.yellow[9]
+        },
+        "meta": {
+          "diff": {
+            "range": vars.base.color.purple[5]
+          }
+        },
+        "storage": {
+          "modifier": {
+            "import": vars.base.color.neutral[13]
+          }
+        },
+        "string": vars.base.color.blue[8],
+        "stringRegexp": vars.base.color.green[6],
+        "sublimelinter": {
+          "gutter": {
+            "mark": vars.base.color.neutral[8]
+          }
+        },
+        "variable": vars.base.color.orange[6]
+      }
+    }
+  },
+  "contribution": {
+    "default": {
+      "bgColor": {
+        "0": vars.base.color.neutral[2],
+        "1": vars.base.color.green[1],
+        "2": vars.base.color.green[3],
+        "3": vars.base.color.green[4],
+        "4": vars.base.color.green[6]
+      },
+      "borderColor": {
+        "0": vars.base.color.black,
+        "1": vars.contribution.default.borderColor['0'],
+        "2": vars.contribution.default.borderColor['0'],
+        "3": vars.contribution.default.borderColor['0'],
+        "4": vars.contribution.default.borderColor['0']
+      }
+    },
+    "halloween": {
+      "bgColor": {
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.yellow[1],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.color.black
+      }
+    },
+    "winter": {
+      "bgColor": {
+        "1": vars.base.color.blue[1],
+        "2": vars.base.color.blue[3],
+        "3": vars.base.color.blue[5],
+        "4": vars.base.color.blue[8]
+      }
+    }
+  },
+  "control": {
+    "bgColor": {
+      "active": vars.base.color.neutral[3],
+      "disabled": vars.bgColor.disabled,
+      "hover": vars.base.color.neutral[2],
+      "rest": vars.base.color.neutral[1],
+      "selected": vars.control.bgColor.rest
+    },
+    "borderColor": {
+      "danger": vars.borderColor.danger.emphasis,
+      "disabled": vars.borderColor.disabled,
+      "emphasis": vars.borderColor.emphasis,
+      "rest": vars.borderColor.default,
+      "selected": vars.control.bgColor.selected,
+      "success": vars.borderColor.success.emphasis,
+      "warning": vars.borderColor.attention.emphasis
+    },
+    "checked": {
+      "bgColor": {
+        "active": "color(srgb 0.027450980392156862 0.3411764705882353 0.7294117647058823)",
+        "disabled": vars.fgColor.disabled,
+        "hover": "color(srgb 0.03137254901960784 0.3764705882352941 0.792156862745098)",
+        "rest": vars.bgColor.accent.emphasis
+      },
+      "borderColor": {
+        "active": vars.control.checked.bgColor.active,
+        "disabled": vars.control.checked.bgColor.disabled,
+        "hover": vars.control.checked.bgColor.hover,
+        "rest": vars.control.checked.bgColor.rest
+      },
+      "fgColor": {
+        "disabled": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.onEmphasis
+      }
+    },
+    "danger": {
+      "bgColor": {
+        "active": vars.bgColor.danger.muted,
+        "hover": vars.bgColor.danger.muted
+      },
+      "fgColor": {
+        "hover": vars.fgColor.danger,
+        "rest": vars.fgColor.danger
+      }
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.disabled,
+      "placeholder": vars.fgColor.muted,
+      "rest": vars.base.color.neutral[12]
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
+    },
+    "large": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "10px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[40]
+    },
+    "medium": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "6px",
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[32]
+    },
+    "minTarget": {
+      "coarse": vars.base.size[44],
+      "fine": vars.base.size[16]
+    },
+    "small": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": vars.base.size[4],
+      "paddingInline": {
+        "condensed": vars.base.size[8],
+        "normal": vars.base.size[12]
+      },
+      "size": vars.base.size[28]
+    },
+    "transparent": {
+      "bgColor": {
+        "active": vars.base.color.neutral[8],
+        "disabled": vars.bgColor.disabled,
+        "hover": vars.base.color.neutral[8],
+        "rest": vars.base.color.transparent,
+        "selected": vars.base.color.neutral[8]
+      },
+      "borderColor": {
+        "active": vars.base.color.transparent,
+        "hover": vars.base.color.transparent,
+        "rest": vars.base.color.transparent
+      }
+    },
+    "xlarge": {
+      "gap": vars.base.size[8],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "14px",
+      "paddingInline": {
+        "normal": vars.base.size[12],
+        "spacious": vars.base.size[16]
+      },
+      "size": vars.base.size[48]
+    },
+    "xsmall": {
+      "gap": vars.base.size[4],
+      "lineBoxHeight": vars.base.size[20],
+      "paddingBlock": "2px",
+      "paddingInline": {
+        "condensed": vars.base.size[4],
+        "normal": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      },
+      "size": vars.base.size[24]
+    }
+  },
+  "controlKnob": {
+    "bgColor": {
+      "checked": vars.base.color.neutral['0'],
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.base.color.neutral['0']
+    },
+    "borderColor": {
+      "checked": vars.control.checked.bgColor.rest,
+      "disabled": vars.control.bgColor.disabled,
+      "rest": vars.control.borderColor.rest
+    }
+  },
+  "controlStack": {
+    "large": {
+      "gap": {
+        "auto": vars.base.size[8],
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "medium": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[12]
+      }
+    },
+    "small": {
+      "gap": {
+        "condensed": vars.base.size[8],
+        "spacious": vars.base.size[16]
+      }
+    }
+  },
+  "controlTrack": {
+    "bgColor": {
+      "active": vars.base.color.neutral[5],
+      "disabled": vars.fgColor.disabled,
+      "hover": vars.base.color.neutral[4],
+      "rest": vars.base.color.neutral[3]
+    },
+    "borderColor": {
+      "disabled": vars.fgColor.disabled,
+      "rest": vars.borderColor.default
+    },
+    "fgColor": {
+      "disabled": vars.fgColor.onEmphasis,
+      "rest": vars.base.color.neutral[9]
+    }
+  },
+  "counter": {
+    "bgColor": {
+      "emphasis": vars.bgColor.neutral.emphasis,
+      "muted": vars.bgColor.neutral.muted
+    },
+    "borderColor": vars.base.color.transparent
+  },
+  "dashboard": {
+    "bgColor": vars.bgColor.default
+  },
+  "data": {
+    "auburn": {
+      "color": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      }
+    },
+    "blue": {
+      "color": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      }
+    },
+    "brown": {
+      "color": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      }
+    },
+    "coral": {
+      "color": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      }
+    },
+    "gray": {
+      "color": {
+        "emphasis": vars.base.display.color.gray[4],
+        "muted": vars.base.display.color.gray['0']
+      }
+    },
+    "green": {
+      "color": {
+        "emphasis": vars.base.display.color.green[4],
+        "muted": vars.base.display.color.green['0']
+      }
+    },
+    "lemon": {
+      "color": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      }
+    },
+    "lime": {
+      "color": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      }
+    },
+    "olive": {
+      "color": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      }
+    },
+    "orange": {
+      "color": {
+        "emphasis": vars.base.display.color.orange[4],
+        "muted": vars.base.display.color.orange['0']
+      }
+    },
+    "pine": {
+      "color": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      }
+    },
+    "pink": {
+      "color": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      }
+    },
+    "plum": {
+      "color": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      }
+    },
+    "purple": {
+      "color": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      }
+    },
+    "red": {
+      "color": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      }
+    },
+    "teal": {
+      "color": {
+        "emphasis": vars.base.display.color.teal[4],
+        "muted": vars.base.display.color.teal['0']
+      }
+    },
+    "yellow": {
+      "color": {
+        "emphasis": vars.base.display.color.yellow[4],
+        "muted": vars.base.display.color.yellow['0']
+      }
+    }
+  },
+  "diffBlob": {
+    "additionLine": {
+      "bgColor": vars.bgColor.success.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "additionNum": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "additionWord": {
+      "bgColor": vars.base.color.green[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionLine": {
+      "bgColor": vars.bgColor.danger.muted,
+      "fgColor": vars.fgColor.default
+    },
+    "deletionNum": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "deletionWord": {
+      "bgColor": vars.base.color.red[1],
+      "fgColor": vars.fgColor.default
+    },
+    "emptyLine": {
+      "bgColor": vars.bgColor.muted
+    },
+    "emptyNum": {
+      "bgColor": vars.bgColor.muted
+    },
+    "expander": {
+      "iconColor": vars.fgColor.muted
+    },
+    "hunkLine": {
+      "bgColor": vars.bgColor.accent.muted,
+      "fgColor": vars.fgColor.muted
+    },
+    "hunkNum": {
+      "bgColor": {
+        "hover": vars.bgColor.accent.emphasis,
+        "rest": vars.base.color.blue[1]
+      },
+      "fgColor": {
+        "hover": vars.fgColor.onEmphasis,
+        "rest": vars.fgColor.default
+      }
+    }
+  },
+  "display": {
+    "auburn": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.auburn[5],
+        "muted": vars.base.display.color.auburn[1]
+      },
+      "fgColor": vars.base.display.color.auburn[6],
+      "scale": {
+        "0": vars.base.display.color.auburn['0'],
+        "1": vars.base.display.color.auburn[1],
+        "2": vars.base.display.color.auburn[2],
+        "3": vars.base.display.color.auburn[3],
+        "4": vars.base.display.color.auburn[4],
+        "5": vars.base.display.color.auburn[5],
+        "6": vars.base.display.color.auburn[6],
+        "7": vars.base.display.color.auburn[7],
+        "8": vars.base.display.color.auburn[8],
+        "9": vars.base.display.color.auburn[9]
+      }
+    },
+    "blue": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.blue[5],
+        "muted": vars.base.display.color.blue[1]
+      },
+      "fgColor": vars.base.display.color.blue[6],
+      "scale": {
+        "0": vars.base.display.color.blue['0'],
+        "1": vars.base.display.color.blue[1],
+        "2": vars.base.display.color.blue[2],
+        "3": vars.base.display.color.blue[3],
+        "4": vars.base.display.color.blue[4],
+        "5": vars.base.display.color.blue[5],
+        "6": vars.base.display.color.blue[6],
+        "7": vars.base.display.color.blue[7],
+        "8": vars.base.display.color.blue[8],
+        "9": vars.base.display.color.blue[9]
+      }
+    },
+    "brown": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.brown[5],
+        "muted": vars.base.display.color.brown[1]
+      },
+      "fgColor": vars.base.display.color.brown[6],
+      "scale": {
+        "0": vars.base.display.color.brown['0'],
+        "1": vars.base.display.color.brown[1],
+        "2": vars.base.display.color.brown[2],
+        "3": vars.base.display.color.brown[3],
+        "4": vars.base.display.color.brown[4],
+        "5": vars.base.display.color.brown[5],
+        "6": vars.base.display.color.brown[6],
+        "7": vars.base.display.color.brown[7],
+        "8": vars.base.display.color.brown[8],
+        "9": vars.base.display.color.brown[9]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.coral[5],
+        "muted": vars.base.display.color.coral[1]
+      },
+      "fgColor": vars.base.display.color.coral[6],
+      "scale": {
+        "0": vars.base.display.color.coral['0'],
+        "1": vars.base.display.color.coral[1],
+        "2": vars.base.display.color.coral[2],
+        "3": vars.base.display.color.coral[3],
+        "4": vars.base.display.color.coral[4],
+        "5": vars.base.display.color.coral[5],
+        "6": vars.base.display.color.coral[6],
+        "7": vars.base.display.color.coral[7],
+        "8": vars.base.display.color.coral[8],
+        "9": vars.base.display.color.coral[9]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.cyan[5],
+        "muted": vars.base.display.color.cyan[1]
+      },
+      "fgColor": vars.base.display.color.cyan[6],
+      "scale": {
+        "0": vars.base.display.color.cyan['0'],
+        "1": vars.base.display.color.cyan[1],
+        "2": vars.base.display.color.cyan[2],
+        "3": vars.base.display.color.cyan[3],
+        "4": vars.base.display.color.cyan[4],
+        "5": vars.base.display.color.cyan[5],
+        "6": vars.base.display.color.cyan[6],
+        "7": vars.base.display.color.cyan[7],
+        "8": vars.base.display.color.cyan[8],
+        "9": vars.base.display.color.cyan[9]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.gray[5],
+        "muted": vars.base.display.color.gray[1]
+      },
+      "fgColor": vars.base.display.color.gray[6],
+      "scale": {
+        "0": vars.base.display.color.gray['0'],
+        "1": vars.base.display.color.gray[1],
+        "2": vars.base.display.color.gray[2],
+        "3": vars.base.display.color.gray[3],
+        "4": vars.base.display.color.gray[4],
+        "5": vars.base.display.color.gray[5],
+        "6": vars.base.display.color.gray[6],
+        "7": vars.base.display.color.gray[7],
+        "8": vars.base.display.color.gray[8],
+        "9": vars.base.display.color.gray[9]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.green[5],
+        "muted": vars.base.display.color.green[1]
+      },
+      "fgColor": vars.base.display.color.green[6],
+      "scale": {
+        "0": vars.base.display.color.green['0'],
+        "1": vars.base.display.color.green[1],
+        "2": vars.base.display.color.green[2],
+        "3": vars.base.display.color.green[3],
+        "4": vars.base.display.color.green[4],
+        "5": vars.base.display.color.green[5],
+        "6": vars.base.display.color.green[6],
+        "7": vars.base.display.color.green[7],
+        "8": vars.base.display.color.green[8],
+        "9": vars.base.display.color.green[9]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.indigo[5],
+        "muted": vars.base.display.color.indigo[1]
+      },
+      "fgColor": vars.base.display.color.indigo[6],
+      "scale": {
+        "0": vars.base.display.color.indigo['0'],
+        "1": vars.base.display.color.indigo[1],
+        "2": vars.base.display.color.indigo[2],
+        "3": vars.base.display.color.indigo[3],
+        "4": vars.base.display.color.indigo[4],
+        "5": vars.base.display.color.indigo[5],
+        "6": vars.base.display.color.indigo[6],
+        "7": vars.base.display.color.indigo[7],
+        "8": vars.base.display.color.indigo[8],
+        "9": vars.base.display.color.indigo[9]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lemon[5],
+        "muted": vars.base.display.color.lemon[1]
+      },
+      "fgColor": vars.base.display.color.lemon[6],
+      "scale": {
+        "0": vars.base.display.color.lemon['0'],
+        "1": vars.base.display.color.lemon[1],
+        "2": vars.base.display.color.lemon[2],
+        "3": vars.base.display.color.lemon[3],
+        "4": vars.base.display.color.lemon[4],
+        "5": vars.base.display.color.lemon[5],
+        "6": vars.base.display.color.lemon[6],
+        "7": vars.base.display.color.lemon[7],
+        "8": vars.base.display.color.lemon[8],
+        "9": vars.base.display.color.lemon[9]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.lime[5],
+        "muted": vars.base.display.color.lime[1]
+      },
+      "fgColor": vars.base.display.color.lime[6],
+      "scale": {
+        "0": vars.base.display.color.lime['0'],
+        "1": vars.base.display.color.lime[1],
+        "2": vars.base.display.color.lime[2],
+        "3": vars.base.display.color.lime[3],
+        "4": vars.base.display.color.lime[4],
+        "5": vars.base.display.color.lime[5],
+        "6": vars.base.display.color.lime[6],
+        "7": vars.base.display.color.lime[7],
+        "8": vars.base.display.color.lime[8],
+        "9": vars.base.display.color.lime[9]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.olive[5],
+        "muted": vars.base.display.color.olive[1]
+      },
+      "fgColor": vars.base.display.color.olive[6],
+      "scale": {
+        "0": vars.base.display.color.olive['0'],
+        "1": vars.base.display.color.olive[1],
+        "2": vars.base.display.color.olive[2],
+        "3": vars.base.display.color.olive[3],
+        "4": vars.base.display.color.olive[4],
+        "5": vars.base.display.color.olive[5],
+        "6": vars.base.display.color.olive[6],
+        "7": vars.base.display.color.olive[7],
+        "8": vars.base.display.color.olive[8],
+        "9": vars.base.display.color.olive[9]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.orange[5],
+        "muted": vars.base.display.color.orange[1]
+      },
+      "fgColor": vars.base.display.color.orange[6],
+      "scale": {
+        "0": vars.base.display.color.orange['0'],
+        "1": vars.base.display.color.orange[1],
+        "2": vars.base.display.color.orange[2],
+        "3": vars.base.display.color.orange[3],
+        "4": vars.base.display.color.orange[4],
+        "5": vars.base.display.color.orange[5],
+        "6": vars.base.display.color.orange[6],
+        "7": vars.base.display.color.orange[7],
+        "8": vars.base.display.color.orange[8],
+        "9": vars.base.display.color.orange[9]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pine[5],
+        "muted": vars.base.display.color.pine[1]
+      },
+      "fgColor": vars.base.display.color.pine[6],
+      "scale": {
+        "0": vars.base.display.color.pine['0'],
+        "1": vars.base.display.color.pine[1],
+        "2": vars.base.display.color.pine[2],
+        "3": vars.base.display.color.pine[3],
+        "4": vars.base.display.color.pine[4],
+        "5": vars.base.display.color.pine[5],
+        "6": vars.base.display.color.pine[6],
+        "7": vars.base.display.color.pine[7],
+        "8": vars.base.display.color.pine[8],
+        "9": vars.base.display.color.pine[9]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.pink[5],
+        "muted": vars.base.display.color.pink[1]
+      },
+      "fgColor": vars.base.display.color.pink[6],
+      "scale": {
+        "0": vars.base.display.color.pink['0'],
+        "1": vars.base.display.color.pink[1],
+        "2": vars.base.display.color.pink[2],
+        "3": vars.base.display.color.pink[3],
+        "4": vars.base.display.color.pink[4],
+        "5": vars.base.display.color.pink[5],
+        "6": vars.base.display.color.pink[6],
+        "7": vars.base.display.color.pink[7],
+        "8": vars.base.display.color.pink[8],
+        "9": vars.base.display.color.pink[9]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.plum[5],
+        "muted": vars.base.display.color.plum[1]
+      },
+      "fgColor": vars.base.display.color.plum[6],
+      "scale": {
+        "0": vars.base.display.color.plum['0'],
+        "1": vars.base.display.color.plum[1],
+        "2": vars.base.display.color.plum[2],
+        "3": vars.base.display.color.plum[3],
+        "4": vars.base.display.color.plum[4],
+        "5": vars.base.display.color.plum[5],
+        "6": vars.base.display.color.plum[6],
+        "7": vars.base.display.color.plum[7],
+        "8": vars.base.display.color.plum[8],
+        "9": vars.base.display.color.plum[9]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.purple[5],
+        "muted": vars.base.display.color.purple[1]
+      },
+      "fgColor": vars.base.display.color.purple[6],
+      "scale": {
+        "0": vars.base.display.color.purple['0'],
+        "1": vars.base.display.color.purple[1],
+        "2": vars.base.display.color.purple[2],
+        "3": vars.base.display.color.purple[3],
+        "4": vars.base.display.color.purple[4],
+        "5": vars.base.display.color.purple[5],
+        "6": vars.base.display.color.purple[6],
+        "7": vars.base.display.color.purple[7],
+        "8": vars.base.display.color.purple[8],
+        "9": vars.base.display.color.purple[9]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.red[5],
+        "muted": vars.base.display.color.red[1]
+      },
+      "fgColor": vars.base.display.color.red[6],
+      "scale": {
+        "0": vars.base.display.color.red['0'],
+        "1": vars.base.display.color.red[1],
+        "2": vars.base.display.color.red[2],
+        "3": vars.base.display.color.red[3],
+        "4": vars.base.display.color.red[4],
+        "5": vars.base.display.color.red[5],
+        "6": vars.base.display.color.red[6],
+        "7": vars.base.display.color.red[7],
+        "8": vars.base.display.color.red[8],
+        "9": vars.base.display.color.red[9]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.teal[5],
+        "muted": vars.base.display.color.teal[1]
+      },
+      "fgColor": vars.base.display.color.teal[6],
+      "scale": {
+        "0": vars.base.display.color.teal['0'],
+        "1": vars.base.display.color.teal[1],
+        "2": vars.base.display.color.teal[2],
+        "3": vars.base.display.color.teal[3],
+        "4": vars.base.display.color.teal[4],
+        "5": vars.base.display.color.teal[5],
+        "6": vars.base.display.color.teal[6],
+        "7": vars.base.display.color.teal[7],
+        "8": vars.base.display.color.teal[8],
+        "9": vars.base.display.color.teal[9]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow['0']
+      },
+      "borderColor": {
+        "emphasis": vars.base.display.color.yellow[5],
+        "muted": vars.base.display.color.yellow[1]
+      },
+      "fgColor": vars.base.display.color.yellow[6],
+      "scale": {
+        "0": vars.base.display.color.yellow['0'],
+        "1": vars.base.display.color.yellow[1],
+        "2": vars.base.display.color.yellow[2],
+        "3": vars.base.display.color.yellow[3],
+        "4": vars.base.display.color.yellow[4],
+        "5": vars.base.display.color.yellow[5],
+        "6": vars.base.display.color.yellow[6],
+        "7": vars.base.display.color.yellow[7],
+        "8": vars.base.display.color.yellow[8],
+        "9": vars.base.display.color.yellow[9]
+      }
+    }
+  },
+  "fgColor": {
+    "accent": vars.base.color.blue[5],
+    "attention": vars.base.color.yellow[5],
+    "black": vars.base.color.neutral[13],
+    "closed": vars.fgColor.danger,
+    "danger": "color(srgb 0.8196078431372549 0.1411764705882353 0.1843137254901961)",
+    "default": vars.base.color.neutral[13],
+    "disabled": vars.base.color.neutral[8],
+    "done": vars.base.color.purple[5],
+    "draft": vars.fgColor.neutral,
+    "link": vars.fgColor.accent,
+    "muted": vars.base.color.neutral[9],
+    "neutral": vars.base.color.neutral[9],
+    "onEmphasis": vars.base.color.neutral['0'],
+    "onInverse": vars.base.color.neutral['0'],
+    "open": vars.fgColor.success,
+    "severe": vars.base.color.orange[5],
+    "sponsors": vars.base.color.pink[5],
+    "success": vars.base.color.green[5],
+    "upsell": vars.fgColor.done,
+    "white": vars.base.color.neutral['0']
+  },
+  "focus": {
+    "outline": "2px solid var(--focus-outline-color)",
+    "outlineColor": vars.borderColor.accent.emphasis
   },
   "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
+    "monospace": "\"ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace\"",
+    "sansSerif": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "sansSerifDisplay": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\"",
+    "system": "\"-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji'\""
   },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
+  "header": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": {
+      "divider": vars.base.color.neutral[8]
+    },
+    "fgColor": {
+      "default": vars.base.color.neutral['0'],
+      "logo": vars.base.color.neutral['0']
+    }
+  },
+  "headerSearch": {
+    "bgColor": vars.base.color.neutral[12],
+    "borderColor": vars.base.color.neutral[8]
+  },
+  "highlight": {
+    "neutral": {
+      "bgColor": vars.base.color.yellow['0']
+    }
+  },
+  "label": {
+    "auburn": {
+      "bgColor": {
+        "active": vars.base.display.color.auburn[2],
+        "hover": vars.base.display.color.auburn[1],
+        "rest": vars.base.display.color.auburn['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.auburn[8],
+        "hover": vars.base.display.color.auburn[7],
+        "rest": vars.base.display.color.auburn[6]
       }
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
+    "blue": {
+      "bgColor": {
+        "active": vars.base.display.color.blue[2],
+        "hover": vars.base.display.color.blue[1],
+        "rest": vars.base.display.color.blue['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.blue[8],
+        "hover": vars.base.display.color.blue[7],
+        "rest": vars.base.display.color.blue[6]
       }
     },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
+    "brown": {
+      "bgColor": {
+        "active": vars.base.display.color.brown[2],
+        "hover": vars.base.display.color.brown[1],
+        "rest": vars.base.display.color.brown['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.brown[8],
+        "hover": vars.base.display.color.brown[7],
+        "rest": vars.base.display.color.brown[6]
+      }
+    },
+    "coral": {
+      "bgColor": {
+        "active": vars.base.display.color.coral[2],
+        "hover": vars.base.display.color.coral[1],
+        "rest": vars.base.display.color.coral['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.coral[8],
+        "hover": vars.base.display.color.coral[7],
+        "rest": vars.base.display.color.coral[6]
+      }
+    },
+    "cyan": {
+      "bgColor": {
+        "active": vars.base.display.color.cyan[2],
+        "hover": vars.base.display.color.cyan[1],
+        "rest": vars.base.display.color.cyan['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.cyan[8],
+        "hover": vars.base.display.color.cyan[7],
+        "rest": vars.base.display.color.cyan[6]
+      }
+    },
+    "gray": {
+      "bgColor": {
+        "active": vars.base.display.color.gray[2],
+        "hover": vars.base.display.color.gray[1],
+        "rest": vars.base.display.color.gray['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.gray[8],
+        "hover": vars.base.display.color.gray[7],
+        "rest": vars.base.display.color.gray[6]
+      }
+    },
+    "green": {
+      "bgColor": {
+        "active": vars.base.display.color.green[2],
+        "hover": vars.base.display.color.green[1],
+        "rest": vars.base.display.color.green['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.green[8],
+        "hover": vars.base.display.color.green[7],
+        "rest": vars.base.display.color.green[6]
+      }
+    },
+    "indigo": {
+      "bgColor": {
+        "active": vars.base.display.color.indigo[2],
+        "hover": vars.base.display.color.indigo[1],
+        "rest": vars.base.display.color.indigo['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.indigo[8],
+        "hover": vars.base.display.color.indigo[7],
+        "rest": vars.base.display.color.indigo[6]
+      }
+    },
+    "lemon": {
+      "bgColor": {
+        "active": vars.base.display.color.lemon[2],
+        "hover": vars.base.display.color.lemon[1],
+        "rest": vars.base.display.color.lemon['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lemon[8],
+        "hover": vars.base.display.color.lemon[7],
+        "rest": vars.base.display.color.lemon[6]
+      }
+    },
+    "lime": {
+      "bgColor": {
+        "active": vars.base.display.color.lime[2],
+        "hover": vars.base.display.color.lime[1],
+        "rest": vars.base.display.color.lime['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.lime[8],
+        "hover": vars.base.display.color.lime[7],
+        "rest": vars.base.display.color.lime[6]
+      }
+    },
+    "olive": {
+      "bgColor": {
+        "active": vars.base.display.color.olive[2],
+        "hover": vars.base.display.color.olive[1],
+        "rest": vars.base.display.color.olive['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.olive[8],
+        "hover": vars.base.display.color.olive[7],
+        "rest": vars.base.display.color.olive[6]
+      }
+    },
+    "orange": {
+      "bgColor": {
+        "active": vars.base.display.color.orange[2],
+        "hover": vars.base.display.color.orange[1],
+        "rest": vars.base.display.color.orange['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.orange[8],
+        "hover": vars.base.display.color.orange[7],
+        "rest": vars.base.display.color.orange[6]
+      }
+    },
+    "pine": {
+      "bgColor": {
+        "active": vars.base.display.color.pine[2],
+        "hover": vars.base.display.color.pine[1],
+        "rest": vars.base.display.color.pine['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pine[8],
+        "hover": vars.base.display.color.pine[7],
+        "rest": vars.base.display.color.pine[6]
+      }
+    },
+    "pink": {
+      "bgColor": {
+        "active": vars.base.display.color.pink[2],
+        "hover": vars.base.display.color.pink[1],
+        "rest": vars.base.display.color.pink['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.pink[8],
+        "hover": vars.base.display.color.pink[7],
+        "rest": vars.base.display.color.pink[6]
+      }
+    },
+    "plum": {
+      "bgColor": {
+        "active": vars.base.display.color.plum[2],
+        "hover": vars.base.display.color.plum[1],
+        "rest": vars.base.display.color.plum['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.plum[8],
+        "hover": vars.base.display.color.plum[7],
+        "rest": vars.base.display.color.plum[6]
+      }
+    },
+    "purple": {
+      "bgColor": {
+        "active": vars.base.display.color.purple[2],
+        "hover": vars.base.display.color.purple[1],
+        "rest": vars.base.display.color.purple['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.purple[8],
+        "hover": vars.base.display.color.purple[7],
+        "rest": vars.base.display.color.purple[6]
+      }
+    },
+    "red": {
+      "bgColor": {
+        "active": vars.base.display.color.red[2],
+        "hover": vars.base.display.color.red[1],
+        "rest": vars.base.display.color.red['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.red[8],
+        "hover": vars.base.display.color.red[7],
+        "rest": vars.base.display.color.red[6]
+      }
+    },
+    "teal": {
+      "bgColor": {
+        "active": vars.base.display.color.teal[2],
+        "hover": vars.base.display.color.teal[1],
+        "rest": vars.base.display.color.teal['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.teal[8],
+        "hover": vars.base.display.color.teal[7],
+        "rest": vars.base.display.color.teal[6]
+      }
+    },
+    "yellow": {
+      "bgColor": {
+        "active": vars.base.display.color.yellow[2],
+        "hover": vars.base.display.color.yellow[1],
+        "rest": vars.base.display.color.yellow['0']
+      },
+      "borderColor": vars.base.color.transparent,
+      "fgColor": {
+        "active": vars.base.display.color.yellow[8],
+        "hover": vars.base.display.color.yellow[7],
+        "rest": vars.base.display.color.yellow[6]
       }
     }
   },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
+  "menu": {
+    "bgColor": {
+      "active": vars.base.color.transparent
+    }
   },
-  "text": {
-    "body": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
-      },
-      "shorthand": {
-        "large": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.large,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "medium": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.body.weight,
-          "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.body.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "16px",
-        "medium": "14px",
-        "small": "12px"
-      },
-      "weight": vars.base.text.weight.normal
+  "outline": {
+    "focus": {
+      "offset": "-2px",
+      "width": "2px"
+    }
+  },
+  "overlay": {
+    "backdrop": {
+      "bgColor": vars.base.color.neutral[7]
     },
-    "caption": {
-      "lineHeight": "1.3333",
-      "shorthand": {
-        "fontWeight": vars.text.caption.weight,
-        "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.caption.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
-      },
-      "size": "12px",
-      "weight": vars.base.text.weight.normal
+    "bgColor": vars.base.color.neutral['0'],
+    "borderColor": vars.borderColor.muted,
+    "borderRadius": vars.borderRadius.medium,
+    "height": {
+      "large": "432px",
+      "medium": "320px",
+      "small": "256px",
+      "xlarge": "600px"
     },
-    "codeBlock": {
-      "lineHeight": "1.5385",
-      "shorthand": {
-        "fontWeight": vars.text.codeBlock.weight,
-        "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.codeBlock.lineHeight,
-        "fontFamily": vars.fontStack.monospace
-      },
-      "size": "13px",
-      "weight": vars.base.text.weight.normal
+    "offset": "4px",
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16]
     },
-    "codeInline": {
-      "shorthand": {
-        "fontWeight": vars.text.codeInline.weight,
-        "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
-      },
-      "size": "0.9285em",
-      "weight": vars.base.text.weight.normal
+    "paddingBlock": {
+      "condensed": vars.base.size[4],
+      "normal": vars.base.size[12]
     },
-    "display": {
-      "lineBoxHeight": "56px",
-      "lineHeight": "1.4",
-      "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
-        "fontWeight": vars.text.display.weight,
-        "fontSize": vars.text.display.size,
-        "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
-      },
-      "size": "40px",
-      "weight": vars.base.text.weight.medium
+    "width": {
+      "large": "640px",
+      "medium": "480px",
+      "small": "320px",
+      "xlarge": "960px",
+      "xsmall": "192px"
+    }
+  },
+  "page": {
+    "header": {
+      "bgColor": vars.bgColor.muted
+    }
+  },
+  "progressBar": {
+    "bgColor": {
+      "accent": vars.bgColor.accent.emphasis,
+      "attention": vars.bgColor.attention.emphasis,
+      "danger": vars.bgColor.danger.emphasis,
+      "done": vars.bgColor.done.emphasis,
+      "neutral": vars.bgColor.neutral.emphasis,
+      "severe": vars.bgColor.severe.emphasis,
+      "sponsors": vars.bgColor.sponsors.emphasis,
+      "success": vars.bgColor.success.emphasis
     },
-    "subtitle": {
-      "lineHeight": "1.6",
-      "shorthand": {
-        "fontWeight": vars.text.subtitle.weight,
-        "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
-        "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+    "track": {
+      "bgColor": vars.borderColor.default,
+      "borderColor": vars.base.color.transparent
+    }
+  },
+  "reactionButton": {
+    "selected": {
+      "bgColor": {
+        "hover": "color(srgb 0.792156862745098 0.9254901960784314 1)",
+        "rest": vars.base.color.blue['0']
       },
-      "size": "20px",
-      "weight": vars.base.text.weight.normal
-    },
-    "title": {
-      "lineHeight": {
-        "large": "1.5",
-        "medium": "1.6",
-        "small": "1.5"
-      },
-      "shorthand": {
-        "large": {
-          "fontFamily": vars.fontStack.sansSerif,
-          "fontWeight": vars.text.title.weight.large,
-          "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
-        },
-        "medium": {
-          "fontWeight": vars.text.title.weight.medium,
-          "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
-        },
-        "small": {
-          "fontWeight": vars.text.title.weight.small,
-          "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.small,
-          "fontFamily": vars.fontStack.sansSerif
-        }
-      },
-      "size": {
-        "large": "32px",
-        "medium": "20px",
-        "small": "16px"
-      },
-      "weight": {
-        "large": vars.base.text.weight.semibold,
-        "medium": vars.base.text.weight.semibold,
-        "small": vars.base.text.weight.semibold
+      "fgColor": {
+        "hover": vars.base.color.blue[6],
+        "rest": vars.fgColor.link
       }
     }
-  }
-});
-
-export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
-  "base": {
-    "color": {
-      "black": "color(srgb 0.10980392156862745 0.12941176470588237 0.1568627450980392)",
-      "blue": {
-        "0": "color(srgb 0.7764705882352941 0.9019607843137255 1)",
-        "1": "color(srgb 0.5882352941176471 0.8156862745098039 1)",
-        "2": "color(srgb 0.4235294117647059 0.7137254901960784 1)",
-        "3": "color(srgb 0.3254901960784314 0.6078431372549019 0.9607843137254902)",
-        "4": "color(srgb 0.2549019607843137 0.5176470588235295 0.8941176470588236)",
-        "5": "color(srgb 0.19215686274509805 0.42745098039215684 0.792156862745098)",
-        "6": "color(srgb 0.1450980392156863 0.35294117647058826 0.6980392156862745)",
-        "7": "color(srgb 0.10588235294117647 0.29411764705882354 0.5686274509803921)",
-        "8": "color(srgb 0.0784313725490196 0.23921568627450981 0.4745098039215686)",
-        "9": "color(srgb 0.058823529411764705 0.17647058823529413 0.3607843137254902)"
-      },
-      "coral": {
-        "0": "color(srgb 1 0.8549019607843137 0.8117647058823529)",
-        "1": "color(srgb 1 0.7254901960784313 0.6470588235294118)",
-        "2": "color(srgb 0.9686274509803922 0.6 0.5058823529411764)",
-        "3": "color(srgb 0.9254901960784314 0.4666666666666667 0.3607843137254902)",
-        "4": "color(srgb 0.8705882352941177 0.3568627450980392 0.2549019607843137)",
-        "5": "color(srgb 0.7607843137254902 0.26666666666666666 0.17647058823529413)",
-        "6": "color(srgb 0.6627450980392157 0.20784313725490197 0.1411764705882353)",
-        "7": "color(srgb 0.5529411764705883 0.1607843137254902 0.10588235294117647)",
-        "8": "color(srgb 0.4666666666666667 0.11372549019607843 0.07450980392156863)",
-        "9": "color(srgb 0.36470588235294116 0.06274509803921569 0.03137254901960784)"
-      },
-      "green": {
-        "0": "color(srgb 0.7058823529411765 0.9450980392156862 0.7058823529411765)",
-        "1": "color(srgb 0.5529411764705883 0.8588235294117647 0.5490196078431373)",
-        "2": "color(srgb 0.4196078431372549 0.7686274509803922 0.42745098039215684)",
-        "3": "color(srgb 0.3411764705882353 0.6705882352941176 0.35294117647058826)",
-        "4": "color(srgb 0.27450980392156865 0.5843137254901961 0.2901960784313726)",
-        "5": "color(srgb 0.20392156862745098 0.49019607843137253 0.2235294117647059)",
-        "6": "color(srgb 0.16862745098039217 0.41568627450980394 0.18823529411764706)",
-        "7": "color(srgb 0.1411764705882353 0.34509803921568627 0.1607843137254902)",
-        "8": "color(srgb 0.10588235294117647 0.2784313725490196 0.12941176470588237)",
-        "9": "color(srgb 0.06666666666666667 0.20392156862745098 0.09019607843137255)"
-      },
-      "neutral": {
-        "0": "color(srgb 0.803921568627451 0.8509803921568627 0.8980392156862745)",
-        "1": "color(srgb 0.6784313725490196 0.7294117647058823 0.7803921568627451)",
-        "2": "color(srgb 0.5647058823529412 0.615686274509804 0.6705882352941176)",
-        "3": "color(srgb 0.4627450980392157 0.5137254901960784 0.5647058823529412)",
-        "4": "color(srgb 0.38823529411764707 0.43137254901960786 0.4823529411764706)",
-        "5": "color(srgb 0.32941176470588235 0.36470588235294116 0.40784313725490196)",
-        "6": "color(srgb 0.26666666666666666 0.2980392156862745 0.33725490196078434)",
-        "7": "color(srgb 0.21568627450980393 0.24313725490196078 0.2784313725490196)",
-        "8": "color(srgb 0.17647058823529413 0.2 0.23137254901960785)",
-        "9": "color(srgb 0.13333333333333333 0.15294117647058825 0.1803921568627451)"
-      },
-      "orange": {
-        "0": "color(srgb 1 0.8666666666666667 0.6901960784313725)",
-        "1": "color(srgb 1 0.7372549019607844 0.43529411764705883)",
-        "2": "color(srgb 0.9647058823529412 0.615686274509804 0.3137254901960784)",
-        "3": "color(srgb 0.8784313725490196 0.5098039215686274 0.23921568627450981)",
-        "4": "color(srgb 0.8 0.4196078431372549 0.17254901960784313)",
-        "5": "color(srgb 0.6823529411764706 0.33725490196078434 0.13333333333333333)",
-        "6": "color(srgb 0.5803921568627451 0.2784313725490196 0.10588235294117647)",
-        "7": "color(srgb 0.4980392156862745 0.2235294117647059 0.07450980392156863)",
-        "8": "color(srgb 0.40784313725490196 0.17647058823529413 0.058823529411764705)",
-        "9": "color(srgb 0.30196078431372547 0.12941176470588237 0.047058823529411764)"
-      },
-      "pink": {
-        "0": "color(srgb 1 0.8431372549019608 0.9215686274509803)",
-        "1": "color(srgb 1 0.7019607843137254 0.8470588235294118)",
-        "2": "color(srgb 0.9882352941176471 0.5529411764705883 0.7803921568627451)",
-        "3": "color(srgb 0.8862745098039215 0.4588235294117647 0.6784313725490196)",
-        "4": "color(srgb 0.788235294117647 0.3803921568627451 0.596078431372549)",
-        "5": "color(srgb 0.6823529411764706 0.2980392156862745 0.5098039215686274)",
-        "6": "color(srgb 0.596078431372549 0.23137254901960785 0.43137254901960786)",
-        "7": "color(srgb 0.49411764705882355 0.19607843137254902 0.35294117647058826)",
-        "8": "color(srgb 0.4117647058823529 0.14901960784313725 0.2901960784313726)",
-        "9": "color(srgb 0.3333333333333333 0.08627450980392157 0.2235294117647059)"
-      },
-      "purple": {
-        "0": "color(srgb 0.9333333333333333 0.8627450980392157 1)",
-        "1": "color(srgb 0.8627450980392157 0.7411764705882353 0.984313725490196)",
-        "2": "color(srgb 0.8627450980392157 0.7411764705882353 0.984313725490196)",
-        "3": "color(srgb 0.6901960784313725 0.5137254901960784 0.9411764705882353)",
-        "4": "color(srgb 0.596078431372549 0.43137254901960786 0.8862745098039215)",
-        "5": "color(srgb 0.5098039215686274 0.33725490196078434 0.8156862745098039)",
-        "6": "color(srgb 0.4196078431372549 0.26666666666666666 0.7372549019607844)",
-        "7": "color(srgb 0.34901960784313724 0.21176470588235294 0.6352941176470588)",
-        "8": "color(srgb 0.2784313725490196 0.17254901960784313 0.5098039215686274)",
-        "9": "color(srgb 0.20784313725490197 0.12941176470588237 0.3764705882352941)"
-      },
-      "red": {
-        "0": "color(srgb 1 0.8470588235294118 0.8274509803921568)",
-        "1": "color(srgb 1 0.7215686274509804 0.6901960784313725)",
-        "2": "color(srgb 1 0.5764705882352941 0.5411764705882353)",
-        "3": "color(srgb 0.9568627450980393 0.4392156862745098 0.403921568627451)",
-        "4": "color(srgb 0.8980392156862745 0.3254901960784314 0.29411764705882354)",
-        "5": "color(srgb 0.788235294117647 0.23529411764705882 0.21568627450980393)",
-        "6": "color(srgb 0.6784313725490196 0.1803921568627451 0.17254901960784313)",
-        "7": "color(srgb 0.5725490196078431 0.13725490196078433 0.13725490196078433)",
-        "8": "color(srgb 0.47058823529411764 0.09803921568627451 0.10588235294117647)",
-        "9": "color(srgb 0.36470588235294116 0.058823529411764705 0.07058823529411765)"
-      },
-      "transparent": "color(srgb 1 1 1)",
-      "white": "color(srgb 1 1 1)",
-      "yellow": {
-        "0": "color(srgb 0.984313725490196 0.8784313725490196 0.5647058823529412)",
-        "1": "color(srgb 0.9176470588235294 0.7725490196078432 0.37254901960784315)",
-        "2": "color(srgb 0.8549019607843137 0.6666666666666666 0.24705882352941178)",
-        "3": "color(srgb 0.7764705882352941 0.5647058823529412 0.14901960784313725)",
-        "4": "color(srgb 0.6823529411764706 0.48627450980392156 0.0784313725490196)",
-        "5": "color(srgb 0.5882352941176471 0.4 0)",
-        "6": "color(srgb 0.5019607843137255 0.32941176470588235 0)",
-        "7": "color(srgb 0.4235294117647059 0.26666666666666666 0)",
-        "8": "color(srgb 0.34901960784313724 0.21176470588235294 0)",
-        "9": "color(srgb 0.27058823529411763 0.15294117647058825 0)"
-      }
+  },
+  "selection": {
+    "bgColor": vars.bgColor.accent.emphasis
+  },
+  "selectMenu": {
+    "bgColor": {
+      "active": vars.base.color.blue[1]
     },
-    "icon": {
-      "alert16": "url(\"/icon/alert-16.svg\")",
-      "alert24": "url(\"/icon/alert-24.svg\")",
-      "alertFill12": "url(\"/icon/alert-fill-12.svg\")",
-      "archive16": "url(\"/icon/archive-16.svg\")",
-      "archive24": "url(\"/icon/archive-24.svg\")",
-      "arrowBoth16": "url(\"/icon/arrow-both-16.svg\")",
-      "arrowBoth24": "url(\"/icon/arrow-both-24.svg\")",
-      "arrowDown16": "url(\"/icon/arrow-down-16.svg\")",
-      "arrowDown24": "url(\"/icon/arrow-down-24.svg\")",
-      "arrowDownLeft24": "url(\"/icon/arrow-down-left-24.svg\")",
-      "arrowDownRight24": "url(\"/icon/arrow-down-right-24.svg\")",
-      "arrowLeft16": "url(\"/icon/arrow-left-16.svg\")",
-      "arrowLeft24": "url(\"/icon/arrow-left-24.svg\")",
-      "arrowRight16": "url(\"/icon/arrow-right-16.svg\")",
-      "arrowRight24": "url(\"/icon/arrow-right-24.svg\")",
-      "arrowSwitch16": "url(\"/icon/arrow-switch-16.svg\")",
-      "arrowSwitch24": "url(\"/icon/arrow-switch-24.svg\")",
-      "arrowUp16": "url(\"/icon/arrow-up-16.svg\")",
-      "arrowUp24": "url(\"/icon/arrow-up-24.svg\")",
-      "arrowUpLeft24": "url(\"/icon/arrow-up-left-24.svg\")",
-      "arrowUpRight24": "url(\"/icon/arrow-up-right-24.svg\")",
-      "beaker16": "url(\"/icon/beaker-16.svg\")",
-      "beaker24": "url(\"/icon/beaker-24.svg\")",
-      "bell16": "url(\"/icon/bell-16.svg\")",
-      "bell24": "url(\"/icon/bell-24.svg\")",
-      "bellFill16": "url(\"/icon/bell-fill-16.svg\")",
-      "bellFill24": "url(\"/icon/bell-fill-24.svg\")",
-      "bellSlash16": "url(\"/icon/bell-slash-16.svg\")",
-      "bellSlash24": "url(\"/icon/bell-slash-24.svg\")",
-      "blocked16": "url(\"/icon/blocked-16.svg\")",
-      "blocked24": "url(\"/icon/blocked-24.svg\")",
-      "bold16": "url(\"/icon/bold-16.svg\")",
-      "bold24": "url(\"/icon/bold-24.svg\")",
-      "book16": "url(\"/icon/book-16.svg\")",
-      "book24": "url(\"/icon/book-24.svg\")",
-      "bookmark16": "url(\"/icon/bookmark-16.svg\")",
-      "bookmark24": "url(\"/icon/bookmark-24.svg\")",
-      "bookmarkFill24": "url(\"/icon/bookmark-fill-24.svg\")",
-      "bookmarkSlash16": "url(\"/icon/bookmark-slash-16.svg\")",
-      "bookmarkSlash24": "url(\"/icon/bookmark-slash-24.svg\")",
-      "bookmarkSlashFill24": "url(\"/icon/bookmark-slash-fill-24.svg\")",
-      "briefcase16": "url(\"/icon/briefcase-16.svg\")",
-      "briefcase24": "url(\"/icon/briefcase-24.svg\")",
-      "broadcast16": "url(\"/icon/broadcast-16.svg\")",
-      "broadcast24": "url(\"/icon/broadcast-24.svg\")",
-      "browser16": "url(\"/icon/browser-16.svg\")",
-      "browser24": "url(\"/icon/browser-24.svg\")",
-      "bug16": "url(\"/icon/bug-16.svg\")",
-      "bug24": "url(\"/icon/bug-24.svg\")",
-      "calendar16": "url(\"/icon/calendar-16.svg\")",
-      "calendar24": "url(\"/icon/calendar-24.svg\")",
-      "check16": "url(\"/icon/check-16.svg\")",
-      "check24": "url(\"/icon/check-24.svg\")",
-      "checkCircle16": "url(\"/icon/check-circle-16.svg\")",
-      "checkCircle24": "url(\"/icon/check-circle-24.svg\")",
-      "checkCircleFill12": "url(\"/icon/check-circle-fill-12.svg\")",
-      "checkCircleFill16": "url(\"/icon/check-circle-fill-16.svg\")",
-      "checkCircleFill24": "url(\"/icon/check-circle-fill-24.svg\")",
-      "checklist16": "url(\"/icon/checklist-16.svg\")",
-      "checklist24": "url(\"/icon/checklist-24.svg\")",
-      "chevronDown16": "url(\"/icon/chevron-down-16.svg\")",
-      "chevronDown24": "url(\"/icon/chevron-down-24.svg\")",
-      "chevronLeft16": "url(\"/icon/chevron-left-16.svg\")",
-      "chevronLeft24": "url(\"/icon/chevron-left-24.svg\")",
-      "chevronRight16": "url(\"/icon/chevron-right-16.svg\")",
-      "chevronRight24": "url(\"/icon/chevron-right-24.svg\")",
-      "chevronUp16": "url(\"/icon/chevron-up-16.svg\")",
-      "chevronUp24": "url(\"/icon/chevron-up-24.svg\")",
-      "circle16": "url(\"/icon/circle-16.svg\")",
-      "circle24": "url(\"/icon/circle-24.svg\")",
-      "circleSlash16": "url(\"/icon/circle-slash-16.svg\")",
-      "circleSlash24": "url(\"/icon/circle-slash-24.svg\")",
-      "clock16": "url(\"/icon/clock-16.svg\")",
-      "clock24": "url(\"/icon/clock-24.svg\")",
-      "code16": "url(\"/icon/code-16.svg\")",
-      "code24": "url(\"/icon/code-24.svg\")",
-      "codeOfConduct16": "url(\"/icon/code-of-conduct-16.svg\")",
-      "codeOfConduct24": "url(\"/icon/code-of-conduct-24.svg\")",
-      "codeReview16": "url(\"/icon/code-review-16.svg\")",
-      "codeReview24": "url(\"/icon/code-review-24.svg\")",
-      "codeSquare16": "url(\"/icon/code-square-16.svg\")",
-      "codeSquare24": "url(\"/icon/code-square-24.svg\")",
-      "codescan16": "url(\"/icon/codescan-16.svg\")",
-      "codescan24": "url(\"/icon/codescan-24.svg\")",
-      "codescanCheckmark16": "url(\"/icon/codescan-checkmark-16.svg\")",
-      "codescanCheckmark24": "url(\"/icon/codescan-checkmark-24.svg\")",
-      "codespaces16": "url(\"/icon/codespaces-16.svg\")",
-      "codespaces24": "url(\"/icon/codespaces-24.svg\")",
-      "columns16": "url(\"/icon/columns-16.svg\")",
-      "columns24": "url(\"/icon/columns-24.svg\")",
-      "comment16": "url(\"/icon/comment-16.svg\")",
-      "comment24": "url(\"/icon/comment-24.svg\")",
-      "commentDiscussion16": "url(\"/icon/comment-discussion-16.svg\")",
-      "commentDiscussion24": "url(\"/icon/comment-discussion-24.svg\")",
-      "commit24": "url(\"/icon/commit-24.svg\")",
-      "container16": "url(\"/icon/container-16.svg\")",
-      "container24": "url(\"/icon/container-24.svg\")",
-      "copy16": "url(\"/icon/copy-16.svg\")",
-      "copy24": "url(\"/icon/copy-24.svg\")",
-      "cpu16": "url(\"/icon/cpu-16.svg\")",
-      "cpu24": "url(\"/icon/cpu-24.svg\")",
-      "creditCard16": "url(\"/icon/credit-card-16.svg\")",
-      "creditCard24": "url(\"/icon/credit-card-24.svg\")",
-      "crossReference16": "url(\"/icon/cross-reference-16.svg\")",
-      "crossReference24": "url(\"/icon/cross-reference-24.svg\")",
-      "dash16": "url(\"/icon/dash-16.svg\")",
-      "dash24": "url(\"/icon/dash-24.svg\")",
-      "database16": "url(\"/icon/database-16.svg\")",
-      "database24": "url(\"/icon/database-24.svg\")",
-      "dependabot16": "url(\"/icon/dependabot-16.svg\")",
-      "dependabot24": "url(\"/icon/dependabot-24.svg\")",
-      "desktopDownload16": "url(\"/icon/desktop-download-16.svg\")",
-      "desktopDownload24": "url(\"/icon/desktop-download-24.svg\")",
-      "deviceCamera16": "url(\"/icon/device-camera-16.svg\")",
-      "deviceCameraVideo16": "url(\"/icon/device-camera-video-16.svg\")",
-      "deviceCameraVideo24": "url(\"/icon/device-camera-video-24.svg\")",
-      "deviceDesktop16": "url(\"/icon/device-desktop-16.svg\")",
-      "deviceDesktop24": "url(\"/icon/device-desktop-24.svg\")",
-      "deviceMobile16": "url(\"/icon/device-mobile-16.svg\")",
-      "deviceMobile24": "url(\"/icon/device-mobile-24.svg\")",
-      "diamond16": "url(\"/icon/diamond-16.svg\")",
-      "diamond24": "url(\"/icon/diamond-24.svg\")",
-      "diff16": "url(\"/icon/diff-16.svg\")",
-      "diff24": "url(\"/icon/diff-24.svg\")",
-      "diffAdded16": "url(\"/icon/diff-added-16.svg\")",
-      "diffIgnored16": "url(\"/icon/diff-ignored-16.svg\")",
-      "diffModified16": "url(\"/icon/diff-modified-16.svg\")",
-      "diffRemoved16": "url(\"/icon/diff-removed-16.svg\")",
-      "diffRenamed16": "url(\"/icon/diff-renamed-16.svg\")",
-      "dot16": "url(\"/icon/dot-16.svg\")",
-      "dot24": "url(\"/icon/dot-24.svg\")",
-      "dotFill16": "url(\"/icon/dot-fill-16.svg\")",
-      "dotFill24": "url(\"/icon/dot-fill-24.svg\")",
-      "download16": "url(\"/icon/download-16.svg\")",
-      "download24": "url(\"/icon/download-24.svg\")",
-      "duplicate16": "url(\"/icon/duplicate-16.svg\")",
-      "duplicate24": "url(\"/icon/duplicate-24.svg\")",
-      "ellipsis16": "url(\"/icon/ellipsis-16.svg\")",
-      "eye16": "url(\"/icon/eye-16.svg\")",
-      "eye24": "url(\"/icon/eye-24.svg\")",
-      "eyeClosed16": "url(\"/icon/eye-closed-16.svg\")",
-      "eyeClosed24": "url(\"/icon/eye-closed-24.svg\")",
-      "file16": "url(\"/icon/file-16.svg\")",
-      "file24": "url(\"/icon/file-24.svg\")",
-      "fileBadge16": "url(\"/icon/file-badge-16.svg\")",
-      "fileBinary16": "url(\"/icon/file-binary-16.svg\")",
-      "fileBinary24": "url(\"/icon/file-binary-24.svg\")",
-      "fileCode16": "url(\"/icon/file-code-16.svg\")",
-      "fileCode24": "url(\"/icon/file-code-24.svg\")",
-      "fileDiff16": "url(\"/icon/file-diff-16.svg\")",
-      "fileDiff24": "url(\"/icon/file-diff-24.svg\")",
-      "fileDirectory16": "url(\"/icon/file-directory-16.svg\")",
-      "fileDirectory24": "url(\"/icon/file-directory-24.svg\")",
-      "fileDirectoryFill24": "url(\"/icon/file-directory-fill-24.svg\")",
-      "fileMedia24": "url(\"/icon/file-media-24.svg\")",
-      "fileSubmodule16": "url(\"/icon/file-submodule-16.svg\")",
-      "fileSubmodule24": "url(\"/icon/file-submodule-24.svg\")",
-      "fileSymlinkFile16": "url(\"/icon/file-symlink-file-16.svg\")",
-      "fileSymlinkFile24": "url(\"/icon/file-symlink-file-24.svg\")",
-      "fileZip16": "url(\"/icon/file-zip-16.svg\")",
-      "fileZip24": "url(\"/icon/file-zip-24.svg\")",
-      "filter16": "url(\"/icon/filter-16.svg\")",
-      "filter24": "url(\"/icon/filter-24.svg\")",
-      "flame16": "url(\"/icon/flame-16.svg\")",
-      "flame24": "url(\"/icon/flame-24.svg\")",
-      "fold16": "url(\"/icon/fold-16.svg\")",
-      "fold24": "url(\"/icon/fold-24.svg\")",
-      "foldDown16": "url(\"/icon/fold-down-16.svg\")",
-      "foldDown24": "url(\"/icon/fold-down-24.svg\")",
-      "foldUp16": "url(\"/icon/fold-up-16.svg\")",
-      "foldUp24": "url(\"/icon/fold-up-24.svg\")",
-      "gear16": "url(\"/icon/gear-16.svg\")",
-      "gear24": "url(\"/icon/gear-24.svg\")",
-      "gift16": "url(\"/icon/gift-16.svg\")",
-      "gift24": "url(\"/icon/gift-24.svg\")",
-      "gitBranch16": "url(\"/icon/git-branch-16.svg\")",
-      "gitBranch24": "url(\"/icon/git-branch-24.svg\")",
-      "gitCommit16": "url(\"/icon/git-commit-16.svg\")",
-      "gitCommit24": "url(\"/icon/git-commit-24.svg\")",
-      "gitCompare16": "url(\"/icon/git-compare-16.svg\")",
-      "gitCompare24": "url(\"/icon/git-compare-24.svg\")",
-      "gitMerge16": "url(\"/icon/git-merge-16.svg\")",
-      "gitMerge24": "url(\"/icon/git-merge-24.svg\")",
-      "gitPullRequest16": "url(\"/icon/git-pull-request-16.svg\")",
-      "gitPullRequest24": "url(\"/icon/git-pull-request-24.svg\")",
-      "gitPullRequestClosed16": "url(\"/icon/git-pull-request-closed-16.svg\")",
-      "gitPullRequestClosed24": "url(\"/icon/git-pull-request-closed-24.svg\")",
-      "gitPullRequestDraft16": "url(\"/icon/git-pull-request-draft-16.svg\")",
-      "gitPullRequestDraft24": "url(\"/icon/git-pull-request-draft-24.svg\")",
-      "globe16": "url(\"/icon/globe-16.svg\")",
-      "globe24": "url(\"/icon/globe-24.svg\")",
-      "grabber16": "url(\"/icon/grabber-16.svg\")",
-      "grabber24": "url(\"/icon/grabber-24.svg\")",
-      "graph16": "url(\"/icon/graph-16.svg\")",
-      "graph24": "url(\"/icon/graph-24.svg\")",
-      "hash16": "url(\"/icon/hash-16.svg\")",
-      "hash24": "url(\"/icon/hash-24.svg\")",
-      "heading16": "url(\"/icon/heading-16.svg\")",
-      "heading24": "url(\"/icon/heading-24.svg\")",
-      "heart16": "url(\"/icon/heart-16.svg\")",
-      "heart24": "url(\"/icon/heart-24.svg\")",
-      "heartFill16": "url(\"/icon/heart-fill-16.svg\")",
-      "heartFill24": "url(\"/icon/heart-fill-24.svg\")",
-      "history16": "url(\"/icon/history-16.svg\")",
-      "history24": "url(\"/icon/history-24.svg\")",
-      "home16": "url(\"/icon/home-16.svg\")",
-      "home24": "url(\"/icon/home-24.svg\")",
-      "homeFill24": "url(\"/icon/home-fill-24.svg\")",
-      "horizontalRule16": "url(\"/icon/horizontal-rule-16.svg\")",
-      "horizontalRule24": "url(\"/icon/horizontal-rule-24.svg\")",
-      "hourglass16": "url(\"/icon/hourglass-16.svg\")",
-      "hourglass24": "url(\"/icon/hourglass-24.svg\")",
-      "hubot16": "url(\"/icon/hubot-16.svg\")",
-      "hubot24": "url(\"/icon/hubot-24.svg\")",
-      "image16": "url(\"/icon/image-16.svg\")",
-      "image24": "url(\"/icon/image-24.svg\")",
-      "inbox16": "url(\"/icon/inbox-16.svg\")",
-      "inbox24": "url(\"/icon/inbox-24.svg\")",
-      "infinity16": "url(\"/icon/infinity-16.svg\")",
-      "infinity24": "url(\"/icon/infinity-24.svg\")",
-      "info16": "url(\"/icon/info-16.svg\")",
-      "info24": "url(\"/icon/info-24.svg\")",
-      "issueClosed16": "url(\"/icon/issue-closed-16.svg\")",
-      "issueClosed24": "url(\"/icon/issue-closed-24.svg\")",
-      "issueDraft16": "url(\"/icon/issue-draft-16.svg\")",
-      "issueDraft24": "url(\"/icon/issue-draft-24.svg\")",
-      "issueOpened16": "url(\"/icon/issue-opened-16.svg\")",
-      "issueOpened24": "url(\"/icon/issue-opened-24.svg\")",
-      "issueReopened16": "url(\"/icon/issue-reopened-16.svg\")",
-      "issueReopened24": "url(\"/icon/issue-reopened-24.svg\")",
-      "italic16": "url(\"/icon/italic-16.svg\")",
-      "italic24": "url(\"/icon/italic-24.svg\")",
-      "iterations16": "url(\"/icon/iterations-16.svg\")",
-      "iterations24": "url(\"/icon/iterations-24.svg\")",
-      "kebabHorizontal16": "url(\"/icon/kebab-horizontal-16.svg\")",
-      "kebabHorizontal24": "url(\"/icon/kebab-horizontal-24.svg\")",
-      "key16": "url(\"/icon/key-16.svg\")",
-      "key24": "url(\"/icon/key-24.svg\")",
-      "keyAsterisk16": "url(\"/icon/key-asterisk-16.svg\")",
-      "law16": "url(\"/icon/law-16.svg\")",
-      "law24": "url(\"/icon/law-24.svg\")",
-      "lightBulb16": "url(\"/icon/light-bulb-16.svg\")",
-      "lightBulb24": "url(\"/icon/light-bulb-24.svg\")",
-      "link16": "url(\"/icon/link-16.svg\")",
-      "link24": "url(\"/icon/link-24.svg\")",
-      "linkExternal16": "url(\"/icon/link-external-16.svg\")",
-      "linkExternal24": "url(\"/icon/link-external-24.svg\")",
-      "listOrdered16": "url(\"/icon/list-ordered-16.svg\")",
-      "listOrdered24": "url(\"/icon/list-ordered-24.svg\")",
-      "listUnordered16": "url(\"/icon/list-unordered-16.svg\")",
-      "listUnordered24": "url(\"/icon/list-unordered-24.svg\")",
-      "location16": "url(\"/icon/location-16.svg\")",
-      "location24": "url(\"/icon/location-24.svg\")",
-      "lock16": "url(\"/icon/lock-16.svg\")",
-      "lock24": "url(\"/icon/lock-24.svg\")",
-      "logoGist16": "url(\"/icon/logo-gist-16.svg\")",
-      "logoGithub16": "url(\"/icon/logo-github-16.svg\")",
-      "mail16": "url(\"/icon/mail-16.svg\")",
-      "mail24": "url(\"/icon/mail-24.svg\")",
-      "markGithub16": "url(\"/icon/mark-github-16.svg\")",
-      "markdown16": "url(\"/icon/markdown-16.svg\")",
-      "megaphone16": "url(\"/icon/megaphone-16.svg\")",
-      "megaphone24": "url(\"/icon/megaphone-24.svg\")",
-      "mention16": "url(\"/icon/mention-16.svg\")",
-      "mention24": "url(\"/icon/mention-24.svg\")",
-      "meter16": "url(\"/icon/meter-16.svg\")",
-      "milestone16": "url(\"/icon/milestone-16.svg\")",
-      "milestone24": "url(\"/icon/milestone-24.svg\")",
-      "mirror16": "url(\"/icon/mirror-16.svg\")",
-      "mirror24": "url(\"/icon/mirror-24.svg\")",
-      "moon16": "url(\"/icon/moon-16.svg\")",
-      "moon24": "url(\"/icon/moon-24.svg\")",
-      "mortarBoard16": "url(\"/icon/mortar-board-16.svg\")",
-      "mortarBoard24": "url(\"/icon/mortar-board-24.svg\")",
-      "multiSelect16": "url(\"/icon/multi-select-16.svg\")",
-      "multiSelect24": "url(\"/icon/multi-select-24.svg\")",
-      "mute16": "url(\"/icon/mute-16.svg\")",
-      "mute24": "url(\"/icon/mute-24.svg\")",
-      "noEntry16": "url(\"/icon/no-entry-16.svg\")",
-      "noEntry24": "url(\"/icon/no-entry-24.svg\")",
-      "noEntryFill12": "url(\"/icon/no-entry-fill-12.svg\")",
-      "northStar16": "url(\"/icon/north-star-16.svg\")",
-      "northStar24": "url(\"/icon/north-star-24.svg\")",
-      "note16": "url(\"/icon/note-16.svg\")",
-      "note24": "url(\"/icon/note-24.svg\")",
-      "number16": "url(\"/icon/number-16.svg\")",
-      "number24": "url(\"/icon/number-24.svg\")",
-      "organization16": "url(\"/icon/organization-16.svg\")",
-      "organization24": "url(\"/icon/organization-24.svg\")",
-      "package16": "url(\"/icon/package-16.svg\")",
-      "package24": "url(\"/icon/package-24.svg\")",
-      "packageDependencies16": "url(\"/icon/package-dependencies-16.svg\")",
-      "packageDependencies24": "url(\"/icon/package-dependencies-24.svg\")",
-      "packageDependents16": "url(\"/icon/package-dependents-16.svg\")",
-      "packageDependents24": "url(\"/icon/package-dependents-24.svg\")",
-      "paintbrush16": "url(\"/icon/paintbrush-16.svg\")",
-      "paperAirplane16": "url(\"/icon/paper-airplane-16.svg\")",
-      "paperAirplane24": "url(\"/icon/paper-airplane-24.svg\")",
-      "paste16": "url(\"/icon/paste-16.svg\")",
-      "paste24": "url(\"/icon/paste-24.svg\")",
-      "pencil16": "url(\"/icon/pencil-16.svg\")",
-      "pencil24": "url(\"/icon/pencil-24.svg\")",
-      "people16": "url(\"/icon/people-16.svg\")",
-      "people24": "url(\"/icon/people-24.svg\")",
-      "person16": "url(\"/icon/person-16.svg\")",
-      "person24": "url(\"/icon/person-24.svg\")",
-      "personAdd16": "url(\"/icon/person-add-16.svg\")",
-      "personAdd24": "url(\"/icon/person-add-24.svg\")",
-      "personFill16": "url(\"/icon/person-fill-16.svg\")",
-      "personFill24": "url(\"/icon/person-fill-24.svg\")",
-      "pin16": "url(\"/icon/pin-16.svg\")",
-      "pin24": "url(\"/icon/pin-24.svg\")",
-      "play16": "url(\"/icon/play-16.svg\")",
-      "play24": "url(\"/icon/play-24.svg\")",
-      "plug16": "url(\"/icon/plug-16.svg\")",
-      "plug24": "url(\"/icon/plug-24.svg\")",
-      "plus16": "url(\"/icon/plus-16.svg\")",
-      "plus24": "url(\"/icon/plus-24.svg\")",
-      "plusCircle16": "url(\"/icon/plus-circle-16.svg\")",
-      "plusCircle24": "url(\"/icon/plus-circle-24.svg\")",
-      "project16": "url(\"/icon/project-16.svg\")",
-      "project24": "url(\"/icon/project-24.svg\")",
-      "pulse16": "url(\"/icon/pulse-16.svg\")",
-      "pulse24": "url(\"/icon/pulse-24.svg\")",
-      "question16": "url(\"/icon/question-16.svg\")",
-      "question24": "url(\"/icon/question-24.svg\")",
-      "quote16": "url(\"/icon/quote-16.svg\")",
-      "quote24": "url(\"/icon/quote-24.svg\")",
-      "reply16": "url(\"/icon/reply-16.svg\")",
-      "reply24": "url(\"/icon/reply-24.svg\")",
-      "repo16": "url(\"/icon/repo-16.svg\")",
-      "repo24": "url(\"/icon/repo-24.svg\")",
-      "repoClone16": "url(\"/icon/repo-clone-16.svg\")",
-      "repoForked16": "url(\"/icon/repo-forked-16.svg\")",
-      "repoForked24": "url(\"/icon/repo-forked-24.svg\")",
-      "repoPull16": "url(\"/icon/repo-pull-16.svg\")",
-      "repoPush16": "url(\"/icon/repo-push-16.svg\")",
-      "repoPush24": "url(\"/icon/repo-push-24.svg\")",
-      "repoTemplate16": "url(\"/icon/repo-template-16.svg\")",
-      "repoTemplate24": "url(\"/icon/repo-template-24.svg\")",
-      "report16": "url(\"/icon/report-16.svg\")",
-      "report24": "url(\"/icon/report-24.svg\")",
-      "rocket16": "url(\"/icon/rocket-16.svg\")",
-      "rocket24": "url(\"/icon/rocket-24.svg\")",
-      "rows16": "url(\"/icon/rows-16.svg\")",
-      "rows24": "url(\"/icon/rows-24.svg\")",
-      "rss16": "url(\"/icon/rss-16.svg\")",
-      "rss24": "url(\"/icon/rss-24.svg\")",
-      "ruby16": "url(\"/icon/ruby-16.svg\")",
-      "ruby24": "url(\"/icon/ruby-24.svg\")",
-      "screenFull16": "url(\"/icon/screen-full-16.svg\")",
-      "screenFull24": "url(\"/icon/screen-full-24.svg\")",
-      "screenNormal16": "url(\"/icon/screen-normal-16.svg\")",
-      "screenNormal24": "url(\"/icon/screen-normal-24.svg\")",
-      "search16": "url(\"/icon/search-16.svg\")",
-      "search24": "url(\"/icon/search-24.svg\")",
-      "server16": "url(\"/icon/server-16.svg\")",
-      "server24": "url(\"/icon/server-24.svg\")",
-      "share16": "url(\"/icon/share-16.svg\")",
-      "share24": "url(\"/icon/share-24.svg\")",
-      "shareAndroid16": "url(\"/icon/share-android-16.svg\")",
-      "shareAndroid24": "url(\"/icon/share-android-24.svg\")",
-      "shield16": "url(\"/icon/shield-16.svg\")",
-      "shield24": "url(\"/icon/shield-24.svg\")",
-      "shieldCheck16": "url(\"/icon/shield-check-16.svg\")",
-      "shieldCheck24": "url(\"/icon/shield-check-24.svg\")",
-      "shieldLock16": "url(\"/icon/shield-lock-16.svg\")",
-      "shieldLock24": "url(\"/icon/shield-lock-24.svg\")",
-      "shieldX16": "url(\"/icon/shield-x-16.svg\")",
-      "shieldX24": "url(\"/icon/shield-x-24.svg\")",
-      "sidebarCollapse16": "url(\"/icon/sidebar-collapse-16.svg\")",
-      "sidebarCollapse24": "url(\"/icon/sidebar-collapse-24.svg\")",
-      "sidebarExpand16": "url(\"/icon/sidebar-expand-16.svg\")",
-      "sidebarExpand24": "url(\"/icon/sidebar-expand-24.svg\")",
-      "signIn16": "url(\"/icon/sign-in-16.svg\")",
-      "signIn24": "url(\"/icon/sign-in-24.svg\")",
-      "signOut16": "url(\"/icon/sign-out-16.svg\")",
-      "signOut24": "url(\"/icon/sign-out-24.svg\")",
-      "singleSelect16": "url(\"/icon/single-select-16.svg\")",
-      "singleSelect24": "url(\"/icon/single-select-24.svg\")",
-      "skip16": "url(\"/icon/skip-16.svg\")",
-      "skip24": "url(\"/icon/skip-24.svg\")",
-      "smiley16": "url(\"/icon/smiley-16.svg\")",
-      "smiley24": "url(\"/icon/smiley-24.svg\")",
-      "sortAsc16": "url(\"/icon/sort-asc-16.svg\")",
-      "sortAsc24": "url(\"/icon/sort-asc-24.svg\")",
-      "sortDesc16": "url(\"/icon/sort-desc-16.svg\")",
-      "sortDesc24": "url(\"/icon/sort-desc-24.svg\")",
-      "square16": "url(\"/icon/square-16.svg\")",
-      "square24": "url(\"/icon/square-24.svg\")",
-      "squareFill16": "url(\"/icon/square-fill-16.svg\")",
-      "squareFill24": "url(\"/icon/square-fill-24.svg\")",
-      "squirrel16": "url(\"/icon/squirrel-16.svg\")",
-      "squirrel24": "url(\"/icon/squirrel-24.svg\")",
-      "stack16": "url(\"/icon/stack-16.svg\")",
-      "stack24": "url(\"/icon/stack-24.svg\")",
-      "star16": "url(\"/icon/star-16.svg\")",
-      "star24": "url(\"/icon/star-24.svg\")",
-      "starFill16": "url(\"/icon/star-fill-16.svg\")",
-      "starFill24": "url(\"/icon/star-fill-24.svg\")",
-      "stop16": "url(\"/icon/stop-16.svg\")",
-      "stop24": "url(\"/icon/stop-24.svg\")",
-      "stopwatch16": "url(\"/icon/stopwatch-16.svg\")",
-      "stopwatch24": "url(\"/icon/stopwatch-24.svg\")",
-      "strikethrough16": "url(\"/icon/strikethrough-16.svg\")",
-      "strikethrough24": "url(\"/icon/strikethrough-24.svg\")",
-      "sun16": "url(\"/icon/sun-16.svg\")",
-      "sun24": "url(\"/icon/sun-24.svg\")",
-      "sync16": "url(\"/icon/sync-16.svg\")",
-      "sync24": "url(\"/icon/sync-24.svg\")",
-      "tab24": "url(\"/icon/tab-24.svg\")",
-      "table16": "url(\"/icon/table-16.svg\")",
-      "table24": "url(\"/icon/table-24.svg\")",
-      "tag16": "url(\"/icon/tag-16.svg\")",
-      "tag24": "url(\"/icon/tag-24.svg\")",
-      "tasklist16": "url(\"/icon/tasklist-16.svg\")",
-      "tasklist24": "url(\"/icon/tasklist-24.svg\")",
-      "telescope16": "url(\"/icon/telescope-16.svg\")",
-      "telescope24": "url(\"/icon/telescope-24.svg\")",
-      "telescopeFill16": "url(\"/icon/telescope-fill-16.svg\")",
-      "telescopeFill24": "url(\"/icon/telescope-fill-24.svg\")",
-      "terminal16": "url(\"/icon/terminal-16.svg\")",
-      "terminal24": "url(\"/icon/terminal-24.svg\")",
-      "threeBars16": "url(\"/icon/three-bars-16.svg\")",
-      "thumbsdown16": "url(\"/icon/thumbsdown-16.svg\")",
-      "thumbsdown24": "url(\"/icon/thumbsdown-24.svg\")",
-      "thumbsup16": "url(\"/icon/thumbsup-16.svg\")",
-      "thumbsup24": "url(\"/icon/thumbsup-24.svg\")",
-      "tools16": "url(\"/icon/tools-16.svg\")",
-      "tools24": "url(\"/icon/tools-24.svg\")",
-      "trash16": "url(\"/icon/trash-16.svg\")",
-      "trash24": "url(\"/icon/trash-24.svg\")",
-      "triangleDown16": "url(\"/icon/triangle-down-16.svg\")",
-      "triangleDown24": "url(\"/icon/triangle-down-24.svg\")",
-      "triangleLeft16": "url(\"/icon/triangle-left-16.svg\")",
-      "triangleLeft24": "url(\"/icon/triangle-left-24.svg\")",
-      "triangleRight16": "url(\"/icon/triangle-right-16.svg\")",
-      "triangleRight24": "url(\"/icon/triangle-right-24.svg\")",
-      "triangleUp16": "url(\"/icon/triangle-up-16.svg\")",
-      "triangleUp24": "url(\"/icon/triangle-up-24.svg\")",
-      "typography16": "url(\"/icon/typography-16.svg\")",
-      "typography24": "url(\"/icon/typography-24.svg\")",
-      "unfold16": "url(\"/icon/unfold-16.svg\")",
-      "unfold24": "url(\"/icon/unfold-24.svg\")",
-      "unlock16": "url(\"/icon/unlock-16.svg\")",
-      "unlock24": "url(\"/icon/unlock-24.svg\")",
-      "unmute16": "url(\"/icon/unmute-16.svg\")",
-      "unmute24": "url(\"/icon/unmute-24.svg\")",
-      "unverified16": "url(\"/icon/unverified-16.svg\")",
-      "unverified24": "url(\"/icon/unverified-24.svg\")",
-      "upload16": "url(\"/icon/upload-16.svg\")",
-      "upload24": "url(\"/icon/upload-24.svg\")",
-      "verified16": "url(\"/icon/verified-16.svg\")",
-      "verified24": "url(\"/icon/verified-24.svg\")",
-      "versions16": "url(\"/icon/versions-16.svg\")",
-      "versions24": "url(\"/icon/versions-24.svg\")",
-      "video16": "url(\"/icon/video-16.svg\")",
-      "video24": "url(\"/icon/video-24.svg\")",
-      "workflow16": "url(\"/icon/workflow-16.svg\")",
-      "workflow24": "url(\"/icon/workflow-24.svg\")",
-      "x16": "url(\"/icon/x-16.svg\")",
-      "x24": "url(\"/icon/x-24.svg\")",
-      "xCircle16": "url(\"/icon/x-circle-16.svg\")",
-      "xCircle24": "url(\"/icon/x-circle-24.svg\")",
-      "xCircleFill12": "url(\"/icon/x-circle-fill-12.svg\")",
-      "xCircleFill16": "url(\"/icon/x-circle-fill-16.svg\")",
-      "xCircleFill24": "url(\"/icon/x-circle-fill-24.svg\")",
-      "zap16": "url(\"/icon/zap-16.svg\")",
-      "zap24": "url(\"/icon/zap-24.svg\")"
+    "borderColor": vars.base.color.transparent
+  },
+  "shadow": {
+    "floating": {
+      "large": "0 0 0 1px var(--overlay-border-color), 0 40px 80px 0 var(--base-color-neutral-12)",
+      "legacy": "0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "medium": "0 0 0 1px var(--overlay-border-color), 0 8px 16px -4px var(--base-color-neutral-12), 0 4px 32px -4px var(--base-color-neutral-12), 0 24px 48px -12px var(--base-color-neutral-12), 0 48px 96px -24px var(--base-color-neutral-12)",
+      "small": "0 0 0 1px var(--overlay-border-color), 0 6px 12px -3px var(--base-color-neutral-12), 0 6px 18px 0 var(--base-color-neutral-12)",
+      "xlarge": "0 0 0 1px var(--overlay-border-color), 0 56px 112px 0 var(--base-color-neutral-12)"
     },
+    "inset": "inset 0 1px 0 0 var(--base-color-neutral-13)",
+    "resting": {
+      "medium": "0 1px 1px 0 var(--base-color-neutral-12), 0 3px 6px 0 var(--base-color-neutral-12)",
+      "small": "0 1px 1px 0 var(--base-color-neutral-13), 0 1px 3px 0 var(--base-color-neutral-13)",
+      "xsmall": "0 1px 1px 0 var(--base-color-neutral-13)"
+    }
+  },
+  "sideNav": {
+    "bgColor": {
+      "selected": vars.base.color.neutral['0']
+    }
+  },
+  "skeletonLoader": {
+    "bgColor": vars.base.color.neutral[8]
+  },
+  "spinner": {
     "size": {
-      "4": "4px",
-      "8": "8px",
-      "12": "12px",
-      "16": "16px",
-      "20": "20px",
-      "24": "24px",
-      "28": "28px",
-      "32": "32px",
-      "36": "36px",
-      "40": "40px",
-      "44": "44px",
-      "48": "48px",
-      "64": "64px",
-      "80": "80px",
-      "96": "96px",
-      "112": "112px",
-      "128": "128px"
+      "large": vars.base.size[64],
+      "medium": vars.base.size[32],
+      "small": vars.base.size[16]
     },
-    "text": {
-      "weight": {
-        "light": "300",
-        "medium": "500",
-        "normal": "400",
-        "semibold": "600"
-      }
+    "strokeWidth": {
+      "default": "2px"
     }
   },
-  "borderRadius": {
-    "full": "9999px",
-    "large": "12px",
-    "medium": "6px",
-    "small": "3px"
-  },
-  "breakpoint": {
-    "large": "1012px",
-    "medium": "768px",
-    "small": "544px",
-    "xlarge": "1280px",
-    "xsmall": "320px",
-    "xxlarge": "1440px"
-  },
-  "fontStack": {
-    "monospace": "ui-monospace, \"SFMono-Regular\", \"SF Mono\", \"Menlo\", \"Consolas\", \"Liberation Mono\", monospace",
-    "sansSerif": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\"",
-    "system": "-apple-system, \"BlinkMacSystemFont\", \"Segoe UI\", \"Noto Sans\", \"Helvetica\", \"Arial\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\""
-  },
-  "motion": {
-    "loading": {
-      "delay": {
-        "default": "1000ms"
-      }
+  "stack": {
+    "gap": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     },
-    "skeletonLoader": {
-      "shimmer": {
-        "duration": {
-          "scale": "1000ms"
-        }
-      }
-    },
-    "spinner": {
-      "duration": {
-        "rotation": "1000ms"
-      }
+    "padding": {
+      "condensed": vars.base.size[8],
+      "normal": vars.base.size[16],
+      "spacious": vars.base.size[24]
     }
-  },
-  "space": {
-    "large": vars.base.size[12],
-    "medium": vars.base.size[8],
-    "small": "6px",
-    "xlarge": vars.base.size[16],
-    "xsmall": vars.base.size[4],
-    "xxsmall": "2px"
   },
   "text": {
     "body": {
       "lineHeight": {
         "large": "1.5",
-        "medium": "1.4285",
-        "small": "1.6666"
+        "medium": "1.42857",
+        "small": "1.66667"
       },
       "shorthand": {
         "large": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.large,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.large,
           "fontFamily": vars.fontStack.sansSerif
         },
         "medium": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.medium,
           "fontFamily": vars.fontStack.sansSerif
         },
         "small": {
           "fontWeight": vars.text.body.weight,
           "fontSize": vars.text.body.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.body.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -6302,7 +11695,6 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.caption.weight,
         "fontSize": vars.text.caption.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.caption.lineHeight,
         "fontFamily": vars.fontStack.sansSerif
       },
@@ -6314,7 +11706,6 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeBlock.weight,
         "fontSize": vars.text.codeBlock.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.codeBlock.lineHeight,
         "fontFamily": vars.fontStack.monospace
       },
@@ -6325,22 +11716,19 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.codeInline.weight,
         "fontSize": vars.text.codeInline.size,
-        "fontFamily": vars.fontStack.monospace,
-        "letterSpacing": "0",
-        "lineHeight": "0"
+        "fontFamily": vars.fontStack.monospace
       },
       "size": "0.9285em",
       "weight": vars.base.text.weight.normal
     },
     "display": {
-      "lineBoxHeight": "56px",
+      "lineBoxHeight": "1.4",
       "lineHeight": "1.4",
       "shorthand": {
-        "fontFamily": vars.fontStack.sansSerif,
         "fontWeight": vars.text.display.weight,
         "fontSize": vars.text.display.size,
         "lineHeight": vars.text.display.lineHeight,
-        "letterSpacing": "0"
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "40px",
       "weight": vars.base.text.weight.medium
@@ -6350,9 +11738,8 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       "shorthand": {
         "fontWeight": vars.text.subtitle.weight,
         "fontSize": vars.text.subtitle.size,
-        "letterSpacing": "0",
         "lineHeight": vars.text.subtitle.lineHeight,
-        "fontFamily": vars.fontStack.sansSerif
+        "fontFamily": vars.fontStack.sansSerifDisplay
       },
       "size": "20px",
       "weight": vars.base.text.weight.normal
@@ -6365,23 +11752,20 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
       },
       "shorthand": {
         "large": {
-          "fontFamily": vars.fontStack.sansSerif,
           "fontWeight": vars.text.title.weight.large,
           "fontSize": vars.text.title.size.large,
-          "letterSpacing": "0",
-          "lineHeight": vars.text.title.lineHeight.large
+          "lineHeight": vars.text.title.lineHeight.large,
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "medium": {
           "fontWeight": vars.text.title.weight.medium,
           "fontSize": vars.text.title.size.medium,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.medium,
-          "fontFamily": vars.fontStack.sansSerif
+          "fontFamily": vars.fontStack.sansSerifDisplay
         },
         "small": {
           "fontWeight": vars.text.title.weight.small,
           "fontSize": vars.text.title.size.small,
-          "letterSpacing": "0",
           "lineHeight": vars.text.title.lineHeight.small,
           "fontFamily": vars.fontStack.sansSerif
         }
@@ -6396,6 +11780,32 @@ export const [darkDimmedClass, darkDimmed] = createTheme(vars, {
         "medium": vars.base.text.weight.semibold,
         "small": vars.base.text.weight.semibold
       }
+    }
+  },
+  "timelineBadge": {
+    "bgColor": vars.bgColor.muted
+  },
+  "tooltip": {
+    "bgColor": vars.bgColor.emphasis,
+    "fgColor": vars.fgColor.onEmphasis
+  },
+  "topicTag": {
+    "borderColor": vars.base.color.transparent
+  },
+  "treeViewItem": {
+    "leadingVisual": {
+      "iconColor": {
+        "rest": vars.base.color.blue[3]
+      }
+    }
+  },
+  "underlineNav": {
+    "borderColor": {
+      "active": vars.base.color.coral[3],
+      "hover": vars.borderColor.muted
+    },
+    "iconColor": {
+      "rest": vars.fgColor.muted
     }
   }
 });

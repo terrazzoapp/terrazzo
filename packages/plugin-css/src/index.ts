@@ -1,11 +1,12 @@
 import type { Plugin } from '@terrazzo/parser';
-import buildCSS from './build/index.js';
+import buildCSS from './build.js';
 import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 import transformCSS from './transform.js';
 
-export * from './build/index.js';
+export * from './build.js';
 export * from './lib.js';
 export * from './transform.js';
+export * from './utility-css.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
   const { utility, skipBuild, baseScheme } = options ?? {};

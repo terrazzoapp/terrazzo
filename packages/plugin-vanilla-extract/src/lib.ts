@@ -29,7 +29,19 @@ export interface VanillaExtractPluginOptions {
    * }
    * ```
    */
-  themes?: Record<string, { mode: string | string[] }>;
+  themes?: Record<
+    string,
+    | {
+        /* @deprecated */
+        mode: string | string[];
+        input?: never;
+      }
+    | {
+        /* @deprecated */
+        mode?: never;
+        input: Record<string, string>;
+      }
+  >;
   /**
    * Mapping of exported JS variables to token modes for global themes. The key MUST be a valid JS identifier.
    * @example
@@ -42,7 +54,21 @@ export interface VanillaExtractPluginOptions {
    * }
    * ```
    */
-  globalThemes?: Record<string, { selector: string; mode: string | string[] }>;
+  globalThemes?: Record<
+    string,
+    | {
+        selector: string;
+        /* @deprecated */
+        mode: string | string[];
+        input?: never;
+      }
+    | {
+        selector: string;
+        /* @deprecated */
+        mode?: never;
+        input: Record<string, string>;
+      }
+  >;
   /**
    * Change the naming strategy for the createTheme() API’s `[class, vars]` tuple.
    * @default (name) => [`${name}Class`, name]
@@ -86,9 +112,11 @@ export function generateThemeContract({
       }
       node = node[part];
     }
+
     if (token.type !== 'MULTI_VALUE') {
       throw new Error('Error in plugin-vanilla-extract: values didn’t generate correctly.');
     }
+
     const cssName = token.value.__cssName?.replace(/^--/, '');
     if ('.' in token.value) {
       node[name] = globalThemeContract ? cssName : null;
@@ -170,7 +198,7 @@ export function serializeValue(value: string | number | boolean, tokens: TokenTr
   // aliases
   // ⚠️ Warning! Trying to simply transform CSS vars to IDs is brittle, error-prone, and will break in many conditions.
   // However, reverse lookups from generated CSS vars is stable and safe. Subtle but important difference.
-  const [_, varName] = value.match(/^var\((.*)\)$/) ?? [];
+  const [_, varName] = value.match(/^var\(([^)]+)\)$/) ?? [];
   if (varName) {
     const originalToken = tokens.find((t) => t.type === 'MULTI_VALUE' && t.value.__cssName === varName);
     if (!originalToken) {

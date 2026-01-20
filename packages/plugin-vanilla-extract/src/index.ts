@@ -12,41 +12,84 @@ import {
 
 export * from './lib.js';
 
+const PLUGIN_NAME = '@terrazzo/plugin-vanilla-extract';
+
 export default function vanillaExtractPlugin(options: VanillaExtractPluginOptions): Plugin {
   const filename = options.filename ?? 'theme.css.ts';
   const globalThemeContract = options.globalThemeContract ?? true;
+  let isResolver = false;
 
   return {
-    name: '@terrazzo/plugin-vanilla-extract',
+    name: PLUGIN_NAME,
     enforce: 'post', // ensure this comes after @terrazzo/plugin-css
-    config(config) {
+    config(config, { logger }) {
       if (!config.plugins.some((p) => p.name === '@terrazzo/plugin-css')) {
-        throw new Error(
-          '@terrazzo/plugin-css missing! Please install and add to the plugins array to use the Vanilla Extract plugin.',
-        );
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message:
+            '@terrazzo/plugin-css missing! Please install and add to the plugins array to use the Vanilla Extract plugin.',
+        });
       }
       const allThemes = { ...options.themes, ...options.globalThemes };
+      isResolver = Object.values(allThemes).every((t) => t.input);
+
       if (!Object.keys(allThemes).length) {
-        throw new Error('Must generate at least one theme in "themes" or "globalThemes".');
+        logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: 'Must generate at least one theme in "themes" or "globalThemes".',
+        });
       }
       for (const k of Object.keys(allThemes)) {
         if (!isJSIdent(k)) {
-          throw new Error(
-            `${JSON.stringify(k)} must be a valid JS identifier. Prefer camelCase so it may be used in JS.`,
-          );
+          logger.error({
+            group: 'plugin',
+            label: PLUGIN_NAME,
+            message: `${JSON.stringify(k)} must be a valid JS identifier. Prefer camelCase so it may be used in JS.`,
+          });
+        }
+        if (isResolver && allThemes[k]!.mode) {
+          logger.error({
+            group: 'plugin',
+            label: PLUGIN_NAME,
+            message: `${k}: Can’t use "mode" while other themes use "input". Use either "mode" or "input" globally.`,
+          });
         }
       }
     },
 
     async transform({ getTransforms, setTransform }) {
-      // vanilla-extract’s transform works a little-differently than other plugins.
-      // First, the localID is the same as the source, only we camelCase it for
-      // convenience.
-      // Second, we’re borrowing the values from plugin-css, but also keeping
-      // its localID, too, for later.
+      if (isResolver) {
+        for (const { input } of Object.values(options.themes ?? options.globalThemes ?? {})) {
+          for (const token of getTransforms({ format: FORMAT_CSS, input })) {
+            const localID = token.token.jsonID // use jsonID to account for $root tokens
+              .slice(2)
+              .split('/')
+              .map((part) => camelCase(part))
+              .join('.');
+            const value = {
+              ...(token.type === 'SINGLE_VALUE' ? { '.': token.value } : { ...token.value }),
+              __cssName: token.localID!,
+            };
+            setTransform(token.id, {
+              format: FORMAT_VANILLA,
+              localID,
+              value,
+              input,
+              meta: { 'token-listing': { name: `vars.${localID}` } },
+            });
+          }
+        }
+        return;
+      }
+
+      // legacy modes
+      // deprecate in 3.0
       for (const token of getTransforms({ format: FORMAT_CSS })) {
-        const localID = token.id
-          .split('.')
+        const localID = token.token.jsonID // use jsonID to account for $root tokens
+          .slice(2)
+          .split('/')
           .map((part) => camelCase(part))
           .join('.');
         const value = {
@@ -68,9 +111,13 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
       const output: string[] = [];
 
       // generate theme contract
+      const firstInput = Object.values(options.globalThemes ?? options.themes ?? {})[0]?.input ?? {};
       output.push(
         generateThemeContract({
-          tokens: getTransforms({ format: FORMAT_VANILLA, mode: '.' }),
+          tokens: getTransforms({
+            format: FORMAT_VANILLA,
+            ...(isResolver ? { input: firstInput } : { mode: '.' }),
+          }),
           globalThemeContract,
         }),
       );
@@ -78,16 +125,26 @@ export default function vanillaExtractPlugin(options: VanillaExtractPluginOption
 
       // generate themes/global themes
       const namingPattern = options?.themeVarNaming ?? ((n) => [`${n}Class`, n]);
-      for (const [name, { mode }] of Object.entries(options.themes ?? {})) {
-        const theme = generateTheme({ name, namingPattern, tokens: getTransforms({ format: FORMAT_VANILLA, mode }) });
-        imports.add(VE.createTheme);
-        output.push(theme);
-      }
-      for (const [name, { selector, mode }] of Object.entries(options.globalThemes ?? {})) {
+      for (const [name, { mode, input }] of Object.entries(options.themes ?? {})) {
         const theme = generateTheme({
           name,
           namingPattern,
-          tokens: getTransforms({ format: FORMAT_VANILLA, mode }),
+          tokens: getTransforms({
+            format: FORMAT_VANILLA,
+            ...(mode ? { mode } : { input }),
+          }),
+        });
+        imports.add(VE.createTheme);
+        output.push(theme);
+      }
+      for (const [name, { selector, mode, input }] of Object.entries(options.globalThemes ?? {})) {
+        const theme = generateTheme({
+          name,
+          namingPattern,
+          tokens: getTransforms({
+            format: FORMAT_VANILLA,
+            ...(mode ? { mode } : { input }),
+          }),
           selector,
           globalTheme: true,
         });

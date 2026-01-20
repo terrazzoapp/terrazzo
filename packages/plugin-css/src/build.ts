@@ -12,7 +12,7 @@ import {
   PLUGIN_NAME,
   printRules,
   rule,
-} from '../lib.js';
+} from './lib.js';
 import generateUtilityCSS from './utility-css.js';
 
 const P3_MQ = '@media (color-gamut: p3)';

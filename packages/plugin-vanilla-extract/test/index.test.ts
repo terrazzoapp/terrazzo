@@ -9,7 +9,7 @@ import vanillaExtract from '../src/index.js';
 describe('vanilla-extract', () => {
   // Generate a Vanilla Extract theme, and run through Vite to verify it’s valid
   describe('examples', () => {
-    const examples = ['figma-sds', 'github-primer'];
+    const examples = ['figma-sds', 'figma-sds-legacy', 'github-primer', 'github-primer-legacy'];
     const EXAMPLES_DIR = new URL('./fixtures/', import.meta.url);
 
     it.each(examples)('%s', async (name) => {

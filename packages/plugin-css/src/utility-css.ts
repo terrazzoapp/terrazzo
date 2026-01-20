@@ -2,7 +2,7 @@ import type { Logger, TokenTransformed } from '@terrazzo/parser';
 import { kebabCase } from '@terrazzo/token-tools';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import { type CSSRule, decl, PLUGIN_NAME, rule, type UtilityCSSGroup, type UtilityCSSPrefix } from '../lib.js';
+import { type CSSRule, decl, PLUGIN_NAME, rule, type UtilityCSSGroup, type UtilityCSSPrefix } from './lib.js';
 
 // micro-optimization: precompile all RegExs (which can be known) because dynamic compilation is a waste of resources
 const GROUP_REGEX: Record<UtilityCSSPrefix, RegExp> = {

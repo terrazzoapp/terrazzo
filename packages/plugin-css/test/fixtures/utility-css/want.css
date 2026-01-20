@@ -183,18 +183,6 @@
   font-weight: var(--ds-typography-weight-normal);
 }
 
-.font-typography-base {
-  font-family: var(--ds-typography-base-font-family);
-  font-size: var(--ds-typography-base-font-size);
-  font-style: var(--ds-typography-base-font-style);
-  font-weight: var(--ds-typography-base-font-weight);
-  font-variant-numeric: var(--ds-typography-base-font-variant-numeric);
-  letter-spacing: var(--ds-typography-base-letter-spacing);
-  line-height: var(--ds-typography-base-line-height);
-  text-decoration: var(--ds-typography-base-text-decoration);
-  text-transform: var(--ds-typography-base-text-transform);
-}
-
 .gap-space-1 {
   gap: var(--ds-space-1);
 }

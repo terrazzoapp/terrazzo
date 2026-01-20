@@ -43,7 +43,6 @@
   --ds-typography-subheading-letter-spacing: 0.25em;
   --ds-typography-subheading-text-transform: uppercase;
   --ds-typography-subheading: var(--ds-typography-subheading-font-weight) var(--ds-typography-subheading-font-size)/var(--ds-typography-subheading-line-height) var(--ds-typography-subheading-font-family);
-  --ds-typography-label-text-transform: var(--ds-typography-subheading-text-transform);
 }
 
 @media (width >= 600px) {

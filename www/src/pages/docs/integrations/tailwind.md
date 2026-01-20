@@ -164,12 +164,6 @@ Tailwind considers dark mode as a [variant](https://tailwindcss.com/docs/functio
 By declaring a `variants` array with both `selector` (Tailwind) and `mode` (DTCG mode), you can generate the following CSS:
 
 ```diff
-  css({
-+   modeSelectors: [
-+     { mode: "dark", "selectors": ['[data-theme="dark"]'] },
-+     { mode: "high-contrast", "selectors": ['[data-theme="hc"]'] },
-+   ],
-  }),
   tailwind({
     theme: {
       color: ["color.*"],
