@@ -100,7 +100,18 @@ export default async function parse(
   }
 
   return {
-    tokens,
+    tokens: new Proxy(tokens, {
+      get(target, p: string): any {
+        const resolved = target[p];
+        if (!resolved) {
+          logger.error({
+            group: 'parser',
+            message: `Unable to resolve alias ${p}`,
+          });
+        }
+        return resolved;
+      },
+    }),
     sources,
     resolver: finalResolver,
   };
