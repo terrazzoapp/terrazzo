@@ -9,6 +9,7 @@ import {
   decl,
   FORMAT_ID,
   getIndentFromPrepare,
+  type Permutation,
   PLUGIN_NAME,
   printRules,
   rule,
@@ -23,7 +24,7 @@ export interface BuildFormatOptions {
   exclude: CSSPluginOptions['exclude'];
   getTransforms: BuildHookOptions['getTransforms'];
   modeSelectors: CSSPluginOptions['modeSelectors'];
-  permutations: CSSPluginOptions['permutations'];
+  permutations?: Permutation[];
   utility: CSSPluginOptions['utility'];
   baseSelector: string;
   baseScheme: CSSPluginOptions['baseScheme'];

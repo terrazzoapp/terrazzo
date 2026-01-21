@@ -31,7 +31,11 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       if (cssTokens.length) {
         return;
       }
-      transformCSS({ transform: transformOptions, options: options ?? {} });
+      const permutations =
+        typeof options?.permutations === 'function'
+          ? options.permutations({ resolver: transformOptions.resolver })
+          : options?.permutations;
+      transformCSS({ transform: transformOptions, options: { ...options, permutations } });
     },
     async build({ getTransforms, outputFile, context, resolver }) {
       if (skipBuild === true) {
