@@ -1,11 +1,11 @@
 import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
 import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
-import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import { type CSSPluginOptions, FORMAT_ID, type Permutation, PLUGIN_NAME } from './lib.js';
 
 export interface TransformOptions {
   transform: TransformHookOptions;
-  options: CSSPluginOptions;
+  options: Omit<CSSPluginOptions, 'permutations'> & { permutations?: Permutation[] };
 }
 
 export default function transformCSS({

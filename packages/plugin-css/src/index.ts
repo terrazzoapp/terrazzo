@@ -31,18 +31,24 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       if (cssTokens.length) {
         return;
       }
-      transformCSS({ transform: transformOptions, options: options ?? {} });
+      const permutations =
+        typeof options?.permutations === 'function'
+          ? options.permutations({ resolver: transformOptions.resolver })
+          : options?.permutations;
+      transformCSS({ transform: transformOptions, options: { ...options, permutations } });
     },
-    async build({ getTransforms, outputFile, context }) {
+    async build({ getTransforms, outputFile, context, resolver }) {
       if (skipBuild === true) {
         return;
       }
+      const permutations =
+        typeof options?.permutations === 'function' ? options.permutations({ resolver }) : options?.permutations;
 
       let contents = `${FILE_PREFIX}\n\n`;
       contents += buildCSS({
         exclude: options?.exclude,
         getTransforms,
-        permutations: options?.permutations,
+        permutations,
         modeSelectors: options?.modeSelectors,
         utility,
         baseSelector,
