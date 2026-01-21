@@ -1,4 +1,4 @@
-import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
+import type { Resolver, TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
 
@@ -36,7 +36,7 @@ export interface CSSPluginOptions {
   /**
    * Build resolver contexts into media queries
    */
-  permutations?: Permutation[];
+  permutations?: Permutation[] | ((options: { resolver: Resolver }) => Permutation[]);
   /**
    * Define mode selectors as media queries or CSS classes
    * @deprecated Migrate to permutations

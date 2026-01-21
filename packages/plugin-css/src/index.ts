@@ -33,16 +33,18 @@ export default function cssPlugin(options?: CSSPluginOptions): Plugin {
       }
       transformCSS({ transform: transformOptions, options: options ?? {} });
     },
-    async build({ getTransforms, outputFile, context }) {
+    async build({ getTransforms, outputFile, context, resolver }) {
       if (skipBuild === true) {
         return;
       }
+      const permutations =
+        typeof options?.permutations === 'function' ? options.permutations({ resolver }) : options?.permutations;
 
       let contents = `${FILE_PREFIX}\n\n`;
       contents += buildCSS({
         exclude: options?.exclude,
         getTransforms,
-        permutations: options?.permutations,
+        permutations,
         modeSelectors: options?.modeSelectors,
         utility,
         baseSelector,
