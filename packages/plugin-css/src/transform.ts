@@ -41,12 +41,13 @@ export default function transformCSS({
     for (const p of permutations) {
       const input = p.input;
       const ignore = p.ignore ? wcmatch(p.ignore) : undefined;
+      const include = p.include ? wcmatch(p.include) : () => true;
       // Note: if we throw an error here without specifying the input, a user may
       // find it impossible to debug the issue
       try {
         const tokens = resolver.apply(input);
         for (const token of Object.values(tokens)) {
-          if (ignore?.(token.id) || exclude?.(token.id)) {
+          if (!include(token.id) || ignore?.(token.id) || exclude?.(token.id)) {
             continue;
           }
           const value =

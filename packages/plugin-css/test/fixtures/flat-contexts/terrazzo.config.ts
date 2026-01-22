@@ -6,12 +6,11 @@ import {pathToFileURL} from 'node:url';
 
 const resolverPath =  new URL("./resolver.json", import.meta.url);
 
-const { resolver, tokens } = await parse({
+const { resolver } = await parse({
   filename: resolverPath,
   src: await fs.readFile(resolverPath, "utf-8"),
 });
 
-const allTokens = new Set(Object.keys(tokens));
 /**
  * All token names defined in resolver sets
  */
@@ -33,7 +32,7 @@ const permutations: Permutation[] = [
   ${css}
 }`
         },
-        ignore: [...allTokens.difference(rootTokens)]
+        include: [...rootTokens]
     }
 ];
 
@@ -53,7 +52,7 @@ Object.values(resolver.source.modifiers || {}).forEach(modifier => {
   ${css}
 }`
             },
-            ignore: [...allTokens.difference(modifierTokens)]
+            include: [...modifierTokens]
         });
     })
 })
