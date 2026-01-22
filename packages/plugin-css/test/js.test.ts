@@ -108,6 +108,23 @@ describe('Node.js API', () => {
     });
   });
 
+  describe('contexts', () => {
+    it('flat contexts', async () => {
+      const output = 'actual.css';
+      const cwd = new URL(`./fixtures/flat-contexts/`, import.meta.url);
+      const config = (await import('./fixtures/flat-contexts/terrazzo.config.js')).default;
+      const resolverJSON = new URL(`./resolver.json`, cwd);
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
+        { config },
+      );
+      const result = await build(tokens, { resolver, sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+  });
+
   describe('modeSelectors (deprecated)', () => {
     describe('token types', () => {
       it.each([
