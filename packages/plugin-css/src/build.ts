@@ -32,13 +32,14 @@ export interface BuildFormatOptions {
 export default function buildCSS({
   logger,
   getTransforms,
-  exclude,
+  exclude: userExclude,
   utility,
   permutations,
   modeSelectors,
   baseSelector,
   baseScheme,
 }: BuildFormatOptions): string {
+  const exclude = userExclude ? wcmatch(userExclude) : undefined;
   if (permutations?.length) {
     let output = '';
 
@@ -58,7 +59,12 @@ export default function buildCSS({
         rec2020: [] as CSSDeclaration[],
       };
 
+      const ignore = p.ignore ? wcmatch(p.ignore) : undefined;
+      const include = p.include ? wcmatch(p.include) : () => true;
       for (const token of tokens) {
+        if (!include(token.id) || ignore?.(token.id) || exclude?.(token.id)) {
+          continue;
+        }
         const localID = makeCSSVar(token.localID ?? token.token.id);
         const aliasTokens = token.token.aliasedBy?.length
           ? getTransforms({ format: FORMAT_ID, id: token.token.aliasedBy, input: p.input })
@@ -104,6 +110,9 @@ export default function buildCSS({
         // redeclare aliases so they have the correct scope
         for (const alias of aliasTokens) {
           if (alias.localID && typeof alias.value === 'string') {
+            if (!include(alias.id) || ignore?.(alias.id) || exclude?.(alias.id)) {
+              continue;
+            }
             addDeclUnique(root, decl(alias.localID, alias.value, token.token.$description));
           }
         }
@@ -159,10 +168,9 @@ export default function buildCSS({
       rootRule.children.unshift(decl('color-scheme', baseScheme));
     }
 
-    const shouldExclude = wcmatch(exclude ?? []);
     for (const token of rootTokens) {
       // handle exclude (if any)
-      if (shouldExclude(token.token.id)) {
+      if (exclude?.(token.token.id)) {
         continue;
       }
 
