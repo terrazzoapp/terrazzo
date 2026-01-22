@@ -1,30 +1,61 @@
 import css, {type Permutation} from "../../../src/index.js";
-import {defineConfig, parse} from '@terrazzo/parser';
+import type {ResolverModifierNormalized, ResolverSourceNormalized} from "@terrazzo/parser";
+import {defineConfig, type Group, type Token, parse} from '@terrazzo/parser';
 import fs from "node:fs/promises";
 import {pathToFileURL} from 'node:url';
 
 
-const resolverPath =  new URL("./resolver.json", import.meta.url);
+const resolverPath = new URL("./resolver.json", import.meta.url);
 
-const { resolver } = await parse({
-  filename: resolverPath,
-  src: await fs.readFile(resolverPath, "utf-8"),
+const {resolver} = await parse({
+    filename: resolverPath,
+    src: await fs.readFile(resolverPath, "utf-8"),
 });
 
+
 /**
- * All token names defined in resolver sets
+ * These three would be very useful to have in the resolver API
  */
-const rootTokens = Object.values(resolver.source.sets || {}).reduce((acc, set) => {
-    return acc.union(set.sources.reduce((acc, source) => {
-        return acc.union(new Set(Object.keys(source).filter(k => !k.startsWith('$'))));
-    }, new Set<string>()));
-}, new Set<string>())
+function getDeclaredTokens(group: Group, root: string[] = []): string[] {
+    const isToken = (t: Group | Token): t is Token =>{
+        return '$value' in t;
+    }
+
+    return Object.entries(group).flatMap(([k, v]) => {
+        if (k.startsWith('$')) {
+            return [];
+        }
+        if (isToken(v)) {
+            return [[...root, k].join('.')];
+        }
+        return getDeclaredTokens(v, [...root, k])
+    }).filter(Boolean);
+}
+
+
+function extractTokenNames(...groups: Group[]): string[] {
+    return [...groups.reduce((acc, group) => {
+        return acc.union(new Set(getDeclaredTokens(group)))
+    }, new Set<string>())]
+}
+
+function extractTokensFromSets(sets: ResolverSourceNormalized['sets']): string[] {
+    return [...Object.values(sets || {}).reduce((acc, set) => {
+        return acc.union(new Set(extractTokenNames(...set.sources)));
+    }, new Set<string>())]
+}
+
+function extractTokensFromContexts(contexts: ResolverModifierNormalized['contexts']): string[] {
+    return Object.values(contexts).flatMap(groups => extractTokenNames(...groups))
+}
+
+function iterateModifiers(modifiers: ResolverSourceNormalized['modifiers']): (readonly [ResolverModifierNormalized, string])[] {
+    return Object.values(modifiers || {}).flatMap(modifier => Object.keys(modifier.contexts).map(context => [modifier, context] as const))
+}
 
 
 const permutations: Permutation[] = [
-    // Root permutation
     {
-        // default input
         input: {},
         prepare(css: string): string {
             return `
@@ -32,34 +63,23 @@ const permutations: Permutation[] = [
   ${css}
 }`
         },
-        include: [...rootTokens]
-    }
-];
-
-Object.values(resolver.source.modifiers || {}).forEach(modifier => {
-    const modifierTokens = Object.values(modifier.contexts).reduce((acc, context) => {
-            return acc.union(context.reduce((acc, source) => {
-                return acc.union(new Set(Object.keys(source).filter(k => !k.startsWith('$'))))
-            }, new Set<string>()));
-    }, new Set<string>())
-
-    Object.keys(modifier.contexts).forEach(context => {
-        permutations.push({
-            input: {[modifier.name]:context},
-            prepare(css: string): string {
-                return `
+        include: extractTokensFromSets(resolver.source.sets)
+    },
+    ...iterateModifiers(resolver.source.modifiers).map(([modifier, context]) => ({
+        input: {[modifier.name]: context},
+        prepare(css: string): string {
+            return `
 .${modifier.name}-${context} {
   ${css}
 }`
-            },
-            include: [...modifierTokens]
-        });
-    })
-})
+        },
+        include: extractTokensFromContexts(modifier.contexts)
+    }))
+];
 
 export default defineConfig(
     {
         plugins: [css({filename: 'actual.css', permutations})],
     },
-    {cwd:  pathToFileURL(import.meta.url)}
+    {cwd: pathToFileURL(import.meta.url)}
 );
