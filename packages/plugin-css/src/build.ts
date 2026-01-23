@@ -1,6 +1,6 @@
 import type { BuildHookOptions, Logger } from '@terrazzo/parser';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
-import wcmatch from 'wildcard-match';
 import {
   addDeclUnique,
   type CSSDeclaration,
@@ -159,7 +159,7 @@ export default function buildCSS({
       rootRule.children.unshift(decl('color-scheme', baseScheme));
     }
 
-    const shouldExclude = wcmatch(exclude ?? []);
+    const shouldExclude = getTokenMatcher(exclude ?? []);
     for (const token of rootTokens) {
       // handle exclude (if any)
       if (shouldExclude(token.token.id)) {

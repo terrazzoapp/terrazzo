@@ -2,12 +2,12 @@ import * as momoa from '@humanwhocodes/momoa';
 import { encodeFragment, getObjMember, type InputSourceWithDocument, parseRef } from '@terrazzo/json-schema-tools';
 import {
   type GroupNormalized,
+  getTokenMatcher,
   isAlias,
   parseAlias,
   type TokenNormalized,
   type TokenNormalizedSet,
 } from '@terrazzo/token-tools';
-import wcmatch from 'wildcard-match';
 import type { default as Logger } from '../logger.js';
 import type { Config, ReferenceObject, RefMap } from '../types.js';
 
@@ -98,7 +98,7 @@ export function tokenFromNode(
 
   // after assembling token, handle ignores to see if the final result should be ignored or not
   // filter out ignored
-  if ((ignore?.deprecated && token.$deprecated) || (ignore?.tokens && wcmatch(ignore.tokens)(token.id))) {
+  if ((ignore?.deprecated && token.$deprecated) || (ignore?.tokens && getTokenMatcher(ignore.tokens)(token.id))) {
     return;
   }
 

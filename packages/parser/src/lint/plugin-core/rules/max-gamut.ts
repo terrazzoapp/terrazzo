@@ -1,6 +1,5 @@
-import { type ColorValueNormalized, tokenToCulori } from '@terrazzo/token-tools';
+import { type ColorValueNormalized, getTokenMatcher, tokenToCulori } from '@terrazzo/token-tools';
 import { type Color, clampChroma } from 'culori';
-import wcmatch from 'wildcard-match';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -74,7 +73,7 @@ const rule: LintRule<
       throw new Error(`Unknown gamut "${options.gamut}". Options are "srgb", "p3", or "rec2020"`);
     }
 
-    const shouldIgnore = options.ignore ? wcmatch(options.ignore) : null;
+    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens

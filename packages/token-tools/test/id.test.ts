@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getTokenMatch, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
+import { getTokenMatcher, isAlias, makeAlias, parseAlias, splitID } from '../src/id.js';
 
 describe('isAlias', () => {
   it('returns true for valid ID', () => {
@@ -25,10 +25,13 @@ describe('makeAlias', () => {
   });
 });
 
-describe('getTokenMatch', () => {
+describe('getTokenMatcher', () => {
   it('basic', () => {
-    expect(getTokenMatch('color.blue.60', ['foo.*', 'bar.*', 'color.*'])).toBe('color.*');
-    expect(getTokenMatch('color.blue.60', ['foo.*', 'bar.*'])).toBeUndefined();
+    expect(getTokenMatcher('color.*')('color.blue.60')).toBeFalsy();
+    expect(getTokenMatcher('color.**')('color.blue.60')).toBeTruthy();
+    expect(getTokenMatcher('color.*.60')('color.blue.60')).toBeTruthy();
+    expect(getTokenMatcher('color.*.60')('color.blue.tint.60')).toBeFalsy();
+    expect(getTokenMatcher('color.**.60')('color.blue.tint.60')).toBeTruthy();
   });
 });
 
