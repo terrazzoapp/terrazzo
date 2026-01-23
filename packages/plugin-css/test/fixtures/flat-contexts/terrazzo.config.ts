@@ -17,19 +17,21 @@ const {resolver} = await parse({
  * These three would be very useful to have in the resolver API
  */
 function getDeclaredTokens(group: Group, root: string[] = []): string[] {
-    const isToken = (t: Group | Token): t is Token =>{
-        return '$value' in t;
-    }
+    const isToken = (t: Group | Token): t is Token => '$value' in t;
 
-    return Object.entries(group).flatMap(([k, v]) => {
-        if (k.startsWith('$')) {
-            return [];
-        }
-        if (isToken(v)) {
-            return [[...root, k].join('.')];
-        }
-        return getDeclaredTokens(v, [...root, k])
-    }).filter(Boolean);
+    const isRootToken = (t: Group | Token): t is Token => '$root' in t;
+
+    return Object.entries(group)
+        .filter(([k]) => !k.startsWith('$'))
+        .map(function* ([k, v]) {
+                if (isToken(v) || isRootToken(v)) {
+                    yield [...root, k].join('.')
+                }
+                if (!isToken(v)) {
+                    yield* getDeclaredTokens(v, [...root, k]);
+                }
+            }
+        ).flatMap(v => [...v]);
 }
 
 
