@@ -1,6 +1,6 @@
 import type { BuildHookOptions, Logger } from '@terrazzo/parser';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import { generateShorthand, makeCSSVar } from '@terrazzo/token-tools/css';
-import wcmatch from 'wildcard-match';
 import {
   addDeclUnique,
   type CSSDeclaration,
@@ -41,8 +41,8 @@ export default function buildCSS({
   baseSelector,
   baseScheme,
 }: BuildFormatOptions): string {
-  const include = userInclude ? wcmatch(userInclude) : () => true;
-  const exclude = userExclude ? wcmatch(userExclude) : () => false;
+  const include = userInclude ? getTokenMatcher(userInclude) : () => true;
+  const exclude = userExclude ? getTokenMatcher(userExclude) : () => false;
   if (permutations?.length) {
     let output = '';
 
@@ -62,8 +62,8 @@ export default function buildCSS({
         rec2020: [] as CSSDeclaration[],
       };
 
-      const pInclude = p.include ? wcmatch(p.include) : () => true;
-      const pExclude = p.exclude ? wcmatch(p.exclude) : () => false;
+      const pInclude = p.include ? getTokenMatcher(p.include) : () => true;
+      const pExclude = p.exclude ? getTokenMatcher(p.exclude) : () => false;
 
       const includeToken = (tokenId: string): boolean => {
         return include(tokenId) && pInclude(tokenId) && !exclude(tokenId) && !pExclude(tokenId);
