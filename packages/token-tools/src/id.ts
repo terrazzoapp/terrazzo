@@ -7,13 +7,9 @@ export function isAlias(value: string): boolean {
   return ALIAS_RE.test(value);
 }
 
-/** Same as isTokenMatch but returns the matching pattern */
-export function getTokenMatch(tokenId: string, globPatterns: string[]): string | undefined {
-  for (const pattern of globPatterns) {
-    if (wcmatch(pattern)(tokenId)) {
-      return pattern;
-    }
-  }
+/** Create a token matcher function using . separated glob patterns */
+export function getTokenMatcher(globPatterns: string | string[]): (tokenId: string) => boolean {
+  return wcmatch(globPatterns, '.');
 }
 
 /** Make an alias */

@@ -1,5 +1,4 @@
-import type { ColorValueNormalized } from '@terrazzo/token-tools';
-import wcmatch from 'wildcard-match';
+import { type ColorValueNormalized, getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -38,7 +37,7 @@ const rule: LintRule<
       return;
     }
 
-    const shouldIgnore = options.ignore ? wcmatch(options.ignore) : null;
+    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       // skip ignored tokens

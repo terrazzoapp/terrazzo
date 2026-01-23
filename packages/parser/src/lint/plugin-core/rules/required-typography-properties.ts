@@ -1,4 +1,4 @@
-import wcmatch from 'wildcard-match';
+import { getTokenMatcher } from '@terrazzo/token-tools';
 import type { LintRule } from '../../../types.js';
 import { docsLink } from '../lib/docs.js';
 
@@ -34,7 +34,7 @@ const rule: LintRule<never, RuleRequiredTypographyPropertiesOptions> = {
       throw new Error(`"properties" can’t be empty`);
     }
 
-    const shouldIgnore = options.ignore ? wcmatch(options.ignore) : null;
+    const shouldIgnore = options.ignore ? getTokenMatcher(options.ignore) : null;
 
     for (const t of Object.values(tokens)) {
       if (shouldIgnore?.(t.id)) {
