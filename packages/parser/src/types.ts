@@ -381,8 +381,8 @@ export interface ResolverSourceNormalized {
   name: string | undefined;
   version: '2025.10';
   description: string | undefined;
-  sets: Record<string, ResolverSet> | undefined;
-  modifiers: Record<string, ResolverModifier> | undefined;
+  sets: Record<string, ResolverSetNormalized> | undefined;
+  modifiers: Record<string, ResolverModifierNormalized> | undefined;
   /**
    * Array of all sets and modifiers that have been converted to inline,
    * regardless of original declaration. In a normalized resolver, only a single

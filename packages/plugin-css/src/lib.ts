@@ -69,6 +69,8 @@ export interface Permutation<T extends Record<string, string> = Record<string, s
   prepare(css: string): string;
   /** Input for this permutation. */
   input: T;
+  /** Provide token(s) to include (Note: not including tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
+  include?: string[];
   /** Provide token(s) to ignore (Note: ignoring tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
   ignore?: string[];
 }

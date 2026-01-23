@@ -1,0 +1,30 @@
+{
+  "version": "2025.10",
+  "name": "flat-contexts",
+  "sets": {
+    "primitives": {
+      "sources": [{ "$ref": "primitives.json" }]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "default": "orange",
+      "contexts": {
+        "orange": [{ "$ref": "themes.json#orange" }],
+        "blue": [{ "$ref": "themes.json#blue" }]
+      }
+    },
+    "mode": {
+      "default": "light",
+      "contexts": {
+        "light": [{ "$ref": "modes.json#light" }],
+        "dark": [{ "$ref": "modes.json#dark" }]
+      }
+    }
+  },
+  "resolutionOrder": [
+    { "$ref": "#/modifiers/theme" },
+    { "$ref": "#/modifiers/mode" },
+    { "$ref": "#/sets/primitives" }
+  ]
+}
