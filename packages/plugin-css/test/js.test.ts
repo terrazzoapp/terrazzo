@@ -108,6 +108,40 @@ describe('Node.js API', () => {
     });
   });
 
+  describe('extends', () => {
+    it('works', async () => {
+      const output = 'actual.css';
+      const cwd = new URL(`./fixtures/extends/`, import.meta.url);
+      const resolverJSON = new URL(`./resolver.json`, cwd);
+      const config = defineConfig(
+        {
+          plugins: [
+            css({
+              filename: output,
+              permutations: [
+                {
+                  input: {},
+                  prepare: (css: string): string => `:root {
+  ${css}
+}`,
+                },
+              ],
+            }),
+          ],
+        },
+        { cwd },
+      );
+      const { tokens, resolver, sources } = await parse(
+        [{ filename: resolverJSON, src: await fs.readFile(resolverJSON, 'utf8') }],
+        { config },
+      );
+      const result = await build(tokens, { resolver, sources, config });
+      await expect(result.outputFiles.find((f) => f.filename === output)?.contents).toMatchFileSnapshot(
+        fileURLToPath(new URL('./want.css', cwd)),
+      );
+    });
+  });
+
   describe('modeSelectors (deprecated)', () => {
     describe('token types', () => {
       it.each([
