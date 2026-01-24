@@ -1,4 +1,5 @@
-import { describe, it } from 'vitest';
+import { describe, expect, it } from 'vitest';
+import { defineConfig, parse } from '../src/index.js';
 import { DEFAULT_FILENAME, parserTest, type Test } from './test-utils.js';
 
 describe('$extends', () => {
@@ -152,5 +153,97 @@ describe('$extends', () => {
 
   it.each(tests)('%s', async (_, { given, want }) => {
     await parserTest({ given, want });
+  });
+
+  it('is not too eager', async () => {
+    const config = defineConfig({}, { cwd: new URL(import.meta.url) });
+    const { tokens } = await parse(
+      {
+        filename: new URL('resolver.json', import.meta.url),
+        src: JSON.stringify({
+          version: '2025.10',
+          name: 'resolver-extends-test',
+          sets: {
+            root: {
+              sources: [
+                {
+                  numbers: {
+                    odd: {
+                      small: {
+                        $type: 'number',
+                        $value: 100,
+                      },
+                      big: {
+                        $type: 'number',
+                        $value: 300,
+                      },
+                    },
+                    even: {
+                      small: {
+                        $type: 'number',
+                        $value: 200,
+                      },
+                      big: {
+                        $type: 'number',
+                        $value: 400,
+                      },
+                    },
+                  },
+                },
+              ],
+            },
+          },
+          modifiers: {
+            'odd-even': {
+              default: 'odd',
+              contexts: {
+                odd: [
+                  {
+                    $extends: '{numbers.odd}',
+                  },
+                ],
+                even: [
+                  {
+                    $extends: '{numbers.even}',
+                  },
+                ],
+              },
+            },
+            'big-small': {
+              default: 'big',
+              contexts: {
+                big: [
+                  {
+                    number: {
+                      $value: '{big}',
+                    },
+                  },
+                ],
+                small: [
+                  {
+                    number: {
+                      $value: '{small}',
+                    },
+                  },
+                ],
+              },
+            },
+          },
+          resolutionOrder: [
+            {
+              $ref: '#/sets/root',
+            },
+            {
+              $ref: '#/modifiers/odd-even',
+            },
+            {
+              $ref: '#/modifiers/big-small',
+            },
+          ],
+        }),
+      },
+      { config },
+    );
+    expect(tokens.small.aliasChain).not.toBeUndefined();
   });
 });
