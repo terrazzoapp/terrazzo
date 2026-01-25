@@ -1,102 +1,55 @@
 import type { Plugin } from '@terrazzo/parser';
-import { type TokenNormalized, validateCustomTransform } from '@terrazzo/token-tools';
-import { generateShorthand, makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
-import buildFormat from './build/index.js';
-import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID } from './lib.js';
+import buildCSS from './build.js';
+import { type CSSPluginOptions, FILE_PREFIX, FORMAT_ID, PLUGIN_NAME } from './lib.js';
+import transformCSS from './transform.js';
 
-export * from './build/index.js';
+export * from './build.js';
 export * from './lib.js';
+export * from './transform.js';
+export * from './utility-css.js';
 
 export default function cssPlugin(options?: CSSPluginOptions): Plugin {
-  const {
-    exclude,
-    variableName,
-    modeSelectors,
-    transform: customTransform,
-    utility,
-    legacyHex,
-    skipBuild,
-    baseScheme,
-  } = options ?? {};
+  const { utility, skipBuild, baseScheme } = options ?? {};
 
   const filename = options?.filename ?? (options as any)?.fileName ?? 'index.css';
   const baseSelector = options?.baseSelector ?? ':root';
 
-  function transformName(token: TokenNormalized) {
-    const customName = variableName?.(token);
-    if (customName !== undefined) {
-      if (typeof customName !== 'string') {
-        throw new Error(`variableName() must return a string; received ${customName}`);
-      }
-      return customName;
-    }
-    return makeCSSVar(token.id);
-  }
-  const transformAlias = (token: TokenNormalized) => `var(${transformName(token)})`;
-
   return {
-    name: '@terrazzo/plugin-css',
-    async transform({ tokens, getTransforms, setTransform }) {
+    name: PLUGIN_NAME,
+    config(_config, context) {
+      if (options?.permutations && (options?.modeSelectors || options?.baseSelector || options?.baseScheme)) {
+        context.logger.error({
+          group: 'plugin',
+          label: PLUGIN_NAME,
+          message: 'Permutations option is incompatible with modeSelectors, baseSelector, and baseScheme.',
+        });
+      }
+    },
+    async transform(transformOptions) {
       // skip work if another .css plugin has already run
-      const cssTokens = getTransforms({ format: FORMAT_ID, id: '*', mode: '*' });
+      const cssTokens = transformOptions.getTransforms({ format: FORMAT_ID, id: '*' });
       if (cssTokens.length) {
         return;
       }
-
-      for (const [id, token] of Object.entries(tokens)) {
-        const localID = transformName(token);
-        for (const mode of Object.keys(token.mode)) {
-          if (customTransform) {
-            const value = customTransform(token, mode);
-            if (value !== undefined && value !== null) {
-              validateCustomTransform(value, { $type: token.$type });
-              setTransform(id, {
-                format: FORMAT_ID,
-                localID,
-                value,
-                mode,
-                meta: { 'token-listing': { name: localID } },
-              });
-              continue;
-            }
-          }
-
-          const transformedValue = transformCSSValue(token, {
-            mode,
-            tokensSet: tokens,
-            transformAlias,
-            color: { legacyHex },
-          });
-          if (transformedValue !== undefined) {
-            let listingName: string | undefined = localID;
-
-            // Composite tokens without a shorthand won't get generated in the output, so we don't list them.
-            if (typeof transformedValue === 'object' && generateShorthand({ token, localID }) === undefined) {
-              listingName = undefined;
-            }
-
-            setTransform(id, {
-              format: FORMAT_ID,
-              localID,
-              value: transformedValue,
-              mode,
-              meta: { 'token-listing': { name: listingName } },
-            });
-          }
-        }
-      }
+      transformCSS({ transform: transformOptions, options: options ?? {} });
     },
-    async build({ getTransforms, outputFile }) {
+    async build({ getTransforms, outputFile, context }) {
       if (skipBuild === true) {
         return;
       }
 
-      const output: string[] = [FILE_PREFIX, ''];
-      output.push(
-        buildFormat({ exclude, getTransforms, modeSelectors, utility, baseSelector, baseScheme }),
-        '\n', // EOF newline
-      );
-      outputFile(filename, output.join('\n'));
+      let contents = `${FILE_PREFIX}\n\n`;
+      contents += buildCSS({
+        exclude: options?.exclude,
+        getTransforms,
+        permutations: options?.permutations,
+        modeSelectors: options?.modeSelectors,
+        utility,
+        baseSelector,
+        baseScheme,
+        logger: context.logger,
+      });
+      outputFile(filename, contents.replace(/\n*$/, '\n'));
     },
   };
 }

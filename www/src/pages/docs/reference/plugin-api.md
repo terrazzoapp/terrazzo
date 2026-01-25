@@ -105,23 +105,17 @@ export default defineConfig({
 
 ## FAQ
 
-:::details{title="What are the formats Terrazzo supports?"}
+### What are the formats Terrazzo supports?
 
 Anything! When we talk about a “format,” it’s up to the plugin to name that format, and it can be any name it wants. A format is merely a query key that `build()` steps will query tokens by, so make it predictable and intuitive (file extensions are encouraged, e.g. `css`, `js`, `json`).
 
-:::
-
-:::details{title="Can my plugin read from another plugin’s transform() step?"}
+### Can my plugin read from another plugin’s transform() step?
 
 Yup! Just be sure you know what **format** that plugin is generating so you can query it. Also set [enforce: "post"](#enforce) to run your plugin last so it can be sure the other plugin already ran.
 
-:::
-
-:::details{title="Can I use any JavaScript in a plugin?"}
+### Can I use any JavaScript in a plugin?
 
 Yes, although you’ll get the most mileage out of avoiding Node.js code (such as reading from the filesystem). Terrazzo’s Plugin API is designed to work in any environment, including in a browser (like the [Token Lab](/lab)!). While there’s nothing stopping you from using Node.js behavior, by avoiding it you’ll have a more portable plugin that can run in any environment (e.g. a browser or a serverless function).
-
-:::
 
 ## API
 
@@ -322,7 +316,7 @@ export default function myPlugin() {
         value: "ReturnType<typeof rgb>",
         mode: ".",
       });
-    }
+    },
   };
 }
 ```

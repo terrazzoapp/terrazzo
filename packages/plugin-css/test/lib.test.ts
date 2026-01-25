@@ -1,69 +1,55 @@
-import adobeSpectrum from 'dtcg-examples/adobe-spectrum.json' with { type: 'json' };
-import appleHig from 'dtcg-examples/apple-hig.json' with { type: 'json' };
-import figmaSds from 'dtcg-examples/figma-sds.json' with { type: 'json' };
-import githubPrimer from 'dtcg-examples/github-primer.json' with { type: 'json' };
-import ibmCarbon from 'dtcg-examples/ibm-carbon.json' with { type: 'json' };
-import microsoftFluent from 'dtcg-examples/microsoft-fluent.json' with { type: 'json' };
-import radix from 'dtcg-examples/radix.json' with { type: 'json' };
-import salesforceLightning from 'dtcg-examples/salesforce-lightning.json' with { type: 'json' };
-import shopifyPolaris from 'dtcg-examples/shopify-polaris.json' with { type: 'json' };
 import { describe, expect, it } from 'vitest';
-import { type CSSRule, printRules } from '../src/lib.js';
-
-export const DS = {
-  'adobe-spectrum': adobeSpectrum,
-  'apple-hig': appleHig,
-  'figma-sds': figmaSds,
-  'github-primer': githubPrimer,
-  'ibm-carbon': ibmCarbon,
-  'microsoft-fluent': microsoftFluent,
-  radix: radix,
-  'salesforce-lightning': salesforceLightning,
-  'shopify-polaris': shopifyPolaris,
-};
+import { type CSSDeclaration, type CSSRule, getIndentFromPrepare, printRules } from '../src/lib.js';
 
 describe('printRules', () => {
   it('basic', () => {
-    expect(
-      printRules([
-        {
-          selectors: [':root'],
-          declarations: {
-            '--color-blue-6': { value: '#acd8fc' },
-            '--color-blue-7': { value: '#8ec8f6' },
-            '--color-blue-8': { value: '#5eb1ef' },
-          },
-        },
-        {
-          selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
-          declarations: {
-            '--color-blue-6': { value: '#acd8fc' },
-            '--color-blue-7': { value: '#8ec8f6' },
-            '--color-blue-8': { value: '#5eb1ef' },
-          },
-        },
-        {
-          selectors: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]', '.color-mode-dark'],
-          declarations: {
-            '--color-blue-6': { value: '#104d87' },
-            '--color-blue-7': { value: '#205d9e' },
-            '--color-blue-8': { value: '#2870bd' },
-          },
-        },
-        {
-          selectors: ['.font-default'],
-          declarations: {
-            'font-family': { value: 'var(--typography-default-font-family)' },
-            'font-size': { value: 'var(--typography-default-font-size)' },
-            'font-weight': { value: 'var(--typography-default-font-weight)' },
-            'line-height': { value: 'var(--typography-default-line-height)' },
-          },
-        },
-      ]),
-    ).toMatchInlineSnapshot(`
+    const rules: CSSRule[] = [
+      {
+        type: 'Rule',
+        prelude: [':root'],
+        children: [
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc', comment: 'Blue 6' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6', comment: 'Blue 7' },
+          { type: 'Declaration', property: '--color-blue-8', value: '#5eb1ef', comment: 'Blue 8' },
+        ],
+      },
+      {
+        type: 'Rule',
+        prelude: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
+        children: [
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6' },
+          { type: 'Declaration', property: '--color-blue-8', value: '#5eb1ef' },
+        ],
+      },
+      {
+        type: 'Rule',
+        prelude: ['@media (prefers-color-scheme: dark)', '[data-color-mode="dark"]', '.color-mode-dark'],
+        children: [
+          { type: 'Declaration', property: '--color-blue-6', value: '#104d87' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#205d9e' },
+          { type: 'Declaration', property: '--color-blue-8', value: '#2870bd' },
+        ],
+      },
+      {
+        type: 'Rule',
+        prelude: ['.font-default'],
+        children: [
+          { type: 'Declaration', property: 'font-family', value: 'var(--typography-default-font-family)' },
+          { type: 'Declaration', property: 'font-size', value: 'var(--typography-default-font-size)' },
+          { type: 'Declaration', property: 'font-weight', value: 'var(--typography-default-font-weight)' },
+          { type: 'Declaration', property: 'line-height', value: 'var(--typography-default-line-height)' },
+        ],
+      },
+    ];
+
+    expect(printRules(rules)).toMatchInlineSnapshot(`
       ":root {
+        /* Blue 6 */
         --color-blue-6: #acd8fc;
+        /* Blue 7 */
         --color-blue-7: #8ec8f6;
+        /* Blue 8 */
         --color-blue-8: #5eb1ef;
       }
 
@@ -75,8 +61,7 @@ describe('printRules', () => {
         }
       }
 
-      [data-color-mode="light"],
-      .color-mode-light {
+      [data-color-mode="light"], .color-mode-light {
         --color-blue-6: #acd8fc;
         --color-blue-7: #8ec8f6;
         --color-blue-8: #5eb1ef;
@@ -90,8 +75,7 @@ describe('printRules', () => {
         }
       }
 
-      [data-color-mode="dark"],
-      .color-mode-dark {
+      [data-color-mode="dark"], .color-mode-dark {
         --color-blue-6: #104d87;
         --color-blue-7: #205d9e;
         --color-blue-8: #2870bd;
@@ -106,16 +90,44 @@ describe('printRules', () => {
     `);
   });
 
-  it('nestedQuery', () => {
+  it('root declarations', () => {
+    const rules: CSSDeclaration[] = [
+      { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc', comment: 'Blue 6' },
+      { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6', comment: 'Blue 7' },
+      { type: 'Declaration', property: '--color-blue-8', value: '#5eb1ef', comment: 'Blue 8' },
+    ];
+    expect(printRules(rules, { indentChar: '  ', indentLv: 1 })).toBe(`/* Blue 6 */
+  --color-blue-6: #acd8fc;
+  /* Blue 7 */
+  --color-blue-7: #8ec8f6;
+  /* Blue 8 */
+  --color-blue-8: #5eb1ef;`);
+  });
+
+  it('nested rules', () => {
     const rules: CSSRule[] = [
       {
-        selectors: ['@media (prefers-color-scheme: light)', '[data-color-mode="light"]', '.color-mode-light'],
-        nestedQuery: '@media (color-gamut: p3)',
-        declarations: {
-          '--color-blue-6': { value: 'color(display-p3 0.062745 0.301961 0.529412)' },
-          '--color-blue-7': { value: 'color(display-p3 0.12549 0.364706 0.619608)' },
-          '--color-blue-8': { value: 'color(display-p3 0.156863 0.439216 0.741176)' },
-        },
+        type: 'Rule',
+        prelude: ['@media (prefers-color-scheme: light)'],
+        children: [
+          {
+            type: 'Rule',
+            prelude: ['@media (color-gamut: p3)'],
+            children: [
+              {
+                type: 'Declaration',
+                property: '--color-blue-6',
+                value: 'color(display-p3 0.062745 0.301961 0.529412)',
+              },
+              { type: 'Declaration', property: '--color-blue-7', value: 'color(display-p3 0.12549 0.364706 0.619608)' },
+              {
+                type: 'Declaration',
+                property: '--color-blue-8',
+                value: 'color(display-p3 0.156863 0.439216 0.741176)',
+              },
+            ],
+          },
+        ],
       },
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`
@@ -127,38 +139,6 @@ describe('printRules', () => {
             --color-blue-8: color(display-p3 0.156863 0.439216 0.741176);
           }
         }
-      }
-
-      @media (color-gamut: p3) {
-        [data-color-mode="light"],
-        .color-mode-light {
-          --color-blue-6: color(display-p3 0.062745 0.301961 0.529412);
-          --color-blue-7: color(display-p3 0.12549 0.364706 0.619608);
-          --color-blue-8: color(display-p3 0.156863 0.439216 0.741176);
-        }
-      }"
-    `);
-  });
-
-  it('nestedQuery (:root)', () => {
-    const rules: CSSRule[] = [
-      {
-        selectors: [':root'],
-        nestedQuery: '@media (color-gamut: p3)',
-        declarations: {
-          '--color-blue-6': { value: 'color(display-p3 0.062745 0.301961 0.529412)' },
-          '--color-blue-7': { value: 'color(display-p3 0.12549 0.364706 0.619608)' },
-          '--color-blue-8': { value: 'color(display-p3 0.156863 0.439216 0.741176)' },
-        },
-      },
-    ];
-    expect(printRules(rules)).toMatchInlineSnapshot(`
-      "@media (color-gamut: p3) {
-        :root {
-          --color-blue-6: color(display-p3 0.062745 0.301961 0.529412);
-          --color-blue-7: color(display-p3 0.12549 0.364706 0.619608);
-          --color-blue-8: color(display-p3 0.156863 0.439216 0.741176);
-        }
       }"
     `);
   });
@@ -166,10 +146,11 @@ describe('printRules', () => {
   it('complex selectors', () => {
     const rules: CSSRule[] = [
       {
-        selectors: [
+        type: 'Rule',
+        prelude: [
           '[data-color-mode="light"][data-product="default"], [data-color-mode="light"] [data-product="default"]',
         ],
-        declarations: { '--color-blue-6': { value: '#104d87' } },
+        children: [{ type: 'Declaration', property: '--color-blue-6', value: '#104d87' }],
       },
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`
@@ -182,28 +163,31 @@ describe('printRules', () => {
   it('color-scheme declarations', () => {
     const rules: CSSRule[] = [
       {
-        selectors: [':root'],
-        declarations: {
-          'color-scheme': { value: 'light dark' },
-          '--color-blue-6': { value: '#acd8fc' },
-          '--color-blue-7': { value: '#8ec8f6' },
-        },
+        type: 'Rule',
+        prelude: [':root'],
+        children: [
+          { type: 'Declaration', property: 'color-scheme', value: 'light dark' },
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6' },
+        ],
       },
       {
-        selectors: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
-        declarations: {
-          'color-scheme': { value: 'light' },
-          '--color-blue-6': { value: '#acd8fc' },
-          '--color-blue-7': { value: '#8ec8f6' },
-        },
+        type: 'Rule',
+        prelude: ['@media (prefers-color-scheme: light)', '[data-color-theme="light"]'],
+        children: [
+          { type: 'Declaration', property: 'color-scheme', value: 'light' },
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6' },
+        ],
       },
       {
-        selectors: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
-        declarations: {
-          'color-scheme': { value: 'dark' },
-          '--color-blue-6': { value: '#104d87' },
-          '--color-blue-7': { value: '#205d9e' },
-        },
+        type: 'Rule',
+        prelude: ['@media (prefers-color-scheme: dark)', '[data-color-theme="dark"]'],
+        children: [
+          { type: 'Declaration', property: 'color-scheme', value: 'dark' },
+          { type: 'Declaration', property: '--color-blue-6', value: '#104d87' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#205d9e' },
+        ],
       },
     ];
     expect(printRules(rules)).toMatchInlineSnapshot(`
@@ -241,5 +225,102 @@ describe('printRules', () => {
         --color-blue-7: #205d9e;
       }"
     `);
+  });
+
+  it('4 spaces', () => {
+    const rules: CSSRule[] = [
+      {
+        type: 'Rule',
+        prelude: [':root'],
+        children: [
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc', comment: 'Blue 6' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6', comment: 'Blue 7' },
+          { type: 'Declaration', property: '--color-blue-8', value: '#5eb1ef', comment: 'Blue 8' },
+        ],
+      },
+    ];
+    expect(printRules(rules, { indentChar: '    ' })).toBe(`:root {
+    /* Blue 6 */
+    --color-blue-6: #acd8fc;
+    /* Blue 7 */
+    --color-blue-7: #8ec8f6;
+    /* Blue 8 */
+    --color-blue-8: #5eb1ef;
+}`);
+  });
+
+  it('tabs', () => {
+    const rules: CSSRule[] = [
+      {
+        type: 'Rule',
+        prelude: [':root'],
+        children: [
+          { type: 'Declaration', property: '--color-blue-6', value: '#acd8fc', comment: 'Blue 6' },
+          { type: 'Declaration', property: '--color-blue-7', value: '#8ec8f6', comment: 'Blue 7' },
+          { type: 'Declaration', property: '--color-blue-8', value: '#5eb1ef', comment: 'Blue 8' },
+        ],
+      },
+    ];
+    expect(printRules(rules, { indentChar: '\t' })).toBe(`:root {
+\t/* Blue 6 */
+\t--color-blue-6: #acd8fc;
+\t/* Blue 7 */
+\t--color-blue-7: #8ec8f6;
+\t/* Blue 8 */
+\t--color-blue-8: #5eb1ef;
+}`);
+  });
+});
+
+describe('getIndentFromPrepare', () => {
+  it('2 space', () => {
+    expect(
+      getIndentFromPrepare(
+        (css) => `.mySelector {
+  ${css}
+}`,
+      ),
+    ).toEqual({ indentChar: '  ', indentLv: 1 });
+  });
+
+  it('4 space', () => {
+    expect(
+      getIndentFromPrepare(
+        (css) => `.mySelector {
+    ${css}
+}`,
+      ),
+    ).toEqual({ indentChar: '    ', indentLv: 1 });
+  });
+
+  it('0 spaces', () => {
+    expect(getIndentFromPrepare((css) => `.mySelector {${css}}`)).toEqual({ indentChar: '  ', indentLv: 1 });
+  });
+
+  it('tab', () => {
+    expect(getIndentFromPrepare((css) => `.mySelector {\n\t${css}\n}`)).toEqual({ indentChar: '\t', indentLv: 1 });
+  });
+
+  it('nested', () => {
+    expect(
+      getIndentFromPrepare(
+        (css) => `.foo {
+  --not-relevant: 0;
+}
+
+@media (width >= 600px) {
+  /* { */
+  .foo {
+    --not-relevant: 0;
+  }
+
+  .mySelector {
+    .mySelector2 {
+      ${css}
+    }
+  }
+}`,
+      ),
+    ).toEqual({ indentChar: '  ', indentLv: 3 });
   });
 });

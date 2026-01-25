@@ -236,8 +236,13 @@ Because DTCG tokens can be used with or without a resolver file, this is a separ
 import { createResolver, parse } from "@terrazzo/parser";
 
 const sources = [
-  { filename: new URL("file:///my-resolver.resolver.json"), src: {/* contents */} },
-]
+  {
+    filename: new URL("file:///my-resolver.resolver.json"),
+    src: {
+      /* contents */
+    },
+  },
+];
 
 const { resolver } = await parse(sources, { config });
 const r = createResolver(resolver);
@@ -280,8 +285,10 @@ If the resolver specified zero modifiers, the array will be `[{}]` so you can st
 
 `createResolver(resolver)` returns a resolver with the following methods:
 
-| Name                  | Type                                           | Description                                                                                            |
-|:----------------------|:-----------------------------------------------|:-------------------------------------------------------------------------------------------------------|
-| **apply**             | `(input: Record<string, string>) => TokensMap` | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.              |
-| **inputPermutations** | `Record<string, string>[]`                     | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers). |
-| **isValidInput**      | `(input: Record<string, string>) => boolean`   | Returns whether or not a given object is a valid input for this resolver.                              |
+| Name                  | Type                                                               | Description                                                                                                                                           |
+| :-------------------- | :----------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **apply**             | `(input: Record<string, string>) => TokensMap`                     | Apply [inputs](https://www.designtokens.org/tr/2025.10/resolver/#inputs) to the resolver.                                                             |
+| **inputPermutations** | `Record<string, string>[]`                                         | Get all valid inputs for all [modifiers](https://www.designtokens.org/tr/2025.10/resolver/#modifiers).                                                |
+| **isValidInput**      | `(input: Record<string, string>, throwError?: boolean) => boolean` | Returns a boolean value if a given input meets the resolver requirements. Optionally pass `true` for the 2nd param to throw errors with helpful info. |
+| **getPermutationID**  | `(input: Record<string, string>) => string`                        | Returns a stable, deterministic ID from an input. This can also be parsed by JSON back into a normalized input.                                       |
+| **source**            | Resolver                                                           | Original resolver, in case you want to manually verify something or implement new logic.                                                              |

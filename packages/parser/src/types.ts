@@ -73,6 +73,8 @@ export interface Config {
   outDir?: string;
   /** Specify plugins */
   plugins?: Plugin[];
+  /** Alphabetize tokens by ID to make output more consistent (note: some plugins may not preserve this order). @default true */
+  alphabetize?: boolean;
   /** Specify linting settings */
   lint?: {
     /** Configure build behavior */
@@ -134,6 +136,7 @@ export interface ConfigInit {
   tokens: URL[];
   outDir: URL;
   plugins: Plugin[];
+  alphabetize: boolean;
   lint: {
     build: NonNullable<NonNullable<Config['lint']>['build']>;
     rules: Record<string, LintRuleLonghand>;
@@ -336,14 +339,25 @@ export interface Resolver<
   Inputs extends Record<string, string[]> = Record<string, string[]>,
   Input = Record<keyof Inputs, Inputs[keyof Inputs][number]>,
 > {
-  /** Supply values to modifiers to produce a final tokens set */
+  /**
+   * Supply values to modifiers to produce a final tokens set. This caches the
+   * results, so calling a 2nd time with the same inputs will return the same
+   * results (it ignores object key order, and takes defaults into account for
+   * better caching).
+   */
   apply: (input: Partial<Input>) => TokenNormalizedSet;
-  /** List all possible valid input combinations. Ignores default values, as they would duplicate some other permutations. */
+  /**
+   * List all possible valid input combinations. Ignores default values, as they
+   * would duplicate some other permutations. This also caches results, so it’s
+   * only computed once on the first call.
+   */
   listPermutations: () => Input[];
+  /* Generate a stable ID from any input */
+  getPermutationID: (input: Input) => string;
   /** The original resolver document, simplified */
   source: ResolverSourceNormalized;
   /** Helper function for permutations—see if a particular input is valid. Automatically applies default values. */
-  isValidInput: (input: Input) => boolean;
+  isValidInput: (input: Input, throwError?: boolean) => boolean;
 }
 
 export interface ResolverSource {
@@ -422,18 +436,32 @@ export interface ResolverSetNormalized {
   $defs: Record<string, unknown> | undefined;
 }
 
-export interface TransformParams {
+export type TransformParams = TransformParamsLegacy | TransformParamsResolver;
+
+export interface TransformParamsBase {
   /** ID of an existing format */
   format: string;
   /** Glob of tokens to select (e.g. `"color.*"` to select all tokens starting with `"color."`) */
   id?: string | string[];
   /** $type(s) to filter for */
   $type?: string | string[];
+}
+
+export interface TransformParamsLegacy extends TransformParamsBase {
   /**
    * Mode name, if selecting a mode
+   * @deprecated Use input instead.
    * @default "."
    */
   mode?: string | string[];
+  /** Input that marks the transformation as a permutation */
+  input?: never;
+}
+
+export interface TransformParamsResolver extends TransformParamsBase {
+  mode?: never;
+  /** Input that marks the transformation as a permutation */
+  input: Record<string, string>;
 }
 
 export interface TransformHookOptions {
@@ -446,13 +474,24 @@ export interface TransformHookOptions {
   /** Update transformed values */
   setTransform(
     id: string,
-    params: {
-      format: string;
-      localID?: string;
-      value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
-      mode?: string;
-      meta?: TokenTransformedBase['meta'];
-    },
+    params:
+      | {
+          format: string;
+          localID?: string;
+          value: string | Record<string, string>; // allow looser type for input (`undefined` will just get stripped)
+          /** @deprecated */
+          mode?: string;
+          input?: never;
+          meta?: TokenTransformedBase['meta'];
+        }
+      | {
+          format: string;
+          localID?: string;
+          value: string | Record<string, string>;
+          mode?: never;
+          input: Record<string, string>;
+          meta?: TokenTransformedBase['meta'];
+        },
   ): void;
   /** Resolver */
   resolver: Resolver;

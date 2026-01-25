@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
 import { applyTemplate, buildFileHeader, flattenThemeObj, type TailwindPluginOptions } from './lib.js';
+import { makeCSSVar } from '@terrazzo/token-tools/css';
 
 export const FORMAT_ID = 'tailwind';
 
@@ -47,7 +48,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
             }
             setTransform(token.id, {
               format: FORMAT_ID,
-              localID: `--${path.join('-')}-${relName.replace(/\./g, '-')}`,
+              localID: makeCSSVar(`${path.join('-')}-${relName.replace(/\./g, '-')}`),
               value: typeof token.value === 'object' ? token.value['.']! : token.value,
               mode: variant, // ! <- not the original mode!
             });
@@ -59,7 +60,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       // Build theme blocks (@theme and @variant)
       const themeOutput: string[] = [];
       const variants: Record<string, string[]> = { '.': [] };
-      for (const token of getTransforms({ format: FORMAT_ID })) {
+      for (const token of getTransforms({ format: FORMAT_ID, mode: '*' })) {
         const { localID, value, mode } = token;
         if (!variants[mode]) {
           variants[mode] = [];

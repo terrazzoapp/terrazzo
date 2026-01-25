@@ -4,6 +4,8 @@
 
 ### Minor Changes
 
+- The `baseSelector`, `baseScheme`, and `modeSelectors` options are marked `@deprecated` for remove in 3.0. The new `permutations` API provides all functionality and then some, and should be migrated to as soon as possible.
+
 - [#530](https://github.com/terrazzoapp/terrazzo/pull/530) [`370ed7b`](https://github.com/terrazzoapp/terrazzo/commit/370ed7b0f578a64824124145d7f4936536b37bb3) Thanks [@drwpow](https://github.com/drwpow)! - ⚠️ Breaking change: lint on plugins no longer runs on individual files, rather, the full set once merged.
 
   If your lint plugin is not using the `src` context value, no changes are needed. If it is, you’ll need to instead read from the `sources` array, and look up sources with a token’s `source.loc` filename manually. This change was because lint rules now run on all files in one pass, essentially.
@@ -21,6 +23,10 @@
 - [#568](https://github.com/terrazzoapp/terrazzo/pull/568) [`67c75be`](https://github.com/terrazzoapp/terrazzo/commit/67c75be78978cece52b61cf258ccc3a875e6af48) Thanks [@drwpow](https://github.com/drwpow)! - Fix border tokens not cascading correctly across modes
 
 - [#606](https://github.com/terrazzoapp/terrazzo/pull/606) [`1fc1d99`](https://github.com/terrazzoapp/terrazzo/commit/1fc1d99e7156923e86e872e4750b7e28b6292b20) Thanks [@yuheiy](https://github.com/yuheiy)! - Allow partial utility CSS groups configuration
+
+- [#632](https://github.com/terrazzoapp/terrazzo/pull/632) [`21c61d3`](https://github.com/terrazzoapp/terrazzo/commit/21c61d30c2cb137411deaec673d03cdc14445208) Thanks [@aduth](https://github.com/aduth)! - Fix `transform` option TypeScript type to allow `undefined` or `null` return values
+
+- [#636](https://github.com/terrazzoapp/terrazzo/pull/636) Thanks [@geebru](https://github.com/geebru)! - Add missing CSS logical property directions for utility class generation
 
 ## 0.10.4
 

@@ -9,7 +9,7 @@ import vanillaExtract from '../src/index.js';
 describe('vanilla-extract', () => {
   // Generate a Vanilla Extract theme, and run through Vite to verify it’s valid
   describe('examples', () => {
-    const examples = ['figma-sds', 'github-primer'];
+    const examples = ['figma-sds', 'figma-sds-legacy', 'github-primer', 'github-primer-legacy'];
     const EXAMPLES_DIR = new URL('./fixtures/', import.meta.url);
 
     it.each(examples)('%s', async (name) => {
@@ -25,7 +25,7 @@ describe('vanilla-extract', () => {
       // 2. evalute whether Vanilla CSS (Vite plugin) can build this, without trying to snapshot a third-party library
       await execa({ cwd })`pnpm exec vite build ${fileURLToPath(cwd)}`;
       expect(fs.existsSync(new URL('dist/', cwd))).toBeTruthy();
-    }, 30_000); // these are doing large builds + building with Vite. They may take extra time in CI
+    }, 60_000); // these are doing large builds + building with Vite. They may take extra time in CI
   });
 
   describe('options', () => {

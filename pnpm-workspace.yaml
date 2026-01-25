@@ -17,19 +17,19 @@ catalog:
   '@swc/core-win32-ia32-msvc': 1.13.19
   '@swc/core-win32-x64-msvc': 1.13.19
   '@types/culori': ^4.0.1
-  '@types/react': ^19.2.7
+  '@types/react': ^19.2.8
   '@types/react-dom': ^19.2.3
   '@vitejs/plugin-react-swc': ^4.2.2
-  '@vitest/browser': ^4.0.15
-  '@vitest/browser-playwright': ^4.0.15
-  '@vitest/coverage-v8': ^4.0.15
+  '@vitest/browser': ^4.0.17
+  '@vitest/browser-playwright': ^4.0.17
+  '@vitest/coverage-v8': ^4.0.17
   culori: ^4.0.2
-  dtcg-examples: ^0.3.4
+  dtcg-examples: ^1.0.2
   playwright: ^1.57.0
   react: ^19.2.3
   react-dom: ^19.2.3
-  vite: ^7.2.7
-  vitest: ^4.0.15
+  vite: ^7.3.1
+  vitest: ^4.0.17
   yaml-to-momoa: 0.0.8
 
 onlyBuiltDependencies:

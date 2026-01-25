@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import {
   encodeFragment,
   findNode,
@@ -12,8 +12,8 @@ import {
 import { type GroupNormalized, isAlias, type TokenNormalizedSet } from '@terrazzo/token-tools';
 import { filterResolverPaths } from '../lib/resolver-utils.js';
 import type Logger from '../logger.js';
-import { isLikelyResolver } from '../resolver/validate.js';
 import type { ConfigInit, RefMap } from '../types.js';
+import { assert, assertObjectNode, assertStringNode } from './assert.js';
 import { normalize } from './normalize.js';
 import {
   aliasToGroupRef,
@@ -30,11 +30,12 @@ export interface ProcessTokensOptions {
   logger: Logger;
   sourceByFilename: Record<string, InputSourceWithDocument>;
   sources: InputSourceWithDocument[];
+  isResolver?: boolean;
 }
 
 export function processTokens(
   rootSource: InputSourceWithDocument,
-  { config, logger, sourceByFilename }: ProcessTokensOptions,
+  { config, logger, sourceByFilename, isResolver }: ProcessTokensOptions,
 ): TokenNormalizedSet {
   const entry = { group: 'parser' as const, label: 'init' };
 
@@ -42,11 +43,14 @@ export function processTokens(
   const refMap: RefMap = {};
   function resolveRef(node: momoa.StringNode, chain: string[]): momoa.AnyNode {
     const { subpath } = parseRef(node.value);
-    if (!subpath) {
-      logger.error({ ...entry, message: 'Can’t resolve $ref', node, src: rootSource.src });
-      // exit
-    }
+    assert(subpath, logger, { ...entry, message: 'Can’t resolve $ref', node, src: rootSource.src });
     const next = findNode(rootSource.document, subpath);
+    assert(next, logger, {
+      ...entry,
+      message: "Can't find $ref",
+      node,
+      src: rootSource.src,
+    });
     if (next?.type === 'Object') {
       const next$ref = getObjMember(next, '$ref');
       if (next$ref && next$ref.type === 'String') {
@@ -70,13 +74,16 @@ export function processTokens(
       if (rawPath.includes('$extensions') || node.type !== 'Object') {
         return;
       }
-      const $ref = node.type === 'Object' ? (getObjMember(node, '$ref') as momoa.StringNode) : undefined;
+      const $ref = node.type === 'Object' ? getObjMember(node, '$ref') : undefined;
       if (!$ref) {
         return;
       }
-      if ($ref.type !== 'String') {
-        logger.error({ ...entry, message: 'Invalid $ref. Expected string.', node: $ref, src: rootSource.src });
-      }
+      assertStringNode($ref, logger, {
+        ...entry,
+        message: 'Invalid $ref. Expected string.',
+        node: $ref,
+        src: rootSource.src,
+      });
       const jsonID = encodeFragment(rawPath);
       refMap[jsonID] = { filename: rootSource.filename.href, refChain: [$ref.value] };
       const resolved = resolveRef($ref, refMap[jsonID]!.refChain);
@@ -97,42 +104,49 @@ export function processTokens(
   function flatten$extends(node: momoa.ObjectNode, chain: string[]) {
     const memberKeys = node.members.map((m) => m.name.type === 'String' && m.name.value).filter(Boolean) as string[];
 
-    let extended: momoa.ObjectNode | undefined;
-
     if (memberKeys.includes('$extends')) {
-      const $extends = getObjMember(node, '$extends') as momoa.StringNode;
-      if ($extends.type !== 'String') {
-        logger.error({ ...entry, message: '$extends must be a string', node: $extends, src: rootSource.src });
-      }
+      const $extends = getObjMember(node, '$extends');
+      assertStringNode($extends, logger, {
+        ...entry,
+        message: '$extends must be a string',
+        node: $extends,
+        src: rootSource.src,
+      });
+
       if (memberKeys.includes('$value')) {
         logger.error({ ...entry, message: '$extends can’t exist within a token', node: $extends, src: rootSource.src });
       }
       const next = isAlias($extends.value) ? aliasToGroupRef($extends.value) : undefined;
-      if (!next) {
-        logger.error({ ...entry, message: '$extends must be a valid alias', node: $extends, src: rootSource.src });
-      }
+
+      assert(next, logger, {
+        ...entry,
+        message: '$extends must be a valid alias',
+        node: $extends,
+        src: rootSource.src,
+      });
 
       if (
-        chain.includes(next!.$ref) ||
+        chain.includes(next.$ref) ||
         // Check that $extends is not importing from higher up (could go in either direction, which is why we check both ways)
-        chain.some((value) => value.startsWith(next!.$ref) || next!.$ref.startsWith(value))
+        chain.some((value) => value.startsWith(next.$ref) || next.$ref.startsWith(value))
       ) {
         logger.error({ ...entry, message: 'Circular $extends detected', node: $extends, src: rootSource.src });
       }
 
-      chain.push(next!.$ref);
-      extended = findNode(rootSource.document, parseRef(next!.$ref).subpath ?? []);
-      if (!extended) {
-        logger.error({ ...entry, message: 'Could not resolve $extends', node: $extends, src: rootSource.src });
-      }
-      if (extended!.type !== 'Object') {
-        logger.error({ ...entry, message: '$extends must resolve to a group of tokens', node });
-      }
+      chain.push(next.$ref);
+      const extended = findNode(rootSource.document, parseRef(next.$ref).subpath ?? []);
+      assert(extended, logger, {
+        ...entry,
+        message: 'Could not resolve $extends',
+        node: $extends,
+        src: rootSource.src,
+      });
+      assertObjectNode(extended, logger, { ...entry, message: '$extends must resolve to a group of tokens', node });
 
       // To ensure this is resolvable, try and flatten this node first (will catch circular refs)
-      flatten$extends(extended!, chain);
+      flatten$extends(extended, chain);
 
-      replaceNode(node, mergeObjects(extended!, node));
+      replaceNode(node, mergeObjects(extended, node));
     }
 
     // Deeply-traverse for any interior $extends (even if it wasn’t at the top level)
@@ -168,7 +182,6 @@ export function processTokens(
   const groups: Record<string, GroupNormalized> = {};
 
   // 3a. Token & group population
-  const isResolver = isLikelyResolver(rootSource.document);
   traverse(rootSource.document, {
     enter(node, _parent, rawPath) {
       if (node.type !== 'Object') {
@@ -234,6 +247,10 @@ export function processTokens(
 
   // 6. alphabetize & filter
   // This can’t happen until the last step, where we’re 100% sure we’ve resolved everything.
+  if (config.alphabetize === false) {
+    return tokens;
+  }
+
   const sortStart = performance.now();
   const tokensSorted: TokenNormalizedSet = {};
   tokenIDs.sort((a, b) => a.localeCompare(b, 'en-us', { numeric: true }));

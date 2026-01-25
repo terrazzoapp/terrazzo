@@ -1,4 +1,4 @@
-import * as momoa from '@humanwhocodes/momoa';
+import type * as momoa from '@humanwhocodes/momoa';
 import { getObjMember, getObjMembers } from '@terrazzo/json-schema-tools';
 import type { LogEntry, default as Logger } from '../logger.js';
 
@@ -242,6 +242,12 @@ export function validateSet(node: momoa.ObjectNode, isInline = false, { src }: V
           errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: member.value });
         } else if (member.value.elements.length === 0) {
           errors.push({ ...entry, message: `"sources" can’t be empty array.`, node: member.value });
+        } else {
+          for (const source of member.value.elements) {
+            if (source.value.type !== 'Object') {
+              errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: source.value });
+            }
+          }
         }
         break;
       }
@@ -325,6 +331,12 @@ export function validateModifier(
           for (const context of member.value.members) {
             if (context.value.type !== 'Array') {
               errors.push({ ...entry, message: MESSAGE_EXPECTED.ARRAY, node: context.value });
+            } else {
+              for (const source of context.value.elements) {
+                if (source.value.type !== 'Object') {
+                  errors.push({ ...entry, message: MESSAGE_EXPECTED.OBJECT, node: source.value });
+                }
+              }
             }
           }
         }

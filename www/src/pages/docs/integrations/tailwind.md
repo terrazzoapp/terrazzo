@@ -163,16 +163,16 @@ Tailwind considers dark mode as a [variant](https://tailwindcss.com/docs/functio
 
 By declaring a `variants` array with both `selector` (Tailwind) and `mode` (DTCG mode), you can generate the following CSS:
 
-```js
-tailwind({
-  theme: {
-    color: ["color.*"],
-  },
-  modeVariants: [
-    { variant: "dark", mode: "dark" },
-    { variant: "hc", mode: "high-contrast" },
-  ],
-});
+```diff
+  tailwind({
+    theme: {
+      color: ["color.*"],
+    },
++   modeVariants: [
++     { variant: "dark", mode: "dark" },
++     { variant: "hc", mode: "high-contrast" },
++   ],
+  });
 ```
 
 Produces:
@@ -190,3 +190,9 @@ Produces:
   /* mode: hc tokens */
 }
 ```
+
+:::note
+
+As of 2.0, since plugin-css no longer computes all permutations of tokens automatically (due to DTCG Resolvers, some design systems have thousands of permutations that are a waste of time to build), you’ll need to add `modeSelectors` for the variants you want to generate.
+
+:::
