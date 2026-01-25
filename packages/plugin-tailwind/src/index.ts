@@ -2,15 +2,15 @@ import fs from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
-import { applyTemplate, buildFileHeader, flattenThemeObj, type TailwindPluginOptions } from './lib.js';
 import { makeCSSVar } from '@terrazzo/token-tools/css';
+import { applyTemplate, buildFileHeader, flattenThemeObj, type TailwindPluginOptions } from './lib.js';
 
 export const FORMAT_ID = 'tailwind';
 
 export * from './lib.js';
 
 export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
-  const filename = options?.filename ?? (options as any)?.fileName ?? 'tailwind-theme.css';
+  const filename = options?.filename ?? 'tailwind-theme.css';
   let cwd: URL;
 
   return {

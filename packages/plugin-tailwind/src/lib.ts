@@ -10,7 +10,7 @@ export interface TailwindPluginOptions {
    */
   template?: string;
   /** @see https://tailwindcss.com/docs/theme */
-  theme: Record<string, any>;
+  theme: Record<string, unknown>;
   /** Array of mapping variants to DTCG modes. */
   modeVariants?: { variant: string; mode: string }[];
 }
