@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@terrazzo-slot;
+
+/* Custom styles */
+.custom-class {
+  color: red;
+}

@@ -1,6 +1,8 @@
+import fs from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import type { Plugin } from '@terrazzo/parser';
 import { FORMAT_ID as FORMAT_CSS } from '@terrazzo/plugin-css';
-import { flattenThemeObj, type TailwindPluginOptions } from './lib.js';
+import { applyTemplate, buildFileHeader, flattenThemeObj, type TailwindPluginOptions } from './lib.js';
 
 export const FORMAT_ID = 'tailwind';
 
@@ -8,6 +10,7 @@ export * from './lib.js';
 
 export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
   const filename = options?.filename ?? (options as any)?.fileName ?? 'tailwind-theme.css';
+  let cwd: URL;
 
   return {
     name: '@terrazzo/plugin-tailwind',
@@ -22,6 +25,9 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       if (!options || !options.theme) {
         throw new Error('Missing Tailwind `theme` option.');
       }
+
+      // Store cwd for template resolution (parent of outDir)
+      cwd = new URL('./', config.outDir);
     },
     async transform({ getTransforms, setTransform }) {
       const variants = [{ variant: '.', mode: '.' }, ...(options?.modeVariants ?? [])];
@@ -50,8 +56,8 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
     },
     async build({ getTransforms, outputFile }) {
-      const output = ['@import "tailwindcss";', ''];
-
+      // Build theme blocks (@theme and @variant)
+      const themeOutput: string[] = [];
       const variants: Record<string, string[]> = { '.': [] };
       for (const token of getTransforms({ format: FORMAT_ID })) {
         const { localID, value, mode } = token;
@@ -61,14 +67,27 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         variants[mode].push(`${localID}: ${value};`);
       }
       for (const [variant, values] of Object.entries(variants)) {
-        output.push(variant === '.' ? '@theme {' : `@variant ${variant} {`);
+        themeOutput.push(variant === '.' ? '@theme {' : `@variant ${variant} {`);
         for (const value of values) {
-          output.push(`  ${value}`);
+          themeOutput.push(`  ${value}`);
         }
-        output.push('}', '');
+        themeOutput.push('}', '');
+      }
+      const generatedTheme = themeOutput.join('\n');
+
+      // Build final output
+      let finalOutput: string;
+      if (options.template) {
+        const templateUrl = new URL(options.template, cwd);
+        const templateContent = fs.readFileSync(fileURLToPath(templateUrl), 'utf8');
+        finalOutput = applyTemplate(templateContent, generatedTheme);
+      } else {
+        finalOutput = ['@import "tailwindcss";', '', generatedTheme].join('\n');
       }
 
-      outputFile(filename, output.join('\n'));
+      // Add header and output
+      const header = buildFileHeader(options.template);
+      outputFile(filename, [header, '', finalOutput].join('\n'));
     },
   };
 }
