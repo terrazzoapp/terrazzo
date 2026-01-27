@@ -1,5 +1,5 @@
 import type { TokenNormalized, TokenTransformed, TransformHookOptions } from '@terrazzo/parser';
-import { makeCSSVar, transformCSSValue } from '@terrazzo/token-tools/css';
+import { makeCSSVar, type TransformCSSValueOptions, transformCSSValue } from '@terrazzo/token-tools/css';
 import wcmatch from 'wildcard-match';
 import { type CSSPluginOptions, FORMAT_ID, PLUGIN_NAME } from './lib.js';
 
@@ -49,9 +49,8 @@ export default function transformCSS({
           if (ignore?.(token.id) || exclude?.(token.id)) {
             continue;
           }
-          const value =
-            customTransform?.(token) ??
-            transformCSSValue(token, { tokensSet: tokens, transformAlias, color: { legacyHex } });
+          const options: TransformCSSValueOptions = { tokensSet: tokens, transformAlias, color: { legacyHex } };
+          const value = p.transform?.(token, options) ?? customTransform?.(token) ?? transformCSSValue(token, options);
           // Don’t duplicate values when unnecessary
           if (value && isDifferentValue(value, getTransforms({ format: FORMAT_ID, id: token.id })[0]?.value)) {
             const localID = transformName(token);
