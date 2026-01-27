@@ -1,5 +1,7 @@
 import type { TokenNormalized, TokenTransformed } from '@terrazzo/parser';
 
+import type { TransformCSSValueOptions } from '@terrazzo/token-tools/css';
+
 export type UtilityCSSGroup = 'bg' | 'border' | 'font' | 'layout' | 'shadow' | 'text';
 
 export type UtilityCSSPrefix = 'bg' | 'border' | 'font' | 'gap' | 'm' | 'p' | 'shadow' | 'text';
@@ -71,6 +73,13 @@ export interface Permutation<T extends Record<string, string> = Record<string, s
   input: T;
   /** Provide token(s) to ignore (Note: ignoring tokens that are used as aliases for other tokens could cause visual bugs in generated CSS) */
   ignore?: string[];
+  /**
+   * Custom transform for this permutation
+   */
+  transform?: (
+    token: TokenNormalized,
+    options: TransformCSSValueOptions,
+  ) => TokenTransformed['value'] | undefined | null;
 }
 
 export interface ModeSelector {
