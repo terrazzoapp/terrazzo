@@ -27,7 +27,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         throw new Error('Missing Tailwind `theme` option.');
       }
 
-      // Store cwd for template resolution (parent of outDir)
+      // store cwd for template resolution (parent of outDir)
       cwd = new URL('./', config.outDir);
     },
     async transform({ getTransforms, setTransform }) {
@@ -57,7 +57,6 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
     },
     async build({ getTransforms, outputFile }) {
-      // Build theme blocks (@theme and @variant)
       const themeOutput: string[] = [];
       const variants: Record<string, string[]> = { '.': [] };
       for (const token of getTransforms({ format: FORMAT_ID, mode: '*' })) {
@@ -76,7 +75,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       }
       const generatedTheme = themeOutput.join('\n');
 
-      // Build final output
+      // build the output combining theme and template
       let finalOutput: string;
       if (options.template) {
         const templateUrl = new URL(options.template, cwd);
@@ -86,7 +85,6 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
         finalOutput = ['@import "tailwindcss";', '', generatedTheme].join('\n');
       }
 
-      // Add header and output
       const header = buildFileHeader(options.template);
       outputFile(filename, [header, '', finalOutput].join('\n'));
     },
