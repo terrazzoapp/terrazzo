@@ -80,7 +80,7 @@ export default function pluginTailwind(options: TailwindPluginOptions): Plugin {
       let finalOutput: string;
       if (options.template) {
         const templateUrl = new URL(options.template, cwd);
-        const templateContent = fs.readFileSync(fileURLToPath(templateUrl), 'utf8');
+        const templateContent = fs.readFileSync(fileURLToPath(templateUrl), 'utf8').replace(/\r\n/g, '\n');
         finalOutput = applyTemplate(templateContent, generatedTheme);
       } else {
         finalOutput = ['@import "tailwindcss";', '', generatedTheme].join('\n');
