@@ -1,11 +1,7 @@
 ---
-import fs from 'node:fs';
 import { DiscordLogo, GitHubLogo } from '@terrazzo/icons';
 import { ButtonLink } from '@terrazzo/tiles';
 import Terrazzo from './terrazzo.astro';
-
-// const pkgInfo = JSON.parse(fs.readFileSync(new URL('../../../packages/cli/package.json', import.meta.url), 'utf8'));
-// const { version } = pkgInfo;
 ---
 
 <nav class="nav" aria-label="Main">
@@ -16,13 +12,6 @@ import Terrazzo from './terrazzo.astro';
     <li class="nav-item"><a href="/docs">Docs</a></li>
     <li class="nav-item nav-item--sub" style="margin-bottom:-1px">
       <ButtonLink href="/docs" variant="lime">Get Started</ButtonLink>
-    </li>
-    <li class="nav-item nav-item--sub">
-      <a
-        class="nav-link"
-        href="https://github.com/terrazzoapp/terrazzo/releases"
-        ><code class="version">v0.10.3</code></a
-      >
     </li>
     <li class="nav-item nav-item--sub nav-item--secondary">
       <a
@@ -44,8 +33,6 @@ import Terrazzo from './terrazzo.astro';
 
   <style>
     .nav {
-      --nav-height: var(--grid-size);
-
       background: var(--tz-color-bg-1);
       border-bottom: var(--tz-border-2);
       color: var(--tz-color-text-1);

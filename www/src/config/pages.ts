@@ -45,10 +45,10 @@ export const DOCS_NAV_V2 = [
   {
     title: 'Guides',
     items: [
-      { url: '/docs/guides/dtcg/', title: 'DTCG Tokens' },
-      { url: '/docs/guides/resolvers/', title: 'Resolvers' },
-      { url: '/docs/guides/resolver-contexts/', title: 'Resolver Contexts' },
-      { url: '/docs/guides/styleguide/', title: 'DS Styleguide' },
+      { url: '/docs/2.0/guides/dtcg/', title: 'DTCG Tokens' },
+      { url: '/docs/2.0/guides/resolvers/', title: 'Resolvers' },
+      { url: '/docs/2.0/guides/resolver-contexts/', title: 'Resolver Contexts' },
+      { url: '/docs/2.0/guides/styleguide/', title: 'DS Styleguide' },
       { url: '/docs/2.0/guides/migrating-v2/', title: 'Migrating to 2.x' },
     ],
   },
@@ -59,15 +59,15 @@ export const DOCS_NAV_V2 = [
   {
     title: 'Integrations',
     items: [
-      { url: '/docs/integrations/css/', title: 'CSS' },
-      { url: '/docs/integrations/css-in-js/', title: 'CSS-in-JS' },
-      { url: '/docs/integrations/sass/', title: 'Sass' },
+      { url: '/docs/2.0/integrations/css/', title: 'CSS' },
+      { url: '/docs/2.0/integrations/css-in-js/', title: 'CSS-in-JS' },
+      { url: '/docs/2.0/integrations/sass/', title: 'Sass' },
       { url: '/docs/2.0/integrations/js/', title: 'JS/TS' },
-      { url: '/docs/integrations/swift/', title: 'Swift' },
-      { url: '/docs/integrations/tailwind/', title: 'Tailwind' },
-      { url: '/docs/integrations/vanilla-extract/', title: 'Vanilla Extract' },
-      { url: '/docs/integrations/custom/', title: 'Custom' },
-      { url: '/docs/integrations/token-listing/', title: 'Token Listing' },
+      { url: '/docs/2.0/integrations/swift/', title: 'Swift' },
+      { url: '/docs/2.0/integrations/tailwind/', title: 'Tailwind' },
+      { url: '/docs/2.0/integrations/vanilla-extract/', title: 'Vanilla Extract' },
+      { url: '/docs/2.0/integrations/custom/', title: 'Custom' },
+      { url: '/docs/2.0/integrations/token-listing/', title: 'Token Listing' },
     ],
   },
   {
