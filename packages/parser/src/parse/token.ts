@@ -432,6 +432,10 @@ const EXPECTED_NESTED_ALIAS: Record<string, Record<string, string[]>> = {
     fontSize: ['dimension'],
     lineHeight: ['dimension', 'number'],
     letterSpacing: ['dimension'],
+
+    // CSS extensions (that aren’t "string")
+    paragraphSpacing: ['dimension', 'string'],
+    wordSpacing: ['dimension', 'string'],
   },
 };
 

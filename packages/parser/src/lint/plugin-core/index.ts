@@ -12,6 +12,16 @@ export * from './rules/required-children.js';
 export * from './rules/required-modes.js';
 export * from './rules/required-type.js';
 export * from './rules/required-typography-properties.js';
+export * from './rules/valid-font-family.js';
+export * from './rules/valid-font-weight.js';
+export * from './rules/valid-gradient.js';
+export * from './rules/valid-link.js';
+export * from './rules/valid-number.js';
+export * from './rules/valid-shadow.js';
+export * from './rules/valid-string.js';
+export * from './rules/valid-stroke-style.js';
+export * from './rules/valid-transition.js';
+export * from './rules/valid-typography.js';
 
 import a11yMinContrast, { A11Y_MIN_CONTRAST } from './rules/a11y-min-contrast.js';
 import a11yMinFontSize, { A11Y_MIN_FONT_SIZE } from './rules/a11y-min-font-size.js';

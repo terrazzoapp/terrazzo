@@ -28,6 +28,8 @@
 
 - [#636](https://github.com/terrazzoapp/terrazzo/pull/636) Thanks [@geebru](https://github.com/geebru)! - Add missing CSS logical property directions for utility class generation
 
+- Thanks [@drwpow](https://github.com/drwpow)! - Improve extended typography property CSS generation
+
 ## 0.10.4
 
 ### Patch Changes
