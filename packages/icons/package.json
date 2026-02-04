@@ -29,7 +29,7 @@
     "@types/react-dom": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "rollup": "^4.55.1",
+    "rollup": "^4.57.1",
     "rollup-plugin-import-css": "^3.5.8"
   }
 }
