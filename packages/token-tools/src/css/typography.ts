@@ -53,7 +53,15 @@ export function transformTypography(token: TypographyTokenNormalized, options: T
           break;
         }
         default: {
-          transformedValue = transformString({ $value: subvalue } as StringTokenNormalized, options);
+          // For other typography properties, dimensions are the only other likely token type
+          if (subvalue && typeof subvalue === 'object' && 'value' in subvalue) {
+            transformedValue = transformDimension({ $value: subvalue } as DimensionTokenNormalized, options);
+          } else if (typeof subvalue === 'number') {
+            // number is technically allowed for things like `paragraph-spacing: 0`
+            transformedValue = transformNumber({ $value: subvalue } as NumberTokenNormalized, options);
+          } else {
+            transformedValue = transformString({ $value: subvalue } as StringTokenNormalized, options);
+          }
           break;
         }
       }

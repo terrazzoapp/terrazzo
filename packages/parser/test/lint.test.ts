@@ -23,6 +23,8 @@ import {
   type RuleRequiredChildrenOptions,
   type RuleRequiredModesOptions,
   type RuleRequiredTypographyPropertiesOptions,
+  type RuleValidTypographyOptions,
+  VALID_TYPOGRAPHY,
 } from '../src/lint/plugin-core/index.js';
 
 const cwd = new URL(import.meta.url);
@@ -42,6 +44,7 @@ interface TestOptions {
     | { rule: typeof REQUIRED_TYPOGRAPHY_PROPERTIES; options: RuleRequiredTypographyPropertiesOptions }
     | { rule: typeof A11Y_MIN_CONTRAST; options: RuleA11yMinContrastOptions }
     | { rule: typeof A11Y_MIN_FONT_SIZE; options: RuleA11yMinFontSizeOptions }
+    | { rule: typeof VALID_TYPOGRAPHY; options: RuleValidTypographyOptions }
   );
   want: { errors: string[]; success?: never } | { errors?: never; success: true };
 }
@@ -677,6 +680,33 @@ describe('rules', () => {
           },
         },
         want: { errors: ['Token missing $type.'] },
+      },
+    ],
+    [
+      `[${VALID_TYPOGRAPHY}]: pass (non-spec property string)`,
+      {
+        given: {
+          rule: VALID_TYPOGRAPHY,
+          options: { requiredProperties: [] },
+          tokens: { typography: { $type: 'typography', $value: { ...BASIC_TYPOGRAPHY, paragraphSpacing: '14px' } } },
+        },
+        want: { success: true },
+      },
+    ],
+    [
+      `[${VALID_TYPOGRAPHY}]: pass (non-spec property dimension)`,
+      {
+        given: {
+          rule: VALID_TYPOGRAPHY,
+          options: { requiredProperties: [] },
+          tokens: {
+            typography: {
+              $type: 'typography',
+              $value: { ...BASIC_TYPOGRAPHY, paragraphSpacing: { $value: 14, unit: 'px' } },
+            },
+          },
+        },
+        want: { success: true },
       },
     ],
   ];
