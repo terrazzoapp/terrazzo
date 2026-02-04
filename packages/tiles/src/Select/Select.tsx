@@ -32,15 +32,15 @@ export interface SelectItemProps extends RadixSelectItemProps {
 export function SelectItem({ className, children, icon, ref, ...rest }: SelectItemProps) {
   return (
     <RadixSelectItem ref={ref} className={clsx('tz-select-item', className)} {...rest}>
+      <SelectItemIndicator className='tz-select-item-indicator'>
+        <Check />
+      </SelectItemIndicator>
       <SelectItemText>
         <span className='tz-select-item-inner'>
           <span className='tz-select-item-icon'>{icon}</span>
           <span className='tz-select-item-label'>{children}</span>
         </span>
       </SelectItemText>
-      <SelectItemIndicator className='tz-select-item-indicator'>
-        <Check />
-      </SelectItemIndicator>
     </RadixSelectItem>
   );
 }

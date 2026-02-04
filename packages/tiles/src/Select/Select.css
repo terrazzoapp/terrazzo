@@ -45,16 +45,22 @@
 .tz-select-item-inner {
   --tz-select-icon-size: 1rem;
 
-  display: grid;
+  display: flex;
   gap: var(--tz-space-200);
-  grid-template-columns: var(--tz-select-icon-size) max-content;
 }
 
 .tz-select-item-icon {
   align-content: center;
   align-self: center;
   display: flex;
+  flex: 0 0 auto;
+  min-width: var(--tz-select-icon-size);
   opacity: 0.5;
+  width: var(--tz-select-icon-size);
+
+  .tz-select-trigger &:empty {
+    display: none;
+  }
 }
 
 .tz-select-item-label {
@@ -66,10 +72,12 @@
   align-items: center;
   background-color: var(--tz-color-bg-1);
   display: inline-flex;
+  height: 100%;
   justify-content: center;
   left: 0;
   position: absolute;
   width: var(--tz-space-control-m);
+  z-index: 2;
 }
 
 .tz-select-options {
